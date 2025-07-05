@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.hzltd</groupId>
+        <artifactId>hzapp</artifactId>
+        <version>2.0.1</version>
+    </parent>
+
+    <modules>
+        <module>hzapp-module-erplus-api</module>
+        <module>hzapp-module-erplus-biz</module>
+        <module>hzapp-module-erplus-amz-spapi</module>
+        <module>hzapp-module-erplus-ozon-spapi</module>
+        <module>hzapp-module-erplus-api-adaptor</module>
+        <module>hzapp-module-erplus-tts-spapi</module>
+        <!--        <module>hzapp-module-erplus-oversea</module>-->
+    </modules>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>hzapp-module-erplus</artifactId>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+    <version>2.0.2-SNAPSHOT</version>
+    <description>
+        erp 包下，企业资源管理（Enterprise Resource Planning）。
+        例如说：采购、销售、库存、财务、产品等等
+    </description>
+
+    <properties>
+        <eVersion>2.0.2-SNAPSHOT</eVersion>
+
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus</artifactId>
+                <version>${eVersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus-biz</artifactId>
+                <version>${eVersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus-api</artifactId>
+                <version>${eVersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus-api-adaptor</artifactId>
+                <version>${eVersion}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus-tts-spapi</artifactId>
+                <version>${eVersion}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus-amz-spapi</artifactId>
+                <version>${eVersion}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus-ozon-spapi</artifactId>
+                <version>${eVersion}</version>
+            </dependency>
+
+        </dependencies>
+
+
+
+    </dependencyManagement>
+
+</project>

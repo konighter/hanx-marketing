@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.hzltd</groupId>
+        <artifactId>hzapp-module-erplus</artifactId>
+        <version>2.0.2-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>hzapp-module-erplus-biz</artifactId>
+
+    <name>${project.artifactId}</name>
+    <description>
+        erp 包下，企业资源管理（Enterprise Resource Planning）。
+        例如说：采购、销售、库存、财务、产品等等
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-system-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-erplus-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-erplus-api-adaptor</artifactId>
+        </dependency>
+
+        <!-- 业务组件 -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-biz-operatelog</artifactId>
+        </dependency>
+
+        <!-- Web 相关 -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- DB 相关 -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <!-- 工具类相关 -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-excel</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-biz-dict</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>3.1.9</version>
+        </dependency>
+
+        <!-- Test 测试相关 -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-test</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>
