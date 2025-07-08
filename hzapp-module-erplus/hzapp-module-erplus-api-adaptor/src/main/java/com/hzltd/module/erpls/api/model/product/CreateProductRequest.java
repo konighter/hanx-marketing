@@ -22,6 +22,12 @@ public class CreateProductRequest {
     private CrossPlatformEnum crossPlatform;
 
     @NotNull
+    private Integer shopId;
+
+    @NotNull
+    private String marketId;
+
+    @NotNull
     private SaveModeEnum saveMode;
 
     @NotNull
@@ -35,6 +41,10 @@ public class CreateProductRequest {
 
     @NotNull
     private String title;
+
+    private String keywords;
+
+    private List<String> features;
 
     @NotNull
     private String description;
@@ -51,6 +61,14 @@ public class CreateProductRequest {
     @NotNull
     private List<Image> sliderImages;
 
+    private Video video;
+
+    /**
+     * 多规格：true
+     * 单规格：false
+     */
+    private Boolean specType;
+
     @Size(min = 1)
     private List<SkuModel> skus;
 
@@ -58,14 +76,9 @@ public class CreateProductRequest {
     private List<CertificationModel> certifications;
 
     /**
-     * 产品尺寸
+     * 产品尺寸/重量
      */
-    private DimensionModel packageDimensions;
-
-    /**
-     * 产品重量
-     */
-    private WeightModel packageWeight;
+    private DimensionModel dimension;
 
     /**
      * 安全合规
@@ -79,11 +92,7 @@ public class CreateProductRequest {
 
     private List<ProductAttributeModel> productAttributes;
 
-
-    private Video video;
-
-    private String externalProductId;
-
+    private Long relateProductId;
 
     private Map<String, Object> crossPlatformExtAttrs;
 

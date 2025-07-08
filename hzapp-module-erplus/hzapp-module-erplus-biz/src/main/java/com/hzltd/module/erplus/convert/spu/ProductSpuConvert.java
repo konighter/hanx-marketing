@@ -2,8 +2,11 @@ package com.hzltd.module.erplus.convert.spu;
 
 import com.hzltd.framework.common.util.collection.CollectionUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
+import com.hzltd.module.erpls.api.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuRespVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import org.mapstruct.Mapper;
@@ -34,6 +37,10 @@ public interface ProductSpuConvert {
     default List<ProductSpuRespVO> convertForSpuDetailRespListVO(List<ProductSpuDO> spus, List<ProductSkuDO> skus) {
         Map<Long, List<ProductSkuDO>> skuMultiMap = convertMultiMap(skus, ProductSkuDO::getSpuId);
         return CollectionUtils.convertList(spus, spu -> convert(spu, skuMultiMap.get(spu.getId())));
+    }
+
+    default ProductSpuSaveReqVO convert(ProductPublishRequest productRequest) {
+        return null;
     }
 
 }

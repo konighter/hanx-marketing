@@ -31,11 +31,11 @@ public class ProductSkuSaveReqVO {
     private String barCode;
 
     @Schema(description = "图片地址", requiredMode = Schema.RequiredMode.REQUIRED, example = "https://www.iocoder.cn/xx.png")
-    @NotNull(message = "图片地址不能为空")
+//    @NotNull(message = "图片地址不能为空")
     private String picUrl;
 
     @Schema(description = "库存", requiredMode = Schema.RequiredMode.REQUIRED, example = "200")
-    @NotNull(message = "库存不能为空")
+//    @NotNull(message = "库存不能为空")
     private Integer stock;
 
     @Schema(description = "商品重量,单位：kg 千克", example = "1.2")
@@ -44,11 +44,11 @@ public class ProductSkuSaveReqVO {
     @Schema(description = "商品体积,单位：m^3 平米", example = "2.5")
     private Double volume;
 
-    @Schema(description = "一级分销的佣金，单位：分", example = "199")
-    private Integer firstBrokeragePrice;
-
-    @Schema(description = "二级分销的佣金，单位：分", example = "19")
-    private Integer secondBrokeragePrice;
+//    @Schema(description = "一级分销的佣金，单位：分", example = "199")
+//    private Integer firstBrokeragePrice;
+//
+//    @Schema(description = "二级分销的佣金，单位：分", example = "19")
+//    private Integer secondBrokeragePrice;
 
     @Schema(description = "属性数组")
     private List<Property> properties;

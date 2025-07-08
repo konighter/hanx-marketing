@@ -9,6 +9,11 @@ import java.util.List;
 @Data
 public class SkuModel {
 
+    /**
+     * 平台的SKUID, AMZ是ASIN
+     */
+    private String skuId;
+
     private String sellerSku;
 
     private String externalSkuId;

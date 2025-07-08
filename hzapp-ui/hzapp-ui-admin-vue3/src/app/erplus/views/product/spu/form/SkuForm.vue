@@ -1,16 +1,7 @@
 <!-- 商品发布 - 库存价格 -->
 <template>
   <el-form ref="formRef" :model="formData" :rules="rules" label-width="120px" :disabled="isDetail">
-    <el-form-item label="分销类型" props="subCommissionType">
-      <el-radio-group
-        v-model="formData.subCommissionType"
-        @change="changeSubCommissionType"
-        class="w-80"
-      >
-        <el-radio :label="false">默认设置</el-radio>
-        <el-radio :label="true" class="radio">单独设置</el-radio>
-      </el-radio-group>
-    </el-form-item>
+
     <el-form-item label="商品规格" props="specType">
       <el-radio-group v-model="formData.specType" @change="onChangeSpec" class="w-80">
         <el-radio :label="false" class="radio">单规格</el-radio>
@@ -62,10 +53,10 @@ import {
   PropertyAndValues,
   RuleConfig,
   SkuList
-} from '@/views/mall/product/spu/components/index'
+} from '@/app/erplus/views/product/spu/components/index'
 import ProductAttributes from './ProductAttributes.vue'
 import ProductPropertyAddForm from './ProductPropertyAddForm.vue'
-import type { Spu } from '@/api/mall/product/spu'
+import type { Spu } from '@/app/erplus/api/product/spu'
 
 defineOptions({ name: 'ProductSpuSkuForm' })
 
@@ -108,12 +99,10 @@ const propertyList = ref<PropertyAndValues[]>([]) // 商品属性列表
 const skuListRef = ref() // 商品属性列表 Ref
 const formData = reactive<Spu>({
   specType: false, // 商品规格
-  subCommissionType: false, // 分销类型
   skus: []
 })
 const rules = reactive({
-  specType: [required],
-  subCommissionType: [required]
+  specType: [required]
 })
 
 /** 将传进来的值赋值给 formData */
@@ -150,14 +139,7 @@ const validate = async () => {
 }
 defineExpose({ validate })
 
-/** 分销类型 */
-const changeSubCommissionType = () => {
-  // 默认为零，类型切换后也要重置为零
-  for (const item of formData.skus!) {
-    item.firstBrokeragePrice = 0
-    item.secondBrokeragePrice = 0
-  }
-}
+
 
 /** 选择规格 */
 const onChangeSpec = () => {
@@ -173,10 +155,7 @@ const onChangeSpec = () => {
       picUrl: '',
       stock: 0,
       weight: 0,
-      volume: 0,
-      firstBrokeragePrice: 0,
-      secondBrokeragePrice: 0,
-      detail: '' // 每个SKU单独的详情页面
+      volume: 0
     }
   ]
 }

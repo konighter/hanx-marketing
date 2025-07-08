@@ -1,6 +1,14 @@
 <template>
   <ContentWrap v-loading="formLoading">
     <el-tabs v-model="activeName">
+      <el-tab-pane label="发布设置" name="publish">
+        <PublishForm
+          ref="publishRef"
+          v-model:activeName="activeName"
+          :is-detail="isDetail"
+          :propFormData="formData"
+        />
+      </el-tab-pane>
       <el-tab-pane label="基础设置" name="info">
         <InfoForm
           ref="infoRef"
@@ -9,6 +17,7 @@
           :propFormData="formData"
         />
       </el-tab-pane>
+
       <el-tab-pane label="价格库存" name="sku">
         <SkuForm
           ref="skuRef"
@@ -25,17 +34,19 @@
           :propFormData="formData"
         />
       </el-tab-pane>
-      <el-tab-pane label="商品详情" name="description">
-        <DescriptionForm
-          ref="descriptionRef"
+      
+      <el-tab-pane label="其它设置" name="other">
+        <OtherForm
+          ref="otherRef"
           v-model:activeName="activeName"
           :is-detail="isDetail"
           :propFormData="formData"
         />
       </el-tab-pane>
-      <el-tab-pane label="其它设置" name="other">
-        <OtherForm
-          ref="otherRef"
+  
+      <el-tab-pane label="安全合规" name="compliance">
+        <ComplianceForm
+          ref="complianceRef"
           v-model:activeName="activeName"
           :is-detail="isDetail"
           :propFormData="formData"
@@ -58,12 +69,13 @@
 <script lang="ts" setup>
 import { cloneDeep } from 'lodash-es'
 import { useTagsViewStore } from '@/store/modules/tagsView'
-import * as ProductSpuApi from '@/api/mall/product/spu'
+import * as ProductSpuApi from '@/app/erplus/api/product/spu'
 import InfoForm from './InfoForm.vue'
-import DescriptionForm from './DescriptionForm.vue'
 import OtherForm from './OtherForm.vue'
 import SkuForm from './SkuForm.vue'
 import DeliveryForm from './DeliveryForm.vue'
+import PublishForm from './PublishForm.vue'
+import ComplianceForm from './ComplianceForm.vue'
 import { convertToInteger, floatToFixed2, formatToFraction } from '@/utils'
 
 defineOptions({ name: 'ProductSpuForm' })
@@ -75,15 +87,16 @@ const { params, name } = useRoute() // 查询参数
 const { delView } = useTagsViewStore() // 视图操作
 
 const formLoading = ref(false) // 表单的加载中：1）修改时的数据加载；2）提交的按钮禁用
-const activeName = ref('info') // Tag 激活的窗口
+const activeName = ref('publish') // Tag 激活的窗口
 const isDetail = ref(false) // 是否查看详情
 const infoRef = ref() // 商品信息 Ref
 const skuRef = ref() // 商品规格 Ref
 const deliveryRef = ref() // 物流设置 Ref
-const descriptionRef = ref() // 商品详情 Ref
 const otherRef = ref() // 其他设置 Ref
+const publishRef = ref() // 发布设置 Ref
+const complianceRef = ref() // 安全合规 Ref
 
-const tabs: string[] = ['info', 'sku', 'delivery', 'description', 'other']
+const tabs: string[] = ['publish', 'info', 'sku', 'delivery', 'other', 'compliance']
  
 
 // SPU 表单数据
@@ -116,7 +129,40 @@ const formData = ref<ProductSpuApi.Spu>({
   description: '', // 商品详情
   sort: 0, // 商品排序
   giveIntegral: 0, // 赠送积分
-  virtualSalesCount: 0 // 虚拟销量
+  virtualSalesCount: 0, // 虚拟销量
+  
+  // 发布设置相关属性
+  crossPlatform: false,
+  marketId: undefined,
+  shopIds: [] as number[],
+  deliveryMode: '',
+  scheduleTime: '',
+  multiLanguage: {} as Record<string, string>,
+  productAttributes: {} as Record<string, any>,
+  packageInfo: {
+    weight: 0,
+    dimensions: '',
+    fragile: false
+  },
+  certifications: {} as Record<string, string>,
+  
+  // 安全合规相关属性
+  safetyStandards: [] as string[],
+  safetyWarnings: [] as string[],
+  materials: [] as Array<{ name: string; percentage: number; type: string; }>,
+  hazardousSubstances: [] as string[],
+  environmentalCertifications: [] as string[],
+  packagingMaterials: [] as string[],
+  applicableRegulations: [] as string[],
+  restrictedRegions: [] as string[],
+  specialLicenses: [] as string[],
+  qualityReports: [] as Array<{
+    reportType: string;
+    reportNumber: string;
+    issueDate: string;
+    validUntil: string;
+    issuingAuthority: string;
+  }>
 })
 
 /** 获得详情 */
@@ -162,10 +208,11 @@ const submitForm = async () => {
     await unref(infoRef)?.validate()
     await unref(skuRef)?.validate()
     await unref(deliveryRef)?.validate()
-    await unref(descriptionRef)?.validate()
     await unref(otherRef)?.validate()
+    await unref(publishRef)?.validate()
+    await unref(complianceRef)?.validate()
     // 深拷贝一份, 这样最终 server 端不满足，不需要影响原始数据
-    const deepCopyFormData = cloneDeep(unref(formData.value)) as ProductSpuApi.Spu
+    const deepCopyFormData = cloneDeep(unref(formData)) as ProductSpuApi.Spu
     deepCopyFormData.skus!.forEach((item) => {
       // 给sku name赋值
       item.name = deepCopyFormData.name

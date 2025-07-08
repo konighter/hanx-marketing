@@ -217,4 +217,9 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
     ErrorCode LANGUAGES_NOT_EXISTS = new ErrorCode(1_099_000_004, "语言定义不存在");
 
 
+
+    // ============ 跨境平台商品相关 ==========
+    ErrorCode PRODUCT_NOT_VALID = new ErrorCode(1_100_000_001, "商品完整性校验失败");
+
+
 }

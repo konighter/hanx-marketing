@@ -1,4 +1,6 @@
 package com.hzltd.module.erplus.service.productpub.vo;
 
-public class CrossPlatformProductVO {
+import com.hzltd.module.erpls.api.model.product.CreateProductRequest;
+
+public class CrossPlatformProductVO extends CreateProductRequest {
 }

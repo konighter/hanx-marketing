@@ -64,7 +64,7 @@ public class ProductSpuSaveReqVO {
     // ========== 物流相关字段 =========
 
     @Schema(description = "配送方式数组", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
-    @NotEmpty(message = "配送方式不能为空")
+//    @NotEmpty(message = "配送方式不能为空")
     private List<Integer> deliveryTypes;
 
     @Schema(description = "物流配置模板编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "111")
@@ -82,14 +82,14 @@ public class ProductSpuSaveReqVO {
 
     // ========== 统计相关字段 =========
 
-    @Schema(description = "虚拟销量", example = "66")
-    private Integer virtualSalesCount;
-
-    @Schema(description = "商品销量", requiredMode = Schema.RequiredMode.REQUIRED, example = "1999")
-    private Integer salesCount;
-
-    @Schema(description = "浏览量", requiredMode = Schema.RequiredMode.REQUIRED, example = "1999")
-    private Integer browseCount;
+//    @Schema(description = "虚拟销量", example = "66")
+//    private Integer virtualSalesCount;
+//
+//    @Schema(description = "商品销量", requiredMode = Schema.RequiredMode.REQUIRED, example = "1999")
+//    private Integer salesCount;
+//
+//    @Schema(description = "浏览量", requiredMode = Schema.RequiredMode.REQUIRED, example = "1999")
+//    private Integer browseCount;
 
     // ========== SKU 相关字段 =========
 

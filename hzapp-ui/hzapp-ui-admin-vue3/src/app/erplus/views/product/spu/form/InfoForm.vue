@@ -1,19 +1,8 @@
 <!-- 商品发布 - 基础设置 -->
 <template>
   <el-form ref="formRef" :disabled="isDetail" :model="formData" :rules="rules" label-width="120px">
-    <el-form-item label="商品名称" prop="name">
-      <el-input
-        v-model="formData.name"
-        :autosize="{ minRows: 2, maxRows: 2 }"
-        :clearable="true"
-        :show-word-limit="true"
-        class="w-80!"
-        maxlength="64"
-        placeholder="请输入商品名称"
-        type="textarea"
-      />
-    </el-form-item>
-    <el-form-item label="商品分类" prop="categoryId">
+
+        <el-form-item label="商品分类" prop="categoryId">
       <el-cascader
         v-model="formData.categoryId"
         :options="categoryList"
@@ -34,20 +23,101 @@
         />
       </el-select>
     </el-form-item>
-    <el-form-item label="商品关键字" prop="keyword">
-      <el-input v-model="formData.keyword" class="w-80!" placeholder="请输入商品关键字" />
+
+    <!-- 语种选择 -->
+    <el-form-item label="支持语种" prop="supportedLanguages">
+      <el-select
+          :model-value="formData.supportedLanguages || []"
+          multiple
+          placeholder="请选择支持的语种"
+          class="w-full"
+          @change="onLanguageChange"
+        >
+        <el-option label="中文" value="zh" />
+        <el-option label="英文" value="en" />
+        <el-option label="日文" value="ja" />
+        <el-option label="德文" value="de" />
+        <el-option label="法文" value="fr" />
+        <el-option label="西班牙文" value="es" />
+        <el-option label="意大利文" value="it" />
+        <el-option label="俄文" value="ru" />
+      </el-select>
     </el-form-item>
+    
+    <!-- 商品名称 - 多语种 -->
+    <el-form-item label="商品名称" prop="name">
+      <el-tabs v-model="activeNameTab" type="border-card" class="w-full compact-tabs">
+        <el-tab-pane
+          v-for="lang in selectedLanguages"
+          :key="lang"
+          :label="getLanguageLabel(lang)"
+          :name="lang"
+        >
+          <el-input
+            v-model="multiLanguageData.name[lang]"
+            :autosize="{ minRows: 2, maxRows: 2 }"
+            :clearable="true"
+            :show-word-limit="true"
+            class="w-80!"
+            maxlength="64"
+            :placeholder="`请输入${getLanguageLabel(lang)}商品名称`"
+            type="textarea"
+          />
+        </el-tab-pane>
+      </el-tabs>
+    </el-form-item>
+
+    <!-- 商品关键字 - 多语种 -->
+    <el-form-item label="商品关键字" prop="keyword">
+      <el-tabs v-model="activeKeywordTab" type="border-card" class="w-full compact-tabs">
+        <el-tab-pane
+          v-for="lang in selectedLanguages"
+          :key="lang"
+          :label="getLanguageLabel(lang)"
+          :name="lang"
+        >
+          <el-input
+            v-model="multiLanguageData.keyword[lang]"
+            class="w-80!"
+            :placeholder="`请输入${getLanguageLabel(lang)}商品关键字`"
+          />
+        </el-tab-pane>
+      </el-tabs>
+    </el-form-item>
+    <!-- 商品简介 - 多语种 -->
     <el-form-item label="商品简介" prop="introduction">
-      <el-input
-        v-model="formData.introduction"
-        :autosize="{ minRows: 2, maxRows: 2 }"
-        :clearable="true"
-        :show-word-limit="true"
-        class="w-80!"
-        maxlength="128"
-        placeholder="请输入商品名称"
-        type="textarea"
-      />
+      <el-tabs v-model="activeIntroTab" type="border-card" class="w-full compact-tabs">
+        <el-tab-pane
+          v-for="lang in selectedLanguages"
+          :key="lang"
+          :label="getLanguageLabel(lang)"
+          :name="lang"
+        >
+          <el-input
+            v-model="multiLanguageData.introduction[lang]"
+            :autosize="{ minRows: 2, maxRows: 2 }"
+            :clearable="true"
+            :show-word-limit="true"
+            class="w-80!"
+            maxlength="128"
+            :placeholder="`请输入${getLanguageLabel(lang)}商品简介`"
+            type="textarea"
+          />
+        </el-tab-pane>
+      </el-tabs>
+    </el-form-item>
+    <!-- 商品详情 - 多语种 -->
+    <el-form-item label="商品详情" prop="description">
+      <el-tabs v-model="activeDescTab" type="border-card" class="w-full compact-tabs">
+        <el-tab-pane
+          v-for="lang in selectedLanguages"
+          :key="lang"
+          :label="getLanguageLabel(lang)"
+          :name="lang"
+        >
+          <Editor v-model:modelValue="multiLanguageData.description[lang]" :disabled="isDetail" />
+        </el-tab-pane>
+      </el-tabs>
     </el-form-item>
     <el-form-item label="商品封面图" prop="picUrl">
       <UploadImg v-model="formData.picUrl" :disabled="isDetail" height="80px" />
@@ -58,17 +128,19 @@
     </el-form-item>
   </el-form>
 </template>
+
 <script lang="ts" setup>
 import { PropType } from 'vue'
 import { copyValueToTarget } from '@/utils'
 import { propTypes } from '@/utils/propTypes'
 import { defaultProps, handleTree } from '@/utils/tree'
-import type { Spu } from '@/api/mall/product/spu'
+import type { Spu } from '@/app/erplus/api/product/spu'
 import * as ProductCategoryApi from '@/api/mall/product/category'
 import { CategoryVO } from '@/api/mall/product/category'
 import * as ProductBrandApi from '@/api/mall/product/brand'
 import { BrandVO } from '@/api/mall/product/brand'
 import UploadImgsPlus from '../components/UploadImgsPlus.vue'
+import { Editor } from '@/components/Editor'
 
 defineOptions({ name: 'ProductSpuInfoForm' })
 const props = defineProps({
@@ -89,26 +161,202 @@ const formData = reactive<Spu>({
   picUrl: '', // 商品封面图
   sliderPicUrls: [], // 商品轮播图
   introduction: '', // 商品简介
-  brandId: undefined // 商品品牌
+  description: '', // 商品详情
+  brandId: undefined, // 商品品牌
+  supportedLanguages: [] as string[], // 支持的语种列表
+  multiLanguage: {} as Record<string, string> // 多语种数据
+})
+
+// 多语种相关状态
+const selectedLanguages = ref<string[]>(['zh']) // 默认选择中文
+const activeNameTab = ref('zh')
+const activeKeywordTab = ref('zh')
+const activeIntroTab = ref('zh')
+const activeDescTab = ref('zh')
+
+// 多语种数据
+const multiLanguageData = reactive({
+  name: {} as Record<string, string>,
+  keyword: {} as Record<string, string>,
+  introduction: {} as Record<string, string>,
+  description: {} as Record<string, string>
 })
 const rules = reactive({
   name: [required],
   categoryId: [required],
   keyword: [required],
   introduction: [required],
+  description: [required],
   picUrl: [required],
   sliderPicUrls: [required],
-  brandId: [required]
+  brandId: [required],
+  supportedLanguages: [required]
 })
+
+// 语种标签映射
+const languageLabels: Record<string, string> = {
+  zh: '中文',
+  en: '英文',
+  ja: '日文',
+  de: '德文',
+  fr: '法文',
+  es: '西班牙文',
+  it: '意大利文',
+  ru: '俄文'
+}
+
+// 获取语种标签
+const getLanguageLabel = (lang: string): string => {
+  return languageLabels[lang] || lang
+}
+
+// 语种变化处理
+const onLanguageChange = (languages: string[]) => {
+  // 更新selectedLanguages
+  selectedLanguages.value = languages
+  
+  // 确保每个选中的语种都有对应的数据
+  languages.forEach(lang => {
+    if (!multiLanguageData.name[lang]) {
+      multiLanguageData.name[lang] = ''
+    }
+    if (!multiLanguageData.keyword[lang]) {
+      multiLanguageData.keyword[lang] = ''
+    }
+    if (!multiLanguageData.introduction[lang]) {
+      multiLanguageData.introduction[lang] = ''
+    }
+    if (!multiLanguageData.description[lang]) {
+      multiLanguageData.description[lang] = ''
+    }
+  })
+  
+  // 移除未选中语种的数据
+  Object.keys(multiLanguageData.name).forEach(lang => {
+    if (!languages.includes(lang)) {
+      delete multiLanguageData.name[lang]
+      delete multiLanguageData.keyword[lang]
+      delete multiLanguageData.introduction[lang]
+      delete multiLanguageData.description[lang]
+    }
+  })
+  
+  // 更新活跃tab
+  if (languages.length > 0) {
+    const firstLang = languages[0]
+    activeNameTab.value = firstLang
+    activeKeywordTab.value = firstLang
+    activeIntroTab.value = firstLang
+    activeDescTab.value = firstLang
+  }
+  
+  // 同步到formData
+  syncMultiLanguageToFormData()
+}
+
+// 同步多语种数据到formData
+const syncMultiLanguageToFormData = () => {
+  // 将多语种数据存储到multiLanguage字段
+  if (!formData.multiLanguage) {
+    formData.multiLanguage = {}
+  }
+  
+  // 存储多语种数据
+  selectedLanguages.value.forEach(lang => {
+    formData.multiLanguage![`${lang}_name`] = multiLanguageData.name[lang] || ''
+    formData.multiLanguage![`${lang}_keyword`] = multiLanguageData.keyword[lang] || ''
+    formData.multiLanguage![`${lang}_introduction`] = multiLanguageData.introduction[lang] || ''
+    formData.multiLanguage![`${lang}_description`] = multiLanguageData.description[lang] || ''
+  })
+  
+  // 设置默认语种的值到原字段（向后兼容）
+  if (selectedLanguages.value.includes('zh')) {
+    formData.name = multiLanguageData.name['zh'] || ''
+    formData.keyword = multiLanguageData.keyword['zh'] || ''
+    formData.introduction = multiLanguageData.introduction['zh'] || ''
+    formData.description = multiLanguageData.description['zh'] || ''
+  } else if (selectedLanguages.value.length > 0) {
+    const firstLang = selectedLanguages.value[0]
+    formData.name = multiLanguageData.name[firstLang] || ''
+    formData.keyword = multiLanguageData.keyword[firstLang] || ''
+    formData.introduction = multiLanguageData.introduction[firstLang] || ''
+    formData.description = multiLanguageData.description[firstLang] || ''
+  }
+}
+
+// 从formData同步多语种数据
+const syncFormDataToMultiLanguage = () => {
+  if (formData.multiLanguage) {
+    Object.keys(formData.multiLanguage).forEach(key => {
+      if (key.endsWith('_name')) {
+        const lang = key.replace('_name', '')
+        multiLanguageData.name[lang] = formData.multiLanguage![key]
+        if (!selectedLanguages.value.includes(lang)) {
+          selectedLanguages.value.push(lang)
+          if (!formData.supportedLanguages!.includes(lang)) {
+            formData.supportedLanguages!.push(lang)
+          }
+        }
+      } else if (key.endsWith('_keyword')) {
+        const lang = key.replace('_keyword', '')
+        multiLanguageData.keyword[lang] = formData.multiLanguage![key]
+      } else if (key.endsWith('_introduction')) {
+        const lang = key.replace('_introduction', '')
+        multiLanguageData.introduction[lang] = formData.multiLanguage![key]
+      } else if (key.endsWith('_description')) {
+        const lang = key.replace('_description', '')
+        multiLanguageData.description[lang] = formData.multiLanguage![key]
+      }
+    })
+  }
+  
+  // 如果没有多语种数据，使用默认字段初始化
+  if (selectedLanguages.value.length === 0) {
+    selectedLanguages.value = ['zh']
+    formData.supportedLanguages = ['zh']
+  }
+  
+  // 确保中文数据存在
+  if (selectedLanguages.value.includes('zh')) {
+    multiLanguageData.name['zh'] = formData.name || ''
+    multiLanguageData.keyword['zh'] = formData.keyword || ''
+    multiLanguageData.introduction['zh'] = formData.introduction || ''
+    multiLanguageData.description['zh'] = formData.description || ''
+  }
+  
+  // 设置活跃tab
+  if (selectedLanguages.value.length > 0) {
+    const firstLang = selectedLanguages.value[0]
+    activeNameTab.value = firstLang
+    activeKeywordTab.value = firstLang
+    activeIntroTab.value = firstLang
+    activeDescTab.value = firstLang
+  }
+}
+
+// 监听多语种数据变化
+watch(
+  () => multiLanguageData,
+  () => {
+    syncMultiLanguageToFormData()
+  },
+  { deep: true }
+)
 
 /** 将传进来的值赋值给 formData */
 watch(
   () => props.propFormData,
   (data) => {
-    if (!data) {
-      return
+    if (!data) return
+    copyValueToTarget(data, formData)
+    // 确保supportedLanguages有默认值
+    if (!formData.supportedLanguages || formData.supportedLanguages.length === 0) {
+      formData.supportedLanguages = ['zh']
     }
-    copyValueToTarget(formData, data)
+    // 同步selectedLanguages
+    selectedLanguages.value = formData.supportedLanguages
+    // 同步多语种数据
+    syncFormDataToMultiLanguage()
   },
   {
     immediate: true
@@ -129,7 +377,24 @@ const validate = async () => {
     throw e // 目的截断之后的校验
   }
 }
-defineExpose({ validate })
+
+/** 表单值重置 */
+const resetFields = () => {
+  formRef.value.resetFields()
+  // 重置多语种数据
+  selectedLanguages.value = ['zh']
+  formData.supportedLanguages = ['zh']
+  multiLanguageData.name = {}
+  multiLanguageData.keyword = {}
+  multiLanguageData.introduction = {}
+  multiLanguageData.description = {}
+  activeNameTab.value = 'zh'
+  activeKeywordTab.value = 'zh'
+  activeIntroTab.value = 'zh'
+  activeDescTab.value = 'zh'
+}
+
+defineExpose({ validate, resetFields })
 
 /** 初始化 */
 const brandList = ref<BrandVO[]>([]) // 商品品牌列表
@@ -142,3 +407,30 @@ onMounted(async () => {
   brandList.value = await ProductBrandApi.getSimpleBrandList()
 })
 </script>
+
+<style scoped>
+.compact-tabs {
+  :deep(.el-tabs__header) {
+    margin-bottom: 8px;
+  }
+  
+  :deep(.el-tabs__nav-wrap) {
+    padding: 0;
+  }
+  
+  :deep(.el-tabs__item) {
+    height: 32px;
+    line-height: 32px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  
+  :deep(.el-tabs__content) {
+    padding-top: 8px;
+  }
+  
+  :deep(.el-tab-pane) {
+    padding: 0;
+  }
+}
+</style>

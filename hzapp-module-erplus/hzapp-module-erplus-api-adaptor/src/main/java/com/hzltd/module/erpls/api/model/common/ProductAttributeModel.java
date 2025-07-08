@@ -7,16 +7,13 @@ import java.util.List;
 @Data
 public class ProductAttributeModel {
 
-    private String id;
+    private String attrId;
+
+    private String attrName;
 
     private List<AttrValue> attrValues;
 
     private List<String> buildInAttrValues;
-
-
-
-
-
 
 
     @Data

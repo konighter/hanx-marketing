@@ -1,18 +1,60 @@
 package com.hzltd.module.erplus.service.productpub;
 
 import com.google.common.collect.Lists;
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.ListenableFuture;
+import com.hzltd.framework.common.enums.CommonStatusEnum;
+import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.common.util.object.ObjectUtils;
+import com.hzltd.module.erpls.api.model.ApiRequest;
+import com.hzltd.module.erpls.api.model.ApiResponse;
 import com.hzltd.module.erpls.api.model.product.CreateProductRequest;
+import com.hzltd.module.erpls.api.model.product.CreateProductResponse;
+import com.hzltd.module.erpls.api.service.CrossServiceCompositeApi;
+import com.hzltd.module.erpls.api.service.CrossServiceCompositeApiFactory;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishResponse;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishTaskVO;
+import com.hzltd.module.erplus.controller.admin.productpub.vo.SkuVO;
+import com.hzltd.module.erplus.convert.spu.ProductSpuConvert;
+import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.productpub.ErpProductPublishTaskDO;
+import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
+import com.hzltd.module.erplus.enums.CrossProductPublishStatus;
+import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
+import com.hzltd.module.erplus.service.executor.ExecutorService;
+import com.hzltd.module.erplus.service.product.ErpCrossProductService;
+import com.hzltd.module.erplus.service.spu.ProductSpuService;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.jetbrains.annotations.NotNull;
+import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+
+@Slf4j
 @Service
 public class ProductPublishServiceImpl implements ProductPublishService {
+
+    @Resource
+    private ProductSpuService productSpuService;
+
+    @Resource
+    private ErpCrossProductService crossProductService;
+
+    @Resource
+    private ErpProductPublishTaskService productPublishTaskService;
+
+
 
     public ProductPublishResponse publishProduct(ProductPublishRequest request) {
         // 拆分单平台单店铺商品
@@ -24,7 +66,9 @@ public class ProductPublishServiceImpl implements ProductPublishService {
         List<Long> productIds = productPublishRequests.stream().map(this::saveCrossPlatformProduct).collect(Collectors.toList());
 
         // 生成并提交发布任务
-        List<ProductPublishTaskVO> productPublishTasks = productIds.stream().map(this::saveProductPublishTask).collect(Collectors.toList());
+        List<ProductPublishTaskVO> productPublishTasks = productIds.stream().map(id -> {
+            return this.createProductPublishTask(id, request.getScheduleTime());
+        }).collect(Collectors.toList());
 
         // 返回任务状态
         ProductPublishResponse response = new ProductPublishResponse();
@@ -34,40 +78,133 @@ public class ProductPublishServiceImpl implements ProductPublishService {
     }
 
     private Long saveCrossPlatformProduct(ProductPublishRequest request) {
-        // 查询店铺授权信息
-        // 校验本地商品和SKU(有效/创建)
-        CreateProductRequest product = this.buildProductDetail(request);
+        // 如果没有关联了本地商品则创建一个本地商品用于后续采购和本地库存
+        if (request.getRelatedProductId() == null) {
+            Long spuId = productSpuService.createSpu(ProductSpuConvert.INSTANCE.convert(request));
+            request.setRelatedProductId(spuId);
+        }
 
         // 创建CreateProductRequest:
-        Long productId = this.doSaveCrossPlatformProduct(product);
+        Long productId = this.doCreateCrossPlatformProduct(request);
 
-        // 设置同步状态和商品状态
+        this.doCreateCrossProductSku(productId, request.getSkus());
+        return productId;
+    }
+
+
+
+
+
+    private Long doCreateCrossPlatformProduct(ProductPublishRequest request) {
+
+
+        return crossProductService.saveCrossPlatformProduct(request);
+    }
+
+    private void doCreateCrossProductSku(Long crossProductId, List<SkuVO> skus) {
+
+    }
+
+
+    private ProductPublishTaskVO createProductPublishTask(Long productId, DateTime scheduleTime) {
+        Optional<ErpCrossProductDO> crossProductOption = crossProductService.getBasicCrossPlatformProduct(productId);
+        if (!crossProductOption.isPresent()) {
+            throw new ServiceException(PRODUCT_NOT_EXISTS);
+        }
+
+        ErpCrossProductDO crossProduct = crossProductOption.get();
+
+        Optional<ErpProductPublishTaskDO> taskOptional = productPublishTaskService.getProductPublishTask(crossProduct.getId(),crossProduct.getVersion());
+        if (taskOptional.isPresent()) {
+            log.warn("Product[id:{}, version:{}] have a task already", crossProduct.getId(), crossProduct.getVersion());
+            return new ProductPublishTaskVO().setProductId(taskOptional.get().getProductId()).setTaskId(taskOptional.get().getId()).setStatus(CrossProductPublishStatus.of(taskOptional.get().getStatus()));
+        }
+
+        ErpProductPublishTaskDO taskDO = ErpProductPublishTaskDO.builder()
+                .productId(crossProduct.getId())
+                .platformId(crossProduct.getPlatformId())
+                .scheduleTime(scheduleTime)
+                .version(crossProduct.getVersion())
+                .status(CrossProductPublishStatus.INIT.getStatus())
+                .build();
+
+        Long taskId = productPublishTaskService.createProductPublishTask(taskDO);
+
+        // 立即提交
+        if (scheduleTime == null) {
+            submitProductPublishTask(taskId);
+        }
+
+        return new ProductPublishTaskVO().setTaskId(taskId).setProductId(taskDO.getProductId()).setStatus(CrossProductPublishStatus.of(taskDO.getStatus()));
+    }
+
+    @Override
+    public boolean submitProductPublishTask(Long taskId) {
+        ListenableFuture<PublishTaskExecuteResult> future = ExecutorService.submitProductPublishTask(new ProductPublishTask(taskId));
+        Futures.addCallback(future, new ProductPublishCallbackListener(taskId), ExecutorService.getCallbackExecutorService());
+        // 更新任务为已提交
+        return true;
+    }
+
+    @AllArgsConstructor
+    public static class PublishTaskExecuteResult {
+        ApiResponse<CreateProductResponse> response;
+
+    }
+
+    private CreateProductRequest buildCrossCreateProductRequest(Long productId) {
+
 
 
         return null;
     }
 
 
-    private CreateProductRequest buildProductDetail(ProductPublishRequest request) {
-        // 查询品牌关联信息
 
+    @AllArgsConstructor
+    public class ProductPublishTask implements Callable<PublishTaskExecuteResult> {
 
-        return null;
+        private Long taskId;
+
+        @Override
+        public PublishTaskExecuteResult call() throws Exception {
+            Optional<ErpProductPublishTaskDO> publishTask = productPublishTaskService.getProductPublishTask(taskId);
+            if (!publishTask.isPresent()) {
+                throw new ServiceException(PRODUCT_NOT_EXISTS);
+            }
+            Optional<ErpCrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(publishTask.get().getProductId());
+            if (!crossProduct.isPresent()) {
+                throw new ServiceException(PRODUCT_NOT_EXISTS);
+            }
+
+            CrossServiceCompositeApi crossServiceCompositeApi =CrossServiceCompositeApiFactory.getCrossServiceCompositeApi(CrossPlatformEnum.valueOf(crossProduct.get().getPlatformId()));
+
+            ApiResponse<CreateProductResponse> response = crossServiceCompositeApi.createProduct(new ApiRequest<CreateProductRequest>().setRequest(buildCrossCreateProductRequest(crossProduct.get().getId())));
+            // 更新任务为提交成功或者失败
+
+            return new PublishTaskExecuteResult(response);
+        }
     }
 
-    private Long doSaveCrossPlatformProduct(CreateProductRequest product) {
-        return null;
+    @AllArgsConstructor
+    private static class ProductPublishCallbackListener implements FutureCallback<PublishTaskExecuteResult> {
+
+        private Long taskId;
+
+        @Override
+        public void onSuccess(PublishTaskExecuteResult result) {
+            //todo-- 通知卖家同步结果
+            log.info("ProductPublishSuccess: {}", result);
+        }
+
+        @Override
+        public void onFailure(@NotNull Throwable t) {
+            log.error("ProductPublishError: {}", this.taskId, t);
+        }
     }
 
 
-    private ProductPublishTaskVO saveProductPublishTask(Long productId) {
-        // 查询发布任务 没有则创建
 
-        // 如果非定时发送, 提交到任务队列。
-
-        // 返回发布任务详情
-        return null;
-    }
 
 
 }

@@ -1,12 +1,13 @@
 package com.hzltd.module.erplus.controller.admin.productpub.vo;
 
-import com.hzltd.module.erplus.enums.PublishTaskStatusEnum;
+import com.hzltd.module.erplus.enums.CrossProductPublishStatus;
 import lombok.Data;
+
 
 @Data
 public class ProductPublishTaskVO {
     private Long productId;
     private Long taskId;
-    private PublishTaskStatusEnum status;
+    private CrossProductPublishStatus status;
 
 }

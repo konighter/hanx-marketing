@@ -124,12 +124,6 @@ public class ProductPublishRequest {
      */
     private DimensionModel packageDimensions;
 
-    /**
-     * 产品重量
-     */
-    private WeightModel packageWeight;
-
-
     // ------ 物流信息 --------//
 
     /**
