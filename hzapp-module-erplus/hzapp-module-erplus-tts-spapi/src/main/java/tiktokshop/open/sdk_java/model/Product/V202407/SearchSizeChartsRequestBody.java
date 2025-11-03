@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,20 +50,22 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchSizeChartsRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchSizeChartsRequestBody {
   public static final String SERIALIZED_NAME_IDS = "ids";
   @SerializedName(SERIALIZED_NAME_IDS)
+  @javax.annotation.Nullable
   private List<String> ids = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_KEYWORD = "keyword";
   @SerializedName(SERIALIZED_NAME_KEYWORD)
+  @javax.annotation.Nullable
   private String keyword;
 
   public SearchSizeChartsRequestBody() {
   }
 
-  public SearchSizeChartsRequestBody ids(List<String> ids) {
+  public SearchSizeChartsRequestBody ids(@javax.annotation.Nullable List<String> ids) {
     this.ids = ids;
     return this;
   }
@@ -77,36 +78,81 @@ public class SearchSizeChartsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Filter size charts by size chart template IDs.  Max: 50 IDs
    * @return ids
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getIds() {
     return ids;
   }
 
-  public void setIds(List<String> ids) {
+  public void setIds(@javax.annotation.Nullable List<String> ids) {
     this.ids = ids;
   }
 
 
-  public SearchSizeChartsRequestBody keyword(String keyword) {
+  public SearchSizeChartsRequestBody keyword(@javax.annotation.Nullable String keyword) {
     this.keyword = keyword;
     return this;
   }
 
-   /**
+  /**
    * Filter size charts by size chart template name or by key words in the template name. If both &#x60;ids&#x60; and &#x60;keyword&#x60; are provided, &#x60;ids&#x60; takes priority.
    * @return keyword
-  **/
+   */
   @javax.annotation.Nullable
   public String getKeyword() {
     return keyword;
   }
 
-  public void setKeyword(String keyword) {
+  public void setKeyword(@javax.annotation.Nullable String keyword) {
     this.keyword = keyword;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchSizeChartsRequestBody instance itself
+   */
+  public SearchSizeChartsRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -121,12 +167,13 @@ public class SearchSizeChartsRequestBody {
     }
     SearchSizeChartsRequestBody product202407SearchSizeChartsRequestBody = (SearchSizeChartsRequestBody) o;
     return Objects.equals(this.ids, product202407SearchSizeChartsRequestBody.ids) &&
-        Objects.equals(this.keyword, product202407SearchSizeChartsRequestBody.keyword);
+        Objects.equals(this.keyword, product202407SearchSizeChartsRequestBody.keyword)&&
+        Objects.equals(this.additionalProperties, product202407SearchSizeChartsRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ids, keyword);
+    return Objects.hash(ids, keyword, additionalProperties);
   }
 
   @Override
@@ -135,6 +182,7 @@ public class SearchSizeChartsRequestBody {
     sb.append("class SearchSizeChartsRequestBody {\n");
     sb.append("    ids: ").append(toIndentedString(ids)).append("\n");
     sb.append("    keyword: ").append(toIndentedString(keyword)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,32 +204,22 @@ public class SearchSizeChartsRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("ids");
-    openapiFields.add("keyword");
+    openapiFields = new HashSet<String>(Arrays.asList("ids", "keyword"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchSizeChartsRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchSizeChartsRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchSizeChartsRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchSizeChartsRequestBody is not found in the empty JSON string", SearchSizeChartsRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchSizeChartsRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchSizeChartsRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -209,6 +247,28 @@ public class SearchSizeChartsRequestBody {
            @Override
            public void write(JsonWriter out, SearchSizeChartsRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -216,29 +276,50 @@ public class SearchSizeChartsRequestBody {
            public SearchSizeChartsRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchSizeChartsRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchSizeChartsRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchSizeChartsRequestBody
-  * @throws IOException if the JSON string is invalid with respect to SearchSizeChartsRequestBody
-  */
+  /**
+   * Create an instance of SearchSizeChartsRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchSizeChartsRequestBody
+   * @throws IOException if the JSON string is invalid with respect to SearchSizeChartsRequestBody
+   */
   public static SearchSizeChartsRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchSizeChartsRequestBody.class);
   }
 
- /**
-  * Convert an instance of SearchSizeChartsRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchSizeChartsRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

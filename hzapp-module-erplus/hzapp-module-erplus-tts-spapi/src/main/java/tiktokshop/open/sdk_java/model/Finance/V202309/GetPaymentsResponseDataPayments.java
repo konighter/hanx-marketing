@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,238 +52,293 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetPaymentsResponseDataPayments
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetPaymentsResponseDataPayments {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nullable
   private GetPaymentsResponseDataPaymentsAmount amount;
 
   public static final String SERIALIZED_NAME_BANK_ACCOUNT = "bank_account";
   @SerializedName(SERIALIZED_NAME_BANK_ACCOUNT)
+  @javax.annotation.Nullable
   private String bankAccount;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_EXCHANGE_RATE = "exchange_rate";
   @SerializedName(SERIALIZED_NAME_EXCHANGE_RATE)
+  @javax.annotation.Nullable
   private String exchangeRate;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_PAID_TIME = "paid_time";
   @SerializedName(SERIALIZED_NAME_PAID_TIME)
+  @javax.annotation.Nullable
   private Long paidTime;
 
   public static final String SERIALIZED_NAME_PAYMENT_AMOUNT_BEFORE_EXCHANGE = "payment_amount_before_exchange";
   @SerializedName(SERIALIZED_NAME_PAYMENT_AMOUNT_BEFORE_EXCHANGE)
+  @javax.annotation.Nullable
   private GetPaymentsResponseDataPaymentsPaymentAmountBeforeExchange paymentAmountBeforeExchange;
 
   public static final String SERIALIZED_NAME_RESERVE_AMOUNT = "reserve_amount";
   @SerializedName(SERIALIZED_NAME_RESERVE_AMOUNT)
+  @javax.annotation.Nullable
   private GetPaymentsResponseDataPaymentsReserveAmount reserveAmount;
 
   public static final String SERIALIZED_NAME_SETTLEMENT_AMOUNT = "settlement_amount";
   @SerializedName(SERIALIZED_NAME_SETTLEMENT_AMOUNT)
+  @javax.annotation.Nullable
   private GetPaymentsResponseDataPaymentsSettlementAmount settlementAmount;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public GetPaymentsResponseDataPayments() {
   }
 
-  public GetPaymentsResponseDataPayments amount(GetPaymentsResponseDataPaymentsAmount amount) {
+  public GetPaymentsResponseDataPayments amount(@javax.annotation.Nullable GetPaymentsResponseDataPaymentsAmount amount) {
     this.amount = amount;
     return this;
   }
 
-   /**
+  /**
    * Get amount
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public GetPaymentsResponseDataPaymentsAmount getAmount() {
     return amount;
   }
 
-  public void setAmount(GetPaymentsResponseDataPaymentsAmount amount) {
+  public void setAmount(@javax.annotation.Nullable GetPaymentsResponseDataPaymentsAmount amount) {
     this.amount = amount;
   }
 
 
-  public GetPaymentsResponseDataPayments bankAccount(String bankAccount) {
+  public GetPaymentsResponseDataPayments bankAccount(@javax.annotation.Nullable String bankAccount) {
     this.bankAccount = bankAccount;
     return this;
   }
 
-   /**
+  /**
    * The seller&#39;s bank account number masked, revealing only the last 4 digits for privacy.
    * @return bankAccount
-  **/
+   */
   @javax.annotation.Nullable
   public String getBankAccount() {
     return bankAccount;
   }
 
-  public void setBankAccount(String bankAccount) {
+  public void setBankAccount(@javax.annotation.Nullable String bankAccount) {
     this.bankAccount = bankAccount;
   }
 
 
-  public GetPaymentsResponseDataPayments createTime(Long createTime) {
+  public GetPaymentsResponseDataPayments createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the payment was initiated in TikTok Shop. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetPaymentsResponseDataPayments exchangeRate(String exchangeRate) {
+  public GetPaymentsResponseDataPayments exchangeRate(@javax.annotation.Nullable String exchangeRate) {
     this.exchangeRate = exchangeRate;
     return this;
   }
 
-   /**
+  /**
    * The exchange rate, displayed with six decimal places.
    * @return exchangeRate
-  **/
+   */
   @javax.annotation.Nullable
   public String getExchangeRate() {
     return exchangeRate;
   }
 
-  public void setExchangeRate(String exchangeRate) {
+  public void setExchangeRate(@javax.annotation.Nullable String exchangeRate) {
     this.exchangeRate = exchangeRate;
   }
 
 
-  public GetPaymentsResponseDataPayments id(String id) {
+  public GetPaymentsResponseDataPayments id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The payment ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetPaymentsResponseDataPayments paidTime(Long paidTime) {
+  public GetPaymentsResponseDataPayments paidTime(@javax.annotation.Nullable Long paidTime) {
     this.paidTime = paidTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the payment was successfully processed. Unix timestamp.
    * @return paidTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPaidTime() {
     return paidTime;
   }
 
-  public void setPaidTime(Long paidTime) {
+  public void setPaidTime(@javax.annotation.Nullable Long paidTime) {
     this.paidTime = paidTime;
   }
 
 
-  public GetPaymentsResponseDataPayments paymentAmountBeforeExchange(GetPaymentsResponseDataPaymentsPaymentAmountBeforeExchange paymentAmountBeforeExchange) {
+  public GetPaymentsResponseDataPayments paymentAmountBeforeExchange(@javax.annotation.Nullable GetPaymentsResponseDataPaymentsPaymentAmountBeforeExchange paymentAmountBeforeExchange) {
     this.paymentAmountBeforeExchange = paymentAmountBeforeExchange;
     return this;
   }
 
-   /**
+  /**
    * Get paymentAmountBeforeExchange
    * @return paymentAmountBeforeExchange
-  **/
+   */
   @javax.annotation.Nullable
   public GetPaymentsResponseDataPaymentsPaymentAmountBeforeExchange getPaymentAmountBeforeExchange() {
     return paymentAmountBeforeExchange;
   }
 
-  public void setPaymentAmountBeforeExchange(GetPaymentsResponseDataPaymentsPaymentAmountBeforeExchange paymentAmountBeforeExchange) {
+  public void setPaymentAmountBeforeExchange(@javax.annotation.Nullable GetPaymentsResponseDataPaymentsPaymentAmountBeforeExchange paymentAmountBeforeExchange) {
     this.paymentAmountBeforeExchange = paymentAmountBeforeExchange;
   }
 
 
-  public GetPaymentsResponseDataPayments reserveAmount(GetPaymentsResponseDataPaymentsReserveAmount reserveAmount) {
+  public GetPaymentsResponseDataPayments reserveAmount(@javax.annotation.Nullable GetPaymentsResponseDataPaymentsReserveAmount reserveAmount) {
     this.reserveAmount = reserveAmount;
     return this;
   }
 
-   /**
+  /**
    * Get reserveAmount
    * @return reserveAmount
-  **/
+   */
   @javax.annotation.Nullable
   public GetPaymentsResponseDataPaymentsReserveAmount getReserveAmount() {
     return reserveAmount;
   }
 
-  public void setReserveAmount(GetPaymentsResponseDataPaymentsReserveAmount reserveAmount) {
+  public void setReserveAmount(@javax.annotation.Nullable GetPaymentsResponseDataPaymentsReserveAmount reserveAmount) {
     this.reserveAmount = reserveAmount;
   }
 
 
-  public GetPaymentsResponseDataPayments settlementAmount(GetPaymentsResponseDataPaymentsSettlementAmount settlementAmount) {
+  public GetPaymentsResponseDataPayments settlementAmount(@javax.annotation.Nullable GetPaymentsResponseDataPaymentsSettlementAmount settlementAmount) {
     this.settlementAmount = settlementAmount;
     return this;
   }
 
-   /**
+  /**
    * Get settlementAmount
    * @return settlementAmount
-  **/
+   */
   @javax.annotation.Nullable
   public GetPaymentsResponseDataPaymentsSettlementAmount getSettlementAmount() {
     return settlementAmount;
   }
 
-  public void setSettlementAmount(GetPaymentsResponseDataPaymentsSettlementAmount settlementAmount) {
+  public void setSettlementAmount(@javax.annotation.Nullable GetPaymentsResponseDataPaymentsSettlementAmount settlementAmount) {
     this.settlementAmount = settlementAmount;
   }
 
 
-  public GetPaymentsResponseDataPayments status(String status) {
+  public GetPaymentsResponseDataPayments status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The payment status, indicating whether payment has been transferred to the seller&#39;s bank account. Possible values: - PAID: Payment has been transferred to the seller. - FAILED: Payment transfer failed. - PROCESSING: Payment is currently being processed.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetPaymentsResponseDataPayments instance itself
+   */
+  public GetPaymentsResponseDataPayments putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -307,12 +361,13 @@ public class GetPaymentsResponseDataPayments {
         Objects.equals(this.paymentAmountBeforeExchange, finance202309GetPaymentsResponseDataPayments.paymentAmountBeforeExchange) &&
         Objects.equals(this.reserveAmount, finance202309GetPaymentsResponseDataPayments.reserveAmount) &&
         Objects.equals(this.settlementAmount, finance202309GetPaymentsResponseDataPayments.settlementAmount) &&
-        Objects.equals(this.status, finance202309GetPaymentsResponseDataPayments.status);
+        Objects.equals(this.status, finance202309GetPaymentsResponseDataPayments.status)&&
+        Objects.equals(this.additionalProperties, finance202309GetPaymentsResponseDataPayments.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, bankAccount, createTime, exchangeRate, id, paidTime, paymentAmountBeforeExchange, reserveAmount, settlementAmount, status);
+    return Objects.hash(amount, bankAccount, createTime, exchangeRate, id, paidTime, paymentAmountBeforeExchange, reserveAmount, settlementAmount, status, additionalProperties);
   }
 
   @Override
@@ -329,6 +384,7 @@ public class GetPaymentsResponseDataPayments {
     sb.append("    reserveAmount: ").append(toIndentedString(reserveAmount)).append("\n");
     sb.append("    settlementAmount: ").append(toIndentedString(settlementAmount)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -350,40 +406,22 @@ public class GetPaymentsResponseDataPayments {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("amount");
-    openapiFields.add("bank_account");
-    openapiFields.add("create_time");
-    openapiFields.add("exchange_rate");
-    openapiFields.add("id");
-    openapiFields.add("paid_time");
-    openapiFields.add("payment_amount_before_exchange");
-    openapiFields.add("reserve_amount");
-    openapiFields.add("settlement_amount");
-    openapiFields.add("status");
+    openapiFields = new HashSet<String>(Arrays.asList("amount", "bank_account", "create_time", "exchange_rate", "id", "paid_time", "payment_amount_before_exchange", "reserve_amount", "settlement_amount", "status"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetPaymentsResponseDataPayments
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetPaymentsResponseDataPayments
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetPaymentsResponseDataPayments.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetPaymentsResponseDataPayments is not found in the empty JSON string", GetPaymentsResponseDataPayments.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetPaymentsResponseDataPayments.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetPaymentsResponseDataPayments` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -432,6 +470,28 @@ public class GetPaymentsResponseDataPayments {
            @Override
            public void write(JsonWriter out, GetPaymentsResponseDataPayments value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -439,29 +499,50 @@ public class GetPaymentsResponseDataPayments {
            public GetPaymentsResponseDataPayments read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetPaymentsResponseDataPayments instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetPaymentsResponseDataPayments given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetPaymentsResponseDataPayments
-  * @throws IOException if the JSON string is invalid with respect to GetPaymentsResponseDataPayments
-  */
+  /**
+   * Create an instance of GetPaymentsResponseDataPayments given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetPaymentsResponseDataPayments
+   * @throws IOException if the JSON string is invalid with respect to GetPaymentsResponseDataPayments
+   */
   public static GetPaymentsResponseDataPayments fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetPaymentsResponseDataPayments.class);
   }
 
- /**
-  * Convert an instance of GetPaymentsResponseDataPayments to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetPaymentsResponseDataPayments to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

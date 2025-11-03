@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,74 +50,80 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchGlobalProductsRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchGlobalProductsRequestBody {
   public static final String SERIALIZED_NAME_CREATE_TIME_GE = "create_time_ge";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long createTimeGe;
 
   public static final String SERIALIZED_NAME_CREATE_TIME_LE = "create_time_le";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME_LE)
+  @javax.annotation.Nullable
   private Long createTimeLe;
 
   public static final String SERIALIZED_NAME_SELLER_SKUS = "seller_skus";
   @SerializedName(SERIALIZED_NAME_SELLER_SKUS)
+  @javax.annotation.Nullable
   private List<String> sellerSkus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME_GE = "update_time_ge";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long updateTimeGe;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME_LE = "update_time_le";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME_LE)
+  @javax.annotation.Nullable
   private Long updateTimeLe;
 
   public SearchGlobalProductsRequestBody() {
   }
 
-  public SearchGlobalProductsRequestBody createTimeGe(Long createTimeGe) {
+  public SearchGlobalProductsRequestBody createTimeGe(@javax.annotation.Nullable Long createTimeGe) {
     this.createTimeGe = createTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Filter global products to show only those that are created on or after the specified date and time. Unix timestamp.  **Note**: The \&quot;create_time_ge\&quot; and \&quot;create_time_le\&quot; together constitute the creation time filter condition. - If \&quot;create_time_ge\&quot; is filled but \&quot;create_time_le\&quot; is empty, \&quot;create_time_le\&quot; will default to the current time. - If \&quot;create_time_le\&quot; is filled but \&quot;create_time_ge\&quot; is empty, \&quot;create_time_ge\&quot; will default to the earliest shop time.
    * @return createTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTimeGe() {
     return createTimeGe;
   }
 
-  public void setCreateTimeGe(Long createTimeGe) {
+  public void setCreateTimeGe(@javax.annotation.Nullable Long createTimeGe) {
     this.createTimeGe = createTimeGe;
   }
 
 
-  public SearchGlobalProductsRequestBody createTimeLe(Long createTimeLe) {
+  public SearchGlobalProductsRequestBody createTimeLe(@javax.annotation.Nullable Long createTimeLe) {
     this.createTimeLe = createTimeLe;
     return this;
   }
 
-   /**
+  /**
    * Filter global products to show only those that are created on or before the specified date and time. Unix timestamp. Refer to notes in \&quot;create_time_ge\&quot; for more usage information.
    * @return createTimeLe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTimeLe() {
     return createTimeLe;
   }
 
-  public void setCreateTimeLe(Long createTimeLe) {
+  public void setCreateTimeLe(@javax.annotation.Nullable Long createTimeLe) {
     this.createTimeLe = createTimeLe;
   }
 
 
-  public SearchGlobalProductsRequestBody sellerSkus(List<String> sellerSkus) {
+  public SearchGlobalProductsRequestBody sellerSkus(@javax.annotation.Nullable List<String> sellerSkus) {
     this.sellerSkus = sellerSkus;
     return this;
   }
@@ -131,74 +136,119 @@ public class SearchGlobalProductsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Filter global products by these seller SKU codes.
    * @return sellerSkus
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getSellerSkus() {
     return sellerSkus;
   }
 
-  public void setSellerSkus(List<String> sellerSkus) {
+  public void setSellerSkus(@javax.annotation.Nullable List<String> sellerSkus) {
     this.sellerSkus = sellerSkus;
   }
 
 
-  public SearchGlobalProductsRequestBody status(String status) {
+  public SearchGlobalProductsRequestBody status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Filter global products by their status. Possible values: - PUBLISHED - UNPUBLISHED - DRAFT - DELETED
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public SearchGlobalProductsRequestBody updateTimeGe(Long updateTimeGe) {
+  public SearchGlobalProductsRequestBody updateTimeGe(@javax.annotation.Nullable Long updateTimeGe) {
     this.updateTimeGe = updateTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Filter global products to show only those that are updated on or after the specified date and time. Unix timestamp.  **Note**: The fields \&quot;update_time_ge\&quot; and \&quot;update_time_le\&quot; together define the update time filter condition. - If \&quot;update_time_ge\&quot; is filled but \&quot;update_time_le\&quot; is empty, \&quot;update_time_le\&quot; will default to the current time. - If \&quot;update_time_le\&quot; is filled but \&quot;update_time_ge\&quot; is empty, \&quot;update_time_ge\&quot; will default to the earliest shop time.
    * @return updateTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTimeGe() {
     return updateTimeGe;
   }
 
-  public void setUpdateTimeGe(Long updateTimeGe) {
+  public void setUpdateTimeGe(@javax.annotation.Nullable Long updateTimeGe) {
     this.updateTimeGe = updateTimeGe;
   }
 
 
-  public SearchGlobalProductsRequestBody updateTimeLe(Long updateTimeLe) {
+  public SearchGlobalProductsRequestBody updateTimeLe(@javax.annotation.Nullable Long updateTimeLe) {
     this.updateTimeLe = updateTimeLe;
     return this;
   }
 
-   /**
+  /**
    * Filter global products to show only those that are updated on or before the specified date and time. Unix timestamp. Refer to notes in &#x60;update_time_ge&#x60; for more usage information.
    * @return updateTimeLe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTimeLe() {
     return updateTimeLe;
   }
 
-  public void setUpdateTimeLe(Long updateTimeLe) {
+  public void setUpdateTimeLe(@javax.annotation.Nullable Long updateTimeLe) {
     this.updateTimeLe = updateTimeLe;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchGlobalProductsRequestBody instance itself
+   */
+  public SearchGlobalProductsRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -217,12 +267,13 @@ public class SearchGlobalProductsRequestBody {
         Objects.equals(this.sellerSkus, product202312SearchGlobalProductsRequestBody.sellerSkus) &&
         Objects.equals(this.status, product202312SearchGlobalProductsRequestBody.status) &&
         Objects.equals(this.updateTimeGe, product202312SearchGlobalProductsRequestBody.updateTimeGe) &&
-        Objects.equals(this.updateTimeLe, product202312SearchGlobalProductsRequestBody.updateTimeLe);
+        Objects.equals(this.updateTimeLe, product202312SearchGlobalProductsRequestBody.updateTimeLe)&&
+        Objects.equals(this.additionalProperties, product202312SearchGlobalProductsRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createTimeGe, createTimeLe, sellerSkus, status, updateTimeGe, updateTimeLe);
+    return Objects.hash(createTimeGe, createTimeLe, sellerSkus, status, updateTimeGe, updateTimeLe, additionalProperties);
   }
 
   @Override
@@ -235,6 +286,7 @@ public class SearchGlobalProductsRequestBody {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    updateTimeGe: ").append(toIndentedString(updateTimeGe)).append("\n");
     sb.append("    updateTimeLe: ").append(toIndentedString(updateTimeLe)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -256,36 +308,22 @@ public class SearchGlobalProductsRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("create_time_ge");
-    openapiFields.add("create_time_le");
-    openapiFields.add("seller_skus");
-    openapiFields.add("status");
-    openapiFields.add("update_time_ge");
-    openapiFields.add("update_time_le");
+    openapiFields = new HashSet<String>(Arrays.asList("create_time_ge", "create_time_le", "seller_skus", "status", "update_time_ge", "update_time_le"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchGlobalProductsRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchGlobalProductsRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchGlobalProductsRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchGlobalProductsRequestBody is not found in the empty JSON string", SearchGlobalProductsRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchGlobalProductsRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchGlobalProductsRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -313,6 +351,28 @@ public class SearchGlobalProductsRequestBody {
            @Override
            public void write(JsonWriter out, SearchGlobalProductsRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -320,29 +380,50 @@ public class SearchGlobalProductsRequestBody {
            public SearchGlobalProductsRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchGlobalProductsRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchGlobalProductsRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchGlobalProductsRequestBody
-  * @throws IOException if the JSON string is invalid with respect to SearchGlobalProductsRequestBody
-  */
+  /**
+   * Create an instance of SearchGlobalProductsRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchGlobalProductsRequestBody
+   * @throws IOException if the JSON string is invalid with respect to SearchGlobalProductsRequestBody
+   */
   public static SearchGlobalProductsRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchGlobalProductsRequestBody.class);
   }
 
- /**
-  * Convert an instance of SearchGlobalProductsRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchGlobalProductsRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,132 +52,143 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SchedulePackageHandoverResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SchedulePackageHandoverResponseData {
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DIMENSION = "dimension";
   @SerializedName(SERIALIZED_NAME_DIMENSION)
+  @javax.annotation.Nullable
   private SchedulePackageHandoverResponseDataDimension dimension;
 
   public static final String SERIALIZED_NAME_HANDOVER_METHOD = "handover_method";
   @SerializedName(SERIALIZED_NAME_HANDOVER_METHOD)
+  @javax.annotation.Nullable
   private String handoverMethod;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEM_IDS = "order_line_item_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEM_IDS)
+  @javax.annotation.Nullable
   private List<String> orderLineItemIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PACKAGE_ID = "package_id";
   @SerializedName(SERIALIZED_NAME_PACKAGE_ID)
+  @javax.annotation.Nullable
   private String packageId;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_ID = "shipping_provider_id";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_ID)
+  @javax.annotation.Nullable
   private String shippingProviderId;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_NAME = "shipping_provider_name";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_NAME)
+  @javax.annotation.Nullable
   private String shippingProviderName;
 
   public static final String SERIALIZED_NAME_TRACKING_NUMBER = "tracking_number";
   @SerializedName(SERIALIZED_NAME_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String trackingNumber;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
   @SerializedName(SERIALIZED_NAME_WEIGHT)
+  @javax.annotation.Nullable
   private SchedulePackageHandoverResponseDataWeight weight;
 
   public SchedulePackageHandoverResponseData() {
   }
 
-  public SchedulePackageHandoverResponseData createTime(Long createTime) {
+  public SchedulePackageHandoverResponseData createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * Unix timestamp
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public SchedulePackageHandoverResponseData dimension(SchedulePackageHandoverResponseDataDimension dimension) {
+  public SchedulePackageHandoverResponseData dimension(@javax.annotation.Nullable SchedulePackageHandoverResponseDataDimension dimension) {
     this.dimension = dimension;
     return this;
   }
 
-   /**
+  /**
    * Get dimension
    * @return dimension
-  **/
+   */
   @javax.annotation.Nullable
   public SchedulePackageHandoverResponseDataDimension getDimension() {
     return dimension;
   }
 
-  public void setDimension(SchedulePackageHandoverResponseDataDimension dimension) {
+  public void setDimension(@javax.annotation.Nullable SchedulePackageHandoverResponseDataDimension dimension) {
     this.dimension = dimension;
   }
 
 
-  public SchedulePackageHandoverResponseData handoverMethod(String handoverMethod) {
+  public SchedulePackageHandoverResponseData handoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
     return this;
   }
 
-   /**
+  /**
    * Schedule the package as a pickup or drop off. - PICKUP (A shipping provider will pickup the package(s) from the seller&#39;s pickup address)   - DROP_OFF (Seller will need to drop off the package(s) to a designated location)
    * @return handoverMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandoverMethod() {
     return handoverMethod;
   }
 
-  public void setHandoverMethod(String handoverMethod) {
+  public void setHandoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
   }
 
 
-  public SchedulePackageHandoverResponseData orderId(String orderId) {
+  public SchedulePackageHandoverResponseData orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop order ID
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public SchedulePackageHandoverResponseData orderLineItemIds(List<String> orderLineItemIds) {
+  public SchedulePackageHandoverResponseData orderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
     return this;
   }
@@ -191,131 +201,176 @@ public class SchedulePackageHandoverResponseData {
     return this;
   }
 
-   /**
+  /**
    * Order line item IDs that belong to the package.
    * @return orderLineItemIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineItemIds() {
     return orderLineItemIds;
   }
 
-  public void setOrderLineItemIds(List<String> orderLineItemIds) {
+  public void setOrderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
   }
 
 
-  public SchedulePackageHandoverResponseData packageId(String packageId) {
+  public SchedulePackageHandoverResponseData packageId(@javax.annotation.Nullable String packageId) {
     this.packageId = packageId;
     return this;
   }
 
-   /**
+  /**
    * Package ID. 
    * @return packageId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPackageId() {
     return packageId;
   }
 
-  public void setPackageId(String packageId) {
+  public void setPackageId(@javax.annotation.Nullable String packageId) {
     this.packageId = packageId;
   }
 
 
-  public SchedulePackageHandoverResponseData shippingProviderId(String shippingProviderId) {
+  public SchedulePackageHandoverResponseData shippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
     return this;
   }
 
-   /**
+  /**
    * Package shipping provider id
    * @return shippingProviderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderId() {
     return shippingProviderId;
   }
 
-  public void setShippingProviderId(String shippingProviderId) {
+  public void setShippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
   }
 
 
-  public SchedulePackageHandoverResponseData shippingProviderName(String shippingProviderName) {
+  public SchedulePackageHandoverResponseData shippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
     return this;
   }
 
-   /**
+  /**
    * Package shipping provider
    * @return shippingProviderName
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderName() {
     return shippingProviderName;
   }
 
-  public void setShippingProviderName(String shippingProviderName) {
+  public void setShippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
   }
 
 
-  public SchedulePackageHandoverResponseData trackingNumber(String trackingNumber) {
+  public SchedulePackageHandoverResponseData trackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
     return this;
   }
 
-   /**
+  /**
    * Package tracking number
    * @return trackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getTrackingNumber() {
     return trackingNumber;
   }
 
-  public void setTrackingNumber(String trackingNumber) {
+  public void setTrackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
   }
 
 
-  public SchedulePackageHandoverResponseData updateTime(Long updateTime) {
+  public SchedulePackageHandoverResponseData updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * Unix timestamp
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
   }
 
 
-  public SchedulePackageHandoverResponseData weight(SchedulePackageHandoverResponseDataWeight weight) {
+  public SchedulePackageHandoverResponseData weight(@javax.annotation.Nullable SchedulePackageHandoverResponseDataWeight weight) {
     this.weight = weight;
     return this;
   }
 
-   /**
+  /**
    * Get weight
    * @return weight
-  **/
+   */
   @javax.annotation.Nullable
   public SchedulePackageHandoverResponseDataWeight getWeight() {
     return weight;
   }
 
-  public void setWeight(SchedulePackageHandoverResponseDataWeight weight) {
+  public void setWeight(@javax.annotation.Nullable SchedulePackageHandoverResponseDataWeight weight) {
     this.weight = weight;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SchedulePackageHandoverResponseData instance itself
+   */
+  public SchedulePackageHandoverResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -339,12 +394,13 @@ public class SchedulePackageHandoverResponseData {
         Objects.equals(this.shippingProviderName, fulfillment202309SchedulePackageHandoverResponseData.shippingProviderName) &&
         Objects.equals(this.trackingNumber, fulfillment202309SchedulePackageHandoverResponseData.trackingNumber) &&
         Objects.equals(this.updateTime, fulfillment202309SchedulePackageHandoverResponseData.updateTime) &&
-        Objects.equals(this.weight, fulfillment202309SchedulePackageHandoverResponseData.weight);
+        Objects.equals(this.weight, fulfillment202309SchedulePackageHandoverResponseData.weight)&&
+        Objects.equals(this.additionalProperties, fulfillment202309SchedulePackageHandoverResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createTime, dimension, handoverMethod, orderId, orderLineItemIds, packageId, shippingProviderId, shippingProviderName, trackingNumber, updateTime, weight);
+    return Objects.hash(createTime, dimension, handoverMethod, orderId, orderLineItemIds, packageId, shippingProviderId, shippingProviderName, trackingNumber, updateTime, weight, additionalProperties);
   }
 
   @Override
@@ -362,6 +418,7 @@ public class SchedulePackageHandoverResponseData {
     sb.append("    trackingNumber: ").append(toIndentedString(trackingNumber)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -383,41 +440,22 @@ public class SchedulePackageHandoverResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("create_time");
-    openapiFields.add("dimension");
-    openapiFields.add("handover_method");
-    openapiFields.add("order_id");
-    openapiFields.add("order_line_item_ids");
-    openapiFields.add("package_id");
-    openapiFields.add("shipping_provider_id");
-    openapiFields.add("shipping_provider_name");
-    openapiFields.add("tracking_number");
-    openapiFields.add("update_time");
-    openapiFields.add("weight");
+    openapiFields = new HashSet<String>(Arrays.asList("create_time", "dimension", "handover_method", "order_id", "order_line_item_ids", "package_id", "shipping_provider_id", "shipping_provider_name", "tracking_number", "update_time", "weight"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SchedulePackageHandoverResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SchedulePackageHandoverResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SchedulePackageHandoverResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SchedulePackageHandoverResponseData is not found in the empty JSON string", SchedulePackageHandoverResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SchedulePackageHandoverResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SchedulePackageHandoverResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -468,6 +506,28 @@ public class SchedulePackageHandoverResponseData {
            @Override
            public void write(JsonWriter out, SchedulePackageHandoverResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -475,29 +535,50 @@ public class SchedulePackageHandoverResponseData {
            public SchedulePackageHandoverResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SchedulePackageHandoverResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SchedulePackageHandoverResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SchedulePackageHandoverResponseData
-  * @throws IOException if the JSON string is invalid with respect to SchedulePackageHandoverResponseData
-  */
+  /**
+   * Create an instance of SchedulePackageHandoverResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SchedulePackageHandoverResponseData
+   * @throws IOException if the JSON string is invalid with respect to SchedulePackageHandoverResponseData
+   */
   public static SchedulePackageHandoverResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SchedulePackageHandoverResponseData.class);
   }
 
- /**
-  * Convert an instance of SchedulePackageHandoverResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SchedulePackageHandoverResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

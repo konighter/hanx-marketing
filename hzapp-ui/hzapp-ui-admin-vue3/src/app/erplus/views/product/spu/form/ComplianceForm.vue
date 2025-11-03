@@ -1,8 +1,10 @@
 <!-- 商品发布 - 安全合规 -->
 <template>
   <el-form ref="formRef" :model="formData" :rules="rules" label-width="120px" :disabled="isDetail">
+    
     <!-- 安全认证 -->
-    <el-card class="mb-4" header="安全认证">
+    <el-divider content-position="left">安全认证</el-divider>
+    <!-- <el-card class="mb-4" header="安全认证"> -->
       <el-form-item label="产品安全标准">
         <el-checkbox-group v-model="formData.safetyStandards">
           <el-checkbox label="CE">CE认证</el-checkbox>
@@ -56,10 +58,11 @@
           </el-col>
         </el-row>
       </el-form-item>
-    </el-card>
+    <!-- </el-card> -->
     
     <!-- 材料合规 -->
-    <el-card class="mb-4" header="材料合规">
+     <el-divider content-position="left">安全认证</el-divider>
+    <!-- <el-card class="mb-4" header="材料合规"> -->
       <el-form-item label="主要材料">
         <div v-for="(material, index) in formData.materials" :key="index" class="mb-4 p-4 border border-gray-200 rounded">
           <el-row :gutter="20">
@@ -110,10 +113,11 @@
           <el-checkbox label="FORMALDEHYDE_FREE">无甲醛</el-checkbox>
         </el-checkbox-group>
       </el-form-item>
-    </el-card>
+    <!-- </el-card> -->
     
     <!-- 环保合规 -->
-    <el-card class="mb-4" header="环保合规">
+     <el-divider content-position="left">环保合规</el-divider>
+    <!-- <el-card class="mb-4" header="环保合规"> -->
       <el-form-item label="环保认证">
         <el-checkbox-group v-model="formData.environmentalCertifications">
           <el-checkbox label="ENERGY_STAR">Energy Star</el-checkbox>
@@ -154,10 +158,11 @@
           </el-col>
         </el-row>
       </el-form-item>
-    </el-card>
+    <!-- </el-card> -->
     
     <!-- 法规合规 -->
-    <el-card class="mb-4" header="法规合规">
+     <el-divider content-position="left">法规合规</el-divider>
+    <!-- <el-card class="mb-4" header="法规合规"> -->
       <el-form-item label="适用法规">
         <el-checkbox-group v-model="formData.applicableRegulations">
           <el-checkbox label="CPSIA">CPSIA (美国消费品安全法)</el-checkbox>
@@ -208,10 +213,10 @@
           + 添加许可证
         </el-button>
       </el-form-item>
-    </el-card>
-    
+    <!-- </el-card> -->
     <!-- 质量保证 -->
-    <el-card class="mb-4" header="质量保证">
+    <el-divider content-position="left">质量保证 </el-divider>
+    <!-- <el-card class="mb-4" header="质量保证"> -->
       <el-form-item label="质量检测报告">
         <el-upload
           v-model:file-list="formData.qualityReports"
@@ -267,7 +272,7 @@
           class="w-80"
         />
       </el-form-item>
-    </el-card>
+    <!-- </el-card> -->
   </el-form>
 </template>
 

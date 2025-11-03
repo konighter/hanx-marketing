@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,64 +50,77 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchReturnOrdersRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchReturnOrdersRequestBody {
   public static final String SERIALIZED_NAME_EXTERNAL_SKC_CODES = "external_skc_codes";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKC_CODES)
+  @javax.annotation.Nullable
   private List<String> externalSkcCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EXTERNAL_SKU_CODES = "external_sku_codes";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKU_CODES)
+  @javax.annotation.Nullable
   private List<String> externalSkuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ORDER_CREATE_TIME_GE = "order_create_time_ge";
   @SerializedName(SERIALIZED_NAME_ORDER_CREATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long orderCreateTimeGe;
 
   public static final String SERIALIZED_NAME_ORDER_CREATE_TIME_LT = "order_create_time_lt";
   @SerializedName(SERIALIZED_NAME_ORDER_CREATE_TIME_LT)
+  @javax.annotation.Nullable
   private Long orderCreateTimeLt;
 
   public static final String SERIALIZED_NAME_PAGE_SIZE = "page_size";
   @SerializedName(SERIALIZED_NAME_PAGE_SIZE)
+  @javax.annotation.Nullable
   private Long pageSize;
 
   public static final String SERIALIZED_NAME_PAGE_TOKEN = "page_token";
   @SerializedName(SERIALIZED_NAME_PAGE_TOKEN)
+  @javax.annotation.Nullable
   private String pageToken;
 
   public static final String SERIALIZED_NAME_PLATFORM_SKU_CODES = "platform_sku_codes";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SKU_CODES)
+  @javax.annotation.Nullable
   private List<String> platformSkuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PLATFORM_SPU_CODES = "platform_spu_codes";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SPU_CODES)
+  @javax.annotation.Nullable
   private List<String> platformSpuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RETURN_METHODS = "return_methods";
   @SerializedName(SERIALIZED_NAME_RETURN_METHODS)
+  @javax.annotation.Nullable
   private List<String> returnMethods = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RETURN_ORDER_CODES = "return_order_codes";
   @SerializedName(SERIALIZED_NAME_RETURN_ORDER_CODES)
+  @javax.annotation.Nullable
   private List<String> returnOrderCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RETURN_SOURCE = "return_source";
   @SerializedName(SERIALIZED_NAME_RETURN_SOURCE)
+  @javax.annotation.Nullable
   private String returnSource;
 
   public static final String SERIALIZED_NAME_RETURN_STATUS = "return_status";
   @SerializedName(SERIALIZED_NAME_RETURN_STATUS)
+  @javax.annotation.Nullable
   private List<String> returnStatus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RETURN_TYPES = "return_types";
   @SerializedName(SERIALIZED_NAME_RETURN_TYPES)
+  @javax.annotation.Nullable
   private List<String> returnTypes = new ArrayList<>();
 
   public GlobalSellingSearchReturnOrdersRequestBody() {
   }
 
-  public GlobalSellingSearchReturnOrdersRequestBody externalSkcCodes(List<String> externalSkcCodes) {
+  public GlobalSellingSearchReturnOrdersRequestBody externalSkcCodes(@javax.annotation.Nullable List<String> externalSkcCodes) {
     this.externalSkcCodes = externalSkcCodes;
     return this;
   }
@@ -121,21 +133,21 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The SKC code list of your OMS. The length is no more than &#x60;50&#x60;.
    * @return externalSkcCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExternalSkcCodes() {
     return externalSkcCodes;
   }
 
-  public void setExternalSkcCodes(List<String> externalSkcCodes) {
+  public void setExternalSkcCodes(@javax.annotation.Nullable List<String> externalSkcCodes) {
     this.externalSkcCodes = externalSkcCodes;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody externalSkuCodes(List<String> externalSkuCodes) {
+  public GlobalSellingSearchReturnOrdersRequestBody externalSkuCodes(@javax.annotation.Nullable List<String> externalSkuCodes) {
     this.externalSkuCodes = externalSkuCodes;
     return this;
   }
@@ -148,97 +160,97 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The SKU code list of your OMS. The length is no more than &#x60;50&#x60;.
    * @return externalSkuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExternalSkuCodes() {
     return externalSkuCodes;
   }
 
-  public void setExternalSkuCodes(List<String> externalSkuCodes) {
+  public void setExternalSkuCodes(@javax.annotation.Nullable List<String> externalSkuCodes) {
     this.externalSkuCodes = externalSkuCodes;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody orderCreateTimeGe(Long orderCreateTimeGe) {
+  public GlobalSellingSearchReturnOrdersRequestBody orderCreateTimeGe(@javax.annotation.Nullable Long orderCreateTimeGe) {
     this.orderCreateTimeGe = orderCreateTimeGe;
     return this;
   }
 
-   /**
+  /**
    * The creation time of the return order is greater than or equal to the value.
    * @return orderCreateTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getOrderCreateTimeGe() {
     return orderCreateTimeGe;
   }
 
-  public void setOrderCreateTimeGe(Long orderCreateTimeGe) {
+  public void setOrderCreateTimeGe(@javax.annotation.Nullable Long orderCreateTimeGe) {
     this.orderCreateTimeGe = orderCreateTimeGe;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody orderCreateTimeLt(Long orderCreateTimeLt) {
+  public GlobalSellingSearchReturnOrdersRequestBody orderCreateTimeLt(@javax.annotation.Nullable Long orderCreateTimeLt) {
     this.orderCreateTimeLt = orderCreateTimeLt;
     return this;
   }
 
-   /**
+  /**
    * The creation time of the return order is less than the value.
    * @return orderCreateTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getOrderCreateTimeLt() {
     return orderCreateTimeLt;
   }
 
-  public void setOrderCreateTimeLt(Long orderCreateTimeLt) {
+  public void setOrderCreateTimeLt(@javax.annotation.Nullable Long orderCreateTimeLt) {
     this.orderCreateTimeLt = orderCreateTimeLt;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody pageSize(Long pageSize) {
+  public GlobalSellingSearchReturnOrdersRequestBody pageSize(@javax.annotation.Nullable Long pageSize) {
     this.pageSize = pageSize;
     return this;
   }
 
-   /**
+  /**
    * Page size,  default 10,  less or equal to 50.
    * @return pageSize
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPageSize() {
     return pageSize;
   }
 
-  public void setPageSize(Long pageSize) {
+  public void setPageSize(@javax.annotation.Nullable Long pageSize) {
     this.pageSize = pageSize;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody pageToken(String pageToken) {
+  public GlobalSellingSearchReturnOrdersRequestBody pageToken(@javax.annotation.Nullable String pageToken) {
     this.pageToken = pageToken;
     return this;
   }
 
-   /**
+  /**
    * Page offset, &#x60;1&#x60; by default.
    * @return pageToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getPageToken() {
     return pageToken;
   }
 
-  public void setPageToken(String pageToken) {
+  public void setPageToken(@javax.annotation.Nullable String pageToken) {
     this.pageToken = pageToken;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody platformSkuCodes(List<String> platformSkuCodes) {
+  public GlobalSellingSearchReturnOrdersRequestBody platformSkuCodes(@javax.annotation.Nullable List<String> platformSkuCodes) {
     this.platformSkuCodes = platformSkuCodes;
     return this;
   }
@@ -251,21 +263,21 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The SKU code list of TikTok Shop. The length is no more than &#x60;50&#x60;.
    * @return platformSkuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getPlatformSkuCodes() {
     return platformSkuCodes;
   }
 
-  public void setPlatformSkuCodes(List<String> platformSkuCodes) {
+  public void setPlatformSkuCodes(@javax.annotation.Nullable List<String> platformSkuCodes) {
     this.platformSkuCodes = platformSkuCodes;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody platformSpuCodes(List<String> platformSpuCodes) {
+  public GlobalSellingSearchReturnOrdersRequestBody platformSpuCodes(@javax.annotation.Nullable List<String> platformSpuCodes) {
     this.platformSpuCodes = platformSpuCodes;
     return this;
   }
@@ -278,21 +290,21 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The SPU code list of TikTok Shop.  The length is no more than &#x60;50&#x60;.
    * @return platformSpuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getPlatformSpuCodes() {
     return platformSpuCodes;
   }
 
-  public void setPlatformSpuCodes(List<String> platformSpuCodes) {
+  public void setPlatformSpuCodes(@javax.annotation.Nullable List<String> platformSpuCodes) {
     this.platformSpuCodes = platformSpuCodes;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody returnMethods(List<String> returnMethods) {
+  public GlobalSellingSearchReturnOrdersRequestBody returnMethods(@javax.annotation.Nullable List<String> returnMethods) {
     this.returnMethods = returnMethods;
     return this;
   }
@@ -305,21 +317,21 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The method of returning goods to the merchant. Possible enumerations are:  1. SELF_PICKUP 2. EXPRESS_DELIVERY 3. PLATFORM_DELIVERY 4. ABANDON_GOODS
    * @return returnMethods
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReturnMethods() {
     return returnMethods;
   }
 
-  public void setReturnMethods(List<String> returnMethods) {
+  public void setReturnMethods(@javax.annotation.Nullable List<String> returnMethods) {
     this.returnMethods = returnMethods;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody returnOrderCodes(List<String> returnOrderCodes) {
+  public GlobalSellingSearchReturnOrdersRequestBody returnOrderCodes(@javax.annotation.Nullable List<String> returnOrderCodes) {
     this.returnOrderCodes = returnOrderCodes;
     return this;
   }
@@ -332,40 +344,40 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The code list of return orders. The length is no more than &#x60;50&#x60;.
    * @return returnOrderCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReturnOrderCodes() {
     return returnOrderCodes;
   }
 
-  public void setReturnOrderCodes(List<String> returnOrderCodes) {
+  public void setReturnOrderCodes(@javax.annotation.Nullable List<String> returnOrderCodes) {
     this.returnOrderCodes = returnOrderCodes;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody returnSource(String returnSource) {
+  public GlobalSellingSearchReturnOrdersRequestBody returnSource(@javax.annotation.Nullable String returnSource) {
     this.returnSource = returnSource;
     return this;
   }
 
-   /**
+  /**
    * The source that triggers return goods to the merchant. Possible enumerations are:  1. MERCHANT 2. PLATFORM 3. INVENTORY_HEALTH 4. PRODUCT_DISUSE
    * @return returnSource
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnSource() {
     return returnSource;
   }
 
-  public void setReturnSource(String returnSource) {
+  public void setReturnSource(@javax.annotation.Nullable String returnSource) {
     this.returnSource = returnSource;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody returnStatus(List<String> returnStatus) {
+  public GlobalSellingSearchReturnOrdersRequestBody returnStatus(@javax.annotation.Nullable List<String> returnStatus) {
     this.returnStatus = returnStatus;
     return this;
   }
@@ -378,21 +390,21 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The list of status of return order. Possible enumerations are:  1. OPERATER_CONFIRMING：Merchants have initiated the return order. The order is yet to be confirmed by the platform. 2. MERCHANT_CONFIRMING：Platform has initiated the return order. The order is yet to be confirmed by the merchants. 3. TO_TRANSIT: Waiting for transit in the warehouse. 4. IN_TRANSIT: transiting in the warehouse. 5. OUTBOUND：Transit finished in the warehouse. Ready for pick up. 6. SHIPPED： Return packages have been collected by logistics. 7. COMPLETED：The return process has been completed. 8. CANCELED：The return process has been cancelled.
    * @return returnStatus
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReturnStatus() {
     return returnStatus;
   }
 
-  public void setReturnStatus(List<String> returnStatus) {
+  public void setReturnStatus(@javax.annotation.Nullable List<String> returnStatus) {
     this.returnStatus = returnStatus;
   }
 
 
-  public GlobalSellingSearchReturnOrdersRequestBody returnTypes(List<String> returnTypes) {
+  public GlobalSellingSearchReturnOrdersRequestBody returnTypes(@javax.annotation.Nullable List<String> returnTypes) {
     this.returnTypes = returnTypes;
     return this;
   }
@@ -405,17 +417,62 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The type of return goods to merchant. Possible enumerations are:  1. ABNORMAL_INVENTORY：Inventory returns are caused by problems such as slow sales. 2. ABNORMAL_QUALITY：Quality problems are identified by quality check. 3. INSPECT_ABNORMAL：Quality problems are identified by inspection in the warehouse. 4. RECEIVE_ABNORMAL：The labels of delivery packages identified in the receiving process are not clear. 5. PRODUCT_ABNORMAL：Products are damaged, with bulging bags or with abnormal barcodes.  6. QUANTITY_ABNORMAL_MORE：The goods are in excessive quantity and need to be returned. 7. MISPLACED_GOODS：Incorrect goods need to be returned.
    * @return returnTypes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReturnTypes() {
     return returnTypes;
   }
 
-  public void setReturnTypes(List<String> returnTypes) {
+  public void setReturnTypes(@javax.annotation.Nullable List<String> returnTypes) {
     this.returnTypes = returnTypes;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchReturnOrdersRequestBody instance itself
+   */
+  public GlobalSellingSearchReturnOrdersRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -441,12 +498,13 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
         Objects.equals(this.returnOrderCodes, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersRequestBody.returnOrderCodes) &&
         Objects.equals(this.returnSource, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersRequestBody.returnSource) &&
         Objects.equals(this.returnStatus, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersRequestBody.returnStatus) &&
-        Objects.equals(this.returnTypes, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersRequestBody.returnTypes);
+        Objects.equals(this.returnTypes, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersRequestBody.returnTypes)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(externalSkcCodes, externalSkuCodes, orderCreateTimeGe, orderCreateTimeLt, pageSize, pageToken, platformSkuCodes, platformSpuCodes, returnMethods, returnOrderCodes, returnSource, returnStatus, returnTypes);
+    return Objects.hash(externalSkcCodes, externalSkuCodes, orderCreateTimeGe, orderCreateTimeLt, pageSize, pageToken, platformSkuCodes, platformSpuCodes, returnMethods, returnOrderCodes, returnSource, returnStatus, returnTypes, additionalProperties);
   }
 
   @Override
@@ -466,6 +524,7 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
     sb.append("    returnSource: ").append(toIndentedString(returnSource)).append("\n");
     sb.append("    returnStatus: ").append(toIndentedString(returnStatus)).append("\n");
     sb.append("    returnTypes: ").append(toIndentedString(returnTypes)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -487,43 +546,22 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("external_skc_codes");
-    openapiFields.add("external_sku_codes");
-    openapiFields.add("order_create_time_ge");
-    openapiFields.add("order_create_time_lt");
-    openapiFields.add("page_size");
-    openapiFields.add("page_token");
-    openapiFields.add("platform_sku_codes");
-    openapiFields.add("platform_spu_codes");
-    openapiFields.add("return_methods");
-    openapiFields.add("return_order_codes");
-    openapiFields.add("return_source");
-    openapiFields.add("return_status");
-    openapiFields.add("return_types");
+    openapiFields = new HashSet<String>(Arrays.asList("external_skc_codes", "external_sku_codes", "order_create_time_ge", "order_create_time_lt", "page_size", "page_token", "platform_sku_codes", "platform_spu_codes", "return_methods", "return_order_codes", "return_source", "return_status", "return_types"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchReturnOrdersRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchReturnOrdersRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchReturnOrdersRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchReturnOrdersRequestBody is not found in the empty JSON string", GlobalSellingSearchReturnOrdersRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchReturnOrdersRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchReturnOrdersRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -582,6 +620,28 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
            @Override
            public void write(JsonWriter out, GlobalSellingSearchReturnOrdersRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -589,29 +649,50 @@ public class GlobalSellingSearchReturnOrdersRequestBody {
            public GlobalSellingSearchReturnOrdersRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchReturnOrdersRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchReturnOrdersRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchReturnOrdersRequestBody
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchReturnOrdersRequestBody
-  */
+  /**
+   * Create an instance of GlobalSellingSearchReturnOrdersRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchReturnOrdersRequestBody
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchReturnOrdersRequestBody
+   */
   public static GlobalSellingSearchReturnOrdersRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchReturnOrdersRequestBody.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchReturnOrdersRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchReturnOrdersRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

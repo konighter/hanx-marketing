@@ -84,12 +84,13 @@ public class GsFullServiceInventoryV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryQueryPostCall(String xTtsAccessToken, String contentType, GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryQueryPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -114,14 +115,6 @@ public class GsFullServiceInventoryV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -138,12 +131,22 @@ public class GsFullServiceInventoryV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryQueryPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryQueryPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceInventory202405BetaVirtualInventoryQueryPost(Async)");
@@ -167,12 +170,13 @@ public class GsFullServiceInventoryV202405Api {
      * @return GSFullServiceQueryVirtualInventoryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSFullServiceQueryVirtualInventoryResponse gsFullServiceInventory202405BetaVirtualInventoryQueryPost(String xTtsAccessToken, String contentType, GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody) throws ApiException {
+    public GSFullServiceQueryVirtualInventoryResponse gsFullServiceInventory202405BetaVirtualInventoryQueryPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody) throws ApiException {
         ApiResponse<GSFullServiceQueryVirtualInventoryResponse> localVarResp = gsFullServiceInventory202405BetaVirtualInventoryQueryPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody);
         return localVarResp.getData();
     }
@@ -186,12 +190,13 @@ public class GsFullServiceInventoryV202405Api {
      * @return ApiResponse&lt;GSFullServiceQueryVirtualInventoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSFullServiceQueryVirtualInventoryResponse> gsFullServiceInventory202405BetaVirtualInventoryQueryPostWithHttpInfo(String xTtsAccessToken, String contentType, GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody) throws ApiException {
+    public ApiResponse<GSFullServiceQueryVirtualInventoryResponse> gsFullServiceInventory202405BetaVirtualInventoryQueryPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceInventory202405BetaVirtualInventoryQueryPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody, null);
         Type localVarReturnType = new TypeToken<GSFullServiceQueryVirtualInventoryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -207,12 +212,13 @@ public class GsFullServiceInventoryV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryQueryPostAsync(String xTtsAccessToken, String contentType, GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody, final ApiCallback<GSFullServiceQueryVirtualInventoryResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryQueryPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceQueryVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody, final ApiCallback<GSFullServiceQueryVirtualInventoryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceInventory202405BetaVirtualInventoryQueryPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceInventory202405GSFullServiceQueryVirtualInventoryRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSFullServiceQueryVirtualInventoryResponse>(){}.getType();
@@ -228,12 +234,13 @@ public class GsFullServiceInventoryV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryUpdatePostCall(String xTtsAccessToken, String contentType, GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryUpdatePostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -258,14 +265,6 @@ public class GsFullServiceInventoryV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -282,12 +281,22 @@ public class GsFullServiceInventoryV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryUpdatePostValidateBeforeCall(String xTtsAccessToken, String contentType, GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryUpdatePostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceInventory202405BetaVirtualInventoryUpdatePost(Async)");
@@ -311,12 +320,13 @@ public class GsFullServiceInventoryV202405Api {
      * @return GSFullServiceUpdateVirtualInventoryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSFullServiceUpdateVirtualInventoryResponse gsFullServiceInventory202405BetaVirtualInventoryUpdatePost(String xTtsAccessToken, String contentType, GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody) throws ApiException {
+    public GSFullServiceUpdateVirtualInventoryResponse gsFullServiceInventory202405BetaVirtualInventoryUpdatePost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody) throws ApiException {
         ApiResponse<GSFullServiceUpdateVirtualInventoryResponse> localVarResp = gsFullServiceInventory202405BetaVirtualInventoryUpdatePostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody);
         return localVarResp.getData();
     }
@@ -330,12 +340,13 @@ public class GsFullServiceInventoryV202405Api {
      * @return ApiResponse&lt;GSFullServiceUpdateVirtualInventoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSFullServiceUpdateVirtualInventoryResponse> gsFullServiceInventory202405BetaVirtualInventoryUpdatePostWithHttpInfo(String xTtsAccessToken, String contentType, GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody) throws ApiException {
+    public ApiResponse<GSFullServiceUpdateVirtualInventoryResponse> gsFullServiceInventory202405BetaVirtualInventoryUpdatePostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceInventory202405BetaVirtualInventoryUpdatePostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody, null);
         Type localVarReturnType = new TypeToken<GSFullServiceUpdateVirtualInventoryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -351,12 +362,13 @@ public class GsFullServiceInventoryV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryUpdatePostAsync(String xTtsAccessToken, String contentType, GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody, final ApiCallback<GSFullServiceUpdateVirtualInventoryResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceInventory202405BetaVirtualInventoryUpdatePostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceUpdateVirtualInventoryRequestBody gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody, final ApiCallback<GSFullServiceUpdateVirtualInventoryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceInventory202405BetaVirtualInventoryUpdatePostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSFullServiceUpdateVirtualInventoryResponse>(){}.getType();

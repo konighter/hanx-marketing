@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchProductsResponseDataProductsSkusPrice
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchProductsResponseDataProductsSkusPrice {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_SALE_PRICE = "sale_price";
   @SerializedName(SERIALIZED_NAME_SALE_PRICE)
+  @javax.annotation.Nullable
   private String salePrice;
 
   public static final String SERIALIZED_NAME_TAX_EXCLUSIVE_PRICE = "tax_exclusive_price";
   @SerializedName(SERIALIZED_NAME_TAX_EXCLUSIVE_PRICE)
+  @javax.annotation.Nullable
   private String taxExclusivePrice;
 
   public SearchProductsResponseDataProductsSkusPrice() {
   }
 
-  public SearchProductsResponseDataProductsSkusPrice currency(String currency) {
+  public SearchProductsResponseDataProductsSkusPrice currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The currency. Possible values: - BRL: Brazil - EUR: France, Germany, Ireland, Italy, Spain - GBP: United Kingdom - IDR: Indonesia - JPY: Japan - MXN: Mexico - MYR: Malaysia - PHP: Philippines - SGD: Singapore - THB: Thailand - USD: United States - VND: Vietnam
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public SearchProductsResponseDataProductsSkusPrice salePrice(String salePrice) {
+  public SearchProductsResponseDataProductsSkusPrice salePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
     return this;
   }
 
-   /**
+  /**
    * **Global sellers** The SKU&#39;s **local display price** shown on the product page before any discounts.
    * @return salePrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getSalePrice() {
     return salePrice;
   }
 
-  public void setSalePrice(String salePrice) {
+  public void setSalePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
   }
 
 
-  public SearchProductsResponseDataProductsSkusPrice taxExclusivePrice(String taxExclusivePrice) {
+  public SearchProductsResponseDataProductsSkusPrice taxExclusivePrice(@javax.annotation.Nullable String taxExclusivePrice) {
     this.taxExclusivePrice = taxExclusivePrice;
     return this;
   }
 
-   /**
+  /**
    * **Local sellers/Intra-EU sellers** The SKU&#39;s **local display price** shown on the product page before any discounts.  **Global sellers** The SKU&#39;s **local pre-tax price**. This excludes any applicable charges such as cross-border shipping costs, taxes, and other fees, and therefore does not appear on the product page.  **Note**: Tax-exclusive pricing does not apply to the JP market, therefore this value is the same as &#x60;sale_price&#x60;.
    * @return taxExclusivePrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getTaxExclusivePrice() {
     return taxExclusivePrice;
   }
 
-  public void setTaxExclusivePrice(String taxExclusivePrice) {
+  public void setTaxExclusivePrice(@javax.annotation.Nullable String taxExclusivePrice) {
     this.taxExclusivePrice = taxExclusivePrice;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchProductsResponseDataProductsSkusPrice instance itself
+   */
+  public SearchProductsResponseDataProductsSkusPrice putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class SearchProductsResponseDataProductsSkusPrice {
     SearchProductsResponseDataProductsSkusPrice product202312SearchProductsResponseDataProductsSkusPrice = (SearchProductsResponseDataProductsSkusPrice) o;
     return Objects.equals(this.currency, product202312SearchProductsResponseDataProductsSkusPrice.currency) &&
         Objects.equals(this.salePrice, product202312SearchProductsResponseDataProductsSkusPrice.salePrice) &&
-        Objects.equals(this.taxExclusivePrice, product202312SearchProductsResponseDataProductsSkusPrice.taxExclusivePrice);
+        Objects.equals(this.taxExclusivePrice, product202312SearchProductsResponseDataProductsSkusPrice.taxExclusivePrice)&&
+        Objects.equals(this.additionalProperties, product202312SearchProductsResponseDataProductsSkusPrice.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, salePrice, taxExclusivePrice);
+    return Objects.hash(currency, salePrice, taxExclusivePrice, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class SearchProductsResponseDataProductsSkusPrice {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    salePrice: ").append(toIndentedString(salePrice)).append("\n");
     sb.append("    taxExclusivePrice: ").append(toIndentedString(taxExclusivePrice)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class SearchProductsResponseDataProductsSkusPrice {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("currency");
-    openapiFields.add("sale_price");
-    openapiFields.add("tax_exclusive_price");
+    openapiFields = new HashSet<String>(Arrays.asList("currency", "sale_price", "tax_exclusive_price"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchProductsResponseDataProductsSkusPrice
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchProductsResponseDataProductsSkusPrice
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchProductsResponseDataProductsSkusPrice.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchProductsResponseDataProductsSkusPrice is not found in the empty JSON string", SearchProductsResponseDataProductsSkusPrice.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchProductsResponseDataProductsSkusPrice.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchProductsResponseDataProductsSkusPrice` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -227,6 +265,28 @@ public class SearchProductsResponseDataProductsSkusPrice {
            @Override
            public void write(JsonWriter out, SearchProductsResponseDataProductsSkusPrice value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -234,29 +294,50 @@ public class SearchProductsResponseDataProductsSkusPrice {
            public SearchProductsResponseDataProductsSkusPrice read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchProductsResponseDataProductsSkusPrice instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchProductsResponseDataProductsSkusPrice given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchProductsResponseDataProductsSkusPrice
-  * @throws IOException if the JSON string is invalid with respect to SearchProductsResponseDataProductsSkusPrice
-  */
+  /**
+   * Create an instance of SearchProductsResponseDataProductsSkusPrice given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchProductsResponseDataProductsSkusPrice
+   * @throws IOException if the JSON string is invalid with respect to SearchProductsResponseDataProductsSkusPrice
+   */
   public static SearchProductsResponseDataProductsSkusPrice fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchProductsResponseDataProductsSkusPrice.class);
   }
 
- /**
-  * Convert an instance of SearchProductsResponseDataProductsSkusPrice to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchProductsResponseDataProductsSkusPrice to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

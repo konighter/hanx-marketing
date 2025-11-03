@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,54 +49,101 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchProductsResponseDataProductsSkusPreSale
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchProductsResponseDataProductsSkusPreSale {
   public static final String SERIALIZED_NAME_FULFILLMENT_TYPE = "fulfillment_type";
   @SerializedName(SERIALIZED_NAME_FULFILLMENT_TYPE)
+  @javax.annotation.Nullable
   private SearchProductsResponseDataProductsSkusPreSaleFulfillmentType fulfillmentType;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public SearchProductsResponseDataProductsSkusPreSale() {
   }
 
-  public SearchProductsResponseDataProductsSkusPreSale fulfillmentType(SearchProductsResponseDataProductsSkusPreSaleFulfillmentType fulfillmentType) {
+  public SearchProductsResponseDataProductsSkusPreSale fulfillmentType(@javax.annotation.Nullable SearchProductsResponseDataProductsSkusPreSaleFulfillmentType fulfillmentType) {
     this.fulfillmentType = fulfillmentType;
     return this;
   }
 
-   /**
+  /**
    * Get fulfillmentType
    * @return fulfillmentType
-  **/
+   */
   @javax.annotation.Nullable
   public SearchProductsResponseDataProductsSkusPreSaleFulfillmentType getFulfillmentType() {
     return fulfillmentType;
   }
 
-  public void setFulfillmentType(SearchProductsResponseDataProductsSkusPreSaleFulfillmentType fulfillmentType) {
+  public void setFulfillmentType(@javax.annotation.Nullable SearchProductsResponseDataProductsSkusPreSaleFulfillmentType fulfillmentType) {
     this.fulfillmentType = fulfillmentType;
   }
 
 
-  public SearchProductsResponseDataProductsSkusPreSale type(String type) {
+  public SearchProductsResponseDataProductsSkusPreSale type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The type of pre-sale. Possible values based on the region: **US** - &#x60;PRE_ORDER&#x60;: The product is not yet available or released. Fulfillment can be extended by specifying a release date. - &#x60;MADE_TO_ORDER&#x60;: The product is produced only after the order is received. Fulfillment can be extended by specifying a duration. - &#x60;CUSTOM&#x60;: The product requires a fulfillment timeline that exceeds the standard due to other factors. Fulfillment can be extended by specifying a duration.  **UK and SEA** - &#x60;PRE_ORDER&#x60;: The product is not yet available or released. Fulfillment can be extended by specifying a duration. 
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchProductsResponseDataProductsSkusPreSale instance itself
+   */
+  public SearchProductsResponseDataProductsSkusPreSale putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -112,12 +158,13 @@ public class SearchProductsResponseDataProductsSkusPreSale {
     }
     SearchProductsResponseDataProductsSkusPreSale product202502SearchProductsResponseDataProductsSkusPreSale = (SearchProductsResponseDataProductsSkusPreSale) o;
     return Objects.equals(this.fulfillmentType, product202502SearchProductsResponseDataProductsSkusPreSale.fulfillmentType) &&
-        Objects.equals(this.type, product202502SearchProductsResponseDataProductsSkusPreSale.type);
+        Objects.equals(this.type, product202502SearchProductsResponseDataProductsSkusPreSale.type)&&
+        Objects.equals(this.additionalProperties, product202502SearchProductsResponseDataProductsSkusPreSale.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(fulfillmentType, type);
+    return Objects.hash(fulfillmentType, type, additionalProperties);
   }
 
   @Override
@@ -126,6 +173,7 @@ public class SearchProductsResponseDataProductsSkusPreSale {
     sb.append("class SearchProductsResponseDataProductsSkusPreSale {\n");
     sb.append("    fulfillmentType: ").append(toIndentedString(fulfillmentType)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -147,32 +195,22 @@ public class SearchProductsResponseDataProductsSkusPreSale {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("fulfillment_type");
-    openapiFields.add("type");
+    openapiFields = new HashSet<String>(Arrays.asList("fulfillment_type", "type"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchProductsResponseDataProductsSkusPreSale
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchProductsResponseDataProductsSkusPreSale
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchProductsResponseDataProductsSkusPreSale.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchProductsResponseDataProductsSkusPreSale is not found in the empty JSON string", SearchProductsResponseDataProductsSkusPreSale.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchProductsResponseDataProductsSkusPreSale.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchProductsResponseDataProductsSkusPreSale` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -200,6 +238,28 @@ public class SearchProductsResponseDataProductsSkusPreSale {
            @Override
            public void write(JsonWriter out, SearchProductsResponseDataProductsSkusPreSale value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -207,29 +267,50 @@ public class SearchProductsResponseDataProductsSkusPreSale {
            public SearchProductsResponseDataProductsSkusPreSale read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchProductsResponseDataProductsSkusPreSale instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchProductsResponseDataProductsSkusPreSale given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchProductsResponseDataProductsSkusPreSale
-  * @throws IOException if the JSON string is invalid with respect to SearchProductsResponseDataProductsSkusPreSale
-  */
+  /**
+   * Create an instance of SearchProductsResponseDataProductsSkusPreSale given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchProductsResponseDataProductsSkusPreSale
+   * @throws IOException if the JSON string is invalid with respect to SearchProductsResponseDataProductsSkusPreSale
+   */
   public static SearchProductsResponseDataProductsSkusPreSale fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchProductsResponseDataProductsSkusPreSale.class);
   }
 
- /**
-  * Convert an instance of SearchProductsResponseDataProductsSkusPreSale to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchProductsResponseDataProductsSkusPreSale to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

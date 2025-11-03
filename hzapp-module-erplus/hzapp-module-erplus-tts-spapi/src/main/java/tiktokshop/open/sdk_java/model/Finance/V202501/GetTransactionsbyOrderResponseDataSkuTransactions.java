@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,284 +51,341 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetTransactionsbyOrderResponseDataSkuTransactions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetTransactionsbyOrderResponseDataSkuTransactions {
   public static final String SERIALIZED_NAME_FEE_TAX_AMOUNT = "fee_tax_amount";
   @SerializedName(SERIALIZED_NAME_FEE_TAX_AMOUNT)
+  @javax.annotation.Nullable
   private String feeTaxAmount;
 
   public static final String SERIALIZED_NAME_FEE_TAX_BREAKDOWN = "fee_tax_breakdown";
   @SerializedName(SERIALIZED_NAME_FEE_TAX_BREAKDOWN)
+  @javax.annotation.Nullable
   private GetTransactionsbyOrderResponseDataSkuTransactionsFeeTaxBreakdown feeTaxBreakdown;
 
   public static final String SERIALIZED_NAME_PRODUCT_NAME = "product_name";
   @SerializedName(SERIALIZED_NAME_PRODUCT_NAME)
+  @javax.annotation.Nullable
   private String productName;
 
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   @SerializedName(SERIALIZED_NAME_QUANTITY)
+  @javax.annotation.Nullable
   private String quantity;
 
   public static final String SERIALIZED_NAME_REVENUE_AMOUNT = "revenue_amount";
   @SerializedName(SERIALIZED_NAME_REVENUE_AMOUNT)
+  @javax.annotation.Nullable
   private String revenueAmount;
 
   public static final String SERIALIZED_NAME_REVENUE_BREAKDOWN = "revenue_breakdown";
   @SerializedName(SERIALIZED_NAME_REVENUE_BREAKDOWN)
+  @javax.annotation.Nullable
   private GetTransactionsbyOrderResponseDataSkuTransactionsRevenueBreakdown revenueBreakdown;
 
   public static final String SERIALIZED_NAME_SETTLEMENT_AMOUNT = "settlement_amount";
   @SerializedName(SERIALIZED_NAME_SETTLEMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String settlementAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_COST_AMOUNT = "shipping_cost_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_COST_AMOUNT)
+  @javax.annotation.Nullable
   private String shippingCostAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_COST_BREAKDOWN = "shipping_cost_breakdown";
   @SerializedName(SERIALIZED_NAME_SHIPPING_COST_BREAKDOWN)
+  @javax.annotation.Nullable
   private GetTransactionsbyOrderResponseDataSkuTransactionsShippingCostBreakdown shippingCostBreakdown;
 
   public static final String SERIALIZED_NAME_SKU_ID = "sku_id";
   @SerializedName(SERIALIZED_NAME_SKU_ID)
+  @javax.annotation.Nullable
   private String skuId;
 
   public static final String SERIALIZED_NAME_SKU_NAME = "sku_name";
   @SerializedName(SERIALIZED_NAME_SKU_NAME)
+  @javax.annotation.Nullable
   private String skuName;
 
   public static final String SERIALIZED_NAME_STATEMENT_ID = "statement_id";
   @SerializedName(SERIALIZED_NAME_STATEMENT_ID)
+  @javax.annotation.Nullable
   private String statementId;
 
   public GetTransactionsbyOrderResponseDataSkuTransactions() {
   }
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions feeTaxAmount(String feeTaxAmount) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions feeTaxAmount(@javax.annotation.Nullable String feeTaxAmount) {
     this.feeTaxAmount = feeTaxAmount;
     return this;
   }
 
-   /**
+  /**
    * The total fees and taxes charged by TikTok Shop at the time of order settlement. Shipping-related costs are excluded. This is equivalent to the sum of all contributory amounts in &#x60;fee_tax_breakdown&#x60;. 
    * @return feeTaxAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFeeTaxAmount() {
     return feeTaxAmount;
   }
 
-  public void setFeeTaxAmount(String feeTaxAmount) {
+  public void setFeeTaxAmount(@javax.annotation.Nullable String feeTaxAmount) {
     this.feeTaxAmount = feeTaxAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions feeTaxBreakdown(GetTransactionsbyOrderResponseDataSkuTransactionsFeeTaxBreakdown feeTaxBreakdown) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions feeTaxBreakdown(@javax.annotation.Nullable GetTransactionsbyOrderResponseDataSkuTransactionsFeeTaxBreakdown feeTaxBreakdown) {
     this.feeTaxBreakdown = feeTaxBreakdown;
     return this;
   }
 
-   /**
+  /**
    * Get feeTaxBreakdown
    * @return feeTaxBreakdown
-  **/
+   */
   @javax.annotation.Nullable
   public GetTransactionsbyOrderResponseDataSkuTransactionsFeeTaxBreakdown getFeeTaxBreakdown() {
     return feeTaxBreakdown;
   }
 
-  public void setFeeTaxBreakdown(GetTransactionsbyOrderResponseDataSkuTransactionsFeeTaxBreakdown feeTaxBreakdown) {
+  public void setFeeTaxBreakdown(@javax.annotation.Nullable GetTransactionsbyOrderResponseDataSkuTransactionsFeeTaxBreakdown feeTaxBreakdown) {
     this.feeTaxBreakdown = feeTaxBreakdown;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions productName(String productName) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions productName(@javax.annotation.Nullable String productName) {
     this.productName = productName;
     return this;
   }
 
-   /**
+  /**
    * The product title.
    * @return productName
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductName() {
     return productName;
   }
 
-  public void setProductName(String productName) {
+  public void setProductName(@javax.annotation.Nullable String productName) {
     this.productName = productName;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions quantity(String quantity) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions quantity(@javax.annotation.Nullable String quantity) {
     this.quantity = quantity;
     return this;
   }
 
-   /**
+  /**
    * The SKU quantity included in the order settlement.
    * @return quantity
-  **/
+   */
   @javax.annotation.Nullable
   public String getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(String quantity) {
+  public void setQuantity(@javax.annotation.Nullable String quantity) {
     this.quantity = quantity;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions revenueAmount(String revenueAmount) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions revenueAmount(@javax.annotation.Nullable String revenueAmount) {
     this.revenueAmount = revenueAmount;
     return this;
   }
 
-   /**
+  /**
    * The revenue amount at the time of order settlement. This is equivalent to the sum of all amounts in &#x60;revenue_breakdown&#x60;.
    * @return revenueAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRevenueAmount() {
     return revenueAmount;
   }
 
-  public void setRevenueAmount(String revenueAmount) {
+  public void setRevenueAmount(@javax.annotation.Nullable String revenueAmount) {
     this.revenueAmount = revenueAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions revenueBreakdown(GetTransactionsbyOrderResponseDataSkuTransactionsRevenueBreakdown revenueBreakdown) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions revenueBreakdown(@javax.annotation.Nullable GetTransactionsbyOrderResponseDataSkuTransactionsRevenueBreakdown revenueBreakdown) {
     this.revenueBreakdown = revenueBreakdown;
     return this;
   }
 
-   /**
+  /**
    * Get revenueBreakdown
    * @return revenueBreakdown
-  **/
+   */
   @javax.annotation.Nullable
   public GetTransactionsbyOrderResponseDataSkuTransactionsRevenueBreakdown getRevenueBreakdown() {
     return revenueBreakdown;
   }
 
-  public void setRevenueBreakdown(GetTransactionsbyOrderResponseDataSkuTransactionsRevenueBreakdown revenueBreakdown) {
+  public void setRevenueBreakdown(@javax.annotation.Nullable GetTransactionsbyOrderResponseDataSkuTransactionsRevenueBreakdown revenueBreakdown) {
     this.revenueBreakdown = revenueBreakdown;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions settlementAmount(String settlementAmount) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions settlementAmount(@javax.annotation.Nullable String settlementAmount) {
     this.settlementAmount = settlementAmount;
     return this;
   }
 
-   /**
+  /**
    * The settlement amount for the SKU.
    * @return settlementAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSettlementAmount() {
     return settlementAmount;
   }
 
-  public void setSettlementAmount(String settlementAmount) {
+  public void setSettlementAmount(@javax.annotation.Nullable String settlementAmount) {
     this.settlementAmount = settlementAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions shippingCostAmount(String shippingCostAmount) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions shippingCostAmount(@javax.annotation.Nullable String shippingCostAmount) {
     this.shippingCostAmount = shippingCostAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping costs at the time of order settlement. This is equivalent to the sum of all contributory amounts in &#x60;shipping_cost_breakdown&#x60;.
    * @return shippingCostAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingCostAmount() {
     return shippingCostAmount;
   }
 
-  public void setShippingCostAmount(String shippingCostAmount) {
+  public void setShippingCostAmount(@javax.annotation.Nullable String shippingCostAmount) {
     this.shippingCostAmount = shippingCostAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions shippingCostBreakdown(GetTransactionsbyOrderResponseDataSkuTransactionsShippingCostBreakdown shippingCostBreakdown) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions shippingCostBreakdown(@javax.annotation.Nullable GetTransactionsbyOrderResponseDataSkuTransactionsShippingCostBreakdown shippingCostBreakdown) {
     this.shippingCostBreakdown = shippingCostBreakdown;
     return this;
   }
 
-   /**
+  /**
    * Get shippingCostBreakdown
    * @return shippingCostBreakdown
-  **/
+   */
   @javax.annotation.Nullable
   public GetTransactionsbyOrderResponseDataSkuTransactionsShippingCostBreakdown getShippingCostBreakdown() {
     return shippingCostBreakdown;
   }
 
-  public void setShippingCostBreakdown(GetTransactionsbyOrderResponseDataSkuTransactionsShippingCostBreakdown shippingCostBreakdown) {
+  public void setShippingCostBreakdown(@javax.annotation.Nullable GetTransactionsbyOrderResponseDataSkuTransactionsShippingCostBreakdown shippingCostBreakdown) {
     this.shippingCostBreakdown = shippingCostBreakdown;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions skuId(String skuId) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions skuId(@javax.annotation.Nullable String skuId) {
     this.skuId = skuId;
     return this;
   }
 
-   /**
+  /**
    * The SKU ID in TikTok Shop.
    * @return skuId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuId() {
     return skuId;
   }
 
-  public void setSkuId(String skuId) {
+  public void setSkuId(@javax.annotation.Nullable String skuId) {
     this.skuId = skuId;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions skuName(String skuName) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions skuName(@javax.annotation.Nullable String skuName) {
     this.skuName = skuName;
     return this;
   }
 
-   /**
+  /**
    * The SKU name.
    * @return skuName
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuName() {
     return skuName;
   }
 
-  public void setSkuName(String skuName) {
+  public void setSkuName(@javax.annotation.Nullable String skuName) {
     this.skuName = skuName;
   }
 
 
-  public GetTransactionsbyOrderResponseDataSkuTransactions statementId(String statementId) {
+  public GetTransactionsbyOrderResponseDataSkuTransactions statementId(@javax.annotation.Nullable String statementId) {
     this.statementId = statementId;
     return this;
   }
 
-   /**
+  /**
    * The statement ID.
    * @return statementId
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatementId() {
     return statementId;
   }
 
-  public void setStatementId(String statementId) {
+  public void setStatementId(@javax.annotation.Nullable String statementId) {
     this.statementId = statementId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetTransactionsbyOrderResponseDataSkuTransactions instance itself
+   */
+  public GetTransactionsbyOrderResponseDataSkuTransactions putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -354,12 +410,13 @@ public class GetTransactionsbyOrderResponseDataSkuTransactions {
         Objects.equals(this.shippingCostBreakdown, finance202501GetTransactionsbyOrderResponseDataSkuTransactions.shippingCostBreakdown) &&
         Objects.equals(this.skuId, finance202501GetTransactionsbyOrderResponseDataSkuTransactions.skuId) &&
         Objects.equals(this.skuName, finance202501GetTransactionsbyOrderResponseDataSkuTransactions.skuName) &&
-        Objects.equals(this.statementId, finance202501GetTransactionsbyOrderResponseDataSkuTransactions.statementId);
+        Objects.equals(this.statementId, finance202501GetTransactionsbyOrderResponseDataSkuTransactions.statementId)&&
+        Objects.equals(this.additionalProperties, finance202501GetTransactionsbyOrderResponseDataSkuTransactions.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(feeTaxAmount, feeTaxBreakdown, productName, quantity, revenueAmount, revenueBreakdown, settlementAmount, shippingCostAmount, shippingCostBreakdown, skuId, skuName, statementId);
+    return Objects.hash(feeTaxAmount, feeTaxBreakdown, productName, quantity, revenueAmount, revenueBreakdown, settlementAmount, shippingCostAmount, shippingCostBreakdown, skuId, skuName, statementId, additionalProperties);
   }
 
   @Override
@@ -378,6 +435,7 @@ public class GetTransactionsbyOrderResponseDataSkuTransactions {
     sb.append("    skuId: ").append(toIndentedString(skuId)).append("\n");
     sb.append("    skuName: ").append(toIndentedString(skuName)).append("\n");
     sb.append("    statementId: ").append(toIndentedString(statementId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -399,42 +457,22 @@ public class GetTransactionsbyOrderResponseDataSkuTransactions {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("fee_tax_amount");
-    openapiFields.add("fee_tax_breakdown");
-    openapiFields.add("product_name");
-    openapiFields.add("quantity");
-    openapiFields.add("revenue_amount");
-    openapiFields.add("revenue_breakdown");
-    openapiFields.add("settlement_amount");
-    openapiFields.add("shipping_cost_amount");
-    openapiFields.add("shipping_cost_breakdown");
-    openapiFields.add("sku_id");
-    openapiFields.add("sku_name");
-    openapiFields.add("statement_id");
+    openapiFields = new HashSet<String>(Arrays.asList("fee_tax_amount", "fee_tax_breakdown", "product_name", "quantity", "revenue_amount", "revenue_breakdown", "settlement_amount", "shipping_cost_amount", "shipping_cost_breakdown", "sku_id", "sku_name", "statement_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyOrderResponseDataSkuTransactions
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyOrderResponseDataSkuTransactions
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetTransactionsbyOrderResponseDataSkuTransactions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetTransactionsbyOrderResponseDataSkuTransactions is not found in the empty JSON string", GetTransactionsbyOrderResponseDataSkuTransactions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetTransactionsbyOrderResponseDataSkuTransactions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetTransactionsbyOrderResponseDataSkuTransactions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -494,6 +532,28 @@ public class GetTransactionsbyOrderResponseDataSkuTransactions {
            @Override
            public void write(JsonWriter out, GetTransactionsbyOrderResponseDataSkuTransactions value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -501,29 +561,50 @@ public class GetTransactionsbyOrderResponseDataSkuTransactions {
            public GetTransactionsbyOrderResponseDataSkuTransactions read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetTransactionsbyOrderResponseDataSkuTransactions instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetTransactionsbyOrderResponseDataSkuTransactions given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetTransactionsbyOrderResponseDataSkuTransactions
-  * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyOrderResponseDataSkuTransactions
-  */
+  /**
+   * Create an instance of GetTransactionsbyOrderResponseDataSkuTransactions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetTransactionsbyOrderResponseDataSkuTransactions
+   * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyOrderResponseDataSkuTransactions
+   */
   public static GetTransactionsbyOrderResponseDataSkuTransactions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetTransactionsbyOrderResponseDataSkuTransactions.class);
   }
 
- /**
-  * Convert an instance of GetTransactionsbyOrderResponseDataSkuTransactions to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetTransactionsbyOrderResponseDataSkuTransactions to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

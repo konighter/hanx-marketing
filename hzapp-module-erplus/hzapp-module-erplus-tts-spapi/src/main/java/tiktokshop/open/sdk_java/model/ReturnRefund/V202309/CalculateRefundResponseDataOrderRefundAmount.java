@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,146 +48,197 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CalculateRefundResponseDataOrderRefundAmount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CalculateRefundResponseDataOrderRefundAmount {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_REFUND_SHIPPING_FEE = "refund_shipping_fee";
   @SerializedName(SERIALIZED_NAME_REFUND_SHIPPING_FEE)
+  @javax.annotation.Nullable
   private String refundShippingFee;
 
   public static final String SERIALIZED_NAME_REFUND_SUBTOTAL = "refund_subtotal";
   @SerializedName(SERIALIZED_NAME_REFUND_SUBTOTAL)
+  @javax.annotation.Nullable
   private String refundSubtotal;
 
   public static final String SERIALIZED_NAME_REFUND_TAX = "refund_tax";
   @SerializedName(SERIALIZED_NAME_REFUND_TAX)
+  @javax.annotation.Nullable
   private String refundTax;
 
   public static final String SERIALIZED_NAME_REFUND_TOTAL = "refund_total";
   @SerializedName(SERIALIZED_NAME_REFUND_TOTAL)
+  @javax.annotation.Nullable
   private String refundTotal;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE = "retail_delivery_fee";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE)
+  @javax.annotation.Nullable
   private String retailDeliveryFee;
 
   public CalculateRefundResponseDataOrderRefundAmount() {
   }
 
-  public CalculateRefundResponseDataOrderRefundAmount currency(String currency) {
+  public CalculateRefundResponseDataOrderRefundAmount currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Currency for payment.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public CalculateRefundResponseDataOrderRefundAmount refundShippingFee(String refundShippingFee) {
+  public CalculateRefundResponseDataOrderRefundAmount refundShippingFee(@javax.annotation.Nullable String refundShippingFee) {
     this.refundShippingFee = refundShippingFee;
     return this;
   }
 
-   /**
+  /**
    * Shipping fee refund to buyer.
    * @return refundShippingFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundShippingFee() {
     return refundShippingFee;
   }
 
-  public void setRefundShippingFee(String refundShippingFee) {
+  public void setRefundShippingFee(@javax.annotation.Nullable String refundShippingFee) {
     this.refundShippingFee = refundShippingFee;
   }
 
 
-  public CalculateRefundResponseDataOrderRefundAmount refundSubtotal(String refundSubtotal) {
+  public CalculateRefundResponseDataOrderRefundAmount refundSubtotal(@javax.annotation.Nullable String refundSubtotal) {
     this.refundSubtotal = refundSubtotal;
     return this;
   }
 
-   /**
+  /**
    * Total price of item be returned.
    * @return refundSubtotal
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundSubtotal() {
     return refundSubtotal;
   }
 
-  public void setRefundSubtotal(String refundSubtotal) {
+  public void setRefundSubtotal(@javax.annotation.Nullable String refundSubtotal) {
     this.refundSubtotal = refundSubtotal;
   }
 
 
-  public CalculateRefundResponseDataOrderRefundAmount refundTax(String refundTax) {
+  public CalculateRefundResponseDataOrderRefundAmount refundTax(@javax.annotation.Nullable String refundTax) {
     this.refundTax = refundTax;
     return this;
   }
 
-   /**
+  /**
    * Tax returned to buyer.
    * @return refundTax
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundTax() {
     return refundTax;
   }
 
-  public void setRefundTax(String refundTax) {
+  public void setRefundTax(@javax.annotation.Nullable String refundTax) {
     this.refundTax = refundTax;
   }
 
 
-  public CalculateRefundResponseDataOrderRefundAmount refundTotal(String refundTotal) {
+  public CalculateRefundResponseDataOrderRefundAmount refundTotal(@javax.annotation.Nullable String refundTotal) {
     this.refundTotal = refundTotal;
     return this;
   }
 
-   /**
+  /**
    * Total amount refund to buyer.
    * @return refundTotal
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundTotal() {
     return refundTotal;
   }
 
-  public void setRefundTotal(String refundTotal) {
+  public void setRefundTotal(@javax.annotation.Nullable String refundTotal) {
     this.refundTotal = refundTotal;
   }
 
 
-  public CalculateRefundResponseDataOrderRefundAmount retailDeliveryFee(String retailDeliveryFee) {
+  public CalculateRefundResponseDataOrderRefundAmount retailDeliveryFee(@javax.annotation.Nullable String retailDeliveryFee) {
     this.retailDeliveryFee = retailDeliveryFee;
     return this;
   }
 
-   /**
+  /**
    * Retail delivery fee takes effect once platform GMV exceeds 500,000 USD, according to US Colorado states&#39; compliance rules.
    * @return retailDeliveryFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFee() {
     return retailDeliveryFee;
   }
 
-  public void setRetailDeliveryFee(String retailDeliveryFee) {
+  public void setRetailDeliveryFee(@javax.annotation.Nullable String retailDeliveryFee) {
     this.retailDeliveryFee = retailDeliveryFee;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CalculateRefundResponseDataOrderRefundAmount instance itself
+   */
+  public CalculateRefundResponseDataOrderRefundAmount putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -207,12 +257,13 @@ public class CalculateRefundResponseDataOrderRefundAmount {
         Objects.equals(this.refundSubtotal, returnRefund202309CalculateRefundResponseDataOrderRefundAmount.refundSubtotal) &&
         Objects.equals(this.refundTax, returnRefund202309CalculateRefundResponseDataOrderRefundAmount.refundTax) &&
         Objects.equals(this.refundTotal, returnRefund202309CalculateRefundResponseDataOrderRefundAmount.refundTotal) &&
-        Objects.equals(this.retailDeliveryFee, returnRefund202309CalculateRefundResponseDataOrderRefundAmount.retailDeliveryFee);
+        Objects.equals(this.retailDeliveryFee, returnRefund202309CalculateRefundResponseDataOrderRefundAmount.retailDeliveryFee)&&
+        Objects.equals(this.additionalProperties, returnRefund202309CalculateRefundResponseDataOrderRefundAmount.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, refundShippingFee, refundSubtotal, refundTax, refundTotal, retailDeliveryFee);
+    return Objects.hash(currency, refundShippingFee, refundSubtotal, refundTax, refundTotal, retailDeliveryFee, additionalProperties);
   }
 
   @Override
@@ -225,6 +276,7 @@ public class CalculateRefundResponseDataOrderRefundAmount {
     sb.append("    refundTax: ").append(toIndentedString(refundTax)).append("\n");
     sb.append("    refundTotal: ").append(toIndentedString(refundTotal)).append("\n");
     sb.append("    retailDeliveryFee: ").append(toIndentedString(retailDeliveryFee)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -246,36 +298,22 @@ public class CalculateRefundResponseDataOrderRefundAmount {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("currency");
-    openapiFields.add("refund_shipping_fee");
-    openapiFields.add("refund_subtotal");
-    openapiFields.add("refund_tax");
-    openapiFields.add("refund_total");
-    openapiFields.add("retail_delivery_fee");
+    openapiFields = new HashSet<String>(Arrays.asList("currency", "refund_shipping_fee", "refund_subtotal", "refund_tax", "refund_total", "retail_delivery_fee"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CalculateRefundResponseDataOrderRefundAmount
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CalculateRefundResponseDataOrderRefundAmount
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CalculateRefundResponseDataOrderRefundAmount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CalculateRefundResponseDataOrderRefundAmount is not found in the empty JSON string", CalculateRefundResponseDataOrderRefundAmount.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CalculateRefundResponseDataOrderRefundAmount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CalculateRefundResponseDataOrderRefundAmount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -314,6 +352,28 @@ public class CalculateRefundResponseDataOrderRefundAmount {
            @Override
            public void write(JsonWriter out, CalculateRefundResponseDataOrderRefundAmount value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -321,29 +381,50 @@ public class CalculateRefundResponseDataOrderRefundAmount {
            public CalculateRefundResponseDataOrderRefundAmount read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CalculateRefundResponseDataOrderRefundAmount instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CalculateRefundResponseDataOrderRefundAmount given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CalculateRefundResponseDataOrderRefundAmount
-  * @throws IOException if the JSON string is invalid with respect to CalculateRefundResponseDataOrderRefundAmount
-  */
+  /**
+   * Create an instance of CalculateRefundResponseDataOrderRefundAmount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CalculateRefundResponseDataOrderRefundAmount
+   * @throws IOException if the JSON string is invalid with respect to CalculateRefundResponseDataOrderRefundAmount
+   */
   public static CalculateRefundResponseDataOrderRefundAmount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CalculateRefundResponseDataOrderRefundAmount.class);
   }
 
- /**
-  * Convert an instance of CalculateRefundResponseDataOrderRefundAmount to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CalculateRefundResponseDataOrderRefundAmount to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

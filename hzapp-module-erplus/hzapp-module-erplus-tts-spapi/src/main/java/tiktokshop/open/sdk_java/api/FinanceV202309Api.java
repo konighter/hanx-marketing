@@ -86,12 +86,13 @@ public class FinanceV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309OrdersOrderIdStatementTransactionsGetCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call finance202309OrdersOrderIdStatementTransactionsGetCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -121,14 +122,6 @@ public class FinanceV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -144,12 +137,22 @@ public class FinanceV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call finance202309OrdersOrderIdStatementTransactionsGetValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call finance202309OrdersOrderIdStatementTransactionsGetValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling finance202309OrdersOrderIdStatementTransactionsGet(Async)");
@@ -179,12 +182,13 @@ public class FinanceV202309Api {
      * @return GetTransactionsbyOrderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetTransactionsbyOrderResponse finance202309OrdersOrderIdStatementTransactionsGet(String orderId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetTransactionsbyOrderResponse finance202309OrdersOrderIdStatementTransactionsGet(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetTransactionsbyOrderResponse> localVarResp = finance202309OrdersOrderIdStatementTransactionsGetWithHttpInfo(orderId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -199,12 +203,13 @@ public class FinanceV202309Api {
      * @return ApiResponse&lt;GetTransactionsbyOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetTransactionsbyOrderResponse> finance202309OrdersOrderIdStatementTransactionsGetWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetTransactionsbyOrderResponse> finance202309OrdersOrderIdStatementTransactionsGetWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = finance202309OrdersOrderIdStatementTransactionsGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetTransactionsbyOrderResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -221,12 +226,13 @@ public class FinanceV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309OrdersOrderIdStatementTransactionsGetAsync(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetTransactionsbyOrderResponse> _callback) throws ApiException {
+    public okhttp3.Call finance202309OrdersOrderIdStatementTransactionsGetAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetTransactionsbyOrderResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = finance202309OrdersOrderIdStatementTransactionsGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetTransactionsbyOrderResponse>(){}.getType();
@@ -248,12 +254,13 @@ public class FinanceV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309PaymentsGetCall(String sortField, String xTtsAccessToken, String contentType, Long createTimeLt, Object pageSize, String pageToken, String sortOrder, Long createTimeGe, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call finance202309PaymentsGetCall(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -306,14 +313,6 @@ public class FinanceV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -329,12 +328,22 @@ public class FinanceV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call finance202309PaymentsGetValidateBeforeCall(String sortField, String xTtsAccessToken, String contentType, Long createTimeLt, Object pageSize, String pageToken, String sortOrder, Long createTimeGe, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call finance202309PaymentsGetValidateBeforeCall(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'sortField' is set
         if (sortField == null) {
             throw new ApiException("Missing the required parameter 'sortField' when calling finance202309PaymentsGet(Async)");
@@ -369,12 +378,13 @@ public class FinanceV202309Api {
      * @return GetPaymentsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetPaymentsResponse finance202309PaymentsGet(String sortField, String xTtsAccessToken, String contentType, Long createTimeLt, Object pageSize, String pageToken, String sortOrder, Long createTimeGe, String shopCipher) throws ApiException {
+    public GetPaymentsResponse finance202309PaymentsGet(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetPaymentsResponse> localVarResp = finance202309PaymentsGetWithHttpInfo(sortField, xTtsAccessToken, contentType, createTimeLt, pageSize, pageToken, sortOrder, createTimeGe, shopCipher);
         return localVarResp.getData();
     }
@@ -394,12 +404,13 @@ public class FinanceV202309Api {
      * @return ApiResponse&lt;GetPaymentsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetPaymentsResponse> finance202309PaymentsGetWithHttpInfo(String sortField, String xTtsAccessToken, String contentType, Long createTimeLt, Object pageSize, String pageToken, String sortOrder, Long createTimeGe, String shopCipher) throws ApiException {
+    public ApiResponse<GetPaymentsResponse> finance202309PaymentsGetWithHttpInfo(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = finance202309PaymentsGetValidateBeforeCall(sortField, xTtsAccessToken, contentType, createTimeLt, pageSize, pageToken, sortOrder, createTimeGe, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetPaymentsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -421,12 +432,13 @@ public class FinanceV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309PaymentsGetAsync(String sortField, String xTtsAccessToken, String contentType, Long createTimeLt, Object pageSize, String pageToken, String sortOrder, Long createTimeGe, String shopCipher, final ApiCallback<GetPaymentsResponse> _callback) throws ApiException {
+    public okhttp3.Call finance202309PaymentsGetAsync(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetPaymentsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = finance202309PaymentsGetValidateBeforeCall(sortField, xTtsAccessToken, contentType, createTimeLt, pageSize, pageToken, sortOrder, createTimeGe, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetPaymentsResponse>(){}.getType();
@@ -449,12 +461,13 @@ public class FinanceV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309StatementsGetCall(String sortField, String xTtsAccessToken, String contentType, Long statementTimeLt, String paymentStatus, Object pageSize, String pageToken, String sortOrder, Long statementTimeGe, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call finance202309StatementsGetCall(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long statementTimeLt, @javax.annotation.Nullable String paymentStatus, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long statementTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -511,14 +524,6 @@ public class FinanceV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -534,12 +539,22 @@ public class FinanceV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call finance202309StatementsGetValidateBeforeCall(String sortField, String xTtsAccessToken, String contentType, Long statementTimeLt, String paymentStatus, Object pageSize, String pageToken, String sortOrder, Long statementTimeGe, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call finance202309StatementsGetValidateBeforeCall(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long statementTimeLt, @javax.annotation.Nullable String paymentStatus, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long statementTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'sortField' is set
         if (sortField == null) {
             throw new ApiException("Missing the required parameter 'sortField' when calling finance202309StatementsGet(Async)");
@@ -575,12 +590,13 @@ public class FinanceV202309Api {
      * @return GetStatementsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetStatementsResponse finance202309StatementsGet(String sortField, String xTtsAccessToken, String contentType, Long statementTimeLt, String paymentStatus, Object pageSize, String pageToken, String sortOrder, Long statementTimeGe, String shopCipher) throws ApiException {
+    public GetStatementsResponse finance202309StatementsGet(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long statementTimeLt, @javax.annotation.Nullable String paymentStatus, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long statementTimeGe, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetStatementsResponse> localVarResp = finance202309StatementsGetWithHttpInfo(sortField, xTtsAccessToken, contentType, statementTimeLt, paymentStatus, pageSize, pageToken, sortOrder, statementTimeGe, shopCipher);
         return localVarResp.getData();
     }
@@ -601,12 +617,13 @@ public class FinanceV202309Api {
      * @return ApiResponse&lt;GetStatementsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetStatementsResponse> finance202309StatementsGetWithHttpInfo(String sortField, String xTtsAccessToken, String contentType, Long statementTimeLt, String paymentStatus, Object pageSize, String pageToken, String sortOrder, Long statementTimeGe, String shopCipher) throws ApiException {
+    public ApiResponse<GetStatementsResponse> finance202309StatementsGetWithHttpInfo(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long statementTimeLt, @javax.annotation.Nullable String paymentStatus, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long statementTimeGe, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = finance202309StatementsGetValidateBeforeCall(sortField, xTtsAccessToken, contentType, statementTimeLt, paymentStatus, pageSize, pageToken, sortOrder, statementTimeGe, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetStatementsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -629,12 +646,13 @@ public class FinanceV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309StatementsGetAsync(String sortField, String xTtsAccessToken, String contentType, Long statementTimeLt, String paymentStatus, Object pageSize, String pageToken, String sortOrder, Long statementTimeGe, String shopCipher, final ApiCallback<GetStatementsResponse> _callback) throws ApiException {
+    public okhttp3.Call finance202309StatementsGetAsync(@javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long statementTimeLt, @javax.annotation.Nullable String paymentStatus, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Long statementTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetStatementsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = finance202309StatementsGetValidateBeforeCall(sortField, xTtsAccessToken, contentType, statementTimeLt, paymentStatus, pageSize, pageToken, sortOrder, statementTimeGe, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetStatementsResponse>(){}.getType();
@@ -655,12 +673,13 @@ public class FinanceV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309StatementsStatementIdStatementTransactionsGetCall(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call finance202309StatementsStatementIdStatementTransactionsGetCall(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -706,14 +725,6 @@ public class FinanceV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -729,12 +740,22 @@ public class FinanceV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call finance202309StatementsStatementIdStatementTransactionsGetValidateBeforeCall(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call finance202309StatementsStatementIdStatementTransactionsGetValidateBeforeCall(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'statementId' is set
         if (statementId == null) {
             throw new ApiException("Missing the required parameter 'statementId' when calling finance202309StatementsStatementIdStatementTransactionsGet(Async)");
@@ -773,12 +794,13 @@ public class FinanceV202309Api {
      * @return GetTransactionsbyStatementResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetTransactionsbyStatementResponse finance202309StatementsStatementIdStatementTransactionsGet(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher) throws ApiException {
+    public GetTransactionsbyStatementResponse finance202309StatementsStatementIdStatementTransactionsGet(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetTransactionsbyStatementResponse> localVarResp = finance202309StatementsStatementIdStatementTransactionsGetWithHttpInfo(statementId, sortField, xTtsAccessToken, contentType, pageToken, sortOrder, pageSize, shopCipher);
         return localVarResp.getData();
     }
@@ -797,12 +819,13 @@ public class FinanceV202309Api {
      * @return ApiResponse&lt;GetTransactionsbyStatementResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetTransactionsbyStatementResponse> finance202309StatementsStatementIdStatementTransactionsGetWithHttpInfo(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher) throws ApiException {
+    public ApiResponse<GetTransactionsbyStatementResponse> finance202309StatementsStatementIdStatementTransactionsGetWithHttpInfo(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = finance202309StatementsStatementIdStatementTransactionsGetValidateBeforeCall(statementId, sortField, xTtsAccessToken, contentType, pageToken, sortOrder, pageSize, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetTransactionsbyStatementResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -823,12 +846,13 @@ public class FinanceV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309StatementsStatementIdStatementTransactionsGetAsync(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher, final ApiCallback<GetTransactionsbyStatementResponse> _callback) throws ApiException {
+    public okhttp3.Call finance202309StatementsStatementIdStatementTransactionsGetAsync(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetTransactionsbyStatementResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = finance202309StatementsStatementIdStatementTransactionsGetValidateBeforeCall(statementId, sortField, xTtsAccessToken, contentType, pageToken, sortOrder, pageSize, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetTransactionsbyStatementResponse>(){}.getType();
@@ -849,12 +873,13 @@ public class FinanceV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309WithdrawalsGetCall(List<String> types, String xTtsAccessToken, String contentType, Long createTimeLt, Integer pageSize, String pageToken, Long createTimeGe, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call finance202309WithdrawalsGetCall(@javax.annotation.Nonnull List<String> types, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -903,14 +928,6 @@ public class FinanceV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -926,12 +943,22 @@ public class FinanceV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call finance202309WithdrawalsGetValidateBeforeCall(List<String> types, String xTtsAccessToken, String contentType, Long createTimeLt, Integer pageSize, String pageToken, Long createTimeGe, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call finance202309WithdrawalsGetValidateBeforeCall(@javax.annotation.Nonnull List<String> types, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'types' is set
         if (types == null) {
             throw new ApiException("Missing the required parameter 'types' when calling finance202309WithdrawalsGet(Async)");
@@ -965,12 +992,13 @@ public class FinanceV202309Api {
      * @return GetWithdrawalsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetWithdrawalsResponse finance202309WithdrawalsGet(List<String> types, String xTtsAccessToken, String contentType, Long createTimeLt, Integer pageSize, String pageToken, Long createTimeGe, String shopCipher) throws ApiException {
+    public GetWithdrawalsResponse finance202309WithdrawalsGet(@javax.annotation.Nonnull List<String> types, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetWithdrawalsResponse> localVarResp = finance202309WithdrawalsGetWithHttpInfo(types, xTtsAccessToken, contentType, createTimeLt, pageSize, pageToken, createTimeGe, shopCipher);
         return localVarResp.getData();
     }
@@ -989,12 +1017,13 @@ public class FinanceV202309Api {
      * @return ApiResponse&lt;GetWithdrawalsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetWithdrawalsResponse> finance202309WithdrawalsGetWithHttpInfo(List<String> types, String xTtsAccessToken, String contentType, Long createTimeLt, Integer pageSize, String pageToken, Long createTimeGe, String shopCipher) throws ApiException {
+    public ApiResponse<GetWithdrawalsResponse> finance202309WithdrawalsGetWithHttpInfo(@javax.annotation.Nonnull List<String> types, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = finance202309WithdrawalsGetValidateBeforeCall(types, xTtsAccessToken, contentType, createTimeLt, pageSize, pageToken, createTimeGe, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetWithdrawalsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1015,12 +1044,13 @@ public class FinanceV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202309WithdrawalsGetAsync(List<String> types, String xTtsAccessToken, String contentType, Long createTimeLt, Integer pageSize, String pageToken, Long createTimeGe, String shopCipher, final ApiCallback<GetWithdrawalsResponse> _callback) throws ApiException {
+    public okhttp3.Call finance202309WithdrawalsGetAsync(@javax.annotation.Nonnull List<String> types, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long createTimeLt, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Long createTimeGe, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetWithdrawalsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = finance202309WithdrawalsGetValidateBeforeCall(types, xTtsAccessToken, contentType, createTimeLt, pageSize, pageToken, createTimeGe, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetWithdrawalsResponse>(){}.getType();

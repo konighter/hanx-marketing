@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,66 +51,70 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SchedulePackageHandoverRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SchedulePackageHandoverRequestBody {
   public static final String SERIALIZED_NAME_HANDOVER_METHOD = "handover_method";
   @SerializedName(SERIALIZED_NAME_HANDOVER_METHOD)
+  @javax.annotation.Nullable
   private String handoverMethod;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEM_IDS = "order_line_item_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEM_IDS)
+  @javax.annotation.Nullable
   private List<String> orderLineItemIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PICKUP_SLOT = "pickup_slot";
   @SerializedName(SERIALIZED_NAME_PICKUP_SLOT)
+  @javax.annotation.Nullable
   private SchedulePackageHandoverRequestBodyPickupSlot pickupSlot;
 
   public SchedulePackageHandoverRequestBody() {
   }
 
-  public SchedulePackageHandoverRequestBody handoverMethod(String handoverMethod) {
+  public SchedulePackageHandoverRequestBody handoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
     return this;
   }
 
-   /**
+  /**
    * Schedule the package as a pickup or drop off. - PICKUP (A shipping provider will pickup the package(s) from the seller&#39;s pickup address)   - DROP_OFF (Seller will need to drop off the package(s) to a designated location)
    * @return handoverMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandoverMethod() {
     return handoverMethod;
   }
 
-  public void setHandoverMethod(String handoverMethod) {
+  public void setHandoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
   }
 
 
-  public SchedulePackageHandoverRequestBody orderId(String orderId) {
+  public SchedulePackageHandoverRequestBody orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop order ID
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public SchedulePackageHandoverRequestBody orderLineItemIds(List<String> orderLineItemIds) {
+  public SchedulePackageHandoverRequestBody orderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
     return this;
   }
@@ -124,36 +127,81 @@ public class SchedulePackageHandoverRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Line item ID list
    * @return orderLineItemIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineItemIds() {
     return orderLineItemIds;
   }
 
-  public void setOrderLineItemIds(List<String> orderLineItemIds) {
+  public void setOrderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
   }
 
 
-  public SchedulePackageHandoverRequestBody pickupSlot(SchedulePackageHandoverRequestBodyPickupSlot pickupSlot) {
+  public SchedulePackageHandoverRequestBody pickupSlot(@javax.annotation.Nullable SchedulePackageHandoverRequestBodyPickupSlot pickupSlot) {
     this.pickupSlot = pickupSlot;
     return this;
   }
 
-   /**
+  /**
    * Get pickupSlot
    * @return pickupSlot
-  **/
+   */
   @javax.annotation.Nullable
   public SchedulePackageHandoverRequestBodyPickupSlot getPickupSlot() {
     return pickupSlot;
   }
 
-  public void setPickupSlot(SchedulePackageHandoverRequestBodyPickupSlot pickupSlot) {
+  public void setPickupSlot(@javax.annotation.Nullable SchedulePackageHandoverRequestBodyPickupSlot pickupSlot) {
     this.pickupSlot = pickupSlot;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SchedulePackageHandoverRequestBody instance itself
+   */
+  public SchedulePackageHandoverRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -170,12 +218,13 @@ public class SchedulePackageHandoverRequestBody {
     return Objects.equals(this.handoverMethod, fulfillment202309SchedulePackageHandoverRequestBody.handoverMethod) &&
         Objects.equals(this.orderId, fulfillment202309SchedulePackageHandoverRequestBody.orderId) &&
         Objects.equals(this.orderLineItemIds, fulfillment202309SchedulePackageHandoverRequestBody.orderLineItemIds) &&
-        Objects.equals(this.pickupSlot, fulfillment202309SchedulePackageHandoverRequestBody.pickupSlot);
+        Objects.equals(this.pickupSlot, fulfillment202309SchedulePackageHandoverRequestBody.pickupSlot)&&
+        Objects.equals(this.additionalProperties, fulfillment202309SchedulePackageHandoverRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(handoverMethod, orderId, orderLineItemIds, pickupSlot);
+    return Objects.hash(handoverMethod, orderId, orderLineItemIds, pickupSlot, additionalProperties);
   }
 
   @Override
@@ -186,6 +235,7 @@ public class SchedulePackageHandoverRequestBody {
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    orderLineItemIds: ").append(toIndentedString(orderLineItemIds)).append("\n");
     sb.append("    pickupSlot: ").append(toIndentedString(pickupSlot)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -207,34 +257,22 @@ public class SchedulePackageHandoverRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("handover_method");
-    openapiFields.add("order_id");
-    openapiFields.add("order_line_item_ids");
-    openapiFields.add("pickup_slot");
+    openapiFields = new HashSet<String>(Arrays.asList("handover_method", "order_id", "order_line_item_ids", "pickup_slot"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SchedulePackageHandoverRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SchedulePackageHandoverRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SchedulePackageHandoverRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SchedulePackageHandoverRequestBody is not found in the empty JSON string", SchedulePackageHandoverRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SchedulePackageHandoverRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SchedulePackageHandoverRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -269,6 +307,28 @@ public class SchedulePackageHandoverRequestBody {
            @Override
            public void write(JsonWriter out, SchedulePackageHandoverRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -276,29 +336,50 @@ public class SchedulePackageHandoverRequestBody {
            public SchedulePackageHandoverRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SchedulePackageHandoverRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SchedulePackageHandoverRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SchedulePackageHandoverRequestBody
-  * @throws IOException if the JSON string is invalid with respect to SchedulePackageHandoverRequestBody
-  */
+  /**
+   * Create an instance of SchedulePackageHandoverRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SchedulePackageHandoverRequestBody
+   * @throws IOException if the JSON string is invalid with respect to SchedulePackageHandoverRequestBody
+   */
   public static SchedulePackageHandoverRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SchedulePackageHandoverRequestBody.class);
   }
 
- /**
-  * Convert an instance of SchedulePackageHandoverRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SchedulePackageHandoverRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

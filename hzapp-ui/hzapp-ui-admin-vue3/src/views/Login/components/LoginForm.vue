@@ -276,8 +276,6 @@ const handleLogin = async (params) => {
       return
     }
 
-    await routeOnLoginSuccess()
-
   } finally {
     loginLoading.value = false
     loading.value.close()

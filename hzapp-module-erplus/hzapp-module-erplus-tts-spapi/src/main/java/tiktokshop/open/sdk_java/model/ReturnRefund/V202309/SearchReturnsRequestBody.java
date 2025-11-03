@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,60 +50,72 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchReturnsRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchReturnsRequestBody {
   public static final String SERIALIZED_NAME_ARBITRATION_STATUS = "arbitration_status";
   @SerializedName(SERIALIZED_NAME_ARBITRATION_STATUS)
+  @javax.annotation.Nullable
   private List<String> arbitrationStatus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_BUYER_USER_IDS = "buyer_user_ids";
   @SerializedName(SERIALIZED_NAME_BUYER_USER_IDS)
+  @javax.annotation.Nullable
   private List<String> buyerUserIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CREATE_TIME_GE = "create_time_ge";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long createTimeGe;
 
   public static final String SERIALIZED_NAME_CREATE_TIME_LT = "create_time_lt";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME_LT)
+  @javax.annotation.Nullable
   private Long createTimeLt;
 
   public static final String SERIALIZED_NAME_LOCALE = "locale";
   @SerializedName(SERIALIZED_NAME_LOCALE)
+  @javax.annotation.Nullable
   private String locale;
 
   public static final String SERIALIZED_NAME_ORDER_IDS = "order_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_IDS)
+  @javax.annotation.Nullable
   private List<String> orderIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RETURN_IDS = "return_ids";
   @SerializedName(SERIALIZED_NAME_RETURN_IDS)
+  @javax.annotation.Nullable
   private List<String> returnIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RETURN_STATUS = "return_status";
   @SerializedName(SERIALIZED_NAME_RETURN_STATUS)
+  @javax.annotation.Nullable
   private List<String> returnStatus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RETURN_TYPES = "return_types";
   @SerializedName(SERIALIZED_NAME_RETURN_TYPES)
+  @javax.annotation.Nullable
   private List<String> returnTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SELLER_PROPOSED_RETURN_TYPE = "seller_proposed_return_type";
   @SerializedName(SERIALIZED_NAME_SELLER_PROPOSED_RETURN_TYPE)
+  @javax.annotation.Nullable
   private List<String> sellerProposedReturnType = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPDATE_TIME_GE = "update_time_ge";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long updateTimeGe;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME_LT = "update_time_lt";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME_LT)
+  @javax.annotation.Nullable
   private Long updateTimeLt;
 
   public SearchReturnsRequestBody() {
   }
 
-  public SearchReturnsRequestBody arbitrationStatus(List<String> arbitrationStatus) {
+  public SearchReturnsRequestBody arbitrationStatus(@javax.annotation.Nullable List<String> arbitrationStatus) {
     this.arbitrationStatus = arbitrationStatus;
     return this;
   }
@@ -117,21 +128,21 @@ public class SearchReturnsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of arbitration statuses.  Available values: - &#x60;IN_PROGRESS&#x60;: The TikTok Shop platform operator is processing arbitration. Platform may request additional information from the seller.   - &#x60;SUPPORT_BUYER&#x60;: The platform operator supports buyer. - &#x60;SUPPORT_SELLER&#x60;: The platform operator supports seller. - &#x60;CLOSED&#x60;: Arbitration is closed.
    * @return arbitrationStatus
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getArbitrationStatus() {
     return arbitrationStatus;
   }
 
-  public void setArbitrationStatus(List<String> arbitrationStatus) {
+  public void setArbitrationStatus(@javax.annotation.Nullable List<String> arbitrationStatus) {
     this.arbitrationStatus = arbitrationStatus;
   }
 
 
-  public SearchReturnsRequestBody buyerUserIds(List<String> buyerUserIds) {
+  public SearchReturnsRequestBody buyerUserIds(@javax.annotation.Nullable List<String> buyerUserIds) {
     this.buyerUserIds = buyerUserIds;
     return this;
   }
@@ -144,78 +155,78 @@ public class SearchReturnsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of TikTok Shop buyer user IDs.
    * @return buyerUserIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getBuyerUserIds() {
     return buyerUserIds;
   }
 
-  public void setBuyerUserIds(List<String> buyerUserIds) {
+  public void setBuyerUserIds(@javax.annotation.Nullable List<String> buyerUserIds) {
     this.buyerUserIds = buyerUserIds;
   }
 
 
-  public SearchReturnsRequestBody createTimeGe(Long createTimeGe) {
+  public SearchReturnsRequestBody createTimeGe(@javax.annotation.Nullable Long createTimeGe) {
     this.createTimeGe = createTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Filter returns to show only those that are created on or after the specified date and time. Unix timestamp.  Note: &#x60;create_time_ge&#x60; and &#x60;create_time_le&#x60; together constitute the creation time filter condition. - If &#x60;create_time_ge&#x60; is filled but &#x60;create_time_le&#x60; is empty, &#x60;create_time_le&#x60; will default to the current time. - If &#x60;create_time_lt&#x60; is filled but &#x60;create_time_ge&#x60; is empty, &#x60;create_time_ge&#x60; will default to the earliest shop time.
    * @return createTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTimeGe() {
     return createTimeGe;
   }
 
-  public void setCreateTimeGe(Long createTimeGe) {
+  public void setCreateTimeGe(@javax.annotation.Nullable Long createTimeGe) {
     this.createTimeGe = createTimeGe;
   }
 
 
-  public SearchReturnsRequestBody createTimeLt(Long createTimeLt) {
+  public SearchReturnsRequestBody createTimeLt(@javax.annotation.Nullable Long createTimeLt) {
     this.createTimeLt = createTimeLt;
     return this;
   }
 
-   /**
+  /**
    * Filter returns to show only those that are created before the specified date and time. Unix timestamp. Refer to notes in &#x60;create_time_ge&#x60; for more usage information.
    * @return createTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTimeLt() {
     return createTimeLt;
   }
 
-  public void setCreateTimeLt(Long createTimeLt) {
+  public void setCreateTimeLt(@javax.annotation.Nullable Long createTimeLt) {
     this.createTimeLt = createTimeLt;
   }
 
 
-  public SearchReturnsRequestBody locale(String locale) {
+  public SearchReturnsRequestBody locale(@javax.annotation.Nullable String locale) {
     this.locale = locale;
     return this;
   }
 
-   /**
+  /**
    * The BCP-47 locale codes for displaying the returns, delimited by commas. Default: &#x60;en&#x60; Refer to [Locale codes](678e3a47bae28f030a8c7523) for the list of supported locale codes.
    * @return locale
-  **/
+   */
   @javax.annotation.Nullable
   public String getLocale() {
     return locale;
   }
 
-  public void setLocale(String locale) {
+  public void setLocale(@javax.annotation.Nullable String locale) {
     this.locale = locale;
   }
 
 
-  public SearchReturnsRequestBody orderIds(List<String> orderIds) {
+  public SearchReturnsRequestBody orderIds(@javax.annotation.Nullable List<String> orderIds) {
     this.orderIds = orderIds;
     return this;
   }
@@ -228,21 +239,21 @@ public class SearchReturnsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of TikTok Shop order IDs.
    * @return orderIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderIds() {
     return orderIds;
   }
 
-  public void setOrderIds(List<String> orderIds) {
+  public void setOrderIds(@javax.annotation.Nullable List<String> orderIds) {
     this.orderIds = orderIds;
   }
 
 
-  public SearchReturnsRequestBody returnIds(List<String> returnIds) {
+  public SearchReturnsRequestBody returnIds(@javax.annotation.Nullable List<String> returnIds) {
     this.returnIds = returnIds;
     return this;
   }
@@ -255,21 +266,21 @@ public class SearchReturnsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of return IDs.
    * @return returnIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReturnIds() {
     return returnIds;
   }
 
-  public void setReturnIds(List<String> returnIds) {
+  public void setReturnIds(@javax.annotation.Nullable List<String> returnIds) {
     this.returnIds = returnIds;
   }
 
 
-  public SearchReturnsRequestBody returnStatus(List<String> returnStatus) {
+  public SearchReturnsRequestBody returnStatus(@javax.annotation.Nullable List<String> returnStatus) {
     this.returnStatus = returnStatus;
     return this;
   }
@@ -282,21 +293,21 @@ public class SearchReturnsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of return status. Available values: - &#x60;RETURN_OR_REFUND_REQUEST_PENDING&#x60;: Buyer has initiated a return or refund request. The request is pending review by seller or system.  - &#x60;REFUND_OR_RETURN_REQUEST_REJECT&#x60;: The return or refund request was rejected.  - &#x60;AWAITING_BUYER_SHIP&#x60;: The return request was approved. The seller is waiting for the buyer to ship the approved items to the seller. If the buyer doesn&#39;t ship the items to the seller before the deadline, the platform will close the request. - &#x60;BUYER_SHIPPED_ITEM&#x60;: Buyer has shipped the approved items to seller. - &#x60;REJECT_RECEIVE_PACKAGE&#x60;: Seller inspected the returned items and rejected the return request.  - &#x60;RETURN_OR_REFUND_REQUEST_SUCCESS&#x60;: The return/refund request was successful. The buyer will be refunded. - &#x60;RETURN_OR_REFUND_REQUEST_CANCEL&#x60;: The request has been cancelled by the buyer or system. - &#x60;RETURN_OR_REFUND_REQUEST_COMPLETE&#x60;: The return/refund was processed successfully. The buyer has been refunded. - &#x60;AWAITING_BUYER_RESPONSE&#x60;: Seller offer another return type to the buyer, and waiting buyer response. Seller proposed return type can check the &#x60;seller_proposed_return_type&#x60;.
    * @return returnStatus
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReturnStatus() {
     return returnStatus;
   }
 
-  public void setReturnStatus(List<String> returnStatus) {
+  public void setReturnStatus(@javax.annotation.Nullable List<String> returnStatus) {
     this.returnStatus = returnStatus;
   }
 
 
-  public SearchReturnsRequestBody returnTypes(List<String> returnTypes) {
+  public SearchReturnsRequestBody returnTypes(@javax.annotation.Nullable List<String> returnTypes) {
     this.returnTypes = returnTypes;
     return this;
   }
@@ -309,21 +320,21 @@ public class SearchReturnsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of return types. Available values: - &#x60;REFUND&#x60; - &#x60;RETURN_AND_REFUND&#x60; - &#x60;REPLACEMENT&#x60;
    * @return returnTypes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getReturnTypes() {
     return returnTypes;
   }
 
-  public void setReturnTypes(List<String> returnTypes) {
+  public void setReturnTypes(@javax.annotation.Nullable List<String> returnTypes) {
     this.returnTypes = returnTypes;
   }
 
 
-  public SearchReturnsRequestBody sellerProposedReturnType(List<String> sellerProposedReturnType) {
+  public SearchReturnsRequestBody sellerProposedReturnType(@javax.annotation.Nullable List<String> sellerProposedReturnType) {
     this.sellerProposedReturnType = sellerProposedReturnType;
     return this;
   }
@@ -336,55 +347,100 @@ public class SearchReturnsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of seller proposed return types. Available values: - &#x60;PARTIAL_REFUND&#x60;
    * @return sellerProposedReturnType
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getSellerProposedReturnType() {
     return sellerProposedReturnType;
   }
 
-  public void setSellerProposedReturnType(List<String> sellerProposedReturnType) {
+  public void setSellerProposedReturnType(@javax.annotation.Nullable List<String> sellerProposedReturnType) {
     this.sellerProposedReturnType = sellerProposedReturnType;
   }
 
 
-  public SearchReturnsRequestBody updateTimeGe(Long updateTimeGe) {
+  public SearchReturnsRequestBody updateTimeGe(@javax.annotation.Nullable Long updateTimeGe) {
     this.updateTimeGe = updateTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Filter returns to show only those that are updated on or after the specified date and time. Unix timestamp.  Note: &#x60;update_time_ge&#x60; and &#x60;update_time_le&#x60; together define the update time filter condition. - If &#x60;update_time_ge&#x60; is filled but &#x60;update_time_le&#x60; is empty, &#x60;update_time_le&#x60; will default to the current time. - If &#x60;update_time_lt&#x60; is filled but &#x60;update_time_ge&#x60; is empty, &#x60;update_time_ge&#x60; will default to the earliest shop time.
    * @return updateTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTimeGe() {
     return updateTimeGe;
   }
 
-  public void setUpdateTimeGe(Long updateTimeGe) {
+  public void setUpdateTimeGe(@javax.annotation.Nullable Long updateTimeGe) {
     this.updateTimeGe = updateTimeGe;
   }
 
 
-  public SearchReturnsRequestBody updateTimeLt(Long updateTimeLt) {
+  public SearchReturnsRequestBody updateTimeLt(@javax.annotation.Nullable Long updateTimeLt) {
     this.updateTimeLt = updateTimeLt;
     return this;
   }
 
-   /**
+  /**
    * Filter returns to show only those that are created before the specified date and time. Unix timestamp. Refer to notes in &#x60;create_time_ge&#x60; for more usage information.
    * @return updateTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTimeLt() {
     return updateTimeLt;
   }
 
-  public void setUpdateTimeLt(Long updateTimeLt) {
+  public void setUpdateTimeLt(@javax.annotation.Nullable Long updateTimeLt) {
     this.updateTimeLt = updateTimeLt;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchReturnsRequestBody instance itself
+   */
+  public SearchReturnsRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -409,12 +465,13 @@ public class SearchReturnsRequestBody {
         Objects.equals(this.returnTypes, returnRefund202309SearchReturnsRequestBody.returnTypes) &&
         Objects.equals(this.sellerProposedReturnType, returnRefund202309SearchReturnsRequestBody.sellerProposedReturnType) &&
         Objects.equals(this.updateTimeGe, returnRefund202309SearchReturnsRequestBody.updateTimeGe) &&
-        Objects.equals(this.updateTimeLt, returnRefund202309SearchReturnsRequestBody.updateTimeLt);
+        Objects.equals(this.updateTimeLt, returnRefund202309SearchReturnsRequestBody.updateTimeLt)&&
+        Objects.equals(this.additionalProperties, returnRefund202309SearchReturnsRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(arbitrationStatus, buyerUserIds, createTimeGe, createTimeLt, locale, orderIds, returnIds, returnStatus, returnTypes, sellerProposedReturnType, updateTimeGe, updateTimeLt);
+    return Objects.hash(arbitrationStatus, buyerUserIds, createTimeGe, createTimeLt, locale, orderIds, returnIds, returnStatus, returnTypes, sellerProposedReturnType, updateTimeGe, updateTimeLt, additionalProperties);
   }
 
   @Override
@@ -433,6 +490,7 @@ public class SearchReturnsRequestBody {
     sb.append("    sellerProposedReturnType: ").append(toIndentedString(sellerProposedReturnType)).append("\n");
     sb.append("    updateTimeGe: ").append(toIndentedString(updateTimeGe)).append("\n");
     sb.append("    updateTimeLt: ").append(toIndentedString(updateTimeLt)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -454,42 +512,22 @@ public class SearchReturnsRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("arbitration_status");
-    openapiFields.add("buyer_user_ids");
-    openapiFields.add("create_time_ge");
-    openapiFields.add("create_time_lt");
-    openapiFields.add("locale");
-    openapiFields.add("order_ids");
-    openapiFields.add("return_ids");
-    openapiFields.add("return_status");
-    openapiFields.add("return_types");
-    openapiFields.add("seller_proposed_return_type");
-    openapiFields.add("update_time_ge");
-    openapiFields.add("update_time_lt");
+    openapiFields = new HashSet<String>(Arrays.asList("arbitration_status", "buyer_user_ids", "create_time_ge", "create_time_lt", "locale", "order_ids", "return_ids", "return_status", "return_types", "seller_proposed_return_type", "update_time_ge", "update_time_lt"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchReturnsRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchReturnsRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchReturnsRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchReturnsRequestBody is not found in the empty JSON string", SearchReturnsRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchReturnsRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchReturnsRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -541,6 +579,28 @@ public class SearchReturnsRequestBody {
            @Override
            public void write(JsonWriter out, SearchReturnsRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -548,29 +608,50 @@ public class SearchReturnsRequestBody {
            public SearchReturnsRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchReturnsRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchReturnsRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchReturnsRequestBody
-  * @throws IOException if the JSON string is invalid with respect to SearchReturnsRequestBody
-  */
+  /**
+   * Create an instance of SearchReturnsRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchReturnsRequestBody
+   * @throws IOException if the JSON string is invalid with respect to SearchReturnsRequestBody
+   */
   public static SearchReturnsRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchReturnsRequestBody.class);
   }
 
- /**
-  * Convert an instance of SearchReturnsRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchReturnsRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

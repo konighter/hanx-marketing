@@ -4,15 +4,13 @@ import com.google.common.collect.Lists;
 import com.google.common.util.concurrent.FutureCallback;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
-import com.hzltd.framework.common.enums.CommonStatusEnum;
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.common.util.object.ObjectUtils;
-import com.hzltd.module.erpls.api.model.ApiRequest;
-import com.hzltd.module.erpls.api.model.ApiResponse;
-import com.hzltd.module.erpls.api.model.product.CreateProductRequest;
-import com.hzltd.module.erpls.api.model.product.CreateProductResponse;
-import com.hzltd.module.erpls.api.service.CrossServiceCompositeApi;
-import com.hzltd.module.erpls.api.service.CrossServiceCompositeApiFactory;
+import com.hzltd.module.erplus.api.service.CrossApiServiceFactory;
+import com.hzltd.module.erplus.model.ApiRequest;
+import com.hzltd.module.erplus.model.ApiResponse;
+import com.hzltd.module.erplus.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.model.product.CreateProductResponse;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishResponse;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishTaskVO;
@@ -20,14 +18,13 @@ import com.hzltd.module.erplus.controller.admin.productpub.vo.SkuVO;
 import com.hzltd.module.erplus.convert.spu.ProductSpuConvert;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.productpub.ErpProductPublishTaskDO;
-import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.enums.CrossProductPublishStatus;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.service.executor.ExecutorService;
 import com.hzltd.module.erplus.service.product.ErpCrossProductService;
+import com.hzltd.module.erplus.service.product.ProductApi;
 import com.hzltd.module.erplus.service.spu.ProductSpuService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.DateTime;
@@ -51,8 +48,11 @@ public class ProductPublishServiceImpl implements ProductPublishService {
     @Resource
     private ErpCrossProductService crossProductService;
 
-    @Resource
+//    @Resource
     private ErpProductPublishTaskService productPublishTaskService;
+
+    @Resource
+    private CrossApiServiceFactory crossApiServiceFactory;
 
 
 
@@ -177,7 +177,7 @@ public class ProductPublishServiceImpl implements ProductPublishService {
                 throw new ServiceException(PRODUCT_NOT_EXISTS);
             }
 
-            CrossServiceCompositeApi crossServiceCompositeApi =CrossServiceCompositeApiFactory.getCrossServiceCompositeApi(CrossPlatformEnum.valueOf(crossProduct.get().getPlatformId()));
+            ProductApi crossServiceCompositeApi =crossApiServiceFactory.getProductApi(CrossPlatformEnum.valueOf(crossProduct.get().getPlatformId()));
 
             ApiResponse<CreateProductResponse> response = crossServiceCompositeApi.createProduct(new ApiRequest<CreateProductRequest>().setRequest(buildCrossCreateProductRequest(crossProduct.get().getId())));
             // 更新任务为提交成功或者失败

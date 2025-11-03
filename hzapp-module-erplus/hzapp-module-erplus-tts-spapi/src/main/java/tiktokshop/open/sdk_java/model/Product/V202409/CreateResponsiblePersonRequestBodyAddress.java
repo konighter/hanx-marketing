@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,169 +48,221 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CreateResponsiblePersonRequestBodyAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CreateResponsiblePersonRequestBodyAddress {
   public static final String SERIALIZED_NAME_CITY = "city";
   @SerializedName(SERIALIZED_NAME_CITY)
+  @javax.annotation.Nullable
   private String city;
 
   public static final String SERIALIZED_NAME_COUNTRY = "country";
   @SerializedName(SERIALIZED_NAME_COUNTRY)
+  @javax.annotation.Nullable
   private String country;
 
   public static final String SERIALIZED_NAME_DISTRICT = "district";
   @SerializedName(SERIALIZED_NAME_DISTRICT)
+  @javax.annotation.Nullable
   private String district;
 
   public static final String SERIALIZED_NAME_POSTAL_CODE = "postal_code";
   @SerializedName(SERIALIZED_NAME_POSTAL_CODE)
+  @javax.annotation.Nullable
   private String postalCode;
 
   public static final String SERIALIZED_NAME_PROVINCE = "province";
   @SerializedName(SERIALIZED_NAME_PROVINCE)
+  @javax.annotation.Nullable
   private String province;
 
   public static final String SERIALIZED_NAME_STREET_ADDRESS_LINE1 = "street_address_line1";
   @SerializedName(SERIALIZED_NAME_STREET_ADDRESS_LINE1)
+  @javax.annotation.Nullable
   private String streetAddressLine1;
 
   public static final String SERIALIZED_NAME_STREET_ADDRESS_LINE2 = "street_address_line2";
   @SerializedName(SERIALIZED_NAME_STREET_ADDRESS_LINE2)
+  @javax.annotation.Nullable
   private String streetAddressLine2;
 
   public CreateResponsiblePersonRequestBodyAddress() {
   }
 
-  public CreateResponsiblePersonRequestBodyAddress city(String city) {
+  public CreateResponsiblePersonRequestBodyAddress city(@javax.annotation.Nullable String city) {
     this.city = city;
     return this;
   }
 
-   /**
+  /**
    * (**Deprecated**: This field is deprecated and will be removed in a future API version. If provided, its value will be merged into &#x60;street_address_line1&#x60;. It is recommended to specify &#x60;street_address_line1&#x60; directly.)  The city name. Max length: 500 characters
    * @return city
-  **/
+   */
   @javax.annotation.Nullable
   public String getCity() {
     return city;
   }
 
-  public void setCity(String city) {
+  public void setCity(@javax.annotation.Nullable String city) {
     this.city = city;
   }
 
 
-  public CreateResponsiblePersonRequestBodyAddress country(String country) {
+  public CreateResponsiblePersonRequestBodyAddress country(@javax.annotation.Nullable String country) {
     this.country = country;
     return this;
   }
 
-   /**
+  /**
    * The two letter ISO 3166 country code representing the country of the address. It must be an EU country.
    * @return country
-  **/
+   */
   @javax.annotation.Nullable
   public String getCountry() {
     return country;
   }
 
-  public void setCountry(String country) {
+  public void setCountry(@javax.annotation.Nullable String country) {
     this.country = country;
   }
 
 
-  public CreateResponsiblePersonRequestBodyAddress district(String district) {
+  public CreateResponsiblePersonRequestBodyAddress district(@javax.annotation.Nullable String district) {
     this.district = district;
     return this;
   }
 
-   /**
+  /**
    * (**Deprecated**: This field is deprecated and will be removed in a future API version. If provided, its value will be merged into &#x60;street_address_line1&#x60;. It is recommended to specify &#x60;street_address_line1&#x60; directly.)  The district name. Max length: 500 characters
    * @return district
-  **/
+   */
   @javax.annotation.Nullable
   public String getDistrict() {
     return district;
   }
 
-  public void setDistrict(String district) {
+  public void setDistrict(@javax.annotation.Nullable String district) {
     this.district = district;
   }
 
 
-  public CreateResponsiblePersonRequestBodyAddress postalCode(String postalCode) {
+  public CreateResponsiblePersonRequestBodyAddress postalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
 
-   /**
+  /**
    * The postal code. Max length: 500 characters
    * @return postalCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostalCode() {
     return postalCode;
   }
 
-  public void setPostalCode(String postalCode) {
+  public void setPostalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
   }
 
 
-  public CreateResponsiblePersonRequestBodyAddress province(String province) {
+  public CreateResponsiblePersonRequestBodyAddress province(@javax.annotation.Nullable String province) {
     this.province = province;
     return this;
   }
 
-   /**
+  /**
    * (**Deprecated**: This field is deprecated and will be removed in a future API version. If provided, its value will be merged into &#x60;street_address_line1&#x60;. It is recommended to specify &#x60;street_address_line1&#x60; directly.)  The province, state, or region name. Max length: 500 characters
    * @return province
-  **/
+   */
   @javax.annotation.Nullable
   public String getProvince() {
     return province;
   }
 
-  public void setProvince(String province) {
+  public void setProvince(@javax.annotation.Nullable String province) {
     this.province = province;
   }
 
 
-  public CreateResponsiblePersonRequestBodyAddress streetAddressLine1(String streetAddressLine1) {
+  public CreateResponsiblePersonRequestBodyAddress streetAddressLine1(@javax.annotation.Nullable String streetAddressLine1) {
     this.streetAddressLine1 = streetAddressLine1;
     return this;
   }
 
-   /**
+  /**
    * The detailed street address of the location, including the building number, street name, district, city, province, and any relevant details. Max length: 500 characters
    * @return streetAddressLine1
-  **/
+   */
   @javax.annotation.Nullable
   public String getStreetAddressLine1() {
     return streetAddressLine1;
   }
 
-  public void setStreetAddressLine1(String streetAddressLine1) {
+  public void setStreetAddressLine1(@javax.annotation.Nullable String streetAddressLine1) {
     this.streetAddressLine1 = streetAddressLine1;
   }
 
 
-  public CreateResponsiblePersonRequestBodyAddress streetAddressLine2(String streetAddressLine2) {
+  public CreateResponsiblePersonRequestBodyAddress streetAddressLine2(@javax.annotation.Nullable String streetAddressLine2) {
     this.streetAddressLine2 = streetAddressLine2;
     return this;
   }
 
-   /**
+  /**
    * (**Deprecated**: This field is deprecated and will be removed in a future API version. If provided, its value will be merged into &#x60;street_address_line1&#x60;. It is recommended to specify &#x60;street_address_line1&#x60; directly.) An optional secondary line for additional address details, if necessary. Max length: 500 characters
    * @return streetAddressLine2
-  **/
+   */
   @javax.annotation.Nullable
   public String getStreetAddressLine2() {
     return streetAddressLine2;
   }
 
-  public void setStreetAddressLine2(String streetAddressLine2) {
+  public void setStreetAddressLine2(@javax.annotation.Nullable String streetAddressLine2) {
     this.streetAddressLine2 = streetAddressLine2;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CreateResponsiblePersonRequestBodyAddress instance itself
+   */
+  public CreateResponsiblePersonRequestBodyAddress putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -231,12 +282,13 @@ public class CreateResponsiblePersonRequestBodyAddress {
         Objects.equals(this.postalCode, product202409CreateResponsiblePersonRequestBodyAddress.postalCode) &&
         Objects.equals(this.province, product202409CreateResponsiblePersonRequestBodyAddress.province) &&
         Objects.equals(this.streetAddressLine1, product202409CreateResponsiblePersonRequestBodyAddress.streetAddressLine1) &&
-        Objects.equals(this.streetAddressLine2, product202409CreateResponsiblePersonRequestBodyAddress.streetAddressLine2);
+        Objects.equals(this.streetAddressLine2, product202409CreateResponsiblePersonRequestBodyAddress.streetAddressLine2)&&
+        Objects.equals(this.additionalProperties, product202409CreateResponsiblePersonRequestBodyAddress.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(city, country, district, postalCode, province, streetAddressLine1, streetAddressLine2);
+    return Objects.hash(city, country, district, postalCode, province, streetAddressLine1, streetAddressLine2, additionalProperties);
   }
 
   @Override
@@ -250,6 +302,7 @@ public class CreateResponsiblePersonRequestBodyAddress {
     sb.append("    province: ").append(toIndentedString(province)).append("\n");
     sb.append("    streetAddressLine1: ").append(toIndentedString(streetAddressLine1)).append("\n");
     sb.append("    streetAddressLine2: ").append(toIndentedString(streetAddressLine2)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -271,37 +324,22 @@ public class CreateResponsiblePersonRequestBodyAddress {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("city");
-    openapiFields.add("country");
-    openapiFields.add("district");
-    openapiFields.add("postal_code");
-    openapiFields.add("province");
-    openapiFields.add("street_address_line1");
-    openapiFields.add("street_address_line2");
+    openapiFields = new HashSet<String>(Arrays.asList("city", "country", "district", "postal_code", "province", "street_address_line1", "street_address_line2"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateResponsiblePersonRequestBodyAddress
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateResponsiblePersonRequestBodyAddress
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateResponsiblePersonRequestBodyAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateResponsiblePersonRequestBodyAddress is not found in the empty JSON string", CreateResponsiblePersonRequestBodyAddress.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateResponsiblePersonRequestBodyAddress.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateResponsiblePersonRequestBodyAddress` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -343,6 +381,28 @@ public class CreateResponsiblePersonRequestBodyAddress {
            @Override
            public void write(JsonWriter out, CreateResponsiblePersonRequestBodyAddress value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -350,29 +410,50 @@ public class CreateResponsiblePersonRequestBodyAddress {
            public CreateResponsiblePersonRequestBodyAddress read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CreateResponsiblePersonRequestBodyAddress instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateResponsiblePersonRequestBodyAddress given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateResponsiblePersonRequestBodyAddress
-  * @throws IOException if the JSON string is invalid with respect to CreateResponsiblePersonRequestBodyAddress
-  */
+  /**
+   * Create an instance of CreateResponsiblePersonRequestBodyAddress given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateResponsiblePersonRequestBodyAddress
+   * @throws IOException if the JSON string is invalid with respect to CreateResponsiblePersonRequestBodyAddress
+   */
   public static CreateResponsiblePersonRequestBodyAddress fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateResponsiblePersonRequestBodyAddress.class);
   }
 
- /**
-  * Convert an instance of CreateResponsiblePersonRequestBodyAddress to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateResponsiblePersonRequestBodyAddress to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

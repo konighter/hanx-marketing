@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,146 +48,197 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail {
   public static final String SERIALIZED_NAME_CITY_NAME = "city_name";
   @SerializedName(SERIALIZED_NAME_CITY_NAME)
+  @javax.annotation.Nullable
   private String cityName;
 
   public static final String SERIALIZED_NAME_COUNTRY_NAME = "country_name";
   @SerializedName(SERIALIZED_NAME_COUNTRY_NAME)
+  @javax.annotation.Nullable
   private String countryName;
 
   public static final String SERIALIZED_NAME_DETAIL = "detail";
   @SerializedName(SERIALIZED_NAME_DETAIL)
+  @javax.annotation.Nullable
   private String detail;
 
   public static final String SERIALIZED_NAME_DISTRICT_NAME = "district_name";
   @SerializedName(SERIALIZED_NAME_DISTRICT_NAME)
+  @javax.annotation.Nullable
   private String districtName;
 
   public static final String SERIALIZED_NAME_PROVINCE_NAME = "province_name";
   @SerializedName(SERIALIZED_NAME_PROVINCE_NAME)
+  @javax.annotation.Nullable
   private String provinceName;
 
   public static final String SERIALIZED_NAME_TOWN_NAME = "town_name";
   @SerializedName(SERIALIZED_NAME_TOWN_NAME)
+  @javax.annotation.Nullable
   private String townName;
 
   public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail() {
   }
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail cityName(String cityName) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail cityName(@javax.annotation.Nullable String cityName) {
     this.cityName = cityName;
     return this;
   }
 
-   /**
+  /**
    * The city name of  warehouse location
    * @return cityName
-  **/
+   */
   @javax.annotation.Nullable
   public String getCityName() {
     return cityName;
   }
 
-  public void setCityName(String cityName) {
+  public void setCityName(@javax.annotation.Nullable String cityName) {
     this.cityName = cityName;
   }
 
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail countryName(String countryName) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail countryName(@javax.annotation.Nullable String countryName) {
     this.countryName = countryName;
     return this;
   }
 
-   /**
+  /**
    * The country name of the  warehouse location
    * @return countryName
-  **/
+   */
   @javax.annotation.Nullable
   public String getCountryName() {
     return countryName;
   }
 
-  public void setCountryName(String countryName) {
+  public void setCountryName(@javax.annotation.Nullable String countryName) {
     this.countryName = countryName;
   }
 
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail detail(String detail) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail detail(@javax.annotation.Nullable String detail) {
     this.detail = detail;
     return this;
   }
 
-   /**
+  /**
    * The detail address of  warehouse location
    * @return detail
-  **/
+   */
   @javax.annotation.Nullable
   public String getDetail() {
     return detail;
   }
 
-  public void setDetail(String detail) {
+  public void setDetail(@javax.annotation.Nullable String detail) {
     this.detail = detail;
   }
 
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail districtName(String districtName) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail districtName(@javax.annotation.Nullable String districtName) {
     this.districtName = districtName;
     return this;
   }
 
-   /**
+  /**
    * The district name of  warehouse location
    * @return districtName
-  **/
+   */
   @javax.annotation.Nullable
   public String getDistrictName() {
     return districtName;
   }
 
-  public void setDistrictName(String districtName) {
+  public void setDistrictName(@javax.annotation.Nullable String districtName) {
     this.districtName = districtName;
   }
 
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail provinceName(String provinceName) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail provinceName(@javax.annotation.Nullable String provinceName) {
     this.provinceName = provinceName;
     return this;
   }
 
-   /**
+  /**
    * The province name of  warehouse location
    * @return provinceName
-  **/
+   */
   @javax.annotation.Nullable
   public String getProvinceName() {
     return provinceName;
   }
 
-  public void setProvinceName(String provinceName) {
+  public void setProvinceName(@javax.annotation.Nullable String provinceName) {
     this.provinceName = provinceName;
   }
 
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail townName(String townName) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail townName(@javax.annotation.Nullable String townName) {
     this.townName = townName;
     return this;
   }
 
-   /**
+  /**
    * The town name of  warehouse location
    * @return townName
-  **/
+   */
   @javax.annotation.Nullable
   public String getTownName() {
     return townName;
   }
 
-  public void setTownName(String townName) {
+  public void setTownName(@javax.annotation.Nullable String townName) {
     this.townName = townName;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail instance itself
+   */
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -207,12 +257,13 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderC
         Objects.equals(this.detail, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.detail) &&
         Objects.equals(this.districtName, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.districtName) &&
         Objects.equals(this.provinceName, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.provinceName) &&
-        Objects.equals(this.townName, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.townName);
+        Objects.equals(this.townName, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.townName)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cityName, countryName, detail, districtName, provinceName, townName);
+    return Objects.hash(cityName, countryName, detail, districtName, provinceName, townName, additionalProperties);
   }
 
   @Override
@@ -225,6 +276,7 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderC
     sb.append("    districtName: ").append(toIndentedString(districtName)).append("\n");
     sb.append("    provinceName: ").append(toIndentedString(provinceName)).append("\n");
     sb.append("    townName: ").append(toIndentedString(townName)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -246,36 +298,22 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderC
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("city_name");
-    openapiFields.add("country_name");
-    openapiFields.add("detail");
-    openapiFields.add("district_name");
-    openapiFields.add("province_name");
-    openapiFields.add("town_name");
+    openapiFields = new HashSet<String>(Arrays.asList("city_name", "country_name", "detail", "district_name", "province_name", "town_name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail is not found in the empty JSON string", GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -314,6 +352,28 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderC
            @Override
            public void write(JsonWriter out, GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -321,29 +381,50 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderC
            public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail
-  */
+  /**
+   * Create an instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail
+   */
   public static GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersSenderContactAddressDetail to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

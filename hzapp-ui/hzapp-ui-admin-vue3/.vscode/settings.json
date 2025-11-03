@@ -62,7 +62,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[typescript]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
@@ -86,7 +86,7 @@
     "source.fixAll.eslint": "explicit"
   },
   "[vue]": {
-    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "Vue.volar"
   },
   "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested",

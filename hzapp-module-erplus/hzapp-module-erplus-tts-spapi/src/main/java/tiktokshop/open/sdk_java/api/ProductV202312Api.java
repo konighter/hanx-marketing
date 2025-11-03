@@ -87,12 +87,13 @@ public class ProductV202312Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202312GlobalProductsSearchPostCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202312GlobalProductsSearchPostCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -125,14 +126,6 @@ public class ProductV202312Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page_token", pageToken));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -149,12 +142,22 @@ public class ProductV202312Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202312GlobalProductsSearchPostValidateBeforeCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202312GlobalProductsSearchPostValidateBeforeCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pageSize' is set
         if (pageSize == null) {
             throw new ApiException("Missing the required parameter 'pageSize' when calling product202312GlobalProductsSearchPost(Async)");
@@ -185,12 +188,13 @@ public class ProductV202312Api {
      * @return SearchGlobalProductsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchGlobalProductsResponse product202312GlobalProductsSearchPost(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody) throws ApiException {
+    public SearchGlobalProductsResponse product202312GlobalProductsSearchPost(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody) throws ApiException {
         ApiResponse<SearchGlobalProductsResponse> localVarResp = product202312GlobalProductsSearchPostWithHttpInfo(pageSize, xTtsAccessToken, contentType, pageToken, product202312SearchGlobalProductsRequestBody);
         return localVarResp.getData();
     }
@@ -206,12 +210,13 @@ public class ProductV202312Api {
      * @return ApiResponse&lt;SearchGlobalProductsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchGlobalProductsResponse> product202312GlobalProductsSearchPostWithHttpInfo(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody) throws ApiException {
+    public ApiResponse<SearchGlobalProductsResponse> product202312GlobalProductsSearchPostWithHttpInfo(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202312GlobalProductsSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, product202312SearchGlobalProductsRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchGlobalProductsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -229,12 +234,13 @@ public class ProductV202312Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202312GlobalProductsSearchPostAsync(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody, final ApiCallback<SearchGlobalProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202312GlobalProductsSearchPostAsync(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202312SearchGlobalProductsRequestBody, final ApiCallback<SearchGlobalProductsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202312GlobalProductsSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, product202312SearchGlobalProductsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchGlobalProductsResponse>(){}.getType();
@@ -250,12 +256,13 @@ public class ProductV202312Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202312PrerequisitesGetCall(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202312PrerequisitesGetCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -284,14 +291,6 @@ public class ProductV202312Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -307,12 +306,22 @@ public class ProductV202312Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202312PrerequisitesGetValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202312PrerequisitesGetValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202312PrerequisitesGet(Async)");
@@ -336,12 +345,13 @@ public class ProductV202312Api {
      * @return CheckListingPrerequisitesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CheckListingPrerequisitesResponse product202312PrerequisitesGet(String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public CheckListingPrerequisitesResponse product202312PrerequisitesGet(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<CheckListingPrerequisitesResponse> localVarResp = product202312PrerequisitesGetWithHttpInfo(xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -355,12 +365,13 @@ public class ProductV202312Api {
      * @return ApiResponse&lt;CheckListingPrerequisitesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CheckListingPrerequisitesResponse> product202312PrerequisitesGetWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<CheckListingPrerequisitesResponse> product202312PrerequisitesGetWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202312PrerequisitesGetValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<CheckListingPrerequisitesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -376,12 +387,13 @@ public class ProductV202312Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202312PrerequisitesGetAsync(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<CheckListingPrerequisitesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202312PrerequisitesGetAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<CheckListingPrerequisitesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202312PrerequisitesGetValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<CheckListingPrerequisitesResponse>(){}.getType();
@@ -400,12 +412,13 @@ public class ProductV202312Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202312ProductsSearchPostCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchProductsRequestBody product202312SearchProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202312ProductsSearchPostCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202312SearchProductsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -442,14 +455,6 @@ public class ProductV202312Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -466,12 +471,22 @@ public class ProductV202312Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202312ProductsSearchPostValidateBeforeCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchProductsRequestBody product202312SearchProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202312ProductsSearchPostValidateBeforeCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202312SearchProductsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pageSize' is set
         if (pageSize == null) {
             throw new ApiException("Missing the required parameter 'pageSize' when calling product202312ProductsSearchPost(Async)");
@@ -503,12 +518,13 @@ public class ProductV202312Api {
      * @return SearchProductsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchProductsResponse product202312ProductsSearchPost(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchProductsRequestBody product202312SearchProductsRequestBody) throws ApiException {
+    public SearchProductsResponse product202312ProductsSearchPost(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202312SearchProductsRequestBody) throws ApiException {
         ApiResponse<SearchProductsResponse> localVarResp = product202312ProductsSearchPostWithHttpInfo(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher, product202312SearchProductsRequestBody);
         return localVarResp.getData();
     }
@@ -525,12 +541,13 @@ public class ProductV202312Api {
      * @return ApiResponse&lt;SearchProductsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchProductsResponse> product202312ProductsSearchPostWithHttpInfo(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchProductsRequestBody product202312SearchProductsRequestBody) throws ApiException {
+    public ApiResponse<SearchProductsResponse> product202312ProductsSearchPostWithHttpInfo(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202312SearchProductsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202312ProductsSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher, product202312SearchProductsRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchProductsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -549,12 +566,13 @@ public class ProductV202312Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202312ProductsSearchPostAsync(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchProductsRequestBody product202312SearchProductsRequestBody, final ApiCallback<SearchProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202312ProductsSearchPostAsync(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202312SearchProductsRequestBody, final ApiCallback<SearchProductsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202312ProductsSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher, product202312SearchProductsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchProductsResponse>(){}.getType();

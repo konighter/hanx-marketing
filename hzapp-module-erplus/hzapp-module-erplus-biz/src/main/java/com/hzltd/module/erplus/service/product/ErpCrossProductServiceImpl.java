@@ -2,8 +2,9 @@ package com.hzltd.module.erplus.service.product;
 
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erpls.api.model.common.ProductAttributeModel;
-import com.hzltd.module.erpls.api.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.model.common.ProductAttributeModel;
+import com.hzltd.module.erplus.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.convert.productpub.CrossPlatformProductConvert;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductAttrsDO;
@@ -70,7 +71,7 @@ public class ErpCrossProductServiceImpl implements ErpCrossProductService {
 
     @Transactional
     @Override
-    public Long saveCrossPlatformProduct(CreateProductRequest product) {
+    public Long saveCrossPlatformProduct(ProductPublishRequest product) {
         // 保存商品信息
         ErpCrossProductDO crossPlatformProduct = CrossPlatformProductConvert.INSTANCE.convert(product);
         crossPlatformProduct.setStatus(CrossProductStatus.INIT.getStatus());

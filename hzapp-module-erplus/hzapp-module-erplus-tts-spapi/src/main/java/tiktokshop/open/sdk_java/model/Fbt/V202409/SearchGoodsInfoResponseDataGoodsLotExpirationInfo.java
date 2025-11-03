@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,215 +49,269 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchGoodsInfoResponseDataGoodsLotExpirationInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchGoodsInfoResponseDataGoodsLotExpirationInfo {
   public static final String SERIALIZED_NAME_ADDRESSES = "addresses";
   @SerializedName(SERIALIZED_NAME_ADDRESSES)
+  @javax.annotation.Nullable
   private SearchGoodsInfoResponseDataGoodsLotExpirationInfoAddresses addresses;
 
   public static final String SERIALIZED_NAME_EXPIRATION_ALERT_DAYS = "expiration_alert_days";
   @SerializedName(SERIALIZED_NAME_EXPIRATION_ALERT_DAYS)
+  @javax.annotation.Nullable
   private Integer expirationAlertDays;
 
   public static final String SERIALIZED_NAME_HANDLING_METHOD = "handling_method";
   @SerializedName(SERIALIZED_NAME_HANDLING_METHOD)
+  @javax.annotation.Nullable
   private String handlingMethod;
 
   public static final String SERIALIZED_NAME_INBOUND_CUTOFF_DAYS = "inbound_cutoff_days";
   @SerializedName(SERIALIZED_NAME_INBOUND_CUTOFF_DAYS)
+  @javax.annotation.Nullable
   private Integer inboundCutoffDays;
 
   public static final String SERIALIZED_NAME_IS_EXPIRATION_MANAGEMENT = "is_expiration_management";
   @SerializedName(SERIALIZED_NAME_IS_EXPIRATION_MANAGEMENT)
+  @javax.annotation.Nullable
   private Boolean isExpirationManagement;
 
   public static final String SERIALIZED_NAME_IS_LOT_CONTROL = "is_lot_control";
   @SerializedName(SERIALIZED_NAME_IS_LOT_CONTROL)
+  @javax.annotation.Nullable
   private Boolean isLotControl;
 
   public static final String SERIALIZED_NAME_RETURN_CYCLE = "return_cycle";
   @SerializedName(SERIALIZED_NAME_RETURN_CYCLE)
+  @javax.annotation.Nullable
   private String returnCycle;
 
   public static final String SERIALIZED_NAME_SALES_CUTOFF_DAYS = "sales_cutoff_days";
   @SerializedName(SERIALIZED_NAME_SALES_CUTOFF_DAYS)
+  @javax.annotation.Nullable
   private Integer salesCutoffDays;
 
   public static final String SERIALIZED_NAME_SHELF_LIFE_DAYS = "shelf_life_days";
   @SerializedName(SERIALIZED_NAME_SHELF_LIFE_DAYS)
+  @javax.annotation.Nullable
   private Integer shelfLifeDays;
 
   public SearchGoodsInfoResponseDataGoodsLotExpirationInfo() {
   }
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo addresses(SearchGoodsInfoResponseDataGoodsLotExpirationInfoAddresses addresses) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo addresses(@javax.annotation.Nullable SearchGoodsInfoResponseDataGoodsLotExpirationInfoAddresses addresses) {
     this.addresses = addresses;
     return this;
   }
 
-   /**
+  /**
    * Get addresses
    * @return addresses
-  **/
+   */
   @javax.annotation.Nullable
   public SearchGoodsInfoResponseDataGoodsLotExpirationInfoAddresses getAddresses() {
     return addresses;
   }
 
-  public void setAddresses(SearchGoodsInfoResponseDataGoodsLotExpirationInfoAddresses addresses) {
+  public void setAddresses(@javax.annotation.Nullable SearchGoodsInfoResponseDataGoodsLotExpirationInfoAddresses addresses) {
     this.addresses = addresses;
   }
 
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo expirationAlertDays(Integer expirationAlertDays) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo expirationAlertDays(@javax.annotation.Nullable Integer expirationAlertDays) {
     this.expirationAlertDays = expirationAlertDays;
     return this;
   }
 
-   /**
+  /**
    * The goods alert days before expired, represent the period of time before platform send expiration reminder alerts to the merchant.
    * @return expirationAlertDays
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getExpirationAlertDays() {
     return expirationAlertDays;
   }
 
-  public void setExpirationAlertDays(Integer expirationAlertDays) {
+  public void setExpirationAlertDays(@javax.annotation.Nullable Integer expirationAlertDays) {
     this.expirationAlertDays = expirationAlertDays;
   }
 
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo handlingMethod(String handlingMethod) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo handlingMethod(@javax.annotation.Nullable String handlingMethod) {
     this.handlingMethod = handlingMethod;
     return this;
   }
 
-   /**
+  /**
    * The handling method for expired inventory.  Possible values: - TURN_INTO_DEFECTIVE_INVENTORY  - RETURN_TO_SUPPLIER  - DISPOSE
    * @return handlingMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandlingMethod() {
     return handlingMethod;
   }
 
-  public void setHandlingMethod(String handlingMethod) {
+  public void setHandlingMethod(@javax.annotation.Nullable String handlingMethod) {
     this.handlingMethod = handlingMethod;
   }
 
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo inboundCutoffDays(Integer inboundCutoffDays) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo inboundCutoffDays(@javax.annotation.Nullable Integer inboundCutoffDays) {
     this.inboundCutoffDays = inboundCutoffDays;
     return this;
   }
 
-   /**
+  /**
    * The goods inbound cutoff days before expiration, represent the time period before the product&#39;s expiration when the warehouse will no longer accept inbound shipments. 
    * @return inboundCutoffDays
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getInboundCutoffDays() {
     return inboundCutoffDays;
   }
 
-  public void setInboundCutoffDays(Integer inboundCutoffDays) {
+  public void setInboundCutoffDays(@javax.annotation.Nullable Integer inboundCutoffDays) {
     this.inboundCutoffDays = inboundCutoffDays;
   }
 
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo isExpirationManagement(Boolean isExpirationManagement) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo isExpirationManagement(@javax.annotation.Nullable Boolean isExpirationManagement) {
     this.isExpirationManagement = isExpirationManagement;
     return this;
   }
 
-   /**
+  /**
    * A flag indicating whether the goods is under expiration managment.  True: Under expiration managment. False: Not under expiration managment.
    * @return isExpirationManagement
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsExpirationManagement() {
     return isExpirationManagement;
   }
 
-  public void setIsExpirationManagement(Boolean isExpirationManagement) {
+  public void setIsExpirationManagement(@javax.annotation.Nullable Boolean isExpirationManagement) {
     this.isExpirationManagement = isExpirationManagement;
   }
 
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo isLotControl(Boolean isLotControl) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo isLotControl(@javax.annotation.Nullable Boolean isLotControl) {
     this.isLotControl = isLotControl;
     return this;
   }
 
-   /**
+  /**
    * A flag indicating whether the goods is under lot control.  True: Under lot control. False: Not under lot control. Note: Lot code and expiration date management information is mandatory for these [product categories](https://bytedance.us.larkoffice.com/sheets/OoT2sKH7jhykXCtHEseuzkGYsod) according to Fulfilled by TikTok guidelines.
    * @return isLotControl
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsLotControl() {
     return isLotControl;
   }
 
-  public void setIsLotControl(Boolean isLotControl) {
+  public void setIsLotControl(@javax.annotation.Nullable Boolean isLotControl) {
     this.isLotControl = isLotControl;
   }
 
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo returnCycle(String returnCycle) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo returnCycle(@javax.annotation.Nullable String returnCycle) {
     this.returnCycle = returnCycle;
     return this;
   }
 
-   /**
+  /**
    * The return cycle applied when the handling method is set to RETURN_TO_SUPPLIER. In this case, the automatic creation of exit inventory orders will follow one of return cycle rules. Possible values: - ONCE_A_WEEK - ONCE_A_MONTH - ONCE_A_QUARTER
    * @return returnCycle
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnCycle() {
     return returnCycle;
   }
 
-  public void setReturnCycle(String returnCycle) {
+  public void setReturnCycle(@javax.annotation.Nullable String returnCycle) {
     this.returnCycle = returnCycle;
   }
 
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo salesCutoffDays(Integer salesCutoffDays) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo salesCutoffDays(@javax.annotation.Nullable Integer salesCutoffDays) {
     this.salesCutoffDays = salesCutoffDays;
     return this;
   }
 
-   /**
+  /**
    * The goods sales cut off days before expired, represent the period of time before expiration in which the goods will no longer be available for sale.
    * @return salesCutoffDays
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getSalesCutoffDays() {
     return salesCutoffDays;
   }
 
-  public void setSalesCutoffDays(Integer salesCutoffDays) {
+  public void setSalesCutoffDays(@javax.annotation.Nullable Integer salesCutoffDays) {
     this.salesCutoffDays = salesCutoffDays;
   }
 
 
-  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo shelfLifeDays(Integer shelfLifeDays) {
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo shelfLifeDays(@javax.annotation.Nullable Integer shelfLifeDays) {
     this.shelfLifeDays = shelfLifeDays;
     return this;
   }
 
-   /**
+  /**
    * The goods shelf life days input by merchant, represent the total number of days the product remains usable or sellable from the time it is manufactured until its expiration.
    * @return shelfLifeDays
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getShelfLifeDays() {
     return shelfLifeDays;
   }
 
-  public void setShelfLifeDays(Integer shelfLifeDays) {
+  public void setShelfLifeDays(@javax.annotation.Nullable Integer shelfLifeDays) {
     this.shelfLifeDays = shelfLifeDays;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchGoodsInfoResponseDataGoodsLotExpirationInfo instance itself
+   */
+  public SearchGoodsInfoResponseDataGoodsLotExpirationInfo putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -280,12 +333,13 @@ public class SearchGoodsInfoResponseDataGoodsLotExpirationInfo {
         Objects.equals(this.isLotControl, fbt202409SearchGoodsInfoResponseDataGoodsLotExpirationInfo.isLotControl) &&
         Objects.equals(this.returnCycle, fbt202409SearchGoodsInfoResponseDataGoodsLotExpirationInfo.returnCycle) &&
         Objects.equals(this.salesCutoffDays, fbt202409SearchGoodsInfoResponseDataGoodsLotExpirationInfo.salesCutoffDays) &&
-        Objects.equals(this.shelfLifeDays, fbt202409SearchGoodsInfoResponseDataGoodsLotExpirationInfo.shelfLifeDays);
+        Objects.equals(this.shelfLifeDays, fbt202409SearchGoodsInfoResponseDataGoodsLotExpirationInfo.shelfLifeDays)&&
+        Objects.equals(this.additionalProperties, fbt202409SearchGoodsInfoResponseDataGoodsLotExpirationInfo.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addresses, expirationAlertDays, handlingMethod, inboundCutoffDays, isExpirationManagement, isLotControl, returnCycle, salesCutoffDays, shelfLifeDays);
+    return Objects.hash(addresses, expirationAlertDays, handlingMethod, inboundCutoffDays, isExpirationManagement, isLotControl, returnCycle, salesCutoffDays, shelfLifeDays, additionalProperties);
   }
 
   @Override
@@ -301,6 +355,7 @@ public class SearchGoodsInfoResponseDataGoodsLotExpirationInfo {
     sb.append("    returnCycle: ").append(toIndentedString(returnCycle)).append("\n");
     sb.append("    salesCutoffDays: ").append(toIndentedString(salesCutoffDays)).append("\n");
     sb.append("    shelfLifeDays: ").append(toIndentedString(shelfLifeDays)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -322,39 +377,22 @@ public class SearchGoodsInfoResponseDataGoodsLotExpirationInfo {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("addresses");
-    openapiFields.add("expiration_alert_days");
-    openapiFields.add("handling_method");
-    openapiFields.add("inbound_cutoff_days");
-    openapiFields.add("is_expiration_management");
-    openapiFields.add("is_lot_control");
-    openapiFields.add("return_cycle");
-    openapiFields.add("sales_cutoff_days");
-    openapiFields.add("shelf_life_days");
+    openapiFields = new HashSet<String>(Arrays.asList("addresses", "expiration_alert_days", "handling_method", "inbound_cutoff_days", "is_expiration_management", "is_lot_control", "return_cycle", "sales_cutoff_days", "shelf_life_days"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchGoodsInfoResponseDataGoodsLotExpirationInfo
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchGoodsInfoResponseDataGoodsLotExpirationInfo
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchGoodsInfoResponseDataGoodsLotExpirationInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchGoodsInfoResponseDataGoodsLotExpirationInfo is not found in the empty JSON string", SearchGoodsInfoResponseDataGoodsLotExpirationInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchGoodsInfoResponseDataGoodsLotExpirationInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchGoodsInfoResponseDataGoodsLotExpirationInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -385,6 +423,28 @@ public class SearchGoodsInfoResponseDataGoodsLotExpirationInfo {
            @Override
            public void write(JsonWriter out, SearchGoodsInfoResponseDataGoodsLotExpirationInfo value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -392,29 +452,50 @@ public class SearchGoodsInfoResponseDataGoodsLotExpirationInfo {
            public SearchGoodsInfoResponseDataGoodsLotExpirationInfo read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchGoodsInfoResponseDataGoodsLotExpirationInfo instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchGoodsInfoResponseDataGoodsLotExpirationInfo given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchGoodsInfoResponseDataGoodsLotExpirationInfo
-  * @throws IOException if the JSON string is invalid with respect to SearchGoodsInfoResponseDataGoodsLotExpirationInfo
-  */
+  /**
+   * Create an instance of SearchGoodsInfoResponseDataGoodsLotExpirationInfo given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchGoodsInfoResponseDataGoodsLotExpirationInfo
+   * @throws IOException if the JSON string is invalid with respect to SearchGoodsInfoResponseDataGoodsLotExpirationInfo
+   */
   public static SearchGoodsInfoResponseDataGoodsLotExpirationInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchGoodsInfoResponseDataGoodsLotExpirationInfo.class);
   }
 
- /**
-  * Convert an instance of SearchGoodsInfoResponseDataGoodsLotExpirationInfo to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchGoodsInfoResponseDataGoodsLotExpirationInfo to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

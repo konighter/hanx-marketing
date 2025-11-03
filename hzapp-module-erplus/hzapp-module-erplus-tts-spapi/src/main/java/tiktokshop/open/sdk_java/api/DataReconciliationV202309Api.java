@@ -83,12 +83,13 @@ public class DataReconciliationV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call dataReconciliation202309OrdersSyncPostCall(String xTtsAccessToken, String contentType, Long shopId, OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call dataReconciliation202309OrdersSyncPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long shopId, @javax.annotation.Nullable OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -117,14 +118,6 @@ public class DataReconciliationV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_id", shopId));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -141,12 +134,22 @@ public class DataReconciliationV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call dataReconciliation202309OrdersSyncPostValidateBeforeCall(String xTtsAccessToken, String contentType, Long shopId, OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call dataReconciliation202309OrdersSyncPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long shopId, @javax.annotation.Nullable OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling dataReconciliation202309OrdersSyncPost(Async)");
@@ -171,12 +174,13 @@ public class DataReconciliationV202309Api {
      * @return OrderStatusDataExchangeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public OrderStatusDataExchangeResponse dataReconciliation202309OrdersSyncPost(String xTtsAccessToken, String contentType, Long shopId, OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody) throws ApiException {
+    public OrderStatusDataExchangeResponse dataReconciliation202309OrdersSyncPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long shopId, @javax.annotation.Nullable OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody) throws ApiException {
         ApiResponse<OrderStatusDataExchangeResponse> localVarResp = dataReconciliation202309OrdersSyncPostWithHttpInfo(xTtsAccessToken, contentType, shopId, dataReconciliation202309OrderStatusDataExchangeRequestBody);
         return localVarResp.getData();
     }
@@ -191,12 +195,13 @@ public class DataReconciliationV202309Api {
      * @return ApiResponse&lt;OrderStatusDataExchangeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<OrderStatusDataExchangeResponse> dataReconciliation202309OrdersSyncPostWithHttpInfo(String xTtsAccessToken, String contentType, Long shopId, OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody) throws ApiException {
+    public ApiResponse<OrderStatusDataExchangeResponse> dataReconciliation202309OrdersSyncPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long shopId, @javax.annotation.Nullable OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody) throws ApiException {
         okhttp3.Call localVarCall = dataReconciliation202309OrdersSyncPostValidateBeforeCall(xTtsAccessToken, contentType, shopId, dataReconciliation202309OrderStatusDataExchangeRequestBody, null);
         Type localVarReturnType = new TypeToken<OrderStatusDataExchangeResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -213,12 +218,13 @@ public class DataReconciliationV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call dataReconciliation202309OrdersSyncPostAsync(String xTtsAccessToken, String contentType, Long shopId, OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody, final ApiCallback<OrderStatusDataExchangeResponse> _callback) throws ApiException {
+    public okhttp3.Call dataReconciliation202309OrdersSyncPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Long shopId, @javax.annotation.Nullable OrderStatusDataExchangeRequestBody dataReconciliation202309OrderStatusDataExchangeRequestBody, final ApiCallback<OrderStatusDataExchangeResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = dataReconciliation202309OrdersSyncPostValidateBeforeCall(xTtsAccessToken, contentType, shopId, dataReconciliation202309OrderStatusDataExchangeRequestBody, _callback);
         Type localVarReturnType = new TypeToken<OrderStatusDataExchangeResponse>(){}.getType();

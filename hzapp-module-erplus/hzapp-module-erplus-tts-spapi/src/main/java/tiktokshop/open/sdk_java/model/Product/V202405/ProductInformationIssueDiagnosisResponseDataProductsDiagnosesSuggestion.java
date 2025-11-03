@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,24 +53,27 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion {
   public static final String SERIALIZED_NAME_IMAGES = "images";
   @SerializedName(SERIALIZED_NAME_IMAGES)
+  @javax.annotation.Nullable
   private List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionImages> images = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SEO_WORDS = "seo_words";
   @SerializedName(SERIALIZED_NAME_SEO_WORDS)
+  @javax.annotation.Nullable
   private List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSeoWords> seoWords = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SMART_TEXTS = "smart_texts";
   @SerializedName(SERIALIZED_NAME_SMART_TEXTS)
+  @javax.annotation.Nullable
   private List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSmartTexts> smartTexts = new ArrayList<>();
 
   public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion() {
   }
 
-  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion images(List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionImages> images) {
+  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion images(@javax.annotation.Nullable List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionImages> images) {
     this.images = images;
     return this;
   }
@@ -84,21 +86,21 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSugges
     return this;
   }
 
-   /**
+  /**
    * The optimized image.  Only the first image in the &#x60;main_images&#x60; set will be optimized.
    * @return images
-  **/
+   */
   @javax.annotation.Nullable
   public List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionImages> getImages() {
     return images;
   }
 
-  public void setImages(List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionImages> images) {
+  public void setImages(@javax.annotation.Nullable List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionImages> images) {
     this.images = images;
   }
 
 
-  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion seoWords(List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSeoWords> seoWords) {
+  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion seoWords(@javax.annotation.Nullable List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSeoWords> seoWords) {
     this.seoWords = seoWords;
     return this;
   }
@@ -111,21 +113,21 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSugges
     return this;
   }
 
-   /**
+  /**
    * The SEO keyword suggestions for product titles.
    * @return seoWords
-  **/
+   */
   @javax.annotation.Nullable
   public List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSeoWords> getSeoWords() {
     return seoWords;
   }
 
-  public void setSeoWords(List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSeoWords> seoWords) {
+  public void setSeoWords(@javax.annotation.Nullable List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSeoWords> seoWords) {
     this.seoWords = seoWords;
   }
 
 
-  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion smartTexts(List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSmartTexts> smartTexts) {
+  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion smartTexts(@javax.annotation.Nullable List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSmartTexts> smartTexts) {
     this.smartTexts = smartTexts;
     return this;
   }
@@ -138,17 +140,62 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSugges
     return this;
   }
 
-   /**
+  /**
    * The list of optimized product title or description.
    * @return smartTexts
-  **/
+   */
   @javax.annotation.Nullable
   public List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSmartTexts> getSmartTexts() {
     return smartTexts;
   }
 
-  public void setSmartTexts(List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSmartTexts> smartTexts) {
+  public void setSmartTexts(@javax.annotation.Nullable List<ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestionSmartTexts> smartTexts) {
     this.smartTexts = smartTexts;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion instance itself
+   */
+  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -164,12 +211,13 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSugges
     ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion = (ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion) o;
     return Objects.equals(this.images, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.images) &&
         Objects.equals(this.seoWords, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.seoWords) &&
-        Objects.equals(this.smartTexts, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.smartTexts);
+        Objects.equals(this.smartTexts, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.smartTexts)&&
+        Objects.equals(this.additionalProperties, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(images, seoWords, smartTexts);
+    return Objects.hash(images, seoWords, smartTexts, additionalProperties);
   }
 
   @Override
@@ -179,6 +227,7 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSugges
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    seoWords: ").append(toIndentedString(seoWords)).append("\n");
     sb.append("    smartTexts: ").append(toIndentedString(smartTexts)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -200,33 +249,22 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSugges
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("images");
-    openapiFields.add("seo_words");
-    openapiFields.add("smart_texts");
+    openapiFields = new HashSet<String>(Arrays.asList("images", "seo_words", "smart_texts"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion is not found in the empty JSON string", ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -289,6 +327,28 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSugges
            @Override
            public void write(JsonWriter out, ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -296,29 +356,50 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSugges
            public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion
-  * @throws IOException if the JSON string is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion
-  */
+  /**
+   * Create an instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion
+   * @throws IOException if the JSON string is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion
+   */
   public static ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion.class);
   }
 
- /**
-  * Convert an instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesSuggestion to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

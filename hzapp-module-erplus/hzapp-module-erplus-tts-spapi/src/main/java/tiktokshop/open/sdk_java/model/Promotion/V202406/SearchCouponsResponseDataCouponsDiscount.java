@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,100 +50,149 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchCouponsResponseDataCouponsDiscount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchCouponsResponseDataCouponsDiscount {
   public static final String SERIALIZED_NAME_MAX_DISCOUNT = "max_discount";
   @SerializedName(SERIALIZED_NAME_MAX_DISCOUNT)
+  @javax.annotation.Nullable
   private SearchCouponsResponseDataCouponsDiscountMaxDiscount maxDiscount;
 
   public static final String SERIALIZED_NAME_PERCENTAGE = "percentage";
   @SerializedName(SERIALIZED_NAME_PERCENTAGE)
+  @javax.annotation.Nullable
   private String percentage;
 
   public static final String SERIALIZED_NAME_REDUCTION_AMOUNT = "reduction_amount";
   @SerializedName(SERIALIZED_NAME_REDUCTION_AMOUNT)
+  @javax.annotation.Nullable
   private SearchCouponsResponseDataCouponsDiscountReductionAmount reductionAmount;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public SearchCouponsResponseDataCouponsDiscount() {
   }
 
-  public SearchCouponsResponseDataCouponsDiscount maxDiscount(SearchCouponsResponseDataCouponsDiscountMaxDiscount maxDiscount) {
+  public SearchCouponsResponseDataCouponsDiscount maxDiscount(@javax.annotation.Nullable SearchCouponsResponseDataCouponsDiscountMaxDiscount maxDiscount) {
     this.maxDiscount = maxDiscount;
     return this;
   }
 
-   /**
+  /**
    * Get maxDiscount
    * @return maxDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public SearchCouponsResponseDataCouponsDiscountMaxDiscount getMaxDiscount() {
     return maxDiscount;
   }
 
-  public void setMaxDiscount(SearchCouponsResponseDataCouponsDiscountMaxDiscount maxDiscount) {
+  public void setMaxDiscount(@javax.annotation.Nullable SearchCouponsResponseDataCouponsDiscountMaxDiscount maxDiscount) {
     this.maxDiscount = maxDiscount;
   }
 
 
-  public SearchCouponsResponseDataCouponsDiscount percentage(String percentage) {
+  public SearchCouponsResponseDataCouponsDiscount percentage(@javax.annotation.Nullable String percentage) {
     this.percentage = percentage;
     return this;
   }
 
-   /**
+  /**
    * The discount offered by the coupon, in percentage points. Will appear when &#x60;type &#x3D;&#x3D; PERCENT_OFF&#39;&#x60;.
    * @return percentage
-  **/
+   */
   @javax.annotation.Nullable
   public String getPercentage() {
     return percentage;
   }
 
-  public void setPercentage(String percentage) {
+  public void setPercentage(@javax.annotation.Nullable String percentage) {
     this.percentage = percentage;
   }
 
 
-  public SearchCouponsResponseDataCouponsDiscount reductionAmount(SearchCouponsResponseDataCouponsDiscountReductionAmount reductionAmount) {
+  public SearchCouponsResponseDataCouponsDiscount reductionAmount(@javax.annotation.Nullable SearchCouponsResponseDataCouponsDiscountReductionAmount reductionAmount) {
     this.reductionAmount = reductionAmount;
     return this;
   }
 
-   /**
+  /**
    * Get reductionAmount
    * @return reductionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public SearchCouponsResponseDataCouponsDiscountReductionAmount getReductionAmount() {
     return reductionAmount;
   }
 
-  public void setReductionAmount(SearchCouponsResponseDataCouponsDiscountReductionAmount reductionAmount) {
+  public void setReductionAmount(@javax.annotation.Nullable SearchCouponsResponseDataCouponsDiscountReductionAmount reductionAmount) {
     this.reductionAmount = reductionAmount;
   }
 
 
-  public SearchCouponsResponseDataCouponsDiscount type(String type) {
+  public SearchCouponsResponseDataCouponsDiscount type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The type of discount offered by the coupon. Possible enumerations are: - &#x60;AMOUNT_OFF&#x60;: Reduces the final price of the item by the specified &#x60;reduction_amount&#x60; - &#x60;PERCENT_OFF&#x60;: Reduces the final price by the specified &#x60;percentage&#x60;.
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchCouponsResponseDataCouponsDiscount instance itself
+   */
+  public SearchCouponsResponseDataCouponsDiscount putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -161,12 +209,13 @@ public class SearchCouponsResponseDataCouponsDiscount {
     return Objects.equals(this.maxDiscount, promotion202406SearchCouponsResponseDataCouponsDiscount.maxDiscount) &&
         Objects.equals(this.percentage, promotion202406SearchCouponsResponseDataCouponsDiscount.percentage) &&
         Objects.equals(this.reductionAmount, promotion202406SearchCouponsResponseDataCouponsDiscount.reductionAmount) &&
-        Objects.equals(this.type, promotion202406SearchCouponsResponseDataCouponsDiscount.type);
+        Objects.equals(this.type, promotion202406SearchCouponsResponseDataCouponsDiscount.type)&&
+        Objects.equals(this.additionalProperties, promotion202406SearchCouponsResponseDataCouponsDiscount.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(maxDiscount, percentage, reductionAmount, type);
+    return Objects.hash(maxDiscount, percentage, reductionAmount, type, additionalProperties);
   }
 
   @Override
@@ -177,6 +226,7 @@ public class SearchCouponsResponseDataCouponsDiscount {
     sb.append("    percentage: ").append(toIndentedString(percentage)).append("\n");
     sb.append("    reductionAmount: ").append(toIndentedString(reductionAmount)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -198,34 +248,22 @@ public class SearchCouponsResponseDataCouponsDiscount {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("max_discount");
-    openapiFields.add("percentage");
-    openapiFields.add("reduction_amount");
-    openapiFields.add("type");
+    openapiFields = new HashSet<String>(Arrays.asList("max_discount", "percentage", "reduction_amount", "type"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchCouponsResponseDataCouponsDiscount
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchCouponsResponseDataCouponsDiscount
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchCouponsResponseDataCouponsDiscount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchCouponsResponseDataCouponsDiscount is not found in the empty JSON string", SearchCouponsResponseDataCouponsDiscount.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchCouponsResponseDataCouponsDiscount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchCouponsResponseDataCouponsDiscount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -260,6 +298,28 @@ public class SearchCouponsResponseDataCouponsDiscount {
            @Override
            public void write(JsonWriter out, SearchCouponsResponseDataCouponsDiscount value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -267,29 +327,50 @@ public class SearchCouponsResponseDataCouponsDiscount {
            public SearchCouponsResponseDataCouponsDiscount read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchCouponsResponseDataCouponsDiscount instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchCouponsResponseDataCouponsDiscount given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchCouponsResponseDataCouponsDiscount
-  * @throws IOException if the JSON string is invalid with respect to SearchCouponsResponseDataCouponsDiscount
-  */
+  /**
+   * Create an instance of SearchCouponsResponseDataCouponsDiscount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchCouponsResponseDataCouponsDiscount
+   * @throws IOException if the JSON string is invalid with respect to SearchCouponsResponseDataCouponsDiscount
+   */
   public static SearchCouponsResponseDataCouponsDiscount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchCouponsResponseDataCouponsDiscount.class);
   }
 
- /**
-  * Convert an instance of SearchCouponsResponseDataCouponsDiscount to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchCouponsResponseDataCouponsDiscount to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

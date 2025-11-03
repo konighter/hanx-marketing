@@ -94,8 +94,9 @@ public class LogisticsV202309ApiTest {
         String warehouseId = null;
         String xTtsAccessToken = null;
         String contentType = null;
+        String scope = null;
         String shopCipher = null;
-        GetWarehouseDeliveryOptionsResponse response = api.logistics202309WarehousesWarehouseIdDeliveryOptionsGet(warehouseId, xTtsAccessToken, contentType, shopCipher);
+        GetWarehouseDeliveryOptionsResponse response = api.logistics202309WarehousesWarehouseIdDeliveryOptionsGet(warehouseId, xTtsAccessToken, contentType, scope, shopCipher);
         // TODO: test validations
     }
 

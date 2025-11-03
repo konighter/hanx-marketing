@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,261 +48,317 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail {
   public static final String SERIALIZED_NAME_CITY_ID = "city_id";
   @SerializedName(SERIALIZED_NAME_CITY_ID)
+  @javax.annotation.Nullable
   private Long cityId;
 
   public static final String SERIALIZED_NAME_CITY_NAME = "city_name";
   @SerializedName(SERIALIZED_NAME_CITY_NAME)
+  @javax.annotation.Nullable
   private String cityName;
 
   public static final String SERIALIZED_NAME_COUNTRY_ID = "country_id";
   @SerializedName(SERIALIZED_NAME_COUNTRY_ID)
+  @javax.annotation.Nullable
   private Long countryId;
 
   public static final String SERIALIZED_NAME_COUNTRY_NAME = "country_name";
   @SerializedName(SERIALIZED_NAME_COUNTRY_NAME)
+  @javax.annotation.Nullable
   private String countryName;
 
   public static final String SERIALIZED_NAME_DETAIL = "detail";
   @SerializedName(SERIALIZED_NAME_DETAIL)
+  @javax.annotation.Nullable
   private String detail;
 
   public static final String SERIALIZED_NAME_DISTRICT_ID = "district_id";
   @SerializedName(SERIALIZED_NAME_DISTRICT_ID)
+  @javax.annotation.Nullable
   private Long districtId;
 
   public static final String SERIALIZED_NAME_DISTRICT_NAME = "district_name";
   @SerializedName(SERIALIZED_NAME_DISTRICT_NAME)
+  @javax.annotation.Nullable
   private String districtName;
 
   public static final String SERIALIZED_NAME_PROVINCE_ID = "province_id";
   @SerializedName(SERIALIZED_NAME_PROVINCE_ID)
+  @javax.annotation.Nullable
   private Long provinceId;
 
   public static final String SERIALIZED_NAME_PROVINCE_NAME = "province_name";
   @SerializedName(SERIALIZED_NAME_PROVINCE_NAME)
+  @javax.annotation.Nullable
   private String provinceName;
 
   public static final String SERIALIZED_NAME_TOWN_ID = "town_id";
   @SerializedName(SERIALIZED_NAME_TOWN_ID)
+  @javax.annotation.Nullable
   private Long townId;
 
   public static final String SERIALIZED_NAME_TOWN_NAME = "town_name";
   @SerializedName(SERIALIZED_NAME_TOWN_NAME)
+  @javax.annotation.Nullable
   private String townName;
 
   public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail() {
   }
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail cityId(Long cityId) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail cityId(@javax.annotation.Nullable Long cityId) {
     this.cityId = cityId;
     return this;
   }
 
-   /**
+  /**
    * The city ID
    * @return cityId
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCityId() {
     return cityId;
   }
 
-  public void setCityId(Long cityId) {
+  public void setCityId(@javax.annotation.Nullable Long cityId) {
     this.cityId = cityId;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail cityName(String cityName) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail cityName(@javax.annotation.Nullable String cityName) {
     this.cityName = cityName;
     return this;
   }
 
-   /**
+  /**
    * The city name
    * @return cityName
-  **/
+   */
   @javax.annotation.Nullable
   public String getCityName() {
     return cityName;
   }
 
-  public void setCityName(String cityName) {
+  public void setCityName(@javax.annotation.Nullable String cityName) {
     this.cityName = cityName;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail countryId(Long countryId) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail countryId(@javax.annotation.Nullable Long countryId) {
     this.countryId = countryId;
     return this;
   }
 
-   /**
+  /**
    * The country ID
    * @return countryId
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCountryId() {
     return countryId;
   }
 
-  public void setCountryId(Long countryId) {
+  public void setCountryId(@javax.annotation.Nullable Long countryId) {
     this.countryId = countryId;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail countryName(String countryName) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail countryName(@javax.annotation.Nullable String countryName) {
     this.countryName = countryName;
     return this;
   }
 
-   /**
+  /**
    * The country name
    * @return countryName
-  **/
+   */
   @javax.annotation.Nullable
   public String getCountryName() {
     return countryName;
   }
 
-  public void setCountryName(String countryName) {
+  public void setCountryName(@javax.annotation.Nullable String countryName) {
     this.countryName = countryName;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail detail(String detail) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail detail(@javax.annotation.Nullable String detail) {
     this.detail = detail;
     return this;
   }
 
-   /**
+  /**
    * The detail address under town
    * @return detail
-  **/
+   */
   @javax.annotation.Nullable
   public String getDetail() {
     return detail;
   }
 
-  public void setDetail(String detail) {
+  public void setDetail(@javax.annotation.Nullable String detail) {
     this.detail = detail;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail districtId(Long districtId) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail districtId(@javax.annotation.Nullable Long districtId) {
     this.districtId = districtId;
     return this;
   }
 
-   /**
+  /**
    * The district ID
    * @return districtId
-  **/
+   */
   @javax.annotation.Nullable
   public Long getDistrictId() {
     return districtId;
   }
 
-  public void setDistrictId(Long districtId) {
+  public void setDistrictId(@javax.annotation.Nullable Long districtId) {
     this.districtId = districtId;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail districtName(String districtName) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail districtName(@javax.annotation.Nullable String districtName) {
     this.districtName = districtName;
     return this;
   }
 
-   /**
+  /**
    * The district name
    * @return districtName
-  **/
+   */
   @javax.annotation.Nullable
   public String getDistrictName() {
     return districtName;
   }
 
-  public void setDistrictName(String districtName) {
+  public void setDistrictName(@javax.annotation.Nullable String districtName) {
     this.districtName = districtName;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail provinceId(Long provinceId) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail provinceId(@javax.annotation.Nullable Long provinceId) {
     this.provinceId = provinceId;
     return this;
   }
 
-   /**
+  /**
    * The province ID
    * @return provinceId
-  **/
+   */
   @javax.annotation.Nullable
   public Long getProvinceId() {
     return provinceId;
   }
 
-  public void setProvinceId(Long provinceId) {
+  public void setProvinceId(@javax.annotation.Nullable Long provinceId) {
     this.provinceId = provinceId;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail provinceName(String provinceName) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail provinceName(@javax.annotation.Nullable String provinceName) {
     this.provinceName = provinceName;
     return this;
   }
 
-   /**
+  /**
    * The  name of province
    * @return provinceName
-  **/
+   */
   @javax.annotation.Nullable
   public String getProvinceName() {
     return provinceName;
   }
 
-  public void setProvinceName(String provinceName) {
+  public void setProvinceName(@javax.annotation.Nullable String provinceName) {
     this.provinceName = provinceName;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail townId(Long townId) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail townId(@javax.annotation.Nullable Long townId) {
     this.townId = townId;
     return this;
   }
 
-   /**
+  /**
    * The town ID
    * @return townId
-  **/
+   */
   @javax.annotation.Nullable
   public Long getTownId() {
     return townId;
   }
 
-  public void setTownId(Long townId) {
+  public void setTownId(@javax.annotation.Nullable Long townId) {
     this.townId = townId;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail townName(String townName) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail townName(@javax.annotation.Nullable String townName) {
     this.townName = townName;
     return this;
   }
 
-   /**
+  /**
    * The town name
    * @return townName
-  **/
+   */
   @javax.annotation.Nullable
   public String getTownName() {
     return townName;
   }
 
-  public void setTownName(String townName) {
+  public void setTownName(@javax.annotation.Nullable String townName) {
     this.townName = townName;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail instance itself
+   */
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -327,12 +382,13 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddress
         Objects.equals(this.provinceId, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.provinceId) &&
         Objects.equals(this.provinceName, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.provinceName) &&
         Objects.equals(this.townId, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.townId) &&
-        Objects.equals(this.townName, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.townName);
+        Objects.equals(this.townName, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.townName)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cityId, cityName, countryId, countryName, detail, districtId, districtName, provinceId, provinceName, townId, townName);
+    return Objects.hash(cityId, cityName, countryId, countryName, detail, districtId, districtName, provinceId, provinceName, townId, townName, additionalProperties);
   }
 
   @Override
@@ -350,6 +406,7 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddress
     sb.append("    provinceName: ").append(toIndentedString(provinceName)).append("\n");
     sb.append("    townId: ").append(toIndentedString(townId)).append("\n");
     sb.append("    townName: ").append(toIndentedString(townName)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -371,41 +428,22 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddress
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("city_id");
-    openapiFields.add("city_name");
-    openapiFields.add("country_id");
-    openapiFields.add("country_name");
-    openapiFields.add("detail");
-    openapiFields.add("district_id");
-    openapiFields.add("district_name");
-    openapiFields.add("province_id");
-    openapiFields.add("province_name");
-    openapiFields.add("town_id");
-    openapiFields.add("town_name");
+    openapiFields = new HashSet<String>(Arrays.asList("city_id", "city_name", "country_id", "country_name", "detail", "district_id", "district_name", "province_id", "province_name", "town_id", "town_name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail is not found in the empty JSON string", GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -444,6 +482,28 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddress
            @Override
            public void write(JsonWriter out, GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -451,29 +511,50 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddress
            public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail
-  * @throws IOException if the JSON string is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail
-  */
+  /**
+   * Create an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail
+   * @throws IOException if the JSON string is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail
+   */
   public static GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail.class);
   }
 
- /**
-  * Convert an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContactAddressDetail to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

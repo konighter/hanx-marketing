@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,63 +53,71 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingReserveShipmentRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingReserveShipmentRequestBody {
   public static final String SERIALIZED_NAME_DELIVERY_MODE = "delivery_mode";
   @SerializedName(SERIALIZED_NAME_DELIVERY_MODE)
+  @javax.annotation.Nullable
   private String deliveryMode;
 
   public static final String SERIALIZED_NAME_DELIVERY_ORDER_CODES = "delivery_order_codes";
   @SerializedName(SERIALIZED_NAME_DELIVERY_ORDER_CODES)
+  @javax.annotation.Nullable
   private List<String> deliveryOrderCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LOGISTICS = "logistics";
   @SerializedName(SERIALIZED_NAME_LOGISTICS)
+  @javax.annotation.Nullable
   private GlobalSellingReserveShipmentRequestBodyLogistics logistics;
 
   public static final String SERIALIZED_NAME_RESERVE = "reserve";
   @SerializedName(SERIALIZED_NAME_RESERVE)
+  @javax.annotation.Nullable
   private GlobalSellingReserveShipmentRequestBodyReserve reserve;
 
   public static final String SERIALIZED_NAME_SENDER_CONTACT_ID = "sender_contact_id";
   @SerializedName(SERIALIZED_NAME_SENDER_CONTACT_ID)
+  @javax.annotation.Nullable
   private String senderContactId;
 
   public static final String SERIALIZED_NAME_SHIPPING_BOX_QUANTITY = "shipping_box_quantity";
   @SerializedName(SERIALIZED_NAME_SHIPPING_BOX_QUANTITY)
+  @javax.annotation.Nullable
   private Long shippingBoxQuantity;
 
   public static final String SERIALIZED_NAME_TOTAL_WEIGHT = "total_weight";
   @SerializedName(SERIALIZED_NAME_TOTAL_WEIGHT)
+  @javax.annotation.Nullable
   private GlobalSellingReserveShipmentRequestBodyTotalWeight totalWeight;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_CODE = "warehouse_code";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_CODE)
+  @javax.annotation.Nullable
   private String warehouseCode;
 
   public GlobalSellingReserveShipmentRequestBody() {
   }
 
-  public GlobalSellingReserveShipmentRequestBody deliveryMode(String deliveryMode) {
+  public GlobalSellingReserveShipmentRequestBody deliveryMode(@javax.annotation.Nullable String deliveryMode) {
     this.deliveryMode = deliveryMode;
     return this;
   }
 
-   /**
+  /**
    * The mode that merchant deliver goods to the warehouse of GS. Possible enumerations are:  1. PLATFORM_DELIVERY 2. SELF_DELIVERY
    * @return deliveryMode
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryMode() {
     return deliveryMode;
   }
 
-  public void setDeliveryMode(String deliveryMode) {
+  public void setDeliveryMode(@javax.annotation.Nullable String deliveryMode) {
     this.deliveryMode = deliveryMode;
   }
 
 
-  public GlobalSellingReserveShipmentRequestBody deliveryOrderCodes(List<String> deliveryOrderCodes) {
+  public GlobalSellingReserveShipmentRequestBody deliveryOrderCodes(@javax.annotation.Nullable List<String> deliveryOrderCodes) {
     this.deliveryOrderCodes = deliveryOrderCodes;
     return this;
   }
@@ -123,131 +130,176 @@ public class GlobalSellingReserveShipmentRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The code list of delivery orders, less or equal to 50.
    * @return deliveryOrderCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getDeliveryOrderCodes() {
     return deliveryOrderCodes;
   }
 
-  public void setDeliveryOrderCodes(List<String> deliveryOrderCodes) {
+  public void setDeliveryOrderCodes(@javax.annotation.Nullable List<String> deliveryOrderCodes) {
     this.deliveryOrderCodes = deliveryOrderCodes;
   }
 
 
-  public GlobalSellingReserveShipmentRequestBody logistics(GlobalSellingReserveShipmentRequestBodyLogistics logistics) {
+  public GlobalSellingReserveShipmentRequestBody logistics(@javax.annotation.Nullable GlobalSellingReserveShipmentRequestBodyLogistics logistics) {
     this.logistics = logistics;
     return this;
   }
 
-   /**
+  /**
    * Get logistics
    * @return logistics
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingReserveShipmentRequestBodyLogistics getLogistics() {
     return logistics;
   }
 
-  public void setLogistics(GlobalSellingReserveShipmentRequestBodyLogistics logistics) {
+  public void setLogistics(@javax.annotation.Nullable GlobalSellingReserveShipmentRequestBodyLogistics logistics) {
     this.logistics = logistics;
   }
 
 
-  public GlobalSellingReserveShipmentRequestBody reserve(GlobalSellingReserveShipmentRequestBodyReserve reserve) {
+  public GlobalSellingReserveShipmentRequestBody reserve(@javax.annotation.Nullable GlobalSellingReserveShipmentRequestBodyReserve reserve) {
     this.reserve = reserve;
     return this;
   }
 
-   /**
+  /**
    * Get reserve
    * @return reserve
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingReserveShipmentRequestBodyReserve getReserve() {
     return reserve;
   }
 
-  public void setReserve(GlobalSellingReserveShipmentRequestBodyReserve reserve) {
+  public void setReserve(@javax.annotation.Nullable GlobalSellingReserveShipmentRequestBodyReserve reserve) {
     this.reserve = reserve;
   }
 
 
-  public GlobalSellingReserveShipmentRequestBody senderContactId(String senderContactId) {
+  public GlobalSellingReserveShipmentRequestBody senderContactId(@javax.annotation.Nullable String senderContactId) {
     this.senderContactId = senderContactId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the sender. If &#x60;delivery_mode &#x3D;&#x3D; PLATFORM_DELIVERY&#x60;, the value is required
    * @return senderContactId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSenderContactId() {
     return senderContactId;
   }
 
-  public void setSenderContactId(String senderContactId) {
+  public void setSenderContactId(@javax.annotation.Nullable String senderContactId) {
     this.senderContactId = senderContactId;
   }
 
 
-  public GlobalSellingReserveShipmentRequestBody shippingBoxQuantity(Long shippingBoxQuantity) {
+  public GlobalSellingReserveShipmentRequestBody shippingBoxQuantity(@javax.annotation.Nullable Long shippingBoxQuantity) {
     this.shippingBoxQuantity = shippingBoxQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of shipping boxes
    * @return shippingBoxQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getShippingBoxQuantity() {
     return shippingBoxQuantity;
   }
 
-  public void setShippingBoxQuantity(Long shippingBoxQuantity) {
+  public void setShippingBoxQuantity(@javax.annotation.Nullable Long shippingBoxQuantity) {
     this.shippingBoxQuantity = shippingBoxQuantity;
   }
 
 
-  public GlobalSellingReserveShipmentRequestBody totalWeight(GlobalSellingReserveShipmentRequestBodyTotalWeight totalWeight) {
+  public GlobalSellingReserveShipmentRequestBody totalWeight(@javax.annotation.Nullable GlobalSellingReserveShipmentRequestBodyTotalWeight totalWeight) {
     this.totalWeight = totalWeight;
     return this;
   }
 
-   /**
+  /**
    * Get totalWeight
    * @return totalWeight
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingReserveShipmentRequestBodyTotalWeight getTotalWeight() {
     return totalWeight;
   }
 
-  public void setTotalWeight(GlobalSellingReserveShipmentRequestBodyTotalWeight totalWeight) {
+  public void setTotalWeight(@javax.annotation.Nullable GlobalSellingReserveShipmentRequestBodyTotalWeight totalWeight) {
     this.totalWeight = totalWeight;
   }
 
 
-  public GlobalSellingReserveShipmentRequestBody warehouseCode(String warehouseCode) {
+  public GlobalSellingReserveShipmentRequestBody warehouseCode(@javax.annotation.Nullable String warehouseCode) {
     this.warehouseCode = warehouseCode;
     return this;
   }
 
-   /**
+  /**
    * The code of warehouse that receives goods
    * @return warehouseCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getWarehouseCode() {
     return warehouseCode;
   }
 
-  public void setWarehouseCode(String warehouseCode) {
+  public void setWarehouseCode(@javax.annotation.Nullable String warehouseCode) {
     this.warehouseCode = warehouseCode;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingReserveShipmentRequestBody instance itself
+   */
+  public GlobalSellingReserveShipmentRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -268,12 +320,13 @@ public class GlobalSellingReserveShipmentRequestBody {
         Objects.equals(this.senderContactId, gsFullServiceShipment202407GlobalSellingReserveShipmentRequestBody.senderContactId) &&
         Objects.equals(this.shippingBoxQuantity, gsFullServiceShipment202407GlobalSellingReserveShipmentRequestBody.shippingBoxQuantity) &&
         Objects.equals(this.totalWeight, gsFullServiceShipment202407GlobalSellingReserveShipmentRequestBody.totalWeight) &&
-        Objects.equals(this.warehouseCode, gsFullServiceShipment202407GlobalSellingReserveShipmentRequestBody.warehouseCode);
+        Objects.equals(this.warehouseCode, gsFullServiceShipment202407GlobalSellingReserveShipmentRequestBody.warehouseCode)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingReserveShipmentRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deliveryMode, deliveryOrderCodes, logistics, reserve, senderContactId, shippingBoxQuantity, totalWeight, warehouseCode);
+    return Objects.hash(deliveryMode, deliveryOrderCodes, logistics, reserve, senderContactId, shippingBoxQuantity, totalWeight, warehouseCode, additionalProperties);
   }
 
   @Override
@@ -288,6 +341,7 @@ public class GlobalSellingReserveShipmentRequestBody {
     sb.append("    shippingBoxQuantity: ").append(toIndentedString(shippingBoxQuantity)).append("\n");
     sb.append("    totalWeight: ").append(toIndentedString(totalWeight)).append("\n");
     sb.append("    warehouseCode: ").append(toIndentedString(warehouseCode)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -309,38 +363,22 @@ public class GlobalSellingReserveShipmentRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("delivery_mode");
-    openapiFields.add("delivery_order_codes");
-    openapiFields.add("logistics");
-    openapiFields.add("reserve");
-    openapiFields.add("sender_contact_id");
-    openapiFields.add("shipping_box_quantity");
-    openapiFields.add("total_weight");
-    openapiFields.add("warehouse_code");
+    openapiFields = new HashSet<String>(Arrays.asList("delivery_mode", "delivery_order_codes", "logistics", "reserve", "sender_contact_id", "shipping_box_quantity", "total_weight", "warehouse_code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingReserveShipmentRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingReserveShipmentRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingReserveShipmentRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingReserveShipmentRequestBody is not found in the empty JSON string", GlobalSellingReserveShipmentRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingReserveShipmentRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingReserveShipmentRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -386,6 +424,28 @@ public class GlobalSellingReserveShipmentRequestBody {
            @Override
            public void write(JsonWriter out, GlobalSellingReserveShipmentRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -393,29 +453,50 @@ public class GlobalSellingReserveShipmentRequestBody {
            public GlobalSellingReserveShipmentRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingReserveShipmentRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingReserveShipmentRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingReserveShipmentRequestBody
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingReserveShipmentRequestBody
-  */
+  /**
+   * Create an instance of GlobalSellingReserveShipmentRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingReserveShipmentRequestBody
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingReserveShipmentRequestBody
+   */
   public static GlobalSellingReserveShipmentRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingReserveShipmentRequestBody.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingReserveShipmentRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingReserveShipmentRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

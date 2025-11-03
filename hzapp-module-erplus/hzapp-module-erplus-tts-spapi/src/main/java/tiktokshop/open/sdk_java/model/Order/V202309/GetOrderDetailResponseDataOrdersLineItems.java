@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,193 +52,234 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetOrderDetailResponseDataOrdersLineItems
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetOrderDetailResponseDataOrdersLineItems {
   public static final String SERIALIZED_NAME_BUYER_SERVICE_FEE = "buyer_service_fee";
   @SerializedName(SERIALIZED_NAME_BUYER_SERVICE_FEE)
+  @javax.annotation.Nullable
   private String buyerServiceFee;
 
   public static final String SERIALIZED_NAME_CANCEL_REASON = "cancel_reason";
   @SerializedName(SERIALIZED_NAME_CANCEL_REASON)
+  @javax.annotation.Nullable
   private String cancelReason;
 
   public static final String SERIALIZED_NAME_CANCEL_USER = "cancel_user";
   @SerializedName(SERIALIZED_NAME_CANCEL_USER)
+  @javax.annotation.Nullable
   private String cancelUser;
 
   public static final String SERIALIZED_NAME_COMBINED_LISTING_SKUS = "combined_listing_skus";
   @SerializedName(SERIALIZED_NAME_COMBINED_LISTING_SKUS)
+  @javax.annotation.Nullable
   private List<GetOrderDetailResponseDataOrdersLineItemsCombinedListingSkus> combinedListingSkus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_DISPLAY_STATUS = "display_status";
   @SerializedName(SERIALIZED_NAME_DISPLAY_STATUS)
+  @javax.annotation.Nullable
   private String displayStatus;
+
+  public static final String SERIALIZED_NAME_GIFT_RETAIL_PRICE = "gift_retail_price";
+  @SerializedName(SERIALIZED_NAME_GIFT_RETAIL_PRICE)
+  @javax.annotation.Nullable
+  private String giftRetailPrice;
 
   public static final String SERIALIZED_NAME_HANDLING_DURATION_DAYS = "handling_duration_days";
   @SerializedName(SERIALIZED_NAME_HANDLING_DURATION_DAYS)
+  @javax.annotation.Nullable
   private String handlingDurationDays;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_IS_DANGEROUS_GOOD = "is_dangerous_good";
   @SerializedName(SERIALIZED_NAME_IS_DANGEROUS_GOOD)
+  @javax.annotation.Nullable
   private Boolean isDangerousGood;
 
   public static final String SERIALIZED_NAME_IS_GIFT = "is_gift";
   @SerializedName(SERIALIZED_NAME_IS_GIFT)
+  @javax.annotation.Nullable
   private Boolean isGift;
 
   public static final String SERIALIZED_NAME_ITEM_TAX = "item_tax";
   @SerializedName(SERIALIZED_NAME_ITEM_TAX)
+  @javax.annotation.Nullable
   private List<GetOrderDetailResponseDataOrdersLineItemsItemTax> itemTax = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEEDS_PRESCRIPTION = "needs_prescription";
   @SerializedName(SERIALIZED_NAME_NEEDS_PRESCRIPTION)
+  @javax.annotation.Nullable
   private Boolean needsPrescription;
 
   public static final String SERIALIZED_NAME_ORIGINAL_PRICE = "original_price";
   @SerializedName(SERIALIZED_NAME_ORIGINAL_PRICE)
+  @javax.annotation.Nullable
   private String originalPrice;
 
   public static final String SERIALIZED_NAME_PACKAGE_ID = "package_id";
   @SerializedName(SERIALIZED_NAME_PACKAGE_ID)
+  @javax.annotation.Nullable
   private String packageId;
 
   public static final String SERIALIZED_NAME_PACKAGE_STATUS = "package_status";
   @SerializedName(SERIALIZED_NAME_PACKAGE_STATUS)
+  @javax.annotation.Nullable
   private String packageStatus;
+
+  public static final String SERIALIZED_NAME_PFAND_FEE = "pfand_fee";
+  @SerializedName(SERIALIZED_NAME_PFAND_FEE)
+  @javax.annotation.Nullable
+  private String pfandFee;
 
   public static final String SERIALIZED_NAME_PLATFORM_DISCOUNT = "platform_discount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_DISCOUNT)
+  @javax.annotation.Nullable
   private String platformDiscount;
 
   public static final String SERIALIZED_NAME_PRODUCT_ID = "product_id";
   @SerializedName(SERIALIZED_NAME_PRODUCT_ID)
+  @javax.annotation.Nullable
   private String productId;
 
   public static final String SERIALIZED_NAME_PRODUCT_NAME = "product_name";
   @SerializedName(SERIALIZED_NAME_PRODUCT_NAME)
+  @javax.annotation.Nullable
   private String productName;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE = "retail_delivery_fee";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE)
+  @javax.annotation.Nullable
   private String retailDeliveryFee;
 
   public static final String SERIALIZED_NAME_RTS_TIME = "rts_time";
   @SerializedName(SERIALIZED_NAME_RTS_TIME)
+  @javax.annotation.Nullable
   private Long rtsTime;
 
   public static final String SERIALIZED_NAME_SALE_PRICE = "sale_price";
   @SerializedName(SERIALIZED_NAME_SALE_PRICE)
+  @javax.annotation.Nullable
   private String salePrice;
 
   public static final String SERIALIZED_NAME_SELLER_DISCOUNT = "seller_discount";
   @SerializedName(SERIALIZED_NAME_SELLER_DISCOUNT)
+  @javax.annotation.Nullable
   private String sellerDiscount;
 
   public static final String SERIALIZED_NAME_SELLER_SKU = "seller_sku";
   @SerializedName(SERIALIZED_NAME_SELLER_SKU)
+  @javax.annotation.Nullable
   private String sellerSku;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_ID = "shipping_provider_id";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_ID)
+  @javax.annotation.Nullable
   private String shippingProviderId;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_NAME = "shipping_provider_name";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_NAME)
+  @javax.annotation.Nullable
   private String shippingProviderName;
 
   public static final String SERIALIZED_NAME_SKU_ID = "sku_id";
   @SerializedName(SERIALIZED_NAME_SKU_ID)
+  @javax.annotation.Nullable
   private String skuId;
 
   public static final String SERIALIZED_NAME_SKU_IMAGE = "sku_image";
   @SerializedName(SERIALIZED_NAME_SKU_IMAGE)
+  @javax.annotation.Nullable
   private String skuImage;
 
   public static final String SERIALIZED_NAME_SKU_NAME = "sku_name";
   @SerializedName(SERIALIZED_NAME_SKU_NAME)
+  @javax.annotation.Nullable
   private String skuName;
 
   public static final String SERIALIZED_NAME_SKU_TYPE = "sku_type";
   @SerializedName(SERIALIZED_NAME_SKU_TYPE)
+  @javax.annotation.Nullable
   private String skuType;
 
   public static final String SERIALIZED_NAME_SMALL_ORDER_FEE = "small_order_fee";
   @SerializedName(SERIALIZED_NAME_SMALL_ORDER_FEE)
+  @javax.annotation.Nullable
   private String smallOrderFee;
 
   public static final String SERIALIZED_NAME_TRACKING_NUMBER = "tracking_number";
   @SerializedName(SERIALIZED_NAME_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String trackingNumber;
 
   public GetOrderDetailResponseDataOrdersLineItems() {
   }
 
-  public GetOrderDetailResponseDataOrdersLineItems buyerServiceFee(String buyerServiceFee) {
+  public GetOrderDetailResponseDataOrdersLineItems buyerServiceFee(@javax.annotation.Nullable String buyerServiceFee) {
     this.buyerServiceFee = buyerServiceFee;
     return this;
   }
 
-   /**
+  /**
    * A service fee is charged on every transaction made. The charge is applied from the fifth order onwards and collected directly from customers during checkout. Only available in Indonesia market.
    * @return buyerServiceFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getBuyerServiceFee() {
     return buyerServiceFee;
   }
 
-  public void setBuyerServiceFee(String buyerServiceFee) {
+  public void setBuyerServiceFee(@javax.annotation.Nullable String buyerServiceFee) {
     this.buyerServiceFee = buyerServiceFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems cancelReason(String cancelReason) {
+  public GetOrderDetailResponseDataOrdersLineItems cancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
     return this;
   }
 
-   /**
+  /**
    * Item cancellation reason.
    * @return cancelReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelReason() {
     return cancelReason;
   }
 
-  public void setCancelReason(String cancelReason) {
+  public void setCancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems cancelUser(String cancelUser) {
+  public GetOrderDetailResponseDataOrdersLineItems cancelUser(@javax.annotation.Nullable String cancelUser) {
     this.cancelUser = cancelUser;
     return this;
   }
 
-   /**
+  /**
    * The initiator of a cancellation request: - &#x60;BUYER&#x60; - &#x60;SELLER&#x60; - &#x60;OPERATOR&#x60; - &#x60;SYSTEM&#x60;
    * @return cancelUser
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelUser() {
     return cancelUser;
   }
 
-  public void setCancelUser(String cancelUser) {
+  public void setCancelUser(@javax.annotation.Nullable String cancelUser) {
     this.cancelUser = cancelUser;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems combinedListingSkus(List<GetOrderDetailResponseDataOrdersLineItemsCombinedListingSkus> combinedListingSkus) {
+  public GetOrderDetailResponseDataOrdersLineItems combinedListingSkus(@javax.annotation.Nullable List<GetOrderDetailResponseDataOrdersLineItemsCombinedListingSkus> combinedListingSkus) {
     this.combinedListingSkus = combinedListingSkus;
     return this;
   }
@@ -252,135 +292,154 @@ public class GetOrderDetailResponseDataOrdersLineItems {
     return this;
   }
 
-   /**
+  /**
    * For a virtual bundle SKU, returns an array of related product SKUs that compose the virtual bundle SKU.
    * @return combinedListingSkus
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetOrderDetailResponseDataOrdersLineItemsCombinedListingSkus> getCombinedListingSkus() {
     return combinedListingSkus;
   }
 
-  public void setCombinedListingSkus(List<GetOrderDetailResponseDataOrdersLineItemsCombinedListingSkus> combinedListingSkus) {
+  public void setCombinedListingSkus(@javax.annotation.Nullable List<GetOrderDetailResponseDataOrdersLineItemsCombinedListingSkus> combinedListingSkus) {
     this.combinedListingSkus = combinedListingSkus;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems currency(String currency) {
+  public GetOrderDetailResponseDataOrdersLineItems currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Currency for payment.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems displayStatus(String displayStatus) {
+  public GetOrderDetailResponseDataOrdersLineItems displayStatus(@javax.annotation.Nullable String displayStatus) {
     this.displayStatus = displayStatus;
     return this;
   }
 
-   /**
+  /**
    * - &#x60;UNPAID&#x60;: The order is placed, but payment is not yet completed. - &#x60;AWAITING_SHIPMENT&#x60;: The order is ready for shipment, but no items are shipped yet. - &#x60;AWAITING_COLLECTION&#x60;:  The shipment is arranged, but the package is waiting to be collected by the carrier. - &#x60;IN_TRANSIT&#x60;: The package is collected by the carrier and delivery is in progress. - &#x60;DELIVERED&#x60;: The package is delivered to buyer. - &#x60;COMPLETED&#x60;: The order is completed, and no further returns or refunds are allowed. - &#x60;CANCELLED&#x60;: The order is canceled.
    * @return displayStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getDisplayStatus() {
     return displayStatus;
   }
 
-  public void setDisplayStatus(String displayStatus) {
+  public void setDisplayStatus(@javax.annotation.Nullable String displayStatus) {
     this.displayStatus = displayStatus;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems handlingDurationDays(String handlingDurationDays) {
+  public GetOrderDetailResponseDataOrdersLineItems giftRetailPrice(@javax.annotation.Nullable String giftRetailPrice) {
+    this.giftRetailPrice = giftRetailPrice;
+    return this;
+  }
+
+  /**
+   * Retail price of the free item in orders Live giveaway, free sample and gift with purchase. For other orders, this field always returns 0.  This amount can be used for free samples and live giveaway order invoice in Brazil
+   * @return giftRetailPrice
+   */
+  @javax.annotation.Nullable
+  public String getGiftRetailPrice() {
+    return giftRetailPrice;
+  }
+
+  public void setGiftRetailPrice(@javax.annotation.Nullable String giftRetailPrice) {
+    this.giftRetailPrice = giftRetailPrice;
+  }
+
+
+  public GetOrderDetailResponseDataOrdersLineItems handlingDurationDays(@javax.annotation.Nullable String handlingDurationDays) {
     this.handlingDurationDays = handlingDurationDays;
     return this;
   }
 
-   /**
+  /**
    * [**Deprecated**: This field is deprecated and will be removed in a future API version. Use &#x60;handling_duration&#x60; instead.]  The number of business days required for the seller to process the order and hand it over to a shipping carrier after the order is placed.  Applicable only if the value for &#x60;sku_type&#x60; is &#x60;MADE_TO_ORDER&#x60;.
    * @return handlingDurationDays
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandlingDurationDays() {
     return handlingDurationDays;
   }
 
-  public void setHandlingDurationDays(String handlingDurationDays) {
+  public void setHandlingDurationDays(@javax.annotation.Nullable String handlingDurationDays) {
     this.handlingDurationDays = handlingDurationDays;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems id(String id) {
+  public GetOrderDetailResponseDataOrdersLineItems id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Line item ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems isDangerousGood(Boolean isDangerousGood) {
+  public GetOrderDetailResponseDataOrdersLineItems isDangerousGood(@javax.annotation.Nullable Boolean isDangerousGood) {
     this.isDangerousGood = isDangerousGood;
     return this;
   }
 
-   /**
+  /**
    * Whether the SKU is a hazmat item. When creating the label for a hazmat item, you must follow the platform rules to put certain items into one package. Please refer to the relationship between &#x60;sku_id&#x60; and &#x60;package_id&#x60; to determine how to follow platform rules.
    * @return isDangerousGood
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsDangerousGood() {
     return isDangerousGood;
   }
 
-  public void setIsDangerousGood(Boolean isDangerousGood) {
+  public void setIsDangerousGood(@javax.annotation.Nullable Boolean isDangerousGood) {
     this.isDangerousGood = isDangerousGood;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems isGift(Boolean isGift) {
+  public GetOrderDetailResponseDataOrdersLineItems isGift(@javax.annotation.Nullable Boolean isGift) {
     this.isGift = isGift;
     return this;
   }
 
-   /**
+  /**
    * Indicates whether the current order line is a gift.
    * @return isGift
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsGift() {
     return isGift;
   }
 
-  public void setIsGift(Boolean isGift) {
+  public void setIsGift(@javax.annotation.Nullable Boolean isGift) {
     this.isGift = isGift;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems itemTax(List<GetOrderDetailResponseDataOrdersLineItemsItemTax> itemTax) {
+  public GetOrderDetailResponseDataOrdersLineItems itemTax(@javax.annotation.Nullable List<GetOrderDetailResponseDataOrdersLineItemsItemTax> itemTax) {
     this.itemTax = itemTax;
     return this;
   }
@@ -393,397 +452,461 @@ public class GetOrderDetailResponseDataOrdersLineItems {
     return this;
   }
 
-   /**
+  /**
    * Item tax detail.
    * @return itemTax
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetOrderDetailResponseDataOrdersLineItemsItemTax> getItemTax() {
     return itemTax;
   }
 
-  public void setItemTax(List<GetOrderDetailResponseDataOrdersLineItemsItemTax> itemTax) {
+  public void setItemTax(@javax.annotation.Nullable List<GetOrderDetailResponseDataOrdersLineItemsItemTax> itemTax) {
     this.itemTax = itemTax;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems needsPrescription(Boolean needsPrescription) {
+  public GetOrderDetailResponseDataOrdersLineItems needsPrescription(@javax.annotation.Nullable Boolean needsPrescription) {
     this.needsPrescription = needsPrescription;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate whether the included product requires a prescription.
    * @return needsPrescription
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getNeedsPrescription() {
     return needsPrescription;
   }
 
-  public void setNeedsPrescription(Boolean needsPrescription) {
+  public void setNeedsPrescription(@javax.annotation.Nullable Boolean needsPrescription) {
     this.needsPrescription = needsPrescription;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems originalPrice(String originalPrice) {
+  public GetOrderDetailResponseDataOrdersLineItems originalPrice(@javax.annotation.Nullable String originalPrice) {
     this.originalPrice = originalPrice;
     return this;
   }
 
-   /**
+  /**
    * Item original price, please refer to the currency of &#x60;payment_info&#x60;.
    * @return originalPrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getOriginalPrice() {
     return originalPrice;
   }
 
-  public void setOriginalPrice(String originalPrice) {
+  public void setOriginalPrice(@javax.annotation.Nullable String originalPrice) {
     this.originalPrice = originalPrice;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems packageId(String packageId) {
+  public GetOrderDetailResponseDataOrdersLineItems packageId(@javax.annotation.Nullable String packageId) {
     this.packageId = packageId;
     return this;
   }
 
-   /**
+  /**
    * An order can contain one more more packages based on how the seller chooses to ship. Each package has a unique &#x60;package_id&#x60; (and also a &#x60;tracking_id&#x60;, which is used to track the progress of the package as it is shipped). For local sellers in the US and UK markets, the &#x60;package_id&#x60; and &#x60;package_status&#x60; property will not be returned before the package is shipped
    * @return packageId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPackageId() {
     return packageId;
   }
 
-  public void setPackageId(String packageId) {
+  public void setPackageId(@javax.annotation.Nullable String packageId) {
     this.packageId = packageId;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems packageStatus(String packageStatus) {
+  public GetOrderDetailResponseDataOrdersLineItems packageStatus(@javax.annotation.Nullable String packageStatus) {
     this.packageStatus = packageStatus;
     return this;
   }
 
-   /**
+  /**
    * The package status of the item: - &#x60;TO_FULFILL&#x60;: package waiting seller to arrange shipment. - &#x60;PROCESSING&#x60;: package shipment has been arranged by seller. Waiting carrier to collect the parcel. - &#x60;FULFILLING&#x60;: package has been collected by carrier and in transit. - &#x60;COMPLETED&#x60;: package has been delivered. - &#x60;CANCELLED&#x60;: package has been canceled. Normally, the package is canceled due to the package being lost or damaged.
    * @return packageStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getPackageStatus() {
     return packageStatus;
   }
 
-  public void setPackageStatus(String packageStatus) {
+  public void setPackageStatus(@javax.annotation.Nullable String packageStatus) {
     this.packageStatus = packageStatus;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems platformDiscount(String platformDiscount) {
+  public GetOrderDetailResponseDataOrdersLineItems pfandFee(@javax.annotation.Nullable String pfandFee) {
+    this.pfandFee = pfandFee;
+    return this;
+  }
+
+  /**
+   * Deposit fee that is applied to certain products, typically beverage containers such as bottles or cans. **Note** Only available in Germany market
+   * @return pfandFee
+   */
+  @javax.annotation.Nullable
+  public String getPfandFee() {
+    return pfandFee;
+  }
+
+  public void setPfandFee(@javax.annotation.Nullable String pfandFee) {
+    this.pfandFee = pfandFee;
+  }
+
+
+  public GetOrderDetailResponseDataOrdersLineItems platformDiscount(@javax.annotation.Nullable String platformDiscount) {
     this.platformDiscount = platformDiscount;
     return this;
   }
 
-   /**
+  /**
    * Platform discount amount, please refer to the currency of &#x60;payment_info&#x60;.
    * @return platformDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformDiscount() {
     return platformDiscount;
   }
 
-  public void setPlatformDiscount(String platformDiscount) {
+  public void setPlatformDiscount(@javax.annotation.Nullable String platformDiscount) {
     this.platformDiscount = platformDiscount;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems productId(String productId) {
+  public GetOrderDetailResponseDataOrdersLineItems productId(@javax.annotation.Nullable String productId) {
     this.productId = productId;
     return this;
   }
 
-   /**
+  /**
    * Product ID.
    * @return productId
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductId() {
     return productId;
   }
 
-  public void setProductId(String productId) {
+  public void setProductId(@javax.annotation.Nullable String productId) {
     this.productId = productId;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems productName(String productName) {
+  public GetOrderDetailResponseDataOrdersLineItems productName(@javax.annotation.Nullable String productName) {
     this.productName = productName;
     return this;
   }
 
-   /**
+  /**
    * Product name.
    * @return productName
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductName() {
     return productName;
   }
 
-  public void setProductName(String productName) {
+  public void setProductName(@javax.annotation.Nullable String productName) {
     this.productName = productName;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems retailDeliveryFee(String retailDeliveryFee) {
+  public GetOrderDetailResponseDataOrdersLineItems retailDeliveryFee(@javax.annotation.Nullable String retailDeliveryFee) {
     this.retailDeliveryFee = retailDeliveryFee;
     return this;
   }
 
-   /**
+  /**
    * RDF (retail delivery fee). Available only in the US market.
    * @return retailDeliveryFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFee() {
     return retailDeliveryFee;
   }
 
-  public void setRetailDeliveryFee(String retailDeliveryFee) {
+  public void setRetailDeliveryFee(@javax.annotation.Nullable String retailDeliveryFee) {
     this.retailDeliveryFee = retailDeliveryFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems rtsTime(Long rtsTime) {
+  public GetOrderDetailResponseDataOrdersLineItems rtsTime(@javax.annotation.Nullable Long rtsTime) {
     this.rtsTime = rtsTime;
     return this;
   }
 
-   /**
+  /**
    * The time seller shipped line order (call Ship Order endpoint successfully). Unix timestamp.
    * @return rtsTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRtsTime() {
     return rtsTime;
   }
 
-  public void setRtsTime(Long rtsTime) {
+  public void setRtsTime(@javax.annotation.Nullable Long rtsTime) {
     this.rtsTime = rtsTime;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems salePrice(String salePrice) {
+  public GetOrderDetailResponseDataOrdersLineItems salePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
     return this;
   }
 
-   /**
+  /**
    * Item sale price, please refer to the currency of &#x60;payment_info&#x60;.
    * @return salePrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getSalePrice() {
     return salePrice;
   }
 
-  public void setSalePrice(String salePrice) {
+  public void setSalePrice(@javax.annotation.Nullable String salePrice) {
     this.salePrice = salePrice;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems sellerDiscount(String sellerDiscount) {
+  public GetOrderDetailResponseDataOrdersLineItems sellerDiscount(@javax.annotation.Nullable String sellerDiscount) {
     this.sellerDiscount = sellerDiscount;
     return this;
   }
 
-   /**
+  /**
    * Seller discount amount. Please refer to the currency of &#x60;payment_info&#x60;.
    * @return sellerDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerDiscount() {
     return sellerDiscount;
   }
 
-  public void setSellerDiscount(String sellerDiscount) {
+  public void setSellerDiscount(@javax.annotation.Nullable String sellerDiscount) {
     this.sellerDiscount = sellerDiscount;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems sellerSku(String sellerSku) {
+  public GetOrderDetailResponseDataOrdersLineItems sellerSku(@javax.annotation.Nullable String sellerSku) {
     this.sellerSku = sellerSku;
     return this;
   }
 
-   /**
+  /**
    * The seller stock keeping unit (SKU) of the item. 
    * @return sellerSku
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerSku() {
     return sellerSku;
   }
 
-  public void setSellerSku(String sellerSku) {
+  public void setSellerSku(@javax.annotation.Nullable String sellerSku) {
     this.sellerSku = sellerSku;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems shippingProviderId(String shippingProviderId) {
+  public GetOrderDetailResponseDataOrdersLineItems shippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
     return this;
   }
 
-   /**
+  /**
    * The shipping provider ID of the item.
    * @return shippingProviderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderId() {
     return shippingProviderId;
   }
 
-  public void setShippingProviderId(String shippingProviderId) {
+  public void setShippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems shippingProviderName(String shippingProviderName) {
+  public GetOrderDetailResponseDataOrdersLineItems shippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
     return this;
   }
 
-   /**
+  /**
    * The shipping provider name of the item.
    * @return shippingProviderName
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderName() {
     return shippingProviderName;
   }
 
-  public void setShippingProviderName(String shippingProviderName) {
+  public void setShippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems skuId(String skuId) {
+  public GetOrderDetailResponseDataOrdersLineItems skuId(@javax.annotation.Nullable String skuId) {
     this.skuId = skuId;
     return this;
   }
 
-   /**
+  /**
    * SKU ID.
    * @return skuId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuId() {
     return skuId;
   }
 
-  public void setSkuId(String skuId) {
+  public void setSkuId(@javax.annotation.Nullable String skuId) {
     this.skuId = skuId;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems skuImage(String skuImage) {
+  public GetOrderDetailResponseDataOrdersLineItems skuImage(@javax.annotation.Nullable String skuImage) {
     this.skuImage = skuImage;
     return this;
   }
 
-   /**
+  /**
    * SKU image.
    * @return skuImage
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuImage() {
     return skuImage;
   }
 
-  public void setSkuImage(String skuImage) {
+  public void setSkuImage(@javax.annotation.Nullable String skuImage) {
     this.skuImage = skuImage;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems skuName(String skuName) {
+  public GetOrderDetailResponseDataOrdersLineItems skuName(@javax.annotation.Nullable String skuName) {
     this.skuName = skuName;
     return this;
   }
 
-   /**
+  /**
    * The name of the SKU, combined by product SKU attribute like size or color. For example, \&quot;Black, 26.\&quot;  
    * @return skuName
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuName() {
     return skuName;
   }
 
-  public void setSkuName(String skuName) {
+  public void setSkuName(@javax.annotation.Nullable String skuName) {
     this.skuName = skuName;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems skuType(String skuType) {
+  public GetOrderDetailResponseDataOrdersLineItems skuType(@javax.annotation.Nullable String skuType) {
     this.skuType = skuType;
     return this;
   }
 
-   /**
+  /**
    * [**Deprecated**: This field is deprecated and will be removed in a future API version. Use &#x60;order_type&#x60; instead.]  The order line type: Possible values based on region:  **All regions** - &#x60;NORMAL&#x60;: An item that is in stock and available for immediate purchase and fulfillment. - &#x60;ZERO_LOTTERY:&#x60; An item purchased during a lottery event in TikTok LIVE. - &#x60;SHOP_PARTNER&#x60;: An item purchased from a TikTok Shop partner store.  **US** - &#x60;PRE_ORDER&#x60;: An item that is not yet available or released. Fulfillment starts on a specific date in the future. - &#x60;MADE_TO_ORDER&#x60;: An item that is produced only after the order is received. Fulfillment starts after the product is produced. 
    * @return skuType
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuType() {
     return skuType;
   }
 
-  public void setSkuType(String skuType) {
+  public void setSkuType(@javax.annotation.Nullable String skuType) {
     this.skuType = skuType;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems smallOrderFee(String smallOrderFee) {
+  public GetOrderDetailResponseDataOrdersLineItems smallOrderFee(@javax.annotation.Nullable String smallOrderFee) {
     this.smallOrderFee = smallOrderFee;
     return this;
   }
 
-   /**
+  /**
    * Small order fee for TH.
    * @return smallOrderFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getSmallOrderFee() {
     return smallOrderFee;
   }
 
-  public void setSmallOrderFee(String smallOrderFee) {
+  public void setSmallOrderFee(@javax.annotation.Nullable String smallOrderFee) {
     this.smallOrderFee = smallOrderFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersLineItems trackingNumber(String trackingNumber) {
+  public GetOrderDetailResponseDataOrdersLineItems trackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
     return this;
   }
 
-   /**
+  /**
    * Tracking number. Available after package has been shipped.
    * @return trackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getTrackingNumber() {
     return trackingNumber;
   }
 
-  public void setTrackingNumber(String trackingNumber) {
+  public void setTrackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetOrderDetailResponseDataOrdersLineItems instance itself
+   */
+  public GetOrderDetailResponseDataOrdersLineItems putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -803,6 +926,7 @@ public class GetOrderDetailResponseDataOrdersLineItems {
         Objects.equals(this.combinedListingSkus, order202309GetOrderDetailResponseDataOrdersLineItems.combinedListingSkus) &&
         Objects.equals(this.currency, order202309GetOrderDetailResponseDataOrdersLineItems.currency) &&
         Objects.equals(this.displayStatus, order202309GetOrderDetailResponseDataOrdersLineItems.displayStatus) &&
+        Objects.equals(this.giftRetailPrice, order202309GetOrderDetailResponseDataOrdersLineItems.giftRetailPrice) &&
         Objects.equals(this.handlingDurationDays, order202309GetOrderDetailResponseDataOrdersLineItems.handlingDurationDays) &&
         Objects.equals(this.id, order202309GetOrderDetailResponseDataOrdersLineItems.id) &&
         Objects.equals(this.isDangerousGood, order202309GetOrderDetailResponseDataOrdersLineItems.isDangerousGood) &&
@@ -812,6 +936,7 @@ public class GetOrderDetailResponseDataOrdersLineItems {
         Objects.equals(this.originalPrice, order202309GetOrderDetailResponseDataOrdersLineItems.originalPrice) &&
         Objects.equals(this.packageId, order202309GetOrderDetailResponseDataOrdersLineItems.packageId) &&
         Objects.equals(this.packageStatus, order202309GetOrderDetailResponseDataOrdersLineItems.packageStatus) &&
+        Objects.equals(this.pfandFee, order202309GetOrderDetailResponseDataOrdersLineItems.pfandFee) &&
         Objects.equals(this.platformDiscount, order202309GetOrderDetailResponseDataOrdersLineItems.platformDiscount) &&
         Objects.equals(this.productId, order202309GetOrderDetailResponseDataOrdersLineItems.productId) &&
         Objects.equals(this.productName, order202309GetOrderDetailResponseDataOrdersLineItems.productName) &&
@@ -827,12 +952,13 @@ public class GetOrderDetailResponseDataOrdersLineItems {
         Objects.equals(this.skuName, order202309GetOrderDetailResponseDataOrdersLineItems.skuName) &&
         Objects.equals(this.skuType, order202309GetOrderDetailResponseDataOrdersLineItems.skuType) &&
         Objects.equals(this.smallOrderFee, order202309GetOrderDetailResponseDataOrdersLineItems.smallOrderFee) &&
-        Objects.equals(this.trackingNumber, order202309GetOrderDetailResponseDataOrdersLineItems.trackingNumber);
+        Objects.equals(this.trackingNumber, order202309GetOrderDetailResponseDataOrdersLineItems.trackingNumber)&&
+        Objects.equals(this.additionalProperties, order202309GetOrderDetailResponseDataOrdersLineItems.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buyerServiceFee, cancelReason, cancelUser, combinedListingSkus, currency, displayStatus, handlingDurationDays, id, isDangerousGood, isGift, itemTax, needsPrescription, originalPrice, packageId, packageStatus, platformDiscount, productId, productName, retailDeliveryFee, rtsTime, salePrice, sellerDiscount, sellerSku, shippingProviderId, shippingProviderName, skuId, skuImage, skuName, skuType, smallOrderFee, trackingNumber);
+    return Objects.hash(buyerServiceFee, cancelReason, cancelUser, combinedListingSkus, currency, displayStatus, giftRetailPrice, handlingDurationDays, id, isDangerousGood, isGift, itemTax, needsPrescription, originalPrice, packageId, packageStatus, pfandFee, platformDiscount, productId, productName, retailDeliveryFee, rtsTime, salePrice, sellerDiscount, sellerSku, shippingProviderId, shippingProviderName, skuId, skuImage, skuName, skuType, smallOrderFee, trackingNumber, additionalProperties);
   }
 
   @Override
@@ -845,6 +971,7 @@ public class GetOrderDetailResponseDataOrdersLineItems {
     sb.append("    combinedListingSkus: ").append(toIndentedString(combinedListingSkus)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    displayStatus: ").append(toIndentedString(displayStatus)).append("\n");
+    sb.append("    giftRetailPrice: ").append(toIndentedString(giftRetailPrice)).append("\n");
     sb.append("    handlingDurationDays: ").append(toIndentedString(handlingDurationDays)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isDangerousGood: ").append(toIndentedString(isDangerousGood)).append("\n");
@@ -854,6 +981,7 @@ public class GetOrderDetailResponseDataOrdersLineItems {
     sb.append("    originalPrice: ").append(toIndentedString(originalPrice)).append("\n");
     sb.append("    packageId: ").append(toIndentedString(packageId)).append("\n");
     sb.append("    packageStatus: ").append(toIndentedString(packageStatus)).append("\n");
+    sb.append("    pfandFee: ").append(toIndentedString(pfandFee)).append("\n");
     sb.append("    platformDiscount: ").append(toIndentedString(platformDiscount)).append("\n");
     sb.append("    productId: ").append(toIndentedString(productId)).append("\n");
     sb.append("    productName: ").append(toIndentedString(productName)).append("\n");
@@ -870,6 +998,7 @@ public class GetOrderDetailResponseDataOrdersLineItems {
     sb.append("    skuType: ").append(toIndentedString(skuType)).append("\n");
     sb.append("    smallOrderFee: ").append(toIndentedString(smallOrderFee)).append("\n");
     sb.append("    trackingNumber: ").append(toIndentedString(trackingNumber)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -891,61 +1020,22 @@ public class GetOrderDetailResponseDataOrdersLineItems {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("buyer_service_fee");
-    openapiFields.add("cancel_reason");
-    openapiFields.add("cancel_user");
-    openapiFields.add("combined_listing_skus");
-    openapiFields.add("currency");
-    openapiFields.add("display_status");
-    openapiFields.add("handling_duration_days");
-    openapiFields.add("id");
-    openapiFields.add("is_dangerous_good");
-    openapiFields.add("is_gift");
-    openapiFields.add("item_tax");
-    openapiFields.add("needs_prescription");
-    openapiFields.add("original_price");
-    openapiFields.add("package_id");
-    openapiFields.add("package_status");
-    openapiFields.add("platform_discount");
-    openapiFields.add("product_id");
-    openapiFields.add("product_name");
-    openapiFields.add("retail_delivery_fee");
-    openapiFields.add("rts_time");
-    openapiFields.add("sale_price");
-    openapiFields.add("seller_discount");
-    openapiFields.add("seller_sku");
-    openapiFields.add("shipping_provider_id");
-    openapiFields.add("shipping_provider_name");
-    openapiFields.add("sku_id");
-    openapiFields.add("sku_image");
-    openapiFields.add("sku_name");
-    openapiFields.add("sku_type");
-    openapiFields.add("small_order_fee");
-    openapiFields.add("tracking_number");
+    openapiFields = new HashSet<String>(Arrays.asList("buyer_service_fee", "cancel_reason", "cancel_user", "combined_listing_skus", "currency", "display_status", "gift_retail_price", "handling_duration_days", "id", "is_dangerous_good", "is_gift", "item_tax", "needs_prescription", "original_price", "package_id", "package_status", "pfand_fee", "platform_discount", "product_id", "product_name", "retail_delivery_fee", "rts_time", "sale_price", "seller_discount", "seller_sku", "shipping_provider_id", "shipping_provider_name", "sku_id", "sku_image", "sku_name", "sku_type", "small_order_fee", "tracking_number"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetOrderDetailResponseDataOrdersLineItems
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetOrderDetailResponseDataOrdersLineItems
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetOrderDetailResponseDataOrdersLineItems.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetOrderDetailResponseDataOrdersLineItems is not found in the empty JSON string", GetOrderDetailResponseDataOrdersLineItems.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetOrderDetailResponseDataOrdersLineItems.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetOrderDetailResponseDataOrdersLineItems` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -978,6 +1068,9 @@ public class GetOrderDetailResponseDataOrdersLineItems {
       if ((jsonObj.get("display_status") != null && !jsonObj.get("display_status").isJsonNull()) && !jsonObj.get("display_status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `display_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("display_status").toString()));
       }
+      if ((jsonObj.get("gift_retail_price") != null && !jsonObj.get("gift_retail_price").isJsonNull()) && !jsonObj.get("gift_retail_price").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `gift_retail_price` to be a primitive type in the JSON string but got `%s`", jsonObj.get("gift_retail_price").toString()));
+      }
       if ((jsonObj.get("handling_duration_days") != null && !jsonObj.get("handling_duration_days").isJsonNull()) && !jsonObj.get("handling_duration_days").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `handling_duration_days` to be a primitive type in the JSON string but got `%s`", jsonObj.get("handling_duration_days").toString()));
       }
@@ -1006,6 +1099,9 @@ public class GetOrderDetailResponseDataOrdersLineItems {
       }
       if ((jsonObj.get("package_status") != null && !jsonObj.get("package_status").isJsonNull()) && !jsonObj.get("package_status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `package_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("package_status").toString()));
+      }
+      if ((jsonObj.get("pfand_fee") != null && !jsonObj.get("pfand_fee").isJsonNull()) && !jsonObj.get("pfand_fee").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `pfand_fee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("pfand_fee").toString()));
       }
       if ((jsonObj.get("platform_discount") != null && !jsonObj.get("platform_discount").isJsonNull()) && !jsonObj.get("platform_discount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `platform_discount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("platform_discount").toString()));
@@ -1069,6 +1165,28 @@ public class GetOrderDetailResponseDataOrdersLineItems {
            @Override
            public void write(JsonWriter out, GetOrderDetailResponseDataOrdersLineItems value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -1076,29 +1194,50 @@ public class GetOrderDetailResponseDataOrdersLineItems {
            public GetOrderDetailResponseDataOrdersLineItems read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetOrderDetailResponseDataOrdersLineItems instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetOrderDetailResponseDataOrdersLineItems given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetOrderDetailResponseDataOrdersLineItems
-  * @throws IOException if the JSON string is invalid with respect to GetOrderDetailResponseDataOrdersLineItems
-  */
+  /**
+   * Create an instance of GetOrderDetailResponseDataOrdersLineItems given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetOrderDetailResponseDataOrdersLineItems
+   * @throws IOException if the JSON string is invalid with respect to GetOrderDetailResponseDataOrdersLineItems
+   */
   public static GetOrderDetailResponseDataOrdersLineItems fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetOrderDetailResponseDataOrdersLineItems.class);
   }
 
- /**
-  * Convert an instance of GetOrderDetailResponseDataOrdersLineItems to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetOrderDetailResponseDataOrdersLineItems to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

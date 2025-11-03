@@ -202,6 +202,15 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
     ErrorCode PRODUCT_CLAIM_SKU_EXISTS = new ErrorCode(1_031_007_001, "商品已认领");
     ErrorCode PRODUCT_CLAIM_SKU_RULE_PLT = new ErrorCode(1_031_007_002, "不符合平台认领规则:{}");
 
+
+    // ========== 商品库      ==========
+    ErrorCode PRODUCT_POTENTIAL_NOT_EXISTS = new ErrorCode(1_031_008_000, "选品信息不存在");
+    ErrorCode PRODUCT_POTENTIAL_COMPETITIVE_NOT_EXISTS = new ErrorCode(1_031_008_001, "选品信息不存在");
+    ErrorCode PRODUCT_MONITOR_NOT_EXISTS = new ErrorCode(1_031_008_002, "商品监控信息不存在");
+
+
+
+
     // ========== 店铺管理 ==========
     ErrorCode SELL_PLATFORM_NOT_EXISTS = new ErrorCode(1_032_007_000, "销售平台不存在");
 
@@ -209,17 +218,20 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
 
     ErrorCode SHOP_NOT_EXISTS = new ErrorCode(1_032_007_002, "店铺信息不存在");
 
+    ErrorCode PLUGIN_NOT_EXISTS = new ErrorCode(1_032_007_003, "插件不存在");
 
     // ============ 系统数据 ==========
     ErrorCode HS_CODES_NOT_EXISTS = new ErrorCode(1_099_000_001, "海关编码(HS Code)不存在");
     ErrorCode COUNTRIES_NOT_EXISTS = new ErrorCode(1_099_000_002, "国家/地区定义不存在");
     ErrorCode CURRENCIES_NOT_EXISTS = new ErrorCode(1_099_000_003, "货币定义不存在");
     ErrorCode LANGUAGES_NOT_EXISTS = new ErrorCode(1_099_000_004, "语言定义不存在");
+    ErrorCode APP_NOT_EXISTS = new ErrorCode(1_099_000_005, "应用信息不存在");
+    ErrorCode APP_ALREADY_EXISTS = new ErrorCode(1_099_000_006, "同平台下只能有一个有效应用信息");
 
 
 
     // ============ 跨境平台商品相关 ==========
-    ErrorCode PRODUCT_NOT_VALID = new ErrorCode(1_100_000_001, "商品完整性校验失败");
+    ErrorCode PRODUCT_NOT_VALID = new ErrorCode(2_100_000_001, "商品完整性校验失败");
 
-
+    ErrorCode CATEGORY_ATTRIBUTE_NOT_EXISTS = new ErrorCode(2_100_100_001, "品类属性不存在");
 }

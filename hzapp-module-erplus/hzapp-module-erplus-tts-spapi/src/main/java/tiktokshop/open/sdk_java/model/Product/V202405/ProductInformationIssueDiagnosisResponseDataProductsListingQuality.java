@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,54 +48,101 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * ProductInformationIssueDiagnosisResponseDataProductsListingQuality
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class ProductInformationIssueDiagnosisResponseDataProductsListingQuality {
   public static final String SERIALIZED_NAME_CURRENT_TIER = "current_tier";
   @SerializedName(SERIALIZED_NAME_CURRENT_TIER)
+  @javax.annotation.Nullable
   private String currentTier;
 
   public static final String SERIALIZED_NAME_REMAINING_RECOMMENDATIONS = "remaining_recommendations";
   @SerializedName(SERIALIZED_NAME_REMAINING_RECOMMENDATIONS)
+  @javax.annotation.Nullable
   private Integer remainingRecommendations;
 
   public ProductInformationIssueDiagnosisResponseDataProductsListingQuality() {
   }
 
-  public ProductInformationIssueDiagnosisResponseDataProductsListingQuality currentTier(String currentTier) {
+  public ProductInformationIssueDiagnosisResponseDataProductsListingQuality currentTier(@javax.annotation.Nullable String currentTier) {
     this.currentTier = currentTier;
     return this;
   }
 
-   /**
+  /**
    * The current quality tier of this product listing. The quality tier of a product listing depends on the quality of the content in its product fields such as the title, image, attributes etc.  Possible values: - POOR - FAIR - GOOD  **Note**: Available only for the US market.
    * @return currentTier
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrentTier() {
     return currentTier;
   }
 
-  public void setCurrentTier(String currentTier) {
+  public void setCurrentTier(@javax.annotation.Nullable String currentTier) {
     this.currentTier = currentTier;
   }
 
 
-  public ProductInformationIssueDiagnosisResponseDataProductsListingQuality remainingRecommendations(Integer remainingRecommendations) {
+  public ProductInformationIssueDiagnosisResponseDataProductsListingQuality remainingRecommendations(@javax.annotation.Nullable Integer remainingRecommendations) {
     this.remainingRecommendations = remainingRecommendations;
     return this;
   }
 
-   /**
+  /**
    * The remaining number of recommendations (see &#x60;diagnosis_results&#x60;) that must be implemented for the product to reach the highest tier.  **Note**: - To reach the highest tier, you must implement all recommendations listed in &#x60;diagnosis_results&#x60;.  - Available only for the US market.
    * @return remainingRecommendations
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getRemainingRecommendations() {
     return remainingRecommendations;
   }
 
-  public void setRemainingRecommendations(Integer remainingRecommendations) {
+  public void setRemainingRecommendations(@javax.annotation.Nullable Integer remainingRecommendations) {
     this.remainingRecommendations = remainingRecommendations;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ProductInformationIssueDiagnosisResponseDataProductsListingQuality instance itself
+   */
+  public ProductInformationIssueDiagnosisResponseDataProductsListingQuality putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -111,12 +157,13 @@ public class ProductInformationIssueDiagnosisResponseDataProductsListingQuality 
     }
     ProductInformationIssueDiagnosisResponseDataProductsListingQuality product202405ProductInformationIssueDiagnosisResponseDataProductsListingQuality = (ProductInformationIssueDiagnosisResponseDataProductsListingQuality) o;
     return Objects.equals(this.currentTier, product202405ProductInformationIssueDiagnosisResponseDataProductsListingQuality.currentTier) &&
-        Objects.equals(this.remainingRecommendations, product202405ProductInformationIssueDiagnosisResponseDataProductsListingQuality.remainingRecommendations);
+        Objects.equals(this.remainingRecommendations, product202405ProductInformationIssueDiagnosisResponseDataProductsListingQuality.remainingRecommendations)&&
+        Objects.equals(this.additionalProperties, product202405ProductInformationIssueDiagnosisResponseDataProductsListingQuality.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currentTier, remainingRecommendations);
+    return Objects.hash(currentTier, remainingRecommendations, additionalProperties);
   }
 
   @Override
@@ -125,6 +172,7 @@ public class ProductInformationIssueDiagnosisResponseDataProductsListingQuality 
     sb.append("class ProductInformationIssueDiagnosisResponseDataProductsListingQuality {\n");
     sb.append("    currentTier: ").append(toIndentedString(currentTier)).append("\n");
     sb.append("    remainingRecommendations: ").append(toIndentedString(remainingRecommendations)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -146,32 +194,22 @@ public class ProductInformationIssueDiagnosisResponseDataProductsListingQuality 
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("current_tier");
-    openapiFields.add("remaining_recommendations");
+    openapiFields = new HashSet<String>(Arrays.asList("current_tier", "remaining_recommendations"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsListingQuality
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsListingQuality
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ProductInformationIssueDiagnosisResponseDataProductsListingQuality.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ProductInformationIssueDiagnosisResponseDataProductsListingQuality is not found in the empty JSON string", ProductInformationIssueDiagnosisResponseDataProductsListingQuality.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ProductInformationIssueDiagnosisResponseDataProductsListingQuality.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductInformationIssueDiagnosisResponseDataProductsListingQuality` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -195,6 +233,28 @@ public class ProductInformationIssueDiagnosisResponseDataProductsListingQuality 
            @Override
            public void write(JsonWriter out, ProductInformationIssueDiagnosisResponseDataProductsListingQuality value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -202,29 +262,50 @@ public class ProductInformationIssueDiagnosisResponseDataProductsListingQuality 
            public ProductInformationIssueDiagnosisResponseDataProductsListingQuality read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ProductInformationIssueDiagnosisResponseDataProductsListingQuality instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ProductInformationIssueDiagnosisResponseDataProductsListingQuality given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ProductInformationIssueDiagnosisResponseDataProductsListingQuality
-  * @throws IOException if the JSON string is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsListingQuality
-  */
+  /**
+   * Create an instance of ProductInformationIssueDiagnosisResponseDataProductsListingQuality given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ProductInformationIssueDiagnosisResponseDataProductsListingQuality
+   * @throws IOException if the JSON string is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsListingQuality
+   */
   public static ProductInformationIssueDiagnosisResponseDataProductsListingQuality fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ProductInformationIssueDiagnosisResponseDataProductsListingQuality.class);
   }
 
- /**
-  * Convert an instance of ProductInformationIssueDiagnosisResponseDataProductsListingQuality to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ProductInformationIssueDiagnosisResponseDataProductsListingQuality to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

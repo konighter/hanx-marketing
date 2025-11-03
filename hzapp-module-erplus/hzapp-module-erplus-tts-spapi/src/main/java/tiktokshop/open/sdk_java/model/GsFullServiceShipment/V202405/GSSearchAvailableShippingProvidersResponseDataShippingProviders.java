@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,131 +53,137 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSSearchAvailableShippingProvidersResponseDataShippingProviders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSSearchAvailableShippingProvidersResponseDataShippingProviders {
   public static final String SERIALIZED_NAME_DELIVERY_OPTION = "delivery_option";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION)
+  @javax.annotation.Nullable
   private String deliveryOption;
 
   public static final String SERIALIZED_NAME_MAX_CHARGE_FEE = "max_charge_fee";
   @SerializedName(SERIALIZED_NAME_MAX_CHARGE_FEE)
+  @javax.annotation.Nullable
   private GSSearchAvailableShippingProvidersResponseDataShippingProvidersMaxChargeFee maxChargeFee;
 
   public static final String SERIALIZED_NAME_MIN_CHARGE_FEE = "min_charge_fee";
   @SerializedName(SERIALIZED_NAME_MIN_CHARGE_FEE)
+  @javax.annotation.Nullable
   private GSSearchAvailableShippingProvidersResponseDataShippingProvidersMinChargeFee minChargeFee;
 
   public static final String SERIALIZED_NAME_PROVIDER_CODE = "provider_code";
   @SerializedName(SERIALIZED_NAME_PROVIDER_CODE)
+  @javax.annotation.Nullable
   private String providerCode;
 
   public static final String SERIALIZED_NAME_PROVIDER_NAME = "provider_name";
   @SerializedName(SERIALIZED_NAME_PROVIDER_NAME)
+  @javax.annotation.Nullable
   private String providerName;
 
   public static final String SERIALIZED_NAME_RESERVE_DATA = "reserve_data";
   @SerializedName(SERIALIZED_NAME_RESERVE_DATA)
+  @javax.annotation.Nullable
   private List<GSSearchAvailableShippingProvidersResponseDataShippingProvidersReserveData> reserveData = new ArrayList<>();
 
   public GSSearchAvailableShippingProvidersResponseDataShippingProviders() {
   }
 
-  public GSSearchAvailableShippingProvidersResponseDataShippingProviders deliveryOption(String deliveryOption) {
+  public GSSearchAvailableShippingProvidersResponseDataShippingProviders deliveryOption(@javax.annotation.Nullable String deliveryOption) {
     this.deliveryOption = deliveryOption;
     return this;
   }
 
-   /**
+  /**
    * The type of logistics express 1. SUPER_SPEEDY_EXPRESS 2. SPEEDY_EXPRESS 3. STANDARD_EXPRESS
    * @return deliveryOption
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryOption() {
     return deliveryOption;
   }
 
-  public void setDeliveryOption(String deliveryOption) {
+  public void setDeliveryOption(@javax.annotation.Nullable String deliveryOption) {
     this.deliveryOption = deliveryOption;
   }
 
 
-  public GSSearchAvailableShippingProvidersResponseDataShippingProviders maxChargeFee(GSSearchAvailableShippingProvidersResponseDataShippingProvidersMaxChargeFee maxChargeFee) {
+  public GSSearchAvailableShippingProvidersResponseDataShippingProviders maxChargeFee(@javax.annotation.Nullable GSSearchAvailableShippingProvidersResponseDataShippingProvidersMaxChargeFee maxChargeFee) {
     this.maxChargeFee = maxChargeFee;
     return this;
   }
 
-   /**
+  /**
    * Get maxChargeFee
    * @return maxChargeFee
-  **/
+   */
   @javax.annotation.Nullable
   public GSSearchAvailableShippingProvidersResponseDataShippingProvidersMaxChargeFee getMaxChargeFee() {
     return maxChargeFee;
   }
 
-  public void setMaxChargeFee(GSSearchAvailableShippingProvidersResponseDataShippingProvidersMaxChargeFee maxChargeFee) {
+  public void setMaxChargeFee(@javax.annotation.Nullable GSSearchAvailableShippingProvidersResponseDataShippingProvidersMaxChargeFee maxChargeFee) {
     this.maxChargeFee = maxChargeFee;
   }
 
 
-  public GSSearchAvailableShippingProvidersResponseDataShippingProviders minChargeFee(GSSearchAvailableShippingProvidersResponseDataShippingProvidersMinChargeFee minChargeFee) {
+  public GSSearchAvailableShippingProvidersResponseDataShippingProviders minChargeFee(@javax.annotation.Nullable GSSearchAvailableShippingProvidersResponseDataShippingProvidersMinChargeFee minChargeFee) {
     this.minChargeFee = minChargeFee;
     return this;
   }
 
-   /**
+  /**
    * Get minChargeFee
    * @return minChargeFee
-  **/
+   */
   @javax.annotation.Nullable
   public GSSearchAvailableShippingProvidersResponseDataShippingProvidersMinChargeFee getMinChargeFee() {
     return minChargeFee;
   }
 
-  public void setMinChargeFee(GSSearchAvailableShippingProvidersResponseDataShippingProvidersMinChargeFee minChargeFee) {
+  public void setMinChargeFee(@javax.annotation.Nullable GSSearchAvailableShippingProvidersResponseDataShippingProvidersMinChargeFee minChargeFee) {
     this.minChargeFee = minChargeFee;
   }
 
 
-  public GSSearchAvailableShippingProvidersResponseDataShippingProviders providerCode(String providerCode) {
+  public GSSearchAvailableShippingProvidersResponseDataShippingProviders providerCode(@javax.annotation.Nullable String providerCode) {
     this.providerCode = providerCode;
     return this;
   }
 
-   /**
+  /**
    * The code of logistics provider which transports supplier&#39;s goods to warehouse
    * @return providerCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getProviderCode() {
     return providerCode;
   }
 
-  public void setProviderCode(String providerCode) {
+  public void setProviderCode(@javax.annotation.Nullable String providerCode) {
     this.providerCode = providerCode;
   }
 
 
-  public GSSearchAvailableShippingProvidersResponseDataShippingProviders providerName(String providerName) {
+  public GSSearchAvailableShippingProvidersResponseDataShippingProviders providerName(@javax.annotation.Nullable String providerName) {
     this.providerName = providerName;
     return this;
   }
 
-   /**
+  /**
    * The name of logistics provider which transports supplier&#39;s goods to warehouse
    * @return providerName
-  **/
+   */
   @javax.annotation.Nullable
   public String getProviderName() {
     return providerName;
   }
 
-  public void setProviderName(String providerName) {
+  public void setProviderName(@javax.annotation.Nullable String providerName) {
     this.providerName = providerName;
   }
 
 
-  public GSSearchAvailableShippingProvidersResponseDataShippingProviders reserveData(List<GSSearchAvailableShippingProvidersResponseDataShippingProvidersReserveData> reserveData) {
+  public GSSearchAvailableShippingProvidersResponseDataShippingProviders reserveData(@javax.annotation.Nullable List<GSSearchAvailableShippingProvidersResponseDataShippingProvidersReserveData> reserveData) {
     this.reserveData = reserveData;
     return this;
   }
@@ -191,17 +196,62 @@ public class GSSearchAvailableShippingProvidersResponseDataShippingProviders {
     return this;
   }
 
-   /**
+  /**
    * The available reservation information of logistics provider
    * @return reserveData
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSSearchAvailableShippingProvidersResponseDataShippingProvidersReserveData> getReserveData() {
     return reserveData;
   }
 
-  public void setReserveData(List<GSSearchAvailableShippingProvidersResponseDataShippingProvidersReserveData> reserveData) {
+  public void setReserveData(@javax.annotation.Nullable List<GSSearchAvailableShippingProvidersResponseDataShippingProvidersReserveData> reserveData) {
     this.reserveData = reserveData;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSSearchAvailableShippingProvidersResponseDataShippingProviders instance itself
+   */
+  public GSSearchAvailableShippingProvidersResponseDataShippingProviders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -220,12 +270,13 @@ public class GSSearchAvailableShippingProvidersResponseDataShippingProviders {
         Objects.equals(this.minChargeFee, gsFullServiceShipment202405GSSearchAvailableShippingProvidersResponseDataShippingProviders.minChargeFee) &&
         Objects.equals(this.providerCode, gsFullServiceShipment202405GSSearchAvailableShippingProvidersResponseDataShippingProviders.providerCode) &&
         Objects.equals(this.providerName, gsFullServiceShipment202405GSSearchAvailableShippingProvidersResponseDataShippingProviders.providerName) &&
-        Objects.equals(this.reserveData, gsFullServiceShipment202405GSSearchAvailableShippingProvidersResponseDataShippingProviders.reserveData);
+        Objects.equals(this.reserveData, gsFullServiceShipment202405GSSearchAvailableShippingProvidersResponseDataShippingProviders.reserveData)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202405GSSearchAvailableShippingProvidersResponseDataShippingProviders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deliveryOption, maxChargeFee, minChargeFee, providerCode, providerName, reserveData);
+    return Objects.hash(deliveryOption, maxChargeFee, minChargeFee, providerCode, providerName, reserveData, additionalProperties);
   }
 
   @Override
@@ -238,6 +289,7 @@ public class GSSearchAvailableShippingProvidersResponseDataShippingProviders {
     sb.append("    providerCode: ").append(toIndentedString(providerCode)).append("\n");
     sb.append("    providerName: ").append(toIndentedString(providerName)).append("\n");
     sb.append("    reserveData: ").append(toIndentedString(reserveData)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -259,36 +311,22 @@ public class GSSearchAvailableShippingProvidersResponseDataShippingProviders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("delivery_option");
-    openapiFields.add("max_charge_fee");
-    openapiFields.add("min_charge_fee");
-    openapiFields.add("provider_code");
-    openapiFields.add("provider_name");
-    openapiFields.add("reserve_data");
+    openapiFields = new HashSet<String>(Arrays.asList("delivery_option", "max_charge_fee", "min_charge_fee", "provider_code", "provider_name", "reserve_data"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSSearchAvailableShippingProvidersResponseDataShippingProviders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSSearchAvailableShippingProvidersResponseDataShippingProviders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSSearchAvailableShippingProvidersResponseDataShippingProviders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSSearchAvailableShippingProvidersResponseDataShippingProviders is not found in the empty JSON string", GSSearchAvailableShippingProvidersResponseDataShippingProviders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSSearchAvailableShippingProvidersResponseDataShippingProviders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSSearchAvailableShippingProvidersResponseDataShippingProviders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -340,6 +378,28 @@ public class GSSearchAvailableShippingProvidersResponseDataShippingProviders {
            @Override
            public void write(JsonWriter out, GSSearchAvailableShippingProvidersResponseDataShippingProviders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -347,29 +407,50 @@ public class GSSearchAvailableShippingProvidersResponseDataShippingProviders {
            public GSSearchAvailableShippingProvidersResponseDataShippingProviders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSSearchAvailableShippingProvidersResponseDataShippingProviders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSSearchAvailableShippingProvidersResponseDataShippingProviders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSSearchAvailableShippingProvidersResponseDataShippingProviders
-  * @throws IOException if the JSON string is invalid with respect to GSSearchAvailableShippingProvidersResponseDataShippingProviders
-  */
+  /**
+   * Create an instance of GSSearchAvailableShippingProvidersResponseDataShippingProviders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSSearchAvailableShippingProvidersResponseDataShippingProviders
+   * @throws IOException if the JSON string is invalid with respect to GSSearchAvailableShippingProvidersResponseDataShippingProviders
+   */
   public static GSSearchAvailableShippingProvidersResponseDataShippingProviders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSSearchAvailableShippingProvidersResponseDataShippingProviders.class);
   }
 
- /**
-  * Convert an instance of GSSearchAvailableShippingProvidersResponseDataShippingProviders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSSearchAvailableShippingProvidersResponseDataShippingProviders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

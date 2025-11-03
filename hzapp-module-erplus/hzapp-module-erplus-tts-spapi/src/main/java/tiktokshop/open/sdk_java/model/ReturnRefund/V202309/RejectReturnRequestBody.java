@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,66 +51,70 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * RejectReturnRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class RejectReturnRequestBody {
   public static final String SERIALIZED_NAME_COMMENT = "comment";
   @SerializedName(SERIALIZED_NAME_COMMENT)
+  @javax.annotation.Nullable
   private String comment;
 
   public static final String SERIALIZED_NAME_DECISION = "decision";
   @SerializedName(SERIALIZED_NAME_DECISION)
+  @javax.annotation.Nullable
   private String decision;
 
   public static final String SERIALIZED_NAME_IMAGES = "images";
   @SerializedName(SERIALIZED_NAME_IMAGES)
+  @javax.annotation.Nullable
   private List<RejectReturnRequestBodyImages> images = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REJECT_REASON = "reject_reason";
   @SerializedName(SERIALIZED_NAME_REJECT_REASON)
+  @javax.annotation.Nullable
   private String rejectReason;
 
   public RejectReturnRequestBody() {
   }
 
-  public RejectReturnRequestBody comment(String comment) {
+  public RejectReturnRequestBody comment(@javax.annotation.Nullable String comment) {
     this.comment = comment;
     return this;
   }
 
-   /**
+  /**
    * Seller&#39;s comment on the rejection decision. This is where a seller will provide more information about rejecting the request. 
    * @return comment
-  **/
+   */
   @javax.annotation.Nullable
   public String getComment() {
     return comment;
   }
 
-  public void setComment(String comment) {
+  public void setComment(@javax.annotation.Nullable String comment) {
     this.comment = comment;
   }
 
 
-  public RejectReturnRequestBody decision(String decision) {
+  public RejectReturnRequestBody decision(@javax.annotation.Nullable String decision) {
     this.decision = decision;
     return this;
   }
 
-   /**
+  /**
    * Return decision, available values: - &#x60;REJECT_REFUND&#x60;: Seller rejects the refund request - &#x60;REJECT_RETURN&#x60;: Seller rejects the return request - &#x60;REJECT_RECEIVED_PACKAGE&#x60;: Seller rejects the received package - &#x60;REJECT_REPLACEMENT&#x60;: Seller rejects the replacement request
    * @return decision
-  **/
+   */
   @javax.annotation.Nullable
   public String getDecision() {
     return decision;
   }
 
-  public void setDecision(String decision) {
+  public void setDecision(@javax.annotation.Nullable String decision) {
     this.decision = decision;
   }
 
 
-  public RejectReturnRequestBody images(List<RejectReturnRequestBodyImages> images) {
+  public RejectReturnRequestBody images(@javax.annotation.Nullable List<RejectReturnRequestBodyImages> images) {
     this.images = images;
     return this;
   }
@@ -124,36 +127,81 @@ public class RejectReturnRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of images provided by the seller to support their decision to reject the return request. 
    * @return images
-  **/
+   */
   @javax.annotation.Nullable
   public List<RejectReturnRequestBodyImages> getImages() {
     return images;
   }
 
-  public void setImages(List<RejectReturnRequestBodyImages> images) {
+  public void setImages(@javax.annotation.Nullable List<RejectReturnRequestBodyImages> images) {
     this.images = images;
   }
 
 
-  public RejectReturnRequestBody rejectReason(String rejectReason) {
+  public RejectReturnRequestBody rejectReason(@javax.annotation.Nullable String rejectReason) {
     this.rejectReason = rejectReason;
     return this;
   }
 
-   /**
+  /**
    * Seller&#39;s reason to reject buyer&#39;s return request. Please use the [Get Reject Reasons](https://partner.tiktokshop.com/docv2/page/650ab658defece02be706f98) endpoint to obtain a list of rejection reasons.
    * @return rejectReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getRejectReason() {
     return rejectReason;
   }
 
-  public void setRejectReason(String rejectReason) {
+  public void setRejectReason(@javax.annotation.Nullable String rejectReason) {
     this.rejectReason = rejectReason;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the RejectReturnRequestBody instance itself
+   */
+  public RejectReturnRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -170,12 +218,13 @@ public class RejectReturnRequestBody {
     return Objects.equals(this.comment, returnRefund202309RejectReturnRequestBody.comment) &&
         Objects.equals(this.decision, returnRefund202309RejectReturnRequestBody.decision) &&
         Objects.equals(this.images, returnRefund202309RejectReturnRequestBody.images) &&
-        Objects.equals(this.rejectReason, returnRefund202309RejectReturnRequestBody.rejectReason);
+        Objects.equals(this.rejectReason, returnRefund202309RejectReturnRequestBody.rejectReason)&&
+        Objects.equals(this.additionalProperties, returnRefund202309RejectReturnRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(comment, decision, images, rejectReason);
+    return Objects.hash(comment, decision, images, rejectReason, additionalProperties);
   }
 
   @Override
@@ -186,6 +235,7 @@ public class RejectReturnRequestBody {
     sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    rejectReason: ").append(toIndentedString(rejectReason)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -207,34 +257,22 @@ public class RejectReturnRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("comment");
-    openapiFields.add("decision");
-    openapiFields.add("images");
-    openapiFields.add("reject_reason");
+    openapiFields = new HashSet<String>(Arrays.asList("comment", "decision", "images", "reject_reason"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RejectReturnRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RejectReturnRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RejectReturnRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RejectReturnRequestBody is not found in the empty JSON string", RejectReturnRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!RejectReturnRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RejectReturnRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -278,6 +316,28 @@ public class RejectReturnRequestBody {
            @Override
            public void write(JsonWriter out, RejectReturnRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -285,29 +345,50 @@ public class RejectReturnRequestBody {
            public RejectReturnRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             RejectReturnRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RejectReturnRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RejectReturnRequestBody
-  * @throws IOException if the JSON string is invalid with respect to RejectReturnRequestBody
-  */
+  /**
+   * Create an instance of RejectReturnRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RejectReturnRequestBody
+   * @throws IOException if the JSON string is invalid with respect to RejectReturnRequestBody
+   */
   public static RejectReturnRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RejectReturnRequestBody.class);
   }
 
- /**
-  * Convert an instance of RejectReturnRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RejectReturnRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

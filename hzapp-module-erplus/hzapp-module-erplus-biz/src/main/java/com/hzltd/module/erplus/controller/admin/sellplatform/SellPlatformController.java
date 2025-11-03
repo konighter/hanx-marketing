@@ -11,6 +11,8 @@ import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformReqV
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformRespVO;
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
+import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
+import com.hzltd.module.erplus.enums.ServiceModeEnum;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -23,7 +25,9 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
@@ -87,18 +91,27 @@ public class SellPlatformController {
         return success(BeanUtils.toBean(pageResult, SellPlatformRespVO.class));
     }
 
+    @GetMapping("/serviceModes")
+    @Operation(summary = "获得销售模式")
+    @PreAuthorize("@ss.hasPermission('erp:sell-platform:query')")
+    public CommonResult<List<ServiceMode>> getServiceModeList() {
+        List<ServiceMode> result = Arrays.stream(ServiceModeEnum.values())
+                .map(e -> new ServiceMode(e.getName(), e.getCode())).collect(Collectors.toList());
+        return CommonResult.success(result);
+    }
+
 
     @GetMapping("/export-excel")
     @Operation(summary = "导出销售平台 Excel")
     @PreAuthorize("@ss.hasPermission('erp:sell-platform:export')")
     @OperateLog(type = EXPORT)
     public void exportSellPlatformExcel(@Valid SellPlatformPageReqVO pageReqVO,
-              HttpServletResponse response) throws IOException {
+                                        HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);
         List<SellPlatformDO> list = sellPlatformService.getSellPlatformPage(pageReqVO).getList();
         // 导出 Excel
         ExcelUtils.write(response, "销售平台.xls", "数据", SellPlatformRespVO.class,
-                        BeanUtils.toBean(list, SellPlatformRespVO.class));
+                BeanUtils.toBean(list, SellPlatformRespVO.class));
     }
 
 }

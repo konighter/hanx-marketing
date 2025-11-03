@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,169 +48,221 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * OptimizedImagesResponseDataImages
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class OptimizedImagesResponseDataImages {
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)
+  @javax.annotation.Nullable
   private Integer height;
 
   public static final String SERIALIZED_NAME_OPTIMIZE_STATUS = "optimize_status";
   @SerializedName(SERIALIZED_NAME_OPTIMIZE_STATUS)
+  @javax.annotation.Nullable
   private String optimizeStatus;
 
   public static final String SERIALIZED_NAME_OPTIMIZED_URI = "optimized_uri";
   @SerializedName(SERIALIZED_NAME_OPTIMIZED_URI)
+  @javax.annotation.Nullable
   private String optimizedUri;
 
   public static final String SERIALIZED_NAME_OPTIMIZED_URL = "optimized_url";
   @SerializedName(SERIALIZED_NAME_OPTIMIZED_URL)
+  @javax.annotation.Nullable
   private String optimizedUrl;
 
   public static final String SERIALIZED_NAME_ORIGINAL_URI = "original_uri";
   @SerializedName(SERIALIZED_NAME_ORIGINAL_URI)
+  @javax.annotation.Nullable
   private String originalUri;
 
   public static final String SERIALIZED_NAME_ORIGINAL_URL = "original_url";
   @SerializedName(SERIALIZED_NAME_ORIGINAL_URL)
+  @javax.annotation.Nullable
   private String originalUrl;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
+  @javax.annotation.Nullable
   private Integer width;
 
   public OptimizedImagesResponseDataImages() {
   }
 
-  public OptimizedImagesResponseDataImages height(Integer height) {
+  public OptimizedImagesResponseDataImages height(@javax.annotation.Nullable Integer height) {
     this.height = height;
     return this;
   }
 
-   /**
+  /**
    * The expected image height after optimization.
    * @return height
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getHeight() {
     return height;
   }
 
-  public void setHeight(Integer height) {
+  public void setHeight(@javax.annotation.Nullable Integer height) {
     this.height = height;
   }
 
 
-  public OptimizedImagesResponseDataImages optimizeStatus(String optimizeStatus) {
+  public OptimizedImagesResponseDataImages optimizeStatus(@javax.annotation.Nullable String optimizeStatus) {
     this.optimizeStatus = optimizeStatus;
     return this;
   }
 
-   /**
+  /**
    * The optimization status. Possible values: - SUCCESS: The image has been successfully optimized. - IGNORE: The image was previously optimized, so no further action was taken. - PROCESSING: The optimization is in progress, and typically completes within a few seconds. Call this API again to obtain the final optimization status.
    * @return optimizeStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getOptimizeStatus() {
     return optimizeStatus;
   }
 
-  public void setOptimizeStatus(String optimizeStatus) {
+  public void setOptimizeStatus(@javax.annotation.Nullable String optimizeStatus) {
     this.optimizeStatus = optimizeStatus;
   }
 
 
-  public OptimizedImagesResponseDataImages optimizedUri(String optimizedUri) {
+  public OptimizedImagesResponseDataImages optimizedUri(@javax.annotation.Nullable String optimizedUri) {
     this.optimizedUri = optimizedUri;
     return this;
   }
 
-   /**
+  /**
    * The URI of the image after optimization. Pass this value when creating or editing a product to associate the image with the product.  Applicable only if &#x60;optimize_status&#x60;is &#x60;SUCCESS&#x60;.
    * @return optimizedUri
-  **/
+   */
   @javax.annotation.Nullable
   public String getOptimizedUri() {
     return optimizedUri;
   }
 
-  public void setOptimizedUri(String optimizedUri) {
+  public void setOptimizedUri(@javax.annotation.Nullable String optimizedUri) {
     this.optimizedUri = optimizedUri;
   }
 
 
-  public OptimizedImagesResponseDataImages optimizedUrl(String optimizedUrl) {
+  public OptimizedImagesResponseDataImages optimizedUrl(@javax.annotation.Nullable String optimizedUrl) {
     this.optimizedUrl = optimizedUrl;
     return this;
   }
 
-   /**
+  /**
    * The URL of the image after optimization. Use this URL in product descriptions by embedding it within an HTML &#x60;&lt;img&gt;&#x60; tag.  Applicable only if &#x60;optimize_status&#x60;is &#x60;SUCCESS&#x60;.
    * @return optimizedUrl
-  **/
+   */
   @javax.annotation.Nullable
   public String getOptimizedUrl() {
     return optimizedUrl;
   }
 
-  public void setOptimizedUrl(String optimizedUrl) {
+  public void setOptimizedUrl(@javax.annotation.Nullable String optimizedUrl) {
     this.optimizedUrl = optimizedUrl;
   }
 
 
-  public OptimizedImagesResponseDataImages originalUri(String originalUri) {
+  public OptimizedImagesResponseDataImages originalUri(@javax.annotation.Nullable String originalUri) {
     this.originalUri = originalUri;
     return this;
   }
 
-   /**
+  /**
    * The original URI of the image to be optimized.
    * @return originalUri
-  **/
+   */
   @javax.annotation.Nullable
   public String getOriginalUri() {
     return originalUri;
   }
 
-  public void setOriginalUri(String originalUri) {
+  public void setOriginalUri(@javax.annotation.Nullable String originalUri) {
     this.originalUri = originalUri;
   }
 
 
-  public OptimizedImagesResponseDataImages originalUrl(String originalUrl) {
+  public OptimizedImagesResponseDataImages originalUrl(@javax.annotation.Nullable String originalUrl) {
     this.originalUrl = originalUrl;
     return this;
   }
 
-   /**
+  /**
    * The original URL of the image to be optimized.
    * @return originalUrl
-  **/
+   */
   @javax.annotation.Nullable
   public String getOriginalUrl() {
     return originalUrl;
   }
 
-  public void setOriginalUrl(String originalUrl) {
+  public void setOriginalUrl(@javax.annotation.Nullable String originalUrl) {
     this.originalUrl = originalUrl;
   }
 
 
-  public OptimizedImagesResponseDataImages width(Integer width) {
+  public OptimizedImagesResponseDataImages width(@javax.annotation.Nullable Integer width) {
     this.width = width;
     return this;
   }
 
-   /**
+  /**
    * The expected image width after optimization.
    * @return width
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getWidth() {
     return width;
   }
 
-  public void setWidth(Integer width) {
+  public void setWidth(@javax.annotation.Nullable Integer width) {
     this.width = width;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the OptimizedImagesResponseDataImages instance itself
+   */
+  public OptimizedImagesResponseDataImages putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -231,12 +282,13 @@ public class OptimizedImagesResponseDataImages {
         Objects.equals(this.optimizedUrl, product202404OptimizedImagesResponseDataImages.optimizedUrl) &&
         Objects.equals(this.originalUri, product202404OptimizedImagesResponseDataImages.originalUri) &&
         Objects.equals(this.originalUrl, product202404OptimizedImagesResponseDataImages.originalUrl) &&
-        Objects.equals(this.width, product202404OptimizedImagesResponseDataImages.width);
+        Objects.equals(this.width, product202404OptimizedImagesResponseDataImages.width)&&
+        Objects.equals(this.additionalProperties, product202404OptimizedImagesResponseDataImages.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(height, optimizeStatus, optimizedUri, optimizedUrl, originalUri, originalUrl, width);
+    return Objects.hash(height, optimizeStatus, optimizedUri, optimizedUrl, originalUri, originalUrl, width, additionalProperties);
   }
 
   @Override
@@ -250,6 +302,7 @@ public class OptimizedImagesResponseDataImages {
     sb.append("    originalUri: ").append(toIndentedString(originalUri)).append("\n");
     sb.append("    originalUrl: ").append(toIndentedString(originalUrl)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -271,37 +324,22 @@ public class OptimizedImagesResponseDataImages {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("height");
-    openapiFields.add("optimize_status");
-    openapiFields.add("optimized_uri");
-    openapiFields.add("optimized_url");
-    openapiFields.add("original_uri");
-    openapiFields.add("original_url");
-    openapiFields.add("width");
+    openapiFields = new HashSet<String>(Arrays.asList("height", "optimize_status", "optimized_uri", "optimized_url", "original_uri", "original_url", "width"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to OptimizedImagesResponseDataImages
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to OptimizedImagesResponseDataImages
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!OptimizedImagesResponseDataImages.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in OptimizedImagesResponseDataImages is not found in the empty JSON string", OptimizedImagesResponseDataImages.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!OptimizedImagesResponseDataImages.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `OptimizedImagesResponseDataImages` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -337,6 +375,28 @@ public class OptimizedImagesResponseDataImages {
            @Override
            public void write(JsonWriter out, OptimizedImagesResponseDataImages value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -344,29 +404,50 @@ public class OptimizedImagesResponseDataImages {
            public OptimizedImagesResponseDataImages read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             OptimizedImagesResponseDataImages instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of OptimizedImagesResponseDataImages given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of OptimizedImagesResponseDataImages
-  * @throws IOException if the JSON string is invalid with respect to OptimizedImagesResponseDataImages
-  */
+  /**
+   * Create an instance of OptimizedImagesResponseDataImages given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of OptimizedImagesResponseDataImages
+   * @throws IOException if the JSON string is invalid with respect to OptimizedImagesResponseDataImages
+   */
   public static OptimizedImagesResponseDataImages fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, OptimizedImagesResponseDataImages.class);
   }
 
- /**
-  * Convert an instance of OptimizedImagesResponseDataImages to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of OptimizedImagesResponseDataImages to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

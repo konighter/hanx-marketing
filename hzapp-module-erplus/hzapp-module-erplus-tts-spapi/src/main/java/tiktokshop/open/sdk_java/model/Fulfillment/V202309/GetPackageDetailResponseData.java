@@ -46,7 +46,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -58,275 +57,298 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetPackageDetailResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetPackageDetailResponseData {
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DELIVERY_OPTION_ID = "delivery_option_id";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION_ID)
+  @javax.annotation.Nullable
   private String deliveryOptionId;
 
   public static final String SERIALIZED_NAME_DELIVERY_OPTION_NAME = "delivery_option_name";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION_NAME)
+  @javax.annotation.Nullable
   private String deliveryOptionName;
 
   public static final String SERIALIZED_NAME_DIMENSION = "dimension";
   @SerializedName(SERIALIZED_NAME_DIMENSION)
+  @javax.annotation.Nullable
   private GetPackageDetailResponseDataDimension dimension;
 
   public static final String SERIALIZED_NAME_HANDOVER_METHOD = "handover_method";
   @SerializedName(SERIALIZED_NAME_HANDOVER_METHOD)
+  @javax.annotation.Nullable
   private String handoverMethod;
 
   public static final String SERIALIZED_NAME_HAS_MULTI_SKUS = "has_multi_skus";
   @SerializedName(SERIALIZED_NAME_HAS_MULTI_SKUS)
+  @javax.annotation.Nullable
   private Boolean hasMultiSkus;
 
   public static final String SERIALIZED_NAME_INSURANCE = "insurance";
   @SerializedName(SERIALIZED_NAME_INSURANCE)
+  @javax.annotation.Nullable
   private GetPackageDetailResponseDataInsurance insurance;
 
   public static final String SERIALIZED_NAME_LAST_MILE_TRACKING_NUMBER = "last_mile_tracking_number";
   @SerializedName(SERIALIZED_NAME_LAST_MILE_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String lastMileTrackingNumber;
 
   public static final String SERIALIZED_NAME_NOTE_TAG = "note_tag";
   @SerializedName(SERIALIZED_NAME_NOTE_TAG)
+  @javax.annotation.Nullable
   private String noteTag;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEM_IDS = "order_line_item_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEM_IDS)
+  @javax.annotation.Nullable
   private List<String> orderLineItemIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ORDERS = "orders";
   @SerializedName(SERIALIZED_NAME_ORDERS)
+  @javax.annotation.Nullable
   private List<GetPackageDetailResponseDataOrders> orders = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PACKAGE_ID = "package_id";
   @SerializedName(SERIALIZED_NAME_PACKAGE_ID)
+  @javax.annotation.Nullable
   private String packageId;
 
   public static final String SERIALIZED_NAME_PACKAGE_STATUS = "package_status";
   @SerializedName(SERIALIZED_NAME_PACKAGE_STATUS)
+  @javax.annotation.Nullable
   private String packageStatus;
 
   public static final String SERIALIZED_NAME_PICKUP_SLOT = "pickup_slot";
   @SerializedName(SERIALIZED_NAME_PICKUP_SLOT)
+  @javax.annotation.Nullable
   private GetPackageDetailResponseDataPickupSlot pickupSlot;
 
   public static final String SERIALIZED_NAME_RECIPIENT_ADDRESS = "recipient_address";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_ADDRESS)
+  @javax.annotation.Nullable
   private GetPackageDetailResponseDataRecipientAddress recipientAddress;
 
   public static final String SERIALIZED_NAME_SENDER_ADDRESS = "sender_address";
   @SerializedName(SERIALIZED_NAME_SENDER_ADDRESS)
+  @javax.annotation.Nullable
   private GetPackageDetailResponseDataSenderAddress senderAddress;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_ID = "shipping_provider_id";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_ID)
+  @javax.annotation.Nullable
   private String shippingProviderId;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_NAME = "shipping_provider_name";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_NAME)
+  @javax.annotation.Nullable
   private String shippingProviderName;
 
   public static final String SERIALIZED_NAME_SHIPPING_TYPE = "shipping_type";
   @SerializedName(SERIALIZED_NAME_SHIPPING_TYPE)
+  @javax.annotation.Nullable
   private String shippingType;
 
   public static final String SERIALIZED_NAME_SPLIT_AND_COMBINE_TAG = "split_and_combine_tag";
   @SerializedName(SERIALIZED_NAME_SPLIT_AND_COMBINE_TAG)
+  @javax.annotation.Nullable
   private String splitAndCombineTag;
 
   public static final String SERIALIZED_NAME_TRACKING_NUMBER = "tracking_number";
   @SerializedName(SERIALIZED_NAME_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String trackingNumber;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
   @SerializedName(SERIALIZED_NAME_WEIGHT)
+  @javax.annotation.Nullable
   private GetPackageDetailResponseDataWeight weight;
 
   public GetPackageDetailResponseData() {
   }
 
-  public GetPackageDetailResponseData createTime(Long createTime) {
+  public GetPackageDetailResponseData createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * Package creation time. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetPackageDetailResponseData deliveryOptionId(String deliveryOptionId) {
+  public GetPackageDetailResponseData deliveryOptionId(@javax.annotation.Nullable String deliveryOptionId) {
     this.deliveryOptionId = deliveryOptionId;
     return this;
   }
 
-   /**
+  /**
    * Order delivery option ID. Delivery option ID is mapped to seller configured logistics templates ID.
    * @return deliveryOptionId
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryOptionId() {
     return deliveryOptionId;
   }
 
-  public void setDeliveryOptionId(String deliveryOptionId) {
+  public void setDeliveryOptionId(@javax.annotation.Nullable String deliveryOptionId) {
     this.deliveryOptionId = deliveryOptionId;
   }
 
 
-  public GetPackageDetailResponseData deliveryOptionName(String deliveryOptionName) {
+  public GetPackageDetailResponseData deliveryOptionName(@javax.annotation.Nullable String deliveryOptionName) {
     this.deliveryOptionName = deliveryOptionName;
     return this;
   }
 
-   /**
+  /**
    * Delivery option name. For display purposes only.
    * @return deliveryOptionName
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryOptionName() {
     return deliveryOptionName;
   }
 
-  public void setDeliveryOptionName(String deliveryOptionName) {
+  public void setDeliveryOptionName(@javax.annotation.Nullable String deliveryOptionName) {
     this.deliveryOptionName = deliveryOptionName;
   }
 
 
-  public GetPackageDetailResponseData dimension(GetPackageDetailResponseDataDimension dimension) {
+  public GetPackageDetailResponseData dimension(@javax.annotation.Nullable GetPackageDetailResponseDataDimension dimension) {
     this.dimension = dimension;
     return this;
   }
 
-   /**
+  /**
    * Get dimension
    * @return dimension
-  **/
+   */
   @javax.annotation.Nullable
   public GetPackageDetailResponseDataDimension getDimension() {
     return dimension;
   }
 
-  public void setDimension(GetPackageDetailResponseDataDimension dimension) {
+  public void setDimension(@javax.annotation.Nullable GetPackageDetailResponseDataDimension dimension) {
     this.dimension = dimension;
   }
 
 
-  public GetPackageDetailResponseData handoverMethod(String handoverMethod) {
+  public GetPackageDetailResponseData handoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
     return this;
   }
 
-   /**
+  /**
    * Whether the package is delivered by pick up or drop off. Possible values: - &#x60;PICKUP&#x60;: A Logistics carrier will pickup the package(s) from the seller&#39;s pickup address. - &#x60;DROP_OFF&#x60;: Seller will need to drop off the package(s) to a designated location.
    * @return handoverMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandoverMethod() {
     return handoverMethod;
   }
 
-  public void setHandoverMethod(String handoverMethod) {
+  public void setHandoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
   }
 
 
-  public GetPackageDetailResponseData hasMultiSkus(Boolean hasMultiSkus) {
+  public GetPackageDetailResponseData hasMultiSkus(@javax.annotation.Nullable Boolean hasMultiSkus) {
     this.hasMultiSkus = hasMultiSkus;
     return this;
   }
 
-   /**
+  /**
    * Whether there are multiple SKU IDs in a package.
    * @return hasMultiSkus
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getHasMultiSkus() {
     return hasMultiSkus;
   }
 
-  public void setHasMultiSkus(Boolean hasMultiSkus) {
+  public void setHasMultiSkus(@javax.annotation.Nullable Boolean hasMultiSkus) {
     this.hasMultiSkus = hasMultiSkus;
   }
 
 
-  public GetPackageDetailResponseData insurance(GetPackageDetailResponseDataInsurance insurance) {
+  public GetPackageDetailResponseData insurance(@javax.annotation.Nullable GetPackageDetailResponseDataInsurance insurance) {
     this.insurance = insurance;
     return this;
   }
 
-   /**
+  /**
    * Get insurance
    * @return insurance
-  **/
+   */
   @javax.annotation.Nullable
   public GetPackageDetailResponseDataInsurance getInsurance() {
     return insurance;
   }
 
-  public void setInsurance(GetPackageDetailResponseDataInsurance insurance) {
+  public void setInsurance(@javax.annotation.Nullable GetPackageDetailResponseDataInsurance insurance) {
     this.insurance = insurance;
   }
 
 
-  public GetPackageDetailResponseData lastMileTrackingNumber(String lastMileTrackingNumber) {
+  public GetPackageDetailResponseData lastMileTrackingNumber(@javax.annotation.Nullable String lastMileTrackingNumber) {
     this.lastMileTrackingNumber = lastMileTrackingNumber;
     return this;
   }
 
-   /**
+  /**
    * For cross-border order only. Cross-border order last mile tracking number. 
    * @return lastMileTrackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastMileTrackingNumber() {
     return lastMileTrackingNumber;
   }
 
-  public void setLastMileTrackingNumber(String lastMileTrackingNumber) {
+  public void setLastMileTrackingNumber(@javax.annotation.Nullable String lastMileTrackingNumber) {
     this.lastMileTrackingNumber = lastMileTrackingNumber;
   }
 
 
-  public GetPackageDetailResponseData noteTag(String noteTag) {
+  public GetPackageDetailResponseData noteTag(@javax.annotation.Nullable String noteTag) {
     this.noteTag = noteTag;
     return this;
   }
 
-   /**
+  /**
    * Possible values: - &#x60;BUYER_UNNOTED&#x60;: The order has not been noted by buyer. - &#x60;BUYER_NOTED&#x60;: The order has been noted by buyer. 
    * @return noteTag
-  **/
+   */
   @javax.annotation.Nullable
   public String getNoteTag() {
     return noteTag;
   }
 
-  public void setNoteTag(String noteTag) {
+  public void setNoteTag(@javax.annotation.Nullable String noteTag) {
     this.noteTag = noteTag;
   }
 
 
-  public GetPackageDetailResponseData orderLineItemIds(List<String> orderLineItemIds) {
+  public GetPackageDetailResponseData orderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
     return this;
   }
@@ -339,21 +361,21 @@ public class GetPackageDetailResponseData {
     return this;
   }
 
-   /**
+  /**
    * The order line item ID contained in the package.
    * @return orderLineItemIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineItemIds() {
     return orderLineItemIds;
   }
 
-  public void setOrderLineItemIds(List<String> orderLineItemIds) {
+  public void setOrderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
   }
 
 
-  public GetPackageDetailResponseData orders(List<GetPackageDetailResponseDataOrders> orders) {
+  public GetPackageDetailResponseData orders(@javax.annotation.Nullable List<GetPackageDetailResponseDataOrders> orders) {
     this.orders = orders;
     return this;
   }
@@ -366,245 +388,290 @@ public class GetPackageDetailResponseData {
     return this;
   }
 
-   /**
+  /**
    * The response list of TikTok Shop orders.
    * @return orders
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetPackageDetailResponseDataOrders> getOrders() {
     return orders;
   }
 
-  public void setOrders(List<GetPackageDetailResponseDataOrders> orders) {
+  public void setOrders(@javax.annotation.Nullable List<GetPackageDetailResponseDataOrders> orders) {
     this.orders = orders;
   }
 
 
-  public GetPackageDetailResponseData packageId(String packageId) {
+  public GetPackageDetailResponseData packageId(@javax.annotation.Nullable String packageId) {
     this.packageId = packageId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop package ID. 
    * @return packageId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPackageId() {
     return packageId;
   }
 
-  public void setPackageId(String packageId) {
+  public void setPackageId(@javax.annotation.Nullable String packageId) {
     this.packageId = packageId;
   }
 
 
-  public GetPackageDetailResponseData packageStatus(String packageStatus) {
+  public GetPackageDetailResponseData packageStatus(@javax.annotation.Nullable String packageStatus) {
     this.packageStatus = packageStatus;
     return this;
   }
 
-   /**
+  /**
    * Possible values: - &#x60;PROCESSING&#x60;: Package has been arranged by seller. Waiting for carrier to collect the parcel. - &#x60;FULFILLING&#x60;: Package has been collected by carrier and in transit. - &#x60;COMPLETED&#x60;: Package has been delivered. - &#x60;CANCELLED&#x60;: Package has been canceled. Normally, the package is canceled due to the package being lost or damaged.
    * @return packageStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getPackageStatus() {
     return packageStatus;
   }
 
-  public void setPackageStatus(String packageStatus) {
+  public void setPackageStatus(@javax.annotation.Nullable String packageStatus) {
     this.packageStatus = packageStatus;
   }
 
 
-  public GetPackageDetailResponseData pickupSlot(GetPackageDetailResponseDataPickupSlot pickupSlot) {
+  public GetPackageDetailResponseData pickupSlot(@javax.annotation.Nullable GetPackageDetailResponseDataPickupSlot pickupSlot) {
     this.pickupSlot = pickupSlot;
     return this;
   }
 
-   /**
+  /**
    * Get pickupSlot
    * @return pickupSlot
-  **/
+   */
   @javax.annotation.Nullable
   public GetPackageDetailResponseDataPickupSlot getPickupSlot() {
     return pickupSlot;
   }
 
-  public void setPickupSlot(GetPackageDetailResponseDataPickupSlot pickupSlot) {
+  public void setPickupSlot(@javax.annotation.Nullable GetPackageDetailResponseDataPickupSlot pickupSlot) {
     this.pickupSlot = pickupSlot;
   }
 
 
-  public GetPackageDetailResponseData recipientAddress(GetPackageDetailResponseDataRecipientAddress recipientAddress) {
+  public GetPackageDetailResponseData recipientAddress(@javax.annotation.Nullable GetPackageDetailResponseDataRecipientAddress recipientAddress) {
     this.recipientAddress = recipientAddress;
     return this;
   }
 
-   /**
+  /**
    * Get recipientAddress
    * @return recipientAddress
-  **/
+   */
   @javax.annotation.Nullable
   public GetPackageDetailResponseDataRecipientAddress getRecipientAddress() {
     return recipientAddress;
   }
 
-  public void setRecipientAddress(GetPackageDetailResponseDataRecipientAddress recipientAddress) {
+  public void setRecipientAddress(@javax.annotation.Nullable GetPackageDetailResponseDataRecipientAddress recipientAddress) {
     this.recipientAddress = recipientAddress;
   }
 
 
-  public GetPackageDetailResponseData senderAddress(GetPackageDetailResponseDataSenderAddress senderAddress) {
+  public GetPackageDetailResponseData senderAddress(@javax.annotation.Nullable GetPackageDetailResponseDataSenderAddress senderAddress) {
     this.senderAddress = senderAddress;
     return this;
   }
 
-   /**
+  /**
    * Get senderAddress
    * @return senderAddress
-  **/
+   */
   @javax.annotation.Nullable
   public GetPackageDetailResponseDataSenderAddress getSenderAddress() {
     return senderAddress;
   }
 
-  public void setSenderAddress(GetPackageDetailResponseDataSenderAddress senderAddress) {
+  public void setSenderAddress(@javax.annotation.Nullable GetPackageDetailResponseDataSenderAddress senderAddress) {
     this.senderAddress = senderAddress;
   }
 
 
-  public GetPackageDetailResponseData shippingProviderId(String shippingProviderId) {
+  public GetPackageDetailResponseData shippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
     return this;
   }
 
-   /**
+  /**
    * Package shipping provider ID.
    * @return shippingProviderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderId() {
     return shippingProviderId;
   }
 
-  public void setShippingProviderId(String shippingProviderId) {
+  public void setShippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
   }
 
 
-  public GetPackageDetailResponseData shippingProviderName(String shippingProviderName) {
+  public GetPackageDetailResponseData shippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
     return this;
   }
 
-   /**
+  /**
    * Package shipping provider name.
    * @return shippingProviderName
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderName() {
     return shippingProviderName;
   }
 
-  public void setShippingProviderName(String shippingProviderName) {
+  public void setShippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
   }
 
 
-  public GetPackageDetailResponseData shippingType(String shippingType) {
+  public GetPackageDetailResponseData shippingType(@javax.annotation.Nullable String shippingType) {
     this.shippingType = shippingType;
     return this;
   }
 
-   /**
+  /**
    * The method of delivery.  Possible values: - &#x60;TIKTOK&#x60;: Shipping service provided by TikTok. The seller should obtain a shipping label from TikTok. - &#x60;SELLER&#x60;: Seller provides shipping, including through 3rd party fulfillment providers on behalf of the seller. 
    * @return shippingType
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingType() {
     return shippingType;
   }
 
-  public void setShippingType(String shippingType) {
+  public void setShippingType(@javax.annotation.Nullable String shippingType) {
     this.shippingType = shippingType;
   }
 
 
-  public GetPackageDetailResponseData splitAndCombineTag(String splitAndCombineTag) {
+  public GetPackageDetailResponseData splitAndCombineTag(@javax.annotation.Nullable String splitAndCombineTag) {
     this.splitAndCombineTag = splitAndCombineTag;
     return this;
   }
 
-   /**
+  /**
    * Possible values: - &#x60;DEFAULT&#x60;: The package has not undergone any combine or split operation. - &#x60;COMBINE&#x60;: The package has been consolidated with another order. - &#x60;SPLIT&#x60;: The order has been split into multiple orders.
    * @return splitAndCombineTag
-  **/
+   */
   @javax.annotation.Nullable
   public String getSplitAndCombineTag() {
     return splitAndCombineTag;
   }
 
-  public void setSplitAndCombineTag(String splitAndCombineTag) {
+  public void setSplitAndCombineTag(@javax.annotation.Nullable String splitAndCombineTag) {
     this.splitAndCombineTag = splitAndCombineTag;
   }
 
 
-  public GetPackageDetailResponseData trackingNumber(String trackingNumber) {
+  public GetPackageDetailResponseData trackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
     return this;
   }
 
-   /**
+  /**
    * Package tracking number.
    * @return trackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getTrackingNumber() {
     return trackingNumber;
   }
 
-  public void setTrackingNumber(String trackingNumber) {
+  public void setTrackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
   }
 
 
-  public GetPackageDetailResponseData updateTime(Long updateTime) {
+  public GetPackageDetailResponseData updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * The time the package has been updated. Unix timestamp.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
   }
 
 
-  public GetPackageDetailResponseData weight(GetPackageDetailResponseDataWeight weight) {
+  public GetPackageDetailResponseData weight(@javax.annotation.Nullable GetPackageDetailResponseDataWeight weight) {
     this.weight = weight;
     return this;
   }
 
-   /**
+  /**
    * Get weight
    * @return weight
-  **/
+   */
   @javax.annotation.Nullable
   public GetPackageDetailResponseDataWeight getWeight() {
     return weight;
   }
 
-  public void setWeight(GetPackageDetailResponseDataWeight weight) {
+  public void setWeight(@javax.annotation.Nullable GetPackageDetailResponseDataWeight weight) {
     this.weight = weight;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetPackageDetailResponseData instance itself
+   */
+  public GetPackageDetailResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -640,12 +707,13 @@ public class GetPackageDetailResponseData {
         Objects.equals(this.splitAndCombineTag, fulfillment202309GetPackageDetailResponseData.splitAndCombineTag) &&
         Objects.equals(this.trackingNumber, fulfillment202309GetPackageDetailResponseData.trackingNumber) &&
         Objects.equals(this.updateTime, fulfillment202309GetPackageDetailResponseData.updateTime) &&
-        Objects.equals(this.weight, fulfillment202309GetPackageDetailResponseData.weight);
+        Objects.equals(this.weight, fulfillment202309GetPackageDetailResponseData.weight)&&
+        Objects.equals(this.additionalProperties, fulfillment202309GetPackageDetailResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createTime, deliveryOptionId, deliveryOptionName, dimension, handoverMethod, hasMultiSkus, insurance, lastMileTrackingNumber, noteTag, orderLineItemIds, orders, packageId, packageStatus, pickupSlot, recipientAddress, senderAddress, shippingProviderId, shippingProviderName, shippingType, splitAndCombineTag, trackingNumber, updateTime, weight);
+    return Objects.hash(createTime, deliveryOptionId, deliveryOptionName, dimension, handoverMethod, hasMultiSkus, insurance, lastMileTrackingNumber, noteTag, orderLineItemIds, orders, packageId, packageStatus, pickupSlot, recipientAddress, senderAddress, shippingProviderId, shippingProviderName, shippingType, splitAndCombineTag, trackingNumber, updateTime, weight, additionalProperties);
   }
 
   @Override
@@ -675,6 +743,7 @@ public class GetPackageDetailResponseData {
     sb.append("    trackingNumber: ").append(toIndentedString(trackingNumber)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -696,53 +765,22 @@ public class GetPackageDetailResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("create_time");
-    openapiFields.add("delivery_option_id");
-    openapiFields.add("delivery_option_name");
-    openapiFields.add("dimension");
-    openapiFields.add("handover_method");
-    openapiFields.add("has_multi_skus");
-    openapiFields.add("insurance");
-    openapiFields.add("last_mile_tracking_number");
-    openapiFields.add("note_tag");
-    openapiFields.add("order_line_item_ids");
-    openapiFields.add("orders");
-    openapiFields.add("package_id");
-    openapiFields.add("package_status");
-    openapiFields.add("pickup_slot");
-    openapiFields.add("recipient_address");
-    openapiFields.add("sender_address");
-    openapiFields.add("shipping_provider_id");
-    openapiFields.add("shipping_provider_name");
-    openapiFields.add("shipping_type");
-    openapiFields.add("split_and_combine_tag");
-    openapiFields.add("tracking_number");
-    openapiFields.add("update_time");
-    openapiFields.add("weight");
+    openapiFields = new HashSet<String>(Arrays.asList("create_time", "delivery_option_id", "delivery_option_name", "dimension", "handover_method", "has_multi_skus", "insurance", "last_mile_tracking_number", "note_tag", "order_line_item_ids", "orders", "package_id", "package_status", "pickup_slot", "recipient_address", "sender_address", "shipping_provider_id", "shipping_provider_name", "shipping_type", "split_and_combine_tag", "tracking_number", "update_time", "weight"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetPackageDetailResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetPackageDetailResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetPackageDetailResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetPackageDetailResponseData is not found in the empty JSON string", GetPackageDetailResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetPackageDetailResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetPackageDetailResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -841,6 +879,28 @@ public class GetPackageDetailResponseData {
            @Override
            public void write(JsonWriter out, GetPackageDetailResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -848,29 +908,50 @@ public class GetPackageDetailResponseData {
            public GetPackageDetailResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetPackageDetailResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetPackageDetailResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetPackageDetailResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetPackageDetailResponseData
-  */
+  /**
+   * Create an instance of GetPackageDetailResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetPackageDetailResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetPackageDetailResponseData
+   */
   public static GetPackageDetailResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetPackageDetailResponseData.class);
   }
 
- /**
-  * Convert an instance of GetPackageDetailResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetPackageDetailResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

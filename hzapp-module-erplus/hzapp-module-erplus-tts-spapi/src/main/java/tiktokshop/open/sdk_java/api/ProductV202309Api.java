@@ -141,12 +141,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309BrandsGetCall(Integer pageSize, String xTtsAccessToken, String contentType, String categoryId, Boolean isAuthorized, String brandName, String pageToken, String categoryVersion, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309BrandsGetCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryId, @javax.annotation.Nullable Boolean isAuthorized, @javax.annotation.Nullable String brandName, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -199,14 +200,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -222,12 +215,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309BrandsGetValidateBeforeCall(Integer pageSize, String xTtsAccessToken, String contentType, String categoryId, Boolean isAuthorized, String brandName, String pageToken, String categoryVersion, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309BrandsGetValidateBeforeCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryId, @javax.annotation.Nullable Boolean isAuthorized, @javax.annotation.Nullable String brandName, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pageSize' is set
         if (pageSize == null) {
             throw new ApiException("Missing the required parameter 'pageSize' when calling product202309BrandsGet(Async)");
@@ -262,12 +265,13 @@ public class ProductV202309Api {
      * @return GetBrandsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetBrandsResponse product202309BrandsGet(Integer pageSize, String xTtsAccessToken, String contentType, String categoryId, Boolean isAuthorized, String brandName, String pageToken, String categoryVersion, String shopCipher) throws ApiException {
+    public GetBrandsResponse product202309BrandsGet(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryId, @javax.annotation.Nullable Boolean isAuthorized, @javax.annotation.Nullable String brandName, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetBrandsResponse> localVarResp = product202309BrandsGetWithHttpInfo(pageSize, xTtsAccessToken, contentType, categoryId, isAuthorized, brandName, pageToken, categoryVersion, shopCipher);
         return localVarResp.getData();
     }
@@ -287,12 +291,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;GetBrandsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetBrandsResponse> product202309BrandsGetWithHttpInfo(Integer pageSize, String xTtsAccessToken, String contentType, String categoryId, Boolean isAuthorized, String brandName, String pageToken, String categoryVersion, String shopCipher) throws ApiException {
+    public ApiResponse<GetBrandsResponse> product202309BrandsGetWithHttpInfo(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryId, @javax.annotation.Nullable Boolean isAuthorized, @javax.annotation.Nullable String brandName, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202309BrandsGetValidateBeforeCall(pageSize, xTtsAccessToken, contentType, categoryId, isAuthorized, brandName, pageToken, categoryVersion, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetBrandsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -314,12 +319,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309BrandsGetAsync(Integer pageSize, String xTtsAccessToken, String contentType, String categoryId, Boolean isAuthorized, String brandName, String pageToken, String categoryVersion, String shopCipher, final ApiCallback<GetBrandsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309BrandsGetAsync(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryId, @javax.annotation.Nullable Boolean isAuthorized, @javax.annotation.Nullable String brandName, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetBrandsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309BrandsGetValidateBeforeCall(pageSize, xTtsAccessToken, contentType, categoryId, isAuthorized, brandName, pageToken, categoryVersion, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetBrandsResponse>(){}.getType();
@@ -335,12 +341,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309BrandsPostCall(String xTtsAccessToken, String contentType, CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309BrandsPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -365,14 +372,6 @@ public class ProductV202309Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -389,12 +388,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309BrandsPostValidateBeforeCall(String xTtsAccessToken, String contentType, CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309BrandsPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309BrandsPost(Async)");
@@ -418,12 +427,13 @@ public class ProductV202309Api {
      * @return CreateCustomBrandsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CreateCustomBrandsResponse product202309BrandsPost(String xTtsAccessToken, String contentType, CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody) throws ApiException {
+    public CreateCustomBrandsResponse product202309BrandsPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody) throws ApiException {
         ApiResponse<CreateCustomBrandsResponse> localVarResp = product202309BrandsPostWithHttpInfo(xTtsAccessToken, contentType, product202309CreateCustomBrandsRequestBody);
         return localVarResp.getData();
     }
@@ -437,12 +447,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;CreateCustomBrandsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateCustomBrandsResponse> product202309BrandsPostWithHttpInfo(String xTtsAccessToken, String contentType, CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody) throws ApiException {
+    public ApiResponse<CreateCustomBrandsResponse> product202309BrandsPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309BrandsPostValidateBeforeCall(xTtsAccessToken, contentType, product202309CreateCustomBrandsRequestBody, null);
         Type localVarReturnType = new TypeToken<CreateCustomBrandsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -458,12 +469,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309BrandsPostAsync(String xTtsAccessToken, String contentType, CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody, final ApiCallback<CreateCustomBrandsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309BrandsPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateCustomBrandsRequestBody product202309CreateCustomBrandsRequestBody, final ApiCallback<CreateCustomBrandsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309BrandsPostValidateBeforeCall(xTtsAccessToken, contentType, product202309CreateCustomBrandsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CreateCustomBrandsResponse>(){}.getType();
@@ -482,12 +494,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesCategoryIdAttributesGetCall(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesCategoryIdAttributesGetCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -525,14 +538,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -548,12 +553,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309CategoriesCategoryIdAttributesGetValidateBeforeCall(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309CategoriesCategoryIdAttributesGetValidateBeforeCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'categoryId' is set
         if (categoryId == null) {
             throw new ApiException("Missing the required parameter 'categoryId' when calling product202309CategoriesCategoryIdAttributesGet(Async)");
@@ -585,12 +600,13 @@ public class ProductV202309Api {
      * @return GetAttributesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetAttributesResponse product202309CategoriesCategoryIdAttributesGet(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion, String shopCipher) throws ApiException {
+    public GetAttributesResponse product202309CategoriesCategoryIdAttributesGet(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetAttributesResponse> localVarResp = product202309CategoriesCategoryIdAttributesGetWithHttpInfo(categoryId, xTtsAccessToken, contentType, locale, categoryVersion, shopCipher);
         return localVarResp.getData();
     }
@@ -607,12 +623,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;GetAttributesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetAttributesResponse> product202309CategoriesCategoryIdAttributesGetWithHttpInfo(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion, String shopCipher) throws ApiException {
+    public ApiResponse<GetAttributesResponse> product202309CategoriesCategoryIdAttributesGetWithHttpInfo(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202309CategoriesCategoryIdAttributesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, locale, categoryVersion, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetAttributesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -631,12 +648,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesCategoryIdAttributesGetAsync(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion, String shopCipher, final ApiCallback<GetAttributesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesCategoryIdAttributesGetAsync(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetAttributesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309CategoriesCategoryIdAttributesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, locale, categoryVersion, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetAttributesResponse>(){}.getType();
@@ -654,12 +672,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesCategoryIdGlobalAttributesGetCall(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesCategoryIdGlobalAttributesGetCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -693,14 +712,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("category_version", categoryVersion));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -716,12 +727,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309CategoriesCategoryIdGlobalAttributesGetValidateBeforeCall(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309CategoriesCategoryIdGlobalAttributesGetValidateBeforeCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'categoryId' is set
         if (categoryId == null) {
             throw new ApiException("Missing the required parameter 'categoryId' when calling product202309CategoriesCategoryIdGlobalAttributesGet(Async)");
@@ -752,12 +773,13 @@ public class ProductV202309Api {
      * @return GetGlobalAttributesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetGlobalAttributesResponse product202309CategoriesCategoryIdGlobalAttributesGet(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion) throws ApiException {
+    public GetGlobalAttributesResponse product202309CategoriesCategoryIdGlobalAttributesGet(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion) throws ApiException {
         ApiResponse<GetGlobalAttributesResponse> localVarResp = product202309CategoriesCategoryIdGlobalAttributesGetWithHttpInfo(categoryId, xTtsAccessToken, contentType, locale, categoryVersion);
         return localVarResp.getData();
     }
@@ -773,12 +795,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;GetGlobalAttributesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetGlobalAttributesResponse> product202309CategoriesCategoryIdGlobalAttributesGetWithHttpInfo(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion) throws ApiException {
+    public ApiResponse<GetGlobalAttributesResponse> product202309CategoriesCategoryIdGlobalAttributesGetWithHttpInfo(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion) throws ApiException {
         okhttp3.Call localVarCall = product202309CategoriesCategoryIdGlobalAttributesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, locale, categoryVersion, null);
         Type localVarReturnType = new TypeToken<GetGlobalAttributesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -796,12 +819,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesCategoryIdGlobalAttributesGetAsync(String categoryId, String xTtsAccessToken, String contentType, String locale, String categoryVersion, final ApiCallback<GetGlobalAttributesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesCategoryIdGlobalAttributesGetAsync(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, final ApiCallback<GetGlobalAttributesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309CategoriesCategoryIdGlobalAttributesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, locale, categoryVersion, _callback);
         Type localVarReturnType = new TypeToken<GetGlobalAttributesResponse>(){}.getType();
@@ -819,12 +843,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesCategoryIdGlobalRulesGetCall(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesCategoryIdGlobalRulesGetCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -858,14 +883,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("locale", locale));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -881,12 +898,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309CategoriesCategoryIdGlobalRulesGetValidateBeforeCall(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309CategoriesCategoryIdGlobalRulesGetValidateBeforeCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'categoryId' is set
         if (categoryId == null) {
             throw new ApiException("Missing the required parameter 'categoryId' when calling product202309CategoriesCategoryIdGlobalRulesGet(Async)");
@@ -917,12 +944,13 @@ public class ProductV202309Api {
      * @return GetGlobalCategoryRulesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetGlobalCategoryRulesResponse product202309CategoriesCategoryIdGlobalRulesGet(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale) throws ApiException {
+    public GetGlobalCategoryRulesResponse product202309CategoriesCategoryIdGlobalRulesGet(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale) throws ApiException {
         ApiResponse<GetGlobalCategoryRulesResponse> localVarResp = product202309CategoriesCategoryIdGlobalRulesGetWithHttpInfo(categoryId, xTtsAccessToken, contentType, categoryVersion, locale);
         return localVarResp.getData();
     }
@@ -938,12 +966,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;GetGlobalCategoryRulesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetGlobalCategoryRulesResponse> product202309CategoriesCategoryIdGlobalRulesGetWithHttpInfo(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale) throws ApiException {
+    public ApiResponse<GetGlobalCategoryRulesResponse> product202309CategoriesCategoryIdGlobalRulesGetWithHttpInfo(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale) throws ApiException {
         okhttp3.Call localVarCall = product202309CategoriesCategoryIdGlobalRulesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, categoryVersion, locale, null);
         Type localVarReturnType = new TypeToken<GetGlobalCategoryRulesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -961,12 +990,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesCategoryIdGlobalRulesGetAsync(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale, final ApiCallback<GetGlobalCategoryRulesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesCategoryIdGlobalRulesGetAsync(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale, final ApiCallback<GetGlobalCategoryRulesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309CategoriesCategoryIdGlobalRulesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, categoryVersion, locale, _callback);
         Type localVarReturnType = new TypeToken<GetGlobalCategoryRulesResponse>(){}.getType();
@@ -985,12 +1015,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesCategoryIdRulesGetCall(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesCategoryIdRulesGetCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1028,14 +1059,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1051,12 +1074,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309CategoriesCategoryIdRulesGetValidateBeforeCall(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309CategoriesCategoryIdRulesGetValidateBeforeCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'categoryId' is set
         if (categoryId == null) {
             throw new ApiException("Missing the required parameter 'categoryId' when calling product202309CategoriesCategoryIdRulesGet(Async)");
@@ -1088,12 +1121,13 @@ public class ProductV202309Api {
      * @return GetCategoryRulesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetCategoryRulesResponse product202309CategoriesCategoryIdRulesGet(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale, String shopCipher) throws ApiException {
+    public GetCategoryRulesResponse product202309CategoriesCategoryIdRulesGet(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetCategoryRulesResponse> localVarResp = product202309CategoriesCategoryIdRulesGetWithHttpInfo(categoryId, xTtsAccessToken, contentType, categoryVersion, locale, shopCipher);
         return localVarResp.getData();
     }
@@ -1110,12 +1144,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;GetCategoryRulesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetCategoryRulesResponse> product202309CategoriesCategoryIdRulesGetWithHttpInfo(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale, String shopCipher) throws ApiException {
+    public ApiResponse<GetCategoryRulesResponse> product202309CategoriesCategoryIdRulesGetWithHttpInfo(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202309CategoriesCategoryIdRulesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, categoryVersion, locale, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetCategoryRulesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1134,12 +1169,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesCategoryIdRulesGetAsync(String categoryId, String xTtsAccessToken, String contentType, String categoryVersion, String locale, String shopCipher, final ApiCallback<GetCategoryRulesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesCategoryIdRulesGetAsync(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetCategoryRulesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309CategoriesCategoryIdRulesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, categoryVersion, locale, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetCategoryRulesResponse>(){}.getType();
@@ -1160,12 +1196,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesGetCall(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion, String listingPlatform, Boolean includeProhibitedCategories, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesGetCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String listingPlatform, @javax.annotation.Nullable Boolean includeProhibitedCategories, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1214,14 +1251,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1237,12 +1266,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309CategoriesGetValidateBeforeCall(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion, String listingPlatform, Boolean includeProhibitedCategories, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309CategoriesGetValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String listingPlatform, @javax.annotation.Nullable Boolean includeProhibitedCategories, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309CategoriesGet(Async)");
@@ -1271,12 +1310,13 @@ public class ProductV202309Api {
      * @return GetCategoriesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetCategoriesResponse product202309CategoriesGet(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion, String listingPlatform, Boolean includeProhibitedCategories, String shopCipher) throws ApiException {
+    public GetCategoriesResponse product202309CategoriesGet(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String listingPlatform, @javax.annotation.Nullable Boolean includeProhibitedCategories, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetCategoriesResponse> localVarResp = product202309CategoriesGetWithHttpInfo(xTtsAccessToken, contentType, locale, keyword, categoryVersion, listingPlatform, includeProhibitedCategories, shopCipher);
         return localVarResp.getData();
     }
@@ -1295,12 +1335,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;GetCategoriesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetCategoriesResponse> product202309CategoriesGetWithHttpInfo(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion, String listingPlatform, Boolean includeProhibitedCategories, String shopCipher) throws ApiException {
+    public ApiResponse<GetCategoriesResponse> product202309CategoriesGetWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String listingPlatform, @javax.annotation.Nullable Boolean includeProhibitedCategories, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202309CategoriesGetValidateBeforeCall(xTtsAccessToken, contentType, locale, keyword, categoryVersion, listingPlatform, includeProhibitedCategories, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetCategoriesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1321,12 +1362,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesGetAsync(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion, String listingPlatform, Boolean includeProhibitedCategories, String shopCipher, final ApiCallback<GetCategoriesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesGetAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String listingPlatform, @javax.annotation.Nullable Boolean includeProhibitedCategories, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetCategoriesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309CategoriesGetValidateBeforeCall(xTtsAccessToken, contentType, locale, keyword, categoryVersion, listingPlatform, includeProhibitedCategories, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetCategoriesResponse>(){}.getType();
@@ -1337,18 +1379,19 @@ public class ProductV202309Api {
      * Build call for product202309CategoriesRecommendPost
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param product202309RecommendCategoryRequestBody  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesRecommendPostCall(String xTtsAccessToken, String contentType, String shopCipher, RecommendCategoryRequestBody product202309RecommendCategoryRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesRecommendPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecommendCategoryRequestBody product202309RecommendCategoryRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1377,14 +1420,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1401,12 +1436,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309CategoriesRecommendPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, RecommendCategoryRequestBody product202309RecommendCategoryRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309CategoriesRecommendPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecommendCategoryRequestBody product202309RecommendCategoryRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309CategoriesRecommendPost(Async)");
@@ -1426,17 +1471,18 @@ public class ProductV202309Api {
      * Retrieve the recommended category for a candidate product based on its title, description, and images. If you are syncing product catalogs from an external system to TikTok Shop, use this API to facilitate product categorization. **Note**: The language used in text fields such as descriptions and titles must align with the target market&#39;s language (e.g. don&#39;t use Chinese).
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param product202309RecommendCategoryRequestBody  (optional)
      * @return RecommendCategoryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public RecommendCategoryResponse product202309CategoriesRecommendPost(String xTtsAccessToken, String contentType, String shopCipher, RecommendCategoryRequestBody product202309RecommendCategoryRequestBody) throws ApiException {
+    public RecommendCategoryResponse product202309CategoriesRecommendPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecommendCategoryRequestBody product202309RecommendCategoryRequestBody) throws ApiException {
         ApiResponse<RecommendCategoryResponse> localVarResp = product202309CategoriesRecommendPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202309RecommendCategoryRequestBody);
         return localVarResp.getData();
     }
@@ -1446,17 +1492,18 @@ public class ProductV202309Api {
      * Retrieve the recommended category for a candidate product based on its title, description, and images. If you are syncing product catalogs from an external system to TikTok Shop, use this API to facilitate product categorization. **Note**: The language used in text fields such as descriptions and titles must align with the target market&#39;s language (e.g. don&#39;t use Chinese).
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param product202309RecommendCategoryRequestBody  (optional)
      * @return ApiResponse&lt;RecommendCategoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RecommendCategoryResponse> product202309CategoriesRecommendPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, RecommendCategoryRequestBody product202309RecommendCategoryRequestBody) throws ApiException {
+    public ApiResponse<RecommendCategoryResponse> product202309CategoriesRecommendPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecommendCategoryRequestBody product202309RecommendCategoryRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309CategoriesRecommendPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309RecommendCategoryRequestBody, null);
         Type localVarReturnType = new TypeToken<RecommendCategoryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1467,18 +1514,19 @@ public class ProductV202309Api {
      * Retrieve the recommended category for a candidate product based on its title, description, and images. If you are syncing product catalogs from an external system to TikTok Shop, use this API to facilitate product categorization. **Note**: The language used in text fields such as descriptions and titles must align with the target market&#39;s language (e.g. don&#39;t use Chinese).
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param product202309RecommendCategoryRequestBody  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309CategoriesRecommendPostAsync(String xTtsAccessToken, String contentType, String shopCipher, RecommendCategoryRequestBody product202309RecommendCategoryRequestBody, final ApiCallback<RecommendCategoryResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309CategoriesRecommendPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecommendCategoryRequestBody product202309RecommendCategoryRequestBody, final ApiCallback<RecommendCategoryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309CategoriesRecommendPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309RecommendCategoryRequestBody, _callback);
         Type localVarReturnType = new TypeToken<RecommendCategoryResponse>(){}.getType();
@@ -1489,18 +1537,19 @@ public class ProductV202309Api {
      * Build call for product202309FilesUploadPost
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: multipart/form-data (required)
-     * @param data The local file to be uploaded.  **Note**： - Supported formats: PDF, MP4, MOV, MKV, WMV, WEBM, AVI, 3GP, FLV, MPEG - Max file size: 10MB - Video aspect ratio: 9:16 to 16:9  **Recommendations for product videos**: - Aspect ratio: 1:1  - Resolution: HD 720p or higher - Duration: 20 - 60 seconds  (optional)
+     * @param data The local file to be uploaded.  **Note**： - Supported formats: PDF, MP4, MOV, MKV, WMV, WEBM, AVI, 3GP, FLV, MPEG - Max PDF size: 20 MB - Max video size: 100 MB - Video aspect ratio: 9:16 to 16:9  **Recommendations for product videos**: - Aspect ratio: 1:1  - Resolution: HD 720p or higher - Duration: 20 - 60 seconds  (optional)
      * @param name The name of the file, including the file extension (e.g. &#x60;certification.pdf&#x60;)  **Note**: - Do not use additional periods, except the one preceding the file extension. - Do not begin the name with symbols. - Do not include spaces. (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309FilesUploadPostCall(String xTtsAccessToken, String contentType, File data, String name, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309FilesUploadPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1533,14 +1582,6 @@ public class ProductV202309Api {
             localVarFormParams.put("name", name);
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1557,12 +1598,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309FilesUploadPostValidateBeforeCall(String xTtsAccessToken, String contentType, File data, String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309FilesUploadPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309FilesUploadPost(Async)");
@@ -1582,17 +1633,18 @@ public class ProductV202309Api {
      * Upload non-image files, such as PDF or video to TikTok Shop.  Use this API when you need to add videos to your product to improve the shopping experience, or submit certifications or reports to meet TikTok Shop requirements for listing restricted products.  **Note**: You must store the response body to retrieve the ID or URL required to associate the file with a product during product creation or editing.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: multipart/form-data (required)
-     * @param data The local file to be uploaded.  **Note**： - Supported formats: PDF, MP4, MOV, MKV, WMV, WEBM, AVI, 3GP, FLV, MPEG - Max file size: 10MB - Video aspect ratio: 9:16 to 16:9  **Recommendations for product videos**: - Aspect ratio: 1:1  - Resolution: HD 720p or higher - Duration: 20 - 60 seconds  (optional)
+     * @param data The local file to be uploaded.  **Note**： - Supported formats: PDF, MP4, MOV, MKV, WMV, WEBM, AVI, 3GP, FLV, MPEG - Max PDF size: 20 MB - Max video size: 100 MB - Video aspect ratio: 9:16 to 16:9  **Recommendations for product videos**: - Aspect ratio: 1:1  - Resolution: HD 720p or higher - Duration: 20 - 60 seconds  (optional)
      * @param name The name of the file, including the file extension (e.g. &#x60;certification.pdf&#x60;)  **Note**: - Do not use additional periods, except the one preceding the file extension. - Do not begin the name with symbols. - Do not include spaces. (optional)
      * @return UploadProductFileResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UploadProductFileResponse product202309FilesUploadPost(String xTtsAccessToken, String contentType, File data, String name) throws ApiException {
+    public UploadProductFileResponse product202309FilesUploadPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name) throws ApiException {
         ApiResponse<UploadProductFileResponse> localVarResp = product202309FilesUploadPostWithHttpInfo(xTtsAccessToken, contentType, data, name);
         return localVarResp.getData();
     }
@@ -1602,17 +1654,18 @@ public class ProductV202309Api {
      * Upload non-image files, such as PDF or video to TikTok Shop.  Use this API when you need to add videos to your product to improve the shopping experience, or submit certifications or reports to meet TikTok Shop requirements for listing restricted products.  **Note**: You must store the response body to retrieve the ID or URL required to associate the file with a product during product creation or editing.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: multipart/form-data (required)
-     * @param data The local file to be uploaded.  **Note**： - Supported formats: PDF, MP4, MOV, MKV, WMV, WEBM, AVI, 3GP, FLV, MPEG - Max file size: 10MB - Video aspect ratio: 9:16 to 16:9  **Recommendations for product videos**: - Aspect ratio: 1:1  - Resolution: HD 720p or higher - Duration: 20 - 60 seconds  (optional)
+     * @param data The local file to be uploaded.  **Note**： - Supported formats: PDF, MP4, MOV, MKV, WMV, WEBM, AVI, 3GP, FLV, MPEG - Max PDF size: 20 MB - Max video size: 100 MB - Video aspect ratio: 9:16 to 16:9  **Recommendations for product videos**: - Aspect ratio: 1:1  - Resolution: HD 720p or higher - Duration: 20 - 60 seconds  (optional)
      * @param name The name of the file, including the file extension (e.g. &#x60;certification.pdf&#x60;)  **Note**: - Do not use additional periods, except the one preceding the file extension. - Do not begin the name with symbols. - Do not include spaces. (optional)
      * @return ApiResponse&lt;UploadProductFileResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UploadProductFileResponse> product202309FilesUploadPostWithHttpInfo(String xTtsAccessToken, String contentType, File data, String name) throws ApiException {
+    public ApiResponse<UploadProductFileResponse> product202309FilesUploadPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name) throws ApiException {
         okhttp3.Call localVarCall = product202309FilesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, data, name, null);
         Type localVarReturnType = new TypeToken<UploadProductFileResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1623,18 +1676,19 @@ public class ProductV202309Api {
      * Upload non-image files, such as PDF or video to TikTok Shop.  Use this API when you need to add videos to your product to improve the shopping experience, or submit certifications or reports to meet TikTok Shop requirements for listing restricted products.  **Note**: You must store the response body to retrieve the ID or URL required to associate the file with a product during product creation or editing.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: multipart/form-data (required)
-     * @param data The local file to be uploaded.  **Note**： - Supported formats: PDF, MP4, MOV, MKV, WMV, WEBM, AVI, 3GP, FLV, MPEG - Max file size: 10MB - Video aspect ratio: 9:16 to 16:9  **Recommendations for product videos**: - Aspect ratio: 1:1  - Resolution: HD 720p or higher - Duration: 20 - 60 seconds  (optional)
+     * @param data The local file to be uploaded.  **Note**： - Supported formats: PDF, MP4, MOV, MKV, WMV, WEBM, AVI, 3GP, FLV, MPEG - Max PDF size: 20 MB - Max video size: 100 MB - Video aspect ratio: 9:16 to 16:9  **Recommendations for product videos**: - Aspect ratio: 1:1  - Resolution: HD 720p or higher - Duration: 20 - 60 seconds  (optional)
      * @param name The name of the file, including the file extension (e.g. &#x60;certification.pdf&#x60;)  **Note**: - Do not use additional periods, except the one preceding the file extension. - Do not begin the name with symbols. - Do not include spaces. (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309FilesUploadPostAsync(String xTtsAccessToken, String contentType, File data, String name, final ApiCallback<UploadProductFileResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309FilesUploadPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name, final ApiCallback<UploadProductFileResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309FilesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, data, name, _callback);
         Type localVarReturnType = new TypeToken<UploadProductFileResponse>(){}.getType();
@@ -1652,12 +1706,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalCategoriesGetCall(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalCategoriesGetCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1694,14 +1749,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("category_version", categoryVersion));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1717,12 +1764,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalCategoriesGetValidateBeforeCall(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalCategoriesGetValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309GlobalCategoriesGet(Async)");
@@ -1748,12 +1805,13 @@ public class ProductV202309Api {
      * @return GetGlobalCategoriesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetGlobalCategoriesResponse product202309GlobalCategoriesGet(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion) throws ApiException {
+    public GetGlobalCategoriesResponse product202309GlobalCategoriesGet(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion) throws ApiException {
         ApiResponse<GetGlobalCategoriesResponse> localVarResp = product202309GlobalCategoriesGetWithHttpInfo(xTtsAccessToken, contentType, locale, keyword, categoryVersion);
         return localVarResp.getData();
     }
@@ -1769,12 +1827,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;GetGlobalCategoriesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetGlobalCategoriesResponse> product202309GlobalCategoriesGetWithHttpInfo(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion) throws ApiException {
+    public ApiResponse<GetGlobalCategoriesResponse> product202309GlobalCategoriesGetWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalCategoriesGetValidateBeforeCall(xTtsAccessToken, contentType, locale, keyword, categoryVersion, null);
         Type localVarReturnType = new TypeToken<GetGlobalCategoriesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1792,12 +1851,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalCategoriesGetAsync(String xTtsAccessToken, String contentType, String locale, String keyword, String categoryVersion, final ApiCallback<GetGlobalCategoriesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalCategoriesGetAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String keyword, @javax.annotation.Nullable String categoryVersion, final ApiCallback<GetGlobalCategoriesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalCategoriesGetValidateBeforeCall(xTtsAccessToken, contentType, locale, keyword, categoryVersion, _callback);
         Type localVarReturnType = new TypeToken<GetGlobalCategoriesResponse>(){}.getType();
@@ -1813,12 +1873,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalCategoriesRecommendPostCall(String xTtsAccessToken, String contentType, RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalCategoriesRecommendPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1843,14 +1904,6 @@ public class ProductV202309Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1867,12 +1920,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalCategoriesRecommendPostValidateBeforeCall(String xTtsAccessToken, String contentType, RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalCategoriesRecommendPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309GlobalCategoriesRecommendPost(Async)");
@@ -1896,12 +1959,13 @@ public class ProductV202309Api {
      * @return RecommendGlobalCategoriesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public RecommendGlobalCategoriesResponse product202309GlobalCategoriesRecommendPost(String xTtsAccessToken, String contentType, RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody) throws ApiException {
+    public RecommendGlobalCategoriesResponse product202309GlobalCategoriesRecommendPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody) throws ApiException {
         ApiResponse<RecommendGlobalCategoriesResponse> localVarResp = product202309GlobalCategoriesRecommendPostWithHttpInfo(xTtsAccessToken, contentType, product202309RecommendGlobalCategoriesRequestBody);
         return localVarResp.getData();
     }
@@ -1915,12 +1979,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;RecommendGlobalCategoriesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RecommendGlobalCategoriesResponse> product202309GlobalCategoriesRecommendPostWithHttpInfo(String xTtsAccessToken, String contentType, RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody) throws ApiException {
+    public ApiResponse<RecommendGlobalCategoriesResponse> product202309GlobalCategoriesRecommendPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalCategoriesRecommendPostValidateBeforeCall(xTtsAccessToken, contentType, product202309RecommendGlobalCategoriesRequestBody, null);
         Type localVarReturnType = new TypeToken<RecommendGlobalCategoriesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1936,12 +2001,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalCategoriesRecommendPostAsync(String xTtsAccessToken, String contentType, RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody, final ApiCallback<RecommendGlobalCategoriesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalCategoriesRecommendPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable RecommendGlobalCategoriesRequestBody product202309RecommendGlobalCategoriesRequestBody, final ApiCallback<RecommendGlobalCategoriesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalCategoriesRecommendPostValidateBeforeCall(xTtsAccessToken, contentType, product202309RecommendGlobalCategoriesRequestBody, _callback);
         Type localVarReturnType = new TypeToken<RecommendGlobalCategoriesResponse>(){}.getType();
@@ -1957,12 +2023,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsDeleteCall(String xTtsAccessToken, String contentType, DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsDeleteCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1987,14 +2054,6 @@ public class ProductV202309Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2011,12 +2070,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalProductsDeleteValidateBeforeCall(String xTtsAccessToken, String contentType, DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalProductsDeleteValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309GlobalProductsDelete(Async)");
@@ -2040,12 +2109,13 @@ public class ProductV202309Api {
      * @return DeleteGlobalProductsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public DeleteGlobalProductsResponse product202309GlobalProductsDelete(String xTtsAccessToken, String contentType, DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody) throws ApiException {
+    public DeleteGlobalProductsResponse product202309GlobalProductsDelete(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody) throws ApiException {
         ApiResponse<DeleteGlobalProductsResponse> localVarResp = product202309GlobalProductsDeleteWithHttpInfo(xTtsAccessToken, contentType, product202309DeleteGlobalProductsRequestBody);
         return localVarResp.getData();
     }
@@ -2059,12 +2129,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;DeleteGlobalProductsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DeleteGlobalProductsResponse> product202309GlobalProductsDeleteWithHttpInfo(String xTtsAccessToken, String contentType, DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody) throws ApiException {
+    public ApiResponse<DeleteGlobalProductsResponse> product202309GlobalProductsDeleteWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalProductsDeleteValidateBeforeCall(xTtsAccessToken, contentType, product202309DeleteGlobalProductsRequestBody, null);
         Type localVarReturnType = new TypeToken<DeleteGlobalProductsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2080,12 +2151,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsDeleteAsync(String xTtsAccessToken, String contentType, DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody, final ApiCallback<DeleteGlobalProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsDeleteAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable DeleteGlobalProductsRequestBody product202309DeleteGlobalProductsRequestBody, final ApiCallback<DeleteGlobalProductsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalProductsDeleteValidateBeforeCall(xTtsAccessToken, contentType, product202309DeleteGlobalProductsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<DeleteGlobalProductsResponse>(){}.getType();
@@ -2101,12 +2173,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsGlobalProductIdGetCall(String globalProductId, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsGlobalProductIdGetCall(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2132,14 +2205,6 @@ public class ProductV202309Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2155,12 +2220,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalProductsGlobalProductIdGetValidateBeforeCall(String globalProductId, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalProductsGlobalProductIdGetValidateBeforeCall(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'globalProductId' is set
         if (globalProductId == null) {
             throw new ApiException("Missing the required parameter 'globalProductId' when calling product202309GlobalProductsGlobalProductIdGet(Async)");
@@ -2189,12 +2264,13 @@ public class ProductV202309Api {
      * @return GetGlobalProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetGlobalProductResponse product202309GlobalProductsGlobalProductIdGet(String globalProductId, String xTtsAccessToken, String contentType) throws ApiException {
+    public GetGlobalProductResponse product202309GlobalProductsGlobalProductIdGet(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<GetGlobalProductResponse> localVarResp = product202309GlobalProductsGlobalProductIdGetWithHttpInfo(globalProductId, xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -2208,12 +2284,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;GetGlobalProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetGlobalProductResponse> product202309GlobalProductsGlobalProductIdGetWithHttpInfo(String globalProductId, String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<GetGlobalProductResponse> product202309GlobalProductsGlobalProductIdGetWithHttpInfo(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalProductsGlobalProductIdGetValidateBeforeCall(globalProductId, xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<GetGlobalProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2229,12 +2306,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsGlobalProductIdGetAsync(String globalProductId, String xTtsAccessToken, String contentType, final ApiCallback<GetGlobalProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsGlobalProductIdGetAsync(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<GetGlobalProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalProductsGlobalProductIdGetValidateBeforeCall(globalProductId, xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<GetGlobalProductResponse>(){}.getType();
@@ -2251,12 +2329,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsGlobalProductIdInventoryUpdatePostCall(String globalProductId, String xTtsAccessToken, String contentType, UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsGlobalProductIdInventoryUpdatePostCall(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2282,14 +2361,6 @@ public class ProductV202309Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2306,12 +2377,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalProductsGlobalProductIdInventoryUpdatePostValidateBeforeCall(String globalProductId, String xTtsAccessToken, String contentType, UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalProductsGlobalProductIdInventoryUpdatePostValidateBeforeCall(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'globalProductId' is set
         if (globalProductId == null) {
             throw new ApiException("Missing the required parameter 'globalProductId' when calling product202309GlobalProductsGlobalProductIdInventoryUpdatePost(Async)");
@@ -2341,12 +2422,13 @@ public class ProductV202309Api {
      * @return UpdateGlobalInventoryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdateGlobalInventoryResponse product202309GlobalProductsGlobalProductIdInventoryUpdatePost(String globalProductId, String xTtsAccessToken, String contentType, UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody) throws ApiException {
+    public UpdateGlobalInventoryResponse product202309GlobalProductsGlobalProductIdInventoryUpdatePost(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody) throws ApiException {
         ApiResponse<UpdateGlobalInventoryResponse> localVarResp = product202309GlobalProductsGlobalProductIdInventoryUpdatePostWithHttpInfo(globalProductId, xTtsAccessToken, contentType, product202309UpdateGlobalInventoryRequestBody);
         return localVarResp.getData();
     }
@@ -2361,12 +2443,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;UpdateGlobalInventoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdateGlobalInventoryResponse> product202309GlobalProductsGlobalProductIdInventoryUpdatePostWithHttpInfo(String globalProductId, String xTtsAccessToken, String contentType, UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody) throws ApiException {
+    public ApiResponse<UpdateGlobalInventoryResponse> product202309GlobalProductsGlobalProductIdInventoryUpdatePostWithHttpInfo(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalProductsGlobalProductIdInventoryUpdatePostValidateBeforeCall(globalProductId, xTtsAccessToken, contentType, product202309UpdateGlobalInventoryRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdateGlobalInventoryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2383,12 +2466,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsGlobalProductIdInventoryUpdatePostAsync(String globalProductId, String xTtsAccessToken, String contentType, UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody, final ApiCallback<UpdateGlobalInventoryResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsGlobalProductIdInventoryUpdatePostAsync(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable UpdateGlobalInventoryRequestBody product202309UpdateGlobalInventoryRequestBody, final ApiCallback<UpdateGlobalInventoryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalProductsGlobalProductIdInventoryUpdatePostValidateBeforeCall(globalProductId, xTtsAccessToken, contentType, product202309UpdateGlobalInventoryRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdateGlobalInventoryResponse>(){}.getType();
@@ -2405,12 +2489,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsGlobalProductIdPublishPostCall(String globalProductId, String xTtsAccessToken, String contentType, PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsGlobalProductIdPublishPostCall(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2436,14 +2521,6 @@ public class ProductV202309Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2460,12 +2537,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalProductsGlobalProductIdPublishPostValidateBeforeCall(String globalProductId, String xTtsAccessToken, String contentType, PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalProductsGlobalProductIdPublishPostValidateBeforeCall(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'globalProductId' is set
         if (globalProductId == null) {
             throw new ApiException("Missing the required parameter 'globalProductId' when calling product202309GlobalProductsGlobalProductIdPublishPost(Async)");
@@ -2495,12 +2582,13 @@ public class ProductV202309Api {
      * @return PublishGlobalProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public PublishGlobalProductResponse product202309GlobalProductsGlobalProductIdPublishPost(String globalProductId, String xTtsAccessToken, String contentType, PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody) throws ApiException {
+    public PublishGlobalProductResponse product202309GlobalProductsGlobalProductIdPublishPost(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody) throws ApiException {
         ApiResponse<PublishGlobalProductResponse> localVarResp = product202309GlobalProductsGlobalProductIdPublishPostWithHttpInfo(globalProductId, xTtsAccessToken, contentType, product202309PublishGlobalProductRequestBody);
         return localVarResp.getData();
     }
@@ -2515,12 +2603,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;PublishGlobalProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PublishGlobalProductResponse> product202309GlobalProductsGlobalProductIdPublishPostWithHttpInfo(String globalProductId, String xTtsAccessToken, String contentType, PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody) throws ApiException {
+    public ApiResponse<PublishGlobalProductResponse> product202309GlobalProductsGlobalProductIdPublishPostWithHttpInfo(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalProductsGlobalProductIdPublishPostValidateBeforeCall(globalProductId, xTtsAccessToken, contentType, product202309PublishGlobalProductRequestBody, null);
         Type localVarReturnType = new TypeToken<PublishGlobalProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2537,12 +2626,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsGlobalProductIdPublishPostAsync(String globalProductId, String xTtsAccessToken, String contentType, PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody, final ApiCallback<PublishGlobalProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsGlobalProductIdPublishPostAsync(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable PublishGlobalProductRequestBody product202309PublishGlobalProductRequestBody, final ApiCallback<PublishGlobalProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalProductsGlobalProductIdPublishPostValidateBeforeCall(globalProductId, xTtsAccessToken, contentType, product202309PublishGlobalProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<PublishGlobalProductResponse>(){}.getType();
@@ -2559,12 +2649,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsGlobalProductIdPutCall(String globalProductId, String xTtsAccessToken, String contentType, EditGlobalProductRequestBody product202309EditGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsGlobalProductIdPutCall(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable EditGlobalProductRequestBody product202309EditGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2590,14 +2681,6 @@ public class ProductV202309Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2614,12 +2697,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalProductsGlobalProductIdPutValidateBeforeCall(String globalProductId, String xTtsAccessToken, String contentType, EditGlobalProductRequestBody product202309EditGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalProductsGlobalProductIdPutValidateBeforeCall(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable EditGlobalProductRequestBody product202309EditGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'globalProductId' is set
         if (globalProductId == null) {
             throw new ApiException("Missing the required parameter 'globalProductId' when calling product202309GlobalProductsGlobalProductIdPut(Async)");
@@ -2649,12 +2742,13 @@ public class ProductV202309Api {
      * @return EditGlobalProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public EditGlobalProductResponse product202309GlobalProductsGlobalProductIdPut(String globalProductId, String xTtsAccessToken, String contentType, EditGlobalProductRequestBody product202309EditGlobalProductRequestBody) throws ApiException {
+    public EditGlobalProductResponse product202309GlobalProductsGlobalProductIdPut(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable EditGlobalProductRequestBody product202309EditGlobalProductRequestBody) throws ApiException {
         ApiResponse<EditGlobalProductResponse> localVarResp = product202309GlobalProductsGlobalProductIdPutWithHttpInfo(globalProductId, xTtsAccessToken, contentType, product202309EditGlobalProductRequestBody);
         return localVarResp.getData();
     }
@@ -2669,12 +2763,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;EditGlobalProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EditGlobalProductResponse> product202309GlobalProductsGlobalProductIdPutWithHttpInfo(String globalProductId, String xTtsAccessToken, String contentType, EditGlobalProductRequestBody product202309EditGlobalProductRequestBody) throws ApiException {
+    public ApiResponse<EditGlobalProductResponse> product202309GlobalProductsGlobalProductIdPutWithHttpInfo(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable EditGlobalProductRequestBody product202309EditGlobalProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalProductsGlobalProductIdPutValidateBeforeCall(globalProductId, xTtsAccessToken, contentType, product202309EditGlobalProductRequestBody, null);
         Type localVarReturnType = new TypeToken<EditGlobalProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2691,12 +2786,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsGlobalProductIdPutAsync(String globalProductId, String xTtsAccessToken, String contentType, EditGlobalProductRequestBody product202309EditGlobalProductRequestBody, final ApiCallback<EditGlobalProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsGlobalProductIdPutAsync(@javax.annotation.Nonnull String globalProductId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable EditGlobalProductRequestBody product202309EditGlobalProductRequestBody, final ApiCallback<EditGlobalProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalProductsGlobalProductIdPutValidateBeforeCall(globalProductId, xTtsAccessToken, contentType, product202309EditGlobalProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<EditGlobalProductResponse>(){}.getType();
@@ -2712,12 +2808,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsPostCall(String xTtsAccessToken, String contentType, CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2742,14 +2839,6 @@ public class ProductV202309Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2766,12 +2855,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalProductsPostValidateBeforeCall(String xTtsAccessToken, String contentType, CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalProductsPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309GlobalProductsPost(Async)");
@@ -2795,12 +2894,13 @@ public class ProductV202309Api {
      * @return CreateGlobalProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CreateGlobalProductResponse product202309GlobalProductsPost(String xTtsAccessToken, String contentType, CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody) throws ApiException {
+    public CreateGlobalProductResponse product202309GlobalProductsPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody) throws ApiException {
         ApiResponse<CreateGlobalProductResponse> localVarResp = product202309GlobalProductsPostWithHttpInfo(xTtsAccessToken, contentType, product202309CreateGlobalProductRequestBody);
         return localVarResp.getData();
     }
@@ -2814,12 +2914,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;CreateGlobalProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateGlobalProductResponse> product202309GlobalProductsPostWithHttpInfo(String xTtsAccessToken, String contentType, CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody) throws ApiException {
+    public ApiResponse<CreateGlobalProductResponse> product202309GlobalProductsPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalProductsPostValidateBeforeCall(xTtsAccessToken, contentType, product202309CreateGlobalProductRequestBody, null);
         Type localVarReturnType = new TypeToken<CreateGlobalProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2835,12 +2936,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsPostAsync(String xTtsAccessToken, String contentType, CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody, final ApiCallback<CreateGlobalProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateGlobalProductRequestBody product202309CreateGlobalProductRequestBody, final ApiCallback<CreateGlobalProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalProductsPostValidateBeforeCall(xTtsAccessToken, contentType, product202309CreateGlobalProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CreateGlobalProductResponse>(){}.getType();
@@ -2858,12 +2960,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsSearchPostCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsSearchPostCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2896,14 +2999,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("page_token", pageToken));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2920,12 +3015,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309GlobalProductsSearchPostValidateBeforeCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309GlobalProductsSearchPostValidateBeforeCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pageSize' is set
         if (pageSize == null) {
             throw new ApiException("Missing the required parameter 'pageSize' when calling product202309GlobalProductsSearchPost(Async)");
@@ -2956,12 +3061,13 @@ public class ProductV202309Api {
      * @return SearchGlobalProductsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchGlobalProductsResponse product202309GlobalProductsSearchPost(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody) throws ApiException {
+    public SearchGlobalProductsResponse product202309GlobalProductsSearchPost(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody) throws ApiException {
         ApiResponse<SearchGlobalProductsResponse> localVarResp = product202309GlobalProductsSearchPostWithHttpInfo(pageSize, xTtsAccessToken, contentType, pageToken, product202309SearchGlobalProductsRequestBody);
         return localVarResp.getData();
     }
@@ -2977,12 +3083,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;SearchGlobalProductsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchGlobalProductsResponse> product202309GlobalProductsSearchPostWithHttpInfo(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody) throws ApiException {
+    public ApiResponse<SearchGlobalProductsResponse> product202309GlobalProductsSearchPostWithHttpInfo(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309GlobalProductsSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, product202309SearchGlobalProductsRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchGlobalProductsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3000,12 +3107,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309GlobalProductsSearchPostAsync(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody, final ApiCallback<SearchGlobalProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309GlobalProductsSearchPostAsync(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable SearchGlobalProductsRequestBody product202309SearchGlobalProductsRequestBody, final ApiCallback<SearchGlobalProductsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309GlobalProductsSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, product202309SearchGlobalProductsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchGlobalProductsResponse>(){}.getType();
@@ -3022,12 +3130,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ImagesUploadPostCall(String xTtsAccessToken, String contentType, File data, String useCase, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ImagesUploadPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String useCase, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3060,14 +3169,6 @@ public class ProductV202309Api {
             localVarFormParams.put("use_case", useCase);
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3084,12 +3185,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ImagesUploadPostValidateBeforeCall(String xTtsAccessToken, String contentType, File data, String useCase, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ImagesUploadPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String useCase, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309ImagesUploadPost(Async)");
@@ -3114,12 +3225,13 @@ public class ProductV202309Api {
      * @return UploadProductImageResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UploadProductImageResponse product202309ImagesUploadPost(String xTtsAccessToken, String contentType, File data, String useCase) throws ApiException {
+    public UploadProductImageResponse product202309ImagesUploadPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String useCase) throws ApiException {
         ApiResponse<UploadProductImageResponse> localVarResp = product202309ImagesUploadPostWithHttpInfo(xTtsAccessToken, contentType, data, useCase);
         return localVarResp.getData();
     }
@@ -3134,12 +3246,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;UploadProductImageResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UploadProductImageResponse> product202309ImagesUploadPostWithHttpInfo(String xTtsAccessToken, String contentType, File data, String useCase) throws ApiException {
+    public ApiResponse<UploadProductImageResponse> product202309ImagesUploadPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String useCase) throws ApiException {
         okhttp3.Call localVarCall = product202309ImagesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, data, useCase, null);
         Type localVarReturnType = new TypeToken<UploadProductImageResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3156,12 +3269,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ImagesUploadPostAsync(String xTtsAccessToken, String contentType, File data, String useCase, final ApiCallback<UploadProductImageResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ImagesUploadPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, @javax.annotation.Nullable String useCase, final ApiCallback<UploadProductImageResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ImagesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, data, useCase, _callback);
         Type localVarReturnType = new TypeToken<UploadProductImageResponse>(){}.getType();
@@ -3178,12 +3292,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309InventorySearchPostCall(String xTtsAccessToken, String contentType, String shopCipher, InventorySearchRequestBody product202309InventorySearchRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309InventorySearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable InventorySearchRequestBody product202309InventorySearchRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3212,14 +3327,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3236,12 +3343,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309InventorySearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, InventorySearchRequestBody product202309InventorySearchRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309InventorySearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable InventorySearchRequestBody product202309InventorySearchRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309InventorySearchPost(Async)");
@@ -3266,12 +3383,13 @@ public class ProductV202309Api {
      * @return InventorySearchResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public InventorySearchResponse product202309InventorySearchPost(String xTtsAccessToken, String contentType, String shopCipher, InventorySearchRequestBody product202309InventorySearchRequestBody) throws ApiException {
+    public InventorySearchResponse product202309InventorySearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable InventorySearchRequestBody product202309InventorySearchRequestBody) throws ApiException {
         ApiResponse<InventorySearchResponse> localVarResp = product202309InventorySearchPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202309InventorySearchRequestBody);
         return localVarResp.getData();
     }
@@ -3286,12 +3404,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;InventorySearchResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<InventorySearchResponse> product202309InventorySearchPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, InventorySearchRequestBody product202309InventorySearchRequestBody) throws ApiException {
+    public ApiResponse<InventorySearchResponse> product202309InventorySearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable InventorySearchRequestBody product202309InventorySearchRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309InventorySearchPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309InventorySearchRequestBody, null);
         Type localVarReturnType = new TypeToken<InventorySearchResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3308,12 +3427,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309InventorySearchPostAsync(String xTtsAccessToken, String contentType, String shopCipher, InventorySearchRequestBody product202309InventorySearchRequestBody, final ApiCallback<InventorySearchResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309InventorySearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable InventorySearchRequestBody product202309InventorySearchRequestBody, final ApiCallback<InventorySearchResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309InventorySearchPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309InventorySearchRequestBody, _callback);
         Type localVarReturnType = new TypeToken<InventorySearchResponse>(){}.getType();
@@ -3329,12 +3449,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309PrerequisitesGetCall(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309PrerequisitesGetCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3363,14 +3484,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3386,12 +3499,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309PrerequisitesGetValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309PrerequisitesGetValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309PrerequisitesGet(Async)");
@@ -3415,12 +3538,13 @@ public class ProductV202309Api {
      * @return CheckListingPrerequisitesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CheckListingPrerequisitesResponse product202309PrerequisitesGet(String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public CheckListingPrerequisitesResponse product202309PrerequisitesGet(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<CheckListingPrerequisitesResponse> localVarResp = product202309PrerequisitesGetWithHttpInfo(xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -3434,12 +3558,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;CheckListingPrerequisitesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CheckListingPrerequisitesResponse> product202309PrerequisitesGetWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<CheckListingPrerequisitesResponse> product202309PrerequisitesGetWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202309PrerequisitesGetValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<CheckListingPrerequisitesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3455,12 +3580,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309PrerequisitesGetAsync(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<CheckListingPrerequisitesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309PrerequisitesGetAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<CheckListingPrerequisitesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309PrerequisitesGetValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<CheckListingPrerequisitesResponse>(){}.getType();
@@ -3477,12 +3603,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsActivatePostCall(String xTtsAccessToken, String contentType, String shopCipher, ActivateProductRequestBody product202309ActivateProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsActivatePostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ActivateProductRequestBody product202309ActivateProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3511,14 +3638,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3535,12 +3654,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsActivatePostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, ActivateProductRequestBody product202309ActivateProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsActivatePostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ActivateProductRequestBody product202309ActivateProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309ProductsActivatePost(Async)");
@@ -3565,12 +3694,13 @@ public class ProductV202309Api {
      * @return ActivateProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ActivateProductResponse product202309ProductsActivatePost(String xTtsAccessToken, String contentType, String shopCipher, ActivateProductRequestBody product202309ActivateProductRequestBody) throws ApiException {
+    public ActivateProductResponse product202309ProductsActivatePost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ActivateProductRequestBody product202309ActivateProductRequestBody) throws ApiException {
         ApiResponse<ActivateProductResponse> localVarResp = product202309ProductsActivatePostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202309ActivateProductRequestBody);
         return localVarResp.getData();
     }
@@ -3585,12 +3715,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;ActivateProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ActivateProductResponse> product202309ProductsActivatePostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, ActivateProductRequestBody product202309ActivateProductRequestBody) throws ApiException {
+    public ApiResponse<ActivateProductResponse> product202309ProductsActivatePostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ActivateProductRequestBody product202309ActivateProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsActivatePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309ActivateProductRequestBody, null);
         Type localVarReturnType = new TypeToken<ActivateProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3607,12 +3738,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsActivatePostAsync(String xTtsAccessToken, String contentType, String shopCipher, ActivateProductRequestBody product202309ActivateProductRequestBody, final ApiCallback<ActivateProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsActivatePostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ActivateProductRequestBody product202309ActivateProductRequestBody, final ApiCallback<ActivateProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsActivatePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309ActivateProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<ActivateProductResponse>(){}.getType();
@@ -3629,12 +3761,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsDeactivatePostCall(String xTtsAccessToken, String contentType, String shopCipher, DeactivateProductsRequestBody product202309DeactivateProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsDeactivatePostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeactivateProductsRequestBody product202309DeactivateProductsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3663,14 +3796,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3687,12 +3812,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsDeactivatePostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, DeactivateProductsRequestBody product202309DeactivateProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsDeactivatePostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeactivateProductsRequestBody product202309DeactivateProductsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309ProductsDeactivatePost(Async)");
@@ -3717,12 +3852,13 @@ public class ProductV202309Api {
      * @return DeactivateProductsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public DeactivateProductsResponse product202309ProductsDeactivatePost(String xTtsAccessToken, String contentType, String shopCipher, DeactivateProductsRequestBody product202309DeactivateProductsRequestBody) throws ApiException {
+    public DeactivateProductsResponse product202309ProductsDeactivatePost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeactivateProductsRequestBody product202309DeactivateProductsRequestBody) throws ApiException {
         ApiResponse<DeactivateProductsResponse> localVarResp = product202309ProductsDeactivatePostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202309DeactivateProductsRequestBody);
         return localVarResp.getData();
     }
@@ -3737,12 +3873,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;DeactivateProductsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DeactivateProductsResponse> product202309ProductsDeactivatePostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, DeactivateProductsRequestBody product202309DeactivateProductsRequestBody) throws ApiException {
+    public ApiResponse<DeactivateProductsResponse> product202309ProductsDeactivatePostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeactivateProductsRequestBody product202309DeactivateProductsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsDeactivatePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309DeactivateProductsRequestBody, null);
         Type localVarReturnType = new TypeToken<DeactivateProductsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3759,12 +3896,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsDeactivatePostAsync(String xTtsAccessToken, String contentType, String shopCipher, DeactivateProductsRequestBody product202309DeactivateProductsRequestBody, final ApiCallback<DeactivateProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsDeactivatePostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeactivateProductsRequestBody product202309DeactivateProductsRequestBody, final ApiCallback<DeactivateProductsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsDeactivatePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309DeactivateProductsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<DeactivateProductsResponse>(){}.getType();
@@ -3781,12 +3919,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsDeleteCall(String xTtsAccessToken, String contentType, String shopCipher, DeleteProductsRequestBody product202309DeleteProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsDeleteCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteProductsRequestBody product202309DeleteProductsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3815,14 +3954,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3839,12 +3970,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsDeleteValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, DeleteProductsRequestBody product202309DeleteProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsDeleteValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteProductsRequestBody product202309DeleteProductsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309ProductsDelete(Async)");
@@ -3869,12 +4010,13 @@ public class ProductV202309Api {
      * @return DeleteProductsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public DeleteProductsResponse product202309ProductsDelete(String xTtsAccessToken, String contentType, String shopCipher, DeleteProductsRequestBody product202309DeleteProductsRequestBody) throws ApiException {
+    public DeleteProductsResponse product202309ProductsDelete(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteProductsRequestBody product202309DeleteProductsRequestBody) throws ApiException {
         ApiResponse<DeleteProductsResponse> localVarResp = product202309ProductsDeleteWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202309DeleteProductsRequestBody);
         return localVarResp.getData();
     }
@@ -3889,12 +4031,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;DeleteProductsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DeleteProductsResponse> product202309ProductsDeleteWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, DeleteProductsRequestBody product202309DeleteProductsRequestBody) throws ApiException {
+    public ApiResponse<DeleteProductsResponse> product202309ProductsDeleteWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteProductsRequestBody product202309DeleteProductsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsDeleteValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309DeleteProductsRequestBody, null);
         Type localVarReturnType = new TypeToken<DeleteProductsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3911,12 +4054,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsDeleteAsync(String xTtsAccessToken, String contentType, String shopCipher, DeleteProductsRequestBody product202309DeleteProductsRequestBody, final ApiCallback<DeleteProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsDeleteAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteProductsRequestBody product202309DeleteProductsRequestBody, final ApiCallback<DeleteProductsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsDeleteValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309DeleteProductsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<DeleteProductsResponse>(){}.getType();
@@ -3934,12 +4078,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsListingCheckPostCall(String xTtsAccessToken, String contentType, Boolean isDiagnosisRequired, String shopCipher, CheckProductListingRequestBody product202309CheckProductListingRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsListingCheckPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean isDiagnosisRequired, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CheckProductListingRequestBody product202309CheckProductListingRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3972,14 +4117,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3996,12 +4133,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsListingCheckPostValidateBeforeCall(String xTtsAccessToken, String contentType, Boolean isDiagnosisRequired, String shopCipher, CheckProductListingRequestBody product202309CheckProductListingRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsListingCheckPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean isDiagnosisRequired, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CheckProductListingRequestBody product202309CheckProductListingRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309ProductsListingCheckPost(Async)");
@@ -4027,12 +4174,13 @@ public class ProductV202309Api {
      * @return CheckProductListingResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CheckProductListingResponse product202309ProductsListingCheckPost(String xTtsAccessToken, String contentType, Boolean isDiagnosisRequired, String shopCipher, CheckProductListingRequestBody product202309CheckProductListingRequestBody) throws ApiException {
+    public CheckProductListingResponse product202309ProductsListingCheckPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean isDiagnosisRequired, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CheckProductListingRequestBody product202309CheckProductListingRequestBody) throws ApiException {
         ApiResponse<CheckProductListingResponse> localVarResp = product202309ProductsListingCheckPostWithHttpInfo(xTtsAccessToken, contentType, isDiagnosisRequired, shopCipher, product202309CheckProductListingRequestBody);
         return localVarResp.getData();
     }
@@ -4048,12 +4196,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;CheckProductListingResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CheckProductListingResponse> product202309ProductsListingCheckPostWithHttpInfo(String xTtsAccessToken, String contentType, Boolean isDiagnosisRequired, String shopCipher, CheckProductListingRequestBody product202309CheckProductListingRequestBody) throws ApiException {
+    public ApiResponse<CheckProductListingResponse> product202309ProductsListingCheckPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean isDiagnosisRequired, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CheckProductListingRequestBody product202309CheckProductListingRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsListingCheckPostValidateBeforeCall(xTtsAccessToken, contentType, isDiagnosisRequired, shopCipher, product202309CheckProductListingRequestBody, null);
         Type localVarReturnType = new TypeToken<CheckProductListingResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -4071,12 +4220,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsListingCheckPostAsync(String xTtsAccessToken, String contentType, Boolean isDiagnosisRequired, String shopCipher, CheckProductListingRequestBody product202309CheckProductListingRequestBody, final ApiCallback<CheckProductListingResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsListingCheckPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean isDiagnosisRequired, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CheckProductListingRequestBody product202309CheckProductListingRequestBody, final ApiCallback<CheckProductListingResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsListingCheckPostValidateBeforeCall(xTtsAccessToken, contentType, isDiagnosisRequired, shopCipher, product202309CheckProductListingRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CheckProductListingResponse>(){}.getType();
@@ -4093,12 +4243,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsPostCall(String xTtsAccessToken, String contentType, String shopCipher, CreateProductRequestBody product202309CreateProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateProductRequestBody product202309CreateProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -4127,14 +4278,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -4151,12 +4294,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, CreateProductRequestBody product202309CreateProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateProductRequestBody product202309CreateProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309ProductsPost(Async)");
@@ -4173,7 +4326,7 @@ public class ProductV202309Api {
 
     /**
      * CreateProduct
-     * Create and list products intended for sale exclusively in local shops. You can create products in &#x60;AVAILABLE&#x60; categories. (US sellers can also create products in INVITE_ONLY categories). After creation, it will be sent for audit review by TikTok Shop. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **local sellers and Intra-EU sellers**. Global sellers can use the [Create Global Product API](https://partner.tiktokshop.com/docv2/page/6509de61bace3e02b7489cba) to create global products that can be listed and sold in multiple markets. - Before calling this API, we recommend that you prepare the necessary information by following the [usage flow for your region](650b23eef1fd3102b93d2326). - There may be a limit to the number of products you can list per day. We recommend prioritizing the creation of key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected.
+     * Create and list products intended for sale exclusively in local shops. You can create products in &#x60;AVAILABLE&#x60; categories. (US sellers can also create products in INVITE_ONLY categories). After creation, it will be sent for audit review by TikTok Shop. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable for all sellers. - Global sellers who have migrated to use the local replication listing method can use this API to create products. Otherwise, they can continue to use the [Create Global Product API](6509de61bace3e02b7489cba) to create global products. - Before calling this API, we recommend that you prepare the necessary information by following the [usage flow for your region](650b23eef1fd3102b93d2326). - There may be a limit to the number of products you can list per day. We recommend prioritizing the creation of key products first to ensure they get published. Refer to TikTok Shop Academy for details on the limit. - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param shopCipher  (optional)
@@ -4181,19 +4334,20 @@ public class ProductV202309Api {
      * @return CreateProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CreateProductResponse product202309ProductsPost(String xTtsAccessToken, String contentType, String shopCipher, CreateProductRequestBody product202309CreateProductRequestBody) throws ApiException {
+    public CreateProductResponse product202309ProductsPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateProductRequestBody product202309CreateProductRequestBody) throws ApiException {
         ApiResponse<CreateProductResponse> localVarResp = product202309ProductsPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202309CreateProductRequestBody);
         return localVarResp.getData();
     }
 
     /**
      * CreateProduct
-     * Create and list products intended for sale exclusively in local shops. You can create products in &#x60;AVAILABLE&#x60; categories. (US sellers can also create products in INVITE_ONLY categories). After creation, it will be sent for audit review by TikTok Shop. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **local sellers and Intra-EU sellers**. Global sellers can use the [Create Global Product API](https://partner.tiktokshop.com/docv2/page/6509de61bace3e02b7489cba) to create global products that can be listed and sold in multiple markets. - Before calling this API, we recommend that you prepare the necessary information by following the [usage flow for your region](650b23eef1fd3102b93d2326). - There may be a limit to the number of products you can list per day. We recommend prioritizing the creation of key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected.
+     * Create and list products intended for sale exclusively in local shops. You can create products in &#x60;AVAILABLE&#x60; categories. (US sellers can also create products in INVITE_ONLY categories). After creation, it will be sent for audit review by TikTok Shop. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable for all sellers. - Global sellers who have migrated to use the local replication listing method can use this API to create products. Otherwise, they can continue to use the [Create Global Product API](6509de61bace3e02b7489cba) to create global products. - Before calling this API, we recommend that you prepare the necessary information by following the [usage flow for your region](650b23eef1fd3102b93d2326). - There may be a limit to the number of products you can list per day. We recommend prioritizing the creation of key products first to ensure they get published. Refer to TikTok Shop Academy for details on the limit. - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param shopCipher  (optional)
@@ -4201,12 +4355,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;CreateProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateProductResponse> product202309ProductsPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, CreateProductRequestBody product202309CreateProductRequestBody) throws ApiException {
+    public ApiResponse<CreateProductResponse> product202309ProductsPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateProductRequestBody product202309CreateProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309CreateProductRequestBody, null);
         Type localVarReturnType = new TypeToken<CreateProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -4214,7 +4369,7 @@ public class ProductV202309Api {
 
     /**
      * CreateProduct (asynchronously)
-     * Create and list products intended for sale exclusively in local shops. You can create products in &#x60;AVAILABLE&#x60; categories. (US sellers can also create products in INVITE_ONLY categories). After creation, it will be sent for audit review by TikTok Shop. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **local sellers and Intra-EU sellers**. Global sellers can use the [Create Global Product API](https://partner.tiktokshop.com/docv2/page/6509de61bace3e02b7489cba) to create global products that can be listed and sold in multiple markets. - Before calling this API, we recommend that you prepare the necessary information by following the [usage flow for your region](650b23eef1fd3102b93d2326). - There may be a limit to the number of products you can list per day. We recommend prioritizing the creation of key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected.
+     * Create and list products intended for sale exclusively in local shops. You can create products in &#x60;AVAILABLE&#x60; categories. (US sellers can also create products in INVITE_ONLY categories). After creation, it will be sent for audit review by TikTok Shop. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable for all sellers. - Global sellers who have migrated to use the local replication listing method can use this API to create products. Otherwise, they can continue to use the [Create Global Product API](6509de61bace3e02b7489cba) to create global products. - Before calling this API, we recommend that you prepare the necessary information by following the [usage flow for your region](650b23eef1fd3102b93d2326). - There may be a limit to the number of products you can list per day. We recommend prioritizing the creation of key products first to ensure they get published. Refer to TikTok Shop Academy for details on the limit. - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param shopCipher  (optional)
@@ -4223,12 +4378,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsPostAsync(String xTtsAccessToken, String contentType, String shopCipher, CreateProductRequestBody product202309CreateProductRequestBody, final ApiCallback<CreateProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateProductRequestBody product202309CreateProductRequestBody, final ApiCallback<CreateProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309CreateProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CreateProductResponse>(){}.getType();
@@ -4241,17 +4397,20 @@ public class ProductV202309Api {
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param returnUnderReviewVersion A flag to indicate what product information to retrieve if a live product (&#x60;ACTIVATE&#x60; status) is edited and resent for TikTok Shop review. - True: Retrieves the latest version of the product information that is currently under review. - False: Retrieves a snapshot of the product information that is live and online (before the edit). Default: False (optional)
+     * @param returnDraftVersion A flag to indicate what product information to retrieve if a product has a draft in TikTok Shop. - True: Retrieves the draft version of the product information. - False: Retrieves the latest product information. Default: False  **Note**:  - Applicable only if the product is in the &#x60;DRAFT&#x60;, &#x60;ACTIVATE&#x60;, &#x60;SELLER_DEACTIVATED&#x60;, or &#x60;PLATFORM_DEACTIVATED&#x60; status. - This field and &#x60;return_under_review_version&#x60; are mutually exclusive. Specify only one to receive results. (optional)
+     * @param locale The locale or language. (optional)
      * @param shopCipher  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdGetCall(String productId, String xTtsAccessToken, String contentType, Boolean returnUnderReviewVersion, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdGetCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean returnUnderReviewVersion, @javax.annotation.Nullable Boolean returnDraftVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -4281,16 +4440,16 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("return_under_review_version", returnUnderReviewVersion));
         }
 
+        if (returnDraftVersion != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("return_draft_version", returnDraftVersion));
+        }
+
+        if (locale != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("locale", locale));
+        }
+
         if (shopCipher != null) {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
-        }
-
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
         }
 
         final String[] localVarAccepts = {
@@ -4308,12 +4467,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsProductIdGetValidateBeforeCall(String productId, String xTtsAccessToken, String contentType, Boolean returnUnderReviewVersion, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsProductIdGetValidateBeforeCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean returnUnderReviewVersion, @javax.annotation.Nullable Boolean returnDraftVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling product202309ProductsProductIdGet(Async)");
@@ -4329,73 +4498,82 @@ public class ProductV202309Api {
             throw new ApiException("Missing the required parameter 'contentType' when calling product202309ProductsProductIdGet(Async)");
         }
 
-        return product202309ProductsProductIdGetCall(productId, xTtsAccessToken, contentType, returnUnderReviewVersion, shopCipher, _callback);
+        return product202309ProductsProductIdGetCall(productId, xTtsAccessToken, contentType, returnUnderReviewVersion, returnDraftVersion, locale, shopCipher, _callback);
 
     }
 
     /**
      * GetProduct
-     * Retrieve all properties of a product that is in the &#x60;DRAFT&#x60;, &#x60;PENDING&#x60;, or &#x60;ACTIVATE&#x60; status.
+     * Retrieve all properties of a product, except those in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; status.
      * @param productId The product ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param returnUnderReviewVersion A flag to indicate what product information to retrieve if a live product (&#x60;ACTIVATE&#x60; status) is edited and resent for TikTok Shop review. - True: Retrieves the latest version of the product information that is currently under review. - False: Retrieves a snapshot of the product information that is live and online (before the edit). Default: False (optional)
+     * @param returnDraftVersion A flag to indicate what product information to retrieve if a product has a draft in TikTok Shop. - True: Retrieves the draft version of the product information. - False: Retrieves the latest product information. Default: False  **Note**:  - Applicable only if the product is in the &#x60;DRAFT&#x60;, &#x60;ACTIVATE&#x60;, &#x60;SELLER_DEACTIVATED&#x60;, or &#x60;PLATFORM_DEACTIVATED&#x60; status. - This field and &#x60;return_under_review_version&#x60; are mutually exclusive. Specify only one to receive results. (optional)
+     * @param locale The locale or language. (optional)
      * @param shopCipher  (optional)
      * @return GetProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetProductResponse product202309ProductsProductIdGet(String productId, String xTtsAccessToken, String contentType, Boolean returnUnderReviewVersion, String shopCipher) throws ApiException {
-        ApiResponse<GetProductResponse> localVarResp = product202309ProductsProductIdGetWithHttpInfo(productId, xTtsAccessToken, contentType, returnUnderReviewVersion, shopCipher);
+    public GetProductResponse product202309ProductsProductIdGet(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean returnUnderReviewVersion, @javax.annotation.Nullable Boolean returnDraftVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher) throws ApiException {
+        ApiResponse<GetProductResponse> localVarResp = product202309ProductsProductIdGetWithHttpInfo(productId, xTtsAccessToken, contentType, returnUnderReviewVersion, returnDraftVersion, locale, shopCipher);
         return localVarResp.getData();
     }
 
     /**
      * GetProduct
-     * Retrieve all properties of a product that is in the &#x60;DRAFT&#x60;, &#x60;PENDING&#x60;, or &#x60;ACTIVATE&#x60; status.
+     * Retrieve all properties of a product, except those in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; status.
      * @param productId The product ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param returnUnderReviewVersion A flag to indicate what product information to retrieve if a live product (&#x60;ACTIVATE&#x60; status) is edited and resent for TikTok Shop review. - True: Retrieves the latest version of the product information that is currently under review. - False: Retrieves a snapshot of the product information that is live and online (before the edit). Default: False (optional)
+     * @param returnDraftVersion A flag to indicate what product information to retrieve if a product has a draft in TikTok Shop. - True: Retrieves the draft version of the product information. - False: Retrieves the latest product information. Default: False  **Note**:  - Applicable only if the product is in the &#x60;DRAFT&#x60;, &#x60;ACTIVATE&#x60;, &#x60;SELLER_DEACTIVATED&#x60;, or &#x60;PLATFORM_DEACTIVATED&#x60; status. - This field and &#x60;return_under_review_version&#x60; are mutually exclusive. Specify only one to receive results. (optional)
+     * @param locale The locale or language. (optional)
      * @param shopCipher  (optional)
      * @return ApiResponse&lt;GetProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetProductResponse> product202309ProductsProductIdGetWithHttpInfo(String productId, String xTtsAccessToken, String contentType, Boolean returnUnderReviewVersion, String shopCipher) throws ApiException {
-        okhttp3.Call localVarCall = product202309ProductsProductIdGetValidateBeforeCall(productId, xTtsAccessToken, contentType, returnUnderReviewVersion, shopCipher, null);
+    public ApiResponse<GetProductResponse> product202309ProductsProductIdGetWithHttpInfo(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean returnUnderReviewVersion, @javax.annotation.Nullable Boolean returnDraftVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher) throws ApiException {
+        okhttp3.Call localVarCall = product202309ProductsProductIdGetValidateBeforeCall(productId, xTtsAccessToken, contentType, returnUnderReviewVersion, returnDraftVersion, locale, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
     /**
      * GetProduct (asynchronously)
-     * Retrieve all properties of a product that is in the &#x60;DRAFT&#x60;, &#x60;PENDING&#x60;, or &#x60;ACTIVATE&#x60; status.
+     * Retrieve all properties of a product, except those in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; status.
      * @param productId The product ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param returnUnderReviewVersion A flag to indicate what product information to retrieve if a live product (&#x60;ACTIVATE&#x60; status) is edited and resent for TikTok Shop review. - True: Retrieves the latest version of the product information that is currently under review. - False: Retrieves a snapshot of the product information that is live and online (before the edit). Default: False (optional)
+     * @param returnDraftVersion A flag to indicate what product information to retrieve if a product has a draft in TikTok Shop. - True: Retrieves the draft version of the product information. - False: Retrieves the latest product information. Default: False  **Note**:  - Applicable only if the product is in the &#x60;DRAFT&#x60;, &#x60;ACTIVATE&#x60;, &#x60;SELLER_DEACTIVATED&#x60;, or &#x60;PLATFORM_DEACTIVATED&#x60; status. - This field and &#x60;return_under_review_version&#x60; are mutually exclusive. Specify only one to receive results. (optional)
+     * @param locale The locale or language. (optional)
      * @param shopCipher  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdGetAsync(String productId, String xTtsAccessToken, String contentType, Boolean returnUnderReviewVersion, String shopCipher, final ApiCallback<GetProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdGetAsync(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable Boolean returnUnderReviewVersion, @javax.annotation.Nullable Boolean returnDraftVersion, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetProductResponse> _callback) throws ApiException {
 
-        okhttp3.Call localVarCall = product202309ProductsProductIdGetValidateBeforeCall(productId, xTtsAccessToken, contentType, returnUnderReviewVersion, shopCipher, _callback);
+        okhttp3.Call localVarCall = product202309ProductsProductIdGetValidateBeforeCall(productId, xTtsAccessToken, contentType, returnUnderReviewVersion, returnDraftVersion, locale, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetProductResponse>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
@@ -4405,18 +4583,19 @@ public class ProductV202309Api {
      * @param productId The product ID generated by TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param product202309UpdateInventoryRequestBody  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdInventoryUpdatePostCall(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdateInventoryRequestBody product202309UpdateInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdInventoryUpdatePostCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateInventoryRequestBody product202309UpdateInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -4446,14 +4625,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -4470,12 +4641,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsProductIdInventoryUpdatePostValidateBeforeCall(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdateInventoryRequestBody product202309UpdateInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsProductIdInventoryUpdatePostValidateBeforeCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateInventoryRequestBody product202309UpdateInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling product202309ProductsProductIdInventoryUpdatePost(Async)");
@@ -4501,17 +4682,18 @@ public class ProductV202309Api {
      * @param productId The product ID generated by TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param product202309UpdateInventoryRequestBody  (optional)
      * @return UpdateInventoryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdateInventoryResponse product202309ProductsProductIdInventoryUpdatePost(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdateInventoryRequestBody product202309UpdateInventoryRequestBody) throws ApiException {
+    public UpdateInventoryResponse product202309ProductsProductIdInventoryUpdatePost(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateInventoryRequestBody product202309UpdateInventoryRequestBody) throws ApiException {
         ApiResponse<UpdateInventoryResponse> localVarResp = product202309ProductsProductIdInventoryUpdatePostWithHttpInfo(productId, xTtsAccessToken, contentType, shopCipher, product202309UpdateInventoryRequestBody);
         return localVarResp.getData();
     }
@@ -4522,17 +4704,18 @@ public class ProductV202309Api {
      * @param productId The product ID generated by TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param product202309UpdateInventoryRequestBody  (optional)
      * @return ApiResponse&lt;UpdateInventoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdateInventoryResponse> product202309ProductsProductIdInventoryUpdatePostWithHttpInfo(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdateInventoryRequestBody product202309UpdateInventoryRequestBody) throws ApiException {
+    public ApiResponse<UpdateInventoryResponse> product202309ProductsProductIdInventoryUpdatePostWithHttpInfo(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateInventoryRequestBody product202309UpdateInventoryRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsProductIdInventoryUpdatePostValidateBeforeCall(productId, xTtsAccessToken, contentType, shopCipher, product202309UpdateInventoryRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdateInventoryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -4544,18 +4727,19 @@ public class ProductV202309Api {
      * @param productId The product ID generated by TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param product202309UpdateInventoryRequestBody  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdInventoryUpdatePostAsync(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdateInventoryRequestBody product202309UpdateInventoryRequestBody, final ApiCallback<UpdateInventoryResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdInventoryUpdatePostAsync(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateInventoryRequestBody product202309UpdateInventoryRequestBody, final ApiCallback<UpdateInventoryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsProductIdInventoryUpdatePostValidateBeforeCall(productId, xTtsAccessToken, contentType, shopCipher, product202309UpdateInventoryRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdateInventoryResponse>(){}.getType();
@@ -4573,12 +4757,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdPartialEditPostCall(String productId, String xTtsAccessToken, String contentType, String shopCipher, PartialEditProductRequestBody product202309PartialEditProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdPartialEditPostCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable PartialEditProductRequestBody product202309PartialEditProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -4608,14 +4793,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -4632,12 +4809,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsProductIdPartialEditPostValidateBeforeCall(String productId, String xTtsAccessToken, String contentType, String shopCipher, PartialEditProductRequestBody product202309PartialEditProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsProductIdPartialEditPostValidateBeforeCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable PartialEditProductRequestBody product202309PartialEditProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling product202309ProductsProductIdPartialEditPost(Async)");
@@ -4659,7 +4846,7 @@ public class ProductV202309Api {
 
     /**
      * PartialEditProduct
-     * Edit a subset of the product properties (e.g. description, brand, images, attributes). After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **local sellers and intra-EU sellers**. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - **Updates are handled per top-level property**, so all non-empty fields within an updated object must be supplied to prevent overwriting with blanks. For top-level properties (e.g. &#x60;description&#x60;, &#x60;brand_id&#x60;) that are not nested in an object, you can update them individually. Omitting these properties in the request will leave them unchanged. If you need to edit any nested property within an object, you must provide values for all nested properties of that object. Any omitted nested properties will be overwritten with blanks. - If new mandatory product attributes were added by TikTok Shop after the creation of your product, ensure that you provide these attributes too. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
+     * Edit some properties (e.g. description, images, attributes) of a product that is not in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable for all sellers. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - If a draft or audit-review version exists, unedited fields will retain their values over those of the base (live) version. - **Updates are handled per top-level property**, so all non-empty fields within an updated object must be supplied to prevent overwriting with blanks. For top-level properties (e.g. &#x60;description&#x60;, &#x60;brand_id&#x60;) that are not nested in an object, you can update them individually. Omitting these properties in the request will leave them unchanged. If you need to edit any nested property within an object, you must provide values for all nested properties of that object. Any omitted nested properties will be overwritten with blanks. - If new mandatory product attributes were added by TikTok Shop after the creation of your product, ensure that you provide these attributes too. **For global sellers**: If you&#39;re using the local replication listing method, note the following sync rules: **Sales attribute changes** (in sales attribute id/name) must be synced to other markets. Therefore, you must provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data. The API call will fail if you don&#39;t provide these details. **New SKUs* (new sales attribute value id/name) are optional to sync to other markets. To sync, please provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data. **General changes** are optional to sync to other markets. To sync, you only need to provide &#x60;replicated_products.region&#x60;. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
      * @param productId The product ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -4668,19 +4855,20 @@ public class ProductV202309Api {
      * @return PartialEditProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public PartialEditProductResponse product202309ProductsProductIdPartialEditPost(String productId, String xTtsAccessToken, String contentType, String shopCipher, PartialEditProductRequestBody product202309PartialEditProductRequestBody) throws ApiException {
+    public PartialEditProductResponse product202309ProductsProductIdPartialEditPost(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable PartialEditProductRequestBody product202309PartialEditProductRequestBody) throws ApiException {
         ApiResponse<PartialEditProductResponse> localVarResp = product202309ProductsProductIdPartialEditPostWithHttpInfo(productId, xTtsAccessToken, contentType, shopCipher, product202309PartialEditProductRequestBody);
         return localVarResp.getData();
     }
 
     /**
      * PartialEditProduct
-     * Edit a subset of the product properties (e.g. description, brand, images, attributes). After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **local sellers and intra-EU sellers**. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - **Updates are handled per top-level property**, so all non-empty fields within an updated object must be supplied to prevent overwriting with blanks. For top-level properties (e.g. &#x60;description&#x60;, &#x60;brand_id&#x60;) that are not nested in an object, you can update them individually. Omitting these properties in the request will leave them unchanged. If you need to edit any nested property within an object, you must provide values for all nested properties of that object. Any omitted nested properties will be overwritten with blanks. - If new mandatory product attributes were added by TikTok Shop after the creation of your product, ensure that you provide these attributes too. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
+     * Edit some properties (e.g. description, images, attributes) of a product that is not in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable for all sellers. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - If a draft or audit-review version exists, unedited fields will retain their values over those of the base (live) version. - **Updates are handled per top-level property**, so all non-empty fields within an updated object must be supplied to prevent overwriting with blanks. For top-level properties (e.g. &#x60;description&#x60;, &#x60;brand_id&#x60;) that are not nested in an object, you can update them individually. Omitting these properties in the request will leave them unchanged. If you need to edit any nested property within an object, you must provide values for all nested properties of that object. Any omitted nested properties will be overwritten with blanks. - If new mandatory product attributes were added by TikTok Shop after the creation of your product, ensure that you provide these attributes too. **For global sellers**: If you&#39;re using the local replication listing method, note the following sync rules: **Sales attribute changes** (in sales attribute id/name) must be synced to other markets. Therefore, you must provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data. The API call will fail if you don&#39;t provide these details. **New SKUs* (new sales attribute value id/name) are optional to sync to other markets. To sync, please provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data. **General changes** are optional to sync to other markets. To sync, you only need to provide &#x60;replicated_products.region&#x60;. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
      * @param productId The product ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -4689,12 +4877,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;PartialEditProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<PartialEditProductResponse> product202309ProductsProductIdPartialEditPostWithHttpInfo(String productId, String xTtsAccessToken, String contentType, String shopCipher, PartialEditProductRequestBody product202309PartialEditProductRequestBody) throws ApiException {
+    public ApiResponse<PartialEditProductResponse> product202309ProductsProductIdPartialEditPostWithHttpInfo(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable PartialEditProductRequestBody product202309PartialEditProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsProductIdPartialEditPostValidateBeforeCall(productId, xTtsAccessToken, contentType, shopCipher, product202309PartialEditProductRequestBody, null);
         Type localVarReturnType = new TypeToken<PartialEditProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -4702,7 +4891,7 @@ public class ProductV202309Api {
 
     /**
      * PartialEditProduct (asynchronously)
-     * Edit a subset of the product properties (e.g. description, brand, images, attributes). After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **local sellers and intra-EU sellers**. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - **Updates are handled per top-level property**, so all non-empty fields within an updated object must be supplied to prevent overwriting with blanks. For top-level properties (e.g. &#x60;description&#x60;, &#x60;brand_id&#x60;) that are not nested in an object, you can update them individually. Omitting these properties in the request will leave them unchanged. If you need to edit any nested property within an object, you must provide values for all nested properties of that object. Any omitted nested properties will be overwritten with blanks. - If new mandatory product attributes were added by TikTok Shop after the creation of your product, ensure that you provide these attributes too. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
+     * Edit some properties (e.g. description, images, attributes) of a product that is not in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable for all sellers. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - If a draft or audit-review version exists, unedited fields will retain their values over those of the base (live) version. - **Updates are handled per top-level property**, so all non-empty fields within an updated object must be supplied to prevent overwriting with blanks. For top-level properties (e.g. &#x60;description&#x60;, &#x60;brand_id&#x60;) that are not nested in an object, you can update them individually. Omitting these properties in the request will leave them unchanged. If you need to edit any nested property within an object, you must provide values for all nested properties of that object. Any omitted nested properties will be overwritten with blanks. - If new mandatory product attributes were added by TikTok Shop after the creation of your product, ensure that you provide these attributes too. **For global sellers**: If you&#39;re using the local replication listing method, note the following sync rules: **Sales attribute changes** (in sales attribute id/name) must be synced to other markets. Therefore, you must provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data. The API call will fail if you don&#39;t provide these details. **New SKUs* (new sales attribute value id/name) are optional to sync to other markets. To sync, please provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data. **General changes** are optional to sync to other markets. To sync, you only need to provide &#x60;replicated_products.region&#x60;. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
      * @param productId The product ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -4712,12 +4901,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdPartialEditPostAsync(String productId, String xTtsAccessToken, String contentType, String shopCipher, PartialEditProductRequestBody product202309PartialEditProductRequestBody, final ApiCallback<PartialEditProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdPartialEditPostAsync(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable PartialEditProductRequestBody product202309PartialEditProductRequestBody, final ApiCallback<PartialEditProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsProductIdPartialEditPostValidateBeforeCall(productId, xTtsAccessToken, contentType, shopCipher, product202309PartialEditProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<PartialEditProductResponse>(){}.getType();
@@ -4735,12 +4925,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdPricesUpdatePostCall(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePriceRequestBody product202309UpdatePriceRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdPricesUpdatePostCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePriceRequestBody product202309UpdatePriceRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -4770,14 +4961,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -4794,12 +4977,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsProductIdPricesUpdatePostValidateBeforeCall(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePriceRequestBody product202309UpdatePriceRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsProductIdPricesUpdatePostValidateBeforeCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePriceRequestBody product202309UpdatePriceRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling product202309ProductsProductIdPricesUpdatePost(Async)");
@@ -4830,12 +5023,13 @@ public class ProductV202309Api {
      * @return UpdatePriceResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdatePriceResponse product202309ProductsProductIdPricesUpdatePost(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePriceRequestBody product202309UpdatePriceRequestBody) throws ApiException {
+    public UpdatePriceResponse product202309ProductsProductIdPricesUpdatePost(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePriceRequestBody product202309UpdatePriceRequestBody) throws ApiException {
         ApiResponse<UpdatePriceResponse> localVarResp = product202309ProductsProductIdPricesUpdatePostWithHttpInfo(productId, xTtsAccessToken, contentType, shopCipher, product202309UpdatePriceRequestBody);
         return localVarResp.getData();
     }
@@ -4851,12 +5045,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;UpdatePriceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdatePriceResponse> product202309ProductsProductIdPricesUpdatePostWithHttpInfo(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePriceRequestBody product202309UpdatePriceRequestBody) throws ApiException {
+    public ApiResponse<UpdatePriceResponse> product202309ProductsProductIdPricesUpdatePostWithHttpInfo(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePriceRequestBody product202309UpdatePriceRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsProductIdPricesUpdatePostValidateBeforeCall(productId, xTtsAccessToken, contentType, shopCipher, product202309UpdatePriceRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdatePriceResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -4874,12 +5069,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdPricesUpdatePostAsync(String productId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePriceRequestBody product202309UpdatePriceRequestBody, final ApiCallback<UpdatePriceResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdPricesUpdatePostAsync(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePriceRequestBody product202309UpdatePriceRequestBody, final ApiCallback<UpdatePriceResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsProductIdPricesUpdatePostValidateBeforeCall(productId, xTtsAccessToken, contentType, shopCipher, product202309UpdatePriceRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdatePriceResponse>(){}.getType();
@@ -4897,12 +5093,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdPutCall(String productId, String xTtsAccessToken, String contentType, String shopCipher, EditProductRequestBody product202309EditProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdPutCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable EditProductRequestBody product202309EditProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -4932,14 +5129,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -4956,12 +5145,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsProductIdPutValidateBeforeCall(String productId, String xTtsAccessToken, String contentType, String shopCipher, EditProductRequestBody product202309EditProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsProductIdPutValidateBeforeCall(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable EditProductRequestBody product202309EditProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productId' is set
         if (productId == null) {
             throw new ApiException("Missing the required parameter 'productId' when calling product202309ProductsProductIdPut(Async)");
@@ -4983,7 +5182,7 @@ public class ProductV202309Api {
 
     /**
      * EditProduct
-     * Edit all properties (e.g. description, brand, images) of an existing product that is not in the &#x60;DRAFT&#x60;, &#x60;FREEZE&#x60;, or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **active sellers/shops** that have completed the KYC onboarding process. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - All inputs, including blanks, in the request payload will overwrite existing values. To retain an existing value, make sure to include it in your request. Exceptions to this rule are the &#x60;price&#x60; and &#x60;inventory&#x60; fields, which will remain unchanged if they are omitted from the request. Therefore, **it is strongly recommended to retrieve the latest product data using [Get Product](6509d85b4a0bb702c057fdda) and submit the complete data when editing**. This ensures accuracy and helps avoid errors or unintentional data loss due to missing fields. - If you wish to edit only certain properties, you can use the [Partial Edit Product API](650a98d74a0bb702c06c3289), [Update Inventory API](6503068fc20ad60284b38858), or the [Update Price API](650307de5a12ff0294eac8b0). - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
+     * Edit all properties (e.g. description, brand, images) of an existing product that is not in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **active sellers/shops** that have completed the KYC onboarding process. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - All inputs, including blanks, in the request payload will overwrite existing values. To retain an existing value, make sure to include it in your request. Exceptions to this rule are the &#x60;price&#x60; and &#x60;inventory&#x60; fields, which will remain unchanged if they are omitted from the request. Therefore, **it is strongly recommended to retrieve the latest product data using [Get Product](6509d85b4a0bb702c057fdda) and submit the complete data when editing**. This ensures accuracy and helps avoid errors or unintentional data loss due to missing fields. - If you wish to edit only certain properties, you can use the [Partial Edit Product API](650a98d74a0bb702c06c3289), [Update Inventory API](6503068fc20ad60284b38858), or the [Update Price API](650307de5a12ff0294eac8b0). - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected. **For global sellers**: If you&#39;re using the local replication listing method, note the following sync rules: - To sync any changes to other markets, please provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data.  - Note that **category changes** and **sales attribute changes** (in sales attribute id/name) must be synced to other markets. The API call will fail if you don&#39;t provide these details. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
      * @param productId The product ID generated by TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -4992,19 +5191,20 @@ public class ProductV202309Api {
      * @return EditProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public EditProductResponse product202309ProductsProductIdPut(String productId, String xTtsAccessToken, String contentType, String shopCipher, EditProductRequestBody product202309EditProductRequestBody) throws ApiException {
+    public EditProductResponse product202309ProductsProductIdPut(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable EditProductRequestBody product202309EditProductRequestBody) throws ApiException {
         ApiResponse<EditProductResponse> localVarResp = product202309ProductsProductIdPutWithHttpInfo(productId, xTtsAccessToken, contentType, shopCipher, product202309EditProductRequestBody);
         return localVarResp.getData();
     }
 
     /**
      * EditProduct
-     * Edit all properties (e.g. description, brand, images) of an existing product that is not in the &#x60;DRAFT&#x60;, &#x60;FREEZE&#x60;, or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **active sellers/shops** that have completed the KYC onboarding process. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - All inputs, including blanks, in the request payload will overwrite existing values. To retain an existing value, make sure to include it in your request. Exceptions to this rule are the &#x60;price&#x60; and &#x60;inventory&#x60; fields, which will remain unchanged if they are omitted from the request. Therefore, **it is strongly recommended to retrieve the latest product data using [Get Product](6509d85b4a0bb702c057fdda) and submit the complete data when editing**. This ensures accuracy and helps avoid errors or unintentional data loss due to missing fields. - If you wish to edit only certain properties, you can use the [Partial Edit Product API](650a98d74a0bb702c06c3289), [Update Inventory API](6503068fc20ad60284b38858), or the [Update Price API](650307de5a12ff0294eac8b0). - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
+     * Edit all properties (e.g. description, brand, images) of an existing product that is not in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **active sellers/shops** that have completed the KYC onboarding process. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - All inputs, including blanks, in the request payload will overwrite existing values. To retain an existing value, make sure to include it in your request. Exceptions to this rule are the &#x60;price&#x60; and &#x60;inventory&#x60; fields, which will remain unchanged if they are omitted from the request. Therefore, **it is strongly recommended to retrieve the latest product data using [Get Product](6509d85b4a0bb702c057fdda) and submit the complete data when editing**. This ensures accuracy and helps avoid errors or unintentional data loss due to missing fields. - If you wish to edit only certain properties, you can use the [Partial Edit Product API](650a98d74a0bb702c06c3289), [Update Inventory API](6503068fc20ad60284b38858), or the [Update Price API](650307de5a12ff0294eac8b0). - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected. **For global sellers**: If you&#39;re using the local replication listing method, note the following sync rules: - To sync any changes to other markets, please provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data.  - Note that **category changes** and **sales attribute changes** (in sales attribute id/name) must be synced to other markets. The API call will fail if you don&#39;t provide these details. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
      * @param productId The product ID generated by TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -5013,12 +5213,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;EditProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<EditProductResponse> product202309ProductsProductIdPutWithHttpInfo(String productId, String xTtsAccessToken, String contentType, String shopCipher, EditProductRequestBody product202309EditProductRequestBody) throws ApiException {
+    public ApiResponse<EditProductResponse> product202309ProductsProductIdPutWithHttpInfo(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable EditProductRequestBody product202309EditProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsProductIdPutValidateBeforeCall(productId, xTtsAccessToken, contentType, shopCipher, product202309EditProductRequestBody, null);
         Type localVarReturnType = new TypeToken<EditProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -5026,7 +5227,7 @@ public class ProductV202309Api {
 
     /**
      * EditProduct (asynchronously)
-     * Edit all properties (e.g. description, brand, images) of an existing product that is not in the &#x60;DRAFT&#x60;, &#x60;FREEZE&#x60;, or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **active sellers/shops** that have completed the KYC onboarding process. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - All inputs, including blanks, in the request payload will overwrite existing values. To retain an existing value, make sure to include it in your request. Exceptions to this rule are the &#x60;price&#x60; and &#x60;inventory&#x60; fields, which will remain unchanged if they are omitted from the request. Therefore, **it is strongly recommended to retrieve the latest product data using [Get Product](6509d85b4a0bb702c057fdda) and submit the complete data when editing**. This ensures accuracy and helps avoid errors or unintentional data loss due to missing fields. - If you wish to edit only certain properties, you can use the [Partial Edit Product API](650a98d74a0bb702c06c3289), [Update Inventory API](6503068fc20ad60284b38858), or the [Update Price API](650307de5a12ff0294eac8b0). - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
+     * Edit all properties (e.g. description, brand, images) of an existing product that is not in the &#x60;FREEZE&#x60; or &#x60;DELETED&#x60; state. After editing the product, the latest product content (referred to as v2) will be resent for audit review. If the audit passes, v2 is published to the shop, otherwise, the existing product stays live and remains unchanged (keeping v1). However, edits to the &#x60;price&#x60; or &#x60;inventory&#x60; fields do not require a reaudit and will be immediately published on the platform. Use the [Product status change](https://partner.tiktokshop.com/docv2/page/650956aff1fd3102b90b6261) webhook to keep track of the review status. **Note**:  - This API is applicable only for **active sellers/shops** that have completed the KYC onboarding process. - There may be a limit to the number of products you can relist per day. We recommend prioritizing key products first to ensure they get published. You can find your listing limit on the Seller Center homepage. - All inputs, including blanks, in the request payload will overwrite existing values. To retain an existing value, make sure to include it in your request. Exceptions to this rule are the &#x60;price&#x60; and &#x60;inventory&#x60; fields, which will remain unchanged if they are omitted from the request. Therefore, **it is strongly recommended to retrieve the latest product data using [Get Product](6509d85b4a0bb702c057fdda) and submit the complete data when editing**. This ensures accuracy and helps avoid errors or unintentional data loss due to missing fields. - If you wish to edit only certain properties, you can use the [Partial Edit Product API](650a98d74a0bb702c06c3289), [Update Inventory API](6503068fc20ad60284b38858), or the [Update Price API](650307de5a12ff0294eac8b0). - The language used in the product content must align with the target market&#39;s language (e.g. don&#39;t use Chinese), otherwise the listing will fail or be rejected. **For global sellers**: If you&#39;re using the local replication listing method, note the following sync rules: - To sync any changes to other markets, please provide the &#x60;seller_sku&#x60; and complete &#x60;replicated_products&#x60; data.  - Note that **category changes** and **sales attribute changes** (in sales attribute id/name) must be synced to other markets. The API call will fail if you don&#39;t provide these details. **For Tokopedia sellers**: Note that a product can have **only one active version** across all platforms at any time. If a product is live on both platforms, audit results for the latest version are handled as follows: - **Mixed audit results**: If the product passes audit on one platform but fails on another, on the successful platform, the product will stay live and be updated with content from the latest version (v2), while on the failed platform, the product will be deactivated and hidden entirely. - **Audit failure on all platforms**: If the product fails audit on all platforms, the existing product stays live and remains unchanged (keeping v1).
      * @param productId The product ID generated by TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -5036,12 +5237,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsProductIdPutAsync(String productId, String xTtsAccessToken, String contentType, String shopCipher, EditProductRequestBody product202309EditProductRequestBody, final ApiCallback<EditProductResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsProductIdPutAsync(@javax.annotation.Nonnull String productId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable EditProductRequestBody product202309EditProductRequestBody, final ApiCallback<EditProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsProductIdPutValidateBeforeCall(productId, xTtsAccessToken, contentType, shopCipher, product202309EditProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<EditProductResponse>(){}.getType();
@@ -5058,12 +5260,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsRecoverPostCall(String xTtsAccessToken, String contentType, String shopCipher, RecoverProductsRequestBody product202309RecoverProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsRecoverPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecoverProductsRequestBody product202309RecoverProductsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -5092,14 +5295,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -5116,12 +5311,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsRecoverPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, RecoverProductsRequestBody product202309RecoverProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsRecoverPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecoverProductsRequestBody product202309RecoverProductsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202309ProductsRecoverPost(Async)");
@@ -5146,12 +5351,13 @@ public class ProductV202309Api {
      * @return RecoverProductsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public RecoverProductsResponse product202309ProductsRecoverPost(String xTtsAccessToken, String contentType, String shopCipher, RecoverProductsRequestBody product202309RecoverProductsRequestBody) throws ApiException {
+    public RecoverProductsResponse product202309ProductsRecoverPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecoverProductsRequestBody product202309RecoverProductsRequestBody) throws ApiException {
         ApiResponse<RecoverProductsResponse> localVarResp = product202309ProductsRecoverPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202309RecoverProductsRequestBody);
         return localVarResp.getData();
     }
@@ -5166,12 +5372,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;RecoverProductsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RecoverProductsResponse> product202309ProductsRecoverPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, RecoverProductsRequestBody product202309RecoverProductsRequestBody) throws ApiException {
+    public ApiResponse<RecoverProductsResponse> product202309ProductsRecoverPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecoverProductsRequestBody product202309RecoverProductsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsRecoverPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309RecoverProductsRequestBody, null);
         Type localVarReturnType = new TypeToken<RecoverProductsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -5188,12 +5395,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsRecoverPostAsync(String xTtsAccessToken, String contentType, String shopCipher, RecoverProductsRequestBody product202309RecoverProductsRequestBody, final ApiCallback<RecoverProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsRecoverPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RecoverProductsRequestBody product202309RecoverProductsRequestBody, final ApiCallback<RecoverProductsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsRecoverPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202309RecoverProductsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<RecoverProductsResponse>(){}.getType();
@@ -5213,12 +5421,13 @@ public class ProductV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsSearchPostCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String categoryVersion, String shopCipher, SearchProductsRequestBody product202309SearchProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsSearchPostCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202309SearchProductsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -5259,14 +5468,6 @@ public class ProductV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -5283,12 +5484,22 @@ public class ProductV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202309ProductsSearchPostValidateBeforeCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String categoryVersion, String shopCipher, SearchProductsRequestBody product202309SearchProductsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202309ProductsSearchPostValidateBeforeCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202309SearchProductsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pageSize' is set
         if (pageSize == null) {
             throw new ApiException("Missing the required parameter 'pageSize' when calling product202309ProductsSearchPost(Async)");
@@ -5321,12 +5532,13 @@ public class ProductV202309Api {
      * @return SearchProductsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchProductsResponse product202309ProductsSearchPost(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String categoryVersion, String shopCipher, SearchProductsRequestBody product202309SearchProductsRequestBody) throws ApiException {
+    public SearchProductsResponse product202309ProductsSearchPost(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202309SearchProductsRequestBody) throws ApiException {
         ApiResponse<SearchProductsResponse> localVarResp = product202309ProductsSearchPostWithHttpInfo(pageSize, xTtsAccessToken, contentType, pageToken, categoryVersion, shopCipher, product202309SearchProductsRequestBody);
         return localVarResp.getData();
     }
@@ -5344,12 +5556,13 @@ public class ProductV202309Api {
      * @return ApiResponse&lt;SearchProductsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchProductsResponse> product202309ProductsSearchPostWithHttpInfo(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String categoryVersion, String shopCipher, SearchProductsRequestBody product202309SearchProductsRequestBody) throws ApiException {
+    public ApiResponse<SearchProductsResponse> product202309ProductsSearchPostWithHttpInfo(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202309SearchProductsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202309ProductsSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, categoryVersion, shopCipher, product202309SearchProductsRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchProductsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -5369,12 +5582,13 @@ public class ProductV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202309ProductsSearchPostAsync(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String categoryVersion, String shopCipher, SearchProductsRequestBody product202309SearchProductsRequestBody, final ApiCallback<SearchProductsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202309ProductsSearchPostAsync(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String categoryVersion, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchProductsRequestBody product202309SearchProductsRequestBody, final ApiCallback<SearchProductsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202309ProductsSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, categoryVersion, shopCipher, product202309SearchProductsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchProductsResponse>(){}.getType();

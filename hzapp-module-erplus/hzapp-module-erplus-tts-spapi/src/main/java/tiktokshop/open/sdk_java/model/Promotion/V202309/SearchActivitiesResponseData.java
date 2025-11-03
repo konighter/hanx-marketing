@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,24 +51,27 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchActivitiesResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchActivitiesResponseData {
   public static final String SERIALIZED_NAME_ACTIVITIES = "activities";
   @SerializedName(SERIALIZED_NAME_ACTIVITIES)
+  @javax.annotation.Nullable
   private List<SearchActivitiesResponseDataActivities> activities = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEXT_PAGE_TOKEN = "next_page_token";
   @SerializedName(SERIALIZED_NAME_NEXT_PAGE_TOKEN)
+  @javax.annotation.Nullable
   private String nextPageToken;
 
   public static final String SERIALIZED_NAME_TOTAL_COUNT = "total_count";
   @SerializedName(SERIALIZED_NAME_TOTAL_COUNT)
+  @javax.annotation.Nullable
   private Integer totalCount;
 
   public SearchActivitiesResponseData() {
   }
 
-  public SearchActivitiesResponseData activities(List<SearchActivitiesResponseDataActivities> activities) {
+  public SearchActivitiesResponseData activities(@javax.annotation.Nullable List<SearchActivitiesResponseDataActivities> activities) {
     this.activities = activities;
     return this;
   }
@@ -82,55 +84,100 @@ public class SearchActivitiesResponseData {
     return this;
   }
 
-   /**
+  /**
    * Activities list information.
    * @return activities
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchActivitiesResponseDataActivities> getActivities() {
     return activities;
   }
 
-  public void setActivities(List<SearchActivitiesResponseDataActivities> activities) {
+  public void setActivities(@javax.annotation.Nullable List<SearchActivitiesResponseDataActivities> activities) {
     this.activities = activities;
   }
 
 
-  public SearchActivitiesResponseData nextPageToken(String nextPageToken) {
+  public SearchActivitiesResponseData nextPageToken(@javax.annotation.Nullable String nextPageToken) {
     this.nextPageToken = nextPageToken;
     return this;
   }
 
-   /**
+  /**
    * Page cursor for the next request. The last page returns &#x60;\&quot;\&quot;&#x60;.
    * @return nextPageToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getNextPageToken() {
     return nextPageToken;
   }
 
-  public void setNextPageToken(String nextPageToken) {
+  public void setNextPageToken(@javax.annotation.Nullable String nextPageToken) {
     this.nextPageToken = nextPageToken;
   }
 
 
-  public SearchActivitiesResponseData totalCount(Integer totalCount) {
+  public SearchActivitiesResponseData totalCount(@javax.annotation.Nullable Integer totalCount) {
     this.totalCount = totalCount;
     return this;
   }
 
-   /**
+  /**
    * Total activity count.
    * @return totalCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTotalCount() {
     return totalCount;
   }
 
-  public void setTotalCount(Integer totalCount) {
+  public void setTotalCount(@javax.annotation.Nullable Integer totalCount) {
     this.totalCount = totalCount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchActivitiesResponseData instance itself
+   */
+  public SearchActivitiesResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -146,12 +193,13 @@ public class SearchActivitiesResponseData {
     SearchActivitiesResponseData promotion202309SearchActivitiesResponseData = (SearchActivitiesResponseData) o;
     return Objects.equals(this.activities, promotion202309SearchActivitiesResponseData.activities) &&
         Objects.equals(this.nextPageToken, promotion202309SearchActivitiesResponseData.nextPageToken) &&
-        Objects.equals(this.totalCount, promotion202309SearchActivitiesResponseData.totalCount);
+        Objects.equals(this.totalCount, promotion202309SearchActivitiesResponseData.totalCount)&&
+        Objects.equals(this.additionalProperties, promotion202309SearchActivitiesResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(activities, nextPageToken, totalCount);
+    return Objects.hash(activities, nextPageToken, totalCount, additionalProperties);
   }
 
   @Override
@@ -161,6 +209,7 @@ public class SearchActivitiesResponseData {
     sb.append("    activities: ").append(toIndentedString(activities)).append("\n");
     sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
     sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,33 +231,22 @@ public class SearchActivitiesResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("activities");
-    openapiFields.add("next_page_token");
-    openapiFields.add("total_count");
+    openapiFields = new HashSet<String>(Arrays.asList("activities", "next_page_token", "total_count"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchActivitiesResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchActivitiesResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchActivitiesResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchActivitiesResponseData is not found in the empty JSON string", SearchActivitiesResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchActivitiesResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchActivitiesResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -246,6 +284,28 @@ public class SearchActivitiesResponseData {
            @Override
            public void write(JsonWriter out, SearchActivitiesResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -253,29 +313,50 @@ public class SearchActivitiesResponseData {
            public SearchActivitiesResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchActivitiesResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchActivitiesResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchActivitiesResponseData
-  * @throws IOException if the JSON string is invalid with respect to SearchActivitiesResponseData
-  */
+  /**
+   * Create an instance of SearchActivitiesResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchActivitiesResponseData
+   * @throws IOException if the JSON string is invalid with respect to SearchActivitiesResponseData
+   */
   public static SearchActivitiesResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchActivitiesResponseData.class);
   }
 
- /**
-  * Convert an instance of SearchActivitiesResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchActivitiesResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

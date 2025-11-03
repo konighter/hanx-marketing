@@ -23,12 +23,6 @@ public class SellPlatformPageReqVO extends PageParam {
     @Schema(description = "编码")
     private String code;
 
-    @Schema(description = "头像")
-    private String avatar;
-
-    @Schema(description = "配送模式")
-    private String shipModes;
-
     @Schema(description = "创建时间")
     @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
     private LocalDateTime[] createTime;

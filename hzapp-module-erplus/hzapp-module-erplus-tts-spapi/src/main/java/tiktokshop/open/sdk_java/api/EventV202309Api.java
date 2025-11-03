@@ -86,12 +86,13 @@ public class EventV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call event202309WebhooksDeleteCall(String xTtsAccessToken, String contentType, String shopCipher, DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call event202309WebhooksDeleteCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -120,14 +121,6 @@ public class EventV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -144,12 +137,22 @@ public class EventV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call event202309WebhooksDeleteValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call event202309WebhooksDeleteValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling event202309WebhooksDelete(Async)");
@@ -174,12 +177,13 @@ public class EventV202309Api {
      * @return DeleteShopWebhookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public DeleteShopWebhookResponse event202309WebhooksDelete(String xTtsAccessToken, String contentType, String shopCipher, DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody) throws ApiException {
+    public DeleteShopWebhookResponse event202309WebhooksDelete(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody) throws ApiException {
         ApiResponse<DeleteShopWebhookResponse> localVarResp = event202309WebhooksDeleteWithHttpInfo(xTtsAccessToken, contentType, shopCipher, event202309DeleteShopWebhookRequestBody);
         return localVarResp.getData();
     }
@@ -194,12 +198,13 @@ public class EventV202309Api {
      * @return ApiResponse&lt;DeleteShopWebhookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DeleteShopWebhookResponse> event202309WebhooksDeleteWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody) throws ApiException {
+    public ApiResponse<DeleteShopWebhookResponse> event202309WebhooksDeleteWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody) throws ApiException {
         okhttp3.Call localVarCall = event202309WebhooksDeleteValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, event202309DeleteShopWebhookRequestBody, null);
         Type localVarReturnType = new TypeToken<DeleteShopWebhookResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -216,12 +221,13 @@ public class EventV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call event202309WebhooksDeleteAsync(String xTtsAccessToken, String contentType, String shopCipher, DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody, final ApiCallback<DeleteShopWebhookResponse> _callback) throws ApiException {
+    public okhttp3.Call event202309WebhooksDeleteAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable DeleteShopWebhookRequestBody event202309DeleteShopWebhookRequestBody, final ApiCallback<DeleteShopWebhookResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = event202309WebhooksDeleteValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, event202309DeleteShopWebhookRequestBody, _callback);
         Type localVarReturnType = new TypeToken<DeleteShopWebhookResponse>(){}.getType();
@@ -237,12 +243,13 @@ public class EventV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call event202309WebhooksGetCall(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call event202309WebhooksGetCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -271,14 +278,6 @@ public class EventV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -294,12 +293,22 @@ public class EventV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call event202309WebhooksGetValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call event202309WebhooksGetValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling event202309WebhooksGet(Async)");
@@ -323,12 +332,13 @@ public class EventV202309Api {
      * @return GetShopWebhooksResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetShopWebhooksResponse event202309WebhooksGet(String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetShopWebhooksResponse event202309WebhooksGet(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetShopWebhooksResponse> localVarResp = event202309WebhooksGetWithHttpInfo(xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -342,12 +352,13 @@ public class EventV202309Api {
      * @return ApiResponse&lt;GetShopWebhooksResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetShopWebhooksResponse> event202309WebhooksGetWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetShopWebhooksResponse> event202309WebhooksGetWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = event202309WebhooksGetValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetShopWebhooksResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -363,12 +374,13 @@ public class EventV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call event202309WebhooksGetAsync(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetShopWebhooksResponse> _callback) throws ApiException {
+    public okhttp3.Call event202309WebhooksGetAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetShopWebhooksResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = event202309WebhooksGetValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetShopWebhooksResponse>(){}.getType();
@@ -385,12 +397,13 @@ public class EventV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call event202309WebhooksPutCall(String xTtsAccessToken, String contentType, String shopCipher, UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call event202309WebhooksPutCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -419,14 +432,6 @@ public class EventV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -443,12 +448,22 @@ public class EventV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call event202309WebhooksPutValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call event202309WebhooksPutValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling event202309WebhooksPut(Async)");
@@ -473,12 +488,13 @@ public class EventV202309Api {
      * @return UpdateShopWebhookResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdateShopWebhookResponse event202309WebhooksPut(String xTtsAccessToken, String contentType, String shopCipher, UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody) throws ApiException {
+    public UpdateShopWebhookResponse event202309WebhooksPut(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody) throws ApiException {
         ApiResponse<UpdateShopWebhookResponse> localVarResp = event202309WebhooksPutWithHttpInfo(xTtsAccessToken, contentType, shopCipher, event202309UpdateShopWebhookRequestBody);
         return localVarResp.getData();
     }
@@ -493,12 +509,13 @@ public class EventV202309Api {
      * @return ApiResponse&lt;UpdateShopWebhookResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdateShopWebhookResponse> event202309WebhooksPutWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody) throws ApiException {
+    public ApiResponse<UpdateShopWebhookResponse> event202309WebhooksPutWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody) throws ApiException {
         okhttp3.Call localVarCall = event202309WebhooksPutValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, event202309UpdateShopWebhookRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdateShopWebhookResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -515,12 +532,13 @@ public class EventV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call event202309WebhooksPutAsync(String xTtsAccessToken, String contentType, String shopCipher, UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody, final ApiCallback<UpdateShopWebhookResponse> _callback) throws ApiException {
+    public okhttp3.Call event202309WebhooksPutAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShopWebhookRequestBody event202309UpdateShopWebhookRequestBody, final ApiCallback<UpdateShopWebhookResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = event202309WebhooksPutValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, event202309UpdateShopWebhookRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdateShopWebhookResponse>(){}.getType();

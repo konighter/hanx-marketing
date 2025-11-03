@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,131 +52,137 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_FAILED_REASON = "failed_reason";
   @SerializedName(SERIALIZED_NAME_FAILED_REASON)
+  @javax.annotation.Nullable
   private String failedReason;
 
   public static final String SERIALIZED_NAME_PACKAGE_WEIGHT = "package_weight";
   @SerializedName(SERIALIZED_NAME_PACKAGE_WEIGHT)
+  @javax.annotation.Nullable
   private GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersPackageWeight packageWeight;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TRACKING_NUMBER = "tracking_number";
   @SerializedName(SERIALIZED_NAME_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String trackingNumber;
 
   public static final String SERIALIZED_NAME_TRACKING_RECORDS = "tracking_records";
   @SerializedName(SERIALIZED_NAME_TRACKING_RECORDS)
+  @javax.annotation.Nullable
   private List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersTrackingRecords> trackingRecords = new ArrayList<>();
 
   public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders() {
   }
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders code(String code) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * The code of  logistics order
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders failedReason(String failedReason) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders failedReason(@javax.annotation.Nullable String failedReason) {
     this.failedReason = failedReason;
     return this;
   }
 
-   /**
+  /**
    * The failure reason of logistics order creatation
    * @return failedReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getFailedReason() {
     return failedReason;
   }
 
-  public void setFailedReason(String failedReason) {
+  public void setFailedReason(@javax.annotation.Nullable String failedReason) {
     this.failedReason = failedReason;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders packageWeight(GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersPackageWeight packageWeight) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders packageWeight(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
     return this;
   }
 
-   /**
+  /**
    * Get packageWeight
    * @return packageWeight
-  **/
+   */
   @javax.annotation.Nullable
   public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersPackageWeight getPackageWeight() {
     return packageWeight;
   }
 
-  public void setPackageWeight(GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersPackageWeight packageWeight) {
+  public void setPackageWeight(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders status(String status) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The status of  logistics order creatation 1. INIT 2. WAIT_CREATE 3. CREATE_FAILED 4. RTS 5. RTS_FAILED 6. TTS 7. SHIPPED 8. SHIPPED_ABNORMAL 9. DELIVERED 10. DELIVERED_ABNORMAL 11. SIGNED 12. FINISHED 13. CANCELED 14. RETURNING_TO_SENDER 15. RETURNED_TO_SENDER
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders trackingNumber(String trackingNumber) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders trackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
     return this;
   }
 
-   /**
+  /**
    * The track no of  logistics order
    * @return trackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getTrackingNumber() {
     return trackingNumber;
   }
 
-  public void setTrackingNumber(String trackingNumber) {
+  public void setTrackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders trackingRecords(List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersTrackingRecords> trackingRecords) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders trackingRecords(@javax.annotation.Nullable List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersTrackingRecords> trackingRecords) {
     this.trackingRecords = trackingRecords;
     return this;
   }
@@ -190,17 +195,62 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders {
     return this;
   }
 
-   /**
+  /**
    * The  track records of logistics track
    * @return trackingRecords
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersTrackingRecords> getTrackingRecords() {
     return trackingRecords;
   }
 
-  public void setTrackingRecords(List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersTrackingRecords> trackingRecords) {
+  public void setTrackingRecords(@javax.annotation.Nullable List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrdersTrackingRecords> trackingRecords) {
     this.trackingRecords = trackingRecords;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders instance itself
+   */
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -219,12 +269,13 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders {
         Objects.equals(this.packageWeight, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.packageWeight) &&
         Objects.equals(this.status, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.status) &&
         Objects.equals(this.trackingNumber, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.trackingNumber) &&
-        Objects.equals(this.trackingRecords, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.trackingRecords);
+        Objects.equals(this.trackingRecords, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.trackingRecords)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, failedReason, packageWeight, status, trackingNumber, trackingRecords);
+    return Objects.hash(code, failedReason, packageWeight, status, trackingNumber, trackingRecords, additionalProperties);
   }
 
   @Override
@@ -237,6 +288,7 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    trackingNumber: ").append(toIndentedString(trackingNumber)).append("\n");
     sb.append("    trackingRecords: ").append(toIndentedString(trackingRecords)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -258,36 +310,22 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("code");
-    openapiFields.add("failed_reason");
-    openapiFields.add("package_weight");
-    openapiFields.add("status");
-    openapiFields.add("tracking_number");
-    openapiFields.add("tracking_records");
+    openapiFields = new HashSet<String>(Arrays.asList("code", "failed_reason", "package_weight", "status", "tracking_number", "tracking_records"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders is not found in the empty JSON string", GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -338,6 +376,28 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders {
            @Override
            public void write(JsonWriter out, GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -345,29 +405,50 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders {
            public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders
-  * @throws IOException if the JSON string is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders
-  */
+  /**
+   * Create an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders
+   * @throws IOException if the JSON string is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders
+   */
   public static GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders.class);
   }
 
- /**
-  * Convert an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

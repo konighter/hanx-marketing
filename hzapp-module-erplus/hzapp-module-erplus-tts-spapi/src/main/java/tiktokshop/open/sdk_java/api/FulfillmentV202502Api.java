@@ -83,12 +83,13 @@ public class FulfillmentV202502Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202502InvoiceUploadPostCall(String xTtsAccessToken, String contentType, String shopCipher, UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202502InvoiceUploadPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -117,14 +118,6 @@ public class FulfillmentV202502Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -141,12 +134,22 @@ public class FulfillmentV202502Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202502InvoiceUploadPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202502InvoiceUploadPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202502InvoiceUploadPost(Async)");
@@ -171,12 +174,13 @@ public class FulfillmentV202502Api {
      * @return UploadInvoiceResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UploadInvoiceResponse fulfillment202502InvoiceUploadPost(String xTtsAccessToken, String contentType, String shopCipher, UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody) throws ApiException {
+    public UploadInvoiceResponse fulfillment202502InvoiceUploadPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody) throws ApiException {
         ApiResponse<UploadInvoiceResponse> localVarResp = fulfillment202502InvoiceUploadPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, fulfillment202502UploadInvoiceRequestBody);
         return localVarResp.getData();
     }
@@ -191,12 +195,13 @@ public class FulfillmentV202502Api {
      * @return ApiResponse&lt;UploadInvoiceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UploadInvoiceResponse> fulfillment202502InvoiceUploadPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody) throws ApiException {
+    public ApiResponse<UploadInvoiceResponse> fulfillment202502InvoiceUploadPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202502InvoiceUploadPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202502UploadInvoiceRequestBody, null);
         Type localVarReturnType = new TypeToken<UploadInvoiceResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -213,12 +218,13 @@ public class FulfillmentV202502Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202502InvoiceUploadPostAsync(String xTtsAccessToken, String contentType, String shopCipher, UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody, final ApiCallback<UploadInvoiceResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202502InvoiceUploadPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UploadInvoiceRequestBody fulfillment202502UploadInvoiceRequestBody, final ApiCallback<UploadInvoiceResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202502InvoiceUploadPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202502UploadInvoiceRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UploadInvoiceResponse>(){}.getType();

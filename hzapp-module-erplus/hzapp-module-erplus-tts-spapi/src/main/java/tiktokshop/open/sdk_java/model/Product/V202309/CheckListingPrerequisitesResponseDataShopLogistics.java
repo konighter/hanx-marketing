@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,100 +48,149 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CheckListingPrerequisitesResponseDataShopLogistics
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CheckListingPrerequisitesResponseDataShopLogistics {
   public static final String SERIALIZED_NAME_DELIVERY_OPTION = "delivery_option";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION)
+  @javax.annotation.Nullable
   private String deliveryOption;
 
   public static final String SERIALIZED_NAME_PICKUP_WAREHOUSE = "pickup_warehouse";
   @SerializedName(SERIALIZED_NAME_PICKUP_WAREHOUSE)
+  @javax.annotation.Nullable
   private String pickupWarehouse;
 
   public static final String SERIALIZED_NAME_RETURN_WAREHOUSE = "return_warehouse";
   @SerializedName(SERIALIZED_NAME_RETURN_WAREHOUSE)
+  @javax.annotation.Nullable
   private String returnWarehouse;
 
   public static final String SERIALIZED_NAME_SHIPPING_TEMPLATE = "shipping_template";
   @SerializedName(SERIALIZED_NAME_SHIPPING_TEMPLATE)
+  @javax.annotation.Nullable
   private String shippingTemplate;
 
   public CheckListingPrerequisitesResponseDataShopLogistics() {
   }
 
-  public CheckListingPrerequisitesResponseDataShopLogistics deliveryOption(String deliveryOption) {
+  public CheckListingPrerequisitesResponseDataShopLogistics deliveryOption(@javax.annotation.Nullable String deliveryOption) {
     this.deliveryOption = deliveryOption;
     return this;
   }
 
-   /**
+  /**
    * Shop logistics service. If the warehouse has no logistics services available, the warehouse cannot be used to create products.  Detailed explanation of JSON return results - \&quot;check_result\&quot; returns the result of the prerequisite check.  - If \&quot;is_failed\&quot; is true, it indicates that the requirements for listing have not been met, and the detailed failure reasons will be returned through the \&quot;fail_reasons\&quot; field.
    * @return deliveryOption
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryOption() {
     return deliveryOption;
   }
 
-  public void setDeliveryOption(String deliveryOption) {
+  public void setDeliveryOption(@javax.annotation.Nullable String deliveryOption) {
     this.deliveryOption = deliveryOption;
   }
 
 
-  public CheckListingPrerequisitesResponseDataShopLogistics pickupWarehouse(String pickupWarehouse) {
+  public CheckListingPrerequisitesResponseDataShopLogistics pickupWarehouse(@javax.annotation.Nullable String pickupWarehouse) {
     this.pickupWarehouse = pickupWarehouse;
     return this;
   }
 
-   /**
+  /**
    * Shop pickup warehouse, shops without pickup warehouse can not create products  Detailed explanation of JSON return results - \&quot;check_result\&quot; returns the result of the prerequisite check.  - If \&quot;is_failed\&quot; is true, it indicates that the requirements for listing have not been met
    * @return pickupWarehouse
-  **/
+   */
   @javax.annotation.Nullable
   public String getPickupWarehouse() {
     return pickupWarehouse;
   }
 
-  public void setPickupWarehouse(String pickupWarehouse) {
+  public void setPickupWarehouse(@javax.annotation.Nullable String pickupWarehouse) {
     this.pickupWarehouse = pickupWarehouse;
   }
 
 
-  public CheckListingPrerequisitesResponseDataShopLogistics returnWarehouse(String returnWarehouse) {
+  public CheckListingPrerequisitesResponseDataShopLogistics returnWarehouse(@javax.annotation.Nullable String returnWarehouse) {
     this.returnWarehouse = returnWarehouse;
     return this;
   }
 
-   /**
+  /**
    * Listing Prerequisites check if the shop&#39;s return warehouse meets the listing requirements  Detailed explanation of JSON return results - \&quot;check_result\&quot; returns the result of the prerequisite check.  - If \&quot;is_failed\&quot; is true, it indicates that the requirements for listing have not been met, and the detailed failure reasons will be returned through the \&quot;fail_reasons\&quot; field. 
    * @return returnWarehouse
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnWarehouse() {
     return returnWarehouse;
   }
 
-  public void setReturnWarehouse(String returnWarehouse) {
+  public void setReturnWarehouse(@javax.annotation.Nullable String returnWarehouse) {
     this.returnWarehouse = returnWarehouse;
   }
 
 
-  public CheckListingPrerequisitesResponseDataShopLogistics shippingTemplate(String shippingTemplate) {
+  public CheckListingPrerequisitesResponseDataShopLogistics shippingTemplate(@javax.annotation.Nullable String shippingTemplate) {
     this.shippingTemplate = shippingTemplate;
     return this;
   }
 
-   /**
+  /**
    * Listing Prerequisites check if the shop&#39;s shipping template meets the listing requirements. If sellers set TikTok Shipping, the SHIPPING_TEMPLATE will always return \&quot;is_failed:false\&quot;. Detailed explanation of JSON return results - \&quot;check_result\&quot; returns the result of the prerequisite check.  - If \&quot;is_failed\&quot; is true, it indicates that the requirements for listing have not been met
    * @return shippingTemplate
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingTemplate() {
     return shippingTemplate;
   }
 
-  public void setShippingTemplate(String shippingTemplate) {
+  public void setShippingTemplate(@javax.annotation.Nullable String shippingTemplate) {
     this.shippingTemplate = shippingTemplate;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CheckListingPrerequisitesResponseDataShopLogistics instance itself
+   */
+  public CheckListingPrerequisitesResponseDataShopLogistics putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -159,12 +207,13 @@ public class CheckListingPrerequisitesResponseDataShopLogistics {
     return Objects.equals(this.deliveryOption, product202309CheckListingPrerequisitesResponseDataShopLogistics.deliveryOption) &&
         Objects.equals(this.pickupWarehouse, product202309CheckListingPrerequisitesResponseDataShopLogistics.pickupWarehouse) &&
         Objects.equals(this.returnWarehouse, product202309CheckListingPrerequisitesResponseDataShopLogistics.returnWarehouse) &&
-        Objects.equals(this.shippingTemplate, product202309CheckListingPrerequisitesResponseDataShopLogistics.shippingTemplate);
+        Objects.equals(this.shippingTemplate, product202309CheckListingPrerequisitesResponseDataShopLogistics.shippingTemplate)&&
+        Objects.equals(this.additionalProperties, product202309CheckListingPrerequisitesResponseDataShopLogistics.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deliveryOption, pickupWarehouse, returnWarehouse, shippingTemplate);
+    return Objects.hash(deliveryOption, pickupWarehouse, returnWarehouse, shippingTemplate, additionalProperties);
   }
 
   @Override
@@ -175,6 +224,7 @@ public class CheckListingPrerequisitesResponseDataShopLogistics {
     sb.append("    pickupWarehouse: ").append(toIndentedString(pickupWarehouse)).append("\n");
     sb.append("    returnWarehouse: ").append(toIndentedString(returnWarehouse)).append("\n");
     sb.append("    shippingTemplate: ").append(toIndentedString(shippingTemplate)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -196,34 +246,22 @@ public class CheckListingPrerequisitesResponseDataShopLogistics {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("delivery_option");
-    openapiFields.add("pickup_warehouse");
-    openapiFields.add("return_warehouse");
-    openapiFields.add("shipping_template");
+    openapiFields = new HashSet<String>(Arrays.asList("delivery_option", "pickup_warehouse", "return_warehouse", "shipping_template"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CheckListingPrerequisitesResponseDataShopLogistics
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CheckListingPrerequisitesResponseDataShopLogistics
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CheckListingPrerequisitesResponseDataShopLogistics.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CheckListingPrerequisitesResponseDataShopLogistics is not found in the empty JSON string", CheckListingPrerequisitesResponseDataShopLogistics.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CheckListingPrerequisitesResponseDataShopLogistics.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CheckListingPrerequisitesResponseDataShopLogistics` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -256,6 +294,28 @@ public class CheckListingPrerequisitesResponseDataShopLogistics {
            @Override
            public void write(JsonWriter out, CheckListingPrerequisitesResponseDataShopLogistics value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -263,29 +323,50 @@ public class CheckListingPrerequisitesResponseDataShopLogistics {
            public CheckListingPrerequisitesResponseDataShopLogistics read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CheckListingPrerequisitesResponseDataShopLogistics instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CheckListingPrerequisitesResponseDataShopLogistics given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CheckListingPrerequisitesResponseDataShopLogistics
-  * @throws IOException if the JSON string is invalid with respect to CheckListingPrerequisitesResponseDataShopLogistics
-  */
+  /**
+   * Create an instance of CheckListingPrerequisitesResponseDataShopLogistics given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CheckListingPrerequisitesResponseDataShopLogistics
+   * @throws IOException if the JSON string is invalid with respect to CheckListingPrerequisitesResponseDataShopLogistics
+   */
   public static CheckListingPrerequisitesResponseDataShopLogistics fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CheckListingPrerequisitesResponseDataShopLogistics.class);
   }
 
- /**
-  * Convert an instance of CheckListingPrerequisitesResponseDataShopLogistics to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CheckListingPrerequisitesResponseDataShopLogistics to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

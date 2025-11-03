@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,123 +48,173 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * UpdateActivityProductRequestBodyProductsSkus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class UpdateActivityProductRequestBodyProductsSkus {
   public static final String SERIALIZED_NAME_ACTIVITY_PRICE_AMOUNT = "activity_price_amount";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_PRICE_AMOUNT)
+  @javax.annotation.Nullable
   private String activityPriceAmount;
 
   public static final String SERIALIZED_NAME_DISCOUNT = "discount";
   @SerializedName(SERIALIZED_NAME_DISCOUNT)
+  @javax.annotation.Nullable
   private String discount;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_QUANTITY_LIMIT = "quantity_limit";
   @SerializedName(SERIALIZED_NAME_QUANTITY_LIMIT)
+  @javax.annotation.Nullable
   private Integer quantityLimit;
 
   public static final String SERIALIZED_NAME_QUANTITY_PER_USER = "quantity_per_user";
   @SerializedName(SERIALIZED_NAME_QUANTITY_PER_USER)
+  @javax.annotation.Nullable
   private Integer quantityPerUser;
 
   public UpdateActivityProductRequestBodyProductsSkus() {
   }
 
-  public UpdateActivityProductRequestBodyProductsSkus activityPriceAmount(String activityPriceAmount) {
+  public UpdateActivityProductRequestBodyProductsSkus activityPriceAmount(@javax.annotation.Nullable String activityPriceAmount) {
     this.activityPriceAmount = activityPriceAmount;
     return this;
   }
 
-   /**
+  /**
    * Deal price.  You must specify the value when &#x60;product_level&#x3D;&#x3D;VARIATION&#x60; and &#x60;activity_type&#x3D;&#x3D;FIXED_PRICE / FLASHSALE&#x60;. The currency of activity price is the same as that of SKU price.
    * @return activityPriceAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getActivityPriceAmount() {
     return activityPriceAmount;
   }
 
-  public void setActivityPriceAmount(String activityPriceAmount) {
+  public void setActivityPriceAmount(@javax.annotation.Nullable String activityPriceAmount) {
     this.activityPriceAmount = activityPriceAmount;
   }
 
 
-  public UpdateActivityProductRequestBodyProductsSkus discount(String discount) {
+  public UpdateActivityProductRequestBodyProductsSkus discount(@javax.annotation.Nullable String discount) {
     this.discount = discount;
     return this;
   }
 
-   /**
+  /**
    * Discount value. If the SKU is 10% off, the value is &#x60;10&#x60;. You must specify the value when &#x60;product_level&#x3D;&#x3D;VARIATION&#x60; and &#x60;activity_type&#x3D;&#x3D;DIRECT_DISCOUNT&#x60;.
    * @return discount
-  **/
+   */
   @javax.annotation.Nullable
   public String getDiscount() {
     return discount;
   }
 
-  public void setDiscount(String discount) {
+  public void setDiscount(@javax.annotation.Nullable String discount) {
     this.discount = discount;
   }
 
 
-  public UpdateActivityProductRequestBodyProductsSkus id(String id) {
+  public UpdateActivityProductRequestBodyProductsSkus id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * SKU ID
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public UpdateActivityProductRequestBodyProductsSkus quantityLimit(Integer quantityLimit) {
+  public UpdateActivityProductRequestBodyProductsSkus quantityLimit(@javax.annotation.Nullable Integer quantityLimit) {
     this.quantityLimit = quantityLimit;
     return this;
   }
 
-   /**
+  /**
    * The quantity limit of the SKU involved in the activity. The range is &#x60;[1, 99]&#x60;, or you can use &#x60;-1&#x60; for unlimited. If you are updating the value of an existing SKU, the value cannot be decreased.
    * @return quantityLimit
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getQuantityLimit() {
     return quantityLimit;
   }
 
-  public void setQuantityLimit(Integer quantityLimit) {
+  public void setQuantityLimit(@javax.annotation.Nullable Integer quantityLimit) {
     this.quantityLimit = quantityLimit;
   }
 
 
-  public UpdateActivityProductRequestBodyProductsSkus quantityPerUser(Integer quantityPerUser) {
+  public UpdateActivityProductRequestBodyProductsSkus quantityPerUser(@javax.annotation.Nullable Integer quantityPerUser) {
     this.quantityPerUser = quantityPerUser;
     return this;
   }
 
-   /**
+  /**
    * Limit of SKU purchase per buyer. The range is &#x60;[1, 99]&#x60;, or you can use &#x60;-1&#x60; for unlimited. If you are updating the value of an existing SKU, the value cannot be decreased.
    * @return quantityPerUser
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getQuantityPerUser() {
     return quantityPerUser;
   }
 
-  public void setQuantityPerUser(Integer quantityPerUser) {
+  public void setQuantityPerUser(@javax.annotation.Nullable Integer quantityPerUser) {
     this.quantityPerUser = quantityPerUser;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the UpdateActivityProductRequestBodyProductsSkus instance itself
+   */
+  public UpdateActivityProductRequestBodyProductsSkus putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -183,12 +232,13 @@ public class UpdateActivityProductRequestBodyProductsSkus {
         Objects.equals(this.discount, promotion202309UpdateActivityProductRequestBodyProductsSkus.discount) &&
         Objects.equals(this.id, promotion202309UpdateActivityProductRequestBodyProductsSkus.id) &&
         Objects.equals(this.quantityLimit, promotion202309UpdateActivityProductRequestBodyProductsSkus.quantityLimit) &&
-        Objects.equals(this.quantityPerUser, promotion202309UpdateActivityProductRequestBodyProductsSkus.quantityPerUser);
+        Objects.equals(this.quantityPerUser, promotion202309UpdateActivityProductRequestBodyProductsSkus.quantityPerUser)&&
+        Objects.equals(this.additionalProperties, promotion202309UpdateActivityProductRequestBodyProductsSkus.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(activityPriceAmount, discount, id, quantityLimit, quantityPerUser);
+    return Objects.hash(activityPriceAmount, discount, id, quantityLimit, quantityPerUser, additionalProperties);
   }
 
   @Override
@@ -200,6 +250,7 @@ public class UpdateActivityProductRequestBodyProductsSkus {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    quantityLimit: ").append(toIndentedString(quantityLimit)).append("\n");
     sb.append("    quantityPerUser: ").append(toIndentedString(quantityPerUser)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,35 +272,22 @@ public class UpdateActivityProductRequestBodyProductsSkus {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("activity_price_amount");
-    openapiFields.add("discount");
-    openapiFields.add("id");
-    openapiFields.add("quantity_limit");
-    openapiFields.add("quantity_per_user");
+    openapiFields = new HashSet<String>(Arrays.asList("activity_price_amount", "discount", "id", "quantity_limit", "quantity_per_user"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to UpdateActivityProductRequestBodyProductsSkus
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateActivityProductRequestBodyProductsSkus
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!UpdateActivityProductRequestBodyProductsSkus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateActivityProductRequestBodyProductsSkus is not found in the empty JSON string", UpdateActivityProductRequestBodyProductsSkus.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!UpdateActivityProductRequestBodyProductsSkus.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateActivityProductRequestBodyProductsSkus` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -279,6 +317,28 @@ public class UpdateActivityProductRequestBodyProductsSkus {
            @Override
            public void write(JsonWriter out, UpdateActivityProductRequestBodyProductsSkus value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -286,29 +346,50 @@ public class UpdateActivityProductRequestBodyProductsSkus {
            public UpdateActivityProductRequestBodyProductsSkus read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             UpdateActivityProductRequestBodyProductsSkus instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdateActivityProductRequestBodyProductsSkus given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdateActivityProductRequestBodyProductsSkus
-  * @throws IOException if the JSON string is invalid with respect to UpdateActivityProductRequestBodyProductsSkus
-  */
+  /**
+   * Create an instance of UpdateActivityProductRequestBodyProductsSkus given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateActivityProductRequestBodyProductsSkus
+   * @throws IOException if the JSON string is invalid with respect to UpdateActivityProductRequestBodyProductsSkus
+   */
   public static UpdateActivityProductRequestBodyProductsSkus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateActivityProductRequestBodyProductsSkus.class);
   }
 
- /**
-  * Convert an instance of UpdateActivityProductRequestBodyProductsSkus to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdateActivityProductRequestBodyProductsSkus to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

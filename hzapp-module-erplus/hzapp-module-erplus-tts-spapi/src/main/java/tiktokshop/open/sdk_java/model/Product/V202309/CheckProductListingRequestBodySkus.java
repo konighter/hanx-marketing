@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusCombinedSkus;
 import tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusExternalListPrices;
+import tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusFees;
 import tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusIdentifierCode;
 import tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusInventory;
 import tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusListPrice;
@@ -47,7 +48,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -59,64 +59,82 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CheckProductListingRequestBodySkus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CheckProductListingRequestBodySkus {
   public static final String SERIALIZED_NAME_COMBINED_SKUS = "combined_skus";
   @SerializedName(SERIALIZED_NAME_COMBINED_SKUS)
+  @javax.annotation.Nullable
   private List<CheckProductListingRequestBodySkusCombinedSkus> combinedSkus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EXTERNAL_LIST_PRICES = "external_list_prices";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_LIST_PRICES)
+  @javax.annotation.Nullable
   private List<CheckProductListingRequestBodySkusExternalListPrices> externalListPrices = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EXTERNAL_SKU_ID = "external_sku_id";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKU_ID)
+  @javax.annotation.Nullable
   private String externalSkuId;
 
   public static final String SERIALIZED_NAME_EXTERNAL_URLS = "external_urls";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_URLS)
+  @javax.annotation.Nullable
   private List<String> externalUrls = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EXTRA_IDENTIFIER_CODES = "extra_identifier_codes";
   @SerializedName(SERIALIZED_NAME_EXTRA_IDENTIFIER_CODES)
+  @javax.annotation.Nullable
   private List<String> extraIdentifierCodes = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_FEES = "fees";
+  @SerializedName(SERIALIZED_NAME_FEES)
+  @javax.annotation.Nullable
+  private List<CheckProductListingRequestBodySkusFees> fees = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_IDENTIFIER_CODE = "identifier_code";
   @SerializedName(SERIALIZED_NAME_IDENTIFIER_CODE)
+  @javax.annotation.Nullable
   private CheckProductListingRequestBodySkusIdentifierCode identifierCode;
 
   public static final String SERIALIZED_NAME_INVENTORY = "inventory";
   @SerializedName(SERIALIZED_NAME_INVENTORY)
+  @javax.annotation.Nullable
   private List<CheckProductListingRequestBodySkusInventory> inventory = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LIST_PRICE = "list_price";
   @SerializedName(SERIALIZED_NAME_LIST_PRICE)
+  @javax.annotation.Nullable
   private CheckProductListingRequestBodySkusListPrice listPrice;
 
   public static final String SERIALIZED_NAME_PRE_SALE = "pre_sale";
   @SerializedName(SERIALIZED_NAME_PRE_SALE)
+  @javax.annotation.Nullable
   private CheckProductListingRequestBodySkusPreSale preSale;
 
   public static final String SERIALIZED_NAME_PRICE = "price";
   @SerializedName(SERIALIZED_NAME_PRICE)
+  @javax.annotation.Nullable
   private CheckProductListingRequestBodySkusPrice price;
 
   public static final String SERIALIZED_NAME_SALES_ATTRIBUTES = "sales_attributes";
   @SerializedName(SERIALIZED_NAME_SALES_ATTRIBUTES)
+  @javax.annotation.Nullable
   private List<CheckProductListingRequestBodySkusSalesAttributes> salesAttributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SELLER_SKU = "seller_sku";
   @SerializedName(SERIALIZED_NAME_SELLER_SKU)
+  @javax.annotation.Nullable
   private String sellerSku;
 
   public static final String SERIALIZED_NAME_SKU_UNIT_COUNT = "sku_unit_count";
   @SerializedName(SERIALIZED_NAME_SKU_UNIT_COUNT)
+  @javax.annotation.Nullable
   private String skuUnitCount;
 
   public CheckProductListingRequestBodySkus() {
   }
 
-  public CheckProductListingRequestBodySkus combinedSkus(List<CheckProductListingRequestBodySkusCombinedSkus> combinedSkus) {
+  public CheckProductListingRequestBodySkus combinedSkus(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusCombinedSkus> combinedSkus) {
     this.combinedSkus = combinedSkus;
     return this;
   }
@@ -129,21 +147,21 @@ public class CheckProductListingRequestBodySkus {
     return this;
   }
 
-   /**
+  /**
    * If this SKU belongs to a virtual bundle, this object contains the list of individual SKUs that form the bundle (e.g. gift basket, starter pack).
    * @return combinedSkus
-  **/
+   */
   @javax.annotation.Nullable
   public List<CheckProductListingRequestBodySkusCombinedSkus> getCombinedSkus() {
     return combinedSkus;
   }
 
-  public void setCombinedSkus(List<CheckProductListingRequestBodySkusCombinedSkus> combinedSkus) {
+  public void setCombinedSkus(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusCombinedSkus> combinedSkus) {
     this.combinedSkus = combinedSkus;
   }
 
 
-  public CheckProductListingRequestBodySkus externalListPrices(List<CheckProductListingRequestBodySkusExternalListPrices> externalListPrices) {
+  public CheckProductListingRequestBodySkus externalListPrices(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusExternalListPrices> externalListPrices) {
     this.externalListPrices = externalListPrices;
     return this;
   }
@@ -156,40 +174,40 @@ public class CheckProductListingRequestBodySkus {
     return this;
   }
 
-   /**
+  /**
    * The SKU list price (e.g. MSRP, RRP) or original price information on external ecommerce platforms. Applicable only for selected local sellers in the US market.  **Note**: This value may appear as the strikethrough price on the product page. However, whether the strikethrough price is shown and the amount shown are subject to the audit team&#39;s review and decision based on various pricing information.
    * @return externalListPrices
-  **/
+   */
   @javax.annotation.Nullable
   public List<CheckProductListingRequestBodySkusExternalListPrices> getExternalListPrices() {
     return externalListPrices;
   }
 
-  public void setExternalListPrices(List<CheckProductListingRequestBodySkusExternalListPrices> externalListPrices) {
+  public void setExternalListPrices(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusExternalListPrices> externalListPrices) {
     this.externalListPrices = externalListPrices;
   }
 
 
-  public CheckProductListingRequestBodySkus externalSkuId(String externalSkuId) {
+  public CheckProductListingRequestBodySkus externalSkuId(@javax.annotation.Nullable String externalSkuId) {
     this.externalSkuId = externalSkuId;
     return this;
   }
 
-   /**
+  /**
    * An external identifier used in an external ecommerce platform. This is used to associate the SKU between TikTok Shop and the external ecommerce platform.  Max length: 999 characters
    * @return externalSkuId
-  **/
+   */
   @javax.annotation.Nullable
   public String getExternalSkuId() {
     return externalSkuId;
   }
 
-  public void setExternalSkuId(String externalSkuId) {
+  public void setExternalSkuId(@javax.annotation.Nullable String externalSkuId) {
     this.externalSkuId = externalSkuId;
   }
 
 
-  public CheckProductListingRequestBodySkus externalUrls(List<String> externalUrls) {
+  public CheckProductListingRequestBodySkus externalUrls(@javax.annotation.Nullable List<String> externalUrls) {
     this.externalUrls = externalUrls;
     return this;
   }
@@ -202,21 +220,21 @@ public class CheckProductListingRequestBodySkus {
     return this;
   }
 
-   /**
+  /**
    * A comma-delimited list of URLs for third-party product listing pages where consumers can place orders. Add this property if you have products listed on third-party sites other than TikTok Shop and would like to map them. Max string length: 500
    * @return externalUrls
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExternalUrls() {
     return externalUrls;
   }
 
-  public void setExternalUrls(List<String> externalUrls) {
+  public void setExternalUrls(@javax.annotation.Nullable List<String> externalUrls) {
     this.externalUrls = externalUrls;
   }
 
 
-  public CheckProductListingRequestBodySkus extraIdentifierCodes(List<String> extraIdentifierCodes) {
+  public CheckProductListingRequestBodySkus extraIdentifierCodes(@javax.annotation.Nullable List<String> extraIdentifierCodes) {
     this.extraIdentifierCodes = extraIdentifierCodes;
     return this;
   }
@@ -229,40 +247,67 @@ public class CheckProductListingRequestBodySkus {
     return this;
   }
 
-   /**
+  /**
    * If the SKU belongs to a virtual bundle (containing multiple individual SKUs), you can add up to 10 additional identifier codes here for the SKUs included in the bundle.  **Format**: GTIN: 14 digits  EAN: 8, 13, or 14 digits  UPC: 12 digits  ISBN: 13 digits, or 9 digits ending in capital &#x60;X&#x60;  **Note**:  - Applicable only for the EU market.  - The identifier code must be unique for each SKU, with no repetition allowed.
    * @return extraIdentifierCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExtraIdentifierCodes() {
     return extraIdentifierCodes;
   }
 
-  public void setExtraIdentifierCodes(List<String> extraIdentifierCodes) {
+  public void setExtraIdentifierCodes(@javax.annotation.Nullable List<String> extraIdentifierCodes) {
     this.extraIdentifierCodes = extraIdentifierCodes;
   }
 
 
-  public CheckProductListingRequestBodySkus identifierCode(CheckProductListingRequestBodySkusIdentifierCode identifierCode) {
+  public CheckProductListingRequestBodySkus fees(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusFees> fees) {
+    this.fees = fees;
+    return this;
+  }
+
+  public CheckProductListingRequestBodySkus addFeesItem(CheckProductListingRequestBodySkusFees feesItem) {
+    if (this.fees == null) {
+      this.fees = new ArrayList<>();
+    }
+    this.fees.add(feesItem);
+    return this;
+  }
+
+  /**
+   * The fees required for this product based on TikTok Shop policies. Fees are required only for certain product categories, retrieve the requirements from the [Get Category Rules API](https://partner.tiktokshop.com/docv2/page/6509c0febace3e02b74594a9). 
+   * @return fees
+   */
+  @javax.annotation.Nullable
+  public List<CheckProductListingRequestBodySkusFees> getFees() {
+    return fees;
+  }
+
+  public void setFees(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusFees> fees) {
+    this.fees = fees;
+  }
+
+
+  public CheckProductListingRequestBodySkus identifierCode(@javax.annotation.Nullable CheckProductListingRequestBodySkusIdentifierCode identifierCode) {
     this.identifierCode = identifierCode;
     return this;
   }
 
-   /**
+  /**
    * Get identifierCode
    * @return identifierCode
-  **/
+   */
   @javax.annotation.Nullable
   public CheckProductListingRequestBodySkusIdentifierCode getIdentifierCode() {
     return identifierCode;
   }
 
-  public void setIdentifierCode(CheckProductListingRequestBodySkusIdentifierCode identifierCode) {
+  public void setIdentifierCode(@javax.annotation.Nullable CheckProductListingRequestBodySkusIdentifierCode identifierCode) {
     this.identifierCode = identifierCode;
   }
 
 
-  public CheckProductListingRequestBodySkus inventory(List<CheckProductListingRequestBodySkusInventory> inventory) {
+  public CheckProductListingRequestBodySkus inventory(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusInventory> inventory) {
     this.inventory = inventory;
     return this;
   }
@@ -275,78 +320,78 @@ public class CheckProductListingRequestBodySkus {
     return this;
   }
 
-   /**
+  /**
    * SKU inventory information. 
    * @return inventory
-  **/
+   */
   @javax.annotation.Nullable
   public List<CheckProductListingRequestBodySkusInventory> getInventory() {
     return inventory;
   }
 
-  public void setInventory(List<CheckProductListingRequestBodySkusInventory> inventory) {
+  public void setInventory(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusInventory> inventory) {
     this.inventory = inventory;
   }
 
 
-  public CheckProductListingRequestBodySkus listPrice(CheckProductListingRequestBodySkusListPrice listPrice) {
+  public CheckProductListingRequestBodySkus listPrice(@javax.annotation.Nullable CheckProductListingRequestBodySkusListPrice listPrice) {
     this.listPrice = listPrice;
     return this;
   }
 
-   /**
+  /**
    * Get listPrice
    * @return listPrice
-  **/
+   */
   @javax.annotation.Nullable
   public CheckProductListingRequestBodySkusListPrice getListPrice() {
     return listPrice;
   }
 
-  public void setListPrice(CheckProductListingRequestBodySkusListPrice listPrice) {
+  public void setListPrice(@javax.annotation.Nullable CheckProductListingRequestBodySkusListPrice listPrice) {
     this.listPrice = listPrice;
   }
 
 
-  public CheckProductListingRequestBodySkus preSale(CheckProductListingRequestBodySkusPreSale preSale) {
+  public CheckProductListingRequestBodySkus preSale(@javax.annotation.Nullable CheckProductListingRequestBodySkusPreSale preSale) {
     this.preSale = preSale;
     return this;
   }
 
-   /**
+  /**
    * Get preSale
    * @return preSale
-  **/
+   */
   @javax.annotation.Nullable
   public CheckProductListingRequestBodySkusPreSale getPreSale() {
     return preSale;
   }
 
-  public void setPreSale(CheckProductListingRequestBodySkusPreSale preSale) {
+  public void setPreSale(@javax.annotation.Nullable CheckProductListingRequestBodySkusPreSale preSale) {
     this.preSale = preSale;
   }
 
 
-  public CheckProductListingRequestBodySkus price(CheckProductListingRequestBodySkusPrice price) {
+  public CheckProductListingRequestBodySkus price(@javax.annotation.Nullable CheckProductListingRequestBodySkusPrice price) {
     this.price = price;
     return this;
   }
 
-   /**
+  /**
    * Get price
    * @return price
-  **/
+   */
   @javax.annotation.Nullable
   public CheckProductListingRequestBodySkusPrice getPrice() {
     return price;
   }
 
-  public void setPrice(CheckProductListingRequestBodySkusPrice price) {
+  public void setPrice(@javax.annotation.Nullable CheckProductListingRequestBodySkusPrice price) {
     this.price = price;
   }
 
 
-  public CheckProductListingRequestBodySkus salesAttributes(List<CheckProductListingRequestBodySkusSalesAttributes> salesAttributes) {
+  public CheckProductListingRequestBodySkus salesAttributes(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusSalesAttributes> salesAttributes) {
     this.salesAttributes = salesAttributes;
     return this;
   }
@@ -359,55 +404,100 @@ public class CheckProductListingRequestBodySkus {
     return this;
   }
 
-   /**
+  /**
    * A list of attributes  (e.g. size, color, length) that define each variant of a product.  **Note**:  - You can omit this object if there is only 1 SKU. Otherwise, this is **required**. - You can only have up to 3 types of sales attributes per product. - Each SKU must include the same number and type of sales attributes. For example, you cannot have one SKU that has only a Color attribute, while another SKU has both Color and Size attributes. - Provide either a built-in ID or a custom name; if both are provided, the ID takes priority. - The &#x60;id/name&#x60; and &#x60;value_id/value_name&#x60; pairs must be unique in each SKU. For example, you cannot repeat &#x60;\&quot;name\&quot;: \&quot;Color\&quot;&#x60;, &#x60;\&quot;value_name\&quot;: \&quot;Red\&quot;&#x60; in different SKUs.
    * @return salesAttributes
-  **/
+   */
   @javax.annotation.Nullable
   public List<CheckProductListingRequestBodySkusSalesAttributes> getSalesAttributes() {
     return salesAttributes;
   }
 
-  public void setSalesAttributes(List<CheckProductListingRequestBodySkusSalesAttributes> salesAttributes) {
+  public void setSalesAttributes(@javax.annotation.Nullable List<CheckProductListingRequestBodySkusSalesAttributes> salesAttributes) {
     this.salesAttributes = salesAttributes;
   }
 
 
-  public CheckProductListingRequestBodySkus sellerSku(String sellerSku) {
+  public CheckProductListingRequestBodySkus sellerSku(@javax.annotation.Nullable String sellerSku) {
     this.sellerSku = sellerSku;
     return this;
   }
 
-   /**
+  /**
    * An internal code/name for managing SKUs, not visible to buyers.   - Valid length: 1-50 characters - Format: Text without spaces
    * @return sellerSku
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerSku() {
     return sellerSku;
   }
 
-  public void setSellerSku(String sellerSku) {
+  public void setSellerSku(@javax.annotation.Nullable String sellerSku) {
     this.sellerSku = sellerSku;
   }
 
 
-  public CheckProductListingRequestBodySkus skuUnitCount(String skuUnitCount) {
+  public CheckProductListingRequestBodySkus skuUnitCount(@javax.annotation.Nullable String skuUnitCount) {
     this.skuUnitCount = skuUnitCount;
     return this;
   }
 
-   /**
+  /**
    * The total quantity/volume of the product represented by the SKU. For example, if the SKU represents 500ml of water, this value would be 500 if the unit type is defined as ml. Valid range: [0.01, 99,999.9999]  Applicable only for the EU market.  **Note**:  - This is mainly used to calculate the unit price of the SKU, and is required only if you wish to display the unit price to facilitate easier price comparisons across different products and packaging sizes. - Unit price &#x3D; Selling price/(SKU unit count/base unit count). Therefore if you want to obtain the unit price, you would also need to define the \&quot;base unit count\&quot; and the \&quot;unit type\&quot; product attributes. Retrieve the relevant information for these product attributes by using the [Get Attributes API](https://partner.tiktokshop.com/docv2/page/6509c5784a0bb702c0561cc8). The unit price would then be returned in the [Get Product API](https://partner.tiktokshop.com/docv2/page/6509d85b4a0bb702c057fdda).
    * @return skuUnitCount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuUnitCount() {
     return skuUnitCount;
   }
 
-  public void setSkuUnitCount(String skuUnitCount) {
+  public void setSkuUnitCount(@javax.annotation.Nullable String skuUnitCount) {
     this.skuUnitCount = skuUnitCount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CheckProductListingRequestBodySkus instance itself
+   */
+  public CheckProductListingRequestBodySkus putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -426,6 +516,7 @@ public class CheckProductListingRequestBodySkus {
         Objects.equals(this.externalSkuId, product202309CheckProductListingRequestBodySkus.externalSkuId) &&
         Objects.equals(this.externalUrls, product202309CheckProductListingRequestBodySkus.externalUrls) &&
         Objects.equals(this.extraIdentifierCodes, product202309CheckProductListingRequestBodySkus.extraIdentifierCodes) &&
+        Objects.equals(this.fees, product202309CheckProductListingRequestBodySkus.fees) &&
         Objects.equals(this.identifierCode, product202309CheckProductListingRequestBodySkus.identifierCode) &&
         Objects.equals(this.inventory, product202309CheckProductListingRequestBodySkus.inventory) &&
         Objects.equals(this.listPrice, product202309CheckProductListingRequestBodySkus.listPrice) &&
@@ -433,12 +524,13 @@ public class CheckProductListingRequestBodySkus {
         Objects.equals(this.price, product202309CheckProductListingRequestBodySkus.price) &&
         Objects.equals(this.salesAttributes, product202309CheckProductListingRequestBodySkus.salesAttributes) &&
         Objects.equals(this.sellerSku, product202309CheckProductListingRequestBodySkus.sellerSku) &&
-        Objects.equals(this.skuUnitCount, product202309CheckProductListingRequestBodySkus.skuUnitCount);
+        Objects.equals(this.skuUnitCount, product202309CheckProductListingRequestBodySkus.skuUnitCount)&&
+        Objects.equals(this.additionalProperties, product202309CheckProductListingRequestBodySkus.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(combinedSkus, externalListPrices, externalSkuId, externalUrls, extraIdentifierCodes, identifierCode, inventory, listPrice, preSale, price, salesAttributes, sellerSku, skuUnitCount);
+    return Objects.hash(combinedSkus, externalListPrices, externalSkuId, externalUrls, extraIdentifierCodes, fees, identifierCode, inventory, listPrice, preSale, price, salesAttributes, sellerSku, skuUnitCount, additionalProperties);
   }
 
   @Override
@@ -450,6 +542,7 @@ public class CheckProductListingRequestBodySkus {
     sb.append("    externalSkuId: ").append(toIndentedString(externalSkuId)).append("\n");
     sb.append("    externalUrls: ").append(toIndentedString(externalUrls)).append("\n");
     sb.append("    extraIdentifierCodes: ").append(toIndentedString(extraIdentifierCodes)).append("\n");
+    sb.append("    fees: ").append(toIndentedString(fees)).append("\n");
     sb.append("    identifierCode: ").append(toIndentedString(identifierCode)).append("\n");
     sb.append("    inventory: ").append(toIndentedString(inventory)).append("\n");
     sb.append("    listPrice: ").append(toIndentedString(listPrice)).append("\n");
@@ -458,6 +551,7 @@ public class CheckProductListingRequestBodySkus {
     sb.append("    salesAttributes: ").append(toIndentedString(salesAttributes)).append("\n");
     sb.append("    sellerSku: ").append(toIndentedString(sellerSku)).append("\n");
     sb.append("    skuUnitCount: ").append(toIndentedString(skuUnitCount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -479,43 +573,22 @@ public class CheckProductListingRequestBodySkus {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("combined_skus");
-    openapiFields.add("external_list_prices");
-    openapiFields.add("external_sku_id");
-    openapiFields.add("external_urls");
-    openapiFields.add("extra_identifier_codes");
-    openapiFields.add("identifier_code");
-    openapiFields.add("inventory");
-    openapiFields.add("list_price");
-    openapiFields.add("pre_sale");
-    openapiFields.add("price");
-    openapiFields.add("sales_attributes");
-    openapiFields.add("seller_sku");
-    openapiFields.add("sku_unit_count");
+    openapiFields = new HashSet<String>(Arrays.asList("combined_skus", "external_list_prices", "external_sku_id", "external_urls", "extra_identifier_codes", "fees", "identifier_code", "inventory", "list_price", "pre_sale", "price", "sales_attributes", "seller_sku", "sku_unit_count"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CheckProductListingRequestBodySkus
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CheckProductListingRequestBodySkus
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CheckProductListingRequestBodySkus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CheckProductListingRequestBodySkus is not found in the empty JSON string", CheckProductListingRequestBodySkus.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CheckProductListingRequestBodySkus.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CheckProductListingRequestBodySkus` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -557,6 +630,20 @@ public class CheckProductListingRequestBodySkus {
       // ensure the optional json data is an array if present
       if (jsonObj.get("extra_identifier_codes") != null && !jsonObj.get("extra_identifier_codes").isJsonNull() && !jsonObj.get("extra_identifier_codes").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `extra_identifier_codes` to be an array in the JSON string but got `%s`", jsonObj.get("extra_identifier_codes").toString()));
+      }
+      if (jsonObj.get("fees") != null && !jsonObj.get("fees").isJsonNull()) {
+        JsonArray jsonArrayfees = jsonObj.getAsJsonArray("fees");
+        if (jsonArrayfees != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("fees").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `fees` to be an array in the JSON string but got `%s`", jsonObj.get("fees").toString()));
+          }
+
+          // validate the optional field `fees` (array)
+          for (int i = 0; i < jsonArrayfees.size(); i++) {
+            CheckProductListingRequestBodySkusFees.validateJsonElement(jsonArrayfees.get(i));
+          };
+        }
       }
       // validate the optional field `identifier_code`
       if (jsonObj.get("identifier_code") != null && !jsonObj.get("identifier_code").isJsonNull()) {
@@ -625,6 +712,28 @@ public class CheckProductListingRequestBodySkus {
            @Override
            public void write(JsonWriter out, CheckProductListingRequestBodySkus value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -632,29 +741,50 @@ public class CheckProductListingRequestBodySkus {
            public CheckProductListingRequestBodySkus read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CheckProductListingRequestBodySkus instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CheckProductListingRequestBodySkus given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CheckProductListingRequestBodySkus
-  * @throws IOException if the JSON string is invalid with respect to CheckProductListingRequestBodySkus
-  */
+  /**
+   * Create an instance of CheckProductListingRequestBodySkus given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CheckProductListingRequestBodySkus
+   * @throws IOException if the JSON string is invalid with respect to CheckProductListingRequestBodySkus
+   */
   public static CheckProductListingRequestBodySkus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CheckProductListingRequestBodySkus.class);
   }
 
- /**
-  * Convert an instance of CheckProductListingRequestBodySkus to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CheckProductListingRequestBodySkus to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -53,7 +53,7 @@ public class ProductV202405ApiTest {
     /**
      * GetProductsSEOWords
      *
-     * Obtain SEO suggestions for product titles of live products (status: &#x60;ACTIVATE&#x60;) to enhance product visibility.
+     * Obtain SEO suggestions for product titles of live products (status: &#x60;ACTIVATE&#x60;) to enhance product visibility. Applicable only for the US, UK, and SEA markets.
      *
      * @throws ApiException if the Api call fails
      */

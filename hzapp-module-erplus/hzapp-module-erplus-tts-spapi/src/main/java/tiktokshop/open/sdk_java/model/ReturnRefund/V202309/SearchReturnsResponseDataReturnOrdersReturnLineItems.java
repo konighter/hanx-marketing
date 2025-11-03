@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,192 +50,245 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchReturnsResponseDataReturnOrdersReturnLineItems
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchReturnsResponseDataReturnOrdersReturnLineItems {
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEM_ID = "order_line_item_id";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEM_ID)
+  @javax.annotation.Nullable
   private String orderLineItemId;
 
   public static final String SERIALIZED_NAME_PRODUCT_IMAGE = "product_image";
   @SerializedName(SERIALIZED_NAME_PRODUCT_IMAGE)
+  @javax.annotation.Nullable
   private SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage productImage;
 
   public static final String SERIALIZED_NAME_PRODUCT_NAME = "product_name";
   @SerializedName(SERIALIZED_NAME_PRODUCT_NAME)
+  @javax.annotation.Nullable
   private String productName;
 
   public static final String SERIALIZED_NAME_REFUND_AMOUNT = "refund_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private SearchReturnsResponseDataReturnOrdersReturnLineItemsRefundAmount refundAmount;
 
   public static final String SERIALIZED_NAME_RETURN_LINE_ITEM_ID = "return_line_item_id";
   @SerializedName(SERIALIZED_NAME_RETURN_LINE_ITEM_ID)
+  @javax.annotation.Nullable
   private String returnLineItemId;
 
   public static final String SERIALIZED_NAME_SELLER_SKU = "seller_sku";
   @SerializedName(SERIALIZED_NAME_SELLER_SKU)
+  @javax.annotation.Nullable
   private String sellerSku;
 
   public static final String SERIALIZED_NAME_SKU_ID = "sku_id";
   @SerializedName(SERIALIZED_NAME_SKU_ID)
+  @javax.annotation.Nullable
   private String skuId;
 
   public static final String SERIALIZED_NAME_SKU_NAME = "sku_name";
   @SerializedName(SERIALIZED_NAME_SKU_NAME)
+  @javax.annotation.Nullable
   private String skuName;
 
   public SearchReturnsResponseDataReturnOrdersReturnLineItems() {
   }
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItems orderLineItemId(String orderLineItemId) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems orderLineItemId(@javax.annotation.Nullable String orderLineItemId) {
     this.orderLineItemId = orderLineItemId;
     return this;
   }
 
-   /**
+  /**
    * Order line ID.
    * @return orderLineItemId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderLineItemId() {
     return orderLineItemId;
   }
 
-  public void setOrderLineItemId(String orderLineItemId) {
+  public void setOrderLineItemId(@javax.annotation.Nullable String orderLineItemId) {
     this.orderLineItemId = orderLineItemId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItems productImage(SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage productImage) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems productImage(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage productImage) {
     this.productImage = productImage;
     return this;
   }
 
-   /**
+  /**
    * Get productImage
    * @return productImage
-  **/
+   */
   @javax.annotation.Nullable
   public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage getProductImage() {
     return productImage;
   }
 
-  public void setProductImage(SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage productImage) {
+  public void setProductImage(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage productImage) {
     this.productImage = productImage;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItems productName(String productName) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems productName(@javax.annotation.Nullable String productName) {
     this.productName = productName;
     return this;
   }
 
-   /**
+  /**
    * Product name.
    * @return productName
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductName() {
     return productName;
   }
 
-  public void setProductName(String productName) {
+  public void setProductName(@javax.annotation.Nullable String productName) {
     this.productName = productName;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItems refundAmount(SearchReturnsResponseDataReturnOrdersReturnLineItemsRefundAmount refundAmount) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems refundAmount(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersReturnLineItemsRefundAmount refundAmount) {
     this.refundAmount = refundAmount;
     return this;
   }
 
-   /**
+  /**
    * Get refundAmount
    * @return refundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public SearchReturnsResponseDataReturnOrdersReturnLineItemsRefundAmount getRefundAmount() {
     return refundAmount;
   }
 
-  public void setRefundAmount(SearchReturnsResponseDataReturnOrdersReturnLineItemsRefundAmount refundAmount) {
+  public void setRefundAmount(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersReturnLineItemsRefundAmount refundAmount) {
     this.refundAmount = refundAmount;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItems returnLineItemId(String returnLineItemId) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems returnLineItemId(@javax.annotation.Nullable String returnLineItemId) {
     this.returnLineItemId = returnLineItemId;
     return this;
   }
 
-   /**
+  /**
    * Return order line ID.
    * @return returnLineItemId
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnLineItemId() {
     return returnLineItemId;
   }
 
-  public void setReturnLineItemId(String returnLineItemId) {
+  public void setReturnLineItemId(@javax.annotation.Nullable String returnLineItemId) {
     this.returnLineItemId = returnLineItemId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItems sellerSku(String sellerSku) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems sellerSku(@javax.annotation.Nullable String sellerSku) {
     this.sellerSku = sellerSku;
     return this;
   }
 
-   /**
+  /**
    * SKU name defined by seller.
    * @return sellerSku
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerSku() {
     return sellerSku;
   }
 
-  public void setSellerSku(String sellerSku) {
+  public void setSellerSku(@javax.annotation.Nullable String sellerSku) {
     this.sellerSku = sellerSku;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItems skuId(String skuId) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems skuId(@javax.annotation.Nullable String skuId) {
     this.skuId = skuId;
     return this;
   }
 
-   /**
+  /**
    * SKU ID.
    * @return skuId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuId() {
     return skuId;
   }
 
-  public void setSkuId(String skuId) {
+  public void setSkuId(@javax.annotation.Nullable String skuId) {
     this.skuId = skuId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItems skuName(String skuName) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems skuName(@javax.annotation.Nullable String skuName) {
     this.skuName = skuName;
     return this;
   }
 
-   /**
+  /**
    * SKU name.
    * @return skuName
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuName() {
     return skuName;
   }
 
-  public void setSkuName(String skuName) {
+  public void setSkuName(@javax.annotation.Nullable String skuName) {
     this.skuName = skuName;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchReturnsResponseDataReturnOrdersReturnLineItems instance itself
+   */
+  public SearchReturnsResponseDataReturnOrdersReturnLineItems putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -257,12 +309,13 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItems {
         Objects.equals(this.returnLineItemId, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItems.returnLineItemId) &&
         Objects.equals(this.sellerSku, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItems.sellerSku) &&
         Objects.equals(this.skuId, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItems.skuId) &&
-        Objects.equals(this.skuName, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItems.skuName);
+        Objects.equals(this.skuName, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItems.skuName)&&
+        Objects.equals(this.additionalProperties, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItems.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orderLineItemId, productImage, productName, refundAmount, returnLineItemId, sellerSku, skuId, skuName);
+    return Objects.hash(orderLineItemId, productImage, productName, refundAmount, returnLineItemId, sellerSku, skuId, skuName, additionalProperties);
   }
 
   @Override
@@ -277,6 +330,7 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItems {
     sb.append("    sellerSku: ").append(toIndentedString(sellerSku)).append("\n");
     sb.append("    skuId: ").append(toIndentedString(skuId)).append("\n");
     sb.append("    skuName: ").append(toIndentedString(skuName)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -298,38 +352,22 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItems {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("order_line_item_id");
-    openapiFields.add("product_image");
-    openapiFields.add("product_name");
-    openapiFields.add("refund_amount");
-    openapiFields.add("return_line_item_id");
-    openapiFields.add("seller_sku");
-    openapiFields.add("sku_id");
-    openapiFields.add("sku_name");
+    openapiFields = new HashSet<String>(Arrays.asList("order_line_item_id", "product_image", "product_name", "refund_amount", "return_line_item_id", "seller_sku", "sku_id", "sku_name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrdersReturnLineItems
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrdersReturnLineItems
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchReturnsResponseDataReturnOrdersReturnLineItems.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchReturnsResponseDataReturnOrdersReturnLineItems is not found in the empty JSON string", SearchReturnsResponseDataReturnOrdersReturnLineItems.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchReturnsResponseDataReturnOrdersReturnLineItems.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchReturnsResponseDataReturnOrdersReturnLineItems` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -376,6 +414,28 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItems {
            @Override
            public void write(JsonWriter out, SearchReturnsResponseDataReturnOrdersReturnLineItems value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -383,29 +443,50 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItems {
            public SearchReturnsResponseDataReturnOrdersReturnLineItems read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchReturnsResponseDataReturnOrdersReturnLineItems instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchReturnsResponseDataReturnOrdersReturnLineItems given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchReturnsResponseDataReturnOrdersReturnLineItems
-  * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrdersReturnLineItems
-  */
+  /**
+   * Create an instance of SearchReturnsResponseDataReturnOrdersReturnLineItems given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchReturnsResponseDataReturnOrdersReturnLineItems
+   * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrdersReturnLineItems
+   */
   public static SearchReturnsResponseDataReturnOrdersReturnLineItems fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchReturnsResponseDataReturnOrdersReturnLineItems.class);
   }
 
- /**
-  * Convert an instance of SearchReturnsResponseDataReturnOrdersReturnLineItems to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchReturnsResponseDataReturnOrdersReturnLineItems to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

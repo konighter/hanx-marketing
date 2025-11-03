@@ -51,7 +51,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -63,138 +62,160 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetGlobalProductResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetGlobalProductResponseData {
   public static final String SERIALIZED_NAME_BRAND = "brand";
   @SerializedName(SERIALIZED_NAME_BRAND)
+  @javax.annotation.Nullable
   private GetGlobalProductResponseDataBrand brand;
 
   public static final String SERIALIZED_NAME_CATEGORY = "category";
   @SerializedName(SERIALIZED_NAME_CATEGORY)
+  @javax.annotation.Nullable
   private GetGlobalProductResponseDataCategory category;
 
   public static final String SERIALIZED_NAME_CERTIFICATIONS = "certifications";
   @SerializedName(SERIALIZED_NAME_CERTIFICATIONS)
+  @javax.annotation.Nullable
   private List<GetGlobalProductResponseDataCertifications> certifications = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_EXTERNAL_GLOBAL_PRODUCT_ID = "external_global_product_id";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_GLOBAL_PRODUCT_ID)
+  @javax.annotation.Nullable
   private String externalGlobalProductId;
 
   public static final String SERIALIZED_NAME_GLOBAL_SELLER_ID = "global_seller_id";
   @SerializedName(SERIALIZED_NAME_GLOBAL_SELLER_ID)
+  @javax.annotation.Nullable
   private String globalSellerId;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_MAIN_IMAGES = "main_images";
   @SerializedName(SERIALIZED_NAME_MAIN_IMAGES)
+  @javax.annotation.Nullable
   private List<GetGlobalProductResponseDataMainImages> mainImages = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MANUFACTURER = "manufacturer";
   @SerializedName(SERIALIZED_NAME_MANUFACTURER)
+  @javax.annotation.Nullable
   private GetGlobalProductResponseDataManufacturer manufacturer;
 
   public static final String SERIALIZED_NAME_MANUFACTURER_IDS = "manufacturer_ids";
   @SerializedName(SERIALIZED_NAME_MANUFACTURER_IDS)
+  @javax.annotation.Nullable
   private List<String> manufacturerIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PACKAGE_DIMENSIONS = "package_dimensions";
   @SerializedName(SERIALIZED_NAME_PACKAGE_DIMENSIONS)
+  @javax.annotation.Nullable
   private GetGlobalProductResponseDataPackageDimensions packageDimensions;
 
   public static final String SERIALIZED_NAME_PACKAGE_WEIGHT = "package_weight";
   @SerializedName(SERIALIZED_NAME_PACKAGE_WEIGHT)
+  @javax.annotation.Nullable
   private GetGlobalProductResponseDataPackageWeight packageWeight;
 
   public static final String SERIALIZED_NAME_PRODUCT_ATTRIBUTES = "product_attributes";
   @SerializedName(SERIALIZED_NAME_PRODUCT_ATTRIBUTES)
+  @javax.annotation.Nullable
   private List<GetGlobalProductResponseDataProductAttributes> productAttributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PRODUCTS = "products";
   @SerializedName(SERIALIZED_NAME_PRODUCTS)
+  @javax.annotation.Nullable
   private List<GetGlobalProductResponseDataProducts> products = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS = "responsible_person_ids";
   @SerializedName(SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS)
+  @javax.annotation.Nullable
   private List<String> responsiblePersonIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SIZE_CHART = "size_chart";
   @SerializedName(SERIALIZED_NAME_SIZE_CHART)
+  @javax.annotation.Nullable
   private GetGlobalProductResponseDataSizeChart sizeChart;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<GetGlobalProductResponseDataSkus> skus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SOURCE_LOCALE = "source_locale";
   @SerializedName(SERIALIZED_NAME_SOURCE_LOCALE)
+  @javax.annotation.Nullable
   private String sourceLocale;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public static final String SERIALIZED_NAME_VIDEO = "video";
   @SerializedName(SERIALIZED_NAME_VIDEO)
+  @javax.annotation.Nullable
   private GetGlobalProductResponseDataVideo video;
 
   public GetGlobalProductResponseData() {
   }
 
-  public GetGlobalProductResponseData brand(GetGlobalProductResponseDataBrand brand) {
+  public GetGlobalProductResponseData brand(@javax.annotation.Nullable GetGlobalProductResponseDataBrand brand) {
     this.brand = brand;
     return this;
   }
 
-   /**
+  /**
    * Get brand
    * @return brand
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalProductResponseDataBrand getBrand() {
     return brand;
   }
 
-  public void setBrand(GetGlobalProductResponseDataBrand brand) {
+  public void setBrand(@javax.annotation.Nullable GetGlobalProductResponseDataBrand brand) {
     this.brand = brand;
   }
 
 
-  public GetGlobalProductResponseData category(GetGlobalProductResponseDataCategory category) {
+  public GetGlobalProductResponseData category(@javax.annotation.Nullable GetGlobalProductResponseDataCategory category) {
     this.category = category;
     return this;
   }
 
-   /**
+  /**
    * Get category
    * @return category
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalProductResponseDataCategory getCategory() {
     return category;
   }
 
-  public void setCategory(GetGlobalProductResponseDataCategory category) {
+  public void setCategory(@javax.annotation.Nullable GetGlobalProductResponseDataCategory category) {
     this.category = category;
   }
 
 
-  public GetGlobalProductResponseData certifications(List<GetGlobalProductResponseDataCertifications> certifications) {
+  public GetGlobalProductResponseData certifications(@javax.annotation.Nullable List<GetGlobalProductResponseDataCertifications> certifications) {
     this.certifications = certifications;
     return this;
   }
@@ -207,116 +228,116 @@ public class GetGlobalProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * The list of certifications for your product.
    * @return certifications
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalProductResponseDataCertifications> getCertifications() {
     return certifications;
   }
 
-  public void setCertifications(List<GetGlobalProductResponseDataCertifications> certifications) {
+  public void setCertifications(@javax.annotation.Nullable List<GetGlobalProductResponseDataCertifications> certifications) {
     this.certifications = certifications;
   }
 
 
-  public GetGlobalProductResponseData createTime(Long createTime) {
+  public GetGlobalProductResponseData createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the product is created. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetGlobalProductResponseData description(String description) {
+  public GetGlobalProductResponseData description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * The product description in HTML format.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public GetGlobalProductResponseData externalGlobalProductId(String externalGlobalProductId) {
+  public GetGlobalProductResponseData externalGlobalProductId(@javax.annotation.Nullable String externalGlobalProductId) {
     this.externalGlobalProductId = externalGlobalProductId;
     return this;
   }
 
-   /**
+  /**
    * An external identifier used in an external ecommerce platform. This is used to associate the product between TikTok Shop and the external ecommerce platform.
    * @return externalGlobalProductId
-  **/
+   */
   @javax.annotation.Nullable
   public String getExternalGlobalProductId() {
     return externalGlobalProductId;
   }
 
-  public void setExternalGlobalProductId(String externalGlobalProductId) {
+  public void setExternalGlobalProductId(@javax.annotation.Nullable String externalGlobalProductId) {
     this.externalGlobalProductId = externalGlobalProductId;
   }
 
 
-  public GetGlobalProductResponseData globalSellerId(String globalSellerId) {
+  public GetGlobalProductResponseData globalSellerId(@javax.annotation.Nullable String globalSellerId) {
     this.globalSellerId = globalSellerId;
     return this;
   }
 
-   /**
+  /**
    * The cross-border seller ID.
    * @return globalSellerId
-  **/
+   */
   @javax.annotation.Nullable
   public String getGlobalSellerId() {
     return globalSellerId;
   }
 
-  public void setGlobalSellerId(String globalSellerId) {
+  public void setGlobalSellerId(@javax.annotation.Nullable String globalSellerId) {
     this.globalSellerId = globalSellerId;
   }
 
 
-  public GetGlobalProductResponseData id(String id) {
+  public GetGlobalProductResponseData id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The global product ID in TikTok Shop.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetGlobalProductResponseData mainImages(List<GetGlobalProductResponseDataMainImages> mainImages) {
+  public GetGlobalProductResponseData mainImages(@javax.annotation.Nullable List<GetGlobalProductResponseDataMainImages> mainImages) {
     this.mainImages = mainImages;
     return this;
   }
@@ -329,40 +350,40 @@ public class GetGlobalProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * A list of images to display in the product image gallery.
    * @return mainImages
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalProductResponseDataMainImages> getMainImages() {
     return mainImages;
   }
 
-  public void setMainImages(List<GetGlobalProductResponseDataMainImages> mainImages) {
+  public void setMainImages(@javax.annotation.Nullable List<GetGlobalProductResponseDataMainImages> mainImages) {
     this.mainImages = mainImages;
   }
 
 
-  public GetGlobalProductResponseData manufacturer(GetGlobalProductResponseDataManufacturer manufacturer) {
+  public GetGlobalProductResponseData manufacturer(@javax.annotation.Nullable GetGlobalProductResponseDataManufacturer manufacturer) {
     this.manufacturer = manufacturer;
     return this;
   }
 
-   /**
+  /**
    * Get manufacturer
    * @return manufacturer
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalProductResponseDataManufacturer getManufacturer() {
     return manufacturer;
   }
 
-  public void setManufacturer(GetGlobalProductResponseDataManufacturer manufacturer) {
+  public void setManufacturer(@javax.annotation.Nullable GetGlobalProductResponseDataManufacturer manufacturer) {
     this.manufacturer = manufacturer;
   }
 
 
-  public GetGlobalProductResponseData manufacturerIds(List<String> manufacturerIds) {
+  public GetGlobalProductResponseData manufacturerIds(@javax.annotation.Nullable List<String> manufacturerIds) {
     this.manufacturerIds = manufacturerIds;
     return this;
   }
@@ -375,59 +396,59 @@ public class GetGlobalProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * A comma-delimited list of manufacturer IDs. Retrieve the IDs from the [Search Manufacturers API](67066a580dcee902fa03ccf9). **Note**: Applicable only for the EU market in certain categories.
    * @return manufacturerIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getManufacturerIds() {
     return manufacturerIds;
   }
 
-  public void setManufacturerIds(List<String> manufacturerIds) {
+  public void setManufacturerIds(@javax.annotation.Nullable List<String> manufacturerIds) {
     this.manufacturerIds = manufacturerIds;
   }
 
 
-  public GetGlobalProductResponseData packageDimensions(GetGlobalProductResponseDataPackageDimensions packageDimensions) {
+  public GetGlobalProductResponseData packageDimensions(@javax.annotation.Nullable GetGlobalProductResponseDataPackageDimensions packageDimensions) {
     this.packageDimensions = packageDimensions;
     return this;
   }
 
-   /**
+  /**
    * Get packageDimensions
    * @return packageDimensions
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalProductResponseDataPackageDimensions getPackageDimensions() {
     return packageDimensions;
   }
 
-  public void setPackageDimensions(GetGlobalProductResponseDataPackageDimensions packageDimensions) {
+  public void setPackageDimensions(@javax.annotation.Nullable GetGlobalProductResponseDataPackageDimensions packageDimensions) {
     this.packageDimensions = packageDimensions;
   }
 
 
-  public GetGlobalProductResponseData packageWeight(GetGlobalProductResponseDataPackageWeight packageWeight) {
+  public GetGlobalProductResponseData packageWeight(@javax.annotation.Nullable GetGlobalProductResponseDataPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
     return this;
   }
 
-   /**
+  /**
    * Get packageWeight
    * @return packageWeight
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalProductResponseDataPackageWeight getPackageWeight() {
     return packageWeight;
   }
 
-  public void setPackageWeight(GetGlobalProductResponseDataPackageWeight packageWeight) {
+  public void setPackageWeight(@javax.annotation.Nullable GetGlobalProductResponseDataPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
   }
 
 
-  public GetGlobalProductResponseData productAttributes(List<GetGlobalProductResponseDataProductAttributes> productAttributes) {
+  public GetGlobalProductResponseData productAttributes(@javax.annotation.Nullable List<GetGlobalProductResponseDataProductAttributes> productAttributes) {
     this.productAttributes = productAttributes;
     return this;
   }
@@ -440,21 +461,21 @@ public class GetGlobalProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * A list of general attributes (e.g. manufacturer, country of origin, materials used) that describe the product as a whole, regardless of variant.
    * @return productAttributes
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalProductResponseDataProductAttributes> getProductAttributes() {
     return productAttributes;
   }
 
-  public void setProductAttributes(List<GetGlobalProductResponseDataProductAttributes> productAttributes) {
+  public void setProductAttributes(@javax.annotation.Nullable List<GetGlobalProductResponseDataProductAttributes> productAttributes) {
     this.productAttributes = productAttributes;
   }
 
 
-  public GetGlobalProductResponseData products(List<GetGlobalProductResponseDataProducts> products) {
+  public GetGlobalProductResponseData products(@javax.annotation.Nullable List<GetGlobalProductResponseDataProducts> products) {
     this.products = products;
     return this;
   }
@@ -467,21 +488,21 @@ public class GetGlobalProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * The local products associated through global product publishing or manual binding.
    * @return products
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalProductResponseDataProducts> getProducts() {
     return products;
   }
 
-  public void setProducts(List<GetGlobalProductResponseDataProducts> products) {
+  public void setProducts(@javax.annotation.Nullable List<GetGlobalProductResponseDataProducts> products) {
     this.products = products;
   }
 
 
-  public GetGlobalProductResponseData responsiblePersonIds(List<String> responsiblePersonIds) {
+  public GetGlobalProductResponseData responsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
     return this;
   }
@@ -494,40 +515,40 @@ public class GetGlobalProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * A comma-delimited list of responsible person IDs. Retrieve the IDs from the [Search Responsible Persons API](67066a55f17b7d02f95d2fb1). **Note**: Applicable only for the EU market in certain categories.
    * @return responsiblePersonIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getResponsiblePersonIds() {
     return responsiblePersonIds;
   }
 
-  public void setResponsiblePersonIds(List<String> responsiblePersonIds) {
+  public void setResponsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
   }
 
 
-  public GetGlobalProductResponseData sizeChart(GetGlobalProductResponseDataSizeChart sizeChart) {
+  public GetGlobalProductResponseData sizeChart(@javax.annotation.Nullable GetGlobalProductResponseDataSizeChart sizeChart) {
     this.sizeChart = sizeChart;
     return this;
   }
 
-   /**
+  /**
    * Get sizeChart
    * @return sizeChart
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalProductResponseDataSizeChart getSizeChart() {
     return sizeChart;
   }
 
-  public void setSizeChart(GetGlobalProductResponseDataSizeChart sizeChart) {
+  public void setSizeChart(@javax.annotation.Nullable GetGlobalProductResponseDataSizeChart sizeChart) {
     this.sizeChart = sizeChart;
   }
 
 
-  public GetGlobalProductResponseData skus(List<GetGlobalProductResponseDataSkus> skus) {
+  public GetGlobalProductResponseData skus(@javax.annotation.Nullable List<GetGlobalProductResponseDataSkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -540,93 +561,138 @@ public class GetGlobalProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * A list of global Stock Keeping Units (SKUs) used to identify distinct variants of the product.
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalProductResponseDataSkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<GetGlobalProductResponseDataSkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<GetGlobalProductResponseDataSkus> skus) {
     this.skus = skus;
   }
 
 
-  public GetGlobalProductResponseData sourceLocale(String sourceLocale) {
+  public GetGlobalProductResponseData sourceLocale(@javax.annotation.Nullable String sourceLocale) {
     this.sourceLocale = sourceLocale;
     return this;
   }
 
-   /**
+  /**
    * The BCP-47 locale code representing the source language used for specifying the product information. Default: en-US Possible values: - de-DE - en-IE - es-ES - fr-FR - it-IT  **Note**: Applicable only for intra-EU sellers.
    * @return sourceLocale
-  **/
+   */
   @javax.annotation.Nullable
   public String getSourceLocale() {
     return sourceLocale;
   }
 
-  public void setSourceLocale(String sourceLocale) {
+  public void setSourceLocale(@javax.annotation.Nullable String sourceLocale) {
     this.sourceLocale = sourceLocale;
   }
 
 
-  public GetGlobalProductResponseData title(String title) {
+  public GetGlobalProductResponseData title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * The product title. 
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
 
-  public GetGlobalProductResponseData updateTime(Long updateTime) {
+  public GetGlobalProductResponseData updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the product is last updated. Unix timestamp.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
   }
 
 
-  public GetGlobalProductResponseData video(GetGlobalProductResponseDataVideo video) {
+  public GetGlobalProductResponseData video(@javax.annotation.Nullable GetGlobalProductResponseDataVideo video) {
     this.video = video;
     return this;
   }
 
-   /**
+  /**
    * Get video
    * @return video
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalProductResponseDataVideo getVideo() {
     return video;
   }
 
-  public void setVideo(GetGlobalProductResponseDataVideo video) {
+  public void setVideo(@javax.annotation.Nullable GetGlobalProductResponseDataVideo video) {
     this.video = video;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetGlobalProductResponseData instance itself
+   */
+  public GetGlobalProductResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -661,12 +727,13 @@ public class GetGlobalProductResponseData {
         Objects.equals(this.sourceLocale, product202309GetGlobalProductResponseData.sourceLocale) &&
         Objects.equals(this.title, product202309GetGlobalProductResponseData.title) &&
         Objects.equals(this.updateTime, product202309GetGlobalProductResponseData.updateTime) &&
-        Objects.equals(this.video, product202309GetGlobalProductResponseData.video);
+        Objects.equals(this.video, product202309GetGlobalProductResponseData.video)&&
+        Objects.equals(this.additionalProperties, product202309GetGlobalProductResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(brand, category, certifications, createTime, description, externalGlobalProductId, globalSellerId, id, mainImages, manufacturer, manufacturerIds, packageDimensions, packageWeight, productAttributes, products, responsiblePersonIds, sizeChart, skus, sourceLocale, title, updateTime, video);
+    return Objects.hash(brand, category, certifications, createTime, description, externalGlobalProductId, globalSellerId, id, mainImages, manufacturer, manufacturerIds, packageDimensions, packageWeight, productAttributes, products, responsiblePersonIds, sizeChart, skus, sourceLocale, title, updateTime, video, additionalProperties);
   }
 
   @Override
@@ -695,6 +762,7 @@ public class GetGlobalProductResponseData {
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -716,52 +784,22 @@ public class GetGlobalProductResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("brand");
-    openapiFields.add("category");
-    openapiFields.add("certifications");
-    openapiFields.add("create_time");
-    openapiFields.add("description");
-    openapiFields.add("external_global_product_id");
-    openapiFields.add("global_seller_id");
-    openapiFields.add("id");
-    openapiFields.add("main_images");
-    openapiFields.add("manufacturer");
-    openapiFields.add("manufacturer_ids");
-    openapiFields.add("package_dimensions");
-    openapiFields.add("package_weight");
-    openapiFields.add("product_attributes");
-    openapiFields.add("products");
-    openapiFields.add("responsible_person_ids");
-    openapiFields.add("size_chart");
-    openapiFields.add("skus");
-    openapiFields.add("source_locale");
-    openapiFields.add("title");
-    openapiFields.add("update_time");
-    openapiFields.add("video");
+    openapiFields = new HashSet<String>(Arrays.asList("brand", "category", "certifications", "create_time", "description", "external_global_product_id", "global_seller_id", "id", "main_images", "manufacturer", "manufacturer_ids", "package_dimensions", "package_weight", "product_attributes", "products", "responsible_person_ids", "size_chart", "skus", "source_locale", "title", "update_time", "video"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetGlobalProductResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetGlobalProductResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetGlobalProductResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetGlobalProductResponseData is not found in the empty JSON string", GetGlobalProductResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetGlobalProductResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetGlobalProductResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -906,6 +944,28 @@ public class GetGlobalProductResponseData {
            @Override
            public void write(JsonWriter out, GetGlobalProductResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -913,29 +973,50 @@ public class GetGlobalProductResponseData {
            public GetGlobalProductResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetGlobalProductResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetGlobalProductResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetGlobalProductResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetGlobalProductResponseData
-  */
+  /**
+   * Create an instance of GetGlobalProductResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetGlobalProductResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetGlobalProductResponseData
+   */
   public static GetGlobalProductResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetGlobalProductResponseData.class);
   }
 
- /**
-  * Convert an instance of GetGlobalProductResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetGlobalProductResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

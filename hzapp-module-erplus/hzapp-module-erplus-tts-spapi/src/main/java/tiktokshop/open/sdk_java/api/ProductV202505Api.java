@@ -83,12 +83,13 @@ public class ProductV202505Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202505ImagesTranslationTasksPostCall(String xTtsAccessToken, String contentType, String shopCipher, CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202505ImagesTranslationTasksPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -117,14 +118,6 @@ public class ProductV202505Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -141,12 +134,22 @@ public class ProductV202505Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202505ImagesTranslationTasksPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202505ImagesTranslationTasksPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202505ImagesTranslationTasksPost(Async)");
@@ -171,12 +174,13 @@ public class ProductV202505Api {
      * @return CreateImageTranslationTasksResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CreateImageTranslationTasksResponse product202505ImagesTranslationTasksPost(String xTtsAccessToken, String contentType, String shopCipher, CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody) throws ApiException {
+    public CreateImageTranslationTasksResponse product202505ImagesTranslationTasksPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody) throws ApiException {
         ApiResponse<CreateImageTranslationTasksResponse> localVarResp = product202505ImagesTranslationTasksPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202505CreateImageTranslationTasksRequestBody);
         return localVarResp.getData();
     }
@@ -191,12 +195,13 @@ public class ProductV202505Api {
      * @return ApiResponse&lt;CreateImageTranslationTasksResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateImageTranslationTasksResponse> product202505ImagesTranslationTasksPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody) throws ApiException {
+    public ApiResponse<CreateImageTranslationTasksResponse> product202505ImagesTranslationTasksPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202505ImagesTranslationTasksPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202505CreateImageTranslationTasksRequestBody, null);
         Type localVarReturnType = new TypeToken<CreateImageTranslationTasksResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -213,12 +218,13 @@ public class ProductV202505Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202505ImagesTranslationTasksPostAsync(String xTtsAccessToken, String contentType, String shopCipher, CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody, final ApiCallback<CreateImageTranslationTasksResponse> _callback) throws ApiException {
+    public okhttp3.Call product202505ImagesTranslationTasksPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateImageTranslationTasksRequestBody product202505CreateImageTranslationTasksRequestBody, final ApiCallback<CreateImageTranslationTasksResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202505ImagesTranslationTasksPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202505CreateImageTranslationTasksRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CreateImageTranslationTasksResponse>(){}.getType();

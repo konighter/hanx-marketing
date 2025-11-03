@@ -84,12 +84,13 @@ public class ProductV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202405ProductsDiagnosesGetCall(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202405ProductsDiagnosesGetCall(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -122,14 +123,6 @@ public class ProductV202405Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -145,12 +138,22 @@ public class ProductV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202405ProductsDiagnosesGetValidateBeforeCall(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202405ProductsDiagnosesGetValidateBeforeCall(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productIds' is set
         if (productIds == null) {
             throw new ApiException("Missing the required parameter 'productIds' when calling product202405ProductsDiagnosesGet(Async)");
@@ -180,12 +183,13 @@ public class ProductV202405Api {
      * @return ProductInformationIssueDiagnosisResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ProductInformationIssueDiagnosisResponse product202405ProductsDiagnosesGet(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ProductInformationIssueDiagnosisResponse product202405ProductsDiagnosesGet(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<ProductInformationIssueDiagnosisResponse> localVarResp = product202405ProductsDiagnosesGetWithHttpInfo(productIds, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -200,12 +204,13 @@ public class ProductV202405Api {
      * @return ApiResponse&lt;ProductInformationIssueDiagnosisResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ProductInformationIssueDiagnosisResponse> product202405ProductsDiagnosesGetWithHttpInfo(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<ProductInformationIssueDiagnosisResponse> product202405ProductsDiagnosesGetWithHttpInfo(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202405ProductsDiagnosesGetValidateBeforeCall(productIds, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<ProductInformationIssueDiagnosisResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -222,12 +227,13 @@ public class ProductV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202405ProductsDiagnosesGetAsync(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<ProductInformationIssueDiagnosisResponse> _callback) throws ApiException {
+    public okhttp3.Call product202405ProductsDiagnosesGetAsync(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<ProductInformationIssueDiagnosisResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202405ProductsDiagnosesGetValidateBeforeCall(productIds, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<ProductInformationIssueDiagnosisResponse>(){}.getType();
@@ -244,12 +250,13 @@ public class ProductV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202405ProductsSeoWordsGetCall(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202405ProductsSeoWordsGetCall(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -282,14 +289,6 @@ public class ProductV202405Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -305,12 +304,22 @@ public class ProductV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202405ProductsSeoWordsGetValidateBeforeCall(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202405ProductsSeoWordsGetValidateBeforeCall(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productIds' is set
         if (productIds == null) {
             throw new ApiException("Missing the required parameter 'productIds' when calling product202405ProductsSeoWordsGet(Async)");
@@ -332,7 +341,7 @@ public class ProductV202405Api {
 
     /**
      * GetProductsSEOWords
-     * Obtain SEO suggestions for product titles of live products (status: &#x60;ACTIVATE&#x60;) to enhance product visibility.
+     * Obtain SEO suggestions for product titles of live products (status: &#x60;ACTIVATE&#x60;) to enhance product visibility. Applicable only for the US, UK, and SEA markets.
      * @param productIds The product IDs for which you want to obtain SEO suggestions. - Max IDs: 20 - The product must be live (&#x60;ACTIVATE&#x60; status) (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -340,19 +349,20 @@ public class ProductV202405Api {
      * @return GetProductsSEOWordsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetProductsSEOWordsResponse product202405ProductsSeoWordsGet(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetProductsSEOWordsResponse product202405ProductsSeoWordsGet(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetProductsSEOWordsResponse> localVarResp = product202405ProductsSeoWordsGetWithHttpInfo(productIds, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
 
     /**
      * GetProductsSEOWords
-     * Obtain SEO suggestions for product titles of live products (status: &#x60;ACTIVATE&#x60;) to enhance product visibility.
+     * Obtain SEO suggestions for product titles of live products (status: &#x60;ACTIVATE&#x60;) to enhance product visibility. Applicable only for the US, UK, and SEA markets.
      * @param productIds The product IDs for which you want to obtain SEO suggestions. - Max IDs: 20 - The product must be live (&#x60;ACTIVATE&#x60; status) (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -360,12 +370,13 @@ public class ProductV202405Api {
      * @return ApiResponse&lt;GetProductsSEOWordsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetProductsSEOWordsResponse> product202405ProductsSeoWordsGetWithHttpInfo(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetProductsSEOWordsResponse> product202405ProductsSeoWordsGetWithHttpInfo(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202405ProductsSeoWordsGetValidateBeforeCall(productIds, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetProductsSEOWordsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -373,7 +384,7 @@ public class ProductV202405Api {
 
     /**
      * GetProductsSEOWords (asynchronously)
-     * Obtain SEO suggestions for product titles of live products (status: &#x60;ACTIVATE&#x60;) to enhance product visibility.
+     * Obtain SEO suggestions for product titles of live products (status: &#x60;ACTIVATE&#x60;) to enhance product visibility. Applicable only for the US, UK, and SEA markets.
      * @param productIds The product IDs for which you want to obtain SEO suggestions. - Max IDs: 20 - The product must be live (&#x60;ACTIVATE&#x60; status) (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -382,12 +393,13 @@ public class ProductV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202405ProductsSeoWordsGetAsync(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetProductsSEOWordsResponse> _callback) throws ApiException {
+    public okhttp3.Call product202405ProductsSeoWordsGetAsync(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetProductsSEOWordsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202405ProductsSeoWordsGetValidateBeforeCall(productIds, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetProductsSEOWordsResponse>(){}.getType();
@@ -404,12 +416,13 @@ public class ProductV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202405ProductsSuggestionsGetCall(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202405ProductsSuggestionsGetCall(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -442,14 +455,6 @@ public class ProductV202405Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -465,12 +470,22 @@ public class ProductV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202405ProductsSuggestionsGetValidateBeforeCall(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202405ProductsSuggestionsGetValidateBeforeCall(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'productIds' is set
         if (productIds == null) {
             throw new ApiException("Missing the required parameter 'productIds' when calling product202405ProductsSuggestionsGet(Async)");
@@ -500,12 +515,13 @@ public class ProductV202405Api {
      * @return GetRecommendedProductTitleAndDescriptionResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetRecommendedProductTitleAndDescriptionResponse product202405ProductsSuggestionsGet(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetRecommendedProductTitleAndDescriptionResponse product202405ProductsSuggestionsGet(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetRecommendedProductTitleAndDescriptionResponse> localVarResp = product202405ProductsSuggestionsGetWithHttpInfo(productIds, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -520,12 +536,13 @@ public class ProductV202405Api {
      * @return ApiResponse&lt;GetRecommendedProductTitleAndDescriptionResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetRecommendedProductTitleAndDescriptionResponse> product202405ProductsSuggestionsGetWithHttpInfo(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetRecommendedProductTitleAndDescriptionResponse> product202405ProductsSuggestionsGetWithHttpInfo(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = product202405ProductsSuggestionsGetValidateBeforeCall(productIds, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetRecommendedProductTitleAndDescriptionResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -542,12 +559,13 @@ public class ProductV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202405ProductsSuggestionsGetAsync(List<String> productIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetRecommendedProductTitleAndDescriptionResponse> _callback) throws ApiException {
+    public okhttp3.Call product202405ProductsSuggestionsGetAsync(@javax.annotation.Nonnull List<String> productIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetRecommendedProductTitleAndDescriptionResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202405ProductsSuggestionsGetValidateBeforeCall(productIds, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetRecommendedProductTitleAndDescriptionResponse>(){}.getType();

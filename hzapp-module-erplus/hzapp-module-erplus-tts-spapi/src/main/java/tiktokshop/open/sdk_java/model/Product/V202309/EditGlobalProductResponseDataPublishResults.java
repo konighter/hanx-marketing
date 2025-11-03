@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,24 +51,27 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * EditGlobalProductResponseDataPublishResults
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class EditGlobalProductResponseDataPublishResults {
   public static final String SERIALIZED_NAME_FAIL_REASONS = "fail_reasons";
   @SerializedName(SERIALIZED_NAME_FAIL_REASONS)
+  @javax.annotation.Nullable
   private List<EditGlobalProductResponseDataPublishResultsFailReasons> failReasons = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REGION = "region";
   @SerializedName(SERIALIZED_NAME_REGION)
+  @javax.annotation.Nullable
   private String region;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public EditGlobalProductResponseDataPublishResults() {
   }
 
-  public EditGlobalProductResponseDataPublishResults failReasons(List<EditGlobalProductResponseDataPublishResultsFailReasons> failReasons) {
+  public EditGlobalProductResponseDataPublishResults failReasons(@javax.annotation.Nullable List<EditGlobalProductResponseDataPublishResultsFailReasons> failReasons) {
     this.failReasons = failReasons;
     return this;
   }
@@ -82,55 +84,100 @@ public class EditGlobalProductResponseDataPublishResults {
     return this;
   }
 
-   /**
+  /**
    * The list of errors that occurred.
    * @return failReasons
-  **/
+   */
   @javax.annotation.Nullable
   public List<EditGlobalProductResponseDataPublishResultsFailReasons> getFailReasons() {
     return failReasons;
   }
 
-  public void setFailReasons(List<EditGlobalProductResponseDataPublishResultsFailReasons> failReasons) {
+  public void setFailReasons(@javax.annotation.Nullable List<EditGlobalProductResponseDataPublishResultsFailReasons> failReasons) {
     this.failReasons = failReasons;
   }
 
 
-  public EditGlobalProductResponseDataPublishResults region(String region) {
+  public EditGlobalProductResponseDataPublishResults region(@javax.annotation.Nullable String region) {
     this.region = region;
     return this;
   }
 
-   /**
-   * The market where the product is published Possible values: - DE: Germany - ES: Spain - FR: France - GB: United Kingdom - ID: Indonesia - IE: Ireland - IT: Italy - JP: Japan - MY: Malaysia - PH: Philippines - SG: Singapore - TH: Thailand - US: United States - VN: Vietnam
+  /**
+   * The market where the product is published Possible values: - DE: Germany - ES: Spain - FR: France - GB: United Kingdom - ID: Indonesia - IE: Ireland - IT: Italy - JP: Japan - MX: Mexico - MY: Malaysia - PH: Philippines - SG: Singapore - TH: Thailand - US: United States - VN: Vietnam
    * @return region
-  **/
+   */
   @javax.annotation.Nullable
   public String getRegion() {
     return region;
   }
 
-  public void setRegion(String region) {
+  public void setRegion(@javax.annotation.Nullable String region) {
     this.region = region;
   }
 
 
-  public EditGlobalProductResponseDataPublishResults status(String status) {
+  public EditGlobalProductResponseDataPublishResults status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The status of syncing the product to the market. Possible values: - SUCCESS: The global product was successfully synchronized to the local shop, submitted for listing, and is now under review. - FAILED: Synchronization of the global product to the local shop was unsuccessful.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the EditGlobalProductResponseDataPublishResults instance itself
+   */
+  public EditGlobalProductResponseDataPublishResults putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -146,12 +193,13 @@ public class EditGlobalProductResponseDataPublishResults {
     EditGlobalProductResponseDataPublishResults product202309EditGlobalProductResponseDataPublishResults = (EditGlobalProductResponseDataPublishResults) o;
     return Objects.equals(this.failReasons, product202309EditGlobalProductResponseDataPublishResults.failReasons) &&
         Objects.equals(this.region, product202309EditGlobalProductResponseDataPublishResults.region) &&
-        Objects.equals(this.status, product202309EditGlobalProductResponseDataPublishResults.status);
+        Objects.equals(this.status, product202309EditGlobalProductResponseDataPublishResults.status)&&
+        Objects.equals(this.additionalProperties, product202309EditGlobalProductResponseDataPublishResults.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(failReasons, region, status);
+    return Objects.hash(failReasons, region, status, additionalProperties);
   }
 
   @Override
@@ -161,6 +209,7 @@ public class EditGlobalProductResponseDataPublishResults {
     sb.append("    failReasons: ").append(toIndentedString(failReasons)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,33 +231,22 @@ public class EditGlobalProductResponseDataPublishResults {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("fail_reasons");
-    openapiFields.add("region");
-    openapiFields.add("status");
+    openapiFields = new HashSet<String>(Arrays.asList("fail_reasons", "region", "status"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to EditGlobalProductResponseDataPublishResults
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EditGlobalProductResponseDataPublishResults
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!EditGlobalProductResponseDataPublishResults.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EditGlobalProductResponseDataPublishResults is not found in the empty JSON string", EditGlobalProductResponseDataPublishResults.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!EditGlobalProductResponseDataPublishResults.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EditGlobalProductResponseDataPublishResults` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -249,6 +287,28 @@ public class EditGlobalProductResponseDataPublishResults {
            @Override
            public void write(JsonWriter out, EditGlobalProductResponseDataPublishResults value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -256,29 +316,50 @@ public class EditGlobalProductResponseDataPublishResults {
            public EditGlobalProductResponseDataPublishResults read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             EditGlobalProductResponseDataPublishResults instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of EditGlobalProductResponseDataPublishResults given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EditGlobalProductResponseDataPublishResults
-  * @throws IOException if the JSON string is invalid with respect to EditGlobalProductResponseDataPublishResults
-  */
+  /**
+   * Create an instance of EditGlobalProductResponseDataPublishResults given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EditGlobalProductResponseDataPublishResults
+   * @throws IOException if the JSON string is invalid with respect to EditGlobalProductResponseDataPublishResults
+   */
   public static EditGlobalProductResponseDataPublishResults fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EditGlobalProductResponseDataPublishResults.class);
   }
 
- /**
-  * Convert an instance of EditGlobalProductResponseDataPublishResults to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EditGlobalProductResponseDataPublishResults to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

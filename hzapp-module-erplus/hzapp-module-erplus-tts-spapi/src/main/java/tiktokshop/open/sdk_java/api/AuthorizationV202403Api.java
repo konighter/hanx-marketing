@@ -74,19 +74,20 @@ public class AuthorizationV202403Api {
 
     /**
      * Build call for authorization202403ShopsDelete
-     * @param shopCipher Shop_cipher is required for cross-border shops, and optional for local shops. It&#39;s unique for each shop. Get the this property from the Get Authorized Shop API dynamically. Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. (required)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call authorization202403ShopsDeleteCall(String shopCipher, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call authorization202403ShopsDeleteCall(@javax.annotation.Nonnull String shopCipher, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -115,14 +116,6 @@ public class AuthorizationV202403Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -138,12 +131,22 @@ public class AuthorizationV202403Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call authorization202403ShopsDeleteValidateBeforeCall(String shopCipher, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call authorization202403ShopsDeleteValidateBeforeCall(@javax.annotation.Nonnull String shopCipher, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'shopCipher' is set
         if (shopCipher == null) {
             throw new ApiException("Missing the required parameter 'shopCipher' when calling authorization202403ShopsDelete(Async)");
@@ -166,18 +169,19 @@ public class AuthorizationV202403Api {
     /**
      * DeauthorizeShop
      * This API is used  for developers to deauthorize a shop and notify the seller about this action by email
-     * @param shopCipher Shop_cipher is required for cross-border shops, and optional for local shops. It&#39;s unique for each shop. Get the this property from the Get Authorized Shop API dynamically. Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. (required)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @return DeauthorizeShopResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public DeauthorizeShopResponse authorization202403ShopsDelete(String shopCipher, String xTtsAccessToken, String contentType) throws ApiException {
+    public DeauthorizeShopResponse authorization202403ShopsDelete(@javax.annotation.Nonnull String shopCipher, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<DeauthorizeShopResponse> localVarResp = authorization202403ShopsDeleteWithHttpInfo(shopCipher, xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -185,18 +189,19 @@ public class AuthorizationV202403Api {
     /**
      * DeauthorizeShop
      * This API is used  for developers to deauthorize a shop and notify the seller about this action by email
-     * @param shopCipher Shop_cipher is required for cross-border shops, and optional for local shops. It&#39;s unique for each shop. Get the this property from the Get Authorized Shop API dynamically. Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. (required)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @return ApiResponse&lt;DeauthorizeShopResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DeauthorizeShopResponse> authorization202403ShopsDeleteWithHttpInfo(String shopCipher, String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<DeauthorizeShopResponse> authorization202403ShopsDeleteWithHttpInfo(@javax.annotation.Nonnull String shopCipher, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = authorization202403ShopsDeleteValidateBeforeCall(shopCipher, xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<DeauthorizeShopResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -205,19 +210,20 @@ public class AuthorizationV202403Api {
     /**
      * DeauthorizeShop (asynchronously)
      * This API is used  for developers to deauthorize a shop and notify the seller about this action by email
-     * @param shopCipher Shop_cipher is required for cross-border shops, and optional for local shops. It&#39;s unique for each shop. Get the this property from the Get Authorized Shop API dynamically. Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. (required)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call authorization202403ShopsDeleteAsync(String shopCipher, String xTtsAccessToken, String contentType, final ApiCallback<DeauthorizeShopResponse> _callback) throws ApiException {
+    public okhttp3.Call authorization202403ShopsDeleteAsync(@javax.annotation.Nonnull String shopCipher, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<DeauthorizeShopResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = authorization202403ShopsDeleteValidateBeforeCall(shopCipher, xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<DeauthorizeShopResponse>(){}.getType();

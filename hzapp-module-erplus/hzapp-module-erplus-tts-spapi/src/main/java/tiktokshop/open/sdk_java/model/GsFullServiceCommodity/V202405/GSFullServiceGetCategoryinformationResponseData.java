@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,284 +48,341 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSFullServiceGetCategoryinformationResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSFullServiceGetCategoryinformationResponseData {
   public static final String SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_ID = "first_key_attribute_id";
   @SerializedName(SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_ID)
+  @javax.annotation.Nullable
   private String firstKeyAttributeId;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_IS_ALLOWED_JIT = "is_allowed_jit";
   @SerializedName(SERIALIZED_NAME_IS_ALLOWED_JIT)
+  @javax.annotation.Nullable
   private Boolean isAllowedJit;
 
   public static final String SERIALIZED_NAME_IS_CUSTOM_KEY_ATTRIBUTE = "is_custom_key_attribute";
   @SerializedName(SERIALIZED_NAME_IS_CUSTOM_KEY_ATTRIBUTE)
+  @javax.annotation.Nullable
   private Boolean isCustomKeyAttribute;
 
   public static final String SERIALIZED_NAME_IS_ENABLED = "is_enabled";
   @SerializedName(SERIALIZED_NAME_IS_ENABLED)
+  @javax.annotation.Nullable
   private Boolean isEnabled;
 
   public static final String SERIALIZED_NAME_IS_GARMENT = "is_garment";
   @SerializedName(SERIALIZED_NAME_IS_GARMENT)
+  @javax.annotation.Nullable
   private Boolean isGarment;
 
   public static final String SERIALIZED_NAME_IS_LEAF = "is_leaf";
   @SerializedName(SERIALIZED_NAME_IS_LEAF)
+  @javax.annotation.Nullable
   private Boolean isLeaf;
 
   public static final String SERIALIZED_NAME_LEVEL = "level";
   @SerializedName(SERIALIZED_NAME_LEVEL)
+  @javax.annotation.Nullable
   private Integer level;
 
   public static final String SERIALIZED_NAME_NAME_EN = "name_en";
   @SerializedName(SERIALIZED_NAME_NAME_EN)
+  @javax.annotation.Nullable
   private String nameEn;
 
   public static final String SERIALIZED_NAME_NAME_ZH = "name_zh";
   @SerializedName(SERIALIZED_NAME_NAME_ZH)
+  @javax.annotation.Nullable
   private String nameZh;
 
   public static final String SERIALIZED_NAME_PARENT_ID = "parent_id";
   @SerializedName(SERIALIZED_NAME_PARENT_ID)
+  @javax.annotation.Nullable
   private String parentId;
 
   public static final String SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_ID = "second_key_attribute_id";
   @SerializedName(SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_ID)
+  @javax.annotation.Nullable
   private String secondKeyAttributeId;
 
   public GSFullServiceGetCategoryinformationResponseData() {
   }
 
-  public GSFullServiceGetCategoryinformationResponseData firstKeyAttributeId(String firstKeyAttributeId) {
+  public GSFullServiceGetCategoryinformationResponseData firstKeyAttributeId(@javax.annotation.Nullable String firstKeyAttributeId) {
     this.firstKeyAttributeId = firstKeyAttributeId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return firstKeyAttributeId
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstKeyAttributeId() {
     return firstKeyAttributeId;
   }
 
-  public void setFirstKeyAttributeId(String firstKeyAttributeId) {
+  public void setFirstKeyAttributeId(@javax.annotation.Nullable String firstKeyAttributeId) {
     this.firstKeyAttributeId = firstKeyAttributeId;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData id(String id) {
+  public GSFullServiceGetCategoryinformationResponseData id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData isAllowedJit(Boolean isAllowedJit) {
+  public GSFullServiceGetCategoryinformationResponseData isAllowedJit(@javax.annotation.Nullable Boolean isAllowedJit) {
     this.isAllowedJit = isAllowedJit;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return isAllowedJit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsAllowedJit() {
     return isAllowedJit;
   }
 
-  public void setIsAllowedJit(Boolean isAllowedJit) {
+  public void setIsAllowedJit(@javax.annotation.Nullable Boolean isAllowedJit) {
     this.isAllowedJit = isAllowedJit;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData isCustomKeyAttribute(Boolean isCustomKeyAttribute) {
+  public GSFullServiceGetCategoryinformationResponseData isCustomKeyAttribute(@javax.annotation.Nullable Boolean isCustomKeyAttribute) {
     this.isCustomKeyAttribute = isCustomKeyAttribute;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return isCustomKeyAttribute
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsCustomKeyAttribute() {
     return isCustomKeyAttribute;
   }
 
-  public void setIsCustomKeyAttribute(Boolean isCustomKeyAttribute) {
+  public void setIsCustomKeyAttribute(@javax.annotation.Nullable Boolean isCustomKeyAttribute) {
     this.isCustomKeyAttribute = isCustomKeyAttribute;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData isEnabled(Boolean isEnabled) {
+  public GSFullServiceGetCategoryinformationResponseData isEnabled(@javax.annotation.Nullable Boolean isEnabled) {
     this.isEnabled = isEnabled;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return isEnabled
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsEnabled() {
     return isEnabled;
   }
 
-  public void setIsEnabled(Boolean isEnabled) {
+  public void setIsEnabled(@javax.annotation.Nullable Boolean isEnabled) {
     this.isEnabled = isEnabled;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData isGarment(Boolean isGarment) {
+  public GSFullServiceGetCategoryinformationResponseData isGarment(@javax.annotation.Nullable Boolean isGarment) {
     this.isGarment = isGarment;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return isGarment
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsGarment() {
     return isGarment;
   }
 
-  public void setIsGarment(Boolean isGarment) {
+  public void setIsGarment(@javax.annotation.Nullable Boolean isGarment) {
     this.isGarment = isGarment;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData isLeaf(Boolean isLeaf) {
+  public GSFullServiceGetCategoryinformationResponseData isLeaf(@javax.annotation.Nullable Boolean isLeaf) {
     this.isLeaf = isLeaf;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return isLeaf
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsLeaf() {
     return isLeaf;
   }
 
-  public void setIsLeaf(Boolean isLeaf) {
+  public void setIsLeaf(@javax.annotation.Nullable Boolean isLeaf) {
     this.isLeaf = isLeaf;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData level(Integer level) {
+  public GSFullServiceGetCategoryinformationResponseData level(@javax.annotation.Nullable Integer level) {
     this.level = level;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return level
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getLevel() {
     return level;
   }
 
-  public void setLevel(Integer level) {
+  public void setLevel(@javax.annotation.Nullable Integer level) {
     this.level = level;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData nameEn(String nameEn) {
+  public GSFullServiceGetCategoryinformationResponseData nameEn(@javax.annotation.Nullable String nameEn) {
     this.nameEn = nameEn;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return nameEn
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameEn() {
     return nameEn;
   }
 
-  public void setNameEn(String nameEn) {
+  public void setNameEn(@javax.annotation.Nullable String nameEn) {
     this.nameEn = nameEn;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData nameZh(String nameZh) {
+  public GSFullServiceGetCategoryinformationResponseData nameZh(@javax.annotation.Nullable String nameZh) {
     this.nameZh = nameZh;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return nameZh
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameZh() {
     return nameZh;
   }
 
-  public void setNameZh(String nameZh) {
+  public void setNameZh(@javax.annotation.Nullable String nameZh) {
     this.nameZh = nameZh;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData parentId(String parentId) {
+  public GSFullServiceGetCategoryinformationResponseData parentId(@javax.annotation.Nullable String parentId) {
     this.parentId = parentId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return parentId
-  **/
+   */
   @javax.annotation.Nullable
   public String getParentId() {
     return parentId;
   }
 
-  public void setParentId(String parentId) {
+  public void setParentId(@javax.annotation.Nullable String parentId) {
     this.parentId = parentId;
   }
 
 
-  public GSFullServiceGetCategoryinformationResponseData secondKeyAttributeId(String secondKeyAttributeId) {
+  public GSFullServiceGetCategoryinformationResponseData secondKeyAttributeId(@javax.annotation.Nullable String secondKeyAttributeId) {
     this.secondKeyAttributeId = secondKeyAttributeId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return secondKeyAttributeId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSecondKeyAttributeId() {
     return secondKeyAttributeId;
   }
 
-  public void setSecondKeyAttributeId(String secondKeyAttributeId) {
+  public void setSecondKeyAttributeId(@javax.annotation.Nullable String secondKeyAttributeId) {
     this.secondKeyAttributeId = secondKeyAttributeId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSFullServiceGetCategoryinformationResponseData instance itself
+   */
+  public GSFullServiceGetCategoryinformationResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -351,12 +407,13 @@ public class GSFullServiceGetCategoryinformationResponseData {
         Objects.equals(this.nameEn, gsFullServiceCommodity202405GSFullServiceGetCategoryinformationResponseData.nameEn) &&
         Objects.equals(this.nameZh, gsFullServiceCommodity202405GSFullServiceGetCategoryinformationResponseData.nameZh) &&
         Objects.equals(this.parentId, gsFullServiceCommodity202405GSFullServiceGetCategoryinformationResponseData.parentId) &&
-        Objects.equals(this.secondKeyAttributeId, gsFullServiceCommodity202405GSFullServiceGetCategoryinformationResponseData.secondKeyAttributeId);
+        Objects.equals(this.secondKeyAttributeId, gsFullServiceCommodity202405GSFullServiceGetCategoryinformationResponseData.secondKeyAttributeId)&&
+        Objects.equals(this.additionalProperties, gsFullServiceCommodity202405GSFullServiceGetCategoryinformationResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstKeyAttributeId, id, isAllowedJit, isCustomKeyAttribute, isEnabled, isGarment, isLeaf, level, nameEn, nameZh, parentId, secondKeyAttributeId);
+    return Objects.hash(firstKeyAttributeId, id, isAllowedJit, isCustomKeyAttribute, isEnabled, isGarment, isLeaf, level, nameEn, nameZh, parentId, secondKeyAttributeId, additionalProperties);
   }
 
   @Override
@@ -375,6 +432,7 @@ public class GSFullServiceGetCategoryinformationResponseData {
     sb.append("    nameZh: ").append(toIndentedString(nameZh)).append("\n");
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    secondKeyAttributeId: ").append(toIndentedString(secondKeyAttributeId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -396,42 +454,22 @@ public class GSFullServiceGetCategoryinformationResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("first_key_attribute_id");
-    openapiFields.add("id");
-    openapiFields.add("is_allowed_jit");
-    openapiFields.add("is_custom_key_attribute");
-    openapiFields.add("is_enabled");
-    openapiFields.add("is_garment");
-    openapiFields.add("is_leaf");
-    openapiFields.add("level");
-    openapiFields.add("name_en");
-    openapiFields.add("name_zh");
-    openapiFields.add("parent_id");
-    openapiFields.add("second_key_attribute_id");
+    openapiFields = new HashSet<String>(Arrays.asList("first_key_attribute_id", "id", "is_allowed_jit", "is_custom_key_attribute", "is_enabled", "is_garment", "is_leaf", "level", "name_en", "name_zh", "parent_id", "second_key_attribute_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSFullServiceGetCategoryinformationResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSFullServiceGetCategoryinformationResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSFullServiceGetCategoryinformationResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSFullServiceGetCategoryinformationResponseData is not found in the empty JSON string", GSFullServiceGetCategoryinformationResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSFullServiceGetCategoryinformationResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSFullServiceGetCategoryinformationResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -470,6 +508,28 @@ public class GSFullServiceGetCategoryinformationResponseData {
            @Override
            public void write(JsonWriter out, GSFullServiceGetCategoryinformationResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -477,29 +537,50 @@ public class GSFullServiceGetCategoryinformationResponseData {
            public GSFullServiceGetCategoryinformationResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSFullServiceGetCategoryinformationResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSFullServiceGetCategoryinformationResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSFullServiceGetCategoryinformationResponseData
-  * @throws IOException if the JSON string is invalid with respect to GSFullServiceGetCategoryinformationResponseData
-  */
+  /**
+   * Create an instance of GSFullServiceGetCategoryinformationResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSFullServiceGetCategoryinformationResponseData
+   * @throws IOException if the JSON string is invalid with respect to GSFullServiceGetCategoryinformationResponseData
+   */
   public static GSFullServiceGetCategoryinformationResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSFullServiceGetCategoryinformationResponseData.class);
   }
 
- /**
-  * Convert an instance of GSFullServiceGetCategoryinformationResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSFullServiceGetCategoryinformationResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,66 +52,70 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSCreateProductv2RequestBodySpuMedia
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSCreateProductv2RequestBodySpuMedia {
   public static final String SERIALIZED_NAME_PIC_SET_TYPE = "pic_set_type";
   @SerializedName(SERIALIZED_NAME_PIC_SET_TYPE)
+  @javax.annotation.Nullable
   private String picSetType;
 
   public static final String SERIALIZED_NAME_PIC_TYPE = "pic_type";
   @SerializedName(SERIALIZED_NAME_PIC_TYPE)
+  @javax.annotation.Nullable
   private String picType;
 
   public static final String SERIALIZED_NAME_PICTURES = "pictures";
   @SerializedName(SERIALIZED_NAME_PICTURES)
+  @javax.annotation.Nullable
   private List<GSCreateProductv2RequestBodySpuMediaPictures> pictures = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_VIDEOS = "videos";
   @SerializedName(SERIALIZED_NAME_VIDEOS)
+  @javax.annotation.Nullable
   private List<GSCreateProductv2RequestBodySpuMediaVideos> videos = new ArrayList<>();
 
   public GSCreateProductv2RequestBodySpuMedia() {
   }
 
-  public GSCreateProductv2RequestBodySpuMedia picSetType(String picSetType) {
+  public GSCreateProductv2RequestBodySpuMedia picSetType(@javax.annotation.Nullable String picSetType) {
     this.picSetType = picSetType;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return picSetType
-  **/
+   */
   @javax.annotation.Nullable
   public String getPicSetType() {
     return picSetType;
   }
 
-  public void setPicSetType(String picSetType) {
+  public void setPicSetType(@javax.annotation.Nullable String picSetType) {
     this.picSetType = picSetType;
   }
 
 
-  public GSCreateProductv2RequestBodySpuMedia picType(String picType) {
+  public GSCreateProductv2RequestBodySpuMedia picType(@javax.annotation.Nullable String picType) {
     this.picType = picType;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return picType
-  **/
+   */
   @javax.annotation.Nullable
   public String getPicType() {
     return picType;
   }
 
-  public void setPicType(String picType) {
+  public void setPicType(@javax.annotation.Nullable String picType) {
     this.picType = picType;
   }
 
 
-  public GSCreateProductv2RequestBodySpuMedia pictures(List<GSCreateProductv2RequestBodySpuMediaPictures> pictures) {
+  public GSCreateProductv2RequestBodySpuMedia pictures(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuMediaPictures> pictures) {
     this.pictures = pictures;
     return this;
   }
@@ -125,21 +128,21 @@ public class GSCreateProductv2RequestBodySpuMedia {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return pictures
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSCreateProductv2RequestBodySpuMediaPictures> getPictures() {
     return pictures;
   }
 
-  public void setPictures(List<GSCreateProductv2RequestBodySpuMediaPictures> pictures) {
+  public void setPictures(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuMediaPictures> pictures) {
     this.pictures = pictures;
   }
 
 
-  public GSCreateProductv2RequestBodySpuMedia videos(List<GSCreateProductv2RequestBodySpuMediaVideos> videos) {
+  public GSCreateProductv2RequestBodySpuMedia videos(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuMediaVideos> videos) {
     this.videos = videos;
     return this;
   }
@@ -152,17 +155,62 @@ public class GSCreateProductv2RequestBodySpuMedia {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return videos
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSCreateProductv2RequestBodySpuMediaVideos> getVideos() {
     return videos;
   }
 
-  public void setVideos(List<GSCreateProductv2RequestBodySpuMediaVideos> videos) {
+  public void setVideos(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuMediaVideos> videos) {
     this.videos = videos;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSCreateProductv2RequestBodySpuMedia instance itself
+   */
+  public GSCreateProductv2RequestBodySpuMedia putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -179,12 +227,13 @@ public class GSCreateProductv2RequestBodySpuMedia {
     return Objects.equals(this.picSetType, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuMedia.picSetType) &&
         Objects.equals(this.picType, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuMedia.picType) &&
         Objects.equals(this.pictures, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuMedia.pictures) &&
-        Objects.equals(this.videos, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuMedia.videos);
+        Objects.equals(this.videos, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuMedia.videos)&&
+        Objects.equals(this.additionalProperties, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuMedia.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(picSetType, picType, pictures, videos);
+    return Objects.hash(picSetType, picType, pictures, videos, additionalProperties);
   }
 
   @Override
@@ -195,6 +244,7 @@ public class GSCreateProductv2RequestBodySpuMedia {
     sb.append("    picType: ").append(toIndentedString(picType)).append("\n");
     sb.append("    pictures: ").append(toIndentedString(pictures)).append("\n");
     sb.append("    videos: ").append(toIndentedString(videos)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -216,34 +266,22 @@ public class GSCreateProductv2RequestBodySpuMedia {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("pic_set_type");
-    openapiFields.add("pic_type");
-    openapiFields.add("pictures");
-    openapiFields.add("videos");
+    openapiFields = new HashSet<String>(Arrays.asList("pic_set_type", "pic_type", "pictures", "videos"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSCreateProductv2RequestBodySpuMedia
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSCreateProductv2RequestBodySpuMedia
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSCreateProductv2RequestBodySpuMedia.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSCreateProductv2RequestBodySpuMedia is not found in the empty JSON string", GSCreateProductv2RequestBodySpuMedia.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSCreateProductv2RequestBodySpuMedia.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSCreateProductv2RequestBodySpuMedia` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -298,6 +336,28 @@ public class GSCreateProductv2RequestBodySpuMedia {
            @Override
            public void write(JsonWriter out, GSCreateProductv2RequestBodySpuMedia value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -305,29 +365,50 @@ public class GSCreateProductv2RequestBodySpuMedia {
            public GSCreateProductv2RequestBodySpuMedia read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSCreateProductv2RequestBodySpuMedia instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSCreateProductv2RequestBodySpuMedia given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSCreateProductv2RequestBodySpuMedia
-  * @throws IOException if the JSON string is invalid with respect to GSCreateProductv2RequestBodySpuMedia
-  */
+  /**
+   * Create an instance of GSCreateProductv2RequestBodySpuMedia given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSCreateProductv2RequestBodySpuMedia
+   * @throws IOException if the JSON string is invalid with respect to GSCreateProductv2RequestBodySpuMedia
+   */
   public static GSCreateProductv2RequestBodySpuMedia fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSCreateProductv2RequestBodySpuMedia.class);
   }
 
- /**
-  * Convert an instance of GSCreateProductv2RequestBodySpuMedia to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSCreateProductv2RequestBodySpuMedia to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,165 +51,189 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetPriceDetailResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetPriceDetailResponseData {
   public static final String SERIALIZED_NAME_COD_FEE = "cod_fee";
   @SerializedName(SERIALIZED_NAME_COD_FEE)
+  @javax.annotation.Nullable
   private String codFee;
 
   public static final String SERIALIZED_NAME_COD_FEE_NET_AMOUNT = "cod_fee_net_amount";
   @SerializedName(SERIALIZED_NAME_COD_FEE_NET_AMOUNT)
+  @javax.annotation.Nullable
   private String codFeeNetAmount;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_LINE_ITEMS = "line_items";
   @SerializedName(SERIALIZED_NAME_LINE_ITEMS)
+  @javax.annotation.Nullable
   private List<GetPriceDetailResponseDataLineItems> lineItems = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NET_PRICE_AMOUNT = "net_price_amount";
   @SerializedName(SERIALIZED_NAME_NET_PRICE_AMOUNT)
+  @javax.annotation.Nullable
   private String netPriceAmount;
 
   public static final String SERIALIZED_NAME_PAYMENT = "payment";
   @SerializedName(SERIALIZED_NAME_PAYMENT)
+  @javax.annotation.Nullable
   private String payment;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_DEDUCTION_PLATFORM = "shipping_fee_deduction_platform";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_DEDUCTION_PLATFORM)
+  @javax.annotation.Nullable
   private String shippingFeeDeductionPlatform;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_DEDUCTION_PLATFORM_VOUCHER = "shipping_fee_deduction_platform_voucher";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_DEDUCTION_PLATFORM_VOUCHER)
+  @javax.annotation.Nullable
   private String shippingFeeDeductionPlatformVoucher;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_DEDUCTION_SELLER = "shipping_fee_deduction_seller";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_DEDUCTION_SELLER)
+  @javax.annotation.Nullable
   private String shippingFeeDeductionSeller;
 
   public static final String SERIALIZED_NAME_SHIPPING_LIST_PRICE = "shipping_list_price";
   @SerializedName(SERIALIZED_NAME_SHIPPING_LIST_PRICE)
+  @javax.annotation.Nullable
   private String shippingListPrice;
 
   public static final String SERIALIZED_NAME_SHIPPING_SALE_PRICE = "shipping_sale_price";
   @SerializedName(SERIALIZED_NAME_SHIPPING_SALE_PRICE)
+  @javax.annotation.Nullable
   private String shippingSalePrice;
 
   public static final String SERIALIZED_NAME_SKU_GIFT_NET_PRICE = "sku_gift_net_price";
   @SerializedName(SERIALIZED_NAME_SKU_GIFT_NET_PRICE)
+  @javax.annotation.Nullable
   private String skuGiftNetPrice;
 
   public static final String SERIALIZED_NAME_SKU_GIFT_ORIGINAL_PRICE = "sku_gift_original_price";
   @SerializedName(SERIALIZED_NAME_SKU_GIFT_ORIGINAL_PRICE)
+  @javax.annotation.Nullable
   private String skuGiftOriginalPrice;
 
   public static final String SERIALIZED_NAME_SKU_LIST_PRICE = "sku_list_price";
   @SerializedName(SERIALIZED_NAME_SKU_LIST_PRICE)
+  @javax.annotation.Nullable
   private String skuListPrice;
 
   public static final String SERIALIZED_NAME_SKU_SALE_PRICE = "sku_sale_price";
   @SerializedName(SERIALIZED_NAME_SKU_SALE_PRICE)
+  @javax.annotation.Nullable
   private String skuSalePrice;
 
   public static final String SERIALIZED_NAME_SUBTOTAL = "subtotal";
   @SerializedName(SERIALIZED_NAME_SUBTOTAL)
+  @javax.annotation.Nullable
   private String subtotal;
 
   public static final String SERIALIZED_NAME_SUBTOTAL_DEDUCTION_PLATFORM = "subtotal_deduction_platform";
   @SerializedName(SERIALIZED_NAME_SUBTOTAL_DEDUCTION_PLATFORM)
+  @javax.annotation.Nullable
   private String subtotalDeductionPlatform;
 
   public static final String SERIALIZED_NAME_SUBTOTAL_DEDUCTION_SELLER = "subtotal_deduction_seller";
   @SerializedName(SERIALIZED_NAME_SUBTOTAL_DEDUCTION_SELLER)
+  @javax.annotation.Nullable
   private String subtotalDeductionSeller;
 
   public static final String SERIALIZED_NAME_SUBTOTAL_TAX_AMOUNT = "subtotal_tax_amount";
   @SerializedName(SERIALIZED_NAME_SUBTOTAL_TAX_AMOUNT)
+  @javax.annotation.Nullable
   private String subtotalTaxAmount;
 
   public static final String SERIALIZED_NAME_TAX_AMOUNT = "tax_amount";
   @SerializedName(SERIALIZED_NAME_TAX_AMOUNT)
+  @javax.annotation.Nullable
   private String taxAmount;
 
   public static final String SERIALIZED_NAME_TAX_RATE = "tax_rate";
   @SerializedName(SERIALIZED_NAME_TAX_RATE)
+  @javax.annotation.Nullable
   private String taxRate;
 
   public static final String SERIALIZED_NAME_TOTAL = "total";
   @SerializedName(SERIALIZED_NAME_TOTAL)
+  @javax.annotation.Nullable
   private String total;
 
   public static final String SERIALIZED_NAME_VOUCHER_DEDUCTION_PLATFORM = "voucher_deduction_platform";
   @SerializedName(SERIALIZED_NAME_VOUCHER_DEDUCTION_PLATFORM)
+  @javax.annotation.Nullable
   private String voucherDeductionPlatform;
 
   public static final String SERIALIZED_NAME_VOUCHER_DEDUCTION_SELLER = "voucher_deduction_seller";
   @SerializedName(SERIALIZED_NAME_VOUCHER_DEDUCTION_SELLER)
+  @javax.annotation.Nullable
   private String voucherDeductionSeller;
 
   public GetPriceDetailResponseData() {
   }
 
-  public GetPriceDetailResponseData codFee(String codFee) {
+  public GetPriceDetailResponseData codFee(@javax.annotation.Nullable String codFee) {
     this.codFee = codFee;
     return this;
   }
 
-   /**
+  /**
    * COD fee charged by shipping aggregators. For regions outside of Saudi Arabia, the value is &#x60;0.00&#x60;.
    * @return codFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getCodFee() {
     return codFee;
   }
 
-  public void setCodFee(String codFee) {
+  public void setCodFee(@javax.annotation.Nullable String codFee) {
     this.codFee = codFee;
   }
 
 
-  public GetPriceDetailResponseData codFeeNetAmount(String codFeeNetAmount) {
+  public GetPriceDetailResponseData codFeeNetAmount(@javax.annotation.Nullable String codFeeNetAmount) {
     this.codFeeNetAmount = codFeeNetAmount;
     return this;
   }
 
-   /**
+  /**
    * COD fee charged by shipping aggregators including tax. For regions outside of Saudi Arabia, the value is &#x60;0.00&#x60;.
    * @return codFeeNetAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCodFeeNetAmount() {
     return codFeeNetAmount;
   }
 
-  public void setCodFeeNetAmount(String codFeeNetAmount) {
+  public void setCodFeeNetAmount(@javax.annotation.Nullable String codFeeNetAmount) {
     this.codFeeNetAmount = codFeeNetAmount;
   }
 
 
-  public GetPriceDetailResponseData currency(String currency) {
+  public GetPriceDetailResponseData currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Currency Type. Three-letter code, see [ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public GetPriceDetailResponseData lineItems(List<GetPriceDetailResponseDataLineItems> lineItems) {
+  public GetPriceDetailResponseData lineItems(@javax.annotation.Nullable List<GetPriceDetailResponseDataLineItems> lineItems) {
     this.lineItems = lineItems;
     return this;
   }
@@ -223,397 +246,442 @@ public class GetPriceDetailResponseData {
     return this;
   }
 
-   /**
+  /**
    * Each object is the same as the \&quot;data\&quot; field (line 5) without \&quot;line_items\&quot;
    * @return lineItems
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetPriceDetailResponseDataLineItems> getLineItems() {
     return lineItems;
   }
 
-  public void setLineItems(List<GetPriceDetailResponseDataLineItems> lineItems) {
+  public void setLineItems(@javax.annotation.Nullable List<GetPriceDetailResponseDataLineItems> lineItems) {
     this.lineItems = lineItems;
   }
 
 
-  public GetPriceDetailResponseData netPriceAmount(String netPriceAmount) {
+  public GetPriceDetailResponseData netPriceAmount(@javax.annotation.Nullable String netPriceAmount) {
     this.netPriceAmount = netPriceAmount;
     return this;
   }
 
-   /**
+  /**
    * Price after tax 
    * @return netPriceAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getNetPriceAmount() {
     return netPriceAmount;
   }
 
-  public void setNetPriceAmount(String netPriceAmount) {
+  public void setNetPriceAmount(@javax.annotation.Nullable String netPriceAmount) {
     this.netPriceAmount = netPriceAmount;
   }
 
 
-  public GetPriceDetailResponseData payment(String payment) {
+  public GetPriceDetailResponseData payment(@javax.annotation.Nullable String payment) {
     this.payment = payment;
     return this;
   }
 
-   /**
+  /**
    * Payment of the order from the buyer. Calculation: &#x60;sku_sale_price&#x60; + &#x60;shipping_sale_price&#x60; + &#x60;tax_amount&#x60; + &#x60;small_order_fee&#x60;
    * @return payment
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayment() {
     return payment;
   }
 
-  public void setPayment(String payment) {
+  public void setPayment(@javax.annotation.Nullable String payment) {
     this.payment = payment;
   }
 
 
-  public GetPriceDetailResponseData shippingFeeDeductionPlatform(String shippingFeeDeductionPlatform) {
+  public GetPriceDetailResponseData shippingFeeDeductionPlatform(@javax.annotation.Nullable String shippingFeeDeductionPlatform) {
     this.shippingFeeDeductionPlatform = shippingFeeDeductionPlatform;
     return this;
   }
 
-   /**
+  /**
    * Shipping discount covered by the platform 
    * @return shippingFeeDeductionPlatform
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeDeductionPlatform() {
     return shippingFeeDeductionPlatform;
   }
 
-  public void setShippingFeeDeductionPlatform(String shippingFeeDeductionPlatform) {
+  public void setShippingFeeDeductionPlatform(@javax.annotation.Nullable String shippingFeeDeductionPlatform) {
     this.shippingFeeDeductionPlatform = shippingFeeDeductionPlatform;
   }
 
 
-  public GetPriceDetailResponseData shippingFeeDeductionPlatformVoucher(String shippingFeeDeductionPlatformVoucher) {
+  public GetPriceDetailResponseData shippingFeeDeductionPlatformVoucher(@javax.annotation.Nullable String shippingFeeDeductionPlatformVoucher) {
     this.shippingFeeDeductionPlatformVoucher = shippingFeeDeductionPlatformVoucher;
     return this;
   }
 
-   /**
+  /**
    * Shipping discount covered by the platform voucher:  &#x60;1010000&#x60;: PLATFORM_NEW_USER, &#x60;1020000&#x60;: SELLER_SKU_PRICE &#x60;1030000&#x60;: PLATFORM_FREE_SHIPPING
    * @return shippingFeeDeductionPlatformVoucher
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeDeductionPlatformVoucher() {
     return shippingFeeDeductionPlatformVoucher;
   }
 
-  public void setShippingFeeDeductionPlatformVoucher(String shippingFeeDeductionPlatformVoucher) {
+  public void setShippingFeeDeductionPlatformVoucher(@javax.annotation.Nullable String shippingFeeDeductionPlatformVoucher) {
     this.shippingFeeDeductionPlatformVoucher = shippingFeeDeductionPlatformVoucher;
   }
 
 
-  public GetPriceDetailResponseData shippingFeeDeductionSeller(String shippingFeeDeductionSeller) {
+  public GetPriceDetailResponseData shippingFeeDeductionSeller(@javax.annotation.Nullable String shippingFeeDeductionSeller) {
     this.shippingFeeDeductionSeller = shippingFeeDeductionSeller;
     return this;
   }
 
-   /**
+  /**
    * Shipping discount covered by the seller.
    * @return shippingFeeDeductionSeller
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeDeductionSeller() {
     return shippingFeeDeductionSeller;
   }
 
-  public void setShippingFeeDeductionSeller(String shippingFeeDeductionSeller) {
+  public void setShippingFeeDeductionSeller(@javax.annotation.Nullable String shippingFeeDeductionSeller) {
     this.shippingFeeDeductionSeller = shippingFeeDeductionSeller;
   }
 
 
-  public GetPriceDetailResponseData shippingListPrice(String shippingListPrice) {
+  public GetPriceDetailResponseData shippingListPrice(@javax.annotation.Nullable String shippingListPrice) {
     this.shippingListPrice = shippingListPrice;
     return this;
   }
 
-   /**
+  /**
    * Original shipping price 
    * @return shippingListPrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingListPrice() {
     return shippingListPrice;
   }
 
-  public void setShippingListPrice(String shippingListPrice) {
+  public void setShippingListPrice(@javax.annotation.Nullable String shippingListPrice) {
     this.shippingListPrice = shippingListPrice;
   }
 
 
-  public GetPriceDetailResponseData shippingSalePrice(String shippingSalePrice) {
+  public GetPriceDetailResponseData shippingSalePrice(@javax.annotation.Nullable String shippingSalePrice) {
     this.shippingSalePrice = shippingSalePrice;
     return this;
   }
 
-   /**
+  /**
    * Promotional shipping price Calculation: shipping_list_price - shipping_fee_deduction -shipping_fee_deduction_platform
    * @return shippingSalePrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingSalePrice() {
     return shippingSalePrice;
   }
 
-  public void setShippingSalePrice(String shippingSalePrice) {
+  public void setShippingSalePrice(@javax.annotation.Nullable String shippingSalePrice) {
     this.shippingSalePrice = shippingSalePrice;
   }
 
 
-  public GetPriceDetailResponseData skuGiftNetPrice(String skuGiftNetPrice) {
+  public GetPriceDetailResponseData skuGiftNetPrice(@javax.annotation.Nullable String skuGiftNetPrice) {
     this.skuGiftNetPrice = skuGiftNetPrice;
     return this;
   }
 
-   /**
+  /**
    * Original sku list price of the gift product from the seller including tax.
    * @return skuGiftNetPrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuGiftNetPrice() {
     return skuGiftNetPrice;
   }
 
-  public void setSkuGiftNetPrice(String skuGiftNetPrice) {
+  public void setSkuGiftNetPrice(@javax.annotation.Nullable String skuGiftNetPrice) {
     this.skuGiftNetPrice = skuGiftNetPrice;
   }
 
 
-  public GetPriceDetailResponseData skuGiftOriginalPrice(String skuGiftOriginalPrice) {
+  public GetPriceDetailResponseData skuGiftOriginalPrice(@javax.annotation.Nullable String skuGiftOriginalPrice) {
     this.skuGiftOriginalPrice = skuGiftOriginalPrice;
     return this;
   }
 
-   /**
+  /**
    * Original sku list price of the gift product from the seller.
    * @return skuGiftOriginalPrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuGiftOriginalPrice() {
     return skuGiftOriginalPrice;
   }
 
-  public void setSkuGiftOriginalPrice(String skuGiftOriginalPrice) {
+  public void setSkuGiftOriginalPrice(@javax.annotation.Nullable String skuGiftOriginalPrice) {
     this.skuGiftOriginalPrice = skuGiftOriginalPrice;
   }
 
 
-  public GetPriceDetailResponseData skuListPrice(String skuListPrice) {
+  public GetPriceDetailResponseData skuListPrice(@javax.annotation.Nullable String skuListPrice) {
     this.skuListPrice = skuListPrice;
     return this;
   }
 
-   /**
+  /**
    * Total MSRP price of the products.
    * @return skuListPrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuListPrice() {
     return skuListPrice;
   }
 
-  public void setSkuListPrice(String skuListPrice) {
+  public void setSkuListPrice(@javax.annotation.Nullable String skuListPrice) {
     this.skuListPrice = skuListPrice;
   }
 
 
-  public GetPriceDetailResponseData skuSalePrice(String skuSalePrice) {
+  public GetPriceDetailResponseData skuSalePrice(@javax.annotation.Nullable String skuSalePrice) {
     this.skuSalePrice = skuSalePrice;
     return this;
   }
 
-   /**
+  /**
    * Total promotional sale price of the products. Calculation: &#x60;sku_list_price&#x60; - &#x60;subtotal_deduction_seller&#x60; - &#x60;subtotal_deduction_platform&#x60;
    * @return skuSalePrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuSalePrice() {
     return skuSalePrice;
   }
 
-  public void setSkuSalePrice(String skuSalePrice) {
+  public void setSkuSalePrice(@javax.annotation.Nullable String skuSalePrice) {
     this.skuSalePrice = skuSalePrice;
   }
 
 
-  public GetPriceDetailResponseData subtotal(String subtotal) {
+  public GetPriceDetailResponseData subtotal(@javax.annotation.Nullable String subtotal) {
     this.subtotal = subtotal;
     return this;
   }
 
-   /**
+  /**
    * Total promotional sale price of the products including tax. Calculation: &#x60;sku_sale_price&#x60; + &#x60;subtotal_tax_amount&#x60;
    * @return subtotal
-  **/
+   */
   @javax.annotation.Nullable
   public String getSubtotal() {
     return subtotal;
   }
 
-  public void setSubtotal(String subtotal) {
+  public void setSubtotal(@javax.annotation.Nullable String subtotal) {
     this.subtotal = subtotal;
   }
 
 
-  public GetPriceDetailResponseData subtotalDeductionPlatform(String subtotalDeductionPlatform) {
+  public GetPriceDetailResponseData subtotalDeductionPlatform(@javax.annotation.Nullable String subtotalDeductionPlatform) {
     this.subtotalDeductionPlatform = subtotalDeductionPlatform;
     return this;
   }
 
-   /**
+  /**
    * Platform provided price discount on the product 
    * @return subtotalDeductionPlatform
-  **/
+   */
   @javax.annotation.Nullable
   public String getSubtotalDeductionPlatform() {
     return subtotalDeductionPlatform;
   }
 
-  public void setSubtotalDeductionPlatform(String subtotalDeductionPlatform) {
+  public void setSubtotalDeductionPlatform(@javax.annotation.Nullable String subtotalDeductionPlatform) {
     this.subtotalDeductionPlatform = subtotalDeductionPlatform;
   }
 
 
-  public GetPriceDetailResponseData subtotalDeductionSeller(String subtotalDeductionSeller) {
+  public GetPriceDetailResponseData subtotalDeductionSeller(@javax.annotation.Nullable String subtotalDeductionSeller) {
     this.subtotalDeductionSeller = subtotalDeductionSeller;
     return this;
   }
 
-   /**
+  /**
    * Seller provided price discount on the product 
    * @return subtotalDeductionSeller
-  **/
+   */
   @javax.annotation.Nullable
   public String getSubtotalDeductionSeller() {
     return subtotalDeductionSeller;
   }
 
-  public void setSubtotalDeductionSeller(String subtotalDeductionSeller) {
+  public void setSubtotalDeductionSeller(@javax.annotation.Nullable String subtotalDeductionSeller) {
     this.subtotalDeductionSeller = subtotalDeductionSeller;
   }
 
 
-  public GetPriceDetailResponseData subtotalTaxAmount(String subtotalTaxAmount) {
+  public GetPriceDetailResponseData subtotalTaxAmount(@javax.annotation.Nullable String subtotalTaxAmount) {
     this.subtotalTaxAmount = subtotalTaxAmount;
     return this;
   }
 
-   /**
+  /**
    * Total tax amount on the product 
    * @return subtotalTaxAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSubtotalTaxAmount() {
     return subtotalTaxAmount;
   }
 
-  public void setSubtotalTaxAmount(String subtotalTaxAmount) {
+  public void setSubtotalTaxAmount(@javax.annotation.Nullable String subtotalTaxAmount) {
     this.subtotalTaxAmount = subtotalTaxAmount;
   }
 
 
-  public GetPriceDetailResponseData taxAmount(String taxAmount) {
+  public GetPriceDetailResponseData taxAmount(@javax.annotation.Nullable String taxAmount) {
     this.taxAmount = taxAmount;
     return this;
   }
 
-   /**
+  /**
    * Total tax amount. Calculation: subtotal_tax_amount + shipping_fee_tax（in TaxDetail） + cod_fee_tax（TaxDetail）
    * @return taxAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getTaxAmount() {
     return taxAmount;
   }
 
-  public void setTaxAmount(String taxAmount) {
+  public void setTaxAmount(@javax.annotation.Nullable String taxAmount) {
     this.taxAmount = taxAmount;
   }
 
 
-  public GetPriceDetailResponseData taxRate(String taxRate) {
+  public GetPriceDetailResponseData taxRate(@javax.annotation.Nullable String taxRate) {
     this.taxRate = taxRate;
     return this;
   }
 
-   /**
+  /**
    * Tax rate 
    * @return taxRate
-  **/
+   */
   @javax.annotation.Nullable
   public String getTaxRate() {
     return taxRate;
   }
 
-  public void setTaxRate(String taxRate) {
+  public void setTaxRate(@javax.annotation.Nullable String taxRate) {
     this.taxRate = taxRate;
   }
 
 
-  public GetPriceDetailResponseData total(String total) {
+  public GetPriceDetailResponseData total(@javax.annotation.Nullable String total) {
     this.total = total;
     return this;
   }
 
-   /**
+  /**
    * Total number of the original price of the order. Calculation: &#x60;sku_list_price&#x60; + &#x60;shipping_list_price&#x60;
    * @return total
-  **/
+   */
   @javax.annotation.Nullable
   public String getTotal() {
     return total;
   }
 
-  public void setTotal(String total) {
+  public void setTotal(@javax.annotation.Nullable String total) {
     this.total = total;
   }
 
 
-  public GetPriceDetailResponseData voucherDeductionPlatform(String voucherDeductionPlatform) {
+  public GetPriceDetailResponseData voucherDeductionPlatform(@javax.annotation.Nullable String voucherDeductionPlatform) {
     this.voucherDeductionPlatform = voucherDeductionPlatform;
     return this;
   }
 
-   /**
+  /**
    * Type of the platform-providing discount on the product. Possible values: &#x60;1010000&#x60;: PLATFORM_NEW_USER, &#x60;1020000&#x60;: SELLER_SKU_PRICE&#x60;, &#x60;1030000&#x60;: PLATFORM_FREE_SHIPPING
    * @return voucherDeductionPlatform
-  **/
+   */
   @javax.annotation.Nullable
   public String getVoucherDeductionPlatform() {
     return voucherDeductionPlatform;
   }
 
-  public void setVoucherDeductionPlatform(String voucherDeductionPlatform) {
+  public void setVoucherDeductionPlatform(@javax.annotation.Nullable String voucherDeductionPlatform) {
     this.voucherDeductionPlatform = voucherDeductionPlatform;
   }
 
 
-  public GetPriceDetailResponseData voucherDeductionSeller(String voucherDeductionSeller) {
+  public GetPriceDetailResponseData voucherDeductionSeller(@javax.annotation.Nullable String voucherDeductionSeller) {
     this.voucherDeductionSeller = voucherDeductionSeller;
     return this;
   }
 
-   /**
+  /**
    * Type of the seller-providing discount on the product. Possible values: &#x60;1010000&#x60;: PLATFORM_NEW_USER, &#x60;1020000&#x60;: SELLER_SKU_PRICE, &#x60;1030000&#x60;: PLATFORM_FREE_SHIPPING&#x60;
    * @return voucherDeductionSeller
-  **/
+   */
   @javax.annotation.Nullable
   public String getVoucherDeductionSeller() {
     return voucherDeductionSeller;
   }
 
-  public void setVoucherDeductionSeller(String voucherDeductionSeller) {
+  public void setVoucherDeductionSeller(@javax.annotation.Nullable String voucherDeductionSeller) {
     this.voucherDeductionSeller = voucherDeductionSeller;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetPriceDetailResponseData instance itself
+   */
+  public GetPriceDetailResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -650,12 +718,13 @@ public class GetPriceDetailResponseData {
         Objects.equals(this.taxRate, order202407GetPriceDetailResponseData.taxRate) &&
         Objects.equals(this.total, order202407GetPriceDetailResponseData.total) &&
         Objects.equals(this.voucherDeductionPlatform, order202407GetPriceDetailResponseData.voucherDeductionPlatform) &&
-        Objects.equals(this.voucherDeductionSeller, order202407GetPriceDetailResponseData.voucherDeductionSeller);
+        Objects.equals(this.voucherDeductionSeller, order202407GetPriceDetailResponseData.voucherDeductionSeller)&&
+        Objects.equals(this.additionalProperties, order202407GetPriceDetailResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codFee, codFeeNetAmount, currency, lineItems, netPriceAmount, payment, shippingFeeDeductionPlatform, shippingFeeDeductionPlatformVoucher, shippingFeeDeductionSeller, shippingListPrice, shippingSalePrice, skuGiftNetPrice, skuGiftOriginalPrice, skuListPrice, skuSalePrice, subtotal, subtotalDeductionPlatform, subtotalDeductionSeller, subtotalTaxAmount, taxAmount, taxRate, total, voucherDeductionPlatform, voucherDeductionSeller);
+    return Objects.hash(codFee, codFeeNetAmount, currency, lineItems, netPriceAmount, payment, shippingFeeDeductionPlatform, shippingFeeDeductionPlatformVoucher, shippingFeeDeductionSeller, shippingListPrice, shippingSalePrice, skuGiftNetPrice, skuGiftOriginalPrice, skuListPrice, skuSalePrice, subtotal, subtotalDeductionPlatform, subtotalDeductionSeller, subtotalTaxAmount, taxAmount, taxRate, total, voucherDeductionPlatform, voucherDeductionSeller, additionalProperties);
   }
 
   @Override
@@ -686,6 +755,7 @@ public class GetPriceDetailResponseData {
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
     sb.append("    voucherDeductionPlatform: ").append(toIndentedString(voucherDeductionPlatform)).append("\n");
     sb.append("    voucherDeductionSeller: ").append(toIndentedString(voucherDeductionSeller)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -707,54 +777,22 @@ public class GetPriceDetailResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("cod_fee");
-    openapiFields.add("cod_fee_net_amount");
-    openapiFields.add("currency");
-    openapiFields.add("line_items");
-    openapiFields.add("net_price_amount");
-    openapiFields.add("payment");
-    openapiFields.add("shipping_fee_deduction_platform");
-    openapiFields.add("shipping_fee_deduction_platform_voucher");
-    openapiFields.add("shipping_fee_deduction_seller");
-    openapiFields.add("shipping_list_price");
-    openapiFields.add("shipping_sale_price");
-    openapiFields.add("sku_gift_net_price");
-    openapiFields.add("sku_gift_original_price");
-    openapiFields.add("sku_list_price");
-    openapiFields.add("sku_sale_price");
-    openapiFields.add("subtotal");
-    openapiFields.add("subtotal_deduction_platform");
-    openapiFields.add("subtotal_deduction_seller");
-    openapiFields.add("subtotal_tax_amount");
-    openapiFields.add("tax_amount");
-    openapiFields.add("tax_rate");
-    openapiFields.add("total");
-    openapiFields.add("voucher_deduction_platform");
-    openapiFields.add("voucher_deduction_seller");
+    openapiFields = new HashSet<String>(Arrays.asList("cod_fee", "cod_fee_net_amount", "currency", "line_items", "net_price_amount", "payment", "shipping_fee_deduction_platform", "shipping_fee_deduction_platform_voucher", "shipping_fee_deduction_seller", "shipping_list_price", "shipping_sale_price", "sku_gift_net_price", "sku_gift_original_price", "sku_list_price", "sku_sale_price", "subtotal", "subtotal_deduction_platform", "subtotal_deduction_seller", "subtotal_tax_amount", "tax_amount", "tax_rate", "total", "voucher_deduction_platform", "voucher_deduction_seller"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetPriceDetailResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetPriceDetailResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetPriceDetailResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetPriceDetailResponseData is not found in the empty JSON string", GetPriceDetailResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetPriceDetailResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetPriceDetailResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -858,6 +896,28 @@ public class GetPriceDetailResponseData {
            @Override
            public void write(JsonWriter out, GetPriceDetailResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -865,29 +925,50 @@ public class GetPriceDetailResponseData {
            public GetPriceDetailResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetPriceDetailResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetPriceDetailResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetPriceDetailResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetPriceDetailResponseData
-  */
+  /**
+   * Create an instance of GetPriceDetailResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetPriceDetailResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetPriceDetailResponseData
+   */
   public static GetPriceDetailResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetPriceDetailResponseData.class);
   }
 
- /**
-  * Convert an instance of GetPriceDetailResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetPriceDetailResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

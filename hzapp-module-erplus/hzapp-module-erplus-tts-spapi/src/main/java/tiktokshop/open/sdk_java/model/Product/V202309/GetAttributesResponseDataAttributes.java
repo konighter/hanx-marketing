@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,143 +52,152 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetAttributesResponseDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetAttributesResponseDataAttributes {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_IS_CUSTOMIZABLE = "is_customizable";
   @SerializedName(SERIALIZED_NAME_IS_CUSTOMIZABLE)
+  @javax.annotation.Nullable
   private Boolean isCustomizable;
 
   public static final String SERIALIZED_NAME_IS_MULTIPLE_SELECTION = "is_multiple_selection";
   @SerializedName(SERIALIZED_NAME_IS_MULTIPLE_SELECTION)
+  @javax.annotation.Nullable
   private Boolean isMultipleSelection;
 
   public static final String SERIALIZED_NAME_IS_REQURIED = "is_requried";
   @SerializedName(SERIALIZED_NAME_IS_REQURIED)
+  @javax.annotation.Nullable
   private Boolean isRequried;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_REQUIREMENT_CONDITIONS = "requirement_conditions";
   @SerializedName(SERIALIZED_NAME_REQUIREMENT_CONDITIONS)
+  @javax.annotation.Nullable
   private List<GetAttributesResponseDataAttributesRequirementConditions> requirementConditions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_VALUE_DATA_FORMAT = "value_data_format";
   @SerializedName(SERIALIZED_NAME_VALUE_DATA_FORMAT)
+  @javax.annotation.Nullable
   private String valueDataFormat;
 
   public static final String SERIALIZED_NAME_VALUES = "values";
   @SerializedName(SERIALIZED_NAME_VALUES)
+  @javax.annotation.Nullable
   private List<GetAttributesResponseDataAttributesValues> values = new ArrayList<>();
 
   public GetAttributesResponseDataAttributes() {
   }
 
-  public GetAttributesResponseDataAttributes id(String id) {
+  public GetAttributesResponseDataAttributes id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The ID of the built-in attribute.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetAttributesResponseDataAttributes isCustomizable(Boolean isCustomizable) {
+  public GetAttributesResponseDataAttributes isCustomizable(@javax.annotation.Nullable Boolean isCustomizable) {
     this.isCustomizable = isCustomizable;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if the product attribute value can be customized by sellers when creating or editing a product.  Applicable only if &#x60;type&#x3D;PRODUCT_PROPERTY&#x60;.
    * @return isCustomizable
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsCustomizable() {
     return isCustomizable;
   }
 
-  public void setIsCustomizable(Boolean isCustomizable) {
+  public void setIsCustomizable(@javax.annotation.Nullable Boolean isCustomizable) {
     this.isCustomizable = isCustomizable;
   }
 
 
-  public GetAttributesResponseDataAttributes isMultipleSelection(Boolean isMultipleSelection) {
+  public GetAttributesResponseDataAttributes isMultipleSelection(@javax.annotation.Nullable Boolean isMultipleSelection) {
     this.isMultipleSelection = isMultipleSelection;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if multiple values can be provided for a product attribute when creating or editing a product.  Applicable only if &#x60;type&#x3D;PRODUCT_PROPERTY&#x60;.
    * @return isMultipleSelection
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsMultipleSelection() {
     return isMultipleSelection;
   }
 
-  public void setIsMultipleSelection(Boolean isMultipleSelection) {
+  public void setIsMultipleSelection(@javax.annotation.Nullable Boolean isMultipleSelection) {
     this.isMultipleSelection = isMultipleSelection;
   }
 
 
-  public GetAttributesResponseDataAttributes isRequried(Boolean isRequried) {
+  public GetAttributesResponseDataAttributes isRequried(@javax.annotation.Nullable Boolean isRequried) {
     this.isRequried = isRequried;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if the product attribute is always required when creating or editing a product. - true: The attribute is always required. - false: The attribute is not required, or required only if certain conditions are met. Refer to &#x60;requirement_conditions&#x60; for the specific requirements.  Applicable only if &#x60;type&#x3D;PRODUCT_PROPERTY&#x60;.
    * @return isRequried
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsRequried() {
     return isRequried;
   }
 
-  public void setIsRequried(Boolean isRequried) {
+  public void setIsRequried(@javax.annotation.Nullable Boolean isRequried) {
     this.isRequried = isRequried;
   }
 
 
-  public GetAttributesResponseDataAttributes name(String name) {
+  public GetAttributesResponseDataAttributes name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the built-in attribute.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public GetAttributesResponseDataAttributes requirementConditions(List<GetAttributesResponseDataAttributesRequirementConditions> requirementConditions) {
+  public GetAttributesResponseDataAttributes requirementConditions(@javax.annotation.Nullable List<GetAttributesResponseDataAttributesRequirementConditions> requirementConditions) {
     this.requirementConditions = requirementConditions;
     return this;
   }
@@ -202,59 +210,59 @@ public class GetAttributesResponseDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * A list of conditions that determine if the product attribute is required based on the seller&#39;s inputs for other attributes. If any of the conditions is met, the attribute is required; otherwise, it is optional.  For example, there&#39;s a condition that states that the \&quot;Battery type\&quot; attribute is required if the seller selects the value \&quot;Batteries\&quot; for the attribute \&quot;Contains Batteries or Cells?\&quot;. For more scenario-based guidance on using this parameter, refer to the [Solution Guide - CAT-PRE-HAZMAT](https://partner.tiktokshop.com/openlearn/guide/usecase?parent_id&#x3D;7256668359046153985).  Applicable only if &#x60;type&#x3D;PRODUCT_PROPERTY&#x60; and &#x60;is_requried&#x3D;false&#x60;.
    * @return requirementConditions
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetAttributesResponseDataAttributesRequirementConditions> getRequirementConditions() {
     return requirementConditions;
   }
 
-  public void setRequirementConditions(List<GetAttributesResponseDataAttributesRequirementConditions> requirementConditions) {
+  public void setRequirementConditions(@javax.annotation.Nullable List<GetAttributesResponseDataAttributesRequirementConditions> requirementConditions) {
     this.requirementConditions = requirementConditions;
   }
 
 
-  public GetAttributesResponseDataAttributes type(String type) {
+  public GetAttributesResponseDataAttributes type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The attribute type. Possible values: - SALES_PROPERTY: Indicates sales attributes that define product variants. - PRODUCT_PROPERTY: Indicates product attributes that describe the product as a whole.
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
 
-  public GetAttributesResponseDataAttributes valueDataFormat(String valueDataFormat) {
+  public GetAttributesResponseDataAttributes valueDataFormat(@javax.annotation.Nullable String valueDataFormat) {
     this.valueDataFormat = valueDataFormat;
     return this;
   }
 
-   /**
+  /**
    * The supported data type and structure of the attribute value for free-form entries, such as strings, integers, or positive decimals. Applicable only for **conditional (cascading) attributes**, not for standard attributes.  Possible values: - POSITIVE_INT_OR_DECIMAL: Positive integers or decimal numbers.
    * @return valueDataFormat
-  **/
+   */
   @javax.annotation.Nullable
   public String getValueDataFormat() {
     return valueDataFormat;
   }
 
-  public void setValueDataFormat(String valueDataFormat) {
+  public void setValueDataFormat(@javax.annotation.Nullable String valueDataFormat) {
     this.valueDataFormat = valueDataFormat;
   }
 
 
-  public GetAttributesResponseDataAttributes values(List<GetAttributesResponseDataAttributesValues> values) {
+  public GetAttributesResponseDataAttributes values(@javax.annotation.Nullable List<GetAttributesResponseDataAttributesValues> values) {
     this.values = values;
     return this;
   }
@@ -267,17 +275,62 @@ public class GetAttributesResponseDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * A list of selectable values for the attribute.
    * @return values
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetAttributesResponseDataAttributesValues> getValues() {
     return values;
   }
 
-  public void setValues(List<GetAttributesResponseDataAttributesValues> values) {
+  public void setValues(@javax.annotation.Nullable List<GetAttributesResponseDataAttributesValues> values) {
     this.values = values;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetAttributesResponseDataAttributes instance itself
+   */
+  public GetAttributesResponseDataAttributes putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -299,12 +352,13 @@ public class GetAttributesResponseDataAttributes {
         Objects.equals(this.requirementConditions, product202309GetAttributesResponseDataAttributes.requirementConditions) &&
         Objects.equals(this.type, product202309GetAttributesResponseDataAttributes.type) &&
         Objects.equals(this.valueDataFormat, product202309GetAttributesResponseDataAttributes.valueDataFormat) &&
-        Objects.equals(this.values, product202309GetAttributesResponseDataAttributes.values);
+        Objects.equals(this.values, product202309GetAttributesResponseDataAttributes.values)&&
+        Objects.equals(this.additionalProperties, product202309GetAttributesResponseDataAttributes.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, isCustomizable, isMultipleSelection, isRequried, name, requirementConditions, type, valueDataFormat, values);
+    return Objects.hash(id, isCustomizable, isMultipleSelection, isRequried, name, requirementConditions, type, valueDataFormat, values, additionalProperties);
   }
 
   @Override
@@ -320,6 +374,7 @@ public class GetAttributesResponseDataAttributes {
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    valueDataFormat: ").append(toIndentedString(valueDataFormat)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -341,39 +396,22 @@ public class GetAttributesResponseDataAttributes {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("is_customizable");
-    openapiFields.add("is_multiple_selection");
-    openapiFields.add("is_requried");
-    openapiFields.add("name");
-    openapiFields.add("requirement_conditions");
-    openapiFields.add("type");
-    openapiFields.add("value_data_format");
-    openapiFields.add("values");
+    openapiFields = new HashSet<String>(Arrays.asList("id", "is_customizable", "is_multiple_selection", "is_requried", "name", "requirement_conditions", "type", "value_data_format", "values"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetAttributesResponseDataAttributes
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetAttributesResponseDataAttributes
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetAttributesResponseDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetAttributesResponseDataAttributes is not found in the empty JSON string", GetAttributesResponseDataAttributes.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetAttributesResponseDataAttributes.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetAttributesResponseDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -434,6 +472,28 @@ public class GetAttributesResponseDataAttributes {
            @Override
            public void write(JsonWriter out, GetAttributesResponseDataAttributes value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -441,29 +501,50 @@ public class GetAttributesResponseDataAttributes {
            public GetAttributesResponseDataAttributes read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetAttributesResponseDataAttributes instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetAttributesResponseDataAttributes given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetAttributesResponseDataAttributes
-  * @throws IOException if the JSON string is invalid with respect to GetAttributesResponseDataAttributes
-  */
+  /**
+   * Create an instance of GetAttributesResponseDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetAttributesResponseDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to GetAttributesResponseDataAttributes
+   */
   public static GetAttributesResponseDataAttributes fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetAttributesResponseDataAttributes.class);
   }
 
- /**
-  * Convert an instance of GetAttributesResponseDataAttributes to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetAttributesResponseDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

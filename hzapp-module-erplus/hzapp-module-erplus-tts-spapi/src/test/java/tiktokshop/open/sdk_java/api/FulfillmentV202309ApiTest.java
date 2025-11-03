@@ -140,7 +140,7 @@ public class FulfillmentV202309ApiTest {
     /**
      * MarkPackageAsShipped
      *
-     * **This API is currently exclusive to the following markets: US, UK, ES, IE.**  This API is for sellers who fulfill orders through their own selected/preferred logistics carrier, and allows sellers to upload valid package information (items in packages, shipping provider information, and tracking number) orders/order line items to TikTok Shop. Use [Get Shipping Providers API](https://partner.tiktokshop.com/docv2/page/650aa48d4a0bb702c06d85cd?external_id&#x3D;650aa48d4a0bb702c06d85cd) to retrieve the &#x60;shipping_provider_id&#x60; for shipping providers.
+     * **This API is currently exclusive to the following markets: US, UK, ES, IE, IT, DE, FR, JP.** This API is for sellers who fulfill orders through their own selected/preferred logistics carrier, and allows sellers to upload valid package information (items in packages, shipping provider information, and tracking number) orders/order line items to TikTok Shop. Use [Get Shipping Providers API](https://partner.tiktokshop.com/docv2/page/650aa48d4a0bb702c06d85cd?external_id&#x3D;650aa48d4a0bb702c06d85cd) to retrieve the &#x60;shipping_provider_id&#x60; for shipping providers.
      *
      * @throws ApiException if the Api call fails
      */
@@ -194,7 +194,7 @@ public class FulfillmentV202309ApiTest {
     /**
      * SplitOrders
      *
-     * Use this API to confirm an order split. Note that ​​supported split levels vary by region​​: - Some regions support ​​item-level splits​​ (splitting individual units of the same SKU). - Others only support ​​all-units splits​​ (splitting different SKUs into separate packages). You are recommended to call the [Get Order Split Attributes API](650aa9210fcef602bf32ae5b) first to verify the allowed split level for an order before invoking this endpoint.  Here are two examples of Supported Splits: - ​​Case 1: all-units split​​ Split a buyer order of SKU A of quantity 2 and SKU B of quantity 1 into two separate packages:   - ​​Package 1​​: all units of SKU A ​​  - Package 2​​: all unit of SKU B  - ​​Case 2: item-level Split​​ Split the same order contents into three individual packages:   - ​​Package 1​​: 1 unit of SKU A ​  - ​Package 2​​: 1 unit of SKU A ​​  - Package 3​​: 1 unit of SKU B
+     * Use this API to confirm an order split. Note that ​​supported split levels vary by region​​: - Some regions support ​​item-level splits​​ (splitting individual units of the same SKU). - Others only support ​​all-units splits​​ (splitting different SKUs into separate packages).  Here are two examples of supported splits: - ​​**Case 1**: all-units split​​, applicable for orders in BR, SEA, MX (local sellers) Split a buyer order of SKU A of quantity 2 and SKU B of quantity 1 into two separate packages:   - ​​Package 1​​: all units of SKU A ​​  - Package 2​​: all units of SKU B  - **​​Case 2**: item-level split​​, applicable for orders in EU, JP, MX (global sellers), UK, US Split the same order contents into three individual packages:   - ​​Package 1​​: 1 unit of SKU A ​  - ​Package 2​​: 1 unit of SKU A ​​  - Package 3​​: 1 unit of SKU B
      *
      * @throws ApiException if the Api call fails
      */

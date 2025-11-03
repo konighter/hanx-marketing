@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,146 +48,197 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown {
   public static final String SERIALIZED_NAME_COD_SERVICE_FEE_AMOUNT = "cod_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_COD_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String codServiceFeeAmount;
 
   public static final String SERIALIZED_NAME_REFUND_COD_SERVICE_FEE_AMOUNT = "refund_cod_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_COD_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String refundCodServiceFeeAmount;
 
   public static final String SERIALIZED_NAME_REFUND_SUBTOTAL_BEFORE_DISCOUNT_AMOUNT = "refund_subtotal_before_discount_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_SUBTOTAL_BEFORE_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String refundSubtotalBeforeDiscountAmount;
 
   public static final String SERIALIZED_NAME_SELLER_DISCOUNT_AMOUNT = "seller_discount_amount";
   @SerializedName(SERIALIZED_NAME_SELLER_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String sellerDiscountAmount;
 
   public static final String SERIALIZED_NAME_SELLER_DISCOUNT_REFUND_AMOUNT = "seller_discount_refund_amount";
   @SerializedName(SERIALIZED_NAME_SELLER_DISCOUNT_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String sellerDiscountRefundAmount;
 
   public static final String SERIALIZED_NAME_SUBTOTAL_BEFORE_DISCOUNT_AMOUNT = "subtotal_before_discount_amount";
   @SerializedName(SERIALIZED_NAME_SUBTOTAL_BEFORE_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String subtotalBeforeDiscountAmount;
 
   public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown() {
   }
 
-  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown codServiceFeeAmount(String codServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown codServiceFeeAmount(@javax.annotation.Nullable String codServiceFeeAmount) {
     this.codServiceFeeAmount = codServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The cash on delivery service fees charged to buyers. Applicable only for Saudi Arabia.
    * @return codServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCodServiceFeeAmount() {
     return codServiceFeeAmount;
   }
 
-  public void setCodServiceFeeAmount(String codServiceFeeAmount) {
+  public void setCodServiceFeeAmount(@javax.annotation.Nullable String codServiceFeeAmount) {
     this.codServiceFeeAmount = codServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown refundCodServiceFeeAmount(String refundCodServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown refundCodServiceFeeAmount(@javax.annotation.Nullable String refundCodServiceFeeAmount) {
     this.refundCodServiceFeeAmount = refundCodServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The refund for cash on delivery service fees. Applicable only for Saudi Arabia.
    * @return refundCodServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundCodServiceFeeAmount() {
     return refundCodServiceFeeAmount;
   }
 
-  public void setRefundCodServiceFeeAmount(String refundCodServiceFeeAmount) {
+  public void setRefundCodServiceFeeAmount(@javax.annotation.Nullable String refundCodServiceFeeAmount) {
     this.refundCodServiceFeeAmount = refundCodServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown refundSubtotalBeforeDiscountAmount(String refundSubtotalBeforeDiscountAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown refundSubtotalBeforeDiscountAmount(@javax.annotation.Nullable String refundSubtotalBeforeDiscountAmount) {
     this.refundSubtotalBeforeDiscountAmount = refundSubtotalBeforeDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The total price of all refunded items before any seller discounts. This is equivalent to the shop&#39;s gross sales refund.
    * @return refundSubtotalBeforeDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundSubtotalBeforeDiscountAmount() {
     return refundSubtotalBeforeDiscountAmount;
   }
 
-  public void setRefundSubtotalBeforeDiscountAmount(String refundSubtotalBeforeDiscountAmount) {
+  public void setRefundSubtotalBeforeDiscountAmount(@javax.annotation.Nullable String refundSubtotalBeforeDiscountAmount) {
     this.refundSubtotalBeforeDiscountAmount = refundSubtotalBeforeDiscountAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown sellerDiscountAmount(String sellerDiscountAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown sellerDiscountAmount(@javax.annotation.Nullable String sellerDiscountAmount) {
     this.sellerDiscountAmount = sellerDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The total amount of discounts funded by the seller, including: - Seller promotions (Product Discount, Flash Deal, Buy More Save More, Voucher and Bundle Deal) - Seller&#39;s portion of a co-funded voucher discount in co-funding campaigns - Seller discounts during a campaign
    * @return sellerDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerDiscountAmount() {
     return sellerDiscountAmount;
   }
 
-  public void setSellerDiscountAmount(String sellerDiscountAmount) {
+  public void setSellerDiscountAmount(@javax.annotation.Nullable String sellerDiscountAmount) {
     this.sellerDiscountAmount = sellerDiscountAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown sellerDiscountRefundAmount(String sellerDiscountRefundAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown sellerDiscountRefundAmount(@javax.annotation.Nullable String sellerDiscountRefundAmount) {
     this.sellerDiscountRefundAmount = sellerDiscountRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * Discounts returned to the sellers due to returns or refunds.
    * @return sellerDiscountRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerDiscountRefundAmount() {
     return sellerDiscountRefundAmount;
   }
 
-  public void setSellerDiscountRefundAmount(String sellerDiscountRefundAmount) {
+  public void setSellerDiscountRefundAmount(@javax.annotation.Nullable String sellerDiscountRefundAmount) {
     this.sellerDiscountRefundAmount = sellerDiscountRefundAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown subtotalBeforeDiscountAmount(String subtotalBeforeDiscountAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown subtotalBeforeDiscountAmount(@javax.annotation.Nullable String subtotalBeforeDiscountAmount) {
     this.subtotalBeforeDiscountAmount = subtotalBeforeDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The total price of all order items before any seller discounts and platform discounts are deducted. This is equivalent to the shop&#39;s gross sales.
    * @return subtotalBeforeDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSubtotalBeforeDiscountAmount() {
     return subtotalBeforeDiscountAmount;
   }
 
-  public void setSubtotalBeforeDiscountAmount(String subtotalBeforeDiscountAmount) {
+  public void setSubtotalBeforeDiscountAmount(@javax.annotation.Nullable String subtotalBeforeDiscountAmount) {
     this.subtotalBeforeDiscountAmount = subtotalBeforeDiscountAmount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown instance itself
+   */
+  public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -207,12 +257,13 @@ public class GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown 
         Objects.equals(this.refundSubtotalBeforeDiscountAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.refundSubtotalBeforeDiscountAmount) &&
         Objects.equals(this.sellerDiscountAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.sellerDiscountAmount) &&
         Objects.equals(this.sellerDiscountRefundAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.sellerDiscountRefundAmount) &&
-        Objects.equals(this.subtotalBeforeDiscountAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.subtotalBeforeDiscountAmount);
+        Objects.equals(this.subtotalBeforeDiscountAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.subtotalBeforeDiscountAmount)&&
+        Objects.equals(this.additionalProperties, finance202501GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(codServiceFeeAmount, refundCodServiceFeeAmount, refundSubtotalBeforeDiscountAmount, sellerDiscountAmount, sellerDiscountRefundAmount, subtotalBeforeDiscountAmount);
+    return Objects.hash(codServiceFeeAmount, refundCodServiceFeeAmount, refundSubtotalBeforeDiscountAmount, sellerDiscountAmount, sellerDiscountRefundAmount, subtotalBeforeDiscountAmount, additionalProperties);
   }
 
   @Override
@@ -225,6 +276,7 @@ public class GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown 
     sb.append("    sellerDiscountAmount: ").append(toIndentedString(sellerDiscountAmount)).append("\n");
     sb.append("    sellerDiscountRefundAmount: ").append(toIndentedString(sellerDiscountRefundAmount)).append("\n");
     sb.append("    subtotalBeforeDiscountAmount: ").append(toIndentedString(subtotalBeforeDiscountAmount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -246,36 +298,22 @@ public class GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown 
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("cod_service_fee_amount");
-    openapiFields.add("refund_cod_service_fee_amount");
-    openapiFields.add("refund_subtotal_before_discount_amount");
-    openapiFields.add("seller_discount_amount");
-    openapiFields.add("seller_discount_refund_amount");
-    openapiFields.add("subtotal_before_discount_amount");
+    openapiFields = new HashSet<String>(Arrays.asList("cod_service_fee_amount", "refund_cod_service_fee_amount", "refund_subtotal_before_discount_amount", "seller_discount_amount", "seller_discount_refund_amount", "subtotal_before_discount_amount"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown is not found in the empty JSON string", GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -314,6 +352,28 @@ public class GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown 
            @Override
            public void write(JsonWriter out, GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -321,29 +381,50 @@ public class GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown 
            public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown
-  * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown
-  */
+  /**
+   * Create an instance of GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown
+   * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown
+   */
   public static GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown.class);
   }
 
- /**
-  * Convert an instance of GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

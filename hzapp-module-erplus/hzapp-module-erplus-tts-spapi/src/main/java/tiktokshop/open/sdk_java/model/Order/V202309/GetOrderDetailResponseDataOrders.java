@@ -44,7 +44,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,898 +55,1026 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetOrderDetailResponseDataOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetOrderDetailResponseDataOrders {
   public static final String SERIALIZED_NAME_AUTO_COMBINE_GROUP_ID = "auto_combine_group_id";
   @SerializedName(SERIALIZED_NAME_AUTO_COMBINE_GROUP_ID)
+  @javax.annotation.Nullable
   private String autoCombineGroupId;
 
   public static final String SERIALIZED_NAME_BUYER_EMAIL = "buyer_email";
   @SerializedName(SERIALIZED_NAME_BUYER_EMAIL)
+  @javax.annotation.Nullable
   private String buyerEmail;
 
   public static final String SERIALIZED_NAME_BUYER_MESSAGE = "buyer_message";
   @SerializedName(SERIALIZED_NAME_BUYER_MESSAGE)
+  @javax.annotation.Nullable
   private String buyerMessage;
 
   public static final String SERIALIZED_NAME_CANCEL_ORDER_SLA_TIME = "cancel_order_sla_time";
   @SerializedName(SERIALIZED_NAME_CANCEL_ORDER_SLA_TIME)
+  @javax.annotation.Nullable
   private Long cancelOrderSlaTime;
 
   public static final String SERIALIZED_NAME_CANCEL_REASON = "cancel_reason";
   @SerializedName(SERIALIZED_NAME_CANCEL_REASON)
+  @javax.annotation.Nullable
   private String cancelReason;
 
   public static final String SERIALIZED_NAME_CANCEL_TIME = "cancel_time";
   @SerializedName(SERIALIZED_NAME_CANCEL_TIME)
+  @javax.annotation.Nullable
   private Long cancelTime;
 
   public static final String SERIALIZED_NAME_CANCELLATION_INITIATOR = "cancellation_initiator";
   @SerializedName(SERIALIZED_NAME_CANCELLATION_INITIATOR)
+  @javax.annotation.Nullable
   private String cancellationInitiator;
+
+  public static final String SERIALIZED_NAME_CHANNEL_ENTITY_NATIONAL_REGISTRY_ID = "channel_entity_national_registry_id";
+  @SerializedName(SERIALIZED_NAME_CHANNEL_ENTITY_NATIONAL_REGISTRY_ID)
+  @javax.annotation.Nullable
+  private String channelEntityNationalRegistryId;
 
   public static final String SERIALIZED_NAME_COLLECTION_DUE_TIME = "collection_due_time";
   @SerializedName(SERIALIZED_NAME_COLLECTION_DUE_TIME)
+  @javax.annotation.Nullable
   private Long collectionDueTime;
 
   public static final String SERIALIZED_NAME_COLLECTION_TIME = "collection_time";
   @SerializedName(SERIALIZED_NAME_COLLECTION_TIME)
+  @javax.annotation.Nullable
   private Long collectionTime;
 
   public static final String SERIALIZED_NAME_COMMERCE_PLATFORM = "commerce_platform";
   @SerializedName(SERIALIZED_NAME_COMMERCE_PLATFORM)
+  @javax.annotation.Nullable
   private String commercePlatform;
 
   public static final String SERIALIZED_NAME_CONSULTATION_ID = "consultation_id";
   @SerializedName(SERIALIZED_NAME_CONSULTATION_ID)
+  @javax.annotation.Nullable
   private String consultationId;
 
   public static final String SERIALIZED_NAME_CPF = "cpf";
   @SerializedName(SERIALIZED_NAME_CPF)
+  @javax.annotation.Nullable
   private String cpf;
 
   public static final String SERIALIZED_NAME_CPF_NAME = "cpf_name";
   @SerializedName(SERIALIZED_NAME_CPF_NAME)
+  @javax.annotation.Nullable
   private String cpfName;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DELIVERY_DUE_TIME = "delivery_due_time";
   @SerializedName(SERIALIZED_NAME_DELIVERY_DUE_TIME)
+  @javax.annotation.Nullable
   private Long deliveryDueTime;
 
   public static final String SERIALIZED_NAME_DELIVERY_OPTION_ID = "delivery_option_id";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION_ID)
+  @javax.annotation.Nullable
   private String deliveryOptionId;
 
   public static final String SERIALIZED_NAME_DELIVERY_OPTION_NAME = "delivery_option_name";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION_NAME)
+  @javax.annotation.Nullable
   private String deliveryOptionName;
 
   public static final String SERIALIZED_NAME_DELIVERY_OPTION_REQUIRED_DELIVERY_TIME = "delivery_option_required_delivery_time";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION_REQUIRED_DELIVERY_TIME)
+  @javax.annotation.Nullable
   private Long deliveryOptionRequiredDeliveryTime;
 
   public static final String SERIALIZED_NAME_DELIVERY_SLA_TIME = "delivery_sla_time";
   @SerializedName(SERIALIZED_NAME_DELIVERY_SLA_TIME)
+  @javax.annotation.Nullable
   private Long deliverySlaTime;
 
   public static final String SERIALIZED_NAME_DELIVERY_TIME = "delivery_time";
   @SerializedName(SERIALIZED_NAME_DELIVERY_TIME)
+  @javax.annotation.Nullable
   private Long deliveryTime;
 
   public static final String SERIALIZED_NAME_DELIVERY_TYPE = "delivery_type";
   @SerializedName(SERIALIZED_NAME_DELIVERY_TYPE)
+  @javax.annotation.Nullable
   private String deliveryType;
 
   public static final String SERIALIZED_NAME_EXCHANGE_SOURCE_ORDER_ID = "exchange_source_order_id";
   @SerializedName(SERIALIZED_NAME_EXCHANGE_SOURCE_ORDER_ID)
+  @javax.annotation.Nullable
   private String exchangeSourceOrderId;
 
   public static final String SERIALIZED_NAME_FAST_DELIVERY_PROGRAM = "fast_delivery_program";
   @SerializedName(SERIALIZED_NAME_FAST_DELIVERY_PROGRAM)
+  @javax.annotation.Nullable
   private String fastDeliveryProgram;
 
   public static final String SERIALIZED_NAME_FAST_DISPATCH_SLA_TIME = "fast_dispatch_sla_time";
   @SerializedName(SERIALIZED_NAME_FAST_DISPATCH_SLA_TIME)
+  @javax.annotation.Nullable
   private Long fastDispatchSlaTime;
+
+  public static final String SERIALIZED_NAME_FULFILLMENT_PRIORITY_LEVEL = "fulfillment_priority_level";
+  @SerializedName(SERIALIZED_NAME_FULFILLMENT_PRIORITY_LEVEL)
+  @javax.annotation.Nullable
+  private Integer fulfillmentPriorityLevel;
 
   public static final String SERIALIZED_NAME_FULFILLMENT_TYPE = "fulfillment_type";
   @SerializedName(SERIALIZED_NAME_FULFILLMENT_TYPE)
+  @javax.annotation.Nullable
   private String fulfillmentType;
 
   public static final String SERIALIZED_NAME_HANDLING_DURATION = "handling_duration";
   @SerializedName(SERIALIZED_NAME_HANDLING_DURATION)
+  @javax.annotation.Nullable
   private GetOrderDetailResponseDataOrdersHandlingDuration handlingDuration;
 
   public static final String SERIALIZED_NAME_HAS_UPDATED_RECIPIENT_ADDRESS = "has_updated_recipient_address";
   @SerializedName(SERIALIZED_NAME_HAS_UPDATED_RECIPIENT_ADDRESS)
+  @javax.annotation.Nullable
   private Boolean hasUpdatedRecipientAddress;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_IS_BUYER_REQUEST_CANCEL = "is_buyer_request_cancel";
   @SerializedName(SERIALIZED_NAME_IS_BUYER_REQUEST_CANCEL)
+  @javax.annotation.Nullable
   private Boolean isBuyerRequestCancel;
 
   public static final String SERIALIZED_NAME_IS_COD = "is_cod";
   @SerializedName(SERIALIZED_NAME_IS_COD)
+  @javax.annotation.Nullable
   private Boolean isCod;
 
   public static final String SERIALIZED_NAME_IS_EXCHANGE_ORDER = "is_exchange_order";
   @SerializedName(SERIALIZED_NAME_IS_EXCHANGE_ORDER)
+  @javax.annotation.Nullable
   private Boolean isExchangeOrder;
 
   public static final String SERIALIZED_NAME_IS_ON_HOLD_ORDER = "is_on_hold_order";
   @SerializedName(SERIALIZED_NAME_IS_ON_HOLD_ORDER)
+  @javax.annotation.Nullable
   private Boolean isOnHoldOrder;
 
   public static final String SERIALIZED_NAME_IS_REPLACEMENT_ORDER = "is_replacement_order";
   @SerializedName(SERIALIZED_NAME_IS_REPLACEMENT_ORDER)
+  @javax.annotation.Nullable
   private Boolean isReplacementOrder;
 
   public static final String SERIALIZED_NAME_IS_SAMPLE_ORDER = "is_sample_order";
   @SerializedName(SERIALIZED_NAME_IS_SAMPLE_ORDER)
+  @javax.annotation.Nullable
   private Boolean isSampleOrder;
 
   public static final String SERIALIZED_NAME_LINE_ITEMS = "line_items";
   @SerializedName(SERIALIZED_NAME_LINE_ITEMS)
+  @javax.annotation.Nullable
   private List<GetOrderDetailResponseDataOrdersLineItems> lineItems = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NEED_UPLOAD_INVOICE = "need_upload_invoice";
   @SerializedName(SERIALIZED_NAME_NEED_UPLOAD_INVOICE)
+  @javax.annotation.Nullable
   private String needUploadInvoice;
 
   public static final String SERIALIZED_NAME_ORDER_TYPE = "order_type";
   @SerializedName(SERIALIZED_NAME_ORDER_TYPE)
+  @javax.annotation.Nullable
   private String orderType;
 
   public static final String SERIALIZED_NAME_PACKAGES = "packages";
   @SerializedName(SERIALIZED_NAME_PACKAGES)
+  @javax.annotation.Nullable
   private List<GetOrderDetailResponseDataOrdersPackages> packages = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PAID_TIME = "paid_time";
   @SerializedName(SERIALIZED_NAME_PAID_TIME)
+  @javax.annotation.Nullable
   private Long paidTime;
 
   public static final String SERIALIZED_NAME_PAYMENT = "payment";
   @SerializedName(SERIALIZED_NAME_PAYMENT)
+  @javax.annotation.Nullable
   private GetOrderDetailResponseDataOrdersPayment payment;
+
+  public static final String SERIALIZED_NAME_PAYMENT_AUTH_CODE = "payment_auth_code";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_AUTH_CODE)
+  @javax.annotation.Nullable
+  private String paymentAuthCode;
+
+  public static final String SERIALIZED_NAME_PAYMENT_CARD_TYPE = "payment_card_type";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_CARD_TYPE)
+  @javax.annotation.Nullable
+  private String paymentCardType;
+
+  public static final String SERIALIZED_NAME_PAYMENT_METHOD_CODE = "payment_method_code";
+  @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_CODE)
+  @javax.annotation.Nullable
+  private String paymentMethodCode;
 
   public static final String SERIALIZED_NAME_PAYMENT_METHOD_NAME = "payment_method_name";
   @SerializedName(SERIALIZED_NAME_PAYMENT_METHOD_NAME)
+  @javax.annotation.Nullable
   private String paymentMethodName;
 
   public static final String SERIALIZED_NAME_PICK_UP_CUT_OFF_TIME = "pick_up_cut_off_time";
   @SerializedName(SERIALIZED_NAME_PICK_UP_CUT_OFF_TIME)
+  @javax.annotation.Nullable
   private Long pickUpCutOffTime;
 
   public static final String SERIALIZED_NAME_RECIPIENT_ADDRESS = "recipient_address";
   @SerializedName(SERIALIZED_NAME_RECIPIENT_ADDRESS)
+  @javax.annotation.Nullable
   private GetOrderDetailResponseDataOrdersRecipientAddress recipientAddress;
+
+  public static final String SERIALIZED_NAME_RECOMMENDED_SHIPPING_TIME = "recommended_shipping_time";
+  @SerializedName(SERIALIZED_NAME_RECOMMENDED_SHIPPING_TIME)
+  @javax.annotation.Nullable
+  private Long recommendedShippingTime;
 
   public static final String SERIALIZED_NAME_RELEASE_DATE = "release_date";
   @SerializedName(SERIALIZED_NAME_RELEASE_DATE)
+  @javax.annotation.Nullable
   private Long releaseDate;
 
   public static final String SERIALIZED_NAME_REPLACED_ORDER_ID = "replaced_order_id";
   @SerializedName(SERIALIZED_NAME_REPLACED_ORDER_ID)
+  @javax.annotation.Nullable
   private String replacedOrderId;
 
   public static final String SERIALIZED_NAME_REQUEST_CANCEL_TIME = "request_cancel_time";
   @SerializedName(SERIALIZED_NAME_REQUEST_CANCEL_TIME)
+  @javax.annotation.Nullable
   private Long requestCancelTime;
 
   public static final String SERIALIZED_NAME_RTS_SLA_TIME = "rts_sla_time";
   @SerializedName(SERIALIZED_NAME_RTS_SLA_TIME)
+  @javax.annotation.Nullable
   private Long rtsSlaTime;
 
   public static final String SERIALIZED_NAME_RTS_TIME = "rts_time";
   @SerializedName(SERIALIZED_NAME_RTS_TIME)
+  @javax.annotation.Nullable
   private Long rtsTime;
 
   public static final String SERIALIZED_NAME_SELLER_NOTE = "seller_note";
   @SerializedName(SERIALIZED_NAME_SELLER_NOTE)
+  @javax.annotation.Nullable
   private String sellerNote;
 
   public static final String SERIALIZED_NAME_SHIPPING_DUE_TIME = "shipping_due_time";
   @SerializedName(SERIALIZED_NAME_SHIPPING_DUE_TIME)
+  @javax.annotation.Nullable
   private Long shippingDueTime;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER = "shipping_provider";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER)
+  @javax.annotation.Nullable
   private String shippingProvider;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_ID = "shipping_provider_id";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_ID)
+  @javax.annotation.Nullable
   private String shippingProviderId;
 
   public static final String SERIALIZED_NAME_SHIPPING_TYPE = "shipping_type";
   @SerializedName(SERIALIZED_NAME_SHIPPING_TYPE)
+  @javax.annotation.Nullable
   private String shippingType;
 
   public static final String SERIALIZED_NAME_SPLIT_OR_COMBINE_TAG = "split_or_combine_tag";
   @SerializedName(SERIALIZED_NAME_SPLIT_OR_COMBINE_TAG)
+  @javax.annotation.Nullable
   private String splitOrCombineTag;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TRACKING_NUMBER = "tracking_number";
   @SerializedName(SERIALIZED_NAME_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String trackingNumber;
 
   public static final String SERIALIZED_NAME_TTS_SLA_TIME = "tts_sla_time";
   @SerializedName(SERIALIZED_NAME_TTS_SLA_TIME)
+  @javax.annotation.Nullable
   private Long ttsSlaTime;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public static final String SERIALIZED_NAME_USER_ID = "user_id";
   @SerializedName(SERIALIZED_NAME_USER_ID)
+  @javax.annotation.Nullable
   private String userId;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_ID = "warehouse_id";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_ID)
+  @javax.annotation.Nullable
   private String warehouseId;
 
   public GetOrderDetailResponseDataOrders() {
   }
 
-  public GetOrderDetailResponseDataOrders autoCombineGroupId(String autoCombineGroupId) {
+  public GetOrderDetailResponseDataOrders autoCombineGroupId(@javax.annotation.Nullable String autoCombineGroupId) {
     this.autoCombineGroupId = autoCombineGroupId;
     return this;
   }
 
-   /**
+  /**
    * An identifier assigned to orders from the same customer during a LIVE session to facilitate combined order shipping when \&quot;auto-combination\&quot; is activated in Seller Center.
    * @return autoCombineGroupId
-  **/
+   */
   @javax.annotation.Nullable
   public String getAutoCombineGroupId() {
     return autoCombineGroupId;
   }
 
-  public void setAutoCombineGroupId(String autoCombineGroupId) {
+  public void setAutoCombineGroupId(@javax.annotation.Nullable String autoCombineGroupId) {
     this.autoCombineGroupId = autoCombineGroupId;
   }
 
 
-  public GetOrderDetailResponseDataOrders buyerEmail(String buyerEmail) {
+  public GetOrderDetailResponseDataOrders buyerEmail(@javax.annotation.Nullable String buyerEmail) {
     this.buyerEmail = buyerEmail;
     return this;
   }
 
-   /**
+  /**
    * The anonymized email address of the buyer. It is not recommended to send messages directly to this email address. If you need to contact the buyer, please go to Seller Center - Buyer Messages page.
    * @return buyerEmail
-  **/
+   */
   @javax.annotation.Nullable
   public String getBuyerEmail() {
     return buyerEmail;
   }
 
-  public void setBuyerEmail(String buyerEmail) {
+  public void setBuyerEmail(@javax.annotation.Nullable String buyerEmail) {
     this.buyerEmail = buyerEmail;
   }
 
 
-  public GetOrderDetailResponseDataOrders buyerMessage(String buyerMessage) {
+  public GetOrderDetailResponseDataOrders buyerMessage(@javax.annotation.Nullable String buyerMessage) {
     this.buyerMessage = buyerMessage;
     return this;
   }
 
-   /**
+  /**
    * The note from buyer.
    * @return buyerMessage
-  **/
+   */
   @javax.annotation.Nullable
   public String getBuyerMessage() {
     return buyerMessage;
   }
 
-  public void setBuyerMessage(String buyerMessage) {
+  public void setBuyerMessage(@javax.annotation.Nullable String buyerMessage) {
     this.buyerMessage = buyerMessage;
   }
 
 
-  public GetOrderDetailResponseDataOrders cancelOrderSlaTime(Long cancelOrderSlaTime) {
+  public GetOrderDetailResponseDataOrders cancelOrderSlaTime(@javax.annotation.Nullable Long cancelOrderSlaTime) {
     this.cancelOrderSlaTime = cancelOrderSlaTime;
     return this;
   }
 
-   /**
+  /**
    * The automatic cancellation time for orders specified by the platform. Unix timestamp.
    * @return cancelOrderSlaTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCancelOrderSlaTime() {
     return cancelOrderSlaTime;
   }
 
-  public void setCancelOrderSlaTime(Long cancelOrderSlaTime) {
+  public void setCancelOrderSlaTime(@javax.annotation.Nullable Long cancelOrderSlaTime) {
     this.cancelOrderSlaTime = cancelOrderSlaTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders cancelReason(String cancelReason) {
+  public GetOrderDetailResponseDataOrders cancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
     return this;
   }
 
-   /**
+  /**
    * The reason for cancelling. [See here](https://partner.tiktokshop.com/docv2/page/650b28280fcef602bf435096#Back%20To%20Top) for more information.
    * @return cancelReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelReason() {
     return cancelReason;
   }
 
-  public void setCancelReason(String cancelReason) {
+  public void setCancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
   }
 
 
-  public GetOrderDetailResponseDataOrders cancelTime(Long cancelTime) {
+  public GetOrderDetailResponseDataOrders cancelTime(@javax.annotation.Nullable Long cancelTime) {
     this.cancelTime = cancelTime;
     return this;
   }
 
-   /**
+  /**
    * The timestamp of the order&#39;s status update to &#x60;CANCELLED&#x60;.
    * @return cancelTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCancelTime() {
     return cancelTime;
   }
 
-  public void setCancelTime(Long cancelTime) {
+  public void setCancelTime(@javax.annotation.Nullable Long cancelTime) {
     this.cancelTime = cancelTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders cancellationInitiator(String cancellationInitiator) {
+  public GetOrderDetailResponseDataOrders cancellationInitiator(@javax.annotation.Nullable String cancellationInitiator) {
     this.cancellationInitiator = cancellationInitiator;
     return this;
   }
 
-   /**
+  /**
    * The initiator of a cancellation request. Possible values:  - &#x60;SELLER&#x60; - &#x60;BUYER&#x60; - &#x60;SYSTEM&#x60;
    * @return cancellationInitiator
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancellationInitiator() {
     return cancellationInitiator;
   }
 
-  public void setCancellationInitiator(String cancellationInitiator) {
+  public void setCancellationInitiator(@javax.annotation.Nullable String cancellationInitiator) {
     this.cancellationInitiator = cancellationInitiator;
   }
 
 
-  public GetOrderDetailResponseDataOrders collectionDueTime(Long collectionDueTime) {
+  public GetOrderDetailResponseDataOrders channelEntityNationalRegistryId(@javax.annotation.Nullable String channelEntityNationalRegistryId) {
+    this.channelEntityNationalRegistryId = channelEntityNationalRegistryId;
+    return this;
+  }
+
+  /**
+   * The national channel entity registration ID of payment institution/creditor. In Brazil, it is the CNPJ of payment instituion.
+   * @return channelEntityNationalRegistryId
+   */
+  @javax.annotation.Nullable
+  public String getChannelEntityNationalRegistryId() {
+    return channelEntityNationalRegistryId;
+  }
+
+  public void setChannelEntityNationalRegistryId(@javax.annotation.Nullable String channelEntityNationalRegistryId) {
+    this.channelEntityNationalRegistryId = channelEntityNationalRegistryId;
+  }
+
+
+  public GetOrderDetailResponseDataOrders collectionDueTime(@javax.annotation.Nullable Long collectionDueTime) {
     this.collectionDueTime = collectionDueTime;
     return this;
   }
 
-   /**
+  /**
    * If the order hasn&#39;t updated its status to &#x60;IN_TRANSIT&#x60; before this time, the order will be automatically canceled by TikTok Shop
    * @return collectionDueTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCollectionDueTime() {
     return collectionDueTime;
   }
 
-  public void setCollectionDueTime(Long collectionDueTime) {
+  public void setCollectionDueTime(@javax.annotation.Nullable Long collectionDueTime) {
     this.collectionDueTime = collectionDueTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders collectionTime(Long collectionTime) {
+  public GetOrderDetailResponseDataOrders collectionTime(@javax.annotation.Nullable Long collectionTime) {
     this.collectionTime = collectionTime;
     return this;
   }
 
-   /**
+  /**
    * The timestamp of the order&#39;s status update to &#x60;IN_TRANSIT&#x60;.
    * @return collectionTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCollectionTime() {
     return collectionTime;
   }
 
-  public void setCollectionTime(Long collectionTime) {
+  public void setCollectionTime(@javax.annotation.Nullable Long collectionTime) {
     this.collectionTime = collectionTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders commercePlatform(String commercePlatform) {
+  public GetOrderDetailResponseDataOrders commercePlatform(@javax.annotation.Nullable String commercePlatform) {
     this.commercePlatform = commercePlatform;
     return this;
   }
 
-   /**
+  /**
    * The platform where the order was placed. Possible values: - TIKTOK_SHOP - TOKOPEDIA  **Note**: Available only in the Indonesia market.
    * @return commercePlatform
-  **/
+   */
   @javax.annotation.Nullable
   public String getCommercePlatform() {
     return commercePlatform;
   }
 
-  public void setCommercePlatform(String commercePlatform) {
+  public void setCommercePlatform(@javax.annotation.Nullable String commercePlatform) {
     this.commercePlatform = commercePlatform;
   }
 
 
-  public GetOrderDetailResponseDataOrders consultationId(String consultationId) {
+  public GetOrderDetailResponseDataOrders consultationId(@javax.annotation.Nullable String consultationId) {
     this.consultationId = consultationId;
     return this;
   }
 
-   /**
+  /**
    * An ID to identify the corresponding ePharmacy consultation.  Applicable only if an ePharmacy consultation was initiated. Not applicable if the prescription was provided by the customer through an image upload.
    * @return consultationId
-  **/
+   */
   @javax.annotation.Nullable
   public String getConsultationId() {
     return consultationId;
   }
 
-  public void setConsultationId(String consultationId) {
+  public void setConsultationId(@javax.annotation.Nullable String consultationId) {
     this.consultationId = consultationId;
   }
 
 
-  public GetOrderDetailResponseDataOrders cpf(String cpf) {
+  public GetOrderDetailResponseDataOrders cpf(@javax.annotation.Nullable String cpf) {
     this.cpf = cpf;
     return this;
   }
 
-   /**
+  /**
    * CPF (invoice number), used to issue an invoice. Exclusive for the Brazil market.
    * @return cpf
-  **/
+   */
   @javax.annotation.Nullable
   public String getCpf() {
     return cpf;
   }
 
-  public void setCpf(String cpf) {
+  public void setCpf(@javax.annotation.Nullable String cpf) {
     this.cpf = cpf;
   }
 
 
-  public GetOrderDetailResponseDataOrders cpfName(String cpfName) {
+  public GetOrderDetailResponseDataOrders cpfName(@javax.annotation.Nullable String cpfName) {
     this.cpfName = cpfName;
     return this;
   }
 
-   /**
+  /**
    * Name belonging to the CPF number for the Brazil market. 
    * @return cpfName
-  **/
+   */
   @javax.annotation.Nullable
   public String getCpfName() {
     return cpfName;
   }
 
-  public void setCpfName(String cpfName) {
+  public void setCpfName(@javax.annotation.Nullable String cpfName) {
     this.cpfName = cpfName;
   }
 
 
-  public GetOrderDetailResponseDataOrders createTime(Long createTime) {
+  public GetOrderDetailResponseDataOrders createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The date and time that the order was created. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders deliveryDueTime(Long deliveryDueTime) {
+  public GetOrderDetailResponseDataOrders deliveryDueTime(@javax.annotation.Nullable Long deliveryDueTime) {
     this.deliveryDueTime = deliveryDueTime;
     return this;
   }
 
-   /**
+  /**
    * If the order hasn&#39;t updated its status to &#x60;DELIVERED&#x60; before this time, the order will be automatically canceled by TikTok Shop.
    * @return deliveryDueTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getDeliveryDueTime() {
     return deliveryDueTime;
   }
 
-  public void setDeliveryDueTime(Long deliveryDueTime) {
+  public void setDeliveryDueTime(@javax.annotation.Nullable Long deliveryDueTime) {
     this.deliveryDueTime = deliveryDueTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders deliveryOptionId(String deliveryOptionId) {
+  public GetOrderDetailResponseDataOrders deliveryOptionId(@javax.annotation.Nullable String deliveryOptionId) {
     this.deliveryOptionId = deliveryOptionId;
     return this;
   }
 
-   /**
+  /**
    * Order delivery option ID.
    * @return deliveryOptionId
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryOptionId() {
     return deliveryOptionId;
   }
 
-  public void setDeliveryOptionId(String deliveryOptionId) {
+  public void setDeliveryOptionId(@javax.annotation.Nullable String deliveryOptionId) {
     this.deliveryOptionId = deliveryOptionId;
   }
 
 
-  public GetOrderDetailResponseDataOrders deliveryOptionName(String deliveryOptionName) {
+  public GetOrderDetailResponseDataOrders deliveryOptionName(@javax.annotation.Nullable String deliveryOptionName) {
     this.deliveryOptionName = deliveryOptionName;
     return this;
   }
 
-   /**
+  /**
    * Delivery option name. For display purposes only.
    * @return deliveryOptionName
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryOptionName() {
     return deliveryOptionName;
   }
 
-  public void setDeliveryOptionName(String deliveryOptionName) {
+  public void setDeliveryOptionName(@javax.annotation.Nullable String deliveryOptionName) {
     this.deliveryOptionName = deliveryOptionName;
   }
 
 
-  public GetOrderDetailResponseDataOrders deliveryOptionRequiredDeliveryTime(Long deliveryOptionRequiredDeliveryTime) {
+  public GetOrderDetailResponseDataOrders deliveryOptionRequiredDeliveryTime(@javax.annotation.Nullable Long deliveryOptionRequiredDeliveryTime) {
     this.deliveryOptionRequiredDeliveryTime = deliveryOptionRequiredDeliveryTime;
     return this;
   }
 
-   /**
+  /**
    * Order should be delivered before this time.
    * @return deliveryOptionRequiredDeliveryTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getDeliveryOptionRequiredDeliveryTime() {
     return deliveryOptionRequiredDeliveryTime;
   }
 
-  public void setDeliveryOptionRequiredDeliveryTime(Long deliveryOptionRequiredDeliveryTime) {
+  public void setDeliveryOptionRequiredDeliveryTime(@javax.annotation.Nullable Long deliveryOptionRequiredDeliveryTime) {
     this.deliveryOptionRequiredDeliveryTime = deliveryOptionRequiredDeliveryTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders deliverySlaTime(Long deliverySlaTime) {
+  public GetOrderDetailResponseDataOrders deliverySlaTime(@javax.annotation.Nullable Long deliverySlaTime) {
     this.deliverySlaTime = deliverySlaTime;
     return this;
   }
 
-   /**
+  /**
    * Order should arrive by this date to be considered on-time and to avoid late delivery penalties.
    * @return deliverySlaTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getDeliverySlaTime() {
     return deliverySlaTime;
   }
 
-  public void setDeliverySlaTime(Long deliverySlaTime) {
+  public void setDeliverySlaTime(@javax.annotation.Nullable Long deliverySlaTime) {
     this.deliverySlaTime = deliverySlaTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders deliveryTime(Long deliveryTime) {
+  public GetOrderDetailResponseDataOrders deliveryTime(@javax.annotation.Nullable Long deliveryTime) {
     this.deliveryTime = deliveryTime;
     return this;
   }
 
-   /**
+  /**
    * The timestamp of the order&#39;s status update to &#x60;DELIVERED&#x60;.
    * @return deliveryTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getDeliveryTime() {
     return deliveryTime;
   }
 
-  public void setDeliveryTime(Long deliveryTime) {
+  public void setDeliveryTime(@javax.annotation.Nullable Long deliveryTime) {
     this.deliveryTime = deliveryTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders deliveryType(String deliveryType) {
+  public GetOrderDetailResponseDataOrders deliveryType(@javax.annotation.Nullable String deliveryType) {
     this.deliveryType = deliveryType;
     return this;
   }
 
-   /**
+  /**
    * Indicates whether it is a PickUp DropOff (PUDO) location. The PUDO location is selected by the buyer when placing orders.  - &#x60;HOME_DELIVERY&#x60;: not a PUDO location - &#x60;COLLECTION_POINT&#x60;: a PUDO location
    * @return deliveryType
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryType() {
     return deliveryType;
   }
 
-  public void setDeliveryType(String deliveryType) {
+  public void setDeliveryType(@javax.annotation.Nullable String deliveryType) {
     this.deliveryType = deliveryType;
   }
 
 
-  public GetOrderDetailResponseDataOrders exchangeSourceOrderId(String exchangeSourceOrderId) {
+  public GetOrderDetailResponseDataOrders exchangeSourceOrderId(@javax.annotation.Nullable String exchangeSourceOrderId) {
     this.exchangeSourceOrderId = exchangeSourceOrderId;
     return this;
   }
 
-   /**
+  /**
    * If the order is an exchange order, this field returns the original order&#39;s order ID, from which the exchange order was generated.   Returned only if is_exchange_order &#x3D; true.  Note: Only available in US and UK.
    * @return exchangeSourceOrderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getExchangeSourceOrderId() {
     return exchangeSourceOrderId;
   }
 
-  public void setExchangeSourceOrderId(String exchangeSourceOrderId) {
+  public void setExchangeSourceOrderId(@javax.annotation.Nullable String exchangeSourceOrderId) {
     this.exchangeSourceOrderId = exchangeSourceOrderId;
   }
 
 
-  public GetOrderDetailResponseDataOrders fastDeliveryProgram(String fastDeliveryProgram) {
+  public GetOrderDetailResponseDataOrders fastDeliveryProgram(@javax.annotation.Nullable String fastDeliveryProgram) {
     this.fastDeliveryProgram = fastDeliveryProgram;
     return this;
   }
 
-   /**
+  /**
    * A badge presented on the merchandise to tell the buyer that the seller participates in the fast delivery program, such that the order should arrive in a promised time period. Possible values: - &#x60;3_DAY_DELIVERY&#x60; Not returned if order did not meet fast delivery program requirements. Note: Applicable only for the US market.
    * @return fastDeliveryProgram
-  **/
+   */
   @javax.annotation.Nullable
   public String getFastDeliveryProgram() {
     return fastDeliveryProgram;
   }
 
-  public void setFastDeliveryProgram(String fastDeliveryProgram) {
+  public void setFastDeliveryProgram(@javax.annotation.Nullable String fastDeliveryProgram) {
     this.fastDeliveryProgram = fastDeliveryProgram;
   }
 
 
-  public GetOrderDetailResponseDataOrders fastDispatchSlaTime(Long fastDispatchSlaTime) {
+  public GetOrderDetailResponseDataOrders fastDispatchSlaTime(@javax.annotation.Nullable Long fastDispatchSlaTime) {
     this.fastDispatchSlaTime = fastDispatchSlaTime;
     return this;
   }
 
-   /**
+  /**
    * The latest collection time to gain incentives of NDD (Next Day Delivery) project. Unix timestamp Only available in Thailand and Philippines.
    * @return fastDispatchSlaTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getFastDispatchSlaTime() {
     return fastDispatchSlaTime;
   }
 
-  public void setFastDispatchSlaTime(Long fastDispatchSlaTime) {
+  public void setFastDispatchSlaTime(@javax.annotation.Nullable Long fastDispatchSlaTime) {
     this.fastDispatchSlaTime = fastDispatchSlaTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders fulfillmentType(String fulfillmentType) {
+  public GetOrderDetailResponseDataOrders fulfillmentPriorityLevel(@javax.annotation.Nullable Integer fulfillmentPriorityLevel) {
+    this.fulfillmentPriorityLevel = fulfillmentPriorityLevel;
+    return this;
+  }
+
+  /**
+   * Fulfillment priority value that can be used to prioritize shipping (only available in SEA)  100 &#x3D; Instant 200 &#x3D; Sameday 8 Hours  300 &#x3D; Sameday  400 &#x3D; Next Day Delivery 500 &#x3D; Express 600 &#x3D; Standard 700 &#x3D; Economy 800 &#x3D; Cargo
+   * @return fulfillmentPriorityLevel
+   */
+  @javax.annotation.Nullable
+  public Integer getFulfillmentPriorityLevel() {
+    return fulfillmentPriorityLevel;
+  }
+
+  public void setFulfillmentPriorityLevel(@javax.annotation.Nullable Integer fulfillmentPriorityLevel) {
+    this.fulfillmentPriorityLevel = fulfillmentPriorityLevel;
+  }
+
+
+  public GetOrderDetailResponseDataOrders fulfillmentType(@javax.annotation.Nullable String fulfillmentType) {
     this.fulfillmentType = fulfillmentType;
     return this;
   }
 
-   /**
+  /**
    * Fulfillment type.  Only orders with fulfillment type can be shipped by sellers. Possible values: - &#x60;FULFILLMENT_BY_SELLER&#x60;: a method where sellers fulfill orders directly from their own inventory, without using TikTok&#39;s fulfillment centers. In this model, the seller is responsible for storing, packaging, and shipping the product to customers. - &#x60;FULFILLMENT_BY_TIKTOK&#x60;: a service offered by TikTok that enables sellers to send their products to TikTok&#39;s fulfillment centers. TikTok then takes care of storing, picking, packing, and shipping the products to customers. - &#x60;FULFILLMENT_BY_DILAYANI_TOKOPEDIA&#x60;: a method where Tokopedia GoTo Logistics provides warehousing and logistics services to sellers and charges a fee for the service.
    * @return fulfillmentType
-  **/
+   */
   @javax.annotation.Nullable
   public String getFulfillmentType() {
     return fulfillmentType;
   }
 
-  public void setFulfillmentType(String fulfillmentType) {
+  public void setFulfillmentType(@javax.annotation.Nullable String fulfillmentType) {
     this.fulfillmentType = fulfillmentType;
   }
 
 
-  public GetOrderDetailResponseDataOrders handlingDuration(GetOrderDetailResponseDataOrdersHandlingDuration handlingDuration) {
+  public GetOrderDetailResponseDataOrders handlingDuration(@javax.annotation.Nullable GetOrderDetailResponseDataOrdersHandlingDuration handlingDuration) {
     this.handlingDuration = handlingDuration;
     return this;
   }
 
-   /**
+  /**
    * Get handlingDuration
    * @return handlingDuration
-  **/
+   */
   @javax.annotation.Nullable
   public GetOrderDetailResponseDataOrdersHandlingDuration getHandlingDuration() {
     return handlingDuration;
   }
 
-  public void setHandlingDuration(GetOrderDetailResponseDataOrdersHandlingDuration handlingDuration) {
+  public void setHandlingDuration(@javax.annotation.Nullable GetOrderDetailResponseDataOrdersHandlingDuration handlingDuration) {
     this.handlingDuration = handlingDuration;
   }
 
 
-  public GetOrderDetailResponseDataOrders hasUpdatedRecipientAddress(Boolean hasUpdatedRecipientAddress) {
+  public GetOrderDetailResponseDataOrders hasUpdatedRecipientAddress(@javax.annotation.Nullable Boolean hasUpdatedRecipientAddress) {
     this.hasUpdatedRecipientAddress = hasUpdatedRecipientAddress;
     return this;
   }
 
-   /**
+  /**
    * Whether the recipient address has been updated. - &#x60;false&#x60;: no update - &#x60;true&#x60;: updated
    * @return hasUpdatedRecipientAddress
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getHasUpdatedRecipientAddress() {
     return hasUpdatedRecipientAddress;
   }
 
-  public void setHasUpdatedRecipientAddress(Boolean hasUpdatedRecipientAddress) {
+  public void setHasUpdatedRecipientAddress(@javax.annotation.Nullable Boolean hasUpdatedRecipientAddress) {
     this.hasUpdatedRecipientAddress = hasUpdatedRecipientAddress;
   }
 
 
-  public GetOrderDetailResponseDataOrders id(String id) {
+  public GetOrderDetailResponseDataOrders id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * A unique identifier for a TikTok Shop order.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetOrderDetailResponseDataOrders isBuyerRequestCancel(Boolean isBuyerRequestCancel) {
+  public GetOrderDetailResponseDataOrders isBuyerRequestCancel(@javax.annotation.Nullable Boolean isBuyerRequestCancel) {
     this.isBuyerRequestCancel = isBuyerRequestCancel;
     return this;
   }
 
-   /**
+  /**
    * True when the buyer has a pending cancellation request
    * @return isBuyerRequestCancel
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsBuyerRequestCancel() {
     return isBuyerRequestCancel;
   }
 
-  public void setIsBuyerRequestCancel(Boolean isBuyerRequestCancel) {
+  public void setIsBuyerRequestCancel(@javax.annotation.Nullable Boolean isBuyerRequestCancel) {
     this.isBuyerRequestCancel = isBuyerRequestCancel;
   }
 
 
-  public GetOrderDetailResponseDataOrders isCod(Boolean isCod) {
+  public GetOrderDetailResponseDataOrders isCod(@javax.annotation.Nullable Boolean isCod) {
     this.isCod = isCod;
     return this;
   }
 
-   /**
+  /**
    * This option is for sellers that accept cash payment on delivery which is rare. Buyers will pay in cash upon receipt of package. Default value is &#x60;FALSE&#x60;. Only applicable to countries where Cash on Delivery (COD) is supported.
    * @return isCod
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsCod() {
     return isCod;
   }
 
-  public void setIsCod(Boolean isCod) {
+  public void setIsCod(@javax.annotation.Nullable Boolean isCod) {
     this.isCod = isCod;
   }
 
 
-  public GetOrderDetailResponseDataOrders isExchangeOrder(Boolean isExchangeOrder) {
+  public GetOrderDetailResponseDataOrders isExchangeOrder(@javax.annotation.Nullable Boolean isExchangeOrder) {
     this.isExchangeOrder = isExchangeOrder;
     return this;
   }
 
-   /**
+  /**
    * When TRUE, this is an exchange order.  Note: Only available in US and UK.
    * @return isExchangeOrder
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsExchangeOrder() {
     return isExchangeOrder;
   }
 
-  public void setIsExchangeOrder(Boolean isExchangeOrder) {
+  public void setIsExchangeOrder(@javax.annotation.Nullable Boolean isExchangeOrder) {
     this.isExchangeOrder = isExchangeOrder;
   }
 
 
-  public GetOrderDetailResponseDataOrders isOnHoldOrder(Boolean isOnHoldOrder) {
+  public GetOrderDetailResponseDataOrders isOnHoldOrder(@javax.annotation.Nullable Boolean isOnHoldOrder) {
     this.isOnHoldOrder = isOnHoldOrder;
     return this;
   }
 
-   /**
+  /**
    * Indicates whether the order experienced or will be experienced &#x60;ON_HOLD&#x60; status.
    * @return isOnHoldOrder
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsOnHoldOrder() {
     return isOnHoldOrder;
   }
 
-  public void setIsOnHoldOrder(Boolean isOnHoldOrder) {
+  public void setIsOnHoldOrder(@javax.annotation.Nullable Boolean isOnHoldOrder) {
     this.isOnHoldOrder = isOnHoldOrder;
   }
 
 
-  public GetOrderDetailResponseDataOrders isReplacementOrder(Boolean isReplacementOrder) {
+  public GetOrderDetailResponseDataOrders isReplacementOrder(@javax.annotation.Nullable Boolean isReplacementOrder) {
     this.isReplacementOrder = isReplacementOrder;
     return this;
   }
 
-   /**
+  /**
    * When true, this is a replacement order.
    * @return isReplacementOrder
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsReplacementOrder() {
     return isReplacementOrder;
   }
 
-  public void setIsReplacementOrder(Boolean isReplacementOrder) {
+  public void setIsReplacementOrder(@javax.annotation.Nullable Boolean isReplacementOrder) {
     this.isReplacementOrder = isReplacementOrder;
   }
 
 
-  public GetOrderDetailResponseDataOrders isSampleOrder(Boolean isSampleOrder) {
+  public GetOrderDetailResponseDataOrders isSampleOrder(@javax.annotation.Nullable Boolean isSampleOrder) {
     this.isSampleOrder = isSampleOrder;
     return this;
   }
 
-   /**
+  /**
    * Use this field to determine whether the order is a sample order.
    * @return isSampleOrder
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsSampleOrder() {
     return isSampleOrder;
   }
 
-  public void setIsSampleOrder(Boolean isSampleOrder) {
+  public void setIsSampleOrder(@javax.annotation.Nullable Boolean isSampleOrder) {
     this.isSampleOrder = isSampleOrder;
   }
 
 
-  public GetOrderDetailResponseDataOrders lineItems(List<GetOrderDetailResponseDataOrdersLineItems> lineItems) {
+  public GetOrderDetailResponseDataOrders lineItems(@javax.annotation.Nullable List<GetOrderDetailResponseDataOrdersLineItems> lineItems) {
     this.lineItems = lineItems;
     return this;
   }
@@ -960,59 +1087,59 @@ public class GetOrderDetailResponseDataOrders {
     return this;
   }
 
-   /**
+  /**
    * Line item info list.
    * @return lineItems
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetOrderDetailResponseDataOrdersLineItems> getLineItems() {
     return lineItems;
   }
 
-  public void setLineItems(List<GetOrderDetailResponseDataOrdersLineItems> lineItems) {
+  public void setLineItems(@javax.annotation.Nullable List<GetOrderDetailResponseDataOrdersLineItems> lineItems) {
     this.lineItems = lineItems;
   }
 
 
-  public GetOrderDetailResponseDataOrders needUploadInvoice(String needUploadInvoice) {
+  public GetOrderDetailResponseDataOrders needUploadInvoice(@javax.annotation.Nullable String needUploadInvoice) {
     this.needUploadInvoice = needUploadInvoice;
     return this;
   }
 
-   /**
-   * Whether an invoice needs to be uploaded (only for Brazil market). - &#x60;UNKNOWN&#x60; - &#x60;NEED_INVOICE&#x60; - &#x60;NO_NEED&#x60; - &#x60;INVOICE_UPLOADED&#x60;
+  /**
+   * Whether an invoice needs to be uploaded and uploaded status (only for Brazil market). - UNKNOWN:  Currently unable to confirm whether an invoice is needed - NEED_INVOICE: This order requires an invoice and the invoice has not been uploaded yet - NO_NEED：This order does not require an invoice - INVOICE_UPLOADED: The invoice for this order has been uploaded and verified. If the order is split, it will be marked as \&quot;uploaded\&quot; once any sub-order&#39;s invoice is uploaded. - INVOICE_PROCESSING: The invoice for this order is currently being uploaded/cancelled. Please wait for the final result and do not repeat the operation
    * @return needUploadInvoice
-  **/
+   */
   @javax.annotation.Nullable
   public String getNeedUploadInvoice() {
     return needUploadInvoice;
   }
 
-  public void setNeedUploadInvoice(String needUploadInvoice) {
+  public void setNeedUploadInvoice(@javax.annotation.Nullable String needUploadInvoice) {
     this.needUploadInvoice = needUploadInvoice;
   }
 
 
-  public GetOrderDetailResponseDataOrders orderType(String orderType) {
+  public GetOrderDetailResponseDataOrders orderType(@javax.annotation.Nullable String orderType) {
     this.orderType = orderType;
     return this;
   }
 
-   /**
+  /**
    * The order type. Possible values based on region:  **All regions** - &#x60;ZERO_LOTTERY&#x60;: An order placed during a lottery event in TikTok LIVE.  **US** - &#x60;PRE_ORDER&#x60;: An advance order for items that are not yet available or released. Fulfillment starts on a specific date in the future. - &#x60;MADE_TO_ORDER&#x60;: An order for items that are produced only after the order is received. Fulfillment starts after the product is produced. - &#x60;BACK_ORDER&#x60;: An order for items that are out of stock but expected to be restocked. Fulfillment starts after the product is restocked.  Returns an empty value for standard orders or other types that don&#39;t fall into the above categories.
    * @return orderType
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderType() {
     return orderType;
   }
 
-  public void setOrderType(String orderType) {
+  public void setOrderType(@javax.annotation.Nullable String orderType) {
     this.orderType = orderType;
   }
 
 
-  public GetOrderDetailResponseDataOrders packages(List<GetOrderDetailResponseDataOrdersPackages> packages) {
+  public GetOrderDetailResponseDataOrders packages(@javax.annotation.Nullable List<GetOrderDetailResponseDataOrdersPackages> packages) {
     this.packages = packages;
     return this;
   }
@@ -1025,435 +1152,556 @@ public class GetOrderDetailResponseDataOrders {
     return this;
   }
 
-   /**
+  /**
    * List of packages included in this order
    * @return packages
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetOrderDetailResponseDataOrdersPackages> getPackages() {
     return packages;
   }
 
-  public void setPackages(List<GetOrderDetailResponseDataOrdersPackages> packages) {
+  public void setPackages(@javax.annotation.Nullable List<GetOrderDetailResponseDataOrdersPackages> packages) {
     this.packages = packages;
   }
 
 
-  public GetOrderDetailResponseDataOrders paidTime(Long paidTime) {
+  public GetOrderDetailResponseDataOrders paidTime(@javax.annotation.Nullable Long paidTime) {
     this.paidTime = paidTime;
     return this;
   }
 
-   /**
+  /**
    * The date and time that the order was paid. Unix timestamp.
    * @return paidTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPaidTime() {
     return paidTime;
   }
 
-  public void setPaidTime(Long paidTime) {
+  public void setPaidTime(@javax.annotation.Nullable Long paidTime) {
     this.paidTime = paidTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders payment(GetOrderDetailResponseDataOrdersPayment payment) {
+  public GetOrderDetailResponseDataOrders payment(@javax.annotation.Nullable GetOrderDetailResponseDataOrdersPayment payment) {
     this.payment = payment;
     return this;
   }
 
-   /**
+  /**
    * Get payment
    * @return payment
-  **/
+   */
   @javax.annotation.Nullable
   public GetOrderDetailResponseDataOrdersPayment getPayment() {
     return payment;
   }
 
-  public void setPayment(GetOrderDetailResponseDataOrdersPayment payment) {
+  public void setPayment(@javax.annotation.Nullable GetOrderDetailResponseDataOrdersPayment payment) {
     this.payment = payment;
   }
 
 
-  public GetOrderDetailResponseDataOrders paymentMethodName(String paymentMethodName) {
+  public GetOrderDetailResponseDataOrders paymentAuthCode(@javax.annotation.Nullable String paymentAuthCode) {
+    this.paymentAuthCode = paymentAuthCode;
+    return this;
+  }
+
+  /**
+   * Authorization code of current transaction (only for the Brazilian market). For card transactions (credit/debit card), this field will be transaction authorization code. For PIX transactions, this field will be E2E ID.
+   * @return paymentAuthCode
+   */
+  @javax.annotation.Nullable
+  public String getPaymentAuthCode() {
+    return paymentAuthCode;
+  }
+
+  public void setPaymentAuthCode(@javax.annotation.Nullable String paymentAuthCode) {
+    this.paymentAuthCode = paymentAuthCode;
+  }
+
+
+  public GetOrderDetailResponseDataOrders paymentCardType(@javax.annotation.Nullable String paymentCardType) {
+    this.paymentCardType = paymentCardType;
+    return this;
+  }
+
+  /**
+   * Code to distinguish different payment method. Only assigned when the payment method is using bank card. Possible values are: Debit, Credit, Prepaid 
+   * @return paymentCardType
+   */
+  @javax.annotation.Nullable
+  public String getPaymentCardType() {
+    return paymentCardType;
+  }
+
+  public void setPaymentCardType(@javax.annotation.Nullable String paymentCardType) {
+    this.paymentCardType = paymentCardType;
+  }
+
+
+  public GetOrderDetailResponseDataOrders paymentMethodCode(@javax.annotation.Nullable String paymentMethodCode) {
+    this.paymentMethodCode = paymentMethodCode;
+    return this;
+  }
+
+  /**
+   * Payment method code identifying current transaction. It will contains payment method and card brand if it is card transaction.
+   * @return paymentMethodCode
+   */
+  @javax.annotation.Nullable
+  public String getPaymentMethodCode() {
+    return paymentMethodCode;
+  }
+
+  public void setPaymentMethodCode(@javax.annotation.Nullable String paymentMethodCode) {
+    this.paymentMethodCode = paymentMethodCode;
+  }
+
+
+  public GetOrderDetailResponseDataOrders paymentMethodName(@javax.annotation.Nullable String paymentMethodName) {
     this.paymentMethodName = paymentMethodName;
     return this;
   }
 
-   /**
+  /**
    * Payment method name, only for display
    * @return paymentMethodName
-  **/
+   */
   @javax.annotation.Nullable
   public String getPaymentMethodName() {
     return paymentMethodName;
   }
 
-  public void setPaymentMethodName(String paymentMethodName) {
+  public void setPaymentMethodName(@javax.annotation.Nullable String paymentMethodName) {
     this.paymentMethodName = paymentMethodName;
   }
 
 
-  public GetOrderDetailResponseDataOrders pickUpCutOffTime(Long pickUpCutOffTime) {
+  public GetOrderDetailResponseDataOrders pickUpCutOffTime(@javax.annotation.Nullable Long pickUpCutOffTime) {
     this.pickUpCutOffTime = pickUpCutOffTime;
     return this;
   }
 
-   /**
+  /**
    * To avoid LDR, you must ensure the package is picked up by this time. Only applicable in Southeast Asia regions.
    * @return pickUpCutOffTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPickUpCutOffTime() {
     return pickUpCutOffTime;
   }
 
-  public void setPickUpCutOffTime(Long pickUpCutOffTime) {
+  public void setPickUpCutOffTime(@javax.annotation.Nullable Long pickUpCutOffTime) {
     this.pickUpCutOffTime = pickUpCutOffTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders recipientAddress(GetOrderDetailResponseDataOrdersRecipientAddress recipientAddress) {
+  public GetOrderDetailResponseDataOrders recipientAddress(@javax.annotation.Nullable GetOrderDetailResponseDataOrdersRecipientAddress recipientAddress) {
     this.recipientAddress = recipientAddress;
     return this;
   }
 
-   /**
+  /**
    * Get recipientAddress
    * @return recipientAddress
-  **/
+   */
   @javax.annotation.Nullable
   public GetOrderDetailResponseDataOrdersRecipientAddress getRecipientAddress() {
     return recipientAddress;
   }
 
-  public void setRecipientAddress(GetOrderDetailResponseDataOrdersRecipientAddress recipientAddress) {
+  public void setRecipientAddress(@javax.annotation.Nullable GetOrderDetailResponseDataOrdersRecipientAddress recipientAddress) {
     this.recipientAddress = recipientAddress;
   }
 
 
-  public GetOrderDetailResponseDataOrders releaseDate(Long releaseDate) {
+  public GetOrderDetailResponseDataOrders recommendedShippingTime(@javax.annotation.Nullable Long recommendedShippingTime) {
+    this.recommendedShippingTime = recommendedShippingTime;
+    return this;
+  }
+
+  /**
+   * Recommended time to ship based on the each LSP service type (only available in SEA) 
+   * @return recommendedShippingTime
+   */
+  @javax.annotation.Nullable
+  public Long getRecommendedShippingTime() {
+    return recommendedShippingTime;
+  }
+
+  public void setRecommendedShippingTime(@javax.annotation.Nullable Long recommendedShippingTime) {
+    this.recommendedShippingTime = recommendedShippingTime;
+  }
+
+
+  public GetOrderDetailResponseDataOrders releaseDate(@javax.annotation.Nullable Long releaseDate) {
     this.releaseDate = releaseDate;
     return this;
   }
 
-   /**
+  /**
    * The date on which order handling starts and the status of the order changes to [&#x60;AWAITING_SHIPMENT&#x60;](https://partner.tiktokshop.com/docv2/page/650b1b4bbace3e02b76d1011).  Applicable only if the &#x60;order_type&#x60; is &#x60;PRE_ORDER&#x60;.
    * @return releaseDate
-  **/
+   */
   @javax.annotation.Nullable
   public Long getReleaseDate() {
     return releaseDate;
   }
 
-  public void setReleaseDate(Long releaseDate) {
+  public void setReleaseDate(@javax.annotation.Nullable Long releaseDate) {
     this.releaseDate = releaseDate;
   }
 
 
-  public GetOrderDetailResponseDataOrders replacedOrderId(String replacedOrderId) {
+  public GetOrderDetailResponseDataOrders replacedOrderId(@javax.annotation.Nullable String replacedOrderId) {
     this.replacedOrderId = replacedOrderId;
     return this;
   }
 
-   /**
+  /**
    * The order ID for the order that is being replaced. Returned only if &#x60;is_replacement_order&#x60; &#x3D; &#x60;true&#x60;
    * @return replacedOrderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getReplacedOrderId() {
     return replacedOrderId;
   }
 
-  public void setReplacedOrderId(String replacedOrderId) {
+  public void setReplacedOrderId(@javax.annotation.Nullable String replacedOrderId) {
     this.replacedOrderId = replacedOrderId;
   }
 
 
-  public GetOrderDetailResponseDataOrders requestCancelTime(Long requestCancelTime) {
+  public GetOrderDetailResponseDataOrders requestCancelTime(@javax.annotation.Nullable Long requestCancelTime) {
     this.requestCancelTime = requestCancelTime;
     return this;
   }
 
-   /**
+  /**
    * Buyer request cancel time.
    * @return requestCancelTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRequestCancelTime() {
     return requestCancelTime;
   }
 
-  public void setRequestCancelTime(Long requestCancelTime) {
+  public void setRequestCancelTime(@javax.annotation.Nullable Long requestCancelTime) {
     this.requestCancelTime = requestCancelTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders rtsSlaTime(Long rtsSlaTime) {
+  public GetOrderDetailResponseDataOrders rtsSlaTime(@javax.annotation.Nullable Long rtsSlaTime) {
     this.rtsSlaTime = rtsSlaTime;
     return this;
   }
 
-   /**
+  /**
    * The latest shipping time specified by the platform. Unix timestamp.
    * @return rtsSlaTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRtsSlaTime() {
     return rtsSlaTime;
   }
 
-  public void setRtsSlaTime(Long rtsSlaTime) {
+  public void setRtsSlaTime(@javax.annotation.Nullable Long rtsSlaTime) {
     this.rtsSlaTime = rtsSlaTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders rtsTime(Long rtsTime) {
+  public GetOrderDetailResponseDataOrders rtsTime(@javax.annotation.Nullable Long rtsTime) {
     this.rtsTime = rtsTime;
     return this;
   }
 
-   /**
+  /**
    * The time seller shipped the order (call Ship Order endpoint successfully). Unix timestamp.
    * @return rtsTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRtsTime() {
     return rtsTime;
   }
 
-  public void setRtsTime(Long rtsTime) {
+  public void setRtsTime(@javax.annotation.Nullable Long rtsTime) {
     this.rtsTime = rtsTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders sellerNote(String sellerNote) {
+  public GetOrderDetailResponseDataOrders sellerNote(@javax.annotation.Nullable String sellerNote) {
     this.sellerNote = sellerNote;
     return this;
   }
 
-   /**
+  /**
    * This field return the note, which seller notes in TikTok Seller Center.
    * @return sellerNote
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerNote() {
     return sellerNote;
   }
 
-  public void setSellerNote(String sellerNote) {
+  public void setSellerNote(@javax.annotation.Nullable String sellerNote) {
     this.sellerNote = sellerNote;
   }
 
 
-  public GetOrderDetailResponseDataOrders shippingDueTime(Long shippingDueTime) {
+  public GetOrderDetailResponseDataOrders shippingDueTime(@javax.annotation.Nullable Long shippingDueTime) {
     this.shippingDueTime = shippingDueTime;
     return this;
   }
 
-   /**
+  /**
    * If the order hasn&#39;t updated its status to &#x60;AWAITING_COLLECTION&#x60; before this time, the order will be automatically canceled by TikTok Shop.
    * @return shippingDueTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getShippingDueTime() {
     return shippingDueTime;
   }
 
-  public void setShippingDueTime(Long shippingDueTime) {
+  public void setShippingDueTime(@javax.annotation.Nullable Long shippingDueTime) {
     this.shippingDueTime = shippingDueTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders shippingProvider(String shippingProvider) {
+  public GetOrderDetailResponseDataOrders shippingProvider(@javax.annotation.Nullable String shippingProvider) {
     this.shippingProvider = shippingProvider;
     return this;
   }
 
-   /**
+  /**
    * The name of the current shipping provider.
    * @return shippingProvider
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProvider() {
     return shippingProvider;
   }
 
-  public void setShippingProvider(String shippingProvider) {
+  public void setShippingProvider(@javax.annotation.Nullable String shippingProvider) {
     this.shippingProvider = shippingProvider;
   }
 
 
-  public GetOrderDetailResponseDataOrders shippingProviderId(String shippingProviderId) {
+  public GetOrderDetailResponseDataOrders shippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the current shipping provider.
    * @return shippingProviderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderId() {
     return shippingProviderId;
   }
 
-  public void setShippingProviderId(String shippingProviderId) {
+  public void setShippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
   }
 
 
-  public GetOrderDetailResponseDataOrders shippingType(String shippingType) {
+  public GetOrderDetailResponseDataOrders shippingType(@javax.annotation.Nullable String shippingType) {
     this.shippingType = shippingType;
     return this;
   }
 
-   /**
+  /**
    * The method of delivery. - &#x60;TIKTOK&#x60;: shipping service provided by TikTok. The seller should obtain shipping label from TikTok. - &#x60;SELLER&#x60;: seller provides shipping, including through 3rd party fulfillment providers on behalf of the seller. 
    * @return shippingType
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingType() {
     return shippingType;
   }
 
-  public void setShippingType(String shippingType) {
+  public void setShippingType(@javax.annotation.Nullable String shippingType) {
     this.shippingType = shippingType;
   }
 
 
-  public GetOrderDetailResponseDataOrders splitOrCombineTag(String splitOrCombineTag) {
+  public GetOrderDetailResponseDataOrders splitOrCombineTag(@javax.annotation.Nullable String splitOrCombineTag) {
     this.splitOrCombineTag = splitOrCombineTag;
     return this;
   }
 
-   /**
+  /**
    * Indicate whether the order is combined or split.  - &#x60;COMBINED&#x60; - &#x60;SPLIT&#x60;  This field will be used in future fulfillment apis.
    * @return splitOrCombineTag
-  **/
+   */
   @javax.annotation.Nullable
   public String getSplitOrCombineTag() {
     return splitOrCombineTag;
   }
 
-  public void setSplitOrCombineTag(String splitOrCombineTag) {
+  public void setSplitOrCombineTag(@javax.annotation.Nullable String splitOrCombineTag) {
     this.splitOrCombineTag = splitOrCombineTag;
   }
 
 
-  public GetOrderDetailResponseDataOrders status(String status) {
+  public GetOrderDetailResponseDataOrders status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The order status. Possible values: - &#x60;UNPAID&#x60;: The order is placed, but payment is not yet completed. - &#x60;ON_HOLD&#x60;: The order is accepted and is waiting for fulfillment so the buyer may still cancel without the seller’s approval. If &#x60;order_type&#x3D;PRE_ORDER&#x60;, it also means the product is still awaiting release so payment will only be authorized 1 day before the release, but the seller should start preparing for the release. - &#x60;AWAITING_SHIPMENT&#x60;: The order is ready for shipment, but no items are shipped yet. - &#x60;PARTIALLY_SHIPPING&#x60;: Some items in the order are shipped, but not all. - &#x60;AWAITING_COLLECTION&#x60;: The shipment is arranged, but the package is waiting to be collected by the carrier. - &#x60;IN_TRANSIT&#x60;: The package is collected by the carrier and delivery is in progress. - &#x60;DELIVERED&#x60;: The package is delivered to buyer. - &#x60;COMPLETED&#x60;: The order is completed, and no further returns or refunds are allowed. - &#x60;CANCELLED&#x60;: The order is cancelled.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GetOrderDetailResponseDataOrders trackingNumber(String trackingNumber) {
+  public GetOrderDetailResponseDataOrders trackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
     return this;
   }
 
-   /**
+  /**
    * Tracking number. Available after ship package.
    * @return trackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getTrackingNumber() {
     return trackingNumber;
   }
 
-  public void setTrackingNumber(String trackingNumber) {
+  public void setTrackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
   }
 
 
-  public GetOrderDetailResponseDataOrders ttsSlaTime(Long ttsSlaTime) {
+  public GetOrderDetailResponseDataOrders ttsSlaTime(@javax.annotation.Nullable Long ttsSlaTime) {
     this.ttsSlaTime = ttsSlaTime;
     return this;
   }
 
-   /**
+  /**
    * The latest collection time specified by the platform. Unix timestamp.
    * @return ttsSlaTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getTtsSlaTime() {
     return ttsSlaTime;
   }
 
-  public void setTtsSlaTime(Long ttsSlaTime) {
+  public void setTtsSlaTime(@javax.annotation.Nullable Long ttsSlaTime) {
     this.ttsSlaTime = ttsSlaTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders updateTime(Long updateTime) {
+  public GetOrderDetailResponseDataOrders updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * Time of order status changes. Unix timestamp.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
   }
 
 
-  public GetOrderDetailResponseDataOrders userId(String userId) {
+  public GetOrderDetailResponseDataOrders userId(@javax.annotation.Nullable String userId) {
     this.userId = userId;
     return this;
   }
 
-   /**
+  /**
    * The buyer&#39;s user ID.
    * @return userId
-  **/
+   */
   @javax.annotation.Nullable
   public String getUserId() {
     return userId;
   }
 
-  public void setUserId(String userId) {
+  public void setUserId(@javax.annotation.Nullable String userId) {
     this.userId = userId;
   }
 
 
-  public GetOrderDetailResponseDataOrders warehouseId(String warehouseId) {
+  public GetOrderDetailResponseDataOrders warehouseId(@javax.annotation.Nullable String warehouseId) {
     this.warehouseId = warehouseId;
     return this;
   }
 
-   /**
+  /**
    * seller warehouse ID.
    * @return warehouseId
-  **/
+   */
   @javax.annotation.Nullable
   public String getWarehouseId() {
     return warehouseId;
   }
 
-  public void setWarehouseId(String warehouseId) {
+  public void setWarehouseId(@javax.annotation.Nullable String warehouseId) {
     this.warehouseId = warehouseId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetOrderDetailResponseDataOrders instance itself
+   */
+  public GetOrderDetailResponseDataOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -1474,6 +1722,7 @@ public class GetOrderDetailResponseDataOrders {
         Objects.equals(this.cancelReason, order202309GetOrderDetailResponseDataOrders.cancelReason) &&
         Objects.equals(this.cancelTime, order202309GetOrderDetailResponseDataOrders.cancelTime) &&
         Objects.equals(this.cancellationInitiator, order202309GetOrderDetailResponseDataOrders.cancellationInitiator) &&
+        Objects.equals(this.channelEntityNationalRegistryId, order202309GetOrderDetailResponseDataOrders.channelEntityNationalRegistryId) &&
         Objects.equals(this.collectionDueTime, order202309GetOrderDetailResponseDataOrders.collectionDueTime) &&
         Objects.equals(this.collectionTime, order202309GetOrderDetailResponseDataOrders.collectionTime) &&
         Objects.equals(this.commercePlatform, order202309GetOrderDetailResponseDataOrders.commercePlatform) &&
@@ -1491,6 +1740,7 @@ public class GetOrderDetailResponseDataOrders {
         Objects.equals(this.exchangeSourceOrderId, order202309GetOrderDetailResponseDataOrders.exchangeSourceOrderId) &&
         Objects.equals(this.fastDeliveryProgram, order202309GetOrderDetailResponseDataOrders.fastDeliveryProgram) &&
         Objects.equals(this.fastDispatchSlaTime, order202309GetOrderDetailResponseDataOrders.fastDispatchSlaTime) &&
+        Objects.equals(this.fulfillmentPriorityLevel, order202309GetOrderDetailResponseDataOrders.fulfillmentPriorityLevel) &&
         Objects.equals(this.fulfillmentType, order202309GetOrderDetailResponseDataOrders.fulfillmentType) &&
         Objects.equals(this.handlingDuration, order202309GetOrderDetailResponseDataOrders.handlingDuration) &&
         Objects.equals(this.hasUpdatedRecipientAddress, order202309GetOrderDetailResponseDataOrders.hasUpdatedRecipientAddress) &&
@@ -1507,9 +1757,13 @@ public class GetOrderDetailResponseDataOrders {
         Objects.equals(this.packages, order202309GetOrderDetailResponseDataOrders.packages) &&
         Objects.equals(this.paidTime, order202309GetOrderDetailResponseDataOrders.paidTime) &&
         Objects.equals(this.payment, order202309GetOrderDetailResponseDataOrders.payment) &&
+        Objects.equals(this.paymentAuthCode, order202309GetOrderDetailResponseDataOrders.paymentAuthCode) &&
+        Objects.equals(this.paymentCardType, order202309GetOrderDetailResponseDataOrders.paymentCardType) &&
+        Objects.equals(this.paymentMethodCode, order202309GetOrderDetailResponseDataOrders.paymentMethodCode) &&
         Objects.equals(this.paymentMethodName, order202309GetOrderDetailResponseDataOrders.paymentMethodName) &&
         Objects.equals(this.pickUpCutOffTime, order202309GetOrderDetailResponseDataOrders.pickUpCutOffTime) &&
         Objects.equals(this.recipientAddress, order202309GetOrderDetailResponseDataOrders.recipientAddress) &&
+        Objects.equals(this.recommendedShippingTime, order202309GetOrderDetailResponseDataOrders.recommendedShippingTime) &&
         Objects.equals(this.releaseDate, order202309GetOrderDetailResponseDataOrders.releaseDate) &&
         Objects.equals(this.replacedOrderId, order202309GetOrderDetailResponseDataOrders.replacedOrderId) &&
         Objects.equals(this.requestCancelTime, order202309GetOrderDetailResponseDataOrders.requestCancelTime) &&
@@ -1526,12 +1780,13 @@ public class GetOrderDetailResponseDataOrders {
         Objects.equals(this.ttsSlaTime, order202309GetOrderDetailResponseDataOrders.ttsSlaTime) &&
         Objects.equals(this.updateTime, order202309GetOrderDetailResponseDataOrders.updateTime) &&
         Objects.equals(this.userId, order202309GetOrderDetailResponseDataOrders.userId) &&
-        Objects.equals(this.warehouseId, order202309GetOrderDetailResponseDataOrders.warehouseId);
+        Objects.equals(this.warehouseId, order202309GetOrderDetailResponseDataOrders.warehouseId)&&
+        Objects.equals(this.additionalProperties, order202309GetOrderDetailResponseDataOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(autoCombineGroupId, buyerEmail, buyerMessage, cancelOrderSlaTime, cancelReason, cancelTime, cancellationInitiator, collectionDueTime, collectionTime, commercePlatform, consultationId, cpf, cpfName, createTime, deliveryDueTime, deliveryOptionId, deliveryOptionName, deliveryOptionRequiredDeliveryTime, deliverySlaTime, deliveryTime, deliveryType, exchangeSourceOrderId, fastDeliveryProgram, fastDispatchSlaTime, fulfillmentType, handlingDuration, hasUpdatedRecipientAddress, id, isBuyerRequestCancel, isCod, isExchangeOrder, isOnHoldOrder, isReplacementOrder, isSampleOrder, lineItems, needUploadInvoice, orderType, packages, paidTime, payment, paymentMethodName, pickUpCutOffTime, recipientAddress, releaseDate, replacedOrderId, requestCancelTime, rtsSlaTime, rtsTime, sellerNote, shippingDueTime, shippingProvider, shippingProviderId, shippingType, splitOrCombineTag, status, trackingNumber, ttsSlaTime, updateTime, userId, warehouseId);
+    return Objects.hash(autoCombineGroupId, buyerEmail, buyerMessage, cancelOrderSlaTime, cancelReason, cancelTime, cancellationInitiator, channelEntityNationalRegistryId, collectionDueTime, collectionTime, commercePlatform, consultationId, cpf, cpfName, createTime, deliveryDueTime, deliveryOptionId, deliveryOptionName, deliveryOptionRequiredDeliveryTime, deliverySlaTime, deliveryTime, deliveryType, exchangeSourceOrderId, fastDeliveryProgram, fastDispatchSlaTime, fulfillmentPriorityLevel, fulfillmentType, handlingDuration, hasUpdatedRecipientAddress, id, isBuyerRequestCancel, isCod, isExchangeOrder, isOnHoldOrder, isReplacementOrder, isSampleOrder, lineItems, needUploadInvoice, orderType, packages, paidTime, payment, paymentAuthCode, paymentCardType, paymentMethodCode, paymentMethodName, pickUpCutOffTime, recipientAddress, recommendedShippingTime, releaseDate, replacedOrderId, requestCancelTime, rtsSlaTime, rtsTime, sellerNote, shippingDueTime, shippingProvider, shippingProviderId, shippingType, splitOrCombineTag, status, trackingNumber, ttsSlaTime, updateTime, userId, warehouseId, additionalProperties);
   }
 
   @Override
@@ -1545,6 +1800,7 @@ public class GetOrderDetailResponseDataOrders {
     sb.append("    cancelReason: ").append(toIndentedString(cancelReason)).append("\n");
     sb.append("    cancelTime: ").append(toIndentedString(cancelTime)).append("\n");
     sb.append("    cancellationInitiator: ").append(toIndentedString(cancellationInitiator)).append("\n");
+    sb.append("    channelEntityNationalRegistryId: ").append(toIndentedString(channelEntityNationalRegistryId)).append("\n");
     sb.append("    collectionDueTime: ").append(toIndentedString(collectionDueTime)).append("\n");
     sb.append("    collectionTime: ").append(toIndentedString(collectionTime)).append("\n");
     sb.append("    commercePlatform: ").append(toIndentedString(commercePlatform)).append("\n");
@@ -1562,6 +1818,7 @@ public class GetOrderDetailResponseDataOrders {
     sb.append("    exchangeSourceOrderId: ").append(toIndentedString(exchangeSourceOrderId)).append("\n");
     sb.append("    fastDeliveryProgram: ").append(toIndentedString(fastDeliveryProgram)).append("\n");
     sb.append("    fastDispatchSlaTime: ").append(toIndentedString(fastDispatchSlaTime)).append("\n");
+    sb.append("    fulfillmentPriorityLevel: ").append(toIndentedString(fulfillmentPriorityLevel)).append("\n");
     sb.append("    fulfillmentType: ").append(toIndentedString(fulfillmentType)).append("\n");
     sb.append("    handlingDuration: ").append(toIndentedString(handlingDuration)).append("\n");
     sb.append("    hasUpdatedRecipientAddress: ").append(toIndentedString(hasUpdatedRecipientAddress)).append("\n");
@@ -1578,9 +1835,13 @@ public class GetOrderDetailResponseDataOrders {
     sb.append("    packages: ").append(toIndentedString(packages)).append("\n");
     sb.append("    paidTime: ").append(toIndentedString(paidTime)).append("\n");
     sb.append("    payment: ").append(toIndentedString(payment)).append("\n");
+    sb.append("    paymentAuthCode: ").append(toIndentedString(paymentAuthCode)).append("\n");
+    sb.append("    paymentCardType: ").append(toIndentedString(paymentCardType)).append("\n");
+    sb.append("    paymentMethodCode: ").append(toIndentedString(paymentMethodCode)).append("\n");
     sb.append("    paymentMethodName: ").append(toIndentedString(paymentMethodName)).append("\n");
     sb.append("    pickUpCutOffTime: ").append(toIndentedString(pickUpCutOffTime)).append("\n");
     sb.append("    recipientAddress: ").append(toIndentedString(recipientAddress)).append("\n");
+    sb.append("    recommendedShippingTime: ").append(toIndentedString(recommendedShippingTime)).append("\n");
     sb.append("    releaseDate: ").append(toIndentedString(releaseDate)).append("\n");
     sb.append("    replacedOrderId: ").append(toIndentedString(replacedOrderId)).append("\n");
     sb.append("    requestCancelTime: ").append(toIndentedString(requestCancelTime)).append("\n");
@@ -1598,6 +1859,7 @@ public class GetOrderDetailResponseDataOrders {
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    warehouseId: ").append(toIndentedString(warehouseId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1619,90 +1881,22 @@ public class GetOrderDetailResponseDataOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("auto_combine_group_id");
-    openapiFields.add("buyer_email");
-    openapiFields.add("buyer_message");
-    openapiFields.add("cancel_order_sla_time");
-    openapiFields.add("cancel_reason");
-    openapiFields.add("cancel_time");
-    openapiFields.add("cancellation_initiator");
-    openapiFields.add("collection_due_time");
-    openapiFields.add("collection_time");
-    openapiFields.add("commerce_platform");
-    openapiFields.add("consultation_id");
-    openapiFields.add("cpf");
-    openapiFields.add("cpf_name");
-    openapiFields.add("create_time");
-    openapiFields.add("delivery_due_time");
-    openapiFields.add("delivery_option_id");
-    openapiFields.add("delivery_option_name");
-    openapiFields.add("delivery_option_required_delivery_time");
-    openapiFields.add("delivery_sla_time");
-    openapiFields.add("delivery_time");
-    openapiFields.add("delivery_type");
-    openapiFields.add("exchange_source_order_id");
-    openapiFields.add("fast_delivery_program");
-    openapiFields.add("fast_dispatch_sla_time");
-    openapiFields.add("fulfillment_type");
-    openapiFields.add("handling_duration");
-    openapiFields.add("has_updated_recipient_address");
-    openapiFields.add("id");
-    openapiFields.add("is_buyer_request_cancel");
-    openapiFields.add("is_cod");
-    openapiFields.add("is_exchange_order");
-    openapiFields.add("is_on_hold_order");
-    openapiFields.add("is_replacement_order");
-    openapiFields.add("is_sample_order");
-    openapiFields.add("line_items");
-    openapiFields.add("need_upload_invoice");
-    openapiFields.add("order_type");
-    openapiFields.add("packages");
-    openapiFields.add("paid_time");
-    openapiFields.add("payment");
-    openapiFields.add("payment_method_name");
-    openapiFields.add("pick_up_cut_off_time");
-    openapiFields.add("recipient_address");
-    openapiFields.add("release_date");
-    openapiFields.add("replaced_order_id");
-    openapiFields.add("request_cancel_time");
-    openapiFields.add("rts_sla_time");
-    openapiFields.add("rts_time");
-    openapiFields.add("seller_note");
-    openapiFields.add("shipping_due_time");
-    openapiFields.add("shipping_provider");
-    openapiFields.add("shipping_provider_id");
-    openapiFields.add("shipping_type");
-    openapiFields.add("split_or_combine_tag");
-    openapiFields.add("status");
-    openapiFields.add("tracking_number");
-    openapiFields.add("tts_sla_time");
-    openapiFields.add("update_time");
-    openapiFields.add("user_id");
-    openapiFields.add("warehouse_id");
+    openapiFields = new HashSet<String>(Arrays.asList("auto_combine_group_id", "buyer_email", "buyer_message", "cancel_order_sla_time", "cancel_reason", "cancel_time", "cancellation_initiator", "channel_entity_national_registry_id", "collection_due_time", "collection_time", "commerce_platform", "consultation_id", "cpf", "cpf_name", "create_time", "delivery_due_time", "delivery_option_id", "delivery_option_name", "delivery_option_required_delivery_time", "delivery_sla_time", "delivery_time", "delivery_type", "exchange_source_order_id", "fast_delivery_program", "fast_dispatch_sla_time", "fulfillment_priority_level", "fulfillment_type", "handling_duration", "has_updated_recipient_address", "id", "is_buyer_request_cancel", "is_cod", "is_exchange_order", "is_on_hold_order", "is_replacement_order", "is_sample_order", "line_items", "need_upload_invoice", "order_type", "packages", "paid_time", "payment", "payment_auth_code", "payment_card_type", "payment_method_code", "payment_method_name", "pick_up_cut_off_time", "recipient_address", "recommended_shipping_time", "release_date", "replaced_order_id", "request_cancel_time", "rts_sla_time", "rts_time", "seller_note", "shipping_due_time", "shipping_provider", "shipping_provider_id", "shipping_type", "split_or_combine_tag", "status", "tracking_number", "tts_sla_time", "update_time", "user_id", "warehouse_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetOrderDetailResponseDataOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetOrderDetailResponseDataOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetOrderDetailResponseDataOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetOrderDetailResponseDataOrders is not found in the empty JSON string", GetOrderDetailResponseDataOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetOrderDetailResponseDataOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetOrderDetailResponseDataOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1720,6 +1914,9 @@ public class GetOrderDetailResponseDataOrders {
       }
       if ((jsonObj.get("cancellation_initiator") != null && !jsonObj.get("cancellation_initiator").isJsonNull()) && !jsonObj.get("cancellation_initiator").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cancellation_initiator` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cancellation_initiator").toString()));
+      }
+      if ((jsonObj.get("channel_entity_national_registry_id") != null && !jsonObj.get("channel_entity_national_registry_id").isJsonNull()) && !jsonObj.get("channel_entity_national_registry_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `channel_entity_national_registry_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("channel_entity_national_registry_id").toString()));
       }
       if ((jsonObj.get("commerce_platform") != null && !jsonObj.get("commerce_platform").isJsonNull()) && !jsonObj.get("commerce_platform").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `commerce_platform` to be a primitive type in the JSON string but got `%s`", jsonObj.get("commerce_platform").toString()));
@@ -1796,6 +1993,15 @@ public class GetOrderDetailResponseDataOrders {
       if (jsonObj.get("payment") != null && !jsonObj.get("payment").isJsonNull()) {
         GetOrderDetailResponseDataOrdersPayment.validateJsonElement(jsonObj.get("payment"));
       }
+      if ((jsonObj.get("payment_auth_code") != null && !jsonObj.get("payment_auth_code").isJsonNull()) && !jsonObj.get("payment_auth_code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payment_auth_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_auth_code").toString()));
+      }
+      if ((jsonObj.get("payment_card_type") != null && !jsonObj.get("payment_card_type").isJsonNull()) && !jsonObj.get("payment_card_type").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payment_card_type` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_card_type").toString()));
+      }
+      if ((jsonObj.get("payment_method_code") != null && !jsonObj.get("payment_method_code").isJsonNull()) && !jsonObj.get("payment_method_code").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `payment_method_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_method_code").toString()));
+      }
       if ((jsonObj.get("payment_method_name") != null && !jsonObj.get("payment_method_name").isJsonNull()) && !jsonObj.get("payment_method_name").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `payment_method_name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("payment_method_name").toString()));
       }
@@ -1850,6 +2056,28 @@ public class GetOrderDetailResponseDataOrders {
            @Override
            public void write(JsonWriter out, GetOrderDetailResponseDataOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -1857,29 +2085,50 @@ public class GetOrderDetailResponseDataOrders {
            public GetOrderDetailResponseDataOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetOrderDetailResponseDataOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetOrderDetailResponseDataOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetOrderDetailResponseDataOrders
-  * @throws IOException if the JSON string is invalid with respect to GetOrderDetailResponseDataOrders
-  */
+  /**
+   * Create an instance of GetOrderDetailResponseDataOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetOrderDetailResponseDataOrders
+   * @throws IOException if the JSON string is invalid with respect to GetOrderDetailResponseDataOrders
+   */
   public static GetOrderDetailResponseDataOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetOrderDetailResponseDataOrders.class);
   }
 
- /**
-  * Convert an instance of GetOrderDetailResponseDataOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetOrderDetailResponseDataOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

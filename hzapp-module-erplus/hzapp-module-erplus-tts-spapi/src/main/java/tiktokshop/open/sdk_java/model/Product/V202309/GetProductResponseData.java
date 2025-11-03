@@ -40,6 +40,7 @@ import tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataProd
 import tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataRecommendedCategories;
 import tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSizeChart;
 import tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkus;
+import tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSubscribeInfo;
 import tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataVideo;
 
 import com.google.gson.Gson;
@@ -57,7 +58,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -69,167 +69,226 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetProductResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetProductResponseData {
   public static final String SERIALIZED_NAME_AUDIT = "audit";
   @SerializedName(SERIALIZED_NAME_AUDIT)
+  @javax.annotation.Nullable
   private GetProductResponseDataAudit audit;
 
   public static final String SERIALIZED_NAME_AUDIT_FAILED_REASONS = "audit_failed_reasons";
   @SerializedName(SERIALIZED_NAME_AUDIT_FAILED_REASONS)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataAuditFailedReasons> auditFailedReasons = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_BRAND = "brand";
   @SerializedName(SERIALIZED_NAME_BRAND)
+  @javax.annotation.Nullable
   private GetProductResponseDataBrand brand;
 
   public static final String SERIALIZED_NAME_CATEGORY_CHAINS = "category_chains";
   @SerializedName(SERIALIZED_NAME_CATEGORY_CHAINS)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataCategoryChains> categoryChains = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CERTIFICATIONS = "certifications";
   @SerializedName(SERIALIZED_NAME_CERTIFICATIONS)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataCertifications> certifications = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DELIVERY_OPTIONS = "delivery_options";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTIONS)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataDeliveryOptions> deliveryOptions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_EXTERNAL_PRODUCT_ID = "external_product_id";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_PRODUCT_ID)
+  @javax.annotation.Nullable
   private String externalProductId;
 
   public static final String SERIALIZED_NAME_GLOBAL_PRODUCT_ASSOCIATION = "global_product_association";
   @SerializedName(SERIALIZED_NAME_GLOBAL_PRODUCT_ASSOCIATION)
+  @javax.annotation.Nullable
   private GetProductResponseDataGlobalProductAssociation globalProductAssociation;
+
+  public static final String SERIALIZED_NAME_HAS_DRAFT = "has_draft";
+  @SerializedName(SERIALIZED_NAME_HAS_DRAFT)
+  @javax.annotation.Nullable
+  private Boolean hasDraft;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_INTEGRATED_PLATFORM_STATUSES = "integrated_platform_statuses";
   @SerializedName(SERIALIZED_NAME_INTEGRATED_PLATFORM_STATUSES)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataIntegratedPlatformStatuses> integratedPlatformStatuses = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_IS_COD_ALLOWED = "is_cod_allowed";
   @SerializedName(SERIALIZED_NAME_IS_COD_ALLOWED)
+  @javax.annotation.Nullable
   private Boolean isCodAllowed;
 
   public static final String SERIALIZED_NAME_IS_NOT_FOR_SALE = "is_not_for_sale";
   @SerializedName(SERIALIZED_NAME_IS_NOT_FOR_SALE)
+  @javax.annotation.Nullable
   private Boolean isNotForSale;
 
   public static final String SERIALIZED_NAME_IS_PRE_OWNED = "is_pre_owned";
   @SerializedName(SERIALIZED_NAME_IS_PRE_OWNED)
+  @javax.annotation.Nullable
   private Boolean isPreOwned;
+
+  public static final String SERIALIZED_NAME_IS_REPLICATED = "is_replicated";
+  @SerializedName(SERIALIZED_NAME_IS_REPLICATED)
+  @javax.annotation.Nullable
+  private Boolean isReplicated;
 
   public static final String SERIALIZED_NAME_LISTING_QUALITY_TIER = "listing_quality_tier";
   @SerializedName(SERIALIZED_NAME_LISTING_QUALITY_TIER)
+  @javax.annotation.Nullable
   private String listingQualityTier;
 
   public static final String SERIALIZED_NAME_MAIN_IMAGES = "main_images";
   @SerializedName(SERIALIZED_NAME_MAIN_IMAGES)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataMainImages> mainImages = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MANUFACTURER_IDS = "manufacturer_ids";
   @SerializedName(SERIALIZED_NAME_MANUFACTURER_IDS)
+  @javax.annotation.Nullable
   private List<String> manufacturerIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MINIMUM_ORDER_QUANTITY = "minimum_order_quantity";
   @SerializedName(SERIALIZED_NAME_MINIMUM_ORDER_QUANTITY)
+  @javax.annotation.Nullable
   private Integer minimumOrderQuantity;
 
   public static final String SERIALIZED_NAME_PACKAGE_DIMENSIONS = "package_dimensions";
   @SerializedName(SERIALIZED_NAME_PACKAGE_DIMENSIONS)
+  @javax.annotation.Nullable
   private GetProductResponseDataPackageDimensions packageDimensions;
 
   public static final String SERIALIZED_NAME_PACKAGE_WEIGHT = "package_weight";
   @SerializedName(SERIALIZED_NAME_PACKAGE_WEIGHT)
+  @javax.annotation.Nullable
   private GetProductResponseDataPackageWeight packageWeight;
 
   public static final String SERIALIZED_NAME_PRESCRIPTION_REQUIREMENT = "prescription_requirement";
   @SerializedName(SERIALIZED_NAME_PRESCRIPTION_REQUIREMENT)
+  @javax.annotation.Nullable
   private GetProductResponseDataPrescriptionRequirement prescriptionRequirement;
+
+  public static final String SERIALIZED_NAME_PRIMARY_COMBINED_PRODUCT_ID = "primary_combined_product_id";
+  @SerializedName(SERIALIZED_NAME_PRIMARY_COMBINED_PRODUCT_ID)
+  @javax.annotation.Nullable
+  private String primaryCombinedProductId;
 
   public static final String SERIALIZED_NAME_PRODUCT_ATTRIBUTES = "product_attributes";
   @SerializedName(SERIALIZED_NAME_PRODUCT_ATTRIBUTES)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataProductAttributes> productAttributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PRODUCT_FAMILIES = "product_families";
   @SerializedName(SERIALIZED_NAME_PRODUCT_FAMILIES)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataProductFamilies> productFamilies = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_PRODUCT_STATUS = "product_status";
+  @SerializedName(SERIALIZED_NAME_PRODUCT_STATUS)
+  @javax.annotation.Nullable
+  private String productStatus;
 
   public static final String SERIALIZED_NAME_PRODUCT_TYPES = "product_types";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TYPES)
+  @javax.annotation.Nullable
   private List<String> productTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RECOMMENDED_CATEGORIES = "recommended_categories";
   @SerializedName(SERIALIZED_NAME_RECOMMENDED_CATEGORIES)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataRecommendedCategories> recommendedCategories = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS = "responsible_person_ids";
   @SerializedName(SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS)
+  @javax.annotation.Nullable
   private List<String> responsiblePersonIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SHIPPING_INSURANCE_REQUIREMENT = "shipping_insurance_requirement";
   @SerializedName(SERIALIZED_NAME_SHIPPING_INSURANCE_REQUIREMENT)
+  @javax.annotation.Nullable
   private String shippingInsuranceRequirement;
 
   public static final String SERIALIZED_NAME_SIZE_CHART = "size_chart";
   @SerializedName(SERIALIZED_NAME_SIZE_CHART)
+  @javax.annotation.Nullable
   private GetProductResponseDataSizeChart sizeChart;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<GetProductResponseDataSkus> skus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
+
+  public static final String SERIALIZED_NAME_SUBSCRIBE_INFO = "subscribe_info";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIBE_INFO)
+  @javax.annotation.Nullable
+  private GetProductResponseDataSubscribeInfo subscribeInfo;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public static final String SERIALIZED_NAME_VIDEO = "video";
   @SerializedName(SERIALIZED_NAME_VIDEO)
+  @javax.annotation.Nullable
   private GetProductResponseDataVideo video;
 
   public GetProductResponseData() {
   }
 
-  public GetProductResponseData audit(GetProductResponseDataAudit audit) {
+  public GetProductResponseData audit(@javax.annotation.Nullable GetProductResponseDataAudit audit) {
     this.audit = audit;
     return this;
   }
 
-   /**
+  /**
    * Get audit
    * @return audit
-  **/
+   */
   @javax.annotation.Nullable
   public GetProductResponseDataAudit getAudit() {
     return audit;
   }
 
-  public void setAudit(GetProductResponseDataAudit audit) {
+  public void setAudit(@javax.annotation.Nullable GetProductResponseDataAudit audit) {
     this.audit = audit;
   }
 
 
-  public GetProductResponseData auditFailedReasons(List<GetProductResponseDataAuditFailedReasons> auditFailedReasons) {
+  public GetProductResponseData auditFailedReasons(@javax.annotation.Nullable List<GetProductResponseDataAuditFailedReasons> auditFailedReasons) {
     this.auditFailedReasons = auditFailedReasons;
     return this;
   }
@@ -242,40 +301,40 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop audit failure information.
    * @return auditFailedReasons
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataAuditFailedReasons> getAuditFailedReasons() {
     return auditFailedReasons;
   }
 
-  public void setAuditFailedReasons(List<GetProductResponseDataAuditFailedReasons> auditFailedReasons) {
+  public void setAuditFailedReasons(@javax.annotation.Nullable List<GetProductResponseDataAuditFailedReasons> auditFailedReasons) {
     this.auditFailedReasons = auditFailedReasons;
   }
 
 
-  public GetProductResponseData brand(GetProductResponseDataBrand brand) {
+  public GetProductResponseData brand(@javax.annotation.Nullable GetProductResponseDataBrand brand) {
     this.brand = brand;
     return this;
   }
 
-   /**
+  /**
    * Get brand
    * @return brand
-  **/
+   */
   @javax.annotation.Nullable
   public GetProductResponseDataBrand getBrand() {
     return brand;
   }
 
-  public void setBrand(GetProductResponseDataBrand brand) {
+  public void setBrand(@javax.annotation.Nullable GetProductResponseDataBrand brand) {
     this.brand = brand;
   }
 
 
-  public GetProductResponseData categoryChains(List<GetProductResponseDataCategoryChains> categoryChains) {
+  public GetProductResponseData categoryChains(@javax.annotation.Nullable List<GetProductResponseDataCategoryChains> categoryChains) {
     this.categoryChains = categoryChains;
     return this;
   }
@@ -288,21 +347,21 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * Product category tree information.
    * @return categoryChains
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataCategoryChains> getCategoryChains() {
     return categoryChains;
   }
 
-  public void setCategoryChains(List<GetProductResponseDataCategoryChains> categoryChains) {
+  public void setCategoryChains(@javax.annotation.Nullable List<GetProductResponseDataCategoryChains> categoryChains) {
     this.categoryChains = categoryChains;
   }
 
 
-  public GetProductResponseData certifications(List<GetProductResponseDataCertifications> certifications) {
+  public GetProductResponseData certifications(@javax.annotation.Nullable List<GetProductResponseDataCertifications> certifications) {
     this.certifications = certifications;
     return this;
   }
@@ -315,40 +374,40 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * The list of certifications for your product.
    * @return certifications
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataCertifications> getCertifications() {
     return certifications;
   }
 
-  public void setCertifications(List<GetProductResponseDataCertifications> certifications) {
+  public void setCertifications(@javax.annotation.Nullable List<GetProductResponseDataCertifications> certifications) {
     this.certifications = certifications;
   }
 
 
-  public GetProductResponseData createTime(Long createTime) {
+  public GetProductResponseData createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the product is created. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetProductResponseData deliveryOptions(List<GetProductResponseDataDeliveryOptions> deliveryOptions) {
+  public GetProductResponseData deliveryOptions(@javax.annotation.Nullable List<GetProductResponseDataDeliveryOptions> deliveryOptions) {
     this.deliveryOptions = deliveryOptions;
     return this;
   }
@@ -361,97 +420,116 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
-   * The custom delivery options applied to this product, overriding the default warehouse delivery options.  **Note**: Blank indicates that the default delivery options configured for the warehouse are inherited.
+  /**
+   * The custom delivery options applied to this product, overriding the default warehouse delivery option.   **Note**: This field is not supported in post-live drafts, therefore the values here will always reflect those in the base version, even if you set &#x60;return_draft_version&#x3D;true&#x60;.
    * @return deliveryOptions
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataDeliveryOptions> getDeliveryOptions() {
     return deliveryOptions;
   }
 
-  public void setDeliveryOptions(List<GetProductResponseDataDeliveryOptions> deliveryOptions) {
+  public void setDeliveryOptions(@javax.annotation.Nullable List<GetProductResponseDataDeliveryOptions> deliveryOptions) {
     this.deliveryOptions = deliveryOptions;
   }
 
 
-  public GetProductResponseData description(String description) {
+  public GetProductResponseData description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * The product description in HTML format.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public GetProductResponseData externalProductId(String externalProductId) {
+  public GetProductResponseData externalProductId(@javax.annotation.Nullable String externalProductId) {
     this.externalProductId = externalProductId;
     return this;
   }
 
-   /**
+  /**
    * An external identifier used in an external ecommerce platform. This is used to associate the product between TikTok Shop and the external ecommerce platform. 
    * @return externalProductId
-  **/
+   */
   @javax.annotation.Nullable
   public String getExternalProductId() {
     return externalProductId;
   }
 
-  public void setExternalProductId(String externalProductId) {
+  public void setExternalProductId(@javax.annotation.Nullable String externalProductId) {
     this.externalProductId = externalProductId;
   }
 
 
-  public GetProductResponseData globalProductAssociation(GetProductResponseDataGlobalProductAssociation globalProductAssociation) {
+  public GetProductResponseData globalProductAssociation(@javax.annotation.Nullable GetProductResponseDataGlobalProductAssociation globalProductAssociation) {
     this.globalProductAssociation = globalProductAssociation;
     return this;
   }
 
-   /**
+  /**
    * Get globalProductAssociation
    * @return globalProductAssociation
-  **/
+   */
   @javax.annotation.Nullable
   public GetProductResponseDataGlobalProductAssociation getGlobalProductAssociation() {
     return globalProductAssociation;
   }
 
-  public void setGlobalProductAssociation(GetProductResponseDataGlobalProductAssociation globalProductAssociation) {
+  public void setGlobalProductAssociation(@javax.annotation.Nullable GetProductResponseDataGlobalProductAssociation globalProductAssociation) {
     this.globalProductAssociation = globalProductAssociation;
   }
 
 
-  public GetProductResponseData id(String id) {
+  public GetProductResponseData hasDraft(@javax.annotation.Nullable Boolean hasDraft) {
+    this.hasDraft = hasDraft;
+    return this;
+  }
+
+  /**
+   * A flag to indicate if the product has a draft. - true: It has a draft. - false: It does not have a draft.
+   * @return hasDraft
+   */
+  @javax.annotation.Nullable
+  public Boolean getHasDraft() {
+    return hasDraft;
+  }
+
+  public void setHasDraft(@javax.annotation.Nullable Boolean hasDraft) {
+    this.hasDraft = hasDraft;
+  }
+
+
+  public GetProductResponseData id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The product ID generated by TikTok Shop.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetProductResponseData integratedPlatformStatuses(List<GetProductResponseDataIntegratedPlatformStatuses> integratedPlatformStatuses) {
+  public GetProductResponseData integratedPlatformStatuses(@javax.annotation.Nullable List<GetProductResponseDataIntegratedPlatformStatuses> integratedPlatformStatuses) {
     this.integratedPlatformStatuses = integratedPlatformStatuses;
     return this;
   }
@@ -464,97 +542,116 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * The current status of the product on platforms that are natively integrated with TikTok Shop (e.g. TOKOPEDIA).  **Note**: For Indonesia sellers, if you did not set the listing platform as &#x60;TOKOPEDIA&#x60; when creating or editing a product, this will be omitted.
    * @return integratedPlatformStatuses
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataIntegratedPlatformStatuses> getIntegratedPlatformStatuses() {
     return integratedPlatformStatuses;
   }
 
-  public void setIntegratedPlatformStatuses(List<GetProductResponseDataIntegratedPlatformStatuses> integratedPlatformStatuses) {
+  public void setIntegratedPlatformStatuses(@javax.annotation.Nullable List<GetProductResponseDataIntegratedPlatformStatuses> integratedPlatformStatuses) {
     this.integratedPlatformStatuses = integratedPlatformStatuses;
   }
 
 
-  public GetProductResponseData isCodAllowed(Boolean isCodAllowed) {
+  public GetProductResponseData isCodAllowed(@javax.annotation.Nullable Boolean isCodAllowed) {
     this.isCodAllowed = isCodAllowed;
     return this;
   }
 
-   /**
+  /**
    * A flag indicating whether to show the Cash On Delivery (COD) payment option during checkout. Applicable only for the following markets: - Global sellers: MY, PH, SA, TH, VN - Local sellers: ID, MY, PH, SA, TH, VN
    * @return isCodAllowed
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsCodAllowed() {
     return isCodAllowed;
   }
 
-  public void setIsCodAllowed(Boolean isCodAllowed) {
+  public void setIsCodAllowed(@javax.annotation.Nullable Boolean isCodAllowed) {
     this.isCodAllowed = isCodAllowed;
   }
 
 
-  public GetProductResponseData isNotForSale(Boolean isNotForSale) {
+  public GetProductResponseData isNotForSale(@javax.annotation.Nullable Boolean isNotForSale) {
     this.isNotForSale = isNotForSale;
     return this;
   }
 
-   /**
+  /**
    * A flag indicating whether the product is not for sale and only available through Gift with Purchase (GWP) promotions. Such products won&#39;t appear in searches or recommendations True: Not for sale False: For sale
    * @return isNotForSale
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsNotForSale() {
     return isNotForSale;
   }
 
-  public void setIsNotForSale(Boolean isNotForSale) {
+  public void setIsNotForSale(@javax.annotation.Nullable Boolean isNotForSale) {
     this.isNotForSale = isNotForSale;
   }
 
 
-  public GetProductResponseData isPreOwned(Boolean isPreOwned) {
+  public GetProductResponseData isPreOwned(@javax.annotation.Nullable Boolean isPreOwned) {
     this.isPreOwned = isPreOwned;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if the product is pre-owned. Applicable only if TOKOPEDIA is the sole listing platform.  **Note**: Pre-owned products on the TikTok Shop platform are identified by the &#x60;category_id&#x60;, which must belong to one of the designated pre-owned product categories (e.g. pre-owned luxury bags, luggage, and accessories).
    * @return isPreOwned
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsPreOwned() {
     return isPreOwned;
   }
 
-  public void setIsPreOwned(Boolean isPreOwned) {
+  public void setIsPreOwned(@javax.annotation.Nullable Boolean isPreOwned) {
     this.isPreOwned = isPreOwned;
   }
 
 
-  public GetProductResponseData listingQualityTier(String listingQualityTier) {
+  public GetProductResponseData isReplicated(@javax.annotation.Nullable Boolean isReplicated) {
+    this.isReplicated = isReplicated;
+    return this;
+  }
+
+  /**
+   * A flag to indicate if the product contains a replica (created through local replication) in other local markets.
+   * @return isReplicated
+   */
+  @javax.annotation.Nullable
+  public Boolean getIsReplicated() {
+    return isReplicated;
+  }
+
+  public void setIsReplicated(@javax.annotation.Nullable Boolean isReplicated) {
+    this.isReplicated = isReplicated;
+  }
+
+
+  public GetProductResponseData listingQualityTier(@javax.annotation.Nullable String listingQualityTier) {
     this.listingQualityTier = listingQualityTier;
     return this;
   }
 
-   /**
+  /**
    * The current quality tier of this product listing. The quality tier of a product listing depends on the quality of the content in its product fields such as the title, image, attributes etc.  Possible values: - POOR - FAIR - GOOD  **Note**: Available only for the US market.
    * @return listingQualityTier
-  **/
+   */
   @javax.annotation.Nullable
   public String getListingQualityTier() {
     return listingQualityTier;
   }
 
-  public void setListingQualityTier(String listingQualityTier) {
+  public void setListingQualityTier(@javax.annotation.Nullable String listingQualityTier) {
     this.listingQualityTier = listingQualityTier;
   }
 
 
-  public GetProductResponseData mainImages(List<GetProductResponseDataMainImages> mainImages) {
+  public GetProductResponseData mainImages(@javax.annotation.Nullable List<GetProductResponseDataMainImages> mainImages) {
     this.mainImages = mainImages;
     return this;
   }
@@ -567,21 +664,21 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * A list of images to display in the product image gallery.
    * @return mainImages
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataMainImages> getMainImages() {
     return mainImages;
   }
 
-  public void setMainImages(List<GetProductResponseDataMainImages> mainImages) {
+  public void setMainImages(@javax.annotation.Nullable List<GetProductResponseDataMainImages> mainImages) {
     this.mainImages = mainImages;
   }
 
 
-  public GetProductResponseData manufacturerIds(List<String> manufacturerIds) {
+  public GetProductResponseData manufacturerIds(@javax.annotation.Nullable List<String> manufacturerIds) {
     this.manufacturerIds = manufacturerIds;
     return this;
   }
@@ -594,97 +691,116 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * The list of manufacturer IDs.  Pass this value to the &#x60;manufacturer_id&#x60; field in the [Search Manufacturers API](67066a580dcee902fa03ccf9) to obtain more information about a manufacturer.  **Note**: Applicable only for the EU market in certain categories
    * @return manufacturerIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getManufacturerIds() {
     return manufacturerIds;
   }
 
-  public void setManufacturerIds(List<String> manufacturerIds) {
+  public void setManufacturerIds(@javax.annotation.Nullable List<String> manufacturerIds) {
     this.manufacturerIds = manufacturerIds;
   }
 
 
-  public GetProductResponseData minimumOrderQuantity(Integer minimumOrderQuantity) {
+  public GetProductResponseData minimumOrderQuantity(@javax.annotation.Nullable Integer minimumOrderQuantity) {
     this.minimumOrderQuantity = minimumOrderQuantity;
     return this;
   }
 
-   /**
+  /**
    * The minimum order quantity for the product. Valid range: [1, 20]  Applicable only for the Indonesia market and selected sellers in other SEA markets. Contact your account manager for more information about gaining access to this field.
    * @return minimumOrderQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMinimumOrderQuantity() {
     return minimumOrderQuantity;
   }
 
-  public void setMinimumOrderQuantity(Integer minimumOrderQuantity) {
+  public void setMinimumOrderQuantity(@javax.annotation.Nullable Integer minimumOrderQuantity) {
     this.minimumOrderQuantity = minimumOrderQuantity;
   }
 
 
-  public GetProductResponseData packageDimensions(GetProductResponseDataPackageDimensions packageDimensions) {
+  public GetProductResponseData packageDimensions(@javax.annotation.Nullable GetProductResponseDataPackageDimensions packageDimensions) {
     this.packageDimensions = packageDimensions;
     return this;
   }
 
-   /**
+  /**
    * Get packageDimensions
    * @return packageDimensions
-  **/
+   */
   @javax.annotation.Nullable
   public GetProductResponseDataPackageDimensions getPackageDimensions() {
     return packageDimensions;
   }
 
-  public void setPackageDimensions(GetProductResponseDataPackageDimensions packageDimensions) {
+  public void setPackageDimensions(@javax.annotation.Nullable GetProductResponseDataPackageDimensions packageDimensions) {
     this.packageDimensions = packageDimensions;
   }
 
 
-  public GetProductResponseData packageWeight(GetProductResponseDataPackageWeight packageWeight) {
+  public GetProductResponseData packageWeight(@javax.annotation.Nullable GetProductResponseDataPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
     return this;
   }
 
-   /**
+  /**
    * Get packageWeight
    * @return packageWeight
-  **/
+   */
   @javax.annotation.Nullable
   public GetProductResponseDataPackageWeight getPackageWeight() {
     return packageWeight;
   }
 
-  public void setPackageWeight(GetProductResponseDataPackageWeight packageWeight) {
+  public void setPackageWeight(@javax.annotation.Nullable GetProductResponseDataPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
   }
 
 
-  public GetProductResponseData prescriptionRequirement(GetProductResponseDataPrescriptionRequirement prescriptionRequirement) {
+  public GetProductResponseData prescriptionRequirement(@javax.annotation.Nullable GetProductResponseDataPrescriptionRequirement prescriptionRequirement) {
     this.prescriptionRequirement = prescriptionRequirement;
     return this;
   }
 
-   /**
+  /**
    * Get prescriptionRequirement
    * @return prescriptionRequirement
-  **/
+   */
   @javax.annotation.Nullable
   public GetProductResponseDataPrescriptionRequirement getPrescriptionRequirement() {
     return prescriptionRequirement;
   }
 
-  public void setPrescriptionRequirement(GetProductResponseDataPrescriptionRequirement prescriptionRequirement) {
+  public void setPrescriptionRequirement(@javax.annotation.Nullable GetProductResponseDataPrescriptionRequirement prescriptionRequirement) {
     this.prescriptionRequirement = prescriptionRequirement;
   }
 
 
-  public GetProductResponseData productAttributes(List<GetProductResponseDataProductAttributes> productAttributes) {
+  public GetProductResponseData primaryCombinedProductId(@javax.annotation.Nullable String primaryCombinedProductId) {
+    this.primaryCombinedProductId = primaryCombinedProductId;
+    return this;
+  }
+
+  /**
+   * If the product is a virtual bundle, this value is the ID of the primary product in the bundle. The value is omitted if the product is not a virtual bundle.
+   * @return primaryCombinedProductId
+   */
+  @javax.annotation.Nullable
+  public String getPrimaryCombinedProductId() {
+    return primaryCombinedProductId;
+  }
+
+  public void setPrimaryCombinedProductId(@javax.annotation.Nullable String primaryCombinedProductId) {
+    this.primaryCombinedProductId = primaryCombinedProductId;
+  }
+
+
+  public GetProductResponseData productAttributes(@javax.annotation.Nullable List<GetProductResponseDataProductAttributes> productAttributes) {
     this.productAttributes = productAttributes;
     return this;
   }
@@ -697,21 +813,21 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * A list of general attributes (e.g. manufacturer, country of origin, materials used) that describe the product as a whole, regardless of variant.
    * @return productAttributes
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataProductAttributes> getProductAttributes() {
     return productAttributes;
   }
 
-  public void setProductAttributes(List<GetProductResponseDataProductAttributes> productAttributes) {
+  public void setProductAttributes(@javax.annotation.Nullable List<GetProductResponseDataProductAttributes> productAttributes) {
     this.productAttributes = productAttributes;
   }
 
 
-  public GetProductResponseData productFamilies(List<GetProductResponseDataProductFamilies> productFamilies) {
+  public GetProductResponseData productFamilies(@javax.annotation.Nullable List<GetProductResponseDataProductFamilies> productFamilies) {
     this.productFamilies = productFamilies;
     return this;
   }
@@ -724,21 +840,40 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * The **live** product family that this product belongs to. A product family is a virtual group of products that share common characteristics (such as flavor, version, or size), allowing them to appear as selectable variations on the product page. **Note**:  - Applicable only for US local sellers. - Omitted if this product does not belong to any product family.
    * @return productFamilies
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataProductFamilies> getProductFamilies() {
     return productFamilies;
   }
 
-  public void setProductFamilies(List<GetProductResponseDataProductFamilies> productFamilies) {
+  public void setProductFamilies(@javax.annotation.Nullable List<GetProductResponseDataProductFamilies> productFamilies) {
     this.productFamilies = productFamilies;
   }
 
 
-  public GetProductResponseData productTypes(List<String> productTypes) {
+  public GetProductResponseData productStatus(@javax.annotation.Nullable String productStatus) {
+    this.productStatus = productStatus;
+    return this;
+  }
+
+  /**
+   * The product status in TikTok Shop unrelated to its audit status. Possible values:  - INITIAL - DRAFT - ACTIVATE - SELLER_DEACTIVATED - PLATFORM_DEACTIVATED - FREEZE - DELETED  **Note**: For Indonesia sellers, if you did not set the listing platform as &#x60;TIKTOK_SHOP&#x60; when creating or editing a product, this will be omitted. 
+   * @return productStatus
+   */
+  @javax.annotation.Nullable
+  public String getProductStatus() {
+    return productStatus;
+  }
+
+  public void setProductStatus(@javax.annotation.Nullable String productStatus) {
+    this.productStatus = productStatus;
+  }
+
+
+  public GetProductResponseData productTypes(@javax.annotation.Nullable List<String> productTypes) {
     this.productTypes = productTypes;
     return this;
   }
@@ -751,21 +886,21 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * The product type. Possible values: - COMBINED_PRODUCT: Indicates this is a virtual bundle product. - IN_COMBINED_PRODUCT: Indicates this product is part of a virtual bundle. - GPR_TARGET_PRODUCT: Indicates this product is synchronized to global listings. Applicable only for the EU market.
    * @return productTypes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getProductTypes() {
     return productTypes;
   }
 
-  public void setProductTypes(List<String> productTypes) {
+  public void setProductTypes(@javax.annotation.Nullable List<String> productTypes) {
     this.productTypes = productTypes;
   }
 
 
-  public GetProductResponseData recommendedCategories(List<GetProductResponseDataRecommendedCategories> recommendedCategories) {
+  public GetProductResponseData recommendedCategories(@javax.annotation.Nullable List<GetProductResponseDataRecommendedCategories> recommendedCategories) {
     this.recommendedCategories = recommendedCategories;
     return this;
   }
@@ -778,21 +913,21 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * Recommended categories for the product based on the product title, description, and images.
    * @return recommendedCategories
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataRecommendedCategories> getRecommendedCategories() {
     return recommendedCategories;
   }
 
-  public void setRecommendedCategories(List<GetProductResponseDataRecommendedCategories> recommendedCategories) {
+  public void setRecommendedCategories(@javax.annotation.Nullable List<GetProductResponseDataRecommendedCategories> recommendedCategories) {
     this.recommendedCategories = recommendedCategories;
   }
 
 
-  public GetProductResponseData responsiblePersonIds(List<String> responsiblePersonIds) {
+  public GetProductResponseData responsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
     return this;
   }
@@ -805,59 +940,59 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * The list of responsible person IDs.  Pass this value to the &#x60;responsible_person_id&#x60; field in the [Search Responsible Persons API](67066a55f17b7d02f95d2fb1) to obtain more information about a responsible person.  **Note**: Applicable only for the EU market in certain categories
    * @return responsiblePersonIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getResponsiblePersonIds() {
     return responsiblePersonIds;
   }
 
-  public void setResponsiblePersonIds(List<String> responsiblePersonIds) {
+  public void setResponsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
   }
 
 
-  public GetProductResponseData shippingInsuranceRequirement(String shippingInsuranceRequirement) {
+  public GetProductResponseData shippingInsuranceRequirement(@javax.annotation.Nullable String shippingInsuranceRequirement) {
     this.shippingInsuranceRequirement = shippingInsuranceRequirement;
     return this;
   }
 
-   /**
+  /**
    * The shipping insurance purchase requirement imposed on buyers for the product.  Possible values: - REQUIRED: Shipping insurance is mandatory and buyers can&#39;t opt out. - OPTIONAL: Buyers can choose to purchase shipping insurance through the platform. - NOT_SUPPORTED: Shipping insurance is not supported for the product. Default: OPTIONAL  Applicable only if the listing platforms include TOKOPEDIA.
    * @return shippingInsuranceRequirement
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingInsuranceRequirement() {
     return shippingInsuranceRequirement;
   }
 
-  public void setShippingInsuranceRequirement(String shippingInsuranceRequirement) {
+  public void setShippingInsuranceRequirement(@javax.annotation.Nullable String shippingInsuranceRequirement) {
     this.shippingInsuranceRequirement = shippingInsuranceRequirement;
   }
 
 
-  public GetProductResponseData sizeChart(GetProductResponseDataSizeChart sizeChart) {
+  public GetProductResponseData sizeChart(@javax.annotation.Nullable GetProductResponseDataSizeChart sizeChart) {
     this.sizeChart = sizeChart;
     return this;
   }
 
-   /**
+  /**
    * Get sizeChart
    * @return sizeChart
-  **/
+   */
   @javax.annotation.Nullable
   public GetProductResponseDataSizeChart getSizeChart() {
     return sizeChart;
   }
 
-  public void setSizeChart(GetProductResponseDataSizeChart sizeChart) {
+  public void setSizeChart(@javax.annotation.Nullable GetProductResponseDataSizeChart sizeChart) {
     this.sizeChart = sizeChart;
   }
 
 
-  public GetProductResponseData skus(List<GetProductResponseDataSkus> skus) {
+  public GetProductResponseData skus(@javax.annotation.Nullable List<GetProductResponseDataSkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -870,93 +1005,157 @@ public class GetProductResponseData {
     return this;
   }
 
-   /**
+  /**
    * A list of Stock Keeping Units (SKUs) used to identify distinct variants of the product.
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetProductResponseDataSkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<GetProductResponseDataSkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<GetProductResponseDataSkus> skus) {
     this.skus = skus;
   }
 
 
-  public GetProductResponseData status(String status) {
+  public GetProductResponseData status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
-   * The product status in TikTok Shop. Possible values:  - DRAFT - PENDING - FAILED - ACTIVATE - SELLER_DEACTIVATED - PLATFORM_DEACTIVATED - FREEZE - DELETED  **Note**: For Indonesia sellers, if you did not set the listing platform as &#x60;TIKTOK_SHOP&#x60; when creating or editing a product, this will be omitted.
+  /**
+   * The product status in TikTok Shop. This status incorporates both the product status and the audit status. Possible values:  - DRAFT - PENDING - FAILED - ACTIVATE - SELLER_DEACTIVATED - PLATFORM_DEACTIVATED - FREEZE - DELETED  **Note**: For Indonesia sellers, if you did not set the listing platform as &#x60;TIKTOK_SHOP&#x60; when creating or editing a product, this will be omitted.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GetProductResponseData title(String title) {
+  public GetProductResponseData subscribeInfo(@javax.annotation.Nullable GetProductResponseDataSubscribeInfo subscribeInfo) {
+    this.subscribeInfo = subscribeInfo;
+    return this;
+  }
+
+  /**
+   * Get subscribeInfo
+   * @return subscribeInfo
+   */
+  @javax.annotation.Nullable
+  public GetProductResponseDataSubscribeInfo getSubscribeInfo() {
+    return subscribeInfo;
+  }
+
+  public void setSubscribeInfo(@javax.annotation.Nullable GetProductResponseDataSubscribeInfo subscribeInfo) {
+    this.subscribeInfo = subscribeInfo;
+  }
+
+
+  public GetProductResponseData title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * The product title.
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
 
-  public GetProductResponseData updateTime(Long updateTime) {
+  public GetProductResponseData updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the product is last updated. Unix timestamp.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
   }
 
 
-  public GetProductResponseData video(GetProductResponseDataVideo video) {
+  public GetProductResponseData video(@javax.annotation.Nullable GetProductResponseDataVideo video) {
     this.video = video;
     return this;
   }
 
-   /**
+  /**
    * Get video
    * @return video
-  **/
+   */
   @javax.annotation.Nullable
   public GetProductResponseDataVideo getVideo() {
     return video;
   }
 
-  public void setVideo(GetProductResponseDataVideo video) {
+  public void setVideo(@javax.annotation.Nullable GetProductResponseDataVideo video) {
     this.video = video;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetProductResponseData instance itself
+   */
+  public GetProductResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -980,11 +1179,13 @@ public class GetProductResponseData {
         Objects.equals(this.description, product202309GetProductResponseData.description) &&
         Objects.equals(this.externalProductId, product202309GetProductResponseData.externalProductId) &&
         Objects.equals(this.globalProductAssociation, product202309GetProductResponseData.globalProductAssociation) &&
+        Objects.equals(this.hasDraft, product202309GetProductResponseData.hasDraft) &&
         Objects.equals(this.id, product202309GetProductResponseData.id) &&
         Objects.equals(this.integratedPlatformStatuses, product202309GetProductResponseData.integratedPlatformStatuses) &&
         Objects.equals(this.isCodAllowed, product202309GetProductResponseData.isCodAllowed) &&
         Objects.equals(this.isNotForSale, product202309GetProductResponseData.isNotForSale) &&
         Objects.equals(this.isPreOwned, product202309GetProductResponseData.isPreOwned) &&
+        Objects.equals(this.isReplicated, product202309GetProductResponseData.isReplicated) &&
         Objects.equals(this.listingQualityTier, product202309GetProductResponseData.listingQualityTier) &&
         Objects.equals(this.mainImages, product202309GetProductResponseData.mainImages) &&
         Objects.equals(this.manufacturerIds, product202309GetProductResponseData.manufacturerIds) &&
@@ -992,8 +1193,10 @@ public class GetProductResponseData {
         Objects.equals(this.packageDimensions, product202309GetProductResponseData.packageDimensions) &&
         Objects.equals(this.packageWeight, product202309GetProductResponseData.packageWeight) &&
         Objects.equals(this.prescriptionRequirement, product202309GetProductResponseData.prescriptionRequirement) &&
+        Objects.equals(this.primaryCombinedProductId, product202309GetProductResponseData.primaryCombinedProductId) &&
         Objects.equals(this.productAttributes, product202309GetProductResponseData.productAttributes) &&
         Objects.equals(this.productFamilies, product202309GetProductResponseData.productFamilies) &&
+        Objects.equals(this.productStatus, product202309GetProductResponseData.productStatus) &&
         Objects.equals(this.productTypes, product202309GetProductResponseData.productTypes) &&
         Objects.equals(this.recommendedCategories, product202309GetProductResponseData.recommendedCategories) &&
         Objects.equals(this.responsiblePersonIds, product202309GetProductResponseData.responsiblePersonIds) &&
@@ -1001,14 +1204,16 @@ public class GetProductResponseData {
         Objects.equals(this.sizeChart, product202309GetProductResponseData.sizeChart) &&
         Objects.equals(this.skus, product202309GetProductResponseData.skus) &&
         Objects.equals(this.status, product202309GetProductResponseData.status) &&
+        Objects.equals(this.subscribeInfo, product202309GetProductResponseData.subscribeInfo) &&
         Objects.equals(this.title, product202309GetProductResponseData.title) &&
         Objects.equals(this.updateTime, product202309GetProductResponseData.updateTime) &&
-        Objects.equals(this.video, product202309GetProductResponseData.video);
+        Objects.equals(this.video, product202309GetProductResponseData.video)&&
+        Objects.equals(this.additionalProperties, product202309GetProductResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(audit, auditFailedReasons, brand, categoryChains, certifications, createTime, deliveryOptions, description, externalProductId, globalProductAssociation, id, integratedPlatformStatuses, isCodAllowed, isNotForSale, isPreOwned, listingQualityTier, mainImages, manufacturerIds, minimumOrderQuantity, packageDimensions, packageWeight, prescriptionRequirement, productAttributes, productFamilies, productTypes, recommendedCategories, responsiblePersonIds, shippingInsuranceRequirement, sizeChart, skus, status, title, updateTime, video);
+    return Objects.hash(audit, auditFailedReasons, brand, categoryChains, certifications, createTime, deliveryOptions, description, externalProductId, globalProductAssociation, hasDraft, id, integratedPlatformStatuses, isCodAllowed, isNotForSale, isPreOwned, isReplicated, listingQualityTier, mainImages, manufacturerIds, minimumOrderQuantity, packageDimensions, packageWeight, prescriptionRequirement, primaryCombinedProductId, productAttributes, productFamilies, productStatus, productTypes, recommendedCategories, responsiblePersonIds, shippingInsuranceRequirement, sizeChart, skus, status, subscribeInfo, title, updateTime, video, additionalProperties);
   }
 
   @Override
@@ -1025,11 +1230,13 @@ public class GetProductResponseData {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    externalProductId: ").append(toIndentedString(externalProductId)).append("\n");
     sb.append("    globalProductAssociation: ").append(toIndentedString(globalProductAssociation)).append("\n");
+    sb.append("    hasDraft: ").append(toIndentedString(hasDraft)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    integratedPlatformStatuses: ").append(toIndentedString(integratedPlatformStatuses)).append("\n");
     sb.append("    isCodAllowed: ").append(toIndentedString(isCodAllowed)).append("\n");
     sb.append("    isNotForSale: ").append(toIndentedString(isNotForSale)).append("\n");
     sb.append("    isPreOwned: ").append(toIndentedString(isPreOwned)).append("\n");
+    sb.append("    isReplicated: ").append(toIndentedString(isReplicated)).append("\n");
     sb.append("    listingQualityTier: ").append(toIndentedString(listingQualityTier)).append("\n");
     sb.append("    mainImages: ").append(toIndentedString(mainImages)).append("\n");
     sb.append("    manufacturerIds: ").append(toIndentedString(manufacturerIds)).append("\n");
@@ -1037,8 +1244,10 @@ public class GetProductResponseData {
     sb.append("    packageDimensions: ").append(toIndentedString(packageDimensions)).append("\n");
     sb.append("    packageWeight: ").append(toIndentedString(packageWeight)).append("\n");
     sb.append("    prescriptionRequirement: ").append(toIndentedString(prescriptionRequirement)).append("\n");
+    sb.append("    primaryCombinedProductId: ").append(toIndentedString(primaryCombinedProductId)).append("\n");
     sb.append("    productAttributes: ").append(toIndentedString(productAttributes)).append("\n");
     sb.append("    productFamilies: ").append(toIndentedString(productFamilies)).append("\n");
+    sb.append("    productStatus: ").append(toIndentedString(productStatus)).append("\n");
     sb.append("    productTypes: ").append(toIndentedString(productTypes)).append("\n");
     sb.append("    recommendedCategories: ").append(toIndentedString(recommendedCategories)).append("\n");
     sb.append("    responsiblePersonIds: ").append(toIndentedString(responsiblePersonIds)).append("\n");
@@ -1046,9 +1255,11 @@ public class GetProductResponseData {
     sb.append("    sizeChart: ").append(toIndentedString(sizeChart)).append("\n");
     sb.append("    skus: ").append(toIndentedString(skus)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    subscribeInfo: ").append(toIndentedString(subscribeInfo)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1070,64 +1281,22 @@ public class GetProductResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("audit");
-    openapiFields.add("audit_failed_reasons");
-    openapiFields.add("brand");
-    openapiFields.add("category_chains");
-    openapiFields.add("certifications");
-    openapiFields.add("create_time");
-    openapiFields.add("delivery_options");
-    openapiFields.add("description");
-    openapiFields.add("external_product_id");
-    openapiFields.add("global_product_association");
-    openapiFields.add("id");
-    openapiFields.add("integrated_platform_statuses");
-    openapiFields.add("is_cod_allowed");
-    openapiFields.add("is_not_for_sale");
-    openapiFields.add("is_pre_owned");
-    openapiFields.add("listing_quality_tier");
-    openapiFields.add("main_images");
-    openapiFields.add("manufacturer_ids");
-    openapiFields.add("minimum_order_quantity");
-    openapiFields.add("package_dimensions");
-    openapiFields.add("package_weight");
-    openapiFields.add("prescription_requirement");
-    openapiFields.add("product_attributes");
-    openapiFields.add("product_families");
-    openapiFields.add("product_types");
-    openapiFields.add("recommended_categories");
-    openapiFields.add("responsible_person_ids");
-    openapiFields.add("shipping_insurance_requirement");
-    openapiFields.add("size_chart");
-    openapiFields.add("skus");
-    openapiFields.add("status");
-    openapiFields.add("title");
-    openapiFields.add("update_time");
-    openapiFields.add("video");
+    openapiFields = new HashSet<String>(Arrays.asList("audit", "audit_failed_reasons", "brand", "category_chains", "certifications", "create_time", "delivery_options", "description", "external_product_id", "global_product_association", "has_draft", "id", "integrated_platform_statuses", "is_cod_allowed", "is_not_for_sale", "is_pre_owned", "is_replicated", "listing_quality_tier", "main_images", "manufacturer_ids", "minimum_order_quantity", "package_dimensions", "package_weight", "prescription_requirement", "primary_combined_product_id", "product_attributes", "product_families", "product_status", "product_types", "recommended_categories", "responsible_person_ids", "shipping_insurance_requirement", "size_chart", "skus", "status", "subscribe_info", "title", "update_time", "video"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetProductResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetProductResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetProductResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetProductResponseData is not found in the empty JSON string", GetProductResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetProductResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetProductResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1255,6 +1424,9 @@ public class GetProductResponseData {
       if (jsonObj.get("prescription_requirement") != null && !jsonObj.get("prescription_requirement").isJsonNull()) {
         GetProductResponseDataPrescriptionRequirement.validateJsonElement(jsonObj.get("prescription_requirement"));
       }
+      if ((jsonObj.get("primary_combined_product_id") != null && !jsonObj.get("primary_combined_product_id").isJsonNull()) && !jsonObj.get("primary_combined_product_id").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `primary_combined_product_id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("primary_combined_product_id").toString()));
+      }
       if (jsonObj.get("product_attributes") != null && !jsonObj.get("product_attributes").isJsonNull()) {
         JsonArray jsonArrayproductAttributes = jsonObj.getAsJsonArray("product_attributes");
         if (jsonArrayproductAttributes != null) {
@@ -1282,6 +1454,9 @@ public class GetProductResponseData {
             GetProductResponseDataProductFamilies.validateJsonElement(jsonArrayproductFamilies.get(i));
           };
         }
+      }
+      if ((jsonObj.get("product_status") != null && !jsonObj.get("product_status").isJsonNull()) && !jsonObj.get("product_status").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `product_status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("product_status").toString()));
       }
       // ensure the optional json data is an array if present
       if (jsonObj.get("product_types") != null && !jsonObj.get("product_types").isJsonNull() && !jsonObj.get("product_types").isJsonArray()) {
@@ -1329,6 +1504,10 @@ public class GetProductResponseData {
       if ((jsonObj.get("status") != null && !jsonObj.get("status").isJsonNull()) && !jsonObj.get("status").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `status` to be a primitive type in the JSON string but got `%s`", jsonObj.get("status").toString()));
       }
+      // validate the optional field `subscribe_info`
+      if (jsonObj.get("subscribe_info") != null && !jsonObj.get("subscribe_info").isJsonNull()) {
+        GetProductResponseDataSubscribeInfo.validateJsonElement(jsonObj.get("subscribe_info"));
+      }
       if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull()) && !jsonObj.get("title").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
       }
@@ -1353,6 +1532,28 @@ public class GetProductResponseData {
            @Override
            public void write(JsonWriter out, GetProductResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -1360,29 +1561,50 @@ public class GetProductResponseData {
            public GetProductResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetProductResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetProductResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetProductResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetProductResponseData
-  */
+  /**
+   * Create an instance of GetProductResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetProductResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetProductResponseData
+   */
   public static GetProductResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetProductResponseData.class);
   }
 
- /**
-  * Convert an instance of GetProductResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetProductResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

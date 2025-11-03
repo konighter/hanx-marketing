@@ -43,7 +43,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -55,121 +54,134 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchProductsResponseDataProducts
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchProductsResponseDataProducts {
   public static final String SERIALIZED_NAME_AUDIT = "audit";
   @SerializedName(SERIALIZED_NAME_AUDIT)
+  @javax.annotation.Nullable
   private SearchProductsResponseDataProductsAudit audit;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_INTEGRATED_PLATFORM_STATUSES = "integrated_platform_statuses";
   @SerializedName(SERIALIZED_NAME_INTEGRATED_PLATFORM_STATUSES)
+  @javax.annotation.Nullable
   private List<SearchProductsResponseDataProductsIntegratedPlatformStatuses> integratedPlatformStatuses = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_IS_NOT_FOR_SALE = "is_not_for_sale";
   @SerializedName(SERIALIZED_NAME_IS_NOT_FOR_SALE)
+  @javax.annotation.Nullable
   private Boolean isNotForSale;
 
   public static final String SERIALIZED_NAME_LISTING_QUALITY_TIER = "listing_quality_tier";
   @SerializedName(SERIALIZED_NAME_LISTING_QUALITY_TIER)
+  @javax.annotation.Nullable
   private String listingQualityTier;
 
   public static final String SERIALIZED_NAME_PRODUCT_SYNC_FAIL_REASONS = "product_sync_fail_reasons";
   @SerializedName(SERIALIZED_NAME_PRODUCT_SYNC_FAIL_REASONS)
+  @javax.annotation.Nullable
   private List<String> productSyncFailReasons = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RECOMMENDED_CATEGORIES = "recommended_categories";
   @SerializedName(SERIALIZED_NAME_RECOMMENDED_CATEGORIES)
+  @javax.annotation.Nullable
   private List<SearchProductsResponseDataProductsRecommendedCategories> recommendedCategories = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SALES_REGIONS = "sales_regions";
   @SerializedName(SERIALIZED_NAME_SALES_REGIONS)
+  @javax.annotation.Nullable
   private List<String> salesRegions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<SearchProductsResponseDataProductsSkus> skus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public SearchProductsResponseDataProducts() {
   }
 
-  public SearchProductsResponseDataProducts audit(SearchProductsResponseDataProductsAudit audit) {
+  public SearchProductsResponseDataProducts audit(@javax.annotation.Nullable SearchProductsResponseDataProductsAudit audit) {
     this.audit = audit;
     return this;
   }
 
-   /**
+  /**
    * Get audit
    * @return audit
-  **/
+   */
   @javax.annotation.Nullable
   public SearchProductsResponseDataProductsAudit getAudit() {
     return audit;
   }
 
-  public void setAudit(SearchProductsResponseDataProductsAudit audit) {
+  public void setAudit(@javax.annotation.Nullable SearchProductsResponseDataProductsAudit audit) {
     this.audit = audit;
   }
 
 
-  public SearchProductsResponseDataProducts createTime(Long createTime) {
+  public SearchProductsResponseDataProducts createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the product is created. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public SearchProductsResponseDataProducts id(String id) {
+  public SearchProductsResponseDataProducts id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The product ID generated by TikTok Shop.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public SearchProductsResponseDataProducts integratedPlatformStatuses(List<SearchProductsResponseDataProductsIntegratedPlatformStatuses> integratedPlatformStatuses) {
+  public SearchProductsResponseDataProducts integratedPlatformStatuses(@javax.annotation.Nullable List<SearchProductsResponseDataProductsIntegratedPlatformStatuses> integratedPlatformStatuses) {
     this.integratedPlatformStatuses = integratedPlatformStatuses;
     return this;
   }
@@ -182,59 +194,59 @@ public class SearchProductsResponseDataProducts {
     return this;
   }
 
-   /**
+  /**
    * The current status of the product on platforms that are natively integrated with TikTok Shop (e.g. TOKOPEDIA).  **Note**: For Indonesia sellers, if you did not set the listing platform as &#x60;TOKOPEDIA&#x60; when creating or editing a product, this will be omitted.
    * @return integratedPlatformStatuses
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchProductsResponseDataProductsIntegratedPlatformStatuses> getIntegratedPlatformStatuses() {
     return integratedPlatformStatuses;
   }
 
-  public void setIntegratedPlatformStatuses(List<SearchProductsResponseDataProductsIntegratedPlatformStatuses> integratedPlatformStatuses) {
+  public void setIntegratedPlatformStatuses(@javax.annotation.Nullable List<SearchProductsResponseDataProductsIntegratedPlatformStatuses> integratedPlatformStatuses) {
     this.integratedPlatformStatuses = integratedPlatformStatuses;
   }
 
 
-  public SearchProductsResponseDataProducts isNotForSale(Boolean isNotForSale) {
+  public SearchProductsResponseDataProducts isNotForSale(@javax.annotation.Nullable Boolean isNotForSale) {
     this.isNotForSale = isNotForSale;
     return this;
   }
 
-   /**
+  /**
    * A flag indicating whether the product is not for sale. True: Not for sale. False: For sale.
    * @return isNotForSale
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsNotForSale() {
     return isNotForSale;
   }
 
-  public void setIsNotForSale(Boolean isNotForSale) {
+  public void setIsNotForSale(@javax.annotation.Nullable Boolean isNotForSale) {
     this.isNotForSale = isNotForSale;
   }
 
 
-  public SearchProductsResponseDataProducts listingQualityTier(String listingQualityTier) {
+  public SearchProductsResponseDataProducts listingQualityTier(@javax.annotation.Nullable String listingQualityTier) {
     this.listingQualityTier = listingQualityTier;
     return this;
   }
 
-   /**
+  /**
    * The current quality tier of this product listing. The quality tier of a product listing depends on the quality of the content in its product fields such as the title, image, attributes etc.  Possible values: - POOR - FAIR - GOOD  **Note**: Available only for the US market.
    * @return listingQualityTier
-  **/
+   */
   @javax.annotation.Nullable
   public String getListingQualityTier() {
     return listingQualityTier;
   }
 
-  public void setListingQualityTier(String listingQualityTier) {
+  public void setListingQualityTier(@javax.annotation.Nullable String listingQualityTier) {
     this.listingQualityTier = listingQualityTier;
   }
 
 
-  public SearchProductsResponseDataProducts productSyncFailReasons(List<String> productSyncFailReasons) {
+  public SearchProductsResponseDataProducts productSyncFailReasons(@javax.annotation.Nullable List<String> productSyncFailReasons) {
     this.productSyncFailReasons = productSyncFailReasons;
     return this;
   }
@@ -247,21 +259,21 @@ public class SearchProductsResponseDataProducts {
     return this;
   }
 
-   /**
+  /**
    * The reasons why synchronizing of global product information to local products failed.  Only applicable for cross-border sellers.
    * @return productSyncFailReasons
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getProductSyncFailReasons() {
     return productSyncFailReasons;
   }
 
-  public void setProductSyncFailReasons(List<String> productSyncFailReasons) {
+  public void setProductSyncFailReasons(@javax.annotation.Nullable List<String> productSyncFailReasons) {
     this.productSyncFailReasons = productSyncFailReasons;
   }
 
 
-  public SearchProductsResponseDataProducts recommendedCategories(List<SearchProductsResponseDataProductsRecommendedCategories> recommendedCategories) {
+  public SearchProductsResponseDataProducts recommendedCategories(@javax.annotation.Nullable List<SearchProductsResponseDataProductsRecommendedCategories> recommendedCategories) {
     this.recommendedCategories = recommendedCategories;
     return this;
   }
@@ -274,21 +286,21 @@ public class SearchProductsResponseDataProducts {
     return this;
   }
 
-   /**
+  /**
    * Recommended categories for the product based on the product title, description, and images.
    * @return recommendedCategories
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchProductsResponseDataProductsRecommendedCategories> getRecommendedCategories() {
     return recommendedCategories;
   }
 
-  public void setRecommendedCategories(List<SearchProductsResponseDataProductsRecommendedCategories> recommendedCategories) {
+  public void setRecommendedCategories(@javax.annotation.Nullable List<SearchProductsResponseDataProductsRecommendedCategories> recommendedCategories) {
     this.recommendedCategories = recommendedCategories;
   }
 
 
-  public SearchProductsResponseDataProducts salesRegions(List<String> salesRegions) {
+  public SearchProductsResponseDataProducts salesRegions(@javax.annotation.Nullable List<String> salesRegions) {
     this.salesRegions = salesRegions;
     return this;
   }
@@ -301,21 +313,21 @@ public class SearchProductsResponseDataProducts {
     return this;
   }
 
-   /**
+  /**
    * The regions where the product is sold. Possible values: - BR: Brazil - DE: Germany - ES: Spain - FR: France - GB: United Kingdom - ID: Indonesia - IE: Ireland - IT: Italy - JP: Japan - MX: Mexico - MY: Malaysia - PH: Philippines - SG: Singapore - TH: Thailand - US: United States - VN: Vietnam
    * @return salesRegions
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getSalesRegions() {
     return salesRegions;
   }
 
-  public void setSalesRegions(List<String> salesRegions) {
+  public void setSalesRegions(@javax.annotation.Nullable List<String> salesRegions) {
     this.salesRegions = salesRegions;
   }
 
 
-  public SearchProductsResponseDataProducts skus(List<SearchProductsResponseDataProductsSkus> skus) {
+  public SearchProductsResponseDataProducts skus(@javax.annotation.Nullable List<SearchProductsResponseDataProductsSkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -328,74 +340,119 @@ public class SearchProductsResponseDataProducts {
     return this;
   }
 
-   /**
+  /**
    * A list of Stock Keeping Units (SKUs) used to identify distinct variants of the product.
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchProductsResponseDataProductsSkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<SearchProductsResponseDataProductsSkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<SearchProductsResponseDataProductsSkus> skus) {
     this.skus = skus;
   }
 
 
-  public SearchProductsResponseDataProducts status(String status) {
+  public SearchProductsResponseDataProducts status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The product status in TikTok Shop. Possible values:  - DRAFT - PENDING - FAILED - ACTIVATE - SELLER_DEACTIVATED - PLATFORM_DEACTIVATED - FREEZE - DELETED  **Note**: For Indonesia sellers, if you did not set the listing platform as &#x60;TIKTOK_SHOP&#x60; when creating or editing a product, this will be omitted.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public SearchProductsResponseDataProducts title(String title) {
+  public SearchProductsResponseDataProducts title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * The product title.
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
 
-  public SearchProductsResponseDataProducts updateTime(Long updateTime) {
+  public SearchProductsResponseDataProducts updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the product is last updated. Unix timestamp.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchProductsResponseDataProducts instance itself
+   */
+  public SearchProductsResponseDataProducts putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -421,12 +478,13 @@ public class SearchProductsResponseDataProducts {
         Objects.equals(this.skus, product202312SearchProductsResponseDataProducts.skus) &&
         Objects.equals(this.status, product202312SearchProductsResponseDataProducts.status) &&
         Objects.equals(this.title, product202312SearchProductsResponseDataProducts.title) &&
-        Objects.equals(this.updateTime, product202312SearchProductsResponseDataProducts.updateTime);
+        Objects.equals(this.updateTime, product202312SearchProductsResponseDataProducts.updateTime)&&
+        Objects.equals(this.additionalProperties, product202312SearchProductsResponseDataProducts.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(audit, createTime, id, integratedPlatformStatuses, isNotForSale, listingQualityTier, productSyncFailReasons, recommendedCategories, salesRegions, skus, status, title, updateTime);
+    return Objects.hash(audit, createTime, id, integratedPlatformStatuses, isNotForSale, listingQualityTier, productSyncFailReasons, recommendedCategories, salesRegions, skus, status, title, updateTime, additionalProperties);
   }
 
   @Override
@@ -446,6 +504,7 @@ public class SearchProductsResponseDataProducts {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -467,43 +526,22 @@ public class SearchProductsResponseDataProducts {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("audit");
-    openapiFields.add("create_time");
-    openapiFields.add("id");
-    openapiFields.add("integrated_platform_statuses");
-    openapiFields.add("is_not_for_sale");
-    openapiFields.add("listing_quality_tier");
-    openapiFields.add("product_sync_fail_reasons");
-    openapiFields.add("recommended_categories");
-    openapiFields.add("sales_regions");
-    openapiFields.add("skus");
-    openapiFields.add("status");
-    openapiFields.add("title");
-    openapiFields.add("update_time");
+    openapiFields = new HashSet<String>(Arrays.asList("audit", "create_time", "id", "integrated_platform_statuses", "is_not_for_sale", "listing_quality_tier", "product_sync_fail_reasons", "recommended_categories", "sales_regions", "skus", "status", "title", "update_time"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchProductsResponseDataProducts
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchProductsResponseDataProducts
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchProductsResponseDataProducts.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchProductsResponseDataProducts is not found in the empty JSON string", SearchProductsResponseDataProducts.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchProductsResponseDataProducts.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchProductsResponseDataProducts` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -590,6 +628,28 @@ public class SearchProductsResponseDataProducts {
            @Override
            public void write(JsonWriter out, SearchProductsResponseDataProducts value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -597,29 +657,50 @@ public class SearchProductsResponseDataProducts {
            public SearchProductsResponseDataProducts read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchProductsResponseDataProducts instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchProductsResponseDataProducts given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchProductsResponseDataProducts
-  * @throws IOException if the JSON string is invalid with respect to SearchProductsResponseDataProducts
-  */
+  /**
+   * Create an instance of SearchProductsResponseDataProducts given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchProductsResponseDataProducts
+   * @throws IOException if the JSON string is invalid with respect to SearchProductsResponseDataProducts
+   */
   public static SearchProductsResponseDataProducts fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchProductsResponseDataProducts.class);
   }
 
- /**
-  * Convert an instance of SearchProductsResponseDataProducts to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchProductsResponseDataProducts to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

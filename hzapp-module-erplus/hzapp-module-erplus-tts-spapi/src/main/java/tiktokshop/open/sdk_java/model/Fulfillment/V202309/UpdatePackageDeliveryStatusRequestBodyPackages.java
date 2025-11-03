@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,123 +48,173 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * UpdatePackageDeliveryStatusRequestBodyPackages
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class UpdatePackageDeliveryStatusRequestBodyPackages {
   public static final String SERIALIZED_NAME_DELIVERY_TYPE = "delivery_type";
   @SerializedName(SERIALIZED_NAME_DELIVERY_TYPE)
+  @javax.annotation.Nullable
   private String deliveryType;
 
   public static final String SERIALIZED_NAME_FAIL_DELIVERY_REASON = "fail_delivery_reason";
   @SerializedName(SERIALIZED_NAME_FAIL_DELIVERY_REASON)
+  @javax.annotation.Nullable
   private String failDeliveryReason;
 
   public static final String SERIALIZED_NAME_FILE_TYPE = "file_type";
   @SerializedName(SERIALIZED_NAME_FILE_TYPE)
+  @javax.annotation.Nullable
   private String fileType;
 
   public static final String SERIALIZED_NAME_FILE_URL = "file_url";
   @SerializedName(SERIALIZED_NAME_FILE_URL)
+  @javax.annotation.Nullable
   private String fileUrl;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public UpdatePackageDeliveryStatusRequestBodyPackages() {
   }
 
-  public UpdatePackageDeliveryStatusRequestBodyPackages deliveryType(String deliveryType) {
+  public UpdatePackageDeliveryStatusRequestBodyPackages deliveryType(@javax.annotation.Nullable String deliveryType) {
     this.deliveryType = deliveryType;
     return this;
   }
 
-   /**
+  /**
    * Delivery status of the package. Possible values: - &#x60;DELIVERY_SUCCESS&#x60;: Package has been successfully delivered. - &#x60;DELIVERY_FAILED&#x60;: Package delivery has been unsuccessful. - &#x60;UPDATE_POD&#x60;: For packages that have been delivered, but you would like to update an attachment.
    * @return deliveryType
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryType() {
     return deliveryType;
   }
 
-  public void setDeliveryType(String deliveryType) {
+  public void setDeliveryType(@javax.annotation.Nullable String deliveryType) {
     this.deliveryType = deliveryType;
   }
 
 
-  public UpdatePackageDeliveryStatusRequestBodyPackages failDeliveryReason(String failDeliveryReason) {
+  public UpdatePackageDeliveryStatusRequestBodyPackages failDeliveryReason(@javax.annotation.Nullable String failDeliveryReason) {
     this.failDeliveryReason = failDeliveryReason;
     return this;
   }
 
-   /**
+  /**
    * Delivery failure reasons.  When &#x60;delivery_type &#x3D; DELIVERY_FAILED&#x60;, this field is required. For other delivery types, this field is not required.  Possible values: - &#x60;INVALID_ADDRESS&#x60;: The buyer shipping address is invalid. - &#x60;UNABLE_RECEIVE&#x60;: The buyer is currently unable to receive the delivery. - &#x60;UNABLE_CONTACT_BUYER&#x60;: Unable to contact the buyer. - &#x60;BUYER_REFUSED&#x60;: The buyer has refused to receive the product. - &#x60;DELAY_DELIVERY&#x60;: Delay in delivery. - &#x60;PACKAGE_LOST&#x60;: The package is lost. - &#x60;PACKAGE_DAMAGE&#x60;: The package is damaged. - &#x60;FORCE_MAJEURE&#x60;: An unforeseeable event of force majeure has occurred. - &#x60;OTHER&#x60;: Other reason. 
    * @return failDeliveryReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getFailDeliveryReason() {
     return failDeliveryReason;
   }
 
-  public void setFailDeliveryReason(String failDeliveryReason) {
+  public void setFailDeliveryReason(@javax.annotation.Nullable String failDeliveryReason) {
     this.failDeliveryReason = failDeliveryReason;
   }
 
 
-  public UpdatePackageDeliveryStatusRequestBodyPackages fileType(String fileType) {
+  public UpdatePackageDeliveryStatusRequestBodyPackages fileType(@javax.annotation.Nullable String fileType) {
     this.fileType = fileType;
     return this;
   }
 
-   /**
+  /**
    * Attachment type: - &#x60;IMG&#x60; - &#x60;PDF&#x60;
    * @return fileType
-  **/
+   */
   @javax.annotation.Nullable
   public String getFileType() {
     return fileType;
   }
 
-  public void setFileType(String fileType) {
+  public void setFileType(@javax.annotation.Nullable String fileType) {
     this.fileType = fileType;
   }
 
 
-  public UpdatePackageDeliveryStatusRequestBodyPackages fileUrl(String fileUrl) {
+  public UpdatePackageDeliveryStatusRequestBodyPackages fileUrl(@javax.annotation.Nullable String fileUrl) {
     this.fileUrl = fileUrl;
     return this;
   }
 
-   /**
+  /**
    * Attachment URL. The seller can use the [Upload Delivery File](https://partner.tiktokshop.com/docv2/page/650aa6e04a0bb702c06dcd34?external_id&#x3D;650aa6e04a0bb702c06dcd34#Back%20To%20Top) and [Upload Delivery Image](https://partner.tiktokshop.com/docv2/page/650aa70d0fcef602bf32772f?external_id&#x3D;650aa70d0fcef602bf32772f) APIs to generate the URL. The attachment will be used by TikTok Shop to verify the package delivery.
    * @return fileUrl
-  **/
+   */
   @javax.annotation.Nullable
   public String getFileUrl() {
     return fileUrl;
   }
 
-  public void setFileUrl(String fileUrl) {
+  public void setFileUrl(@javax.annotation.Nullable String fileUrl) {
     this.fileUrl = fileUrl;
   }
 
 
-  public UpdatePackageDeliveryStatusRequestBodyPackages id(String id) {
+  public UpdatePackageDeliveryStatusRequestBodyPackages id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The package ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the UpdatePackageDeliveryStatusRequestBodyPackages instance itself
+   */
+  public UpdatePackageDeliveryStatusRequestBodyPackages putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -183,12 +232,13 @@ public class UpdatePackageDeliveryStatusRequestBodyPackages {
         Objects.equals(this.failDeliveryReason, fulfillment202309UpdatePackageDeliveryStatusRequestBodyPackages.failDeliveryReason) &&
         Objects.equals(this.fileType, fulfillment202309UpdatePackageDeliveryStatusRequestBodyPackages.fileType) &&
         Objects.equals(this.fileUrl, fulfillment202309UpdatePackageDeliveryStatusRequestBodyPackages.fileUrl) &&
-        Objects.equals(this.id, fulfillment202309UpdatePackageDeliveryStatusRequestBodyPackages.id);
+        Objects.equals(this.id, fulfillment202309UpdatePackageDeliveryStatusRequestBodyPackages.id)&&
+        Objects.equals(this.additionalProperties, fulfillment202309UpdatePackageDeliveryStatusRequestBodyPackages.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deliveryType, failDeliveryReason, fileType, fileUrl, id);
+    return Objects.hash(deliveryType, failDeliveryReason, fileType, fileUrl, id, additionalProperties);
   }
 
   @Override
@@ -200,6 +250,7 @@ public class UpdatePackageDeliveryStatusRequestBodyPackages {
     sb.append("    fileType: ").append(toIndentedString(fileType)).append("\n");
     sb.append("    fileUrl: ").append(toIndentedString(fileUrl)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,35 +272,22 @@ public class UpdatePackageDeliveryStatusRequestBodyPackages {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("delivery_type");
-    openapiFields.add("fail_delivery_reason");
-    openapiFields.add("file_type");
-    openapiFields.add("file_url");
-    openapiFields.add("id");
+    openapiFields = new HashSet<String>(Arrays.asList("delivery_type", "fail_delivery_reason", "file_type", "file_url", "id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to UpdatePackageDeliveryStatusRequestBodyPackages
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdatePackageDeliveryStatusRequestBodyPackages
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!UpdatePackageDeliveryStatusRequestBodyPackages.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdatePackageDeliveryStatusRequestBodyPackages is not found in the empty JSON string", UpdatePackageDeliveryStatusRequestBodyPackages.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!UpdatePackageDeliveryStatusRequestBodyPackages.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdatePackageDeliveryStatusRequestBodyPackages` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -285,6 +323,28 @@ public class UpdatePackageDeliveryStatusRequestBodyPackages {
            @Override
            public void write(JsonWriter out, UpdatePackageDeliveryStatusRequestBodyPackages value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -292,29 +352,50 @@ public class UpdatePackageDeliveryStatusRequestBodyPackages {
            public UpdatePackageDeliveryStatusRequestBodyPackages read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             UpdatePackageDeliveryStatusRequestBodyPackages instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdatePackageDeliveryStatusRequestBodyPackages given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdatePackageDeliveryStatusRequestBodyPackages
-  * @throws IOException if the JSON string is invalid with respect to UpdatePackageDeliveryStatusRequestBodyPackages
-  */
+  /**
+   * Create an instance of UpdatePackageDeliveryStatusRequestBodyPackages given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdatePackageDeliveryStatusRequestBodyPackages
+   * @throws IOException if the JSON string is invalid with respect to UpdatePackageDeliveryStatusRequestBodyPackages
+   */
   public static UpdatePackageDeliveryStatusRequestBodyPackages fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdatePackageDeliveryStatusRequestBodyPackages.class);
   }
 
- /**
-  * Convert an instance of UpdatePackageDeliveryStatusRequestBodyPackages to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdatePackageDeliveryStatusRequestBodyPackages to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

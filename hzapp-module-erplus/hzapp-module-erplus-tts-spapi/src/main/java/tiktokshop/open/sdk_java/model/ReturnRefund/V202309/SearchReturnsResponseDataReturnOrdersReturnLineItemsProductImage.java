@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage {
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)
+  @javax.annotation.Nullable
   private Integer height;
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
+  @javax.annotation.Nullable
   private String url;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
+  @javax.annotation.Nullable
   private Integer width;
 
   public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage() {
   }
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage height(Integer height) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage height(@javax.annotation.Nullable Integer height) {
     this.height = height;
     return this;
   }
 
-   /**
+  /**
    * Product image height. Units: pixels (px).
    * @return height
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getHeight() {
     return height;
   }
 
-  public void setHeight(Integer height) {
+  public void setHeight(@javax.annotation.Nullable Integer height) {
     this.height = height;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage url(String url) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage url(@javax.annotation.Nullable String url) {
     this.url = url;
     return this;
   }
 
-   /**
+  /**
    * Product image URL.
    * @return url
-  **/
+   */
   @javax.annotation.Nullable
   public String getUrl() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage width(Integer width) {
+  public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage width(@javax.annotation.Nullable Integer width) {
     this.width = width;
     return this;
   }
 
-   /**
+  /**
    * Product image width. Units: pixels (px).
    * @return width
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getWidth() {
     return width;
   }
 
-  public void setWidth(Integer width) {
+  public void setWidth(@javax.annotation.Nullable Integer width) {
     this.width = width;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage instance itself
+   */
+  public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage {
     SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage = (SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage) o;
     return Objects.equals(this.height, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.height) &&
         Objects.equals(this.url, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.url) &&
-        Objects.equals(this.width, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.width);
+        Objects.equals(this.width, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.width)&&
+        Objects.equals(this.additionalProperties, returnRefund202309SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(height, url, width);
+    return Objects.hash(height, url, width, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage {
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("height");
-    openapiFields.add("url");
-    openapiFields.add("width");
+    openapiFields = new HashSet<String>(Arrays.asList("height", "url", "width"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage is not found in the empty JSON string", SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -221,6 +259,28 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage {
            @Override
            public void write(JsonWriter out, SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -228,29 +288,50 @@ public class SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage {
            public SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage
-  * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage
-  */
+  /**
+   * Create an instance of SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage
+   * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage
+   */
   public static SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage.class);
   }
 
- /**
-  * Convert an instance of SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchReturnsResponseDataReturnOrdersReturnLineItemsProductImage to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

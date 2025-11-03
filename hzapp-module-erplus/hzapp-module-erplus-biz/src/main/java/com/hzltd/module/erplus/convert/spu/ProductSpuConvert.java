@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.convert.spu;
 
 import com.hzltd.framework.common.util.collection.CollectionUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import com.hzltd.module.erpls.api.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.model.product.CreateProductRequest;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuRespVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;

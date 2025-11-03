@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetOrderListResponseDataOrdersLineItemsItemTax
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetOrderListResponseDataOrdersLineItemsItemTax {
   public static final String SERIALIZED_NAME_TAX_AMOUNT = "tax_amount";
   @SerializedName(SERIALIZED_NAME_TAX_AMOUNT)
+  @javax.annotation.Nullable
   private String taxAmount;
 
   public static final String SERIALIZED_NAME_TAX_RATE = "tax_rate";
   @SerializedName(SERIALIZED_NAME_TAX_RATE)
+  @javax.annotation.Nullable
   private String taxRate;
 
   public static final String SERIALIZED_NAME_TAX_TYPE = "tax_type";
   @SerializedName(SERIALIZED_NAME_TAX_TYPE)
+  @javax.annotation.Nullable
   private String taxType;
 
   public GetOrderListResponseDataOrdersLineItemsItemTax() {
   }
 
-  public GetOrderListResponseDataOrdersLineItemsItemTax taxAmount(String taxAmount) {
+  public GetOrderListResponseDataOrdersLineItemsItemTax taxAmount(@javax.annotation.Nullable String taxAmount) {
     this.taxAmount = taxAmount;
     return this;
   }
 
-   /**
+  /**
    * Tax amount.
    * @return taxAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getTaxAmount() {
     return taxAmount;
   }
 
-  public void setTaxAmount(String taxAmount) {
+  public void setTaxAmount(@javax.annotation.Nullable String taxAmount) {
     this.taxAmount = taxAmount;
   }
 
 
-  public GetOrderListResponseDataOrdersLineItemsItemTax taxRate(String taxRate) {
+  public GetOrderListResponseDataOrdersLineItemsItemTax taxRate(@javax.annotation.Nullable String taxRate) {
     this.taxRate = taxRate;
     return this;
   }
 
-   /**
+  /**
    * Tax rate.
    * @return taxRate
-  **/
+   */
   @javax.annotation.Nullable
   public String getTaxRate() {
     return taxRate;
   }
 
-  public void setTaxRate(String taxRate) {
+  public void setTaxRate(@javax.annotation.Nullable String taxRate) {
     this.taxRate = taxRate;
   }
 
 
-  public GetOrderListResponseDataOrdersLineItemsItemTax taxType(String taxType) {
+  public GetOrderListResponseDataOrdersLineItemsItemTax taxType(@javax.annotation.Nullable String taxType) {
     this.taxType = taxType;
     return this;
   }
 
-   /**
+  /**
    * Tax type. Available values: - &#x60;SALES_TAX&#x60; (US market sales tax)  **Note**: Currently only sales tax is available.
    * @return taxType
-  **/
+   */
   @javax.annotation.Nullable
   public String getTaxType() {
     return taxType;
   }
 
-  public void setTaxType(String taxType) {
+  public void setTaxType(@javax.annotation.Nullable String taxType) {
     this.taxType = taxType;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetOrderListResponseDataOrdersLineItemsItemTax instance itself
+   */
+  public GetOrderListResponseDataOrdersLineItemsItemTax putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class GetOrderListResponseDataOrdersLineItemsItemTax {
     GetOrderListResponseDataOrdersLineItemsItemTax order202309GetOrderListResponseDataOrdersLineItemsItemTax = (GetOrderListResponseDataOrdersLineItemsItemTax) o;
     return Objects.equals(this.taxAmount, order202309GetOrderListResponseDataOrdersLineItemsItemTax.taxAmount) &&
         Objects.equals(this.taxRate, order202309GetOrderListResponseDataOrdersLineItemsItemTax.taxRate) &&
-        Objects.equals(this.taxType, order202309GetOrderListResponseDataOrdersLineItemsItemTax.taxType);
+        Objects.equals(this.taxType, order202309GetOrderListResponseDataOrdersLineItemsItemTax.taxType)&&
+        Objects.equals(this.additionalProperties, order202309GetOrderListResponseDataOrdersLineItemsItemTax.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(taxAmount, taxRate, taxType);
+    return Objects.hash(taxAmount, taxRate, taxType, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class GetOrderListResponseDataOrdersLineItemsItemTax {
     sb.append("    taxAmount: ").append(toIndentedString(taxAmount)).append("\n");
     sb.append("    taxRate: ").append(toIndentedString(taxRate)).append("\n");
     sb.append("    taxType: ").append(toIndentedString(taxType)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class GetOrderListResponseDataOrdersLineItemsItemTax {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("tax_amount");
-    openapiFields.add("tax_rate");
-    openapiFields.add("tax_type");
+    openapiFields = new HashSet<String>(Arrays.asList("tax_amount", "tax_rate", "tax_type"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetOrderListResponseDataOrdersLineItemsItemTax
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetOrderListResponseDataOrdersLineItemsItemTax
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetOrderListResponseDataOrdersLineItemsItemTax.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetOrderListResponseDataOrdersLineItemsItemTax is not found in the empty JSON string", GetOrderListResponseDataOrdersLineItemsItemTax.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetOrderListResponseDataOrdersLineItemsItemTax.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetOrderListResponseDataOrdersLineItemsItemTax` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -227,6 +265,28 @@ public class GetOrderListResponseDataOrdersLineItemsItemTax {
            @Override
            public void write(JsonWriter out, GetOrderListResponseDataOrdersLineItemsItemTax value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -234,29 +294,50 @@ public class GetOrderListResponseDataOrdersLineItemsItemTax {
            public GetOrderListResponseDataOrdersLineItemsItemTax read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetOrderListResponseDataOrdersLineItemsItemTax instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetOrderListResponseDataOrdersLineItemsItemTax given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetOrderListResponseDataOrdersLineItemsItemTax
-  * @throws IOException if the JSON string is invalid with respect to GetOrderListResponseDataOrdersLineItemsItemTax
-  */
+  /**
+   * Create an instance of GetOrderListResponseDataOrdersLineItemsItemTax given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetOrderListResponseDataOrdersLineItemsItemTax
+   * @throws IOException if the JSON string is invalid with respect to GetOrderListResponseDataOrdersLineItemsItemTax
+   */
   public static GetOrderListResponseDataOrdersLineItemsItemTax fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetOrderListResponseDataOrdersLineItemsItemTax.class);
   }
 
- /**
-  * Convert an instance of GetOrderListResponseDataOrdersLineItemsItemTax to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetOrderListResponseDataOrdersLineItemsItemTax to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

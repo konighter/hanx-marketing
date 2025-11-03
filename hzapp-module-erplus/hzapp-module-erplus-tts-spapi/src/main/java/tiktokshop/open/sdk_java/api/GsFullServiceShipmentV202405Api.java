@@ -97,12 +97,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostCall(String xTtsAccessToken, String contentType, GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -127,14 +128,6 @@ public class GsFullServiceShipmentV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -151,12 +144,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceShipment202405BetaDeliveryOrdersConfirmPost(Async)");
@@ -180,12 +183,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSConfirmDeliveryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSConfirmDeliveryResponse gsFullServiceShipment202405BetaDeliveryOrdersConfirmPost(String xTtsAccessToken, String contentType, GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody) throws ApiException {
+    public GSConfirmDeliveryResponse gsFullServiceShipment202405BetaDeliveryOrdersConfirmPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody) throws ApiException {
         ApiResponse<GSConfirmDeliveryResponse> localVarResp = gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceShipment202405GSConfirmDeliveryRequestBody);
         return localVarResp.getData();
     }
@@ -199,12 +203,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSConfirmDeliveryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSConfirmDeliveryResponse> gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostWithHttpInfo(String xTtsAccessToken, String contentType, GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody) throws ApiException {
+    public ApiResponse<GSConfirmDeliveryResponse> gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSConfirmDeliveryRequestBody, null);
         Type localVarReturnType = new TypeToken<GSConfirmDeliveryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -220,12 +225,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostAsync(String xTtsAccessToken, String contentType, GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody, final ApiCallback<GSConfirmDeliveryResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSConfirmDeliveryRequestBody gsFullServiceShipment202405GSConfirmDeliveryRequestBody, final ApiCallback<GSConfirmDeliveryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersConfirmPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSConfirmDeliveryRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSConfirmDeliveryResponse>(){}.getType();
@@ -241,12 +247,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetCall(List<String> deliveryBatchCodes, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetCall(@javax.annotation.Nonnull List<String> deliveryBatchCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -275,14 +282,6 @@ public class GsFullServiceShipmentV202405Api {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "delivery_batch_codes", deliveryBatchCodes));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -298,12 +297,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetValidateBeforeCall(List<String> deliveryBatchCodes, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetValidateBeforeCall(@javax.annotation.Nonnull List<String> deliveryBatchCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'deliveryBatchCodes' is set
         if (deliveryBatchCodes == null) {
             throw new ApiException("Missing the required parameter 'deliveryBatchCodes' when calling gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGet(Async)");
@@ -332,12 +341,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSQueryDeliveryBatchsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSQueryDeliveryBatchsResponse gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGet(List<String> deliveryBatchCodes, String xTtsAccessToken, String contentType) throws ApiException {
+    public GSQueryDeliveryBatchsResponse gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGet(@javax.annotation.Nonnull List<String> deliveryBatchCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<GSQueryDeliveryBatchsResponse> localVarResp = gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetWithHttpInfo(deliveryBatchCodes, xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -351,12 +361,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSQueryDeliveryBatchsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSQueryDeliveryBatchsResponse> gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetWithHttpInfo(List<String> deliveryBatchCodes, String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<GSQueryDeliveryBatchsResponse> gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetWithHttpInfo(@javax.annotation.Nonnull List<String> deliveryBatchCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetValidateBeforeCall(deliveryBatchCodes, xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<GSQueryDeliveryBatchsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -372,12 +383,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetAsync(List<String> deliveryBatchCodes, String xTtsAccessToken, String contentType, final ApiCallback<GSQueryDeliveryBatchsResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetAsync(@javax.annotation.Nonnull List<String> deliveryBatchCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<GSQueryDeliveryBatchsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersDeliveryBatchsGetValidateBeforeCall(deliveryBatchCodes, xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<GSQueryDeliveryBatchsResponse>(){}.getType();
@@ -393,12 +405,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetCall(List<String> deliveryOrderCodes, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetCall(@javax.annotation.Nonnull List<String> deliveryOrderCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -427,14 +440,6 @@ public class GsFullServiceShipmentV202405Api {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "delivery_order_codes", deliveryOrderCodes));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -450,12 +455,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetValidateBeforeCall(List<String> deliveryOrderCodes, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetValidateBeforeCall(@javax.annotation.Nonnull List<String> deliveryOrderCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'deliveryOrderCodes' is set
         if (deliveryOrderCodes == null) {
             throw new ApiException("Missing the required parameter 'deliveryOrderCodes' when calling gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGet(Async)");
@@ -484,12 +499,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSGetDeliveryOrderPrintDocumentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSGetDeliveryOrderPrintDocumentResponse gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGet(List<String> deliveryOrderCodes, String xTtsAccessToken, String contentType) throws ApiException {
+    public GSGetDeliveryOrderPrintDocumentResponse gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGet(@javax.annotation.Nonnull List<String> deliveryOrderCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<GSGetDeliveryOrderPrintDocumentResponse> localVarResp = gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetWithHttpInfo(deliveryOrderCodes, xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -503,12 +519,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSGetDeliveryOrderPrintDocumentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSGetDeliveryOrderPrintDocumentResponse> gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetWithHttpInfo(List<String> deliveryOrderCodes, String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<GSGetDeliveryOrderPrintDocumentResponse> gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetWithHttpInfo(@javax.annotation.Nonnull List<String> deliveryOrderCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetValidateBeforeCall(deliveryOrderCodes, xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<GSGetDeliveryOrderPrintDocumentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -524,12 +541,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetAsync(List<String> deliveryOrderCodes, String xTtsAccessToken, String contentType, final ApiCallback<GSGetDeliveryOrderPrintDocumentResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetAsync(@javax.annotation.Nonnull List<String> deliveryOrderCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<GSGetDeliveryOrderPrintDocumentResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersDocumentsGetValidateBeforeCall(deliveryOrderCodes, xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<GSGetDeliveryOrderPrintDocumentResponse>(){}.getType();
@@ -545,12 +563,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersPostCall(String xTtsAccessToken, String contentType, GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -575,14 +594,6 @@ public class GsFullServiceShipmentV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -599,12 +610,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceShipment202405BetaDeliveryOrdersPost(Async)");
@@ -628,12 +649,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSCreateDeliveryOrderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSCreateDeliveryOrderResponse gsFullServiceShipment202405BetaDeliveryOrdersPost(String xTtsAccessToken, String contentType, GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody) throws ApiException {
+    public GSCreateDeliveryOrderResponse gsFullServiceShipment202405BetaDeliveryOrdersPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody) throws ApiException {
         ApiResponse<GSCreateDeliveryOrderResponse> localVarResp = gsFullServiceShipment202405BetaDeliveryOrdersPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody);
         return localVarResp.getData();
     }
@@ -647,12 +669,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSCreateDeliveryOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSCreateDeliveryOrderResponse> gsFullServiceShipment202405BetaDeliveryOrdersPostWithHttpInfo(String xTtsAccessToken, String contentType, GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody) throws ApiException {
+    public ApiResponse<GSCreateDeliveryOrderResponse> gsFullServiceShipment202405BetaDeliveryOrdersPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody, null);
         Type localVarReturnType = new TypeToken<GSCreateDeliveryOrderResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -668,12 +691,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersPostAsync(String xTtsAccessToken, String contentType, GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody, final ApiCallback<GSCreateDeliveryOrderResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateDeliveryOrderRequestBody gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody, final ApiCallback<GSCreateDeliveryOrderResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSCreateDeliveryOrderRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSCreateDeliveryOrderResponse>(){}.getType();
@@ -689,12 +713,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostCall(String xTtsAccessToken, String contentType, GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -719,14 +744,6 @@ public class GsFullServiceShipmentV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -743,12 +760,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPost(Async)");
@@ -772,12 +799,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSReserveShippingResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSReserveShippingResponse gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPost(String xTtsAccessToken, String contentType, GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody) throws ApiException {
+    public GSReserveShippingResponse gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody) throws ApiException {
         ApiResponse<GSReserveShippingResponse> localVarResp = gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceShipment202405GSReserveShippingRequestBody);
         return localVarResp.getData();
     }
@@ -791,12 +819,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSReserveShippingResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSReserveShippingResponse> gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostWithHttpInfo(String xTtsAccessToken, String contentType, GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody) throws ApiException {
+    public ApiResponse<GSReserveShippingResponse> gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSReserveShippingRequestBody, null);
         Type localVarReturnType = new TypeToken<GSReserveShippingResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -812,12 +841,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostAsync(String xTtsAccessToken, String contentType, GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody, final ApiCallback<GSReserveShippingResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSReserveShippingRequestBody gsFullServiceShipment202405GSReserveShippingRequestBody, final ApiCallback<GSReserveShippingResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersReserveShipPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSReserveShippingRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSReserveShippingResponse>(){}.getType();
@@ -833,12 +863,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSearchPostCall(String xTtsAccessToken, String contentType, GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -863,14 +894,6 @@ public class GsFullServiceShipmentV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -887,12 +910,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceShipment202405BetaDeliveryOrdersSearchPost(Async)");
@@ -916,12 +949,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSSearchDeliveryOrdersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSSearchDeliveryOrdersResponse gsFullServiceShipment202405BetaDeliveryOrdersSearchPost(String xTtsAccessToken, String contentType, GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody) throws ApiException {
+    public GSSearchDeliveryOrdersResponse gsFullServiceShipment202405BetaDeliveryOrdersSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody) throws ApiException {
         ApiResponse<GSSearchDeliveryOrdersResponse> localVarResp = gsFullServiceShipment202405BetaDeliveryOrdersSearchPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody);
         return localVarResp.getData();
     }
@@ -935,12 +969,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSSearchDeliveryOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSSearchDeliveryOrdersResponse> gsFullServiceShipment202405BetaDeliveryOrdersSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody) throws ApiException {
+    public ApiResponse<GSSearchDeliveryOrdersResponse> gsFullServiceShipment202405BetaDeliveryOrdersSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody, null);
         Type localVarReturnType = new TypeToken<GSSearchDeliveryOrdersResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -956,12 +991,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSearchPostAsync(String xTtsAccessToken, String contentType, GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody, final ApiCallback<GSSearchDeliveryOrdersResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchDeliveryOrdersRequestBody gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody, final ApiCallback<GSSearchDeliveryOrdersResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSSearchDeliveryOrdersResponse>(){}.getType();
@@ -977,12 +1013,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostCall(String xTtsAccessToken, String contentType, GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1007,14 +1044,6 @@ public class GsFullServiceShipmentV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1031,12 +1060,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostValidateBeforeCall(String xTtsAccessToken, String contentType, GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePost(Async)");
@@ -1060,12 +1099,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSGetSKUPrintDocumentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSGetSKUPrintDocumentResponse gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePost(String xTtsAccessToken, String contentType, GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody) throws ApiException {
+    public GSGetSKUPrintDocumentResponse gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody) throws ApiException {
         ApiResponse<GSGetSKUPrintDocumentResponse> localVarResp = gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody);
         return localVarResp.getData();
     }
@@ -1079,12 +1119,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSGetSKUPrintDocumentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSGetSKUPrintDocumentResponse> gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostWithHttpInfo(String xTtsAccessToken, String contentType, GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody) throws ApiException {
+    public ApiResponse<GSGetSKUPrintDocumentResponse> gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody, null);
         Type localVarReturnType = new TypeToken<GSGetSKUPrintDocumentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1100,12 +1141,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostAsync(String xTtsAccessToken, String contentType, GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody, final ApiCallback<GSGetSKUPrintDocumentResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSGetSKUPrintDocumentRequestBody gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody, final ApiCallback<GSGetSKUPrintDocumentResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaDeliveryOrdersSkuDocumentsGeneratePostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSGetSKUPrintDocumentResponse>(){}.getType();
@@ -1121,12 +1163,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaShippingProvidersSearchPostCall(String xTtsAccessToken, String contentType, GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaShippingProvidersSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1151,14 +1194,6 @@ public class GsFullServiceShipmentV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1175,12 +1210,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaShippingProvidersSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaShippingProvidersSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceShipment202405BetaShippingProvidersSearchPost(Async)");
@@ -1204,12 +1249,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSSearchAvailableShippingProvidersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSSearchAvailableShippingProvidersResponse gsFullServiceShipment202405BetaShippingProvidersSearchPost(String xTtsAccessToken, String contentType, GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody) throws ApiException {
+    public GSSearchAvailableShippingProvidersResponse gsFullServiceShipment202405BetaShippingProvidersSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody) throws ApiException {
         ApiResponse<GSSearchAvailableShippingProvidersResponse> localVarResp = gsFullServiceShipment202405BetaShippingProvidersSearchPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody);
         return localVarResp.getData();
     }
@@ -1223,12 +1269,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSSearchAvailableShippingProvidersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSSearchAvailableShippingProvidersResponse> gsFullServiceShipment202405BetaShippingProvidersSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody) throws ApiException {
+    public ApiResponse<GSSearchAvailableShippingProvidersResponse> gsFullServiceShipment202405BetaShippingProvidersSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaShippingProvidersSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody, null);
         Type localVarReturnType = new TypeToken<GSSearchAvailableShippingProvidersResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1244,12 +1291,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaShippingProvidersSearchPostAsync(String xTtsAccessToken, String contentType, GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody, final ApiCallback<GSSearchAvailableShippingProvidersResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaShippingProvidersSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchAvailableShippingProvidersRequestBody gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody, final ApiCallback<GSSearchAvailableShippingProvidersResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaShippingProvidersSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchAvailableShippingProvidersRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSSearchAvailableShippingProvidersResponse>(){}.getType();
@@ -1265,12 +1313,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaStockupOrdersSearchPostCall(String xTtsAccessToken, String contentType, GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaStockupOrdersSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1295,14 +1344,6 @@ public class GsFullServiceShipmentV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1319,12 +1360,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaStockupOrdersSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaStockupOrdersSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceShipment202405BetaStockupOrdersSearchPost(Async)");
@@ -1348,12 +1399,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSSearchStockupOrdersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSSearchStockupOrdersResponse gsFullServiceShipment202405BetaStockupOrdersSearchPost(String xTtsAccessToken, String contentType, GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody) throws ApiException {
+    public GSSearchStockupOrdersResponse gsFullServiceShipment202405BetaStockupOrdersSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody) throws ApiException {
         ApiResponse<GSSearchStockupOrdersResponse> localVarResp = gsFullServiceShipment202405BetaStockupOrdersSearchPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchStockupOrdersRequestBody);
         return localVarResp.getData();
     }
@@ -1367,12 +1419,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSSearchStockupOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSSearchStockupOrdersResponse> gsFullServiceShipment202405BetaStockupOrdersSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody) throws ApiException {
+    public ApiResponse<GSSearchStockupOrdersResponse> gsFullServiceShipment202405BetaStockupOrdersSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaStockupOrdersSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchStockupOrdersRequestBody, null);
         Type localVarReturnType = new TypeToken<GSSearchStockupOrdersResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1388,12 +1441,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaStockupOrdersSearchPostAsync(String xTtsAccessToken, String contentType, GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody, final ApiCallback<GSSearchStockupOrdersResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaStockupOrdersSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSSearchStockupOrdersRequestBody gsFullServiceShipment202405GSSearchStockupOrdersRequestBody, final ApiCallback<GSSearchStockupOrdersResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaStockupOrdersSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceShipment202405GSSearchStockupOrdersRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSSearchStockupOrdersResponse>(){}.getType();
@@ -1409,12 +1463,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaWaybillsGetCall(List<String> logisticsCodes, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaWaybillsGetCall(@javax.annotation.Nonnull List<String> logisticsCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1443,14 +1498,6 @@ public class GsFullServiceShipmentV202405Api {
             localVarCollectionQueryParams.addAll(localVarApiClient.parameterToPairs("multi", "logistics_codes", logisticsCodes));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1466,12 +1513,22 @@ public class GsFullServiceShipmentV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceShipment202405BetaWaybillsGetValidateBeforeCall(List<String> logisticsCodes, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceShipment202405BetaWaybillsGetValidateBeforeCall(@javax.annotation.Nonnull List<String> logisticsCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'logisticsCodes' is set
         if (logisticsCodes == null) {
             throw new ApiException("Missing the required parameter 'logisticsCodes' when calling gsFullServiceShipment202405BetaWaybillsGet(Async)");
@@ -1500,12 +1557,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return GSGetLogisticsWaybillsPrintDocumentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSGetLogisticsWaybillsPrintDocumentResponse gsFullServiceShipment202405BetaWaybillsGet(List<String> logisticsCodes, String xTtsAccessToken, String contentType) throws ApiException {
+    public GSGetLogisticsWaybillsPrintDocumentResponse gsFullServiceShipment202405BetaWaybillsGet(@javax.annotation.Nonnull List<String> logisticsCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<GSGetLogisticsWaybillsPrintDocumentResponse> localVarResp = gsFullServiceShipment202405BetaWaybillsGetWithHttpInfo(logisticsCodes, xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -1519,12 +1577,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return ApiResponse&lt;GSGetLogisticsWaybillsPrintDocumentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSGetLogisticsWaybillsPrintDocumentResponse> gsFullServiceShipment202405BetaWaybillsGetWithHttpInfo(List<String> logisticsCodes, String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<GSGetLogisticsWaybillsPrintDocumentResponse> gsFullServiceShipment202405BetaWaybillsGetWithHttpInfo(@javax.annotation.Nonnull List<String> logisticsCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaWaybillsGetValidateBeforeCall(logisticsCodes, xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<GSGetLogisticsWaybillsPrintDocumentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1540,12 +1599,13 @@ public class GsFullServiceShipmentV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceShipment202405BetaWaybillsGetAsync(List<String> logisticsCodes, String xTtsAccessToken, String contentType, final ApiCallback<GSGetLogisticsWaybillsPrintDocumentResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceShipment202405BetaWaybillsGetAsync(@javax.annotation.Nonnull List<String> logisticsCodes, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<GSGetLogisticsWaybillsPrintDocumentResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceShipment202405BetaWaybillsGetValidateBeforeCall(logisticsCodes, xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<GSGetLogisticsWaybillsPrintDocumentResponse>(){}.getType();

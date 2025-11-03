@@ -82,12 +82,13 @@ public class FulfillmentV202407Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202407BundlesPostCall(String xTtsAccessToken, String contentType, CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202407BundlesPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -112,14 +113,6 @@ public class FulfillmentV202407Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -136,12 +129,22 @@ public class FulfillmentV202407Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202407BundlesPostValidateBeforeCall(String xTtsAccessToken, String contentType, CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202407BundlesPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202407BundlesPost(Async)");
@@ -165,12 +168,13 @@ public class FulfillmentV202407Api {
      * @return CreateFirstMileBundleResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CreateFirstMileBundleResponse fulfillment202407BundlesPost(String xTtsAccessToken, String contentType, CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody) throws ApiException {
+    public CreateFirstMileBundleResponse fulfillment202407BundlesPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody) throws ApiException {
         ApiResponse<CreateFirstMileBundleResponse> localVarResp = fulfillment202407BundlesPostWithHttpInfo(xTtsAccessToken, contentType, fulfillment202407CreateFirstMileBundleRequestBody);
         return localVarResp.getData();
     }
@@ -184,12 +188,13 @@ public class FulfillmentV202407Api {
      * @return ApiResponse&lt;CreateFirstMileBundleResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateFirstMileBundleResponse> fulfillment202407BundlesPostWithHttpInfo(String xTtsAccessToken, String contentType, CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody) throws ApiException {
+    public ApiResponse<CreateFirstMileBundleResponse> fulfillment202407BundlesPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202407BundlesPostValidateBeforeCall(xTtsAccessToken, contentType, fulfillment202407CreateFirstMileBundleRequestBody, null);
         Type localVarReturnType = new TypeToken<CreateFirstMileBundleResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -205,12 +210,13 @@ public class FulfillmentV202407Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202407BundlesPostAsync(String xTtsAccessToken, String contentType, CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody, final ApiCallback<CreateFirstMileBundleResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202407BundlesPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable CreateFirstMileBundleRequestBody fulfillment202407CreateFirstMileBundleRequestBody, final ApiCallback<CreateFirstMileBundleResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202407BundlesPostValidateBeforeCall(xTtsAccessToken, contentType, fulfillment202407CreateFirstMileBundleRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CreateFirstMileBundleResponse>(){}.getType();

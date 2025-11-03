@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,446 +52,469 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchStockupOrdersResponseDataStockupOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchStockupOrdersResponseDataStockupOrders {
   public static final String SERIALIZED_NAME_CAN_DELIVER = "can_deliver";
   @SerializedName(SERIALIZED_NAME_CAN_DELIVER)
+  @javax.annotation.Nullable
   private Boolean canDeliver;
 
   public static final String SERIALIZED_NAME_CATEGORY_ID = "category_id";
   @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  @javax.annotation.Nullable
   private String categoryId;
 
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DELIVERED_QUANTITY = "delivered_quantity";
   @SerializedName(SERIALIZED_NAME_DELIVERED_QUANTITY)
+  @javax.annotation.Nullable
   private Long deliveredQuantity;
 
   public static final String SERIALIZED_NAME_EMERGENCY_LEVEL = "emergency_level";
   @SerializedName(SERIALIZED_NAME_EMERGENCY_LEVEL)
+  @javax.annotation.Nullable
   private String emergencyLevel;
 
   public static final String SERIALIZED_NAME_INBOUND_QUANTITY = "inbound_quantity";
   @SerializedName(SERIALIZED_NAME_INBOUND_QUANTITY)
+  @javax.annotation.Nullable
   private Long inboundQuantity;
 
   public static final String SERIALIZED_NAME_IS_DELIVERY_COMPLETED = "is_delivery_completed";
   @SerializedName(SERIALIZED_NAME_IS_DELIVERY_COMPLETED)
+  @javax.annotation.Nullable
   private Boolean isDeliveryCompleted;
 
   public static final String SERIALIZED_NAME_IS_FIRST_ORDER = "is_first_order";
   @SerializedName(SERIALIZED_NAME_IS_FIRST_ORDER)
+  @javax.annotation.Nullable
   private Boolean isFirstOrder;
 
   public static final String SERIALIZED_NAME_IS_NORMAL = "is_normal";
   @SerializedName(SERIALIZED_NAME_IS_NORMAL)
+  @javax.annotation.Nullable
   private Boolean isNormal;
 
   public static final String SERIALIZED_NAME_LATEST_STATUS_UPDATE_TIME = "latest_status_update_time";
   @SerializedName(SERIALIZED_NAME_LATEST_STATUS_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long latestStatusUpdateTime;
 
   public static final String SERIALIZED_NAME_MANUFACTURE_MODE = "manufacture_mode";
   @SerializedName(SERIALIZED_NAME_MANUFACTURE_MODE)
+  @javax.annotation.Nullable
   private String manufactureMode;
 
   public static final String SERIALIZED_NAME_PLATFORM_SPU_CODE = "platform_spu_code";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SPU_CODE)
+  @javax.annotation.Nullable
   private String platformSpuCode;
 
   public static final String SERIALIZED_NAME_RECEIVED_QUANTITY = "received_quantity";
   @SerializedName(SERIALIZED_NAME_RECEIVED_QUANTITY)
+  @javax.annotation.Nullable
   private Long receivedQuantity;
 
   public static final String SERIALIZED_NAME_REQUIRE_ARRIVED_TIME = "require_arrived_time";
   @SerializedName(SERIALIZED_NAME_REQUIRE_ARRIVED_TIME)
+  @javax.annotation.Nullable
   private Long requireArrivedTime;
 
   public static final String SERIALIZED_NAME_REQUIRE_SHIP_TIME = "require_ship_time";
   @SerializedName(SERIALIZED_NAME_REQUIRE_SHIP_TIME)
+  @javax.annotation.Nullable
   private Long requireShipTime;
 
   public static final String SERIALIZED_NAME_RETURNED_QUANTITY = "returned_quantity";
   @SerializedName(SERIALIZED_NAME_RETURNED_QUANTITY)
+  @javax.annotation.Nullable
   private Long returnedQuantity;
 
   public static final String SERIALIZED_NAME_SKC = "skc";
   @SerializedName(SERIALIZED_NAME_SKC)
+  @javax.annotation.Nullable
   private GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkc skc;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkus> skus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
+  @javax.annotation.Nullable
   private String source;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_STOCKUP_QUANTITY = "stockup_quantity";
   @SerializedName(SERIALIZED_NAME_STOCKUP_QUANTITY)
+  @javax.annotation.Nullable
   private Long stockupQuantity;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public GlobalSellingSearchStockupOrdersResponseDataStockupOrders() {
   }
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders canDeliver(Boolean canDeliver) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders canDeliver(@javax.annotation.Nullable Boolean canDeliver) {
     this.canDeliver = canDeliver;
     return this;
   }
 
-   /**
+  /**
    * Whether the merchant can begin to deliver goods to GS，exist some precondition，such as photography approved for skc.
    * @return canDeliver
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getCanDeliver() {
     return canDeliver;
   }
 
-  public void setCanDeliver(Boolean canDeliver) {
+  public void setCanDeliver(@javax.annotation.Nullable Boolean canDeliver) {
     this.canDeliver = canDeliver;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders categoryId(String categoryId) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders categoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
     return this;
   }
 
-   /**
+  /**
    * The category ID of product which has been defined by platform.
    * @return categoryId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(String categoryId) {
+  public void setCategoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders code(String code) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * The code of stockup order
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders createTime(Long createTime) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The create time of stockup order.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders deliveredQuantity(Long deliveredQuantity) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders deliveredQuantity(@javax.annotation.Nullable Long deliveredQuantity) {
     this.deliveredQuantity = deliveredQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods which have been shipped from the merchant.
    * @return deliveredQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getDeliveredQuantity() {
     return deliveredQuantity;
   }
 
-  public void setDeliveredQuantity(Long deliveredQuantity) {
+  public void setDeliveredQuantity(@javax.annotation.Nullable Long deliveredQuantity) {
     this.deliveredQuantity = deliveredQuantity;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders emergencyLevel(String emergencyLevel) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders emergencyLevel(@javax.annotation.Nullable String emergencyLevel) {
     this.emergencyLevel = emergencyLevel;
     return this;
   }
 
-   /**
+  /**
    * The emergency level of stockup order. Possible enumerations are:  1. URGENT: the emergency level of stockup order is defined as urgent once created. 2. EXPEDITED: the emergency level of stockup order is defined as expedited in transit. 3. GENERAL: the emergency level of stockup order is defined as general.
    * @return emergencyLevel
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmergencyLevel() {
     return emergencyLevel;
   }
 
-  public void setEmergencyLevel(String emergencyLevel) {
+  public void setEmergencyLevel(@javax.annotation.Nullable String emergencyLevel) {
     this.emergencyLevel = emergencyLevel;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders inboundQuantity(Long inboundQuantity) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders inboundQuantity(@javax.annotation.Nullable Long inboundQuantity) {
     this.inboundQuantity = inboundQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods which have been inbound by the warehouse.
    * @return inboundQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getInboundQuantity() {
     return inboundQuantity;
   }
 
-  public void setInboundQuantity(Long inboundQuantity) {
+  public void setInboundQuantity(@javax.annotation.Nullable Long inboundQuantity) {
     this.inboundQuantity = inboundQuantity;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders isDeliveryCompleted(Boolean isDeliveryCompleted) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders isDeliveryCompleted(@javax.annotation.Nullable Boolean isDeliveryCompleted) {
     this.isDeliveryCompleted = isDeliveryCompleted;
     return this;
   }
 
-   /**
+  /**
    * Whether required goods have already been delivered to GS.
    * @return isDeliveryCompleted
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsDeliveryCompleted() {
     return isDeliveryCompleted;
   }
 
-  public void setIsDeliveryCompleted(Boolean isDeliveryCompleted) {
+  public void setIsDeliveryCompleted(@javax.annotation.Nullable Boolean isDeliveryCompleted) {
     this.isDeliveryCompleted = isDeliveryCompleted;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders isFirstOrder(Boolean isFirstOrder) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders isFirstOrder(@javax.annotation.Nullable Boolean isFirstOrder) {
     this.isFirstOrder = isFirstOrder;
     return this;
   }
 
-   /**
+  /**
    * Whether first stockup order for merchant.
    * @return isFirstOrder
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsFirstOrder() {
     return isFirstOrder;
   }
 
-  public void setIsFirstOrder(Boolean isFirstOrder) {
+  public void setIsFirstOrder(@javax.annotation.Nullable Boolean isFirstOrder) {
     this.isFirstOrder = isFirstOrder;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders isNormal(Boolean isNormal) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders isNormal(@javax.annotation.Nullable Boolean isNormal) {
     this.isNormal = isNormal;
     return this;
   }
 
-   /**
+  /**
    * Whether is normal when delivering goods to GS.
    * @return isNormal
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsNormal() {
     return isNormal;
   }
 
-  public void setIsNormal(Boolean isNormal) {
+  public void setIsNormal(@javax.annotation.Nullable Boolean isNormal) {
     this.isNormal = isNormal;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders latestStatusUpdateTime(Long latestStatusUpdateTime) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders latestStatusUpdateTime(@javax.annotation.Nullable Long latestStatusUpdateTime) {
     this.latestStatusUpdateTime = latestStatusUpdateTime;
     return this;
   }
 
-   /**
+  /**
    * The time of the latest status update.
    * @return latestStatusUpdateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getLatestStatusUpdateTime() {
     return latestStatusUpdateTime;
   }
 
-  public void setLatestStatusUpdateTime(Long latestStatusUpdateTime) {
+  public void setLatestStatusUpdateTime(@javax.annotation.Nullable Long latestStatusUpdateTime) {
     this.latestStatusUpdateTime = latestStatusUpdateTime;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders manufactureMode(String manufactureMode) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders manufactureMode(@javax.annotation.Nullable String manufactureMode) {
     this.manufactureMode = manufactureMode;
     return this;
   }
 
-   /**
+  /**
    * The mode of manufacture  1. OBM_TYPE: Own Branding &amp; Manufacturing 2. ODM_MADE_TO_ORDER: Original Design Manufacture, Make to Order  3. ODM_READY_TO_BUY: Original Design Manufacture, Ready to Buy 4. OEM: Original Equipment Manufacture
    * @return manufactureMode
-  **/
+   */
   @javax.annotation.Nullable
   public String getManufactureMode() {
     return manufactureMode;
   }
 
-  public void setManufactureMode(String manufactureMode) {
+  public void setManufactureMode(@javax.annotation.Nullable String manufactureMode) {
     this.manufactureMode = manufactureMode;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders platformSpuCode(String platformSpuCode) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders platformSpuCode(@javax.annotation.Nullable String platformSpuCode) {
     this.platformSpuCode = platformSpuCode;
     return this;
   }
 
-   /**
+  /**
    * The SPU code of TikTok Shop.
    * @return platformSpuCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformSpuCode() {
     return platformSpuCode;
   }
 
-  public void setPlatformSpuCode(String platformSpuCode) {
+  public void setPlatformSpuCode(@javax.annotation.Nullable String platformSpuCode) {
     this.platformSpuCode = platformSpuCode;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders receivedQuantity(Long receivedQuantity) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders receivedQuantity(@javax.annotation.Nullable Long receivedQuantity) {
     this.receivedQuantity = receivedQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods which have been received and counted by the warehouse.
    * @return receivedQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getReceivedQuantity() {
     return receivedQuantity;
   }
 
-  public void setReceivedQuantity(Long receivedQuantity) {
+  public void setReceivedQuantity(@javax.annotation.Nullable Long receivedQuantity) {
     this.receivedQuantity = receivedQuantity;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders requireArrivedTime(Long requireArrivedTime) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders requireArrivedTime(@javax.annotation.Nullable Long requireArrivedTime) {
     this.requireArrivedTime = requireArrivedTime;
     return this;
   }
 
-   /**
+  /**
    * Merchant should guarantee all require goods arrived at warehouse of GS before specified time.
    * @return requireArrivedTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRequireArrivedTime() {
     return requireArrivedTime;
   }
 
-  public void setRequireArrivedTime(Long requireArrivedTime) {
+  public void setRequireArrivedTime(@javax.annotation.Nullable Long requireArrivedTime) {
     this.requireArrivedTime = requireArrivedTime;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders requireShipTime(Long requireShipTime) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders requireShipTime(@javax.annotation.Nullable Long requireShipTime) {
     this.requireShipTime = requireShipTime;
     return this;
   }
 
-   /**
+  /**
    * The required time of merchant begins to ship goods to GS before the merchant should begin to ship goods to GS before the specified time.
    * @return requireShipTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRequireShipTime() {
     return requireShipTime;
   }
 
-  public void setRequireShipTime(Long requireShipTime) {
+  public void setRequireShipTime(@javax.annotation.Nullable Long requireShipTime) {
     this.requireShipTime = requireShipTime;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders returnedQuantity(Long returnedQuantity) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders returnedQuantity(@javax.annotation.Nullable Long returnedQuantity) {
     this.returnedQuantity = returnedQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods which have been returned due to quality problems.
    * @return returnedQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getReturnedQuantity() {
     return returnedQuantity;
   }
 
-  public void setReturnedQuantity(Long returnedQuantity) {
+  public void setReturnedQuantity(@javax.annotation.Nullable Long returnedQuantity) {
     this.returnedQuantity = returnedQuantity;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders skc(GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkc skc) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders skc(@javax.annotation.Nullable GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkc skc) {
     this.skc = skc;
     return this;
   }
 
-   /**
+  /**
    * Get skc
    * @return skc
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkc getSkc() {
     return skc;
   }
 
-  public void setSkc(GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkc skc) {
+  public void setSkc(@javax.annotation.Nullable GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkc skc) {
     this.skc = skc;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders skus(List<GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkus> skus) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders skus(@javax.annotation.Nullable List<GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -505,93 +527,138 @@ public class GlobalSellingSearchStockupOrdersResponseDataStockupOrders {
     return this;
   }
 
-   /**
+  /**
    * The information list for SKU of TikTok Shop.
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<GlobalSellingSearchStockupOrdersResponseDataStockupOrdersSkus> skus) {
     this.skus = skus;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders source(String source) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders source(@javax.annotation.Nullable String source) {
     this.source = source;
     return this;
   }
 
-   /**
+  /**
    * The source of stockup order creatation
    * @return source
-  **/
+   */
   @javax.annotation.Nullable
   public String getSource() {
     return source;
   }
 
-  public void setSource(String source) {
+  public void setSource(@javax.annotation.Nullable String source) {
     this.source = source;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders status(String status) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The status of stockup order PS: status machines of stockup order are listed in request params
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders stockupQuantity(Long stockupQuantity) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders stockupQuantity(@javax.annotation.Nullable Long stockupQuantity) {
     this.stockupQuantity = stockupQuantity;
     return this;
   }
 
-   /**
+  /**
    * The stockup quantity which has been confirmed.
    * @return stockupQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getStockupQuantity() {
     return stockupQuantity;
   }
 
-  public void setStockupQuantity(Long stockupQuantity) {
+  public void setStockupQuantity(@javax.annotation.Nullable Long stockupQuantity) {
     this.stockupQuantity = stockupQuantity;
   }
 
 
-  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders type(String type) {
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The type of stockup order. Possible enumerations are:  1. JIT: Stockup is determined by sales. 2. NORMAL: Stockup is for sales.
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchStockupOrdersResponseDataStockupOrders instance itself
+   */
+  public GlobalSellingSearchStockupOrdersResponseDataStockupOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -627,12 +694,13 @@ public class GlobalSellingSearchStockupOrdersResponseDataStockupOrders {
         Objects.equals(this.source, gsFullServiceShipment202407GlobalSellingSearchStockupOrdersResponseDataStockupOrders.source) &&
         Objects.equals(this.status, gsFullServiceShipment202407GlobalSellingSearchStockupOrdersResponseDataStockupOrders.status) &&
         Objects.equals(this.stockupQuantity, gsFullServiceShipment202407GlobalSellingSearchStockupOrdersResponseDataStockupOrders.stockupQuantity) &&
-        Objects.equals(this.type, gsFullServiceShipment202407GlobalSellingSearchStockupOrdersResponseDataStockupOrders.type);
+        Objects.equals(this.type, gsFullServiceShipment202407GlobalSellingSearchStockupOrdersResponseDataStockupOrders.type)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingSearchStockupOrdersResponseDataStockupOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDeliver, categoryId, code, createTime, deliveredQuantity, emergencyLevel, inboundQuantity, isDeliveryCompleted, isFirstOrder, isNormal, latestStatusUpdateTime, manufactureMode, platformSpuCode, receivedQuantity, requireArrivedTime, requireShipTime, returnedQuantity, skc, skus, source, status, stockupQuantity, type);
+    return Objects.hash(canDeliver, categoryId, code, createTime, deliveredQuantity, emergencyLevel, inboundQuantity, isDeliveryCompleted, isFirstOrder, isNormal, latestStatusUpdateTime, manufactureMode, platformSpuCode, receivedQuantity, requireArrivedTime, requireShipTime, returnedQuantity, skc, skus, source, status, stockupQuantity, type, additionalProperties);
   }
 
   @Override
@@ -662,6 +730,7 @@ public class GlobalSellingSearchStockupOrdersResponseDataStockupOrders {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    stockupQuantity: ").append(toIndentedString(stockupQuantity)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -683,53 +752,22 @@ public class GlobalSellingSearchStockupOrdersResponseDataStockupOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("can_deliver");
-    openapiFields.add("category_id");
-    openapiFields.add("code");
-    openapiFields.add("create_time");
-    openapiFields.add("delivered_quantity");
-    openapiFields.add("emergency_level");
-    openapiFields.add("inbound_quantity");
-    openapiFields.add("is_delivery_completed");
-    openapiFields.add("is_first_order");
-    openapiFields.add("is_normal");
-    openapiFields.add("latest_status_update_time");
-    openapiFields.add("manufacture_mode");
-    openapiFields.add("platform_spu_code");
-    openapiFields.add("received_quantity");
-    openapiFields.add("require_arrived_time");
-    openapiFields.add("require_ship_time");
-    openapiFields.add("returned_quantity");
-    openapiFields.add("skc");
-    openapiFields.add("skus");
-    openapiFields.add("source");
-    openapiFields.add("status");
-    openapiFields.add("stockup_quantity");
-    openapiFields.add("type");
+    openapiFields = new HashSet<String>(Arrays.asList("can_deliver", "category_id", "code", "create_time", "delivered_quantity", "emergency_level", "inbound_quantity", "is_delivery_completed", "is_first_order", "is_normal", "latest_status_update_time", "manufacture_mode", "platform_spu_code", "received_quantity", "require_arrived_time", "require_ship_time", "returned_quantity", "skc", "skus", "source", "status", "stockup_quantity", "type"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchStockupOrdersResponseDataStockupOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchStockupOrdersResponseDataStockupOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchStockupOrdersResponseDataStockupOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchStockupOrdersResponseDataStockupOrders is not found in the empty JSON string", GlobalSellingSearchStockupOrdersResponseDataStockupOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchStockupOrdersResponseDataStockupOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchStockupOrdersResponseDataStockupOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -792,6 +830,28 @@ public class GlobalSellingSearchStockupOrdersResponseDataStockupOrders {
            @Override
            public void write(JsonWriter out, GlobalSellingSearchStockupOrdersResponseDataStockupOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -799,29 +859,50 @@ public class GlobalSellingSearchStockupOrdersResponseDataStockupOrders {
            public GlobalSellingSearchStockupOrdersResponseDataStockupOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchStockupOrdersResponseDataStockupOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchStockupOrdersResponseDataStockupOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchStockupOrdersResponseDataStockupOrders
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchStockupOrdersResponseDataStockupOrders
-  */
+  /**
+   * Create an instance of GlobalSellingSearchStockupOrdersResponseDataStockupOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchStockupOrdersResponseDataStockupOrders
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchStockupOrdersResponseDataStockupOrders
+   */
   public static GlobalSellingSearchStockupOrdersResponseDataStockupOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchStockupOrdersResponseDataStockupOrders.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchStockupOrdersResponseDataStockupOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchStockupOrdersResponseDataStockupOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

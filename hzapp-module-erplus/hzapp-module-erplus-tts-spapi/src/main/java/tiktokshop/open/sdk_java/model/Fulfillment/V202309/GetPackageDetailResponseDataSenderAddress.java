@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,238 +48,293 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetPackageDetailResponseDataSenderAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetPackageDetailResponseDataSenderAddress {
   public static final String SERIALIZED_NAME_ADDRESS_DETAIL = "address_detail";
   @SerializedName(SERIALIZED_NAME_ADDRESS_DETAIL)
+  @javax.annotation.Nullable
   private String addressDetail;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE1 = "address_line1";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE1)
+  @javax.annotation.Nullable
   private String addressLine1;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE2 = "address_line2";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE2)
+  @javax.annotation.Nullable
   private String addressLine2;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE3 = "address_line3";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE3)
+  @javax.annotation.Nullable
   private String addressLine3;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE4 = "address_line4";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE4)
+  @javax.annotation.Nullable
   private String addressLine4;
 
   public static final String SERIALIZED_NAME_FULL_ADDRESS = "full_address";
   @SerializedName(SERIALIZED_NAME_FULL_ADDRESS)
+  @javax.annotation.Nullable
   private String fullAddress;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  @javax.annotation.Nullable
   private String phoneNumber;
 
   public static final String SERIALIZED_NAME_POSTAL_CODE = "postal_code";
   @SerializedName(SERIALIZED_NAME_POSTAL_CODE)
+  @javax.annotation.Nullable
   private String postalCode;
 
   public static final String SERIALIZED_NAME_REGION_CODE = "region_code";
   @SerializedName(SERIALIZED_NAME_REGION_CODE)
+  @javax.annotation.Nullable
   private String regionCode;
 
   public GetPackageDetailResponseDataSenderAddress() {
   }
 
-  public GetPackageDetailResponseDataSenderAddress addressDetail(String addressDetail) {
+  public GetPackageDetailResponseDataSenderAddress addressDetail(@javax.annotation.Nullable String addressDetail) {
     this.addressDetail = addressDetail;
     return this;
   }
 
-   /**
+  /**
    * Full sender detail address.
    * @return addressDetail
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressDetail() {
     return addressDetail;
   }
 
-  public void setAddressDetail(String addressDetail) {
+  public void setAddressDetail(@javax.annotation.Nullable String addressDetail) {
     this.addressDetail = addressDetail;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress addressLine1(String addressLine1) {
+  public GetPackageDetailResponseDataSenderAddress addressLine1(@javax.annotation.Nullable String addressLine1) {
     this.addressLine1 = addressLine1;
     return this;
   }
 
-   /**
+  /**
    * The first line of the sender&#39;s street address.
    * @return addressLine1
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine1() {
     return addressLine1;
   }
 
-  public void setAddressLine1(String addressLine1) {
+  public void setAddressLine1(@javax.annotation.Nullable String addressLine1) {
     this.addressLine1 = addressLine1;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress addressLine2(String addressLine2) {
+  public GetPackageDetailResponseDataSenderAddress addressLine2(@javax.annotation.Nullable String addressLine2) {
     this.addressLine2 = addressLine2;
     return this;
   }
 
-   /**
+  /**
    * The second line of the sender&#39;s street address.
    * @return addressLine2
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine2() {
     return addressLine2;
   }
 
-  public void setAddressLine2(String addressLine2) {
+  public void setAddressLine2(@javax.annotation.Nullable String addressLine2) {
     this.addressLine2 = addressLine2;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress addressLine3(String addressLine3) {
+  public GetPackageDetailResponseDataSenderAddress addressLine3(@javax.annotation.Nullable String addressLine3) {
     this.addressLine3 = addressLine3;
     return this;
   }
 
-   /**
+  /**
    * The third line of the sender&#39;s street address. Usually only for the Brazilian market.
    * @return addressLine3
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine3() {
     return addressLine3;
   }
 
-  public void setAddressLine3(String addressLine3) {
+  public void setAddressLine3(@javax.annotation.Nullable String addressLine3) {
     this.addressLine3 = addressLine3;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress addressLine4(String addressLine4) {
+  public GetPackageDetailResponseDataSenderAddress addressLine4(@javax.annotation.Nullable String addressLine4) {
     this.addressLine4 = addressLine4;
     return this;
   }
 
-   /**
+  /**
    * The fourth line of the sender&#39;s street address. Usually only for the Brazilian market.
    * @return addressLine4
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine4() {
     return addressLine4;
   }
 
-  public void setAddressLine4(String addressLine4) {
+  public void setAddressLine4(@javax.annotation.Nullable String addressLine4) {
     this.addressLine4 = addressLine4;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress fullAddress(String fullAddress) {
+  public GetPackageDetailResponseDataSenderAddress fullAddress(@javax.annotation.Nullable String fullAddress) {
     this.fullAddress = fullAddress;
     return this;
   }
 
-   /**
+  /**
    * The complete sender addresses information.
    * @return fullAddress
-  **/
+   */
   @javax.annotation.Nullable
   public String getFullAddress() {
     return fullAddress;
   }
 
-  public void setFullAddress(String fullAddress) {
+  public void setFullAddress(@javax.annotation.Nullable String fullAddress) {
     this.fullAddress = fullAddress;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress name(String name) {
+  public GetPackageDetailResponseDataSenderAddress name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the sender.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress phoneNumber(String phoneNumber) {
+  public GetPackageDetailResponseDataSenderAddress phoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
 
-   /**
+  /**
    * The telephone number of the sender. 
    * @return phoneNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getPhoneNumber() {
     return phoneNumber;
   }
 
-  public void setPhoneNumber(String phoneNumber) {
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress postalCode(String postalCode) {
+  public GetPackageDetailResponseDataSenderAddress postalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
 
-   /**
+  /**
    * The postal code of the sender.
    * @return postalCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostalCode() {
     return postalCode;
   }
 
-  public void setPostalCode(String postalCode) {
+  public void setPostalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
   }
 
 
-  public GetPackageDetailResponseDataSenderAddress regionCode(String regionCode) {
+  public GetPackageDetailResponseDataSenderAddress regionCode(@javax.annotation.Nullable String regionCode) {
     this.regionCode = regionCode;
     return this;
   }
 
-   /**
+  /**
    * Region code of the sender.
    * @return regionCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getRegionCode() {
     return regionCode;
   }
 
-  public void setRegionCode(String regionCode) {
+  public void setRegionCode(@javax.annotation.Nullable String regionCode) {
     this.regionCode = regionCode;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetPackageDetailResponseDataSenderAddress instance itself
+   */
+  public GetPackageDetailResponseDataSenderAddress putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -303,12 +357,13 @@ public class GetPackageDetailResponseDataSenderAddress {
         Objects.equals(this.name, fulfillment202309GetPackageDetailResponseDataSenderAddress.name) &&
         Objects.equals(this.phoneNumber, fulfillment202309GetPackageDetailResponseDataSenderAddress.phoneNumber) &&
         Objects.equals(this.postalCode, fulfillment202309GetPackageDetailResponseDataSenderAddress.postalCode) &&
-        Objects.equals(this.regionCode, fulfillment202309GetPackageDetailResponseDataSenderAddress.regionCode);
+        Objects.equals(this.regionCode, fulfillment202309GetPackageDetailResponseDataSenderAddress.regionCode)&&
+        Objects.equals(this.additionalProperties, fulfillment202309GetPackageDetailResponseDataSenderAddress.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressDetail, addressLine1, addressLine2, addressLine3, addressLine4, fullAddress, name, phoneNumber, postalCode, regionCode);
+    return Objects.hash(addressDetail, addressLine1, addressLine2, addressLine3, addressLine4, fullAddress, name, phoneNumber, postalCode, regionCode, additionalProperties);
   }
 
   @Override
@@ -325,6 +380,7 @@ public class GetPackageDetailResponseDataSenderAddress {
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
     sb.append("    regionCode: ").append(toIndentedString(regionCode)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -346,40 +402,22 @@ public class GetPackageDetailResponseDataSenderAddress {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("address_detail");
-    openapiFields.add("address_line1");
-    openapiFields.add("address_line2");
-    openapiFields.add("address_line3");
-    openapiFields.add("address_line4");
-    openapiFields.add("full_address");
-    openapiFields.add("name");
-    openapiFields.add("phone_number");
-    openapiFields.add("postal_code");
-    openapiFields.add("region_code");
+    openapiFields = new HashSet<String>(Arrays.asList("address_detail", "address_line1", "address_line2", "address_line3", "address_line4", "full_address", "name", "phone_number", "postal_code", "region_code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetPackageDetailResponseDataSenderAddress
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetPackageDetailResponseDataSenderAddress
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetPackageDetailResponseDataSenderAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetPackageDetailResponseDataSenderAddress is not found in the empty JSON string", GetPackageDetailResponseDataSenderAddress.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetPackageDetailResponseDataSenderAddress.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetPackageDetailResponseDataSenderAddress` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -430,6 +468,28 @@ public class GetPackageDetailResponseDataSenderAddress {
            @Override
            public void write(JsonWriter out, GetPackageDetailResponseDataSenderAddress value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -437,29 +497,50 @@ public class GetPackageDetailResponseDataSenderAddress {
            public GetPackageDetailResponseDataSenderAddress read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetPackageDetailResponseDataSenderAddress instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetPackageDetailResponseDataSenderAddress given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetPackageDetailResponseDataSenderAddress
-  * @throws IOException if the JSON string is invalid with respect to GetPackageDetailResponseDataSenderAddress
-  */
+  /**
+   * Create an instance of GetPackageDetailResponseDataSenderAddress given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetPackageDetailResponseDataSenderAddress
+   * @throws IOException if the JSON string is invalid with respect to GetPackageDetailResponseDataSenderAddress
+   */
   public static GetPackageDetailResponseDataSenderAddress fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetPackageDetailResponseDataSenderAddress.class);
   }
 
- /**
-  * Convert an instance of GetPackageDetailResponseDataSenderAddress to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetPackageDetailResponseDataSenderAddress to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

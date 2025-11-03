@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,100 +48,149 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions {
   public static final String SERIALIZED_NAME_ATTRIBUTE_ID = "attribute_id";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_ID)
+  @javax.annotation.Nullable
   private String attributeId;
 
   public static final String SERIALIZED_NAME_ATTRIBUTE_VALUE_ID = "attribute_value_id";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTE_VALUE_ID)
+  @javax.annotation.Nullable
   private String attributeValueId;
 
   public static final String SERIALIZED_NAME_CONDITION_TYPE = "condition_type";
   @SerializedName(SERIALIZED_NAME_CONDITION_TYPE)
+  @javax.annotation.Nullable
   private String conditionType;
 
   public static final String SERIALIZED_NAME_REGION = "region";
   @SerializedName(SERIALIZED_NAME_REGION)
+  @javax.annotation.Nullable
   private String region;
 
   public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions() {
   }
 
-  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions attributeId(String attributeId) {
+  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions attributeId(@javax.annotation.Nullable String attributeId) {
     this.attributeId = attributeId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the product attribute that is being evaluated by the condition.
    * @return attributeId
-  **/
+   */
   @javax.annotation.Nullable
   public String getAttributeId() {
     return attributeId;
   }
 
-  public void setAttributeId(String attributeId) {
+  public void setAttributeId(@javax.annotation.Nullable String attributeId) {
     this.attributeId = attributeId;
   }
 
 
-  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions attributeValueId(String attributeValueId) {
+  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions attributeValueId(@javax.annotation.Nullable String attributeValueId) {
     this.attributeValueId = attributeValueId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the product attribute value that must match the seller&#39;s input for the condition to be true.
    * @return attributeValueId
-  **/
+   */
   @javax.annotation.Nullable
   public String getAttributeValueId() {
     return attributeValueId;
   }
 
-  public void setAttributeValueId(String attributeValueId) {
+  public void setAttributeValueId(@javax.annotation.Nullable String attributeValueId) {
     this.attributeValueId = attributeValueId;
   }
 
 
-  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions conditionType(String conditionType) {
+  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions conditionType(@javax.annotation.Nullable String conditionType) {
     this.conditionType = conditionType;
     return this;
   }
 
-   /**
+  /**
    * The type of condition, such as matching values, or range comparisons. Possible values: - VALUE_ID_MATCH: The condition is true when the seller selects a value whose ID matches the one specified in this condition.
    * @return conditionType
-  **/
+   */
   @javax.annotation.Nullable
   public String getConditionType() {
     return conditionType;
   }
 
-  public void setConditionType(String conditionType) {
+  public void setConditionType(@javax.annotation.Nullable String conditionType) {
     this.conditionType = conditionType;
   }
 
 
-  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions region(String region) {
+  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions region(@javax.annotation.Nullable String region) {
     this.region = region;
     return this;
   }
 
-   /**
+  /**
    * The market where the certification is required when the conditions are met. Possible values: - DE: Germany - ES: Spain - FR: France - GB: United Kingdom - ID: Indonesia - IT: Italy - IE: Ireland - JP: Japan - MY: Malaysia - PH: Philippines - SG: Singapore - TH: Thailand - US: United States - VN: Vietnam - MX: Mexico
    * @return region
-  **/
+   */
   @javax.annotation.Nullable
   public String getRegion() {
     return region;
   }
 
-  public void setRegion(String region) {
+  public void setRegion(@javax.annotation.Nullable String region) {
     this.region = region;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions instance itself
+   */
+  public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -159,12 +207,13 @@ public class GetGlobalCategoryRulesResponseDataProductCertificationsRequirementC
     return Objects.equals(this.attributeId, product202309GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.attributeId) &&
         Objects.equals(this.attributeValueId, product202309GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.attributeValueId) &&
         Objects.equals(this.conditionType, product202309GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.conditionType) &&
-        Objects.equals(this.region, product202309GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.region);
+        Objects.equals(this.region, product202309GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.region)&&
+        Objects.equals(this.additionalProperties, product202309GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributeId, attributeValueId, conditionType, region);
+    return Objects.hash(attributeId, attributeValueId, conditionType, region, additionalProperties);
   }
 
   @Override
@@ -175,6 +224,7 @@ public class GetGlobalCategoryRulesResponseDataProductCertificationsRequirementC
     sb.append("    attributeValueId: ").append(toIndentedString(attributeValueId)).append("\n");
     sb.append("    conditionType: ").append(toIndentedString(conditionType)).append("\n");
     sb.append("    region: ").append(toIndentedString(region)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -196,34 +246,22 @@ public class GetGlobalCategoryRulesResponseDataProductCertificationsRequirementC
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("attribute_id");
-    openapiFields.add("attribute_value_id");
-    openapiFields.add("condition_type");
-    openapiFields.add("region");
+    openapiFields = new HashSet<String>(Arrays.asList("attribute_id", "attribute_value_id", "condition_type", "region"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions is not found in the empty JSON string", GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -256,6 +294,28 @@ public class GetGlobalCategoryRulesResponseDataProductCertificationsRequirementC
            @Override
            public void write(JsonWriter out, GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -263,29 +323,50 @@ public class GetGlobalCategoryRulesResponseDataProductCertificationsRequirementC
            public GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions
-  * @throws IOException if the JSON string is invalid with respect to GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions
-  */
+  /**
+   * Create an instance of GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions
+   * @throws IOException if the JSON string is invalid with respect to GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions
+   */
   public static GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions.class);
   }
 
- /**
-  * Convert an instance of GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetGlobalCategoryRulesResponseDataProductCertificationsRequirementConditions to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

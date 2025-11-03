@@ -1,8 +1,9 @@
 package com.hzltd.module.erplus.convert.productpub;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.erpls.api.model.common.ProductAttributeModel;
-import com.hzltd.module.erpls.api.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.model.common.ProductAttributeModel;
+import com.hzltd.module.erplus.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductAttrsDO;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
@@ -38,6 +39,10 @@ public interface CrossPlatformProductConvert {
                 .security(JsonUtils.toJsonString(product.getSecurity()))
                 .extra(JsonUtils.toJsonString(product.getCrossPlatformExtAttrs()))
                 .build();
+    }
+
+    default ErpCrossProductDO convert(ProductPublishRequest product) {
+        return new ErpCrossProductDO();
     }
 
     default List<ErpCrossProductAttrsDO> convertProperties(Long productId, List<ProductAttributeModel> productAttributes) {

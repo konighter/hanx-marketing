@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * InventorySearchResponseDataInventorySkusWarehouseInventory
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class InventorySearchResponseDataInventorySkusWarehouseInventory {
   public static final String SERIALIZED_NAME_AVAILABLE_QUANTITY = "available_quantity";
   @SerializedName(SERIALIZED_NAME_AVAILABLE_QUANTITY)
+  @javax.annotation.Nullable
   private Integer availableQuantity;
 
   public static final String SERIALIZED_NAME_COMMITTED_QUANTITY = "committed_quantity";
   @SerializedName(SERIALIZED_NAME_COMMITTED_QUANTITY)
+  @javax.annotation.Nullable
   private Integer committedQuantity;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_ID = "warehouse_id";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_ID)
+  @javax.annotation.Nullable
   private String warehouseId;
 
   public InventorySearchResponseDataInventorySkusWarehouseInventory() {
   }
 
-  public InventorySearchResponseDataInventorySkusWarehouseInventory availableQuantity(Integer availableQuantity) {
+  public InventorySearchResponseDataInventorySkusWarehouseInventory availableQuantity(@javax.annotation.Nullable Integer availableQuantity) {
     this.availableQuantity = availableQuantity;
     return this;
   }
 
-   /**
+  /**
    * The total number of units available for ordering in this warehouse. This is equivalent to the &#x60;inventory.quantity&#x60; value returned in the [Get Product API](https://partner.tiktokshop.com/docv2/page/6509d85b4a0bb702c057fdda).
    * @return availableQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getAvailableQuantity() {
     return availableQuantity;
   }
 
-  public void setAvailableQuantity(Integer availableQuantity) {
+  public void setAvailableQuantity(@javax.annotation.Nullable Integer availableQuantity) {
     this.availableQuantity = availableQuantity;
   }
 
 
-  public InventorySearchResponseDataInventorySkusWarehouseInventory committedQuantity(Integer committedQuantity) {
+  public InventorySearchResponseDataInventorySkusWarehouseInventory committedQuantity(@javax.annotation.Nullable Integer committedQuantity) {
     this.committedQuantity = committedQuantity;
     return this;
   }
 
-   /**
+  /**
    * The total number of units reserved by existing customer orders in this warehouse (and therefore not available for ordering).
    * @return committedQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getCommittedQuantity() {
     return committedQuantity;
   }
 
-  public void setCommittedQuantity(Integer committedQuantity) {
+  public void setCommittedQuantity(@javax.annotation.Nullable Integer committedQuantity) {
     this.committedQuantity = committedQuantity;
   }
 
 
-  public InventorySearchResponseDataInventorySkusWarehouseInventory warehouseId(String warehouseId) {
+  public InventorySearchResponseDataInventorySkusWarehouseInventory warehouseId(@javax.annotation.Nullable String warehouseId) {
     this.warehouseId = warehouseId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the warehouse where the SKU is stored.  Retrieve details of the warehouse from the  [Get Warehouse List API](https://partner.tiktokshop.com/docv2/page/650aa418defece02be6e66b6).
    * @return warehouseId
-  **/
+   */
   @javax.annotation.Nullable
   public String getWarehouseId() {
     return warehouseId;
   }
 
-  public void setWarehouseId(String warehouseId) {
+  public void setWarehouseId(@javax.annotation.Nullable String warehouseId) {
     this.warehouseId = warehouseId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the InventorySearchResponseDataInventorySkusWarehouseInventory instance itself
+   */
+  public InventorySearchResponseDataInventorySkusWarehouseInventory putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class InventorySearchResponseDataInventorySkusWarehouseInventory {
     InventorySearchResponseDataInventorySkusWarehouseInventory product202309InventorySearchResponseDataInventorySkusWarehouseInventory = (InventorySearchResponseDataInventorySkusWarehouseInventory) o;
     return Objects.equals(this.availableQuantity, product202309InventorySearchResponseDataInventorySkusWarehouseInventory.availableQuantity) &&
         Objects.equals(this.committedQuantity, product202309InventorySearchResponseDataInventorySkusWarehouseInventory.committedQuantity) &&
-        Objects.equals(this.warehouseId, product202309InventorySearchResponseDataInventorySkusWarehouseInventory.warehouseId);
+        Objects.equals(this.warehouseId, product202309InventorySearchResponseDataInventorySkusWarehouseInventory.warehouseId)&&
+        Objects.equals(this.additionalProperties, product202309InventorySearchResponseDataInventorySkusWarehouseInventory.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(availableQuantity, committedQuantity, warehouseId);
+    return Objects.hash(availableQuantity, committedQuantity, warehouseId, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class InventorySearchResponseDataInventorySkusWarehouseInventory {
     sb.append("    availableQuantity: ").append(toIndentedString(availableQuantity)).append("\n");
     sb.append("    committedQuantity: ").append(toIndentedString(committedQuantity)).append("\n");
     sb.append("    warehouseId: ").append(toIndentedString(warehouseId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class InventorySearchResponseDataInventorySkusWarehouseInventory {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("available_quantity");
-    openapiFields.add("committed_quantity");
-    openapiFields.add("warehouse_id");
+    openapiFields = new HashSet<String>(Arrays.asList("available_quantity", "committed_quantity", "warehouse_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to InventorySearchResponseDataInventorySkusWarehouseInventory
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to InventorySearchResponseDataInventorySkusWarehouseInventory
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!InventorySearchResponseDataInventorySkusWarehouseInventory.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in InventorySearchResponseDataInventorySkusWarehouseInventory is not found in the empty JSON string", InventorySearchResponseDataInventorySkusWarehouseInventory.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!InventorySearchResponseDataInventorySkusWarehouseInventory.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `InventorySearchResponseDataInventorySkusWarehouseInventory` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -221,6 +259,28 @@ public class InventorySearchResponseDataInventorySkusWarehouseInventory {
            @Override
            public void write(JsonWriter out, InventorySearchResponseDataInventorySkusWarehouseInventory value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -228,29 +288,50 @@ public class InventorySearchResponseDataInventorySkusWarehouseInventory {
            public InventorySearchResponseDataInventorySkusWarehouseInventory read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             InventorySearchResponseDataInventorySkusWarehouseInventory instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of InventorySearchResponseDataInventorySkusWarehouseInventory given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of InventorySearchResponseDataInventorySkusWarehouseInventory
-  * @throws IOException if the JSON string is invalid with respect to InventorySearchResponseDataInventorySkusWarehouseInventory
-  */
+  /**
+   * Create an instance of InventorySearchResponseDataInventorySkusWarehouseInventory given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of InventorySearchResponseDataInventorySkusWarehouseInventory
+   * @throws IOException if the JSON string is invalid with respect to InventorySearchResponseDataInventorySkusWarehouseInventory
+   */
   public static InventorySearchResponseDataInventorySkusWarehouseInventory fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, InventorySearchResponseDataInventorySkusWarehouseInventory.class);
   }
 
- /**
-  * Convert an instance of InventorySearchResponseDataInventorySkusWarehouseInventory to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of InventorySearchResponseDataInventorySkusWarehouseInventory to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

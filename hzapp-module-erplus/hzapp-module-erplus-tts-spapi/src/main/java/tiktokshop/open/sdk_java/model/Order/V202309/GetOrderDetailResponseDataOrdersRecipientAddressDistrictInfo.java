@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo {
   public static final String SERIALIZED_NAME_ADDRESS_LEVEL = "address_level";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LEVEL)
+  @javax.annotation.Nullable
   private String addressLevel;
 
   public static final String SERIALIZED_NAME_ADDRESS_LEVEL_NAME = "address_level_name";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LEVEL_NAME)
+  @javax.annotation.Nullable
   private String addressLevelName;
 
   public static final String SERIALIZED_NAME_ADDRESS_NAME = "address_name";
   @SerializedName(SERIALIZED_NAME_ADDRESS_NAME)
+  @javax.annotation.Nullable
   private String addressName;
 
   public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo() {
   }
 
-  public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo addressLevel(String addressLevel) {
+  public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo addressLevel(@javax.annotation.Nullable String addressLevel) {
     this.addressLevel = addressLevel;
     return this;
   }
 
-   /**
+  /**
    * Administrative district level code. Value can be L0/L1/L2/L3/L4. eg. US is L0
    * @return addressLevel
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLevel() {
     return addressLevel;
   }
 
-  public void setAddressLevel(String addressLevel) {
+  public void setAddressLevel(@javax.annotation.Nullable String addressLevel) {
     this.addressLevel = addressLevel;
   }
 
 
-  public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo addressLevelName(String addressLevelName) {
+  public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo addressLevelName(@javax.annotation.Nullable String addressLevelName) {
     this.addressLevelName = addressLevelName;
     return this;
   }
 
-   /**
+  /**
    * The name of administrative division that can be used by seller for ship. e.g. state/county/city/district/town etc.
    * @return addressLevelName
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLevelName() {
     return addressLevelName;
   }
 
-  public void setAddressLevelName(String addressLevelName) {
+  public void setAddressLevelName(@javax.annotation.Nullable String addressLevelName) {
     this.addressLevelName = addressLevelName;
   }
 
 
-  public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo addressName(String addressName) {
+  public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo addressName(@javax.annotation.Nullable String addressName) {
     this.addressName = addressName;
     return this;
   }
 
-   /**
+  /**
    * Administrative area name. eg: London
    * @return addressName
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressName() {
     return addressName;
   }
 
-  public void setAddressName(String addressName) {
+  public void setAddressName(@javax.annotation.Nullable String addressName) {
     this.addressName = addressName;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo instance itself
+   */
+  public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo {
     GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo order202309GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo = (GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo) o;
     return Objects.equals(this.addressLevel, order202309GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.addressLevel) &&
         Objects.equals(this.addressLevelName, order202309GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.addressLevelName) &&
-        Objects.equals(this.addressName, order202309GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.addressName);
+        Objects.equals(this.addressName, order202309GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.addressName)&&
+        Objects.equals(this.additionalProperties, order202309GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressLevel, addressLevelName, addressName);
+    return Objects.hash(addressLevel, addressLevelName, addressName, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo {
     sb.append("    addressLevel: ").append(toIndentedString(addressLevel)).append("\n");
     sb.append("    addressLevelName: ").append(toIndentedString(addressLevelName)).append("\n");
     sb.append("    addressName: ").append(toIndentedString(addressName)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("address_level");
-    openapiFields.add("address_level_name");
-    openapiFields.add("address_name");
+    openapiFields = new HashSet<String>(Arrays.asList("address_level", "address_level_name", "address_name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo is not found in the empty JSON string", GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -227,6 +265,28 @@ public class GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo {
            @Override
            public void write(JsonWriter out, GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -234,29 +294,50 @@ public class GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo {
            public GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo
-  * @throws IOException if the JSON string is invalid with respect to GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo
-  */
+  /**
+   * Create an instance of GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo
+   * @throws IOException if the JSON string is invalid with respect to GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo
+   */
   public static GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.class);
   }
 
- /**
-  * Convert an instance of GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

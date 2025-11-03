@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,39 +50,41 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchResponsiblePersonsRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchResponsiblePersonsRequestBody {
   public static final String SERIALIZED_NAME_KEYWORD = "keyword";
   @SerializedName(SERIALIZED_NAME_KEYWORD)
+  @javax.annotation.Nullable
   private String keyword;
 
   public static final String SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS = "responsible_person_ids";
   @SerializedName(SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS)
+  @javax.annotation.Nullable
   private List<String> responsiblePersonIds = new ArrayList<>();
 
   public SearchResponsiblePersonsRequestBody() {
   }
 
-  public SearchResponsiblePersonsRequestBody keyword(String keyword) {
+  public SearchResponsiblePersonsRequestBody keyword(@javax.annotation.Nullable String keyword) {
     this.keyword = keyword;
     return this;
   }
 
-   /**
+  /**
    * Filter results to show those that contain this keyword. Search scope: name, local_number, email Max length: 200 characters  **Note**: Provide either the &#x60;responsible_person_ids&#x60; or &#x60;keyword&#x60;; if both are provided, &#x60;responsible_person_ids&#x60; will take priority.
    * @return keyword
-  **/
+   */
   @javax.annotation.Nullable
   public String getKeyword() {
     return keyword;
   }
 
-  public void setKeyword(String keyword) {
+  public void setKeyword(@javax.annotation.Nullable String keyword) {
     this.keyword = keyword;
   }
 
 
-  public SearchResponsiblePersonsRequestBody responsiblePersonIds(List<String> responsiblePersonIds) {
+  public SearchResponsiblePersonsRequestBody responsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
     return this;
   }
@@ -96,17 +97,62 @@ public class SearchResponsiblePersonsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Filter results by these responsible person IDs. Max IDs: The value of &#x60;page_size&#x60;
    * @return responsiblePersonIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getResponsiblePersonIds() {
     return responsiblePersonIds;
   }
 
-  public void setResponsiblePersonIds(List<String> responsiblePersonIds) {
+  public void setResponsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchResponsiblePersonsRequestBody instance itself
+   */
+  public SearchResponsiblePersonsRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -121,12 +167,13 @@ public class SearchResponsiblePersonsRequestBody {
     }
     SearchResponsiblePersonsRequestBody product202409SearchResponsiblePersonsRequestBody = (SearchResponsiblePersonsRequestBody) o;
     return Objects.equals(this.keyword, product202409SearchResponsiblePersonsRequestBody.keyword) &&
-        Objects.equals(this.responsiblePersonIds, product202409SearchResponsiblePersonsRequestBody.responsiblePersonIds);
+        Objects.equals(this.responsiblePersonIds, product202409SearchResponsiblePersonsRequestBody.responsiblePersonIds)&&
+        Objects.equals(this.additionalProperties, product202409SearchResponsiblePersonsRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(keyword, responsiblePersonIds);
+    return Objects.hash(keyword, responsiblePersonIds, additionalProperties);
   }
 
   @Override
@@ -135,6 +182,7 @@ public class SearchResponsiblePersonsRequestBody {
     sb.append("class SearchResponsiblePersonsRequestBody {\n");
     sb.append("    keyword: ").append(toIndentedString(keyword)).append("\n");
     sb.append("    responsiblePersonIds: ").append(toIndentedString(responsiblePersonIds)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -156,32 +204,22 @@ public class SearchResponsiblePersonsRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("keyword");
-    openapiFields.add("responsible_person_ids");
+    openapiFields = new HashSet<String>(Arrays.asList("keyword", "responsible_person_ids"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchResponsiblePersonsRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchResponsiblePersonsRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchResponsiblePersonsRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchResponsiblePersonsRequestBody is not found in the empty JSON string", SearchResponsiblePersonsRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchResponsiblePersonsRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchResponsiblePersonsRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -209,6 +247,28 @@ public class SearchResponsiblePersonsRequestBody {
            @Override
            public void write(JsonWriter out, SearchResponsiblePersonsRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -216,29 +276,50 @@ public class SearchResponsiblePersonsRequestBody {
            public SearchResponsiblePersonsRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchResponsiblePersonsRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchResponsiblePersonsRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchResponsiblePersonsRequestBody
-  * @throws IOException if the JSON string is invalid with respect to SearchResponsiblePersonsRequestBody
-  */
+  /**
+   * Create an instance of SearchResponsiblePersonsRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchResponsiblePersonsRequestBody
+   * @throws IOException if the JSON string is invalid with respect to SearchResponsiblePersonsRequestBody
+   */
   public static SearchResponsiblePersonsRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchResponsiblePersonsRequestBody.class);
   }
 
- /**
-  * Convert an instance of SearchResponsiblePersonsRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchResponsiblePersonsRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

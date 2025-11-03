@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,101 +52,109 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetReturnRecordsResponseDataRecords
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetReturnRecordsResponseDataRecords {
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_EVENT = "event";
   @SerializedName(SERIALIZED_NAME_EVENT)
+  @javax.annotation.Nullable
   private String event;
 
   public static final String SERIALIZED_NAME_IMAGES = "images";
   @SerializedName(SERIALIZED_NAME_IMAGES)
+  @javax.annotation.Nullable
   private List<GetReturnRecordsResponseDataRecordsImages> images = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_NOTE = "note";
   @SerializedName(SERIALIZED_NAME_NOTE)
+  @javax.annotation.Nullable
   private String note;
 
   public static final String SERIALIZED_NAME_REASON_TEXT = "reason_text";
   @SerializedName(SERIALIZED_NAME_REASON_TEXT)
+  @javax.annotation.Nullable
   private String reasonText;
 
   public static final String SERIALIZED_NAME_ROLE = "role";
   @SerializedName(SERIALIZED_NAME_ROLE)
+  @javax.annotation.Nullable
   private String role;
 
   public static final String SERIALIZED_NAME_VIDEOS = "videos";
   @SerializedName(SERIALIZED_NAME_VIDEOS)
+  @javax.annotation.Nullable
   private List<GetReturnRecordsResponseDataRecordsVideos> videos = new ArrayList<>();
 
   public GetReturnRecordsResponseDataRecords() {
   }
 
-  public GetReturnRecordsResponseDataRecords createTime(Long createTime) {
+  public GetReturnRecordsResponseDataRecords createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The creation time for the return. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetReturnRecordsResponseDataRecords description(String description) {
+  public GetReturnRecordsResponseDataRecords description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * Description of the return record.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public GetReturnRecordsResponseDataRecords event(String event) {
+  public GetReturnRecordsResponseDataRecords event(@javax.annotation.Nullable String event) {
     this.event = event;
     return this;
   }
 
-   /**
+  /**
    * The type of order event. In this case, it will always be ORDER_RETURN.
    * @return event
-  **/
+   */
   @javax.annotation.Nullable
   public String getEvent() {
     return event;
   }
 
-  public void setEvent(String event) {
+  public void setEvent(@javax.annotation.Nullable String event) {
     this.event = event;
   }
 
 
-  public GetReturnRecordsResponseDataRecords images(List<GetReturnRecordsResponseDataRecordsImages> images) {
+  public GetReturnRecordsResponseDataRecords images(@javax.annotation.Nullable List<GetReturnRecordsResponseDataRecordsImages> images) {
     this.images = images;
     return this;
   }
@@ -160,78 +167,78 @@ public class GetReturnRecordsResponseDataRecords {
     return this;
   }
 
-   /**
+  /**
    * Images provided by the seller or buyer. You can use the role field to differentiate whether the images are from the seller or buyer.
    * @return images
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetReturnRecordsResponseDataRecordsImages> getImages() {
     return images;
   }
 
-  public void setImages(List<GetReturnRecordsResponseDataRecordsImages> images) {
+  public void setImages(@javax.annotation.Nullable List<GetReturnRecordsResponseDataRecordsImages> images) {
     this.images = images;
   }
 
 
-  public GetReturnRecordsResponseDataRecords note(String note) {
+  public GetReturnRecordsResponseDataRecords note(@javax.annotation.Nullable String note) {
     this.note = note;
     return this;
   }
 
-   /**
+  /**
    * A note provided by the seller or buyer. You can use the role field to differentiate whether the note is from the seller or buyer.
    * @return note
-  **/
+   */
   @javax.annotation.Nullable
   public String getNote() {
     return note;
   }
 
-  public void setNote(String note) {
+  public void setNote(@javax.annotation.Nullable String note) {
     this.note = note;
   }
 
 
-  public GetReturnRecordsResponseDataRecords reasonText(String reasonText) {
+  public GetReturnRecordsResponseDataRecords reasonText(@javax.annotation.Nullable String reasonText) {
     this.reasonText = reasonText;
     return this;
   }
 
-   /**
+  /**
    * The corresponding text for a return reason, localized based on the locale input parameter. 
    * @return reasonText
-  **/
+   */
   @javax.annotation.Nullable
   public String getReasonText() {
     return reasonText;
   }
 
-  public void setReasonText(String reasonText) {
+  public void setReasonText(@javax.annotation.Nullable String reasonText) {
     this.reasonText = reasonText;
   }
 
 
-  public GetReturnRecordsResponseDataRecords role(String role) {
+  public GetReturnRecordsResponseDataRecords role(@javax.annotation.Nullable String role) {
     this.role = role;
     return this;
   }
 
-   /**
+  /**
    * The role that initiated the order return request. Possible values: - BUYER - SELLER - OPERATOR: If the order is canceled by the customer service agent manually, then the cancel initiator will be &#39;OPERATOR&#39;. - SYSTEM: If the order is automatically canceled due to a policy reason, then the cancel initiator will be &#39;SYSTEM&#39;.
    * @return role
-  **/
+   */
   @javax.annotation.Nullable
   public String getRole() {
     return role;
   }
 
-  public void setRole(String role) {
+  public void setRole(@javax.annotation.Nullable String role) {
     this.role = role;
   }
 
 
-  public GetReturnRecordsResponseDataRecords videos(List<GetReturnRecordsResponseDataRecordsVideos> videos) {
+  public GetReturnRecordsResponseDataRecords videos(@javax.annotation.Nullable List<GetReturnRecordsResponseDataRecordsVideos> videos) {
     this.videos = videos;
     return this;
   }
@@ -244,17 +251,62 @@ public class GetReturnRecordsResponseDataRecords {
     return this;
   }
 
-   /**
+  /**
    * Videos uploaded by the buyer. Only buyers are allowed to upload videos.
    * @return videos
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetReturnRecordsResponseDataRecordsVideos> getVideos() {
     return videos;
   }
 
-  public void setVideos(List<GetReturnRecordsResponseDataRecordsVideos> videos) {
+  public void setVideos(@javax.annotation.Nullable List<GetReturnRecordsResponseDataRecordsVideos> videos) {
     this.videos = videos;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetReturnRecordsResponseDataRecords instance itself
+   */
+  public GetReturnRecordsResponseDataRecords putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -275,12 +327,13 @@ public class GetReturnRecordsResponseDataRecords {
         Objects.equals(this.note, returnRefund202309GetReturnRecordsResponseDataRecords.note) &&
         Objects.equals(this.reasonText, returnRefund202309GetReturnRecordsResponseDataRecords.reasonText) &&
         Objects.equals(this.role, returnRefund202309GetReturnRecordsResponseDataRecords.role) &&
-        Objects.equals(this.videos, returnRefund202309GetReturnRecordsResponseDataRecords.videos);
+        Objects.equals(this.videos, returnRefund202309GetReturnRecordsResponseDataRecords.videos)&&
+        Objects.equals(this.additionalProperties, returnRefund202309GetReturnRecordsResponseDataRecords.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createTime, description, event, images, note, reasonText, role, videos);
+    return Objects.hash(createTime, description, event, images, note, reasonText, role, videos, additionalProperties);
   }
 
   @Override
@@ -295,6 +348,7 @@ public class GetReturnRecordsResponseDataRecords {
     sb.append("    reasonText: ").append(toIndentedString(reasonText)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    videos: ").append(toIndentedString(videos)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -316,38 +370,22 @@ public class GetReturnRecordsResponseDataRecords {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("create_time");
-    openapiFields.add("description");
-    openapiFields.add("event");
-    openapiFields.add("images");
-    openapiFields.add("note");
-    openapiFields.add("reason_text");
-    openapiFields.add("role");
-    openapiFields.add("videos");
+    openapiFields = new HashSet<String>(Arrays.asList("create_time", "description", "event", "images", "note", "reason_text", "role", "videos"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetReturnRecordsResponseDataRecords
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetReturnRecordsResponseDataRecords
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetReturnRecordsResponseDataRecords.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetReturnRecordsResponseDataRecords is not found in the empty JSON string", GetReturnRecordsResponseDataRecords.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetReturnRecordsResponseDataRecords.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetReturnRecordsResponseDataRecords` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -411,6 +449,28 @@ public class GetReturnRecordsResponseDataRecords {
            @Override
            public void write(JsonWriter out, GetReturnRecordsResponseDataRecords value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -418,29 +478,50 @@ public class GetReturnRecordsResponseDataRecords {
            public GetReturnRecordsResponseDataRecords read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetReturnRecordsResponseDataRecords instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetReturnRecordsResponseDataRecords given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetReturnRecordsResponseDataRecords
-  * @throws IOException if the JSON string is invalid with respect to GetReturnRecordsResponseDataRecords
-  */
+  /**
+   * Create an instance of GetReturnRecordsResponseDataRecords given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetReturnRecordsResponseDataRecords
+   * @throws IOException if the JSON string is invalid with respect to GetReturnRecordsResponseDataRecords
+   */
   public static GetReturnRecordsResponseDataRecords fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetReturnRecordsResponseDataRecords.class);
   }
 
- /**
-  * Convert an instance of GetReturnRecordsResponseDataRecords to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetReturnRecordsResponseDataRecords to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

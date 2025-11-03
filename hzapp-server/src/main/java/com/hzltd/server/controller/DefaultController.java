@@ -1,11 +1,8 @@
 package com.hzltd.server.controller;
 
 import com.hzltd.framework.common.pojo.CommonResult;
-import com.hzltd.module.erplus.service.product.CategoryApi;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
 
 import static com.hzltd.framework.common.exception.enums.GlobalErrorCodeConstants.NOT_IMPLEMENTED;
 
@@ -15,11 +12,9 @@ import static com.hzltd.framework.common.exception.enums.GlobalErrorCodeConstant
  *
  * @author 翰展科技
  */
-@RestController
+//@RestController
 public class DefaultController {
 
-//    @Resource
-    private CategoryApi categoryApi;
 
     @RequestMapping("/admin-api/bpm/**")
     public CommonResult<Boolean> bpm404() {
@@ -41,7 +36,7 @@ public class DefaultController {
                 "[商城系统 hzapp-module-mall - 已禁用][参考 https://help.h2z.ltd/mall/build/ 开启]");
     }
 
-    @RequestMapping("/admin-api/erp/**")
+//    @RequestMapping("/admin-api/erp/**")
     public CommonResult<Boolean> erp404() {
         return CommonResult.error(NOT_IMPLEMENTED.getCode(),
                 "[ERP 模块 hzapp-module-erp - 已禁用][参考 https://help.h2z.ltd/erp/build/ 开启]");

@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,346 +52,363 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders {
   public static final String SERIALIZED_NAME_ABNORMAL_QUANTITY = "abnormal_quantity";
   @SerializedName(SERIALIZED_NAME_ABNORMAL_QUANTITY)
+  @javax.annotation.Nullable
   private String abnormalQuantity;
 
   public static final String SERIALIZED_NAME_ABNORMALITY_REGISTER_IMAGE_URL = "abnormality_register_image_url";
   @SerializedName(SERIALIZED_NAME_ABNORMALITY_REGISTER_IMAGE_URL)
+  @javax.annotation.Nullable
   private String abnormalityRegisterImageUrl;
 
   public static final String SERIALIZED_NAME_CATEGORY_ID = "category_id";
   @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  @javax.annotation.Nullable
   private String categoryId;
 
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DELIVERY_ORDER_CODE = "delivery_order_code";
   @SerializedName(SERIALIZED_NAME_DELIVERY_ORDER_CODE)
+  @javax.annotation.Nullable
   private String deliveryOrderCode;
 
   public static final String SERIALIZED_NAME_HANDLE_METHOD = "handle_method";
   @SerializedName(SERIALIZED_NAME_HANDLE_METHOD)
+  @javax.annotation.Nullable
   private String handleMethod;
 
   public static final String SERIALIZED_NAME_INSPECT_ORDER_CODE = "inspect_order_code";
   @SerializedName(SERIALIZED_NAME_INSPECT_ORDER_CODE)
+  @javax.annotation.Nullable
   private String inspectOrderCode;
 
   public static final String SERIALIZED_NAME_PLATFORM_SPU_CODE = "platform_spu_code";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SPU_CODE)
+  @javax.annotation.Nullable
   private String platformSpuCode;
 
   public static final String SERIALIZED_NAME_QUALITY_CHECK_RESULT = "quality_check_result";
   @SerializedName(SERIALIZED_NAME_QUALITY_CHECK_RESULT)
+  @javax.annotation.Nullable
   private String qualityCheckResult;
 
   public static final String SERIALIZED_NAME_RELATIVE_RETURN_STATUS = "relative_return_status";
   @SerializedName(SERIALIZED_NAME_RELATIVE_RETURN_STATUS)
+  @javax.annotation.Nullable
   private String relativeReturnStatus;
 
   public static final String SERIALIZED_NAME_REMARK = "remark";
   @SerializedName(SERIALIZED_NAME_REMARK)
+  @javax.annotation.Nullable
   private String remark;
 
   public static final String SERIALIZED_NAME_RETURN_ORDER_CODE = "return_order_code";
   @SerializedName(SERIALIZED_NAME_RETURN_ORDER_CODE)
+  @javax.annotation.Nullable
   private String returnOrderCode;
 
   public static final String SERIALIZED_NAME_SKC = "skc";
   @SerializedName(SERIALIZED_NAME_SKC)
+  @javax.annotation.Nullable
   private GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkc skc;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkus> skus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STOCKUP_ORDER_CODE = "stockup_order_code";
   @SerializedName(SERIALIZED_NAME_STOCKUP_ORDER_CODE)
+  @javax.annotation.Nullable
   private String stockupOrderCode;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders() {
   }
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders abnormalQuantity(String abnormalQuantity) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders abnormalQuantity(@javax.annotation.Nullable String abnormalQuantity) {
     this.abnormalQuantity = abnormalQuantity;
     return this;
   }
 
-   /**
+  /**
    * The count of abnormality
    * @return abnormalQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public String getAbnormalQuantity() {
     return abnormalQuantity;
   }
 
-  public void setAbnormalQuantity(String abnormalQuantity) {
+  public void setAbnormalQuantity(@javax.annotation.Nullable String abnormalQuantity) {
     this.abnormalQuantity = abnormalQuantity;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders abnormalityRegisterImageUrl(String abnormalityRegisterImageUrl) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders abnormalityRegisterImageUrl(@javax.annotation.Nullable String abnormalityRegisterImageUrl) {
     this.abnormalityRegisterImageUrl = abnormalityRegisterImageUrl;
     return this;
   }
 
-   /**
+  /**
    * The image url address when abnormal register
    * @return abnormalityRegisterImageUrl
-  **/
+   */
   @javax.annotation.Nullable
   public String getAbnormalityRegisterImageUrl() {
     return abnormalityRegisterImageUrl;
   }
 
-  public void setAbnormalityRegisterImageUrl(String abnormalityRegisterImageUrl) {
+  public void setAbnormalityRegisterImageUrl(@javax.annotation.Nullable String abnormalityRegisterImageUrl) {
     this.abnormalityRegisterImageUrl = abnormalityRegisterImageUrl;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders categoryId(String categoryId) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders categoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
     return this;
   }
 
-   /**
+  /**
    * The category ID of product which has been defined by platform.
    * @return categoryId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(String categoryId) {
+  public void setCategoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders code(String code) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * The code of abnormal order.
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders createTime(Long createTime) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The creation time of abnormal order
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders deliveryOrderCode(String deliveryOrderCode) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders deliveryOrderCode(@javax.annotation.Nullable String deliveryOrderCode) {
     this.deliveryOrderCode = deliveryOrderCode;
     return this;
   }
 
-   /**
+  /**
    * The code of the delivery order
    * @return deliveryOrderCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryOrderCode() {
     return deliveryOrderCode;
   }
 
-  public void setDeliveryOrderCode(String deliveryOrderCode) {
+  public void setDeliveryOrderCode(@javax.annotation.Nullable String deliveryOrderCode) {
     this.deliveryOrderCode = deliveryOrderCode;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders handleMethod(String handleMethod) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders handleMethod(@javax.annotation.Nullable String handleMethod) {
     this.handleMethod = handleMethod;
     return this;
   }
 
-   /**
+  /**
    * Actions of handling the abnormal situation. 
    * @return handleMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandleMethod() {
     return handleMethod;
   }
 
-  public void setHandleMethod(String handleMethod) {
+  public void setHandleMethod(@javax.annotation.Nullable String handleMethod) {
     this.handleMethod = handleMethod;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders inspectOrderCode(String inspectOrderCode) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders inspectOrderCode(@javax.annotation.Nullable String inspectOrderCode) {
     this.inspectOrderCode = inspectOrderCode;
     return this;
   }
 
-   /**
+  /**
    * The code of the inspection order
    * @return inspectOrderCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getInspectOrderCode() {
     return inspectOrderCode;
   }
 
-  public void setInspectOrderCode(String inspectOrderCode) {
+  public void setInspectOrderCode(@javax.annotation.Nullable String inspectOrderCode) {
     this.inspectOrderCode = inspectOrderCode;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders platformSpuCode(String platformSpuCode) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders platformSpuCode(@javax.annotation.Nullable String platformSpuCode) {
     this.platformSpuCode = platformSpuCode;
     return this;
   }
 
-   /**
+  /**
    * The SPU code of TikTok Shop.
    * @return platformSpuCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformSpuCode() {
     return platformSpuCode;
   }
 
-  public void setPlatformSpuCode(String platformSpuCode) {
+  public void setPlatformSpuCode(@javax.annotation.Nullable String platformSpuCode) {
     this.platformSpuCode = platformSpuCode;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders qualityCheckResult(String qualityCheckResult) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders qualityCheckResult(@javax.annotation.Nullable String qualityCheckResult) {
     this.qualityCheckResult = qualityCheckResult;
     return this;
   }
 
-   /**
+  /**
    * The result of the quality check
    * @return qualityCheckResult
-  **/
+   */
   @javax.annotation.Nullable
   public String getQualityCheckResult() {
     return qualityCheckResult;
   }
 
-  public void setQualityCheckResult(String qualityCheckResult) {
+  public void setQualityCheckResult(@javax.annotation.Nullable String qualityCheckResult) {
     this.qualityCheckResult = qualityCheckResult;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders relativeReturnStatus(String relativeReturnStatus) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders relativeReturnStatus(@javax.annotation.Nullable String relativeReturnStatus) {
     this.relativeReturnStatus = relativeReturnStatus;
     return this;
   }
 
-   /**
+  /**
    * The list of status of return order. Possible enumerations are:  1. OPERATER_CONFIRMING：Merchants have initiated the return order. The order is yet to be confirmed by the platform. 2. MERCHANT_CONFIRMING：Platform has initiated the return order. The order is yet to be confirmed by the merchants. 3. TO_TRANSIT: Waiting for transit in the warehouse. 4. IN_TRANSIT: transiting in the warehouse. 5. OUTBOUND：Transit finished in the warehouse. Ready for pick up. 6. SHIPPED： Return packages have been collected by logistics. 7. COMPLETED：The return process has been completed. 8. CANCELED：The return process has been cancelled.
    * @return relativeReturnStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getRelativeReturnStatus() {
     return relativeReturnStatus;
   }
 
-  public void setRelativeReturnStatus(String relativeReturnStatus) {
+  public void setRelativeReturnStatus(@javax.annotation.Nullable String relativeReturnStatus) {
     this.relativeReturnStatus = relativeReturnStatus;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders remark(String remark) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders remark(@javax.annotation.Nullable String remark) {
     this.remark = remark;
     return this;
   }
 
-   /**
+  /**
    * The remark of handling abnormal order.
    * @return remark
-  **/
+   */
   @javax.annotation.Nullable
   public String getRemark() {
     return remark;
   }
 
-  public void setRemark(String remark) {
+  public void setRemark(@javax.annotation.Nullable String remark) {
     this.remark = remark;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders returnOrderCode(String returnOrderCode) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders returnOrderCode(@javax.annotation.Nullable String returnOrderCode) {
     this.returnOrderCode = returnOrderCode;
     return this;
   }
 
-   /**
+  /**
    * The code of the return order
    * @return returnOrderCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnOrderCode() {
     return returnOrderCode;
   }
 
-  public void setReturnOrderCode(String returnOrderCode) {
+  public void setReturnOrderCode(@javax.annotation.Nullable String returnOrderCode) {
     this.returnOrderCode = returnOrderCode;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders skc(GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkc skc) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders skc(@javax.annotation.Nullable GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkc skc) {
     this.skc = skc;
     return this;
   }
 
-   /**
+  /**
    * Get skc
    * @return skc
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkc getSkc() {
     return skc;
   }
 
-  public void setSkc(GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkc skc) {
+  public void setSkc(@javax.annotation.Nullable GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkc skc) {
     this.skc = skc;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders skus(List<GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkus> skus) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders skus(@javax.annotation.Nullable List<GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -405,55 +421,100 @@ public class GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders {
     return this;
   }
 
-   /**
+  /**
    * The information list for SKU of TikTok Shop.
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrdersSkus> skus) {
     this.skus = skus;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders stockupOrderCode(String stockupOrderCode) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders stockupOrderCode(@javax.annotation.Nullable String stockupOrderCode) {
     this.stockupOrderCode = stockupOrderCode;
     return this;
   }
 
-   /**
+  /**
    * The code of the stockup order
    * @return stockupOrderCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getStockupOrderCode() {
     return stockupOrderCode;
   }
 
-  public void setStockupOrderCode(String stockupOrderCode) {
+  public void setStockupOrderCode(@javax.annotation.Nullable String stockupOrderCode) {
     this.stockupOrderCode = stockupOrderCode;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders type(String type) {
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The list of abnormal type. Possible enumerations are:  1. AT_PLATFORM_DELIVERY_TRANS_TIMEOUT：Shipping timeout of platform logistics  2. AT_SELF_DELIVERY_TRANS_TIMEOUT：Shipping timeout of self delivery   3. AT_LOGISTICS_DAMAGE：Shipment damage 4. AT_LOGISTICS_PKG_ATTACH_MULTI_DELIVERY_ORDER：Multiple delivery orders are attached to the logistics package  5. AT_DELIVERY_PKG_BOX_MARK_NO_RECOGNIZED：The logistics parcel mark can not be recognized  6. AT_DELIVERY_PACKAGE_NO_BOX_MARK：The delivery package is not labeled  7. AT_DELIVERY_ORDER_NO_DELIVERYED：The delivery order hasn&#39;t been confirmed shipment 8. AT_DELIVERY_ORDER_CANCELED: The delivery order has been cancelled  9. AT_QUANTITY_ABNORMAL_MORE: The quantity of goods is excessive 10. AT_MISPLACED_GOODS: Wrong goods  11. AT_WRONG_BARCODE: The barcode is wrong labelled 12. AT_BARCODE_DAMAGED_DIRTY: The barcode is damaged or dirty 13. AT_PRODUCT_EXPANSION_BAG: The package of product is bulging  14. AT_PRODUCT_DAMAGED_DIRTY: The product is damaged or soiled  15. AT_MISSING_PACKAGE: The goods exceed the size limit 16. AT_ABNORMAL_QUANTITY：Shortage of goods 17. AT_PLATFORM_DELIVERY_TRANS_TIMEOUT：The delivery package has not arrived 18. AT_ABNORMAL_QUALITY：Failed in the quality check during inbound. 19. AT_INSPECT_QUALITY：Failed in the quality check during inspection.
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders instance itself
+   */
+  public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -483,12 +544,13 @@ public class GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders {
         Objects.equals(this.skc, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.skc) &&
         Objects.equals(this.skus, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.skus) &&
         Objects.equals(this.stockupOrderCode, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.stockupOrderCode) &&
-        Objects.equals(this.type, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.type);
+        Objects.equals(this.type, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.type)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(abnormalQuantity, abnormalityRegisterImageUrl, categoryId, code, createTime, deliveryOrderCode, handleMethod, inspectOrderCode, platformSpuCode, qualityCheckResult, relativeReturnStatus, remark, returnOrderCode, skc, skus, stockupOrderCode, type);
+    return Objects.hash(abnormalQuantity, abnormalityRegisterImageUrl, categoryId, code, createTime, deliveryOrderCode, handleMethod, inspectOrderCode, platformSpuCode, qualityCheckResult, relativeReturnStatus, remark, returnOrderCode, skc, skus, stockupOrderCode, type, additionalProperties);
   }
 
   @Override
@@ -512,6 +574,7 @@ public class GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders {
     sb.append("    skus: ").append(toIndentedString(skus)).append("\n");
     sb.append("    stockupOrderCode: ").append(toIndentedString(stockupOrderCode)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -533,47 +596,22 @@ public class GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("abnormal_quantity");
-    openapiFields.add("abnormality_register_image_url");
-    openapiFields.add("category_id");
-    openapiFields.add("code");
-    openapiFields.add("create_time");
-    openapiFields.add("delivery_order_code");
-    openapiFields.add("handle_method");
-    openapiFields.add("inspect_order_code");
-    openapiFields.add("platform_spu_code");
-    openapiFields.add("quality_check_result");
-    openapiFields.add("relative_return_status");
-    openapiFields.add("remark");
-    openapiFields.add("return_order_code");
-    openapiFields.add("skc");
-    openapiFields.add("skus");
-    openapiFields.add("stockup_order_code");
-    openapiFields.add("type");
+    openapiFields = new HashSet<String>(Arrays.asList("abnormal_quantity", "abnormality_register_image_url", "category_id", "code", "create_time", "delivery_order_code", "handle_method", "inspect_order_code", "platform_spu_code", "quality_check_result", "relative_return_status", "remark", "return_order_code", "skc", "skus", "stockup_order_code", "type"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders is not found in the empty JSON string", GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -654,6 +692,28 @@ public class GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders {
            @Override
            public void write(JsonWriter out, GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -661,29 +721,50 @@ public class GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders {
            public GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders
-  */
+  /**
+   * Create an instance of GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders
+   */
   public static GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchAbnormalOrdersResponseDataAbnormalOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

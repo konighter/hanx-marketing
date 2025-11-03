@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,62 +51,65 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetGlobalProductResponseDataProductsSkuMappings
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetGlobalProductResponseDataProductsSkuMappings {
   public static final String SERIALIZED_NAME_GLOBAL_SKU_ID = "global_sku_id";
   @SerializedName(SERIALIZED_NAME_GLOBAL_SKU_ID)
+  @javax.annotation.Nullable
   private String globalSkuId;
 
   public static final String SERIALIZED_NAME_LOCAL_SKU_ID = "local_sku_id";
   @SerializedName(SERIALIZED_NAME_LOCAL_SKU_ID)
+  @javax.annotation.Nullable
   private String localSkuId;
 
   public static final String SERIALIZED_NAME_SALES_ATTRIBUTE_MAPPINGS = "sales_attribute_mappings";
   @SerializedName(SERIALIZED_NAME_SALES_ATTRIBUTE_MAPPINGS)
+  @javax.annotation.Nullable
   private List<GetGlobalProductResponseDataProductsSkuMappingsSalesAttributeMappings> salesAttributeMappings = new ArrayList<>();
 
   public GetGlobalProductResponseDataProductsSkuMappings() {
   }
 
-  public GetGlobalProductResponseDataProductsSkuMappings globalSkuId(String globalSkuId) {
+  public GetGlobalProductResponseDataProductsSkuMappings globalSkuId(@javax.annotation.Nullable String globalSkuId) {
     this.globalSkuId = globalSkuId;
     return this;
   }
 
-   /**
+  /**
    * The global SKU ID in TikTok Shop.
    * @return globalSkuId
-  **/
+   */
   @javax.annotation.Nullable
   public String getGlobalSkuId() {
     return globalSkuId;
   }
 
-  public void setGlobalSkuId(String globalSkuId) {
+  public void setGlobalSkuId(@javax.annotation.Nullable String globalSkuId) {
     this.globalSkuId = globalSkuId;
   }
 
 
-  public GetGlobalProductResponseDataProductsSkuMappings localSkuId(String localSkuId) {
+  public GetGlobalProductResponseDataProductsSkuMappings localSkuId(@javax.annotation.Nullable String localSkuId) {
     this.localSkuId = localSkuId;
     return this;
   }
 
-   /**
+  /**
    * The local SKU ID in TikTok Shop.
    * @return localSkuId
-  **/
+   */
   @javax.annotation.Nullable
   public String getLocalSkuId() {
     return localSkuId;
   }
 
-  public void setLocalSkuId(String localSkuId) {
+  public void setLocalSkuId(@javax.annotation.Nullable String localSkuId) {
     this.localSkuId = localSkuId;
   }
 
 
-  public GetGlobalProductResponseDataProductsSkuMappings salesAttributeMappings(List<GetGlobalProductResponseDataProductsSkuMappingsSalesAttributeMappings> salesAttributeMappings) {
+  public GetGlobalProductResponseDataProductsSkuMappings salesAttributeMappings(@javax.annotation.Nullable List<GetGlobalProductResponseDataProductsSkuMappingsSalesAttributeMappings> salesAttributeMappings) {
     this.salesAttributeMappings = salesAttributeMappings;
     return this;
   }
@@ -120,17 +122,62 @@ public class GetGlobalProductResponseDataProductsSkuMappings {
     return this;
   }
 
-   /**
+  /**
    * The list of sales attribute mappings between the global and local SKUs.
    * @return salesAttributeMappings
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalProductResponseDataProductsSkuMappingsSalesAttributeMappings> getSalesAttributeMappings() {
     return salesAttributeMappings;
   }
 
-  public void setSalesAttributeMappings(List<GetGlobalProductResponseDataProductsSkuMappingsSalesAttributeMappings> salesAttributeMappings) {
+  public void setSalesAttributeMappings(@javax.annotation.Nullable List<GetGlobalProductResponseDataProductsSkuMappingsSalesAttributeMappings> salesAttributeMappings) {
     this.salesAttributeMappings = salesAttributeMappings;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetGlobalProductResponseDataProductsSkuMappings instance itself
+   */
+  public GetGlobalProductResponseDataProductsSkuMappings putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -146,12 +193,13 @@ public class GetGlobalProductResponseDataProductsSkuMappings {
     GetGlobalProductResponseDataProductsSkuMappings product202309GetGlobalProductResponseDataProductsSkuMappings = (GetGlobalProductResponseDataProductsSkuMappings) o;
     return Objects.equals(this.globalSkuId, product202309GetGlobalProductResponseDataProductsSkuMappings.globalSkuId) &&
         Objects.equals(this.localSkuId, product202309GetGlobalProductResponseDataProductsSkuMappings.localSkuId) &&
-        Objects.equals(this.salesAttributeMappings, product202309GetGlobalProductResponseDataProductsSkuMappings.salesAttributeMappings);
+        Objects.equals(this.salesAttributeMappings, product202309GetGlobalProductResponseDataProductsSkuMappings.salesAttributeMappings)&&
+        Objects.equals(this.additionalProperties, product202309GetGlobalProductResponseDataProductsSkuMappings.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(globalSkuId, localSkuId, salesAttributeMappings);
+    return Objects.hash(globalSkuId, localSkuId, salesAttributeMappings, additionalProperties);
   }
 
   @Override
@@ -161,6 +209,7 @@ public class GetGlobalProductResponseDataProductsSkuMappings {
     sb.append("    globalSkuId: ").append(toIndentedString(globalSkuId)).append("\n");
     sb.append("    localSkuId: ").append(toIndentedString(localSkuId)).append("\n");
     sb.append("    salesAttributeMappings: ").append(toIndentedString(salesAttributeMappings)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,33 +231,22 @@ public class GetGlobalProductResponseDataProductsSkuMappings {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("global_sku_id");
-    openapiFields.add("local_sku_id");
-    openapiFields.add("sales_attribute_mappings");
+    openapiFields = new HashSet<String>(Arrays.asList("global_sku_id", "local_sku_id", "sales_attribute_mappings"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetGlobalProductResponseDataProductsSkuMappings
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetGlobalProductResponseDataProductsSkuMappings
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetGlobalProductResponseDataProductsSkuMappings.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetGlobalProductResponseDataProductsSkuMappings is not found in the empty JSON string", GetGlobalProductResponseDataProductsSkuMappings.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetGlobalProductResponseDataProductsSkuMappings.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetGlobalProductResponseDataProductsSkuMappings` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -249,6 +287,28 @@ public class GetGlobalProductResponseDataProductsSkuMappings {
            @Override
            public void write(JsonWriter out, GetGlobalProductResponseDataProductsSkuMappings value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -256,29 +316,50 @@ public class GetGlobalProductResponseDataProductsSkuMappings {
            public GetGlobalProductResponseDataProductsSkuMappings read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetGlobalProductResponseDataProductsSkuMappings instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetGlobalProductResponseDataProductsSkuMappings given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetGlobalProductResponseDataProductsSkuMappings
-  * @throws IOException if the JSON string is invalid with respect to GetGlobalProductResponseDataProductsSkuMappings
-  */
+  /**
+   * Create an instance of GetGlobalProductResponseDataProductsSkuMappings given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetGlobalProductResponseDataProductsSkuMappings
+   * @throws IOException if the JSON string is invalid with respect to GetGlobalProductResponseDataProductsSkuMappings
+   */
   public static GetGlobalProductResponseDataProductsSkuMappings fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetGlobalProductResponseDataProductsSkuMappings.class);
   }
 
- /**
-  * Convert an instance of GetGlobalProductResponseDataProductsSkuMappings to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetGlobalProductResponseDataProductsSkuMappings to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

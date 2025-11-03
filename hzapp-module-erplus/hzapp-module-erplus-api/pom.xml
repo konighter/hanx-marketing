@@ -22,6 +22,11 @@
             <artifactId>hzapp-common</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+
         <!-- 参数校验 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

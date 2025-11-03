@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,200 +51,209 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * QualityFactoryOrderDataImportAPIRequestBodyOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class QualityFactoryOrderDataImportAPIRequestBodyOrders {
   public static final String SERIALIZED_NAME_CHANNEL_FINANCIAL_STATUS = "channel_financial_status";
   @SerializedName(SERIALIZED_NAME_CHANNEL_FINANCIAL_STATUS)
+  @javax.annotation.Nullable
   private String channelFinancialStatus;
 
   public static final String SERIALIZED_NAME_CHANNEL_FULFILLMENT_STATUS = "channel_fulfillment_status";
   @SerializedName(SERIALIZED_NAME_CHANNEL_FULFILLMENT_STATUS)
+  @javax.annotation.Nullable
   private String channelFulfillmentStatus;
 
   public static final String SERIALIZED_NAME_CHANNEL_ORDER_ID = "channel_order_id";
   @SerializedName(SERIALIZED_NAME_CHANNEL_ORDER_ID)
+  @javax.annotation.Nullable
   private String channelOrderId;
 
   public static final String SERIALIZED_NAME_CHANNEL_ORDER_STATUS = "channel_order_status";
   @SerializedName(SERIALIZED_NAME_CHANNEL_ORDER_STATUS)
+  @javax.annotation.Nullable
   private String channelOrderStatus;
 
   public static final String SERIALIZED_NAME_CHANNEL_ORDER_UPDATE_TIME = "channel_order_update_time";
   @SerializedName(SERIALIZED_NAME_CHANNEL_ORDER_UPDATE_TIME)
+  @javax.annotation.Nullable
   private String channelOrderUpdateTime;
 
   public static final String SERIALIZED_NAME_CHANNEL_TYPE = "channel_type";
   @SerializedName(SERIALIZED_NAME_CHANNEL_TYPE)
+  @javax.annotation.Nullable
   private String channelType;
 
   public static final String SERIALIZED_NAME_NOT_EXIST_REASON = "not_exist_reason";
   @SerializedName(SERIALIZED_NAME_NOT_EXIST_REASON)
+  @javax.annotation.Nullable
   private String notExistReason;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_PACKAGES = "packages";
   @SerializedName(SERIALIZED_NAME_PACKAGES)
+  @javax.annotation.Nullable
   private List<QualityFactoryOrderDataImportAPIRequestBodyOrdersPackages> packages = new ArrayList<>();
 
   public QualityFactoryOrderDataImportAPIRequestBodyOrders() {
   }
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelFinancialStatus(String channelFinancialStatus) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelFinancialStatus(@javax.annotation.Nullable String channelFinancialStatus) {
     this.channelFinancialStatus = channelFinancialStatus;
     return this;
   }
 
-   /**
+  /**
    * If &#39;channel_type&#39; is SHOPIFY,the financial status enumeration, data not in the following enumeration will return an error. shopify financial status: PENDING AUTHORIZED OVERDUE EXPIRING EXPIRED PAID REFUNDED PARTIALLY_REFUNDED PARTIALLY_PAID VOIDED UNPAID
    * @return channelFinancialStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getChannelFinancialStatus() {
     return channelFinancialStatus;
   }
 
-  public void setChannelFinancialStatus(String channelFinancialStatus) {
+  public void setChannelFinancialStatus(@javax.annotation.Nullable String channelFinancialStatus) {
     this.channelFinancialStatus = channelFinancialStatus;
   }
 
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelFulfillmentStatus(String channelFulfillmentStatus) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelFulfillmentStatus(@javax.annotation.Nullable String channelFulfillmentStatus) {
     this.channelFulfillmentStatus = channelFulfillmentStatus;
     return this;
   }
 
-   /**
+  /**
    * If &#39;channel_type&#39; is SHOPIFY,the fulfillment status enumeration, data not in the following enumeration will return an error.  Shopify fulfillment status: FULFILLED ON_HOLD PARTIALLY_FULFILLED UNFULFILLED SCHEDULED
    * @return channelFulfillmentStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getChannelFulfillmentStatus() {
     return channelFulfillmentStatus;
   }
 
-  public void setChannelFulfillmentStatus(String channelFulfillmentStatus) {
+  public void setChannelFulfillmentStatus(@javax.annotation.Nullable String channelFulfillmentStatus) {
     this.channelFulfillmentStatus = channelFulfillmentStatus;
   }
 
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelOrderId(String channelOrderId) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelOrderId(@javax.annotation.Nullable String channelOrderId) {
     this.channelOrderId = channelOrderId;
     return this;
   }
 
-   /**
+  /**
    * Direct To Consumer System order id 
    * @return channelOrderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getChannelOrderId() {
     return channelOrderId;
   }
 
-  public void setChannelOrderId(String channelOrderId) {
+  public void setChannelOrderId(@javax.annotation.Nullable String channelOrderId) {
     this.channelOrderId = channelOrderId;
   }
 
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelOrderStatus(String channelOrderStatus) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelOrderStatus(@javax.annotation.Nullable String channelOrderStatus) {
     this.channelOrderStatus = channelOrderStatus;
     return this;
   }
 
-   /**
+  /**
    * The order status enumeration under the corresponding &#39;channel_type&#39;, and an error will be returned for data outside the enumeration under the &#39;channel_type&#39;. The correspondence between &#39;channel_type&#39; and order status is as follows.  1. channel_type is &#39;SHOPIFY&#39; correspondence order status: OPEN ARCHIVED CANCELED  2. channel_type is &#39;WOOCOMMERCE&#39; correspondence order status: PENDING ON_HOLD PROCESSING COMPLETED REFUNDED  3. channel_type is &#39;BIGCOMMERCE&#39; correspondence order status: AWAITING_PAYMENT AWAITING_FULFILLMENT AWATING_SHIPMENT PARTIALLY_SHIPPED INCOMPLETE MANUAL_VERIFICATION_REQUIRED SHIPPED CANCELLED REFUND PENDING  4. channel_type is &#39;MAGENTO&#39; correspondence order status: NEW PROCESSING PENDING COMPLETE CLOSED PENDING_PAYMENT ON_HOLD
    * @return channelOrderStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getChannelOrderStatus() {
     return channelOrderStatus;
   }
 
-  public void setChannelOrderStatus(String channelOrderStatus) {
+  public void setChannelOrderStatus(@javax.annotation.Nullable String channelOrderStatus) {
     this.channelOrderStatus = channelOrderStatus;
   }
 
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelOrderUpdateTime(String channelOrderUpdateTime) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelOrderUpdateTime(@javax.annotation.Nullable String channelOrderUpdateTime) {
     this.channelOrderUpdateTime = channelOrderUpdateTime;
     return this;
   }
 
-   /**
+  /**
    * The update timestamp of the order on the DTC, not the current api call time. Unit: second, the length must be 10. The value must less than current timestamp.
    * @return channelOrderUpdateTime
-  **/
+   */
   @javax.annotation.Nullable
   public String getChannelOrderUpdateTime() {
     return channelOrderUpdateTime;
   }
 
-  public void setChannelOrderUpdateTime(String channelOrderUpdateTime) {
+  public void setChannelOrderUpdateTime(@javax.annotation.Nullable String channelOrderUpdateTime) {
     this.channelOrderUpdateTime = channelOrderUpdateTime;
   }
 
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelType(String channelType) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders channelType(@javax.annotation.Nullable String channelType) {
     this.channelType = channelType;
     return this;
   }
 
-   /**
+  /**
    * DTC channel type enumeration, data not in the following enumeration will return an error: SHOPIFY WOOCOMMERCE BIGCOMMERCE MAGENTO
    * @return channelType
-  **/
+   */
   @javax.annotation.Nullable
   public String getChannelType() {
     return channelType;
   }
 
-  public void setChannelType(String channelType) {
+  public void setChannelType(@javax.annotation.Nullable String channelType) {
     this.channelType = channelType;
   }
 
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders notExistReason(String notExistReason) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders notExistReason(@javax.annotation.Nullable String notExistReason) {
     this.notExistReason = notExistReason;
     return this;
   }
 
-   /**
+  /**
    * The reason of that there is no matched order in channel platform
    * @return notExistReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getNotExistReason() {
     return notExistReason;
   }
 
-  public void setNotExistReason(String notExistReason) {
+  public void setNotExistReason(@javax.annotation.Nullable String notExistReason) {
     this.notExistReason = notExistReason;
   }
 
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders orderId(String orderId) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * Tiktok shop&#39;s order id, must be a pure numeric string.
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public QualityFactoryOrderDataImportAPIRequestBodyOrders packages(List<QualityFactoryOrderDataImportAPIRequestBodyOrdersPackages> packages) {
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders packages(@javax.annotation.Nullable List<QualityFactoryOrderDataImportAPIRequestBodyOrdersPackages> packages) {
     this.packages = packages;
     return this;
   }
@@ -258,17 +266,62 @@ public class QualityFactoryOrderDataImportAPIRequestBodyOrders {
     return this;
   }
 
-   /**
+  /**
    * the package information list of order
    * @return packages
-  **/
+   */
   @javax.annotation.Nullable
   public List<QualityFactoryOrderDataImportAPIRequestBodyOrdersPackages> getPackages() {
     return packages;
   }
 
-  public void setPackages(List<QualityFactoryOrderDataImportAPIRequestBodyOrdersPackages> packages) {
+  public void setPackages(@javax.annotation.Nullable List<QualityFactoryOrderDataImportAPIRequestBodyOrdersPackages> packages) {
     this.packages = packages;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the QualityFactoryOrderDataImportAPIRequestBodyOrders instance itself
+   */
+  public QualityFactoryOrderDataImportAPIRequestBodyOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -290,12 +343,13 @@ public class QualityFactoryOrderDataImportAPIRequestBodyOrders {
         Objects.equals(this.channelType, dataReconciliation202310QualityFactoryOrderDataImportAPIRequestBodyOrders.channelType) &&
         Objects.equals(this.notExistReason, dataReconciliation202310QualityFactoryOrderDataImportAPIRequestBodyOrders.notExistReason) &&
         Objects.equals(this.orderId, dataReconciliation202310QualityFactoryOrderDataImportAPIRequestBodyOrders.orderId) &&
-        Objects.equals(this.packages, dataReconciliation202310QualityFactoryOrderDataImportAPIRequestBodyOrders.packages);
+        Objects.equals(this.packages, dataReconciliation202310QualityFactoryOrderDataImportAPIRequestBodyOrders.packages)&&
+        Objects.equals(this.additionalProperties, dataReconciliation202310QualityFactoryOrderDataImportAPIRequestBodyOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channelFinancialStatus, channelFulfillmentStatus, channelOrderId, channelOrderStatus, channelOrderUpdateTime, channelType, notExistReason, orderId, packages);
+    return Objects.hash(channelFinancialStatus, channelFulfillmentStatus, channelOrderId, channelOrderStatus, channelOrderUpdateTime, channelType, notExistReason, orderId, packages, additionalProperties);
   }
 
   @Override
@@ -311,6 +365,7 @@ public class QualityFactoryOrderDataImportAPIRequestBodyOrders {
     sb.append("    notExistReason: ").append(toIndentedString(notExistReason)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    packages: ").append(toIndentedString(packages)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -332,39 +387,22 @@ public class QualityFactoryOrderDataImportAPIRequestBodyOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("channel_financial_status");
-    openapiFields.add("channel_fulfillment_status");
-    openapiFields.add("channel_order_id");
-    openapiFields.add("channel_order_status");
-    openapiFields.add("channel_order_update_time");
-    openapiFields.add("channel_type");
-    openapiFields.add("not_exist_reason");
-    openapiFields.add("order_id");
-    openapiFields.add("packages");
+    openapiFields = new HashSet<String>(Arrays.asList("channel_financial_status", "channel_fulfillment_status", "channel_order_id", "channel_order_status", "channel_order_update_time", "channel_type", "not_exist_reason", "order_id", "packages"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to QualityFactoryOrderDataImportAPIRequestBodyOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to QualityFactoryOrderDataImportAPIRequestBodyOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!QualityFactoryOrderDataImportAPIRequestBodyOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in QualityFactoryOrderDataImportAPIRequestBodyOrders is not found in the empty JSON string", QualityFactoryOrderDataImportAPIRequestBodyOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!QualityFactoryOrderDataImportAPIRequestBodyOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `QualityFactoryOrderDataImportAPIRequestBodyOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -423,6 +461,28 @@ public class QualityFactoryOrderDataImportAPIRequestBodyOrders {
            @Override
            public void write(JsonWriter out, QualityFactoryOrderDataImportAPIRequestBodyOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -430,29 +490,50 @@ public class QualityFactoryOrderDataImportAPIRequestBodyOrders {
            public QualityFactoryOrderDataImportAPIRequestBodyOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             QualityFactoryOrderDataImportAPIRequestBodyOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of QualityFactoryOrderDataImportAPIRequestBodyOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of QualityFactoryOrderDataImportAPIRequestBodyOrders
-  * @throws IOException if the JSON string is invalid with respect to QualityFactoryOrderDataImportAPIRequestBodyOrders
-  */
+  /**
+   * Create an instance of QualityFactoryOrderDataImportAPIRequestBodyOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of QualityFactoryOrderDataImportAPIRequestBodyOrders
+   * @throws IOException if the JSON string is invalid with respect to QualityFactoryOrderDataImportAPIRequestBodyOrders
+   */
   public static QualityFactoryOrderDataImportAPIRequestBodyOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, QualityFactoryOrderDataImportAPIRequestBodyOrders.class);
   }
 
- /**
-  * Convert an instance of QualityFactoryOrderDataImportAPIRequestBodyOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of QualityFactoryOrderDataImportAPIRequestBodyOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

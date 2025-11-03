@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,330 +48,389 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent {
   public static final String SERIALIZED_NAME_CUSTOMER_PAYMENT_AMOUNT = "customer_payment_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_PAYMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String customerPaymentAmount;
 
   public static final String SERIALIZED_NAME_CUSTOMER_REFUND_AMOUNT = "customer_refund_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String customerRefundAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_COFUNDED_DISCOUNT_AMOUNT = "platform_cofunded_discount_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_COFUNDED_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String platformCofundedDiscountAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_COFUNDED_DISCOUNT_REFUND_AMOUNT = "platform_cofunded_discount_refund_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_COFUNDED_DISCOUNT_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String platformCofundedDiscountRefundAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_DISCOUNT_AMOUNT = "platform_discount_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String platformDiscountAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_DISCOUNT_REFUND_AMOUNT = "platform_discount_refund_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_DISCOUNT_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String platformDiscountRefundAmount;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE_AMOUNT = "retail_delivery_fee_amount";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String retailDeliveryFeeAmount;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE_PAYMENT_AMOUNT = "retail_delivery_fee_payment_amount";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE_PAYMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String retailDeliveryFeePaymentAmount;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE_REFUND_AMOUNT = "retail_delivery_fee_refund_amount";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String retailDeliveryFeeRefundAmount;
 
   public static final String SERIALIZED_NAME_SALES_TAX_AMOUNT = "sales_tax_amount";
   @SerializedName(SERIALIZED_NAME_SALES_TAX_AMOUNT)
+  @javax.annotation.Nullable
   private String salesTaxAmount;
 
   public static final String SERIALIZED_NAME_SALES_TAX_PAYMENT_AMOUNT = "sales_tax_payment_amount";
   @SerializedName(SERIALIZED_NAME_SALES_TAX_PAYMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String salesTaxPaymentAmount;
 
   public static final String SERIALIZED_NAME_SALES_TAX_REFUND_AMOUNT = "sales_tax_refund_amount";
   @SerializedName(SERIALIZED_NAME_SALES_TAX_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String salesTaxRefundAmount;
 
   public static final String SERIALIZED_NAME_SELLER_COFUNDED_DISCOUNT_AMOUNT = "seller_cofunded_discount_amount";
   @SerializedName(SERIALIZED_NAME_SELLER_COFUNDED_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String sellerCofundedDiscountAmount;
 
   public static final String SERIALIZED_NAME_SELLER_COFUNDED_DISCOUNT_REFUND_AMOUNT = "seller_cofunded_discount_refund_amount";
   @SerializedName(SERIALIZED_NAME_SELLER_COFUNDED_DISCOUNT_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String sellerCofundedDiscountRefundAmount;
 
   public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent() {
   }
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent customerPaymentAmount(String customerPaymentAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent customerPaymentAmount(@javax.annotation.Nullable String customerPaymentAmount) {
     this.customerPaymentAmount = customerPaymentAmount;
     return this;
   }
 
-   /**
+  /**
    * The total amount paid by the customer.
    * @return customerPaymentAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerPaymentAmount() {
     return customerPaymentAmount;
   }
 
-  public void setCustomerPaymentAmount(String customerPaymentAmount) {
+  public void setCustomerPaymentAmount(@javax.annotation.Nullable String customerPaymentAmount) {
     this.customerPaymentAmount = customerPaymentAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent customerRefundAmount(String customerRefundAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent customerRefundAmount(@javax.annotation.Nullable String customerRefundAmount) {
     this.customerRefundAmount = customerRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The exact amount refunded to the customer.
    * @return customerRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerRefundAmount() {
     return customerRefundAmount;
   }
 
-  public void setCustomerRefundAmount(String customerRefundAmount) {
+  public void setCustomerRefundAmount(@javax.annotation.Nullable String customerRefundAmount) {
     this.customerRefundAmount = customerRefundAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent platformCofundedDiscountAmount(String platformCofundedDiscountAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent platformCofundedDiscountAmount(@javax.annotation.Nullable String platformCofundedDiscountAmount) {
     this.platformCofundedDiscountAmount = platformCofundedDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The platform&#39;s portion of a co-funded voucher discount in co-funding campaigns.
    * @return platformCofundedDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformCofundedDiscountAmount() {
     return platformCofundedDiscountAmount;
   }
 
-  public void setPlatformCofundedDiscountAmount(String platformCofundedDiscountAmount) {
+  public void setPlatformCofundedDiscountAmount(@javax.annotation.Nullable String platformCofundedDiscountAmount) {
     this.platformCofundedDiscountAmount = platformCofundedDiscountAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent platformCofundedDiscountRefundAmount(String platformCofundedDiscountRefundAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent platformCofundedDiscountRefundAmount(@javax.annotation.Nullable String platformCofundedDiscountRefundAmount) {
     this.platformCofundedDiscountRefundAmount = platformCofundedDiscountRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The platform&#39;s portion of a co-funded voucher discount in co-funding campaigns that was refunded to the platform.
    * @return platformCofundedDiscountRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformCofundedDiscountRefundAmount() {
     return platformCofundedDiscountRefundAmount;
   }
 
-  public void setPlatformCofundedDiscountRefundAmount(String platformCofundedDiscountRefundAmount) {
+  public void setPlatformCofundedDiscountRefundAmount(@javax.annotation.Nullable String platformCofundedDiscountRefundAmount) {
     this.platformCofundedDiscountRefundAmount = platformCofundedDiscountRefundAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent platformDiscountAmount(String platformDiscountAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent platformDiscountAmount(@javax.annotation.Nullable String platformDiscountAmount) {
     this.platformDiscountAmount = platformDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The discounts funded by the platform, such as coupons and campaign discounts.
    * @return platformDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformDiscountAmount() {
     return platformDiscountAmount;
   }
 
-  public void setPlatformDiscountAmount(String platformDiscountAmount) {
+  public void setPlatformDiscountAmount(@javax.annotation.Nullable String platformDiscountAmount) {
     this.platformDiscountAmount = platformDiscountAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent platformDiscountRefundAmount(String platformDiscountRefundAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent platformDiscountRefundAmount(@javax.annotation.Nullable String platformDiscountRefundAmount) {
     this.platformDiscountRefundAmount = platformDiscountRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The platform discounts to be reversed (and deducted from the final settlement) if the order was refunded as a result of the seller&#39;s responsibility.
    * @return platformDiscountRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformDiscountRefundAmount() {
     return platformDiscountRefundAmount;
   }
 
-  public void setPlatformDiscountRefundAmount(String platformDiscountRefundAmount) {
+  public void setPlatformDiscountRefundAmount(@javax.annotation.Nullable String platformDiscountRefundAmount) {
     this.platformDiscountRefundAmount = platformDiscountRefundAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent retailDeliveryFeeAmount(String retailDeliveryFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent retailDeliveryFeeAmount(@javax.annotation.Nullable String retailDeliveryFeeAmount) {
     this.retailDeliveryFeeAmount = retailDeliveryFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The final retail delivery fee for deliveries in Colorado, US. For more information, see [Colorado Retail Delivery Fee FAQ](https://seller-us.tiktok.com/university/essay?knowledge_id&#x3D;2459780628350762&amp;default_language&#x3D;en&amp;identity&#x3D;1).   Formula: retail_delivery_fee_payment + retail_delivery_fee_refund
    * @return retailDeliveryFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFeeAmount() {
     return retailDeliveryFeeAmount;
   }
 
-  public void setRetailDeliveryFeeAmount(String retailDeliveryFeeAmount) {
+  public void setRetailDeliveryFeeAmount(@javax.annotation.Nullable String retailDeliveryFeeAmount) {
     this.retailDeliveryFeeAmount = retailDeliveryFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent retailDeliveryFeePaymentAmount(String retailDeliveryFeePaymentAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent retailDeliveryFeePaymentAmount(@javax.annotation.Nullable String retailDeliveryFeePaymentAmount) {
     this.retailDeliveryFeePaymentAmount = retailDeliveryFeePaymentAmount;
     return this;
   }
 
-   /**
+  /**
    * The retail delivery fee for deliveries in Colorado, US. For more information, see [Colorado Retail Delivery Fee FAQ](https://seller-us.tiktok.com/university/essay?knowledge_id&#x3D;2459780628350762&amp;default_language&#x3D;en&amp;identity&#x3D;1).
    * @return retailDeliveryFeePaymentAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFeePaymentAmount() {
     return retailDeliveryFeePaymentAmount;
   }
 
-  public void setRetailDeliveryFeePaymentAmount(String retailDeliveryFeePaymentAmount) {
+  public void setRetailDeliveryFeePaymentAmount(@javax.annotation.Nullable String retailDeliveryFeePaymentAmount) {
     this.retailDeliveryFeePaymentAmount = retailDeliveryFeePaymentAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent retailDeliveryFeeRefundAmount(String retailDeliveryFeeRefundAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent retailDeliveryFeeRefundAmount(@javax.annotation.Nullable String retailDeliveryFeeRefundAmount) {
     this.retailDeliveryFeeRefundAmount = retailDeliveryFeeRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The retail delivery fee subsidy by the platform for losses due to returns, refunds, or other issues in Colorado, US.
    * @return retailDeliveryFeeRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFeeRefundAmount() {
     return retailDeliveryFeeRefundAmount;
   }
 
-  public void setRetailDeliveryFeeRefundAmount(String retailDeliveryFeeRefundAmount) {
+  public void setRetailDeliveryFeeRefundAmount(@javax.annotation.Nullable String retailDeliveryFeeRefundAmount) {
     this.retailDeliveryFeeRefundAmount = retailDeliveryFeeRefundAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent salesTaxAmount(String salesTaxAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent salesTaxAmount(@javax.annotation.Nullable String salesTaxAmount) {
     this.salesTaxAmount = salesTaxAmount;
     return this;
   }
 
-   /**
+  /**
    * The final sales tax to be paid by the customer for the product and delivery.   Formula: sales_tax_payment_amount - sales_tax_refund_amount
    * @return salesTaxAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSalesTaxAmount() {
     return salesTaxAmount;
   }
 
-  public void setSalesTaxAmount(String salesTaxAmount) {
+  public void setSalesTaxAmount(@javax.annotation.Nullable String salesTaxAmount) {
     this.salesTaxAmount = salesTaxAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent salesTaxPaymentAmount(String salesTaxPaymentAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent salesTaxPaymentAmount(@javax.annotation.Nullable String salesTaxPaymentAmount) {
     this.salesTaxPaymentAmount = salesTaxPaymentAmount;
     return this;
   }
 
-   /**
+  /**
    * The expected sales tax to be paid by the customer for the product and delivery.
    * @return salesTaxPaymentAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSalesTaxPaymentAmount() {
     return salesTaxPaymentAmount;
   }
 
-  public void setSalesTaxPaymentAmount(String salesTaxPaymentAmount) {
+  public void setSalesTaxPaymentAmount(@javax.annotation.Nullable String salesTaxPaymentAmount) {
     this.salesTaxPaymentAmount = salesTaxPaymentAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent salesTaxRefundAmount(String salesTaxRefundAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent salesTaxRefundAmount(@javax.annotation.Nullable String salesTaxRefundAmount) {
     this.salesTaxRefundAmount = salesTaxRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The sales tax amount returned to the customer in the event of a refund.
    * @return salesTaxRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSalesTaxRefundAmount() {
     return salesTaxRefundAmount;
   }
 
-  public void setSalesTaxRefundAmount(String salesTaxRefundAmount) {
+  public void setSalesTaxRefundAmount(@javax.annotation.Nullable String salesTaxRefundAmount) {
     this.salesTaxRefundAmount = salesTaxRefundAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent sellerCofundedDiscountAmount(String sellerCofundedDiscountAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent sellerCofundedDiscountAmount(@javax.annotation.Nullable String sellerCofundedDiscountAmount) {
     this.sellerCofundedDiscountAmount = sellerCofundedDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The seller&#39;s portion of a co-funded voucher discount in co-funding campaigns.
    * @return sellerCofundedDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerCofundedDiscountAmount() {
     return sellerCofundedDiscountAmount;
   }
 
-  public void setSellerCofundedDiscountAmount(String sellerCofundedDiscountAmount) {
+  public void setSellerCofundedDiscountAmount(@javax.annotation.Nullable String sellerCofundedDiscountAmount) {
     this.sellerCofundedDiscountAmount = sellerCofundedDiscountAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent sellerCofundedDiscountRefundAmount(String sellerCofundedDiscountRefundAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent sellerCofundedDiscountRefundAmount(@javax.annotation.Nullable String sellerCofundedDiscountRefundAmount) {
     this.sellerCofundedDiscountRefundAmount = sellerCofundedDiscountRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The seller&#39;s portion of a co-funded voucher discount in co-funding campaigns that was refunded to the seller.
    * @return sellerCofundedDiscountRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerCofundedDiscountRefundAmount() {
     return sellerCofundedDiscountRefundAmount;
   }
 
-  public void setSellerCofundedDiscountRefundAmount(String sellerCofundedDiscountRefundAmount) {
+  public void setSellerCofundedDiscountRefundAmount(@javax.annotation.Nullable String sellerCofundedDiscountRefundAmount) {
     this.sellerCofundedDiscountRefundAmount = sellerCofundedDiscountRefundAmount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent instance itself
+   */
+  public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -399,12 +457,13 @@ public class GetTransactionsbyStatementResponseDataTransactionsSupplementaryComp
         Objects.equals(this.salesTaxPaymentAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.salesTaxPaymentAmount) &&
         Objects.equals(this.salesTaxRefundAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.salesTaxRefundAmount) &&
         Objects.equals(this.sellerCofundedDiscountAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.sellerCofundedDiscountAmount) &&
-        Objects.equals(this.sellerCofundedDiscountRefundAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.sellerCofundedDiscountRefundAmount);
+        Objects.equals(this.sellerCofundedDiscountRefundAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.sellerCofundedDiscountRefundAmount)&&
+        Objects.equals(this.additionalProperties, finance202501GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerPaymentAmount, customerRefundAmount, platformCofundedDiscountAmount, platformCofundedDiscountRefundAmount, platformDiscountAmount, platformDiscountRefundAmount, retailDeliveryFeeAmount, retailDeliveryFeePaymentAmount, retailDeliveryFeeRefundAmount, salesTaxAmount, salesTaxPaymentAmount, salesTaxRefundAmount, sellerCofundedDiscountAmount, sellerCofundedDiscountRefundAmount);
+    return Objects.hash(customerPaymentAmount, customerRefundAmount, platformCofundedDiscountAmount, platformCofundedDiscountRefundAmount, platformDiscountAmount, platformDiscountRefundAmount, retailDeliveryFeeAmount, retailDeliveryFeePaymentAmount, retailDeliveryFeeRefundAmount, salesTaxAmount, salesTaxPaymentAmount, salesTaxRefundAmount, sellerCofundedDiscountAmount, sellerCofundedDiscountRefundAmount, additionalProperties);
   }
 
   @Override
@@ -425,6 +484,7 @@ public class GetTransactionsbyStatementResponseDataTransactionsSupplementaryComp
     sb.append("    salesTaxRefundAmount: ").append(toIndentedString(salesTaxRefundAmount)).append("\n");
     sb.append("    sellerCofundedDiscountAmount: ").append(toIndentedString(sellerCofundedDiscountAmount)).append("\n");
     sb.append("    sellerCofundedDiscountRefundAmount: ").append(toIndentedString(sellerCofundedDiscountRefundAmount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -446,44 +506,22 @@ public class GetTransactionsbyStatementResponseDataTransactionsSupplementaryComp
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("customer_payment_amount");
-    openapiFields.add("customer_refund_amount");
-    openapiFields.add("platform_cofunded_discount_amount");
-    openapiFields.add("platform_cofunded_discount_refund_amount");
-    openapiFields.add("platform_discount_amount");
-    openapiFields.add("platform_discount_refund_amount");
-    openapiFields.add("retail_delivery_fee_amount");
-    openapiFields.add("retail_delivery_fee_payment_amount");
-    openapiFields.add("retail_delivery_fee_refund_amount");
-    openapiFields.add("sales_tax_amount");
-    openapiFields.add("sales_tax_payment_amount");
-    openapiFields.add("sales_tax_refund_amount");
-    openapiFields.add("seller_cofunded_discount_amount");
-    openapiFields.add("seller_cofunded_discount_refund_amount");
+    openapiFields = new HashSet<String>(Arrays.asList("customer_payment_amount", "customer_refund_amount", "platform_cofunded_discount_amount", "platform_cofunded_discount_refund_amount", "platform_discount_amount", "platform_discount_refund_amount", "retail_delivery_fee_amount", "retail_delivery_fee_payment_amount", "retail_delivery_fee_refund_amount", "sales_tax_amount", "sales_tax_payment_amount", "sales_tax_refund_amount", "seller_cofunded_discount_amount", "seller_cofunded_discount_refund_amount"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent is not found in the empty JSON string", GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -546,6 +584,28 @@ public class GetTransactionsbyStatementResponseDataTransactionsSupplementaryComp
            @Override
            public void write(JsonWriter out, GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -553,29 +613,50 @@ public class GetTransactionsbyStatementResponseDataTransactionsSupplementaryComp
            public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent
-  * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent
-  */
+  /**
+   * Create an instance of GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent
+   * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent
+   */
   public static GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.class);
   }
 
- /**
-  * Convert an instance of GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

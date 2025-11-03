@@ -1,17 +1,22 @@
 package com.hzltd.module.erplus.service.sellplatform;
 
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
 import com.hzltd.module.erplus.enums.RedisKeyConstants;
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformPageReqVO;
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformReqVO;
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.mysql.sellplatform.SellPlatformMapper;
+import com.hzltd.module.erplus.enums.ServiceModeEnum;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.*;
+import java.util.stream.Collectors;
+
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 
@@ -34,7 +39,7 @@ public class SellPlatformServiceImpl implements SellPlatformService {
     @Override
     public Integer createSellPlatform(SellPlatformSaveReqVO createReqVO) {
         // 插入
-        SellPlatformDO sellPlatform = BeanUtils.toBean(createReqVO, SellPlatformDO.class);
+        SellPlatformDO sellPlatform = convertSellPlatformDO(createReqVO);
         sellPlatformMapper.insert(sellPlatform);
         // 返回
         return sellPlatform.getId();
@@ -45,7 +50,7 @@ public class SellPlatformServiceImpl implements SellPlatformService {
         // 校验存在
         validateSellPlatformExists(updateReqVO.getId());
         // 更新
-        SellPlatformDO updateObj = BeanUtils.toBean(updateReqVO, SellPlatformDO.class);
+        SellPlatformDO updateObj = convertSellPlatformDO(updateReqVO);
         sellPlatformMapper.updateById(updateObj);
     }
 
@@ -63,10 +68,30 @@ public class SellPlatformServiceImpl implements SellPlatformService {
         }
     }
 
+    private SellPlatformDO convertSellPlatformDO(SellPlatformSaveReqVO sellPlatformSaveReqVO ) {
+        SellPlatformDO sellPlatform = BeanUtils.toBean(sellPlatformSaveReqVO, SellPlatformDO.class, platform -> {
+            platform.setServiceModes( sellPlatformSaveReqVO.getShipModes().stream().map(mode -> {
+                ServiceModeEnum modeEnum = ServiceModeEnum.getByCode(mode);
+                return new ServiceMode(modeEnum.getName(), modeEnum.getCode());
+            }).collect(Collectors.toList()));
+        });
+        return sellPlatform;
+    }
+
     @Override
-    @Cacheable(cacheNames = RedisKeyConstants.KEY_SELL_PLATFORM, key = "#id")
     public SellPlatformDO getSellPlatform(Integer id) {
         return sellPlatformMapper.selectById(id);
+    }
+
+    @Override
+    @Cacheable(cacheNames = RedisKeyConstants.KEY_SELL_PLATFORM, key = "#id")
+    public SellPlatformDO getSellPlatformCache(Integer id) {
+        return getSellPlatform(id);
+    }
+
+    @Override
+    public SellPlatformDO getSellPlatformByCode(String code) {
+        return sellPlatformMapper.selectOne(new LambdaQueryWrapperX<SellPlatformDO>().eq(SellPlatformDO::getCode, code));
     }
 
     @Override

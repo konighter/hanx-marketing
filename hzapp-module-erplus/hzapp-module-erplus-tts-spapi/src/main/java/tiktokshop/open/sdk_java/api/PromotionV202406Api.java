@@ -84,12 +84,13 @@ public class PromotionV202406Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202406CouponsCouponIdGetCall(String couponId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202406CouponsCouponIdGetCall(@javax.annotation.Nonnull String couponId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -119,14 +120,6 @@ public class PromotionV202406Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -142,12 +135,22 @@ public class PromotionV202406Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202406CouponsCouponIdGetValidateBeforeCall(String couponId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202406CouponsCouponIdGetValidateBeforeCall(@javax.annotation.Nonnull String couponId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'couponId' is set
         if (couponId == null) {
             throw new ApiException("Missing the required parameter 'couponId' when calling promotion202406CouponsCouponIdGet(Async)");
@@ -177,12 +180,13 @@ public class PromotionV202406Api {
      * @return GetCouponResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetCouponResponse promotion202406CouponsCouponIdGet(String couponId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetCouponResponse promotion202406CouponsCouponIdGet(@javax.annotation.Nonnull String couponId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetCouponResponse> localVarResp = promotion202406CouponsCouponIdGetWithHttpInfo(couponId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -197,12 +201,13 @@ public class PromotionV202406Api {
      * @return ApiResponse&lt;GetCouponResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetCouponResponse> promotion202406CouponsCouponIdGetWithHttpInfo(String couponId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetCouponResponse> promotion202406CouponsCouponIdGetWithHttpInfo(@javax.annotation.Nonnull String couponId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = promotion202406CouponsCouponIdGetValidateBeforeCall(couponId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetCouponResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -219,12 +224,13 @@ public class PromotionV202406Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202406CouponsCouponIdGetAsync(String couponId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetCouponResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202406CouponsCouponIdGetAsync(@javax.annotation.Nonnull String couponId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetCouponResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202406CouponsCouponIdGetValidateBeforeCall(couponId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetCouponResponse>(){}.getType();
@@ -243,12 +249,13 @@ public class PromotionV202406Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202406CouponsSearchPostCall(String xTtsAccessToken, String contentType, String pageToken, Integer pageSize, String shopCipher, SearchCouponsRequestBody promotion202406SearchCouponsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202406CouponsSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCouponsRequestBody promotion202406SearchCouponsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -285,14 +292,6 @@ public class PromotionV202406Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -309,12 +308,22 @@ public class PromotionV202406Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202406CouponsSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, String pageToken, Integer pageSize, String shopCipher, SearchCouponsRequestBody promotion202406SearchCouponsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202406CouponsSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCouponsRequestBody promotion202406SearchCouponsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling promotion202406CouponsSearchPost(Async)");
@@ -341,12 +350,13 @@ public class PromotionV202406Api {
      * @return SearchCouponsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchCouponsResponse promotion202406CouponsSearchPost(String xTtsAccessToken, String contentType, String pageToken, Integer pageSize, String shopCipher, SearchCouponsRequestBody promotion202406SearchCouponsRequestBody) throws ApiException {
+    public SearchCouponsResponse promotion202406CouponsSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCouponsRequestBody promotion202406SearchCouponsRequestBody) throws ApiException {
         ApiResponse<SearchCouponsResponse> localVarResp = promotion202406CouponsSearchPostWithHttpInfo(xTtsAccessToken, contentType, pageToken, pageSize, shopCipher, promotion202406SearchCouponsRequestBody);
         return localVarResp.getData();
     }
@@ -363,12 +373,13 @@ public class PromotionV202406Api {
      * @return ApiResponse&lt;SearchCouponsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchCouponsResponse> promotion202406CouponsSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, String pageToken, Integer pageSize, String shopCipher, SearchCouponsRequestBody promotion202406SearchCouponsRequestBody) throws ApiException {
+    public ApiResponse<SearchCouponsResponse> promotion202406CouponsSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCouponsRequestBody promotion202406SearchCouponsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = promotion202406CouponsSearchPostValidateBeforeCall(xTtsAccessToken, contentType, pageToken, pageSize, shopCipher, promotion202406SearchCouponsRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchCouponsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -387,12 +398,13 @@ public class PromotionV202406Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202406CouponsSearchPostAsync(String xTtsAccessToken, String contentType, String pageToken, Integer pageSize, String shopCipher, SearchCouponsRequestBody promotion202406SearchCouponsRequestBody, final ApiCallback<SearchCouponsResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202406CouponsSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable Integer pageSize, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCouponsRequestBody promotion202406SearchCouponsRequestBody, final ApiCallback<SearchCouponsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202406CouponsSearchPostValidateBeforeCall(xTtsAccessToken, contentType, pageToken, pageSize, shopCipher, promotion202406SearchCouponsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchCouponsResponse>(){}.getType();

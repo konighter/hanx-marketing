@@ -102,12 +102,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309CancellationsCancelIdApprovePostCall(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309CancellationsCancelIdApprovePostCall(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -141,14 +142,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -164,12 +157,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309CancellationsCancelIdApprovePostValidateBeforeCall(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309CancellationsCancelIdApprovePostValidateBeforeCall(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'cancelId' is set
         if (cancelId == null) {
             throw new ApiException("Missing the required parameter 'cancelId' when calling returnRefund202309CancellationsCancelIdApprovePost(Async)");
@@ -200,12 +203,13 @@ public class ReturnRefundV202309Api {
      * @return ApproveCancellationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApproveCancellationResponse returnRefund202309CancellationsCancelIdApprovePost(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher) throws ApiException {
+    public ApproveCancellationResponse returnRefund202309CancellationsCancelIdApprovePost(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<ApproveCancellationResponse> localVarResp = returnRefund202309CancellationsCancelIdApprovePostWithHttpInfo(cancelId, xTtsAccessToken, contentType, idempotencyKey, shopCipher);
         return localVarResp.getData();
     }
@@ -221,12 +225,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;ApproveCancellationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ApproveCancellationResponse> returnRefund202309CancellationsCancelIdApprovePostWithHttpInfo(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher) throws ApiException {
+    public ApiResponse<ApproveCancellationResponse> returnRefund202309CancellationsCancelIdApprovePostWithHttpInfo(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309CancellationsCancelIdApprovePostValidateBeforeCall(cancelId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, null);
         Type localVarReturnType = new TypeToken<ApproveCancellationResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -244,12 +249,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309CancellationsCancelIdApprovePostAsync(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, final ApiCallback<ApproveCancellationResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309CancellationsCancelIdApprovePostAsync(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, final ApiCallback<ApproveCancellationResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309CancellationsCancelIdApprovePostValidateBeforeCall(cancelId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<ApproveCancellationResponse>(){}.getType();
@@ -268,12 +274,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309CancellationsCancelIdRejectPostCall(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309CancellationsCancelIdRejectPostCall(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -307,14 +314,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -331,12 +330,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309CancellationsCancelIdRejectPostValidateBeforeCall(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309CancellationsCancelIdRejectPostValidateBeforeCall(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'cancelId' is set
         if (cancelId == null) {
             throw new ApiException("Missing the required parameter 'cancelId' when calling returnRefund202309CancellationsCancelIdRejectPost(Async)");
@@ -368,12 +377,13 @@ public class ReturnRefundV202309Api {
      * @return RejectCancellationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public RejectCancellationResponse returnRefund202309CancellationsCancelIdRejectPost(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody) throws ApiException {
+    public RejectCancellationResponse returnRefund202309CancellationsCancelIdRejectPost(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody) throws ApiException {
         ApiResponse<RejectCancellationResponse> localVarResp = returnRefund202309CancellationsCancelIdRejectPostWithHttpInfo(cancelId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309RejectCancellationRequestBody);
         return localVarResp.getData();
     }
@@ -390,12 +400,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;RejectCancellationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RejectCancellationResponse> returnRefund202309CancellationsCancelIdRejectPostWithHttpInfo(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody) throws ApiException {
+    public ApiResponse<RejectCancellationResponse> returnRefund202309CancellationsCancelIdRejectPostWithHttpInfo(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309CancellationsCancelIdRejectPostValidateBeforeCall(cancelId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309RejectCancellationRequestBody, null);
         Type localVarReturnType = new TypeToken<RejectCancellationResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -414,12 +425,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309CancellationsCancelIdRejectPostAsync(String cancelId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody, final ApiCallback<RejectCancellationResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309CancellationsCancelIdRejectPostAsync(@javax.annotation.Nonnull String cancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody, final ApiCallback<RejectCancellationResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309CancellationsCancelIdRejectPostValidateBeforeCall(cancelId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309RejectCancellationRequestBody, _callback);
         Type localVarReturnType = new TypeToken<RejectCancellationResponse>(){}.getType();
@@ -436,12 +448,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309CancellationsPostCall(String xTtsAccessToken, String contentType, String shopCipher, CancelOrderRequestBody returnRefund202309CancelOrderRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309CancellationsPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CancelOrderRequestBody returnRefund202309CancelOrderRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -470,14 +483,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -494,12 +499,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309CancellationsPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, CancelOrderRequestBody returnRefund202309CancelOrderRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309CancellationsPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CancelOrderRequestBody returnRefund202309CancelOrderRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling returnRefund202309CancellationsPost(Async)");
@@ -524,12 +539,13 @@ public class ReturnRefundV202309Api {
      * @return CancelOrderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CancelOrderResponse returnRefund202309CancellationsPost(String xTtsAccessToken, String contentType, String shopCipher, CancelOrderRequestBody returnRefund202309CancelOrderRequestBody) throws ApiException {
+    public CancelOrderResponse returnRefund202309CancellationsPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CancelOrderRequestBody returnRefund202309CancelOrderRequestBody) throws ApiException {
         ApiResponse<CancelOrderResponse> localVarResp = returnRefund202309CancellationsPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, returnRefund202309CancelOrderRequestBody);
         return localVarResp.getData();
     }
@@ -544,12 +560,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;CancelOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CancelOrderResponse> returnRefund202309CancellationsPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, CancelOrderRequestBody returnRefund202309CancelOrderRequestBody) throws ApiException {
+    public ApiResponse<CancelOrderResponse> returnRefund202309CancellationsPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CancelOrderRequestBody returnRefund202309CancelOrderRequestBody) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309CancellationsPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, returnRefund202309CancelOrderRequestBody, null);
         Type localVarReturnType = new TypeToken<CancelOrderResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -566,12 +583,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309CancellationsPostAsync(String xTtsAccessToken, String contentType, String shopCipher, CancelOrderRequestBody returnRefund202309CancelOrderRequestBody, final ApiCallback<CancelOrderResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309CancellationsPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CancelOrderRequestBody returnRefund202309CancelOrderRequestBody, final ApiCallback<CancelOrderResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309CancellationsPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, returnRefund202309CancelOrderRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CancelOrderResponse>(){}.getType();
@@ -592,12 +610,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309CancellationsSearchPostCall(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309CancellationsSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -642,14 +661,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -666,12 +677,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309CancellationsSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309CancellationsSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling returnRefund202309CancellationsSearchPost(Async)");
@@ -700,12 +721,13 @@ public class ReturnRefundV202309Api {
      * @return SearchCancellationsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchCancellationsResponse returnRefund202309CancellationsSearchPost(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody) throws ApiException {
+    public SearchCancellationsResponse returnRefund202309CancellationsSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody) throws ApiException {
         ApiResponse<SearchCancellationsResponse> localVarResp = returnRefund202309CancellationsSearchPostWithHttpInfo(xTtsAccessToken, contentType, sortField, sortOrder, pageSize, pageToken, shopCipher, returnRefund202309SearchCancellationsRequestBody);
         return localVarResp.getData();
     }
@@ -724,12 +746,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;SearchCancellationsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchCancellationsResponse> returnRefund202309CancellationsSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody) throws ApiException {
+    public ApiResponse<SearchCancellationsResponse> returnRefund202309CancellationsSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309CancellationsSearchPostValidateBeforeCall(xTtsAccessToken, contentType, sortField, sortOrder, pageSize, pageToken, shopCipher, returnRefund202309SearchCancellationsRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchCancellationsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -750,12 +773,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309CancellationsSearchPostAsync(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody, final ApiCallback<SearchCancellationsResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309CancellationsSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchCancellationsRequestBody returnRefund202309SearchCancellationsRequestBody, final ApiCallback<SearchCancellationsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309CancellationsSearchPostValidateBeforeCall(xTtsAccessToken, contentType, sortField, sortOrder, pageSize, pageToken, shopCipher, returnRefund202309SearchCancellationsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchCancellationsResponse>(){}.getType();
@@ -773,12 +797,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309OrdersOrderIdAftersaleEligibilityGetCall(String orderId, String xTtsAccessToken, String contentType, String initiateAftersaleUser, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309OrdersOrderIdAftersaleEligibilityGetCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String initiateAftersaleUser, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -812,14 +837,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -835,12 +852,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309OrdersOrderIdAftersaleEligibilityGetValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String initiateAftersaleUser, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309OrdersOrderIdAftersaleEligibilityGetValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String initiateAftersaleUser, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling returnRefund202309OrdersOrderIdAftersaleEligibilityGet(Async)");
@@ -871,12 +898,13 @@ public class ReturnRefundV202309Api {
      * @return GetAftersaleEligibilityResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetAftersaleEligibilityResponse returnRefund202309OrdersOrderIdAftersaleEligibilityGet(String orderId, String xTtsAccessToken, String contentType, String initiateAftersaleUser, String shopCipher) throws ApiException {
+    public GetAftersaleEligibilityResponse returnRefund202309OrdersOrderIdAftersaleEligibilityGet(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String initiateAftersaleUser, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetAftersaleEligibilityResponse> localVarResp = returnRefund202309OrdersOrderIdAftersaleEligibilityGetWithHttpInfo(orderId, xTtsAccessToken, contentType, initiateAftersaleUser, shopCipher);
         return localVarResp.getData();
     }
@@ -892,12 +920,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;GetAftersaleEligibilityResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetAftersaleEligibilityResponse> returnRefund202309OrdersOrderIdAftersaleEligibilityGetWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String initiateAftersaleUser, String shopCipher) throws ApiException {
+    public ApiResponse<GetAftersaleEligibilityResponse> returnRefund202309OrdersOrderIdAftersaleEligibilityGetWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String initiateAftersaleUser, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309OrdersOrderIdAftersaleEligibilityGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, initiateAftersaleUser, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetAftersaleEligibilityResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -915,12 +944,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309OrdersOrderIdAftersaleEligibilityGetAsync(String orderId, String xTtsAccessToken, String contentType, String initiateAftersaleUser, String shopCipher, final ApiCallback<GetAftersaleEligibilityResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309OrdersOrderIdAftersaleEligibilityGetAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String initiateAftersaleUser, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetAftersaleEligibilityResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309OrdersOrderIdAftersaleEligibilityGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, initiateAftersaleUser, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetAftersaleEligibilityResponse>(){}.getType();
@@ -937,12 +967,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309RefundsCalculatePostCall(String xTtsAccessToken, String contentType, String shopCipher, CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309RefundsCalculatePostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -971,14 +1002,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -995,12 +1018,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309RefundsCalculatePostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309RefundsCalculatePostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling returnRefund202309RefundsCalculatePost(Async)");
@@ -1025,12 +1058,13 @@ public class ReturnRefundV202309Api {
      * @return CalculateRefundResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CalculateRefundResponse returnRefund202309RefundsCalculatePost(String xTtsAccessToken, String contentType, String shopCipher, CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody) throws ApiException {
+    public CalculateRefundResponse returnRefund202309RefundsCalculatePost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody) throws ApiException {
         ApiResponse<CalculateRefundResponse> localVarResp = returnRefund202309RefundsCalculatePostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, returnRefund202309CalculateRefundRequestBody);
         return localVarResp.getData();
     }
@@ -1045,12 +1079,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;CalculateRefundResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CalculateRefundResponse> returnRefund202309RefundsCalculatePostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody) throws ApiException {
+    public ApiResponse<CalculateRefundResponse> returnRefund202309RefundsCalculatePostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309RefundsCalculatePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, returnRefund202309CalculateRefundRequestBody, null);
         Type localVarReturnType = new TypeToken<CalculateRefundResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1067,12 +1102,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309RefundsCalculatePostAsync(String xTtsAccessToken, String contentType, String shopCipher, CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody, final ApiCallback<CalculateRefundResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309RefundsCalculatePostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CalculateRefundRequestBody returnRefund202309CalculateRefundRequestBody, final ApiCallback<CalculateRefundResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309RefundsCalculatePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, returnRefund202309CalculateRefundRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CalculateRefundResponse>(){}.getType();
@@ -1090,12 +1126,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309RejectReasonsGetCall(String returnOrCancelId, String xTtsAccessToken, String contentType, String locale, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309RejectReasonsGetCall(@javax.annotation.Nonnull String returnOrCancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1132,14 +1169,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1155,12 +1184,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309RejectReasonsGetValidateBeforeCall(String returnOrCancelId, String xTtsAccessToken, String contentType, String locale, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309RejectReasonsGetValidateBeforeCall(@javax.annotation.Nonnull String returnOrCancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'returnOrCancelId' is set
         if (returnOrCancelId == null) {
             throw new ApiException("Missing the required parameter 'returnOrCancelId' when calling returnRefund202309RejectReasonsGet(Async)");
@@ -1191,12 +1230,13 @@ public class ReturnRefundV202309Api {
      * @return GetRejectReasonsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetRejectReasonsResponse returnRefund202309RejectReasonsGet(String returnOrCancelId, String xTtsAccessToken, String contentType, String locale, String shopCipher) throws ApiException {
+    public GetRejectReasonsResponse returnRefund202309RejectReasonsGet(@javax.annotation.Nonnull String returnOrCancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetRejectReasonsResponse> localVarResp = returnRefund202309RejectReasonsGetWithHttpInfo(returnOrCancelId, xTtsAccessToken, contentType, locale, shopCipher);
         return localVarResp.getData();
     }
@@ -1212,12 +1252,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;GetRejectReasonsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetRejectReasonsResponse> returnRefund202309RejectReasonsGetWithHttpInfo(String returnOrCancelId, String xTtsAccessToken, String contentType, String locale, String shopCipher) throws ApiException {
+    public ApiResponse<GetRejectReasonsResponse> returnRefund202309RejectReasonsGetWithHttpInfo(@javax.annotation.Nonnull String returnOrCancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309RejectReasonsGetValidateBeforeCall(returnOrCancelId, xTtsAccessToken, contentType, locale, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetRejectReasonsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1235,12 +1276,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309RejectReasonsGetAsync(String returnOrCancelId, String xTtsAccessToken, String contentType, String locale, String shopCipher, final ApiCallback<GetRejectReasonsResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309RejectReasonsGetAsync(@javax.annotation.Nonnull String returnOrCancelId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetRejectReasonsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309RejectReasonsGetValidateBeforeCall(returnOrCancelId, xTtsAccessToken, contentType, locale, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetRejectReasonsResponse>(){}.getType();
@@ -1258,12 +1300,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsPostCall(String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, CreateReturnRequestBody returnRefund202309CreateReturnRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateReturnRequestBody returnRefund202309CreateReturnRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1296,14 +1339,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1320,12 +1355,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309ReturnsPostValidateBeforeCall(String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, CreateReturnRequestBody returnRefund202309CreateReturnRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309ReturnsPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateReturnRequestBody returnRefund202309CreateReturnRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling returnRefund202309ReturnsPost(Async)");
@@ -1351,12 +1396,13 @@ public class ReturnRefundV202309Api {
      * @return CreateReturnResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CreateReturnResponse returnRefund202309ReturnsPost(String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, CreateReturnRequestBody returnRefund202309CreateReturnRequestBody) throws ApiException {
+    public CreateReturnResponse returnRefund202309ReturnsPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateReturnRequestBody returnRefund202309CreateReturnRequestBody) throws ApiException {
         ApiResponse<CreateReturnResponse> localVarResp = returnRefund202309ReturnsPostWithHttpInfo(xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309CreateReturnRequestBody);
         return localVarResp.getData();
     }
@@ -1372,12 +1418,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;CreateReturnResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateReturnResponse> returnRefund202309ReturnsPostWithHttpInfo(String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, CreateReturnRequestBody returnRefund202309CreateReturnRequestBody) throws ApiException {
+    public ApiResponse<CreateReturnResponse> returnRefund202309ReturnsPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateReturnRequestBody returnRefund202309CreateReturnRequestBody) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309ReturnsPostValidateBeforeCall(xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309CreateReturnRequestBody, null);
         Type localVarReturnType = new TypeToken<CreateReturnResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1395,12 +1442,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsPostAsync(String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, CreateReturnRequestBody returnRefund202309CreateReturnRequestBody, final ApiCallback<CreateReturnResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateReturnRequestBody returnRefund202309CreateReturnRequestBody, final ApiCallback<CreateReturnResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309ReturnsPostValidateBeforeCall(xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309CreateReturnRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CreateReturnResponse>(){}.getType();
@@ -1419,12 +1467,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsReturnIdApprovePostCall(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsReturnIdApprovePostCall(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1458,14 +1507,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1482,12 +1523,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309ReturnsReturnIdApprovePostValidateBeforeCall(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309ReturnsReturnIdApprovePostValidateBeforeCall(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'returnId' is set
         if (returnId == null) {
             throw new ApiException("Missing the required parameter 'returnId' when calling returnRefund202309ReturnsReturnIdApprovePost(Async)");
@@ -1519,12 +1570,13 @@ public class ReturnRefundV202309Api {
      * @return ApproveReturnResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApproveReturnResponse returnRefund202309ReturnsReturnIdApprovePost(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody) throws ApiException {
+    public ApproveReturnResponse returnRefund202309ReturnsReturnIdApprovePost(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody) throws ApiException {
         ApiResponse<ApproveReturnResponse> localVarResp = returnRefund202309ReturnsReturnIdApprovePostWithHttpInfo(returnId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309ApproveReturnRequestBody);
         return localVarResp.getData();
     }
@@ -1541,12 +1593,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;ApproveReturnResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ApproveReturnResponse> returnRefund202309ReturnsReturnIdApprovePostWithHttpInfo(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody) throws ApiException {
+    public ApiResponse<ApproveReturnResponse> returnRefund202309ReturnsReturnIdApprovePostWithHttpInfo(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309ReturnsReturnIdApprovePostValidateBeforeCall(returnId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309ApproveReturnRequestBody, null);
         Type localVarReturnType = new TypeToken<ApproveReturnResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1565,12 +1618,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsReturnIdApprovePostAsync(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody, final ApiCallback<ApproveReturnResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsReturnIdApprovePostAsync(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ApproveReturnRequestBody returnRefund202309ApproveReturnRequestBody, final ApiCallback<ApproveReturnResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309ReturnsReturnIdApprovePostValidateBeforeCall(returnId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309ApproveReturnRequestBody, _callback);
         Type localVarReturnType = new TypeToken<ApproveReturnResponse>(){}.getType();
@@ -1588,12 +1642,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsReturnIdRecordsGetCall(String returnId, String xTtsAccessToken, String contentType, String locale, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsReturnIdRecordsGetCall(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1627,14 +1682,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1650,12 +1697,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309ReturnsReturnIdRecordsGetValidateBeforeCall(String returnId, String xTtsAccessToken, String contentType, String locale, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309ReturnsReturnIdRecordsGetValidateBeforeCall(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'returnId' is set
         if (returnId == null) {
             throw new ApiException("Missing the required parameter 'returnId' when calling returnRefund202309ReturnsReturnIdRecordsGet(Async)");
@@ -1686,12 +1743,13 @@ public class ReturnRefundV202309Api {
      * @return GetReturnRecordsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetReturnRecordsResponse returnRefund202309ReturnsReturnIdRecordsGet(String returnId, String xTtsAccessToken, String contentType, String locale, String shopCipher) throws ApiException {
+    public GetReturnRecordsResponse returnRefund202309ReturnsReturnIdRecordsGet(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetReturnRecordsResponse> localVarResp = returnRefund202309ReturnsReturnIdRecordsGetWithHttpInfo(returnId, xTtsAccessToken, contentType, locale, shopCipher);
         return localVarResp.getData();
     }
@@ -1707,12 +1765,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;GetReturnRecordsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetReturnRecordsResponse> returnRefund202309ReturnsReturnIdRecordsGetWithHttpInfo(String returnId, String xTtsAccessToken, String contentType, String locale, String shopCipher) throws ApiException {
+    public ApiResponse<GetReturnRecordsResponse> returnRefund202309ReturnsReturnIdRecordsGetWithHttpInfo(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309ReturnsReturnIdRecordsGetValidateBeforeCall(returnId, xTtsAccessToken, contentType, locale, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetReturnRecordsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1730,12 +1789,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsReturnIdRecordsGetAsync(String returnId, String xTtsAccessToken, String contentType, String locale, String shopCipher, final ApiCallback<GetReturnRecordsResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsReturnIdRecordsGetAsync(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetReturnRecordsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309ReturnsReturnIdRecordsGetValidateBeforeCall(returnId, xTtsAccessToken, contentType, locale, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetReturnRecordsResponse>(){}.getType();
@@ -1754,12 +1814,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsReturnIdRejectPostCall(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectReturnRequestBody returnRefund202309RejectReturnRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsReturnIdRejectPostCall(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectReturnRequestBody returnRefund202309RejectReturnRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1793,14 +1854,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1817,12 +1870,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309ReturnsReturnIdRejectPostValidateBeforeCall(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectReturnRequestBody returnRefund202309RejectReturnRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309ReturnsReturnIdRejectPostValidateBeforeCall(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectReturnRequestBody returnRefund202309RejectReturnRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'returnId' is set
         if (returnId == null) {
             throw new ApiException("Missing the required parameter 'returnId' when calling returnRefund202309ReturnsReturnIdRejectPost(Async)");
@@ -1854,12 +1917,13 @@ public class ReturnRefundV202309Api {
      * @return RejectReturnResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public RejectReturnResponse returnRefund202309ReturnsReturnIdRejectPost(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectReturnRequestBody returnRefund202309RejectReturnRequestBody) throws ApiException {
+    public RejectReturnResponse returnRefund202309ReturnsReturnIdRejectPost(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectReturnRequestBody returnRefund202309RejectReturnRequestBody) throws ApiException {
         ApiResponse<RejectReturnResponse> localVarResp = returnRefund202309ReturnsReturnIdRejectPostWithHttpInfo(returnId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309RejectReturnRequestBody);
         return localVarResp.getData();
     }
@@ -1876,12 +1940,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;RejectReturnResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RejectReturnResponse> returnRefund202309ReturnsReturnIdRejectPostWithHttpInfo(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectReturnRequestBody returnRefund202309RejectReturnRequestBody) throws ApiException {
+    public ApiResponse<RejectReturnResponse> returnRefund202309ReturnsReturnIdRejectPostWithHttpInfo(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectReturnRequestBody returnRefund202309RejectReturnRequestBody) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309ReturnsReturnIdRejectPostValidateBeforeCall(returnId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309RejectReturnRequestBody, null);
         Type localVarReturnType = new TypeToken<RejectReturnResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1900,12 +1965,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsReturnIdRejectPostAsync(String returnId, String xTtsAccessToken, String contentType, String idempotencyKey, String shopCipher, RejectReturnRequestBody returnRefund202309RejectReturnRequestBody, final ApiCallback<RejectReturnResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsReturnIdRejectPostAsync(@javax.annotation.Nonnull String returnId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String idempotencyKey, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RejectReturnRequestBody returnRefund202309RejectReturnRequestBody, final ApiCallback<RejectReturnResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309ReturnsReturnIdRejectPostValidateBeforeCall(returnId, xTtsAccessToken, contentType, idempotencyKey, shopCipher, returnRefund202309RejectReturnRequestBody, _callback);
         Type localVarReturnType = new TypeToken<RejectReturnResponse>(){}.getType();
@@ -1926,12 +1992,13 @@ public class ReturnRefundV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsSearchPostCall(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1976,14 +2043,6 @@ public class ReturnRefundV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2000,12 +2059,22 @@ public class ReturnRefundV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call returnRefund202309ReturnsSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call returnRefund202309ReturnsSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling returnRefund202309ReturnsSearchPost(Async)");
@@ -2034,12 +2103,13 @@ public class ReturnRefundV202309Api {
      * @return SearchReturnsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchReturnsResponse returnRefund202309ReturnsSearchPost(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody) throws ApiException {
+    public SearchReturnsResponse returnRefund202309ReturnsSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody) throws ApiException {
         ApiResponse<SearchReturnsResponse> localVarResp = returnRefund202309ReturnsSearchPostWithHttpInfo(xTtsAccessToken, contentType, sortField, sortOrder, pageSize, pageToken, shopCipher, returnRefund202309SearchReturnsRequestBody);
         return localVarResp.getData();
     }
@@ -2058,12 +2128,13 @@ public class ReturnRefundV202309Api {
      * @return ApiResponse&lt;SearchReturnsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchReturnsResponse> returnRefund202309ReturnsSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody) throws ApiException {
+    public ApiResponse<SearchReturnsResponse> returnRefund202309ReturnsSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody) throws ApiException {
         okhttp3.Call localVarCall = returnRefund202309ReturnsSearchPostValidateBeforeCall(xTtsAccessToken, contentType, sortField, sortOrder, pageSize, pageToken, shopCipher, returnRefund202309SearchReturnsRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchReturnsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2084,12 +2155,13 @@ public class ReturnRefundV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call returnRefund202309ReturnsSearchPostAsync(String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageSize, String pageToken, String shopCipher, SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody, final ApiCallback<SearchReturnsResponse> _callback) throws ApiException {
+    public okhttp3.Call returnRefund202309ReturnsSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageSize, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchReturnsRequestBody returnRefund202309SearchReturnsRequestBody, final ApiCallback<SearchReturnsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = returnRefund202309ReturnsSearchPostValidateBeforeCall(xTtsAccessToken, contentType, sortField, sortOrder, pageSize, pageToken, shopCipher, returnRefund202309SearchReturnsRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchReturnsResponse>(){}.getType();

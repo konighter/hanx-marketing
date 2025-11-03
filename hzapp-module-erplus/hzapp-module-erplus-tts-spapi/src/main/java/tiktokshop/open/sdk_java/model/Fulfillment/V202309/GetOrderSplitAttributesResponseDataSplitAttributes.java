@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,70 +51,75 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetOrderSplitAttributesResponseDataSplitAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetOrderSplitAttributesResponseDataSplitAttributes {
   public static final String SERIALIZED_NAME_CAN_SPLIT = "can_split";
   @SerializedName(SERIALIZED_NAME_CAN_SPLIT)
+  @javax.annotation.Nullable
   private Boolean canSplit;
 
   public static final String SERIALIZED_NAME_MUST_SPLIT = "must_split";
   @SerializedName(SERIALIZED_NAME_MUST_SPLIT)
+  @javax.annotation.Nullable
   private Boolean mustSplit;
 
   public static final String SERIALIZED_NAME_MUST_SPLIT_REASONS = "must_split_reasons";
   @SerializedName(SERIALIZED_NAME_MUST_SPLIT_REASONS)
+  @javax.annotation.Nullable
   private List<GetOrderSplitAttributesResponseDataSplitAttributesMustSplitReasons> mustSplitReasons = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_REASON = "reason";
   @SerializedName(SERIALIZED_NAME_REASON)
+  @javax.annotation.Nullable
   private String reason;
 
   public GetOrderSplitAttributesResponseDataSplitAttributes() {
   }
 
-  public GetOrderSplitAttributesResponseDataSplitAttributes canSplit(Boolean canSplit) {
+  public GetOrderSplitAttributesResponseDataSplitAttributes canSplit(@javax.annotation.Nullable Boolean canSplit) {
     this.canSplit = canSplit;
     return this;
   }
 
-   /**
+  /**
    * Whether an order can be split: - &#x60;true&#x60;: The order can be split into multiple packages. - &#x60;false&#x60;: The order cannot be split into multiple packages.
    * @return canSplit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getCanSplit() {
     return canSplit;
   }
 
-  public void setCanSplit(Boolean canSplit) {
+  public void setCanSplit(@javax.annotation.Nullable Boolean canSplit) {
     this.canSplit = canSplit;
   }
 
 
-  public GetOrderSplitAttributesResponseDataSplitAttributes mustSplit(Boolean mustSplit) {
+  public GetOrderSplitAttributesResponseDataSplitAttributes mustSplit(@javax.annotation.Nullable Boolean mustSplit) {
     this.mustSplit = mustSplit;
     return this;
   }
 
-   /**
+  /**
    * Whether an order must be split: - true: The order must be split into multiple packages. - false: The order does not have to be split into multiple packages.
    * @return mustSplit
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getMustSplit() {
     return mustSplit;
   }
 
-  public void setMustSplit(Boolean mustSplit) {
+  public void setMustSplit(@javax.annotation.Nullable Boolean mustSplit) {
     this.mustSplit = mustSplit;
   }
 
 
-  public GetOrderSplitAttributesResponseDataSplitAttributes mustSplitReasons(List<GetOrderSplitAttributesResponseDataSplitAttributesMustSplitReasons> mustSplitReasons) {
+  public GetOrderSplitAttributesResponseDataSplitAttributes mustSplitReasons(@javax.annotation.Nullable List<GetOrderSplitAttributesResponseDataSplitAttributesMustSplitReasons> mustSplitReasons) {
     this.mustSplitReasons = mustSplitReasons;
     return this;
   }
@@ -128,55 +132,100 @@ public class GetOrderSplitAttributesResponseDataSplitAttributes {
     return this;
   }
 
-   /**
+  /**
    * The reason why the order must be split. Only return this field when must_split &#x3D; true.
    * @return mustSplitReasons
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetOrderSplitAttributesResponseDataSplitAttributesMustSplitReasons> getMustSplitReasons() {
     return mustSplitReasons;
   }
 
-  public void setMustSplitReasons(List<GetOrderSplitAttributesResponseDataSplitAttributesMustSplitReasons> mustSplitReasons) {
+  public void setMustSplitReasons(@javax.annotation.Nullable List<GetOrderSplitAttributesResponseDataSplitAttributesMustSplitReasons> mustSplitReasons) {
     this.mustSplitReasons = mustSplitReasons;
   }
 
 
-  public GetOrderSplitAttributesResponseDataSplitAttributes orderId(String orderId) {
+  public GetOrderSplitAttributesResponseDataSplitAttributes orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop order ID.
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public GetOrderSplitAttributesResponseDataSplitAttributes reason(String reason) {
+  public GetOrderSplitAttributesResponseDataSplitAttributes reason(@javax.annotation.Nullable String reason) {
     this.reason = reason;
     return this;
   }
 
-   /**
+  /**
    * The reason why the order cannot be split. Only return this field when &#x60;can_split &#x3D; false&#x60;.
    * @return reason
-  **/
+   */
   @javax.annotation.Nullable
   public String getReason() {
     return reason;
   }
 
-  public void setReason(String reason) {
+  public void setReason(@javax.annotation.Nullable String reason) {
     this.reason = reason;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetOrderSplitAttributesResponseDataSplitAttributes instance itself
+   */
+  public GetOrderSplitAttributesResponseDataSplitAttributes putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -194,12 +243,13 @@ public class GetOrderSplitAttributesResponseDataSplitAttributes {
         Objects.equals(this.mustSplit, fulfillment202309GetOrderSplitAttributesResponseDataSplitAttributes.mustSplit) &&
         Objects.equals(this.mustSplitReasons, fulfillment202309GetOrderSplitAttributesResponseDataSplitAttributes.mustSplitReasons) &&
         Objects.equals(this.orderId, fulfillment202309GetOrderSplitAttributesResponseDataSplitAttributes.orderId) &&
-        Objects.equals(this.reason, fulfillment202309GetOrderSplitAttributesResponseDataSplitAttributes.reason);
+        Objects.equals(this.reason, fulfillment202309GetOrderSplitAttributesResponseDataSplitAttributes.reason)&&
+        Objects.equals(this.additionalProperties, fulfillment202309GetOrderSplitAttributesResponseDataSplitAttributes.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(canSplit, mustSplit, mustSplitReasons, orderId, reason);
+    return Objects.hash(canSplit, mustSplit, mustSplitReasons, orderId, reason, additionalProperties);
   }
 
   @Override
@@ -211,6 +261,7 @@ public class GetOrderSplitAttributesResponseDataSplitAttributes {
     sb.append("    mustSplitReasons: ").append(toIndentedString(mustSplitReasons)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -232,35 +283,22 @@ public class GetOrderSplitAttributesResponseDataSplitAttributes {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("can_split");
-    openapiFields.add("must_split");
-    openapiFields.add("must_split_reasons");
-    openapiFields.add("order_id");
-    openapiFields.add("reason");
+    openapiFields = new HashSet<String>(Arrays.asList("can_split", "must_split", "must_split_reasons", "order_id", "reason"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetOrderSplitAttributesResponseDataSplitAttributes
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetOrderSplitAttributesResponseDataSplitAttributes
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetOrderSplitAttributesResponseDataSplitAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetOrderSplitAttributesResponseDataSplitAttributes is not found in the empty JSON string", GetOrderSplitAttributesResponseDataSplitAttributes.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetOrderSplitAttributesResponseDataSplitAttributes.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetOrderSplitAttributesResponseDataSplitAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -301,6 +339,28 @@ public class GetOrderSplitAttributesResponseDataSplitAttributes {
            @Override
            public void write(JsonWriter out, GetOrderSplitAttributesResponseDataSplitAttributes value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -308,29 +368,50 @@ public class GetOrderSplitAttributesResponseDataSplitAttributes {
            public GetOrderSplitAttributesResponseDataSplitAttributes read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetOrderSplitAttributesResponseDataSplitAttributes instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetOrderSplitAttributesResponseDataSplitAttributes given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetOrderSplitAttributesResponseDataSplitAttributes
-  * @throws IOException if the JSON string is invalid with respect to GetOrderSplitAttributesResponseDataSplitAttributes
-  */
+  /**
+   * Create an instance of GetOrderSplitAttributesResponseDataSplitAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetOrderSplitAttributesResponseDataSplitAttributes
+   * @throws IOException if the JSON string is invalid with respect to GetOrderSplitAttributesResponseDataSplitAttributes
+   */
   public static GetOrderSplitAttributesResponseDataSplitAttributes fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetOrderSplitAttributesResponseDataSplitAttributes.class);
   }
 
- /**
-  * Convert an instance of GetOrderSplitAttributesResponseDataSplitAttributes to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetOrderSplitAttributesResponseDataSplitAttributes to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

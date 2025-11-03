@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,47 +52,51 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSGetSKUPrintDocumentRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSGetSKUPrintDocumentRequestBody {
   public static final String SERIALIZED_NAME_DIMENSION = "dimension";
   @SerializedName(SERIALIZED_NAME_DIMENSION)
+  @javax.annotation.Nullable
   private GSGetSKUPrintDocumentRequestBodyDimension dimension;
 
   public static final String SERIALIZED_NAME_PLATFORM_SKU_ITEMS = "platform_sku_items";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SKU_ITEMS)
+  @javax.annotation.Nullable
   private List<GSGetSKUPrintDocumentRequestBodyPlatformSkuItems> platformSkuItems = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PRINT_SKU_CODE = "print_sku_code";
   @SerializedName(SERIALIZED_NAME_PRINT_SKU_CODE)
+  @javax.annotation.Nullable
   private Boolean printSkuCode;
 
   public static final String SERIALIZED_NAME_STOCKUP_ORDER_CODE = "stockup_order_code";
   @SerializedName(SERIALIZED_NAME_STOCKUP_ORDER_CODE)
+  @javax.annotation.Nullable
   private String stockupOrderCode;
 
   public GSGetSKUPrintDocumentRequestBody() {
   }
 
-  public GSGetSKUPrintDocumentRequestBody dimension(GSGetSKUPrintDocumentRequestBodyDimension dimension) {
+  public GSGetSKUPrintDocumentRequestBody dimension(@javax.annotation.Nullable GSGetSKUPrintDocumentRequestBodyDimension dimension) {
     this.dimension = dimension;
     return this;
   }
 
-   /**
+  /**
    * Get dimension
    * @return dimension
-  **/
+   */
   @javax.annotation.Nullable
   public GSGetSKUPrintDocumentRequestBodyDimension getDimension() {
     return dimension;
   }
 
-  public void setDimension(GSGetSKUPrintDocumentRequestBodyDimension dimension) {
+  public void setDimension(@javax.annotation.Nullable GSGetSKUPrintDocumentRequestBodyDimension dimension) {
     this.dimension = dimension;
   }
 
 
-  public GSGetSKUPrintDocumentRequestBody platformSkuItems(List<GSGetSKUPrintDocumentRequestBodyPlatformSkuItems> platformSkuItems) {
+  public GSGetSKUPrintDocumentRequestBody platformSkuItems(@javax.annotation.Nullable List<GSGetSKUPrintDocumentRequestBodyPlatformSkuItems> platformSkuItems) {
     this.platformSkuItems = platformSkuItems;
     return this;
   }
@@ -106,55 +109,100 @@ public class GSGetSKUPrintDocumentRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The information list of platform-defined sku.
    * @return platformSkuItems
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSGetSKUPrintDocumentRequestBodyPlatformSkuItems> getPlatformSkuItems() {
     return platformSkuItems;
   }
 
-  public void setPlatformSkuItems(List<GSGetSKUPrintDocumentRequestBodyPlatformSkuItems> platformSkuItems) {
+  public void setPlatformSkuItems(@javax.annotation.Nullable List<GSGetSKUPrintDocumentRequestBodyPlatformSkuItems> platformSkuItems) {
     this.platformSkuItems = platformSkuItems;
   }
 
 
-  public GSGetSKUPrintDocumentRequestBody printSkuCode(Boolean printSkuCode) {
+  public GSGetSKUPrintDocumentRequestBody printSkuCode(@javax.annotation.Nullable Boolean printSkuCode) {
     this.printSkuCode = printSkuCode;
     return this;
   }
 
-   /**
+  /**
    * Whether to print the supplier-defined sku code.
    * @return printSkuCode
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getPrintSkuCode() {
     return printSkuCode;
   }
 
-  public void setPrintSkuCode(Boolean printSkuCode) {
+  public void setPrintSkuCode(@javax.annotation.Nullable Boolean printSkuCode) {
     this.printSkuCode = printSkuCode;
   }
 
 
-  public GSGetSKUPrintDocumentRequestBody stockupOrderCode(String stockupOrderCode) {
+  public GSGetSKUPrintDocumentRequestBody stockupOrderCode(@javax.annotation.Nullable String stockupOrderCode) {
     this.stockupOrderCode = stockupOrderCode;
     return this;
   }
 
-   /**
+  /**
    * The code of stockup order.
    * @return stockupOrderCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getStockupOrderCode() {
     return stockupOrderCode;
   }
 
-  public void setStockupOrderCode(String stockupOrderCode) {
+  public void setStockupOrderCode(@javax.annotation.Nullable String stockupOrderCode) {
     this.stockupOrderCode = stockupOrderCode;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSGetSKUPrintDocumentRequestBody instance itself
+   */
+  public GSGetSKUPrintDocumentRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -171,12 +219,13 @@ public class GSGetSKUPrintDocumentRequestBody {
     return Objects.equals(this.dimension, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody.dimension) &&
         Objects.equals(this.platformSkuItems, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody.platformSkuItems) &&
         Objects.equals(this.printSkuCode, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody.printSkuCode) &&
-        Objects.equals(this.stockupOrderCode, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody.stockupOrderCode);
+        Objects.equals(this.stockupOrderCode, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody.stockupOrderCode)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202405GSGetSKUPrintDocumentRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dimension, platformSkuItems, printSkuCode, stockupOrderCode);
+    return Objects.hash(dimension, platformSkuItems, printSkuCode, stockupOrderCode, additionalProperties);
   }
 
   @Override
@@ -187,6 +236,7 @@ public class GSGetSKUPrintDocumentRequestBody {
     sb.append("    platformSkuItems: ").append(toIndentedString(platformSkuItems)).append("\n");
     sb.append("    printSkuCode: ").append(toIndentedString(printSkuCode)).append("\n");
     sb.append("    stockupOrderCode: ").append(toIndentedString(stockupOrderCode)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -208,34 +258,22 @@ public class GSGetSKUPrintDocumentRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("dimension");
-    openapiFields.add("platform_sku_items");
-    openapiFields.add("print_sku_code");
-    openapiFields.add("stockup_order_code");
+    openapiFields = new HashSet<String>(Arrays.asList("dimension", "platform_sku_items", "print_sku_code", "stockup_order_code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSGetSKUPrintDocumentRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSGetSKUPrintDocumentRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSGetSKUPrintDocumentRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSGetSKUPrintDocumentRequestBody is not found in the empty JSON string", GSGetSKUPrintDocumentRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSGetSKUPrintDocumentRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSGetSKUPrintDocumentRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -277,6 +315,28 @@ public class GSGetSKUPrintDocumentRequestBody {
            @Override
            public void write(JsonWriter out, GSGetSKUPrintDocumentRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -284,29 +344,50 @@ public class GSGetSKUPrintDocumentRequestBody {
            public GSGetSKUPrintDocumentRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSGetSKUPrintDocumentRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSGetSKUPrintDocumentRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSGetSKUPrintDocumentRequestBody
-  * @throws IOException if the JSON string is invalid with respect to GSGetSKUPrintDocumentRequestBody
-  */
+  /**
+   * Create an instance of GSGetSKUPrintDocumentRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSGetSKUPrintDocumentRequestBody
+   * @throws IOException if the JSON string is invalid with respect to GSGetSKUPrintDocumentRequestBody
+   */
   public static GSGetSKUPrintDocumentRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSGetSKUPrintDocumentRequestBody.class);
   }
 
- /**
-  * Convert an instance of GSGetSKUPrintDocumentRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSGetSKUPrintDocumentRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

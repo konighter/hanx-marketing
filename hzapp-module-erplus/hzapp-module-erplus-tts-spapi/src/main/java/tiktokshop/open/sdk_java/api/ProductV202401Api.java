@@ -83,12 +83,13 @@ public class ProductV202401Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202401ListingSchemasGetCall(List<Integer> categoryIds, String xTtsAccessToken, String contentType, String locale, String categoryVersion, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202401ListingSchemasGetCall(@javax.annotation.Nonnull List<Integer> categoryIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -125,14 +126,6 @@ public class ProductV202401Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("category_version", categoryVersion));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -148,12 +141,22 @@ public class ProductV202401Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202401ListingSchemasGetValidateBeforeCall(List<Integer> categoryIds, String xTtsAccessToken, String contentType, String locale, String categoryVersion, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202401ListingSchemasGetValidateBeforeCall(@javax.annotation.Nonnull List<Integer> categoryIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'categoryIds' is set
         if (categoryIds == null) {
             throw new ApiException("Missing the required parameter 'categoryIds' when calling product202401ListingSchemasGet(Async)");
@@ -184,12 +187,13 @@ public class ProductV202401Api {
      * @return ListingSchemasResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ListingSchemasResponse product202401ListingSchemasGet(List<Integer> categoryIds, String xTtsAccessToken, String contentType, String locale, String categoryVersion) throws ApiException {
+    public ListingSchemasResponse product202401ListingSchemasGet(@javax.annotation.Nonnull List<Integer> categoryIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion) throws ApiException {
         ApiResponse<ListingSchemasResponse> localVarResp = product202401ListingSchemasGetWithHttpInfo(categoryIds, xTtsAccessToken, contentType, locale, categoryVersion);
         return localVarResp.getData();
     }
@@ -205,12 +209,13 @@ public class ProductV202401Api {
      * @return ApiResponse&lt;ListingSchemasResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ListingSchemasResponse> product202401ListingSchemasGetWithHttpInfo(List<Integer> categoryIds, String xTtsAccessToken, String contentType, String locale, String categoryVersion) throws ApiException {
+    public ApiResponse<ListingSchemasResponse> product202401ListingSchemasGetWithHttpInfo(@javax.annotation.Nonnull List<Integer> categoryIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion) throws ApiException {
         okhttp3.Call localVarCall = product202401ListingSchemasGetValidateBeforeCall(categoryIds, xTtsAccessToken, contentType, locale, categoryVersion, null);
         Type localVarReturnType = new TypeToken<ListingSchemasResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -228,12 +233,13 @@ public class ProductV202401Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202401ListingSchemasGetAsync(List<Integer> categoryIds, String xTtsAccessToken, String contentType, String locale, String categoryVersion, final ApiCallback<ListingSchemasResponse> _callback) throws ApiException {
+    public okhttp3.Call product202401ListingSchemasGetAsync(@javax.annotation.Nonnull List<Integer> categoryIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String locale, @javax.annotation.Nullable String categoryVersion, final ApiCallback<ListingSchemasResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202401ListingSchemasGetValidateBeforeCall(categoryIds, xTtsAccessToken, contentType, locale, categoryVersion, _callback);
         Type localVarReturnType = new TypeToken<ListingSchemasResponse>(){}.getType();

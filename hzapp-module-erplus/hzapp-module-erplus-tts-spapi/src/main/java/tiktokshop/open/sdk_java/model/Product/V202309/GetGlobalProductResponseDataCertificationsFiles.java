@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,85 +50,89 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetGlobalProductResponseDataCertificationsFiles
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetGlobalProductResponseDataCertificationsFiles {
   public static final String SERIALIZED_NAME_FORMAT = "format";
   @SerializedName(SERIALIZED_NAME_FORMAT)
+  @javax.annotation.Nullable
   private String format;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_URLS = "urls";
   @SerializedName(SERIALIZED_NAME_URLS)
+  @javax.annotation.Nullable
   private List<String> urls = new ArrayList<>();
 
   public GetGlobalProductResponseDataCertificationsFiles() {
   }
 
-  public GetGlobalProductResponseDataCertificationsFiles format(String format) {
+  public GetGlobalProductResponseDataCertificationsFiles format(@javax.annotation.Nullable String format) {
     this.format = format;
     return this;
   }
 
-   /**
+  /**
    * The format of the certification file.
    * @return format
-  **/
+   */
   @javax.annotation.Nullable
   public String getFormat() {
     return format;
   }
 
-  public void setFormat(String format) {
+  public void setFormat(@javax.annotation.Nullable String format) {
     this.format = format;
   }
 
 
-  public GetGlobalProductResponseDataCertificationsFiles id(String id) {
+  public GetGlobalProductResponseDataCertificationsFiles id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The ID of the certification file.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetGlobalProductResponseDataCertificationsFiles name(String name) {
+  public GetGlobalProductResponseDataCertificationsFiles name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the certification file
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public GetGlobalProductResponseDataCertificationsFiles urls(List<String> urls) {
+  public GetGlobalProductResponseDataCertificationsFiles urls(@javax.annotation.Nullable List<String> urls) {
     this.urls = urls;
     return this;
   }
@@ -142,17 +145,62 @@ public class GetGlobalProductResponseDataCertificationsFiles {
     return this;
   }
 
-   /**
+  /**
    *  The URLs to view the certification files. 
    * @return urls
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getUrls() {
     return urls;
   }
 
-  public void setUrls(List<String> urls) {
+  public void setUrls(@javax.annotation.Nullable List<String> urls) {
     this.urls = urls;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetGlobalProductResponseDataCertificationsFiles instance itself
+   */
+  public GetGlobalProductResponseDataCertificationsFiles putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -169,12 +217,13 @@ public class GetGlobalProductResponseDataCertificationsFiles {
     return Objects.equals(this.format, product202309GetGlobalProductResponseDataCertificationsFiles.format) &&
         Objects.equals(this.id, product202309GetGlobalProductResponseDataCertificationsFiles.id) &&
         Objects.equals(this.name, product202309GetGlobalProductResponseDataCertificationsFiles.name) &&
-        Objects.equals(this.urls, product202309GetGlobalProductResponseDataCertificationsFiles.urls);
+        Objects.equals(this.urls, product202309GetGlobalProductResponseDataCertificationsFiles.urls)&&
+        Objects.equals(this.additionalProperties, product202309GetGlobalProductResponseDataCertificationsFiles.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(format, id, name, urls);
+    return Objects.hash(format, id, name, urls, additionalProperties);
   }
 
   @Override
@@ -185,6 +234,7 @@ public class GetGlobalProductResponseDataCertificationsFiles {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    urls: ").append(toIndentedString(urls)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -206,34 +256,22 @@ public class GetGlobalProductResponseDataCertificationsFiles {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("format");
-    openapiFields.add("id");
-    openapiFields.add("name");
-    openapiFields.add("urls");
+    openapiFields = new HashSet<String>(Arrays.asList("format", "id", "name", "urls"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetGlobalProductResponseDataCertificationsFiles
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetGlobalProductResponseDataCertificationsFiles
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetGlobalProductResponseDataCertificationsFiles.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetGlobalProductResponseDataCertificationsFiles is not found in the empty JSON string", GetGlobalProductResponseDataCertificationsFiles.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetGlobalProductResponseDataCertificationsFiles.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetGlobalProductResponseDataCertificationsFiles` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -267,6 +305,28 @@ public class GetGlobalProductResponseDataCertificationsFiles {
            @Override
            public void write(JsonWriter out, GetGlobalProductResponseDataCertificationsFiles value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -274,29 +334,50 @@ public class GetGlobalProductResponseDataCertificationsFiles {
            public GetGlobalProductResponseDataCertificationsFiles read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetGlobalProductResponseDataCertificationsFiles instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetGlobalProductResponseDataCertificationsFiles given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetGlobalProductResponseDataCertificationsFiles
-  * @throws IOException if the JSON string is invalid with respect to GetGlobalProductResponseDataCertificationsFiles
-  */
+  /**
+   * Create an instance of GetGlobalProductResponseDataCertificationsFiles given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetGlobalProductResponseDataCertificationsFiles
+   * @throws IOException if the JSON string is invalid with respect to GetGlobalProductResponseDataCertificationsFiles
+   */
   public static GetGlobalProductResponseDataCertificationsFiles fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetGlobalProductResponseDataCertificationsFiles.class);
   }
 
- /**
-  * Convert an instance of GetGlobalProductResponseDataCertificationsFiles to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetGlobalProductResponseDataCertificationsFiles to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

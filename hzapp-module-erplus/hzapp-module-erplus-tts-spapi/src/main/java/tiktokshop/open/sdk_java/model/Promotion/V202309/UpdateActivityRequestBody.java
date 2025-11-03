@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,116 +52,123 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * UpdateActivityRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class UpdateActivityRequestBody {
   public static final String SERIALIZED_NAME_BEGIN_TIME = "begin_time";
   @SerializedName(SERIALIZED_NAME_BEGIN_TIME)
+  @javax.annotation.Nullable
   private Long beginTime;
 
   public static final String SERIALIZED_NAME_DISCOUNT = "discount";
   @SerializedName(SERIALIZED_NAME_DISCOUNT)
+  @javax.annotation.Nullable
   private UpdateActivityRequestBodyDiscount discount;
 
   public static final String SERIALIZED_NAME_DURATION_TYPE = "duration_type";
   @SerializedName(SERIALIZED_NAME_DURATION_TYPE)
+  @javax.annotation.Nullable
   private String durationType;
 
   public static final String SERIALIZED_NAME_END_TIME = "end_time";
   @SerializedName(SERIALIZED_NAME_END_TIME)
+  @javax.annotation.Nullable
   private Long endTime;
 
   public static final String SERIALIZED_NAME_PARTICIPATION_LIMIT = "participation_limit";
   @SerializedName(SERIALIZED_NAME_PARTICIPATION_LIMIT)
+  @javax.annotation.Nullable
   private List<UpdateActivityRequestBodyParticipationLimit> participationLimit = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PRODUCT_LEVEL = "product_level";
   @SerializedName(SERIALIZED_NAME_PRODUCT_LEVEL)
+  @javax.annotation.Nullable
   private String productLevel;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public UpdateActivityRequestBody() {
   }
 
-  public UpdateActivityRequestBody beginTime(Long beginTime) {
+  public UpdateActivityRequestBody beginTime(@javax.annotation.Nullable Long beginTime) {
     this.beginTime = beginTime;
     return this;
   }
 
-   /**
+  /**
    * Activity start time. UNIX timestamp. The value must be greater than the value of the current time.
    * @return beginTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getBeginTime() {
     return beginTime;
   }
 
-  public void setBeginTime(Long beginTime) {
+  public void setBeginTime(@javax.annotation.Nullable Long beginTime) {
     this.beginTime = beginTime;
   }
 
 
-  public UpdateActivityRequestBody discount(UpdateActivityRequestBodyDiscount discount) {
+  public UpdateActivityRequestBody discount(@javax.annotation.Nullable UpdateActivityRequestBodyDiscount discount) {
     this.discount = discount;
     return this;
   }
 
-   /**
+  /**
    * Get discount
    * @return discount
-  **/
+   */
   @javax.annotation.Nullable
   public UpdateActivityRequestBodyDiscount getDiscount() {
     return discount;
   }
 
-  public void setDiscount(UpdateActivityRequestBodyDiscount discount) {
+  public void setDiscount(@javax.annotation.Nullable UpdateActivityRequestBodyDiscount discount) {
     this.discount = discount;
   }
 
 
-  public UpdateActivityRequestBody durationType(String durationType) {
+  public UpdateActivityRequestBody durationType(@javax.annotation.Nullable String durationType) {
     this.durationType = durationType;
     return this;
   }
 
-   /**
+  /**
    * The effective time type of the current activity - NORMAL:  &#x60;begin_time&#x60; and &#x60;end_time&#x60; must be filled - INDEFINITE: &#x60;begin_time&#x60; and &#x60;end_time&#x60; aren&#39;t required, and the promotion will be a long-term activity which runs indefinitely.  1.  &#x60;INDEFINITE&#x60; is only valid when &#x60;activity_type&#x60; is &#x60;SHIPPING_DISCOUNT&#x60;, 2. If &#x60;duration_type&#x60; is &#x60;INDEFINITE&#x60;, &#x60;start_time&#x60; and &#x60;end_time&#x60; should be 0 Default: NORMAL
    * @return durationType
-  **/
+   */
   @javax.annotation.Nullable
   public String getDurationType() {
     return durationType;
   }
 
-  public void setDurationType(String durationType) {
+  public void setDurationType(@javax.annotation.Nullable String durationType) {
     this.durationType = durationType;
   }
 
 
-  public UpdateActivityRequestBody endTime(Long endTime) {
+  public UpdateActivityRequestBody endTime(@javax.annotation.Nullable Long endTime) {
     this.endTime = endTime;
     return this;
   }
 
-   /**
+  /**
    * Activity end time. UNIX timestamp.
    * @return endTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(Long endTime) {
+  public void setEndTime(@javax.annotation.Nullable Long endTime) {
     this.endTime = endTime;
   }
 
 
-  public UpdateActivityRequestBody participationLimit(List<UpdateActivityRequestBodyParticipationLimit> participationLimit) {
+  public UpdateActivityRequestBody participationLimit(@javax.annotation.Nullable List<UpdateActivityRequestBodyParticipationLimit> participationLimit) {
     this.participationLimit = participationLimit;
     return this;
   }
@@ -175,55 +181,100 @@ public class UpdateActivityRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The number of times a buyer can participate in the promotion.
    * @return participationLimit
-  **/
+   */
   @javax.annotation.Nullable
   public List<UpdateActivityRequestBodyParticipationLimit> getParticipationLimit() {
     return participationLimit;
   }
 
-  public void setParticipationLimit(List<UpdateActivityRequestBodyParticipationLimit> participationLimit) {
+  public void setParticipationLimit(@javax.annotation.Nullable List<UpdateActivityRequestBodyParticipationLimit> participationLimit) {
     this.participationLimit = participationLimit;
   }
 
 
-  public UpdateActivityRequestBody productLevel(String productLevel) {
+  public UpdateActivityRequestBody productLevel(@javax.annotation.Nullable String productLevel) {
     this.productLevel = productLevel;
     return this;
   }
 
-   /**
+  /**
    * Activity product dimension, values are: ​- PRODUCT: Promotion activity applies at the product (SPU) level. Any and all SKUs that are part of this product will be subject to the promotion. ​- VARIATION: Promotion activity only applies to specified SKUs. ​- SHOP: Promotion activity applies to all products in the shop.
    * @return productLevel
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductLevel() {
     return productLevel;
   }
 
-  public void setProductLevel(String productLevel) {
+  public void setProductLevel(@javax.annotation.Nullable String productLevel) {
     this.productLevel = productLevel;
   }
 
 
-  public UpdateActivityRequestBody title(String title) {
+  public UpdateActivityRequestBody title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * Activity name (50 characters max). The name must be unique.
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the UpdateActivityRequestBody instance itself
+   */
+  public UpdateActivityRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -243,12 +294,13 @@ public class UpdateActivityRequestBody {
         Objects.equals(this.endTime, promotion202309UpdateActivityRequestBody.endTime) &&
         Objects.equals(this.participationLimit, promotion202309UpdateActivityRequestBody.participationLimit) &&
         Objects.equals(this.productLevel, promotion202309UpdateActivityRequestBody.productLevel) &&
-        Objects.equals(this.title, promotion202309UpdateActivityRequestBody.title);
+        Objects.equals(this.title, promotion202309UpdateActivityRequestBody.title)&&
+        Objects.equals(this.additionalProperties, promotion202309UpdateActivityRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(beginTime, discount, durationType, endTime, participationLimit, productLevel, title);
+    return Objects.hash(beginTime, discount, durationType, endTime, participationLimit, productLevel, title, additionalProperties);
   }
 
   @Override
@@ -262,6 +314,7 @@ public class UpdateActivityRequestBody {
     sb.append("    participationLimit: ").append(toIndentedString(participationLimit)).append("\n");
     sb.append("    productLevel: ").append(toIndentedString(productLevel)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -283,37 +336,22 @@ public class UpdateActivityRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("begin_time");
-    openapiFields.add("discount");
-    openapiFields.add("duration_type");
-    openapiFields.add("end_time");
-    openapiFields.add("participation_limit");
-    openapiFields.add("product_level");
-    openapiFields.add("title");
+    openapiFields = new HashSet<String>(Arrays.asList("begin_time", "discount", "duration_type", "end_time", "participation_limit", "product_level", "title"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to UpdateActivityRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UpdateActivityRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!UpdateActivityRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UpdateActivityRequestBody is not found in the empty JSON string", UpdateActivityRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!UpdateActivityRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UpdateActivityRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -361,6 +399,28 @@ public class UpdateActivityRequestBody {
            @Override
            public void write(JsonWriter out, UpdateActivityRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -368,29 +428,50 @@ public class UpdateActivityRequestBody {
            public UpdateActivityRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             UpdateActivityRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UpdateActivityRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UpdateActivityRequestBody
-  * @throws IOException if the JSON string is invalid with respect to UpdateActivityRequestBody
-  */
+  /**
+   * Create an instance of UpdateActivityRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UpdateActivityRequestBody
+   * @throws IOException if the JSON string is invalid with respect to UpdateActivityRequestBody
+   */
   public static UpdateActivityRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UpdateActivityRequestBody.class);
   }
 
- /**
-  * Convert an instance of UpdateActivityRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UpdateActivityRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

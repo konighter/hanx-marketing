@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,44 +50,52 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
   public static final String SERIALIZED_NAME_EXTERNAL_SKU_CODES = "external_sku_codes";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKU_CODES)
+  @javax.annotation.Nullable
   private List<String> externalSkuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PAGE_SIZE = "page_size";
   @SerializedName(SERIALIZED_NAME_PAGE_SIZE)
+  @javax.annotation.Nullable
   private Long pageSize;
 
   public static final String SERIALIZED_NAME_PAGE_TOKEN = "page_token";
   @SerializedName(SERIALIZED_NAME_PAGE_TOKEN)
+  @javax.annotation.Nullable
   private String pageToken;
 
   public static final String SERIALIZED_NAME_PLATFORM_SKU_CODES = "platform_sku_codes";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SKU_CODES)
+  @javax.annotation.Nullable
   private List<String> platformSkuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PLATFORM_SPU_CODES = "platform_spu_codes";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SPU_CODES)
+  @javax.annotation.Nullable
   private List<String> platformSpuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PUSH_TIME_GE = "push_time_ge";
   @SerializedName(SERIALIZED_NAME_PUSH_TIME_GE)
+  @javax.annotation.Nullable
   private Long pushTimeGe;
 
   public static final String SERIALIZED_NAME_PUSH_TIME_LT = "push_time_lt";
   @SerializedName(SERIALIZED_NAME_PUSH_TIME_LT)
+  @javax.annotation.Nullable
   private Long pushTimeLt;
 
   public static final String SERIALIZED_NAME_SKU_STATUS = "sku_status";
   @SerializedName(SERIALIZED_NAME_SKU_STATUS)
+  @javax.annotation.Nullable
   private String skuStatus;
 
   public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody() {
   }
 
-  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody externalSkuCodes(List<String> externalSkuCodes) {
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody externalSkuCodes(@javax.annotation.Nullable List<String> externalSkuCodes) {
     this.externalSkuCodes = externalSkuCodes;
     return this;
   }
@@ -101,59 +108,59 @@ public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return externalSkuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExternalSkuCodes() {
     return externalSkuCodes;
   }
 
-  public void setExternalSkuCodes(List<String> externalSkuCodes) {
+  public void setExternalSkuCodes(@javax.annotation.Nullable List<String> externalSkuCodes) {
     this.externalSkuCodes = externalSkuCodes;
   }
 
 
-  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody pageSize(Long pageSize) {
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody pageSize(@javax.annotation.Nullable Long pageSize) {
     this.pageSize = pageSize;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return pageSize
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPageSize() {
     return pageSize;
   }
 
-  public void setPageSize(Long pageSize) {
+  public void setPageSize(@javax.annotation.Nullable Long pageSize) {
     this.pageSize = pageSize;
   }
 
 
-  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody pageToken(String pageToken) {
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody pageToken(@javax.annotation.Nullable String pageToken) {
     this.pageToken = pageToken;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return pageToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getPageToken() {
     return pageToken;
   }
 
-  public void setPageToken(String pageToken) {
+  public void setPageToken(@javax.annotation.Nullable String pageToken) {
     this.pageToken = pageToken;
   }
 
 
-  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody platformSkuCodes(List<String> platformSkuCodes) {
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody platformSkuCodes(@javax.annotation.Nullable List<String> platformSkuCodes) {
     this.platformSkuCodes = platformSkuCodes;
     return this;
   }
@@ -166,21 +173,21 @@ public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return platformSkuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getPlatformSkuCodes() {
     return platformSkuCodes;
   }
 
-  public void setPlatformSkuCodes(List<String> platformSkuCodes) {
+  public void setPlatformSkuCodes(@javax.annotation.Nullable List<String> platformSkuCodes) {
     this.platformSkuCodes = platformSkuCodes;
   }
 
 
-  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody platformSpuCodes(List<String> platformSpuCodes) {
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody platformSpuCodes(@javax.annotation.Nullable List<String> platformSpuCodes) {
     this.platformSpuCodes = platformSpuCodes;
     return this;
   }
@@ -193,74 +200,119 @@ public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return platformSpuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getPlatformSpuCodes() {
     return platformSpuCodes;
   }
 
-  public void setPlatformSpuCodes(List<String> platformSpuCodes) {
+  public void setPlatformSpuCodes(@javax.annotation.Nullable List<String> platformSpuCodes) {
     this.platformSpuCodes = platformSpuCodes;
   }
 
 
-  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody pushTimeGe(Long pushTimeGe) {
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody pushTimeGe(@javax.annotation.Nullable Long pushTimeGe) {
     this.pushTimeGe = pushTimeGe;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return pushTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPushTimeGe() {
     return pushTimeGe;
   }
 
-  public void setPushTimeGe(Long pushTimeGe) {
+  public void setPushTimeGe(@javax.annotation.Nullable Long pushTimeGe) {
     this.pushTimeGe = pushTimeGe;
   }
 
 
-  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody pushTimeLt(Long pushTimeLt) {
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody pushTimeLt(@javax.annotation.Nullable Long pushTimeLt) {
     this.pushTimeLt = pushTimeLt;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return pushTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPushTimeLt() {
     return pushTimeLt;
   }
 
-  public void setPushTimeLt(Long pushTimeLt) {
+  public void setPushTimeLt(@javax.annotation.Nullable Long pushTimeLt) {
     this.pushTimeLt = pushTimeLt;
   }
 
 
-  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody skuStatus(String skuStatus) {
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody skuStatus(@javax.annotation.Nullable String skuStatus) {
     this.skuStatus = skuStatus;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return skuStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getSkuStatus() {
     return skuStatus;
   }
 
-  public void setSkuStatus(String skuStatus) {
+  public void setSkuStatus(@javax.annotation.Nullable String skuStatus) {
     this.skuStatus = skuStatus;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody instance itself
+   */
+  public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -281,12 +333,13 @@ public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
         Objects.equals(this.platformSpuCodes, gsFullServiceCommodity202410GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.platformSpuCodes) &&
         Objects.equals(this.pushTimeGe, gsFullServiceCommodity202410GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.pushTimeGe) &&
         Objects.equals(this.pushTimeLt, gsFullServiceCommodity202410GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.pushTimeLt) &&
-        Objects.equals(this.skuStatus, gsFullServiceCommodity202410GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.skuStatus);
+        Objects.equals(this.skuStatus, gsFullServiceCommodity202410GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.skuStatus)&&
+        Objects.equals(this.additionalProperties, gsFullServiceCommodity202410GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(externalSkuCodes, pageSize, pageToken, platformSkuCodes, platformSpuCodes, pushTimeGe, pushTimeLt, skuStatus);
+    return Objects.hash(externalSkuCodes, pageSize, pageToken, platformSkuCodes, platformSpuCodes, pushTimeGe, pushTimeLt, skuStatus, additionalProperties);
   }
 
   @Override
@@ -301,6 +354,7 @@ public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
     sb.append("    pushTimeGe: ").append(toIndentedString(pushTimeGe)).append("\n");
     sb.append("    pushTimeLt: ").append(toIndentedString(pushTimeLt)).append("\n");
     sb.append("    skuStatus: ").append(toIndentedString(skuStatus)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -322,38 +376,22 @@ public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("external_sku_codes");
-    openapiFields.add("page_size");
-    openapiFields.add("page_token");
-    openapiFields.add("platform_sku_codes");
-    openapiFields.add("platform_spu_codes");
-    openapiFields.add("push_time_ge");
-    openapiFields.add("push_time_lt");
-    openapiFields.add("sku_status");
+    openapiFields = new HashSet<String>(Arrays.asList("external_sku_codes", "page_size", "page_token", "platform_sku_codes", "platform_spu_codes", "push_time_ge", "push_time_lt", "sku_status"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody is not found in the empty JSON string", GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -392,6 +430,28 @@ public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
            @Override
            public void write(JsonWriter out, GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -399,29 +459,50 @@ public class GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody {
            public GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody
-  * @throws IOException if the JSON string is invalid with respect to GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody
-  */
+  /**
+   * Create an instance of GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody
+   * @throws IOException if the JSON string is invalid with respect to GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody
+   */
   public static GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody.class);
   }
 
- /**
-  * Convert an instance of GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

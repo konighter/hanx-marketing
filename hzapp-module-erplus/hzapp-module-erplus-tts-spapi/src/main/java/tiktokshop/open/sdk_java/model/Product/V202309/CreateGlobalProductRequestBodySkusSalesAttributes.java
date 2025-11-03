@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,123 +49,173 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CreateGlobalProductRequestBodySkusSalesAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CreateGlobalProductRequestBodySkusSalesAttributes {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_SKU_IMG = "sku_img";
   @SerializedName(SERIALIZED_NAME_SKU_IMG)
+  @javax.annotation.Nullable
   private CreateGlobalProductRequestBodySkusSalesAttributesSkuImg skuImg;
 
   public static final String SERIALIZED_NAME_VALUE_ID = "value_id";
   @SerializedName(SERIALIZED_NAME_VALUE_ID)
+  @javax.annotation.Nullable
   private String valueId;
 
   public static final String SERIALIZED_NAME_VALUE_NAME = "value_name";
   @SerializedName(SERIALIZED_NAME_VALUE_NAME)
+  @javax.annotation.Nullable
   private String valueName;
 
   public CreateGlobalProductRequestBodySkusSalesAttributes() {
   }
 
-  public CreateGlobalProductRequestBodySkusSalesAttributes id(String id) {
+  public CreateGlobalProductRequestBodySkusSalesAttributes id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The ID of a built-in sales attribute, retrieved from [Get Global Attributes API](https://partner.tiktokshop.com/docv2/page/650a0483c16ffe02b8dfc80a).
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public CreateGlobalProductRequestBodySkusSalesAttributes name(String name) {
+  public CreateGlobalProductRequestBodySkusSalesAttributes name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * A self-defined custom sales attribute name if the built-in attributes do not satisfy your needs. The system will auto-generate an ID after listing.  **Note**:  - Do not include sensitive characters. - Max length: 20 characters
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public CreateGlobalProductRequestBodySkusSalesAttributes skuImg(CreateGlobalProductRequestBodySkusSalesAttributesSkuImg skuImg) {
+  public CreateGlobalProductRequestBodySkusSalesAttributes skuImg(@javax.annotation.Nullable CreateGlobalProductRequestBodySkusSalesAttributesSkuImg skuImg) {
     this.skuImg = skuImg;
     return this;
   }
 
-   /**
+  /**
    * Get skuImg
    * @return skuImg
-  **/
+   */
   @javax.annotation.Nullable
   public CreateGlobalProductRequestBodySkusSalesAttributesSkuImg getSkuImg() {
     return skuImg;
   }
 
-  public void setSkuImg(CreateGlobalProductRequestBodySkusSalesAttributesSkuImg skuImg) {
+  public void setSkuImg(@javax.annotation.Nullable CreateGlobalProductRequestBodySkusSalesAttributesSkuImg skuImg) {
     this.skuImg = skuImg;
   }
 
 
-  public CreateGlobalProductRequestBodySkusSalesAttributes valueId(String valueId) {
+  public CreateGlobalProductRequestBodySkusSalesAttributes valueId(@javax.annotation.Nullable String valueId) {
     this.valueId = valueId;
     return this;
   }
 
-   /**
+  /**
    * The ID of a built-in sales attribute value, retrieved from the [Get Global Attributes API](https://partner.tiktokshop.com/docv2/page/650a0483c16ffe02b8dfc80a).
    * @return valueId
-  **/
+   */
   @javax.annotation.Nullable
   public String getValueId() {
     return valueId;
   }
 
-  public void setValueId(String valueId) {
+  public void setValueId(@javax.annotation.Nullable String valueId) {
     this.valueId = valueId;
   }
 
 
-  public CreateGlobalProductRequestBodySkusSalesAttributes valueName(String valueName) {
+  public CreateGlobalProductRequestBodySkusSalesAttributes valueName(@javax.annotation.Nullable String valueName) {
     this.valueName = valueName;
     return this;
   }
 
-   /**
+  /**
    * A self-defined custom sales attribute value if the built-in values do not satisfy your needs. The system will auto-generate an ID after listing.  **Note**: - No duplicates allowed under the same attribute. - Max length: 50 characters. - Supports only alphabets and numbers.
    * @return valueName
-  **/
+   */
   @javax.annotation.Nullable
   public String getValueName() {
     return valueName;
   }
 
-  public void setValueName(String valueName) {
+  public void setValueName(@javax.annotation.Nullable String valueName) {
     this.valueName = valueName;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CreateGlobalProductRequestBodySkusSalesAttributes instance itself
+   */
+  public CreateGlobalProductRequestBodySkusSalesAttributes putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -184,12 +233,13 @@ public class CreateGlobalProductRequestBodySkusSalesAttributes {
         Objects.equals(this.name, product202309CreateGlobalProductRequestBodySkusSalesAttributes.name) &&
         Objects.equals(this.skuImg, product202309CreateGlobalProductRequestBodySkusSalesAttributes.skuImg) &&
         Objects.equals(this.valueId, product202309CreateGlobalProductRequestBodySkusSalesAttributes.valueId) &&
-        Objects.equals(this.valueName, product202309CreateGlobalProductRequestBodySkusSalesAttributes.valueName);
+        Objects.equals(this.valueName, product202309CreateGlobalProductRequestBodySkusSalesAttributes.valueName)&&
+        Objects.equals(this.additionalProperties, product202309CreateGlobalProductRequestBodySkusSalesAttributes.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, skuImg, valueId, valueName);
+    return Objects.hash(id, name, skuImg, valueId, valueName, additionalProperties);
   }
 
   @Override
@@ -201,6 +251,7 @@ public class CreateGlobalProductRequestBodySkusSalesAttributes {
     sb.append("    skuImg: ").append(toIndentedString(skuImg)).append("\n");
     sb.append("    valueId: ").append(toIndentedString(valueId)).append("\n");
     sb.append("    valueName: ").append(toIndentedString(valueName)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -222,35 +273,22 @@ public class CreateGlobalProductRequestBodySkusSalesAttributes {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("name");
-    openapiFields.add("sku_img");
-    openapiFields.add("value_id");
-    openapiFields.add("value_name");
+    openapiFields = new HashSet<String>(Arrays.asList("id", "name", "sku_img", "value_id", "value_name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateGlobalProductRequestBodySkusSalesAttributes
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateGlobalProductRequestBodySkusSalesAttributes
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateGlobalProductRequestBodySkusSalesAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateGlobalProductRequestBodySkusSalesAttributes is not found in the empty JSON string", CreateGlobalProductRequestBodySkusSalesAttributes.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateGlobalProductRequestBodySkusSalesAttributes.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateGlobalProductRequestBodySkusSalesAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -287,6 +325,28 @@ public class CreateGlobalProductRequestBodySkusSalesAttributes {
            @Override
            public void write(JsonWriter out, CreateGlobalProductRequestBodySkusSalesAttributes value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -294,29 +354,50 @@ public class CreateGlobalProductRequestBodySkusSalesAttributes {
            public CreateGlobalProductRequestBodySkusSalesAttributes read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CreateGlobalProductRequestBodySkusSalesAttributes instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateGlobalProductRequestBodySkusSalesAttributes given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateGlobalProductRequestBodySkusSalesAttributes
-  * @throws IOException if the JSON string is invalid with respect to CreateGlobalProductRequestBodySkusSalesAttributes
-  */
+  /**
+   * Create an instance of CreateGlobalProductRequestBodySkusSalesAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateGlobalProductRequestBodySkusSalesAttributes
+   * @throws IOException if the JSON string is invalid with respect to CreateGlobalProductRequestBodySkusSalesAttributes
+   */
   public static CreateGlobalProductRequestBodySkusSalesAttributes fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateGlobalProductRequestBodySkusSalesAttributes.class);
   }
 
- /**
-  * Convert an instance of CreateGlobalProductRequestBodySkusSalesAttributes to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateGlobalProductRequestBodySkusSalesAttributes to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

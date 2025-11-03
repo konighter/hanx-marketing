@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,238 +49,293 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchReturnOrdersResponseDataReturnOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchReturnOrdersResponseDataReturnOrders {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_DETAILED_REASON = "detailed_reason";
   @SerializedName(SERIALIZED_NAME_DETAILED_REASON)
+  @javax.annotation.Nullable
   private String detailedReason;
 
   public static final String SERIALIZED_NAME_LOGISTICS = "logistics";
   @SerializedName(SERIALIZED_NAME_LOGISTICS)
+  @javax.annotation.Nullable
   private GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics logistics;
 
   public static final String SERIALIZED_NAME_METHOD = "method";
   @SerializedName(SERIALIZED_NAME_METHOD)
+  @javax.annotation.Nullable
   private String method;
 
   public static final String SERIALIZED_NAME_OUTBOUND_BATCH_CODE = "outbound_batch_code";
   @SerializedName(SERIALIZED_NAME_OUTBOUND_BATCH_CODE)
+  @javax.annotation.Nullable
   private String outboundBatchCode;
 
   public static final String SERIALIZED_NAME_REASON_TYPE = "reason_type";
   @SerializedName(SERIALIZED_NAME_REASON_TYPE)
+  @javax.annotation.Nullable
   private String reasonType;
 
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
+  @javax.annotation.Nullable
   private String source;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_CODE = "warehouse_code";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_CODE)
+  @javax.annotation.Nullable
   private String warehouseCode;
 
   public GlobalSellingSearchReturnOrdersResponseDataReturnOrders() {
   }
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders code(String code) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * The code of the return order.
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders detailedReason(String detailedReason) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders detailedReason(@javax.annotation.Nullable String detailedReason) {
     this.detailedReason = detailedReason;
     return this;
   }
 
-   /**
+  /**
    * The detailed reason for returning goods to merchant.
    * @return detailedReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getDetailedReason() {
     return detailedReason;
   }
 
-  public void setDetailedReason(String detailedReason) {
+  public void setDetailedReason(@javax.annotation.Nullable String detailedReason) {
     this.detailedReason = detailedReason;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders logistics(GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics logistics) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders logistics(@javax.annotation.Nullable GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics logistics) {
     this.logistics = logistics;
     return this;
   }
 
-   /**
+  /**
    * Get logistics
    * @return logistics
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics getLogistics() {
     return logistics;
   }
 
-  public void setLogistics(GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics logistics) {
+  public void setLogistics(@javax.annotation.Nullable GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics logistics) {
     this.logistics = logistics;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders method(String method) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders method(@javax.annotation.Nullable String method) {
     this.method = method;
     return this;
   }
 
-   /**
+  /**
    * The method of returning goods to the merchant. Possible enumerations are:  1. SELF_PICKUP 2. EXPRESS_DELIVERY 3. PLATFORM_DELIVERY 4. ABANDON_GOODS
    * @return method
-  **/
+   */
   @javax.annotation.Nullable
   public String getMethod() {
     return method;
   }
 
-  public void setMethod(String method) {
+  public void setMethod(@javax.annotation.Nullable String method) {
     this.method = method;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders outboundBatchCode(String outboundBatchCode) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders outboundBatchCode(@javax.annotation.Nullable String outboundBatchCode) {
     this.outboundBatchCode = outboundBatchCode;
     return this;
   }
 
-   /**
+  /**
    * The code of outbound batch associated with the return order.
    * @return outboundBatchCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getOutboundBatchCode() {
     return outboundBatchCode;
   }
 
-  public void setOutboundBatchCode(String outboundBatchCode) {
+  public void setOutboundBatchCode(@javax.annotation.Nullable String outboundBatchCode) {
     this.outboundBatchCode = outboundBatchCode;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders reasonType(String reasonType) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders reasonType(@javax.annotation.Nullable String reasonType) {
     this.reasonType = reasonType;
     return this;
   }
 
-   /**
+  /**
    * The reason for returning goods to merchant.
    * @return reasonType
-  **/
+   */
   @javax.annotation.Nullable
   public String getReasonType() {
     return reasonType;
   }
 
-  public void setReasonType(String reasonType) {
+  public void setReasonType(@javax.annotation.Nullable String reasonType) {
     this.reasonType = reasonType;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders source(String source) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders source(@javax.annotation.Nullable String source) {
     this.source = source;
     return this;
   }
 
-   /**
+  /**
    * The source that triggers return goods to the merchant. Possible enumerations are:  1. MERCHAT 2. PLATFORM 3. INVENTORY_HEALTH 4. PRODUCT_DISUSE
    * @return source
-  **/
+   */
   @javax.annotation.Nullable
   public String getSource() {
     return source;
   }
 
-  public void setSource(String source) {
+  public void setSource(@javax.annotation.Nullable String source) {
     this.source = source;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders status(String status) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The list of status of return order. Possible enumerations are:  1. OPERATER_CONFIRMING：Merchants have initiated the return order. The order is yet to be confirmed by the platform. 2. MERCHANT_CONFIRMING：Platform has initiated the return order. The order is yet to be confirmed by the merchants. 3. TO_TRANSIT: Waiting for transit in the warehouse. 4. IN_TRANSIT: transiting in the warehouse. 5. OUTBOUND：Transit finished in the warehouse. Ready for pick up. 6. SHIPPED： Return packages have been collected by logistics. 7. COMPLETED：The return process has been completed. 8. CANCELED：The return process has been cancelled.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders type(String type) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The type of return goods to merchant. Possible enumerations are:  1. ABNORMAL_INVENTORY：Inventory returns are caused by problems such as slow sales. 2. ABNORMAL_QUALITY：Quality problems are identified by quality check. 3. INSPECT_ABNORMAL：Quality problems are identified by inspection in the warehouse. 4. RECEIVE_ABNORMAL：The labels of delivery packages identified in the receiving process are not clear. 5. PRODUCT_ABNORMAL：Products are damaged, with bulging bags or with abnormal barcodes.  6. QUANTITY_ABNORMAL_MORE：The goods are in excessive quantity and need to be returned. 7. MISPLACED_GOODS：Incorrect goods need to be returned.
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders warehouseCode(String warehouseCode) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders warehouseCode(@javax.annotation.Nullable String warehouseCode) {
     this.warehouseCode = warehouseCode;
     return this;
   }
 
-   /**
+  /**
    * The code of warehouse where the goods to be returned are located.
    * @return warehouseCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getWarehouseCode() {
     return warehouseCode;
   }
 
-  public void setWarehouseCode(String warehouseCode) {
+  public void setWarehouseCode(@javax.annotation.Nullable String warehouseCode) {
     this.warehouseCode = warehouseCode;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchReturnOrdersResponseDataReturnOrders instance itself
+   */
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -304,12 +358,13 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrders {
         Objects.equals(this.source, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrders.source) &&
         Objects.equals(this.status, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrders.status) &&
         Objects.equals(this.type, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrders.type) &&
-        Objects.equals(this.warehouseCode, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrders.warehouseCode);
+        Objects.equals(this.warehouseCode, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrders.warehouseCode)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, detailedReason, logistics, method, outboundBatchCode, reasonType, source, status, type, warehouseCode);
+    return Objects.hash(code, detailedReason, logistics, method, outboundBatchCode, reasonType, source, status, type, warehouseCode, additionalProperties);
   }
 
   @Override
@@ -326,6 +381,7 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrders {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    warehouseCode: ").append(toIndentedString(warehouseCode)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -347,40 +403,22 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("code");
-    openapiFields.add("detailed_reason");
-    openapiFields.add("logistics");
-    openapiFields.add("method");
-    openapiFields.add("outbound_batch_code");
-    openapiFields.add("reason_type");
-    openapiFields.add("source");
-    openapiFields.add("status");
-    openapiFields.add("type");
-    openapiFields.add("warehouse_code");
+    openapiFields = new HashSet<String>(Arrays.asList("code", "detailed_reason", "logistics", "method", "outbound_batch_code", "reason_type", "source", "status", "type", "warehouse_code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchReturnOrdersResponseDataReturnOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchReturnOrdersResponseDataReturnOrders is not found in the empty JSON string", GlobalSellingSearchReturnOrdersResponseDataReturnOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchReturnOrdersResponseDataReturnOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchReturnOrdersResponseDataReturnOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -432,6 +470,28 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrders {
            @Override
            public void write(JsonWriter out, GlobalSellingSearchReturnOrdersResponseDataReturnOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -439,29 +499,50 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrders {
            public GlobalSellingSearchReturnOrdersResponseDataReturnOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchReturnOrdersResponseDataReturnOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrders
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrders
-  */
+  /**
+   * Create an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrders
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrders
+   */
   public static GlobalSellingSearchReturnOrdersResponseDataReturnOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchReturnOrdersResponseDataReturnOrders.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,123 +48,173 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchReturnsResponseDataReturnOrdersDiscountAmount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchReturnsResponseDataReturnOrdersDiscountAmount {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_PRODUCT_PLATFORM_DISCOUNT = "product_platform_discount";
   @SerializedName(SERIALIZED_NAME_PRODUCT_PLATFORM_DISCOUNT)
+  @javax.annotation.Nullable
   private String productPlatformDiscount;
 
   public static final String SERIALIZED_NAME_PRODUCT_SELLER_DISCOUNT = "product_seller_discount";
   @SerializedName(SERIALIZED_NAME_PRODUCT_SELLER_DISCOUNT)
+  @javax.annotation.Nullable
   private String productSellerDiscount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_PLATFORM_DISCOUNT = "shipping_fee_platform_discount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_PLATFORM_DISCOUNT)
+  @javax.annotation.Nullable
   private String shippingFeePlatformDiscount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_SELLER_DISCOUNT = "shipping_fee_seller_discount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_SELLER_DISCOUNT)
+  @javax.annotation.Nullable
   private String shippingFeeSellerDiscount;
 
   public SearchReturnsResponseDataReturnOrdersDiscountAmount() {
   }
 
-  public SearchReturnsResponseDataReturnOrdersDiscountAmount currency(String currency) {
+  public SearchReturnsResponseDataReturnOrdersDiscountAmount currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The discount currency.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersDiscountAmount productPlatformDiscount(String productPlatformDiscount) {
+  public SearchReturnsResponseDataReturnOrdersDiscountAmount productPlatformDiscount(@javax.annotation.Nullable String productPlatformDiscount) {
     this.productPlatformDiscount = productPlatformDiscount;
     return this;
   }
 
-   /**
+  /**
    * The refund amount of platform discount.
    * @return productPlatformDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductPlatformDiscount() {
     return productPlatformDiscount;
   }
 
-  public void setProductPlatformDiscount(String productPlatformDiscount) {
+  public void setProductPlatformDiscount(@javax.annotation.Nullable String productPlatformDiscount) {
     this.productPlatformDiscount = productPlatformDiscount;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersDiscountAmount productSellerDiscount(String productSellerDiscount) {
+  public SearchReturnsResponseDataReturnOrdersDiscountAmount productSellerDiscount(@javax.annotation.Nullable String productSellerDiscount) {
     this.productSellerDiscount = productSellerDiscount;
     return this;
   }
 
-   /**
+  /**
    * The refund amount of product seller discount.
    * @return productSellerDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductSellerDiscount() {
     return productSellerDiscount;
   }
 
-  public void setProductSellerDiscount(String productSellerDiscount) {
+  public void setProductSellerDiscount(@javax.annotation.Nullable String productSellerDiscount) {
     this.productSellerDiscount = productSellerDiscount;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersDiscountAmount shippingFeePlatformDiscount(String shippingFeePlatformDiscount) {
+  public SearchReturnsResponseDataReturnOrdersDiscountAmount shippingFeePlatformDiscount(@javax.annotation.Nullable String shippingFeePlatformDiscount) {
     this.shippingFeePlatformDiscount = shippingFeePlatformDiscount;
     return this;
   }
 
-   /**
+  /**
    * The refund amount of shipping fee platform discount.
    * @return shippingFeePlatformDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeePlatformDiscount() {
     return shippingFeePlatformDiscount;
   }
 
-  public void setShippingFeePlatformDiscount(String shippingFeePlatformDiscount) {
+  public void setShippingFeePlatformDiscount(@javax.annotation.Nullable String shippingFeePlatformDiscount) {
     this.shippingFeePlatformDiscount = shippingFeePlatformDiscount;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersDiscountAmount shippingFeeSellerDiscount(String shippingFeeSellerDiscount) {
+  public SearchReturnsResponseDataReturnOrdersDiscountAmount shippingFeeSellerDiscount(@javax.annotation.Nullable String shippingFeeSellerDiscount) {
     this.shippingFeeSellerDiscount = shippingFeeSellerDiscount;
     return this;
   }
 
-   /**
+  /**
    * The refund amount of shipping fee seller discount.
    * @return shippingFeeSellerDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeSellerDiscount() {
     return shippingFeeSellerDiscount;
   }
 
-  public void setShippingFeeSellerDiscount(String shippingFeeSellerDiscount) {
+  public void setShippingFeeSellerDiscount(@javax.annotation.Nullable String shippingFeeSellerDiscount) {
     this.shippingFeeSellerDiscount = shippingFeeSellerDiscount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchReturnsResponseDataReturnOrdersDiscountAmount instance itself
+   */
+  public SearchReturnsResponseDataReturnOrdersDiscountAmount putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -183,12 +232,13 @@ public class SearchReturnsResponseDataReturnOrdersDiscountAmount {
         Objects.equals(this.productPlatformDiscount, returnRefund202309SearchReturnsResponseDataReturnOrdersDiscountAmount.productPlatformDiscount) &&
         Objects.equals(this.productSellerDiscount, returnRefund202309SearchReturnsResponseDataReturnOrdersDiscountAmount.productSellerDiscount) &&
         Objects.equals(this.shippingFeePlatformDiscount, returnRefund202309SearchReturnsResponseDataReturnOrdersDiscountAmount.shippingFeePlatformDiscount) &&
-        Objects.equals(this.shippingFeeSellerDiscount, returnRefund202309SearchReturnsResponseDataReturnOrdersDiscountAmount.shippingFeeSellerDiscount);
+        Objects.equals(this.shippingFeeSellerDiscount, returnRefund202309SearchReturnsResponseDataReturnOrdersDiscountAmount.shippingFeeSellerDiscount)&&
+        Objects.equals(this.additionalProperties, returnRefund202309SearchReturnsResponseDataReturnOrdersDiscountAmount.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, productPlatformDiscount, productSellerDiscount, shippingFeePlatformDiscount, shippingFeeSellerDiscount);
+    return Objects.hash(currency, productPlatformDiscount, productSellerDiscount, shippingFeePlatformDiscount, shippingFeeSellerDiscount, additionalProperties);
   }
 
   @Override
@@ -200,6 +250,7 @@ public class SearchReturnsResponseDataReturnOrdersDiscountAmount {
     sb.append("    productSellerDiscount: ").append(toIndentedString(productSellerDiscount)).append("\n");
     sb.append("    shippingFeePlatformDiscount: ").append(toIndentedString(shippingFeePlatformDiscount)).append("\n");
     sb.append("    shippingFeeSellerDiscount: ").append(toIndentedString(shippingFeeSellerDiscount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,35 +272,22 @@ public class SearchReturnsResponseDataReturnOrdersDiscountAmount {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("currency");
-    openapiFields.add("product_platform_discount");
-    openapiFields.add("product_seller_discount");
-    openapiFields.add("shipping_fee_platform_discount");
-    openapiFields.add("shipping_fee_seller_discount");
+    openapiFields = new HashSet<String>(Arrays.asList("currency", "product_platform_discount", "product_seller_discount", "shipping_fee_platform_discount", "shipping_fee_seller_discount"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrdersDiscountAmount
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrdersDiscountAmount
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchReturnsResponseDataReturnOrdersDiscountAmount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchReturnsResponseDataReturnOrdersDiscountAmount is not found in the empty JSON string", SearchReturnsResponseDataReturnOrdersDiscountAmount.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchReturnsResponseDataReturnOrdersDiscountAmount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchReturnsResponseDataReturnOrdersDiscountAmount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -285,6 +323,28 @@ public class SearchReturnsResponseDataReturnOrdersDiscountAmount {
            @Override
            public void write(JsonWriter out, SearchReturnsResponseDataReturnOrdersDiscountAmount value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -292,29 +352,50 @@ public class SearchReturnsResponseDataReturnOrdersDiscountAmount {
            public SearchReturnsResponseDataReturnOrdersDiscountAmount read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchReturnsResponseDataReturnOrdersDiscountAmount instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchReturnsResponseDataReturnOrdersDiscountAmount given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchReturnsResponseDataReturnOrdersDiscountAmount
-  * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrdersDiscountAmount
-  */
+  /**
+   * Create an instance of SearchReturnsResponseDataReturnOrdersDiscountAmount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchReturnsResponseDataReturnOrdersDiscountAmount
+   * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrdersDiscountAmount
+   */
   public static SearchReturnsResponseDataReturnOrdersDiscountAmount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchReturnsResponseDataReturnOrdersDiscountAmount.class);
   }
 
- /**
-  * Convert an instance of SearchReturnsResponseDataReturnOrdersDiscountAmount to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchReturnsResponseDataReturnOrdersDiscountAmount to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

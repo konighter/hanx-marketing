@@ -82,12 +82,13 @@ public class OrderV202407Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call order202407OrdersOrderIdPriceDetailGetCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call order202407OrdersOrderIdPriceDetailGetCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -117,14 +118,6 @@ public class OrderV202407Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -140,12 +133,22 @@ public class OrderV202407Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call order202407OrdersOrderIdPriceDetailGetValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call order202407OrdersOrderIdPriceDetailGetValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling order202407OrdersOrderIdPriceDetailGet(Async)");
@@ -175,12 +178,13 @@ public class OrderV202407Api {
      * @return GetPriceDetailResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetPriceDetailResponse order202407OrdersOrderIdPriceDetailGet(String orderId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetPriceDetailResponse order202407OrdersOrderIdPriceDetailGet(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetPriceDetailResponse> localVarResp = order202407OrdersOrderIdPriceDetailGetWithHttpInfo(orderId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -195,12 +199,13 @@ public class OrderV202407Api {
      * @return ApiResponse&lt;GetPriceDetailResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetPriceDetailResponse> order202407OrdersOrderIdPriceDetailGetWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetPriceDetailResponse> order202407OrdersOrderIdPriceDetailGetWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = order202407OrdersOrderIdPriceDetailGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetPriceDetailResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -217,12 +222,13 @@ public class OrderV202407Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call order202407OrdersOrderIdPriceDetailGetAsync(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetPriceDetailResponse> _callback) throws ApiException {
+    public okhttp3.Call order202407OrdersOrderIdPriceDetailGetAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetPriceDetailResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = order202407OrdersOrderIdPriceDetailGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetPriceDetailResponse>(){}.getType();

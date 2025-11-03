@@ -44,7 +44,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,224 +55,258 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders {
   public static final String SERIALIZED_NAME_ARRIVED_TIME = "arrived_time";
   @SerializedName(SERIALIZED_NAME_ARRIVED_TIME)
+  @javax.annotation.Nullable
   private Long arrivedTime;
 
   public static final String SERIALIZED_NAME_CATEGORY_ID = "category_id";
   @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  @javax.annotation.Nullable
   private String categoryId;
 
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_DELIVERED_QUANTITY = "delivered_quantity";
   @SerializedName(SERIALIZED_NAME_DELIVERED_QUANTITY)
+  @javax.annotation.Nullable
   private Long deliveredQuantity;
 
   public static final String SERIALIZED_NAME_DELIVERY_PACKAGES = "delivery_packages";
   @SerializedName(SERIALIZED_NAME_DELIVERY_PACKAGES)
+  @javax.annotation.Nullable
   private List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersDeliveryPackages> deliveryPackages = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DELIVERY_TYPE = "delivery_type";
   @SerializedName(SERIALIZED_NAME_DELIVERY_TYPE)
+  @javax.annotation.Nullable
   private String deliveryType;
 
   public static final String SERIALIZED_NAME_EMERGENCY_LEVEL = "emergency_level";
   @SerializedName(SERIALIZED_NAME_EMERGENCY_LEVEL)
+  @javax.annotation.Nullable
   private String emergencyLevel;
 
   public static final String SERIALIZED_NAME_INBOUND_QUANTITY = "inbound_quantity";
   @SerializedName(SERIALIZED_NAME_INBOUND_QUANTITY)
+  @javax.annotation.Nullable
   private Long inboundQuantity;
 
   public static final String SERIALIZED_NAME_IS_FIRST_ORDER = "is_first_order";
   @SerializedName(SERIALIZED_NAME_IS_FIRST_ORDER)
+  @javax.annotation.Nullable
   private Boolean isFirstOrder;
 
   public static final String SERIALIZED_NAME_IS_SAMPLE_INCLUDED = "is_sample_included";
   @SerializedName(SERIALIZED_NAME_IS_SAMPLE_INCLUDED)
+  @javax.annotation.Nullable
   private Boolean isSampleIncluded;
 
   public static final String SERIALIZED_NAME_LATEST_STATUS_UPDATE_TIME = "latest_status_update_time";
   @SerializedName(SERIALIZED_NAME_LATEST_STATUS_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long latestStatusUpdateTime;
 
   public static final String SERIALIZED_NAME_LOGISTICS = "logistics";
   @SerializedName(SERIALIZED_NAME_LOGISTICS)
+  @javax.annotation.Nullable
   private GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersLogistics logistics;
 
   public static final String SERIALIZED_NAME_MODE = "mode";
   @SerializedName(SERIALIZED_NAME_MODE)
+  @javax.annotation.Nullable
   private String mode;
 
   public static final String SERIALIZED_NAME_PLATFORM_SPU_CODE = "platform_spu_code";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SPU_CODE)
+  @javax.annotation.Nullable
   private String platformSpuCode;
 
   public static final String SERIALIZED_NAME_PREDICTED_ARRIVED_TIME = "predicted_arrived_time";
   @SerializedName(SERIALIZED_NAME_PREDICTED_ARRIVED_TIME)
+  @javax.annotation.Nullable
   private Long predictedArrivedTime;
 
   public static final String SERIALIZED_NAME_PREDICTED_SHIP_TIME = "predicted_ship_time";
   @SerializedName(SERIALIZED_NAME_PREDICTED_SHIP_TIME)
+  @javax.annotation.Nullable
   private Long predictedShipTime;
 
   public static final String SERIALIZED_NAME_QUALIFIED_QUANTITY = "qualified_quantity";
   @SerializedName(SERIALIZED_NAME_QUALIFIED_QUANTITY)
+  @javax.annotation.Nullable
   private Long qualifiedQuantity;
 
   public static final String SERIALIZED_NAME_QUALITY_CHECK_RESULT = "quality_check_result";
   @SerializedName(SERIALIZED_NAME_QUALITY_CHECK_RESULT)
+  @javax.annotation.Nullable
   private String qualityCheckResult;
 
   public static final String SERIALIZED_NAME_RECEIVED_QUANTITY = "received_quantity";
   @SerializedName(SERIALIZED_NAME_RECEIVED_QUANTITY)
+  @javax.annotation.Nullable
   private Long receivedQuantity;
 
   public static final String SERIALIZED_NAME_RELATIVE_CODE = "relative_code";
   @SerializedName(SERIALIZED_NAME_RELATIVE_CODE)
+  @javax.annotation.Nullable
   private String relativeCode;
 
   public static final String SERIALIZED_NAME_RELATIVE_CODE_TYPE = "relative_code_type";
   @SerializedName(SERIALIZED_NAME_RELATIVE_CODE_TYPE)
+  @javax.annotation.Nullable
   private String relativeCodeType;
 
   public static final String SERIALIZED_NAME_REQUIRE_ARRIVED_TIME = "require_arrived_time";
   @SerializedName(SERIALIZED_NAME_REQUIRE_ARRIVED_TIME)
+  @javax.annotation.Nullable
   private Long requireArrivedTime;
 
   public static final String SERIALIZED_NAME_RETURNED_QUANTITY = "returned_quantity";
   @SerializedName(SERIALIZED_NAME_RETURNED_QUANTITY)
+  @javax.annotation.Nullable
   private Long returnedQuantity;
 
   public static final String SERIALIZED_NAME_SAMPLE_CODE = "sample_code";
   @SerializedName(SERIALIZED_NAME_SAMPLE_CODE)
+  @javax.annotation.Nullable
   private String sampleCode;
 
   public static final String SERIALIZED_NAME_SAMPLE_STATUS = "sample_status";
   @SerializedName(SERIALIZED_NAME_SAMPLE_STATUS)
+  @javax.annotation.Nullable
   private String sampleStatus;
 
   public static final String SERIALIZED_NAME_SHIP_TIME = "ship_time";
   @SerializedName(SERIALIZED_NAME_SHIP_TIME)
+  @javax.annotation.Nullable
   private Long shipTime;
 
   public static final String SERIALIZED_NAME_SKC = "skc";
   @SerializedName(SERIALIZED_NAME_SKC)
+  @javax.annotation.Nullable
   private GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkc skc;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkus> skus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_STOCKUP_TYPE = "stockup_type";
   @SerializedName(SERIALIZED_NAME_STOCKUP_TYPE)
+  @javax.annotation.Nullable
   private String stockupType;
 
   public static final String SERIALIZED_NAME_UNQUALIFIED_QUANTITY = "unqualified_quantity";
   @SerializedName(SERIALIZED_NAME_UNQUALIFIED_QUANTITY)
+  @javax.annotation.Nullable
   private Long unqualifiedQuantity;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_CODE = "warehouse_code";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_CODE)
+  @javax.annotation.Nullable
   private String warehouseCode;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_CONTACT = "warehouse_contact";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_CONTACT)
+  @javax.annotation.Nullable
   private GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersWarehouseContact warehouseContact;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_NAME = "warehouse_name";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_NAME)
+  @javax.annotation.Nullable
   private String warehouseName;
 
   public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders() {
   }
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders arrivedTime(Long arrivedTime) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders arrivedTime(@javax.annotation.Nullable Long arrivedTime) {
     this.arrivedTime = arrivedTime;
     return this;
   }
 
-   /**
+  /**
    * The actual time to arrive at the warehouse
    * @return arrivedTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getArrivedTime() {
     return arrivedTime;
   }
 
-  public void setArrivedTime(Long arrivedTime) {
+  public void setArrivedTime(@javax.annotation.Nullable Long arrivedTime) {
     this.arrivedTime = arrivedTime;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders categoryId(String categoryId) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders categoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
     return this;
   }
 
-   /**
+  /**
    * The category ID of product which has been defined by platform.
    * @return categoryId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(String categoryId) {
+  public void setCategoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders code(String code) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * Delivery order code.
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders deliveredQuantity(Long deliveredQuantity) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders deliveredQuantity(@javax.annotation.Nullable Long deliveredQuantity) {
     this.deliveredQuantity = deliveredQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods shipped from the merchant.
    * @return deliveredQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getDeliveredQuantity() {
     return deliveredQuantity;
   }
 
-  public void setDeliveredQuantity(Long deliveredQuantity) {
+  public void setDeliveredQuantity(@javax.annotation.Nullable Long deliveredQuantity) {
     this.deliveredQuantity = deliveredQuantity;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders deliveryPackages(List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersDeliveryPackages> deliveryPackages) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders deliveryPackages(@javax.annotation.Nullable List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersDeliveryPackages> deliveryPackages) {
     this.deliveryPackages = deliveryPackages;
     return this;
   }
@@ -286,439 +319,439 @@ public class GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders {
     return this;
   }
 
-   /**
+  /**
    * The information list of delivery package 
    * @return deliveryPackages
-  **/
+   */
   @javax.annotation.Nullable
   public List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersDeliveryPackages> getDeliveryPackages() {
     return deliveryPackages;
   }
 
-  public void setDeliveryPackages(List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersDeliveryPackages> deliveryPackages) {
+  public void setDeliveryPackages(@javax.annotation.Nullable List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersDeliveryPackages> deliveryPackages) {
     this.deliveryPackages = deliveryPackages;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders deliveryType(String deliveryType) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders deliveryType(@javax.annotation.Nullable String deliveryType) {
     this.deliveryType = deliveryType;
     return this;
   }
 
-   /**
+  /**
    * Delivery type, possible enumerations are:  1. DELIVERY_NORMAL: Delivery of normal stockup process. 2. DEFECTIVE_REPAIR: Re-delivery of partial defective products returned for repair. 3. ALL_RETURN_REPAIR: Re-delivery of all defective products returned for repair. 4. LESS_SUPPLEMENT: Re-delivery of shortage of delivery quantity. 5. LOGISTICS_IN_BATCH: The logistics provider delivers the goods to the warehouse in multiple batches. 6. REPLENISH_IN_WAREHOUSE: The platform receives goods in multiple batches in the warehouse.
    * @return deliveryType
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryType() {
     return deliveryType;
   }
 
-  public void setDeliveryType(String deliveryType) {
+  public void setDeliveryType(@javax.annotation.Nullable String deliveryType) {
     this.deliveryType = deliveryType;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders emergencyLevel(String emergencyLevel) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders emergencyLevel(@javax.annotation.Nullable String emergencyLevel) {
     this.emergencyLevel = emergencyLevel;
     return this;
   }
 
-   /**
+  /**
    * Delivery-Order&#39;s Emergency level code. Possible enumerations are:  1. URGENT: the emergency level of stockup order is defined as urgent once created. 2. EXPEDITED: the emergency level of stockup order is defined as expedited in transit. 3. GENERAL: the emergency level of stockup order is defined as general.
    * @return emergencyLevel
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmergencyLevel() {
     return emergencyLevel;
   }
 
-  public void setEmergencyLevel(String emergencyLevel) {
+  public void setEmergencyLevel(@javax.annotation.Nullable String emergencyLevel) {
     this.emergencyLevel = emergencyLevel;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders inboundQuantity(Long inboundQuantity) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders inboundQuantity(@javax.annotation.Nullable Long inboundQuantity) {
     this.inboundQuantity = inboundQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods inbounded by the warehouse.
    * @return inboundQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getInboundQuantity() {
     return inboundQuantity;
   }
 
-  public void setInboundQuantity(Long inboundQuantity) {
+  public void setInboundQuantity(@javax.annotation.Nullable Long inboundQuantity) {
     this.inboundQuantity = inboundQuantity;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders isFirstOrder(Boolean isFirstOrder) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders isFirstOrder(@javax.annotation.Nullable Boolean isFirstOrder) {
     this.isFirstOrder = isFirstOrder;
     return this;
   }
 
-   /**
+  /**
    * Whether first delivery order for merchant
    * @return isFirstOrder
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsFirstOrder() {
     return isFirstOrder;
   }
 
-  public void setIsFirstOrder(Boolean isFirstOrder) {
+  public void setIsFirstOrder(@javax.annotation.Nullable Boolean isFirstOrder) {
     this.isFirstOrder = isFirstOrder;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders isSampleIncluded(Boolean isSampleIncluded) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders isSampleIncluded(@javax.annotation.Nullable Boolean isSampleIncluded) {
     this.isSampleIncluded = isSampleIncluded;
     return this;
   }
 
-   /**
+  /**
    * Whether sample product should be sent with bulk delivery
    * @return isSampleIncluded
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsSampleIncluded() {
     return isSampleIncluded;
   }
 
-  public void setIsSampleIncluded(Boolean isSampleIncluded) {
+  public void setIsSampleIncluded(@javax.annotation.Nullable Boolean isSampleIncluded) {
     this.isSampleIncluded = isSampleIncluded;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders latestStatusUpdateTime(Long latestStatusUpdateTime) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders latestStatusUpdateTime(@javax.annotation.Nullable Long latestStatusUpdateTime) {
     this.latestStatusUpdateTime = latestStatusUpdateTime;
     return this;
   }
 
-   /**
+  /**
    * The time of the latest status update.
    * @return latestStatusUpdateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getLatestStatusUpdateTime() {
     return latestStatusUpdateTime;
   }
 
-  public void setLatestStatusUpdateTime(Long latestStatusUpdateTime) {
+  public void setLatestStatusUpdateTime(@javax.annotation.Nullable Long latestStatusUpdateTime) {
     this.latestStatusUpdateTime = latestStatusUpdateTime;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders logistics(GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersLogistics logistics) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders logistics(@javax.annotation.Nullable GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersLogistics logistics) {
     this.logistics = logistics;
     return this;
   }
 
-   /**
+  /**
    * Get logistics
    * @return logistics
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersLogistics getLogistics() {
     return logistics;
   }
 
-  public void setLogistics(GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersLogistics logistics) {
+  public void setLogistics(@javax.annotation.Nullable GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersLogistics logistics) {
     this.logistics = logistics;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders mode(String mode) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders mode(@javax.annotation.Nullable String mode) {
     this.mode = mode;
     return this;
   }
 
-   /**
+  /**
    * The mode of delivery goods to GS. Possible enumerations are:  1. SELF_DELIVERY 2. PLATFORM_DELIVERY
    * @return mode
-  **/
+   */
   @javax.annotation.Nullable
   public String getMode() {
     return mode;
   }
 
-  public void setMode(String mode) {
+  public void setMode(@javax.annotation.Nullable String mode) {
     this.mode = mode;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders platformSpuCode(String platformSpuCode) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders platformSpuCode(@javax.annotation.Nullable String platformSpuCode) {
     this.platformSpuCode = platformSpuCode;
     return this;
   }
 
-   /**
+  /**
    * The SKU code of TikTok Shop.
    * @return platformSpuCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformSpuCode() {
     return platformSpuCode;
   }
 
-  public void setPlatformSpuCode(String platformSpuCode) {
+  public void setPlatformSpuCode(@javax.annotation.Nullable String platformSpuCode) {
     this.platformSpuCode = platformSpuCode;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders predictedArrivedTime(Long predictedArrivedTime) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders predictedArrivedTime(@javax.annotation.Nullable Long predictedArrivedTime) {
     this.predictedArrivedTime = predictedArrivedTime;
     return this;
   }
 
-   /**
+  /**
    * The predicted time to arrive at the warehouse
    * @return predictedArrivedTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPredictedArrivedTime() {
     return predictedArrivedTime;
   }
 
-  public void setPredictedArrivedTime(Long predictedArrivedTime) {
+  public void setPredictedArrivedTime(@javax.annotation.Nullable Long predictedArrivedTime) {
     this.predictedArrivedTime = predictedArrivedTime;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders predictedShipTime(Long predictedShipTime) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders predictedShipTime(@javax.annotation.Nullable Long predictedShipTime) {
     this.predictedShipTime = predictedShipTime;
     return this;
   }
 
-   /**
+  /**
    * The predicted time for merchant delivery goods
    * @return predictedShipTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPredictedShipTime() {
     return predictedShipTime;
   }
 
-  public void setPredictedShipTime(Long predictedShipTime) {
+  public void setPredictedShipTime(@javax.annotation.Nullable Long predictedShipTime) {
     this.predictedShipTime = predictedShipTime;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders qualifiedQuantity(Long qualifiedQuantity) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders qualifiedQuantity(@javax.annotation.Nullable Long qualifiedQuantity) {
     this.qualifiedQuantity = qualifiedQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods confirmed qualified by the warehouse.
    * @return qualifiedQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getQualifiedQuantity() {
     return qualifiedQuantity;
   }
 
-  public void setQualifiedQuantity(Long qualifiedQuantity) {
+  public void setQualifiedQuantity(@javax.annotation.Nullable Long qualifiedQuantity) {
     this.qualifiedQuantity = qualifiedQuantity;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders qualityCheckResult(String qualityCheckResult) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders qualityCheckResult(@javax.annotation.Nullable String qualityCheckResult) {
     this.qualityCheckResult = qualityCheckResult;
     return this;
   }
 
-   /**
+  /**
    * The result of quality-check. Possible enumerations are:  1. PASS 2. FAIL 3. PART_FAIL
    * @return qualityCheckResult
-  **/
+   */
   @javax.annotation.Nullable
   public String getQualityCheckResult() {
     return qualityCheckResult;
   }
 
-  public void setQualityCheckResult(String qualityCheckResult) {
+  public void setQualityCheckResult(@javax.annotation.Nullable String qualityCheckResult) {
     this.qualityCheckResult = qualityCheckResult;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders receivedQuantity(Long receivedQuantity) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders receivedQuantity(@javax.annotation.Nullable Long receivedQuantity) {
     this.receivedQuantity = receivedQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods confirmed received by the warehouse.
    * @return receivedQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getReceivedQuantity() {
     return receivedQuantity;
   }
 
-  public void setReceivedQuantity(Long receivedQuantity) {
+  public void setReceivedQuantity(@javax.annotation.Nullable Long receivedQuantity) {
     this.receivedQuantity = receivedQuantity;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders relativeCode(String relativeCode) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders relativeCode(@javax.annotation.Nullable String relativeCode) {
     this.relativeCode = relativeCode;
     return this;
   }
 
-   /**
+  /**
    * The relative code of delivery order
    * @return relativeCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getRelativeCode() {
     return relativeCode;
   }
 
-  public void setRelativeCode(String relativeCode) {
+  public void setRelativeCode(@javax.annotation.Nullable String relativeCode) {
     this.relativeCode = relativeCode;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders relativeCodeType(String relativeCodeType) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders relativeCodeType(@javax.annotation.Nullable String relativeCodeType) {
     this.relativeCodeType = relativeCodeType;
     return this;
   }
 
-   /**
+  /**
    * The relative code of delivery order, such as stockup order code and abnormal order code. Possible enumerations are:  1. STOCKUP_ORDER 2. ABNORMAL_ORDER
    * @return relativeCodeType
-  **/
+   */
   @javax.annotation.Nullable
   public String getRelativeCodeType() {
     return relativeCodeType;
   }
 
-  public void setRelativeCodeType(String relativeCodeType) {
+  public void setRelativeCodeType(@javax.annotation.Nullable String relativeCodeType) {
     this.relativeCodeType = relativeCodeType;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders requireArrivedTime(Long requireArrivedTime) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders requireArrivedTime(@javax.annotation.Nullable Long requireArrivedTime) {
     this.requireArrivedTime = requireArrivedTime;
     return this;
   }
 
-   /**
+  /**
    * The deadline should arrive at the warehouse
    * @return requireArrivedTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRequireArrivedTime() {
     return requireArrivedTime;
   }
 
-  public void setRequireArrivedTime(Long requireArrivedTime) {
+  public void setRequireArrivedTime(@javax.annotation.Nullable Long requireArrivedTime) {
     this.requireArrivedTime = requireArrivedTime;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders returnedQuantity(Long returnedQuantity) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders returnedQuantity(@javax.annotation.Nullable Long returnedQuantity) {
     this.returnedQuantity = returnedQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods returned to the merchant due to quality issues.
    * @return returnedQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getReturnedQuantity() {
     return returnedQuantity;
   }
 
-  public void setReturnedQuantity(Long returnedQuantity) {
+  public void setReturnedQuantity(@javax.annotation.Nullable Long returnedQuantity) {
     this.returnedQuantity = returnedQuantity;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders sampleCode(String sampleCode) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders sampleCode(@javax.annotation.Nullable String sampleCode) {
     this.sampleCode = sampleCode;
     return this;
   }
 
-   /**
+  /**
    * The code of sample product
    * @return sampleCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getSampleCode() {
     return sampleCode;
   }
 
-  public void setSampleCode(String sampleCode) {
+  public void setSampleCode(@javax.annotation.Nullable String sampleCode) {
     this.sampleCode = sampleCode;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders sampleStatus(String sampleStatus) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders sampleStatus(@javax.annotation.Nullable String sampleStatus) {
     this.sampleStatus = sampleStatus;
     return this;
   }
 
-   /**
+  /**
    * The status of sample product management. Possible enumerations are:  1. WAIT_FOR_SEND 2. SAMPLE_SENT 3. PLATFORM_SIGNED 4. WAIT_FOR_SUPPLIER_SIGN 5. SUPPLIER_SIGNED 6. CANCELED
    * @return sampleStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getSampleStatus() {
     return sampleStatus;
   }
 
-  public void setSampleStatus(String sampleStatus) {
+  public void setSampleStatus(@javax.annotation.Nullable String sampleStatus) {
     this.sampleStatus = sampleStatus;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders shipTime(Long shipTime) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders shipTime(@javax.annotation.Nullable Long shipTime) {
     this.shipTime = shipTime;
     return this;
   }
 
-   /**
+  /**
    * The actual time of merchant delivery goods by logistics
    * @return shipTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getShipTime() {
     return shipTime;
   }
 
-  public void setShipTime(Long shipTime) {
+  public void setShipTime(@javax.annotation.Nullable Long shipTime) {
     this.shipTime = shipTime;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders skc(GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkc skc) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders skc(@javax.annotation.Nullable GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkc skc) {
     this.skc = skc;
     return this;
   }
 
-   /**
+  /**
    * Get skc
    * @return skc
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkc getSkc() {
     return skc;
   }
 
-  public void setSkc(GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkc skc) {
+  public void setSkc(@javax.annotation.Nullable GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkc skc) {
     this.skc = skc;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders skus(List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkus> skus) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders skus(@javax.annotation.Nullable List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -731,131 +764,176 @@ public class GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders {
     return this;
   }
 
-   /**
+  /**
    * The information list of sku
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersSkus> skus) {
     this.skus = skus;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders status(String status) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The status code of delivery-order. Possible enumerations are:  1. WAIT_DELIVERY:  wait for merchants to deliver goods 2. DELIVERED: Merchant already delivered goods to GS by logistics. 3. SIGNED: The logistics track shows that it has been signed by the warehouse 4. RECEIVED: The goods have been received and unpacked in the warehouse. 5. IN_QUALITY_CHECK:  The goods are being quality inspected in the warehouse. 6. QUALITY_CHECK_COMPLETED: The goods have finished quality inspected in the warehouse. 7. INBOUND: The goods haveinbounded in the warehouse. 8. RETURN_COMPLETED:  The goods have returned and shipped to merchant. 9. CANCELED: The delivery order was canceled, merchants didn&#39;t need to deliver goods to GS.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders stockupType(String stockupType) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders stockupType(@javax.annotation.Nullable String stockupType) {
     this.stockupType = stockupType;
     return this;
   }
 
-   /**
+  /**
    * The stockup type of delivery. Possible enumerations are:  1. JIT: Stockup is determined by sales. 2. NORMAL: Stockup is for sales.
    * @return stockupType
-  **/
+   */
   @javax.annotation.Nullable
   public String getStockupType() {
     return stockupType;
   }
 
-  public void setStockupType(String stockupType) {
+  public void setStockupType(@javax.annotation.Nullable String stockupType) {
     this.stockupType = stockupType;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders unqualifiedQuantity(Long unqualifiedQuantity) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders unqualifiedQuantity(@javax.annotation.Nullable Long unqualifiedQuantity) {
     this.unqualifiedQuantity = unqualifiedQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of goods failed to pass the quality check conducted by the warehouse.
    * @return unqualifiedQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUnqualifiedQuantity() {
     return unqualifiedQuantity;
   }
 
-  public void setUnqualifiedQuantity(Long unqualifiedQuantity) {
+  public void setUnqualifiedQuantity(@javax.annotation.Nullable Long unqualifiedQuantity) {
     this.unqualifiedQuantity = unqualifiedQuantity;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders warehouseCode(String warehouseCode) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders warehouseCode(@javax.annotation.Nullable String warehouseCode) {
     this.warehouseCode = warehouseCode;
     return this;
   }
 
-   /**
+  /**
    *  warehouse code
    * @return warehouseCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getWarehouseCode() {
     return warehouseCode;
   }
 
-  public void setWarehouseCode(String warehouseCode) {
+  public void setWarehouseCode(@javax.annotation.Nullable String warehouseCode) {
     this.warehouseCode = warehouseCode;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders warehouseContact(GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersWarehouseContact warehouseContact) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders warehouseContact(@javax.annotation.Nullable GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersWarehouseContact warehouseContact) {
     this.warehouseContact = warehouseContact;
     return this;
   }
 
-   /**
+  /**
    * Get warehouseContact
    * @return warehouseContact
-  **/
+   */
   @javax.annotation.Nullable
   public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersWarehouseContact getWarehouseContact() {
     return warehouseContact;
   }
 
-  public void setWarehouseContact(GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersWarehouseContact warehouseContact) {
+  public void setWarehouseContact(@javax.annotation.Nullable GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrdersWarehouseContact warehouseContact) {
     this.warehouseContact = warehouseContact;
   }
 
 
-  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders warehouseName(String warehouseName) {
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders warehouseName(@javax.annotation.Nullable String warehouseName) {
     this.warehouseName = warehouseName;
     return this;
   }
 
-   /**
+  /**
    *  warehouse name
    * @return warehouseName
-  **/
+   */
   @javax.annotation.Nullable
   public String getWarehouseName() {
     return warehouseName;
   }
 
-  public void setWarehouseName(String warehouseName) {
+  public void setWarehouseName(@javax.annotation.Nullable String warehouseName) {
     this.warehouseName = warehouseName;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders instance itself
+   */
+  public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -902,12 +980,13 @@ public class GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders {
         Objects.equals(this.unqualifiedQuantity, gsFullServiceShipment202407GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.unqualifiedQuantity) &&
         Objects.equals(this.warehouseCode, gsFullServiceShipment202407GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.warehouseCode) &&
         Objects.equals(this.warehouseContact, gsFullServiceShipment202407GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.warehouseContact) &&
-        Objects.equals(this.warehouseName, gsFullServiceShipment202407GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.warehouseName);
+        Objects.equals(this.warehouseName, gsFullServiceShipment202407GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.warehouseName)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(arrivedTime, categoryId, code, deliveredQuantity, deliveryPackages, deliveryType, emergencyLevel, inboundQuantity, isFirstOrder, isSampleIncluded, latestStatusUpdateTime, logistics, mode, platformSpuCode, predictedArrivedTime, predictedShipTime, qualifiedQuantity, qualityCheckResult, receivedQuantity, relativeCode, relativeCodeType, requireArrivedTime, returnedQuantity, sampleCode, sampleStatus, shipTime, skc, skus, status, stockupType, unqualifiedQuantity, warehouseCode, warehouseContact, warehouseName);
+    return Objects.hash(arrivedTime, categoryId, code, deliveredQuantity, deliveryPackages, deliveryType, emergencyLevel, inboundQuantity, isFirstOrder, isSampleIncluded, latestStatusUpdateTime, logistics, mode, platformSpuCode, predictedArrivedTime, predictedShipTime, qualifiedQuantity, qualityCheckResult, receivedQuantity, relativeCode, relativeCodeType, requireArrivedTime, returnedQuantity, sampleCode, sampleStatus, shipTime, skc, skus, status, stockupType, unqualifiedQuantity, warehouseCode, warehouseContact, warehouseName, additionalProperties);
   }
 
   @Override
@@ -948,6 +1027,7 @@ public class GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders {
     sb.append("    warehouseCode: ").append(toIndentedString(warehouseCode)).append("\n");
     sb.append("    warehouseContact: ").append(toIndentedString(warehouseContact)).append("\n");
     sb.append("    warehouseName: ").append(toIndentedString(warehouseName)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -969,64 +1049,22 @@ public class GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("arrived_time");
-    openapiFields.add("category_id");
-    openapiFields.add("code");
-    openapiFields.add("delivered_quantity");
-    openapiFields.add("delivery_packages");
-    openapiFields.add("delivery_type");
-    openapiFields.add("emergency_level");
-    openapiFields.add("inbound_quantity");
-    openapiFields.add("is_first_order");
-    openapiFields.add("is_sample_included");
-    openapiFields.add("latest_status_update_time");
-    openapiFields.add("logistics");
-    openapiFields.add("mode");
-    openapiFields.add("platform_spu_code");
-    openapiFields.add("predicted_arrived_time");
-    openapiFields.add("predicted_ship_time");
-    openapiFields.add("qualified_quantity");
-    openapiFields.add("quality_check_result");
-    openapiFields.add("received_quantity");
-    openapiFields.add("relative_code");
-    openapiFields.add("relative_code_type");
-    openapiFields.add("require_arrived_time");
-    openapiFields.add("returned_quantity");
-    openapiFields.add("sample_code");
-    openapiFields.add("sample_status");
-    openapiFields.add("ship_time");
-    openapiFields.add("skc");
-    openapiFields.add("skus");
-    openapiFields.add("status");
-    openapiFields.add("stockup_type");
-    openapiFields.add("unqualified_quantity");
-    openapiFields.add("warehouse_code");
-    openapiFields.add("warehouse_contact");
-    openapiFields.add("warehouse_name");
+    openapiFields = new HashSet<String>(Arrays.asList("arrived_time", "category_id", "code", "delivered_quantity", "delivery_packages", "delivery_type", "emergency_level", "inbound_quantity", "is_first_order", "is_sample_included", "latest_status_update_time", "logistics", "mode", "platform_spu_code", "predicted_arrived_time", "predicted_ship_time", "qualified_quantity", "quality_check_result", "received_quantity", "relative_code", "relative_code_type", "require_arrived_time", "returned_quantity", "sample_code", "sample_status", "ship_time", "skc", "skus", "status", "stockup_type", "unqualified_quantity", "warehouse_code", "warehouse_contact", "warehouse_name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders is not found in the empty JSON string", GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1132,6 +1170,28 @@ public class GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders {
            @Override
            public void write(JsonWriter out, GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -1139,29 +1199,50 @@ public class GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders {
            public GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders
-  */
+  /**
+   * Create an instance of GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders
+   */
   public static GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchDeliveryOrdersResponseDataDeliveryOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

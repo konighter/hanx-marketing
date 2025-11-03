@@ -13,11 +13,11 @@
 
 package tiktokshop.open.sdk_java.invoke;
 
-import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonParseException;
 import com.google.gson.TypeAdapter;
+import com.google.gson.internal.bind.util.ISO8601Utils;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import com.google.gson.JsonElement;
@@ -27,20 +27,21 @@ import io.gsonfire.TypeSelector;
 import okio.ByteString;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.StringReader;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.TimeZone;
 
 /*
  * A JSON utility class
@@ -56,11 +57,6 @@ public class JSON {
     private static OffsetDateTimeTypeAdapter offsetDateTimeTypeAdapter = new OffsetDateTimeTypeAdapter();
     private static LocalDateTypeAdapter localDateTypeAdapter = new LocalDateTypeAdapter();
     private static ByteArrayAdapter byteArrayAdapter = new ByteArrayAdapter();
-
-    private static final StdDateFormat sdf = new StdDateFormat()
-        .withTimeZone(TimeZone.getTimeZone(ZoneId.systemDefault()))
-        .withColonInTimeZone(true);
-    private static final DateTimeFormatter dtf = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
 
     @SuppressWarnings("unchecked")
     public static GsonBuilder createGson() {
@@ -227,6 +223,15 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202501.GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdown.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202501.GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202501.GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponseDataTransactions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponseDataTransactionsFeeTaxBreakdown.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponseDataTransactionsFeeTaxBreakdownFee.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponseDataTransactionsFeeTaxBreakdownTax.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponseDataTransactionsRevenueBreakdown.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponseDataTransactionsShippingCostBreakdown.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Finance.V202507.GetUnsettledTransactionsResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Fulfillment.V202309.BatchShipPackagesRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Fulfillment.V202309.BatchShipPackagesRequestBodyPackages.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Fulfillment.V202309.BatchShipPackagesRequestBodyPackagesPickupSlot.CustomTypeAdapterFactory());
@@ -340,6 +345,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Fulfillment.V202502.UploadInvoiceResponseData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Fulfillment.V202502.UploadInvoiceResponseDataErrors.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Fulfillment.V202502.UploadInvoiceResponseDataErrorsDetail.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Fulfillment.V202508.TTSTrackingValidationResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Fulfillment.V202508.TTSTrackingValidationResponseData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202405.GSCreateProductv2RequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202405.GSCreateProductv2RequestBodySpu.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202405.GSCreateProductv2RequestBodySpuAttributes.CustomTypeAdapterFactory());
@@ -455,6 +462,84 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202504.GSQuerySKUsandtheapprovalstatusofSKUsV2ResponseData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202504.GSQuerySKUsandtheapprovalstatusofSKUsV2ResponseDataSpus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202504.GSQuerySKUsandtheapprovalstatusofSKUsV2ResponseDataSpusSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetCertificationsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetCertificationsResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetCertificationsResponseDataCertifications.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetCertificationsResponseDataCertificationsQualifications.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetCertificationsResponseDataCertificationsRequirementConditions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetattributesResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetattributesResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetattributesResponseDataAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetattributesResponseDataAttributesRequirementConditions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202507.GSFullServiceGetattributesResponseDataAttributesValues.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpu.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuAttributesValues.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuCertifications.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuCertificationsItems.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuCertificationsItemsFiles.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuDescription.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuDescriptionItems.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuIngredient.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuIngredientMultiMaterialComposition.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuIngredientMultiMaterialCompositionComponent.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuIngredientMultiMaterialCompositionIngredients.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuIngredientSingleMaterialComposition.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuMedia.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuMediaPictures.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuMediaVideos.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcs.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcsPictures.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcsSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcsSkusDimensions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcsSkusPictures.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcsSkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcsSkusReferenceSalePrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcsSkusSalePriceCertificates.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoRequestBodySpuSkcsSkusWeight.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoResponseDataProductPublishDetail.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCalculateProductAuditInfoResponseDataProductPublishDetailUnpublishableReasons.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpu.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuAttributesValues.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuCertifications.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuCertificationsItems.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuCertificationsItemsFiles.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuDescription.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuDescriptionItems.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuIngredient.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuIngredientMultiMaterialComposition.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuIngredientMultiMaterialCompositionComponent.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuIngredientMultiMaterialCompositionIngredients.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuIngredientSingleMaterialComposition.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuMedia.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuMediaPictures.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuMediaVideos.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcs.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcsPictures.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcsSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcsSkusDimensions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcsSkusPictures.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcsSkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcsSkusReferenceSalePrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcsSkusSalePriceCertificates.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2RequestBodySpuSkcsSkusWeight.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSCreateProductv2ResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSGetSupplierRPResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSGetSupplierRPResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSGetSupplierRPResponseDataRpInfos.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSGetSupplierRPResponseDataRpInfosAddress.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSGetSupplierRPResponseDataRpInfosName.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSGetSupplierRPResponseDataRpInfosPhoneNumber.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSListSupplierManufacturerResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSListSupplierManufacturerResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSListSupplierManufacturerResponseDataManufacturerList.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceCommodity.V202508.GSListSupplierManufacturerResponseDataManufacturerListPhoneNumber.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceInventory.V202405.GSFullServiceQueryVirtualInventoryRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceInventory.V202405.GSFullServiceQueryVirtualInventoryResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.GsFullServiceInventory.V202405.GSFullServiceQueryVirtualInventoryResponseData.CustomTypeAdapterFactory());
@@ -667,6 +752,18 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202407.GetPriceDetailResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202407.GetPriceDetailResponseData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202407.GetPriceDetailResponseDataLineItems.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrders.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersHandlingDuration.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersLineItems.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersLineItemsCombinedListingSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersLineItemsItemTax.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersPackages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersPayment.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersRecipientAddress.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersRecipientAddressDeliveryPreferences.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Order.V202507.GetOrderDetailResponseDataOrdersRecipientAddressDistrictInfo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.ActivateProductRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.ActivateProductResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.ActivateProductResponseData.CustomTypeAdapterFactory());
@@ -693,6 +790,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusCombinedSkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusIdentifierCode.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusInventory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CheckProductListingRequestBodySkusListPrice.CustomTypeAdapterFactory());
@@ -756,6 +854,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductRequestBodySkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductRequestBodySkusCombinedSkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductRequestBodySkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductRequestBodySkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductRequestBodySkusIdentifierCode.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductRequestBodySkusInventory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductRequestBodySkusListPrice.CustomTypeAdapterFactory());
@@ -769,6 +868,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductResponseData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductResponseDataSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductResponseDataSkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductResponseDataSkusSalesAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.CreateProductResponseDataWarnings.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.DeactivateProductsRequestBody.CustomTypeAdapterFactory());
@@ -822,12 +922,17 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyPackageWeight.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyProductAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyProductAttributesValues.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyReplicatedProducts.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyReplicatedProductsSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyReplicatedProductsSkusInventory.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyReplicatedProductsSkusPrice.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySizeChart.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySizeChartImage.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySizeChartTemplate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusCombinedSkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusIdentifierCode.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusInventory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusListPrice.CustomTypeAdapterFactory());
@@ -837,11 +942,14 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusSalesAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusSalesAttributesSkuImg.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkusSalesAttributesSupplementarySkuImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySubscribeInfoEdit.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySubscribeInfoEditDiscountDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyVideo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductResponseData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductResponseDataAudit.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductResponseDataSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductResponseDataSkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductResponseDataSkusSalesAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.EditProductResponseDataWarnings.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetAttributesResponse.CustomTypeAdapterFactory());
@@ -859,6 +967,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataCod.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataEpr.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataManufacturer.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataPackageDimension.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataProductCertifications.CustomTypeAdapterFactory());
@@ -935,7 +1044,16 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSizeChartTemplate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkusBrand.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkusCategories.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkusInventory.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkusProductMainImage.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkusSalesAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkusSalesAttributesSkuImg.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusCombinedSkusSalesAttributesSupplementarySkuImages.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusGlobalListingPolicy.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusGlobalListingPolicyReplicateSource.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusIdentifierCode.CustomTypeAdapterFactory());
@@ -947,6 +1065,10 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusSalesAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusSalesAttributesSkuImg.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusSalesAttributesSupplementarySkuImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSkusStatusInfo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSubscribeInfo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSubscribeInfoSubscribeDiscountDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataSubscribeInfoSubscribePromotionConfig.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.GetProductResponseDataVideo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.InventorySearchRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.InventorySearchResponse.CustomTypeAdapterFactory());
@@ -967,11 +1089,16 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodyPackageWeight.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodyProductAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodyProductAttributesValues.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodyReplicatedProducts.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodyReplicatedProductsSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodyReplicatedProductsSkusInventory.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodyReplicatedProductsSkusPrice.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySizeChart.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySizeChartImage.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySizeChartTemplate.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkusIdentifierCode.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkusInventory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkusListPrice.CustomTypeAdapterFactory());
@@ -981,15 +1108,19 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkusSalesAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkusSalesAttributesSkuImg.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySkusSalesAttributesSupplementarySkuImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySubscribeInfoEdit.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodySubscribeInfoEditDiscountDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductRequestBodyVideo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductResponseData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductResponseDataAudit.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductResponseDataSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductResponseDataSkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PartialEditProductResponseDataSkusSalesAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PublishGlobalProductRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PublishGlobalProductRequestBodyPublishTarget.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PublishGlobalProductRequestBodyPublishTargetSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PublishGlobalProductRequestBodyPublishTargetSkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PublishGlobalProductRequestBodyPublishTargetSkusInventory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PublishGlobalProductRequestBodyPublishTargetSkusPrice.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.PublishGlobalProductResponse.CustomTypeAdapterFactory());
@@ -1025,6 +1156,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.SearchProductsResponseDataProducts.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.SearchProductsResponseDataProductsRecommendedCategories.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.SearchProductsResponseDataProductsSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.SearchProductsResponseDataProductsSkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.SearchProductsResponseDataProductsSkusInventory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.SearchProductsResponseDataProductsSkusPrice.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202309.UpdateGlobalInventoryRequestBody.CustomTypeAdapterFactory());
@@ -1066,6 +1198,7 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202312.SearchProductsResponseDataProductsRecommendedCategories.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202312.SearchProductsResponseDataProductsSkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202312.SearchProductsResponseDataProductsSkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202312.SearchProductsResponseDataProductsSkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202312.SearchProductsResponseDataProductsSkusInventory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202312.SearchProductsResponseDataProductsSkusListPrice.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202312.SearchProductsResponseDataProductsSkusPrice.CustomTypeAdapterFactory());
@@ -1148,6 +1281,22 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202409.SearchResponsiblePersonsResponseDataResponsiblePersons.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202409.SearchResponsiblePersonsResponseDataResponsiblePersonsAddress.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202409.SearchResponsiblePersonsResponseDataResponsiblePersonsPhoneNumber.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductRequestBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductRequestBodyMainImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductRequestBodyProductAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductRequestBodyProductAttributesValues.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductRequestBodySizeChart.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductRequestBodySizeChartImage.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductRequestBodySizeChartTemplate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponseDataDiagnoses.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponseDataDiagnosesDiagnosisResults.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponseDataDiagnosesSuggestion.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponseDataDiagnosesSuggestionImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponseDataDiagnosesSuggestionSeoWords.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponseDataDiagnosesSuggestionSmartTexts.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202411.DiagnoseandOptimizeProductResponseDataListingQuality.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202501.SearchManufacturersRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202501.SearchManufacturersResponse.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202501.SearchManufacturersResponseData.CustomTypeAdapterFactory());
@@ -1172,11 +1321,13 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsRecommendedCategories.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkus.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkusFees.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkusInventory.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkusListPrice.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkusPreSale.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkusPreSaleFulfillmentType.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202502.SearchProductsResponseDataProductsSkusStatusInfo.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202505.CreateImageTranslationTasksRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202505.CreateImageTranslationTasksRequestBodyImages.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202505.CreateImageTranslationTasksResponse.CustomTypeAdapterFactory());
@@ -1187,10 +1338,105 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202506.GetImageTranslationTasksResponseDataTranslationTasks.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202506.GetImageTranslationTasksResponseDataTranslationTasksOriginalImage.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202506.GetImageTranslationTasksResponseDataTranslationTasksTranslatedImage.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.GetGlobalListingRulesResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.GetGlobalListingRulesResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.GetGlobalListingRulesResponseDataInventoryRules.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.GetGlobalListingRulesResponseDataInventoryRulesAssociatedWarehouses.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.GetGlobalReplicatedProductsResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.GetGlobalReplicatedProductsResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.GetGlobalReplicatedProductsResponseDataReplicatedProducts.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductRequestBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductRequestBodyReplicateTarget.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductRequestBodyReplicateTargetSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductRequestBodyReplicateTargetSkusInventory.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductRequestBodyReplicateTargetSkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductResponseDataErrors.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202507.ReplicateProductResponseDataErrorsDetail.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyCertifications.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyCertificationsFiles.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyCertificationsImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyMainImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyPackageDimensions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyPackageWeight.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyProductAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyProductAttributesValues.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyReplicatedProducts.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyReplicatedProductsSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyReplicatedProductsSkusInventory.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyReplicatedProductsSkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySizeChart.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySizeChartImage.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySizeChartTemplate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusCombinedSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusFees.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusIdentifierCode.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusInventory.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusListPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusPreSale.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusPreSaleFulfillmentType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusSalesAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusSalesAttributesSkuImg.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySkusSalesAttributesSupplementarySkuImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySubscribeInfoEdit.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodySubscribeInfoEditDiscountDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductRequestBodyVideo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductResponseDataAudit.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductResponseDataSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductResponseDataSkusFees.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductResponseDataSkusSalesAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.EditProductResponseDataWarnings.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBody.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyCertifications.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyCertificationsFiles.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyCertificationsImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyMainImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyPackageDimensions.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyPackageWeight.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyProductAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyProductAttributesValues.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyReplicatedProducts.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyReplicatedProductsSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyReplicatedProductsSkusInventory.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyReplicatedProductsSkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySizeChart.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySizeChartImage.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySizeChartTemplate.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusExternalListPrices.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusFees.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusIdentifierCode.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusInventory.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusListPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusPreSale.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusPreSaleFulfillmentType.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusPrice.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusSalesAttributes.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusSalesAttributesSkuImg.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySkusSalesAttributesSupplementarySkuImages.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySubscribeInfoEdit.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodySubscribeInfoEditDiscountDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductRequestBodyVideo.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductResponse.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductResponseData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductResponseDataAudit.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductResponseDataSkus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductResponseDataSkusFees.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Product.V202509.PartialEditProductResponseDataSkusSalesAttributes.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBody.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyDiscountBmsmDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyDiscountBmsmDiscountDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyDiscountGiftDiscount.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyDiscountGiftDiscountGiftInfos.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyDiscountGiftDiscountGiftInfosGiftDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyDiscountShippingDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyDiscountShippingDiscountAreaScope.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.CreateActivityRequestBodyParticipationLimit.CustomTypeAdapterFactory());
@@ -1203,6 +1449,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataDiscountBmsmDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataDiscountBmsmDiscountDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataDiscountGiftDiscount.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataDiscountGiftDiscountGiftInfos.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataDiscountGiftDiscountGiftInfosGiftDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataDiscountShippingDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataDiscountShippingDiscountAreaScope.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.GetActivityResponseDataParticipationLimit.CustomTypeAdapterFactory());
@@ -1220,6 +1469,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesDiscountBmsmDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesDiscountBmsmDiscountDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesDiscountGiftDiscount.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesDiscountGiftDiscountGiftInfos.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesDiscountGiftDiscountGiftInfosGiftDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesDiscountShippingDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesDiscountShippingDiscountAreaScope.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.SearchActivitiesResponseDataActivitiesParticipationLimit.CustomTypeAdapterFactory());
@@ -1232,6 +1484,9 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyDiscountBmsmDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyDiscountBmsmDiscountDetails.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyDiscountGiftDiscount.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyDiscountGiftDiscountGiftInfos.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyDiscountGiftDiscountGiftInfosGiftDetails.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyDiscountShippingDiscount.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyDiscountShippingDiscountAreaScope.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new tiktokshop.open.sdk_java.model.Promotion.V202309.UpdateActivityRequestBodyParticipationLimit.CustomTypeAdapterFactory());
@@ -1394,6 +1649,28 @@ public class JSON {
                 return (T) body;
             } else {
                 throw (e);
+            }
+        }
+    }
+
+    /**
+    * Deserialize the given JSON InputStream to a Java object.
+    *
+    * @param <T>         Type
+    * @param inputStream The JSON InputStream
+    * @param returnType  The type to deserialize into
+    * @return The deserialized Java object
+    */
+    @SuppressWarnings("unchecked")
+    public static <T> T deserialize(InputStream inputStream, Type returnType) throws IOException {
+        try (InputStreamReader reader = new InputStreamReader(inputStream, StandardCharsets.UTF_8)) {
+        if (isLenientOnJson) {
+            // see https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/stream/JsonReader.html#setLenient(boolean)
+            JsonReader jsonReader = new JsonReader(reader);
+            jsonReader.setLenient(true);
+            return gson.fromJson(jsonReader, returnType);
+            } else {
+                return gson.fromJson(reader, returnType);
             }
         }
     }
@@ -1565,7 +1842,7 @@ public class JSON {
                         if (dateFormat != null) {
                             return new java.sql.Date(dateFormat.parse(date).getTime());
                         }
-                        return new java.sql.Date(sdf.parse(date).getTime());
+                        return new java.sql.Date(ISO8601Utils.parse(date, new ParsePosition(0)).getTime());
                     } catch (ParseException e) {
                         throw new JsonParseException(e);
                     }
@@ -1575,7 +1852,7 @@ public class JSON {
 
     /**
      * Gson TypeAdapter for java.util.Date type
-     * If the dateFormat is null, DateTimeFormatter will be used.
+     * If the dateFormat is null, ISO8601Utils will be used.
      */
     public static class DateTypeAdapter extends TypeAdapter<Date> {
 
@@ -1600,7 +1877,7 @@ public class JSON {
                 if (dateFormat != null) {
                     value = dateFormat.format(date);
                 } else {
-                    value = date.toInstant().atOffset(ZoneOffset.UTC).format(dtf);
+                    value = ISO8601Utils.format(date, true);
                 }
                 out.value(value);
             }
@@ -1619,7 +1896,7 @@ public class JSON {
                             if (dateFormat != null) {
                                 return dateFormat.parse(date);
                             }
-                            return sdf.parse(date);
+                            return ISO8601Utils.parse(date, new ParsePosition(0));
                         } catch (ParseException e) {
                             throw new JsonParseException(e);
                         }

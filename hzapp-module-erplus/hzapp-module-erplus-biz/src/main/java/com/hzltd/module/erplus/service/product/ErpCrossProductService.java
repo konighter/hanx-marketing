@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.service.product;
 
-import com.hzltd.module.erpls.api.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.model.product.CreateProductRequest;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;

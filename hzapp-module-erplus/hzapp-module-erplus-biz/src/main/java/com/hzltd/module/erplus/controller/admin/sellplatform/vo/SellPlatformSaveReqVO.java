@@ -1,7 +1,12 @@
 package com.hzltd.module.erplus.controller.admin.sellplatform.vo;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
+import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+
+import java.util.List;
 
 @Schema(description = "管理后台 - 销售平台新增/修改 Request VO")
 @Data
@@ -16,10 +21,7 @@ public class SellPlatformSaveReqVO {
     @Schema(description = "编码")
     private String code;
 
-    @Schema(description = "头像")
-    private String avatar;
-
     @Schema(description = "配送模式")
-    private String shipModes;
+    private List<String> shipModes;
 
 }

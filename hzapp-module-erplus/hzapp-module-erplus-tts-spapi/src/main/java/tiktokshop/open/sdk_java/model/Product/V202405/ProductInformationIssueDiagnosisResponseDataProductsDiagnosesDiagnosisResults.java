@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_HOW_TO_SOLVE = "how_to_solve";
   @SerializedName(SERIALIZED_NAME_HOW_TO_SOLVE)
+  @javax.annotation.Nullable
   private String howToSolve;
 
   public static final String SERIALIZED_NAME_QUALITY_TIER = "quality_tier";
   @SerializedName(SERIALIZED_NAME_QUALITY_TIER)
+  @javax.annotation.Nullable
   private String qualityTier;
 
   public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults() {
   }
 
-  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults code(String code) {
+  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * A machine-readable code that represents an identified issue. Refer to [Listing quality diagnosis](https://partner.tiktokshop.com/docv2/page/66eb8f5c6f2da702e96a49dd) for the full list of diagnosed issues and the corresponding recommendations.
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults howToSolve(String howToSolve) {
+  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults howToSolve(@javax.annotation.Nullable String howToSolve) {
     this.howToSolve = howToSolve;
     return this;
   }
 
-   /**
+  /**
    * The recommendation for resolving the identified issue, returned in the default locale language of the shop. Refer to [Listing quality diagnosis](https://partner.tiktokshop.com/docv2/page/66eb8f5c6f2da702e96a49dd) for the full list of recommendations.
    * @return howToSolve
-  **/
+   */
   @javax.annotation.Nullable
   public String getHowToSolve() {
     return howToSolve;
   }
 
-  public void setHowToSolve(String howToSolve) {
+  public void setHowToSolve(@javax.annotation.Nullable String howToSolve) {
     this.howToSolve = howToSolve;
   }
 
 
-  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults qualityTier(String qualityTier) {
+  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults qualityTier(@javax.annotation.Nullable String qualityTier) {
     this.qualityTier = qualityTier;
     return this;
   }
 
-   /**
+  /**
    * The listing quality tier you can reach by implementing the recommendation. Possible values: - FAIR - GOOD  **Note**:  - To reach a higher tier, you must implement all recommendations from the destination tier and all preceding tiers. For example, a product will reach the \&quot;GOOD\&quot; tier once all \&quot;FAIR\&quot; and \&quot;GOOD\&quot; recommendations are addressed or implemented. - Available only for the US market.
    * @return qualityTier
-  **/
+   */
   @javax.annotation.Nullable
   public String getQualityTier() {
     return qualityTier;
   }
 
-  public void setQualityTier(String qualityTier) {
+  public void setQualityTier(@javax.annotation.Nullable String qualityTier) {
     this.qualityTier = qualityTier;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults instance itself
+   */
+  public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagno
     ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults = (ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults) o;
     return Objects.equals(this.code, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.code) &&
         Objects.equals(this.howToSolve, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.howToSolve) &&
-        Objects.equals(this.qualityTier, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.qualityTier);
+        Objects.equals(this.qualityTier, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.qualityTier)&&
+        Objects.equals(this.additionalProperties, product202405ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, howToSolve, qualityTier);
+    return Objects.hash(code, howToSolve, qualityTier, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagno
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    howToSolve: ").append(toIndentedString(howToSolve)).append("\n");
     sb.append("    qualityTier: ").append(toIndentedString(qualityTier)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagno
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("code");
-    openapiFields.add("how_to_solve");
-    openapiFields.add("quality_tier");
+    openapiFields = new HashSet<String>(Arrays.asList("code", "how_to_solve", "quality_tier"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults is not found in the empty JSON string", ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -227,6 +265,28 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagno
            @Override
            public void write(JsonWriter out, ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -234,29 +294,50 @@ public class ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagno
            public ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults
-  * @throws IOException if the JSON string is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults
-  */
+  /**
+   * Create an instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults
+   * @throws IOException if the JSON string is invalid with respect to ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults
+   */
   public static ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults.class);
   }
 
- /**
-  * Convert an instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ProductInformationIssueDiagnosisResponseDataProductsDiagnosesDiagnosisResults to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

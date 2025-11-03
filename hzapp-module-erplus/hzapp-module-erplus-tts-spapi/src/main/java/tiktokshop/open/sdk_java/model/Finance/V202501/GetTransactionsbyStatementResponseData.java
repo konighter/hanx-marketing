@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,246 +52,257 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetTransactionsbyStatementResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetTransactionsbyStatementResponseData {
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_NEXT_PAGE_TOKEN = "next_page_token";
   @SerializedName(SERIALIZED_NAME_NEXT_PAGE_TOKEN)
+  @javax.annotation.Nullable
   private String nextPageToken;
 
   public static final String SERIALIZED_NAME_PAYABLE_AMOUNT = "payable_amount";
   @SerializedName(SERIALIZED_NAME_PAYABLE_AMOUNT)
+  @javax.annotation.Nullable
   private String payableAmount;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TOTAL_COUNT = "total_count";
   @SerializedName(SERIALIZED_NAME_TOTAL_COUNT)
+  @javax.annotation.Nullable
   private Integer totalCount;
 
   public static final String SERIALIZED_NAME_TOTAL_RESERVE_AMOUNT = "total_reserve_amount";
   @SerializedName(SERIALIZED_NAME_TOTAL_RESERVE_AMOUNT)
+  @javax.annotation.Nullable
   private String totalReserveAmount;
 
   public static final String SERIALIZED_NAME_TOTAL_SETTLEMENT_AMOUNT = "total_settlement_amount";
   @SerializedName(SERIALIZED_NAME_TOTAL_SETTLEMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String totalSettlementAmount;
 
   public static final String SERIALIZED_NAME_TOTAL_SETTLEMENT_BREAKDOWN = "total_settlement_breakdown";
   @SerializedName(SERIALIZED_NAME_TOTAL_SETTLEMENT_BREAKDOWN)
+  @javax.annotation.Nullable
   private GetTransactionsbyStatementResponseDataTotalSettlementBreakdown totalSettlementBreakdown;
 
   public static final String SERIALIZED_NAME_TRANSACTIONS = "transactions";
   @SerializedName(SERIALIZED_NAME_TRANSACTIONS)
+  @javax.annotation.Nullable
   private List<GetTransactionsbyStatementResponseDataTransactions> transactions = new ArrayList<>();
 
   public GetTransactionsbyStatementResponseData() {
   }
 
-  public GetTransactionsbyStatementResponseData createTime(Long createTime) {
+  public GetTransactionsbyStatementResponseData createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the statement was generated. Unix timestamp.  Statements are generated daily at 00:00 UTC. 
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetTransactionsbyStatementResponseData currency(String currency) {
+  public GetTransactionsbyStatementResponseData currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The three-digit currency code in ISO 4217 format. 
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public GetTransactionsbyStatementResponseData id(String id) {
+  public GetTransactionsbyStatementResponseData id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The statement ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetTransactionsbyStatementResponseData nextPageToken(String nextPageToken) {
+  public GetTransactionsbyStatementResponseData nextPageToken(@javax.annotation.Nullable String nextPageToken) {
     this.nextPageToken = nextPageToken;
     return this;
   }
 
-   /**
+  /**
    * An opaque token used to retrieve the next page of a paginated result set. Provide this value in the &#x60;page_token&#x60; parameter of your request if the current response does not return all the results.
    * @return nextPageToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getNextPageToken() {
     return nextPageToken;
   }
 
-  public void setNextPageToken(String nextPageToken) {
+  public void setNextPageToken(@javax.annotation.Nullable String nextPageToken) {
     this.nextPageToken = nextPageToken;
   }
 
 
-  public GetTransactionsbyStatementResponseData payableAmount(String payableAmount) {
+  public GetTransactionsbyStatementResponseData payableAmount(@javax.annotation.Nullable String payableAmount) {
     this.payableAmount = payableAmount;
     return this;
   }
 
-   /**
+  /**
    * The final amount paid out after accounting for reserve funds. Formula: total_settlement_amount + total_reserve_amount
    * @return payableAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPayableAmount() {
     return payableAmount;
   }
 
-  public void setPayableAmount(String payableAmount) {
+  public void setPayableAmount(@javax.annotation.Nullable String payableAmount) {
     this.payableAmount = payableAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseData status(String status) {
+  public GetTransactionsbyStatementResponseData status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The statement status. Only supports &#x60;SETTLED&#x60;.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GetTransactionsbyStatementResponseData totalCount(Integer totalCount) {
+  public GetTransactionsbyStatementResponseData totalCount(@javax.annotation.Nullable Integer totalCount) {
     this.totalCount = totalCount;
     return this;
   }
 
-   /**
+  /**
    * The number of transaction records in the statement.
    * @return totalCount
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTotalCount() {
     return totalCount;
   }
 
-  public void setTotalCount(Integer totalCount) {
+  public void setTotalCount(@javax.annotation.Nullable Integer totalCount) {
     this.totalCount = totalCount;
   }
 
 
-  public GetTransactionsbyStatementResponseData totalReserveAmount(String totalReserveAmount) {
+  public GetTransactionsbyStatementResponseData totalReserveAmount(@javax.annotation.Nullable String totalReserveAmount) {
     this.totalReserveAmount = totalReserveAmount;
     return this;
   }
 
-   /**
+  /**
    * The total amount withheld from settlement based on TikTok Shop Reserve Policy. Refer to TikTok Shop Academy for more information. - A positive amount indicates the funds that have been released. - A negative amount indicates the funds being withheld from the settlement.  Applicable only for UK and US local sellers.
    * @return totalReserveAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getTotalReserveAmount() {
     return totalReserveAmount;
   }
 
-  public void setTotalReserveAmount(String totalReserveAmount) {
+  public void setTotalReserveAmount(@javax.annotation.Nullable String totalReserveAmount) {
     this.totalReserveAmount = totalReserveAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseData totalSettlementAmount(String totalSettlementAmount) {
+  public GetTransactionsbyStatementResponseData totalSettlementAmount(@javax.annotation.Nullable String totalSettlementAmount) {
     this.totalSettlementAmount = totalSettlementAmount;
     return this;
   }
 
-   /**
+  /**
    * The total settlement amount.  Formula: total_revenue_amount - total_shipping_cost_amount - total_fee_tax_amount - total_adjustment_amount
    * @return totalSettlementAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getTotalSettlementAmount() {
     return totalSettlementAmount;
   }
 
-  public void setTotalSettlementAmount(String totalSettlementAmount) {
+  public void setTotalSettlementAmount(@javax.annotation.Nullable String totalSettlementAmount) {
     this.totalSettlementAmount = totalSettlementAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseData totalSettlementBreakdown(GetTransactionsbyStatementResponseDataTotalSettlementBreakdown totalSettlementBreakdown) {
+  public GetTransactionsbyStatementResponseData totalSettlementBreakdown(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTotalSettlementBreakdown totalSettlementBreakdown) {
     this.totalSettlementBreakdown = totalSettlementBreakdown;
     return this;
   }
 
-   /**
+  /**
    * Get totalSettlementBreakdown
    * @return totalSettlementBreakdown
-  **/
+   */
   @javax.annotation.Nullable
   public GetTransactionsbyStatementResponseDataTotalSettlementBreakdown getTotalSettlementBreakdown() {
     return totalSettlementBreakdown;
   }
 
-  public void setTotalSettlementBreakdown(GetTransactionsbyStatementResponseDataTotalSettlementBreakdown totalSettlementBreakdown) {
+  public void setTotalSettlementBreakdown(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTotalSettlementBreakdown totalSettlementBreakdown) {
     this.totalSettlementBreakdown = totalSettlementBreakdown;
   }
 
 
-  public GetTransactionsbyStatementResponseData transactions(List<GetTransactionsbyStatementResponseDataTransactions> transactions) {
+  public GetTransactionsbyStatementResponseData transactions(@javax.annotation.Nullable List<GetTransactionsbyStatementResponseDataTransactions> transactions) {
     this.transactions = transactions;
     return this;
   }
@@ -305,17 +315,62 @@ public class GetTransactionsbyStatementResponseData {
     return this;
   }
 
-   /**
+  /**
    * The list of transaction records in the statement. Each transaction corresponds to an order, an adjustment, or a reserve-related transaction.
    * @return transactions
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetTransactionsbyStatementResponseDataTransactions> getTransactions() {
     return transactions;
   }
 
-  public void setTransactions(List<GetTransactionsbyStatementResponseDataTransactions> transactions) {
+  public void setTransactions(@javax.annotation.Nullable List<GetTransactionsbyStatementResponseDataTransactions> transactions) {
     this.transactions = transactions;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetTransactionsbyStatementResponseData instance itself
+   */
+  public GetTransactionsbyStatementResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -339,12 +394,13 @@ public class GetTransactionsbyStatementResponseData {
         Objects.equals(this.totalReserveAmount, finance202501GetTransactionsbyStatementResponseData.totalReserveAmount) &&
         Objects.equals(this.totalSettlementAmount, finance202501GetTransactionsbyStatementResponseData.totalSettlementAmount) &&
         Objects.equals(this.totalSettlementBreakdown, finance202501GetTransactionsbyStatementResponseData.totalSettlementBreakdown) &&
-        Objects.equals(this.transactions, finance202501GetTransactionsbyStatementResponseData.transactions);
+        Objects.equals(this.transactions, finance202501GetTransactionsbyStatementResponseData.transactions)&&
+        Objects.equals(this.additionalProperties, finance202501GetTransactionsbyStatementResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createTime, currency, id, nextPageToken, payableAmount, status, totalCount, totalReserveAmount, totalSettlementAmount, totalSettlementBreakdown, transactions);
+    return Objects.hash(createTime, currency, id, nextPageToken, payableAmount, status, totalCount, totalReserveAmount, totalSettlementAmount, totalSettlementBreakdown, transactions, additionalProperties);
   }
 
   @Override
@@ -362,6 +418,7 @@ public class GetTransactionsbyStatementResponseData {
     sb.append("    totalSettlementAmount: ").append(toIndentedString(totalSettlementAmount)).append("\n");
     sb.append("    totalSettlementBreakdown: ").append(toIndentedString(totalSettlementBreakdown)).append("\n");
     sb.append("    transactions: ").append(toIndentedString(transactions)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -383,41 +440,22 @@ public class GetTransactionsbyStatementResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("create_time");
-    openapiFields.add("currency");
-    openapiFields.add("id");
-    openapiFields.add("next_page_token");
-    openapiFields.add("payable_amount");
-    openapiFields.add("status");
-    openapiFields.add("total_count");
-    openapiFields.add("total_reserve_amount");
-    openapiFields.add("total_settlement_amount");
-    openapiFields.add("total_settlement_breakdown");
-    openapiFields.add("transactions");
+    openapiFields = new HashSet<String>(Arrays.asList("create_time", "currency", "id", "next_page_token", "payable_amount", "status", "total_count", "total_reserve_amount", "total_settlement_amount", "total_settlement_breakdown", "transactions"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetTransactionsbyStatementResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetTransactionsbyStatementResponseData is not found in the empty JSON string", GetTransactionsbyStatementResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetTransactionsbyStatementResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetTransactionsbyStatementResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -477,6 +515,28 @@ public class GetTransactionsbyStatementResponseData {
            @Override
            public void write(JsonWriter out, GetTransactionsbyStatementResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -484,29 +544,50 @@ public class GetTransactionsbyStatementResponseData {
            public GetTransactionsbyStatementResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetTransactionsbyStatementResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetTransactionsbyStatementResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetTransactionsbyStatementResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseData
-  */
+  /**
+   * Create an instance of GetTransactionsbyStatementResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetTransactionsbyStatementResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseData
+   */
   public static GetTransactionsbyStatementResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetTransactionsbyStatementResponseData.class);
   }
 
- /**
-  * Convert an instance of GetTransactionsbyStatementResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetTransactionsbyStatementResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

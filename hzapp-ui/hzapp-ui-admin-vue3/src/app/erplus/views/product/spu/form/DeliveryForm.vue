@@ -59,7 +59,7 @@
                 <el-select 
                   v-model="formData.packageDimensions.weightUnit" 
                   class="w-16"
-                  style="width: 60px;"
+                  style="width: 80px;"
                 >
                   <el-option label="千克" value="KG" />
                   <el-option label="克" value="G" />

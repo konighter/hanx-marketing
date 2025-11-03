@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,468 +48,557 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetOrderDetailResponseDataOrdersPayment
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetOrderDetailResponseDataOrdersPayment {
   public static final String SERIALIZED_NAME_BUYER_SERVICE_FEE = "buyer_service_fee";
   @SerializedName(SERIALIZED_NAME_BUYER_SERVICE_FEE)
+  @javax.annotation.Nullable
   private String buyerServiceFee;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_HANDLING_FEE = "handling_fee";
   @SerializedName(SERIALIZED_NAME_HANDLING_FEE)
+  @javax.annotation.Nullable
   private String handlingFee;
 
   public static final String SERIALIZED_NAME_ITEM_INSURANCE_FEE = "item_insurance_fee";
   @SerializedName(SERIALIZED_NAME_ITEM_INSURANCE_FEE)
+  @javax.annotation.Nullable
   private String itemInsuranceFee;
+
+  public static final String SERIALIZED_NAME_ITEM_INSURANCE_TAX = "item_insurance_tax";
+  @SerializedName(SERIALIZED_NAME_ITEM_INSURANCE_TAX)
+  @javax.annotation.Nullable
+  private String itemInsuranceTax;
 
   public static final String SERIALIZED_NAME_ORIGINAL_SHIPPING_FEE = "original_shipping_fee";
   @SerializedName(SERIALIZED_NAME_ORIGINAL_SHIPPING_FEE)
+  @javax.annotation.Nullable
   private String originalShippingFee;
 
   public static final String SERIALIZED_NAME_ORIGINAL_TOTAL_PRODUCT_PRICE = "original_total_product_price";
   @SerializedName(SERIALIZED_NAME_ORIGINAL_TOTAL_PRODUCT_PRICE)
+  @javax.annotation.Nullable
   private String originalTotalProductPrice;
 
   public static final String SERIALIZED_NAME_PLATFORM_DISCOUNT = "platform_discount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_DISCOUNT)
+  @javax.annotation.Nullable
   private String platformDiscount;
 
   public static final String SERIALIZED_NAME_PRODUCT_TAX = "product_tax";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TAX)
+  @javax.annotation.Nullable
   private String productTax;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE = "retail_delivery_fee";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE)
+  @javax.annotation.Nullable
   private String retailDeliveryFee;
 
   public static final String SERIALIZED_NAME_SELLER_DISCOUNT = "seller_discount";
   @SerializedName(SERIALIZED_NAME_SELLER_DISCOUNT)
+  @javax.annotation.Nullable
   private String sellerDiscount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE = "shipping_fee";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE)
+  @javax.annotation.Nullable
   private String shippingFee;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_COFUNDED_DISCOUNT = "shipping_fee_cofunded_discount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_COFUNDED_DISCOUNT)
+  @javax.annotation.Nullable
   private String shippingFeeCofundedDiscount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_PLATFORM_DISCOUNT = "shipping_fee_platform_discount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_PLATFORM_DISCOUNT)
+  @javax.annotation.Nullable
   private String shippingFeePlatformDiscount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_SELLER_DISCOUNT = "shipping_fee_seller_discount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_SELLER_DISCOUNT)
+  @javax.annotation.Nullable
   private String shippingFeeSellerDiscount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_TAX = "shipping_fee_tax";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_TAX)
+  @javax.annotation.Nullable
   private String shippingFeeTax;
 
   public static final String SERIALIZED_NAME_SHIPPING_INSURANCE_FEE = "shipping_insurance_fee";
   @SerializedName(SERIALIZED_NAME_SHIPPING_INSURANCE_FEE)
+  @javax.annotation.Nullable
   private String shippingInsuranceFee;
 
   public static final String SERIALIZED_NAME_SMALL_ORDER_FEE = "small_order_fee";
   @SerializedName(SERIALIZED_NAME_SMALL_ORDER_FEE)
+  @javax.annotation.Nullable
   private String smallOrderFee;
 
   public static final String SERIALIZED_NAME_SUB_TOTAL = "sub_total";
   @SerializedName(SERIALIZED_NAME_SUB_TOTAL)
+  @javax.annotation.Nullable
   private String subTotal;
 
   public static final String SERIALIZED_NAME_TAX = "tax";
   @SerializedName(SERIALIZED_NAME_TAX)
+  @javax.annotation.Nullable
   private String tax;
 
   public static final String SERIALIZED_NAME_TOTAL_AMOUNT = "total_amount";
   @SerializedName(SERIALIZED_NAME_TOTAL_AMOUNT)
+  @javax.annotation.Nullable
   private String totalAmount;
 
   public GetOrderDetailResponseDataOrdersPayment() {
   }
 
-  public GetOrderDetailResponseDataOrdersPayment buyerServiceFee(String buyerServiceFee) {
+  public GetOrderDetailResponseDataOrdersPayment buyerServiceFee(@javax.annotation.Nullable String buyerServiceFee) {
     this.buyerServiceFee = buyerServiceFee;
     return this;
   }
 
-   /**
+  /**
    * A service fee is charged on every transaction made. The charge is applied from the fifth order onwards and collected directly from customers during checkout. Only available in Indonesia market.
    * @return buyerServiceFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getBuyerServiceFee() {
     return buyerServiceFee;
   }
 
-  public void setBuyerServiceFee(String buyerServiceFee) {
+  public void setBuyerServiceFee(@javax.annotation.Nullable String buyerServiceFee) {
     this.buyerServiceFee = buyerServiceFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment currency(String currency) {
+  public GetOrderDetailResponseDataOrdersPayment currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Currency for payment.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment handlingFee(String handlingFee) {
+  public GetOrderDetailResponseDataOrdersPayment handlingFee(@javax.annotation.Nullable String handlingFee) {
     this.handlingFee = handlingFee;
     return this;
   }
 
-   /**
-   * A fee charged to buyers to cover the additional processing/handling costs associated with the chosen payment method. Only available in the Indonesia market.
+  /**
+   * A fee charged to buyers to cover the additional processing/handling costs associated with the chosen payment method.
    * @return handlingFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandlingFee() {
     return handlingFee;
   }
 
-  public void setHandlingFee(String handlingFee) {
+  public void setHandlingFee(@javax.annotation.Nullable String handlingFee) {
     this.handlingFee = handlingFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment itemInsuranceFee(String itemInsuranceFee) {
+  public GetOrderDetailResponseDataOrdersPayment itemInsuranceFee(@javax.annotation.Nullable String itemInsuranceFee) {
     this.itemInsuranceFee = itemInsuranceFee;
     return this;
   }
 
-   /**
+  /**
    * The cost incurred by the buyers for coverage against defects or damage to the product after purchase.  **Note**: Available only in the Indonesia market.
    * @return itemInsuranceFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getItemInsuranceFee() {
     return itemInsuranceFee;
   }
 
-  public void setItemInsuranceFee(String itemInsuranceFee) {
+  public void setItemInsuranceFee(@javax.annotation.Nullable String itemInsuranceFee) {
     this.itemInsuranceFee = itemInsuranceFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment originalShippingFee(String originalShippingFee) {
+  public GetOrderDetailResponseDataOrdersPayment itemInsuranceTax(@javax.annotation.Nullable String itemInsuranceTax) {
+    this.itemInsuranceTax = itemInsuranceTax;
+    return this;
+  }
+
+  /**
+   * The tax paid on the insurance purchased by buyers.  Note: Only applicable in US market.
+   * @return itemInsuranceTax
+   */
+  @javax.annotation.Nullable
+  public String getItemInsuranceTax() {
+    return itemInsuranceTax;
+  }
+
+  public void setItemInsuranceTax(@javax.annotation.Nullable String itemInsuranceTax) {
+    this.itemInsuranceTax = itemInsuranceTax;
+  }
+
+
+  public GetOrderDetailResponseDataOrdersPayment originalShippingFee(@javax.annotation.Nullable String originalShippingFee) {
     this.originalShippingFee = originalShippingFee;
     return this;
   }
 
-   /**
+  /**
    * Shipping fee before discount
    * @return originalShippingFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getOriginalShippingFee() {
     return originalShippingFee;
   }
 
-  public void setOriginalShippingFee(String originalShippingFee) {
+  public void setOriginalShippingFee(@javax.annotation.Nullable String originalShippingFee) {
     this.originalShippingFee = originalShippingFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment originalTotalProductPrice(String originalTotalProductPrice) {
+  public GetOrderDetailResponseDataOrdersPayment originalTotalProductPrice(@javax.annotation.Nullable String originalTotalProductPrice) {
     this.originalTotalProductPrice = originalTotalProductPrice;
     return this;
   }
 
-   /**
+  /**
    * Total original price of products (VAT included for crossborder shop).  For the US market, this is pre-tax total amount.
    * @return originalTotalProductPrice
-  **/
+   */
   @javax.annotation.Nullable
   public String getOriginalTotalProductPrice() {
     return originalTotalProductPrice;
   }
 
-  public void setOriginalTotalProductPrice(String originalTotalProductPrice) {
+  public void setOriginalTotalProductPrice(@javax.annotation.Nullable String originalTotalProductPrice) {
     this.originalTotalProductPrice = originalTotalProductPrice;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment platformDiscount(String platformDiscount) {
+  public GetOrderDetailResponseDataOrdersPayment platformDiscount(@javax.annotation.Nullable String platformDiscount) {
     this.platformDiscount = platformDiscount;
     return this;
   }
 
-   /**
+  /**
    * Product discount by platform.
    * @return platformDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformDiscount() {
     return platformDiscount;
   }
 
-  public void setPlatformDiscount(String platformDiscount) {
+  public void setPlatformDiscount(@javax.annotation.Nullable String platformDiscount) {
     this.platformDiscount = platformDiscount;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment productTax(String productTax) {
+  public GetOrderDetailResponseDataOrdersPayment productTax(@javax.annotation.Nullable String productTax) {
     this.productTax = productTax;
     return this;
   }
 
-   /**
+  /**
    * The tax on the total item price.
    * @return productTax
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductTax() {
     return productTax;
   }
 
-  public void setProductTax(String productTax) {
+  public void setProductTax(@javax.annotation.Nullable String productTax) {
     this.productTax = productTax;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment retailDeliveryFee(String retailDeliveryFee) {
+  public GetOrderDetailResponseDataOrdersPayment retailDeliveryFee(@javax.annotation.Nullable String retailDeliveryFee) {
     this.retailDeliveryFee = retailDeliveryFee;
     return this;
   }
 
-   /**
+  /**
    * RDF (retail delivery fee). Available only in the US market.
    * @return retailDeliveryFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFee() {
     return retailDeliveryFee;
   }
 
-  public void setRetailDeliveryFee(String retailDeliveryFee) {
+  public void setRetailDeliveryFee(@javax.annotation.Nullable String retailDeliveryFee) {
     this.retailDeliveryFee = retailDeliveryFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment sellerDiscount(String sellerDiscount) {
+  public GetOrderDetailResponseDataOrdersPayment sellerDiscount(@javax.annotation.Nullable String sellerDiscount) {
     this.sellerDiscount = sellerDiscount;
     return this;
   }
 
-   /**
+  /**
    * Product discount by seller.
    * @return sellerDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerDiscount() {
     return sellerDiscount;
   }
 
-  public void setSellerDiscount(String sellerDiscount) {
+  public void setSellerDiscount(@javax.annotation.Nullable String sellerDiscount) {
     this.sellerDiscount = sellerDiscount;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment shippingFee(String shippingFee) {
+  public GetOrderDetailResponseDataOrdersPayment shippingFee(@javax.annotation.Nullable String shippingFee) {
     this.shippingFee = shippingFee;
     return this;
   }
 
-   /**
+  /**
    * Buyer paid shipping fee.   &#x60;shipping_fee&#x60; &#x3D; &#x60;original_shipping_fee&#x60; - &#x60;shipping_fee_seller_discount&#x60; - &#x60;shipping_fee_platform_discount&#x60;  For the US market, this is pre-tax total amount.
    * @return shippingFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFee() {
     return shippingFee;
   }
 
-  public void setShippingFee(String shippingFee) {
+  public void setShippingFee(@javax.annotation.Nullable String shippingFee) {
     this.shippingFee = shippingFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment shippingFeeCofundedDiscount(String shippingFeeCofundedDiscount) {
+  public GetOrderDetailResponseDataOrdersPayment shippingFeeCofundedDiscount(@javax.annotation.Nullable String shippingFeeCofundedDiscount) {
     this.shippingFeeCofundedDiscount = shippingFeeCofundedDiscount;
     return this;
   }
 
-   /**
+  /**
    * Shipping fee discount provided by seller, eligible for co-funded reimbursement upon order delivery, based on Co-Funded Free Shipping program terms. **Note**: This will be 0 for orders that did not meet minimum order value for co-funded reimbursement. In this case, refer to &#x60;shipping_fee_seller_discount&#x60; for the shipping discount the buyer received.
    * @return shippingFeeCofundedDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeCofundedDiscount() {
     return shippingFeeCofundedDiscount;
   }
 
-  public void setShippingFeeCofundedDiscount(String shippingFeeCofundedDiscount) {
+  public void setShippingFeeCofundedDiscount(@javax.annotation.Nullable String shippingFeeCofundedDiscount) {
     this.shippingFeeCofundedDiscount = shippingFeeCofundedDiscount;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment shippingFeePlatformDiscount(String shippingFeePlatformDiscount) {
+  public GetOrderDetailResponseDataOrdersPayment shippingFeePlatformDiscount(@javax.annotation.Nullable String shippingFeePlatformDiscount) {
     this.shippingFeePlatformDiscount = shippingFeePlatformDiscount;
     return this;
   }
 
-   /**
+  /**
    * Shipping fee discount by platform.
    * @return shippingFeePlatformDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeePlatformDiscount() {
     return shippingFeePlatformDiscount;
   }
 
-  public void setShippingFeePlatformDiscount(String shippingFeePlatformDiscount) {
+  public void setShippingFeePlatformDiscount(@javax.annotation.Nullable String shippingFeePlatformDiscount) {
     this.shippingFeePlatformDiscount = shippingFeePlatformDiscount;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment shippingFeeSellerDiscount(String shippingFeeSellerDiscount) {
+  public GetOrderDetailResponseDataOrdersPayment shippingFeeSellerDiscount(@javax.annotation.Nullable String shippingFeeSellerDiscount) {
     this.shippingFeeSellerDiscount = shippingFeeSellerDiscount;
     return this;
   }
 
-   /**
+  /**
    * Shipping fee discount provided by seller for an order that will not qualify for co-funded reimbursement. **Note**: If an order meets the minimum order value for co-funded reimbursement, this will be 0. In this case, refer to &#x60;shipping_fee_cofunded_discount&#x60; for the shipping discount the buyer received.
    * @return shippingFeeSellerDiscount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeSellerDiscount() {
     return shippingFeeSellerDiscount;
   }
 
-  public void setShippingFeeSellerDiscount(String shippingFeeSellerDiscount) {
+  public void setShippingFeeSellerDiscount(@javax.annotation.Nullable String shippingFeeSellerDiscount) {
     this.shippingFeeSellerDiscount = shippingFeeSellerDiscount;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment shippingFeeTax(String shippingFeeTax) {
+  public GetOrderDetailResponseDataOrdersPayment shippingFeeTax(@javax.annotation.Nullable String shippingFeeTax) {
     this.shippingFeeTax = shippingFeeTax;
     return this;
   }
 
-   /**
+  /**
    * The tax on the shipping price.
    * @return shippingFeeTax
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeTax() {
     return shippingFeeTax;
   }
 
-  public void setShippingFeeTax(String shippingFeeTax) {
+  public void setShippingFeeTax(@javax.annotation.Nullable String shippingFeeTax) {
     this.shippingFeeTax = shippingFeeTax;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment shippingInsuranceFee(String shippingInsuranceFee) {
+  public GetOrderDetailResponseDataOrdersPayment shippingInsuranceFee(@javax.annotation.Nullable String shippingInsuranceFee) {
     this.shippingInsuranceFee = shippingInsuranceFee;
     return this;
   }
 
-   /**
+  /**
    * The cost incurred by the buyers for coverage against loss or damage to goods during transit.  **Note**: Available only in the Indonesia market.
    * @return shippingInsuranceFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingInsuranceFee() {
     return shippingInsuranceFee;
   }
 
-  public void setShippingInsuranceFee(String shippingInsuranceFee) {
+  public void setShippingInsuranceFee(@javax.annotation.Nullable String shippingInsuranceFee) {
     this.shippingInsuranceFee = shippingInsuranceFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment smallOrderFee(String smallOrderFee) {
+  public GetOrderDetailResponseDataOrdersPayment smallOrderFee(@javax.annotation.Nullable String smallOrderFee) {
     this.smallOrderFee = smallOrderFee;
     return this;
   }
 
-   /**
+  /**
    * Small order fee for TH. Small order fee is for Thailand only. small order fee means that the platform will set a minimum order spending amount, when the order amount is lower than the minimum order spending amount, the user needs to pay small order fee to meet the platform minimum spending amount.   e.g. Minimum order spending amount is 100, order amount is 80. So the small order fee will be 20.
    * @return smallOrderFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getSmallOrderFee() {
     return smallOrderFee;
   }
 
-  public void setSmallOrderFee(String smallOrderFee) {
+  public void setSmallOrderFee(@javax.annotation.Nullable String smallOrderFee) {
     this.smallOrderFee = smallOrderFee;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment subTotal(String subTotal) {
+  public GetOrderDetailResponseDataOrdersPayment subTotal(@javax.annotation.Nullable String subTotal) {
     this.subTotal = subTotal;
     return this;
   }
 
-   /**
+  /**
    * Buyer paid subtotal of all the SKUs in the order. For the US market, this is pre-tax total amount.  &#x60;sub_total&#x60; &#x3D; &#x60;original_total_product_price&#x60; - &#x60;seller_discount&#x60; - &#x60;platform_discount&#x60;
    * @return subTotal
-  **/
+   */
   @javax.annotation.Nullable
   public String getSubTotal() {
     return subTotal;
   }
 
-  public void setSubTotal(String subTotal) {
+  public void setSubTotal(@javax.annotation.Nullable String subTotal) {
     this.subTotal = subTotal;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment tax(String tax) {
+  public GetOrderDetailResponseDataOrdersPayment tax(@javax.annotation.Nullable String tax) {
     this.tax = tax;
     return this;
   }
 
-   /**
+  /**
    * Buyer paid total taxes of the order. Applicable to crossborder shops and the US market.
    * @return tax
-  **/
+   */
   @javax.annotation.Nullable
   public String getTax() {
     return tax;
   }
 
-  public void setTax(String tax) {
+  public void setTax(@javax.annotation.Nullable String tax) {
     this.tax = tax;
   }
 
 
-  public GetOrderDetailResponseDataOrdersPayment totalAmount(String totalAmount) {
+  public GetOrderDetailResponseDataOrdersPayment totalAmount(@javax.annotation.Nullable String totalAmount) {
     this.totalAmount = totalAmount;
     return this;
   }
 
-   /**
+  /**
    * Buyer paid total amount.  &#x60;total_amount&#x60; &#x3D; &#x60;sub_total&#x60; + &#x60;shipping_fee&#x60; + &#x60;taxes&#x60; + &#x60;retail_delivery_fee&#x60;
    * @return totalAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getTotalAmount() {
     return totalAmount;
   }
 
-  public void setTotalAmount(String totalAmount) {
+  public void setTotalAmount(@javax.annotation.Nullable String totalAmount) {
     this.totalAmount = totalAmount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetOrderDetailResponseDataOrdersPayment instance itself
+   */
+  public GetOrderDetailResponseDataOrdersPayment putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -528,6 +616,7 @@ public class GetOrderDetailResponseDataOrdersPayment {
         Objects.equals(this.currency, order202309GetOrderDetailResponseDataOrdersPayment.currency) &&
         Objects.equals(this.handlingFee, order202309GetOrderDetailResponseDataOrdersPayment.handlingFee) &&
         Objects.equals(this.itemInsuranceFee, order202309GetOrderDetailResponseDataOrdersPayment.itemInsuranceFee) &&
+        Objects.equals(this.itemInsuranceTax, order202309GetOrderDetailResponseDataOrdersPayment.itemInsuranceTax) &&
         Objects.equals(this.originalShippingFee, order202309GetOrderDetailResponseDataOrdersPayment.originalShippingFee) &&
         Objects.equals(this.originalTotalProductPrice, order202309GetOrderDetailResponseDataOrdersPayment.originalTotalProductPrice) &&
         Objects.equals(this.platformDiscount, order202309GetOrderDetailResponseDataOrdersPayment.platformDiscount) &&
@@ -543,12 +632,13 @@ public class GetOrderDetailResponseDataOrdersPayment {
         Objects.equals(this.smallOrderFee, order202309GetOrderDetailResponseDataOrdersPayment.smallOrderFee) &&
         Objects.equals(this.subTotal, order202309GetOrderDetailResponseDataOrdersPayment.subTotal) &&
         Objects.equals(this.tax, order202309GetOrderDetailResponseDataOrdersPayment.tax) &&
-        Objects.equals(this.totalAmount, order202309GetOrderDetailResponseDataOrdersPayment.totalAmount);
+        Objects.equals(this.totalAmount, order202309GetOrderDetailResponseDataOrdersPayment.totalAmount)&&
+        Objects.equals(this.additionalProperties, order202309GetOrderDetailResponseDataOrdersPayment.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buyerServiceFee, currency, handlingFee, itemInsuranceFee, originalShippingFee, originalTotalProductPrice, platformDiscount, productTax, retailDeliveryFee, sellerDiscount, shippingFee, shippingFeeCofundedDiscount, shippingFeePlatformDiscount, shippingFeeSellerDiscount, shippingFeeTax, shippingInsuranceFee, smallOrderFee, subTotal, tax, totalAmount);
+    return Objects.hash(buyerServiceFee, currency, handlingFee, itemInsuranceFee, itemInsuranceTax, originalShippingFee, originalTotalProductPrice, platformDiscount, productTax, retailDeliveryFee, sellerDiscount, shippingFee, shippingFeeCofundedDiscount, shippingFeePlatformDiscount, shippingFeeSellerDiscount, shippingFeeTax, shippingInsuranceFee, smallOrderFee, subTotal, tax, totalAmount, additionalProperties);
   }
 
   @Override
@@ -559,6 +649,7 @@ public class GetOrderDetailResponseDataOrdersPayment {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    handlingFee: ").append(toIndentedString(handlingFee)).append("\n");
     sb.append("    itemInsuranceFee: ").append(toIndentedString(itemInsuranceFee)).append("\n");
+    sb.append("    itemInsuranceTax: ").append(toIndentedString(itemInsuranceTax)).append("\n");
     sb.append("    originalShippingFee: ").append(toIndentedString(originalShippingFee)).append("\n");
     sb.append("    originalTotalProductPrice: ").append(toIndentedString(originalTotalProductPrice)).append("\n");
     sb.append("    platformDiscount: ").append(toIndentedString(platformDiscount)).append("\n");
@@ -575,6 +666,7 @@ public class GetOrderDetailResponseDataOrdersPayment {
     sb.append("    subTotal: ").append(toIndentedString(subTotal)).append("\n");
     sb.append("    tax: ").append(toIndentedString(tax)).append("\n");
     sb.append("    totalAmount: ").append(toIndentedString(totalAmount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -596,50 +688,22 @@ public class GetOrderDetailResponseDataOrdersPayment {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("buyer_service_fee");
-    openapiFields.add("currency");
-    openapiFields.add("handling_fee");
-    openapiFields.add("item_insurance_fee");
-    openapiFields.add("original_shipping_fee");
-    openapiFields.add("original_total_product_price");
-    openapiFields.add("platform_discount");
-    openapiFields.add("product_tax");
-    openapiFields.add("retail_delivery_fee");
-    openapiFields.add("seller_discount");
-    openapiFields.add("shipping_fee");
-    openapiFields.add("shipping_fee_cofunded_discount");
-    openapiFields.add("shipping_fee_platform_discount");
-    openapiFields.add("shipping_fee_seller_discount");
-    openapiFields.add("shipping_fee_tax");
-    openapiFields.add("shipping_insurance_fee");
-    openapiFields.add("small_order_fee");
-    openapiFields.add("sub_total");
-    openapiFields.add("tax");
-    openapiFields.add("total_amount");
+    openapiFields = new HashSet<String>(Arrays.asList("buyer_service_fee", "currency", "handling_fee", "item_insurance_fee", "item_insurance_tax", "original_shipping_fee", "original_total_product_price", "platform_discount", "product_tax", "retail_delivery_fee", "seller_discount", "shipping_fee", "shipping_fee_cofunded_discount", "shipping_fee_platform_discount", "shipping_fee_seller_discount", "shipping_fee_tax", "shipping_insurance_fee", "small_order_fee", "sub_total", "tax", "total_amount"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetOrderDetailResponseDataOrdersPayment
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetOrderDetailResponseDataOrdersPayment
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetOrderDetailResponseDataOrdersPayment.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetOrderDetailResponseDataOrdersPayment is not found in the empty JSON string", GetOrderDetailResponseDataOrdersPayment.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetOrderDetailResponseDataOrdersPayment.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetOrderDetailResponseDataOrdersPayment` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -654,6 +718,9 @@ public class GetOrderDetailResponseDataOrdersPayment {
       }
       if ((jsonObj.get("item_insurance_fee") != null && !jsonObj.get("item_insurance_fee").isJsonNull()) && !jsonObj.get("item_insurance_fee").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `item_insurance_fee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("item_insurance_fee").toString()));
+      }
+      if ((jsonObj.get("item_insurance_tax") != null && !jsonObj.get("item_insurance_tax").isJsonNull()) && !jsonObj.get("item_insurance_tax").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `item_insurance_tax` to be a primitive type in the JSON string but got `%s`", jsonObj.get("item_insurance_tax").toString()));
       }
       if ((jsonObj.get("original_shipping_fee") != null && !jsonObj.get("original_shipping_fee").isJsonNull()) && !jsonObj.get("original_shipping_fee").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `original_shipping_fee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("original_shipping_fee").toString()));
@@ -720,6 +787,28 @@ public class GetOrderDetailResponseDataOrdersPayment {
            @Override
            public void write(JsonWriter out, GetOrderDetailResponseDataOrdersPayment value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -727,29 +816,50 @@ public class GetOrderDetailResponseDataOrdersPayment {
            public GetOrderDetailResponseDataOrdersPayment read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetOrderDetailResponseDataOrdersPayment instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetOrderDetailResponseDataOrdersPayment given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetOrderDetailResponseDataOrdersPayment
-  * @throws IOException if the JSON string is invalid with respect to GetOrderDetailResponseDataOrdersPayment
-  */
+  /**
+   * Create an instance of GetOrderDetailResponseDataOrdersPayment given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetOrderDetailResponseDataOrdersPayment
+   * @throws IOException if the JSON string is invalid with respect to GetOrderDetailResponseDataOrdersPayment
+   */
   public static GetOrderDetailResponseDataOrdersPayment fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetOrderDetailResponseDataOrdersPayment.class);
   }
 
- /**
-  * Convert an instance of GetOrderDetailResponseDataOrdersPayment to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetOrderDetailResponseDataOrdersPayment to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

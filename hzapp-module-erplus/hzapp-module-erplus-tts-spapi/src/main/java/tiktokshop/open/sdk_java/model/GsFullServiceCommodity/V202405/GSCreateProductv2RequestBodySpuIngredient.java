@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,24 +52,27 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSCreateProductv2RequestBodySpuIngredient
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSCreateProductv2RequestBodySpuIngredient {
   public static final String SERIALIZED_NAME_MULTI_MATERIAL_COMPOSITION = "multi_material_composition";
   @SerializedName(SERIALIZED_NAME_MULTI_MATERIAL_COMPOSITION)
+  @javax.annotation.Nullable
   private List<GSCreateProductv2RequestBodySpuIngredientMultiMaterialComposition> multiMaterialComposition = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SINGLE_MATERIAL_COMPOSITION = "single_material_composition";
   @SerializedName(SERIALIZED_NAME_SINGLE_MATERIAL_COMPOSITION)
+  @javax.annotation.Nullable
   private List<GSCreateProductv2RequestBodySpuIngredientSingleMaterialComposition> singleMaterialComposition = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public GSCreateProductv2RequestBodySpuIngredient() {
   }
 
-  public GSCreateProductv2RequestBodySpuIngredient multiMaterialComposition(List<GSCreateProductv2RequestBodySpuIngredientMultiMaterialComposition> multiMaterialComposition) {
+  public GSCreateProductv2RequestBodySpuIngredient multiMaterialComposition(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuIngredientMultiMaterialComposition> multiMaterialComposition) {
     this.multiMaterialComposition = multiMaterialComposition;
     return this;
   }
@@ -83,21 +85,21 @@ public class GSCreateProductv2RequestBodySpuIngredient {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return multiMaterialComposition
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSCreateProductv2RequestBodySpuIngredientMultiMaterialComposition> getMultiMaterialComposition() {
     return multiMaterialComposition;
   }
 
-  public void setMultiMaterialComposition(List<GSCreateProductv2RequestBodySpuIngredientMultiMaterialComposition> multiMaterialComposition) {
+  public void setMultiMaterialComposition(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuIngredientMultiMaterialComposition> multiMaterialComposition) {
     this.multiMaterialComposition = multiMaterialComposition;
   }
 
 
-  public GSCreateProductv2RequestBodySpuIngredient singleMaterialComposition(List<GSCreateProductv2RequestBodySpuIngredientSingleMaterialComposition> singleMaterialComposition) {
+  public GSCreateProductv2RequestBodySpuIngredient singleMaterialComposition(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuIngredientSingleMaterialComposition> singleMaterialComposition) {
     this.singleMaterialComposition = singleMaterialComposition;
     return this;
   }
@@ -110,36 +112,81 @@ public class GSCreateProductv2RequestBodySpuIngredient {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return singleMaterialComposition
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSCreateProductv2RequestBodySpuIngredientSingleMaterialComposition> getSingleMaterialComposition() {
     return singleMaterialComposition;
   }
 
-  public void setSingleMaterialComposition(List<GSCreateProductv2RequestBodySpuIngredientSingleMaterialComposition> singleMaterialComposition) {
+  public void setSingleMaterialComposition(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuIngredientSingleMaterialComposition> singleMaterialComposition) {
     this.singleMaterialComposition = singleMaterialComposition;
   }
 
 
-  public GSCreateProductv2RequestBodySpuIngredient type(String type) {
+  public GSCreateProductv2RequestBodySpuIngredient type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSCreateProductv2RequestBodySpuIngredient instance itself
+   */
+  public GSCreateProductv2RequestBodySpuIngredient putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -155,12 +202,13 @@ public class GSCreateProductv2RequestBodySpuIngredient {
     GSCreateProductv2RequestBodySpuIngredient gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuIngredient = (GSCreateProductv2RequestBodySpuIngredient) o;
     return Objects.equals(this.multiMaterialComposition, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuIngredient.multiMaterialComposition) &&
         Objects.equals(this.singleMaterialComposition, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuIngredient.singleMaterialComposition) &&
-        Objects.equals(this.type, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuIngredient.type);
+        Objects.equals(this.type, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuIngredient.type)&&
+        Objects.equals(this.additionalProperties, gsFullServiceCommodity202405GSCreateProductv2RequestBodySpuIngredient.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(multiMaterialComposition, singleMaterialComposition, type);
+    return Objects.hash(multiMaterialComposition, singleMaterialComposition, type, additionalProperties);
   }
 
   @Override
@@ -170,6 +218,7 @@ public class GSCreateProductv2RequestBodySpuIngredient {
     sb.append("    multiMaterialComposition: ").append(toIndentedString(multiMaterialComposition)).append("\n");
     sb.append("    singleMaterialComposition: ").append(toIndentedString(singleMaterialComposition)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -191,33 +240,22 @@ public class GSCreateProductv2RequestBodySpuIngredient {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("multi_material_composition");
-    openapiFields.add("single_material_composition");
-    openapiFields.add("type");
+    openapiFields = new HashSet<String>(Arrays.asList("multi_material_composition", "single_material_composition", "type"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSCreateProductv2RequestBodySpuIngredient
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSCreateProductv2RequestBodySpuIngredient
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSCreateProductv2RequestBodySpuIngredient.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSCreateProductv2RequestBodySpuIngredient is not found in the empty JSON string", GSCreateProductv2RequestBodySpuIngredient.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSCreateProductv2RequestBodySpuIngredient.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSCreateProductv2RequestBodySpuIngredient` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -269,6 +307,28 @@ public class GSCreateProductv2RequestBodySpuIngredient {
            @Override
            public void write(JsonWriter out, GSCreateProductv2RequestBodySpuIngredient value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -276,29 +336,50 @@ public class GSCreateProductv2RequestBodySpuIngredient {
            public GSCreateProductv2RequestBodySpuIngredient read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSCreateProductv2RequestBodySpuIngredient instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSCreateProductv2RequestBodySpuIngredient given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSCreateProductv2RequestBodySpuIngredient
-  * @throws IOException if the JSON string is invalid with respect to GSCreateProductv2RequestBodySpuIngredient
-  */
+  /**
+   * Create an instance of GSCreateProductv2RequestBodySpuIngredient given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSCreateProductv2RequestBodySpuIngredient
+   * @throws IOException if the JSON string is invalid with respect to GSCreateProductv2RequestBodySpuIngredient
+   */
   public static GSCreateProductv2RequestBodySpuIngredient fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSCreateProductv2RequestBodySpuIngredient.class);
   }
 
- /**
-  * Convert an instance of GSCreateProductv2RequestBodySpuIngredient to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSCreateProductv2RequestBodySpuIngredient to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

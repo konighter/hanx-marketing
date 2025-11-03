@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,68 +53,82 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetActivityResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetActivityResponseData {
   public static final String SERIALIZED_NAME_ACTIVITY_COMMANDS = "activity_commands";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_COMMANDS)
+  @javax.annotation.Nullable
   private List<String> activityCommands = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ACTIVITY_ID = "activity_id";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_ID)
+  @javax.annotation.Nullable
   private String activityId;
 
   public static final String SERIALIZED_NAME_ACTIVITY_TYPE = "activity_type";
   @SerializedName(SERIALIZED_NAME_ACTIVITY_TYPE)
+  @javax.annotation.Nullable
   private String activityType;
 
   public static final String SERIALIZED_NAME_BEGIN_TIME = "begin_time";
   @SerializedName(SERIALIZED_NAME_BEGIN_TIME)
+  @javax.annotation.Nullable
   private Long beginTime;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DISCOUNT = "discount";
   @SerializedName(SERIALIZED_NAME_DISCOUNT)
+  @javax.annotation.Nullable
   private GetActivityResponseDataDiscount discount;
 
   public static final String SERIALIZED_NAME_DURATION_TYPE = "duration_type";
   @SerializedName(SERIALIZED_NAME_DURATION_TYPE)
+  @javax.annotation.Nullable
   private String durationType;
 
   public static final String SERIALIZED_NAME_END_TIME = "end_time";
   @SerializedName(SERIALIZED_NAME_END_TIME)
+  @javax.annotation.Nullable
   private Long endTime;
 
   public static final String SERIALIZED_NAME_PARTICIPATION_LIMIT = "participation_limit";
   @SerializedName(SERIALIZED_NAME_PARTICIPATION_LIMIT)
+  @javax.annotation.Nullable
   private List<GetActivityResponseDataParticipationLimit> participationLimit = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PRODUCT_LEVEL = "product_level";
   @SerializedName(SERIALIZED_NAME_PRODUCT_LEVEL)
+  @javax.annotation.Nullable
   private String productLevel;
 
   public static final String SERIALIZED_NAME_PRODUCTS = "products";
   @SerializedName(SERIALIZED_NAME_PRODUCTS)
+  @javax.annotation.Nullable
   private List<GetActivityResponseDataProducts> products = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public GetActivityResponseData() {
   }
 
-  public GetActivityResponseData activityCommands(List<String> activityCommands) {
+  public GetActivityResponseData activityCommands(@javax.annotation.Nullable List<String> activityCommands) {
     this.activityCommands = activityCommands;
     return this;
   }
@@ -128,154 +141,154 @@ public class GetActivityResponseData {
     return this;
   }
 
-   /**
+  /**
    * Applicable commands to the activity: - IMMUTABLE: The activity cann&#39;t be editable or deactivated
    * @return activityCommands
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getActivityCommands() {
     return activityCommands;
   }
 
-  public void setActivityCommands(List<String> activityCommands) {
+  public void setActivityCommands(@javax.annotation.Nullable List<String> activityCommands) {
     this.activityCommands = activityCommands;
   }
 
 
-  public GetActivityResponseData activityId(String activityId) {
+  public GetActivityResponseData activityId(@javax.annotation.Nullable String activityId) {
     this.activityId = activityId;
     return this;
   }
 
-   /**
+  /**
    * A unique ID that identifies different activities.
    * @return activityId
-  **/
+   */
   @javax.annotation.Nullable
   public String getActivityId() {
     return activityId;
   }
 
-  public void setActivityId(String activityId) {
+  public void setActivityId(@javax.annotation.Nullable String activityId) {
     this.activityId = activityId;
   }
 
 
-  public GetActivityResponseData activityType(String activityType) {
+  public GetActivityResponseData activityType(@javax.annotation.Nullable String activityType) {
     this.activityType = activityType;
     return this;
   }
 
-   /**
+  /**
    * The type of activities. Possible enumerations: - &#x60;FIXED_PRICE&#x60;: product discount activity with fixed price. - &#x60;DIRECT_DISCOUNT&#x60;: product discount activities with percentage off. - &#x60;FLASHSALE&#x60;: flash sale activity. - &#x60;SHIPPING_DISCOUNT&#x60;: shipping fee discount. - &#x60;BUY_MORE_SAVE_MORE&#x60;: Buy more save more discount.
    * @return activityType
-  **/
+   */
   @javax.annotation.Nullable
   public String getActivityType() {
     return activityType;
   }
 
-  public void setActivityType(String activityType) {
+  public void setActivityType(@javax.annotation.Nullable String activityType) {
     this.activityType = activityType;
   }
 
 
-  public GetActivityResponseData beginTime(Long beginTime) {
+  public GetActivityResponseData beginTime(@javax.annotation.Nullable Long beginTime) {
     this.beginTime = beginTime;
     return this;
   }
 
-   /**
+  /**
    * Activity start time. UNIX timestamp. The value must be greater than the value of the current time.
    * @return beginTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getBeginTime() {
     return beginTime;
   }
 
-  public void setBeginTime(Long beginTime) {
+  public void setBeginTime(@javax.annotation.Nullable Long beginTime) {
     this.beginTime = beginTime;
   }
 
 
-  public GetActivityResponseData createTime(Long createTime) {
+  public GetActivityResponseData createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * Activity creation time. UNIX timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetActivityResponseData discount(GetActivityResponseDataDiscount discount) {
+  public GetActivityResponseData discount(@javax.annotation.Nullable GetActivityResponseDataDiscount discount) {
     this.discount = discount;
     return this;
   }
 
-   /**
+  /**
    * Get discount
    * @return discount
-  **/
+   */
   @javax.annotation.Nullable
   public GetActivityResponseDataDiscount getDiscount() {
     return discount;
   }
 
-  public void setDiscount(GetActivityResponseDataDiscount discount) {
+  public void setDiscount(@javax.annotation.Nullable GetActivityResponseDataDiscount discount) {
     this.discount = discount;
   }
 
 
-  public GetActivityResponseData durationType(String durationType) {
+  public GetActivityResponseData durationType(@javax.annotation.Nullable String durationType) {
     this.durationType = durationType;
     return this;
   }
 
-   /**
+  /**
    * The effective time type of the current activity - NORMAL:  &#x60;begin_time&#x60; and &#x60;end_time&#x60; must be filled - INDEFINITE: &#x60;begin_time&#x60; and &#x60;end_time&#x60; aren&#39;t required, and the promotion will be a long-term activity which runs indefinitely.  1.  &#x60;INDEFINITE&#x60; is only valid when &#x60;activity_type&#x60; is &#x60;SHIPPING_DISCOUNT&#x60;, 2. If &#x60;duration_type&#x60; is &#x60;INDEFINITE&#x60;, &#x60;start_time&#x60; and &#x60;end_time&#x60; should be 0 Default: NORMAL
    * @return durationType
-  **/
+   */
   @javax.annotation.Nullable
   public String getDurationType() {
     return durationType;
   }
 
-  public void setDurationType(String durationType) {
+  public void setDurationType(@javax.annotation.Nullable String durationType) {
     this.durationType = durationType;
   }
 
 
-  public GetActivityResponseData endTime(Long endTime) {
+  public GetActivityResponseData endTime(@javax.annotation.Nullable Long endTime) {
     this.endTime = endTime;
     return this;
   }
 
-   /**
+  /**
    * Activity end time. UNIX timestamp.
    * @return endTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getEndTime() {
     return endTime;
   }
 
-  public void setEndTime(Long endTime) {
+  public void setEndTime(@javax.annotation.Nullable Long endTime) {
     this.endTime = endTime;
   }
 
 
-  public GetActivityResponseData participationLimit(List<GetActivityResponseDataParticipationLimit> participationLimit) {
+  public GetActivityResponseData participationLimit(@javax.annotation.Nullable List<GetActivityResponseDataParticipationLimit> participationLimit) {
     this.participationLimit = participationLimit;
     return this;
   }
@@ -288,40 +301,40 @@ public class GetActivityResponseData {
     return this;
   }
 
-   /**
+  /**
    * The number of times a buyer can participate in the promotion.
    * @return participationLimit
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetActivityResponseDataParticipationLimit> getParticipationLimit() {
     return participationLimit;
   }
 
-  public void setParticipationLimit(List<GetActivityResponseDataParticipationLimit> participationLimit) {
+  public void setParticipationLimit(@javax.annotation.Nullable List<GetActivityResponseDataParticipationLimit> participationLimit) {
     this.participationLimit = participationLimit;
   }
 
 
-  public GetActivityResponseData productLevel(String productLevel) {
+  public GetActivityResponseData productLevel(@javax.annotation.Nullable String productLevel) {
     this.productLevel = productLevel;
     return this;
   }
 
-   /**
+  /**
    * Activity product dimension, values are:  - PRODUCT: Product level promotion activity. - VARIATION: SKU level promotion activity. - SHOP: Shop level promotion activity.
    * @return productLevel
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductLevel() {
     return productLevel;
   }
 
-  public void setProductLevel(String productLevel) {
+  public void setProductLevel(@javax.annotation.Nullable String productLevel) {
     this.productLevel = productLevel;
   }
 
 
-  public GetActivityResponseData products(List<GetActivityResponseDataProducts> products) {
+  public GetActivityResponseData products(@javax.annotation.Nullable List<GetActivityResponseDataProducts> products) {
     this.products = products;
     return this;
   }
@@ -334,74 +347,119 @@ public class GetActivityResponseData {
     return this;
   }
 
-   /**
+  /**
    * Product List.
    * @return products
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetActivityResponseDataProducts> getProducts() {
     return products;
   }
 
-  public void setProducts(List<GetActivityResponseDataProducts> products) {
+  public void setProducts(@javax.annotation.Nullable List<GetActivityResponseDataProducts> products) {
     this.products = products;
   }
 
 
-  public GetActivityResponseData status(String status) {
+  public GetActivityResponseData status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Activity status. Possible values: - DRAFT: Promotion activities with this status are not available to TikTok users. - NOT_START: Promotion activities with this status are not available to TikTok users until the set activity start time. - ONGOING: Promotion activities with this status are available to TikTok users. - EXPIRED: Promotion activities with this status are not available to TikTok users because it has expired. - DEACTIVATED: The activity has been deactivated by the seller and is not available to TikTok users. - NOT_EFFECTIVE:  The activity is terminated by the platform and is not available to TikTok users.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GetActivityResponseData title(String title) {
+  public GetActivityResponseData title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * Activity name (50 characters max.) The name must be unique.
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
 
-  public GetActivityResponseData updateTime(Long updateTime) {
+  public GetActivityResponseData updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * Activity update time. UNIX timestamp.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetActivityResponseData instance itself
+   */
+  public GetActivityResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -428,12 +486,13 @@ public class GetActivityResponseData {
         Objects.equals(this.products, promotion202309GetActivityResponseData.products) &&
         Objects.equals(this.status, promotion202309GetActivityResponseData.status) &&
         Objects.equals(this.title, promotion202309GetActivityResponseData.title) &&
-        Objects.equals(this.updateTime, promotion202309GetActivityResponseData.updateTime);
+        Objects.equals(this.updateTime, promotion202309GetActivityResponseData.updateTime)&&
+        Objects.equals(this.additionalProperties, promotion202309GetActivityResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(activityCommands, activityId, activityType, beginTime, createTime, discount, durationType, endTime, participationLimit, productLevel, products, status, title, updateTime);
+    return Objects.hash(activityCommands, activityId, activityType, beginTime, createTime, discount, durationType, endTime, participationLimit, productLevel, products, status, title, updateTime, additionalProperties);
   }
 
   @Override
@@ -454,6 +513,7 @@ public class GetActivityResponseData {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -475,44 +535,22 @@ public class GetActivityResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("activity_commands");
-    openapiFields.add("activity_id");
-    openapiFields.add("activity_type");
-    openapiFields.add("begin_time");
-    openapiFields.add("create_time");
-    openapiFields.add("discount");
-    openapiFields.add("duration_type");
-    openapiFields.add("end_time");
-    openapiFields.add("participation_limit");
-    openapiFields.add("product_level");
-    openapiFields.add("products");
-    openapiFields.add("status");
-    openapiFields.add("title");
-    openapiFields.add("update_time");
+    openapiFields = new HashSet<String>(Arrays.asList("activity_commands", "activity_id", "activity_type", "begin_time", "create_time", "discount", "duration_type", "end_time", "participation_limit", "product_level", "products", "status", "title", "update_time"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetActivityResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetActivityResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetActivityResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetActivityResponseData is not found in the empty JSON string", GetActivityResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetActivityResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetActivityResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -587,6 +625,28 @@ public class GetActivityResponseData {
            @Override
            public void write(JsonWriter out, GetActivityResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -594,29 +654,50 @@ public class GetActivityResponseData {
            public GetActivityResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetActivityResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetActivityResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetActivityResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetActivityResponseData
-  */
+  /**
+   * Create an instance of GetActivityResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetActivityResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetActivityResponseData
+   */
   public static GetActivityResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetActivityResponseData.class);
   }
 
- /**
-  * Convert an instance of GetActivityResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetActivityResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

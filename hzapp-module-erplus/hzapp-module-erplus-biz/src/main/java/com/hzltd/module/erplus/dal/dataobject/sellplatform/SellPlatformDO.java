@@ -1,5 +1,6 @@
 package com.hzltd.module.erplus.dal.dataobject.sellplatform;
 
+import com.hzltd.module.erplus.enums.ServiceModeEnum;
 import lombok.*;
 import java.util.*;
 
@@ -11,7 +12,7 @@ import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
  *
  * @author hzadd
  */
-@TableName(value = "erp_sell_platform", autoResultMap = true)
+@TableName(value = "erplus_sell_platform", autoResultMap = true)
 @KeySequence("erplus_sell_platform_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -34,10 +35,6 @@ public class SellPlatformDO extends BaseDO {
      * 编码
      */
     private String code;
-    /**
-     * 头像
-     */
-    private String avatar;
     /**
      * 配送模式
      */

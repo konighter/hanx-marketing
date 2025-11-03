@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,100 +48,149 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetPackageDetailResponseDataInsurance
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetPackageDetailResponseDataInsurance {
   public static final String SERIALIZED_NAME_CLAIM_STATUS = "claim_status";
   @SerializedName(SERIALIZED_NAME_CLAIM_STATUS)
+  @javax.annotation.Nullable
   private String claimStatus;
 
   public static final String SERIALIZED_NAME_COVERAGE_AMOUNT = "coverage_amount";
   @SerializedName(SERIALIZED_NAME_COVERAGE_AMOUNT)
+  @javax.annotation.Nullable
   private String coverageAmount;
 
   public static final String SERIALIZED_NAME_IS_CLAIM_ELIGIBLE = "is_claim_eligible";
   @SerializedName(SERIALIZED_NAME_IS_CLAIM_ELIGIBLE)
+  @javax.annotation.Nullable
   private Boolean isClaimEligible;
 
   public static final String SERIALIZED_NAME_IS_PURCHASED = "is_purchased";
   @SerializedName(SERIALIZED_NAME_IS_PURCHASED)
+  @javax.annotation.Nullable
   private Boolean isPurchased;
 
   public GetPackageDetailResponseDataInsurance() {
   }
 
-  public GetPackageDetailResponseDataInsurance claimStatus(String claimStatus) {
+  public GetPackageDetailResponseDataInsurance claimStatus(@javax.annotation.Nullable String claimStatus) {
     this.claimStatus = claimStatus;
     return this;
   }
 
-   /**
+  /**
    * The insurance claim status. Available values: - &#x60;NOT_STARTED&#x60;: Claim has not been initiated for this package. - &#x60;CLAIM_PENDING&#x60;: Claim is currently under review. - &#x60;APPROVED&#x60;: Claim has been approved. - &#x60;DECLINED&#x60;: Claim has been declined.
    * @return claimStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getClaimStatus() {
     return claimStatus;
   }
 
-  public void setClaimStatus(String claimStatus) {
+  public void setClaimStatus(@javax.annotation.Nullable String claimStatus) {
     this.claimStatus = claimStatus;
   }
 
 
-  public GetPackageDetailResponseDataInsurance coverageAmount(String coverageAmount) {
+  public GetPackageDetailResponseDataInsurance coverageAmount(@javax.annotation.Nullable String coverageAmount) {
     this.coverageAmount = coverageAmount;
     return this;
   }
 
-   /**
+  /**
    * The insurance coverage amount for the package. Units: USD.
    * @return coverageAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCoverageAmount() {
     return coverageAmount;
   }
 
-  public void setCoverageAmount(String coverageAmount) {
+  public void setCoverageAmount(@javax.annotation.Nullable String coverageAmount) {
     this.coverageAmount = coverageAmount;
   }
 
 
-  public GetPackageDetailResponseDataInsurance isClaimEligible(Boolean isClaimEligible) {
+  public GetPackageDetailResponseDataInsurance isClaimEligible(@javax.annotation.Nullable Boolean isClaimEligible) {
     this.isClaimEligible = isClaimEligible;
     return this;
   }
 
-   /**
+  /**
    * Whether the order is eligible for an insurance claim, based on eligible refund reasons.
    * @return isClaimEligible
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsClaimEligible() {
     return isClaimEligible;
   }
 
-  public void setIsClaimEligible(Boolean isClaimEligible) {
+  public void setIsClaimEligible(@javax.annotation.Nullable Boolean isClaimEligible) {
     this.isClaimEligible = isClaimEligible;
   }
 
 
-  public GetPackageDetailResponseDataInsurance isPurchased(Boolean isPurchased) {
+  public GetPackageDetailResponseDataInsurance isPurchased(@javax.annotation.Nullable Boolean isPurchased) {
     this.isPurchased = isPurchased;
     return this;
   }
 
-   /**
+  /**
    * Whether insurance has been purchased for the package.
    * @return isPurchased
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsPurchased() {
     return isPurchased;
   }
 
-  public void setIsPurchased(Boolean isPurchased) {
+  public void setIsPurchased(@javax.annotation.Nullable Boolean isPurchased) {
     this.isPurchased = isPurchased;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetPackageDetailResponseDataInsurance instance itself
+   */
+  public GetPackageDetailResponseDataInsurance putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -159,12 +207,13 @@ public class GetPackageDetailResponseDataInsurance {
     return Objects.equals(this.claimStatus, fulfillment202309GetPackageDetailResponseDataInsurance.claimStatus) &&
         Objects.equals(this.coverageAmount, fulfillment202309GetPackageDetailResponseDataInsurance.coverageAmount) &&
         Objects.equals(this.isClaimEligible, fulfillment202309GetPackageDetailResponseDataInsurance.isClaimEligible) &&
-        Objects.equals(this.isPurchased, fulfillment202309GetPackageDetailResponseDataInsurance.isPurchased);
+        Objects.equals(this.isPurchased, fulfillment202309GetPackageDetailResponseDataInsurance.isPurchased)&&
+        Objects.equals(this.additionalProperties, fulfillment202309GetPackageDetailResponseDataInsurance.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(claimStatus, coverageAmount, isClaimEligible, isPurchased);
+    return Objects.hash(claimStatus, coverageAmount, isClaimEligible, isPurchased, additionalProperties);
   }
 
   @Override
@@ -175,6 +224,7 @@ public class GetPackageDetailResponseDataInsurance {
     sb.append("    coverageAmount: ").append(toIndentedString(coverageAmount)).append("\n");
     sb.append("    isClaimEligible: ").append(toIndentedString(isClaimEligible)).append("\n");
     sb.append("    isPurchased: ").append(toIndentedString(isPurchased)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -196,34 +246,22 @@ public class GetPackageDetailResponseDataInsurance {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("claim_status");
-    openapiFields.add("coverage_amount");
-    openapiFields.add("is_claim_eligible");
-    openapiFields.add("is_purchased");
+    openapiFields = new HashSet<String>(Arrays.asList("claim_status", "coverage_amount", "is_claim_eligible", "is_purchased"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetPackageDetailResponseDataInsurance
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetPackageDetailResponseDataInsurance
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetPackageDetailResponseDataInsurance.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetPackageDetailResponseDataInsurance is not found in the empty JSON string", GetPackageDetailResponseDataInsurance.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetPackageDetailResponseDataInsurance.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetPackageDetailResponseDataInsurance` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -250,6 +288,28 @@ public class GetPackageDetailResponseDataInsurance {
            @Override
            public void write(JsonWriter out, GetPackageDetailResponseDataInsurance value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -257,29 +317,50 @@ public class GetPackageDetailResponseDataInsurance {
            public GetPackageDetailResponseDataInsurance read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetPackageDetailResponseDataInsurance instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetPackageDetailResponseDataInsurance given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetPackageDetailResponseDataInsurance
-  * @throws IOException if the JSON string is invalid with respect to GetPackageDetailResponseDataInsurance
-  */
+  /**
+   * Create an instance of GetPackageDetailResponseDataInsurance given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetPackageDetailResponseDataInsurance
+   * @throws IOException if the JSON string is invalid with respect to GetPackageDetailResponseDataInsurance
+   */
   public static GetPackageDetailResponseDataInsurance fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetPackageDetailResponseDataInsurance.class);
   }
 
- /**
-  * Convert an instance of GetPackageDetailResponseDataInsurance to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetPackageDetailResponseDataInsurance to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

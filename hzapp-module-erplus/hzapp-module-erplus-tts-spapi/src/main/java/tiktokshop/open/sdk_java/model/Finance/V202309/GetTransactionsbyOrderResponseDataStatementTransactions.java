@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,1274 +51,1333 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetTransactionsbyOrderResponseDataStatementTransactions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetTransactionsbyOrderResponseDataStatementTransactions {
   public static final String SERIALIZED_NAME_ACTUAL_RETURN_SHIPPING_FEE_AMOUNT = "actual_return_shipping_fee_amount";
   @SerializedName(SERIALIZED_NAME_ACTUAL_RETURN_SHIPPING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String actualReturnShippingFeeAmount;
 
   public static final String SERIALIZED_NAME_ACTUAL_SHIPPING_FEE_AMOUNT = "actual_shipping_fee_amount";
   @SerializedName(SERIALIZED_NAME_ACTUAL_SHIPPING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String actualShippingFeeAmount;
 
   public static final String SERIALIZED_NAME_ADJUSTMENT_AMOUNT = "adjustment_amount";
   @SerializedName(SERIALIZED_NAME_ADJUSTMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String adjustmentAmount;
 
   public static final String SERIALIZED_NAME_AFFILIATE_ADS_COMMISSION_AMOUNT = "affiliate_ads_commission_amount";
   @SerializedName(SERIALIZED_NAME_AFFILIATE_ADS_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String affiliateAdsCommissionAmount;
 
   public static final String SERIALIZED_NAME_AFFILIATE_COMMISSION_AMOUNT = "affiliate_commission_amount";
   @SerializedName(SERIALIZED_NAME_AFFILIATE_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String affiliateCommissionAmount;
 
   public static final String SERIALIZED_NAME_AFFILIATE_COMMISSION_BEFORE_PIT = "affiliate_commission_before_pit";
   @SerializedName(SERIALIZED_NAME_AFFILIATE_COMMISSION_BEFORE_PIT)
+  @javax.annotation.Nullable
   private String affiliateCommissionBeforePit;
 
   public static final String SERIALIZED_NAME_AFFILIATE_PARTNER_COMMISSION_AMOUNT = "affiliate_partner_commission_amount";
   @SerializedName(SERIALIZED_NAME_AFFILIATE_PARTNER_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String affiliatePartnerCommissionAmount;
 
   public static final String SERIALIZED_NAME_AFTER_SELLER_DISCOUNTS_SUBTOTAL_AMOUNT = "after_seller_discounts_subtotal_amount";
   @SerializedName(SERIALIZED_NAME_AFTER_SELLER_DISCOUNTS_SUBTOTAL_AMOUNT)
+  @javax.annotation.Nullable
   private String afterSellerDiscountsSubtotalAmount;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_CUSTOMER_ORDER_REFUND_AMOUNT = "customer_order_refund_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_ORDER_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String customerOrderRefundAmount;
 
   public static final String SERIALIZED_NAME_CUSTOMER_PAID_SHIPPING_FEE_AMOUNT = "customer_paid_shipping_fee_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_PAID_SHIPPING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String customerPaidShippingFeeAmount;
 
   public static final String SERIALIZED_NAME_CUSTOMER_PAID_SHIPPING_FEE_REFUND_AMOUNT = "customer_paid_shipping_fee_refund_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_PAID_SHIPPING_FEE_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String customerPaidShippingFeeRefundAmount;
 
   public static final String SERIALIZED_NAME_CUSTOMER_PAYMENT_AMOUNT = "customer_payment_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_PAYMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String customerPaymentAmount;
 
   public static final String SERIALIZED_NAME_CUSTOMER_REFUND_AMOUNT = "customer_refund_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String customerRefundAmount;
 
   public static final String SERIALIZED_NAME_CUSTOMER_SHIPPING_FEE_AMOUNT = "customer_shipping_fee_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_SHIPPING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String customerShippingFeeAmount;
 
   public static final String SERIALIZED_NAME_CUSTOMER_SHIPPING_FEE_OFFSET_AMOUNT = "customer_shipping_fee_offset_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_SHIPPING_FEE_OFFSET_AMOUNT)
+  @javax.annotation.Nullable
   private String customerShippingFeeOffsetAmount;
 
   public static final String SERIALIZED_NAME_FBM_SHIPPING_COST_AMOUNT = "fbm_shipping_cost_amount";
   @SerializedName(SERIALIZED_NAME_FBM_SHIPPING_COST_AMOUNT)
+  @javax.annotation.Nullable
   private String fbmShippingCostAmount;
 
   public static final String SERIALIZED_NAME_FBT_FULFILLMENT_FEE_AMOUNT = "fbt_fulfillment_fee_amount";
   @SerializedName(SERIALIZED_NAME_FBT_FULFILLMENT_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String fbtFulfillmentFeeAmount;
 
   public static final String SERIALIZED_NAME_FBT_FULFILLMENT_FEE_REIMBURSEMENT_AMOUNT = "fbt_fulfillment_fee_reimbursement_amount";
   @SerializedName(SERIALIZED_NAME_FBT_FULFILLMENT_FEE_REIMBURSEMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String fbtFulfillmentFeeReimbursementAmount;
 
   public static final String SERIALIZED_NAME_FBT_SHIPPING_COST_AMOUNT = "fbt_shipping_cost_amount";
   @SerializedName(SERIALIZED_NAME_FBT_SHIPPING_COST_AMOUNT)
+  @javax.annotation.Nullable
   private String fbtShippingCostAmount;
 
   public static final String SERIALIZED_NAME_FEE_AMOUNT = "fee_amount";
   @SerializedName(SERIALIZED_NAME_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String feeAmount;
 
   public static final String SERIALIZED_NAME_GROSS_SALES_AMOUNT = "gross_sales_amount";
   @SerializedName(SERIALIZED_NAME_GROSS_SALES_AMOUNT)
+  @javax.annotation.Nullable
   private String grossSalesAmount;
 
   public static final String SERIALIZED_NAME_GROSS_SALES_REFUND_AMOUNT = "gross_sales_refund_amount";
   @SerializedName(SERIALIZED_NAME_GROSS_SALES_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String grossSalesRefundAmount;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_ISR_INCOME_TAX_AMOUNT = "isr_income_tax_amount";
   @SerializedName(SERIALIZED_NAME_ISR_INCOME_TAX_AMOUNT)
+  @javax.annotation.Nullable
   private String isrIncomeTaxAmount;
 
   public static final String SERIALIZED_NAME_IVA_VAT_AMOUNT = "iva_vat_amount";
   @SerializedName(SERIALIZED_NAME_IVA_VAT_AMOUNT)
+  @javax.annotation.Nullable
   private String ivaVatAmount;
 
   public static final String SERIALIZED_NAME_NET_SALES_AMOUNT = "net_sales_amount";
   @SerializedName(SERIALIZED_NAME_NET_SALES_AMOUNT)
+  @javax.annotation.Nullable
   private String netSalesAmount;
 
   public static final String SERIALIZED_NAME_PIT_AMOUNT = "pit_amount";
   @SerializedName(SERIALIZED_NAME_PIT_AMOUNT)
+  @javax.annotation.Nullable
   private String pitAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_COMMISSION_AMOUNT = "platform_commission_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String platformCommissionAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_DISCOUNT_AMOUNT = "platform_discount_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String platformDiscountAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_DISCOUNT_REFUND_AMOUNT = "platform_discount_refund_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_DISCOUNT_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String platformDiscountRefundAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_REFUND_SUBSIDY_AMOUNT = "platform_refund_subsidy_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_REFUND_SUBSIDY_AMOUNT)
+  @javax.annotation.Nullable
   private String platformRefundSubsidyAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_SHIPPING_FEE_DISCOUNT_AMOUNT = "platform_shipping_fee_discount_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SHIPPING_FEE_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String platformShippingFeeDiscountAmount;
 
   public static final String SERIALIZED_NAME_PROMO_SHIPPING_INCENTIVE_AMOUNT = "promo_shipping_incentive_amount";
   @SerializedName(SERIALIZED_NAME_PROMO_SHIPPING_INCENTIVE_AMOUNT)
+  @javax.annotation.Nullable
   private String promoShippingIncentiveAmount;
 
   public static final String SERIALIZED_NAME_REFERRAL_FEE_AMOUNT = "referral_fee_amount";
   @SerializedName(SERIALIZED_NAME_REFERRAL_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String referralFeeAmount;
 
   public static final String SERIALIZED_NAME_REFUND_ADMINISTRATION_FEE_AMOUNT = "refund_administration_fee_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_ADMINISTRATION_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String refundAdministrationFeeAmount;
 
   public static final String SERIALIZED_NAME_REFUND_SHIPPING_COST_DISCOUNT_AMOUNT = "refund_shipping_cost_discount_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_SHIPPING_COST_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String refundShippingCostDiscountAmount;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE_AMOUNT = "retail_delivery_fee_amount";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String retailDeliveryFeeAmount;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE_PAYMENT_AMOUNT = "retail_delivery_fee_payment_amount";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE_PAYMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String retailDeliveryFeePaymentAmount;
 
   public static final String SERIALIZED_NAME_RETAIL_DELIVERY_FEE_REFUND_AMOUNT = "retail_delivery_fee_refund_amount";
   @SerializedName(SERIALIZED_NAME_RETAIL_DELIVERY_FEE_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String retailDeliveryFeeRefundAmount;
 
   public static final String SERIALIZED_NAME_RETURN_SHIPPING_FEE_AMOUNT = "return_shipping_fee_amount";
   @SerializedName(SERIALIZED_NAME_RETURN_SHIPPING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String returnShippingFeeAmount;
 
   public static final String SERIALIZED_NAME_REVENUE_AMOUNT = "revenue_amount";
   @SerializedName(SERIALIZED_NAME_REVENUE_AMOUNT)
+  @javax.annotation.Nullable
   private String revenueAmount;
 
   public static final String SERIALIZED_NAME_SALES_TAX_AMOUNT = "sales_tax_amount";
   @SerializedName(SERIALIZED_NAME_SALES_TAX_AMOUNT)
+  @javax.annotation.Nullable
   private String salesTaxAmount;
 
   public static final String SERIALIZED_NAME_SALES_TAX_PAYMENT_AMOUNT = "sales_tax_payment_amount";
   @SerializedName(SERIALIZED_NAME_SALES_TAX_PAYMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String salesTaxPaymentAmount;
 
   public static final String SERIALIZED_NAME_SALES_TAX_REFUND_AMOUNT = "sales_tax_refund_amount";
   @SerializedName(SERIALIZED_NAME_SALES_TAX_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String salesTaxRefundAmount;
 
   public static final String SERIALIZED_NAME_SELLER_DISCOUNT_AMOUNT = "seller_discount_amount";
   @SerializedName(SERIALIZED_NAME_SELLER_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String sellerDiscountAmount;
 
   public static final String SERIALIZED_NAME_SELLER_DISCOUNT_REFUND_AMOUNT = "seller_discount_refund_amount";
   @SerializedName(SERIALIZED_NAME_SELLER_DISCOUNT_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private String sellerDiscountRefundAmount;
 
   public static final String SERIALIZED_NAME_SETTLEMENT_AMOUNT = "settlement_amount";
   @SerializedName(SERIALIZED_NAME_SETTLEMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String settlementAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_COST_AMOUNT = "shipping_cost_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_COST_AMOUNT)
+  @javax.annotation.Nullable
   private String shippingCostAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_COST_DISCOUNT_AMOUNT = "shipping_cost_discount_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_COST_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String shippingCostDiscountAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_AMOUNT = "shipping_fee_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String shippingFeeAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_SUBSIDY_AMOUNT = "shipping_fee_subsidy_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_SUBSIDY_AMOUNT)
+  @javax.annotation.Nullable
   private String shippingFeeSubsidyAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_INSURANCE_FEE_AMOUNT = "shipping_insurance_fee_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_INSURANCE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String shippingInsuranceFeeAmount;
 
   public static final String SERIALIZED_NAME_SIGNATURE_CONFIRMATION_FEE_AMOUNT = "signature_confirmation_fee_amount";
   @SerializedName(SERIALIZED_NAME_SIGNATURE_CONFIRMATION_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String signatureConfirmationFeeAmount;
 
   public static final String SERIALIZED_NAME_SKU_STATEMENT_TRANSACTIONS = "sku_statement_transactions";
   @SerializedName(SERIALIZED_NAME_SKU_STATEMENT_TRANSACTIONS)
+  @javax.annotation.Nullable
   private List<GetTransactionsbyOrderResponseDataStatementTransactionsSkuStatementTransactions> skuStatementTransactions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STATEMENT_ID = "statement_id";
   @SerializedName(SERIALIZED_NAME_STATEMENT_ID)
+  @javax.annotation.Nullable
   private String statementId;
 
   public static final String SERIALIZED_NAME_STATEMENT_TIME = "statement_time";
   @SerializedName(SERIALIZED_NAME_STATEMENT_TIME)
+  @javax.annotation.Nullable
   private Long statementTime;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TRANSACTION_FEE_AMOUNT = "transaction_fee_amount";
   @SerializedName(SERIALIZED_NAME_TRANSACTION_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String transactionFeeAmount;
 
   public GetTransactionsbyOrderResponseDataStatementTransactions() {
   }
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions actualReturnShippingFeeAmount(String actualReturnShippingFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions actualReturnShippingFeeAmount(@javax.annotation.Nullable String actualReturnShippingFeeAmount) {
     this.actualReturnShippingFeeAmount = actualReturnShippingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The return shipping fee charged if the seller is responsible for the return.
    * @return actualReturnShippingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getActualReturnShippingFeeAmount() {
     return actualReturnShippingFeeAmount;
   }
 
-  public void setActualReturnShippingFeeAmount(String actualReturnShippingFeeAmount) {
+  public void setActualReturnShippingFeeAmount(@javax.annotation.Nullable String actualReturnShippingFeeAmount) {
     this.actualReturnShippingFeeAmount = actualReturnShippingFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions actualShippingFeeAmount(String actualShippingFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions actualShippingFeeAmount(@javax.annotation.Nullable String actualShippingFeeAmount) {
     this.actualShippingFeeAmount = actualShippingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The actual shipping fee, calculated based on the weight/dimensions measured by the carrier.
    * @return actualShippingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getActualShippingFeeAmount() {
     return actualShippingFeeAmount;
   }
 
-  public void setActualShippingFeeAmount(String actualShippingFeeAmount) {
+  public void setActualShippingFeeAmount(@javax.annotation.Nullable String actualShippingFeeAmount) {
     this.actualShippingFeeAmount = actualShippingFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions adjustmentAmount(String adjustmentAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions adjustmentAmount(@javax.annotation.Nullable String adjustmentAmount) {
     this.adjustmentAmount = adjustmentAmount;
     return this;
   }
 
-   /**
+  /**
    * The final adjustment amount
    * @return adjustmentAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAdjustmentAmount() {
     return adjustmentAmount;
   }
 
-  public void setAdjustmentAmount(String adjustmentAmount) {
+  public void setAdjustmentAmount(@javax.annotation.Nullable String adjustmentAmount) {
     this.adjustmentAmount = adjustmentAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions affiliateAdsCommissionAmount(String affiliateAdsCommissionAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions affiliateAdsCommissionAmount(@javax.annotation.Nullable String affiliateAdsCommissionAmount) {
     this.affiliateAdsCommissionAmount = affiliateAdsCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission for eligible orders from ads.  Formula: (product price - TikTok Shop discounts - seller discounts) * ads commission rate
    * @return affiliateAdsCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAffiliateAdsCommissionAmount() {
     return affiliateAdsCommissionAmount;
   }
 
-  public void setAffiliateAdsCommissionAmount(String affiliateAdsCommissionAmount) {
+  public void setAffiliateAdsCommissionAmount(@javax.annotation.Nullable String affiliateAdsCommissionAmount) {
     this.affiliateAdsCommissionAmount = affiliateAdsCommissionAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions affiliateCommissionAmount(String affiliateCommissionAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions affiliateCommissionAmount(@javax.annotation.Nullable String affiliateCommissionAmount) {
     this.affiliateCommissionAmount = affiliateCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission amount charged to the seller for payment to the creator.  Formula: (product price - TikTok Shop coupons - seller coupons) * affiliate commission rate
    * @return affiliateCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAffiliateCommissionAmount() {
     return affiliateCommissionAmount;
   }
 
-  public void setAffiliateCommissionAmount(String affiliateCommissionAmount) {
+  public void setAffiliateCommissionAmount(@javax.annotation.Nullable String affiliateCommissionAmount) {
     this.affiliateCommissionAmount = affiliateCommissionAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions affiliateCommissionBeforePit(String affiliateCommissionBeforePit) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions affiliateCommissionBeforePit(@javax.annotation.Nullable String affiliateCommissionBeforePit) {
     this.affiliateCommissionBeforePit = affiliateCommissionBeforePit;
     return this;
   }
 
-   /**
+  /**
    * The affiliate commission paid to a creator before any personal income tax withholding.
    * @return affiliateCommissionBeforePit
-  **/
+   */
   @javax.annotation.Nullable
   public String getAffiliateCommissionBeforePit() {
     return affiliateCommissionBeforePit;
   }
 
-  public void setAffiliateCommissionBeforePit(String affiliateCommissionBeforePit) {
+  public void setAffiliateCommissionBeforePit(@javax.annotation.Nullable String affiliateCommissionBeforePit) {
     this.affiliateCommissionBeforePit = affiliateCommissionBeforePit;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions affiliatePartnerCommissionAmount(String affiliatePartnerCommissionAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions affiliatePartnerCommissionAmount(@javax.annotation.Nullable String affiliatePartnerCommissionAmount) {
     this.affiliatePartnerCommissionAmount = affiliatePartnerCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission amount for purchases through affiliate partner links.  Formula: (product price - TikTok Shop discounts - seller discounts) * affiliate partner commission rate
    * @return affiliatePartnerCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAffiliatePartnerCommissionAmount() {
     return affiliatePartnerCommissionAmount;
   }
 
-  public void setAffiliatePartnerCommissionAmount(String affiliatePartnerCommissionAmount) {
+  public void setAffiliatePartnerCommissionAmount(@javax.annotation.Nullable String affiliatePartnerCommissionAmount) {
     this.affiliatePartnerCommissionAmount = affiliatePartnerCommissionAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions afterSellerDiscountsSubtotalAmount(String afterSellerDiscountsSubtotalAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions afterSellerDiscountsSubtotalAmount(@javax.annotation.Nullable String afterSellerDiscountsSubtotalAmount) {
     this.afterSellerDiscountsSubtotalAmount = afterSellerDiscountsSubtotalAmount;
     return this;
   }
 
-   /**
+  /**
    * The total price of all order items after the seller&#39;s discount has been deducted.
    * @return afterSellerDiscountsSubtotalAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAfterSellerDiscountsSubtotalAmount() {
     return afterSellerDiscountsSubtotalAmount;
   }
 
-  public void setAfterSellerDiscountsSubtotalAmount(String afterSellerDiscountsSubtotalAmount) {
+  public void setAfterSellerDiscountsSubtotalAmount(@javax.annotation.Nullable String afterSellerDiscountsSubtotalAmount) {
     this.afterSellerDiscountsSubtotalAmount = afterSellerDiscountsSubtotalAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions currency(String currency) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The currency code in ISO 4217 format.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions customerOrderRefundAmount(String customerOrderRefundAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions customerOrderRefundAmount(@javax.annotation.Nullable String customerOrderRefundAmount) {
     this.customerOrderRefundAmount = customerOrderRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The customer refund amount deducted from the final settlement.
    * @return customerOrderRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerOrderRefundAmount() {
     return customerOrderRefundAmount;
   }
 
-  public void setCustomerOrderRefundAmount(String customerOrderRefundAmount) {
+  public void setCustomerOrderRefundAmount(@javax.annotation.Nullable String customerOrderRefundAmount) {
     this.customerOrderRefundAmount = customerOrderRefundAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions customerPaidShippingFeeAmount(String customerPaidShippingFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions customerPaidShippingFeeAmount(@javax.annotation.Nullable String customerPaidShippingFeeAmount) {
     this.customerPaidShippingFeeAmount = customerPaidShippingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The actual shipping fee borne by the customer, calculated based on the product weight uploaded by the seller.
    * @return customerPaidShippingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerPaidShippingFeeAmount() {
     return customerPaidShippingFeeAmount;
   }
 
-  public void setCustomerPaidShippingFeeAmount(String customerPaidShippingFeeAmount) {
+  public void setCustomerPaidShippingFeeAmount(@javax.annotation.Nullable String customerPaidShippingFeeAmount) {
     this.customerPaidShippingFeeAmount = customerPaidShippingFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions customerPaidShippingFeeRefundAmount(String customerPaidShippingFeeRefundAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions customerPaidShippingFeeRefundAmount(@javax.annotation.Nullable String customerPaidShippingFeeRefundAmount) {
     this.customerPaidShippingFeeRefundAmount = customerPaidShippingFeeRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The amount of customer-paid shipping fees that are returned to the customer.
    * @return customerPaidShippingFeeRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerPaidShippingFeeRefundAmount() {
     return customerPaidShippingFeeRefundAmount;
   }
 
-  public void setCustomerPaidShippingFeeRefundAmount(String customerPaidShippingFeeRefundAmount) {
+  public void setCustomerPaidShippingFeeRefundAmount(@javax.annotation.Nullable String customerPaidShippingFeeRefundAmount) {
     this.customerPaidShippingFeeRefundAmount = customerPaidShippingFeeRefundAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions customerPaymentAmount(String customerPaymentAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions customerPaymentAmount(@javax.annotation.Nullable String customerPaymentAmount) {
     this.customerPaymentAmount = customerPaymentAmount;
     return this;
   }
 
-   /**
+  /**
    * The final amount paid by the customer.   Formula: after_seller_discounts_subtotal_amount + customer_shipping_fee_amount - platform_discount_amount + sales_tax_payment_amount
    * @return customerPaymentAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerPaymentAmount() {
     return customerPaymentAmount;
   }
 
-  public void setCustomerPaymentAmount(String customerPaymentAmount) {
+  public void setCustomerPaymentAmount(@javax.annotation.Nullable String customerPaymentAmount) {
     this.customerPaymentAmount = customerPaymentAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions customerRefundAmount(String customerRefundAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions customerRefundAmount(@javax.annotation.Nullable String customerRefundAmount) {
     this.customerRefundAmount = customerRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The exact amount refunded to the customer. 
    * @return customerRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerRefundAmount() {
     return customerRefundAmount;
   }
 
-  public void setCustomerRefundAmount(String customerRefundAmount) {
+  public void setCustomerRefundAmount(@javax.annotation.Nullable String customerRefundAmount) {
     this.customerRefundAmount = customerRefundAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions customerShippingFeeAmount(String customerShippingFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions customerShippingFeeAmount(@javax.annotation.Nullable String customerShippingFeeAmount) {
     this.customerShippingFeeAmount = customerShippingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The expected shipping fee borne by the customer, calculated based on the product weight uploaded by the seller.
    * @return customerShippingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerShippingFeeAmount() {
     return customerShippingFeeAmount;
   }
 
-  public void setCustomerShippingFeeAmount(String customerShippingFeeAmount) {
+  public void setCustomerShippingFeeAmount(@javax.annotation.Nullable String customerShippingFeeAmount) {
     this.customerShippingFeeAmount = customerShippingFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions customerShippingFeeOffsetAmount(String customerShippingFeeOffsetAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions customerShippingFeeOffsetAmount(@javax.annotation.Nullable String customerShippingFeeOffsetAmount) {
     this.customerShippingFeeOffsetAmount = customerShippingFeeOffsetAmount;
     return this;
   }
 
-   /**
+  /**
    * The fee to offset TikTok Shop Shipping Incentive or customer-paid shipping fee, resulting in a net charge of $0 to the seller. Applicable only for the US. 
    * @return customerShippingFeeOffsetAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerShippingFeeOffsetAmount() {
     return customerShippingFeeOffsetAmount;
   }
 
-  public void setCustomerShippingFeeOffsetAmount(String customerShippingFeeOffsetAmount) {
+  public void setCustomerShippingFeeOffsetAmount(@javax.annotation.Nullable String customerShippingFeeOffsetAmount) {
     this.customerShippingFeeOffsetAmount = customerShippingFeeOffsetAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions fbmShippingCostAmount(String fbmShippingCostAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions fbmShippingCostAmount(@javax.annotation.Nullable String fbmShippingCostAmount) {
     this.fbmShippingCostAmount = fbmShippingCostAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee incurred by the seller for using TikTok Shipping.
    * @return fbmShippingCostAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFbmShippingCostAmount() {
     return fbmShippingCostAmount;
   }
 
-  public void setFbmShippingCostAmount(String fbmShippingCostAmount) {
+  public void setFbmShippingCostAmount(@javax.annotation.Nullable String fbmShippingCostAmount) {
     this.fbmShippingCostAmount = fbmShippingCostAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions fbtFulfillmentFeeAmount(String fbtFulfillmentFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions fbtFulfillmentFeeAmount(@javax.annotation.Nullable String fbtFulfillmentFeeAmount) {
     this.fbtFulfillmentFeeAmount = fbtFulfillmentFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee incurred by the seller for orders fulfilled by TikTok (FBT). Applicable only for the US.
    * @return fbtFulfillmentFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFbtFulfillmentFeeAmount() {
     return fbtFulfillmentFeeAmount;
   }
 
-  public void setFbtFulfillmentFeeAmount(String fbtFulfillmentFeeAmount) {
+  public void setFbtFulfillmentFeeAmount(@javax.annotation.Nullable String fbtFulfillmentFeeAmount) {
     this.fbtFulfillmentFeeAmount = fbtFulfillmentFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions fbtFulfillmentFeeReimbursementAmount(String fbtFulfillmentFeeReimbursementAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions fbtFulfillmentFeeReimbursementAmount(@javax.annotation.Nullable String fbtFulfillmentFeeReimbursementAmount) {
     this.fbtFulfillmentFeeReimbursementAmount = fbtFulfillmentFeeReimbursementAmount;
     return this;
   }
 
-   /**
+  /**
    * A reimbursement from TikTok Shop for Fulfilled by TikTok (FBT) orders that don&#39;t qualify for free shipping. Applicable only for the US.
    * @return fbtFulfillmentFeeReimbursementAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFbtFulfillmentFeeReimbursementAmount() {
     return fbtFulfillmentFeeReimbursementAmount;
   }
 
-  public void setFbtFulfillmentFeeReimbursementAmount(String fbtFulfillmentFeeReimbursementAmount) {
+  public void setFbtFulfillmentFeeReimbursementAmount(@javax.annotation.Nullable String fbtFulfillmentFeeReimbursementAmount) {
     this.fbtFulfillmentFeeReimbursementAmount = fbtFulfillmentFeeReimbursementAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions fbtShippingCostAmount(String fbtShippingCostAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions fbtShippingCostAmount(@javax.annotation.Nullable String fbtShippingCostAmount) {
     this.fbtShippingCostAmount = fbtShippingCostAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee incurred by the seller for orders fulfilled by TikTok (FBT). Applicable for all regions except the US.
    * @return fbtShippingCostAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFbtShippingCostAmount() {
     return fbtShippingCostAmount;
   }
 
-  public void setFbtShippingCostAmount(String fbtShippingCostAmount) {
+  public void setFbtShippingCostAmount(@javax.annotation.Nullable String fbtShippingCostAmount) {
     this.fbtShippingCostAmount = fbtShippingCostAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions feeAmount(String feeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions feeAmount(@javax.annotation.Nullable String feeAmount) {
     this.feeAmount = feeAmount;
     return this;
   }
 
-   /**
+  /**
    * The fees charged by TikTok Shop at the time of order settlement. An order is deemed settled a certain number of days after delivery (varies by region) if no returns or refunds are pending.  **Note**: For UK and US, shipping-related costs are excluded.
    * @return feeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFeeAmount() {
     return feeAmount;
   }
 
-  public void setFeeAmount(String feeAmount) {
+  public void setFeeAmount(@javax.annotation.Nullable String feeAmount) {
     this.feeAmount = feeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions grossSalesAmount(String grossSalesAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions grossSalesAmount(@javax.annotation.Nullable String grossSalesAmount) {
     this.grossSalesAmount = grossSalesAmount;
     return this;
   }
 
-   /**
+  /**
    * The total sales revenue before any seller or TikTok Shop discounts are applied.
    * @return grossSalesAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getGrossSalesAmount() {
     return grossSalesAmount;
   }
 
-  public void setGrossSalesAmount(String grossSalesAmount) {
+  public void setGrossSalesAmount(@javax.annotation.Nullable String grossSalesAmount) {
     this.grossSalesAmount = grossSalesAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions grossSalesRefundAmount(String grossSalesRefundAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions grossSalesRefundAmount(@javax.annotation.Nullable String grossSalesRefundAmount) {
     this.grossSalesRefundAmount = grossSalesRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The sales amount refunded to customers. 
    * @return grossSalesRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getGrossSalesRefundAmount() {
     return grossSalesRefundAmount;
   }
 
-  public void setGrossSalesRefundAmount(String grossSalesRefundAmount) {
+  public void setGrossSalesRefundAmount(@javax.annotation.Nullable String grossSalesRefundAmount) {
     this.grossSalesRefundAmount = grossSalesRefundAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions id(String id) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The transaction ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions isrIncomeTaxAmount(String isrIncomeTaxAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions isrIncomeTaxAmount(@javax.annotation.Nullable String isrIncomeTaxAmount) {
     this.isrIncomeTaxAmount = isrIncomeTaxAmount;
     return this;
   }
 
-   /**
+  /**
    * ISR refers to Mexican income tax that TikTok Shop is required to withhold from your earnings and remit to the tax authority.
    * @return isrIncomeTaxAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getIsrIncomeTaxAmount() {
     return isrIncomeTaxAmount;
   }
 
-  public void setIsrIncomeTaxAmount(String isrIncomeTaxAmount) {
+  public void setIsrIncomeTaxAmount(@javax.annotation.Nullable String isrIncomeTaxAmount) {
     this.isrIncomeTaxAmount = isrIncomeTaxAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions ivaVatAmount(String ivaVatAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions ivaVatAmount(@javax.annotation.Nullable String ivaVatAmount) {
     this.ivaVatAmount = ivaVatAmount;
     return this;
   }
 
-   /**
+  /**
    * IVA refers to Mexican VAT that TikTok Shop is required to withhold on your taxable products and remit to the tax authority. 
    * @return ivaVatAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getIvaVatAmount() {
     return ivaVatAmount;
   }
 
-  public void setIvaVatAmount(String ivaVatAmount) {
+  public void setIvaVatAmount(@javax.annotation.Nullable String ivaVatAmount) {
     this.ivaVatAmount = ivaVatAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions netSalesAmount(String netSalesAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions netSalesAmount(@javax.annotation.Nullable String netSalesAmount) {
     this.netSalesAmount = netSalesAmount;
     return this;
   }
 
-   /**
+  /**
    * The revenue amount after seller discounts are deducted. Applicable only for local sellers in UK and US.  Formula: gross_sales_amount + gross_sales_refund_amount + seller_discount_amount + seller_discount_refund_amount
    * @return netSalesAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getNetSalesAmount() {
     return netSalesAmount;
   }
 
-  public void setNetSalesAmount(String netSalesAmount) {
+  public void setNetSalesAmount(@javax.annotation.Nullable String netSalesAmount) {
     this.netSalesAmount = netSalesAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions pitAmount(String pitAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions pitAmount(@javax.annotation.Nullable String pitAmount) {
     this.pitAmount = pitAmount;
     return this;
   }
 
-   /**
+  /**
    * The creator&#39;s personal income tax withholding amount. Sellers are responsible for filing and remitting withheld taxes based on regional tax laws.
    * @return pitAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPitAmount() {
     return pitAmount;
   }
 
-  public void setPitAmount(String pitAmount) {
+  public void setPitAmount(@javax.annotation.Nullable String pitAmount) {
     this.pitAmount = pitAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions platformCommissionAmount(String platformCommissionAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions platformCommissionAmount(@javax.annotation.Nullable String platformCommissionAmount) {
     this.platformCommissionAmount = platformCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission amount charged by TikTok Shop. Applicable only for the UK.  Formula: commission rate * (customer_payment_amount - customer_order_refund_amount + platform_discount_amount - platform_discount_refund_amount)
    * @return platformCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformCommissionAmount() {
     return platformCommissionAmount;
   }
 
-  public void setPlatformCommissionAmount(String platformCommissionAmount) {
+  public void setPlatformCommissionAmount(@javax.annotation.Nullable String platformCommissionAmount) {
     this.platformCommissionAmount = platformCommissionAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions platformDiscountAmount(String platformDiscountAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions platformDiscountAmount(@javax.annotation.Nullable String platformDiscountAmount) {
     this.platformDiscountAmount = platformDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The discounts funded by TikTok Shop, such as coupons and campaign discounts.
    * @return platformDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformDiscountAmount() {
     return platformDiscountAmount;
   }
 
-  public void setPlatformDiscountAmount(String platformDiscountAmount) {
+  public void setPlatformDiscountAmount(@javax.annotation.Nullable String platformDiscountAmount) {
     this.platformDiscountAmount = platformDiscountAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions platformDiscountRefundAmount(String platformDiscountRefundAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions platformDiscountRefundAmount(@javax.annotation.Nullable String platformDiscountRefundAmount) {
     this.platformDiscountRefundAmount = platformDiscountRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The TikTok Shop discount to be reversed (and deducted from the final settlement) if the order was refunded as a result of the seller&#39;s responsibility. 
    * @return platformDiscountRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformDiscountRefundAmount() {
     return platformDiscountRefundAmount;
   }
 
-  public void setPlatformDiscountRefundAmount(String platformDiscountRefundAmount) {
+  public void setPlatformDiscountRefundAmount(@javax.annotation.Nullable String platformDiscountRefundAmount) {
     this.platformDiscountRefundAmount = platformDiscountRefundAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions platformRefundSubsidyAmount(String platformRefundSubsidyAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions platformRefundSubsidyAmount(@javax.annotation.Nullable String platformRefundSubsidyAmount) {
     this.platformRefundSubsidyAmount = platformRefundSubsidyAmount;
     return this;
   }
 
-   /**
+  /**
    * The TikTok Shop subsidy to be reversed (and deducted from the final settlement) if the order was refunded as a result of the seller&#39;s responsibility. 
    * @return platformRefundSubsidyAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformRefundSubsidyAmount() {
     return platformRefundSubsidyAmount;
   }
 
-  public void setPlatformRefundSubsidyAmount(String platformRefundSubsidyAmount) {
+  public void setPlatformRefundSubsidyAmount(@javax.annotation.Nullable String platformRefundSubsidyAmount) {
     this.platformRefundSubsidyAmount = platformRefundSubsidyAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions platformShippingFeeDiscountAmount(String platformShippingFeeDiscountAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions platformShippingFeeDiscountAmount(@javax.annotation.Nullable String platformShippingFeeDiscountAmount) {
     this.platformShippingFeeDiscountAmount = platformShippingFeeDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee discount provided for orders using TikTok Shipping. 
    * @return platformShippingFeeDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformShippingFeeDiscountAmount() {
     return platformShippingFeeDiscountAmount;
   }
 
-  public void setPlatformShippingFeeDiscountAmount(String platformShippingFeeDiscountAmount) {
+  public void setPlatformShippingFeeDiscountAmount(@javax.annotation.Nullable String platformShippingFeeDiscountAmount) {
     this.platformShippingFeeDiscountAmount = platformShippingFeeDiscountAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions promoShippingIncentiveAmount(String promoShippingIncentiveAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions promoShippingIncentiveAmount(@javax.annotation.Nullable String promoShippingIncentiveAmount) {
     this.promoShippingIncentiveAmount = promoShippingIncentiveAmount;
     return this;
   }
 
-   /**
+  /**
    * The additional shipping incentive that the seller will receive if the seller signed up for the Co-Funded Free Shipping Program from 2024/08/26 to 2024/12/31. A negative amount indicates a reversal of incentives due to order refunds attributed to the seller&#39;s responsibility.
    * @return promoShippingIncentiveAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPromoShippingIncentiveAmount() {
     return promoShippingIncentiveAmount;
   }
 
-  public void setPromoShippingIncentiveAmount(String promoShippingIncentiveAmount) {
+  public void setPromoShippingIncentiveAmount(@javax.annotation.Nullable String promoShippingIncentiveAmount) {
     this.promoShippingIncentiveAmount = promoShippingIncentiveAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions referralFeeAmount(String referralFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions referralFeeAmount(@javax.annotation.Nullable String referralFeeAmount) {
     this.referralFeeAmount = referralFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The referral fee charged for processing successful orders.  Applicable only for the US. 
    * @return referralFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getReferralFeeAmount() {
     return referralFeeAmount;
   }
 
-  public void setReferralFeeAmount(String referralFeeAmount) {
+  public void setReferralFeeAmount(@javax.annotation.Nullable String referralFeeAmount) {
     this.referralFeeAmount = referralFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions refundAdministrationFeeAmount(String refundAdministrationFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions refundAdministrationFeeAmount(@javax.annotation.Nullable String refundAdministrationFeeAmount) {
     this.refundAdministrationFeeAmount = refundAdministrationFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The 20% refund administration fee deducted from the total refunded referral fee amount.
    * @return refundAdministrationFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundAdministrationFeeAmount() {
     return refundAdministrationFeeAmount;
   }
 
-  public void setRefundAdministrationFeeAmount(String refundAdministrationFeeAmount) {
+  public void setRefundAdministrationFeeAmount(@javax.annotation.Nullable String refundAdministrationFeeAmount) {
     this.refundAdministrationFeeAmount = refundAdministrationFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions refundShippingCostDiscountAmount(String refundShippingCostDiscountAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions refundShippingCostDiscountAmount(@javax.annotation.Nullable String refundShippingCostDiscountAmount) {
     this.refundShippingCostDiscountAmount = refundShippingCostDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The TikTok Shop shipping incentive to be reversed (and deducted) if the order was refunded as a result of the seller&#39;s responsibility.
    * @return refundShippingCostDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundShippingCostDiscountAmount() {
     return refundShippingCostDiscountAmount;
   }
 
-  public void setRefundShippingCostDiscountAmount(String refundShippingCostDiscountAmount) {
+  public void setRefundShippingCostDiscountAmount(@javax.annotation.Nullable String refundShippingCostDiscountAmount) {
     this.refundShippingCostDiscountAmount = refundShippingCostDiscountAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions retailDeliveryFeeAmount(String retailDeliveryFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions retailDeliveryFeeAmount(@javax.annotation.Nullable String retailDeliveryFeeAmount) {
     this.retailDeliveryFeeAmount = retailDeliveryFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The final retail delivery fee for deliveries in Colorado, US. For more information, see [Colorado Retail Delivery Fee FAQ](https://seller-us.tiktok.com/university/essay?knowledge_id&#x3D;2459780628350762&amp;default_language&#x3D;en&amp;identity&#x3D;1).  Formula: retail_delivery_fee_payment_amount + retail_delivery_fee_refund_amount.
    * @return retailDeliveryFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFeeAmount() {
     return retailDeliveryFeeAmount;
   }
 
-  public void setRetailDeliveryFeeAmount(String retailDeliveryFeeAmount) {
+  public void setRetailDeliveryFeeAmount(@javax.annotation.Nullable String retailDeliveryFeeAmount) {
     this.retailDeliveryFeeAmount = retailDeliveryFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions retailDeliveryFeePaymentAmount(String retailDeliveryFeePaymentAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions retailDeliveryFeePaymentAmount(@javax.annotation.Nullable String retailDeliveryFeePaymentAmount) {
     this.retailDeliveryFeePaymentAmount = retailDeliveryFeePaymentAmount;
     return this;
   }
 
-   /**
+  /**
    * The retail delivery fee for deliveries in Colorado, US. For more information, see [Colorado Retail Delivery Fee FAQ](https://seller-us.tiktok.com/university/essay?knowledge_id&#x3D;2459780628350762&amp;default_language&#x3D;en&amp;identity&#x3D;1).
    * @return retailDeliveryFeePaymentAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFeePaymentAmount() {
     return retailDeliveryFeePaymentAmount;
   }
 
-  public void setRetailDeliveryFeePaymentAmount(String retailDeliveryFeePaymentAmount) {
+  public void setRetailDeliveryFeePaymentAmount(@javax.annotation.Nullable String retailDeliveryFeePaymentAmount) {
     this.retailDeliveryFeePaymentAmount = retailDeliveryFeePaymentAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions retailDeliveryFeeRefundAmount(String retailDeliveryFeeRefundAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions retailDeliveryFeeRefundAmount(@javax.annotation.Nullable String retailDeliveryFeeRefundAmount) {
     this.retailDeliveryFeeRefundAmount = retailDeliveryFeeRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The retail delivery fee subsidy by TikTok Shop for losses due to returns, refunds, or other issues.
    * @return retailDeliveryFeeRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRetailDeliveryFeeRefundAmount() {
     return retailDeliveryFeeRefundAmount;
   }
 
-  public void setRetailDeliveryFeeRefundAmount(String retailDeliveryFeeRefundAmount) {
+  public void setRetailDeliveryFeeRefundAmount(@javax.annotation.Nullable String retailDeliveryFeeRefundAmount) {
     this.retailDeliveryFeeRefundAmount = retailDeliveryFeeRefundAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions returnShippingFeeAmount(String returnShippingFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions returnShippingFeeAmount(@javax.annotation.Nullable String returnShippingFeeAmount) {
     this.returnShippingFeeAmount = returnShippingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee paid by the seller for the delivery of returns.
    * @return returnShippingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnShippingFeeAmount() {
     return returnShippingFeeAmount;
   }
 
-  public void setReturnShippingFeeAmount(String returnShippingFeeAmount) {
+  public void setReturnShippingFeeAmount(@javax.annotation.Nullable String returnShippingFeeAmount) {
     this.returnShippingFeeAmount = returnShippingFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions revenueAmount(String revenueAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions revenueAmount(@javax.annotation.Nullable String revenueAmount) {
     this.revenueAmount = revenueAmount;
     return this;
   }
 
-   /**
+  /**
    * The final revenue amount at the time of order settlement. Applicable for all regions except UK and US.  Formula: customer_payment_amount + platform_discount_amount + platform_discount_refund_amount + customer_order_refund_amount + shipping_fee_subsidy_amount
    * @return revenueAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRevenueAmount() {
     return revenueAmount;
   }
 
-  public void setRevenueAmount(String revenueAmount) {
+  public void setRevenueAmount(@javax.annotation.Nullable String revenueAmount) {
     this.revenueAmount = revenueAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions salesTaxAmount(String salesTaxAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions salesTaxAmount(@javax.annotation.Nullable String salesTaxAmount) {
     this.salesTaxAmount = salesTaxAmount;
     return this;
   }
 
-   /**
+  /**
    * The final sales tax to be paid by the customer for the product and delivery.  Applicable only for the US.   Formula: sales_tax_payment_amount - sales_tax_refund_amount
    * @return salesTaxAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSalesTaxAmount() {
     return salesTaxAmount;
   }
 
-  public void setSalesTaxAmount(String salesTaxAmount) {
+  public void setSalesTaxAmount(@javax.annotation.Nullable String salesTaxAmount) {
     this.salesTaxAmount = salesTaxAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions salesTaxPaymentAmount(String salesTaxPaymentAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions salesTaxPaymentAmount(@javax.annotation.Nullable String salesTaxPaymentAmount) {
     this.salesTaxPaymentAmount = salesTaxPaymentAmount;
     return this;
   }
 
-   /**
+  /**
    * The expected sales tax to be paid by the customer.  Applicable only for the US.
    * @return salesTaxPaymentAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSalesTaxPaymentAmount() {
     return salesTaxPaymentAmount;
   }
 
-  public void setSalesTaxPaymentAmount(String salesTaxPaymentAmount) {
+  public void setSalesTaxPaymentAmount(@javax.annotation.Nullable String salesTaxPaymentAmount) {
     this.salesTaxPaymentAmount = salesTaxPaymentAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions salesTaxRefundAmount(String salesTaxRefundAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions salesTaxRefundAmount(@javax.annotation.Nullable String salesTaxRefundAmount) {
     this.salesTaxRefundAmount = salesTaxRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * The sales tax amount returned to the customer in the event of a refund. Applicable only for the US .
    * @return salesTaxRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSalesTaxRefundAmount() {
     return salesTaxRefundAmount;
   }
 
-  public void setSalesTaxRefundAmount(String salesTaxRefundAmount) {
+  public void setSalesTaxRefundAmount(@javax.annotation.Nullable String salesTaxRefundAmount) {
     this.salesTaxRefundAmount = salesTaxRefundAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions sellerDiscountAmount(String sellerDiscountAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions sellerDiscountAmount(@javax.annotation.Nullable String sellerDiscountAmount) {
     this.sellerDiscountAmount = sellerDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The total amount of discounts funded by the seller, including: - Seller promotions (Product Discount, Flash Deal, Buy More Save More, Voucher and Bundle Deal) - Seller&#39;s portion of a co-funded voucher discount in co-funding campaigns - Seller discounts during a campaign
    * @return sellerDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerDiscountAmount() {
     return sellerDiscountAmount;
   }
 
-  public void setSellerDiscountAmount(String sellerDiscountAmount) {
+  public void setSellerDiscountAmount(@javax.annotation.Nullable String sellerDiscountAmount) {
     this.sellerDiscountAmount = sellerDiscountAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions sellerDiscountRefundAmount(String sellerDiscountRefundAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions sellerDiscountRefundAmount(@javax.annotation.Nullable String sellerDiscountRefundAmount) {
     this.sellerDiscountRefundAmount = sellerDiscountRefundAmount;
     return this;
   }
 
-   /**
+  /**
    * Discounts returned to the sellers due to returns or refunds.
    * @return sellerDiscountRefundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerDiscountRefundAmount() {
     return sellerDiscountRefundAmount;
   }
 
-  public void setSellerDiscountRefundAmount(String sellerDiscountRefundAmount) {
+  public void setSellerDiscountRefundAmount(@javax.annotation.Nullable String sellerDiscountRefundAmount) {
     this.sellerDiscountRefundAmount = sellerDiscountRefundAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions settlementAmount(String settlementAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions settlementAmount(@javax.annotation.Nullable String settlementAmount) {
     this.settlementAmount = settlementAmount;
     return this;
   }
 
-   /**
+  /**
    * The final settlement amount.   **For UK and US local sellers** Formula: net_sales_amount + shipping_cost_amount + fee_amount + adjustment_amount **For other regions** Formula: revenue_amount + fee_amount + adjustment_amount.
    * @return settlementAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSettlementAmount() {
     return settlementAmount;
   }
 
-  public void setSettlementAmount(String settlementAmount) {
+  public void setSettlementAmount(@javax.annotation.Nullable String settlementAmount) {
     this.settlementAmount = settlementAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions shippingCostAmount(String shippingCostAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions shippingCostAmount(@javax.annotation.Nullable String shippingCostAmount) {
     this.shippingCostAmount = shippingCostAmount;
     return this;
   }
 
-   /**
+  /**
    * The final shipping fees. Applicable only for local sellers in UK and US.  Formula: fbm_shipping_cost_amount + fbt_shipping_cost_amount + signature_confirmation_fee_amount + customer_paid_shipping_fee_amount + customer_paid_shipping_fee_refund_amount + shipping_cost_discount_amount + refund_shipping_cost_discount_amount + shipping_fee_subsidy_amount + return_shipping_fee_amount + shipping_insurance_amount + customer_shipping_fee_offset_amount + fbt_fulfillment_fee_amount + promo_shipping_incentive_amount.
    * @return shippingCostAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingCostAmount() {
     return shippingCostAmount;
   }
 
-  public void setShippingCostAmount(String shippingCostAmount) {
+  public void setShippingCostAmount(@javax.annotation.Nullable String shippingCostAmount) {
     this.shippingCostAmount = shippingCostAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions shippingCostDiscountAmount(String shippingCostDiscountAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions shippingCostDiscountAmount(@javax.annotation.Nullable String shippingCostDiscountAmount) {
     this.shippingCostDiscountAmount = shippingCostDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The TikTok Shop shipping incentive.
    * @return shippingCostDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingCostDiscountAmount() {
     return shippingCostDiscountAmount;
   }
 
-  public void setShippingCostDiscountAmount(String shippingCostDiscountAmount) {
+  public void setShippingCostDiscountAmount(@javax.annotation.Nullable String shippingCostDiscountAmount) {
     this.shippingCostDiscountAmount = shippingCostDiscountAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions shippingFeeAmount(String shippingFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions shippingFeeAmount(@javax.annotation.Nullable String shippingFeeAmount) {
     this.shippingFeeAmount = shippingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The final shipping fee.  Applicable for all regions except UK and US.  Formula: actual_shipping_fee_amount - platform_shipping_fee_discount_amount + actual_return_shipping_fee_amount + signature_confirmation_fee_amount
    * @return shippingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeAmount() {
     return shippingFeeAmount;
   }
 
-  public void setShippingFeeAmount(String shippingFeeAmount) {
+  public void setShippingFeeAmount(@javax.annotation.Nullable String shippingFeeAmount) {
     this.shippingFeeAmount = shippingFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions shippingFeeSubsidyAmount(String shippingFeeSubsidyAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions shippingFeeSubsidyAmount(@javax.annotation.Nullable String shippingFeeSubsidyAmount) {
     this.shippingFeeSubsidyAmount = shippingFeeSubsidyAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee subsidy funded by TikTok Shop for seller shipping. - Positive amount represents a subsidy received by the seller. - Negative amount represents a subsidy that the seller must return to TikTok Shop.
    * @return shippingFeeSubsidyAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeSubsidyAmount() {
     return shippingFeeSubsidyAmount;
   }
 
-  public void setShippingFeeSubsidyAmount(String shippingFeeSubsidyAmount) {
+  public void setShippingFeeSubsidyAmount(@javax.annotation.Nullable String shippingFeeSubsidyAmount) {
     this.shippingFeeSubsidyAmount = shippingFeeSubsidyAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions shippingInsuranceFeeAmount(String shippingInsuranceFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions shippingInsuranceFeeAmount(@javax.annotation.Nullable String shippingInsuranceFeeAmount) {
     this.shippingInsuranceFeeAmount = shippingInsuranceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping insurance fee incurred by the seller for purchasing additional TikTok shipping insurance.
    * @return shippingInsuranceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingInsuranceFeeAmount() {
     return shippingInsuranceFeeAmount;
   }
 
-  public void setShippingInsuranceFeeAmount(String shippingInsuranceFeeAmount) {
+  public void setShippingInsuranceFeeAmount(@javax.annotation.Nullable String shippingInsuranceFeeAmount) {
     this.shippingInsuranceFeeAmount = shippingInsuranceFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions signatureConfirmationFeeAmount(String signatureConfirmationFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions signatureConfirmationFeeAmount(@javax.annotation.Nullable String signatureConfirmationFeeAmount) {
     this.signatureConfirmationFeeAmount = signatureConfirmationFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The fee incurred for packages requiring signature confirmations.
    * @return signatureConfirmationFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSignatureConfirmationFeeAmount() {
     return signatureConfirmationFeeAmount;
   }
 
-  public void setSignatureConfirmationFeeAmount(String signatureConfirmationFeeAmount) {
+  public void setSignatureConfirmationFeeAmount(@javax.annotation.Nullable String signatureConfirmationFeeAmount) {
     this.signatureConfirmationFeeAmount = signatureConfirmationFeeAmount;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions skuStatementTransactions(List<GetTransactionsbyOrderResponseDataStatementTransactionsSkuStatementTransactions> skuStatementTransactions) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions skuStatementTransactions(@javax.annotation.Nullable List<GetTransactionsbyOrderResponseDataStatementTransactionsSkuStatementTransactions> skuStatementTransactions) {
     this.skuStatementTransactions = skuStatementTransactions;
     return this;
   }
@@ -1332,93 +1390,138 @@ public class GetTransactionsbyOrderResponseDataStatementTransactions {
     return this;
   }
 
-   /**
+  /**
    * A list of SKU transactions included in the statement. Each item in this list corresponds to a single SKU.
    * @return skuStatementTransactions
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetTransactionsbyOrderResponseDataStatementTransactionsSkuStatementTransactions> getSkuStatementTransactions() {
     return skuStatementTransactions;
   }
 
-  public void setSkuStatementTransactions(List<GetTransactionsbyOrderResponseDataStatementTransactionsSkuStatementTransactions> skuStatementTransactions) {
+  public void setSkuStatementTransactions(@javax.annotation.Nullable List<GetTransactionsbyOrderResponseDataStatementTransactionsSkuStatementTransactions> skuStatementTransactions) {
     this.skuStatementTransactions = skuStatementTransactions;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions statementId(String statementId) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions statementId(@javax.annotation.Nullable String statementId) {
     this.statementId = statementId;
     return this;
   }
 
-   /**
+  /**
    * The statement ID.
    * @return statementId
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatementId() {
     return statementId;
   }
 
-  public void setStatementId(String statementId) {
+  public void setStatementId(@javax.annotation.Nullable String statementId) {
     this.statementId = statementId;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions statementTime(Long statementTime) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions statementTime(@javax.annotation.Nullable Long statementTime) {
     this.statementTime = statementTime;
     return this;
   }
 
-   /**
+  /**
    * The creation time of the statement. Unix timestamp.
    * @return statementTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getStatementTime() {
     return statementTime;
   }
 
-  public void setStatementTime(Long statementTime) {
+  public void setStatementTime(@javax.annotation.Nullable Long statementTime) {
     this.statementTime = statementTime;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions status(String status) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The status of the transaction. Only supports &#x60;SETTLED&#x60;.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GetTransactionsbyOrderResponseDataStatementTransactions transactionFeeAmount(String transactionFeeAmount) {
+  public GetTransactionsbyOrderResponseDataStatementTransactions transactionFeeAmount(@javax.annotation.Nullable String transactionFeeAmount) {
     this.transactionFeeAmount = transactionFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The transaction fee charged for processing successful orders. Non-refundable. Applicable only for the US.  
    * @return transactionFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransactionFeeAmount() {
     return transactionFeeAmount;
   }
 
-  public void setTransactionFeeAmount(String transactionFeeAmount) {
+  public void setTransactionFeeAmount(@javax.annotation.Nullable String transactionFeeAmount) {
     this.transactionFeeAmount = transactionFeeAmount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetTransactionsbyOrderResponseDataStatementTransactions instance itself
+   */
+  public GetTransactionsbyOrderResponseDataStatementTransactions putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -1490,12 +1593,13 @@ public class GetTransactionsbyOrderResponseDataStatementTransactions {
         Objects.equals(this.statementId, finance202309GetTransactionsbyOrderResponseDataStatementTransactions.statementId) &&
         Objects.equals(this.statementTime, finance202309GetTransactionsbyOrderResponseDataStatementTransactions.statementTime) &&
         Objects.equals(this.status, finance202309GetTransactionsbyOrderResponseDataStatementTransactions.status) &&
-        Objects.equals(this.transactionFeeAmount, finance202309GetTransactionsbyOrderResponseDataStatementTransactions.transactionFeeAmount);
+        Objects.equals(this.transactionFeeAmount, finance202309GetTransactionsbyOrderResponseDataStatementTransactions.transactionFeeAmount)&&
+        Objects.equals(this.additionalProperties, finance202309GetTransactionsbyOrderResponseDataStatementTransactions.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(actualReturnShippingFeeAmount, actualShippingFeeAmount, adjustmentAmount, affiliateAdsCommissionAmount, affiliateCommissionAmount, affiliateCommissionBeforePit, affiliatePartnerCommissionAmount, afterSellerDiscountsSubtotalAmount, currency, customerOrderRefundAmount, customerPaidShippingFeeAmount, customerPaidShippingFeeRefundAmount, customerPaymentAmount, customerRefundAmount, customerShippingFeeAmount, customerShippingFeeOffsetAmount, fbmShippingCostAmount, fbtFulfillmentFeeAmount, fbtFulfillmentFeeReimbursementAmount, fbtShippingCostAmount, feeAmount, grossSalesAmount, grossSalesRefundAmount, id, isrIncomeTaxAmount, ivaVatAmount, netSalesAmount, pitAmount, platformCommissionAmount, platformDiscountAmount, platformDiscountRefundAmount, platformRefundSubsidyAmount, platformShippingFeeDiscountAmount, promoShippingIncentiveAmount, referralFeeAmount, refundAdministrationFeeAmount, refundShippingCostDiscountAmount, retailDeliveryFeeAmount, retailDeliveryFeePaymentAmount, retailDeliveryFeeRefundAmount, returnShippingFeeAmount, revenueAmount, salesTaxAmount, salesTaxPaymentAmount, salesTaxRefundAmount, sellerDiscountAmount, sellerDiscountRefundAmount, settlementAmount, shippingCostAmount, shippingCostDiscountAmount, shippingFeeAmount, shippingFeeSubsidyAmount, shippingInsuranceFeeAmount, signatureConfirmationFeeAmount, skuStatementTransactions, statementId, statementTime, status, transactionFeeAmount);
+    return Objects.hash(actualReturnShippingFeeAmount, actualShippingFeeAmount, adjustmentAmount, affiliateAdsCommissionAmount, affiliateCommissionAmount, affiliateCommissionBeforePit, affiliatePartnerCommissionAmount, afterSellerDiscountsSubtotalAmount, currency, customerOrderRefundAmount, customerPaidShippingFeeAmount, customerPaidShippingFeeRefundAmount, customerPaymentAmount, customerRefundAmount, customerShippingFeeAmount, customerShippingFeeOffsetAmount, fbmShippingCostAmount, fbtFulfillmentFeeAmount, fbtFulfillmentFeeReimbursementAmount, fbtShippingCostAmount, feeAmount, grossSalesAmount, grossSalesRefundAmount, id, isrIncomeTaxAmount, ivaVatAmount, netSalesAmount, pitAmount, platformCommissionAmount, platformDiscountAmount, platformDiscountRefundAmount, platformRefundSubsidyAmount, platformShippingFeeDiscountAmount, promoShippingIncentiveAmount, referralFeeAmount, refundAdministrationFeeAmount, refundShippingCostDiscountAmount, retailDeliveryFeeAmount, retailDeliveryFeePaymentAmount, retailDeliveryFeeRefundAmount, returnShippingFeeAmount, revenueAmount, salesTaxAmount, salesTaxPaymentAmount, salesTaxRefundAmount, sellerDiscountAmount, sellerDiscountRefundAmount, settlementAmount, shippingCostAmount, shippingCostDiscountAmount, shippingFeeAmount, shippingFeeSubsidyAmount, shippingInsuranceFeeAmount, signatureConfirmationFeeAmount, skuStatementTransactions, statementId, statementTime, status, transactionFeeAmount, additionalProperties);
   }
 
   @Override
@@ -1561,6 +1665,7 @@ public class GetTransactionsbyOrderResponseDataStatementTransactions {
     sb.append("    statementTime: ").append(toIndentedString(statementTime)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    transactionFeeAmount: ").append(toIndentedString(transactionFeeAmount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -1582,89 +1687,22 @@ public class GetTransactionsbyOrderResponseDataStatementTransactions {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("actual_return_shipping_fee_amount");
-    openapiFields.add("actual_shipping_fee_amount");
-    openapiFields.add("adjustment_amount");
-    openapiFields.add("affiliate_ads_commission_amount");
-    openapiFields.add("affiliate_commission_amount");
-    openapiFields.add("affiliate_commission_before_pit");
-    openapiFields.add("affiliate_partner_commission_amount");
-    openapiFields.add("after_seller_discounts_subtotal_amount");
-    openapiFields.add("currency");
-    openapiFields.add("customer_order_refund_amount");
-    openapiFields.add("customer_paid_shipping_fee_amount");
-    openapiFields.add("customer_paid_shipping_fee_refund_amount");
-    openapiFields.add("customer_payment_amount");
-    openapiFields.add("customer_refund_amount");
-    openapiFields.add("customer_shipping_fee_amount");
-    openapiFields.add("customer_shipping_fee_offset_amount");
-    openapiFields.add("fbm_shipping_cost_amount");
-    openapiFields.add("fbt_fulfillment_fee_amount");
-    openapiFields.add("fbt_fulfillment_fee_reimbursement_amount");
-    openapiFields.add("fbt_shipping_cost_amount");
-    openapiFields.add("fee_amount");
-    openapiFields.add("gross_sales_amount");
-    openapiFields.add("gross_sales_refund_amount");
-    openapiFields.add("id");
-    openapiFields.add("isr_income_tax_amount");
-    openapiFields.add("iva_vat_amount");
-    openapiFields.add("net_sales_amount");
-    openapiFields.add("pit_amount");
-    openapiFields.add("platform_commission_amount");
-    openapiFields.add("platform_discount_amount");
-    openapiFields.add("platform_discount_refund_amount");
-    openapiFields.add("platform_refund_subsidy_amount");
-    openapiFields.add("platform_shipping_fee_discount_amount");
-    openapiFields.add("promo_shipping_incentive_amount");
-    openapiFields.add("referral_fee_amount");
-    openapiFields.add("refund_administration_fee_amount");
-    openapiFields.add("refund_shipping_cost_discount_amount");
-    openapiFields.add("retail_delivery_fee_amount");
-    openapiFields.add("retail_delivery_fee_payment_amount");
-    openapiFields.add("retail_delivery_fee_refund_amount");
-    openapiFields.add("return_shipping_fee_amount");
-    openapiFields.add("revenue_amount");
-    openapiFields.add("sales_tax_amount");
-    openapiFields.add("sales_tax_payment_amount");
-    openapiFields.add("sales_tax_refund_amount");
-    openapiFields.add("seller_discount_amount");
-    openapiFields.add("seller_discount_refund_amount");
-    openapiFields.add("settlement_amount");
-    openapiFields.add("shipping_cost_amount");
-    openapiFields.add("shipping_cost_discount_amount");
-    openapiFields.add("shipping_fee_amount");
-    openapiFields.add("shipping_fee_subsidy_amount");
-    openapiFields.add("shipping_insurance_fee_amount");
-    openapiFields.add("signature_confirmation_fee_amount");
-    openapiFields.add("sku_statement_transactions");
-    openapiFields.add("statement_id");
-    openapiFields.add("statement_time");
-    openapiFields.add("status");
-    openapiFields.add("transaction_fee_amount");
+    openapiFields = new HashSet<String>(Arrays.asList("actual_return_shipping_fee_amount", "actual_shipping_fee_amount", "adjustment_amount", "affiliate_ads_commission_amount", "affiliate_commission_amount", "affiliate_commission_before_pit", "affiliate_partner_commission_amount", "after_seller_discounts_subtotal_amount", "currency", "customer_order_refund_amount", "customer_paid_shipping_fee_amount", "customer_paid_shipping_fee_refund_amount", "customer_payment_amount", "customer_refund_amount", "customer_shipping_fee_amount", "customer_shipping_fee_offset_amount", "fbm_shipping_cost_amount", "fbt_fulfillment_fee_amount", "fbt_fulfillment_fee_reimbursement_amount", "fbt_shipping_cost_amount", "fee_amount", "gross_sales_amount", "gross_sales_refund_amount", "id", "isr_income_tax_amount", "iva_vat_amount", "net_sales_amount", "pit_amount", "platform_commission_amount", "platform_discount_amount", "platform_discount_refund_amount", "platform_refund_subsidy_amount", "platform_shipping_fee_discount_amount", "promo_shipping_incentive_amount", "referral_fee_amount", "refund_administration_fee_amount", "refund_shipping_cost_discount_amount", "retail_delivery_fee_amount", "retail_delivery_fee_payment_amount", "retail_delivery_fee_refund_amount", "return_shipping_fee_amount", "revenue_amount", "sales_tax_amount", "sales_tax_payment_amount", "sales_tax_refund_amount", "seller_discount_amount", "seller_discount_refund_amount", "settlement_amount", "shipping_cost_amount", "shipping_cost_discount_amount", "shipping_fee_amount", "shipping_fee_subsidy_amount", "shipping_insurance_fee_amount", "signature_confirmation_fee_amount", "sku_statement_transactions", "statement_id", "statement_time", "status", "transaction_fee_amount"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyOrderResponseDataStatementTransactions
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyOrderResponseDataStatementTransactions
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetTransactionsbyOrderResponseDataStatementTransactions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetTransactionsbyOrderResponseDataStatementTransactions is not found in the empty JSON string", GetTransactionsbyOrderResponseDataStatementTransactions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetTransactionsbyOrderResponseDataStatementTransactions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetTransactionsbyOrderResponseDataStatementTransactions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1870,6 +1908,28 @@ public class GetTransactionsbyOrderResponseDataStatementTransactions {
            @Override
            public void write(JsonWriter out, GetTransactionsbyOrderResponseDataStatementTransactions value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -1877,29 +1937,50 @@ public class GetTransactionsbyOrderResponseDataStatementTransactions {
            public GetTransactionsbyOrderResponseDataStatementTransactions read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetTransactionsbyOrderResponseDataStatementTransactions instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetTransactionsbyOrderResponseDataStatementTransactions given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetTransactionsbyOrderResponseDataStatementTransactions
-  * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyOrderResponseDataStatementTransactions
-  */
+  /**
+   * Create an instance of GetTransactionsbyOrderResponseDataStatementTransactions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetTransactionsbyOrderResponseDataStatementTransactions
+   * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyOrderResponseDataStatementTransactions
+   */
   public static GetTransactionsbyOrderResponseDataStatementTransactions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetTransactionsbyOrderResponseDataStatementTransactions.class);
   }
 
- /**
-  * Convert an instance of GetTransactionsbyOrderResponseDataStatementTransactions to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetTransactionsbyOrderResponseDataStatementTransactions to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

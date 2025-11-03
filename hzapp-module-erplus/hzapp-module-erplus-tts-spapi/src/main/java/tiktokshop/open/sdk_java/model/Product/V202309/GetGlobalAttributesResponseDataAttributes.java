@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,147 +52,157 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetGlobalAttributesResponseDataAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetGlobalAttributesResponseDataAttributes {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_IS_CUSTOMIZABLE = "is_customizable";
   @SerializedName(SERIALIZED_NAME_IS_CUSTOMIZABLE)
+  @javax.annotation.Nullable
   private Boolean isCustomizable;
 
   public static final String SERIALIZED_NAME_IS_MULTIPLE_SELECTION = "is_multiple_selection";
   @SerializedName(SERIALIZED_NAME_IS_MULTIPLE_SELECTION)
+  @javax.annotation.Nullable
   private Boolean isMultipleSelection;
 
   public static final String SERIALIZED_NAME_IS_REQURIED = "is_requried";
   @SerializedName(SERIALIZED_NAME_IS_REQURIED)
+  @javax.annotation.Nullable
   private Boolean isRequried;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_OPTIONAL_REGIONS = "optional_regions";
   @SerializedName(SERIALIZED_NAME_OPTIONAL_REGIONS)
+  @javax.annotation.Nullable
   private List<String> optionalRegions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REQUIRED_REGIONS = "required_regions";
   @SerializedName(SERIALIZED_NAME_REQUIRED_REGIONS)
+  @javax.annotation.Nullable
   private List<String> requiredRegions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REQUIREMENT_CONDITIONS = "requirement_conditions";
   @SerializedName(SERIALIZED_NAME_REQUIREMENT_CONDITIONS)
+  @javax.annotation.Nullable
   private List<GetGlobalAttributesResponseDataAttributesRequirementConditions> requirementConditions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_VALUES = "values";
   @SerializedName(SERIALIZED_NAME_VALUES)
+  @javax.annotation.Nullable
   private List<GetGlobalAttributesResponseDataAttributesValues> values = new ArrayList<>();
 
   public GetGlobalAttributesResponseDataAttributes() {
   }
 
-  public GetGlobalAttributesResponseDataAttributes id(String id) {
+  public GetGlobalAttributesResponseDataAttributes id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The ID of the built-in attribute.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes isCustomizable(Boolean isCustomizable) {
+  public GetGlobalAttributesResponseDataAttributes isCustomizable(@javax.annotation.Nullable Boolean isCustomizable) {
     this.isCustomizable = isCustomizable;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if the product attribute value can be customized by sellers when creating or editing a product.  Applicable only if &#x60;type&#x3D;PRODUCT_PROPERTY&#x60;. 
    * @return isCustomizable
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsCustomizable() {
     return isCustomizable;
   }
 
-  public void setIsCustomizable(Boolean isCustomizable) {
+  public void setIsCustomizable(@javax.annotation.Nullable Boolean isCustomizable) {
     this.isCustomizable = isCustomizable;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes isMultipleSelection(Boolean isMultipleSelection) {
+  public GetGlobalAttributesResponseDataAttributes isMultipleSelection(@javax.annotation.Nullable Boolean isMultipleSelection) {
     this.isMultipleSelection = isMultipleSelection;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if multiple values can be provided for a product attribute when creating or editing a product.  Applicable only if &#x60;type&#x3D;PRODUCT_PROPERTY&#x60;.
    * @return isMultipleSelection
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsMultipleSelection() {
     return isMultipleSelection;
   }
 
-  public void setIsMultipleSelection(Boolean isMultipleSelection) {
+  public void setIsMultipleSelection(@javax.annotation.Nullable Boolean isMultipleSelection) {
     this.isMultipleSelection = isMultipleSelection;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes isRequried(Boolean isRequried) {
+  public GetGlobalAttributesResponseDataAttributes isRequried(@javax.annotation.Nullable Boolean isRequried) {
     this.isRequried = isRequried;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if the product attribute is required **globally** when creating or editing a product. - true: The attribute is required in all regions. - false: The attribute is required only in some regions, or if certain conditions are met. Refer to &#x60;required_regions&#x60; and &#x60;requirement_conditions&#x60; for the specific requirements.  Applicable only if &#x60;type&#x3D;PRODUCT_PROPERTY&#x60;.
    * @return isRequried
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsRequried() {
     return isRequried;
   }
 
-  public void setIsRequried(Boolean isRequried) {
+  public void setIsRequried(@javax.annotation.Nullable Boolean isRequried) {
     this.isRequried = isRequried;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes name(String name) {
+  public GetGlobalAttributesResponseDataAttributes name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the built-in attribute.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes optionalRegions(List<String> optionalRegions) {
+  public GetGlobalAttributesResponseDataAttributes optionalRegions(@javax.annotation.Nullable List<String> optionalRegions) {
     this.optionalRegions = optionalRegions;
     return this;
   }
@@ -206,21 +215,21 @@ public class GetGlobalAttributesResponseDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * The markets where the attribute is purely optional, or required only under certain conditions. Refer to &#x60;requirement_conditions&#x60; for details on markets with conditional requirements.  Possible values: - DE: Germany - ES: Spain - FR: France - GB: United Kingdom - ID: Indonesia - IT: Italy - IE: Ireland - JP: Japan - MY: Malaysia - PH: Philippines - SG: Singapore - TH: Thailand - US: United States - VN: Vietnam - MX: Mexico Applicable only if &#x60;is_requried&#x3D;false&#x60;.
    * @return optionalRegions
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOptionalRegions() {
     return optionalRegions;
   }
 
-  public void setOptionalRegions(List<String> optionalRegions) {
+  public void setOptionalRegions(@javax.annotation.Nullable List<String> optionalRegions) {
     this.optionalRegions = optionalRegions;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes requiredRegions(List<String> requiredRegions) {
+  public GetGlobalAttributesResponseDataAttributes requiredRegions(@javax.annotation.Nullable List<String> requiredRegions) {
     this.requiredRegions = requiredRegions;
     return this;
   }
@@ -233,21 +242,21 @@ public class GetGlobalAttributesResponseDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * The markets where the attribute is required, without conditions. Possible values: - DE: Germany - ES: Spain - FR: France - GB: United Kingdom - ID: Indonesia - IT: Italy - IE: Ireland - JP: Japan - MY: Malaysia - PH: Philippines - SG: Singapore - TH: Thailand - US: United States - VN: Vietnam - MX: Mexico Applicable only if &#x60;is_requried&#x3D;false&#x60;.
    * @return requiredRegions
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getRequiredRegions() {
     return requiredRegions;
   }
 
-  public void setRequiredRegions(List<String> requiredRegions) {
+  public void setRequiredRegions(@javax.annotation.Nullable List<String> requiredRegions) {
     this.requiredRegions = requiredRegions;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes requirementConditions(List<GetGlobalAttributesResponseDataAttributesRequirementConditions> requirementConditions) {
+  public GetGlobalAttributesResponseDataAttributes requirementConditions(@javax.annotation.Nullable List<GetGlobalAttributesResponseDataAttributesRequirementConditions> requirementConditions) {
     this.requirementConditions = requirementConditions;
     return this;
   }
@@ -260,40 +269,40 @@ public class GetGlobalAttributesResponseDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * A list of conditions that determine if the product attribute is required based on the seller&#39;s inputs for other attributes. If any of the conditions is met, the attribute is required; otherwise, it is optional.  For example, there&#39;s a condition that states that the \&quot;\&quot;Battery type\&quot;\&quot; attribute is required if the seller selects the value \&quot;\&quot;Batteries\&quot;\&quot; for the attribute \&quot;\&quot;Contains Batteries or Cells?\&quot;\&quot;. For more scenario-based guidance on using this parameter, refer to the [Solution Guide](https://partner.tiktokshop.com/openlearn/guide/usecase?parent_id&#x3D;7256668359046153985).  Applicable only if &#x60;type&#x3D;PRODUCT_PROPERTY&#x60; and &#x60;optional_regions&#x60; is not empty.
    * @return requirementConditions
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalAttributesResponseDataAttributesRequirementConditions> getRequirementConditions() {
     return requirementConditions;
   }
 
-  public void setRequirementConditions(List<GetGlobalAttributesResponseDataAttributesRequirementConditions> requirementConditions) {
+  public void setRequirementConditions(@javax.annotation.Nullable List<GetGlobalAttributesResponseDataAttributesRequirementConditions> requirementConditions) {
     this.requirementConditions = requirementConditions;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes type(String type) {
+  public GetGlobalAttributesResponseDataAttributes type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The attribute type. Possible values: - SALES_PROPERTY: Indicates sales attributes that define product variants. - PRODUCT_PROPERTY: Indicates product attributes that describe the product as a whole.
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
 
-  public GetGlobalAttributesResponseDataAttributes values(List<GetGlobalAttributesResponseDataAttributesValues> values) {
+  public GetGlobalAttributesResponseDataAttributes values(@javax.annotation.Nullable List<GetGlobalAttributesResponseDataAttributesValues> values) {
     this.values = values;
     return this;
   }
@@ -306,17 +315,62 @@ public class GetGlobalAttributesResponseDataAttributes {
     return this;
   }
 
-   /**
+  /**
    * A list of selectable values for the attribute.
    * @return values
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalAttributesResponseDataAttributesValues> getValues() {
     return values;
   }
 
-  public void setValues(List<GetGlobalAttributesResponseDataAttributesValues> values) {
+  public void setValues(@javax.annotation.Nullable List<GetGlobalAttributesResponseDataAttributesValues> values) {
     this.values = values;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetGlobalAttributesResponseDataAttributes instance itself
+   */
+  public GetGlobalAttributesResponseDataAttributes putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -339,12 +393,13 @@ public class GetGlobalAttributesResponseDataAttributes {
         Objects.equals(this.requiredRegions, product202309GetGlobalAttributesResponseDataAttributes.requiredRegions) &&
         Objects.equals(this.requirementConditions, product202309GetGlobalAttributesResponseDataAttributes.requirementConditions) &&
         Objects.equals(this.type, product202309GetGlobalAttributesResponseDataAttributes.type) &&
-        Objects.equals(this.values, product202309GetGlobalAttributesResponseDataAttributes.values);
+        Objects.equals(this.values, product202309GetGlobalAttributesResponseDataAttributes.values)&&
+        Objects.equals(this.additionalProperties, product202309GetGlobalAttributesResponseDataAttributes.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, isCustomizable, isMultipleSelection, isRequried, name, optionalRegions, requiredRegions, requirementConditions, type, values);
+    return Objects.hash(id, isCustomizable, isMultipleSelection, isRequried, name, optionalRegions, requiredRegions, requirementConditions, type, values, additionalProperties);
   }
 
   @Override
@@ -361,6 +416,7 @@ public class GetGlobalAttributesResponseDataAttributes {
     sb.append("    requirementConditions: ").append(toIndentedString(requirementConditions)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -382,40 +438,22 @@ public class GetGlobalAttributesResponseDataAttributes {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("is_customizable");
-    openapiFields.add("is_multiple_selection");
-    openapiFields.add("is_requried");
-    openapiFields.add("name");
-    openapiFields.add("optional_regions");
-    openapiFields.add("required_regions");
-    openapiFields.add("requirement_conditions");
-    openapiFields.add("type");
-    openapiFields.add("values");
+    openapiFields = new HashSet<String>(Arrays.asList("id", "is_customizable", "is_multiple_selection", "is_requried", "name", "optional_regions", "required_regions", "requirement_conditions", "type", "values"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetGlobalAttributesResponseDataAttributes
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetGlobalAttributesResponseDataAttributes
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetGlobalAttributesResponseDataAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetGlobalAttributesResponseDataAttributes is not found in the empty JSON string", GetGlobalAttributesResponseDataAttributes.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetGlobalAttributesResponseDataAttributes.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetGlobalAttributesResponseDataAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -481,6 +519,28 @@ public class GetGlobalAttributesResponseDataAttributes {
            @Override
            public void write(JsonWriter out, GetGlobalAttributesResponseDataAttributes value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -488,29 +548,50 @@ public class GetGlobalAttributesResponseDataAttributes {
            public GetGlobalAttributesResponseDataAttributes read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetGlobalAttributesResponseDataAttributes instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetGlobalAttributesResponseDataAttributes given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetGlobalAttributesResponseDataAttributes
-  * @throws IOException if the JSON string is invalid with respect to GetGlobalAttributesResponseDataAttributes
-  */
+  /**
+   * Create an instance of GetGlobalAttributesResponseDataAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetGlobalAttributesResponseDataAttributes
+   * @throws IOException if the JSON string is invalid with respect to GetGlobalAttributesResponseDataAttributes
+   */
   public static GetGlobalAttributesResponseDataAttributes fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetGlobalAttributesResponseDataAttributes.class);
   }
 
- /**
-  * Convert an instance of GetGlobalAttributesResponseDataAttributes to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetGlobalAttributesResponseDataAttributes to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,123 +48,173 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetActivityResponseDataDiscountBmsmDiscountDetails
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetActivityResponseDataDiscountBmsmDiscountDetails {
   public static final String SERIALIZED_NAME_THRESHOLD_TYPE = "threshold_type";
   @SerializedName(SERIALIZED_NAME_THRESHOLD_TYPE)
+  @javax.annotation.Nullable
   private String thresholdType;
 
   public static final String SERIALIZED_NAME_THRESHOLD_VALUE = "threshold_value";
   @SerializedName(SERIALIZED_NAME_THRESHOLD_VALUE)
+  @javax.annotation.Nullable
   private String thresholdValue;
 
   public static final String SERIALIZED_NAME_TIER = "tier";
   @SerializedName(SERIALIZED_NAME_TIER)
+  @javax.annotation.Nullable
   private Integer tier;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_VALUE = "value";
   @SerializedName(SERIALIZED_NAME_VALUE)
+  @javax.annotation.Nullable
   private String value;
 
   public GetActivityResponseDataDiscountBmsmDiscountDetails() {
   }
 
-  public GetActivityResponseDataDiscountBmsmDiscountDetails thresholdType(String thresholdType) {
+  public GetActivityResponseDataDiscountBmsmDiscountDetails thresholdType(@javax.annotation.Nullable String thresholdType) {
     this.thresholdType = thresholdType;
     return this;
   }
 
-   /**
+  /**
    * The type of purchase criteria. Possible enumerations are: - &#x60;MINIMAL_ITEM_QUANTITY&#x60;: Buyer must meet or exceed the minimum spend criteria with eligible products. - &#x60;MINIMAL_ORDER_AMOUNT&#x60;: Buyer must meet or exceed the minimum spend criteria with eligible order.
    * @return thresholdType
-  **/
+   */
   @javax.annotation.Nullable
   public String getThresholdType() {
     return thresholdType;
   }
 
-  public void setThresholdType(String thresholdType) {
+  public void setThresholdType(@javax.annotation.Nullable String thresholdType) {
     this.thresholdType = thresholdType;
   }
 
 
-  public GetActivityResponseDataDiscountBmsmDiscountDetails thresholdValue(String thresholdValue) {
+  public GetActivityResponseDataDiscountBmsmDiscountDetails thresholdValue(@javax.annotation.Nullable String thresholdValue) {
     this.thresholdValue = thresholdValue;
     return this;
   }
 
-   /**
+  /**
    * The purchase threshold of the discount, based on the &#x60;threshold_type&#x60;, e.g., \&quot;3\&quot;. Determined by user. - When &#x60;threshold_type&#x3D;&#x3D;NO_THRESHOLD&#x60;, this value is not required. - When &#x60;threshold_type&#x3D;&#x3D;MINIMAL_ITEM_QUANTITY&#x60;, buyer must purchase at least the specified number of eligible products (e.g. must purchase 3 or more eligible products to receive the benefit). If it represents a quantity, it must be an integer. - When &#x60;threshold_type&#x3D;&#x3D;MINIMAL_ORDER_AMOUNT&#x60;, the eligible product subtotal for the buyer&#39;s order must meet or exceed the specified order value in local currency (e.g. buyer&#39;s order subtotal must be at least $3 to receive the benefit). If it represents an order value, it must be limited to two decimal places. 
    * @return thresholdValue
-  **/
+   */
   @javax.annotation.Nullable
   public String getThresholdValue() {
     return thresholdValue;
   }
 
-  public void setThresholdValue(String thresholdValue) {
+  public void setThresholdValue(@javax.annotation.Nullable String thresholdValue) {
     this.thresholdValue = thresholdValue;
   }
 
 
-  public GetActivityResponseDataDiscountBmsmDiscountDetails tier(Integer tier) {
+  public GetActivityResponseDataDiscountBmsmDiscountDetails tier(@javax.annotation.Nullable Integer tier) {
     this.tier = tier;
     return this;
   }
 
-   /**
+  /**
    * &#x60;tier&#x60; uses 1-based indexing, i.e. the first and second tiers are counted \&quot;1, 2\&quot;, not \&quot;0, 1\&quot;. &#x60;threshold_value&#x60; and &#x60;discount_value&#x60; for a given tier must be greater than that of the previous tier.  E.g. If &#x60;tier&#x60;&#x3D;&#x3D;1 has &#x60;threshold_value&#x60;&#x3D;&#x3D;&#x60;20&#x60; and &#x60;discount_value&#x60;&#x3D;&#x3D; &#x60;15&#x60;, &#x60;tier&#x60;&#x3D;&#x3D;2 must have &#x60;threshold_value&#x60; &gt; &#x60;20&#x60; and &#x60;discount_value&#x60;&gt;&#x60;15&#x60;.
    * @return tier
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getTier() {
     return tier;
   }
 
-  public void setTier(Integer tier) {
+  public void setTier(@javax.annotation.Nullable Integer tier) {
     this.tier = tier;
   }
 
 
-  public GetActivityResponseDataDiscountBmsmDiscountDetails type(String type) {
+  public GetActivityResponseDataDiscountBmsmDiscountDetails type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The type of discount awarded as a benefit. The value of the discount is determined by &#x60;value&#x60;. Possible enumerations are: ​- &#x60;PERCENTAGE_OFF&#x60;​: Buyer will receive X% off the price of the eligible products. - &#x60;AMOUNT_OFF&#x60;: Buyer will receive X units of local currency off the price of eligible products.
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
 
-  public GetActivityResponseDataDiscountBmsmDiscountDetails value(String value) {
+  public GetActivityResponseDataDiscountBmsmDiscountDetails value(@javax.annotation.Nullable String value) {
     this.value = value;
     return this;
   }
 
-   /**
+  /**
    * Value of the discount. - When &#x60;type&#x60;&#x3D;&#x3D;&#x60;PERCENTAGE_OFF&#x60;, the buyer will receive X% off the price of eligible products. If the value represents a percentage, it should be an integer. - &#x60;type&#x60;&#x3D;&#x3D;&#x60;AMOUNT_OFF&#x60;, the buyer will receive X units of local currency off the price of eligible products. If the value represents a monetary amount, it should be limited to two decimal places. 
    * @return value
-  **/
+   */
   @javax.annotation.Nullable
   public String getValue() {
     return value;
   }
 
-  public void setValue(String value) {
+  public void setValue(@javax.annotation.Nullable String value) {
     this.value = value;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetActivityResponseDataDiscountBmsmDiscountDetails instance itself
+   */
+  public GetActivityResponseDataDiscountBmsmDiscountDetails putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -183,12 +232,13 @@ public class GetActivityResponseDataDiscountBmsmDiscountDetails {
         Objects.equals(this.thresholdValue, promotion202309GetActivityResponseDataDiscountBmsmDiscountDetails.thresholdValue) &&
         Objects.equals(this.tier, promotion202309GetActivityResponseDataDiscountBmsmDiscountDetails.tier) &&
         Objects.equals(this.type, promotion202309GetActivityResponseDataDiscountBmsmDiscountDetails.type) &&
-        Objects.equals(this.value, promotion202309GetActivityResponseDataDiscountBmsmDiscountDetails.value);
+        Objects.equals(this.value, promotion202309GetActivityResponseDataDiscountBmsmDiscountDetails.value)&&
+        Objects.equals(this.additionalProperties, promotion202309GetActivityResponseDataDiscountBmsmDiscountDetails.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(thresholdType, thresholdValue, tier, type, value);
+    return Objects.hash(thresholdType, thresholdValue, tier, type, value, additionalProperties);
   }
 
   @Override
@@ -200,6 +250,7 @@ public class GetActivityResponseDataDiscountBmsmDiscountDetails {
     sb.append("    tier: ").append(toIndentedString(tier)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,35 +272,22 @@ public class GetActivityResponseDataDiscountBmsmDiscountDetails {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("threshold_type");
-    openapiFields.add("threshold_value");
-    openapiFields.add("tier");
-    openapiFields.add("type");
-    openapiFields.add("value");
+    openapiFields = new HashSet<String>(Arrays.asList("threshold_type", "threshold_value", "tier", "type", "value"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetActivityResponseDataDiscountBmsmDiscountDetails
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetActivityResponseDataDiscountBmsmDiscountDetails
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetActivityResponseDataDiscountBmsmDiscountDetails.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetActivityResponseDataDiscountBmsmDiscountDetails is not found in the empty JSON string", GetActivityResponseDataDiscountBmsmDiscountDetails.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetActivityResponseDataDiscountBmsmDiscountDetails.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetActivityResponseDataDiscountBmsmDiscountDetails` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -282,6 +320,28 @@ public class GetActivityResponseDataDiscountBmsmDiscountDetails {
            @Override
            public void write(JsonWriter out, GetActivityResponseDataDiscountBmsmDiscountDetails value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -289,29 +349,50 @@ public class GetActivityResponseDataDiscountBmsmDiscountDetails {
            public GetActivityResponseDataDiscountBmsmDiscountDetails read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetActivityResponseDataDiscountBmsmDiscountDetails instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetActivityResponseDataDiscountBmsmDiscountDetails given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetActivityResponseDataDiscountBmsmDiscountDetails
-  * @throws IOException if the JSON string is invalid with respect to GetActivityResponseDataDiscountBmsmDiscountDetails
-  */
+  /**
+   * Create an instance of GetActivityResponseDataDiscountBmsmDiscountDetails given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetActivityResponseDataDiscountBmsmDiscountDetails
+   * @throws IOException if the JSON string is invalid with respect to GetActivityResponseDataDiscountBmsmDiscountDetails
+   */
   public static GetActivityResponseDataDiscountBmsmDiscountDetails fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetActivityResponseDataDiscountBmsmDiscountDetails.class);
   }
 
- /**
-  * Convert an instance of GetActivityResponseDataDiscountBmsmDiscountDetails to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetActivityResponseDataDiscountBmsmDiscountDetails to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -83,12 +83,13 @@ public class DataReconciliationV202401Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call dataReconciliation202401OrdersImportPostCall(String xTtsAccessToken, String contentType, String shopCipher, QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call dataReconciliation202401OrdersImportPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -117,14 +118,6 @@ public class DataReconciliationV202401Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -141,12 +134,22 @@ public class DataReconciliationV202401Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call dataReconciliation202401OrdersImportPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call dataReconciliation202401OrdersImportPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling dataReconciliation202401OrdersImportPost(Async)");
@@ -171,12 +174,13 @@ public class DataReconciliationV202401Api {
      * @return QualityFactoryOrderDataImportAPIResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public QualityFactoryOrderDataImportAPIResponse dataReconciliation202401OrdersImportPost(String xTtsAccessToken, String contentType, String shopCipher, QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody) throws ApiException {
+    public QualityFactoryOrderDataImportAPIResponse dataReconciliation202401OrdersImportPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody) throws ApiException {
         ApiResponse<QualityFactoryOrderDataImportAPIResponse> localVarResp = dataReconciliation202401OrdersImportPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody);
         return localVarResp.getData();
     }
@@ -191,12 +195,13 @@ public class DataReconciliationV202401Api {
      * @return ApiResponse&lt;QualityFactoryOrderDataImportAPIResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<QualityFactoryOrderDataImportAPIResponse> dataReconciliation202401OrdersImportPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody) throws ApiException {
+    public ApiResponse<QualityFactoryOrderDataImportAPIResponse> dataReconciliation202401OrdersImportPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody) throws ApiException {
         okhttp3.Call localVarCall = dataReconciliation202401OrdersImportPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody, null);
         Type localVarReturnType = new TypeToken<QualityFactoryOrderDataImportAPIResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -213,12 +218,13 @@ public class DataReconciliationV202401Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call dataReconciliation202401OrdersImportPostAsync(String xTtsAccessToken, String contentType, String shopCipher, QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody, final ApiCallback<QualityFactoryOrderDataImportAPIResponse> _callback) throws ApiException {
+    public okhttp3.Call dataReconciliation202401OrdersImportPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable QualityFactoryOrderDataImportAPIRequestBody dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody, final ApiCallback<QualityFactoryOrderDataImportAPIResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = dataReconciliation202401OrdersImportPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, dataReconciliation202401QualityFactoryOrderDataImportAPIRequestBody, _callback);
         Type localVarReturnType = new TypeToken<QualityFactoryOrderDataImportAPIResponse>(){}.getType();

@@ -28,8 +28,10 @@ import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyMain
 import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyPackageDimensions;
 import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyPackageWeight;
 import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyProductAttributes;
+import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyReplicatedProducts;
 import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySizeChart;
 import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySkus;
+import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodySubscribeInfoEdit;
 import tiktokshop.open.sdk_java.model.Product.V202309.EditProductRequestBodyVideo;
 
 import com.google.gson.Gson;
@@ -47,7 +49,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -59,157 +60,194 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * EditProductRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class EditProductRequestBody {
   public static final String SERIALIZED_NAME_BRAND_ID = "brand_id";
   @SerializedName(SERIALIZED_NAME_BRAND_ID)
+  @javax.annotation.Nullable
   private String brandId;
 
   public static final String SERIALIZED_NAME_CATEGORY_ID = "category_id";
   @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  @javax.annotation.Nullable
   private String categoryId;
 
   public static final String SERIALIZED_NAME_CATEGORY_VERSION = "category_version";
   @SerializedName(SERIALIZED_NAME_CATEGORY_VERSION)
+  @javax.annotation.Nullable
   private String categoryVersion;
 
   public static final String SERIALIZED_NAME_CERTIFICATIONS = "certifications";
   @SerializedName(SERIALIZED_NAME_CERTIFICATIONS)
+  @javax.annotation.Nullable
   private List<EditProductRequestBodyCertifications> certifications = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DELIVERY_OPTION_IDS = "delivery_option_ids";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION_IDS)
+  @javax.annotation.Nullable
   private List<String> deliveryOptionIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_EXTERNAL_PRODUCT_ID = "external_product_id";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_PRODUCT_ID)
+  @javax.annotation.Nullable
   private String externalProductId;
 
   public static final String SERIALIZED_NAME_IS_COD_ALLOWED = "is_cod_allowed";
   @SerializedName(SERIALIZED_NAME_IS_COD_ALLOWED)
+  @javax.annotation.Nullable
   private Boolean isCodAllowed;
 
   public static final String SERIALIZED_NAME_IS_PRE_OWNED = "is_pre_owned";
   @SerializedName(SERIALIZED_NAME_IS_PRE_OWNED)
+  @javax.annotation.Nullable
   private Boolean isPreOwned;
 
   public static final String SERIALIZED_NAME_LISTING_PLATFORMS = "listing_platforms";
   @SerializedName(SERIALIZED_NAME_LISTING_PLATFORMS)
+  @javax.annotation.Nullable
   private List<String> listingPlatforms = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MAIN_IMAGES = "main_images";
   @SerializedName(SERIALIZED_NAME_MAIN_IMAGES)
+  @javax.annotation.Nullable
   private List<EditProductRequestBodyMainImages> mainImages = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MANUFACTURER_IDS = "manufacturer_ids";
   @SerializedName(SERIALIZED_NAME_MANUFACTURER_IDS)
+  @javax.annotation.Nullable
   private List<String> manufacturerIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MINIMUM_ORDER_QUANTITY = "minimum_order_quantity";
   @SerializedName(SERIALIZED_NAME_MINIMUM_ORDER_QUANTITY)
+  @javax.annotation.Nullable
   private Integer minimumOrderQuantity;
 
   public static final String SERIALIZED_NAME_PACKAGE_DIMENSIONS = "package_dimensions";
   @SerializedName(SERIALIZED_NAME_PACKAGE_DIMENSIONS)
+  @javax.annotation.Nullable
   private EditProductRequestBodyPackageDimensions packageDimensions;
 
   public static final String SERIALIZED_NAME_PACKAGE_WEIGHT = "package_weight";
   @SerializedName(SERIALIZED_NAME_PACKAGE_WEIGHT)
+  @javax.annotation.Nullable
   private EditProductRequestBodyPackageWeight packageWeight;
 
   public static final String SERIALIZED_NAME_PRODUCT_ATTRIBUTES = "product_attributes";
   @SerializedName(SERIALIZED_NAME_PRODUCT_ATTRIBUTES)
+  @javax.annotation.Nullable
   private List<EditProductRequestBodyProductAttributes> productAttributes = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_REPLICATED_PRODUCTS = "replicated_products";
+  @SerializedName(SERIALIZED_NAME_REPLICATED_PRODUCTS)
+  @javax.annotation.Nullable
+  private List<EditProductRequestBodyReplicatedProducts> replicatedProducts = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS = "responsible_person_ids";
   @SerializedName(SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS)
+  @javax.annotation.Nullable
   private List<String> responsiblePersonIds = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SAVE_MODE = "save_mode";
+  @SerializedName(SERIALIZED_NAME_SAVE_MODE)
+  @javax.annotation.Nullable
+  private String saveMode;
 
   public static final String SERIALIZED_NAME_SHIPPING_INSURANCE_REQUIREMENT = "shipping_insurance_requirement";
   @SerializedName(SERIALIZED_NAME_SHIPPING_INSURANCE_REQUIREMENT)
+  @javax.annotation.Nullable
   private String shippingInsuranceRequirement;
 
   public static final String SERIALIZED_NAME_SIZE_CHART = "size_chart";
   @SerializedName(SERIALIZED_NAME_SIZE_CHART)
+  @javax.annotation.Nullable
   private EditProductRequestBodySizeChart sizeChart;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<EditProductRequestBodySkus> skus = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_SUBSCRIBE_INFO_EDIT = "subscribe_info_edit";
+  @SerializedName(SERIALIZED_NAME_SUBSCRIBE_INFO_EDIT)
+  @javax.annotation.Nullable
+  private EditProductRequestBodySubscribeInfoEdit subscribeInfoEdit;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_VIDEO = "video";
   @SerializedName(SERIALIZED_NAME_VIDEO)
+  @javax.annotation.Nullable
   private EditProductRequestBodyVideo video;
 
   public EditProductRequestBody() {
   }
 
-  public EditProductRequestBody brandId(String brandId) {
+  public EditProductRequestBody brandId(@javax.annotation.Nullable String brandId) {
     this.brandId = brandId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the brand of this product.  Use the [Get Brands API](https://partner.tiktokshop.com/docv2/page/6503075656e2bb0289dd5d01) to get the list of available brands for a shop.  **Note**: Unauthorized brands won&#39;t be displayed on TikTok Shop.
    * @return brandId
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrandId() {
     return brandId;
   }
 
-  public void setBrandId(String brandId) {
+  public void setBrandId(@javax.annotation.Nullable String brandId) {
     this.brandId = brandId;
   }
 
 
-  public EditProductRequestBody categoryId(String categoryId) {
+  public EditProductRequestBody categoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the category of this product. It must be a leaf category that corresponds to the category tree type specified in the &#x60;category_version&#x60; property. Use the [Get Categories API](https://partner.tiktokshop.com/docv2/page/6509c89d0fcef602bf1acd9b) to obtain the available categories.    **Note**: - Refer to TikTok Shop Academy for information on product category restrictions. - For the US market, if you change a product&#39;s category to an &#x60;INVITE_ONLY&#x60; category, you must submit a separate application through the Qualification Center on TikTok Shop Seller Center to gain access. Otherwise, even if the product audit is passed, the product will not be listed and made available to buyers. (The product status will be &#x60;PENDING&#x60; and the audit status will be &#x60;PRE_APPROVED&#x60;) - For the Indonesia market, to list a product on both TikTok Shop and Tokopedia, you must use only categories that are available on both platforms. 
    * @return categoryId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(String categoryId) {
+  public void setCategoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
   }
 
 
-  public EditProductRequestBody categoryVersion(String categoryVersion) {
+  public EditProductRequestBody categoryVersion(@javax.annotation.Nullable String categoryVersion) {
     this.categoryVersion = categoryVersion;
     return this;
   }
 
-   /**
+  /**
    * The category tree version to assign this product to. Possible values based on region: - US: &#x60;v2&#x60;, represents the 7-level category tree.   **Important**: For US shops, you must pass &#x60;v2&#x60; when using this API. - Other regions: &#x60;v1&#x60;, represents the 3-level category tree. Default: &#x60;v1&#x60;
    * @return categoryVersion
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryVersion() {
     return categoryVersion;
   }
 
-  public void setCategoryVersion(String categoryVersion) {
+  public void setCategoryVersion(@javax.annotation.Nullable String categoryVersion) {
     this.categoryVersion = categoryVersion;
   }
 
 
-  public EditProductRequestBody certifications(List<EditProductRequestBodyCertifications> certifications) {
+  public EditProductRequestBody certifications(@javax.annotation.Nullable List<EditProductRequestBodyCertifications> certifications) {
     this.certifications = certifications;
     return this;
   }
@@ -222,21 +260,21 @@ public class EditProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The list of certifications for your product. Max count: 10  As per TikTok Shop guidelines, certifications are required for certain restricted product categories. Retrieve the certification requirements for your product from the  [Get Category Rules API](https://partner.tiktokshop.com/docv2/page/6509c0febace3e02b74594a9). Refer to [TikTok Shop Restricted Products Policy](https://seller-us.tiktok.com/university/essay?identity&#x3D;1&amp;role&#x3D;1&amp;knowledge_id&#x3D;3238037484275457&amp;from&#x3D;policy) for information on product category restrictions.
    * @return certifications
-  **/
+   */
   @javax.annotation.Nullable
   public List<EditProductRequestBodyCertifications> getCertifications() {
     return certifications;
   }
 
-  public void setCertifications(List<EditProductRequestBodyCertifications> certifications) {
+  public void setCertifications(@javax.annotation.Nullable List<EditProductRequestBodyCertifications> certifications) {
     this.certifications = certifications;
   }
 
 
-  public EditProductRequestBody deliveryOptionIds(List<String> deliveryOptionIds) {
+  public EditProductRequestBody deliveryOptionIds(@javax.annotation.Nullable List<String> deliveryOptionIds) {
     this.deliveryOptionIds = deliveryOptionIds;
     return this;
   }
@@ -249,97 +287,97 @@ public class EditProductRequestBody {
     return this;
   }
 
-   /**
-   * The custom delivery option IDs to apply to this product if you want to override the default warehouse delivery options. To retrieve the available option IDs, call [Get Warehouse Delivery Options](650aa46ebace3e02b75d9afa) with &#x60;scope&#x3D;PRODUCT&#x60;.  **Note**: Leave this field blank to inherit the default delivery options configured for the warehouse.
+  /**
+   * This field is returned for seller accounts in the following regions only: - ID - MX - MY - PH - SG - TH - VN  For all other regions, this field is NOT used and will NOT be processed if passed for create, edit, or partial edit operations.   The custom delivery option IDs to apply to this product if you want to override the default warehouse delivery options. To retrieve the available option IDs, call [Get Warehouse Delivery Options](https://partner.tiktokshop.com/docv2/page/650aa46ebace3e02b75d9afa) with &#x60;scope&#x3D;PRODUCT&#x60;.  **Note**:  - Leave this field blank to inherit the default delivery options configured for the warehouse. - If you are saving a post-live draft with &#x60;save_mode&#x3D;AS_DRAFT&#x60;, this field is not supported and will not be saved. When using Get Product to retrieve the draft, the values will reflect those in the base version.
    * @return deliveryOptionIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getDeliveryOptionIds() {
     return deliveryOptionIds;
   }
 
-  public void setDeliveryOptionIds(List<String> deliveryOptionIds) {
+  public void setDeliveryOptionIds(@javax.annotation.Nullable List<String> deliveryOptionIds) {
     this.deliveryOptionIds = deliveryOptionIds;
   }
 
 
-  public EditProductRequestBody description(String description) {
+  public EditProductRequestBody description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * The product description in HTML format.  **Note**: - The content must conform to the [HTML syntax](https://html.spec.whatwg.org/). All HTML tags are accepted but to optimize display on the TikTok Shop product detail page, the system will automatically convert certain tags into alternative formats, such as rendering &#x60;&lt;table&gt;&#x60; tags as images. - Max length: 10,000 characters. - Image guidelines: You must use [TikTok Shop image URLs](6509df95defece02be598a22). Max 30 &#x60;&lt;img&gt;&#x60; tags, each under 4000px with &#x60;src&#x60;, &#x60;width&#x60;, and &#x60;height&#x60; attributes.  **Recommendations**:  - If you are syncing a pre-existing description from another platform, include the full HTML source description here. - Provide a detailed description, ideally over 300 characters. - Include 3-5 key selling points, each under 250 characters, with supporting images. - Use 1600x1600 px for the image dimensions.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public EditProductRequestBody externalProductId(String externalProductId) {
+  public EditProductRequestBody externalProductId(@javax.annotation.Nullable String externalProductId) {
     this.externalProductId = externalProductId;
     return this;
   }
 
-   /**
+  /**
    * An external identifier used in an external ecommerce platform. This is used to associate the product between TikTok Shop and the external ecommerce platform.  Max length: 999 characters
    * @return externalProductId
-  **/
+   */
   @javax.annotation.Nullable
   public String getExternalProductId() {
     return externalProductId;
   }
 
-  public void setExternalProductId(String externalProductId) {
+  public void setExternalProductId(@javax.annotation.Nullable String externalProductId) {
     this.externalProductId = externalProductId;
   }
 
 
-  public EditProductRequestBody isCodAllowed(Boolean isCodAllowed) {
+  public EditProductRequestBody isCodAllowed(@javax.annotation.Nullable Boolean isCodAllowed) {
     this.isCodAllowed = isCodAllowed;
     return this;
   }
 
-   /**
+  /**
    * A flag indicating whether to show the Cash On Delivery (COD) payment option during checkout.  Use the [Get Category Rules API](https://partner.tiktokshop.com/docv2/page/6509c0febace3e02b74594a9) to check if COD is supported for your product category.  Applicable only for the following markets: - Global sellers: MY, PH, SA, TH, VN - Local sellers: ID, MY, PH, SA, TH, VN  **Note**: If COD is not supported, the listing will fail if you set this to &#x60;true&#x60;.
    * @return isCodAllowed
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsCodAllowed() {
     return isCodAllowed;
   }
 
-  public void setIsCodAllowed(Boolean isCodAllowed) {
+  public void setIsCodAllowed(@javax.annotation.Nullable Boolean isCodAllowed) {
     this.isCodAllowed = isCodAllowed;
   }
 
 
-  public EditProductRequestBody isPreOwned(Boolean isPreOwned) {
+  public EditProductRequestBody isPreOwned(@javax.annotation.Nullable Boolean isPreOwned) {
     this.isPreOwned = isPreOwned;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if the product is pre-owned.  Applicable only if TOKOPEDIA is the sole listing platform. **Note**: To list pre-owned products on the TikTok Shop platform, please specify the ID of one of the designated pre-owned product categories (e.g. pre-owned luxury bags, luggage, and accessories) in &#x60;category_id&#x60;.
    * @return isPreOwned
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsPreOwned() {
     return isPreOwned;
   }
 
-  public void setIsPreOwned(Boolean isPreOwned) {
+  public void setIsPreOwned(@javax.annotation.Nullable Boolean isPreOwned) {
     this.isPreOwned = isPreOwned;
   }
 
 
-  public EditProductRequestBody listingPlatforms(List<String> listingPlatforms) {
+  public EditProductRequestBody listingPlatforms(@javax.annotation.Nullable List<String> listingPlatforms) {
     this.listingPlatforms = listingPlatforms;
     return this;
   }
@@ -352,21 +390,21 @@ public class EditProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The platforms for listing the product. Possible values: - TOKOPEDIA - TIKTOK_SHOP Applicable only for sellers that migrated from Tokopedia.  **IMPORTANT**: This field controls the product&#39;s visibility on the listing platforms. - If the product is live on both platforms but the request contains only 1 platform, the product will be deactivated and hidden from the omitted platform. - If the product is live on 1 platform but the request contains a different platform, the product will be deactivated and hidden from the omitted platform. - If you omit this array, the product will be sent for audit on the currently active platforms or on the platforms specified in the previous request. - If you want to deactivate the product on both platforms, use the Deactivate Product API.
    * @return listingPlatforms
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getListingPlatforms() {
     return listingPlatforms;
   }
 
-  public void setListingPlatforms(List<String> listingPlatforms) {
+  public void setListingPlatforms(@javax.annotation.Nullable List<String> listingPlatforms) {
     this.listingPlatforms = listingPlatforms;
   }
 
 
-  public EditProductRequestBody mainImages(List<EditProductRequestBodyMainImages> mainImages) {
+  public EditProductRequestBody mainImages(@javax.annotation.Nullable List<EditProductRequestBodyMainImages> mainImages) {
     this.mainImages = mainImages;
     return this;
   }
@@ -379,21 +417,21 @@ public class EditProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A list of images to display in the product image gallery. - Max count: 9 - Arrange your image URIs in the sequence that they should appear on TikTok Shop. - Image dimensions: [300x300 px, 4000x4000 px]    **Recommendations**: - Use a minimum of 5 images. - The first image should have a white background. Use the [Optimize Images API](https://partner.tiktokshop.com/docv2/page/665692b35d39dc02deb49a97) to change the background to white
    * @return mainImages
-  **/
+   */
   @javax.annotation.Nullable
   public List<EditProductRequestBodyMainImages> getMainImages() {
     return mainImages;
   }
 
-  public void setMainImages(List<EditProductRequestBodyMainImages> mainImages) {
+  public void setMainImages(@javax.annotation.Nullable List<EditProductRequestBodyMainImages> mainImages) {
     this.mainImages = mainImages;
   }
 
 
-  public EditProductRequestBody manufacturerIds(List<String> manufacturerIds) {
+  public EditProductRequestBody manufacturerIds(@javax.annotation.Nullable List<String> manufacturerIds) {
     this.manufacturerIds = manufacturerIds;
     return this;
   }
@@ -406,78 +444,78 @@ public class EditProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A comma-delimited list of manufacturer IDs. Retrieve the IDs from the [Search Manufacturers API](67066a580dcee902fa03ccf9).  **Note**: Applicable only for the EU market in certain categories. Use the [Get Category Rules API](6509c0febace3e02b74594a9) to check the requirements.
    * @return manufacturerIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getManufacturerIds() {
     return manufacturerIds;
   }
 
-  public void setManufacturerIds(List<String> manufacturerIds) {
+  public void setManufacturerIds(@javax.annotation.Nullable List<String> manufacturerIds) {
     this.manufacturerIds = manufacturerIds;
   }
 
 
-  public EditProductRequestBody minimumOrderQuantity(Integer minimumOrderQuantity) {
+  public EditProductRequestBody minimumOrderQuantity(@javax.annotation.Nullable Integer minimumOrderQuantity) {
     this.minimumOrderQuantity = minimumOrderQuantity;
     return this;
   }
 
-   /**
+  /**
    * The minimum order quantity for the product. Valid range: [1, 20]  Applicable only for the Indonesia market and selected sellers in other SEA markets. Contact your account manager for more information about gaining access to this field.
    * @return minimumOrderQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getMinimumOrderQuantity() {
     return minimumOrderQuantity;
   }
 
-  public void setMinimumOrderQuantity(Integer minimumOrderQuantity) {
+  public void setMinimumOrderQuantity(@javax.annotation.Nullable Integer minimumOrderQuantity) {
     this.minimumOrderQuantity = minimumOrderQuantity;
   }
 
 
-  public EditProductRequestBody packageDimensions(EditProductRequestBodyPackageDimensions packageDimensions) {
+  public EditProductRequestBody packageDimensions(@javax.annotation.Nullable EditProductRequestBodyPackageDimensions packageDimensions) {
     this.packageDimensions = packageDimensions;
     return this;
   }
 
-   /**
+  /**
    * Get packageDimensions
    * @return packageDimensions
-  **/
+   */
   @javax.annotation.Nullable
   public EditProductRequestBodyPackageDimensions getPackageDimensions() {
     return packageDimensions;
   }
 
-  public void setPackageDimensions(EditProductRequestBodyPackageDimensions packageDimensions) {
+  public void setPackageDimensions(@javax.annotation.Nullable EditProductRequestBodyPackageDimensions packageDimensions) {
     this.packageDimensions = packageDimensions;
   }
 
 
-  public EditProductRequestBody packageWeight(EditProductRequestBodyPackageWeight packageWeight) {
+  public EditProductRequestBody packageWeight(@javax.annotation.Nullable EditProductRequestBodyPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
     return this;
   }
 
-   /**
+  /**
    * Get packageWeight
    * @return packageWeight
-  **/
+   */
   @javax.annotation.Nullable
   public EditProductRequestBodyPackageWeight getPackageWeight() {
     return packageWeight;
   }
 
-  public void setPackageWeight(EditProductRequestBodyPackageWeight packageWeight) {
+  public void setPackageWeight(@javax.annotation.Nullable EditProductRequestBodyPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
   }
 
 
-  public EditProductRequestBody productAttributes(List<EditProductRequestBodyProductAttributes> productAttributes) {
+  public EditProductRequestBody productAttributes(@javax.annotation.Nullable List<EditProductRequestBodyProductAttributes> productAttributes) {
     this.productAttributes = productAttributes;
     return this;
   }
@@ -490,21 +528,48 @@ public class EditProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A list of general attributes (e.g. manufacturer, country of origin, materials used) that describe the product as a whole, regardless of variant.   **Important**: The attributes available for use are determined by the system based on the product&#39;s assigned category, with some being mandatory. You must provide the product attributes marked as &#x60;is_required&#x60; in the response of the [Get Attributes API](6509c5784a0bb702c0561cc8) to avoid listing failure.
    * @return productAttributes
-  **/
+   */
   @javax.annotation.Nullable
   public List<EditProductRequestBodyProductAttributes> getProductAttributes() {
     return productAttributes;
   }
 
-  public void setProductAttributes(List<EditProductRequestBodyProductAttributes> productAttributes) {
+  public void setProductAttributes(@javax.annotation.Nullable List<EditProductRequestBodyProductAttributes> productAttributes) {
     this.productAttributes = productAttributes;
   }
 
 
-  public EditProductRequestBody responsiblePersonIds(List<String> responsiblePersonIds) {
+  public EditProductRequestBody replicatedProducts(@javax.annotation.Nullable List<EditProductRequestBodyReplicatedProducts> replicatedProducts) {
+    this.replicatedProducts = replicatedProducts;
+    return this;
+  }
+
+  public EditProductRequestBody addReplicatedProductsItem(EditProductRequestBodyReplicatedProducts replicatedProductsItem) {
+    if (this.replicatedProducts == null) {
+      this.replicatedProducts = new ArrayList<>();
+    }
+    this.replicatedProducts.add(replicatedProductsItem);
+    return this;
+  }
+
+  /**
+   * The list of local market replicas to which updates should be synced. As this is a full edit endpoint, all fields will be synced. Note that **category changes** and **sales attribute changes** (in sales attribute id/name) must be synced to other markets. Therefore, you must provide the &#x60;seller_sku&#x60; above and complete the details in this object. The API call will fail if you don&#39;t provide these details.
+   * @return replicatedProducts
+   */
+  @javax.annotation.Nullable
+  public List<EditProductRequestBodyReplicatedProducts> getReplicatedProducts() {
+    return replicatedProducts;
+  }
+
+  public void setReplicatedProducts(@javax.annotation.Nullable List<EditProductRequestBodyReplicatedProducts> replicatedProducts) {
+    this.replicatedProducts = replicatedProducts;
+  }
+
+
+  public EditProductRequestBody responsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
     return this;
   }
@@ -517,59 +582,78 @@ public class EditProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A comma-delimited list of responsible person IDs. Retrieve the IDs from the [Search Responsible Persons API](67066a55f17b7d02f95d2fb1).  **Note**: Applicable only for the EU market in certain categories. Use the [Get Category Rules API](6509c0febace3e02b74594a9) to check the requirements.
    * @return responsiblePersonIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getResponsiblePersonIds() {
     return responsiblePersonIds;
   }
 
-  public void setResponsiblePersonIds(List<String> responsiblePersonIds) {
+  public void setResponsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
   }
 
 
-  public EditProductRequestBody shippingInsuranceRequirement(String shippingInsuranceRequirement) {
+  public EditProductRequestBody saveMode(@javax.annotation.Nullable String saveMode) {
+    this.saveMode = saveMode;
+    return this;
+  }
+
+  /**
+   * Indicates how the product should be saved. Possible values: - AS_DRAFT: Save the product as a draft for future editing. - LISTING: Immediately list the product in the shop. Default: LISTING  **Note**:  - Saving as draft is not supported in the following cases:   - The product status is &#x60;DELETED&#x60;.   - The product status is &#x60;PENDING&#x60; or &#x60;FREEZE&#x60; on any listing platform. - If you are saving a post-live draft with &#x60;save_mode&#x3D;AS_DRAFT&#x60;, &#x60;inventory&#x60; and &#x60;delivery_option_ids&#x60; fields are not supported and will not be saved.
+   * @return saveMode
+   */
+  @javax.annotation.Nullable
+  public String getSaveMode() {
+    return saveMode;
+  }
+
+  public void setSaveMode(@javax.annotation.Nullable String saveMode) {
+    this.saveMode = saveMode;
+  }
+
+
+  public EditProductRequestBody shippingInsuranceRequirement(@javax.annotation.Nullable String shippingInsuranceRequirement) {
     this.shippingInsuranceRequirement = shippingInsuranceRequirement;
     return this;
   }
 
-   /**
+  /**
    * The shipping insurance purchase requirement imposed on buyers for the product.  Possible values: - REQUIRED: Shipping insurance is mandatory and buyers can&#39;t opt out. - OPTIONAL: Buyers can choose to purchase shipping insurance through the platform. - NOT_SUPPORTED: Shipping insurance is not supported for the product. Default: OPTIONAL  Applicable only if the listing platforms include TOKOPEDIA.
    * @return shippingInsuranceRequirement
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingInsuranceRequirement() {
     return shippingInsuranceRequirement;
   }
 
-  public void setShippingInsuranceRequirement(String shippingInsuranceRequirement) {
+  public void setShippingInsuranceRequirement(@javax.annotation.Nullable String shippingInsuranceRequirement) {
     this.shippingInsuranceRequirement = shippingInsuranceRequirement;
   }
 
 
-  public EditProductRequestBody sizeChart(EditProductRequestBodySizeChart sizeChart) {
+  public EditProductRequestBody sizeChart(@javax.annotation.Nullable EditProductRequestBodySizeChart sizeChart) {
     this.sizeChart = sizeChart;
     return this;
   }
 
-   /**
+  /**
    * Get sizeChart
    * @return sizeChart
-  **/
+   */
   @javax.annotation.Nullable
   public EditProductRequestBodySizeChart getSizeChart() {
     return sizeChart;
   }
 
-  public void setSizeChart(EditProductRequestBodySizeChart sizeChart) {
+  public void setSizeChart(@javax.annotation.Nullable EditProductRequestBodySizeChart sizeChart) {
     this.sizeChart = sizeChart;
   }
 
 
-  public EditProductRequestBody skus(List<EditProductRequestBodySkus> skus) {
+  public EditProductRequestBody skus(@javax.annotation.Nullable List<EditProductRequestBodySkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -582,55 +666,119 @@ public class EditProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A list of Stock Keeping Units (SKUs) used to identify distinct variants of the product.  **Note**: - Max SKUs for BR, EU, MX, JP, UK, US: 300 - Max SKUs for other regions: 100  **Recommendations**: Place the most important variant at the beginning of the array.
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<EditProductRequestBodySkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<EditProductRequestBodySkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<EditProductRequestBodySkus> skus) {
     this.skus = skus;
   }
 
 
-  public EditProductRequestBody title(String title) {
+  public EditProductRequestBody subscribeInfoEdit(@javax.annotation.Nullable EditProductRequestBodySubscribeInfoEdit subscribeInfoEdit) {
+    this.subscribeInfoEdit = subscribeInfoEdit;
+    return this;
+  }
+
+  /**
+   * Get subscribeInfoEdit
+   * @return subscribeInfoEdit
+   */
+  @javax.annotation.Nullable
+  public EditProductRequestBodySubscribeInfoEdit getSubscribeInfoEdit() {
+    return subscribeInfoEdit;
+  }
+
+  public void setSubscribeInfoEdit(@javax.annotation.Nullable EditProductRequestBodySubscribeInfoEdit subscribeInfoEdit) {
+    this.subscribeInfoEdit = subscribeInfoEdit;
+  }
+
+
+  public EditProductRequestBody title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * The product title.  Title length: - DE, ES, FR, IE, IT, JP, UK, US: [1, 255]  - BR, MX: [1, 300]  - Other regions: [25, 255]
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
 
-  public EditProductRequestBody video(EditProductRequestBodyVideo video) {
+  public EditProductRequestBody video(@javax.annotation.Nullable EditProductRequestBodyVideo video) {
     this.video = video;
     return this;
   }
 
-   /**
+  /**
    * Get video
    * @return video
-  **/
+   */
   @javax.annotation.Nullable
   public EditProductRequestBodyVideo getVideo() {
     return video;
   }
 
-  public void setVideo(EditProductRequestBodyVideo video) {
+  public void setVideo(@javax.annotation.Nullable EditProductRequestBodyVideo video) {
     this.video = video;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the EditProductRequestBody instance itself
+   */
+  public EditProductRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -660,17 +808,21 @@ public class EditProductRequestBody {
         Objects.equals(this.packageDimensions, product202309EditProductRequestBody.packageDimensions) &&
         Objects.equals(this.packageWeight, product202309EditProductRequestBody.packageWeight) &&
         Objects.equals(this.productAttributes, product202309EditProductRequestBody.productAttributes) &&
+        Objects.equals(this.replicatedProducts, product202309EditProductRequestBody.replicatedProducts) &&
         Objects.equals(this.responsiblePersonIds, product202309EditProductRequestBody.responsiblePersonIds) &&
+        Objects.equals(this.saveMode, product202309EditProductRequestBody.saveMode) &&
         Objects.equals(this.shippingInsuranceRequirement, product202309EditProductRequestBody.shippingInsuranceRequirement) &&
         Objects.equals(this.sizeChart, product202309EditProductRequestBody.sizeChart) &&
         Objects.equals(this.skus, product202309EditProductRequestBody.skus) &&
+        Objects.equals(this.subscribeInfoEdit, product202309EditProductRequestBody.subscribeInfoEdit) &&
         Objects.equals(this.title, product202309EditProductRequestBody.title) &&
-        Objects.equals(this.video, product202309EditProductRequestBody.video);
+        Objects.equals(this.video, product202309EditProductRequestBody.video)&&
+        Objects.equals(this.additionalProperties, product202309EditProductRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(brandId, categoryId, categoryVersion, certifications, deliveryOptionIds, description, externalProductId, isCodAllowed, isPreOwned, listingPlatforms, mainImages, manufacturerIds, minimumOrderQuantity, packageDimensions, packageWeight, productAttributes, responsiblePersonIds, shippingInsuranceRequirement, sizeChart, skus, title, video);
+    return Objects.hash(brandId, categoryId, categoryVersion, certifications, deliveryOptionIds, description, externalProductId, isCodAllowed, isPreOwned, listingPlatforms, mainImages, manufacturerIds, minimumOrderQuantity, packageDimensions, packageWeight, productAttributes, replicatedProducts, responsiblePersonIds, saveMode, shippingInsuranceRequirement, sizeChart, skus, subscribeInfoEdit, title, video, additionalProperties);
   }
 
   @Override
@@ -693,12 +845,16 @@ public class EditProductRequestBody {
     sb.append("    packageDimensions: ").append(toIndentedString(packageDimensions)).append("\n");
     sb.append("    packageWeight: ").append(toIndentedString(packageWeight)).append("\n");
     sb.append("    productAttributes: ").append(toIndentedString(productAttributes)).append("\n");
+    sb.append("    replicatedProducts: ").append(toIndentedString(replicatedProducts)).append("\n");
     sb.append("    responsiblePersonIds: ").append(toIndentedString(responsiblePersonIds)).append("\n");
+    sb.append("    saveMode: ").append(toIndentedString(saveMode)).append("\n");
     sb.append("    shippingInsuranceRequirement: ").append(toIndentedString(shippingInsuranceRequirement)).append("\n");
     sb.append("    sizeChart: ").append(toIndentedString(sizeChart)).append("\n");
     sb.append("    skus: ").append(toIndentedString(skus)).append("\n");
+    sb.append("    subscribeInfoEdit: ").append(toIndentedString(subscribeInfoEdit)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -720,52 +876,22 @@ public class EditProductRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("brand_id");
-    openapiFields.add("category_id");
-    openapiFields.add("category_version");
-    openapiFields.add("certifications");
-    openapiFields.add("delivery_option_ids");
-    openapiFields.add("description");
-    openapiFields.add("external_product_id");
-    openapiFields.add("is_cod_allowed");
-    openapiFields.add("is_pre_owned");
-    openapiFields.add("listing_platforms");
-    openapiFields.add("main_images");
-    openapiFields.add("manufacturer_ids");
-    openapiFields.add("minimum_order_quantity");
-    openapiFields.add("package_dimensions");
-    openapiFields.add("package_weight");
-    openapiFields.add("product_attributes");
-    openapiFields.add("responsible_person_ids");
-    openapiFields.add("shipping_insurance_requirement");
-    openapiFields.add("size_chart");
-    openapiFields.add("skus");
-    openapiFields.add("title");
-    openapiFields.add("video");
+    openapiFields = new HashSet<String>(Arrays.asList("brand_id", "category_id", "category_version", "certifications", "delivery_option_ids", "description", "external_product_id", "is_cod_allowed", "is_pre_owned", "listing_platforms", "main_images", "manufacturer_ids", "minimum_order_quantity", "package_dimensions", "package_weight", "product_attributes", "replicated_products", "responsible_person_ids", "save_mode", "shipping_insurance_requirement", "size_chart", "skus", "subscribe_info_edit", "title", "video"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to EditProductRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to EditProductRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!EditProductRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in EditProductRequestBody is not found in the empty JSON string", EditProductRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!EditProductRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `EditProductRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -846,9 +972,26 @@ public class EditProductRequestBody {
           };
         }
       }
+      if (jsonObj.get("replicated_products") != null && !jsonObj.get("replicated_products").isJsonNull()) {
+        JsonArray jsonArrayreplicatedProducts = jsonObj.getAsJsonArray("replicated_products");
+        if (jsonArrayreplicatedProducts != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("replicated_products").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `replicated_products` to be an array in the JSON string but got `%s`", jsonObj.get("replicated_products").toString()));
+          }
+
+          // validate the optional field `replicated_products` (array)
+          for (int i = 0; i < jsonArrayreplicatedProducts.size(); i++) {
+            EditProductRequestBodyReplicatedProducts.validateJsonElement(jsonArrayreplicatedProducts.get(i));
+          };
+        }
+      }
       // ensure the optional json data is an array if present
       if (jsonObj.get("responsible_person_ids") != null && !jsonObj.get("responsible_person_ids").isJsonNull() && !jsonObj.get("responsible_person_ids").isJsonArray()) {
         throw new IllegalArgumentException(String.format("Expected the field `responsible_person_ids` to be an array in the JSON string but got `%s`", jsonObj.get("responsible_person_ids").toString()));
+      }
+      if ((jsonObj.get("save_mode") != null && !jsonObj.get("save_mode").isJsonNull()) && !jsonObj.get("save_mode").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `save_mode` to be a primitive type in the JSON string but got `%s`", jsonObj.get("save_mode").toString()));
       }
       if ((jsonObj.get("shipping_insurance_requirement") != null && !jsonObj.get("shipping_insurance_requirement").isJsonNull()) && !jsonObj.get("shipping_insurance_requirement").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `shipping_insurance_requirement` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shipping_insurance_requirement").toString()));
@@ -870,6 +1013,10 @@ public class EditProductRequestBody {
             EditProductRequestBodySkus.validateJsonElement(jsonArrayskus.get(i));
           };
         }
+      }
+      // validate the optional field `subscribe_info_edit`
+      if (jsonObj.get("subscribe_info_edit") != null && !jsonObj.get("subscribe_info_edit").isJsonNull()) {
+        EditProductRequestBodySubscribeInfoEdit.validateJsonElement(jsonObj.get("subscribe_info_edit"));
       }
       if ((jsonObj.get("title") != null && !jsonObj.get("title").isJsonNull()) && !jsonObj.get("title").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `title` to be a primitive type in the JSON string but got `%s`", jsonObj.get("title").toString()));
@@ -895,6 +1042,28 @@ public class EditProductRequestBody {
            @Override
            public void write(JsonWriter out, EditProductRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -902,29 +1071,50 @@ public class EditProductRequestBody {
            public EditProductRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             EditProductRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of EditProductRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of EditProductRequestBody
-  * @throws IOException if the JSON string is invalid with respect to EditProductRequestBody
-  */
+  /**
+   * Create an instance of EditProductRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of EditProductRequestBody
+   * @throws IOException if the JSON string is invalid with respect to EditProductRequestBody
+   */
   public static EditProductRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, EditProductRequestBody.class);
   }
 
- /**
-  * Convert an instance of EditProductRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of EditProductRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

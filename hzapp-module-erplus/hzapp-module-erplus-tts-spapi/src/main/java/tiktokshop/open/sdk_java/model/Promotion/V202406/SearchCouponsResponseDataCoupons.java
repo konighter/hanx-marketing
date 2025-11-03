@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,353 +53,413 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchCouponsResponseDataCoupons
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchCouponsResponseDataCoupons {
   public static final String SERIALIZED_NAME_CLAIM_DURATION = "claim_duration";
   @SerializedName(SERIALIZED_NAME_CLAIM_DURATION)
+  @javax.annotation.Nullable
   private SearchCouponsResponseDataCouponsClaimDuration claimDuration;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_CREATION_SOURCE = "creation_source";
   @SerializedName(SERIALIZED_NAME_CREATION_SOURCE)
+  @javax.annotation.Nullable
   private String creationSource;
 
   public static final String SERIALIZED_NAME_DISCOUNT = "discount";
   @SerializedName(SERIALIZED_NAME_DISCOUNT)
+  @javax.annotation.Nullable
   private SearchCouponsResponseDataCouponsDiscount discount;
 
   public static final String SERIALIZED_NAME_DISPLAY_TYPE = "display_type";
   @SerializedName(SERIALIZED_NAME_DISPLAY_TYPE)
+  @javax.annotation.Nullable
   private String displayType;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_PRODUCT_SCOPE = "product_scope";
   @SerializedName(SERIALIZED_NAME_PRODUCT_SCOPE)
+  @javax.annotation.Nullable
   private String productScope;
 
   public static final String SERIALIZED_NAME_PROMO_CODE = "promo_code";
   @SerializedName(SERIALIZED_NAME_PROMO_CODE)
+  @javax.annotation.Nullable
   private String promoCode;
 
   public static final String SERIALIZED_NAME_REDEMPTION_DURATION = "redemption_duration";
   @SerializedName(SERIALIZED_NAME_REDEMPTION_DURATION)
+  @javax.annotation.Nullable
   private SearchCouponsResponseDataCouponsRedemptionDuration redemptionDuration;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TARGET_BUYER_SEGMENT = "target_buyer_segment";
   @SerializedName(SERIALIZED_NAME_TARGET_BUYER_SEGMENT)
+  @javax.annotation.Nullable
   private String targetBuyerSegment;
 
   public static final String SERIALIZED_NAME_THRESHOLD = "threshold";
   @SerializedName(SERIALIZED_NAME_THRESHOLD)
+  @javax.annotation.Nullable
   private SearchCouponsResponseDataCouponsThreshold threshold;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public static final String SERIALIZED_NAME_USAGE_LIMITS = "usage_limits";
   @SerializedName(SERIALIZED_NAME_USAGE_LIMITS)
+  @javax.annotation.Nullable
   private SearchCouponsResponseDataCouponsUsageLimits usageLimits;
 
   public SearchCouponsResponseDataCoupons() {
   }
 
-  public SearchCouponsResponseDataCoupons claimDuration(SearchCouponsResponseDataCouponsClaimDuration claimDuration) {
+  public SearchCouponsResponseDataCoupons claimDuration(@javax.annotation.Nullable SearchCouponsResponseDataCouponsClaimDuration claimDuration) {
     this.claimDuration = claimDuration;
     return this;
   }
 
-   /**
+  /**
    * Get claimDuration
    * @return claimDuration
-  **/
+   */
   @javax.annotation.Nullable
   public SearchCouponsResponseDataCouponsClaimDuration getClaimDuration() {
     return claimDuration;
   }
 
-  public void setClaimDuration(SearchCouponsResponseDataCouponsClaimDuration claimDuration) {
+  public void setClaimDuration(@javax.annotation.Nullable SearchCouponsResponseDataCouponsClaimDuration claimDuration) {
     this.claimDuration = claimDuration;
   }
 
 
-  public SearchCouponsResponseDataCoupons createTime(Long createTime) {
+  public SearchCouponsResponseDataCoupons createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The UNIX timestamp of when the coupon was created.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public SearchCouponsResponseDataCoupons creationSource(String creationSource) {
+  public SearchCouponsResponseDataCoupons creationSource(@javax.annotation.Nullable String creationSource) {
     this.creationSource = creationSource;
     return this;
   }
 
-   /**
+  /**
    * The system where the coupon is created: - &#x60;SELLER_CENTER&#x60;: Created via the Promotions section of TikTok Seller Center. - &#x60;SELLER_APP&#x60;: Created via the TikTok Seller Mobile App. - &#x60;TTS_CRM&#x60;: Created via the TikTok Shop CRM.
    * @return creationSource
-  **/
+   */
   @javax.annotation.Nullable
   public String getCreationSource() {
     return creationSource;
   }
 
-  public void setCreationSource(String creationSource) {
+  public void setCreationSource(@javax.annotation.Nullable String creationSource) {
     this.creationSource = creationSource;
   }
 
 
-  public SearchCouponsResponseDataCoupons discount(SearchCouponsResponseDataCouponsDiscount discount) {
+  public SearchCouponsResponseDataCoupons discount(@javax.annotation.Nullable SearchCouponsResponseDataCouponsDiscount discount) {
     this.discount = discount;
     return this;
   }
 
-   /**
+  /**
    * Get discount
    * @return discount
-  **/
+   */
   @javax.annotation.Nullable
   public SearchCouponsResponseDataCouponsDiscount getDiscount() {
     return discount;
   }
 
-  public void setDiscount(SearchCouponsResponseDataCouponsDiscount discount) {
+  public void setDiscount(@javax.annotation.Nullable SearchCouponsResponseDataCouponsDiscount discount) {
     this.discount = discount;
   }
 
 
-  public SearchCouponsResponseDataCoupons displayType(String displayType) {
+  public SearchCouponsResponseDataCoupons displayType(@javax.annotation.Nullable String displayType) {
     this.displayType = displayType;
     return this;
   }
 
-   /**
+  /**
    * The display type of coupons. Values: - &#x60;REGULAR&#x60;: Regular coupons which are displayed to TikTok users across all display locations available in TTS, including PLPs, PDPs, TikTok Videos, LIVE Rooms, Creator Showcases, and may be shared via TTS Customer Support instant messages. Includes coupons which target select customer segments. - &#x60;LIVE&#x60;: Coupons which are only displayed to TikTok users in LIVE Rooms. - &#x60;CREATOR_EXCLUSIVE&#x60;: Coupons that can be claimed through the display channels of the specified creator, such as their LIVE Rooms, and their Creator Showcase. - &#x60;CHAT&#x60;: Exclusive coupons that may be sent to customers via TTS customer support chat messages, but are not displayed in other display locations. - &#x60;PROMO_CODE&#x60;: Promo codes do not have dedicated display locations on TikTok, but may be shared with customers in LIVEs, in TikTok videos, or other social media platforms. They can be claimed by customers entering a claim code at checkout or by customers that use a custom promo code landing page URL.   
    * @return displayType
-  **/
+   */
   @javax.annotation.Nullable
   public String getDisplayType() {
     return displayType;
   }
 
-  public void setDisplayType(String displayType) {
+  public void setDisplayType(@javax.annotation.Nullable String displayType) {
     this.displayType = displayType;
   }
 
 
-  public SearchCouponsResponseDataCoupons id(String id) {
+  public SearchCouponsResponseDataCoupons id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * A unique ID that identifies different coupons.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public SearchCouponsResponseDataCoupons productScope(String productScope) {
+  public SearchCouponsResponseDataCoupons productScope(@javax.annotation.Nullable String productScope) {
     this.productScope = productScope;
     return this;
   }
 
-   /**
+  /**
    * The range of the products which the coupon applies to. The possible enumerations are: - &#x60;FULL_SHOP&#x60;: All products sold in the shop are eligible for the coupon. - &#x60;SPECIFIC_PRODUCTS&#x60;: Only specified products are eligible for the coupon. The list of specified products are returned in the response of the &#x60;get_coupon&#x60; API.
    * @return productScope
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductScope() {
     return productScope;
   }
 
-  public void setProductScope(String productScope) {
+  public void setProductScope(@javax.annotation.Nullable String productScope) {
     this.productScope = productScope;
   }
 
 
-  public SearchCouponsResponseDataCoupons promoCode(String promoCode) {
+  public SearchCouponsResponseDataCoupons promoCode(@javax.annotation.Nullable String promoCode) {
     this.promoCode = promoCode;
     return this;
   }
 
-   /**
+  /**
    * Promotion code. The string contains only Unicode letters or digits. The length of the string is in the range of &#x60;[6, 12]&#x60;.
    * @return promoCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPromoCode() {
     return promoCode;
   }
 
-  public void setPromoCode(String promoCode) {
+  public void setPromoCode(@javax.annotation.Nullable String promoCode) {
     this.promoCode = promoCode;
   }
 
 
-  public SearchCouponsResponseDataCoupons redemptionDuration(SearchCouponsResponseDataCouponsRedemptionDuration redemptionDuration) {
+  public SearchCouponsResponseDataCoupons redemptionDuration(@javax.annotation.Nullable SearchCouponsResponseDataCouponsRedemptionDuration redemptionDuration) {
     this.redemptionDuration = redemptionDuration;
     return this;
   }
 
-   /**
+  /**
    * Get redemptionDuration
    * @return redemptionDuration
-  **/
+   */
   @javax.annotation.Nullable
   public SearchCouponsResponseDataCouponsRedemptionDuration getRedemptionDuration() {
     return redemptionDuration;
   }
 
-  public void setRedemptionDuration(SearchCouponsResponseDataCouponsRedemptionDuration redemptionDuration) {
+  public void setRedemptionDuration(@javax.annotation.Nullable SearchCouponsResponseDataCouponsRedemptionDuration redemptionDuration) {
     this.redemptionDuration = redemptionDuration;
   }
 
 
-  public SearchCouponsResponseDataCoupons status(String status) {
+  public SearchCouponsResponseDataCoupons status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Coupon&#39;s promotion status. Values: - &#x60;NOT_START&#x60;: Not available to TikTok users until the coupon&#39;s configured start time. - &#x60;ONGOING&#x60;: Available to TikTok users. - &#x60;EXPIRED&#x60;: Not available to TikTok users because it has expired. - &#x60;DEACTIVATED&#x60;: Deactivated by the seller and is not available to TikTok users.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public SearchCouponsResponseDataCoupons targetBuyerSegment(String targetBuyerSegment) {
+  public SearchCouponsResponseDataCoupons targetBuyerSegment(@javax.annotation.Nullable String targetBuyerSegment) {
     this.targetBuyerSegment = targetBuyerSegment;
     return this;
   }
 
-   /**
+  /**
    * The target buyer segment of the coupon. Possible enumerations are: - &#x60;ALL&#x60;: May be discovered and claimed by all TTS buyers. - &#x60;NEW&#x60;:Customers who have never purchased from your shop. - &#x60;REPEAT_CUSTOMERS&#x60;: People who have previously placed orders in your shop and made another purchase within certain days(30 days for non-US and 90 days for US). - &#x60;RECENT_CUSTOMERS&#x60;: People who have made their first purchase in your shop in the past certain days(30 days for non-US and 90 days for US). - &#x60;FREQUENT_CUSTOMERS&#x60;: Customers with more than 1 purchase within the last 90 days. - &#x60;LAPSED_CUSTOMERS&#x60;: Customers with at least 1 purchase in the past 365 days but no purchases within the last certain days(90 days for non-US and 30 days for US). - &#x60;NEW_FOLLOWERS&#x60;: People who started following the TikTok account of your shop in the past 30 days. - &#x60;EXISTING_ACTIVE_FOLLOWERS&#x60;: People who followed the TikTok account of your shop and engaged with your shop through LIVE, short videos or product cards in the past 30 days. 
    * @return targetBuyerSegment
-  **/
+   */
   @javax.annotation.Nullable
   public String getTargetBuyerSegment() {
     return targetBuyerSegment;
   }
 
-  public void setTargetBuyerSegment(String targetBuyerSegment) {
+  public void setTargetBuyerSegment(@javax.annotation.Nullable String targetBuyerSegment) {
     this.targetBuyerSegment = targetBuyerSegment;
   }
 
 
-  public SearchCouponsResponseDataCoupons threshold(SearchCouponsResponseDataCouponsThreshold threshold) {
+  public SearchCouponsResponseDataCoupons threshold(@javax.annotation.Nullable SearchCouponsResponseDataCouponsThreshold threshold) {
     this.threshold = threshold;
     return this;
   }
 
-   /**
+  /**
    * Get threshold
    * @return threshold
-  **/
+   */
   @javax.annotation.Nullable
   public SearchCouponsResponseDataCouponsThreshold getThreshold() {
     return threshold;
   }
 
-  public void setThreshold(SearchCouponsResponseDataCouponsThreshold threshold) {
+  public void setThreshold(@javax.annotation.Nullable SearchCouponsResponseDataCouponsThreshold threshold) {
     this.threshold = threshold;
   }
 
 
-  public SearchCouponsResponseDataCoupons title(String title) {
+  public SearchCouponsResponseDataCoupons title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * Seller-specified title of the coupon.
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
 
-  public SearchCouponsResponseDataCoupons updateTime(Long updateTime) {
+  public SearchCouponsResponseDataCoupons updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * The UNIX timestamp of when the coupon was updated.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
   }
 
 
-  public SearchCouponsResponseDataCoupons usageLimits(SearchCouponsResponseDataCouponsUsageLimits usageLimits) {
+  public SearchCouponsResponseDataCoupons usageLimits(@javax.annotation.Nullable SearchCouponsResponseDataCouponsUsageLimits usageLimits) {
     this.usageLimits = usageLimits;
     return this;
   }
 
-   /**
+  /**
    * Get usageLimits
    * @return usageLimits
-  **/
+   */
   @javax.annotation.Nullable
   public SearchCouponsResponseDataCouponsUsageLimits getUsageLimits() {
     return usageLimits;
   }
 
-  public void setUsageLimits(SearchCouponsResponseDataCouponsUsageLimits usageLimits) {
+  public void setUsageLimits(@javax.annotation.Nullable SearchCouponsResponseDataCouponsUsageLimits usageLimits) {
     this.usageLimits = usageLimits;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchCouponsResponseDataCoupons instance itself
+   */
+  public SearchCouponsResponseDataCoupons putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -428,12 +487,13 @@ public class SearchCouponsResponseDataCoupons {
         Objects.equals(this.threshold, promotion202406SearchCouponsResponseDataCoupons.threshold) &&
         Objects.equals(this.title, promotion202406SearchCouponsResponseDataCoupons.title) &&
         Objects.equals(this.updateTime, promotion202406SearchCouponsResponseDataCoupons.updateTime) &&
-        Objects.equals(this.usageLimits, promotion202406SearchCouponsResponseDataCoupons.usageLimits);
+        Objects.equals(this.usageLimits, promotion202406SearchCouponsResponseDataCoupons.usageLimits)&&
+        Objects.equals(this.additionalProperties, promotion202406SearchCouponsResponseDataCoupons.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(claimDuration, createTime, creationSource, discount, displayType, id, productScope, promoCode, redemptionDuration, status, targetBuyerSegment, threshold, title, updateTime, usageLimits);
+    return Objects.hash(claimDuration, createTime, creationSource, discount, displayType, id, productScope, promoCode, redemptionDuration, status, targetBuyerSegment, threshold, title, updateTime, usageLimits, additionalProperties);
   }
 
   @Override
@@ -455,6 +515,7 @@ public class SearchCouponsResponseDataCoupons {
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
     sb.append("    usageLimits: ").append(toIndentedString(usageLimits)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -476,45 +537,22 @@ public class SearchCouponsResponseDataCoupons {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("claim_duration");
-    openapiFields.add("create_time");
-    openapiFields.add("creation_source");
-    openapiFields.add("discount");
-    openapiFields.add("display_type");
-    openapiFields.add("id");
-    openapiFields.add("product_scope");
-    openapiFields.add("promo_code");
-    openapiFields.add("redemption_duration");
-    openapiFields.add("status");
-    openapiFields.add("target_buyer_segment");
-    openapiFields.add("threshold");
-    openapiFields.add("title");
-    openapiFields.add("update_time");
-    openapiFields.add("usage_limits");
+    openapiFields = new HashSet<String>(Arrays.asList("claim_duration", "create_time", "creation_source", "discount", "display_type", "id", "product_scope", "promo_code", "redemption_duration", "status", "target_buyer_segment", "threshold", "title", "update_time", "usage_limits"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchCouponsResponseDataCoupons
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchCouponsResponseDataCoupons
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchCouponsResponseDataCoupons.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchCouponsResponseDataCoupons is not found in the empty JSON string", SearchCouponsResponseDataCoupons.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchCouponsResponseDataCoupons.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchCouponsResponseDataCoupons` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -579,6 +617,28 @@ public class SearchCouponsResponseDataCoupons {
            @Override
            public void write(JsonWriter out, SearchCouponsResponseDataCoupons value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -586,29 +646,50 @@ public class SearchCouponsResponseDataCoupons {
            public SearchCouponsResponseDataCoupons read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchCouponsResponseDataCoupons instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchCouponsResponseDataCoupons given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchCouponsResponseDataCoupons
-  * @throws IOException if the JSON string is invalid with respect to SearchCouponsResponseDataCoupons
-  */
+  /**
+   * Create an instance of SearchCouponsResponseDataCoupons given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchCouponsResponseDataCoupons
+   * @throws IOException if the JSON string is invalid with respect to SearchCouponsResponseDataCoupons
+   */
   public static SearchCouponsResponseDataCoupons fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchCouponsResponseDataCoupons.class);
   }
 
- /**
-  * Convert an instance of SearchCouponsResponseDataCoupons to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchCouponsResponseDataCoupons to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

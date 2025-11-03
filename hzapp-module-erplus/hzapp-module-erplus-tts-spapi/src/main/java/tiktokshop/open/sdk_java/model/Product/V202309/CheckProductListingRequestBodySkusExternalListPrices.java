@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CheckProductListingRequestBodySkusExternalListPrices
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CheckProductListingRequestBodySkusExternalListPrices {
   public static final String SERIALIZED_NAME_AMOUNT = "amount";
   @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nullable
   private String amount;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_SOURCE = "source";
   @SerializedName(SERIALIZED_NAME_SOURCE)
+  @javax.annotation.Nullable
   private String source;
 
   public CheckProductListingRequestBodySkusExternalListPrices() {
   }
 
-  public CheckProductListingRequestBodySkusExternalListPrices amount(String amount) {
+  public CheckProductListingRequestBodySkusExternalListPrices amount(@javax.annotation.Nullable String amount) {
     this.amount = amount;
     return this;
   }
 
-   /**
+  /**
    * The price amount. Valid range: [0.01, 7600]
    * @return amount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAmount() {
     return amount;
   }
 
-  public void setAmount(String amount) {
+  public void setAmount(@javax.annotation.Nullable String amount) {
     this.amount = amount;
   }
 
 
-  public CheckProductListingRequestBodySkusExternalListPrices currency(String currency) {
+  public CheckProductListingRequestBodySkusExternalListPrices currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * The currency. Possible values: USD
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public CheckProductListingRequestBodySkusExternalListPrices source(String source) {
+  public CheckProductListingRequestBodySkusExternalListPrices source(@javax.annotation.Nullable String source) {
     this.source = source;
     return this;
   }
 
-   /**
+  /**
    * The external ecommerce platform from which the price is sourced. Possible values: - SHOPIFY_COMPARE_AT_PRICE: The compare_at_price in Shopify.
    * @return source
-  **/
+   */
   @javax.annotation.Nullable
   public String getSource() {
     return source;
   }
 
-  public void setSource(String source) {
+  public void setSource(@javax.annotation.Nullable String source) {
     this.source = source;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CheckProductListingRequestBodySkusExternalListPrices instance itself
+   */
+  public CheckProductListingRequestBodySkusExternalListPrices putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class CheckProductListingRequestBodySkusExternalListPrices {
     CheckProductListingRequestBodySkusExternalListPrices product202309CheckProductListingRequestBodySkusExternalListPrices = (CheckProductListingRequestBodySkusExternalListPrices) o;
     return Objects.equals(this.amount, product202309CheckProductListingRequestBodySkusExternalListPrices.amount) &&
         Objects.equals(this.currency, product202309CheckProductListingRequestBodySkusExternalListPrices.currency) &&
-        Objects.equals(this.source, product202309CheckProductListingRequestBodySkusExternalListPrices.source);
+        Objects.equals(this.source, product202309CheckProductListingRequestBodySkusExternalListPrices.source)&&
+        Objects.equals(this.additionalProperties, product202309CheckProductListingRequestBodySkusExternalListPrices.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(amount, currency, source);
+    return Objects.hash(amount, currency, source, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class CheckProductListingRequestBodySkusExternalListPrices {
     sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class CheckProductListingRequestBodySkusExternalListPrices {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("amount");
-    openapiFields.add("currency");
-    openapiFields.add("source");
+    openapiFields = new HashSet<String>(Arrays.asList("amount", "currency", "source"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CheckProductListingRequestBodySkusExternalListPrices
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CheckProductListingRequestBodySkusExternalListPrices
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CheckProductListingRequestBodySkusExternalListPrices.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CheckProductListingRequestBodySkusExternalListPrices is not found in the empty JSON string", CheckProductListingRequestBodySkusExternalListPrices.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CheckProductListingRequestBodySkusExternalListPrices.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CheckProductListingRequestBodySkusExternalListPrices` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -227,6 +265,28 @@ public class CheckProductListingRequestBodySkusExternalListPrices {
            @Override
            public void write(JsonWriter out, CheckProductListingRequestBodySkusExternalListPrices value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -234,29 +294,50 @@ public class CheckProductListingRequestBodySkusExternalListPrices {
            public CheckProductListingRequestBodySkusExternalListPrices read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CheckProductListingRequestBodySkusExternalListPrices instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CheckProductListingRequestBodySkusExternalListPrices given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CheckProductListingRequestBodySkusExternalListPrices
-  * @throws IOException if the JSON string is invalid with respect to CheckProductListingRequestBodySkusExternalListPrices
-  */
+  /**
+   * Create an instance of CheckProductListingRequestBodySkusExternalListPrices given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CheckProductListingRequestBodySkusExternalListPrices
+   * @throws IOException if the JSON string is invalid with respect to CheckProductListingRequestBodySkusExternalListPrices
+   */
   public static CheckProductListingRequestBodySkusExternalListPrices fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CheckProductListingRequestBodySkusExternalListPrices.class);
   }
 
- /**
-  * Convert an instance of CheckProductListingRequestBodySkusExternalListPrices to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CheckProductListingRequestBodySkusExternalListPrices to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

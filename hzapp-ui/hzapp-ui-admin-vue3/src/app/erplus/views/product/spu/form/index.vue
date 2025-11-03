@@ -26,6 +26,14 @@
           :propFormData="formData"
         />
       </el-tab-pane>
+      <el-tab-pane label="产品属性" name="attributes">
+        <ProductAttributesForm
+          ref="attributesRef"
+          v-model:activeName="activeName"
+          :is-detail="isDetail"
+          :propFormData="formData"
+        />
+      </el-tab-pane>
       <el-tab-pane label="物流设置" name="delivery">
         <DeliveryForm
           ref="deliveryRef"
@@ -35,14 +43,7 @@
         />
       </el-tab-pane>
       
-      <el-tab-pane label="其它设置" name="other">
-        <OtherForm
-          ref="otherRef"
-          v-model:activeName="activeName"
-          :is-detail="isDetail"
-          :propFormData="formData"
-        />
-      </el-tab-pane>
+      
   
       <el-tab-pane label="安全合规" name="compliance">
         <ComplianceForm
@@ -71,8 +72,8 @@ import { cloneDeep } from 'lodash-es'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import * as ProductSpuApi from '@/app/erplus/api/product/spu'
 import InfoForm from './InfoForm.vue'
-import OtherForm from './OtherForm.vue'
 import SkuForm from './SkuForm.vue'
+import ProductAttributesForm from './ProductAttributesForm.vue'
 import DeliveryForm from './DeliveryForm.vue'
 import PublishForm from './PublishForm.vue'
 import ComplianceForm from './ComplianceForm.vue'
@@ -91,12 +92,13 @@ const activeName = ref('publish') // Tag 激活的窗口
 const isDetail = ref(false) // 是否查看详情
 const infoRef = ref() // 商品信息 Ref
 const skuRef = ref() // 商品规格 Ref
+const attributesRef = ref() // 产品属性 Ref
 const deliveryRef = ref() // 物流设置 Ref
 const otherRef = ref() // 其他设置 Ref
 const publishRef = ref() // 发布设置 Ref
 const complianceRef = ref() // 安全合规 Ref
 
-const tabs: string[] = ['publish', 'info', 'sku', 'delivery', 'other', 'compliance']
+const tabs: string[] = ['publish', 'info', 'sku', 'attributes', 'delivery', 'compliance']
  
 
 // SPU 表单数据
@@ -112,57 +114,45 @@ const formData = ref<ProductSpuApi.Spu>({
   brandId: undefined, // 商品品牌
   specType: false, // 商品规格
   subCommissionType: false, // 分销类型
-  skus: [
-    {
-      price: 0, // 商品价格
-      marketPrice: 0, // 市场价
-      costPrice: 0, // 成本价
-      barCode: '', // 商品条码
-      picUrl: '', // 图片地址
-      stock: 0, // 库存
-      weight: 0, // 商品重量
-      volume: 0, // 商品体积
-      firstBrokeragePrice: 0, // 一级分销的佣金
-      secondBrokeragePrice: 0 // 二级分销的佣金
-    }
-  ],
+  skus: [],
   description: '', // 商品详情
-  sort: 0, // 商品排序
-  giveIntegral: 0, // 赠送积分
-  virtualSalesCount: 0, // 虚拟销量
+  sort: 1, // 商品排序
+  giveIntegral: 1, // 赠送积分
+  virtualSalesCount: 1, // 虚拟销量
+  
+  // 产品属性
+  attributes: {},
   
   // 发布设置相关属性
-  crossPlatform: false,
-  marketId: undefined,
-  shopIds: [] as number[],
-  deliveryMode: '',
+  crossPlatform: '',
+  marketId: '',
+  shopIds: [],
+  saveMode: '',
+  fulfillType: '',
+  delaySync: false,
   scheduleTime: '',
-  multiLanguage: {} as Record<string, string>,
-  productAttributes: {} as Record<string, any>,
-  packageInfo: {
+  productAttributes: [],
+  packageDimensions: {
+    length: 0,
+    width: 0,
+    height: 0,
+    unit: 'cm',
     weight: 0,
-    dimensions: '',
-    fragile: false
+    weightUnit: 'kg'
   },
-  certifications: {} as Record<string, string>,
+  certifications: [],
   
   // 安全合规相关属性
-  safetyStandards: [] as string[],
-  safetyWarnings: [] as string[],
-  materials: [] as Array<{ name: string; percentage: number; type: string; }>,
-  hazardousSubstances: [] as string[],
-  environmentalCertifications: [] as string[],
-  packagingMaterials: [] as string[],
-  applicableRegulations: [] as string[],
-  restrictedRegions: [] as string[],
-  specialLicenses: [] as string[],
-  qualityReports: [] as Array<{
-    reportType: string;
-    reportNumber: string;
-    issueDate: string;
-    validUntil: string;
-    issuingAuthority: string;
-  }>
+  safetyStandards: [],
+  safetyWarnings: [],
+  materials: [],
+  hazardousSubstances: [],
+  environmentalCertifications: [],
+  packagingMaterials: [],
+  applicableRegulations: [],
+  restrictedRegions: [],
+  specialLicenses: [],
+  qualityReports: []
 })
 
 /** 获得详情 */
@@ -207,6 +197,7 @@ const submitForm = async () => {
     // 校验各表单
     await unref(infoRef)?.validate()
     await unref(skuRef)?.validate()
+    await unref(attributesRef)?.validate()
     await unref(deliveryRef)?.validate()
     await unref(otherRef)?.validate()
     await unref(publishRef)?.validate()

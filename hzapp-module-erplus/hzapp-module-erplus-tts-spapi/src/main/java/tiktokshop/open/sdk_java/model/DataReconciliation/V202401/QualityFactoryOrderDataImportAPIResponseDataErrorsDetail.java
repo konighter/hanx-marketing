@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,66 +51,70 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * QualityFactoryOrderDataImportAPIResponseDataErrorsDetail
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class QualityFactoryOrderDataImportAPIResponseDataErrorsDetail {
   public static final String SERIALIZED_NAME_CHANNEL_ORDER_ID = "channel_order_id";
   @SerializedName(SERIALIZED_NAME_CHANNEL_ORDER_ID)
+  @javax.annotation.Nullable
   private String channelOrderId;
 
   public static final String SERIALIZED_NAME_CHANNEL_TYPE = "channel_type";
   @SerializedName(SERIALIZED_NAME_CHANNEL_TYPE)
+  @javax.annotation.Nullable
   private String channelType;
 
   public static final String SERIALIZED_NAME_EXTRA_ERRORS = "extra_errors";
   @SerializedName(SERIALIZED_NAME_EXTRA_ERRORS)
+  @javax.annotation.Nullable
   private List<QualityFactoryOrderDataImportAPIResponseDataErrorsDetailExtraErrors> extraErrors = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail() {
   }
 
-  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail channelOrderId(String channelOrderId) {
+  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail channelOrderId(@javax.annotation.Nullable String channelOrderId) {
     this.channelOrderId = channelOrderId;
     return this;
   }
 
-   /**
+  /**
    * Failed channel order id 
    * @return channelOrderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getChannelOrderId() {
     return channelOrderId;
   }
 
-  public void setChannelOrderId(String channelOrderId) {
+  public void setChannelOrderId(@javax.annotation.Nullable String channelOrderId) {
     this.channelOrderId = channelOrderId;
   }
 
 
-  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail channelType(String channelType) {
+  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail channelType(@javax.annotation.Nullable String channelType) {
     this.channelType = channelType;
     return this;
   }
 
-   /**
+  /**
    * Failed channel type 
    * @return channelType
-  **/
+   */
   @javax.annotation.Nullable
   public String getChannelType() {
     return channelType;
   }
 
-  public void setChannelType(String channelType) {
+  public void setChannelType(@javax.annotation.Nullable String channelType) {
     this.channelType = channelType;
   }
 
 
-  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail extraErrors(List<QualityFactoryOrderDataImportAPIResponseDataErrorsDetailExtraErrors> extraErrors) {
+  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail extraErrors(@javax.annotation.Nullable List<QualityFactoryOrderDataImportAPIResponseDataErrorsDetailExtraErrors> extraErrors) {
     this.extraErrors = extraErrors;
     return this;
   }
@@ -124,36 +127,81 @@ public class QualityFactoryOrderDataImportAPIResponseDataErrorsDetail {
     return this;
   }
 
-   /**
+  /**
    * Failed order reasons
    * @return extraErrors
-  **/
+   */
   @javax.annotation.Nullable
   public List<QualityFactoryOrderDataImportAPIResponseDataErrorsDetailExtraErrors> getExtraErrors() {
     return extraErrors;
   }
 
-  public void setExtraErrors(List<QualityFactoryOrderDataImportAPIResponseDataErrorsDetailExtraErrors> extraErrors) {
+  public void setExtraErrors(@javax.annotation.Nullable List<QualityFactoryOrderDataImportAPIResponseDataErrorsDetailExtraErrors> extraErrors) {
     this.extraErrors = extraErrors;
   }
 
 
-  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail orderId(String orderId) {
+  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * Failed Tiktok Shop order id 
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the QualityFactoryOrderDataImportAPIResponseDataErrorsDetail instance itself
+   */
+  public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -170,12 +218,13 @@ public class QualityFactoryOrderDataImportAPIResponseDataErrorsDetail {
     return Objects.equals(this.channelOrderId, dataReconciliation202401QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.channelOrderId) &&
         Objects.equals(this.channelType, dataReconciliation202401QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.channelType) &&
         Objects.equals(this.extraErrors, dataReconciliation202401QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.extraErrors) &&
-        Objects.equals(this.orderId, dataReconciliation202401QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.orderId);
+        Objects.equals(this.orderId, dataReconciliation202401QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.orderId)&&
+        Objects.equals(this.additionalProperties, dataReconciliation202401QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channelOrderId, channelType, extraErrors, orderId);
+    return Objects.hash(channelOrderId, channelType, extraErrors, orderId, additionalProperties);
   }
 
   @Override
@@ -186,6 +235,7 @@ public class QualityFactoryOrderDataImportAPIResponseDataErrorsDetail {
     sb.append("    channelType: ").append(toIndentedString(channelType)).append("\n");
     sb.append("    extraErrors: ").append(toIndentedString(extraErrors)).append("\n");
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -207,34 +257,22 @@ public class QualityFactoryOrderDataImportAPIResponseDataErrorsDetail {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("channel_order_id");
-    openapiFields.add("channel_type");
-    openapiFields.add("extra_errors");
-    openapiFields.add("order_id");
+    openapiFields = new HashSet<String>(Arrays.asList("channel_order_id", "channel_type", "extra_errors", "order_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to QualityFactoryOrderDataImportAPIResponseDataErrorsDetail
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to QualityFactoryOrderDataImportAPIResponseDataErrorsDetail
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in QualityFactoryOrderDataImportAPIResponseDataErrorsDetail is not found in the empty JSON string", QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `QualityFactoryOrderDataImportAPIResponseDataErrorsDetail` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -278,6 +316,28 @@ public class QualityFactoryOrderDataImportAPIResponseDataErrorsDetail {
            @Override
            public void write(JsonWriter out, QualityFactoryOrderDataImportAPIResponseDataErrorsDetail value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -285,29 +345,50 @@ public class QualityFactoryOrderDataImportAPIResponseDataErrorsDetail {
            public QualityFactoryOrderDataImportAPIResponseDataErrorsDetail read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             QualityFactoryOrderDataImportAPIResponseDataErrorsDetail instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of QualityFactoryOrderDataImportAPIResponseDataErrorsDetail given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of QualityFactoryOrderDataImportAPIResponseDataErrorsDetail
-  * @throws IOException if the JSON string is invalid with respect to QualityFactoryOrderDataImportAPIResponseDataErrorsDetail
-  */
+  /**
+   * Create an instance of QualityFactoryOrderDataImportAPIResponseDataErrorsDetail given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of QualityFactoryOrderDataImportAPIResponseDataErrorsDetail
+   * @throws IOException if the JSON string is invalid with respect to QualityFactoryOrderDataImportAPIResponseDataErrorsDetail
+   */
   public static QualityFactoryOrderDataImportAPIResponseDataErrorsDetail fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, QualityFactoryOrderDataImportAPIResponseDataErrorsDetail.class);
   }
 
- /**
-  * Convert an instance of QualityFactoryOrderDataImportAPIResponseDataErrorsDetail to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of QualityFactoryOrderDataImportAPIResponseDataErrorsDetail to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

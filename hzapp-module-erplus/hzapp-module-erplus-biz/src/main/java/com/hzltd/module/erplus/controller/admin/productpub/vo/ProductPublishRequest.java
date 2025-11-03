@@ -1,11 +1,11 @@
 package com.hzltd.module.erplus.controller.admin.productpub.vo;
 
-import com.hzltd.module.erpls.api.constant.FulfillTypeEnum;
-import com.hzltd.module.erpls.api.constant.LanguageEnum;
-import com.hzltd.module.erpls.api.constant.SaveModeEnum;
-import com.hzltd.module.erpls.api.model.category.CategoryModel;
-import com.hzltd.module.erpls.api.model.common.*;
-import com.hzltd.module.erpls.api.model.logistics.LogisticsModel;
+import com.hzltd.module.erplus.constant.FulfillTypeEnum;
+import com.hzltd.module.erplus.constant.LanguageEnum;
+import com.hzltd.module.erplus.constant.SaveModeEnum;
+import com.hzltd.module.erplus.model.category.CategoryModel;
+import com.hzltd.module.erplus.model.common.*;
+import com.hzltd.module.erplus.model.logistics.LogisticsModel;
 import com.hzltd.module.erplus.dal.dataobject.brand.ProductBrandDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;

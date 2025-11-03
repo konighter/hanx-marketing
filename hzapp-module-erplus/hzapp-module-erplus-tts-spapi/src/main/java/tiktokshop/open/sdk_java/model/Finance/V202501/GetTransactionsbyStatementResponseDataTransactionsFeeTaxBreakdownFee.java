@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,583 +48,821 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee {
   public static final String SERIALIZED_NAME_AFFILIATE_ADS_COMMISSION_AMOUNT = "affiliate_ads_commission_amount";
   @SerializedName(SERIALIZED_NAME_AFFILIATE_ADS_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String affiliateAdsCommissionAmount;
 
   public static final String SERIALIZED_NAME_AFFILIATE_COMMISSION_AMOUNT = "affiliate_commission_amount";
   @SerializedName(SERIALIZED_NAME_AFFILIATE_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String affiliateCommissionAmount;
 
   public static final String SERIALIZED_NAME_AFFILIATE_COMMISSION_AMOUNT_BEFORE_PIT = "affiliate_commission_amount_before_pit";
   @SerializedName(SERIALIZED_NAME_AFFILIATE_COMMISSION_AMOUNT_BEFORE_PIT)
+  @javax.annotation.Nullable
   private String affiliateCommissionAmountBeforePit;
+
+  public static final String SERIALIZED_NAME_AFFILIATE_COMMISSION_DEPOSIT = "affiliate_commission_deposit";
+  @SerializedName(SERIALIZED_NAME_AFFILIATE_COMMISSION_DEPOSIT)
+  @javax.annotation.Nullable
+  private String affiliateCommissionDeposit;
+
+  public static final String SERIALIZED_NAME_AFFILIATE_COMMISSION_RELEASE = "affiliate_commission_release";
+  @SerializedName(SERIALIZED_NAME_AFFILIATE_COMMISSION_RELEASE)
+  @javax.annotation.Nullable
+  private String affiliateCommissionRelease;
 
   public static final String SERIALIZED_NAME_AFFILIATE_PARTNER_COMMISSION_AMOUNT = "affiliate_partner_commission_amount";
   @SerializedName(SERIALIZED_NAME_AFFILIATE_PARTNER_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String affiliatePartnerCommissionAmount;
 
   public static final String SERIALIZED_NAME_BONUS_CASHBACK_SERVICE_FEE_AMOUNT = "bonus_cashback_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_BONUS_CASHBACK_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String bonusCashbackServiceFeeAmount;
+
+  public static final String SERIALIZED_NAME_CAMPAIGN_RESOURCE_FEE = "campaign_resource_fee";
+  @SerializedName(SERIALIZED_NAME_CAMPAIGN_RESOURCE_FEE)
+  @javax.annotation.Nullable
+  private String campaignResourceFee;
 
   public static final String SERIALIZED_NAME_COFUNDED_CREATOR_BONUS_AMOUNT = "cofunded_creator_bonus_amount";
   @SerializedName(SERIALIZED_NAME_COFUNDED_CREATOR_BONUS_AMOUNT)
+  @javax.annotation.Nullable
   private String cofundedCreatorBonusAmount;
 
   public static final String SERIALIZED_NAME_COFUNDED_PROMOTION_SERVICE_FEE_AMOUNT = "cofunded_promotion_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_COFUNDED_PROMOTION_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String cofundedPromotionServiceFeeAmount;
 
   public static final String SERIALIZED_NAME_CREDIT_CARD_HANDLING_FEE_AMOUNT = "credit_card_handling_fee_amount";
   @SerializedName(SERIALIZED_NAME_CREDIT_CARD_HANDLING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String creditCardHandlingFeeAmount;
 
   public static final String SERIALIZED_NAME_DT_HANDLING_FEE_AMOUNT = "dt_handling_fee_amount";
   @SerializedName(SERIALIZED_NAME_DT_HANDLING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String dtHandlingFeeAmount;
 
   public static final String SERIALIZED_NAME_DYNAMIC_COMMISSION_AMOUNT = "dynamic_commission_amount";
   @SerializedName(SERIALIZED_NAME_DYNAMIC_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String dynamicCommissionAmount;
 
   public static final String SERIALIZED_NAME_EPR_POB_SERVICE_FEE_AMOUNT = "epr_pob_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_EPR_POB_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String eprPobServiceFeeAmount;
 
   public static final String SERIALIZED_NAME_EXTERNAL_AFFILIATE_MARKETING_FEE_AMOUNT = "external_affiliate_marketing_fee_amount";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_AFFILIATE_MARKETING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String externalAffiliateMarketingFeeAmount;
 
   public static final String SERIALIZED_NAME_FEE_PER_ITEM_SOLD_AMOUNT = "fee_per_item_sold_amount";
   @SerializedName(SERIALIZED_NAME_FEE_PER_ITEM_SOLD_AMOUNT)
+  @javax.annotation.Nullable
   private String feePerItemSoldAmount;
 
   public static final String SERIALIZED_NAME_FLASH_SALES_SERVICE_FEE_AMOUNT = "flash_sales_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_FLASH_SALES_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String flashSalesServiceFeeAmount;
+
+  public static final String SERIALIZED_NAME_INSTALLATION_SERVICE_FEE = "installation_service_fee";
+  @SerializedName(SERIALIZED_NAME_INSTALLATION_SERVICE_FEE)
+  @javax.annotation.Nullable
+  private String installationServiceFee;
 
   public static final String SERIALIZED_NAME_LIVE_SPECIALS_FEE_AMOUNT = "live_specials_fee_amount";
   @SerializedName(SERIALIZED_NAME_LIVE_SPECIALS_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String liveSpecialsFeeAmount;
 
   public static final String SERIALIZED_NAME_MALL_SERVICE_FEE_AMOUNT = "mall_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_MALL_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String mallServiceFeeAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_COMMISSION_AMOUNT = "platform_commission_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String platformCommissionAmount;
 
   public static final String SERIALIZED_NAME_PRE_ORDER_SERVICE_FEE_AMOUNT = "pre_order_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_PRE_ORDER_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String preOrderServiceFeeAmount;
 
   public static final String SERIALIZED_NAME_REFERRAL_FEE_AMOUNT = "referral_fee_amount";
   @SerializedName(SERIALIZED_NAME_REFERRAL_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String referralFeeAmount;
 
   public static final String SERIALIZED_NAME_REFUND_ADMINISTRATION_FEE_AMOUNT = "refund_administration_fee_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_ADMINISTRATION_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String refundAdministrationFeeAmount;
 
   public static final String SERIALIZED_NAME_SELLER_PAYLATER_HANDLING_FEE_AMOUNT = "seller_paylater_handling_fee_amount";
   @SerializedName(SERIALIZED_NAME_SELLER_PAYLATER_HANDLING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String sellerPaylaterHandlingFeeAmount;
 
   public static final String SERIALIZED_NAME_SFP_SERVICE_FEE_AMOUNT = "sfp_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_SFP_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String sfpServiceFeeAmount;
+
+  public static final String SERIALIZED_NAME_SHIPPING_FEE_GUARANTEE_SERVICE_FEE = "shipping_fee_guarantee_service_fee";
+  @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_GUARANTEE_SERVICE_FEE)
+  @javax.annotation.Nullable
+  private String shippingFeeGuaranteeServiceFee;
+
+  public static final String SERIALIZED_NAME_TAP_SHOP_ADS_COMMISSION = "tap_shop_ads_commission";
+  @SerializedName(SERIALIZED_NAME_TAP_SHOP_ADS_COMMISSION)
+  @javax.annotation.Nullable
+  private String tapShopAdsCommission;
 
   public static final String SERIALIZED_NAME_TRANSACTION_FEE_AMOUNT = "transaction_fee_amount";
   @SerializedName(SERIALIZED_NAME_TRANSACTION_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String transactionFeeAmount;
 
   public static final String SERIALIZED_NAME_TSP_COMMISSION_AMOUNT = "tsp_commission_amount";
   @SerializedName(SERIALIZED_NAME_TSP_COMMISSION_AMOUNT)
+  @javax.annotation.Nullable
   private String tspCommissionAmount;
+
+  public static final String SERIALIZED_NAME_VN_FIX_INFRASTRUCTURE_FEE = "vn_fix_infrastructure_fee";
+  @SerializedName(SERIALIZED_NAME_VN_FIX_INFRASTRUCTURE_FEE)
+  @javax.annotation.Nullable
+  private String vnFixInfrastructureFee;
 
   public static final String SERIALIZED_NAME_VOUCHER_XTRA_SERVICE_FEE_AMOUNT = "voucher_xtra_service_fee_amount";
   @SerializedName(SERIALIZED_NAME_VOUCHER_XTRA_SERVICE_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String voucherXtraServiceFeeAmount;
 
   public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee() {
   }
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliateAdsCommissionAmount(String affiliateAdsCommissionAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliateAdsCommissionAmount(@javax.annotation.Nullable String affiliateAdsCommissionAmount) {
     this.affiliateAdsCommissionAmount = affiliateAdsCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission for eligible orders from ads.
    * @return affiliateAdsCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAffiliateAdsCommissionAmount() {
     return affiliateAdsCommissionAmount;
   }
 
-  public void setAffiliateAdsCommissionAmount(String affiliateAdsCommissionAmount) {
+  public void setAffiliateAdsCommissionAmount(@javax.annotation.Nullable String affiliateAdsCommissionAmount) {
     this.affiliateAdsCommissionAmount = affiliateAdsCommissionAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliateCommissionAmount(String affiliateCommissionAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliateCommissionAmount(@javax.annotation.Nullable String affiliateCommissionAmount) {
     this.affiliateCommissionAmount = affiliateCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission amount charged to the seller for payment to the creator.
    * @return affiliateCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAffiliateCommissionAmount() {
     return affiliateCommissionAmount;
   }
 
-  public void setAffiliateCommissionAmount(String affiliateCommissionAmount) {
+  public void setAffiliateCommissionAmount(@javax.annotation.Nullable String affiliateCommissionAmount) {
     this.affiliateCommissionAmount = affiliateCommissionAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliateCommissionAmountBeforePit(String affiliateCommissionAmountBeforePit) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliateCommissionAmountBeforePit(@javax.annotation.Nullable String affiliateCommissionAmountBeforePit) {
     this.affiliateCommissionAmountBeforePit = affiliateCommissionAmountBeforePit;
     return this;
   }
 
-   /**
+  /**
    * The affiliate ads commission paid to a creator before any personal income tax withholding.  Applicable only for SEA markets.
    * @return affiliateCommissionAmountBeforePit
-  **/
+   */
   @javax.annotation.Nullable
   public String getAffiliateCommissionAmountBeforePit() {
     return affiliateCommissionAmountBeforePit;
   }
 
-  public void setAffiliateCommissionAmountBeforePit(String affiliateCommissionAmountBeforePit) {
+  public void setAffiliateCommissionAmountBeforePit(@javax.annotation.Nullable String affiliateCommissionAmountBeforePit) {
     this.affiliateCommissionAmountBeforePit = affiliateCommissionAmountBeforePit;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliatePartnerCommissionAmount(String affiliatePartnerCommissionAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliateCommissionDeposit(@javax.annotation.Nullable String affiliateCommissionDeposit) {
+    this.affiliateCommissionDeposit = affiliateCommissionDeposit;
+    return this;
+  }
+
+  /**
+   * The amount reserved for creator commissions after an order is paid. Applies only to commissions tied to order volume and is based on the highest earning rate.
+   * @return affiliateCommissionDeposit
+   */
+  @javax.annotation.Nullable
+  public String getAffiliateCommissionDeposit() {
+    return affiliateCommissionDeposit;
+  }
+
+  public void setAffiliateCommissionDeposit(@javax.annotation.Nullable String affiliateCommissionDeposit) {
+    this.affiliateCommissionDeposit = affiliateCommissionDeposit;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliateCommissionRelease(@javax.annotation.Nullable String affiliateCommissionRelease) {
+    this.affiliateCommissionRelease = affiliateCommissionRelease;
+    return this;
+  }
+
+  /**
+   * The commission deposit refunded to you after order settlement. Applies only to commissions tied to order volume.
+   * @return affiliateCommissionRelease
+   */
+  @javax.annotation.Nullable
+  public String getAffiliateCommissionRelease() {
+    return affiliateCommissionRelease;
+  }
+
+  public void setAffiliateCommissionRelease(@javax.annotation.Nullable String affiliateCommissionRelease) {
+    this.affiliateCommissionRelease = affiliateCommissionRelease;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee affiliatePartnerCommissionAmount(@javax.annotation.Nullable String affiliatePartnerCommissionAmount) {
     this.affiliatePartnerCommissionAmount = affiliatePartnerCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission amount for purchases through affiliate partner links.
    * @return affiliatePartnerCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAffiliatePartnerCommissionAmount() {
     return affiliatePartnerCommissionAmount;
   }
 
-  public void setAffiliatePartnerCommissionAmount(String affiliatePartnerCommissionAmount) {
+  public void setAffiliatePartnerCommissionAmount(@javax.annotation.Nullable String affiliatePartnerCommissionAmount) {
     this.affiliatePartnerCommissionAmount = affiliatePartnerCommissionAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee bonusCashbackServiceFeeAmount(String bonusCashbackServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee bonusCashbackServiceFeeAmount(@javax.annotation.Nullable String bonusCashbackServiceFeeAmount) {
     this.bonusCashbackServiceFeeAmount = bonusCashbackServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee charged for participation in the bonus cashback program.
    * @return bonusCashbackServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getBonusCashbackServiceFeeAmount() {
     return bonusCashbackServiceFeeAmount;
   }
 
-  public void setBonusCashbackServiceFeeAmount(String bonusCashbackServiceFeeAmount) {
+  public void setBonusCashbackServiceFeeAmount(@javax.annotation.Nullable String bonusCashbackServiceFeeAmount) {
     this.bonusCashbackServiceFeeAmount = bonusCashbackServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee cofundedCreatorBonusAmount(String cofundedCreatorBonusAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee campaignResourceFee(@javax.annotation.Nullable String campaignResourceFee) {
+    this.campaignResourceFee = campaignResourceFee;
+    return this;
+  }
+
+  /**
+   * Amount of campaign resource fee from program seller joining in 
+   * @return campaignResourceFee
+   */
+  @javax.annotation.Nullable
+  public String getCampaignResourceFee() {
+    return campaignResourceFee;
+  }
+
+  public void setCampaignResourceFee(@javax.annotation.Nullable String campaignResourceFee) {
+    this.campaignResourceFee = campaignResourceFee;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee cofundedCreatorBonusAmount(@javax.annotation.Nullable String cofundedCreatorBonusAmount) {
     this.cofundedCreatorBonusAmount = cofundedCreatorBonusAmount;
     return this;
   }
 
-   /**
+  /**
    * The portion of the creator bonus that you co-fund as part of the commission boost campaign.
    * @return cofundedCreatorBonusAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCofundedCreatorBonusAmount() {
     return cofundedCreatorBonusAmount;
   }
 
-  public void setCofundedCreatorBonusAmount(String cofundedCreatorBonusAmount) {
+  public void setCofundedCreatorBonusAmount(@javax.annotation.Nullable String cofundedCreatorBonusAmount) {
     this.cofundedCreatorBonusAmount = cofundedCreatorBonusAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee cofundedPromotionServiceFeeAmount(String cofundedPromotionServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee cofundedPromotionServiceFeeAmount(@javax.annotation.Nullable String cofundedPromotionServiceFeeAmount) {
     this.cofundedPromotionServiceFeeAmount = cofundedPromotionServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee charged for co-funded promotions.
    * @return cofundedPromotionServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCofundedPromotionServiceFeeAmount() {
     return cofundedPromotionServiceFeeAmount;
   }
 
-  public void setCofundedPromotionServiceFeeAmount(String cofundedPromotionServiceFeeAmount) {
+  public void setCofundedPromotionServiceFeeAmount(@javax.annotation.Nullable String cofundedPromotionServiceFeeAmount) {
     this.cofundedPromotionServiceFeeAmount = cofundedPromotionServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee creditCardHandlingFeeAmount(String creditCardHandlingFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee creditCardHandlingFeeAmount(@javax.annotation.Nullable String creditCardHandlingFeeAmount) {
     this.creditCardHandlingFeeAmount = creditCardHandlingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The handling fee charged when the buyer pays with a credit card.
    * @return creditCardHandlingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCreditCardHandlingFeeAmount() {
     return creditCardHandlingFeeAmount;
   }
 
-  public void setCreditCardHandlingFeeAmount(String creditCardHandlingFeeAmount) {
+  public void setCreditCardHandlingFeeAmount(@javax.annotation.Nullable String creditCardHandlingFeeAmount) {
     this.creditCardHandlingFeeAmount = creditCardHandlingFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee dtHandlingFeeAmount(String dtHandlingFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee dtHandlingFeeAmount(@javax.annotation.Nullable String dtHandlingFeeAmount) {
     this.dtHandlingFeeAmount = dtHandlingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The handling fee charged for orders that are fulfilled by Dilayani Tokopedia.
    * @return dtHandlingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getDtHandlingFeeAmount() {
     return dtHandlingFeeAmount;
   }
 
-  public void setDtHandlingFeeAmount(String dtHandlingFeeAmount) {
+  public void setDtHandlingFeeAmount(@javax.annotation.Nullable String dtHandlingFeeAmount) {
     this.dtHandlingFeeAmount = dtHandlingFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee dynamicCommissionAmount(String dynamicCommissionAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee dynamicCommissionAmount(@javax.annotation.Nullable String dynamicCommissionAmount) {
     this.dynamicCommissionAmount = dynamicCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The dynamic commission fee is the amount that the platform charges to all sellers for every successfully delivered order. Applicable only for Indonesia.
    * @return dynamicCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getDynamicCommissionAmount() {
     return dynamicCommissionAmount;
   }
 
-  public void setDynamicCommissionAmount(String dynamicCommissionAmount) {
+  public void setDynamicCommissionAmount(@javax.annotation.Nullable String dynamicCommissionAmount) {
     this.dynamicCommissionAmount = dynamicCommissionAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee eprPobServiceFeeAmount(String eprPobServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee eprPobServiceFeeAmount(@javax.annotation.Nullable String eprPobServiceFeeAmount) {
     this.eprPobServiceFeeAmount = eprPobServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The eco-contributions TikTok Shop pays on your behalf to the qualified producer responsibility organization (PRO).
    * @return eprPobServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getEprPobServiceFeeAmount() {
     return eprPobServiceFeeAmount;
   }
 
-  public void setEprPobServiceFeeAmount(String eprPobServiceFeeAmount) {
+  public void setEprPobServiceFeeAmount(@javax.annotation.Nullable String eprPobServiceFeeAmount) {
     this.eprPobServiceFeeAmount = eprPobServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee externalAffiliateMarketingFeeAmount(String externalAffiliateMarketingFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee externalAffiliateMarketingFeeAmount(@javax.annotation.Nullable String externalAffiliateMarketingFeeAmount) {
     this.externalAffiliateMarketingFeeAmount = externalAffiliateMarketingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee for participating in the External Affiliate Marketing Solution Program, as stated during registration.
    * @return externalAffiliateMarketingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getExternalAffiliateMarketingFeeAmount() {
     return externalAffiliateMarketingFeeAmount;
   }
 
-  public void setExternalAffiliateMarketingFeeAmount(String externalAffiliateMarketingFeeAmount) {
+  public void setExternalAffiliateMarketingFeeAmount(@javax.annotation.Nullable String externalAffiliateMarketingFeeAmount) {
     this.externalAffiliateMarketingFeeAmount = externalAffiliateMarketingFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee feePerItemSoldAmount(String feePerItemSoldAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee feePerItemSoldAmount(@javax.annotation.Nullable String feePerItemSoldAmount) {
     this.feePerItemSoldAmount = feePerItemSoldAmount;
     return this;
   }
 
-   /**
+  /**
    * The fee charged to sellers by the platform for each item sold. This is equivalent to the sum of all per-item fees for all SKUs in the order. Applicable only for the Brazil market.
    * @return feePerItemSoldAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFeePerItemSoldAmount() {
     return feePerItemSoldAmount;
   }
 
-  public void setFeePerItemSoldAmount(String feePerItemSoldAmount) {
+  public void setFeePerItemSoldAmount(@javax.annotation.Nullable String feePerItemSoldAmount) {
     this.feePerItemSoldAmount = feePerItemSoldAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee flashSalesServiceFeeAmount(String flashSalesServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee flashSalesServiceFeeAmount(@javax.annotation.Nullable String flashSalesServiceFeeAmount) {
     this.flashSalesServiceFeeAmount = flashSalesServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee charged for participation in flash sales.
    * @return flashSalesServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFlashSalesServiceFeeAmount() {
     return flashSalesServiceFeeAmount;
   }
 
-  public void setFlashSalesServiceFeeAmount(String flashSalesServiceFeeAmount) {
+  public void setFlashSalesServiceFeeAmount(@javax.annotation.Nullable String flashSalesServiceFeeAmount) {
     this.flashSalesServiceFeeAmount = flashSalesServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee liveSpecialsFeeAmount(String liveSpecialsFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee installationServiceFee(@javax.annotation.Nullable String installationServiceFee) {
+    this.installationServiceFee = installationServiceFee;
+    return this;
+  }
+
+  /**
+   * The fee TikTok Shop charges you for using platform installation service
+   * @return installationServiceFee
+   */
+  @javax.annotation.Nullable
+  public String getInstallationServiceFee() {
+    return installationServiceFee;
+  }
+
+  public void setInstallationServiceFee(@javax.annotation.Nullable String installationServiceFee) {
+    this.installationServiceFee = installationServiceFee;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee liveSpecialsFeeAmount(@javax.annotation.Nullable String liveSpecialsFeeAmount) {
     this.liveSpecialsFeeAmount = liveSpecialsFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee charged for participation in the [LIVE Specials Programme].
    * @return liveSpecialsFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getLiveSpecialsFeeAmount() {
     return liveSpecialsFeeAmount;
   }
 
-  public void setLiveSpecialsFeeAmount(String liveSpecialsFeeAmount) {
+  public void setLiveSpecialsFeeAmount(@javax.annotation.Nullable String liveSpecialsFeeAmount) {
     this.liveSpecialsFeeAmount = liveSpecialsFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee mallServiceFeeAmount(String mallServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee mallServiceFeeAmount(@javax.annotation.Nullable String mallServiceFeeAmount) {
     this.mallServiceFeeAmount = mallServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee charged for using TikTok Shop Mall.
    * @return mallServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getMallServiceFeeAmount() {
     return mallServiceFeeAmount;
   }
 
-  public void setMallServiceFeeAmount(String mallServiceFeeAmount) {
+  public void setMallServiceFeeAmount(@javax.annotation.Nullable String mallServiceFeeAmount) {
     this.mallServiceFeeAmount = mallServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee platformCommissionAmount(String platformCommissionAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee platformCommissionAmount(@javax.annotation.Nullable String platformCommissionAmount) {
     this.platformCommissionAmount = platformCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission amount charged by the platform.
    * @return platformCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformCommissionAmount() {
     return platformCommissionAmount;
   }
 
-  public void setPlatformCommissionAmount(String platformCommissionAmount) {
+  public void setPlatformCommissionAmount(@javax.annotation.Nullable String platformCommissionAmount) {
     this.platformCommissionAmount = platformCommissionAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee preOrderServiceFeeAmount(String preOrderServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee preOrderServiceFeeAmount(@javax.annotation.Nullable String preOrderServiceFeeAmount) {
     this.preOrderServiceFeeAmount = preOrderServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee charged for participation in the pre-order program.
    * @return preOrderServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPreOrderServiceFeeAmount() {
     return preOrderServiceFeeAmount;
   }
 
-  public void setPreOrderServiceFeeAmount(String preOrderServiceFeeAmount) {
+  public void setPreOrderServiceFeeAmount(@javax.annotation.Nullable String preOrderServiceFeeAmount) {
     this.preOrderServiceFeeAmount = preOrderServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee referralFeeAmount(String referralFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee referralFeeAmount(@javax.annotation.Nullable String referralFeeAmount) {
     this.referralFeeAmount = referralFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The referral fee charged for processing successful orders.  Applicable only for the US. 
    * @return referralFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getReferralFeeAmount() {
     return referralFeeAmount;
   }
 
-  public void setReferralFeeAmount(String referralFeeAmount) {
+  public void setReferralFeeAmount(@javax.annotation.Nullable String referralFeeAmount) {
     this.referralFeeAmount = referralFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee refundAdministrationFeeAmount(String refundAdministrationFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee refundAdministrationFeeAmount(@javax.annotation.Nullable String refundAdministrationFeeAmount) {
     this.refundAdministrationFeeAmount = refundAdministrationFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The 20% refund administration fee deducted from the total refunded referral fee amount.
    * @return refundAdministrationFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundAdministrationFeeAmount() {
     return refundAdministrationFeeAmount;
   }
 
-  public void setRefundAdministrationFeeAmount(String refundAdministrationFeeAmount) {
+  public void setRefundAdministrationFeeAmount(@javax.annotation.Nullable String refundAdministrationFeeAmount) {
     this.refundAdministrationFeeAmount = refundAdministrationFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee sellerPaylaterHandlingFeeAmount(String sellerPaylaterHandlingFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee sellerPaylaterHandlingFeeAmount(@javax.annotation.Nullable String sellerPaylaterHandlingFeeAmount) {
     this.sellerPaylaterHandlingFeeAmount = sellerPaylaterHandlingFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The handling fee charged to the seller for participation in the PayLater program.
    * @return sellerPaylaterHandlingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerPaylaterHandlingFeeAmount() {
     return sellerPaylaterHandlingFeeAmount;
   }
 
-  public void setSellerPaylaterHandlingFeeAmount(String sellerPaylaterHandlingFeeAmount) {
+  public void setSellerPaylaterHandlingFeeAmount(@javax.annotation.Nullable String sellerPaylaterHandlingFeeAmount) {
     this.sellerPaylaterHandlingFeeAmount = sellerPaylaterHandlingFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee sfpServiceFeeAmount(String sfpServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee sfpServiceFeeAmount(@javax.annotation.Nullable String sfpServiceFeeAmount) {
     this.sfpServiceFeeAmount = sfpServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee charged for participation in the [Seller Free Shipping Programme].
    * @return sfpServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSfpServiceFeeAmount() {
     return sfpServiceFeeAmount;
   }
 
-  public void setSfpServiceFeeAmount(String sfpServiceFeeAmount) {
+  public void setSfpServiceFeeAmount(@javax.annotation.Nullable String sfpServiceFeeAmount) {
     this.sfpServiceFeeAmount = sfpServiceFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee transactionFeeAmount(String transactionFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee shippingFeeGuaranteeServiceFee(@javax.annotation.Nullable String shippingFeeGuaranteeServiceFee) {
+    this.shippingFeeGuaranteeServiceFee = shippingFeeGuaranteeServiceFee;
+    return this;
+  }
+
+  /**
+   * A flat service fee charged for each order under the Shipping Fee Guarantee Program
+   * @return shippingFeeGuaranteeServiceFee
+   */
+  @javax.annotation.Nullable
+  public String getShippingFeeGuaranteeServiceFee() {
+    return shippingFeeGuaranteeServiceFee;
+  }
+
+  public void setShippingFeeGuaranteeServiceFee(@javax.annotation.Nullable String shippingFeeGuaranteeServiceFee) {
+    this.shippingFeeGuaranteeServiceFee = shippingFeeGuaranteeServiceFee;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee tapShopAdsCommission(@javax.annotation.Nullable String tapShopAdsCommission) {
+    this.tapShopAdsCommission = tapShopAdsCommission;
+    return this;
+  }
+
+  /**
+   * The advertising commission cost a merchant pays to TikTok Shop Affiliate Partner (TAP).
+   * @return tapShopAdsCommission
+   */
+  @javax.annotation.Nullable
+  public String getTapShopAdsCommission() {
+    return tapShopAdsCommission;
+  }
+
+  public void setTapShopAdsCommission(@javax.annotation.Nullable String tapShopAdsCommission) {
+    this.tapShopAdsCommission = tapShopAdsCommission;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee transactionFeeAmount(@javax.annotation.Nullable String transactionFeeAmount) {
     this.transactionFeeAmount = transactionFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The transaction fee charged for processing successful orders.
    * @return transactionFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getTransactionFeeAmount() {
     return transactionFeeAmount;
   }
 
-  public void setTransactionFeeAmount(String transactionFeeAmount) {
+  public void setTransactionFeeAmount(@javax.annotation.Nullable String transactionFeeAmount) {
     this.transactionFeeAmount = transactionFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee tspCommissionAmount(String tspCommissionAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee tspCommissionAmount(@javax.annotation.Nullable String tspCommissionAmount) {
     this.tspCommissionAmount = tspCommissionAmount;
     return this;
   }
 
-   /**
+  /**
    * The commission amount charged by TikTok Shop Partners (TSP).
    * @return tspCommissionAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getTspCommissionAmount() {
     return tspCommissionAmount;
   }
 
-  public void setTspCommissionAmount(String tspCommissionAmount) {
+  public void setTspCommissionAmount(@javax.annotation.Nullable String tspCommissionAmount) {
     this.tspCommissionAmount = tspCommissionAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee voucherXtraServiceFeeAmount(String voucherXtraServiceFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee vnFixInfrastructureFee(@javax.annotation.Nullable String vnFixInfrastructureFee) {
+    this.vnFixInfrastructureFee = vnFixInfrastructureFee;
+    return this;
+  }
+
+  /**
+   * Infrastructure fees are a fixed service fee that TikTok Shop charges for providing, maintaining, and developing infrastructure for delivery services. It applies to delivered orders on the main order level.
+   * @return vnFixInfrastructureFee
+   */
+  @javax.annotation.Nullable
+  public String getVnFixInfrastructureFee() {
+    return vnFixInfrastructureFee;
+  }
+
+  public void setVnFixInfrastructureFee(@javax.annotation.Nullable String vnFixInfrastructureFee) {
+    this.vnFixInfrastructureFee = vnFixInfrastructureFee;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee voucherXtraServiceFeeAmount(@javax.annotation.Nullable String voucherXtraServiceFeeAmount) {
     this.voucherXtraServiceFeeAmount = voucherXtraServiceFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The service fee charged for participation in the Voucher Xtra program.
    * @return voucherXtraServiceFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getVoucherXtraServiceFeeAmount() {
     return voucherXtraServiceFeeAmount;
   }
 
-  public void setVoucherXtraServiceFeeAmount(String voucherXtraServiceFeeAmount) {
+  public void setVoucherXtraServiceFeeAmount(@javax.annotation.Nullable String voucherXtraServiceFeeAmount) {
     this.voucherXtraServiceFeeAmount = voucherXtraServiceFeeAmount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee instance itself
+   */
+  public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -642,8 +879,11 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
     return Objects.equals(this.affiliateAdsCommissionAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.affiliateAdsCommissionAmount) &&
         Objects.equals(this.affiliateCommissionAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.affiliateCommissionAmount) &&
         Objects.equals(this.affiliateCommissionAmountBeforePit, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.affiliateCommissionAmountBeforePit) &&
+        Objects.equals(this.affiliateCommissionDeposit, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.affiliateCommissionDeposit) &&
+        Objects.equals(this.affiliateCommissionRelease, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.affiliateCommissionRelease) &&
         Objects.equals(this.affiliatePartnerCommissionAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.affiliatePartnerCommissionAmount) &&
         Objects.equals(this.bonusCashbackServiceFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.bonusCashbackServiceFeeAmount) &&
+        Objects.equals(this.campaignResourceFee, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.campaignResourceFee) &&
         Objects.equals(this.cofundedCreatorBonusAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.cofundedCreatorBonusAmount) &&
         Objects.equals(this.cofundedPromotionServiceFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.cofundedPromotionServiceFeeAmount) &&
         Objects.equals(this.creditCardHandlingFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.creditCardHandlingFeeAmount) &&
@@ -653,6 +893,7 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
         Objects.equals(this.externalAffiliateMarketingFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.externalAffiliateMarketingFeeAmount) &&
         Objects.equals(this.feePerItemSoldAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.feePerItemSoldAmount) &&
         Objects.equals(this.flashSalesServiceFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.flashSalesServiceFeeAmount) &&
+        Objects.equals(this.installationServiceFee, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.installationServiceFee) &&
         Objects.equals(this.liveSpecialsFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.liveSpecialsFeeAmount) &&
         Objects.equals(this.mallServiceFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.mallServiceFeeAmount) &&
         Objects.equals(this.platformCommissionAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.platformCommissionAmount) &&
@@ -661,14 +902,18 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
         Objects.equals(this.refundAdministrationFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.refundAdministrationFeeAmount) &&
         Objects.equals(this.sellerPaylaterHandlingFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.sellerPaylaterHandlingFeeAmount) &&
         Objects.equals(this.sfpServiceFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.sfpServiceFeeAmount) &&
+        Objects.equals(this.shippingFeeGuaranteeServiceFee, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.shippingFeeGuaranteeServiceFee) &&
+        Objects.equals(this.tapShopAdsCommission, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.tapShopAdsCommission) &&
         Objects.equals(this.transactionFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.transactionFeeAmount) &&
         Objects.equals(this.tspCommissionAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.tspCommissionAmount) &&
-        Objects.equals(this.voucherXtraServiceFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.voucherXtraServiceFeeAmount);
+        Objects.equals(this.vnFixInfrastructureFee, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.vnFixInfrastructureFee) &&
+        Objects.equals(this.voucherXtraServiceFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.voucherXtraServiceFeeAmount)&&
+        Objects.equals(this.additionalProperties, finance202501GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(affiliateAdsCommissionAmount, affiliateCommissionAmount, affiliateCommissionAmountBeforePit, affiliatePartnerCommissionAmount, bonusCashbackServiceFeeAmount, cofundedCreatorBonusAmount, cofundedPromotionServiceFeeAmount, creditCardHandlingFeeAmount, dtHandlingFeeAmount, dynamicCommissionAmount, eprPobServiceFeeAmount, externalAffiliateMarketingFeeAmount, feePerItemSoldAmount, flashSalesServiceFeeAmount, liveSpecialsFeeAmount, mallServiceFeeAmount, platformCommissionAmount, preOrderServiceFeeAmount, referralFeeAmount, refundAdministrationFeeAmount, sellerPaylaterHandlingFeeAmount, sfpServiceFeeAmount, transactionFeeAmount, tspCommissionAmount, voucherXtraServiceFeeAmount);
+    return Objects.hash(affiliateAdsCommissionAmount, affiliateCommissionAmount, affiliateCommissionAmountBeforePit, affiliateCommissionDeposit, affiliateCommissionRelease, affiliatePartnerCommissionAmount, bonusCashbackServiceFeeAmount, campaignResourceFee, cofundedCreatorBonusAmount, cofundedPromotionServiceFeeAmount, creditCardHandlingFeeAmount, dtHandlingFeeAmount, dynamicCommissionAmount, eprPobServiceFeeAmount, externalAffiliateMarketingFeeAmount, feePerItemSoldAmount, flashSalesServiceFeeAmount, installationServiceFee, liveSpecialsFeeAmount, mallServiceFeeAmount, platformCommissionAmount, preOrderServiceFeeAmount, referralFeeAmount, refundAdministrationFeeAmount, sellerPaylaterHandlingFeeAmount, sfpServiceFeeAmount, shippingFeeGuaranteeServiceFee, tapShopAdsCommission, transactionFeeAmount, tspCommissionAmount, vnFixInfrastructureFee, voucherXtraServiceFeeAmount, additionalProperties);
   }
 
   @Override
@@ -678,8 +923,11 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
     sb.append("    affiliateAdsCommissionAmount: ").append(toIndentedString(affiliateAdsCommissionAmount)).append("\n");
     sb.append("    affiliateCommissionAmount: ").append(toIndentedString(affiliateCommissionAmount)).append("\n");
     sb.append("    affiliateCommissionAmountBeforePit: ").append(toIndentedString(affiliateCommissionAmountBeforePit)).append("\n");
+    sb.append("    affiliateCommissionDeposit: ").append(toIndentedString(affiliateCommissionDeposit)).append("\n");
+    sb.append("    affiliateCommissionRelease: ").append(toIndentedString(affiliateCommissionRelease)).append("\n");
     sb.append("    affiliatePartnerCommissionAmount: ").append(toIndentedString(affiliatePartnerCommissionAmount)).append("\n");
     sb.append("    bonusCashbackServiceFeeAmount: ").append(toIndentedString(bonusCashbackServiceFeeAmount)).append("\n");
+    sb.append("    campaignResourceFee: ").append(toIndentedString(campaignResourceFee)).append("\n");
     sb.append("    cofundedCreatorBonusAmount: ").append(toIndentedString(cofundedCreatorBonusAmount)).append("\n");
     sb.append("    cofundedPromotionServiceFeeAmount: ").append(toIndentedString(cofundedPromotionServiceFeeAmount)).append("\n");
     sb.append("    creditCardHandlingFeeAmount: ").append(toIndentedString(creditCardHandlingFeeAmount)).append("\n");
@@ -689,6 +937,7 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
     sb.append("    externalAffiliateMarketingFeeAmount: ").append(toIndentedString(externalAffiliateMarketingFeeAmount)).append("\n");
     sb.append("    feePerItemSoldAmount: ").append(toIndentedString(feePerItemSoldAmount)).append("\n");
     sb.append("    flashSalesServiceFeeAmount: ").append(toIndentedString(flashSalesServiceFeeAmount)).append("\n");
+    sb.append("    installationServiceFee: ").append(toIndentedString(installationServiceFee)).append("\n");
     sb.append("    liveSpecialsFeeAmount: ").append(toIndentedString(liveSpecialsFeeAmount)).append("\n");
     sb.append("    mallServiceFeeAmount: ").append(toIndentedString(mallServiceFeeAmount)).append("\n");
     sb.append("    platformCommissionAmount: ").append(toIndentedString(platformCommissionAmount)).append("\n");
@@ -697,9 +946,13 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
     sb.append("    refundAdministrationFeeAmount: ").append(toIndentedString(refundAdministrationFeeAmount)).append("\n");
     sb.append("    sellerPaylaterHandlingFeeAmount: ").append(toIndentedString(sellerPaylaterHandlingFeeAmount)).append("\n");
     sb.append("    sfpServiceFeeAmount: ").append(toIndentedString(sfpServiceFeeAmount)).append("\n");
+    sb.append("    shippingFeeGuaranteeServiceFee: ").append(toIndentedString(shippingFeeGuaranteeServiceFee)).append("\n");
+    sb.append("    tapShopAdsCommission: ").append(toIndentedString(tapShopAdsCommission)).append("\n");
     sb.append("    transactionFeeAmount: ").append(toIndentedString(transactionFeeAmount)).append("\n");
     sb.append("    tspCommissionAmount: ").append(toIndentedString(tspCommissionAmount)).append("\n");
+    sb.append("    vnFixInfrastructureFee: ").append(toIndentedString(vnFixInfrastructureFee)).append("\n");
     sb.append("    voucherXtraServiceFeeAmount: ").append(toIndentedString(voucherXtraServiceFeeAmount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -721,55 +974,22 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("affiliate_ads_commission_amount");
-    openapiFields.add("affiliate_commission_amount");
-    openapiFields.add("affiliate_commission_amount_before_pit");
-    openapiFields.add("affiliate_partner_commission_amount");
-    openapiFields.add("bonus_cashback_service_fee_amount");
-    openapiFields.add("cofunded_creator_bonus_amount");
-    openapiFields.add("cofunded_promotion_service_fee_amount");
-    openapiFields.add("credit_card_handling_fee_amount");
-    openapiFields.add("dt_handling_fee_amount");
-    openapiFields.add("dynamic_commission_amount");
-    openapiFields.add("epr_pob_service_fee_amount");
-    openapiFields.add("external_affiliate_marketing_fee_amount");
-    openapiFields.add("fee_per_item_sold_amount");
-    openapiFields.add("flash_sales_service_fee_amount");
-    openapiFields.add("live_specials_fee_amount");
-    openapiFields.add("mall_service_fee_amount");
-    openapiFields.add("platform_commission_amount");
-    openapiFields.add("pre_order_service_fee_amount");
-    openapiFields.add("referral_fee_amount");
-    openapiFields.add("refund_administration_fee_amount");
-    openapiFields.add("seller_paylater_handling_fee_amount");
-    openapiFields.add("sfp_service_fee_amount");
-    openapiFields.add("transaction_fee_amount");
-    openapiFields.add("tsp_commission_amount");
-    openapiFields.add("voucher_xtra_service_fee_amount");
+    openapiFields = new HashSet<String>(Arrays.asList("affiliate_ads_commission_amount", "affiliate_commission_amount", "affiliate_commission_amount_before_pit", "affiliate_commission_deposit", "affiliate_commission_release", "affiliate_partner_commission_amount", "bonus_cashback_service_fee_amount", "campaign_resource_fee", "cofunded_creator_bonus_amount", "cofunded_promotion_service_fee_amount", "credit_card_handling_fee_amount", "dt_handling_fee_amount", "dynamic_commission_amount", "epr_pob_service_fee_amount", "external_affiliate_marketing_fee_amount", "fee_per_item_sold_amount", "flash_sales_service_fee_amount", "installation_service_fee", "live_specials_fee_amount", "mall_service_fee_amount", "platform_commission_amount", "pre_order_service_fee_amount", "referral_fee_amount", "refund_administration_fee_amount", "seller_paylater_handling_fee_amount", "sfp_service_fee_amount", "shipping_fee_guarantee_service_fee", "tap_shop_ads_commission", "transaction_fee_amount", "tsp_commission_amount", "vn_fix_infrastructure_fee", "voucher_xtra_service_fee_amount"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee is not found in the empty JSON string", GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -782,11 +1002,20 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
       if ((jsonObj.get("affiliate_commission_amount_before_pit") != null && !jsonObj.get("affiliate_commission_amount_before_pit").isJsonNull()) && !jsonObj.get("affiliate_commission_amount_before_pit").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `affiliate_commission_amount_before_pit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("affiliate_commission_amount_before_pit").toString()));
       }
+      if ((jsonObj.get("affiliate_commission_deposit") != null && !jsonObj.get("affiliate_commission_deposit").isJsonNull()) && !jsonObj.get("affiliate_commission_deposit").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `affiliate_commission_deposit` to be a primitive type in the JSON string but got `%s`", jsonObj.get("affiliate_commission_deposit").toString()));
+      }
+      if ((jsonObj.get("affiliate_commission_release") != null && !jsonObj.get("affiliate_commission_release").isJsonNull()) && !jsonObj.get("affiliate_commission_release").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `affiliate_commission_release` to be a primitive type in the JSON string but got `%s`", jsonObj.get("affiliate_commission_release").toString()));
+      }
       if ((jsonObj.get("affiliate_partner_commission_amount") != null && !jsonObj.get("affiliate_partner_commission_amount").isJsonNull()) && !jsonObj.get("affiliate_partner_commission_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `affiliate_partner_commission_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("affiliate_partner_commission_amount").toString()));
       }
       if ((jsonObj.get("bonus_cashback_service_fee_amount") != null && !jsonObj.get("bonus_cashback_service_fee_amount").isJsonNull()) && !jsonObj.get("bonus_cashback_service_fee_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `bonus_cashback_service_fee_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("bonus_cashback_service_fee_amount").toString()));
+      }
+      if ((jsonObj.get("campaign_resource_fee") != null && !jsonObj.get("campaign_resource_fee").isJsonNull()) && !jsonObj.get("campaign_resource_fee").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `campaign_resource_fee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("campaign_resource_fee").toString()));
       }
       if ((jsonObj.get("cofunded_creator_bonus_amount") != null && !jsonObj.get("cofunded_creator_bonus_amount").isJsonNull()) && !jsonObj.get("cofunded_creator_bonus_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `cofunded_creator_bonus_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("cofunded_creator_bonus_amount").toString()));
@@ -815,6 +1044,9 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
       if ((jsonObj.get("flash_sales_service_fee_amount") != null && !jsonObj.get("flash_sales_service_fee_amount").isJsonNull()) && !jsonObj.get("flash_sales_service_fee_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `flash_sales_service_fee_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("flash_sales_service_fee_amount").toString()));
       }
+      if ((jsonObj.get("installation_service_fee") != null && !jsonObj.get("installation_service_fee").isJsonNull()) && !jsonObj.get("installation_service_fee").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `installation_service_fee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("installation_service_fee").toString()));
+      }
       if ((jsonObj.get("live_specials_fee_amount") != null && !jsonObj.get("live_specials_fee_amount").isJsonNull()) && !jsonObj.get("live_specials_fee_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `live_specials_fee_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("live_specials_fee_amount").toString()));
       }
@@ -839,11 +1071,20 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
       if ((jsonObj.get("sfp_service_fee_amount") != null && !jsonObj.get("sfp_service_fee_amount").isJsonNull()) && !jsonObj.get("sfp_service_fee_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `sfp_service_fee_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("sfp_service_fee_amount").toString()));
       }
+      if ((jsonObj.get("shipping_fee_guarantee_service_fee") != null && !jsonObj.get("shipping_fee_guarantee_service_fee").isJsonNull()) && !jsonObj.get("shipping_fee_guarantee_service_fee").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `shipping_fee_guarantee_service_fee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("shipping_fee_guarantee_service_fee").toString()));
+      }
+      if ((jsonObj.get("tap_shop_ads_commission") != null && !jsonObj.get("tap_shop_ads_commission").isJsonNull()) && !jsonObj.get("tap_shop_ads_commission").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `tap_shop_ads_commission` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tap_shop_ads_commission").toString()));
+      }
       if ((jsonObj.get("transaction_fee_amount") != null && !jsonObj.get("transaction_fee_amount").isJsonNull()) && !jsonObj.get("transaction_fee_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `transaction_fee_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("transaction_fee_amount").toString()));
       }
       if ((jsonObj.get("tsp_commission_amount") != null && !jsonObj.get("tsp_commission_amount").isJsonNull()) && !jsonObj.get("tsp_commission_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `tsp_commission_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("tsp_commission_amount").toString()));
+      }
+      if ((jsonObj.get("vn_fix_infrastructure_fee") != null && !jsonObj.get("vn_fix_infrastructure_fee").isJsonNull()) && !jsonObj.get("vn_fix_infrastructure_fee").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `vn_fix_infrastructure_fee` to be a primitive type in the JSON string but got `%s`", jsonObj.get("vn_fix_infrastructure_fee").toString()));
       }
       if ((jsonObj.get("voucher_xtra_service_fee_amount") != null && !jsonObj.get("voucher_xtra_service_fee_amount").isJsonNull()) && !jsonObj.get("voucher_xtra_service_fee_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `voucher_xtra_service_fee_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("voucher_xtra_service_fee_amount").toString()));
@@ -865,6 +1106,28 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
            @Override
            public void write(JsonWriter out, GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -872,29 +1135,50 @@ public class GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFe
            public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee
-  * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee
-  */
+  /**
+   * Create an instance of GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee
+   * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee
+   */
   public static GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee.class);
   }
 
- /**
-  * Convert an instance of GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdownFee to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -25,6 +25,7 @@ import java.util.Arrays;
 import java.util.List;
 import tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataCod;
 import tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataEpr;
+import tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataFees;
 import tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataManufacturer;
 import tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataPackageDimension;
 import tiktokshop.open.sdk_java.model.Product.V202309.GetCategoryRulesResponseDataProductCertifications;
@@ -46,7 +47,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -58,44 +58,57 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetCategoryRulesResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetCategoryRulesResponseData {
   public static final String SERIALIZED_NAME_ALLOWED_SPECIAL_PRODUCT_TYPES = "allowed_special_product_types";
   @SerializedName(SERIALIZED_NAME_ALLOWED_SPECIAL_PRODUCT_TYPES)
+  @javax.annotation.Nullable
   private List<String> allowedSpecialProductTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_COD = "cod";
   @SerializedName(SERIALIZED_NAME_COD)
+  @javax.annotation.Nullable
   private GetCategoryRulesResponseDataCod cod;
 
   public static final String SERIALIZED_NAME_EPR = "epr";
   @SerializedName(SERIALIZED_NAME_EPR)
+  @javax.annotation.Nullable
   private GetCategoryRulesResponseDataEpr epr;
+
+  public static final String SERIALIZED_NAME_FEES = "fees";
+  @SerializedName(SERIALIZED_NAME_FEES)
+  @javax.annotation.Nullable
+  private List<GetCategoryRulesResponseDataFees> fees = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MANUFACTURER = "manufacturer";
   @SerializedName(SERIALIZED_NAME_MANUFACTURER)
+  @javax.annotation.Nullable
   private GetCategoryRulesResponseDataManufacturer manufacturer;
 
   public static final String SERIALIZED_NAME_PACKAGE_DIMENSION = "package_dimension";
   @SerializedName(SERIALIZED_NAME_PACKAGE_DIMENSION)
+  @javax.annotation.Nullable
   private GetCategoryRulesResponseDataPackageDimension packageDimension;
 
   public static final String SERIALIZED_NAME_PRODUCT_CERTIFICATIONS = "product_certifications";
   @SerializedName(SERIALIZED_NAME_PRODUCT_CERTIFICATIONS)
+  @javax.annotation.Nullable
   private List<GetCategoryRulesResponseDataProductCertifications> productCertifications = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RESPONSIBLE_PERSON = "responsible_person";
   @SerializedName(SERIALIZED_NAME_RESPONSIBLE_PERSON)
+  @javax.annotation.Nullable
   private GetCategoryRulesResponseDataResponsiblePerson responsiblePerson;
 
   public static final String SERIALIZED_NAME_SIZE_CHART = "size_chart";
   @SerializedName(SERIALIZED_NAME_SIZE_CHART)
+  @javax.annotation.Nullable
   private GetCategoryRulesResponseDataSizeChart sizeChart;
 
   public GetCategoryRulesResponseData() {
   }
 
-  public GetCategoryRulesResponseData allowedSpecialProductTypes(List<String> allowedSpecialProductTypes) {
+  public GetCategoryRulesResponseData allowedSpecialProductTypes(@javax.annotation.Nullable List<String> allowedSpecialProductTypes) {
     this.allowedSpecialProductTypes = allowedSpecialProductTypes;
     return this;
   }
@@ -108,97 +121,124 @@ public class GetCategoryRulesResponseData {
     return this;
   }
 
-   /**
+  /**
    * The list of special product types, excluding regular products, that your shop is allowed to list in this category.  Possible values based on the region: **US** - &#x60;PRE_ORDER&#x60;: The product is not yet available or released. Fulfillment can be extended by specifying a release date. - &#x60;MADE_TO_ORDER&#x60;: The product is produced only after the order is received. Fulfillment can be extended by specifying a duration. - &#x60;CUSTOM&#x60;: The product requires a fulfillment timeline that exceeds the standard due to other factors. Fulfillment can be extended by specifying a duration.  **UK and SEA** - &#x60;PRE_ORDER&#x60;: The product is not yet available or released. Fulfillment can be extended by specifying a duration.   **Note**: This field is omitted if you lack the permission to list special product types. Contact your account manager for assistance if you wish to list such products.
    * @return allowedSpecialProductTypes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getAllowedSpecialProductTypes() {
     return allowedSpecialProductTypes;
   }
 
-  public void setAllowedSpecialProductTypes(List<String> allowedSpecialProductTypes) {
+  public void setAllowedSpecialProductTypes(@javax.annotation.Nullable List<String> allowedSpecialProductTypes) {
     this.allowedSpecialProductTypes = allowedSpecialProductTypes;
   }
 
 
-  public GetCategoryRulesResponseData cod(GetCategoryRulesResponseDataCod cod) {
+  public GetCategoryRulesResponseData cod(@javax.annotation.Nullable GetCategoryRulesResponseDataCod cod) {
     this.cod = cod;
     return this;
   }
 
-   /**
+  /**
    * Get cod
    * @return cod
-  **/
+   */
   @javax.annotation.Nullable
   public GetCategoryRulesResponseDataCod getCod() {
     return cod;
   }
 
-  public void setCod(GetCategoryRulesResponseDataCod cod) {
+  public void setCod(@javax.annotation.Nullable GetCategoryRulesResponseDataCod cod) {
     this.cod = cod;
   }
 
 
-  public GetCategoryRulesResponseData epr(GetCategoryRulesResponseDataEpr epr) {
+  public GetCategoryRulesResponseData epr(@javax.annotation.Nullable GetCategoryRulesResponseDataEpr epr) {
     this.epr = epr;
     return this;
   }
 
-   /**
+  /**
    * Get epr
    * @return epr
-  **/
+   */
   @javax.annotation.Nullable
   public GetCategoryRulesResponseDataEpr getEpr() {
     return epr;
   }
 
-  public void setEpr(GetCategoryRulesResponseDataEpr epr) {
+  public void setEpr(@javax.annotation.Nullable GetCategoryRulesResponseDataEpr epr) {
     this.epr = epr;
   }
 
 
-  public GetCategoryRulesResponseData manufacturer(GetCategoryRulesResponseDataManufacturer manufacturer) {
+  public GetCategoryRulesResponseData fees(@javax.annotation.Nullable List<GetCategoryRulesResponseDataFees> fees) {
+    this.fees = fees;
+    return this;
+  }
+
+  public GetCategoryRulesResponseData addFeesItem(GetCategoryRulesResponseDataFees feesItem) {
+    if (this.fees == null) {
+      this.fees = new ArrayList<>();
+    }
+    this.fees.add(feesItem);
+    return this;
+  }
+
+  /**
+   * Product fees related rules.
+   * @return fees
+   */
+  @javax.annotation.Nullable
+  public List<GetCategoryRulesResponseDataFees> getFees() {
+    return fees;
+  }
+
+  public void setFees(@javax.annotation.Nullable List<GetCategoryRulesResponseDataFees> fees) {
+    this.fees = fees;
+  }
+
+
+  public GetCategoryRulesResponseData manufacturer(@javax.annotation.Nullable GetCategoryRulesResponseDataManufacturer manufacturer) {
     this.manufacturer = manufacturer;
     return this;
   }
 
-   /**
+  /**
    * Get manufacturer
    * @return manufacturer
-  **/
+   */
   @javax.annotation.Nullable
   public GetCategoryRulesResponseDataManufacturer getManufacturer() {
     return manufacturer;
   }
 
-  public void setManufacturer(GetCategoryRulesResponseDataManufacturer manufacturer) {
+  public void setManufacturer(@javax.annotation.Nullable GetCategoryRulesResponseDataManufacturer manufacturer) {
     this.manufacturer = manufacturer;
   }
 
 
-  public GetCategoryRulesResponseData packageDimension(GetCategoryRulesResponseDataPackageDimension packageDimension) {
+  public GetCategoryRulesResponseData packageDimension(@javax.annotation.Nullable GetCategoryRulesResponseDataPackageDimension packageDimension) {
     this.packageDimension = packageDimension;
     return this;
   }
 
-   /**
+  /**
    * Get packageDimension
    * @return packageDimension
-  **/
+   */
   @javax.annotation.Nullable
   public GetCategoryRulesResponseDataPackageDimension getPackageDimension() {
     return packageDimension;
   }
 
-  public void setPackageDimension(GetCategoryRulesResponseDataPackageDimension packageDimension) {
+  public void setPackageDimension(@javax.annotation.Nullable GetCategoryRulesResponseDataPackageDimension packageDimension) {
     this.packageDimension = packageDimension;
   }
 
 
-  public GetCategoryRulesResponseData productCertifications(List<GetCategoryRulesResponseDataProductCertifications> productCertifications) {
+  public GetCategoryRulesResponseData productCertifications(@javax.annotation.Nullable List<GetCategoryRulesResponseDataProductCertifications> productCertifications) {
     this.productCertifications = productCertifications;
     return this;
   }
@@ -211,55 +251,100 @@ public class GetCategoryRulesResponseData {
     return this;
   }
 
-   /**
+  /**
    * Certification related rules. As per TikTok Shop guidelines, certifications are required for certain restricted product categories. Refer to [TikTok Shop Restricted Products Policy](https://seller-us.tiktok.com/university/essay?identity&#x3D;1&amp;role&#x3D;1&amp;knowledge_id&#x3D;3238037484275457&amp;from&#x3D;policy) for information on product category restrictions.  If this is empty, it means certifications are not required for this category.
    * @return productCertifications
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetCategoryRulesResponseDataProductCertifications> getProductCertifications() {
     return productCertifications;
   }
 
-  public void setProductCertifications(List<GetCategoryRulesResponseDataProductCertifications> productCertifications) {
+  public void setProductCertifications(@javax.annotation.Nullable List<GetCategoryRulesResponseDataProductCertifications> productCertifications) {
     this.productCertifications = productCertifications;
   }
 
 
-  public GetCategoryRulesResponseData responsiblePerson(GetCategoryRulesResponseDataResponsiblePerson responsiblePerson) {
+  public GetCategoryRulesResponseData responsiblePerson(@javax.annotation.Nullable GetCategoryRulesResponseDataResponsiblePerson responsiblePerson) {
     this.responsiblePerson = responsiblePerson;
     return this;
   }
 
-   /**
+  /**
    * Get responsiblePerson
    * @return responsiblePerson
-  **/
+   */
   @javax.annotation.Nullable
   public GetCategoryRulesResponseDataResponsiblePerson getResponsiblePerson() {
     return responsiblePerson;
   }
 
-  public void setResponsiblePerson(GetCategoryRulesResponseDataResponsiblePerson responsiblePerson) {
+  public void setResponsiblePerson(@javax.annotation.Nullable GetCategoryRulesResponseDataResponsiblePerson responsiblePerson) {
     this.responsiblePerson = responsiblePerson;
   }
 
 
-  public GetCategoryRulesResponseData sizeChart(GetCategoryRulesResponseDataSizeChart sizeChart) {
+  public GetCategoryRulesResponseData sizeChart(@javax.annotation.Nullable GetCategoryRulesResponseDataSizeChart sizeChart) {
     this.sizeChart = sizeChart;
     return this;
   }
 
-   /**
+  /**
    * Get sizeChart
    * @return sizeChart
-  **/
+   */
   @javax.annotation.Nullable
   public GetCategoryRulesResponseDataSizeChart getSizeChart() {
     return sizeChart;
   }
 
-  public void setSizeChart(GetCategoryRulesResponseDataSizeChart sizeChart) {
+  public void setSizeChart(@javax.annotation.Nullable GetCategoryRulesResponseDataSizeChart sizeChart) {
     this.sizeChart = sizeChart;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetCategoryRulesResponseData instance itself
+   */
+  public GetCategoryRulesResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -276,16 +361,18 @@ public class GetCategoryRulesResponseData {
     return Objects.equals(this.allowedSpecialProductTypes, product202309GetCategoryRulesResponseData.allowedSpecialProductTypes) &&
         Objects.equals(this.cod, product202309GetCategoryRulesResponseData.cod) &&
         Objects.equals(this.epr, product202309GetCategoryRulesResponseData.epr) &&
+        Objects.equals(this.fees, product202309GetCategoryRulesResponseData.fees) &&
         Objects.equals(this.manufacturer, product202309GetCategoryRulesResponseData.manufacturer) &&
         Objects.equals(this.packageDimension, product202309GetCategoryRulesResponseData.packageDimension) &&
         Objects.equals(this.productCertifications, product202309GetCategoryRulesResponseData.productCertifications) &&
         Objects.equals(this.responsiblePerson, product202309GetCategoryRulesResponseData.responsiblePerson) &&
-        Objects.equals(this.sizeChart, product202309GetCategoryRulesResponseData.sizeChart);
+        Objects.equals(this.sizeChart, product202309GetCategoryRulesResponseData.sizeChart)&&
+        Objects.equals(this.additionalProperties, product202309GetCategoryRulesResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(allowedSpecialProductTypes, cod, epr, manufacturer, packageDimension, productCertifications, responsiblePerson, sizeChart);
+    return Objects.hash(allowedSpecialProductTypes, cod, epr, fees, manufacturer, packageDimension, productCertifications, responsiblePerson, sizeChart, additionalProperties);
   }
 
   @Override
@@ -295,11 +382,13 @@ public class GetCategoryRulesResponseData {
     sb.append("    allowedSpecialProductTypes: ").append(toIndentedString(allowedSpecialProductTypes)).append("\n");
     sb.append("    cod: ").append(toIndentedString(cod)).append("\n");
     sb.append("    epr: ").append(toIndentedString(epr)).append("\n");
+    sb.append("    fees: ").append(toIndentedString(fees)).append("\n");
     sb.append("    manufacturer: ").append(toIndentedString(manufacturer)).append("\n");
     sb.append("    packageDimension: ").append(toIndentedString(packageDimension)).append("\n");
     sb.append("    productCertifications: ").append(toIndentedString(productCertifications)).append("\n");
     sb.append("    responsiblePerson: ").append(toIndentedString(responsiblePerson)).append("\n");
     sb.append("    sizeChart: ").append(toIndentedString(sizeChart)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -321,38 +410,22 @@ public class GetCategoryRulesResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("allowed_special_product_types");
-    openapiFields.add("cod");
-    openapiFields.add("epr");
-    openapiFields.add("manufacturer");
-    openapiFields.add("package_dimension");
-    openapiFields.add("product_certifications");
-    openapiFields.add("responsible_person");
-    openapiFields.add("size_chart");
+    openapiFields = new HashSet<String>(Arrays.asList("allowed_special_product_types", "cod", "epr", "fees", "manufacturer", "package_dimension", "product_certifications", "responsible_person", "size_chart"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetCategoryRulesResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetCategoryRulesResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetCategoryRulesResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetCategoryRulesResponseData is not found in the empty JSON string", GetCategoryRulesResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetCategoryRulesResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetCategoryRulesResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -367,6 +440,20 @@ public class GetCategoryRulesResponseData {
       // validate the optional field `epr`
       if (jsonObj.get("epr") != null && !jsonObj.get("epr").isJsonNull()) {
         GetCategoryRulesResponseDataEpr.validateJsonElement(jsonObj.get("epr"));
+      }
+      if (jsonObj.get("fees") != null && !jsonObj.get("fees").isJsonNull()) {
+        JsonArray jsonArrayfees = jsonObj.getAsJsonArray("fees");
+        if (jsonArrayfees != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("fees").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `fees` to be an array in the JSON string but got `%s`", jsonObj.get("fees").toString()));
+          }
+
+          // validate the optional field `fees` (array)
+          for (int i = 0; i < jsonArrayfees.size(); i++) {
+            GetCategoryRulesResponseDataFees.validateJsonElement(jsonArrayfees.get(i));
+          };
+        }
       }
       // validate the optional field `manufacturer`
       if (jsonObj.get("manufacturer") != null && !jsonObj.get("manufacturer").isJsonNull()) {
@@ -415,6 +502,28 @@ public class GetCategoryRulesResponseData {
            @Override
            public void write(JsonWriter out, GetCategoryRulesResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -422,29 +531,50 @@ public class GetCategoryRulesResponseData {
            public GetCategoryRulesResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetCategoryRulesResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetCategoryRulesResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetCategoryRulesResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetCategoryRulesResponseData
-  */
+  /**
+   * Create an instance of GetCategoryRulesResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetCategoryRulesResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetCategoryRulesResponseData
+   */
   public static GetCategoryRulesResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetCategoryRulesResponseData.class);
   }
 
- /**
-  * Convert an instance of GetCategoryRulesResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetCategoryRulesResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,468 +52,533 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetTransactionsbyStatementResponseDataTransactions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetTransactionsbyStatementResponseDataTransactions {
   public static final String SERIALIZED_NAME_ADJUSTMENT_AMOUNT = "adjustment_amount";
   @SerializedName(SERIALIZED_NAME_ADJUSTMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String adjustmentAmount;
 
   public static final String SERIALIZED_NAME_ADJUSTMENT_ID = "adjustment_id";
   @SerializedName(SERIALIZED_NAME_ADJUSTMENT_ID)
+  @javax.annotation.Nullable
   private String adjustmentId;
 
   public static final String SERIALIZED_NAME_ADJUSTMENT_ORDER_ID = "adjustment_order_id";
   @SerializedName(SERIALIZED_NAME_ADJUSTMENT_ORDER_ID)
+  @javax.annotation.Nullable
   private String adjustmentOrderId;
 
   public static final String SERIALIZED_NAME_ASSOCIATED_ORDER_ID = "associated_order_id";
   @SerializedName(SERIALIZED_NAME_ASSOCIATED_ORDER_ID)
+  @javax.annotation.Nullable
   private String associatedOrderId;
 
   public static final String SERIALIZED_NAME_ESTIMATED_RELEASE_TIME = "estimated_release_time";
   @SerializedName(SERIALIZED_NAME_ESTIMATED_RELEASE_TIME)
+  @javax.annotation.Nullable
   private String estimatedReleaseTime;
 
   public static final String SERIALIZED_NAME_FEE_TAX_AMOUNT = "fee_tax_amount";
   @SerializedName(SERIALIZED_NAME_FEE_TAX_AMOUNT)
+  @javax.annotation.Nullable
   private String feeTaxAmount;
 
   public static final String SERIALIZED_NAME_FEE_TAX_BREAKDOWN = "fee_tax_breakdown";
   @SerializedName(SERIALIZED_NAME_FEE_TAX_BREAKDOWN)
+  @javax.annotation.Nullable
   private GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdown feeTaxBreakdown;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_ORDER_CREATE_TIME = "order_create_time";
   @SerializedName(SERIALIZED_NAME_ORDER_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long orderCreateTime;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_RESERVE_AMOUNT = "reserve_amount";
   @SerializedName(SERIALIZED_NAME_RESERVE_AMOUNT)
+  @javax.annotation.Nullable
   private String reserveAmount;
 
   public static final String SERIALIZED_NAME_RESERVE_ID = "reserve_id";
   @SerializedName(SERIALIZED_NAME_RESERVE_ID)
+  @javax.annotation.Nullable
   private String reserveId;
 
   public static final String SERIALIZED_NAME_RESERVE_STATUS = "reserve_status";
   @SerializedName(SERIALIZED_NAME_RESERVE_STATUS)
+  @javax.annotation.Nullable
   private String reserveStatus;
 
   public static final String SERIALIZED_NAME_REVENUE_AMOUNT = "revenue_amount";
   @SerializedName(SERIALIZED_NAME_REVENUE_AMOUNT)
+  @javax.annotation.Nullable
   private String revenueAmount;
 
   public static final String SERIALIZED_NAME_REVENUE_BREAKDOWN = "revenue_breakdown";
   @SerializedName(SERIALIZED_NAME_REVENUE_BREAKDOWN)
+  @javax.annotation.Nullable
   private GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown revenueBreakdown;
 
   public static final String SERIALIZED_NAME_SETTLEMENT_AMOUNT = "settlement_amount";
   @SerializedName(SERIALIZED_NAME_SETTLEMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String settlementAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_COST_AMOUNT = "shipping_cost_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_COST_AMOUNT)
+  @javax.annotation.Nullable
   private String shippingCostAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_COST_BREAKDOWN = "shipping_cost_breakdown";
   @SerializedName(SERIALIZED_NAME_SHIPPING_COST_BREAKDOWN)
+  @javax.annotation.Nullable
   private GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdown shippingCostBreakdown;
 
   public static final String SERIALIZED_NAME_SUPPLEMENTARY_COMPONENT = "supplementary_component";
   @SerializedName(SERIALIZED_NAME_SUPPLEMENTARY_COMPONENT)
+  @javax.annotation.Nullable
   private GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent supplementaryComponent;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public GetTransactionsbyStatementResponseDataTransactions() {
   }
 
-  public GetTransactionsbyStatementResponseDataTransactions adjustmentAmount(String adjustmentAmount) {
+  public GetTransactionsbyStatementResponseDataTransactions adjustmentAmount(@javax.annotation.Nullable String adjustmentAmount) {
     this.adjustmentAmount = adjustmentAmount;
     return this;
   }
 
-   /**
+  /**
    * The adjustment amount based on TikTok Shop policy.  Refer to &#x60;transactions.type&#x60; for the list of adjustment-related policies.
    * @return adjustmentAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getAdjustmentAmount() {
     return adjustmentAmount;
   }
 
-  public void setAdjustmentAmount(String adjustmentAmount) {
+  public void setAdjustmentAmount(@javax.annotation.Nullable String adjustmentAmount) {
     this.adjustmentAmount = adjustmentAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions adjustmentId(String adjustmentId) {
+  public GetTransactionsbyStatementResponseDataTransactions adjustmentId(@javax.annotation.Nullable String adjustmentId) {
     this.adjustmentId = adjustmentId;
     return this;
   }
 
-   /**
+  /**
    * The adjustment ID if the transaction is an adjustment. Each transaction can only be associated with an order ID or an adjustment ID.
    * @return adjustmentId
-  **/
+   */
   @javax.annotation.Nullable
   public String getAdjustmentId() {
     return adjustmentId;
   }
 
-  public void setAdjustmentId(String adjustmentId) {
+  public void setAdjustmentId(@javax.annotation.Nullable String adjustmentId) {
     this.adjustmentId = adjustmentId;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions adjustmentOrderId(String adjustmentOrderId) {
+  public GetTransactionsbyStatementResponseDataTransactions adjustmentOrderId(@javax.annotation.Nullable String adjustmentOrderId) {
     this.adjustmentOrderId = adjustmentOrderId;
     return this;
   }
 
-   /**
+  /**
    * The order ID associated with the adjustment, if any.
    * @return adjustmentOrderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getAdjustmentOrderId() {
     return adjustmentOrderId;
   }
 
-  public void setAdjustmentOrderId(String adjustmentOrderId) {
+  public void setAdjustmentOrderId(@javax.annotation.Nullable String adjustmentOrderId) {
     this.adjustmentOrderId = adjustmentOrderId;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions associatedOrderId(String associatedOrderId) {
+  public GetTransactionsbyStatementResponseDataTransactions associatedOrderId(@javax.annotation.Nullable String associatedOrderId) {
     this.associatedOrderId = associatedOrderId;
     return this;
   }
 
-   /**
+  /**
    * The order ID associated with the reserve transaction.
    * @return associatedOrderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getAssociatedOrderId() {
     return associatedOrderId;
   }
 
-  public void setAssociatedOrderId(String associatedOrderId) {
+  public void setAssociatedOrderId(@javax.annotation.Nullable String associatedOrderId) {
     this.associatedOrderId = associatedOrderId;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions estimatedReleaseTime(String estimatedReleaseTime) {
+  public GetTransactionsbyStatementResponseDataTransactions estimatedReleaseTime(@javax.annotation.Nullable String estimatedReleaseTime) {
     this.estimatedReleaseTime = estimatedReleaseTime;
     return this;
   }
 
-   /**
+  /**
    * The estimated date when the reserve funds will be released and paid out to the seller. Unix timestamp.  Returns an empty value if the reserve funds have already been released.
    * @return estimatedReleaseTime
-  **/
+   */
   @javax.annotation.Nullable
   public String getEstimatedReleaseTime() {
     return estimatedReleaseTime;
   }
 
-  public void setEstimatedReleaseTime(String estimatedReleaseTime) {
+  public void setEstimatedReleaseTime(@javax.annotation.Nullable String estimatedReleaseTime) {
     this.estimatedReleaseTime = estimatedReleaseTime;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions feeTaxAmount(String feeTaxAmount) {
+  public GetTransactionsbyStatementResponseDataTransactions feeTaxAmount(@javax.annotation.Nullable String feeTaxAmount) {
     this.feeTaxAmount = feeTaxAmount;
     return this;
   }
 
-   /**
+  /**
    * The total fees and taxes charged by TikTok Shop at the time of order settlement. Shipping-related costs are excluded. This is equivalent to the sum of all contributory amounts in &#x60;fee_tax_breakdown&#x60;. 
    * @return feeTaxAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFeeTaxAmount() {
     return feeTaxAmount;
   }
 
-  public void setFeeTaxAmount(String feeTaxAmount) {
+  public void setFeeTaxAmount(@javax.annotation.Nullable String feeTaxAmount) {
     this.feeTaxAmount = feeTaxAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions feeTaxBreakdown(GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdown feeTaxBreakdown) {
+  public GetTransactionsbyStatementResponseDataTransactions feeTaxBreakdown(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdown feeTaxBreakdown) {
     this.feeTaxBreakdown = feeTaxBreakdown;
     return this;
   }
 
-   /**
+  /**
    * Get feeTaxBreakdown
    * @return feeTaxBreakdown
-  **/
+   */
   @javax.annotation.Nullable
   public GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdown getFeeTaxBreakdown() {
     return feeTaxBreakdown;
   }
 
-  public void setFeeTaxBreakdown(GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdown feeTaxBreakdown) {
+  public void setFeeTaxBreakdown(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTransactionsFeeTaxBreakdown feeTaxBreakdown) {
     this.feeTaxBreakdown = feeTaxBreakdown;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions id(String id) {
+  public GetTransactionsbyStatementResponseDataTransactions id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The transaction ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions orderCreateTime(Long orderCreateTime) {
+  public GetTransactionsbyStatementResponseDataTransactions orderCreateTime(@javax.annotation.Nullable Long orderCreateTime) {
     this.orderCreateTime = orderCreateTime;
     return this;
   }
 
-   /**
+  /**
    * The creation time of the order. Unix timestamp.
    * @return orderCreateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getOrderCreateTime() {
     return orderCreateTime;
   }
 
-  public void setOrderCreateTime(Long orderCreateTime) {
+  public void setOrderCreateTime(@javax.annotation.Nullable Long orderCreateTime) {
     this.orderCreateTime = orderCreateTime;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions orderId(String orderId) {
+  public GetTransactionsbyStatementResponseDataTransactions orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * The order ID. Each transaction can only be associated with an order ID or an adjustment ID.
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions reserveAmount(String reserveAmount) {
+  public GetTransactionsbyStatementResponseDataTransactions reserveAmount(@javax.annotation.Nullable String reserveAmount) {
     this.reserveAmount = reserveAmount;
     return this;
   }
 
-   /**
+  /**
    * The amount withheld from settlement based on TikTok Shop Reserve Policy. Refer to TikTok Shop Academy for more information. - A positive amount indicates funds that have been released. - A negative amount indicates funds being withheld from the settlement.
    * @return reserveAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getReserveAmount() {
     return reserveAmount;
   }
 
-  public void setReserveAmount(String reserveAmount) {
+  public void setReserveAmount(@javax.annotation.Nullable String reserveAmount) {
     this.reserveAmount = reserveAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions reserveId(String reserveId) {
+  public GetTransactionsbyStatementResponseDataTransactions reserveId(@javax.annotation.Nullable String reserveId) {
     this.reserveId = reserveId;
     return this;
   }
 
-   /**
+  /**
    * The ID of a reserve transaction.
    * @return reserveId
-  **/
+   */
   @javax.annotation.Nullable
   public String getReserveId() {
     return reserveId;
   }
 
-  public void setReserveId(String reserveId) {
+  public void setReserveId(@javax.annotation.Nullable String reserveId) {
     this.reserveId = reserveId;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions reserveStatus(String reserveStatus) {
+  public GetTransactionsbyStatementResponseDataTransactions reserveStatus(@javax.annotation.Nullable String reserveStatus) {
     this.reserveStatus = reserveStatus;
     return this;
   }
 
-   /**
+  /**
    * The status of the reserve funds. Possible values: - COLLECTED: A portion of the order&#39;s settlement amount has been withheld as reserve funds. - RELEASED: The previously reserved funds have been released and paid out to the seller.
    * @return reserveStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getReserveStatus() {
     return reserveStatus;
   }
 
-  public void setReserveStatus(String reserveStatus) {
+  public void setReserveStatus(@javax.annotation.Nullable String reserveStatus) {
     this.reserveStatus = reserveStatus;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions revenueAmount(String revenueAmount) {
+  public GetTransactionsbyStatementResponseDataTransactions revenueAmount(@javax.annotation.Nullable String revenueAmount) {
     this.revenueAmount = revenueAmount;
     return this;
   }
 
-   /**
+  /**
    * The revenue amount at the time of order settlement. This is equivalent to the sum of all amounts in &#x60;revenue_breakdown&#x60;.
    * @return revenueAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getRevenueAmount() {
     return revenueAmount;
   }
 
-  public void setRevenueAmount(String revenueAmount) {
+  public void setRevenueAmount(@javax.annotation.Nullable String revenueAmount) {
     this.revenueAmount = revenueAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions revenueBreakdown(GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown revenueBreakdown) {
+  public GetTransactionsbyStatementResponseDataTransactions revenueBreakdown(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown revenueBreakdown) {
     this.revenueBreakdown = revenueBreakdown;
     return this;
   }
 
-   /**
+  /**
    * Get revenueBreakdown
    * @return revenueBreakdown
-  **/
+   */
   @javax.annotation.Nullable
   public GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown getRevenueBreakdown() {
     return revenueBreakdown;
   }
 
-  public void setRevenueBreakdown(GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown revenueBreakdown) {
+  public void setRevenueBreakdown(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTransactionsRevenueBreakdown revenueBreakdown) {
     this.revenueBreakdown = revenueBreakdown;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions settlementAmount(String settlementAmount) {
+  public GetTransactionsbyStatementResponseDataTransactions settlementAmount(@javax.annotation.Nullable String settlementAmount) {
     this.settlementAmount = settlementAmount;
     return this;
   }
 
-   /**
+  /**
    * The settlement amount for the order.  Formula: revenue_amount - shipping_cost_amount - fee_tax_amount - adjustment_amount
    * @return settlementAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSettlementAmount() {
     return settlementAmount;
   }
 
-  public void setSettlementAmount(String settlementAmount) {
+  public void setSettlementAmount(@javax.annotation.Nullable String settlementAmount) {
     this.settlementAmount = settlementAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions shippingCostAmount(String shippingCostAmount) {
+  public GetTransactionsbyStatementResponseDataTransactions shippingCostAmount(@javax.annotation.Nullable String shippingCostAmount) {
     this.shippingCostAmount = shippingCostAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping costs at the time of order settlement. This is equivalent to the sum of all contributory amounts in &#x60;shipping_cost_breakdown&#x60;.
    * @return shippingCostAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingCostAmount() {
     return shippingCostAmount;
   }
 
-  public void setShippingCostAmount(String shippingCostAmount) {
+  public void setShippingCostAmount(@javax.annotation.Nullable String shippingCostAmount) {
     this.shippingCostAmount = shippingCostAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions shippingCostBreakdown(GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdown shippingCostBreakdown) {
+  public GetTransactionsbyStatementResponseDataTransactions shippingCostBreakdown(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdown shippingCostBreakdown) {
     this.shippingCostBreakdown = shippingCostBreakdown;
     return this;
   }
 
-   /**
+  /**
    * Get shippingCostBreakdown
    * @return shippingCostBreakdown
-  **/
+   */
   @javax.annotation.Nullable
   public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdown getShippingCostBreakdown() {
     return shippingCostBreakdown;
   }
 
-  public void setShippingCostBreakdown(GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdown shippingCostBreakdown) {
+  public void setShippingCostBreakdown(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdown shippingCostBreakdown) {
     this.shippingCostBreakdown = shippingCostBreakdown;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions supplementaryComponent(GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent supplementaryComponent) {
+  public GetTransactionsbyStatementResponseDataTransactions supplementaryComponent(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent supplementaryComponent) {
     this.supplementaryComponent = supplementaryComponent;
     return this;
   }
 
-   /**
+  /**
    * Get supplementaryComponent
    * @return supplementaryComponent
-  **/
+   */
   @javax.annotation.Nullable
   public GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent getSupplementaryComponent() {
     return supplementaryComponent;
   }
 
-  public void setSupplementaryComponent(GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent supplementaryComponent) {
+  public void setSupplementaryComponent(@javax.annotation.Nullable GetTransactionsbyStatementResponseDataTransactionsSupplementaryComponent supplementaryComponent) {
     this.supplementaryComponent = supplementaryComponent;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactions type(String type) {
+  public GetTransactionsbyStatementResponseDataTransactions type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
-   * The transaction type.  **Standard transactions** - &#x60;ORDER&#x60;: A transaction related to an order settlement. - &#x60;RESERVE&#x60;: A transaction involving collection or release of reserve funds. - If the transaction is an adjustment, it returns one of the following values:  **Platform-related adjustments** - &#x60;CHARGE_BACK&#x60;: Charges returned to a payment card after a customer has successfully disputed an item on their account statement or transactions report. - &#x60;CUSTOMER_SERVICE_COMPENSATION&#x60;: Extra compensation or compensation paid to a customer after the after-sales period by customer service. - &#x60;DEDUCTIONS_INCURRED_BY_SELLER&#x60;: Deduction arising from customer dissatisfaction as a result of the seller&#39;s responsibility. This includes issues such as fraud, empty packages, items that do not match the product display page, or items of lower value than advertised. - &#x60;GMV_PAYMENT_FOR_ADS&#x60;: Amount used to pay for your advertisement if you are enabled \&quot;auto pay ads with shop GMV\&quot;, or to pay for Tiktok Promote ads orders. - &#x60;PLATFORM_COMMISSION_ADJUSTMENT&#x60;: Adjustment when there are differences in the platform commission paid by the seller. - &#x60;PLATFORM_COMMISSION_COMPENSATION&#x60;: Compensation paid to the seller when there are differences in the platform commission paid by the seller. - &#x60;PLATFORM_PENALTY&#x60;: Penalty imposed for a violation of TikTok Shop policies (the corresponding amount has been deducted from the seller&#39;s account). For details, please refer to the email notification sent to the seller. - &#x60;PROMOTION_ADJUSTMENT&#x60;: Adjustment when a seller takes part in a platform promotion and there are differences between the promotion price and the actual amount paid by the seller. - &#x60;REBATE&#x60;: A discount on referral fees offered by TikTok Shop to eligible sellers. - &#x60;PLATFORM_COMPENSATION&#x60;: Compensation paid to the seller after the seller successfully appealed for a customer dispute. - &#x60;PLATFORM_REIMBURSEMENT&#x60;: Reimbursement paid by TikTok Shop for an order refunded under TikTok&#39;s refund without return policy (the seller is not responsible). - &#x60;COFUNDED_CREATOR_REWARDS&#x60;: Fees charged for joining the co-funded creator rewards program to reward creator activities.  **Logistics-related adjustments** - &#x60;FBT_WAREHOUSE_SERVICE_FEE&#x60;: Amount charged by TikTok Fulfillment Portal (Pipak) for warehousing-related bills incurred by the seller under the Fulfilled by TikTok (FBT) service. - &#x60;LOGISTICS_REIMBURSEMENT&#x60;: Reimbursement paid by TikTok Shop for an order refunded due to logistics-related issues (e.g. lost or damaged order). - &#x60;SHIPPING_FEE_ADJUSTMENT&#x60;: Adjustment when there are differences or mistakes with the shipping fee paid by the seller. - &#x60;SHIPPING_FEE_COMPENSATION&#x60;: Compensation given to sellers due to differences between the actual shipping fee and the pre-paid shipping fee. - &#x60;SHIPPING_FEE_REBATE&#x60;: Shipping fee rebate provided to the seller as part of their participation in a platform campaign. - &#x60;SAMPLE_SHIPPING_FEE&#x60;: Fees charged for sending samples using the TikTok logistics provider. - &#x60;SELLER_MISSION_REWARD&#x60;: Platform provided cash reward for seller mission completion.  **Miscellaneous adjustments** &#x60;OTHER_ADJUSTMENT&#x60;: Adjustment for other reasons.
+  /**
+   * The transaction type.  **Standard transactions** - &#x60;ORDER&#x60;: A transaction related to an order settlement. - &#x60;RESERVE&#x60;: A transaction involving collection or release of reserve funds. - If the transaction is an adjustment, it returns one of the following values:  **Platform-related adjustments** - &#x60;CHARGE_BACK&#x60;: Charges returned to a payment card after a customer has successfully disputed an item on their account statement or transactions report. - &#x60;CUSTOMER_SERVICE_COMPENSATION&#x60;: Extra compensation or compensation paid to a customer after the after-sales period by customer service. - &#x60;DEDUCTIONS_INCURRED_BY_SELLER&#x60;: Deduction arising from customer dissatisfaction as a result of the seller&#39;s responsibility. This includes issues such as fraud, empty packages, items that do not match the product display page, or items of lower value than advertised. - &#x60;GMV_PAYMENT_FOR_ADS&#x60;: Amount used to pay for your advertisement if you are enabled \&quot;auto pay ads with shop GMV\&quot;, or to pay for Tiktok Promote ads orders. - &#x60;PLATFORM_COMMISSION_ADJUSTMENT&#x60;: Adjustment when there are differences in the platform commission paid by the seller. - &#x60;PLATFORM_COMMISSION_COMPENSATION&#x60;: Compensation paid to the seller when there are differences in the platform commission paid by the seller. - &#x60;PLATFORM_PENALTY&#x60;: Penalty imposed for a violation of TikTok Shop policies (the corresponding amount has been deducted from the seller&#39;s account). For details, please refer to the email notification sent to the seller. - &#x60;PROMOTION_ADJUSTMENT&#x60;: Adjustment when a seller takes part in a platform promotion and there are differences between the promotion price and the actual amount paid by the seller. - &#x60;REBATE&#x60;: A discount on referral fees offered by TikTok Shop to eligible sellers. - &#x60;PLATFORM_COMPENSATION&#x60;: Compensation paid to the seller after the seller successfully appealed for a customer dispute. - &#x60;PLATFORM_REIMBURSEMENT&#x60;: Reimbursement paid by TikTok Shop for an order refunded under TikTok&#39;s refund without return policy (the seller is not responsible). - &#x60;COFUNDED_CREATOR_REWARDS&#x60;: Fees charged for joining the co-funded creator rewards program to reward creator activities.  **Logistics-related adjustments** - &#x60;FBT_WAREHOUSE_SERVICE_FEE&#x60;: Amount charged by TikTok Fulfillment Portal (Pipak) for warehousing-related bills incurred by the seller under the Fulfilled by TikTok (FBT) service. - &#x60;LOGISTICS_REIMBURSEMENT&#x60;: Reimbursement paid by TikTok Shop for an order refunded due to logistics-related issues (e.g. lost or damaged order). - &#x60;SHIPPING_FEE_ADJUSTMENT&#x60;: Adjustment when there are differences or mistakes with the shipping fee paid by the seller. - &#x60;SHIPPING_FEE_COMPENSATION&#x60;: Compensation given to sellers due to differences between the actual shipping fee and the pre-paid shipping fee. - &#x60;SHIPPING_FEE_REBATE&#x60;: Shipping fee rebate provided to the seller as part of their participation in a platform campaign. - &#x60;SAMPLE_SHIPPING_FEE&#x60;: Fees charged for sending samples using the TikTok logistics provider. - &#x60;SELLER_MISSION_REWARD&#x60;: Platform provided cash reward for seller mission completion. - &#x60;Violation fee （settlement fee）&#x60;: The deduction to cover the cost of buyer&#39;s losses for the unpleasant experience of the buyer due to an issue that is the seller&#39;s responsibility. - &#x60;Violation fee （credit card）&#x60;: The amount owed to TikTok Shop from previous transactions, charged to your primary credit card. - &#x60;Bill payment （negative balance）&#x60;: The amount you owe TikTok Shop, charged to your primary credit card. -  &#x60;Sales proceed（negative balance） &#x60;:Sales proceed that is ready to pay for negeative balance. -  &#x60;Bill deduction for negative balance &#x60;:Deduction for the amount you owe TikTok Shop after all platform fees are deducted from your net earnings.  **Miscellaneous adjustments** &#x60;OTHER_ADJUSTMENT&#x60;: Adjustment for other reasons.
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetTransactionsbyStatementResponseDataTransactions instance itself
+   */
+  public GetTransactionsbyStatementResponseDataTransactions putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -547,12 +611,13 @@ public class GetTransactionsbyStatementResponseDataTransactions {
         Objects.equals(this.shippingCostAmount, finance202501GetTransactionsbyStatementResponseDataTransactions.shippingCostAmount) &&
         Objects.equals(this.shippingCostBreakdown, finance202501GetTransactionsbyStatementResponseDataTransactions.shippingCostBreakdown) &&
         Objects.equals(this.supplementaryComponent, finance202501GetTransactionsbyStatementResponseDataTransactions.supplementaryComponent) &&
-        Objects.equals(this.type, finance202501GetTransactionsbyStatementResponseDataTransactions.type);
+        Objects.equals(this.type, finance202501GetTransactionsbyStatementResponseDataTransactions.type)&&
+        Objects.equals(this.additionalProperties, finance202501GetTransactionsbyStatementResponseDataTransactions.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(adjustmentAmount, adjustmentId, adjustmentOrderId, associatedOrderId, estimatedReleaseTime, feeTaxAmount, feeTaxBreakdown, id, orderCreateTime, orderId, reserveAmount, reserveId, reserveStatus, revenueAmount, revenueBreakdown, settlementAmount, shippingCostAmount, shippingCostBreakdown, supplementaryComponent, type);
+    return Objects.hash(adjustmentAmount, adjustmentId, adjustmentOrderId, associatedOrderId, estimatedReleaseTime, feeTaxAmount, feeTaxBreakdown, id, orderCreateTime, orderId, reserveAmount, reserveId, reserveStatus, revenueAmount, revenueBreakdown, settlementAmount, shippingCostAmount, shippingCostBreakdown, supplementaryComponent, type, additionalProperties);
   }
 
   @Override
@@ -579,6 +644,7 @@ public class GetTransactionsbyStatementResponseDataTransactions {
     sb.append("    shippingCostBreakdown: ").append(toIndentedString(shippingCostBreakdown)).append("\n");
     sb.append("    supplementaryComponent: ").append(toIndentedString(supplementaryComponent)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -600,50 +666,22 @@ public class GetTransactionsbyStatementResponseDataTransactions {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("adjustment_amount");
-    openapiFields.add("adjustment_id");
-    openapiFields.add("adjustment_order_id");
-    openapiFields.add("associated_order_id");
-    openapiFields.add("estimated_release_time");
-    openapiFields.add("fee_tax_amount");
-    openapiFields.add("fee_tax_breakdown");
-    openapiFields.add("id");
-    openapiFields.add("order_create_time");
-    openapiFields.add("order_id");
-    openapiFields.add("reserve_amount");
-    openapiFields.add("reserve_id");
-    openapiFields.add("reserve_status");
-    openapiFields.add("revenue_amount");
-    openapiFields.add("revenue_breakdown");
-    openapiFields.add("settlement_amount");
-    openapiFields.add("shipping_cost_amount");
-    openapiFields.add("shipping_cost_breakdown");
-    openapiFields.add("supplementary_component");
-    openapiFields.add("type");
+    openapiFields = new HashSet<String>(Arrays.asList("adjustment_amount", "adjustment_id", "adjustment_order_id", "associated_order_id", "estimated_release_time", "fee_tax_amount", "fee_tax_breakdown", "id", "order_create_time", "order_id", "reserve_amount", "reserve_id", "reserve_status", "revenue_amount", "revenue_breakdown", "settlement_amount", "shipping_cost_amount", "shipping_cost_breakdown", "supplementary_component", "type"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactions
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactions
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetTransactionsbyStatementResponseDataTransactions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetTransactionsbyStatementResponseDataTransactions is not found in the empty JSON string", GetTransactionsbyStatementResponseDataTransactions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetTransactionsbyStatementResponseDataTransactions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetTransactionsbyStatementResponseDataTransactions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -725,6 +763,28 @@ public class GetTransactionsbyStatementResponseDataTransactions {
            @Override
            public void write(JsonWriter out, GetTransactionsbyStatementResponseDataTransactions value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -732,29 +792,50 @@ public class GetTransactionsbyStatementResponseDataTransactions {
            public GetTransactionsbyStatementResponseDataTransactions read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetTransactionsbyStatementResponseDataTransactions instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetTransactionsbyStatementResponseDataTransactions given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetTransactionsbyStatementResponseDataTransactions
-  * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactions
-  */
+  /**
+   * Create an instance of GetTransactionsbyStatementResponseDataTransactions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetTransactionsbyStatementResponseDataTransactions
+   * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactions
+   */
   public static GetTransactionsbyStatementResponseDataTransactions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetTransactionsbyStatementResponseDataTransactions.class);
   }
 
- /**
-  * Convert an instance of GetTransactionsbyStatementResponseDataTransactions to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetTransactionsbyStatementResponseDataTransactions to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

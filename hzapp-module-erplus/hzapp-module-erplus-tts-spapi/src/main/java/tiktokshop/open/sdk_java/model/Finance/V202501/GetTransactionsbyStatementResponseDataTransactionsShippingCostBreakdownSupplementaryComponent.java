@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,215 +48,317 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent {
   public static final String SERIALIZED_NAME_CUSTOMER_SHIPPING_FEE_OFFSET_AMOUNT = "customer_shipping_fee_offset_amount";
   @SerializedName(SERIALIZED_NAME_CUSTOMER_SHIPPING_FEE_OFFSET_AMOUNT)
+  @javax.annotation.Nullable
   private String customerShippingFeeOffsetAmount;
 
   public static final String SERIALIZED_NAME_FBM_SHIPPING_COST_AMOUNT = "fbm_shipping_cost_amount";
   @SerializedName(SERIALIZED_NAME_FBM_SHIPPING_COST_AMOUNT)
+  @javax.annotation.Nullable
   private String fbmShippingCostAmount;
 
   public static final String SERIALIZED_NAME_FBT_FULFILLMENT_FEE_AMOUNT = "fbt_fulfillment_fee_amount";
   @SerializedName(SERIALIZED_NAME_FBT_FULFILLMENT_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private String fbtFulfillmentFeeAmount;
 
   public static final String SERIALIZED_NAME_FBT_FULFILLMENT_FEE_REIMBURSEMENT_AMOUNT = "fbt_fulfillment_fee_reimbursement_amount";
   @SerializedName(SERIALIZED_NAME_FBT_FULFILLMENT_FEE_REIMBURSEMENT_AMOUNT)
+  @javax.annotation.Nullable
   private String fbtFulfillmentFeeReimbursementAmount;
 
   public static final String SERIALIZED_NAME_FBT_SHIPPING_COST_AMOUNT = "fbt_shipping_cost_amount";
   @SerializedName(SERIALIZED_NAME_FBT_SHIPPING_COST_AMOUNT)
+  @javax.annotation.Nullable
   private String fbtShippingCostAmount;
 
   public static final String SERIALIZED_NAME_PLATFORM_SHIPPING_FEE_DISCOUNT_AMOUNT = "platform_shipping_fee_discount_amount";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SHIPPING_FEE_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String platformShippingFeeDiscountAmount;
 
   public static final String SERIALIZED_NAME_PROMO_SHIPPING_INCENTIVE_AMOUNT = "promo_shipping_incentive_amount";
   @SerializedName(SERIALIZED_NAME_PROMO_SHIPPING_INCENTIVE_AMOUNT)
+  @javax.annotation.Nullable
   private String promoShippingIncentiveAmount;
+
+  public static final String SERIALIZED_NAME_REFUNDED_CUSTOMER_SHIPPING_FEE_AMOUNT = "refunded_customer_shipping_fee_amount";
+  @SerializedName(SERIALIZED_NAME_REFUNDED_CUSTOMER_SHIPPING_FEE_AMOUNT)
+  @javax.annotation.Nullable
+  private String refundedCustomerShippingFeeAmount;
+
+  public static final String SERIALIZED_NAME_RETURN_REFUND_SUBSIDY_AMOUNT = "return_refund_subsidy_amount";
+  @SerializedName(SERIALIZED_NAME_RETURN_REFUND_SUBSIDY_AMOUNT)
+  @javax.annotation.Nullable
+  private String returnRefundSubsidyAmount;
 
   public static final String SERIALIZED_NAME_SELLER_SHIPPING_FEE_DISCOUNT_AMOUNT = "seller_shipping_fee_discount_amount";
   @SerializedName(SERIALIZED_NAME_SELLER_SHIPPING_FEE_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private String sellerShippingFeeDiscountAmount;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_SUBSIDY_AMOUNT = "shipping_fee_subsidy_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_SUBSIDY_AMOUNT)
+  @javax.annotation.Nullable
   private String shippingFeeSubsidyAmount;
 
   public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent() {
   }
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent customerShippingFeeOffsetAmount(String customerShippingFeeOffsetAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent customerShippingFeeOffsetAmount(@javax.annotation.Nullable String customerShippingFeeOffsetAmount) {
     this.customerShippingFeeOffsetAmount = customerShippingFeeOffsetAmount;
     return this;
   }
 
-   /**
+  /**
    * The fee to offset TikTok Shop Shipping Incentive or customer-paid shipping fee, resulting in a net charge of $0 to the seller.  Applicable only for the US.
    * @return customerShippingFeeOffsetAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getCustomerShippingFeeOffsetAmount() {
     return customerShippingFeeOffsetAmount;
   }
 
-  public void setCustomerShippingFeeOffsetAmount(String customerShippingFeeOffsetAmount) {
+  public void setCustomerShippingFeeOffsetAmount(@javax.annotation.Nullable String customerShippingFeeOffsetAmount) {
     this.customerShippingFeeOffsetAmount = customerShippingFeeOffsetAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fbmShippingCostAmount(String fbmShippingCostAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fbmShippingCostAmount(@javax.annotation.Nullable String fbmShippingCostAmount) {
     this.fbmShippingCostAmount = fbmShippingCostAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee incurred by the seller for using TikTok Shipping. This is part of &#x60;actual_shipping_fee_amount&#x60;.
    * @return fbmShippingCostAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFbmShippingCostAmount() {
     return fbmShippingCostAmount;
   }
 
-  public void setFbmShippingCostAmount(String fbmShippingCostAmount) {
+  public void setFbmShippingCostAmount(@javax.annotation.Nullable String fbmShippingCostAmount) {
     this.fbmShippingCostAmount = fbmShippingCostAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fbtFulfillmentFeeAmount(String fbtFulfillmentFeeAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fbtFulfillmentFeeAmount(@javax.annotation.Nullable String fbtFulfillmentFeeAmount) {
     this.fbtFulfillmentFeeAmount = fbtFulfillmentFeeAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping and warehouse fulfillment fee incurred by the seller for orders fulfilled by TikTok (FBT). This is part of &#x60;actual_shipping_fee_amount&#x60;.  Applicable only for the US.
    * @return fbtFulfillmentFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFbtFulfillmentFeeAmount() {
     return fbtFulfillmentFeeAmount;
   }
 
-  public void setFbtFulfillmentFeeAmount(String fbtFulfillmentFeeAmount) {
+  public void setFbtFulfillmentFeeAmount(@javax.annotation.Nullable String fbtFulfillmentFeeAmount) {
     this.fbtFulfillmentFeeAmount = fbtFulfillmentFeeAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fbtFulfillmentFeeReimbursementAmount(String fbtFulfillmentFeeReimbursementAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fbtFulfillmentFeeReimbursementAmount(@javax.annotation.Nullable String fbtFulfillmentFeeReimbursementAmount) {
     this.fbtFulfillmentFeeReimbursementAmount = fbtFulfillmentFeeReimbursementAmount;
     return this;
   }
 
-   /**
+  /**
    * (**Deprecated**: This field is deprecated and will return an empty string. Please refer to &#x60;shipping_cost_breakdown.fbt_fulfillment_fee_reimbursement_amount&#x60; instead for the relevant details.)
    * @return fbtFulfillmentFeeReimbursementAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFbtFulfillmentFeeReimbursementAmount() {
     return fbtFulfillmentFeeReimbursementAmount;
   }
 
-  public void setFbtFulfillmentFeeReimbursementAmount(String fbtFulfillmentFeeReimbursementAmount) {
+  public void setFbtFulfillmentFeeReimbursementAmount(@javax.annotation.Nullable String fbtFulfillmentFeeReimbursementAmount) {
     this.fbtFulfillmentFeeReimbursementAmount = fbtFulfillmentFeeReimbursementAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fbtShippingCostAmount(String fbtShippingCostAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fbtShippingCostAmount(@javax.annotation.Nullable String fbtShippingCostAmount) {
     this.fbtShippingCostAmount = fbtShippingCostAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee incurred by the seller for orders fulfilled by TikTok (FBT). This is part of &#x60;actual_shipping_fee_amount&#x60;.  Applicable only for EU and UK.
    * @return fbtShippingCostAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getFbtShippingCostAmount() {
     return fbtShippingCostAmount;
   }
 
-  public void setFbtShippingCostAmount(String fbtShippingCostAmount) {
+  public void setFbtShippingCostAmount(@javax.annotation.Nullable String fbtShippingCostAmount) {
     this.fbtShippingCostAmount = fbtShippingCostAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent platformShippingFeeDiscountAmount(String platformShippingFeeDiscountAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent platformShippingFeeDiscountAmount(@javax.annotation.Nullable String platformShippingFeeDiscountAmount) {
     this.platformShippingFeeDiscountAmount = platformShippingFeeDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee discount provided in accordance with a campaign policy. This is part of &#x60;shipping_fee_discount_amount&#x60;.
    * @return platformShippingFeeDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformShippingFeeDiscountAmount() {
     return platformShippingFeeDiscountAmount;
   }
 
-  public void setPlatformShippingFeeDiscountAmount(String platformShippingFeeDiscountAmount) {
+  public void setPlatformShippingFeeDiscountAmount(@javax.annotation.Nullable String platformShippingFeeDiscountAmount) {
     this.platformShippingFeeDiscountAmount = platformShippingFeeDiscountAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent promoShippingIncentiveAmount(String promoShippingIncentiveAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent promoShippingIncentiveAmount(@javax.annotation.Nullable String promoShippingIncentiveAmount) {
     this.promoShippingIncentiveAmount = promoShippingIncentiveAmount;
     return this;
   }
 
-   /**
+  /**
    * The additional shipping incentive that the seller will receive if the seller signed up for the Co-Funded Free Shipping Program. A negative amount indicates a reversal of incentives due to order refunds attributed to the seller&#39;s responsibility. This is part of &#x60;shipping_fee_discount_amount&#x60;.
    * @return promoShippingIncentiveAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getPromoShippingIncentiveAmount() {
     return promoShippingIncentiveAmount;
   }
 
-  public void setPromoShippingIncentiveAmount(String promoShippingIncentiveAmount) {
+  public void setPromoShippingIncentiveAmount(@javax.annotation.Nullable String promoShippingIncentiveAmount) {
     this.promoShippingIncentiveAmount = promoShippingIncentiveAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent sellerShippingFeeDiscountAmount(String sellerShippingFeeDiscountAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent refundedCustomerShippingFeeAmount(@javax.annotation.Nullable String refundedCustomerShippingFeeAmount) {
+    this.refundedCustomerShippingFeeAmount = refundedCustomerShippingFeeAmount;
+    return this;
+  }
+
+  /**
+   * Shipping fee returned to customers due returns and refunds.Does not include subsidies.This is part of &#x60;customer_paid_shipping_fee_amount&#x60;.
+   * @return refundedCustomerShippingFeeAmount
+   */
+  @javax.annotation.Nullable
+  public String getRefundedCustomerShippingFeeAmount() {
+    return refundedCustomerShippingFeeAmount;
+  }
+
+  public void setRefundedCustomerShippingFeeAmount(@javax.annotation.Nullable String refundedCustomerShippingFeeAmount) {
+    this.refundedCustomerShippingFeeAmount = refundedCustomerShippingFeeAmount;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent returnRefundSubsidyAmount(@javax.annotation.Nullable String returnRefundSubsidyAmount) {
+    this.returnRefundSubsidyAmount = returnRefundSubsidyAmount;
+    return this;
+  }
+
+  /**
+   * For shipping fee from returns and refunds, you pay up to a standard rate, and TikTok Shop covers the remaining amount.This is part of &#x60;customer_paid_shipping_fee_amount&#x60;.
+   * @return returnRefundSubsidyAmount
+   */
+  @javax.annotation.Nullable
+  public String getReturnRefundSubsidyAmount() {
+    return returnRefundSubsidyAmount;
+  }
+
+  public void setReturnRefundSubsidyAmount(@javax.annotation.Nullable String returnRefundSubsidyAmount) {
+    this.returnRefundSubsidyAmount = returnRefundSubsidyAmount;
+  }
+
+
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent sellerShippingFeeDiscountAmount(@javax.annotation.Nullable String sellerShippingFeeDiscountAmount) {
     this.sellerShippingFeeDiscountAmount = sellerShippingFeeDiscountAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee discount provided by sellers.
    * @return sellerShippingFeeDiscountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerShippingFeeDiscountAmount() {
     return sellerShippingFeeDiscountAmount;
   }
 
-  public void setSellerShippingFeeDiscountAmount(String sellerShippingFeeDiscountAmount) {
+  public void setSellerShippingFeeDiscountAmount(@javax.annotation.Nullable String sellerShippingFeeDiscountAmount) {
     this.sellerShippingFeeDiscountAmount = sellerShippingFeeDiscountAmount;
   }
 
 
-  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent shippingFeeSubsidyAmount(String shippingFeeSubsidyAmount) {
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent shippingFeeSubsidyAmount(@javax.annotation.Nullable String shippingFeeSubsidyAmount) {
     this.shippingFeeSubsidyAmount = shippingFeeSubsidyAmount;
     return this;
   }
 
-   /**
+  /**
    * The shipping fee subsidy funded by the platform for seller shipping. This is part of &#x60;shipping_fee_discount_amount&#x60;. - Positive amount represents a subsidy received by the seller. - Negative amount represents a subsidy that the seller must return to TikTok Shop.
    * @return shippingFeeSubsidyAmount
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingFeeSubsidyAmount() {
     return shippingFeeSubsidyAmount;
   }
 
-  public void setShippingFeeSubsidyAmount(String shippingFeeSubsidyAmount) {
+  public void setShippingFeeSubsidyAmount(@javax.annotation.Nullable String shippingFeeSubsidyAmount) {
     this.shippingFeeSubsidyAmount = shippingFeeSubsidyAmount;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent instance itself
+   */
+  public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -278,13 +379,16 @@ public class GetTransactionsbyStatementResponseDataTransactionsShippingCostBreak
         Objects.equals(this.fbtShippingCostAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.fbtShippingCostAmount) &&
         Objects.equals(this.platformShippingFeeDiscountAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.platformShippingFeeDiscountAmount) &&
         Objects.equals(this.promoShippingIncentiveAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.promoShippingIncentiveAmount) &&
+        Objects.equals(this.refundedCustomerShippingFeeAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.refundedCustomerShippingFeeAmount) &&
+        Objects.equals(this.returnRefundSubsidyAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.returnRefundSubsidyAmount) &&
         Objects.equals(this.sellerShippingFeeDiscountAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.sellerShippingFeeDiscountAmount) &&
-        Objects.equals(this.shippingFeeSubsidyAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.shippingFeeSubsidyAmount);
+        Objects.equals(this.shippingFeeSubsidyAmount, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.shippingFeeSubsidyAmount)&&
+        Objects.equals(this.additionalProperties, finance202501GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerShippingFeeOffsetAmount, fbmShippingCostAmount, fbtFulfillmentFeeAmount, fbtFulfillmentFeeReimbursementAmount, fbtShippingCostAmount, platformShippingFeeDiscountAmount, promoShippingIncentiveAmount, sellerShippingFeeDiscountAmount, shippingFeeSubsidyAmount);
+    return Objects.hash(customerShippingFeeOffsetAmount, fbmShippingCostAmount, fbtFulfillmentFeeAmount, fbtFulfillmentFeeReimbursementAmount, fbtShippingCostAmount, platformShippingFeeDiscountAmount, promoShippingIncentiveAmount, refundedCustomerShippingFeeAmount, returnRefundSubsidyAmount, sellerShippingFeeDiscountAmount, shippingFeeSubsidyAmount, additionalProperties);
   }
 
   @Override
@@ -298,8 +402,11 @@ public class GetTransactionsbyStatementResponseDataTransactionsShippingCostBreak
     sb.append("    fbtShippingCostAmount: ").append(toIndentedString(fbtShippingCostAmount)).append("\n");
     sb.append("    platformShippingFeeDiscountAmount: ").append(toIndentedString(platformShippingFeeDiscountAmount)).append("\n");
     sb.append("    promoShippingIncentiveAmount: ").append(toIndentedString(promoShippingIncentiveAmount)).append("\n");
+    sb.append("    refundedCustomerShippingFeeAmount: ").append(toIndentedString(refundedCustomerShippingFeeAmount)).append("\n");
+    sb.append("    returnRefundSubsidyAmount: ").append(toIndentedString(returnRefundSubsidyAmount)).append("\n");
     sb.append("    sellerShippingFeeDiscountAmount: ").append(toIndentedString(sellerShippingFeeDiscountAmount)).append("\n");
     sb.append("    shippingFeeSubsidyAmount: ").append(toIndentedString(shippingFeeSubsidyAmount)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -321,39 +428,22 @@ public class GetTransactionsbyStatementResponseDataTransactionsShippingCostBreak
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("customer_shipping_fee_offset_amount");
-    openapiFields.add("fbm_shipping_cost_amount");
-    openapiFields.add("fbt_fulfillment_fee_amount");
-    openapiFields.add("fbt_fulfillment_fee_reimbursement_amount");
-    openapiFields.add("fbt_shipping_cost_amount");
-    openapiFields.add("platform_shipping_fee_discount_amount");
-    openapiFields.add("promo_shipping_incentive_amount");
-    openapiFields.add("seller_shipping_fee_discount_amount");
-    openapiFields.add("shipping_fee_subsidy_amount");
+    openapiFields = new HashSet<String>(Arrays.asList("customer_shipping_fee_offset_amount", "fbm_shipping_cost_amount", "fbt_fulfillment_fee_amount", "fbt_fulfillment_fee_reimbursement_amount", "fbt_shipping_cost_amount", "platform_shipping_fee_discount_amount", "promo_shipping_incentive_amount", "refunded_customer_shipping_fee_amount", "return_refund_subsidy_amount", "seller_shipping_fee_discount_amount", "shipping_fee_subsidy_amount"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent is not found in the empty JSON string", GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -378,6 +468,12 @@ public class GetTransactionsbyStatementResponseDataTransactionsShippingCostBreak
       if ((jsonObj.get("promo_shipping_incentive_amount") != null && !jsonObj.get("promo_shipping_incentive_amount").isJsonNull()) && !jsonObj.get("promo_shipping_incentive_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `promo_shipping_incentive_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("promo_shipping_incentive_amount").toString()));
       }
+      if ((jsonObj.get("refunded_customer_shipping_fee_amount") != null && !jsonObj.get("refunded_customer_shipping_fee_amount").isJsonNull()) && !jsonObj.get("refunded_customer_shipping_fee_amount").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `refunded_customer_shipping_fee_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("refunded_customer_shipping_fee_amount").toString()));
+      }
+      if ((jsonObj.get("return_refund_subsidy_amount") != null && !jsonObj.get("return_refund_subsidy_amount").isJsonNull()) && !jsonObj.get("return_refund_subsidy_amount").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `return_refund_subsidy_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("return_refund_subsidy_amount").toString()));
+      }
       if ((jsonObj.get("seller_shipping_fee_discount_amount") != null && !jsonObj.get("seller_shipping_fee_discount_amount").isJsonNull()) && !jsonObj.get("seller_shipping_fee_discount_amount").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `seller_shipping_fee_discount_amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("seller_shipping_fee_discount_amount").toString()));
       }
@@ -401,6 +497,28 @@ public class GetTransactionsbyStatementResponseDataTransactionsShippingCostBreak
            @Override
            public void write(JsonWriter out, GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -408,29 +526,50 @@ public class GetTransactionsbyStatementResponseDataTransactionsShippingCostBreak
            public GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent
-  * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent
-  */
+  /**
+   * Create an instance of GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent
+   * @throws IOException if the JSON string is invalid with respect to GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent
+   */
   public static GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent.class);
   }
 
- /**
-  * Convert an instance of GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetTransactionsbyStatementResponseDataTransactionsShippingCostBreakdownSupplementaryComponent to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

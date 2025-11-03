@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,54 +48,101 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SplitOrdersResponseDataPackages
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SplitOrdersResponseDataPackages {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_SPLITTABLE_GROUP_ID = "splittable_group_id";
   @SerializedName(SERIALIZED_NAME_SPLITTABLE_GROUP_ID)
+  @javax.annotation.Nullable
   private String splittableGroupId;
 
   public SplitOrdersResponseDataPackages() {
   }
 
-  public SplitOrdersResponseDataPackages id(String id) {
+  public SplitOrdersResponseDataPackages id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Package ID after success split. Use this new package ID to call [Ship Package API](https://partner.tiktokshop.com/docv2/page/650aa4f1defece02be6e7cb1?external_id&#x3D;650aa4f1defece02be6e7cb1) to ship the package.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public SplitOrdersResponseDataPackages splittableGroupId(String splittableGroupId) {
+  public SplitOrdersResponseDataPackages splittableGroupId(@javax.annotation.Nullable String splittableGroupId) {
     this.splittableGroupId = splittableGroupId;
     return this;
   }
 
-   /**
+  /**
    * The ID of split group in request body.
    * @return splittableGroupId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSplittableGroupId() {
     return splittableGroupId;
   }
 
-  public void setSplittableGroupId(String splittableGroupId) {
+  public void setSplittableGroupId(@javax.annotation.Nullable String splittableGroupId) {
     this.splittableGroupId = splittableGroupId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SplitOrdersResponseDataPackages instance itself
+   */
+  public SplitOrdersResponseDataPackages putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -111,12 +157,13 @@ public class SplitOrdersResponseDataPackages {
     }
     SplitOrdersResponseDataPackages fulfillment202309SplitOrdersResponseDataPackages = (SplitOrdersResponseDataPackages) o;
     return Objects.equals(this.id, fulfillment202309SplitOrdersResponseDataPackages.id) &&
-        Objects.equals(this.splittableGroupId, fulfillment202309SplitOrdersResponseDataPackages.splittableGroupId);
+        Objects.equals(this.splittableGroupId, fulfillment202309SplitOrdersResponseDataPackages.splittableGroupId)&&
+        Objects.equals(this.additionalProperties, fulfillment202309SplitOrdersResponseDataPackages.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, splittableGroupId);
+    return Objects.hash(id, splittableGroupId, additionalProperties);
   }
 
   @Override
@@ -125,6 +172,7 @@ public class SplitOrdersResponseDataPackages {
     sb.append("class SplitOrdersResponseDataPackages {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    splittableGroupId: ").append(toIndentedString(splittableGroupId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -146,32 +194,22 @@ public class SplitOrdersResponseDataPackages {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("splittable_group_id");
+    openapiFields = new HashSet<String>(Arrays.asList("id", "splittable_group_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SplitOrdersResponseDataPackages
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SplitOrdersResponseDataPackages
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SplitOrdersResponseDataPackages.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SplitOrdersResponseDataPackages is not found in the empty JSON string", SplitOrdersResponseDataPackages.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SplitOrdersResponseDataPackages.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SplitOrdersResponseDataPackages` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -198,6 +236,28 @@ public class SplitOrdersResponseDataPackages {
            @Override
            public void write(JsonWriter out, SplitOrdersResponseDataPackages value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -205,29 +265,50 @@ public class SplitOrdersResponseDataPackages {
            public SplitOrdersResponseDataPackages read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SplitOrdersResponseDataPackages instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SplitOrdersResponseDataPackages given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SplitOrdersResponseDataPackages
-  * @throws IOException if the JSON string is invalid with respect to SplitOrdersResponseDataPackages
-  */
+  /**
+   * Create an instance of SplitOrdersResponseDataPackages given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SplitOrdersResponseDataPackages
+   * @throws IOException if the JSON string is invalid with respect to SplitOrdersResponseDataPackages
+   */
   public static SplitOrdersResponseDataPackages fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SplitOrdersResponseDataPackages.class);
   }
 
- /**
-  * Convert an instance of SplitOrdersResponseDataPackages to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SplitOrdersResponseDataPackages to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

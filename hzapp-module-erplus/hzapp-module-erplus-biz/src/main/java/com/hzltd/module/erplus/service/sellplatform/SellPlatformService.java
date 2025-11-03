@@ -46,6 +46,22 @@ public interface SellPlatformService {
     SellPlatformDO getSellPlatform(Integer id);
 
     /**
+     * 获得销售平台
+     *
+     * @param id 编号
+     * @return 销售平台
+     */
+    SellPlatformDO getSellPlatformCache(Integer id);
+
+     /**
+     * 获得销售平台
+     *
+     * @param code 编码
+     * @return 销售平台
+     */
+    SellPlatformDO getSellPlatformByCode(String code);
+
+    /**
      * 获得销售平台分页
      *
      * @param pageReqVO 分页查询

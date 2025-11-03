@@ -46,7 +46,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -58,231 +57,262 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchReturnsResponseDataReturnOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchReturnsResponseDataReturnOrders {
   public static final String SERIALIZED_NAME_ARBITRATION_STATUS = "arbitration_status";
   @SerializedName(SERIALIZED_NAME_ARBITRATION_STATUS)
+  @javax.annotation.Nullable
   private String arbitrationStatus;
 
   public static final String SERIALIZED_NAME_BUYER_REJECTED_PARTIAL_REFUND = "buyer_rejected_partial_refund";
   @SerializedName(SERIALIZED_NAME_BUYER_REJECTED_PARTIAL_REFUND)
+  @javax.annotation.Nullable
   private Boolean buyerRejectedPartialRefund;
 
   public static final String SERIALIZED_NAME_CAN_BUYER_KEEP_ITEM = "can_buyer_keep_item";
   @SerializedName(SERIALIZED_NAME_CAN_BUYER_KEEP_ITEM)
+  @javax.annotation.Nullable
   private Boolean canBuyerKeepItem;
 
   public static final String SERIALIZED_NAME_COMBINED_RETURN_ID = "combined_return_id";
   @SerializedName(SERIALIZED_NAME_COMBINED_RETURN_ID)
+  @javax.annotation.Nullable
   private String combinedReturnId;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_DISCOUNT_AMOUNT = "discount_amount";
   @SerializedName(SERIALIZED_NAME_DISCOUNT_AMOUNT)
+  @javax.annotation.Nullable
   private List<SearchReturnsResponseDataReturnOrdersDiscountAmount> discountAmount = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_HANDOVER_METHOD = "handover_method";
   @SerializedName(SERIALIZED_NAME_HANDOVER_METHOD)
+  @javax.annotation.Nullable
   private String handoverMethod;
 
   public static final String SERIALIZED_NAME_IS_COMBINED_RETURN = "is_combined_return";
   @SerializedName(SERIALIZED_NAME_IS_COMBINED_RETURN)
+  @javax.annotation.Nullable
   private Boolean isCombinedReturn;
 
   public static final String SERIALIZED_NAME_NEXT_RETURN_ID = "next_return_id";
   @SerializedName(SERIALIZED_NAME_NEXT_RETURN_ID)
+  @javax.annotation.Nullable
   private String nextReturnId;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_PARTIAL_REFUND = "partial_refund";
   @SerializedName(SERIALIZED_NAME_PARTIAL_REFUND)
+  @javax.annotation.Nullable
   private SearchReturnsResponseDataReturnOrdersPartialRefund partialRefund;
 
   public static final String SERIALIZED_NAME_PRE_RETURN_ID = "pre_return_id";
   @SerializedName(SERIALIZED_NAME_PRE_RETURN_ID)
+  @javax.annotation.Nullable
   private String preReturnId;
 
   public static final String SERIALIZED_NAME_REFUND_AMOUNT = "refund_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private SearchReturnsResponseDataReturnOrdersRefundAmount refundAmount;
 
   public static final String SERIALIZED_NAME_RETURN_ID = "return_id";
   @SerializedName(SERIALIZED_NAME_RETURN_ID)
+  @javax.annotation.Nullable
   private String returnId;
 
   public static final String SERIALIZED_NAME_RETURN_LINE_ITEMS = "return_line_items";
   @SerializedName(SERIALIZED_NAME_RETURN_LINE_ITEMS)
+  @javax.annotation.Nullable
   private List<SearchReturnsResponseDataReturnOrdersReturnLineItems> returnLineItems = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RETURN_METHOD = "return_method";
   @SerializedName(SERIALIZED_NAME_RETURN_METHOD)
+  @javax.annotation.Nullable
   private String returnMethod;
 
   public static final String SERIALIZED_NAME_RETURN_PROVIDER_ID = "return_provider_id";
   @SerializedName(SERIALIZED_NAME_RETURN_PROVIDER_ID)
+  @javax.annotation.Nullable
   private String returnProviderId;
 
   public static final String SERIALIZED_NAME_RETURN_PROVIDER_NAME = "return_provider_name";
   @SerializedName(SERIALIZED_NAME_RETURN_PROVIDER_NAME)
+  @javax.annotation.Nullable
   private String returnProviderName;
 
   public static final String SERIALIZED_NAME_RETURN_REASON = "return_reason";
   @SerializedName(SERIALIZED_NAME_RETURN_REASON)
+  @javax.annotation.Nullable
   private String returnReason;
 
   public static final String SERIALIZED_NAME_RETURN_REASON_TEXT = "return_reason_text";
   @SerializedName(SERIALIZED_NAME_RETURN_REASON_TEXT)
+  @javax.annotation.Nullable
   private String returnReasonText;
 
   public static final String SERIALIZED_NAME_RETURN_SHIPPING_DOCUMENT_TYPE = "return_shipping_document_type";
   @SerializedName(SERIALIZED_NAME_RETURN_SHIPPING_DOCUMENT_TYPE)
+  @javax.annotation.Nullable
   private String returnShippingDocumentType;
 
   public static final String SERIALIZED_NAME_RETURN_STATUS = "return_status";
   @SerializedName(SERIALIZED_NAME_RETURN_STATUS)
+  @javax.annotation.Nullable
   private String returnStatus;
 
   public static final String SERIALIZED_NAME_RETURN_TRACKING_NUMBER = "return_tracking_number";
   @SerializedName(SERIALIZED_NAME_RETURN_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String returnTrackingNumber;
 
   public static final String SERIALIZED_NAME_RETURN_TYPE = "return_type";
   @SerializedName(SERIALIZED_NAME_RETURN_TYPE)
+  @javax.annotation.Nullable
   private String returnType;
 
   public static final String SERIALIZED_NAME_RETURN_WAREHOUSE_ADDRESS = "return_warehouse_address";
   @SerializedName(SERIALIZED_NAME_RETURN_WAREHOUSE_ADDRESS)
+  @javax.annotation.Nullable
   private SearchReturnsResponseDataReturnOrdersReturnWarehouseAddress returnWarehouseAddress;
 
   public static final String SERIALIZED_NAME_ROLE = "role";
   @SerializedName(SERIALIZED_NAME_ROLE)
+  @javax.annotation.Nullable
   private String role;
 
   public static final String SERIALIZED_NAME_SELLER_NEXT_ACTION_RESPONSE = "seller_next_action_response";
   @SerializedName(SERIALIZED_NAME_SELLER_NEXT_ACTION_RESPONSE)
+  @javax.annotation.Nullable
   private List<SearchReturnsResponseDataReturnOrdersSellerNextActionResponse> sellerNextActionResponse = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SELLER_PROPOSED_RETURN_TYPE = "seller_proposed_return_type";
   @SerializedName(SERIALIZED_NAME_SELLER_PROPOSED_RETURN_TYPE)
+  @javax.annotation.Nullable
   private String sellerProposedReturnType;
 
   public static final String SERIALIZED_NAME_SHIPMENT_TYPE = "shipment_type";
   @SerializedName(SERIALIZED_NAME_SHIPMENT_TYPE)
+  @javax.annotation.Nullable
   private String shipmentType;
 
   public static final String SERIALIZED_NAME_SHIPPING_FEE_AMOUNT = "shipping_fee_amount";
   @SerializedName(SERIALIZED_NAME_SHIPPING_FEE_AMOUNT)
+  @javax.annotation.Nullable
   private List<SearchReturnsResponseDataReturnOrdersShippingFeeAmount> shippingFeeAmount = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public SearchReturnsResponseDataReturnOrders() {
   }
 
-  public SearchReturnsResponseDataReturnOrders arbitrationStatus(String arbitrationStatus) {
+  public SearchReturnsResponseDataReturnOrders arbitrationStatus(@javax.annotation.Nullable String arbitrationStatus) {
     this.arbitrationStatus = arbitrationStatus;
     return this;
   }
 
-   /**
+  /**
    * List of arbitration statuses.  Available values: - &#x60;IN_PROGRESS&#x60;: The TikTok Shop platform operator is processing arbitration. Platform may request additional information from the seller.   - &#x60;SUPPORT_BUYER&#x60;: The platform operator supports buyer. - &#x60;SUPPORT_SELLER&#x60;: The platform operator supports seller. - &#x60;CLOSED&#x60;: Arbitration is closed
    * @return arbitrationStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getArbitrationStatus() {
     return arbitrationStatus;
   }
 
-  public void setArbitrationStatus(String arbitrationStatus) {
+  public void setArbitrationStatus(@javax.annotation.Nullable String arbitrationStatus) {
     this.arbitrationStatus = arbitrationStatus;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders buyerRejectedPartialRefund(Boolean buyerRejectedPartialRefund) {
+  public SearchReturnsResponseDataReturnOrders buyerRejectedPartialRefund(@javax.annotation.Nullable Boolean buyerRejectedPartialRefund) {
     this.buyerRejectedPartialRefund = buyerRejectedPartialRefund;
     return this;
   }
 
-   /**
+  /**
    * Only return this field when seller initiated the partial refund. Available values: - &#x60;TRUE&#x60;: Buyer reject the seller partial refund offer. - &#x60;FALSE&#x60;: Buyer accept the seller partial refund offer or awaiting buyer response.
    * @return buyerRejectedPartialRefund
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getBuyerRejectedPartialRefund() {
     return buyerRejectedPartialRefund;
   }
 
-  public void setBuyerRejectedPartialRefund(Boolean buyerRejectedPartialRefund) {
+  public void setBuyerRejectedPartialRefund(@javax.annotation.Nullable Boolean buyerRejectedPartialRefund) {
     this.buyerRejectedPartialRefund = buyerRejectedPartialRefund;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders canBuyerKeepItem(Boolean canBuyerKeepItem) {
+  public SearchReturnsResponseDataReturnOrders canBuyerKeepItem(@javax.annotation.Nullable Boolean canBuyerKeepItem) {
     this.canBuyerKeepItem = canBuyerKeepItem;
     return this;
   }
 
-   /**
+  /**
    * Whether buyer can keep the item(s) in a return or replacement process.
    * @return canBuyerKeepItem
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getCanBuyerKeepItem() {
     return canBuyerKeepItem;
   }
 
-  public void setCanBuyerKeepItem(Boolean canBuyerKeepItem) {
+  public void setCanBuyerKeepItem(@javax.annotation.Nullable Boolean canBuyerKeepItem) {
     this.canBuyerKeepItem = canBuyerKeepItem;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders combinedReturnId(String combinedReturnId) {
+  public SearchReturnsResponseDataReturnOrders combinedReturnId(@javax.annotation.Nullable String combinedReturnId) {
     this.combinedReturnId = combinedReturnId;
     return this;
   }
 
-   /**
+  /**
    * If &#x60;is_combined_return&#x60; is &#x60;true&#x60;, this field will return the &#x60;combined_return_id&#x60; associated with the combined return.
    * @return combinedReturnId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCombinedReturnId() {
     return combinedReturnId;
   }
 
-  public void setCombinedReturnId(String combinedReturnId) {
+  public void setCombinedReturnId(@javax.annotation.Nullable String combinedReturnId) {
     this.combinedReturnId = combinedReturnId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders createTime(Long createTime) {
+  public SearchReturnsResponseDataReturnOrders createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * Return create time. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders discountAmount(List<SearchReturnsResponseDataReturnOrdersDiscountAmount> discountAmount) {
+  public SearchReturnsResponseDataReturnOrders discountAmount(@javax.annotation.Nullable List<SearchReturnsResponseDataReturnOrdersDiscountAmount> discountAmount) {
     this.discountAmount = discountAmount;
     return this;
   }
@@ -295,173 +325,173 @@ public class SearchReturnsResponseDataReturnOrders {
     return this;
   }
 
-   /**
+  /**
    * Discount refund details.
    * @return discountAmount
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchReturnsResponseDataReturnOrdersDiscountAmount> getDiscountAmount() {
     return discountAmount;
   }
 
-  public void setDiscountAmount(List<SearchReturnsResponseDataReturnOrdersDiscountAmount> discountAmount) {
+  public void setDiscountAmount(@javax.annotation.Nullable List<SearchReturnsResponseDataReturnOrdersDiscountAmount> discountAmount) {
     this.discountAmount = discountAmount;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders handoverMethod(String handoverMethod) {
+  public SearchReturnsResponseDataReturnOrders handoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
     return this;
   }
 
-   /**
+  /**
    * The handover method buyer chooses to use when returning item(s) to seller using platform&#39;s shipping service.  - &#x60;DROP_OFF&#x60;: buyer will drop off the item(s) at courier  - &#x60;PICKUP&#x60;: buyer is scheduling a pick up service offered by the courier.
    * @return handoverMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandoverMethod() {
     return handoverMethod;
   }
 
-  public void setHandoverMethod(String handoverMethod) {
+  public void setHandoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders isCombinedReturn(Boolean isCombinedReturn) {
+  public SearchReturnsResponseDataReturnOrders isCombinedReturn(@javax.annotation.Nullable Boolean isCombinedReturn) {
     this.isCombinedReturn = isCombinedReturn;
     return this;
   }
 
-   /**
+  /**
    * This field will return true if the buyer is asking to combine multiple returns into one return package.
    * @return isCombinedReturn
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsCombinedReturn() {
     return isCombinedReturn;
   }
 
-  public void setIsCombinedReturn(Boolean isCombinedReturn) {
+  public void setIsCombinedReturn(@javax.annotation.Nullable Boolean isCombinedReturn) {
     this.isCombinedReturn = isCombinedReturn;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders nextReturnId(String nextReturnId) {
+  public SearchReturnsResponseDataReturnOrders nextReturnId(@javax.annotation.Nullable String nextReturnId) {
     this.nextReturnId = nextReturnId;
     return this;
   }
 
-   /**
+  /**
    * The next return ID the current return order is edited to.
    * @return nextReturnId
-  **/
+   */
   @javax.annotation.Nullable
   public String getNextReturnId() {
     return nextReturnId;
   }
 
-  public void setNextReturnId(String nextReturnId) {
+  public void setNextReturnId(@javax.annotation.Nullable String nextReturnId) {
     this.nextReturnId = nextReturnId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders orderId(String orderId) {
+  public SearchReturnsResponseDataReturnOrders orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop order ID. Contains multiple order line item IDs.
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders partialRefund(SearchReturnsResponseDataReturnOrdersPartialRefund partialRefund) {
+  public SearchReturnsResponseDataReturnOrders partialRefund(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersPartialRefund partialRefund) {
     this.partialRefund = partialRefund;
     return this;
   }
 
-   /**
+  /**
    * Get partialRefund
    * @return partialRefund
-  **/
+   */
   @javax.annotation.Nullable
   public SearchReturnsResponseDataReturnOrdersPartialRefund getPartialRefund() {
     return partialRefund;
   }
 
-  public void setPartialRefund(SearchReturnsResponseDataReturnOrdersPartialRefund partialRefund) {
+  public void setPartialRefund(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersPartialRefund partialRefund) {
     this.partialRefund = partialRefund;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders preReturnId(String preReturnId) {
+  public SearchReturnsResponseDataReturnOrders preReturnId(@javax.annotation.Nullable String preReturnId) {
     this.preReturnId = preReturnId;
     return this;
   }
 
-   /**
+  /**
    * The previous return ID the current return order is edited from.
    * @return preReturnId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPreReturnId() {
     return preReturnId;
   }
 
-  public void setPreReturnId(String preReturnId) {
+  public void setPreReturnId(@javax.annotation.Nullable String preReturnId) {
     this.preReturnId = preReturnId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders refundAmount(SearchReturnsResponseDataReturnOrdersRefundAmount refundAmount) {
+  public SearchReturnsResponseDataReturnOrders refundAmount(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersRefundAmount refundAmount) {
     this.refundAmount = refundAmount;
     return this;
   }
 
-   /**
+  /**
    * Get refundAmount
    * @return refundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public SearchReturnsResponseDataReturnOrdersRefundAmount getRefundAmount() {
     return refundAmount;
   }
 
-  public void setRefundAmount(SearchReturnsResponseDataReturnOrdersRefundAmount refundAmount) {
+  public void setRefundAmount(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersRefundAmount refundAmount) {
     this.refundAmount = refundAmount;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnId(String returnId) {
+  public SearchReturnsResponseDataReturnOrders returnId(@javax.annotation.Nullable String returnId) {
     this.returnId = returnId;
     return this;
   }
 
-   /**
+  /**
    * The identifier of a specific return.
    * @return returnId
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnId() {
     return returnId;
   }
 
-  public void setReturnId(String returnId) {
+  public void setReturnId(@javax.annotation.Nullable String returnId) {
     this.returnId = returnId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnLineItems(List<SearchReturnsResponseDataReturnOrdersReturnLineItems> returnLineItems) {
+  public SearchReturnsResponseDataReturnOrders returnLineItems(@javax.annotation.Nullable List<SearchReturnsResponseDataReturnOrdersReturnLineItems> returnLineItems) {
     this.returnLineItems = returnLineItems;
     return this;
   }
@@ -474,230 +504,230 @@ public class SearchReturnsResponseDataReturnOrders {
     return this;
   }
 
-   /**
+  /**
    * Return order lines items.
    * @return returnLineItems
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchReturnsResponseDataReturnOrdersReturnLineItems> getReturnLineItems() {
     return returnLineItems;
   }
 
-  public void setReturnLineItems(List<SearchReturnsResponseDataReturnOrdersReturnLineItems> returnLineItems) {
+  public void setReturnLineItems(@javax.annotation.Nullable List<SearchReturnsResponseDataReturnOrdersReturnLineItems> returnLineItems) {
     this.returnLineItems = returnLineItems;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnMethod(String returnMethod) {
+  public SearchReturnsResponseDataReturnOrders returnMethod(@javax.annotation.Nullable String returnMethod) {
     this.returnMethod = returnMethod;
     return this;
   }
 
-   /**
+  /**
    * Return method: - &#x60;SELLER_SHIPPED&#x60;: Seller offers the return shipping service. - &#x60;BUYER_SHIPPED&#x60;: Buyer offers the return shipping service. - &#x60;PLATFORM_SHIPPED&#x60;: TikTok Shop offers the return shipping service.
    * @return returnMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnMethod() {
     return returnMethod;
   }
 
-  public void setReturnMethod(String returnMethod) {
+  public void setReturnMethod(@javax.annotation.Nullable String returnMethod) {
     this.returnMethod = returnMethod;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnProviderId(String returnProviderId) {
+  public SearchReturnsResponseDataReturnOrders returnProviderId(@javax.annotation.Nullable String returnProviderId) {
     this.returnProviderId = returnProviderId;
     return this;
   }
 
-   /**
+  /**
    * The provider ID of parcel when buyer returns the items.
    * @return returnProviderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnProviderId() {
     return returnProviderId;
   }
 
-  public void setReturnProviderId(String returnProviderId) {
+  public void setReturnProviderId(@javax.annotation.Nullable String returnProviderId) {
     this.returnProviderId = returnProviderId;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnProviderName(String returnProviderName) {
+  public SearchReturnsResponseDataReturnOrders returnProviderName(@javax.annotation.Nullable String returnProviderName) {
     this.returnProviderName = returnProviderName;
     return this;
   }
 
-   /**
+  /**
    * The provider name of parcel when buyer returns the item(s).
    * @return returnProviderName
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnProviderName() {
     return returnProviderName;
   }
 
-  public void setReturnProviderName(String returnProviderName) {
+  public void setReturnProviderName(@javax.annotation.Nullable String returnProviderName) {
     this.returnProviderName = returnProviderName;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnReason(String returnReason) {
+  public SearchReturnsResponseDataReturnOrders returnReason(@javax.annotation.Nullable String returnReason) {
     this.returnReason = returnReason;
     return this;
   }
 
-   /**
+  /**
    * Reason for return.
    * @return returnReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnReason() {
     return returnReason;
   }
 
-  public void setReturnReason(String returnReason) {
+  public void setReturnReason(@javax.annotation.Nullable String returnReason) {
     this.returnReason = returnReason;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnReasonText(String returnReasonText) {
+  public SearchReturnsResponseDataReturnOrders returnReasonText(@javax.annotation.Nullable String returnReasonText) {
     this.returnReasonText = returnReasonText;
     return this;
   }
 
-   /**
+  /**
    * Reason for return, in localized text. You can change language using the locale request parameter. 
    * @return returnReasonText
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnReasonText() {
     return returnReasonText;
   }
 
-  public void setReturnReasonText(String returnReasonText) {
+  public void setReturnReasonText(@javax.annotation.Nullable String returnReasonText) {
     this.returnReasonText = returnReasonText;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnShippingDocumentType(String returnShippingDocumentType) {
+  public SearchReturnsResponseDataReturnOrders returnShippingDocumentType(@javax.annotation.Nullable String returnShippingDocumentType) {
     this.returnShippingDocumentType = returnShippingDocumentType;
     return this;
   }
 
-   /**
+  /**
    * The type of return shipping document selected by the buyer.  Available values: - &#x60;SHIPPING_LABE&#x60;L - &#x60;QR_CODE&#x60;
    * @return returnShippingDocumentType
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnShippingDocumentType() {
     return returnShippingDocumentType;
   }
 
-  public void setReturnShippingDocumentType(String returnShippingDocumentType) {
+  public void setReturnShippingDocumentType(@javax.annotation.Nullable String returnShippingDocumentType) {
     this.returnShippingDocumentType = returnShippingDocumentType;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnStatus(String returnStatus) {
+  public SearchReturnsResponseDataReturnOrders returnStatus(@javax.annotation.Nullable String returnStatus) {
     this.returnStatus = returnStatus;
     return this;
   }
 
-   /**
+  /**
    * Return status. Available values: - &#x60;RETURN_OR_REFUND_REQUEST_PENDING&#x60;: Buyer has initiated a return or refund request. The request is pending review by seller or platform.  - &#x60;REFUND_OR_RETURN_REQUEST_REJECT&#x60;: The return or refund request was rejected.  - &#x60;AWAITING_BUYER_SHIP&#x60;: The return request was approved. The seller is waiting for the buyer to ship the approved items to the seller. If the buyer doesn&#39;t ship the items to the seller before the deadline, the platform will close the request. - &#x60;BUYER_SHIPPED_ITEM&#x60;: Buyer has shipped the approved items to seller. - &#x60;REJECT_RECEIVE_PACKAGE&#x60;: Seller inspected the returned items and rejected the return package.  - &#x60;RETURN_OR_REFUND_REQUEST_SUCCESS&#x60;: The return/refund request was approved. The buyer will be refunded. - &#x60;RETURN_OR_REFUND_REQUEST_CANCEL&#x60;: The request has been cancelled by the buyer or system.  - &#x60;RETURN_OR_REFUND_REQUEST_COMPLETE&#x60;: The return/refund was processed successfully. The buyer has been refunded. - &#x60;REPLACEMENT_REQUEST_PENDING&#x60;: Buyer has initiated a replacement request. The request is pending review by seller. - &#x60;REPLACEMENT_REQUEST_REJECT&#x60;: Seller reject the buyer replacement request. - &#x60;REPLACEMENT_REQUEST_REFUND_SUCCESS&#x60;: Buyer&#39;s replacement request was resolved by refund due to insufficient inventory. - &#x60;REPLACEMENT_REQUEST_CANCEL&#x60;: Buyer canceled the replacement request. - &#x60;REPLACEMENT_REQUEST_COMPLETE&#x60;: Seller has approved the buyer&#39;s replacement request, platform will generate a new order for seller to fulfill. - &#x60;AWAITING_BUYER_RESPONSE&#x60;: Seller offer another return type to the buyer, and waiting buyer response. Seller proposed return type can check the &#x60;seller_proposed_return_type&#x60;. 
    * @return returnStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnStatus() {
     return returnStatus;
   }
 
-  public void setReturnStatus(String returnStatus) {
+  public void setReturnStatus(@javax.annotation.Nullable String returnStatus) {
     this.returnStatus = returnStatus;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnTrackingNumber(String returnTrackingNumber) {
+  public SearchReturnsResponseDataReturnOrders returnTrackingNumber(@javax.annotation.Nullable String returnTrackingNumber) {
     this.returnTrackingNumber = returnTrackingNumber;
     return this;
   }
 
-   /**
+  /**
    * The tracking number of parcels when buyer returns the item(s).
    * @return returnTrackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnTrackingNumber() {
     return returnTrackingNumber;
   }
 
-  public void setReturnTrackingNumber(String returnTrackingNumber) {
+  public void setReturnTrackingNumber(@javax.annotation.Nullable String returnTrackingNumber) {
     this.returnTrackingNumber = returnTrackingNumber;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnType(String returnType) {
+  public SearchReturnsResponseDataReturnOrders returnType(@javax.annotation.Nullable String returnType) {
     this.returnType = returnType;
     return this;
   }
 
-   /**
+  /**
    * Return type. Available values: - &#x60;REFUND&#x60;: Seller will issue a refund without return. The buyer is not required to send the item(s) back to the seller. - &#x60;RETURN_AND_REFUND&#x60;: Buyer is required to send the item(s) back to the seller. The seller will need to review the condition of the returned item(s) before a refund can be issued to the buyer.  - &#x60;REPLACEMENT&#x60;: The buyer requires the seller to replace the item(s).
    * @return returnType
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnType() {
     return returnType;
   }
 
-  public void setReturnType(String returnType) {
+  public void setReturnType(@javax.annotation.Nullable String returnType) {
     this.returnType = returnType;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders returnWarehouseAddress(SearchReturnsResponseDataReturnOrdersReturnWarehouseAddress returnWarehouseAddress) {
+  public SearchReturnsResponseDataReturnOrders returnWarehouseAddress(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersReturnWarehouseAddress returnWarehouseAddress) {
     this.returnWarehouseAddress = returnWarehouseAddress;
     return this;
   }
 
-   /**
+  /**
    * Get returnWarehouseAddress
    * @return returnWarehouseAddress
-  **/
+   */
   @javax.annotation.Nullable
   public SearchReturnsResponseDataReturnOrdersReturnWarehouseAddress getReturnWarehouseAddress() {
     return returnWarehouseAddress;
   }
 
-  public void setReturnWarehouseAddress(SearchReturnsResponseDataReturnOrdersReturnWarehouseAddress returnWarehouseAddress) {
+  public void setReturnWarehouseAddress(@javax.annotation.Nullable SearchReturnsResponseDataReturnOrdersReturnWarehouseAddress returnWarehouseAddress) {
     this.returnWarehouseAddress = returnWarehouseAddress;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders role(String role) {
+  public SearchReturnsResponseDataReturnOrders role(@javax.annotation.Nullable String role) {
     this.role = role;
     return this;
   }
 
-   /**
+  /**
    * Return initiation role. Available values: - &#x60;BUYER&#x60; - &#x60;SELLER&#x60; - &#x60;OPERATOR&#x60; : TikTok Shop platform operator. - &#x60;SYSTEM&#x60;:  TikTok Shop system. Please see \&quot;API overview\&quot; to learn more about roles. 
    * @return role
-  **/
+   */
   @javax.annotation.Nullable
   public String getRole() {
     return role;
   }
 
-  public void setRole(String role) {
+  public void setRole(@javax.annotation.Nullable String role) {
     this.role = role;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders sellerNextActionResponse(List<SearchReturnsResponseDataReturnOrdersSellerNextActionResponse> sellerNextActionResponse) {
+  public SearchReturnsResponseDataReturnOrders sellerNextActionResponse(@javax.annotation.Nullable List<SearchReturnsResponseDataReturnOrdersSellerNextActionResponse> sellerNextActionResponse) {
     this.sellerNextActionResponse = sellerNextActionResponse;
     return this;
   }
@@ -710,59 +740,59 @@ public class SearchReturnsResponseDataReturnOrders {
     return this;
   }
 
-   /**
+  /**
    * Seller&#39;s next action and deadline.
    * @return sellerNextActionResponse
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchReturnsResponseDataReturnOrdersSellerNextActionResponse> getSellerNextActionResponse() {
     return sellerNextActionResponse;
   }
 
-  public void setSellerNextActionResponse(List<SearchReturnsResponseDataReturnOrdersSellerNextActionResponse> sellerNextActionResponse) {
+  public void setSellerNextActionResponse(@javax.annotation.Nullable List<SearchReturnsResponseDataReturnOrdersSellerNextActionResponse> sellerNextActionResponse) {
     this.sellerNextActionResponse = sellerNextActionResponse;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders sellerProposedReturnType(String sellerProposedReturnType) {
+  public SearchReturnsResponseDataReturnOrders sellerProposedReturnType(@javax.annotation.Nullable String sellerProposedReturnType) {
     this.sellerProposedReturnType = sellerProposedReturnType;
     return this;
   }
 
-   /**
+  /**
    * Seller proposed return type: - &#x60;PARTIAL_REFUND&#x60;
    * @return sellerProposedReturnType
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerProposedReturnType() {
     return sellerProposedReturnType;
   }
 
-  public void setSellerProposedReturnType(String sellerProposedReturnType) {
+  public void setSellerProposedReturnType(@javax.annotation.Nullable String sellerProposedReturnType) {
     this.sellerProposedReturnType = sellerProposedReturnType;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders shipmentType(String shipmentType) {
+  public SearchReturnsResponseDataReturnOrders shipmentType(@javax.annotation.Nullable String shipmentType) {
     this.shipmentType = shipmentType;
     return this;
   }
 
-   /**
+  /**
    * The shipment method the buyer selected to send the item(s) back to seller Available values: - &#x60;PLATFORM&#x60;: Buyer will use TikTok Shop&#39;s shipping service to send the items back to seller. Use the &#x60;handover_method&#x60; field to see which handover method the buyer is using, &#x60;drop_off&#x60; or &#x60;pickup&#x60;.  - &#x60;BUYER_ARRANGE&#x60;: Buyer will arrange shipment to send the item(s) back to seller. 
    * @return shipmentType
-  **/
+   */
   @javax.annotation.Nullable
   public String getShipmentType() {
     return shipmentType;
   }
 
-  public void setShipmentType(String shipmentType) {
+  public void setShipmentType(@javax.annotation.Nullable String shipmentType) {
     this.shipmentType = shipmentType;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders shippingFeeAmount(List<SearchReturnsResponseDataReturnOrdersShippingFeeAmount> shippingFeeAmount) {
+  public SearchReturnsResponseDataReturnOrders shippingFeeAmount(@javax.annotation.Nullable List<SearchReturnsResponseDataReturnOrdersShippingFeeAmount> shippingFeeAmount) {
     this.shippingFeeAmount = shippingFeeAmount;
     return this;
   }
@@ -775,36 +805,81 @@ public class SearchReturnsResponseDataReturnOrders {
     return this;
   }
 
-   /**
+  /**
    * The return shipping fee details.
    * @return shippingFeeAmount
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchReturnsResponseDataReturnOrdersShippingFeeAmount> getShippingFeeAmount() {
     return shippingFeeAmount;
   }
 
-  public void setShippingFeeAmount(List<SearchReturnsResponseDataReturnOrdersShippingFeeAmount> shippingFeeAmount) {
+  public void setShippingFeeAmount(@javax.annotation.Nullable List<SearchReturnsResponseDataReturnOrdersShippingFeeAmount> shippingFeeAmount) {
     this.shippingFeeAmount = shippingFeeAmount;
   }
 
 
-  public SearchReturnsResponseDataReturnOrders updateTime(Long updateTime) {
+  public SearchReturnsResponseDataReturnOrders updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * Return update time. Unix timestamp.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchReturnsResponseDataReturnOrders instance itself
+   */
+  public SearchReturnsResponseDataReturnOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -848,12 +923,13 @@ public class SearchReturnsResponseDataReturnOrders {
         Objects.equals(this.sellerProposedReturnType, returnRefund202309SearchReturnsResponseDataReturnOrders.sellerProposedReturnType) &&
         Objects.equals(this.shipmentType, returnRefund202309SearchReturnsResponseDataReturnOrders.shipmentType) &&
         Objects.equals(this.shippingFeeAmount, returnRefund202309SearchReturnsResponseDataReturnOrders.shippingFeeAmount) &&
-        Objects.equals(this.updateTime, returnRefund202309SearchReturnsResponseDataReturnOrders.updateTime);
+        Objects.equals(this.updateTime, returnRefund202309SearchReturnsResponseDataReturnOrders.updateTime)&&
+        Objects.equals(this.additionalProperties, returnRefund202309SearchReturnsResponseDataReturnOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(arbitrationStatus, buyerRejectedPartialRefund, canBuyerKeepItem, combinedReturnId, createTime, discountAmount, handoverMethod, isCombinedReturn, nextReturnId, orderId, partialRefund, preReturnId, refundAmount, returnId, returnLineItems, returnMethod, returnProviderId, returnProviderName, returnReason, returnReasonText, returnShippingDocumentType, returnStatus, returnTrackingNumber, returnType, returnWarehouseAddress, role, sellerNextActionResponse, sellerProposedReturnType, shipmentType, shippingFeeAmount, updateTime);
+    return Objects.hash(arbitrationStatus, buyerRejectedPartialRefund, canBuyerKeepItem, combinedReturnId, createTime, discountAmount, handoverMethod, isCombinedReturn, nextReturnId, orderId, partialRefund, preReturnId, refundAmount, returnId, returnLineItems, returnMethod, returnProviderId, returnProviderName, returnReason, returnReasonText, returnShippingDocumentType, returnStatus, returnTrackingNumber, returnType, returnWarehouseAddress, role, sellerNextActionResponse, sellerProposedReturnType, shipmentType, shippingFeeAmount, updateTime, additionalProperties);
   }
 
   @Override
@@ -891,6 +967,7 @@ public class SearchReturnsResponseDataReturnOrders {
     sb.append("    shipmentType: ").append(toIndentedString(shipmentType)).append("\n");
     sb.append("    shippingFeeAmount: ").append(toIndentedString(shippingFeeAmount)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -912,61 +989,22 @@ public class SearchReturnsResponseDataReturnOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("arbitration_status");
-    openapiFields.add("buyer_rejected_partial_refund");
-    openapiFields.add("can_buyer_keep_item");
-    openapiFields.add("combined_return_id");
-    openapiFields.add("create_time");
-    openapiFields.add("discount_amount");
-    openapiFields.add("handover_method");
-    openapiFields.add("is_combined_return");
-    openapiFields.add("next_return_id");
-    openapiFields.add("order_id");
-    openapiFields.add("partial_refund");
-    openapiFields.add("pre_return_id");
-    openapiFields.add("refund_amount");
-    openapiFields.add("return_id");
-    openapiFields.add("return_line_items");
-    openapiFields.add("return_method");
-    openapiFields.add("return_provider_id");
-    openapiFields.add("return_provider_name");
-    openapiFields.add("return_reason");
-    openapiFields.add("return_reason_text");
-    openapiFields.add("return_shipping_document_type");
-    openapiFields.add("return_status");
-    openapiFields.add("return_tracking_number");
-    openapiFields.add("return_type");
-    openapiFields.add("return_warehouse_address");
-    openapiFields.add("role");
-    openapiFields.add("seller_next_action_response");
-    openapiFields.add("seller_proposed_return_type");
-    openapiFields.add("shipment_type");
-    openapiFields.add("shipping_fee_amount");
-    openapiFields.add("update_time");
+    openapiFields = new HashSet<String>(Arrays.asList("arbitration_status", "buyer_rejected_partial_refund", "can_buyer_keep_item", "combined_return_id", "create_time", "discount_amount", "handover_method", "is_combined_return", "next_return_id", "order_id", "partial_refund", "pre_return_id", "refund_amount", "return_id", "return_line_items", "return_method", "return_provider_id", "return_provider_name", "return_reason", "return_reason_text", "return_shipping_document_type", "return_status", "return_tracking_number", "return_type", "return_warehouse_address", "role", "seller_next_action_response", "seller_proposed_return_type", "shipment_type", "shipping_fee_amount", "update_time"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchReturnsResponseDataReturnOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchReturnsResponseDataReturnOrders is not found in the empty JSON string", SearchReturnsResponseDataReturnOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchReturnsResponseDataReturnOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchReturnsResponseDataReturnOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -1112,6 +1150,28 @@ public class SearchReturnsResponseDataReturnOrders {
            @Override
            public void write(JsonWriter out, SearchReturnsResponseDataReturnOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -1119,29 +1179,50 @@ public class SearchReturnsResponseDataReturnOrders {
            public SearchReturnsResponseDataReturnOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchReturnsResponseDataReturnOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchReturnsResponseDataReturnOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchReturnsResponseDataReturnOrders
-  * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrders
-  */
+  /**
+   * Create an instance of SearchReturnsResponseDataReturnOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchReturnsResponseDataReturnOrders
+   * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrders
+   */
   public static SearchReturnsResponseDataReturnOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchReturnsResponseDataReturnOrders.class);
   }
 
- /**
-  * Convert an instance of SearchReturnsResponseDataReturnOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchReturnsResponseDataReturnOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

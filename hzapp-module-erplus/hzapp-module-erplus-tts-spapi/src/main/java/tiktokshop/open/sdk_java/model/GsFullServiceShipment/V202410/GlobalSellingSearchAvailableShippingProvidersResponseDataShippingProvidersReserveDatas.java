@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,43 +51,46 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas {
   public static final String SERIALIZED_NAME_CAN_RESERVE = "can_reserve";
   @SerializedName(SERIALIZED_NAME_CAN_RESERVE)
+  @javax.annotation.Nullable
   private Boolean canReserve;
 
   public static final String SERIALIZED_NAME_RESERVE_SEGMENTS = "reserve_segments";
   @SerializedName(SERIALIZED_NAME_RESERVE_SEGMENTS)
+  @javax.annotation.Nullable
   private List<GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatasReserveSegments> reserveSegments = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SHIP_TIME = "ship_time";
   @SerializedName(SERIALIZED_NAME_SHIP_TIME)
+  @javax.annotation.Nullable
   private Long shipTime;
 
   public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas() {
   }
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas canReserve(Boolean canReserve) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas canReserve(@javax.annotation.Nullable Boolean canReserve) {
     this.canReserve = canReserve;
     return this;
   }
 
-   /**
+  /**
    * Whether the shipment time can be reserve
    * @return canReserve
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getCanReserve() {
     return canReserve;
   }
 
-  public void setCanReserve(Boolean canReserve) {
+  public void setCanReserve(@javax.annotation.Nullable Boolean canReserve) {
     this.canReserve = canReserve;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas reserveSegments(List<GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatasReserveSegments> reserveSegments) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas reserveSegments(@javax.annotation.Nullable List<GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatasReserveSegments> reserveSegments) {
     this.reserveSegments = reserveSegments;
     return this;
   }
@@ -101,36 +103,81 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataShippingPr
     return this;
   }
 
-   /**
+  /**
    * The segment list of reservation shipment time
    * @return reserveSegments
-  **/
+   */
   @javax.annotation.Nullable
   public List<GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatasReserveSegments> getReserveSegments() {
     return reserveSegments;
   }
 
-  public void setReserveSegments(List<GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatasReserveSegments> reserveSegments) {
+  public void setReserveSegments(@javax.annotation.Nullable List<GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatasReserveSegments> reserveSegments) {
     this.reserveSegments = reserveSegments;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas shipTime(Long shipTime) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas shipTime(@javax.annotation.Nullable Long shipTime) {
     this.shipTime = shipTime;
     return this;
   }
 
-   /**
+  /**
    * The time for shipping goods by logistic
    * @return shipTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getShipTime() {
     return shipTime;
   }
 
-  public void setShipTime(Long shipTime) {
+  public void setShipTime(@javax.annotation.Nullable Long shipTime) {
     this.shipTime = shipTime;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas instance itself
+   */
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -146,12 +193,13 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataShippingPr
     GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas = (GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas) o;
     return Objects.equals(this.canReserve, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.canReserve) &&
         Objects.equals(this.reserveSegments, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.reserveSegments) &&
-        Objects.equals(this.shipTime, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.shipTime);
+        Objects.equals(this.shipTime, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.shipTime)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(canReserve, reserveSegments, shipTime);
+    return Objects.hash(canReserve, reserveSegments, shipTime, additionalProperties);
   }
 
   @Override
@@ -161,6 +209,7 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataShippingPr
     sb.append("    canReserve: ").append(toIndentedString(canReserve)).append("\n");
     sb.append("    reserveSegments: ").append(toIndentedString(reserveSegments)).append("\n");
     sb.append("    shipTime: ").append(toIndentedString(shipTime)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,33 +231,22 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataShippingPr
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("can_reserve");
-    openapiFields.add("reserve_segments");
-    openapiFields.add("ship_time");
+    openapiFields = new HashSet<String>(Arrays.asList("can_reserve", "reserve_segments", "ship_time"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas is not found in the empty JSON string", GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -243,6 +281,28 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataShippingPr
            @Override
            public void write(JsonWriter out, GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -250,29 +310,50 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataShippingPr
            public GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas
-  */
+  /**
+   * Create an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas
+   */
   public static GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataShippingProvidersReserveDatas to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

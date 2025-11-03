@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,79 +53,91 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchCancellationsResponseDataCancellations
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchCancellationsResponseDataCancellations {
   public static final String SERIALIZED_NAME_CANCEL_ID = "cancel_id";
   @SerializedName(SERIALIZED_NAME_CANCEL_ID)
+  @javax.annotation.Nullable
   private String cancelId;
 
   public static final String SERIALIZED_NAME_CANCEL_LINE_ITEMS = "cancel_line_items";
   @SerializedName(SERIALIZED_NAME_CANCEL_LINE_ITEMS)
+  @javax.annotation.Nullable
   private List<SearchCancellationsResponseDataCancellationsCancelLineItems> cancelLineItems = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CANCEL_REASON = "cancel_reason";
   @SerializedName(SERIALIZED_NAME_CANCEL_REASON)
+  @javax.annotation.Nullable
   private String cancelReason;
 
   public static final String SERIALIZED_NAME_CANCEL_REASON_TEXT = "cancel_reason_text";
   @SerializedName(SERIALIZED_NAME_CANCEL_REASON_TEXT)
+  @javax.annotation.Nullable
   private String cancelReasonText;
 
   public static final String SERIALIZED_NAME_CANCEL_STATUS = "cancel_status";
   @SerializedName(SERIALIZED_NAME_CANCEL_STATUS)
+  @javax.annotation.Nullable
   private String cancelStatus;
 
   public static final String SERIALIZED_NAME_CANCEL_TYPE = "cancel_type";
   @SerializedName(SERIALIZED_NAME_CANCEL_TYPE)
+  @javax.annotation.Nullable
   private String cancelType;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_REFUND_AMOUNT = "refund_amount";
   @SerializedName(SERIALIZED_NAME_REFUND_AMOUNT)
+  @javax.annotation.Nullable
   private SearchCancellationsResponseDataCancellationsRefundAmount refundAmount;
 
   public static final String SERIALIZED_NAME_ROLE = "role";
   @SerializedName(SERIALIZED_NAME_ROLE)
+  @javax.annotation.Nullable
   private String role;
 
   public static final String SERIALIZED_NAME_SELLER_NEXT_ACTION_RESPONSE = "seller_next_action_response";
   @SerializedName(SERIALIZED_NAME_SELLER_NEXT_ACTION_RESPONSE)
+  @javax.annotation.Nullable
   private List<SearchCancellationsResponseDataCancellationsSellerNextActionResponse> sellerNextActionResponse = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public SearchCancellationsResponseDataCancellations() {
   }
 
-  public SearchCancellationsResponseDataCancellations cancelId(String cancelId) {
+  public SearchCancellationsResponseDataCancellations cancelId(@javax.annotation.Nullable String cancelId) {
     this.cancelId = cancelId;
     return this;
   }
 
-   /**
+  /**
    * The identifier of a specific order cancellation.
    * @return cancelId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelId() {
     return cancelId;
   }
 
-  public void setCancelId(String cancelId) {
+  public void setCancelId(@javax.annotation.Nullable String cancelId) {
     this.cancelId = cancelId;
   }
 
 
-  public SearchCancellationsResponseDataCancellations cancelLineItems(List<SearchCancellationsResponseDataCancellationsCancelLineItems> cancelLineItems) {
+  public SearchCancellationsResponseDataCancellations cancelLineItems(@javax.annotation.Nullable List<SearchCancellationsResponseDataCancellationsCancelLineItems> cancelLineItems) {
     this.cancelLineItems = cancelLineItems;
     return this;
   }
@@ -139,173 +150,173 @@ public class SearchCancellationsResponseDataCancellations {
     return this;
   }
 
-   /**
+  /**
    * Cancellation line items.
    * @return cancelLineItems
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchCancellationsResponseDataCancellationsCancelLineItems> getCancelLineItems() {
     return cancelLineItems;
   }
 
-  public void setCancelLineItems(List<SearchCancellationsResponseDataCancellationsCancelLineItems> cancelLineItems) {
+  public void setCancelLineItems(@javax.annotation.Nullable List<SearchCancellationsResponseDataCancellationsCancelLineItems> cancelLineItems) {
     this.cancelLineItems = cancelLineItems;
   }
 
 
-  public SearchCancellationsResponseDataCancellations cancelReason(String cancelReason) {
+  public SearchCancellationsResponseDataCancellations cancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
     return this;
   }
 
-   /**
+  /**
    * Order cancellation reason.
    * @return cancelReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelReason() {
     return cancelReason;
   }
 
-  public void setCancelReason(String cancelReason) {
+  public void setCancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
   }
 
 
-  public SearchCancellationsResponseDataCancellations cancelReasonText(String cancelReasonText) {
+  public SearchCancellationsResponseDataCancellations cancelReasonText(@javax.annotation.Nullable String cancelReasonText) {
     this.cancelReasonText = cancelReasonText;
     return this;
   }
 
-   /**
+  /**
    * Order cancellation reason, localized to another language. You can change language using the locale field in the request parameter.
    * @return cancelReasonText
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelReasonText() {
     return cancelReasonText;
   }
 
-  public void setCancelReasonText(String cancelReasonText) {
+  public void setCancelReasonText(@javax.annotation.Nullable String cancelReasonText) {
     this.cancelReasonText = cancelReasonText;
   }
 
 
-  public SearchCancellationsResponseDataCancellations cancelStatus(String cancelStatus) {
+  public SearchCancellationsResponseDataCancellations cancelStatus(@javax.annotation.Nullable String cancelStatus) {
     this.cancelStatus = cancelStatus;
     return this;
   }
 
-   /**
+  /**
    * Order cancellation status. Possible values: - CANCELLATION_REQUEST_PENDING - CANCELLATION_REQUEST_SUCCESS - CANCELLATION_REQUEST_CANCELLED - CANCELLATION_REQUEST_COMPLETE
    * @return cancelStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelStatus() {
     return cancelStatus;
   }
 
-  public void setCancelStatus(String cancelStatus) {
+  public void setCancelStatus(@javax.annotation.Nullable String cancelStatus) {
     this.cancelStatus = cancelStatus;
   }
 
 
-  public SearchCancellationsResponseDataCancellations cancelType(String cancelType) {
+  public SearchCancellationsResponseDataCancellations cancelType(@javax.annotation.Nullable String cancelType) {
     this.cancelType = cancelType;
     return this;
   }
 
-   /**
+  /**
    * Order cancellation type. Possible values: - CANCEL: Cancel by seller or system. - BUYER_CANCEL: Cancel by buyer. Need to be approved by seller or system. 
    * @return cancelType
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelType() {
     return cancelType;
   }
 
-  public void setCancelType(String cancelType) {
+  public void setCancelType(@javax.annotation.Nullable String cancelType) {
     this.cancelType = cancelType;
   }
 
 
-  public SearchCancellationsResponseDataCancellations createTime(Long createTime) {
+  public SearchCancellationsResponseDataCancellations createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * Order cancellation create time. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public SearchCancellationsResponseDataCancellations orderId(String orderId) {
+  public SearchCancellationsResponseDataCancellations orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop order ID. Contains multiple order line item IDs.
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public SearchCancellationsResponseDataCancellations refundAmount(SearchCancellationsResponseDataCancellationsRefundAmount refundAmount) {
+  public SearchCancellationsResponseDataCancellations refundAmount(@javax.annotation.Nullable SearchCancellationsResponseDataCancellationsRefundAmount refundAmount) {
     this.refundAmount = refundAmount;
     return this;
   }
 
-   /**
+  /**
    * Get refundAmount
    * @return refundAmount
-  **/
+   */
   @javax.annotation.Nullable
   public SearchCancellationsResponseDataCancellationsRefundAmount getRefundAmount() {
     return refundAmount;
   }
 
-  public void setRefundAmount(SearchCancellationsResponseDataCancellationsRefundAmount refundAmount) {
+  public void setRefundAmount(@javax.annotation.Nullable SearchCancellationsResponseDataCancellationsRefundAmount refundAmount) {
     this.refundAmount = refundAmount;
   }
 
 
-  public SearchCancellationsResponseDataCancellations role(String role) {
+  public SearchCancellationsResponseDataCancellations role(@javax.annotation.Nullable String role) {
     this.role = role;
     return this;
   }
 
-   /**
+  /**
    * Order cancellation initiator. Possible values: - BUYER - SELLER - SYSTEM
    * @return role
-  **/
+   */
   @javax.annotation.Nullable
   public String getRole() {
     return role;
   }
 
-  public void setRole(String role) {
+  public void setRole(@javax.annotation.Nullable String role) {
     this.role = role;
   }
 
 
-  public SearchCancellationsResponseDataCancellations sellerNextActionResponse(List<SearchCancellationsResponseDataCancellationsSellerNextActionResponse> sellerNextActionResponse) {
+  public SearchCancellationsResponseDataCancellations sellerNextActionResponse(@javax.annotation.Nullable List<SearchCancellationsResponseDataCancellationsSellerNextActionResponse> sellerNextActionResponse) {
     this.sellerNextActionResponse = sellerNextActionResponse;
     return this;
   }
@@ -318,36 +329,81 @@ public class SearchCancellationsResponseDataCancellations {
     return this;
   }
 
-   /**
+  /**
    * Seller&#39;s next action and deadline.
    * @return sellerNextActionResponse
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchCancellationsResponseDataCancellationsSellerNextActionResponse> getSellerNextActionResponse() {
     return sellerNextActionResponse;
   }
 
-  public void setSellerNextActionResponse(List<SearchCancellationsResponseDataCancellationsSellerNextActionResponse> sellerNextActionResponse) {
+  public void setSellerNextActionResponse(@javax.annotation.Nullable List<SearchCancellationsResponseDataCancellationsSellerNextActionResponse> sellerNextActionResponse) {
     this.sellerNextActionResponse = sellerNextActionResponse;
   }
 
 
-  public SearchCancellationsResponseDataCancellations updateTime(Long updateTime) {
+  public SearchCancellationsResponseDataCancellations updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * Order cancellation update time. Unix timestamp.
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchCancellationsResponseDataCancellations instance itself
+   */
+  public SearchCancellationsResponseDataCancellations putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -372,12 +428,13 @@ public class SearchCancellationsResponseDataCancellations {
         Objects.equals(this.refundAmount, returnRefund202309SearchCancellationsResponseDataCancellations.refundAmount) &&
         Objects.equals(this.role, returnRefund202309SearchCancellationsResponseDataCancellations.role) &&
         Objects.equals(this.sellerNextActionResponse, returnRefund202309SearchCancellationsResponseDataCancellations.sellerNextActionResponse) &&
-        Objects.equals(this.updateTime, returnRefund202309SearchCancellationsResponseDataCancellations.updateTime);
+        Objects.equals(this.updateTime, returnRefund202309SearchCancellationsResponseDataCancellations.updateTime)&&
+        Objects.equals(this.additionalProperties, returnRefund202309SearchCancellationsResponseDataCancellations.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cancelId, cancelLineItems, cancelReason, cancelReasonText, cancelStatus, cancelType, createTime, orderId, refundAmount, role, sellerNextActionResponse, updateTime);
+    return Objects.hash(cancelId, cancelLineItems, cancelReason, cancelReasonText, cancelStatus, cancelType, createTime, orderId, refundAmount, role, sellerNextActionResponse, updateTime, additionalProperties);
   }
 
   @Override
@@ -396,6 +453,7 @@ public class SearchCancellationsResponseDataCancellations {
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("    sellerNextActionResponse: ").append(toIndentedString(sellerNextActionResponse)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -417,42 +475,22 @@ public class SearchCancellationsResponseDataCancellations {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("cancel_id");
-    openapiFields.add("cancel_line_items");
-    openapiFields.add("cancel_reason");
-    openapiFields.add("cancel_reason_text");
-    openapiFields.add("cancel_status");
-    openapiFields.add("cancel_type");
-    openapiFields.add("create_time");
-    openapiFields.add("order_id");
-    openapiFields.add("refund_amount");
-    openapiFields.add("role");
-    openapiFields.add("seller_next_action_response");
-    openapiFields.add("update_time");
+    openapiFields = new HashSet<String>(Arrays.asList("cancel_id", "cancel_line_items", "cancel_reason", "cancel_reason_text", "cancel_status", "cancel_type", "create_time", "order_id", "refund_amount", "role", "seller_next_action_response", "update_time"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchCancellationsResponseDataCancellations
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchCancellationsResponseDataCancellations
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchCancellationsResponseDataCancellations.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchCancellationsResponseDataCancellations is not found in the empty JSON string", SearchCancellationsResponseDataCancellations.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchCancellationsResponseDataCancellations.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchCancellationsResponseDataCancellations` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -526,6 +564,28 @@ public class SearchCancellationsResponseDataCancellations {
            @Override
            public void write(JsonWriter out, SearchCancellationsResponseDataCancellations value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -533,29 +593,50 @@ public class SearchCancellationsResponseDataCancellations {
            public SearchCancellationsResponseDataCancellations read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchCancellationsResponseDataCancellations instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchCancellationsResponseDataCancellations given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchCancellationsResponseDataCancellations
-  * @throws IOException if the JSON string is invalid with respect to SearchCancellationsResponseDataCancellations
-  */
+  /**
+   * Create an instance of SearchCancellationsResponseDataCancellations given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchCancellationsResponseDataCancellations
+   * @throws IOException if the JSON string is invalid with respect to SearchCancellationsResponseDataCancellations
+   */
   public static SearchCancellationsResponseDataCancellations fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchCancellationsResponseDataCancellations.class);
   }
 
- /**
-  * Convert an instance of SearchCancellationsResponseDataCancellations to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchCancellationsResponseDataCancellations to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

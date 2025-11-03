@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,190 +52,211 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetOrderListResponseDataOrdersRecipientAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetOrderListResponseDataOrdersRecipientAddress {
   public static final String SERIALIZED_NAME_ADDRESS_DETAIL = "address_detail";
   @SerializedName(SERIALIZED_NAME_ADDRESS_DETAIL)
+  @javax.annotation.Nullable
   private String addressDetail;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE1 = "address_line1";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE1)
+  @javax.annotation.Nullable
   private String addressLine1;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE2 = "address_line2";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE2)
+  @javax.annotation.Nullable
   private String addressLine2;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE3 = "address_line3";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE3)
+  @javax.annotation.Nullable
   private String addressLine3;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE4 = "address_line4";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE4)
+  @javax.annotation.Nullable
   private String addressLine4;
 
   public static final String SERIALIZED_NAME_DELIVERY_PREFERENCES = "delivery_preferences";
   @SerializedName(SERIALIZED_NAME_DELIVERY_PREFERENCES)
+  @javax.annotation.Nullable
   private GetOrderListResponseDataOrdersRecipientAddressDeliveryPreferences deliveryPreferences;
 
   public static final String SERIALIZED_NAME_DISTRICT_INFO = "district_info";
   @SerializedName(SERIALIZED_NAME_DISTRICT_INFO)
+  @javax.annotation.Nullable
   private List<GetOrderListResponseDataOrdersRecipientAddressDistrictInfo> districtInfo = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  @javax.annotation.Nullable
   private String firstName;
 
   public static final String SERIALIZED_NAME_FIRST_NAME_LOCAL_SCRIPT = "first_name_local_script";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME_LOCAL_SCRIPT)
+  @javax.annotation.Nullable
   private String firstNameLocalScript;
 
   public static final String SERIALIZED_NAME_FULL_ADDRESS = "full_address";
   @SerializedName(SERIALIZED_NAME_FULL_ADDRESS)
+  @javax.annotation.Nullable
   private String fullAddress;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  @javax.annotation.Nullable
   private String lastName;
 
   public static final String SERIALIZED_NAME_LAST_NAME_LOCAL_SCRIPT = "last_name_local_script";
   @SerializedName(SERIALIZED_NAME_LAST_NAME_LOCAL_SCRIPT)
+  @javax.annotation.Nullable
   private String lastNameLocalScript;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  @javax.annotation.Nullable
   private String phoneNumber;
+
+  public static final String SERIALIZED_NAME_POST_TOWN = "post_town";
+  @SerializedName(SERIALIZED_NAME_POST_TOWN)
+  @javax.annotation.Nullable
+  private String postTown;
 
   public static final String SERIALIZED_NAME_POSTAL_CODE = "postal_code";
   @SerializedName(SERIALIZED_NAME_POSTAL_CODE)
+  @javax.annotation.Nullable
   private String postalCode;
 
   public static final String SERIALIZED_NAME_REGION_CODE = "region_code";
   @SerializedName(SERIALIZED_NAME_REGION_CODE)
+  @javax.annotation.Nullable
   private String regionCode;
 
   public GetOrderListResponseDataOrdersRecipientAddress() {
   }
 
-  public GetOrderListResponseDataOrdersRecipientAddress addressDetail(String addressDetail) {
+  public GetOrderListResponseDataOrdersRecipientAddress addressDetail(@javax.annotation.Nullable String addressDetail) {
     this.addressDetail = addressDetail;
     return this;
   }
 
-   /**
+  /**
    * Full recipient detailed address.
    * @return addressDetail
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressDetail() {
     return addressDetail;
   }
 
-  public void setAddressDetail(String addressDetail) {
+  public void setAddressDetail(@javax.annotation.Nullable String addressDetail) {
     this.addressDetail = addressDetail;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress addressLine1(String addressLine1) {
+  public GetOrderListResponseDataOrdersRecipientAddress addressLine1(@javax.annotation.Nullable String addressLine1) {
     this.addressLine1 = addressLine1;
     return this;
   }
 
-   /**
+  /**
    * The first line of the street address.
    * @return addressLine1
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine1() {
     return addressLine1;
   }
 
-  public void setAddressLine1(String addressLine1) {
+  public void setAddressLine1(@javax.annotation.Nullable String addressLine1) {
     this.addressLine1 = addressLine1;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress addressLine2(String addressLine2) {
+  public GetOrderListResponseDataOrdersRecipientAddress addressLine2(@javax.annotation.Nullable String addressLine2) {
     this.addressLine2 = addressLine2;
     return this;
   }
 
-   /**
+  /**
    * The second line of the street address.
    * @return addressLine2
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine2() {
     return addressLine2;
   }
 
-  public void setAddressLine2(String addressLine2) {
+  public void setAddressLine2(@javax.annotation.Nullable String addressLine2) {
     this.addressLine2 = addressLine2;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress addressLine3(String addressLine3) {
+  public GetOrderListResponseDataOrdersRecipientAddress addressLine3(@javax.annotation.Nullable String addressLine3) {
     this.addressLine3 = addressLine3;
     return this;
   }
 
-   /**
+  /**
    * The third line of the street address. Usually only for the Brazilian market
    * @return addressLine3
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine3() {
     return addressLine3;
   }
 
-  public void setAddressLine3(String addressLine3) {
+  public void setAddressLine3(@javax.annotation.Nullable String addressLine3) {
     this.addressLine3 = addressLine3;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress addressLine4(String addressLine4) {
+  public GetOrderListResponseDataOrdersRecipientAddress addressLine4(@javax.annotation.Nullable String addressLine4) {
     this.addressLine4 = addressLine4;
     return this;
   }
 
-   /**
+  /**
    * The fourth line of the street address. Usually only for the Brazilian market
    * @return addressLine4
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine4() {
     return addressLine4;
   }
 
-  public void setAddressLine4(String addressLine4) {
+  public void setAddressLine4(@javax.annotation.Nullable String addressLine4) {
     this.addressLine4 = addressLine4;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress deliveryPreferences(GetOrderListResponseDataOrdersRecipientAddressDeliveryPreferences deliveryPreferences) {
+  public GetOrderListResponseDataOrdersRecipientAddress deliveryPreferences(@javax.annotation.Nullable GetOrderListResponseDataOrdersRecipientAddressDeliveryPreferences deliveryPreferences) {
     this.deliveryPreferences = deliveryPreferences;
     return this;
   }
 
-   /**
+  /**
    * Get deliveryPreferences
    * @return deliveryPreferences
-  **/
+   */
   @javax.annotation.Nullable
   public GetOrderListResponseDataOrdersRecipientAddressDeliveryPreferences getDeliveryPreferences() {
     return deliveryPreferences;
   }
 
-  public void setDeliveryPreferences(GetOrderListResponseDataOrdersRecipientAddressDeliveryPreferences deliveryPreferences) {
+  public void setDeliveryPreferences(@javax.annotation.Nullable GetOrderListResponseDataOrdersRecipientAddressDeliveryPreferences deliveryPreferences) {
     this.deliveryPreferences = deliveryPreferences;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress districtInfo(List<GetOrderListResponseDataOrdersRecipientAddressDistrictInfo> districtInfo) {
+  public GetOrderListResponseDataOrdersRecipientAddress districtInfo(@javax.annotation.Nullable List<GetOrderListResponseDataOrdersRecipientAddressDistrictInfo> districtInfo) {
     this.districtInfo = districtInfo;
     return this;
   }
@@ -249,188 +269,252 @@ public class GetOrderListResponseDataOrdersRecipientAddress {
     return this;
   }
 
-   /**
+  /**
    * &#x60;district_info&#x60; is unavailable under &#x60;UNPAID&#x60; and &#x60;ON_HOLD&#x60; statuses.
    * @return districtInfo
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetOrderListResponseDataOrdersRecipientAddressDistrictInfo> getDistrictInfo() {
     return districtInfo;
   }
 
-  public void setDistrictInfo(List<GetOrderListResponseDataOrdersRecipientAddressDistrictInfo> districtInfo) {
+  public void setDistrictInfo(@javax.annotation.Nullable List<GetOrderListResponseDataOrdersRecipientAddressDistrictInfo> districtInfo) {
     this.districtInfo = districtInfo;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress firstName(String firstName) {
+  public GetOrderListResponseDataOrdersRecipientAddress firstName(@javax.annotation.Nullable String firstName) {
     this.firstName = firstName;
     return this;
   }
 
-   /**
-   * Recipient first name.  If the recipient first and last names are not provided separately, this parameter will have the same value as the &#x60;name&#x60; parameter.   **Note**: Applicable only for the US, UK, and JP markets.
+  /**
+   * Recipient first name.  If the recipient first and last names are not provided separately, this parameter will have the same value as the &#x60;name&#x60; parameter. 
    * @return firstName
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstName() {
     return firstName;
   }
 
-  public void setFirstName(String firstName) {
+  public void setFirstName(@javax.annotation.Nullable String firstName) {
     this.firstName = firstName;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress firstNameLocalScript(String firstNameLocalScript) {
+  public GetOrderListResponseDataOrdersRecipientAddress firstNameLocalScript(@javax.annotation.Nullable String firstNameLocalScript) {
     this.firstNameLocalScript = firstNameLocalScript;
     return this;
   }
 
-   /**
+  /**
    * Recipient first name in katakana. **Note**: Applicable only for the JP market.
    * @return firstNameLocalScript
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstNameLocalScript() {
     return firstNameLocalScript;
   }
 
-  public void setFirstNameLocalScript(String firstNameLocalScript) {
+  public void setFirstNameLocalScript(@javax.annotation.Nullable String firstNameLocalScript) {
     this.firstNameLocalScript = firstNameLocalScript;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress fullAddress(String fullAddress) {
+  public GetOrderListResponseDataOrdersRecipientAddress fullAddress(@javax.annotation.Nullable String fullAddress) {
     this.fullAddress = fullAddress;
     return this;
   }
 
-   /**
+  /**
    * Complete recipient address information.
    * @return fullAddress
-  **/
+   */
   @javax.annotation.Nullable
   public String getFullAddress() {
     return fullAddress;
   }
 
-  public void setFullAddress(String fullAddress) {
+  public void setFullAddress(@javax.annotation.Nullable String fullAddress) {
     this.fullAddress = fullAddress;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress lastName(String lastName) {
+  public GetOrderListResponseDataOrdersRecipientAddress lastName(@javax.annotation.Nullable String lastName) {
     this.lastName = lastName;
     return this;
   }
 
-   /**
-   * Recipient last name.   If the recipient first and last names are not provided separately, this parameter will be empty.   **Note**: Applicable only for the US, UK, and JP markets.
+  /**
+   * Recipient last name.   If the recipient first and last names are not provided separately, this parameter will be empty. 
    * @return lastName
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastName() {
     return lastName;
   }
 
-  public void setLastName(String lastName) {
+  public void setLastName(@javax.annotation.Nullable String lastName) {
     this.lastName = lastName;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress lastNameLocalScript(String lastNameLocalScript) {
+  public GetOrderListResponseDataOrdersRecipientAddress lastNameLocalScript(@javax.annotation.Nullable String lastNameLocalScript) {
     this.lastNameLocalScript = lastNameLocalScript;
     return this;
   }
 
-   /**
+  /**
    * Recipient last name in katakana. **Note**: Applicable only for the JP market.
    * @return lastNameLocalScript
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastNameLocalScript() {
     return lastNameLocalScript;
   }
 
-  public void setLastNameLocalScript(String lastNameLocalScript) {
+  public void setLastNameLocalScript(@javax.annotation.Nullable String lastNameLocalScript) {
     this.lastNameLocalScript = lastNameLocalScript;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress name(String name) {
+  public GetOrderListResponseDataOrdersRecipientAddress name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Recipient name.  **Note**: If this order uses platform logistics, the recipient name will be desensitized.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress phoneNumber(String phoneNumber) {
+  public GetOrderListResponseDataOrdersRecipientAddress phoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
 
-   /**
+  /**
    * Recipient telephone number.  **Note**: If this order uses platform logistics, the phone number will be desensitized.
    * @return phoneNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getPhoneNumber() {
     return phoneNumber;
   }
 
-  public void setPhoneNumber(String phoneNumber) {
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress postalCode(String postalCode) {
+  public GetOrderListResponseDataOrdersRecipientAddress postTown(@javax.annotation.Nullable String postTown) {
+    this.postTown = postTown;
+    return this;
+  }
+
+  /**
+   * Post town of the address Note: Available only in UK market
+   * @return postTown
+   */
+  @javax.annotation.Nullable
+  public String getPostTown() {
+    return postTown;
+  }
+
+  public void setPostTown(@javax.annotation.Nullable String postTown) {
+    this.postTown = postTown;
+  }
+
+
+  public GetOrderListResponseDataOrdersRecipientAddress postalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
 
-   /**
+  /**
    * The postal code that can be used by seller for shipping. For the US market, this refers to the ZIP Code.
    * @return postalCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostalCode() {
     return postalCode;
   }
 
-  public void setPostalCode(String postalCode) {
+  public void setPostalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
   }
 
 
-  public GetOrderListResponseDataOrdersRecipientAddress regionCode(String regionCode) {
+  public GetOrderListResponseDataOrdersRecipientAddress regionCode(@javax.annotation.Nullable String regionCode) {
     this.regionCode = regionCode;
     return this;
   }
 
-   /**
+  /**
    * Region code.
    * @return regionCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getRegionCode() {
     return regionCode;
   }
 
-  public void setRegionCode(String regionCode) {
+  public void setRegionCode(@javax.annotation.Nullable String regionCode) {
     this.regionCode = regionCode;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetOrderListResponseDataOrdersRecipientAddress instance itself
+   */
+  public GetOrderListResponseDataOrdersRecipientAddress putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -458,13 +542,15 @@ public class GetOrderListResponseDataOrdersRecipientAddress {
         Objects.equals(this.lastNameLocalScript, order202309GetOrderListResponseDataOrdersRecipientAddress.lastNameLocalScript) &&
         Objects.equals(this.name, order202309GetOrderListResponseDataOrdersRecipientAddress.name) &&
         Objects.equals(this.phoneNumber, order202309GetOrderListResponseDataOrdersRecipientAddress.phoneNumber) &&
+        Objects.equals(this.postTown, order202309GetOrderListResponseDataOrdersRecipientAddress.postTown) &&
         Objects.equals(this.postalCode, order202309GetOrderListResponseDataOrdersRecipientAddress.postalCode) &&
-        Objects.equals(this.regionCode, order202309GetOrderListResponseDataOrdersRecipientAddress.regionCode);
+        Objects.equals(this.regionCode, order202309GetOrderListResponseDataOrdersRecipientAddress.regionCode)&&
+        Objects.equals(this.additionalProperties, order202309GetOrderListResponseDataOrdersRecipientAddress.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressDetail, addressLine1, addressLine2, addressLine3, addressLine4, deliveryPreferences, districtInfo, firstName, firstNameLocalScript, fullAddress, lastName, lastNameLocalScript, name, phoneNumber, postalCode, regionCode);
+    return Objects.hash(addressDetail, addressLine1, addressLine2, addressLine3, addressLine4, deliveryPreferences, districtInfo, firstName, firstNameLocalScript, fullAddress, lastName, lastNameLocalScript, name, phoneNumber, postTown, postalCode, regionCode, additionalProperties);
   }
 
   @Override
@@ -485,8 +571,10 @@ public class GetOrderListResponseDataOrdersRecipientAddress {
     sb.append("    lastNameLocalScript: ").append(toIndentedString(lastNameLocalScript)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    postTown: ").append(toIndentedString(postTown)).append("\n");
     sb.append("    postalCode: ").append(toIndentedString(postalCode)).append("\n");
     sb.append("    regionCode: ").append(toIndentedString(regionCode)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -508,46 +596,22 @@ public class GetOrderListResponseDataOrdersRecipientAddress {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("address_detail");
-    openapiFields.add("address_line1");
-    openapiFields.add("address_line2");
-    openapiFields.add("address_line3");
-    openapiFields.add("address_line4");
-    openapiFields.add("delivery_preferences");
-    openapiFields.add("district_info");
-    openapiFields.add("first_name");
-    openapiFields.add("first_name_local_script");
-    openapiFields.add("full_address");
-    openapiFields.add("last_name");
-    openapiFields.add("last_name_local_script");
-    openapiFields.add("name");
-    openapiFields.add("phone_number");
-    openapiFields.add("postal_code");
-    openapiFields.add("region_code");
+    openapiFields = new HashSet<String>(Arrays.asList("address_detail", "address_line1", "address_line2", "address_line3", "address_line4", "delivery_preferences", "district_info", "first_name", "first_name_local_script", "full_address", "last_name", "last_name_local_script", "name", "phone_number", "post_town", "postal_code", "region_code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetOrderListResponseDataOrdersRecipientAddress
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetOrderListResponseDataOrdersRecipientAddress
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetOrderListResponseDataOrdersRecipientAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetOrderListResponseDataOrdersRecipientAddress is not found in the empty JSON string", GetOrderListResponseDataOrdersRecipientAddress.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetOrderListResponseDataOrdersRecipientAddress.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetOrderListResponseDataOrdersRecipientAddress` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -605,6 +669,9 @@ public class GetOrderListResponseDataOrdersRecipientAddress {
       if ((jsonObj.get("phone_number") != null && !jsonObj.get("phone_number").isJsonNull()) && !jsonObj.get("phone_number").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `phone_number` to be a primitive type in the JSON string but got `%s`", jsonObj.get("phone_number").toString()));
       }
+      if ((jsonObj.get("post_town") != null && !jsonObj.get("post_town").isJsonNull()) && !jsonObj.get("post_town").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `post_town` to be a primitive type in the JSON string but got `%s`", jsonObj.get("post_town").toString()));
+      }
       if ((jsonObj.get("postal_code") != null && !jsonObj.get("postal_code").isJsonNull()) && !jsonObj.get("postal_code").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `postal_code` to be a primitive type in the JSON string but got `%s`", jsonObj.get("postal_code").toString()));
       }
@@ -628,6 +695,28 @@ public class GetOrderListResponseDataOrdersRecipientAddress {
            @Override
            public void write(JsonWriter out, GetOrderListResponseDataOrdersRecipientAddress value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -635,29 +724,50 @@ public class GetOrderListResponseDataOrdersRecipientAddress {
            public GetOrderListResponseDataOrdersRecipientAddress read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetOrderListResponseDataOrdersRecipientAddress instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetOrderListResponseDataOrdersRecipientAddress given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetOrderListResponseDataOrdersRecipientAddress
-  * @throws IOException if the JSON string is invalid with respect to GetOrderListResponseDataOrdersRecipientAddress
-  */
+  /**
+   * Create an instance of GetOrderListResponseDataOrdersRecipientAddress given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetOrderListResponseDataOrdersRecipientAddress
+   * @throws IOException if the JSON string is invalid with respect to GetOrderListResponseDataOrdersRecipientAddress
+   */
   public static GetOrderListResponseDataOrdersRecipientAddress fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetOrderListResponseDataOrdersRecipientAddress.class);
   }
 
- /**
-  * Convert an instance of GetOrderListResponseDataOrdersRecipientAddress to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetOrderListResponseDataOrdersRecipientAddress to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

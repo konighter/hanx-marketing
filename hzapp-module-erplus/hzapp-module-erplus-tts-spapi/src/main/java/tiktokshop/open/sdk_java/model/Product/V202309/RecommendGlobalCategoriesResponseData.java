@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,20 +51,22 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * RecommendGlobalCategoriesResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class RecommendGlobalCategoriesResponseData {
   public static final String SERIALIZED_NAME_CATEGORIES = "categories";
   @SerializedName(SERIALIZED_NAME_CATEGORIES)
+  @javax.annotation.Nullable
   private List<RecommendGlobalCategoriesResponseDataCategories> categories = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LEAF_CATEGORY_ID = "leaf_category_id";
   @SerializedName(SERIALIZED_NAME_LEAF_CATEGORY_ID)
+  @javax.annotation.Nullable
   private String leafCategoryId;
 
   public RecommendGlobalCategoriesResponseData() {
   }
 
-  public RecommendGlobalCategoriesResponseData categories(List<RecommendGlobalCategoriesResponseDataCategories> categories) {
+  public RecommendGlobalCategoriesResponseData categories(@javax.annotation.Nullable List<RecommendGlobalCategoriesResponseDataCategories> categories) {
     this.categories = categories;
     return this;
   }
@@ -78,36 +79,81 @@ public class RecommendGlobalCategoriesResponseData {
     return this;
   }
 
-   /**
+  /**
    * Recommended category information.
    * @return categories
-  **/
+   */
   @javax.annotation.Nullable
   public List<RecommendGlobalCategoriesResponseDataCategories> getCategories() {
     return categories;
   }
 
-  public void setCategories(List<RecommendGlobalCategoriesResponseDataCategories> categories) {
+  public void setCategories(@javax.annotation.Nullable List<RecommendGlobalCategoriesResponseDataCategories> categories) {
     this.categories = categories;
   }
 
 
-  public RecommendGlobalCategoriesResponseData leafCategoryId(String leafCategoryId) {
+  public RecommendGlobalCategoriesResponseData leafCategoryId(@javax.annotation.Nullable String leafCategoryId) {
     this.leafCategoryId = leafCategoryId;
     return this;
   }
 
-   /**
+  /**
    * The recommended category ID. This is always a leaf category.
    * @return leafCategoryId
-  **/
+   */
   @javax.annotation.Nullable
   public String getLeafCategoryId() {
     return leafCategoryId;
   }
 
-  public void setLeafCategoryId(String leafCategoryId) {
+  public void setLeafCategoryId(@javax.annotation.Nullable String leafCategoryId) {
     this.leafCategoryId = leafCategoryId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the RecommendGlobalCategoriesResponseData instance itself
+   */
+  public RecommendGlobalCategoriesResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -122,12 +168,13 @@ public class RecommendGlobalCategoriesResponseData {
     }
     RecommendGlobalCategoriesResponseData product202309RecommendGlobalCategoriesResponseData = (RecommendGlobalCategoriesResponseData) o;
     return Objects.equals(this.categories, product202309RecommendGlobalCategoriesResponseData.categories) &&
-        Objects.equals(this.leafCategoryId, product202309RecommendGlobalCategoriesResponseData.leafCategoryId);
+        Objects.equals(this.leafCategoryId, product202309RecommendGlobalCategoriesResponseData.leafCategoryId)&&
+        Objects.equals(this.additionalProperties, product202309RecommendGlobalCategoriesResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(categories, leafCategoryId);
+    return Objects.hash(categories, leafCategoryId, additionalProperties);
   }
 
   @Override
@@ -136,6 +183,7 @@ public class RecommendGlobalCategoriesResponseData {
     sb.append("class RecommendGlobalCategoriesResponseData {\n");
     sb.append("    categories: ").append(toIndentedString(categories)).append("\n");
     sb.append("    leafCategoryId: ").append(toIndentedString(leafCategoryId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,32 +205,22 @@ public class RecommendGlobalCategoriesResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("categories");
-    openapiFields.add("leaf_category_id");
+    openapiFields = new HashSet<String>(Arrays.asList("categories", "leaf_category_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RecommendGlobalCategoriesResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RecommendGlobalCategoriesResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RecommendGlobalCategoriesResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RecommendGlobalCategoriesResponseData is not found in the empty JSON string", RecommendGlobalCategoriesResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!RecommendGlobalCategoriesResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RecommendGlobalCategoriesResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -220,6 +258,28 @@ public class RecommendGlobalCategoriesResponseData {
            @Override
            public void write(JsonWriter out, RecommendGlobalCategoriesResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -227,29 +287,50 @@ public class RecommendGlobalCategoriesResponseData {
            public RecommendGlobalCategoriesResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             RecommendGlobalCategoriesResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RecommendGlobalCategoriesResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RecommendGlobalCategoriesResponseData
-  * @throws IOException if the JSON string is invalid with respect to RecommendGlobalCategoriesResponseData
-  */
+  /**
+   * Create an instance of RecommendGlobalCategoriesResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RecommendGlobalCategoriesResponseData
+   * @throws IOException if the JSON string is invalid with respect to RecommendGlobalCategoriesResponseData
+   */
   public static RecommendGlobalCategoriesResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RecommendGlobalCategoriesResponseData.class);
   }
 
- /**
-  * Convert an instance of RecommendGlobalCategoriesResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RecommendGlobalCategoriesResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

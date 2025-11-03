@@ -135,7 +135,7 @@ import { copyValueToTarget } from '@/utils'
 import { propTypes } from '@/utils/propTypes'
 import { defaultProps, handleTree } from '@/utils/tree'
 import type { Spu } from '@/app/erplus/api/product/spu'
-import * as ProductCategoryApi from '@/api/mall/product/category'
+import * as ProductCategoryApi from '@/app/erplus/api/product/category'
 import { CategoryVO } from '@/api/mall/product/category'
 import * as ProductBrandApi from '@/api/mall/product/brand'
 import { BrandVO } from '@/api/mall/product/brand'
@@ -401,7 +401,7 @@ const brandList = ref<BrandVO[]>([]) // 商品品牌列表
 const categoryList = ref<CategoryVO[]>([]) // 商品分类树
 onMounted(async () => {
   // 获得分类树
-  const data = await ProductCategoryApi.getCategoryList({})
+  const data = await ProductCategoryApi.getCrossCategories({} as ProductCategoryApi.PlatformCategoryReqVO)
   categoryList.value = handleTree(data, 'id')
   // 获取商品品牌列表
   brandList.value = await ProductBrandApi.getSimpleBrandList()

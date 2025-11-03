@@ -93,12 +93,13 @@ public class PromotionV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdDeactivatePostCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdDeactivatePostCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -128,14 +129,6 @@ public class PromotionV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -151,12 +144,22 @@ public class PromotionV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202309ActivitiesActivityIdDeactivatePostValidateBeforeCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202309ActivitiesActivityIdDeactivatePostValidateBeforeCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'activityId' is set
         if (activityId == null) {
             throw new ApiException("Missing the required parameter 'activityId' when calling promotion202309ActivitiesActivityIdDeactivatePost(Async)");
@@ -186,12 +189,13 @@ public class PromotionV202309Api {
      * @return DeactivateActivityResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public DeactivateActivityResponse promotion202309ActivitiesActivityIdDeactivatePost(String activityId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public DeactivateActivityResponse promotion202309ActivitiesActivityIdDeactivatePost(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<DeactivateActivityResponse> localVarResp = promotion202309ActivitiesActivityIdDeactivatePostWithHttpInfo(activityId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -206,12 +210,13 @@ public class PromotionV202309Api {
      * @return ApiResponse&lt;DeactivateActivityResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<DeactivateActivityResponse> promotion202309ActivitiesActivityIdDeactivatePostWithHttpInfo(String activityId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<DeactivateActivityResponse> promotion202309ActivitiesActivityIdDeactivatePostWithHttpInfo(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdDeactivatePostValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<DeactivateActivityResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -228,12 +233,13 @@ public class PromotionV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdDeactivatePostAsync(String activityId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<DeactivateActivityResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdDeactivatePostAsync(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<DeactivateActivityResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdDeactivatePostValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<DeactivateActivityResponse>(){}.getType();
@@ -250,12 +256,13 @@ public class PromotionV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdGetCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdGetCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -285,14 +292,6 @@ public class PromotionV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -308,12 +307,22 @@ public class PromotionV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202309ActivitiesActivityIdGetValidateBeforeCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202309ActivitiesActivityIdGetValidateBeforeCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'activityId' is set
         if (activityId == null) {
             throw new ApiException("Missing the required parameter 'activityId' when calling promotion202309ActivitiesActivityIdGet(Async)");
@@ -343,12 +352,13 @@ public class PromotionV202309Api {
      * @return GetActivityResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetActivityResponse promotion202309ActivitiesActivityIdGet(String activityId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetActivityResponse promotion202309ActivitiesActivityIdGet(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetActivityResponse> localVarResp = promotion202309ActivitiesActivityIdGetWithHttpInfo(activityId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -363,12 +373,13 @@ public class PromotionV202309Api {
      * @return ApiResponse&lt;GetActivityResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetActivityResponse> promotion202309ActivitiesActivityIdGetWithHttpInfo(String activityId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetActivityResponse> promotion202309ActivitiesActivityIdGetWithHttpInfo(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdGetValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetActivityResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -385,12 +396,13 @@ public class PromotionV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdGetAsync(String activityId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetActivityResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdGetAsync(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetActivityResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdGetValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetActivityResponse>(){}.getType();
@@ -408,12 +420,13 @@ public class PromotionV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdProductsDeleteCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdProductsDeleteCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -443,14 +456,6 @@ public class PromotionV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -467,12 +472,22 @@ public class PromotionV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202309ActivitiesActivityIdProductsDeleteValidateBeforeCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202309ActivitiesActivityIdProductsDeleteValidateBeforeCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'activityId' is set
         if (activityId == null) {
             throw new ApiException("Missing the required parameter 'activityId' when calling promotion202309ActivitiesActivityIdProductsDelete(Async)");
@@ -503,12 +518,13 @@ public class PromotionV202309Api {
      * @return RemoveActivityProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public RemoveActivityProductResponse promotion202309ActivitiesActivityIdProductsDelete(String activityId, String xTtsAccessToken, String contentType, String shopCipher, RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody) throws ApiException {
+    public RemoveActivityProductResponse promotion202309ActivitiesActivityIdProductsDelete(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody) throws ApiException {
         ApiResponse<RemoveActivityProductResponse> localVarResp = promotion202309ActivitiesActivityIdProductsDeleteWithHttpInfo(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309RemoveActivityProductRequestBody);
         return localVarResp.getData();
     }
@@ -524,12 +540,13 @@ public class PromotionV202309Api {
      * @return ApiResponse&lt;RemoveActivityProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<RemoveActivityProductResponse> promotion202309ActivitiesActivityIdProductsDeleteWithHttpInfo(String activityId, String xTtsAccessToken, String contentType, String shopCipher, RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody) throws ApiException {
+    public ApiResponse<RemoveActivityProductResponse> promotion202309ActivitiesActivityIdProductsDeleteWithHttpInfo(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdProductsDeleteValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309RemoveActivityProductRequestBody, null);
         Type localVarReturnType = new TypeToken<RemoveActivityProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -547,12 +564,13 @@ public class PromotionV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdProductsDeleteAsync(String activityId, String xTtsAccessToken, String contentType, String shopCipher, RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody, final ApiCallback<RemoveActivityProductResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdProductsDeleteAsync(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable RemoveActivityProductRequestBody promotion202309RemoveActivityProductRequestBody, final ApiCallback<RemoveActivityProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdProductsDeleteValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309RemoveActivityProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<RemoveActivityProductResponse>(){}.getType();
@@ -570,12 +588,13 @@ public class PromotionV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdProductsPutCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdProductsPutCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -605,14 +624,6 @@ public class PromotionV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -629,12 +640,22 @@ public class PromotionV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202309ActivitiesActivityIdProductsPutValidateBeforeCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202309ActivitiesActivityIdProductsPutValidateBeforeCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'activityId' is set
         if (activityId == null) {
             throw new ApiException("Missing the required parameter 'activityId' when calling promotion202309ActivitiesActivityIdProductsPut(Async)");
@@ -665,12 +686,13 @@ public class PromotionV202309Api {
      * @return UpdateActivityProductResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdateActivityProductResponse promotion202309ActivitiesActivityIdProductsPut(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody) throws ApiException {
+    public UpdateActivityProductResponse promotion202309ActivitiesActivityIdProductsPut(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody) throws ApiException {
         ApiResponse<UpdateActivityProductResponse> localVarResp = promotion202309ActivitiesActivityIdProductsPutWithHttpInfo(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309UpdateActivityProductRequestBody);
         return localVarResp.getData();
     }
@@ -686,12 +708,13 @@ public class PromotionV202309Api {
      * @return ApiResponse&lt;UpdateActivityProductResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdateActivityProductResponse> promotion202309ActivitiesActivityIdProductsPutWithHttpInfo(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody) throws ApiException {
+    public ApiResponse<UpdateActivityProductResponse> promotion202309ActivitiesActivityIdProductsPutWithHttpInfo(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody) throws ApiException {
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdProductsPutValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309UpdateActivityProductRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdateActivityProductResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -709,12 +732,13 @@ public class PromotionV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdProductsPutAsync(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody, final ApiCallback<UpdateActivityProductResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdProductsPutAsync(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityProductRequestBody promotion202309UpdateActivityProductRequestBody, final ApiCallback<UpdateActivityProductResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdProductsPutValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309UpdateActivityProductRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdateActivityProductResponse>(){}.getType();
@@ -732,12 +756,13 @@ public class PromotionV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdPutCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityRequestBody promotion202309UpdateActivityRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdPutCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityRequestBody promotion202309UpdateActivityRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -767,14 +792,6 @@ public class PromotionV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -791,12 +808,22 @@ public class PromotionV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202309ActivitiesActivityIdPutValidateBeforeCall(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityRequestBody promotion202309UpdateActivityRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202309ActivitiesActivityIdPutValidateBeforeCall(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityRequestBody promotion202309UpdateActivityRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'activityId' is set
         if (activityId == null) {
             throw new ApiException("Missing the required parameter 'activityId' when calling promotion202309ActivitiesActivityIdPut(Async)");
@@ -827,12 +854,13 @@ public class PromotionV202309Api {
      * @return UpdateActivityResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdateActivityResponse promotion202309ActivitiesActivityIdPut(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityRequestBody promotion202309UpdateActivityRequestBody) throws ApiException {
+    public UpdateActivityResponse promotion202309ActivitiesActivityIdPut(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityRequestBody promotion202309UpdateActivityRequestBody) throws ApiException {
         ApiResponse<UpdateActivityResponse> localVarResp = promotion202309ActivitiesActivityIdPutWithHttpInfo(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309UpdateActivityRequestBody);
         return localVarResp.getData();
     }
@@ -848,12 +876,13 @@ public class PromotionV202309Api {
      * @return ApiResponse&lt;UpdateActivityResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdateActivityResponse> promotion202309ActivitiesActivityIdPutWithHttpInfo(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityRequestBody promotion202309UpdateActivityRequestBody) throws ApiException {
+    public ApiResponse<UpdateActivityResponse> promotion202309ActivitiesActivityIdPutWithHttpInfo(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityRequestBody promotion202309UpdateActivityRequestBody) throws ApiException {
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdPutValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309UpdateActivityRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdateActivityResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -871,12 +900,13 @@ public class PromotionV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesActivityIdPutAsync(String activityId, String xTtsAccessToken, String contentType, String shopCipher, UpdateActivityRequestBody promotion202309UpdateActivityRequestBody, final ApiCallback<UpdateActivityResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesActivityIdPutAsync(@javax.annotation.Nonnull String activityId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateActivityRequestBody promotion202309UpdateActivityRequestBody, final ApiCallback<UpdateActivityResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202309ActivitiesActivityIdPutValidateBeforeCall(activityId, xTtsAccessToken, contentType, shopCipher, promotion202309UpdateActivityRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdateActivityResponse>(){}.getType();
@@ -893,12 +923,13 @@ public class PromotionV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesPostCall(String xTtsAccessToken, String contentType, String shopCipher, CreateActivityRequestBody promotion202309CreateActivityRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateActivityRequestBody promotion202309CreateActivityRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -927,14 +958,6 @@ public class PromotionV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -951,12 +974,22 @@ public class PromotionV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202309ActivitiesPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, CreateActivityRequestBody promotion202309CreateActivityRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202309ActivitiesPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateActivityRequestBody promotion202309CreateActivityRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling promotion202309ActivitiesPost(Async)");
@@ -981,12 +1014,13 @@ public class PromotionV202309Api {
      * @return CreateActivityResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CreateActivityResponse promotion202309ActivitiesPost(String xTtsAccessToken, String contentType, String shopCipher, CreateActivityRequestBody promotion202309CreateActivityRequestBody) throws ApiException {
+    public CreateActivityResponse promotion202309ActivitiesPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateActivityRequestBody promotion202309CreateActivityRequestBody) throws ApiException {
         ApiResponse<CreateActivityResponse> localVarResp = promotion202309ActivitiesPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, promotion202309CreateActivityRequestBody);
         return localVarResp.getData();
     }
@@ -1001,12 +1035,13 @@ public class PromotionV202309Api {
      * @return ApiResponse&lt;CreateActivityResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreateActivityResponse> promotion202309ActivitiesPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, CreateActivityRequestBody promotion202309CreateActivityRequestBody) throws ApiException {
+    public ApiResponse<CreateActivityResponse> promotion202309ActivitiesPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateActivityRequestBody promotion202309CreateActivityRequestBody) throws ApiException {
         okhttp3.Call localVarCall = promotion202309ActivitiesPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, promotion202309CreateActivityRequestBody, null);
         Type localVarReturnType = new TypeToken<CreateActivityResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1023,12 +1058,13 @@ public class PromotionV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesPostAsync(String xTtsAccessToken, String contentType, String shopCipher, CreateActivityRequestBody promotion202309CreateActivityRequestBody, final ApiCallback<CreateActivityResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreateActivityRequestBody promotion202309CreateActivityRequestBody, final ApiCallback<CreateActivityResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202309ActivitiesPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, promotion202309CreateActivityRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CreateActivityResponse>(){}.getType();
@@ -1045,12 +1081,13 @@ public class PromotionV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesSearchPostCall(String xTtsAccessToken, String contentType, String shopCipher, SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1079,14 +1116,6 @@ public class PromotionV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1103,12 +1132,22 @@ public class PromotionV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call promotion202309ActivitiesSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call promotion202309ActivitiesSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling promotion202309ActivitiesSearchPost(Async)");
@@ -1133,12 +1172,13 @@ public class PromotionV202309Api {
      * @return SearchActivitiesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchActivitiesResponse promotion202309ActivitiesSearchPost(String xTtsAccessToken, String contentType, String shopCipher, SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody) throws ApiException {
+    public SearchActivitiesResponse promotion202309ActivitiesSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody) throws ApiException {
         ApiResponse<SearchActivitiesResponse> localVarResp = promotion202309ActivitiesSearchPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, promotion202309SearchActivitiesRequestBody);
         return localVarResp.getData();
     }
@@ -1153,12 +1193,13 @@ public class PromotionV202309Api {
      * @return ApiResponse&lt;SearchActivitiesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchActivitiesResponse> promotion202309ActivitiesSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody) throws ApiException {
+    public ApiResponse<SearchActivitiesResponse> promotion202309ActivitiesSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody) throws ApiException {
         okhttp3.Call localVarCall = promotion202309ActivitiesSearchPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, promotion202309SearchActivitiesRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchActivitiesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1175,12 +1216,13 @@ public class PromotionV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call promotion202309ActivitiesSearchPostAsync(String xTtsAccessToken, String contentType, String shopCipher, SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody, final ApiCallback<SearchActivitiesResponse> _callback) throws ApiException {
+    public okhttp3.Call promotion202309ActivitiesSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchActivitiesRequestBody promotion202309SearchActivitiesRequestBody, final ApiCallback<SearchActivitiesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = promotion202309ActivitiesSearchPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, promotion202309SearchActivitiesRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchActivitiesResponse>(){}.getType();

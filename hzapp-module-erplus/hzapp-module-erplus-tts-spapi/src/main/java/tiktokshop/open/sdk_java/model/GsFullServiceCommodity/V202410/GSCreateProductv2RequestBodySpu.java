@@ -45,7 +45,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -57,68 +56,82 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSCreateProductv2RequestBodySpu
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSCreateProductv2RequestBodySpu {
   public static final String SERIALIZED_NAME_ATTRIBUTES = "attributes";
   @SerializedName(SERIALIZED_NAME_ATTRIBUTES)
+  @javax.annotation.Nullable
   private List<GSCreateProductv2RequestBodySpuAttributes> attributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_BRAND_ID = "brand_id";
   @SerializedName(SERIALIZED_NAME_BRAND_ID)
+  @javax.annotation.Nullable
   private String brandId;
 
   public static final String SERIALIZED_NAME_CATEGORY_ID = "category_id";
   @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  @javax.annotation.Nullable
   private String categoryId;
 
   public static final String SERIALIZED_NAME_CERTIFICATIONS = "certifications";
   @SerializedName(SERIALIZED_NAME_CERTIFICATIONS)
+  @javax.annotation.Nullable
   private List<GSCreateProductv2RequestBodySpuCertifications> certifications = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private GSCreateProductv2RequestBodySpuDescription description;
 
   public static final String SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_ID = "first_key_attribute_id";
   @SerializedName(SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_ID)
+  @javax.annotation.Nullable
   private String firstKeyAttributeId;
 
   public static final String SERIALIZED_NAME_GRADING_TEMPLATE_ID = "grading_template_id";
   @SerializedName(SERIALIZED_NAME_GRADING_TEMPLATE_ID)
+  @javax.annotation.Nullable
   private String gradingTemplateId;
 
   public static final String SERIALIZED_NAME_INGREDIENT = "ingredient";
   @SerializedName(SERIALIZED_NAME_INGREDIENT)
+  @javax.annotation.Nullable
   private GSCreateProductv2RequestBodySpuIngredient ingredient;
 
   public static final String SERIALIZED_NAME_MEDIA = "media";
   @SerializedName(SERIALIZED_NAME_MEDIA)
+  @javax.annotation.Nullable
   private GSCreateProductv2RequestBodySpuMedia media;
 
   public static final String SERIALIZED_NAME_PRODUCT_NAME_EN = "product_name_en";
   @SerializedName(SERIALIZED_NAME_PRODUCT_NAME_EN)
+  @javax.annotation.Nullable
   private String productNameEn;
 
   public static final String SERIALIZED_NAME_PRODUCT_NAME_ZH = "product_name_zh";
   @SerializedName(SERIALIZED_NAME_PRODUCT_NAME_ZH)
+  @javax.annotation.Nullable
   private String productNameZh;
 
   public static final String SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_ID = "second_key_attribute_id";
   @SerializedName(SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_ID)
+  @javax.annotation.Nullable
   private String secondKeyAttributeId;
 
   public static final String SERIALIZED_NAME_SIZE_GROUP_ID = "size_group_id";
   @SerializedName(SERIALIZED_NAME_SIZE_GROUP_ID)
+  @javax.annotation.Nullable
   private String sizeGroupId;
 
   public static final String SERIALIZED_NAME_SKCS = "skcs";
   @SerializedName(SERIALIZED_NAME_SKCS)
+  @javax.annotation.Nullable
   private List<GSCreateProductv2RequestBodySpuSkcs> skcs = new ArrayList<>();
 
   public GSCreateProductv2RequestBodySpu() {
   }
 
-  public GSCreateProductv2RequestBodySpu attributes(List<GSCreateProductv2RequestBodySpuAttributes> attributes) {
+  public GSCreateProductv2RequestBodySpu attributes(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuAttributes> attributes) {
     this.attributes = attributes;
     return this;
   }
@@ -131,59 +144,59 @@ public class GSCreateProductv2RequestBodySpu {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return attributes
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSCreateProductv2RequestBodySpuAttributes> getAttributes() {
     return attributes;
   }
 
-  public void setAttributes(List<GSCreateProductv2RequestBodySpuAttributes> attributes) {
+  public void setAttributes(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuAttributes> attributes) {
     this.attributes = attributes;
   }
 
 
-  public GSCreateProductv2RequestBodySpu brandId(String brandId) {
+  public GSCreateProductv2RequestBodySpu brandId(@javax.annotation.Nullable String brandId) {
     this.brandId = brandId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return brandId
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrandId() {
     return brandId;
   }
 
-  public void setBrandId(String brandId) {
+  public void setBrandId(@javax.annotation.Nullable String brandId) {
     this.brandId = brandId;
   }
 
 
-  public GSCreateProductv2RequestBodySpu categoryId(String categoryId) {
+  public GSCreateProductv2RequestBodySpu categoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return categoryId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(String categoryId) {
+  public void setCategoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
   }
 
 
-  public GSCreateProductv2RequestBodySpu certifications(List<GSCreateProductv2RequestBodySpuCertifications> certifications) {
+  public GSCreateProductv2RequestBodySpu certifications(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuCertifications> certifications) {
     this.certifications = certifications;
     return this;
   }
@@ -196,192 +209,192 @@ public class GSCreateProductv2RequestBodySpu {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return certifications
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSCreateProductv2RequestBodySpuCertifications> getCertifications() {
     return certifications;
   }
 
-  public void setCertifications(List<GSCreateProductv2RequestBodySpuCertifications> certifications) {
+  public void setCertifications(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuCertifications> certifications) {
     this.certifications = certifications;
   }
 
 
-  public GSCreateProductv2RequestBodySpu description(GSCreateProductv2RequestBodySpuDescription description) {
+  public GSCreateProductv2RequestBodySpu description(@javax.annotation.Nullable GSCreateProductv2RequestBodySpuDescription description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * Get description
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public GSCreateProductv2RequestBodySpuDescription getDescription() {
     return description;
   }
 
-  public void setDescription(GSCreateProductv2RequestBodySpuDescription description) {
+  public void setDescription(@javax.annotation.Nullable GSCreateProductv2RequestBodySpuDescription description) {
     this.description = description;
   }
 
 
-  public GSCreateProductv2RequestBodySpu firstKeyAttributeId(String firstKeyAttributeId) {
+  public GSCreateProductv2RequestBodySpu firstKeyAttributeId(@javax.annotation.Nullable String firstKeyAttributeId) {
     this.firstKeyAttributeId = firstKeyAttributeId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return firstKeyAttributeId
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstKeyAttributeId() {
     return firstKeyAttributeId;
   }
 
-  public void setFirstKeyAttributeId(String firstKeyAttributeId) {
+  public void setFirstKeyAttributeId(@javax.annotation.Nullable String firstKeyAttributeId) {
     this.firstKeyAttributeId = firstKeyAttributeId;
   }
 
 
-  public GSCreateProductv2RequestBodySpu gradingTemplateId(String gradingTemplateId) {
+  public GSCreateProductv2RequestBodySpu gradingTemplateId(@javax.annotation.Nullable String gradingTemplateId) {
     this.gradingTemplateId = gradingTemplateId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return gradingTemplateId
-  **/
+   */
   @javax.annotation.Nullable
   public String getGradingTemplateId() {
     return gradingTemplateId;
   }
 
-  public void setGradingTemplateId(String gradingTemplateId) {
+  public void setGradingTemplateId(@javax.annotation.Nullable String gradingTemplateId) {
     this.gradingTemplateId = gradingTemplateId;
   }
 
 
-  public GSCreateProductv2RequestBodySpu ingredient(GSCreateProductv2RequestBodySpuIngredient ingredient) {
+  public GSCreateProductv2RequestBodySpu ingredient(@javax.annotation.Nullable GSCreateProductv2RequestBodySpuIngredient ingredient) {
     this.ingredient = ingredient;
     return this;
   }
 
-   /**
+  /**
    * Get ingredient
    * @return ingredient
-  **/
+   */
   @javax.annotation.Nullable
   public GSCreateProductv2RequestBodySpuIngredient getIngredient() {
     return ingredient;
   }
 
-  public void setIngredient(GSCreateProductv2RequestBodySpuIngredient ingredient) {
+  public void setIngredient(@javax.annotation.Nullable GSCreateProductv2RequestBodySpuIngredient ingredient) {
     this.ingredient = ingredient;
   }
 
 
-  public GSCreateProductv2RequestBodySpu media(GSCreateProductv2RequestBodySpuMedia media) {
+  public GSCreateProductv2RequestBodySpu media(@javax.annotation.Nullable GSCreateProductv2RequestBodySpuMedia media) {
     this.media = media;
     return this;
   }
 
-   /**
+  /**
    * Get media
    * @return media
-  **/
+   */
   @javax.annotation.Nullable
   public GSCreateProductv2RequestBodySpuMedia getMedia() {
     return media;
   }
 
-  public void setMedia(GSCreateProductv2RequestBodySpuMedia media) {
+  public void setMedia(@javax.annotation.Nullable GSCreateProductv2RequestBodySpuMedia media) {
     this.media = media;
   }
 
 
-  public GSCreateProductv2RequestBodySpu productNameEn(String productNameEn) {
+  public GSCreateProductv2RequestBodySpu productNameEn(@javax.annotation.Nullable String productNameEn) {
     this.productNameEn = productNameEn;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return productNameEn
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductNameEn() {
     return productNameEn;
   }
 
-  public void setProductNameEn(String productNameEn) {
+  public void setProductNameEn(@javax.annotation.Nullable String productNameEn) {
     this.productNameEn = productNameEn;
   }
 
 
-  public GSCreateProductv2RequestBodySpu productNameZh(String productNameZh) {
+  public GSCreateProductv2RequestBodySpu productNameZh(@javax.annotation.Nullable String productNameZh) {
     this.productNameZh = productNameZh;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return productNameZh
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductNameZh() {
     return productNameZh;
   }
 
-  public void setProductNameZh(String productNameZh) {
+  public void setProductNameZh(@javax.annotation.Nullable String productNameZh) {
     this.productNameZh = productNameZh;
   }
 
 
-  public GSCreateProductv2RequestBodySpu secondKeyAttributeId(String secondKeyAttributeId) {
+  public GSCreateProductv2RequestBodySpu secondKeyAttributeId(@javax.annotation.Nullable String secondKeyAttributeId) {
     this.secondKeyAttributeId = secondKeyAttributeId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return secondKeyAttributeId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSecondKeyAttributeId() {
     return secondKeyAttributeId;
   }
 
-  public void setSecondKeyAttributeId(String secondKeyAttributeId) {
+  public void setSecondKeyAttributeId(@javax.annotation.Nullable String secondKeyAttributeId) {
     this.secondKeyAttributeId = secondKeyAttributeId;
   }
 
 
-  public GSCreateProductv2RequestBodySpu sizeGroupId(String sizeGroupId) {
+  public GSCreateProductv2RequestBodySpu sizeGroupId(@javax.annotation.Nullable String sizeGroupId) {
     this.sizeGroupId = sizeGroupId;
     return this;
   }
 
-   /**
+  /**
    * 
    * @return sizeGroupId
-  **/
+   */
   @javax.annotation.Nullable
   public String getSizeGroupId() {
     return sizeGroupId;
   }
 
-  public void setSizeGroupId(String sizeGroupId) {
+  public void setSizeGroupId(@javax.annotation.Nullable String sizeGroupId) {
     this.sizeGroupId = sizeGroupId;
   }
 
 
-  public GSCreateProductv2RequestBodySpu skcs(List<GSCreateProductv2RequestBodySpuSkcs> skcs) {
+  public GSCreateProductv2RequestBodySpu skcs(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuSkcs> skcs) {
     this.skcs = skcs;
     return this;
   }
@@ -394,17 +407,62 @@ public class GSCreateProductv2RequestBodySpu {
     return this;
   }
 
-   /**
+  /**
    * 
    * @return skcs
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSCreateProductv2RequestBodySpuSkcs> getSkcs() {
     return skcs;
   }
 
-  public void setSkcs(List<GSCreateProductv2RequestBodySpuSkcs> skcs) {
+  public void setSkcs(@javax.annotation.Nullable List<GSCreateProductv2RequestBodySpuSkcs> skcs) {
     this.skcs = skcs;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSCreateProductv2RequestBodySpu instance itself
+   */
+  public GSCreateProductv2RequestBodySpu putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -431,12 +489,13 @@ public class GSCreateProductv2RequestBodySpu {
         Objects.equals(this.productNameZh, gsFullServiceCommodity202410GSCreateProductv2RequestBodySpu.productNameZh) &&
         Objects.equals(this.secondKeyAttributeId, gsFullServiceCommodity202410GSCreateProductv2RequestBodySpu.secondKeyAttributeId) &&
         Objects.equals(this.sizeGroupId, gsFullServiceCommodity202410GSCreateProductv2RequestBodySpu.sizeGroupId) &&
-        Objects.equals(this.skcs, gsFullServiceCommodity202410GSCreateProductv2RequestBodySpu.skcs);
+        Objects.equals(this.skcs, gsFullServiceCommodity202410GSCreateProductv2RequestBodySpu.skcs)&&
+        Objects.equals(this.additionalProperties, gsFullServiceCommodity202410GSCreateProductv2RequestBodySpu.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attributes, brandId, categoryId, certifications, description, firstKeyAttributeId, gradingTemplateId, ingredient, media, productNameEn, productNameZh, secondKeyAttributeId, sizeGroupId, skcs);
+    return Objects.hash(attributes, brandId, categoryId, certifications, description, firstKeyAttributeId, gradingTemplateId, ingredient, media, productNameEn, productNameZh, secondKeyAttributeId, sizeGroupId, skcs, additionalProperties);
   }
 
   @Override
@@ -457,6 +516,7 @@ public class GSCreateProductv2RequestBodySpu {
     sb.append("    secondKeyAttributeId: ").append(toIndentedString(secondKeyAttributeId)).append("\n");
     sb.append("    sizeGroupId: ").append(toIndentedString(sizeGroupId)).append("\n");
     sb.append("    skcs: ").append(toIndentedString(skcs)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -478,44 +538,22 @@ public class GSCreateProductv2RequestBodySpu {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("attributes");
-    openapiFields.add("brand_id");
-    openapiFields.add("category_id");
-    openapiFields.add("certifications");
-    openapiFields.add("description");
-    openapiFields.add("first_key_attribute_id");
-    openapiFields.add("grading_template_id");
-    openapiFields.add("ingredient");
-    openapiFields.add("media");
-    openapiFields.add("product_name_en");
-    openapiFields.add("product_name_zh");
-    openapiFields.add("second_key_attribute_id");
-    openapiFields.add("size_group_id");
-    openapiFields.add("skcs");
+    openapiFields = new HashSet<String>(Arrays.asList("attributes", "brand_id", "category_id", "certifications", "description", "first_key_attribute_id", "grading_template_id", "ingredient", "media", "product_name_en", "product_name_zh", "second_key_attribute_id", "size_group_id", "skcs"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSCreateProductv2RequestBodySpu
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSCreateProductv2RequestBodySpu
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSCreateProductv2RequestBodySpu.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSCreateProductv2RequestBodySpu is not found in the empty JSON string", GSCreateProductv2RequestBodySpu.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSCreateProductv2RequestBodySpu.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSCreateProductv2RequestBodySpu` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -614,6 +652,28 @@ public class GSCreateProductv2RequestBodySpu {
            @Override
            public void write(JsonWriter out, GSCreateProductv2RequestBodySpu value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -621,29 +681,50 @@ public class GSCreateProductv2RequestBodySpu {
            public GSCreateProductv2RequestBodySpu read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSCreateProductv2RequestBodySpu instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSCreateProductv2RequestBodySpu given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSCreateProductv2RequestBodySpu
-  * @throws IOException if the JSON string is invalid with respect to GSCreateProductv2RequestBodySpu
-  */
+  /**
+   * Create an instance of GSCreateProductv2RequestBodySpu given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSCreateProductv2RequestBodySpu
+   * @throws IOException if the JSON string is invalid with respect to GSCreateProductv2RequestBodySpu
+   */
   public static GSCreateProductv2RequestBodySpu fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSCreateProductv2RequestBodySpu.class);
   }
 
- /**
-  * Convert an instance of GSCreateProductv2RequestBodySpu to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSCreateProductv2RequestBodySpu to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

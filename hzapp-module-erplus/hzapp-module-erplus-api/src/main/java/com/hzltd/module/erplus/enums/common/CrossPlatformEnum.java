@@ -12,13 +12,16 @@ import java.util.Arrays;
 @Getter
 @AllArgsConstructor
 public enum CrossPlatformEnum implements IntArrayValuable {
-    AMZ(1, "亚马逊"),
-    OZON(2, "Ozon"),
-    TTS(3, "Tiktok Shop");
+    AMAZON(1, "Amazon","亚马逊"),
+    OZON(2, "Ozon","Ozon"),
+    TTS(3, "TTS","Tiktok Shop"),
+    ALIEXPRESS(0, "ALIEXPRESS","速卖通"),
+    LOCAL(0, "LOCAL","独立站");
 
 
     public static final int[] ARRAYS = Arrays.stream(values()).mapToInt(CrossPlatformEnum::getValue).toArray();
     private Integer value;
+    private String code;
     private String name;
 
 

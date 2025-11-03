@@ -45,7 +45,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -57,79 +56,91 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetInboundOrderResponseDataInboundOrders
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetInboundOrderResponseDataInboundOrders {
   public static final String SERIALIZED_NAME_ACTUAL_ARRIVE_TIME = "actual_arrive_time";
   @SerializedName(SERIALIZED_NAME_ACTUAL_ARRIVE_TIME)
+  @javax.annotation.Nullable
   private Long actualArriveTime;
 
   public static final String SERIALIZED_NAME_CARRIERS = "carriers";
   @SerializedName(SERIALIZED_NAME_CARRIERS)
+  @javax.annotation.Nullable
   private List<GetInboundOrderResponseDataInboundOrdersCarriers> carriers = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_EXPECT_ARRIVE_TIME = "expect_arrive_time";
   @SerializedName(SERIALIZED_NAME_EXPECT_ARRIVE_TIME)
+  @javax.annotation.Nullable
   private Long expectArriveTime;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_MERCHANT = "merchant";
   @SerializedName(SERIALIZED_NAME_MERCHANT)
+  @javax.annotation.Nullable
   private GetInboundOrderResponseDataInboundOrdersMerchant merchant;
 
   public static final String SERIALIZED_NAME_ORDER_OPERATION_LOGS = "order_operation_logs";
   @SerializedName(SERIALIZED_NAME_ORDER_OPERATION_LOGS)
+  @javax.annotation.Nullable
   private List<GetInboundOrderResponseDataInboundOrdersOrderOperationLogs> orderOperationLogs = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PLANNED_GOODS = "planned_goods";
   @SerializedName(SERIALIZED_NAME_PLANNED_GOODS)
+  @javax.annotation.Nullable
   private List<GetInboundOrderResponseDataInboundOrdersPlannedGoods> plannedGoods = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RECEIVED_BATCHES = "received_batches";
   @SerializedName(SERIALIZED_NAME_RECEIVED_BATCHES)
+  @javax.annotation.Nullable
   private List<GetInboundOrderResponseDataInboundOrdersReceivedBatches> receivedBatches = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SHIP_TIME = "ship_time";
   @SerializedName(SERIALIZED_NAME_SHIP_TIME)
+  @javax.annotation.Nullable
   private Long shipTime;
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_WAREHOUSE = "warehouse";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE)
+  @javax.annotation.Nullable
   private GetInboundOrderResponseDataInboundOrdersWarehouse warehouse;
 
   public GetInboundOrderResponseDataInboundOrders() {
   }
 
-  public GetInboundOrderResponseDataInboundOrders actualArriveTime(Long actualArriveTime) {
+  public GetInboundOrderResponseDataInboundOrders actualArriveTime(@javax.annotation.Nullable Long actualArriveTime) {
     this.actualArriveTime = actualArriveTime;
     return this;
   }
 
-   /**
+  /**
    * The actual arrival time. Unix timestamp in seconds.
    * @return actualArriveTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getActualArriveTime() {
     return actualArriveTime;
   }
 
-  public void setActualArriveTime(Long actualArriveTime) {
+  public void setActualArriveTime(@javax.annotation.Nullable Long actualArriveTime) {
     this.actualArriveTime = actualArriveTime;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders carriers(List<GetInboundOrderResponseDataInboundOrdersCarriers> carriers) {
+  public GetInboundOrderResponseDataInboundOrders carriers(@javax.annotation.Nullable List<GetInboundOrderResponseDataInboundOrdersCarriers> carriers) {
     this.carriers = carriers;
     return this;
   }
@@ -142,97 +153,97 @@ public class GetInboundOrderResponseDataInboundOrders {
     return this;
   }
 
-   /**
+  /**
    * A list of carrier information.
    * @return carriers
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetInboundOrderResponseDataInboundOrdersCarriers> getCarriers() {
     return carriers;
   }
 
-  public void setCarriers(List<GetInboundOrderResponseDataInboundOrdersCarriers> carriers) {
+  public void setCarriers(@javax.annotation.Nullable List<GetInboundOrderResponseDataInboundOrdersCarriers> carriers) {
     this.carriers = carriers;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders createTime(Long createTime) {
+  public GetInboundOrderResponseDataInboundOrders createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the inbound order created. Unix timestamp in seconds.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders expectArriveTime(Long expectArriveTime) {
+  public GetInboundOrderResponseDataInboundOrders expectArriveTime(@javax.annotation.Nullable Long expectArriveTime) {
     this.expectArriveTime = expectArriveTime;
     return this;
   }
 
-   /**
+  /**
    * The expected arrival time provided by merchant. Unix timestamp in seconds.
    * @return expectArriveTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getExpectArriveTime() {
     return expectArriveTime;
   }
 
-  public void setExpectArriveTime(Long expectArriveTime) {
+  public void setExpectArriveTime(@javax.annotation.Nullable Long expectArriveTime) {
     this.expectArriveTime = expectArriveTime;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders id(String id) {
+  public GetInboundOrderResponseDataInboundOrders id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The identifier for inbound order generated in Fillfilled by TikTok system.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders merchant(GetInboundOrderResponseDataInboundOrdersMerchant merchant) {
+  public GetInboundOrderResponseDataInboundOrders merchant(@javax.annotation.Nullable GetInboundOrderResponseDataInboundOrdersMerchant merchant) {
     this.merchant = merchant;
     return this;
   }
 
-   /**
+  /**
    * Get merchant
    * @return merchant
-  **/
+   */
   @javax.annotation.Nullable
   public GetInboundOrderResponseDataInboundOrdersMerchant getMerchant() {
     return merchant;
   }
 
-  public void setMerchant(GetInboundOrderResponseDataInboundOrdersMerchant merchant) {
+  public void setMerchant(@javax.annotation.Nullable GetInboundOrderResponseDataInboundOrdersMerchant merchant) {
     this.merchant = merchant;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders orderOperationLogs(List<GetInboundOrderResponseDataInboundOrdersOrderOperationLogs> orderOperationLogs) {
+  public GetInboundOrderResponseDataInboundOrders orderOperationLogs(@javax.annotation.Nullable List<GetInboundOrderResponseDataInboundOrdersOrderOperationLogs> orderOperationLogs) {
     this.orderOperationLogs = orderOperationLogs;
     return this;
   }
@@ -245,21 +256,21 @@ public class GetInboundOrderResponseDataInboundOrders {
     return this;
   }
 
-   /**
+  /**
    * A list of inbound order operation history.
    * @return orderOperationLogs
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetInboundOrderResponseDataInboundOrdersOrderOperationLogs> getOrderOperationLogs() {
     return orderOperationLogs;
   }
 
-  public void setOrderOperationLogs(List<GetInboundOrderResponseDataInboundOrdersOrderOperationLogs> orderOperationLogs) {
+  public void setOrderOperationLogs(@javax.annotation.Nullable List<GetInboundOrderResponseDataInboundOrdersOrderOperationLogs> orderOperationLogs) {
     this.orderOperationLogs = orderOperationLogs;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders plannedGoods(List<GetInboundOrderResponseDataInboundOrdersPlannedGoods> plannedGoods) {
+  public GetInboundOrderResponseDataInboundOrders plannedGoods(@javax.annotation.Nullable List<GetInboundOrderResponseDataInboundOrdersPlannedGoods> plannedGoods) {
     this.plannedGoods = plannedGoods;
     return this;
   }
@@ -272,21 +283,21 @@ public class GetInboundOrderResponseDataInboundOrders {
     return this;
   }
 
-   /**
+  /**
    * A list of planned goods details in the inbound order.
    * @return plannedGoods
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetInboundOrderResponseDataInboundOrdersPlannedGoods> getPlannedGoods() {
     return plannedGoods;
   }
 
-  public void setPlannedGoods(List<GetInboundOrderResponseDataInboundOrdersPlannedGoods> plannedGoods) {
+  public void setPlannedGoods(@javax.annotation.Nullable List<GetInboundOrderResponseDataInboundOrdersPlannedGoods> plannedGoods) {
     this.plannedGoods = plannedGoods;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders receivedBatches(List<GetInboundOrderResponseDataInboundOrdersReceivedBatches> receivedBatches) {
+  public GetInboundOrderResponseDataInboundOrders receivedBatches(@javax.annotation.Nullable List<GetInboundOrderResponseDataInboundOrdersReceivedBatches> receivedBatches) {
     this.receivedBatches = receivedBatches;
     return this;
   }
@@ -299,74 +310,119 @@ public class GetInboundOrderResponseDataInboundOrders {
     return this;
   }
 
-   /**
+  /**
    * A list of actual received inbound order batch details.
    * @return receivedBatches
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetInboundOrderResponseDataInboundOrdersReceivedBatches> getReceivedBatches() {
     return receivedBatches;
   }
 
-  public void setReceivedBatches(List<GetInboundOrderResponseDataInboundOrdersReceivedBatches> receivedBatches) {
+  public void setReceivedBatches(@javax.annotation.Nullable List<GetInboundOrderResponseDataInboundOrdersReceivedBatches> receivedBatches) {
     this.receivedBatches = receivedBatches;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders shipTime(Long shipTime) {
+  public GetInboundOrderResponseDataInboundOrders shipTime(@javax.annotation.Nullable Long shipTime) {
     this.shipTime = shipTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the inbound order shipped. Unix timestamp in seconds.
    * @return shipTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getShipTime() {
     return shipTime;
   }
 
-  public void setShipTime(Long shipTime) {
+  public void setShipTime(@javax.annotation.Nullable Long shipTime) {
     this.shipTime = shipTime;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders type(String type) {
+  public GetInboundOrderResponseDataInboundOrders type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * The inbound order type. Possible values: - REPLENISHMENT
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrders warehouse(GetInboundOrderResponseDataInboundOrdersWarehouse warehouse) {
+  public GetInboundOrderResponseDataInboundOrders warehouse(@javax.annotation.Nullable GetInboundOrderResponseDataInboundOrdersWarehouse warehouse) {
     this.warehouse = warehouse;
     return this;
   }
 
-   /**
+  /**
    * Get warehouse
    * @return warehouse
-  **/
+   */
   @javax.annotation.Nullable
   public GetInboundOrderResponseDataInboundOrdersWarehouse getWarehouse() {
     return warehouse;
   }
 
-  public void setWarehouse(GetInboundOrderResponseDataInboundOrdersWarehouse warehouse) {
+  public void setWarehouse(@javax.annotation.Nullable GetInboundOrderResponseDataInboundOrdersWarehouse warehouse) {
     this.warehouse = warehouse;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetInboundOrderResponseDataInboundOrders instance itself
+   */
+  public GetInboundOrderResponseDataInboundOrders putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -391,12 +447,13 @@ public class GetInboundOrderResponseDataInboundOrders {
         Objects.equals(this.receivedBatches, fbt202409GetInboundOrderResponseDataInboundOrders.receivedBatches) &&
         Objects.equals(this.shipTime, fbt202409GetInboundOrderResponseDataInboundOrders.shipTime) &&
         Objects.equals(this.type, fbt202409GetInboundOrderResponseDataInboundOrders.type) &&
-        Objects.equals(this.warehouse, fbt202409GetInboundOrderResponseDataInboundOrders.warehouse);
+        Objects.equals(this.warehouse, fbt202409GetInboundOrderResponseDataInboundOrders.warehouse)&&
+        Objects.equals(this.additionalProperties, fbt202409GetInboundOrderResponseDataInboundOrders.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(actualArriveTime, carriers, createTime, expectArriveTime, id, merchant, orderOperationLogs, plannedGoods, receivedBatches, shipTime, type, warehouse);
+    return Objects.hash(actualArriveTime, carriers, createTime, expectArriveTime, id, merchant, orderOperationLogs, plannedGoods, receivedBatches, shipTime, type, warehouse, additionalProperties);
   }
 
   @Override
@@ -415,6 +472,7 @@ public class GetInboundOrderResponseDataInboundOrders {
     sb.append("    shipTime: ").append(toIndentedString(shipTime)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    warehouse: ").append(toIndentedString(warehouse)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -436,42 +494,22 @@ public class GetInboundOrderResponseDataInboundOrders {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("actual_arrive_time");
-    openapiFields.add("carriers");
-    openapiFields.add("create_time");
-    openapiFields.add("expect_arrive_time");
-    openapiFields.add("id");
-    openapiFields.add("merchant");
-    openapiFields.add("order_operation_logs");
-    openapiFields.add("planned_goods");
-    openapiFields.add("received_batches");
-    openapiFields.add("ship_time");
-    openapiFields.add("type");
-    openapiFields.add("warehouse");
+    openapiFields = new HashSet<String>(Arrays.asList("actual_arrive_time", "carriers", "create_time", "expect_arrive_time", "id", "merchant", "order_operation_logs", "planned_goods", "received_batches", "ship_time", "type", "warehouse"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetInboundOrderResponseDataInboundOrders
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetInboundOrderResponseDataInboundOrders
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetInboundOrderResponseDataInboundOrders.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetInboundOrderResponseDataInboundOrders is not found in the empty JSON string", GetInboundOrderResponseDataInboundOrders.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetInboundOrderResponseDataInboundOrders.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetInboundOrderResponseDataInboundOrders` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -562,6 +600,28 @@ public class GetInboundOrderResponseDataInboundOrders {
            @Override
            public void write(JsonWriter out, GetInboundOrderResponseDataInboundOrders value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -569,29 +629,50 @@ public class GetInboundOrderResponseDataInboundOrders {
            public GetInboundOrderResponseDataInboundOrders read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetInboundOrderResponseDataInboundOrders instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetInboundOrderResponseDataInboundOrders given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetInboundOrderResponseDataInboundOrders
-  * @throws IOException if the JSON string is invalid with respect to GetInboundOrderResponseDataInboundOrders
-  */
+  /**
+   * Create an instance of GetInboundOrderResponseDataInboundOrders given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetInboundOrderResponseDataInboundOrders
+   * @throws IOException if the JSON string is invalid with respect to GetInboundOrderResponseDataInboundOrders
+   */
   public static GetInboundOrderResponseDataInboundOrders fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetInboundOrderResponseDataInboundOrders.class);
   }
 
- /**
-  * Convert an instance of GetInboundOrderResponseDataInboundOrders to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetInboundOrderResponseDataInboundOrders to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

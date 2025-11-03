@@ -44,7 +44,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -56,144 +55,158 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSQueryDeliveryBatchsResponseDataDeliveryBatchs
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSQueryDeliveryBatchsResponseDataDeliveryBatchs {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_LOGISTICS = "logistics";
   @SerializedName(SERIALIZED_NAME_LOGISTICS)
+  @javax.annotation.Nullable
   private GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogistics logistics;
 
   public static final String SERIALIZED_NAME_LOGISTICS_ORDER_QUANTITY = "logistics_order_quantity";
   @SerializedName(SERIALIZED_NAME_LOGISTICS_ORDER_QUANTITY)
+  @javax.annotation.Nullable
   private Long logisticsOrderQuantity;
 
   public static final String SERIALIZED_NAME_LOGISTICS_ORDERS = "logistics_orders";
   @SerializedName(SERIALIZED_NAME_LOGISTICS_ORDERS)
+  @javax.annotation.Nullable
   private List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders> logisticsOrders = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LOGISTICS_PACKAGE_QUANTITY = "logistics_package_quantity";
   @SerializedName(SERIALIZED_NAME_LOGISTICS_PACKAGE_QUANTITY)
+  @javax.annotation.Nullable
   private Long logisticsPackageQuantity;
 
   public static final String SERIALIZED_NAME_LOGISTICS_PICKER_NAME = "logistics_picker_name";
   @SerializedName(SERIALIZED_NAME_LOGISTICS_PICKER_NAME)
+  @javax.annotation.Nullable
   private String logisticsPickerName;
 
   public static final String SERIALIZED_NAME_LOGISTICS_PICKER_PHONE = "logistics_picker_phone";
   @SerializedName(SERIALIZED_NAME_LOGISTICS_PICKER_PHONE)
+  @javax.annotation.Nullable
   private String logisticsPickerPhone;
 
   public static final String SERIALIZED_NAME_PREDICTED_ARRIVE_TIME = "predicted_arrive_time";
   @SerializedName(SERIALIZED_NAME_PREDICTED_ARRIVE_TIME)
+  @javax.annotation.Nullable
   private Long predictedArriveTime;
 
   public static final String SERIALIZED_NAME_PREDICTED_PICK_INFO = "predicted_pick_info";
   @SerializedName(SERIALIZED_NAME_PREDICTED_PICK_INFO)
+  @javax.annotation.Nullable
   private GSQueryDeliveryBatchsResponseDataDeliveryBatchsPredictedPickInfo predictedPickInfo;
 
   public static final String SERIALIZED_NAME_PREDICTED_SHIP_TIME = "predicted_ship_time";
   @SerializedName(SERIALIZED_NAME_PREDICTED_SHIP_TIME)
+  @javax.annotation.Nullable
   private Long predictedShipTime;
 
   public static final String SERIALIZED_NAME_RECEIVER_CONTACT = "receiver_contact";
   @SerializedName(SERIALIZED_NAME_RECEIVER_CONTACT)
+  @javax.annotation.Nullable
   private GSQueryDeliveryBatchsResponseDataDeliveryBatchsReceiverContact receiverContact;
 
   public static final String SERIALIZED_NAME_SENDER_CONTACT = "sender_contact";
   @SerializedName(SERIALIZED_NAME_SENDER_CONTACT)
+  @javax.annotation.Nullable
   private GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContact senderContact;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public GSQueryDeliveryBatchsResponseDataDeliveryBatchs() {
   }
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs code(String code) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * The code of delivery batch
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs createTime(Long createTime) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * The time of main-logistics order creatation
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logistics(GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogistics logistics) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logistics(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogistics logistics) {
     this.logistics = logistics;
     return this;
   }
 
-   /**
+  /**
    * Get logistics
    * @return logistics
-  **/
+   */
   @javax.annotation.Nullable
   public GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogistics getLogistics() {
     return logistics;
   }
 
-  public void setLogistics(GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogistics logistics) {
+  public void setLogistics(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogistics logistics) {
     this.logistics = logistics;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsOrderQuantity(Long logisticsOrderQuantity) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsOrderQuantity(@javax.annotation.Nullable Long logisticsOrderQuantity) {
     this.logisticsOrderQuantity = logisticsOrderQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of  logistics order under the main logistics order
    * @return logisticsOrderQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getLogisticsOrderQuantity() {
     return logisticsOrderQuantity;
   }
 
-  public void setLogisticsOrderQuantity(Long logisticsOrderQuantity) {
+  public void setLogisticsOrderQuantity(@javax.annotation.Nullable Long logisticsOrderQuantity) {
     this.logisticsOrderQuantity = logisticsOrderQuantity;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsOrders(List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders> logisticsOrders) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsOrders(@javax.annotation.Nullable List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders> logisticsOrders) {
     this.logisticsOrders = logisticsOrders;
     return this;
   }
@@ -206,188 +219,233 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchs {
     return this;
   }
 
-   /**
+  /**
    * The information list of logistics order
    * @return logisticsOrders
-  **/
+   */
   @javax.annotation.Nullable
   public List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders> getLogisticsOrders() {
     return logisticsOrders;
   }
 
-  public void setLogisticsOrders(List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders> logisticsOrders) {
+  public void setLogisticsOrders(@javax.annotation.Nullable List<GSQueryDeliveryBatchsResponseDataDeliveryBatchsLogisticsOrders> logisticsOrders) {
     this.logisticsOrders = logisticsOrders;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsPackageQuantity(Long logisticsPackageQuantity) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsPackageQuantity(@javax.annotation.Nullable Long logisticsPackageQuantity) {
     this.logisticsPackageQuantity = logisticsPackageQuantity;
     return this;
   }
 
-   /**
+  /**
    * The quantity of  logistics package under the main logistics order
    * @return logisticsPackageQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getLogisticsPackageQuantity() {
     return logisticsPackageQuantity;
   }
 
-  public void setLogisticsPackageQuantity(Long logisticsPackageQuantity) {
+  public void setLogisticsPackageQuantity(@javax.annotation.Nullable Long logisticsPackageQuantity) {
     this.logisticsPackageQuantity = logisticsPackageQuantity;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsPickerName(String logisticsPickerName) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsPickerName(@javax.annotation.Nullable String logisticsPickerName) {
     this.logisticsPickerName = logisticsPickerName;
     return this;
   }
 
-   /**
+  /**
    * The name of logistics picker that packed goods to transport 
    * @return logisticsPickerName
-  **/
+   */
   @javax.annotation.Nullable
   public String getLogisticsPickerName() {
     return logisticsPickerName;
   }
 
-  public void setLogisticsPickerName(String logisticsPickerName) {
+  public void setLogisticsPickerName(@javax.annotation.Nullable String logisticsPickerName) {
     this.logisticsPickerName = logisticsPickerName;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsPickerPhone(String logisticsPickerPhone) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs logisticsPickerPhone(@javax.annotation.Nullable String logisticsPickerPhone) {
     this.logisticsPickerPhone = logisticsPickerPhone;
     return this;
   }
 
-   /**
+  /**
    * The phone_number of logistics picker
    * @return logisticsPickerPhone
-  **/
+   */
   @javax.annotation.Nullable
   public String getLogisticsPickerPhone() {
     return logisticsPickerPhone;
   }
 
-  public void setLogisticsPickerPhone(String logisticsPickerPhone) {
+  public void setLogisticsPickerPhone(@javax.annotation.Nullable String logisticsPickerPhone) {
     this.logisticsPickerPhone = logisticsPickerPhone;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs predictedArriveTime(Long predictedArriveTime) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs predictedArriveTime(@javax.annotation.Nullable Long predictedArriveTime) {
     this.predictedArriveTime = predictedArriveTime;
     return this;
   }
 
-   /**
+  /**
    * The predicted arrival time is based on schedule shipping time
    * @return predictedArriveTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPredictedArriveTime() {
     return predictedArriveTime;
   }
 
-  public void setPredictedArriveTime(Long predictedArriveTime) {
+  public void setPredictedArriveTime(@javax.annotation.Nullable Long predictedArriveTime) {
     this.predictedArriveTime = predictedArriveTime;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs predictedPickInfo(GSQueryDeliveryBatchsResponseDataDeliveryBatchsPredictedPickInfo predictedPickInfo) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs predictedPickInfo(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsPredictedPickInfo predictedPickInfo) {
     this.predictedPickInfo = predictedPickInfo;
     return this;
   }
 
-   /**
+  /**
    * Get predictedPickInfo
    * @return predictedPickInfo
-  **/
+   */
   @javax.annotation.Nullable
   public GSQueryDeliveryBatchsResponseDataDeliveryBatchsPredictedPickInfo getPredictedPickInfo() {
     return predictedPickInfo;
   }
 
-  public void setPredictedPickInfo(GSQueryDeliveryBatchsResponseDataDeliveryBatchsPredictedPickInfo predictedPickInfo) {
+  public void setPredictedPickInfo(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsPredictedPickInfo predictedPickInfo) {
     this.predictedPickInfo = predictedPickInfo;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs predictedShipTime(Long predictedShipTime) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs predictedShipTime(@javax.annotation.Nullable Long predictedShipTime) {
     this.predictedShipTime = predictedShipTime;
     return this;
   }
 
-   /**
+  /**
    * Schedule shipping time
    * @return predictedShipTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPredictedShipTime() {
     return predictedShipTime;
   }
 
-  public void setPredictedShipTime(Long predictedShipTime) {
+  public void setPredictedShipTime(@javax.annotation.Nullable Long predictedShipTime) {
     this.predictedShipTime = predictedShipTime;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs receiverContact(GSQueryDeliveryBatchsResponseDataDeliveryBatchsReceiverContact receiverContact) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs receiverContact(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsReceiverContact receiverContact) {
     this.receiverContact = receiverContact;
     return this;
   }
 
-   /**
+  /**
    * Get receiverContact
    * @return receiverContact
-  **/
+   */
   @javax.annotation.Nullable
   public GSQueryDeliveryBatchsResponseDataDeliveryBatchsReceiverContact getReceiverContact() {
     return receiverContact;
   }
 
-  public void setReceiverContact(GSQueryDeliveryBatchsResponseDataDeliveryBatchsReceiverContact receiverContact) {
+  public void setReceiverContact(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsReceiverContact receiverContact) {
     this.receiverContact = receiverContact;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs senderContact(GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContact senderContact) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs senderContact(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContact senderContact) {
     this.senderContact = senderContact;
     return this;
   }
 
-   /**
+  /**
    * Get senderContact
    * @return senderContact
-  **/
+   */
   @javax.annotation.Nullable
   public GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContact getSenderContact() {
     return senderContact;
   }
 
-  public void setSenderContact(GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContact senderContact) {
+  public void setSenderContact(@javax.annotation.Nullable GSQueryDeliveryBatchsResponseDataDeliveryBatchsSenderContact senderContact) {
     this.senderContact = senderContact;
   }
 
 
-  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs status(String status) {
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The status of delivery batch 1. INIT 2. WAIT_CREATE 3. CREATE_FAILED 4. RTS 5. RTS_FAILED 6. TTS 7. PARTIAL_SHIPPED 8. SHIPPED_ABNORMAL 9. SHIPPED 10. PARTIAL_DELIVERED 11. DELIVERED 12. PARTIAL_SIGNED 13. SIGNED 14. CANCELED 15. RETURNING_TO_SENDER 16. RETURNED_TO_SENDER
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSQueryDeliveryBatchsResponseDataDeliveryBatchs instance itself
+   */
+  public GSQueryDeliveryBatchsResponseDataDeliveryBatchs putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -414,12 +472,13 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchs {
         Objects.equals(this.predictedShipTime, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchs.predictedShipTime) &&
         Objects.equals(this.receiverContact, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchs.receiverContact) &&
         Objects.equals(this.senderContact, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchs.senderContact) &&
-        Objects.equals(this.status, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchs.status);
+        Objects.equals(this.status, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchs.status)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202405GSQueryDeliveryBatchsResponseDataDeliveryBatchs.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, createTime, logistics, logisticsOrderQuantity, logisticsOrders, logisticsPackageQuantity, logisticsPickerName, logisticsPickerPhone, predictedArriveTime, predictedPickInfo, predictedShipTime, receiverContact, senderContact, status);
+    return Objects.hash(code, createTime, logistics, logisticsOrderQuantity, logisticsOrders, logisticsPackageQuantity, logisticsPickerName, logisticsPickerPhone, predictedArriveTime, predictedPickInfo, predictedShipTime, receiverContact, senderContact, status, additionalProperties);
   }
 
   @Override
@@ -440,6 +499,7 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchs {
     sb.append("    receiverContact: ").append(toIndentedString(receiverContact)).append("\n");
     sb.append("    senderContact: ").append(toIndentedString(senderContact)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -461,44 +521,22 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchs {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("code");
-    openapiFields.add("create_time");
-    openapiFields.add("logistics");
-    openapiFields.add("logistics_order_quantity");
-    openapiFields.add("logistics_orders");
-    openapiFields.add("logistics_package_quantity");
-    openapiFields.add("logistics_picker_name");
-    openapiFields.add("logistics_picker_phone");
-    openapiFields.add("predicted_arrive_time");
-    openapiFields.add("predicted_pick_info");
-    openapiFields.add("predicted_ship_time");
-    openapiFields.add("receiver_contact");
-    openapiFields.add("sender_contact");
-    openapiFields.add("status");
+    openapiFields = new HashSet<String>(Arrays.asList("code", "create_time", "logistics", "logistics_order_quantity", "logistics_orders", "logistics_package_quantity", "logistics_picker_name", "logistics_picker_phone", "predicted_arrive_time", "predicted_pick_info", "predicted_ship_time", "receiver_contact", "sender_contact", "status"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchs
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchs
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSQueryDeliveryBatchsResponseDataDeliveryBatchs.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSQueryDeliveryBatchsResponseDataDeliveryBatchs is not found in the empty JSON string", GSQueryDeliveryBatchsResponseDataDeliveryBatchs.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSQueryDeliveryBatchsResponseDataDeliveryBatchs.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSQueryDeliveryBatchsResponseDataDeliveryBatchs` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -561,6 +599,28 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchs {
            @Override
            public void write(JsonWriter out, GSQueryDeliveryBatchsResponseDataDeliveryBatchs value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -568,29 +628,50 @@ public class GSQueryDeliveryBatchsResponseDataDeliveryBatchs {
            public GSQueryDeliveryBatchsResponseDataDeliveryBatchs read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSQueryDeliveryBatchsResponseDataDeliveryBatchs instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchs given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchs
-  * @throws IOException if the JSON string is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchs
-  */
+  /**
+   * Create an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchs given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchs
+   * @throws IOException if the JSON string is invalid with respect to GSQueryDeliveryBatchsResponseDataDeliveryBatchs
+   */
   public static GSQueryDeliveryBatchsResponseDataDeliveryBatchs fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSQueryDeliveryBatchsResponseDataDeliveryBatchs.class);
   }
 
- /**
-  * Convert an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchs to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSQueryDeliveryBatchsResponseDataDeliveryBatchs to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

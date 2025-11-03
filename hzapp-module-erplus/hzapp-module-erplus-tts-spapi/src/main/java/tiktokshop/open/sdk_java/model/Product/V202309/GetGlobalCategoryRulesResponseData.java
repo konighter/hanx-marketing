@@ -43,7 +43,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -55,47 +54,51 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetGlobalCategoryRulesResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetGlobalCategoryRulesResponseData {
   public static final String SERIALIZED_NAME_MANUFACTURER = "manufacturer";
   @SerializedName(SERIALIZED_NAME_MANUFACTURER)
+  @javax.annotation.Nullable
   private GetGlobalCategoryRulesResponseDataManufacturer manufacturer;
 
   public static final String SERIALIZED_NAME_PRODUCT_CERTIFICATIONS = "product_certifications";
   @SerializedName(SERIALIZED_NAME_PRODUCT_CERTIFICATIONS)
+  @javax.annotation.Nullable
   private List<GetGlobalCategoryRulesResponseDataProductCertifications> productCertifications = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RESPONSIBLE_PERSON = "responsible_person";
   @SerializedName(SERIALIZED_NAME_RESPONSIBLE_PERSON)
+  @javax.annotation.Nullable
   private GetGlobalCategoryRulesResponseDataResponsiblePerson responsiblePerson;
 
   public static final String SERIALIZED_NAME_SIZE_CHART = "size_chart";
   @SerializedName(SERIALIZED_NAME_SIZE_CHART)
+  @javax.annotation.Nullable
   private GetGlobalCategoryRulesResponseDataSizeChart sizeChart;
 
   public GetGlobalCategoryRulesResponseData() {
   }
 
-  public GetGlobalCategoryRulesResponseData manufacturer(GetGlobalCategoryRulesResponseDataManufacturer manufacturer) {
+  public GetGlobalCategoryRulesResponseData manufacturer(@javax.annotation.Nullable GetGlobalCategoryRulesResponseDataManufacturer manufacturer) {
     this.manufacturer = manufacturer;
     return this;
   }
 
-   /**
+  /**
    * Get manufacturer
    * @return manufacturer
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalCategoryRulesResponseDataManufacturer getManufacturer() {
     return manufacturer;
   }
 
-  public void setManufacturer(GetGlobalCategoryRulesResponseDataManufacturer manufacturer) {
+  public void setManufacturer(@javax.annotation.Nullable GetGlobalCategoryRulesResponseDataManufacturer manufacturer) {
     this.manufacturer = manufacturer;
   }
 
 
-  public GetGlobalCategoryRulesResponseData productCertifications(List<GetGlobalCategoryRulesResponseDataProductCertifications> productCertifications) {
+  public GetGlobalCategoryRulesResponseData productCertifications(@javax.annotation.Nullable List<GetGlobalCategoryRulesResponseDataProductCertifications> productCertifications) {
     this.productCertifications = productCertifications;
     return this;
   }
@@ -108,55 +111,100 @@ public class GetGlobalCategoryRulesResponseData {
     return this;
   }
 
-   /**
+  /**
    * Certification related rules. As per TikTok Shop guidelines, certifications are required for certain restricted product categories. Refer to [TikTok Shop Restricted Products Policy](https://seller-us.tiktok.com/university/essay?identity&#x3D;1&amp;role&#x3D;1&amp;knowledge_id&#x3D;3238037484275457&amp;from&#x3D;policy) for information on product category restrictions.  If this is empty, it means certifications are not required for this category.
    * @return productCertifications
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetGlobalCategoryRulesResponseDataProductCertifications> getProductCertifications() {
     return productCertifications;
   }
 
-  public void setProductCertifications(List<GetGlobalCategoryRulesResponseDataProductCertifications> productCertifications) {
+  public void setProductCertifications(@javax.annotation.Nullable List<GetGlobalCategoryRulesResponseDataProductCertifications> productCertifications) {
     this.productCertifications = productCertifications;
   }
 
 
-  public GetGlobalCategoryRulesResponseData responsiblePerson(GetGlobalCategoryRulesResponseDataResponsiblePerson responsiblePerson) {
+  public GetGlobalCategoryRulesResponseData responsiblePerson(@javax.annotation.Nullable GetGlobalCategoryRulesResponseDataResponsiblePerson responsiblePerson) {
     this.responsiblePerson = responsiblePerson;
     return this;
   }
 
-   /**
+  /**
    * Get responsiblePerson
    * @return responsiblePerson
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalCategoryRulesResponseDataResponsiblePerson getResponsiblePerson() {
     return responsiblePerson;
   }
 
-  public void setResponsiblePerson(GetGlobalCategoryRulesResponseDataResponsiblePerson responsiblePerson) {
+  public void setResponsiblePerson(@javax.annotation.Nullable GetGlobalCategoryRulesResponseDataResponsiblePerson responsiblePerson) {
     this.responsiblePerson = responsiblePerson;
   }
 
 
-  public GetGlobalCategoryRulesResponseData sizeChart(GetGlobalCategoryRulesResponseDataSizeChart sizeChart) {
+  public GetGlobalCategoryRulesResponseData sizeChart(@javax.annotation.Nullable GetGlobalCategoryRulesResponseDataSizeChart sizeChart) {
     this.sizeChart = sizeChart;
     return this;
   }
 
-   /**
+  /**
    * Get sizeChart
    * @return sizeChart
-  **/
+   */
   @javax.annotation.Nullable
   public GetGlobalCategoryRulesResponseDataSizeChart getSizeChart() {
     return sizeChart;
   }
 
-  public void setSizeChart(GetGlobalCategoryRulesResponseDataSizeChart sizeChart) {
+  public void setSizeChart(@javax.annotation.Nullable GetGlobalCategoryRulesResponseDataSizeChart sizeChart) {
     this.sizeChart = sizeChart;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetGlobalCategoryRulesResponseData instance itself
+   */
+  public GetGlobalCategoryRulesResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -173,12 +221,13 @@ public class GetGlobalCategoryRulesResponseData {
     return Objects.equals(this.manufacturer, product202309GetGlobalCategoryRulesResponseData.manufacturer) &&
         Objects.equals(this.productCertifications, product202309GetGlobalCategoryRulesResponseData.productCertifications) &&
         Objects.equals(this.responsiblePerson, product202309GetGlobalCategoryRulesResponseData.responsiblePerson) &&
-        Objects.equals(this.sizeChart, product202309GetGlobalCategoryRulesResponseData.sizeChart);
+        Objects.equals(this.sizeChart, product202309GetGlobalCategoryRulesResponseData.sizeChart)&&
+        Objects.equals(this.additionalProperties, product202309GetGlobalCategoryRulesResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(manufacturer, productCertifications, responsiblePerson, sizeChart);
+    return Objects.hash(manufacturer, productCertifications, responsiblePerson, sizeChart, additionalProperties);
   }
 
   @Override
@@ -189,6 +238,7 @@ public class GetGlobalCategoryRulesResponseData {
     sb.append("    productCertifications: ").append(toIndentedString(productCertifications)).append("\n");
     sb.append("    responsiblePerson: ").append(toIndentedString(responsiblePerson)).append("\n");
     sb.append("    sizeChart: ").append(toIndentedString(sizeChart)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -210,34 +260,22 @@ public class GetGlobalCategoryRulesResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("manufacturer");
-    openapiFields.add("product_certifications");
-    openapiFields.add("responsible_person");
-    openapiFields.add("size_chart");
+    openapiFields = new HashSet<String>(Arrays.asList("manufacturer", "product_certifications", "responsible_person", "size_chart"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetGlobalCategoryRulesResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetGlobalCategoryRulesResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetGlobalCategoryRulesResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetGlobalCategoryRulesResponseData is not found in the empty JSON string", GetGlobalCategoryRulesResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetGlobalCategoryRulesResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetGlobalCategoryRulesResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -284,6 +322,28 @@ public class GetGlobalCategoryRulesResponseData {
            @Override
            public void write(JsonWriter out, GetGlobalCategoryRulesResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -291,29 +351,50 @@ public class GetGlobalCategoryRulesResponseData {
            public GetGlobalCategoryRulesResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetGlobalCategoryRulesResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetGlobalCategoryRulesResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetGlobalCategoryRulesResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetGlobalCategoryRulesResponseData
-  */
+  /**
+   * Create an instance of GetGlobalCategoryRulesResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetGlobalCategoryRulesResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetGlobalCategoryRulesResponseData
+   */
   public static GetGlobalCategoryRulesResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetGlobalCategoryRulesResponseData.class);
   }
 
- /**
-  * Convert an instance of GetGlobalCategoryRulesResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetGlobalCategoryRulesResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

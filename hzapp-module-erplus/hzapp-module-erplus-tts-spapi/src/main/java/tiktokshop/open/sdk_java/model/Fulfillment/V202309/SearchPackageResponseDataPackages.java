@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,86 +51,95 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchPackageResponseDataPackages
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchPackageResponseDataPackages {
   public static final String SERIALIZED_NAME_CREATE_TIME = "create_time";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME)
+  @javax.annotation.Nullable
   private Long createTime;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEM_IDS = "order_line_item_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEM_IDS)
+  @javax.annotation.Nullable
   private List<String> orderLineItemIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ORDERS = "orders";
   @SerializedName(SERIALIZED_NAME_ORDERS)
+  @javax.annotation.Nullable
   private List<SearchPackageResponseDataPackagesOrders> orders = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_ID = "shipping_provider_id";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_ID)
+  @javax.annotation.Nullable
   private String shippingProviderId;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_NAME = "shipping_provider_name";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_NAME)
+  @javax.annotation.Nullable
   private String shippingProviderName;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_TRACKING_NUMBER = "tracking_number";
   @SerializedName(SERIALIZED_NAME_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String trackingNumber;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME = "update_time";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME)
+  @javax.annotation.Nullable
   private Long updateTime;
 
   public SearchPackageResponseDataPackages() {
   }
 
-  public SearchPackageResponseDataPackages createTime(Long createTime) {
+  public SearchPackageResponseDataPackages createTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
     return this;
   }
 
-   /**
+  /**
    * Package creation time. Unix timestamp.
    * @return createTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTime() {
     return createTime;
   }
 
-  public void setCreateTime(Long createTime) {
+  public void setCreateTime(@javax.annotation.Nullable Long createTime) {
     this.createTime = createTime;
   }
 
 
-  public SearchPackageResponseDataPackages id(String id) {
+  public SearchPackageResponseDataPackages id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Package ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public SearchPackageResponseDataPackages orderLineItemIds(List<String> orderLineItemIds) {
+  public SearchPackageResponseDataPackages orderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
     return this;
   }
@@ -144,21 +152,21 @@ public class SearchPackageResponseDataPackages {
     return this;
   }
 
-   /**
+  /**
    * The order line item ID contained in the package. 
    * @return orderLineItemIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineItemIds() {
     return orderLineItemIds;
   }
 
-  public void setOrderLineItemIds(List<String> orderLineItemIds) {
+  public void setOrderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
   }
 
 
-  public SearchPackageResponseDataPackages orders(List<SearchPackageResponseDataPackagesOrders> orders) {
+  public SearchPackageResponseDataPackages orders(@javax.annotation.Nullable List<SearchPackageResponseDataPackagesOrders> orders) {
     this.orders = orders;
     return this;
   }
@@ -171,112 +179,157 @@ public class SearchPackageResponseDataPackages {
     return this;
   }
 
-   /**
+  /**
    * The response list of TikTok Shop orders. 
    * @return orders
-  **/
+   */
   @javax.annotation.Nullable
   public List<SearchPackageResponseDataPackagesOrders> getOrders() {
     return orders;
   }
 
-  public void setOrders(List<SearchPackageResponseDataPackagesOrders> orders) {
+  public void setOrders(@javax.annotation.Nullable List<SearchPackageResponseDataPackagesOrders> orders) {
     this.orders = orders;
   }
 
 
-  public SearchPackageResponseDataPackages shippingProviderId(String shippingProviderId) {
+  public SearchPackageResponseDataPackages shippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
     return this;
   }
 
-   /**
+  /**
    * Package shipping provider ID.
    * @return shippingProviderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderId() {
     return shippingProviderId;
   }
 
-  public void setShippingProviderId(String shippingProviderId) {
+  public void setShippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
   }
 
 
-  public SearchPackageResponseDataPackages shippingProviderName(String shippingProviderName) {
+  public SearchPackageResponseDataPackages shippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
     return this;
   }
 
-   /**
+  /**
    * Package shipping provider.
    * @return shippingProviderName
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderName() {
     return shippingProviderName;
   }
 
-  public void setShippingProviderName(String shippingProviderName) {
+  public void setShippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
   }
 
 
-  public SearchPackageResponseDataPackages status(String status) {
+  public SearchPackageResponseDataPackages status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * Possible values: - &#x60;PROCESSING&#x60;: Package has been arranged by seller. Waiting for carrier to collect the parcel. - &#x60;FULFILLING&#x60;: Package has been collected by carrier and in transit. - &#x60;COMPLETED&#x60;: Package has been delivered. - &#x60;CANCELLED&#x60;: Package has been canceled. Normally, the package is canceled due to the package being lost or damaged.
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public SearchPackageResponseDataPackages trackingNumber(String trackingNumber) {
+  public SearchPackageResponseDataPackages trackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
     return this;
   }
 
-   /**
+  /**
    * Package tracking number.
    * @return trackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getTrackingNumber() {
     return trackingNumber;
   }
 
-  public void setTrackingNumber(String trackingNumber) {
+  public void setTrackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
   }
 
 
-  public SearchPackageResponseDataPackages updateTime(Long updateTime) {
+  public SearchPackageResponseDataPackages updateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
     return this;
   }
 
-   /**
+  /**
    * Package latest update time. Unix timestamp
    * @return updateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTime() {
     return updateTime;
   }
 
-  public void setUpdateTime(Long updateTime) {
+  public void setUpdateTime(@javax.annotation.Nullable Long updateTime) {
     this.updateTime = updateTime;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchPackageResponseDataPackages instance itself
+   */
+  public SearchPackageResponseDataPackages putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -298,12 +351,13 @@ public class SearchPackageResponseDataPackages {
         Objects.equals(this.shippingProviderName, fulfillment202309SearchPackageResponseDataPackages.shippingProviderName) &&
         Objects.equals(this.status, fulfillment202309SearchPackageResponseDataPackages.status) &&
         Objects.equals(this.trackingNumber, fulfillment202309SearchPackageResponseDataPackages.trackingNumber) &&
-        Objects.equals(this.updateTime, fulfillment202309SearchPackageResponseDataPackages.updateTime);
+        Objects.equals(this.updateTime, fulfillment202309SearchPackageResponseDataPackages.updateTime)&&
+        Objects.equals(this.additionalProperties, fulfillment202309SearchPackageResponseDataPackages.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createTime, id, orderLineItemIds, orders, shippingProviderId, shippingProviderName, status, trackingNumber, updateTime);
+    return Objects.hash(createTime, id, orderLineItemIds, orders, shippingProviderId, shippingProviderName, status, trackingNumber, updateTime, additionalProperties);
   }
 
   @Override
@@ -319,6 +373,7 @@ public class SearchPackageResponseDataPackages {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    trackingNumber: ").append(toIndentedString(trackingNumber)).append("\n");
     sb.append("    updateTime: ").append(toIndentedString(updateTime)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -340,39 +395,22 @@ public class SearchPackageResponseDataPackages {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("create_time");
-    openapiFields.add("id");
-    openapiFields.add("order_line_item_ids");
-    openapiFields.add("orders");
-    openapiFields.add("shipping_provider_id");
-    openapiFields.add("shipping_provider_name");
-    openapiFields.add("status");
-    openapiFields.add("tracking_number");
-    openapiFields.add("update_time");
+    openapiFields = new HashSet<String>(Arrays.asList("create_time", "id", "order_line_item_ids", "orders", "shipping_provider_id", "shipping_provider_name", "status", "tracking_number", "update_time"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchPackageResponseDataPackages
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchPackageResponseDataPackages
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchPackageResponseDataPackages.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchPackageResponseDataPackages is not found in the empty JSON string", SearchPackageResponseDataPackages.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchPackageResponseDataPackages.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchPackageResponseDataPackages` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -426,6 +464,28 @@ public class SearchPackageResponseDataPackages {
            @Override
            public void write(JsonWriter out, SearchPackageResponseDataPackages value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -433,29 +493,50 @@ public class SearchPackageResponseDataPackages {
            public SearchPackageResponseDataPackages read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchPackageResponseDataPackages instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchPackageResponseDataPackages given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchPackageResponseDataPackages
-  * @throws IOException if the JSON string is invalid with respect to SearchPackageResponseDataPackages
-  */
+  /**
+   * Create an instance of SearchPackageResponseDataPackages given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchPackageResponseDataPackages
+   * @throws IOException if the JSON string is invalid with respect to SearchPackageResponseDataPackages
+   */
   public static SearchPackageResponseDataPackages fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchPackageResponseDataPackages.class);
   }
 
- /**
-  * Convert an instance of SearchPackageResponseDataPackages to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchPackageResponseDataPackages to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

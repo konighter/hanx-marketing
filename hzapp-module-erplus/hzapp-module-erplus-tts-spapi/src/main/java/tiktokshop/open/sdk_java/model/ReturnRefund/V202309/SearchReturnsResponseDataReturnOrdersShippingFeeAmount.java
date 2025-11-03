@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,100 +48,149 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchReturnsResponseDataReturnOrdersShippingFeeAmount
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchReturnsResponseDataReturnOrdersShippingFeeAmount {
   public static final String SERIALIZED_NAME_BUYER_PAID_RETURN_SHIPPING_FEE = "buyer_paid_return_shipping_fee";
   @SerializedName(SERIALIZED_NAME_BUYER_PAID_RETURN_SHIPPING_FEE)
+  @javax.annotation.Nullable
   private String buyerPaidReturnShippingFee;
 
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_PLATFORM_PAID_RETURN_SHIPPING_FEE = "platform_paid_return_shipping_fee";
   @SerializedName(SERIALIZED_NAME_PLATFORM_PAID_RETURN_SHIPPING_FEE)
+  @javax.annotation.Nullable
   private String platformPaidReturnShippingFee;
 
   public static final String SERIALIZED_NAME_SELLER_PAID_RETURN_SHIPPING_FEE = "seller_paid_return_shipping_fee";
   @SerializedName(SERIALIZED_NAME_SELLER_PAID_RETURN_SHIPPING_FEE)
+  @javax.annotation.Nullable
   private String sellerPaidReturnShippingFee;
 
   public SearchReturnsResponseDataReturnOrdersShippingFeeAmount() {
   }
 
-  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount buyerPaidReturnShippingFee(String buyerPaidReturnShippingFee) {
+  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount buyerPaidReturnShippingFee(@javax.annotation.Nullable String buyerPaidReturnShippingFee) {
     this.buyerPaidReturnShippingFee = buyerPaidReturnShippingFee;
     return this;
   }
 
-   /**
+  /**
    * The amount of return shipping fee buyer paid.
    * @return buyerPaidReturnShippingFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getBuyerPaidReturnShippingFee() {
     return buyerPaidReturnShippingFee;
   }
 
-  public void setBuyerPaidReturnShippingFee(String buyerPaidReturnShippingFee) {
+  public void setBuyerPaidReturnShippingFee(@javax.annotation.Nullable String buyerPaidReturnShippingFee) {
     this.buyerPaidReturnShippingFee = buyerPaidReturnShippingFee;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount currency(String currency) {
+  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Return shipping fee currency.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount platformPaidReturnShippingFee(String platformPaidReturnShippingFee) {
+  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount platformPaidReturnShippingFee(@javax.annotation.Nullable String platformPaidReturnShippingFee) {
     this.platformPaidReturnShippingFee = platformPaidReturnShippingFee;
     return this;
   }
 
-   /**
+  /**
    * The amount of return shipping fee platform paid.
    * @return platformPaidReturnShippingFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformPaidReturnShippingFee() {
     return platformPaidReturnShippingFee;
   }
 
-  public void setPlatformPaidReturnShippingFee(String platformPaidReturnShippingFee) {
+  public void setPlatformPaidReturnShippingFee(@javax.annotation.Nullable String platformPaidReturnShippingFee) {
     this.platformPaidReturnShippingFee = platformPaidReturnShippingFee;
   }
 
 
-  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount sellerPaidReturnShippingFee(String sellerPaidReturnShippingFee) {
+  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount sellerPaidReturnShippingFee(@javax.annotation.Nullable String sellerPaidReturnShippingFee) {
     this.sellerPaidReturnShippingFee = sellerPaidReturnShippingFee;
     return this;
   }
 
-   /**
+  /**
    * The amount of return shipping fee seller paid.
    * @return sellerPaidReturnShippingFee
-  **/
+   */
   @javax.annotation.Nullable
   public String getSellerPaidReturnShippingFee() {
     return sellerPaidReturnShippingFee;
   }
 
-  public void setSellerPaidReturnShippingFee(String sellerPaidReturnShippingFee) {
+  public void setSellerPaidReturnShippingFee(@javax.annotation.Nullable String sellerPaidReturnShippingFee) {
     this.sellerPaidReturnShippingFee = sellerPaidReturnShippingFee;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchReturnsResponseDataReturnOrdersShippingFeeAmount instance itself
+   */
+  public SearchReturnsResponseDataReturnOrdersShippingFeeAmount putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -159,12 +207,13 @@ public class SearchReturnsResponseDataReturnOrdersShippingFeeAmount {
     return Objects.equals(this.buyerPaidReturnShippingFee, returnRefund202309SearchReturnsResponseDataReturnOrdersShippingFeeAmount.buyerPaidReturnShippingFee) &&
         Objects.equals(this.currency, returnRefund202309SearchReturnsResponseDataReturnOrdersShippingFeeAmount.currency) &&
         Objects.equals(this.platformPaidReturnShippingFee, returnRefund202309SearchReturnsResponseDataReturnOrdersShippingFeeAmount.platformPaidReturnShippingFee) &&
-        Objects.equals(this.sellerPaidReturnShippingFee, returnRefund202309SearchReturnsResponseDataReturnOrdersShippingFeeAmount.sellerPaidReturnShippingFee);
+        Objects.equals(this.sellerPaidReturnShippingFee, returnRefund202309SearchReturnsResponseDataReturnOrdersShippingFeeAmount.sellerPaidReturnShippingFee)&&
+        Objects.equals(this.additionalProperties, returnRefund202309SearchReturnsResponseDataReturnOrdersShippingFeeAmount.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buyerPaidReturnShippingFee, currency, platformPaidReturnShippingFee, sellerPaidReturnShippingFee);
+    return Objects.hash(buyerPaidReturnShippingFee, currency, platformPaidReturnShippingFee, sellerPaidReturnShippingFee, additionalProperties);
   }
 
   @Override
@@ -175,6 +224,7 @@ public class SearchReturnsResponseDataReturnOrdersShippingFeeAmount {
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
     sb.append("    platformPaidReturnShippingFee: ").append(toIndentedString(platformPaidReturnShippingFee)).append("\n");
     sb.append("    sellerPaidReturnShippingFee: ").append(toIndentedString(sellerPaidReturnShippingFee)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -196,34 +246,22 @@ public class SearchReturnsResponseDataReturnOrdersShippingFeeAmount {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("buyer_paid_return_shipping_fee");
-    openapiFields.add("currency");
-    openapiFields.add("platform_paid_return_shipping_fee");
-    openapiFields.add("seller_paid_return_shipping_fee");
+    openapiFields = new HashSet<String>(Arrays.asList("buyer_paid_return_shipping_fee", "currency", "platform_paid_return_shipping_fee", "seller_paid_return_shipping_fee"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrdersShippingFeeAmount
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchReturnsResponseDataReturnOrdersShippingFeeAmount
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchReturnsResponseDataReturnOrdersShippingFeeAmount.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchReturnsResponseDataReturnOrdersShippingFeeAmount is not found in the empty JSON string", SearchReturnsResponseDataReturnOrdersShippingFeeAmount.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchReturnsResponseDataReturnOrdersShippingFeeAmount.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchReturnsResponseDataReturnOrdersShippingFeeAmount` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -256,6 +294,28 @@ public class SearchReturnsResponseDataReturnOrdersShippingFeeAmount {
            @Override
            public void write(JsonWriter out, SearchReturnsResponseDataReturnOrdersShippingFeeAmount value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -263,29 +323,50 @@ public class SearchReturnsResponseDataReturnOrdersShippingFeeAmount {
            public SearchReturnsResponseDataReturnOrdersShippingFeeAmount read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchReturnsResponseDataReturnOrdersShippingFeeAmount instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchReturnsResponseDataReturnOrdersShippingFeeAmount given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchReturnsResponseDataReturnOrdersShippingFeeAmount
-  * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrdersShippingFeeAmount
-  */
+  /**
+   * Create an instance of SearchReturnsResponseDataReturnOrdersShippingFeeAmount given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchReturnsResponseDataReturnOrdersShippingFeeAmount
+   * @throws IOException if the JSON string is invalid with respect to SearchReturnsResponseDataReturnOrdersShippingFeeAmount
+   */
   public static SearchReturnsResponseDataReturnOrdersShippingFeeAmount fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchReturnsResponseDataReturnOrdersShippingFeeAmount.class);
   }
 
- /**
-  * Convert an instance of SearchReturnsResponseDataReturnOrdersShippingFeeAmount to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchReturnsResponseDataReturnOrdersShippingFeeAmount to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

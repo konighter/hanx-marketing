@@ -102,8 +102,8 @@ public class TokenInfo {
         this.grantedScopes = grantedScopes;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("TokenInfo {\n");
         sb.append("  accessToken='").append(accessToken).append("',\n");

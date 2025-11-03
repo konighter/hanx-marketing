@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,169 +48,221 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSFullServiceSearchCategoriesResponseDataCategories
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSFullServiceSearchCategoriesResponseDataCategories {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_IS_LEAF = "is_leaf";
   @SerializedName(SERIALIZED_NAME_IS_LEAF)
+  @javax.annotation.Nullable
   private Boolean isLeaf;
 
   public static final String SERIALIZED_NAME_NAME_CN = "name_cn";
   @SerializedName(SERIALIZED_NAME_NAME_CN)
+  @javax.annotation.Nullable
   private String nameCn;
 
   public static final String SERIALIZED_NAME_NAME_EN = "name_en";
   @SerializedName(SERIALIZED_NAME_NAME_EN)
+  @javax.annotation.Nullable
   private String nameEn;
 
   public static final String SERIALIZED_NAME_PARENT_ID = "parent_id";
   @SerializedName(SERIALIZED_NAME_PARENT_ID)
+  @javax.annotation.Nullable
   private String parentId;
 
   public static final String SERIALIZED_NAME_STATUS = "status";
   @SerializedName(SERIALIZED_NAME_STATUS)
+  @javax.annotation.Nullable
   private String status;
 
   public static final String SERIALIZED_NAME_VERSION = "version";
   @SerializedName(SERIALIZED_NAME_VERSION)
+  @javax.annotation.Nullable
   private String version;
 
   public GSFullServiceSearchCategoriesResponseDataCategories() {
   }
 
-  public GSFullServiceSearchCategoriesResponseDataCategories id(String id) {
+  public GSFullServiceSearchCategoriesResponseDataCategories id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * ID of category
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GSFullServiceSearchCategoriesResponseDataCategories isLeaf(Boolean isLeaf) {
+  public GSFullServiceSearchCategoriesResponseDataCategories isLeaf(@javax.annotation.Nullable Boolean isLeaf) {
     this.isLeaf = isLeaf;
     return this;
   }
 
-   /**
+  /**
    * Whether the category node is leaf node
    * @return isLeaf
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsLeaf() {
     return isLeaf;
   }
 
-  public void setIsLeaf(Boolean isLeaf) {
+  public void setIsLeaf(@javax.annotation.Nullable Boolean isLeaf) {
     this.isLeaf = isLeaf;
   }
 
 
-  public GSFullServiceSearchCategoriesResponseDataCategories nameCn(String nameCn) {
+  public GSFullServiceSearchCategoriesResponseDataCategories nameCn(@javax.annotation.Nullable String nameCn) {
     this.nameCn = nameCn;
     return this;
   }
 
-   /**
+  /**
    * Chinese name of the category node
    * @return nameCn
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameCn() {
     return nameCn;
   }
 
-  public void setNameCn(String nameCn) {
+  public void setNameCn(@javax.annotation.Nullable String nameCn) {
     this.nameCn = nameCn;
   }
 
 
-  public GSFullServiceSearchCategoriesResponseDataCategories nameEn(String nameEn) {
+  public GSFullServiceSearchCategoriesResponseDataCategories nameEn(@javax.annotation.Nullable String nameEn) {
     this.nameEn = nameEn;
     return this;
   }
 
-   /**
+  /**
    * English name of the category node
    * @return nameEn
-  **/
+   */
   @javax.annotation.Nullable
   public String getNameEn() {
     return nameEn;
   }
 
-  public void setNameEn(String nameEn) {
+  public void setNameEn(@javax.annotation.Nullable String nameEn) {
     this.nameEn = nameEn;
   }
 
 
-  public GSFullServiceSearchCategoriesResponseDataCategories parentId(String parentId) {
+  public GSFullServiceSearchCategoriesResponseDataCategories parentId(@javax.annotation.Nullable String parentId) {
     this.parentId = parentId;
     return this;
   }
 
-   /**
+  /**
    * Parent id of a category
    * @return parentId
-  **/
+   */
   @javax.annotation.Nullable
   public String getParentId() {
     return parentId;
   }
 
-  public void setParentId(String parentId) {
+  public void setParentId(@javax.annotation.Nullable String parentId) {
     this.parentId = parentId;
   }
 
 
-  public GSFullServiceSearchCategoriesResponseDataCategories status(String status) {
+  public GSFullServiceSearchCategoriesResponseDataCategories status(@javax.annotation.Nullable String status) {
     this.status = status;
     return this;
   }
 
-   /**
+  /**
    * The status of a category node. 2:enabled;3:disabled
    * @return status
-  **/
+   */
   @javax.annotation.Nullable
   public String getStatus() {
     return status;
   }
 
-  public void setStatus(String status) {
+  public void setStatus(@javax.annotation.Nullable String status) {
     this.status = status;
   }
 
 
-  public GSFullServiceSearchCategoriesResponseDataCategories version(String version) {
+  public GSFullServiceSearchCategoriesResponseDataCategories version(@javax.annotation.Nullable String version) {
     this.version = version;
     return this;
   }
 
-   /**
+  /**
    * The version ID of the category tree. Possible values: - &#x60;v1&#x60;: A 3-level category tree. - &#x60;v2&#x60;: A 7-level category tree. For details about the category expansion, see [Category Expansion L7 Migration Guide](https://partner.tiktokshop.com/docv2/page/6660c33275ead002e4f877f5).
    * @return version
-  **/
+   */
   @javax.annotation.Nullable
   public String getVersion() {
     return version;
   }
 
-  public void setVersion(String version) {
+  public void setVersion(@javax.annotation.Nullable String version) {
     this.version = version;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSFullServiceSearchCategoriesResponseDataCategories instance itself
+   */
+  public GSFullServiceSearchCategoriesResponseDataCategories putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -231,12 +282,13 @@ public class GSFullServiceSearchCategoriesResponseDataCategories {
         Objects.equals(this.nameEn, gsFullServiceCommodity202405GSFullServiceSearchCategoriesResponseDataCategories.nameEn) &&
         Objects.equals(this.parentId, gsFullServiceCommodity202405GSFullServiceSearchCategoriesResponseDataCategories.parentId) &&
         Objects.equals(this.status, gsFullServiceCommodity202405GSFullServiceSearchCategoriesResponseDataCategories.status) &&
-        Objects.equals(this.version, gsFullServiceCommodity202405GSFullServiceSearchCategoriesResponseDataCategories.version);
+        Objects.equals(this.version, gsFullServiceCommodity202405GSFullServiceSearchCategoriesResponseDataCategories.version)&&
+        Objects.equals(this.additionalProperties, gsFullServiceCommodity202405GSFullServiceSearchCategoriesResponseDataCategories.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, isLeaf, nameCn, nameEn, parentId, status, version);
+    return Objects.hash(id, isLeaf, nameCn, nameEn, parentId, status, version, additionalProperties);
   }
 
   @Override
@@ -250,6 +302,7 @@ public class GSFullServiceSearchCategoriesResponseDataCategories {
     sb.append("    parentId: ").append(toIndentedString(parentId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    version: ").append(toIndentedString(version)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -271,37 +324,22 @@ public class GSFullServiceSearchCategoriesResponseDataCategories {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("is_leaf");
-    openapiFields.add("name_cn");
-    openapiFields.add("name_en");
-    openapiFields.add("parent_id");
-    openapiFields.add("status");
-    openapiFields.add("version");
+    openapiFields = new HashSet<String>(Arrays.asList("id", "is_leaf", "name_cn", "name_en", "parent_id", "status", "version"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSFullServiceSearchCategoriesResponseDataCategories
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSFullServiceSearchCategoriesResponseDataCategories
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSFullServiceSearchCategoriesResponseDataCategories.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSFullServiceSearchCategoriesResponseDataCategories is not found in the empty JSON string", GSFullServiceSearchCategoriesResponseDataCategories.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSFullServiceSearchCategoriesResponseDataCategories.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSFullServiceSearchCategoriesResponseDataCategories` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -340,6 +378,28 @@ public class GSFullServiceSearchCategoriesResponseDataCategories {
            @Override
            public void write(JsonWriter out, GSFullServiceSearchCategoriesResponseDataCategories value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -347,29 +407,50 @@ public class GSFullServiceSearchCategoriesResponseDataCategories {
            public GSFullServiceSearchCategoriesResponseDataCategories read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSFullServiceSearchCategoriesResponseDataCategories instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSFullServiceSearchCategoriesResponseDataCategories given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSFullServiceSearchCategoriesResponseDataCategories
-  * @throws IOException if the JSON string is invalid with respect to GSFullServiceSearchCategoriesResponseDataCategories
-  */
+  /**
+   * Create an instance of GSFullServiceSearchCategoriesResponseDataCategories given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSFullServiceSearchCategoriesResponseDataCategories
+   * @throws IOException if the JSON string is invalid with respect to GSFullServiceSearchCategoriesResponseDataCategories
+   */
   public static GSFullServiceSearchCategoriesResponseDataCategories fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSFullServiceSearchCategoriesResponseDataCategories.class);
   }
 
- /**
-  * Convert an instance of GSFullServiceSearchCategoriesResponseDataCategories to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSFullServiceSearchCategoriesResponseDataCategories to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

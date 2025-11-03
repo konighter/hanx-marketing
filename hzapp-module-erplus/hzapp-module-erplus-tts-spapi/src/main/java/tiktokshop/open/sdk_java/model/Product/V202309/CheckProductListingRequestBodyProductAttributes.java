@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,39 +51,41 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CheckProductListingRequestBodyProductAttributes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CheckProductListingRequestBodyProductAttributes {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_VALUES = "values";
   @SerializedName(SERIALIZED_NAME_VALUES)
+  @javax.annotation.Nullable
   private List<CheckProductListingRequestBodyProductAttributesValues> values = new ArrayList<>();
 
   public CheckProductListingRequestBodyProductAttributes() {
   }
 
-  public CheckProductListingRequestBodyProductAttributes id(String id) {
+  public CheckProductListingRequestBodyProductAttributes id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The ID of the product attribute, retrieved from the [Get Attributes API](https://partner.tiktokshop.com/docv2/page/6509c5784a0bb702c0561cc8). 
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public CheckProductListingRequestBodyProductAttributes values(List<CheckProductListingRequestBodyProductAttributesValues> values) {
+  public CheckProductListingRequestBodyProductAttributes values(@javax.annotation.Nullable List<CheckProductListingRequestBodyProductAttributesValues> values) {
     this.values = values;
     return this;
   }
@@ -97,17 +98,62 @@ public class CheckProductListingRequestBodyProductAttributes {
     return this;
   }
 
-   /**
+  /**
    * A list of selectable values for the product attribute.  **Note**: Provide either a built-in ID or a custom name; if both are provided, the ID takes priority.
    * @return values
-  **/
+   */
   @javax.annotation.Nullable
   public List<CheckProductListingRequestBodyProductAttributesValues> getValues() {
     return values;
   }
 
-  public void setValues(List<CheckProductListingRequestBodyProductAttributesValues> values) {
+  public void setValues(@javax.annotation.Nullable List<CheckProductListingRequestBodyProductAttributesValues> values) {
     this.values = values;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CheckProductListingRequestBodyProductAttributes instance itself
+   */
+  public CheckProductListingRequestBodyProductAttributes putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -122,12 +168,13 @@ public class CheckProductListingRequestBodyProductAttributes {
     }
     CheckProductListingRequestBodyProductAttributes product202309CheckProductListingRequestBodyProductAttributes = (CheckProductListingRequestBodyProductAttributes) o;
     return Objects.equals(this.id, product202309CheckProductListingRequestBodyProductAttributes.id) &&
-        Objects.equals(this.values, product202309CheckProductListingRequestBodyProductAttributes.values);
+        Objects.equals(this.values, product202309CheckProductListingRequestBodyProductAttributes.values)&&
+        Objects.equals(this.additionalProperties, product202309CheckProductListingRequestBodyProductAttributes.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, values);
+    return Objects.hash(id, values, additionalProperties);
   }
 
   @Override
@@ -136,6 +183,7 @@ public class CheckProductListingRequestBodyProductAttributes {
     sb.append("class CheckProductListingRequestBodyProductAttributes {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    values: ").append(toIndentedString(values)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,32 +205,22 @@ public class CheckProductListingRequestBodyProductAttributes {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("id");
-    openapiFields.add("values");
+    openapiFields = new HashSet<String>(Arrays.asList("id", "values"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CheckProductListingRequestBodyProductAttributes
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CheckProductListingRequestBodyProductAttributes
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CheckProductListingRequestBodyProductAttributes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CheckProductListingRequestBodyProductAttributes is not found in the empty JSON string", CheckProductListingRequestBodyProductAttributes.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CheckProductListingRequestBodyProductAttributes.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CheckProductListingRequestBodyProductAttributes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -220,6 +258,28 @@ public class CheckProductListingRequestBodyProductAttributes {
            @Override
            public void write(JsonWriter out, CheckProductListingRequestBodyProductAttributes value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -227,29 +287,50 @@ public class CheckProductListingRequestBodyProductAttributes {
            public CheckProductListingRequestBodyProductAttributes read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CheckProductListingRequestBodyProductAttributes instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CheckProductListingRequestBodyProductAttributes given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CheckProductListingRequestBodyProductAttributes
-  * @throws IOException if the JSON string is invalid with respect to CheckProductListingRequestBodyProductAttributes
-  */
+  /**
+   * Create an instance of CheckProductListingRequestBodyProductAttributes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CheckProductListingRequestBodyProductAttributes
+   * @throws IOException if the JSON string is invalid with respect to CheckProductListingRequestBodyProductAttributes
+   */
   public static CheckProductListingRequestBodyProductAttributes fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CheckProductListingRequestBodyProductAttributes.class);
   }
 
- /**
-  * Convert an instance of CheckProductListingRequestBodyProductAttributes to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CheckProductListingRequestBodyProductAttributes to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

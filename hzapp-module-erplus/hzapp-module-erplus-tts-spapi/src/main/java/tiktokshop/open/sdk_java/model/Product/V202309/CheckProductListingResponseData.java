@@ -43,7 +43,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -55,51 +54,56 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CheckProductListingResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CheckProductListingResponseData {
   public static final String SERIALIZED_NAME_CHECK_RESULT = "check_result";
   @SerializedName(SERIALIZED_NAME_CHECK_RESULT)
+  @javax.annotation.Nullable
   private String checkResult;
 
   public static final String SERIALIZED_NAME_DIAGNOSES = "diagnoses";
   @SerializedName(SERIALIZED_NAME_DIAGNOSES)
+  @javax.annotation.Nullable
   private List<CheckProductListingResponseDataDiagnoses> diagnoses = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_FAIL_REASONS = "fail_reasons";
   @SerializedName(SERIALIZED_NAME_FAIL_REASONS)
+  @javax.annotation.Nullable
   private List<CheckProductListingResponseDataFailReasons> failReasons = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LISTING_QUALITY = "listing_quality";
   @SerializedName(SERIALIZED_NAME_LISTING_QUALITY)
+  @javax.annotation.Nullable
   private CheckProductListingResponseDataListingQuality listingQuality;
 
   public static final String SERIALIZED_NAME_WARNINGS = "warnings";
   @SerializedName(SERIALIZED_NAME_WARNINGS)
+  @javax.annotation.Nullable
   private CheckProductListingResponseDataWarnings warnings;
 
   public CheckProductListingResponseData() {
   }
 
-  public CheckProductListingResponseData checkResult(String checkResult) {
+  public CheckProductListingResponseData checkResult(@javax.annotation.Nullable String checkResult) {
     this.checkResult = checkResult;
     return this;
   }
 
-   /**
+  /**
    * The result of the product diagnosis (PASS, FAILED).
    * @return checkResult
-  **/
+   */
   @javax.annotation.Nullable
   public String getCheckResult() {
     return checkResult;
   }
 
-  public void setCheckResult(String checkResult) {
+  public void setCheckResult(@javax.annotation.Nullable String checkResult) {
     this.checkResult = checkResult;
   }
 
 
-  public CheckProductListingResponseData diagnoses(List<CheckProductListingResponseDataDiagnoses> diagnoses) {
+  public CheckProductListingResponseData diagnoses(@javax.annotation.Nullable List<CheckProductListingResponseDataDiagnoses> diagnoses) {
     this.diagnoses = diagnoses;
     return this;
   }
@@ -112,21 +116,21 @@ public class CheckProductListingResponseData {
     return this;
   }
 
-   /**
+  /**
    * (**Deprecated**: This field is deprecated and will be removed in a future API version. Use [Diagnose and Optimize Product](677c9523f7765c0308b3d68d) API instead to get product diagnosis related information.) Product optimization diagnosis information.
    * @return diagnoses
-  **/
+   */
   @javax.annotation.Nullable
   public List<CheckProductListingResponseDataDiagnoses> getDiagnoses() {
     return diagnoses;
   }
 
-  public void setDiagnoses(List<CheckProductListingResponseDataDiagnoses> diagnoses) {
+  public void setDiagnoses(@javax.annotation.Nullable List<CheckProductListingResponseDataDiagnoses> diagnoses) {
     this.diagnoses = diagnoses;
   }
 
 
-  public CheckProductListingResponseData failReasons(List<CheckProductListingResponseDataFailReasons> failReasons) {
+  public CheckProductListingResponseData failReasons(@javax.annotation.Nullable List<CheckProductListingResponseDataFailReasons> failReasons) {
     this.failReasons = failReasons;
     return this;
   }
@@ -139,55 +143,100 @@ public class CheckProductListingResponseData {
     return this;
   }
 
-   /**
+  /**
    * A list of failure reasons if &#x60;check_result&#x60; is FAILED.
    * @return failReasons
-  **/
+   */
   @javax.annotation.Nullable
   public List<CheckProductListingResponseDataFailReasons> getFailReasons() {
     return failReasons;
   }
 
-  public void setFailReasons(List<CheckProductListingResponseDataFailReasons> failReasons) {
+  public void setFailReasons(@javax.annotation.Nullable List<CheckProductListingResponseDataFailReasons> failReasons) {
     this.failReasons = failReasons;
   }
 
 
-  public CheckProductListingResponseData listingQuality(CheckProductListingResponseDataListingQuality listingQuality) {
+  public CheckProductListingResponseData listingQuality(@javax.annotation.Nullable CheckProductListingResponseDataListingQuality listingQuality) {
     this.listingQuality = listingQuality;
     return this;
   }
 
-   /**
+  /**
    * Get listingQuality
    * @return listingQuality
-  **/
+   */
   @javax.annotation.Nullable
   public CheckProductListingResponseDataListingQuality getListingQuality() {
     return listingQuality;
   }
 
-  public void setListingQuality(CheckProductListingResponseDataListingQuality listingQuality) {
+  public void setListingQuality(@javax.annotation.Nullable CheckProductListingResponseDataListingQuality listingQuality) {
     this.listingQuality = listingQuality;
   }
 
 
-  public CheckProductListingResponseData warnings(CheckProductListingResponseDataWarnings warnings) {
+  public CheckProductListingResponseData warnings(@javax.annotation.Nullable CheckProductListingResponseDataWarnings warnings) {
     this.warnings = warnings;
     return this;
   }
 
-   /**
+  /**
    * Get warnings
    * @return warnings
-  **/
+   */
   @javax.annotation.Nullable
   public CheckProductListingResponseDataWarnings getWarnings() {
     return warnings;
   }
 
-  public void setWarnings(CheckProductListingResponseDataWarnings warnings) {
+  public void setWarnings(@javax.annotation.Nullable CheckProductListingResponseDataWarnings warnings) {
     this.warnings = warnings;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CheckProductListingResponseData instance itself
+   */
+  public CheckProductListingResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -205,12 +254,13 @@ public class CheckProductListingResponseData {
         Objects.equals(this.diagnoses, product202309CheckProductListingResponseData.diagnoses) &&
         Objects.equals(this.failReasons, product202309CheckProductListingResponseData.failReasons) &&
         Objects.equals(this.listingQuality, product202309CheckProductListingResponseData.listingQuality) &&
-        Objects.equals(this.warnings, product202309CheckProductListingResponseData.warnings);
+        Objects.equals(this.warnings, product202309CheckProductListingResponseData.warnings)&&
+        Objects.equals(this.additionalProperties, product202309CheckProductListingResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(checkResult, diagnoses, failReasons, listingQuality, warnings);
+    return Objects.hash(checkResult, diagnoses, failReasons, listingQuality, warnings, additionalProperties);
   }
 
   @Override
@@ -222,6 +272,7 @@ public class CheckProductListingResponseData {
     sb.append("    failReasons: ").append(toIndentedString(failReasons)).append("\n");
     sb.append("    listingQuality: ").append(toIndentedString(listingQuality)).append("\n");
     sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -243,35 +294,22 @@ public class CheckProductListingResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("check_result");
-    openapiFields.add("diagnoses");
-    openapiFields.add("fail_reasons");
-    openapiFields.add("listing_quality");
-    openapiFields.add("warnings");
+    openapiFields = new HashSet<String>(Arrays.asList("check_result", "diagnoses", "fail_reasons", "listing_quality", "warnings"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CheckProductListingResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CheckProductListingResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CheckProductListingResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CheckProductListingResponseData is not found in the empty JSON string", CheckProductListingResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CheckProductListingResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CheckProductListingResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -331,6 +369,28 @@ public class CheckProductListingResponseData {
            @Override
            public void write(JsonWriter out, CheckProductListingResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -338,29 +398,50 @@ public class CheckProductListingResponseData {
            public CheckProductListingResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CheckProductListingResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CheckProductListingResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CheckProductListingResponseData
-  * @throws IOException if the JSON string is invalid with respect to CheckProductListingResponseData
-  */
+  /**
+   * Create an instance of CheckProductListingResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CheckProductListingResponseData
+   * @throws IOException if the JSON string is invalid with respect to CheckProductListingResponseData
+   */
   public static CheckProductListingResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CheckProductListingResponseData.class);
   }
 
- /**
-  * Convert an instance of CheckProductListingResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CheckProductListingResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

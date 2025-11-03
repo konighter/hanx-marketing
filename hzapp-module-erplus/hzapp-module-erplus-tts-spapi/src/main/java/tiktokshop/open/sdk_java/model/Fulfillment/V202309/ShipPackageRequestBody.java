@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,77 +50,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * ShipPackageRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class ShipPackageRequestBody {
   public static final String SERIALIZED_NAME_HANDOVER_METHOD = "handover_method";
   @SerializedName(SERIALIZED_NAME_HANDOVER_METHOD)
+  @javax.annotation.Nullable
   private String handoverMethod;
 
   public static final String SERIALIZED_NAME_PICKUP_SLOT = "pickup_slot";
   @SerializedName(SERIALIZED_NAME_PICKUP_SLOT)
+  @javax.annotation.Nullable
   private ShipPackageRequestBodyPickupSlot pickupSlot;
 
   public static final String SERIALIZED_NAME_SELF_SHIPMENT = "self_shipment";
   @SerializedName(SERIALIZED_NAME_SELF_SHIPMENT)
+  @javax.annotation.Nullable
   private ShipPackageRequestBodySelfShipment selfShipment;
 
   public ShipPackageRequestBody() {
   }
 
-  public ShipPackageRequestBody handoverMethod(String handoverMethod) {
+  public ShipPackageRequestBody handoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
     return this;
   }
 
-   /**
+  /**
    * Possible values: - &#x60;PICKUP&#x60;: A logistics carrier will pick up the package(s) from the seller&#39;s pickup address. - &#x60;DROP_OFF&#x60;: The seller will need to drop off the package(s) to a designated location.
    * @return handoverMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandoverMethod() {
     return handoverMethod;
   }
 
-  public void setHandoverMethod(String handoverMethod) {
+  public void setHandoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
   }
 
 
-  public ShipPackageRequestBody pickupSlot(ShipPackageRequestBodyPickupSlot pickupSlot) {
+  public ShipPackageRequestBody pickupSlot(@javax.annotation.Nullable ShipPackageRequestBodyPickupSlot pickupSlot) {
     this.pickupSlot = pickupSlot;
     return this;
   }
 
-   /**
+  /**
    * Get pickupSlot
    * @return pickupSlot
-  **/
+   */
   @javax.annotation.Nullable
   public ShipPackageRequestBodyPickupSlot getPickupSlot() {
     return pickupSlot;
   }
 
-  public void setPickupSlot(ShipPackageRequestBodyPickupSlot pickupSlot) {
+  public void setPickupSlot(@javax.annotation.Nullable ShipPackageRequestBodyPickupSlot pickupSlot) {
     this.pickupSlot = pickupSlot;
   }
 
 
-  public ShipPackageRequestBody selfShipment(ShipPackageRequestBodySelfShipment selfShipment) {
+  public ShipPackageRequestBody selfShipment(@javax.annotation.Nullable ShipPackageRequestBodySelfShipment selfShipment) {
     this.selfShipment = selfShipment;
     return this;
   }
 
-   /**
+  /**
    * Get selfShipment
    * @return selfShipment
-  **/
+   */
   @javax.annotation.Nullable
   public ShipPackageRequestBodySelfShipment getSelfShipment() {
     return selfShipment;
   }
 
-  public void setSelfShipment(ShipPackageRequestBodySelfShipment selfShipment) {
+  public void setSelfShipment(@javax.annotation.Nullable ShipPackageRequestBodySelfShipment selfShipment) {
     this.selfShipment = selfShipment;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ShipPackageRequestBody instance itself
+   */
+  public ShipPackageRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -137,12 +184,13 @@ public class ShipPackageRequestBody {
     ShipPackageRequestBody fulfillment202309ShipPackageRequestBody = (ShipPackageRequestBody) o;
     return Objects.equals(this.handoverMethod, fulfillment202309ShipPackageRequestBody.handoverMethod) &&
         Objects.equals(this.pickupSlot, fulfillment202309ShipPackageRequestBody.pickupSlot) &&
-        Objects.equals(this.selfShipment, fulfillment202309ShipPackageRequestBody.selfShipment);
+        Objects.equals(this.selfShipment, fulfillment202309ShipPackageRequestBody.selfShipment)&&
+        Objects.equals(this.additionalProperties, fulfillment202309ShipPackageRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(handoverMethod, pickupSlot, selfShipment);
+    return Objects.hash(handoverMethod, pickupSlot, selfShipment, additionalProperties);
   }
 
   @Override
@@ -152,6 +200,7 @@ public class ShipPackageRequestBody {
     sb.append("    handoverMethod: ").append(toIndentedString(handoverMethod)).append("\n");
     sb.append("    pickupSlot: ").append(toIndentedString(pickupSlot)).append("\n");
     sb.append("    selfShipment: ").append(toIndentedString(selfShipment)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -173,33 +222,22 @@ public class ShipPackageRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("handover_method");
-    openapiFields.add("pickup_slot");
-    openapiFields.add("self_shipment");
+    openapiFields = new HashSet<String>(Arrays.asList("handover_method", "pickup_slot", "self_shipment"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ShipPackageRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ShipPackageRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ShipPackageRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ShipPackageRequestBody is not found in the empty JSON string", ShipPackageRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ShipPackageRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ShipPackageRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -231,6 +269,28 @@ public class ShipPackageRequestBody {
            @Override
            public void write(JsonWriter out, ShipPackageRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -238,29 +298,50 @@ public class ShipPackageRequestBody {
            public ShipPackageRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ShipPackageRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ShipPackageRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ShipPackageRequestBody
-  * @throws IOException if the JSON string is invalid with respect to ShipPackageRequestBody
-  */
+  /**
+   * Create an instance of ShipPackageRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ShipPackageRequestBody
+   * @throws IOException if the JSON string is invalid with respect to ShipPackageRequestBody
+   */
   public static ShipPackageRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ShipPackageRequestBody.class);
   }
 
- /**
-  * Convert an instance of ShipPackageRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ShipPackageRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

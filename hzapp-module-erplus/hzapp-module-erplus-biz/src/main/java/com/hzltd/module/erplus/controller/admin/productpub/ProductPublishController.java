@@ -10,22 +10,19 @@ import io.swagger.v3.oas.annotations.Operation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @Slf4j
 @Validated
 @RestController
-@RequestMapping("/erplus/product/pub")
+@RequestMapping("/erplus/product")
 public class ProductPublishController {
 
     private ProductPublishServiceImpl productPublishService;
 
-    @PostMapping("/")
+    @PostMapping("/pub")
     @Operation(summary = "刊登商品")
     @PreAuthorize("@ss.hasPermission('product:publish:create')")
     public CommonResult<ProductPublishResponse> publishProduct(@Valid @RequestBody ProductPublishRequest request) {
@@ -38,6 +35,12 @@ public class ProductPublishController {
         }
 
         return CommonResult.success(response);
+    }
+
+    @GetMapping("/page1")
+    @Operation(summary = "分页查询刊登商品")
+    public CommonResult queryProductPage() {
+        return CommonResult.success(null);
     }
 
 

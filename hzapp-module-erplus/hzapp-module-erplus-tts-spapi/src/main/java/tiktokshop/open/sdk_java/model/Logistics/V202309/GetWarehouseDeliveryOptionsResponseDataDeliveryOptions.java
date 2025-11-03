@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,116 +52,123 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetWarehouseDeliveryOptionsResponseDataDeliveryOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetWarehouseDeliveryOptionsResponseDataDeliveryOptions {
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_DIMENSION_LIMIT = "dimension_limit";
   @SerializedName(SERIALIZED_NAME_DIMENSION_LIMIT)
+  @javax.annotation.Nullable
   private GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsDimensionLimit dimensionLimit;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_PLATFORM = "platform";
   @SerializedName(SERIALIZED_NAME_PLATFORM)
+  @javax.annotation.Nullable
   private List<String> platform = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TYPE = "type";
   @SerializedName(SERIALIZED_NAME_TYPE)
+  @javax.annotation.Nullable
   private String type;
 
   public static final String SERIALIZED_NAME_WEIGHT_LIMIT = "weight_limit";
   @SerializedName(SERIALIZED_NAME_WEIGHT_LIMIT)
+  @javax.annotation.Nullable
   private GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsWeightLimit weightLimit;
 
   public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions() {
   }
 
-  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions description(String description) {
+  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * Delivery option description.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions dimensionLimit(GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsDimensionLimit dimensionLimit) {
+  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions dimensionLimit(@javax.annotation.Nullable GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsDimensionLimit dimensionLimit) {
     this.dimensionLimit = dimensionLimit;
     return this;
   }
 
-   /**
+  /**
    * Get dimensionLimit
    * @return dimensionLimit
-  **/
+   */
   @javax.annotation.Nullable
   public GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsDimensionLimit getDimensionLimit() {
     return dimensionLimit;
   }
 
-  public void setDimensionLimit(GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsDimensionLimit dimensionLimit) {
+  public void setDimensionLimit(@javax.annotation.Nullable GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsDimensionLimit dimensionLimit) {
     this.dimensionLimit = dimensionLimit;
   }
 
 
-  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions id(String id) {
+  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Delivery option ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions name(String name) {
+  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * Delivery option name.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions platform(List<String> platform) {
+  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions platform(@javax.annotation.Nullable List<String> platform) {
     this.platform = platform;
     return this;
   }
@@ -175,55 +181,100 @@ public class GetWarehouseDeliveryOptionsResponseDataDeliveryOptions {
     return this;
   }
 
-   /**
+  /**
    * The platform on which the delivery option is available Possible values: - TIKTOK_SHOP - TOKOPEDIA
    * @return platform
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getPlatform() {
     return platform;
   }
 
-  public void setPlatform(List<String> platform) {
+  public void setPlatform(@javax.annotation.Nullable List<String> platform) {
     this.platform = platform;
   }
 
 
-  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions type(String type) {
+  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions type(@javax.annotation.Nullable String type) {
     this.type = type;
     return this;
   }
 
-   /**
+  /**
    * Delivery option type. This is an enumerated type with values: - STANDARD - EXPRESS - ECONOMY - SEND_BY_SELLER
    * @return type
-  **/
+   */
   @javax.annotation.Nullable
   public String getType() {
     return type;
   }
 
-  public void setType(String type) {
+  public void setType(@javax.annotation.Nullable String type) {
     this.type = type;
   }
 
 
-  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions weightLimit(GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsWeightLimit weightLimit) {
+  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions weightLimit(@javax.annotation.Nullable GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsWeightLimit weightLimit) {
     this.weightLimit = weightLimit;
     return this;
   }
 
-   /**
+  /**
    * Get weightLimit
    * @return weightLimit
-  **/
+   */
   @javax.annotation.Nullable
   public GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsWeightLimit getWeightLimit() {
     return weightLimit;
   }
 
-  public void setWeightLimit(GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsWeightLimit weightLimit) {
+  public void setWeightLimit(@javax.annotation.Nullable GetWarehouseDeliveryOptionsResponseDataDeliveryOptionsWeightLimit weightLimit) {
     this.weightLimit = weightLimit;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetWarehouseDeliveryOptionsResponseDataDeliveryOptions instance itself
+   */
+  public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -243,12 +294,13 @@ public class GetWarehouseDeliveryOptionsResponseDataDeliveryOptions {
         Objects.equals(this.name, logistics202309GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.name) &&
         Objects.equals(this.platform, logistics202309GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.platform) &&
         Objects.equals(this.type, logistics202309GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.type) &&
-        Objects.equals(this.weightLimit, logistics202309GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.weightLimit);
+        Objects.equals(this.weightLimit, logistics202309GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.weightLimit)&&
+        Objects.equals(this.additionalProperties, logistics202309GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, dimensionLimit, id, name, platform, type, weightLimit);
+    return Objects.hash(description, dimensionLimit, id, name, platform, type, weightLimit, additionalProperties);
   }
 
   @Override
@@ -262,6 +314,7 @@ public class GetWarehouseDeliveryOptionsResponseDataDeliveryOptions {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    weightLimit: ").append(toIndentedString(weightLimit)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -283,37 +336,22 @@ public class GetWarehouseDeliveryOptionsResponseDataDeliveryOptions {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("description");
-    openapiFields.add("dimension_limit");
-    openapiFields.add("id");
-    openapiFields.add("name");
-    openapiFields.add("platform");
-    openapiFields.add("type");
-    openapiFields.add("weight_limit");
+    openapiFields = new HashSet<String>(Arrays.asList("description", "dimension_limit", "id", "name", "platform", "type", "weight_limit"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetWarehouseDeliveryOptionsResponseDataDeliveryOptions
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetWarehouseDeliveryOptionsResponseDataDeliveryOptions
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetWarehouseDeliveryOptionsResponseDataDeliveryOptions is not found in the empty JSON string", GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetWarehouseDeliveryOptionsResponseDataDeliveryOptions` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -358,6 +396,28 @@ public class GetWarehouseDeliveryOptionsResponseDataDeliveryOptions {
            @Override
            public void write(JsonWriter out, GetWarehouseDeliveryOptionsResponseDataDeliveryOptions value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -365,29 +425,50 @@ public class GetWarehouseDeliveryOptionsResponseDataDeliveryOptions {
            public GetWarehouseDeliveryOptionsResponseDataDeliveryOptions read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetWarehouseDeliveryOptionsResponseDataDeliveryOptions instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetWarehouseDeliveryOptionsResponseDataDeliveryOptions given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetWarehouseDeliveryOptionsResponseDataDeliveryOptions
-  * @throws IOException if the JSON string is invalid with respect to GetWarehouseDeliveryOptionsResponseDataDeliveryOptions
-  */
+  /**
+   * Create an instance of GetWarehouseDeliveryOptionsResponseDataDeliveryOptions given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetWarehouseDeliveryOptionsResponseDataDeliveryOptions
+   * @throws IOException if the JSON string is invalid with respect to GetWarehouseDeliveryOptionsResponseDataDeliveryOptions
+   */
   public static GetWarehouseDeliveryOptionsResponseDataDeliveryOptions fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetWarehouseDeliveryOptionsResponseDataDeliveryOptions.class);
   }
 
- /**
-  * Convert an instance of GetWarehouseDeliveryOptionsResponseDataDeliveryOptions to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetWarehouseDeliveryOptionsResponseDataDeliveryOptions to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

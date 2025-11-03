@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,146 +48,197 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail {
   public static final String SERIALIZED_NAME_CITY_NAME = "city_name";
   @SerializedName(SERIALIZED_NAME_CITY_NAME)
+  @javax.annotation.Nullable
   private String cityName;
 
   public static final String SERIALIZED_NAME_COUNTRY_NAME = "country_name";
   @SerializedName(SERIALIZED_NAME_COUNTRY_NAME)
+  @javax.annotation.Nullable
   private String countryName;
 
   public static final String SERIALIZED_NAME_DETAIL = "detail";
   @SerializedName(SERIALIZED_NAME_DETAIL)
+  @javax.annotation.Nullable
   private String detail;
 
   public static final String SERIALIZED_NAME_DISTRICT_NAME = "district_name";
   @SerializedName(SERIALIZED_NAME_DISTRICT_NAME)
+  @javax.annotation.Nullable
   private String districtName;
 
   public static final String SERIALIZED_NAME_PROVINCE_NAME = "province_name";
   @SerializedName(SERIALIZED_NAME_PROVINCE_NAME)
+  @javax.annotation.Nullable
   private String provinceName;
 
   public static final String SERIALIZED_NAME_TOWN_NAME = "town_name";
   @SerializedName(SERIALIZED_NAME_TOWN_NAME)
+  @javax.annotation.Nullable
   private String townName;
 
   public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail() {
   }
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail cityName(String cityName) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail cityName(@javax.annotation.Nullable String cityName) {
     this.cityName = cityName;
     return this;
   }
 
-   /**
+  /**
    * The city name of  warehouse location
    * @return cityName
-  **/
+   */
   @javax.annotation.Nullable
   public String getCityName() {
     return cityName;
   }
 
-  public void setCityName(String cityName) {
+  public void setCityName(@javax.annotation.Nullable String cityName) {
     this.cityName = cityName;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail countryName(String countryName) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail countryName(@javax.annotation.Nullable String countryName) {
     this.countryName = countryName;
     return this;
   }
 
-   /**
+  /**
    * The country name of the  warehouse location
    * @return countryName
-  **/
+   */
   @javax.annotation.Nullable
   public String getCountryName() {
     return countryName;
   }
 
-  public void setCountryName(String countryName) {
+  public void setCountryName(@javax.annotation.Nullable String countryName) {
     this.countryName = countryName;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail detail(String detail) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail detail(@javax.annotation.Nullable String detail) {
     this.detail = detail;
     return this;
   }
 
-   /**
+  /**
    * The detail address of  warehouse location
    * @return detail
-  **/
+   */
   @javax.annotation.Nullable
   public String getDetail() {
     return detail;
   }
 
-  public void setDetail(String detail) {
+  public void setDetail(@javax.annotation.Nullable String detail) {
     this.detail = detail;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail districtName(String districtName) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail districtName(@javax.annotation.Nullable String districtName) {
     this.districtName = districtName;
     return this;
   }
 
-   /**
+  /**
    * The district name of  warehouse location
    * @return districtName
-  **/
+   */
   @javax.annotation.Nullable
   public String getDistrictName() {
     return districtName;
   }
 
-  public void setDistrictName(String districtName) {
+  public void setDistrictName(@javax.annotation.Nullable String districtName) {
     this.districtName = districtName;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail provinceName(String provinceName) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail provinceName(@javax.annotation.Nullable String provinceName) {
     this.provinceName = provinceName;
     return this;
   }
 
-   /**
+  /**
    * The province name of  warehouse location
    * @return provinceName
-  **/
+   */
   @javax.annotation.Nullable
   public String getProvinceName() {
     return provinceName;
   }
 
-  public void setProvinceName(String provinceName) {
+  public void setProvinceName(@javax.annotation.Nullable String provinceName) {
     this.provinceName = provinceName;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail townName(String townName) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail townName(@javax.annotation.Nullable String townName) {
     this.townName = townName;
     return this;
   }
 
-   /**
+  /**
    * The town name of  warehouse location
    * @return townName
-  **/
+   */
   @javax.annotation.Nullable
   public String getTownName() {
     return townName;
   }
 
-  public void setTownName(String townName) {
+  public void setTownName(@javax.annotation.Nullable String townName) {
     this.townName = townName;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail instance itself
+   */
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -207,12 +257,13 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseL
         Objects.equals(this.detail, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.detail) &&
         Objects.equals(this.districtName, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.districtName) &&
         Objects.equals(this.provinceName, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.provinceName) &&
-        Objects.equals(this.townName, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.townName);
+        Objects.equals(this.townName, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.townName)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cityName, countryName, detail, districtName, provinceName, townName);
+    return Objects.hash(cityName, countryName, detail, districtName, provinceName, townName, additionalProperties);
   }
 
   @Override
@@ -225,6 +276,7 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseL
     sb.append("    districtName: ").append(toIndentedString(districtName)).append("\n");
     sb.append("    provinceName: ").append(toIndentedString(provinceName)).append("\n");
     sb.append("    townName: ").append(toIndentedString(townName)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -246,36 +298,22 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseL
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("city_name");
-    openapiFields.add("country_name");
-    openapiFields.add("detail");
-    openapiFields.add("district_name");
-    openapiFields.add("province_name");
-    openapiFields.add("town_name");
+    openapiFields = new HashSet<String>(Arrays.asList("city_name", "country_name", "detail", "district_name", "province_name", "town_name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail is not found in the empty JSON string", GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -314,6 +352,28 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseL
            @Override
            public void write(JsonWriter out, GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -321,29 +381,50 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseL
            public GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail
-  */
+  /**
+   * Create an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail
+   */
   public static GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataWarehouseListWarehouseContactAddressDetail to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

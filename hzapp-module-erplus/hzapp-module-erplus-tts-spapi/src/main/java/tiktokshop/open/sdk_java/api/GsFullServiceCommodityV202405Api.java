@@ -90,12 +90,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaBrandsGetCall(String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaBrandsGetCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -120,14 +121,6 @@ public class GsFullServiceCommodityV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -143,12 +136,22 @@ public class GsFullServiceCommodityV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202405BetaBrandsGetValidateBeforeCall(String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202405BetaBrandsGetValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceCommodity202405BetaBrandsGet(Async)");
@@ -171,12 +174,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return GSFullServiceGetBrandsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSFullServiceGetBrandsResponse gsFullServiceCommodity202405BetaBrandsGet(String xTtsAccessToken, String contentType) throws ApiException {
+    public GSFullServiceGetBrandsResponse gsFullServiceCommodity202405BetaBrandsGet(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<GSFullServiceGetBrandsResponse> localVarResp = gsFullServiceCommodity202405BetaBrandsGetWithHttpInfo(xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -189,12 +193,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return ApiResponse&lt;GSFullServiceGetBrandsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSFullServiceGetBrandsResponse> gsFullServiceCommodity202405BetaBrandsGetWithHttpInfo(String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<GSFullServiceGetBrandsResponse> gsFullServiceCommodity202405BetaBrandsGetWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaBrandsGetValidateBeforeCall(xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<GSFullServiceGetBrandsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -209,12 +214,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaBrandsGetAsync(String xTtsAccessToken, String contentType, final ApiCallback<GSFullServiceGetBrandsResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaBrandsGetAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<GSFullServiceGetBrandsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaBrandsGetValidateBeforeCall(xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<GSFullServiceGetBrandsResponse>(){}.getType();
@@ -230,12 +236,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetCall(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -261,14 +268,6 @@ public class GsFullServiceCommodityV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -284,12 +283,22 @@ public class GsFullServiceCommodityV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetValidateBeforeCall(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetValidateBeforeCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'categoryId' is set
         if (categoryId == null) {
             throw new ApiException("Missing the required parameter 'categoryId' when calling gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGet(Async)");
@@ -318,12 +327,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return GSFullServiceGetattributesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSFullServiceGetattributesResponse gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGet(String categoryId, String xTtsAccessToken, String contentType) throws ApiException {
+    public GSFullServiceGetattributesResponse gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGet(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<GSFullServiceGetattributesResponse> localVarResp = gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetWithHttpInfo(categoryId, xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -337,12 +347,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return ApiResponse&lt;GSFullServiceGetattributesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSFullServiceGetattributesResponse> gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetWithHttpInfo(String categoryId, String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<GSFullServiceGetattributesResponse> gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetWithHttpInfo(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<GSFullServiceGetattributesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -358,12 +369,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetAsync(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback<GSFullServiceGetattributesResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetAsync(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<GSFullServiceGetattributesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCategoriesCategoryIdAttributesGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<GSFullServiceGetattributesResponse>(){}.getType();
@@ -379,12 +391,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdGetCall(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdGetCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -410,14 +423,6 @@ public class GsFullServiceCommodityV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -433,12 +438,22 @@ public class GsFullServiceCommodityV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdGetValidateBeforeCall(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdGetValidateBeforeCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'categoryId' is set
         if (categoryId == null) {
             throw new ApiException("Missing the required parameter 'categoryId' when calling gsFullServiceCommodity202405BetaCategoriesCategoryIdGet(Async)");
@@ -467,12 +482,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return GSFullServiceGetCategoryinformationResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSFullServiceGetCategoryinformationResponse gsFullServiceCommodity202405BetaCategoriesCategoryIdGet(String categoryId, String xTtsAccessToken, String contentType) throws ApiException {
+    public GSFullServiceGetCategoryinformationResponse gsFullServiceCommodity202405BetaCategoriesCategoryIdGet(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<GSFullServiceGetCategoryinformationResponse> localVarResp = gsFullServiceCommodity202405BetaCategoriesCategoryIdGetWithHttpInfo(categoryId, xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -486,12 +502,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return ApiResponse&lt;GSFullServiceGetCategoryinformationResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSFullServiceGetCategoryinformationResponse> gsFullServiceCommodity202405BetaCategoriesCategoryIdGetWithHttpInfo(String categoryId, String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<GSFullServiceGetCategoryinformationResponse> gsFullServiceCommodity202405BetaCategoriesCategoryIdGetWithHttpInfo(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCategoriesCategoryIdGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<GSFullServiceGetCategoryinformationResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -507,12 +524,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdGetAsync(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback<GSFullServiceGetCategoryinformationResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdGetAsync(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<GSFullServiceGetCategoryinformationResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCategoriesCategoryIdGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<GSFullServiceGetCategoryinformationResponse>(){}.getType();
@@ -528,12 +546,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetCall(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -559,14 +578,6 @@ public class GsFullServiceCommodityV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -582,12 +593,22 @@ public class GsFullServiceCommodityV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetValidateBeforeCall(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetValidateBeforeCall(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'categoryId' is set
         if (categoryId == null) {
             throw new ApiException("Missing the required parameter 'categoryId' when calling gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGet(Async)");
@@ -616,12 +637,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return GSProductimageuploadrequirementsqueryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSProductimageuploadrequirementsqueryResponse gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGet(String categoryId, String xTtsAccessToken, String contentType) throws ApiException {
+    public GSProductimageuploadrequirementsqueryResponse gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGet(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         ApiResponse<GSProductimageuploadrequirementsqueryResponse> localVarResp = gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetWithHttpInfo(categoryId, xTtsAccessToken, contentType);
         return localVarResp.getData();
     }
@@ -635,12 +657,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return ApiResponse&lt;GSProductimageuploadrequirementsqueryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSProductimageuploadrequirementsqueryResponse> gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetWithHttpInfo(String categoryId, String xTtsAccessToken, String contentType) throws ApiException {
+    public ApiResponse<GSProductimageuploadrequirementsqueryResponse> gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetWithHttpInfo(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, null);
         Type localVarReturnType = new TypeToken<GSProductimageuploadrequirementsqueryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -656,12 +679,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetAsync(String categoryId, String xTtsAccessToken, String contentType, final ApiCallback<GSProductimageuploadrequirementsqueryResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetAsync(@javax.annotation.Nonnull String categoryId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, final ApiCallback<GSProductimageuploadrequirementsqueryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCategoriesCategoryIdImageUploadRequirementsGetValidateBeforeCall(categoryId, xTtsAccessToken, contentType, _callback);
         Type localVarReturnType = new TypeToken<GSProductimageuploadrequirementsqueryResponse>(){}.getType();
@@ -677,12 +701,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesSearchPostCall(String xTtsAccessToken, String contentType, GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -707,14 +732,6 @@ public class GsFullServiceCommodityV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -731,12 +748,22 @@ public class GsFullServiceCommodityV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202405BetaCategoriesSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202405BetaCategoriesSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceCommodity202405BetaCategoriesSearchPost(Async)");
@@ -760,12 +787,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return GSFullServiceSearchCategoriesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSFullServiceSearchCategoriesResponse gsFullServiceCommodity202405BetaCategoriesSearchPost(String xTtsAccessToken, String contentType, GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody) throws ApiException {
+    public GSFullServiceSearchCategoriesResponse gsFullServiceCommodity202405BetaCategoriesSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody) throws ApiException {
         ApiResponse<GSFullServiceSearchCategoriesResponse> localVarResp = gsFullServiceCommodity202405BetaCategoriesSearchPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody);
         return localVarResp.getData();
     }
@@ -779,12 +807,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return ApiResponse&lt;GSFullServiceSearchCategoriesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSFullServiceSearchCategoriesResponse> gsFullServiceCommodity202405BetaCategoriesSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody) throws ApiException {
+    public ApiResponse<GSFullServiceSearchCategoriesResponse> gsFullServiceCommodity202405BetaCategoriesSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCategoriesSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody, null);
         Type localVarReturnType = new TypeToken<GSFullServiceSearchCategoriesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -800,12 +829,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesSearchPostAsync(String xTtsAccessToken, String contentType, GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody, final ApiCallback<GSFullServiceSearchCategoriesResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCategoriesSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSFullServiceSearchCategoriesRequestBody gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody, final ApiCallback<GSFullServiceSearchCategoriesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCategoriesSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceCommodity202405GSFullServiceSearchCategoriesRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSFullServiceSearchCategoriesResponse>(){}.getType();
@@ -821,12 +851,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCertificationFilesUploadPostCall(String xTtsAccessToken, String contentType, File data, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCertificationFilesUploadPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -855,14 +886,6 @@ public class GsFullServiceCommodityV202405Api {
             localVarFormParams.put("data", data);
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -879,12 +902,22 @@ public class GsFullServiceCommodityV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202405BetaCertificationFilesUploadPostValidateBeforeCall(String xTtsAccessToken, String contentType, File data, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202405BetaCertificationFilesUploadPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceCommodity202405BetaCertificationFilesUploadPost(Async)");
@@ -908,12 +941,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return GSQualificationfileuploadResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSQualificationfileuploadResponse gsFullServiceCommodity202405BetaCertificationFilesUploadPost(String xTtsAccessToken, String contentType, File data) throws ApiException {
+    public GSQualificationfileuploadResponse gsFullServiceCommodity202405BetaCertificationFilesUploadPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data) throws ApiException {
         ApiResponse<GSQualificationfileuploadResponse> localVarResp = gsFullServiceCommodity202405BetaCertificationFilesUploadPostWithHttpInfo(xTtsAccessToken, contentType, data);
         return localVarResp.getData();
     }
@@ -927,12 +961,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return ApiResponse&lt;GSQualificationfileuploadResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSQualificationfileuploadResponse> gsFullServiceCommodity202405BetaCertificationFilesUploadPostWithHttpInfo(String xTtsAccessToken, String contentType, File data) throws ApiException {
+    public ApiResponse<GSQualificationfileuploadResponse> gsFullServiceCommodity202405BetaCertificationFilesUploadPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCertificationFilesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, data, null);
         Type localVarReturnType = new TypeToken<GSQualificationfileuploadResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -948,12 +983,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaCertificationFilesUploadPostAsync(String xTtsAccessToken, String contentType, File data, final ApiCallback<GSQualificationfileuploadResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaCertificationFilesUploadPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, final ApiCallback<GSQualificationfileuploadResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaCertificationFilesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, data, _callback);
         Type localVarReturnType = new TypeToken<GSQualificationfileuploadResponse>(){}.getType();
@@ -969,12 +1005,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaProductsPostCall(String xTtsAccessToken, String contentType, GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaProductsPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -999,14 +1036,6 @@ public class GsFullServiceCommodityV202405Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1023,12 +1052,22 @@ public class GsFullServiceCommodityV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202405BetaProductsPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202405BetaProductsPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceCommodity202405BetaProductsPost(Async)");
@@ -1052,12 +1091,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return GSCreateProductv2Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSCreateProductv2Response gsFullServiceCommodity202405BetaProductsPost(String xTtsAccessToken, String contentType, GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody) throws ApiException {
+    public GSCreateProductv2Response gsFullServiceCommodity202405BetaProductsPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody) throws ApiException {
         ApiResponse<GSCreateProductv2Response> localVarResp = gsFullServiceCommodity202405BetaProductsPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceCommodity202405GSCreateProductv2RequestBody);
         return localVarResp.getData();
     }
@@ -1071,12 +1111,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return ApiResponse&lt;GSCreateProductv2Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSCreateProductv2Response> gsFullServiceCommodity202405BetaProductsPostWithHttpInfo(String xTtsAccessToken, String contentType, GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody) throws ApiException {
+    public ApiResponse<GSCreateProductv2Response> gsFullServiceCommodity202405BetaProductsPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaProductsPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceCommodity202405GSCreateProductv2RequestBody, null);
         Type localVarReturnType = new TypeToken<GSCreateProductv2Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1092,12 +1133,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaProductsPostAsync(String xTtsAccessToken, String contentType, GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody, final ApiCallback<GSCreateProductv2Response> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaProductsPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSCreateProductv2RequestBody gsFullServiceCommodity202405GSCreateProductv2RequestBody, final ApiCallback<GSCreateProductv2Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaProductsPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceCommodity202405GSCreateProductv2RequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSCreateProductv2Response>(){}.getType();
@@ -1113,12 +1155,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaVideosUploadPostCall(String xTtsAccessToken, String contentType, File data, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaVideosUploadPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1147,14 +1190,6 @@ public class GsFullServiceCommodityV202405Api {
             localVarFormParams.put("data", data);
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1171,12 +1206,22 @@ public class GsFullServiceCommodityV202405Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202405BetaVideosUploadPostValidateBeforeCall(String xTtsAccessToken, String contentType, File data, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202405BetaVideosUploadPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceCommodity202405BetaVideosUploadPost(Async)");
@@ -1200,12 +1245,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return GSVideoUploadResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSVideoUploadResponse gsFullServiceCommodity202405BetaVideosUploadPost(String xTtsAccessToken, String contentType, File data) throws ApiException {
+    public GSVideoUploadResponse gsFullServiceCommodity202405BetaVideosUploadPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data) throws ApiException {
         ApiResponse<GSVideoUploadResponse> localVarResp = gsFullServiceCommodity202405BetaVideosUploadPostWithHttpInfo(xTtsAccessToken, contentType, data);
         return localVarResp.getData();
     }
@@ -1219,12 +1265,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return ApiResponse&lt;GSVideoUploadResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSVideoUploadResponse> gsFullServiceCommodity202405BetaVideosUploadPostWithHttpInfo(String xTtsAccessToken, String contentType, File data) throws ApiException {
+    public ApiResponse<GSVideoUploadResponse> gsFullServiceCommodity202405BetaVideosUploadPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaVideosUploadPostValidateBeforeCall(xTtsAccessToken, contentType, data, null);
         Type localVarReturnType = new TypeToken<GSVideoUploadResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1240,12 +1287,13 @@ public class GsFullServiceCommodityV202405Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202405BetaVideosUploadPostAsync(String xTtsAccessToken, String contentType, File data, final ApiCallback<GSVideoUploadResponse> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202405BetaVideosUploadPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable File data, final ApiCallback<GSVideoUploadResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202405BetaVideosUploadPostValidateBeforeCall(xTtsAccessToken, contentType, data, _callback);
         Type localVarReturnType = new TypeToken<GSVideoUploadResponse>(){}.getType();

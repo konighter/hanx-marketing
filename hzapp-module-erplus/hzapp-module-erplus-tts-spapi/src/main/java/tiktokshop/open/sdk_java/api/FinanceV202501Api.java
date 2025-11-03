@@ -78,17 +78,18 @@ public class FinanceV202501Api {
      * @param orderId The order ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202501OrdersOrderIdStatementTransactionsGetCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call finance202501OrdersOrderIdStatementTransactionsGetCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -118,14 +119,6 @@ public class FinanceV202501Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -141,12 +134,22 @@ public class FinanceV202501Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call finance202501OrdersOrderIdStatementTransactionsGetValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call finance202501OrdersOrderIdStatementTransactionsGetValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling finance202501OrdersOrderIdStatementTransactionsGet(Async)");
@@ -172,16 +175,17 @@ public class FinanceV202501Api {
      * @param orderId The order ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @return GetTransactionsbyOrderResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetTransactionsbyOrderResponse finance202501OrdersOrderIdStatementTransactionsGet(String orderId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetTransactionsbyOrderResponse finance202501OrdersOrderIdStatementTransactionsGet(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetTransactionsbyOrderResponse> localVarResp = finance202501OrdersOrderIdStatementTransactionsGetWithHttpInfo(orderId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -192,16 +196,17 @@ public class FinanceV202501Api {
      * @param orderId The order ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @return ApiResponse&lt;GetTransactionsbyOrderResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetTransactionsbyOrderResponse> finance202501OrdersOrderIdStatementTransactionsGetWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetTransactionsbyOrderResponse> finance202501OrdersOrderIdStatementTransactionsGetWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = finance202501OrdersOrderIdStatementTransactionsGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetTransactionsbyOrderResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -213,17 +218,18 @@ public class FinanceV202501Api {
      * @param orderId The order ID in TikTok Shop. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202501OrdersOrderIdStatementTransactionsGetAsync(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetTransactionsbyOrderResponse> _callback) throws ApiException {
+    public okhttp3.Call finance202501OrdersOrderIdStatementTransactionsGetAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetTransactionsbyOrderResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = finance202501OrdersOrderIdStatementTransactionsGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetTransactionsbyOrderResponse>(){}.getType();
@@ -239,17 +245,18 @@ public class FinanceV202501Api {
      * @param pageToken An opaque token used to retrieve the next page of a paginated result set. Retrieve this value from the result of the &#x60;next_page_token&#x60; from a previous response. It is not needed for the first page. (optional)
      * @param sortOrder The sort order for the &#x60;sort_field&#x60; parameter.  Default: ASC  Possible values: - ASC: Ascending order - DESC: Descending order (optional)
      * @param pageSize The number of results to be returned per page.  Default: 20 Valid range: [1-100] (optional)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202501StatementsStatementIdStatementTransactionsGetCall(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call finance202501StatementsStatementIdStatementTransactionsGetCall(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -295,14 +302,6 @@ public class FinanceV202501Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -318,12 +317,22 @@ public class FinanceV202501Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call finance202501StatementsStatementIdStatementTransactionsGetValidateBeforeCall(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call finance202501StatementsStatementIdStatementTransactionsGetValidateBeforeCall(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'statementId' is set
         if (statementId == null) {
             throw new ApiException("Missing the required parameter 'statementId' when calling finance202501StatementsStatementIdStatementTransactionsGet(Async)");
@@ -358,16 +367,17 @@ public class FinanceV202501Api {
      * @param pageToken An opaque token used to retrieve the next page of a paginated result set. Retrieve this value from the result of the &#x60;next_page_token&#x60; from a previous response. It is not needed for the first page. (optional)
      * @param sortOrder The sort order for the &#x60;sort_field&#x60; parameter.  Default: ASC  Possible values: - ASC: Ascending order - DESC: Descending order (optional)
      * @param pageSize The number of results to be returned per page.  Default: 20 Valid range: [1-100] (optional)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @return GetTransactionsbyStatementResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetTransactionsbyStatementResponse finance202501StatementsStatementIdStatementTransactionsGet(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher) throws ApiException {
+    public GetTransactionsbyStatementResponse finance202501StatementsStatementIdStatementTransactionsGet(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetTransactionsbyStatementResponse> localVarResp = finance202501StatementsStatementIdStatementTransactionsGetWithHttpInfo(statementId, sortField, xTtsAccessToken, contentType, pageToken, sortOrder, pageSize, shopCipher);
         return localVarResp.getData();
     }
@@ -382,16 +392,17 @@ public class FinanceV202501Api {
      * @param pageToken An opaque token used to retrieve the next page of a paginated result set. Retrieve this value from the result of the &#x60;next_page_token&#x60; from a previous response. It is not needed for the first page. (optional)
      * @param sortOrder The sort order for the &#x60;sort_field&#x60; parameter.  Default: ASC  Possible values: - ASC: Ascending order - DESC: Descending order (optional)
      * @param pageSize The number of results to be returned per page.  Default: 20 Valid range: [1-100] (optional)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @return ApiResponse&lt;GetTransactionsbyStatementResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetTransactionsbyStatementResponse> finance202501StatementsStatementIdStatementTransactionsGetWithHttpInfo(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher) throws ApiException {
+    public ApiResponse<GetTransactionsbyStatementResponse> finance202501StatementsStatementIdStatementTransactionsGetWithHttpInfo(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = finance202501StatementsStatementIdStatementTransactionsGetValidateBeforeCall(statementId, sortField, xTtsAccessToken, contentType, pageToken, sortOrder, pageSize, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetTransactionsbyStatementResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -407,17 +418,18 @@ public class FinanceV202501Api {
      * @param pageToken An opaque token used to retrieve the next page of a paginated result set. Retrieve this value from the result of the &#x60;next_page_token&#x60; from a previous response. It is not needed for the first page. (optional)
      * @param sortOrder The sort order for the &#x60;sort_field&#x60; parameter.  Default: ASC  Possible values: - ASC: Ascending order - DESC: Descending order (optional)
      * @param pageSize The number of results to be returned per page.  Default: 20 Valid range: [1-100] (optional)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call finance202501StatementsStatementIdStatementTransactionsGetAsync(String statementId, String sortField, String xTtsAccessToken, String contentType, String pageToken, String sortOrder, Object pageSize, String shopCipher, final ApiCallback<GetTransactionsbyStatementResponse> _callback) throws ApiException {
+    public okhttp3.Call finance202501StatementsStatementIdStatementTransactionsGetAsync(@javax.annotation.Nonnull String statementId, @javax.annotation.Nonnull String sortField, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable Object pageSize, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetTransactionsbyStatementResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = finance202501StatementsStatementIdStatementTransactionsGetValidateBeforeCall(statementId, sortField, xTtsAccessToken, contentType, pageToken, sortOrder, pageSize, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetTransactionsbyStatementResponse>(){}.getType();

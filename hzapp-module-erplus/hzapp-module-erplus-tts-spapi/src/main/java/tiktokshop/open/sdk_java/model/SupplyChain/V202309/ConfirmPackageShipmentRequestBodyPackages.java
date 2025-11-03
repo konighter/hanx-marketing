@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,266 +53,282 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * ConfirmPackageShipmentRequestBodyPackages
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class ConfirmPackageShipmentRequestBodyPackages {
   public static final String SERIALIZED_NAME_CREATE_TIME_MILLIS = "create_time_millis";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME_MILLIS)
+  @javax.annotation.Nullable
   private Long createTimeMillis;
 
   public static final String SERIALIZED_NAME_DIMENSION = "dimension";
   @SerializedName(SERIALIZED_NAME_DIMENSION)
+  @javax.annotation.Nullable
   private ConfirmPackageShipmentRequestBodyPackagesDimension dimension;
 
   public static final String SERIALIZED_NAME_HANDOVER_TIME_MILLIS = "handover_time_millis";
   @SerializedName(SERIALIZED_NAME_HANDOVER_TIME_MILLIS)
+  @javax.annotation.Nullable
   private Long handoverTimeMillis;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_PROVIDER_WAREHOUSE_CODE = "provider_warehouse_code";
   @SerializedName(SERIALIZED_NAME_PROVIDER_WAREHOUSE_CODE)
+  @javax.annotation.Nullable
   private String providerWarehouseCode;
 
   public static final String SERIALIZED_NAME_PROVIDER_WAREHOUSE_NAME = "provider_warehouse_name";
   @SerializedName(SERIALIZED_NAME_PROVIDER_WAREHOUSE_NAME)
+  @javax.annotation.Nullable
   private String providerWarehouseName;
 
   public static final String SERIALIZED_NAME_SHIP_TIME_MILLIS = "ship_time_millis";
   @SerializedName(SERIALIZED_NAME_SHIP_TIME_MILLIS)
+  @javax.annotation.Nullable
   private Long shipTimeMillis;
 
   public static final String SERIALIZED_NAME_SHIPPING_ORIGIN_CITY = "shipping_origin_city";
   @SerializedName(SERIALIZED_NAME_SHIPPING_ORIGIN_CITY)
+  @javax.annotation.Nullable
   private String shippingOriginCity;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_ID = "shipping_provider_id";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_ID)
+  @javax.annotation.Nullable
   private String shippingProviderId;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_NAME = "shipping_provider_name";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_NAME)
+  @javax.annotation.Nullable
   private String shippingProviderName;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<ConfirmPackageShipmentRequestBodyPackagesSkus> skus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_TCW_WAREHOUSE_TYPE = "tcw_warehouse_type";
   @SerializedName(SERIALIZED_NAME_TCW_WAREHOUSE_TYPE)
+  @javax.annotation.Nullable
   private String tcwWarehouseType;
 
   public static final String SERIALIZED_NAME_TIME_ZONE = "time_zone";
   @SerializedName(SERIALIZED_NAME_TIME_ZONE)
+  @javax.annotation.Nullable
   private String timeZone;
 
   public static final String SERIALIZED_NAME_TRACKING_NUMBER = "tracking_number";
   @SerializedName(SERIALIZED_NAME_TRACKING_NUMBER)
+  @javax.annotation.Nullable
   private String trackingNumber;
 
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
   @SerializedName(SERIALIZED_NAME_WEIGHT)
+  @javax.annotation.Nullable
   private ConfirmPackageShipmentRequestBodyPackagesWeight weight;
 
   public static final String SERIALIZED_NAME_WMS_ORDER_ID = "wms_order_id";
   @SerializedName(SERIALIZED_NAME_WMS_ORDER_ID)
+  @javax.annotation.Nullable
   private String wmsOrderId;
 
   public ConfirmPackageShipmentRequestBodyPackages() {
   }
 
-  public ConfirmPackageShipmentRequestBodyPackages createTimeMillis(Long createTimeMillis) {
+  public ConfirmPackageShipmentRequestBodyPackages createTimeMillis(@javax.annotation.Nullable Long createTimeMillis) {
     this.createTimeMillis = createTimeMillis;
     return this;
   }
 
-   /**
+  /**
    * Time when warehouse receives the order (Unix timestamp in milliseconds)
    * @return createTimeMillis
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTimeMillis() {
     return createTimeMillis;
   }
 
-  public void setCreateTimeMillis(Long createTimeMillis) {
+  public void setCreateTimeMillis(@javax.annotation.Nullable Long createTimeMillis) {
     this.createTimeMillis = createTimeMillis;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages dimension(ConfirmPackageShipmentRequestBodyPackagesDimension dimension) {
+  public ConfirmPackageShipmentRequestBodyPackages dimension(@javax.annotation.Nullable ConfirmPackageShipmentRequestBodyPackagesDimension dimension) {
     this.dimension = dimension;
     return this;
   }
 
-   /**
+  /**
    * Get dimension
    * @return dimension
-  **/
+   */
   @javax.annotation.Nullable
   public ConfirmPackageShipmentRequestBodyPackagesDimension getDimension() {
     return dimension;
   }
 
-  public void setDimension(ConfirmPackageShipmentRequestBodyPackagesDimension dimension) {
+  public void setDimension(@javax.annotation.Nullable ConfirmPackageShipmentRequestBodyPackagesDimension dimension) {
     this.dimension = dimension;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages handoverTimeMillis(Long handoverTimeMillis) {
+  public ConfirmPackageShipmentRequestBodyPackages handoverTimeMillis(@javax.annotation.Nullable Long handoverTimeMillis) {
     this.handoverTimeMillis = handoverTimeMillis;
     return this;
   }
 
-   /**
+  /**
    * Time when the order is handed over to the shipping provider (Unix timestamp in milliseconds)
    * @return handoverTimeMillis
-  **/
+   */
   @javax.annotation.Nullable
   public Long getHandoverTimeMillis() {
     return handoverTimeMillis;
   }
 
-  public void setHandoverTimeMillis(Long handoverTimeMillis) {
+  public void setHandoverTimeMillis(@javax.annotation.Nullable Long handoverTimeMillis) {
     this.handoverTimeMillis = handoverTimeMillis;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages id(String id) {
+  public ConfirmPackageShipmentRequestBodyPackages id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * Package ID
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages providerWarehouseCode(String providerWarehouseCode) {
+  public ConfirmPackageShipmentRequestBodyPackages providerWarehouseCode(@javax.annotation.Nullable String providerWarehouseCode) {
     this.providerWarehouseCode = providerWarehouseCode;
     return this;
   }
 
-   /**
+  /**
    * Warehouse code
    * @return providerWarehouseCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getProviderWarehouseCode() {
     return providerWarehouseCode;
   }
 
-  public void setProviderWarehouseCode(String providerWarehouseCode) {
+  public void setProviderWarehouseCode(@javax.annotation.Nullable String providerWarehouseCode) {
     this.providerWarehouseCode = providerWarehouseCode;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages providerWarehouseName(String providerWarehouseName) {
+  public ConfirmPackageShipmentRequestBodyPackages providerWarehouseName(@javax.annotation.Nullable String providerWarehouseName) {
     this.providerWarehouseName = providerWarehouseName;
     return this;
   }
 
-   /**
+  /**
    * Warehouse name
    * @return providerWarehouseName
-  **/
+   */
   @javax.annotation.Nullable
   public String getProviderWarehouseName() {
     return providerWarehouseName;
   }
 
-  public void setProviderWarehouseName(String providerWarehouseName) {
+  public void setProviderWarehouseName(@javax.annotation.Nullable String providerWarehouseName) {
     this.providerWarehouseName = providerWarehouseName;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages shipTimeMillis(Long shipTimeMillis) {
+  public ConfirmPackageShipmentRequestBodyPackages shipTimeMillis(@javax.annotation.Nullable Long shipTimeMillis) {
     this.shipTimeMillis = shipTimeMillis;
     return this;
   }
 
-   /**
+  /**
    * Time when the order is shipped out of the warehouse (Unix timestamp in milliseconds)
    * @return shipTimeMillis
-  **/
+   */
   @javax.annotation.Nullable
   public Long getShipTimeMillis() {
     return shipTimeMillis;
   }
 
-  public void setShipTimeMillis(Long shipTimeMillis) {
+  public void setShipTimeMillis(@javax.annotation.Nullable Long shipTimeMillis) {
     this.shipTimeMillis = shipTimeMillis;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages shippingOriginCity(String shippingOriginCity) {
+  public ConfirmPackageShipmentRequestBodyPackages shippingOriginCity(@javax.annotation.Nullable String shippingOriginCity) {
     this.shippingOriginCity = shippingOriginCity;
     return this;
   }
 
-   /**
+  /**
    * Origin city name for the shipment
    * @return shippingOriginCity
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingOriginCity() {
     return shippingOriginCity;
   }
 
-  public void setShippingOriginCity(String shippingOriginCity) {
+  public void setShippingOriginCity(@javax.annotation.Nullable String shippingOriginCity) {
     this.shippingOriginCity = shippingOriginCity;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages shippingProviderId(String shippingProviderId) {
+  public ConfirmPackageShipmentRequestBodyPackages shippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
     return this;
   }
 
-   /**
+  /**
    * Shipping service provider ID
    * @return shippingProviderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderId() {
     return shippingProviderId;
   }
 
-  public void setShippingProviderId(String shippingProviderId) {
+  public void setShippingProviderId(@javax.annotation.Nullable String shippingProviderId) {
     this.shippingProviderId = shippingProviderId;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages shippingProviderName(String shippingProviderName) {
+  public ConfirmPackageShipmentRequestBodyPackages shippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
     return this;
   }
 
-   /**
+  /**
    * Shipping service provider name
    * @return shippingProviderName
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderName() {
     return shippingProviderName;
   }
 
-  public void setShippingProviderName(String shippingProviderName) {
+  public void setShippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages skus(List<ConfirmPackageShipmentRequestBodyPackagesSkus> skus) {
+  public ConfirmPackageShipmentRequestBodyPackages skus(@javax.annotation.Nullable List<ConfirmPackageShipmentRequestBodyPackagesSkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -326,112 +341,157 @@ public class ConfirmPackageShipmentRequestBodyPackages {
     return this;
   }
 
-   /**
+  /**
    * List of order SKUs 
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<ConfirmPackageShipmentRequestBodyPackagesSkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<ConfirmPackageShipmentRequestBodyPackagesSkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<ConfirmPackageShipmentRequestBodyPackagesSkus> skus) {
     this.skus = skus;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages tcwWarehouseType(String tcwWarehouseType) {
+  public ConfirmPackageShipmentRequestBodyPackages tcwWarehouseType(@javax.annotation.Nullable String tcwWarehouseType) {
     this.tcwWarehouseType = tcwWarehouseType;
     return this;
   }
 
-   /**
+  /**
    * TikTok warehouse type  Possible values: - STANDARD: Standard warehouse that has not been specifically certified by TikTok  - TIKTOK_CERTIFIED_WAREHOUSE_FULFILLMENT: TikTok certified warehouse usually offering better service levels. Certified warehouses are required to meet fulfillment timeline standards set by TikTok
    * @return tcwWarehouseType
-  **/
+   */
   @javax.annotation.Nullable
   public String getTcwWarehouseType() {
     return tcwWarehouseType;
   }
 
-  public void setTcwWarehouseType(String tcwWarehouseType) {
+  public void setTcwWarehouseType(@javax.annotation.Nullable String tcwWarehouseType) {
     this.tcwWarehouseType = tcwWarehouseType;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages timeZone(String timeZone) {
+  public ConfirmPackageShipmentRequestBodyPackages timeZone(@javax.annotation.Nullable String timeZone) {
     this.timeZone = timeZone;
     return this;
   }
 
-   /**
+  /**
    * The warehouse time zone
    * @return timeZone
-  **/
+   */
   @javax.annotation.Nullable
   public String getTimeZone() {
     return timeZone;
   }
 
-  public void setTimeZone(String timeZone) {
+  public void setTimeZone(@javax.annotation.Nullable String timeZone) {
     this.timeZone = timeZone;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages trackingNumber(String trackingNumber) {
+  public ConfirmPackageShipmentRequestBodyPackages trackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
     return this;
   }
 
-   /**
+  /**
    * Tracking number
    * @return trackingNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getTrackingNumber() {
     return trackingNumber;
   }
 
-  public void setTrackingNumber(String trackingNumber) {
+  public void setTrackingNumber(@javax.annotation.Nullable String trackingNumber) {
     this.trackingNumber = trackingNumber;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages weight(ConfirmPackageShipmentRequestBodyPackagesWeight weight) {
+  public ConfirmPackageShipmentRequestBodyPackages weight(@javax.annotation.Nullable ConfirmPackageShipmentRequestBodyPackagesWeight weight) {
     this.weight = weight;
     return this;
   }
 
-   /**
+  /**
    * Get weight
    * @return weight
-  **/
+   */
   @javax.annotation.Nullable
   public ConfirmPackageShipmentRequestBodyPackagesWeight getWeight() {
     return weight;
   }
 
-  public void setWeight(ConfirmPackageShipmentRequestBodyPackagesWeight weight) {
+  public void setWeight(@javax.annotation.Nullable ConfirmPackageShipmentRequestBodyPackagesWeight weight) {
     this.weight = weight;
   }
 
 
-  public ConfirmPackageShipmentRequestBodyPackages wmsOrderId(String wmsOrderId) {
+  public ConfirmPackageShipmentRequestBodyPackages wmsOrderId(@javax.annotation.Nullable String wmsOrderId) {
     this.wmsOrderId = wmsOrderId;
     return this;
   }
 
-   /**
+  /**
    * Warehouse Management System order number
    * @return wmsOrderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getWmsOrderId() {
     return wmsOrderId;
   }
 
-  public void setWmsOrderId(String wmsOrderId) {
+  public void setWmsOrderId(@javax.annotation.Nullable String wmsOrderId) {
     this.wmsOrderId = wmsOrderId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the ConfirmPackageShipmentRequestBodyPackages instance itself
+   */
+  public ConfirmPackageShipmentRequestBodyPackages putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -460,12 +520,13 @@ public class ConfirmPackageShipmentRequestBodyPackages {
         Objects.equals(this.timeZone, supplyChain202309ConfirmPackageShipmentRequestBodyPackages.timeZone) &&
         Objects.equals(this.trackingNumber, supplyChain202309ConfirmPackageShipmentRequestBodyPackages.trackingNumber) &&
         Objects.equals(this.weight, supplyChain202309ConfirmPackageShipmentRequestBodyPackages.weight) &&
-        Objects.equals(this.wmsOrderId, supplyChain202309ConfirmPackageShipmentRequestBodyPackages.wmsOrderId);
+        Objects.equals(this.wmsOrderId, supplyChain202309ConfirmPackageShipmentRequestBodyPackages.wmsOrderId)&&
+        Objects.equals(this.additionalProperties, supplyChain202309ConfirmPackageShipmentRequestBodyPackages.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createTimeMillis, dimension, handoverTimeMillis, id, providerWarehouseCode, providerWarehouseName, shipTimeMillis, shippingOriginCity, shippingProviderId, shippingProviderName, skus, tcwWarehouseType, timeZone, trackingNumber, weight, wmsOrderId);
+    return Objects.hash(createTimeMillis, dimension, handoverTimeMillis, id, providerWarehouseCode, providerWarehouseName, shipTimeMillis, shippingOriginCity, shippingProviderId, shippingProviderName, skus, tcwWarehouseType, timeZone, trackingNumber, weight, wmsOrderId, additionalProperties);
   }
 
   @Override
@@ -488,6 +549,7 @@ public class ConfirmPackageShipmentRequestBodyPackages {
     sb.append("    trackingNumber: ").append(toIndentedString(trackingNumber)).append("\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("    wmsOrderId: ").append(toIndentedString(wmsOrderId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -509,46 +571,22 @@ public class ConfirmPackageShipmentRequestBodyPackages {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("create_time_millis");
-    openapiFields.add("dimension");
-    openapiFields.add("handover_time_millis");
-    openapiFields.add("id");
-    openapiFields.add("provider_warehouse_code");
-    openapiFields.add("provider_warehouse_name");
-    openapiFields.add("ship_time_millis");
-    openapiFields.add("shipping_origin_city");
-    openapiFields.add("shipping_provider_id");
-    openapiFields.add("shipping_provider_name");
-    openapiFields.add("skus");
-    openapiFields.add("tcw_warehouse_type");
-    openapiFields.add("time_zone");
-    openapiFields.add("tracking_number");
-    openapiFields.add("weight");
-    openapiFields.add("wms_order_id");
+    openapiFields = new HashSet<String>(Arrays.asList("create_time_millis", "dimension", "handover_time_millis", "id", "provider_warehouse_code", "provider_warehouse_name", "ship_time_millis", "shipping_origin_city", "shipping_provider_id", "shipping_provider_name", "skus", "tcw_warehouse_type", "time_zone", "tracking_number", "weight", "wms_order_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to ConfirmPackageShipmentRequestBodyPackages
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to ConfirmPackageShipmentRequestBodyPackages
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!ConfirmPackageShipmentRequestBodyPackages.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in ConfirmPackageShipmentRequestBodyPackages is not found in the empty JSON string", ConfirmPackageShipmentRequestBodyPackages.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!ConfirmPackageShipmentRequestBodyPackages.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ConfirmPackageShipmentRequestBodyPackages` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -621,6 +659,28 @@ public class ConfirmPackageShipmentRequestBodyPackages {
            @Override
            public void write(JsonWriter out, ConfirmPackageShipmentRequestBodyPackages value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -628,29 +688,50 @@ public class ConfirmPackageShipmentRequestBodyPackages {
            public ConfirmPackageShipmentRequestBodyPackages read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             ConfirmPackageShipmentRequestBodyPackages instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of ConfirmPackageShipmentRequestBodyPackages given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of ConfirmPackageShipmentRequestBodyPackages
-  * @throws IOException if the JSON string is invalid with respect to ConfirmPackageShipmentRequestBodyPackages
-  */
+  /**
+   * Create an instance of ConfirmPackageShipmentRequestBodyPackages given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of ConfirmPackageShipmentRequestBodyPackages
+   * @throws IOException if the JSON string is invalid with respect to ConfirmPackageShipmentRequestBodyPackages
+   */
   public static ConfirmPackageShipmentRequestBodyPackages fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, ConfirmPackageShipmentRequestBodyPackages.class);
   }
 
- /**
-  * Convert an instance of ConfirmPackageShipmentRequestBodyPackages to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of ConfirmPackageShipmentRequestBodyPackages to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

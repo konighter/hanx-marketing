@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,72 +50,87 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchAbnormalOrdersRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchAbnormalOrdersRequestBody {
   public static final String SERIALIZED_NAME_ABNORMAL_ORDER_CODES = "abnormal_order_codes";
   @SerializedName(SERIALIZED_NAME_ABNORMAL_ORDER_CODES)
+  @javax.annotation.Nullable
   private List<String> abnormalOrderCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_ABNORMAL_TYPES = "abnormal_types";
   @SerializedName(SERIALIZED_NAME_ABNORMAL_TYPES)
+  @javax.annotation.Nullable
   private List<String> abnormalTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DELIVERY_ORDER_CODES = "delivery_order_codes";
   @SerializedName(SERIALIZED_NAME_DELIVERY_ORDER_CODES)
+  @javax.annotation.Nullable
   private List<String> deliveryOrderCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EXTERNAL_SKC_CODES = "external_skc_codes";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKC_CODES)
+  @javax.annotation.Nullable
   private List<String> externalSkcCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EXTERNAL_SKU_CODES = "external_sku_codes";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKU_CODES)
+  @javax.annotation.Nullable
   private List<String> externalSkuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_LATEST_UPDATE_TIME_GE = "latest_update_time_ge";
   @SerializedName(SERIALIZED_NAME_LATEST_UPDATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long latestUpdateTimeGe;
 
   public static final String SERIALIZED_NAME_LATEST_UPDATE_TIME_LT = "latest_update_time_lt";
   @SerializedName(SERIALIZED_NAME_LATEST_UPDATE_TIME_LT)
+  @javax.annotation.Nullable
   private Long latestUpdateTimeLt;
 
   public static final String SERIALIZED_NAME_ORDER_CREATE_TIME_GE = "order_create_time_ge";
   @SerializedName(SERIALIZED_NAME_ORDER_CREATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long orderCreateTimeGe;
 
   public static final String SERIALIZED_NAME_ORDER_CREATE_TIME_LT = "order_create_time_lt";
   @SerializedName(SERIALIZED_NAME_ORDER_CREATE_TIME_LT)
+  @javax.annotation.Nullable
   private Long orderCreateTimeLt;
 
   public static final String SERIALIZED_NAME_PAGE_SIZE = "page_size";
   @SerializedName(SERIALIZED_NAME_PAGE_SIZE)
+  @javax.annotation.Nullable
   private Long pageSize;
 
   public static final String SERIALIZED_NAME_PAGE_TOKEN = "page_token";
   @SerializedName(SERIALIZED_NAME_PAGE_TOKEN)
+  @javax.annotation.Nullable
   private String pageToken;
 
   public static final String SERIALIZED_NAME_PLATFORM_SKU_CODES = "platform_sku_codes";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SKU_CODES)
+  @javax.annotation.Nullable
   private List<String> platformSkuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PLATFORM_SPU_CODES = "platform_spu_codes";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SPU_CODES)
+  @javax.annotation.Nullable
   private List<String> platformSpuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RELATIVE_RETURN_STATUS = "relative_return_status";
   @SerializedName(SERIALIZED_NAME_RELATIVE_RETURN_STATUS)
+  @javax.annotation.Nullable
   private List<String> relativeReturnStatus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_STOCKUP_ORDER_CODES = "stockup_order_codes";
   @SerializedName(SERIALIZED_NAME_STOCKUP_ORDER_CODES)
+  @javax.annotation.Nullable
   private List<String> stockupOrderCodes = new ArrayList<>();
 
   public GlobalSellingSearchAbnormalOrdersRequestBody() {
   }
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody abnormalOrderCodes(List<String> abnormalOrderCodes) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody abnormalOrderCodes(@javax.annotation.Nullable List<String> abnormalOrderCodes) {
     this.abnormalOrderCodes = abnormalOrderCodes;
     return this;
   }
@@ -129,21 +143,21 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The abnormal order codes. The length is no more than 50.
    * @return abnormalOrderCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getAbnormalOrderCodes() {
     return abnormalOrderCodes;
   }
 
-  public void setAbnormalOrderCodes(List<String> abnormalOrderCodes) {
+  public void setAbnormalOrderCodes(@javax.annotation.Nullable List<String> abnormalOrderCodes) {
     this.abnormalOrderCodes = abnormalOrderCodes;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody abnormalTypes(List<String> abnormalTypes) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody abnormalTypes(@javax.annotation.Nullable List<String> abnormalTypes) {
     this.abnormalTypes = abnormalTypes;
     return this;
   }
@@ -156,21 +170,21 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The list of abnormal type. Possible enumerations are:  1. AT_PLATFORM_DELIVERY_TRANS_TIMEOUT：Shipping timeout of platform logistics  2. AT_SELF_DELIVERY_TRANS_TIMEOUT：Shipping timeout of self delivery   3. AT_LOGISTICS_DAMAGE：Shipment damage 4. AT_LOGISTICS_PKG_ATTACH_MULTI_DELIVERY_ORDER：Multiple delivery orders are attached to the logistics package  5. AT_DELIVERY_PKG_BOX_MARK_NO_RECOGNIZED：The logistics parcel mark can not be recognized  6. AT_DELIVERY_PACKAGE_NO_BOX_MARK：The delivery package is not labeled  7. AT_DELIVERY_ORDER_NO_DELIVERYED：The delivery order isn&#39;t confirmed. 8. AT_DELIVERY_ORDER_CANCELED：The delivery order has been cancelled  9. AT_QUANTITY_ABNORMAL_MORE：The quantity of goods exceeds expectation 10. AT_MISPLACED_GOODS：Wrong goods  11. AT_WRONG_BARCODE：The barcode is wrong labelled 12. AT_BARCODE_DAMAGED_DIRTY：The barcode is damaged or dirty 13. AT_PRODUCT_EXPANSION_BAG：The package of product is bulging  14. AT_PRODUCT_DAMAGED_DIRTY：The product is damaged or soiled  15. AT_MISSING_PACKAGE：The goods exceed the size limit 16. AT_ABNORMAL_QUANTITY：Shortage of goods 17. AT_DELIVERY_PKG_NO_ARRIVE_WAREHOUSE：The delivery package has not arrived 18. AT_ABNORMAL_QUALITY：Failed in the quality check during inbound. 19. AT_INSPECT_QUALITY：Failed in the quality check during inspection.
    * @return abnormalTypes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getAbnormalTypes() {
     return abnormalTypes;
   }
 
-  public void setAbnormalTypes(List<String> abnormalTypes) {
+  public void setAbnormalTypes(@javax.annotation.Nullable List<String> abnormalTypes) {
     this.abnormalTypes = abnormalTypes;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody deliveryOrderCodes(List<String> deliveryOrderCodes) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody deliveryOrderCodes(@javax.annotation.Nullable List<String> deliveryOrderCodes) {
     this.deliveryOrderCodes = deliveryOrderCodes;
     return this;
   }
@@ -183,21 +197,21 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The delivery order codes. The length is no more than 50.
    * @return deliveryOrderCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getDeliveryOrderCodes() {
     return deliveryOrderCodes;
   }
 
-  public void setDeliveryOrderCodes(List<String> deliveryOrderCodes) {
+  public void setDeliveryOrderCodes(@javax.annotation.Nullable List<String> deliveryOrderCodes) {
     this.deliveryOrderCodes = deliveryOrderCodes;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody externalSkcCodes(List<String> externalSkcCodes) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody externalSkcCodes(@javax.annotation.Nullable List<String> externalSkcCodes) {
     this.externalSkcCodes = externalSkcCodes;
     return this;
   }
@@ -210,21 +224,21 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The SKC code list of your OMS. The length is no more than 50.
    * @return externalSkcCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExternalSkcCodes() {
     return externalSkcCodes;
   }
 
-  public void setExternalSkcCodes(List<String> externalSkcCodes) {
+  public void setExternalSkcCodes(@javax.annotation.Nullable List<String> externalSkcCodes) {
     this.externalSkcCodes = externalSkcCodes;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody externalSkuCodes(List<String> externalSkuCodes) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody externalSkuCodes(@javax.annotation.Nullable List<String> externalSkuCodes) {
     this.externalSkuCodes = externalSkuCodes;
     return this;
   }
@@ -237,135 +251,135 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The SPU code of your OMS. The length is no more than 50.
    * @return externalSkuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExternalSkuCodes() {
     return externalSkuCodes;
   }
 
-  public void setExternalSkuCodes(List<String> externalSkuCodes) {
+  public void setExternalSkuCodes(@javax.annotation.Nullable List<String> externalSkuCodes) {
     this.externalSkuCodes = externalSkuCodes;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody latestUpdateTimeGe(Long latestUpdateTimeGe) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody latestUpdateTimeGe(@javax.annotation.Nullable Long latestUpdateTimeGe) {
     this.latestUpdateTimeGe = latestUpdateTimeGe;
     return this;
   }
 
-   /**
+  /**
    * The latest update time is greater than or equal to the UNIX timestamp.
    * @return latestUpdateTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getLatestUpdateTimeGe() {
     return latestUpdateTimeGe;
   }
 
-  public void setLatestUpdateTimeGe(Long latestUpdateTimeGe) {
+  public void setLatestUpdateTimeGe(@javax.annotation.Nullable Long latestUpdateTimeGe) {
     this.latestUpdateTimeGe = latestUpdateTimeGe;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody latestUpdateTimeLt(Long latestUpdateTimeLt) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody latestUpdateTimeLt(@javax.annotation.Nullable Long latestUpdateTimeLt) {
     this.latestUpdateTimeLt = latestUpdateTimeLt;
     return this;
   }
 
-   /**
+  /**
    * The latest update time is less than or equal to the UNIX timestamp.
    * @return latestUpdateTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getLatestUpdateTimeLt() {
     return latestUpdateTimeLt;
   }
 
-  public void setLatestUpdateTimeLt(Long latestUpdateTimeLt) {
+  public void setLatestUpdateTimeLt(@javax.annotation.Nullable Long latestUpdateTimeLt) {
     this.latestUpdateTimeLt = latestUpdateTimeLt;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody orderCreateTimeGe(Long orderCreateTimeGe) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody orderCreateTimeGe(@javax.annotation.Nullable Long orderCreateTimeGe) {
     this.orderCreateTimeGe = orderCreateTimeGe;
     return this;
   }
 
-   /**
+  /**
    * The creation time is greater than or equal to the UNIX timestamp.
    * @return orderCreateTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getOrderCreateTimeGe() {
     return orderCreateTimeGe;
   }
 
-  public void setOrderCreateTimeGe(Long orderCreateTimeGe) {
+  public void setOrderCreateTimeGe(@javax.annotation.Nullable Long orderCreateTimeGe) {
     this.orderCreateTimeGe = orderCreateTimeGe;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody orderCreateTimeLt(Long orderCreateTimeLt) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody orderCreateTimeLt(@javax.annotation.Nullable Long orderCreateTimeLt) {
     this.orderCreateTimeLt = orderCreateTimeLt;
     return this;
   }
 
-   /**
+  /**
    * The creation time is greater than or equal to the UNIX timestamp.
    * @return orderCreateTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getOrderCreateTimeLt() {
     return orderCreateTimeLt;
   }
 
-  public void setOrderCreateTimeLt(Long orderCreateTimeLt) {
+  public void setOrderCreateTimeLt(@javax.annotation.Nullable Long orderCreateTimeLt) {
     this.orderCreateTimeLt = orderCreateTimeLt;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody pageSize(Long pageSize) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody pageSize(@javax.annotation.Nullable Long pageSize) {
     this.pageSize = pageSize;
     return this;
   }
 
-   /**
+  /**
    * Page size. The range is &#x60;[0, 50]&#x60;. 10 by default.
    * @return pageSize
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPageSize() {
     return pageSize;
   }
 
-  public void setPageSize(Long pageSize) {
+  public void setPageSize(@javax.annotation.Nullable Long pageSize) {
     this.pageSize = pageSize;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody pageToken(String pageToken) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody pageToken(@javax.annotation.Nullable String pageToken) {
     this.pageToken = pageToken;
     return this;
   }
 
-   /**
+  /**
    * Page offset. &#x60;1&#x60; by default.
    * @return pageToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getPageToken() {
     return pageToken;
   }
 
-  public void setPageToken(String pageToken) {
+  public void setPageToken(@javax.annotation.Nullable String pageToken) {
     this.pageToken = pageToken;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody platformSkuCodes(List<String> platformSkuCodes) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody platformSkuCodes(@javax.annotation.Nullable List<String> platformSkuCodes) {
     this.platformSkuCodes = platformSkuCodes;
     return this;
   }
@@ -378,21 +392,21 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The SKU code of TikTok Shop. The length is no more than 50.
    * @return platformSkuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getPlatformSkuCodes() {
     return platformSkuCodes;
   }
 
-  public void setPlatformSkuCodes(List<String> platformSkuCodes) {
+  public void setPlatformSkuCodes(@javax.annotation.Nullable List<String> platformSkuCodes) {
     this.platformSkuCodes = platformSkuCodes;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody platformSpuCodes(List<String> platformSpuCodes) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody platformSpuCodes(@javax.annotation.Nullable List<String> platformSpuCodes) {
     this.platformSpuCodes = platformSpuCodes;
     return this;
   }
@@ -405,21 +419,21 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The SPU code of TikTok Shop.  less or equal to 50.
    * @return platformSpuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getPlatformSpuCodes() {
     return platformSpuCodes;
   }
 
-  public void setPlatformSpuCodes(List<String> platformSpuCodes) {
+  public void setPlatformSpuCodes(@javax.annotation.Nullable List<String> platformSpuCodes) {
     this.platformSpuCodes = platformSpuCodes;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody relativeReturnStatus(List<String> relativeReturnStatus) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody relativeReturnStatus(@javax.annotation.Nullable List<String> relativeReturnStatus) {
     this.relativeReturnStatus = relativeReturnStatus;
     return this;
   }
@@ -432,21 +446,21 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The list of status of return order. Possible enumerations are:  1. OPERATER_CONFIRMING：Merchants have initiated the return order. The order is yet to be confirmed by the platform. 2. MERCHANT_CONFIRMING：Platform has initiated the return order. The order is yet to be confirmed by the merchants. 3. TO_TRANSIT: Waiting for transit in the warehouse. 4. IN_TRANSIT: transiting in the warehouse. 5. OUTBOUND：Transit finished in the warehouse. Ready for pick up. 6. SHIPPED： Return packages have been collected by logistics. 7. COMPLETED：The return process has been completed. 8. CANCELED：The return process has been cancelled.
    * @return relativeReturnStatus
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getRelativeReturnStatus() {
     return relativeReturnStatus;
   }
 
-  public void setRelativeReturnStatus(List<String> relativeReturnStatus) {
+  public void setRelativeReturnStatus(@javax.annotation.Nullable List<String> relativeReturnStatus) {
     this.relativeReturnStatus = relativeReturnStatus;
   }
 
 
-  public GlobalSellingSearchAbnormalOrdersRequestBody stockupOrderCodes(List<String> stockupOrderCodes) {
+  public GlobalSellingSearchAbnormalOrdersRequestBody stockupOrderCodes(@javax.annotation.Nullable List<String> stockupOrderCodes) {
     this.stockupOrderCodes = stockupOrderCodes;
     return this;
   }
@@ -459,17 +473,62 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The stockup order codes. The length is no more than 50.
    * @return stockupOrderCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getStockupOrderCodes() {
     return stockupOrderCodes;
   }
 
-  public void setStockupOrderCodes(List<String> stockupOrderCodes) {
+  public void setStockupOrderCodes(@javax.annotation.Nullable List<String> stockupOrderCodes) {
     this.stockupOrderCodes = stockupOrderCodes;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchAbnormalOrdersRequestBody instance itself
+   */
+  public GlobalSellingSearchAbnormalOrdersRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -497,12 +556,13 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
         Objects.equals(this.platformSkuCodes, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersRequestBody.platformSkuCodes) &&
         Objects.equals(this.platformSpuCodes, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersRequestBody.platformSpuCodes) &&
         Objects.equals(this.relativeReturnStatus, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersRequestBody.relativeReturnStatus) &&
-        Objects.equals(this.stockupOrderCodes, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersRequestBody.stockupOrderCodes);
+        Objects.equals(this.stockupOrderCodes, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersRequestBody.stockupOrderCodes)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingSearchAbnormalOrdersRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(abnormalOrderCodes, abnormalTypes, deliveryOrderCodes, externalSkcCodes, externalSkuCodes, latestUpdateTimeGe, latestUpdateTimeLt, orderCreateTimeGe, orderCreateTimeLt, pageSize, pageToken, platformSkuCodes, platformSpuCodes, relativeReturnStatus, stockupOrderCodes);
+    return Objects.hash(abnormalOrderCodes, abnormalTypes, deliveryOrderCodes, externalSkcCodes, externalSkuCodes, latestUpdateTimeGe, latestUpdateTimeLt, orderCreateTimeGe, orderCreateTimeLt, pageSize, pageToken, platformSkuCodes, platformSpuCodes, relativeReturnStatus, stockupOrderCodes, additionalProperties);
   }
 
   @Override
@@ -524,6 +584,7 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
     sb.append("    platformSpuCodes: ").append(toIndentedString(platformSpuCodes)).append("\n");
     sb.append("    relativeReturnStatus: ").append(toIndentedString(relativeReturnStatus)).append("\n");
     sb.append("    stockupOrderCodes: ").append(toIndentedString(stockupOrderCodes)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -545,45 +606,22 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("abnormal_order_codes");
-    openapiFields.add("abnormal_types");
-    openapiFields.add("delivery_order_codes");
-    openapiFields.add("external_skc_codes");
-    openapiFields.add("external_sku_codes");
-    openapiFields.add("latest_update_time_ge");
-    openapiFields.add("latest_update_time_lt");
-    openapiFields.add("order_create_time_ge");
-    openapiFields.add("order_create_time_lt");
-    openapiFields.add("page_size");
-    openapiFields.add("page_token");
-    openapiFields.add("platform_sku_codes");
-    openapiFields.add("platform_spu_codes");
-    openapiFields.add("relative_return_status");
-    openapiFields.add("stockup_order_codes");
+    openapiFields = new HashSet<String>(Arrays.asList("abnormal_order_codes", "abnormal_types", "delivery_order_codes", "external_skc_codes", "external_sku_codes", "latest_update_time_ge", "latest_update_time_lt", "order_create_time_ge", "order_create_time_lt", "page_size", "page_token", "platform_sku_codes", "platform_spu_codes", "relative_return_status", "stockup_order_codes"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAbnormalOrdersRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAbnormalOrdersRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchAbnormalOrdersRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchAbnormalOrdersRequestBody is not found in the empty JSON string", GlobalSellingSearchAbnormalOrdersRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchAbnormalOrdersRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchAbnormalOrdersRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -643,6 +681,28 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
            @Override
            public void write(JsonWriter out, GlobalSellingSearchAbnormalOrdersRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -650,29 +710,50 @@ public class GlobalSellingSearchAbnormalOrdersRequestBody {
            public GlobalSellingSearchAbnormalOrdersRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchAbnormalOrdersRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchAbnormalOrdersRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchAbnormalOrdersRequestBody
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAbnormalOrdersRequestBody
-  */
+  /**
+   * Create an instance of GlobalSellingSearchAbnormalOrdersRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchAbnormalOrdersRequestBody
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAbnormalOrdersRequestBody
+   */
   public static GlobalSellingSearchAbnormalOrdersRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchAbnormalOrdersRequestBody.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchAbnormalOrdersRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchAbnormalOrdersRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

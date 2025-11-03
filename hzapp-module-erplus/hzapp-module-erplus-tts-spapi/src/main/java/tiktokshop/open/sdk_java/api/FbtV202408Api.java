@@ -86,12 +86,13 @@ public class FbtV202408Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fbt202408InventorySearchPostCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fbt202408InventorySearchPostCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -128,14 +129,6 @@ public class FbtV202408Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -152,12 +145,22 @@ public class FbtV202408Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fbt202408InventorySearchPostValidateBeforeCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fbt202408InventorySearchPostValidateBeforeCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pageSize' is set
         if (pageSize == null) {
             throw new ApiException("Missing the required parameter 'pageSize' when calling fbt202408InventorySearchPost(Async)");
@@ -189,12 +192,13 @@ public class FbtV202408Api {
      * @return SearchFBTInventoryResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchFBTInventoryResponse fbt202408InventorySearchPost(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody) throws ApiException {
+    public SearchFBTInventoryResponse fbt202408InventorySearchPost(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody) throws ApiException {
         ApiResponse<SearchFBTInventoryResponse> localVarResp = fbt202408InventorySearchPostWithHttpInfo(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher, fbt202408SearchFBTInventoryRequestBody);
         return localVarResp.getData();
     }
@@ -211,12 +215,13 @@ public class FbtV202408Api {
      * @return ApiResponse&lt;SearchFBTInventoryResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchFBTInventoryResponse> fbt202408InventorySearchPostWithHttpInfo(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody) throws ApiException {
+    public ApiResponse<SearchFBTInventoryResponse> fbt202408InventorySearchPostWithHttpInfo(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fbt202408InventorySearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher, fbt202408SearchFBTInventoryRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchFBTInventoryResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -235,12 +240,13 @@ public class FbtV202408Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fbt202408InventorySearchPostAsync(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody, final ApiCallback<SearchFBTInventoryResponse> _callback) throws ApiException {
+    public okhttp3.Call fbt202408InventorySearchPostAsync(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchFBTInventoryRequestBody fbt202408SearchFBTInventoryRequestBody, final ApiCallback<SearchFBTInventoryResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fbt202408InventorySearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher, fbt202408SearchFBTInventoryRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchFBTInventoryResponse>(){}.getType();
@@ -251,17 +257,18 @@ public class FbtV202408Api {
      * Build call for fbt202408WarehousesGet
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fbt202408WarehousesGetCall(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fbt202408WarehousesGetCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -290,14 +297,6 @@ public class FbtV202408Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -313,12 +312,22 @@ public class FbtV202408Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fbt202408WarehousesGetValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fbt202408WarehousesGetValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fbt202408WarehousesGet(Async)");
@@ -338,16 +347,17 @@ public class FbtV202408Api {
      * This API is used to retrieve all Fulfilled by TikTok warehouse information including the warehouse name, warehouse address information, etc. The IDs of subscribed warehouses can be used to query inventory-related information.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @return GetFBTWarehouseListResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetFBTWarehouseListResponse fbt202408WarehousesGet(String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetFBTWarehouseListResponse fbt202408WarehousesGet(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetFBTWarehouseListResponse> localVarResp = fbt202408WarehousesGetWithHttpInfo(xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -357,16 +367,17 @@ public class FbtV202408Api {
      * This API is used to retrieve all Fulfilled by TikTok warehouse information including the warehouse name, warehouse address information, etc. The IDs of subscribed warehouses can be used to query inventory-related information.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @return ApiResponse&lt;GetFBTWarehouseListResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetFBTWarehouseListResponse> fbt202408WarehousesGetWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetFBTWarehouseListResponse> fbt202408WarehousesGetWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = fbt202408WarehousesGetValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetFBTWarehouseListResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -377,17 +388,18 @@ public class FbtV202408Api {
      * This API is used to retrieve all Fulfilled by TikTok warehouse information including the warehouse name, warehouse address information, etc. The IDs of subscribed warehouses can be used to query inventory-related information.
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fbt202408WarehousesGetAsync(String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetFBTWarehouseListResponse> _callback) throws ApiException {
+    public okhttp3.Call fbt202408WarehousesGetAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetFBTWarehouseListResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fbt202408WarehousesGetValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetFBTWarehouseListResponse>(){}.getType();

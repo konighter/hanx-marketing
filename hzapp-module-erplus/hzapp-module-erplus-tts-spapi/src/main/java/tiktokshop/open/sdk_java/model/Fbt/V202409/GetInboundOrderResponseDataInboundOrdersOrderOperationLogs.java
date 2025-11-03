@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,54 +48,101 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetInboundOrderResponseDataInboundOrdersOrderOperationLogs
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetInboundOrderResponseDataInboundOrdersOrderOperationLogs {
   public static final String SERIALIZED_NAME_OPERATE_TIME = "operate_time";
   @SerializedName(SERIALIZED_NAME_OPERATE_TIME)
+  @javax.annotation.Nullable
   private Long operateTime;
 
   public static final String SERIALIZED_NAME_ORDER_STATUS = "order_status";
   @SerializedName(SERIALIZED_NAME_ORDER_STATUS)
+  @javax.annotation.Nullable
   private String orderStatus;
 
   public GetInboundOrderResponseDataInboundOrdersOrderOperationLogs() {
   }
 
-  public GetInboundOrderResponseDataInboundOrdersOrderOperationLogs operateTime(Long operateTime) {
+  public GetInboundOrderResponseDataInboundOrdersOrderOperationLogs operateTime(@javax.annotation.Nullable Long operateTime) {
     this.operateTime = operateTime;
     return this;
   }
 
-   /**
+  /**
    * The time when the inbound order is processed by the merchant or warehouses, represented as a Unix timestamp in seconds.
    * @return operateTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getOperateTime() {
     return operateTime;
   }
 
-  public void setOperateTime(Long operateTime) {
+  public void setOperateTime(@javax.annotation.Nullable Long operateTime) {
     this.operateTime = operateTime;
   }
 
 
-  public GetInboundOrderResponseDataInboundOrdersOrderOperationLogs orderStatus(String orderStatus) {
+  public GetInboundOrderResponseDataInboundOrdersOrderOperationLogs orderStatus(@javax.annotation.Nullable String orderStatus) {
     this.orderStatus = orderStatus;
     return this;
   }
 
-   /**
+  /**
    * The order status in Fulfilled by TikTok warehouse. Possible values: - WORKING - READY_TO_SHIP - TO_BE_RECEIVED - ARRIVED_HUB - INTERNAL_TRANSFER - RECEIVING - PARTIALLY_RECEIVED - RECEIVED - CANCELLED - DELIVERED
    * @return orderStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderStatus() {
     return orderStatus;
   }
 
-  public void setOrderStatus(String orderStatus) {
+  public void setOrderStatus(@javax.annotation.Nullable String orderStatus) {
     this.orderStatus = orderStatus;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetInboundOrderResponseDataInboundOrdersOrderOperationLogs instance itself
+   */
+  public GetInboundOrderResponseDataInboundOrdersOrderOperationLogs putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -111,12 +157,13 @@ public class GetInboundOrderResponseDataInboundOrdersOrderOperationLogs {
     }
     GetInboundOrderResponseDataInboundOrdersOrderOperationLogs fbt202409GetInboundOrderResponseDataInboundOrdersOrderOperationLogs = (GetInboundOrderResponseDataInboundOrdersOrderOperationLogs) o;
     return Objects.equals(this.operateTime, fbt202409GetInboundOrderResponseDataInboundOrdersOrderOperationLogs.operateTime) &&
-        Objects.equals(this.orderStatus, fbt202409GetInboundOrderResponseDataInboundOrdersOrderOperationLogs.orderStatus);
+        Objects.equals(this.orderStatus, fbt202409GetInboundOrderResponseDataInboundOrdersOrderOperationLogs.orderStatus)&&
+        Objects.equals(this.additionalProperties, fbt202409GetInboundOrderResponseDataInboundOrdersOrderOperationLogs.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operateTime, orderStatus);
+    return Objects.hash(operateTime, orderStatus, additionalProperties);
   }
 
   @Override
@@ -125,6 +172,7 @@ public class GetInboundOrderResponseDataInboundOrdersOrderOperationLogs {
     sb.append("class GetInboundOrderResponseDataInboundOrdersOrderOperationLogs {\n");
     sb.append("    operateTime: ").append(toIndentedString(operateTime)).append("\n");
     sb.append("    orderStatus: ").append(toIndentedString(orderStatus)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -146,32 +194,22 @@ public class GetInboundOrderResponseDataInboundOrdersOrderOperationLogs {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("operate_time");
-    openapiFields.add("order_status");
+    openapiFields = new HashSet<String>(Arrays.asList("operate_time", "order_status"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetInboundOrderResponseDataInboundOrdersOrderOperationLogs
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetInboundOrderResponseDataInboundOrdersOrderOperationLogs
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetInboundOrderResponseDataInboundOrdersOrderOperationLogs.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetInboundOrderResponseDataInboundOrdersOrderOperationLogs is not found in the empty JSON string", GetInboundOrderResponseDataInboundOrdersOrderOperationLogs.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetInboundOrderResponseDataInboundOrdersOrderOperationLogs.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetInboundOrderResponseDataInboundOrdersOrderOperationLogs` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -195,6 +233,28 @@ public class GetInboundOrderResponseDataInboundOrdersOrderOperationLogs {
            @Override
            public void write(JsonWriter out, GetInboundOrderResponseDataInboundOrdersOrderOperationLogs value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -202,29 +262,50 @@ public class GetInboundOrderResponseDataInboundOrdersOrderOperationLogs {
            public GetInboundOrderResponseDataInboundOrdersOrderOperationLogs read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetInboundOrderResponseDataInboundOrdersOrderOperationLogs instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetInboundOrderResponseDataInboundOrdersOrderOperationLogs given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetInboundOrderResponseDataInboundOrdersOrderOperationLogs
-  * @throws IOException if the JSON string is invalid with respect to GetInboundOrderResponseDataInboundOrdersOrderOperationLogs
-  */
+  /**
+   * Create an instance of GetInboundOrderResponseDataInboundOrdersOrderOperationLogs given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetInboundOrderResponseDataInboundOrdersOrderOperationLogs
+   * @throws IOException if the JSON string is invalid with respect to GetInboundOrderResponseDataInboundOrdersOrderOperationLogs
+   */
   public static GetInboundOrderResponseDataInboundOrdersOrderOperationLogs fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetInboundOrderResponseDataInboundOrdersOrderOperationLogs.class);
   }
 
- /**
-  * Convert an instance of GetInboundOrderResponseDataInboundOrdersOrderOperationLogs to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetInboundOrderResponseDataInboundOrdersOrderOperationLogs to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

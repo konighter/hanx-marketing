@@ -26,10 +26,6 @@ public class SellPlatformRespVO {
     @ExcelProperty("编码")
     private String code;
 
-    @Schema(description = "头像")
-    @ExcelProperty("头像")
-    private String avatar;
-
     @Schema(description = "配送模式")
     @ExcelProperty("配送模式")
     private List<ServiceMode> serviceModes;

@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,39 +51,41 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetPaymentsResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetPaymentsResponseData {
   public static final String SERIALIZED_NAME_NEXT_PAGE_TOKEN = "next_page_token";
   @SerializedName(SERIALIZED_NAME_NEXT_PAGE_TOKEN)
+  @javax.annotation.Nullable
   private String nextPageToken;
 
   public static final String SERIALIZED_NAME_PAYMENTS = "payments";
   @SerializedName(SERIALIZED_NAME_PAYMENTS)
+  @javax.annotation.Nullable
   private List<GetPaymentsResponseDataPayments> payments = new ArrayList<>();
 
   public GetPaymentsResponseData() {
   }
 
-  public GetPaymentsResponseData nextPageToken(String nextPageToken) {
+  public GetPaymentsResponseData nextPageToken(@javax.annotation.Nullable String nextPageToken) {
     this.nextPageToken = nextPageToken;
     return this;
   }
 
-   /**
+  /**
    * An opaque token used to retrieve the next page of a paginated result set. Provide this value in the &#x60;page_token&#x60; parameter of your request if the current response does not return all the results.
    * @return nextPageToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getNextPageToken() {
     return nextPageToken;
   }
 
-  public void setNextPageToken(String nextPageToken) {
+  public void setNextPageToken(@javax.annotation.Nullable String nextPageToken) {
     this.nextPageToken = nextPageToken;
   }
 
 
-  public GetPaymentsResponseData payments(List<GetPaymentsResponseDataPayments> payments) {
+  public GetPaymentsResponseData payments(@javax.annotation.Nullable List<GetPaymentsResponseDataPayments> payments) {
     this.payments = payments;
     return this;
   }
@@ -97,17 +98,62 @@ public class GetPaymentsResponseData {
     return this;
   }
 
-   /**
+  /**
    * The list of payments that meet the query conditions.
    * @return payments
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetPaymentsResponseDataPayments> getPayments() {
     return payments;
   }
 
-  public void setPayments(List<GetPaymentsResponseDataPayments> payments) {
+  public void setPayments(@javax.annotation.Nullable List<GetPaymentsResponseDataPayments> payments) {
     this.payments = payments;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetPaymentsResponseData instance itself
+   */
+  public GetPaymentsResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -122,12 +168,13 @@ public class GetPaymentsResponseData {
     }
     GetPaymentsResponseData finance202309GetPaymentsResponseData = (GetPaymentsResponseData) o;
     return Objects.equals(this.nextPageToken, finance202309GetPaymentsResponseData.nextPageToken) &&
-        Objects.equals(this.payments, finance202309GetPaymentsResponseData.payments);
+        Objects.equals(this.payments, finance202309GetPaymentsResponseData.payments)&&
+        Objects.equals(this.additionalProperties, finance202309GetPaymentsResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(nextPageToken, payments);
+    return Objects.hash(nextPageToken, payments, additionalProperties);
   }
 
   @Override
@@ -136,6 +183,7 @@ public class GetPaymentsResponseData {
     sb.append("class GetPaymentsResponseData {\n");
     sb.append("    nextPageToken: ").append(toIndentedString(nextPageToken)).append("\n");
     sb.append("    payments: ").append(toIndentedString(payments)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,32 +205,22 @@ public class GetPaymentsResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("next_page_token");
-    openapiFields.add("payments");
+    openapiFields = new HashSet<String>(Arrays.asList("next_page_token", "payments"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetPaymentsResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetPaymentsResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetPaymentsResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetPaymentsResponseData is not found in the empty JSON string", GetPaymentsResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetPaymentsResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetPaymentsResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -220,6 +258,28 @@ public class GetPaymentsResponseData {
            @Override
            public void write(JsonWriter out, GetPaymentsResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -227,29 +287,50 @@ public class GetPaymentsResponseData {
            public GetPaymentsResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetPaymentsResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetPaymentsResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetPaymentsResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetPaymentsResponseData
-  */
+  /**
+   * Create an instance of GetPaymentsResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetPaymentsResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetPaymentsResponseData
+   */
   public static GetPaymentsResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetPaymentsResponseData.class);
   }
 
- /**
-  * Convert an instance of GetPaymentsResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetPaymentsResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

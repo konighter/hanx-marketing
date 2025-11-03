@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,89 +50,94 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility {
   public static final String SERIALIZED_NAME_ELIGIBLE = "eligible";
   @SerializedName(SERIALIZED_NAME_ELIGIBLE)
+  @javax.annotation.Nullable
   private Boolean eligible;
 
   public static final String SERIALIZED_NAME_INELIGIBLE_CODE = "ineligible_code";
   @SerializedName(SERIALIZED_NAME_INELIGIBLE_CODE)
+  @javax.annotation.Nullable
   private Integer ineligibleCode;
 
   public static final String SERIALIZED_NAME_INELIGIBLE_REASON = "ineligible_reason";
   @SerializedName(SERIALIZED_NAME_INELIGIBLE_REASON)
+  @javax.annotation.Nullable
   private String ineligibleReason;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEMS_IDS = "order_line_items_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEMS_IDS)
+  @javax.annotation.Nullable
   private List<String> orderLineItemsIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REQUEST_TYPE = "request_type";
   @SerializedName(SERIALIZED_NAME_REQUEST_TYPE)
+  @javax.annotation.Nullable
   private String requestType;
 
   public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility() {
   }
 
-  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility eligible(Boolean eligible) {
+  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility eligible(@javax.annotation.Nullable Boolean eligible) {
     this.eligible = eligible;
     return this;
   }
 
-   /**
+  /**
    * Use this field to recognize whether an item is eligible for an aftersale request: - TRUE - FALSE
    * @return eligible
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getEligible() {
     return eligible;
   }
 
-  public void setEligible(Boolean eligible) {
+  public void setEligible(@javax.annotation.Nullable Boolean eligible) {
     this.eligible = eligible;
   }
 
 
-  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility ineligibleCode(Integer ineligibleCode) {
+  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility ineligibleCode(@javax.annotation.Nullable Integer ineligibleCode) {
     this.ineligibleCode = ineligibleCode;
     return this;
   }
 
-   /**
+  /**
    * The reason code for an ineligible aftersale request.
    * @return ineligibleCode
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getIneligibleCode() {
     return ineligibleCode;
   }
 
-  public void setIneligibleCode(Integer ineligibleCode) {
+  public void setIneligibleCode(@javax.annotation.Nullable Integer ineligibleCode) {
     this.ineligibleCode = ineligibleCode;
   }
 
 
-  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility ineligibleReason(String ineligibleReason) {
+  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility ineligibleReason(@javax.annotation.Nullable String ineligibleReason) {
     this.ineligibleReason = ineligibleReason;
     return this;
   }
 
-   /**
+  /**
    * The reason for an ineligible aftersale request.
    * @return ineligibleReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getIneligibleReason() {
     return ineligibleReason;
   }
 
-  public void setIneligibleReason(String ineligibleReason) {
+  public void setIneligibleReason(@javax.annotation.Nullable String ineligibleReason) {
     this.ineligibleReason = ineligibleReason;
   }
 
 
-  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility orderLineItemsIds(List<String> orderLineItemsIds) {
+  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility orderLineItemsIds(@javax.annotation.Nullable List<String> orderLineItemsIds) {
     this.orderLineItemsIds = orderLineItemsIds;
     return this;
   }
@@ -146,36 +150,81 @@ public class GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibilit
     return this;
   }
 
-   /**
+  /**
    * IDs of order line items.
    * @return orderLineItemsIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineItemsIds() {
     return orderLineItemsIds;
   }
 
-  public void setOrderLineItemsIds(List<String> orderLineItemsIds) {
+  public void setOrderLineItemsIds(@javax.annotation.Nullable List<String> orderLineItemsIds) {
     this.orderLineItemsIds = orderLineItemsIds;
   }
 
 
-  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility requestType(String requestType) {
+  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility requestType(@javax.annotation.Nullable String requestType) {
     this.requestType = requestType;
     return this;
   }
 
-   /**
+  /**
    * Aftersale request type. Possible values: - CANCEL - RETURN - RETURN_AND_REFUND
    * @return requestType
-  **/
+   */
   @javax.annotation.Nullable
   public String getRequestType() {
     return requestType;
   }
 
-  public void setRequestType(String requestType) {
+  public void setRequestType(@javax.annotation.Nullable String requestType) {
     this.requestType = requestType;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility instance itself
+   */
+  public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -193,12 +242,13 @@ public class GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibilit
         Objects.equals(this.ineligibleCode, returnRefund202309GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.ineligibleCode) &&
         Objects.equals(this.ineligibleReason, returnRefund202309GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.ineligibleReason) &&
         Objects.equals(this.orderLineItemsIds, returnRefund202309GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.orderLineItemsIds) &&
-        Objects.equals(this.requestType, returnRefund202309GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.requestType);
+        Objects.equals(this.requestType, returnRefund202309GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.requestType)&&
+        Objects.equals(this.additionalProperties, returnRefund202309GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(eligible, ineligibleCode, ineligibleReason, orderLineItemsIds, requestType);
+    return Objects.hash(eligible, ineligibleCode, ineligibleReason, orderLineItemsIds, requestType, additionalProperties);
   }
 
   @Override
@@ -210,6 +260,7 @@ public class GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibilit
     sb.append("    ineligibleReason: ").append(toIndentedString(ineligibleReason)).append("\n");
     sb.append("    orderLineItemsIds: ").append(toIndentedString(orderLineItemsIds)).append("\n");
     sb.append("    requestType: ").append(toIndentedString(requestType)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -231,35 +282,22 @@ public class GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibilit
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("eligible");
-    openapiFields.add("ineligible_code");
-    openapiFields.add("ineligible_reason");
-    openapiFields.add("order_line_items_ids");
-    openapiFields.add("request_type");
+    openapiFields = new HashSet<String>(Arrays.asList("eligible", "ineligible_code", "ineligible_reason", "order_line_items_ids", "request_type"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility is not found in the empty JSON string", GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -290,6 +328,28 @@ public class GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibilit
            @Override
            public void write(JsonWriter out, GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -297,29 +357,50 @@ public class GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibilit
            public GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility
-  * @throws IOException if the JSON string is invalid with respect to GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility
-  */
+  /**
+   * Create an instance of GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility
+   * @throws IOException if the JSON string is invalid with respect to GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility
+   */
   public static GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility.class);
   }
 
- /**
-  * Convert an instance of GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetAftersaleEligibilityResponseDataSkuEligibilityLineItemEligibility to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

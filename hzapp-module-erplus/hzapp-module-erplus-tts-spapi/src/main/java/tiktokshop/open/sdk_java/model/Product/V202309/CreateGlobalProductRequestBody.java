@@ -48,7 +48,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -60,141 +59,159 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CreateGlobalProductRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CreateGlobalProductRequestBody {
   public static final String SERIALIZED_NAME_BRAND_ID = "brand_id";
   @SerializedName(SERIALIZED_NAME_BRAND_ID)
+  @javax.annotation.Nullable
   private String brandId;
 
   public static final String SERIALIZED_NAME_CATEGORY_ID = "category_id";
   @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  @javax.annotation.Nullable
   private String categoryId;
 
   public static final String SERIALIZED_NAME_CATEGORY_VERSION = "category_version";
   @SerializedName(SERIALIZED_NAME_CATEGORY_VERSION)
+  @javax.annotation.Nullable
   private String categoryVersion;
 
   public static final String SERIALIZED_NAME_CERTIFICATIONS = "certifications";
   @SerializedName(SERIALIZED_NAME_CERTIFICATIONS)
+  @javax.annotation.Nullable
   private List<CreateGlobalProductRequestBodyCertifications> certifications = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_EXTERNAL_GLOBAL_PRODUCT_ID = "external_global_product_id";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_GLOBAL_PRODUCT_ID)
+  @javax.annotation.Nullable
   private String externalGlobalProductId;
 
   public static final String SERIALIZED_NAME_MAIN_IMAGES = "main_images";
   @SerializedName(SERIALIZED_NAME_MAIN_IMAGES)
+  @javax.annotation.Nullable
   private List<CreateGlobalProductRequestBodyMainImages> mainImages = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_MANUFACTURER = "manufacturer";
   @SerializedName(SERIALIZED_NAME_MANUFACTURER)
+  @javax.annotation.Nullable
   private CreateGlobalProductRequestBodyManufacturer manufacturer;
 
   public static final String SERIALIZED_NAME_MANUFACTURER_IDS = "manufacturer_ids";
   @SerializedName(SERIALIZED_NAME_MANUFACTURER_IDS)
+  @javax.annotation.Nullable
   private List<String> manufacturerIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PACKAGE_DIMENSIONS = "package_dimensions";
   @SerializedName(SERIALIZED_NAME_PACKAGE_DIMENSIONS)
+  @javax.annotation.Nullable
   private CreateGlobalProductRequestBodyPackageDimensions packageDimensions;
 
   public static final String SERIALIZED_NAME_PACKAGE_WEIGHT = "package_weight";
   @SerializedName(SERIALIZED_NAME_PACKAGE_WEIGHT)
+  @javax.annotation.Nullable
   private CreateGlobalProductRequestBodyPackageWeight packageWeight;
 
   public static final String SERIALIZED_NAME_PRODUCT_ATTRIBUTES = "product_attributes";
   @SerializedName(SERIALIZED_NAME_PRODUCT_ATTRIBUTES)
+  @javax.annotation.Nullable
   private List<CreateGlobalProductRequestBodyProductAttributes> productAttributes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS = "responsible_person_ids";
   @SerializedName(SERIALIZED_NAME_RESPONSIBLE_PERSON_IDS)
+  @javax.annotation.Nullable
   private List<String> responsiblePersonIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SIZE_CHART = "size_chart";
   @SerializedName(SERIALIZED_NAME_SIZE_CHART)
+  @javax.annotation.Nullable
   private CreateGlobalProductRequestBodySizeChart sizeChart;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<CreateGlobalProductRequestBodySkus> skus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SOURCE_LOCALE = "source_locale";
   @SerializedName(SERIALIZED_NAME_SOURCE_LOCALE)
+  @javax.annotation.Nullable
   private String sourceLocale;
 
   public static final String SERIALIZED_NAME_TITLE = "title";
   @SerializedName(SERIALIZED_NAME_TITLE)
+  @javax.annotation.Nullable
   private String title;
 
   public static final String SERIALIZED_NAME_VIDEO = "video";
   @SerializedName(SERIALIZED_NAME_VIDEO)
+  @javax.annotation.Nullable
   private CreateGlobalProductRequestBodyVideo video;
 
   public CreateGlobalProductRequestBody() {
   }
 
-  public CreateGlobalProductRequestBody brandId(String brandId) {
+  public CreateGlobalProductRequestBody brandId(@javax.annotation.Nullable String brandId) {
     this.brandId = brandId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the brand of this product.   **Note**: Unauthorized brands won&#39;t be displayed on TikTok Shop.
    * @return brandId
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrandId() {
     return brandId;
   }
 
-  public void setBrandId(String brandId) {
+  public void setBrandId(@javax.annotation.Nullable String brandId) {
     this.brandId = brandId;
   }
 
 
-  public CreateGlobalProductRequestBody categoryId(String categoryId) {
+  public CreateGlobalProductRequestBody categoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
     return this;
   }
 
-   /**
+  /**
    * The ID of the category of this product.  - It must be a leaf category that corresponds to the category tree type specified in the &#x60;category_version&#x60; property.  - It must be a main category (&#x60;categories.permission_statuses&#x3D;AVAILABLE&#x60; in [Get Global Categories API](650a03f8f1fd3102b91b338a)). **Note**: Refer to TikTok Shop Academy for information on product category restrictions.
    * @return categoryId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(String categoryId) {
+  public void setCategoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
   }
 
 
-  public CreateGlobalProductRequestBody categoryVersion(String categoryVersion) {
+  public CreateGlobalProductRequestBody categoryVersion(@javax.annotation.Nullable String categoryVersion) {
     this.categoryVersion = categoryVersion;
     return this;
   }
 
-   /**
+  /**
    * The category tree version to assign this product to. Possible values based on region: - US: &#x60;v2&#x60;, represents the 7-level category tree.   **Important**: If the seller account contains an active US shop, you must pass &#x60;v2&#x60; when using this API. - Other regions: &#x60;v1&#x60;, represents the 3-level category tree. Default: &#x60;v1&#x60;
    * @return categoryVersion
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryVersion() {
     return categoryVersion;
   }
 
-  public void setCategoryVersion(String categoryVersion) {
+  public void setCategoryVersion(@javax.annotation.Nullable String categoryVersion) {
     this.categoryVersion = categoryVersion;
   }
 
 
-  public CreateGlobalProductRequestBody certifications(List<CreateGlobalProductRequestBodyCertifications> certifications) {
+  public CreateGlobalProductRequestBody certifications(@javax.annotation.Nullable List<CreateGlobalProductRequestBodyCertifications> certifications) {
     this.certifications = certifications;
     return this;
   }
@@ -207,59 +224,59 @@ public class CreateGlobalProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The list of certifications for your product. Max count: 10  As per TikTok Shop guidelines, certifications are required for certain restricted product categories. Retrieve the certification requirements for your product from the  [Get Global Category Rules API](https://partner.tiktokshop.com/docv2/page/650a056df1fd3102b91b5b8e). Refer to [TikTok Shop Restricted Products Policy](https://seller-us.tiktok.com/university/essay?identity&#x3D;1&amp;role&#x3D;1&amp;knowledge_id&#x3D;3238037484275457&amp;from&#x3D;policy) for information on product category restrictions.
    * @return certifications
-  **/
+   */
   @javax.annotation.Nullable
   public List<CreateGlobalProductRequestBodyCertifications> getCertifications() {
     return certifications;
   }
 
-  public void setCertifications(List<CreateGlobalProductRequestBodyCertifications> certifications) {
+  public void setCertifications(@javax.annotation.Nullable List<CreateGlobalProductRequestBodyCertifications> certifications) {
     this.certifications = certifications;
   }
 
 
-  public CreateGlobalProductRequestBody description(String description) {
+  public CreateGlobalProductRequestBody description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * The product description in HTML format.  **Note**: - The content must conform to the [HTML syntax](https://html.spec.whatwg.org/). All HTML tags are accepted but to optimize display on the TikTok Shop product detail page, the system will automatically convert certain tags into alternative formats, such as rendering &#x60;&lt;table&gt;&#x60; tags as images. - Max length: 10,000 characters. - Image guidelines: You must use [TikTok Shop image URLs](6509df95defece02be598a22). Max 30 &#x60;&lt;img&gt;&#x60; tags, each under 4000px with &#x60;src&#x60;, &#x60;width&#x60;, and &#x60;height&#x60; attributes.  **Recommendations**:  - If you are syncing a pre-existing description from another platform, include the full HTML source description here. - Provide a detailed description, ideally over 300 characters. - Include 3-5 key selling points, each under 250 characters, with supporting images. - Use 1600x1600 px for the image dimensions.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public CreateGlobalProductRequestBody externalGlobalProductId(String externalGlobalProductId) {
+  public CreateGlobalProductRequestBody externalGlobalProductId(@javax.annotation.Nullable String externalGlobalProductId) {
     this.externalGlobalProductId = externalGlobalProductId;
     return this;
   }
 
-   /**
+  /**
    * An external identifier used in an external ecommerce platform. This is used to associate the global product between TikTok Shop and the external ecommerce platform.  Max length: 999 characters
    * @return externalGlobalProductId
-  **/
+   */
   @javax.annotation.Nullable
   public String getExternalGlobalProductId() {
     return externalGlobalProductId;
   }
 
-  public void setExternalGlobalProductId(String externalGlobalProductId) {
+  public void setExternalGlobalProductId(@javax.annotation.Nullable String externalGlobalProductId) {
     this.externalGlobalProductId = externalGlobalProductId;
   }
 
 
-  public CreateGlobalProductRequestBody mainImages(List<CreateGlobalProductRequestBodyMainImages> mainImages) {
+  public CreateGlobalProductRequestBody mainImages(@javax.annotation.Nullable List<CreateGlobalProductRequestBodyMainImages> mainImages) {
     this.mainImages = mainImages;
     return this;
   }
@@ -272,40 +289,40 @@ public class CreateGlobalProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A list of images to display in the product image gallery. - Max count: 9 - Arrange your image URIs in the sequence that they should appear on TikTok Shop. - Image dimensions: [300x300 px, 4000x4000 px]    **Recommendations**: - Use a minimum of 5 images. - The first image should have a white background. Use the [Optimize Images API](https://partner.tiktokshop.com/docv2/page/665692b35d39dc02deb49a97) to change the background to white.
    * @return mainImages
-  **/
+   */
   @javax.annotation.Nullable
   public List<CreateGlobalProductRequestBodyMainImages> getMainImages() {
     return mainImages;
   }
 
-  public void setMainImages(List<CreateGlobalProductRequestBodyMainImages> mainImages) {
+  public void setMainImages(@javax.annotation.Nullable List<CreateGlobalProductRequestBodyMainImages> mainImages) {
     this.mainImages = mainImages;
   }
 
 
-  public CreateGlobalProductRequestBody manufacturer(CreateGlobalProductRequestBodyManufacturer manufacturer) {
+  public CreateGlobalProductRequestBody manufacturer(@javax.annotation.Nullable CreateGlobalProductRequestBodyManufacturer manufacturer) {
     this.manufacturer = manufacturer;
     return this;
   }
 
-   /**
+  /**
    * Get manufacturer
    * @return manufacturer
-  **/
+   */
   @javax.annotation.Nullable
   public CreateGlobalProductRequestBodyManufacturer getManufacturer() {
     return manufacturer;
   }
 
-  public void setManufacturer(CreateGlobalProductRequestBodyManufacturer manufacturer) {
+  public void setManufacturer(@javax.annotation.Nullable CreateGlobalProductRequestBodyManufacturer manufacturer) {
     this.manufacturer = manufacturer;
   }
 
 
-  public CreateGlobalProductRequestBody manufacturerIds(List<String> manufacturerIds) {
+  public CreateGlobalProductRequestBody manufacturerIds(@javax.annotation.Nullable List<String> manufacturerIds) {
     this.manufacturerIds = manufacturerIds;
     return this;
   }
@@ -318,59 +335,59 @@ public class CreateGlobalProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A comma-delimited list of manufacturer IDs. Retrieve the IDs from the [Search Manufacturers API](67066a580dcee902fa03ccf9). **Note**: Applicable only for the EU market in certain categories. Use the [Get Global Category Rules API](650a056df1fd3102b91b5b8e) to check the requirements.
    * @return manufacturerIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getManufacturerIds() {
     return manufacturerIds;
   }
 
-  public void setManufacturerIds(List<String> manufacturerIds) {
+  public void setManufacturerIds(@javax.annotation.Nullable List<String> manufacturerIds) {
     this.manufacturerIds = manufacturerIds;
   }
 
 
-  public CreateGlobalProductRequestBody packageDimensions(CreateGlobalProductRequestBodyPackageDimensions packageDimensions) {
+  public CreateGlobalProductRequestBody packageDimensions(@javax.annotation.Nullable CreateGlobalProductRequestBodyPackageDimensions packageDimensions) {
     this.packageDimensions = packageDimensions;
     return this;
   }
 
-   /**
+  /**
    * Get packageDimensions
    * @return packageDimensions
-  **/
+   */
   @javax.annotation.Nullable
   public CreateGlobalProductRequestBodyPackageDimensions getPackageDimensions() {
     return packageDimensions;
   }
 
-  public void setPackageDimensions(CreateGlobalProductRequestBodyPackageDimensions packageDimensions) {
+  public void setPackageDimensions(@javax.annotation.Nullable CreateGlobalProductRequestBodyPackageDimensions packageDimensions) {
     this.packageDimensions = packageDimensions;
   }
 
 
-  public CreateGlobalProductRequestBody packageWeight(CreateGlobalProductRequestBodyPackageWeight packageWeight) {
+  public CreateGlobalProductRequestBody packageWeight(@javax.annotation.Nullable CreateGlobalProductRequestBodyPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
     return this;
   }
 
-   /**
+  /**
    * Get packageWeight
    * @return packageWeight
-  **/
+   */
   @javax.annotation.Nullable
   public CreateGlobalProductRequestBodyPackageWeight getPackageWeight() {
     return packageWeight;
   }
 
-  public void setPackageWeight(CreateGlobalProductRequestBodyPackageWeight packageWeight) {
+  public void setPackageWeight(@javax.annotation.Nullable CreateGlobalProductRequestBodyPackageWeight packageWeight) {
     this.packageWeight = packageWeight;
   }
 
 
-  public CreateGlobalProductRequestBody productAttributes(List<CreateGlobalProductRequestBodyProductAttributes> productAttributes) {
+  public CreateGlobalProductRequestBody productAttributes(@javax.annotation.Nullable List<CreateGlobalProductRequestBodyProductAttributes> productAttributes) {
     this.productAttributes = productAttributes;
     return this;
   }
@@ -383,21 +400,21 @@ public class CreateGlobalProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A list of general attributes (e.g. manufacturer, country of origin, materials used) that describe the product as a whole, regardless of variant.  **Important**: The attributes available for use are determined by the system based on the product&#39;s assigned category, with some being mandatory. You must provide the product attributes marked as &#x60;is_required&#x60; in the response of the [Get Global Attributes API](https://partner.tiktokshop.com/docv2/page/650a0483c16ffe02b8dfc80a).
    * @return productAttributes
-  **/
+   */
   @javax.annotation.Nullable
   public List<CreateGlobalProductRequestBodyProductAttributes> getProductAttributes() {
     return productAttributes;
   }
 
-  public void setProductAttributes(List<CreateGlobalProductRequestBodyProductAttributes> productAttributes) {
+  public void setProductAttributes(@javax.annotation.Nullable List<CreateGlobalProductRequestBodyProductAttributes> productAttributes) {
     this.productAttributes = productAttributes;
   }
 
 
-  public CreateGlobalProductRequestBody responsiblePersonIds(List<String> responsiblePersonIds) {
+  public CreateGlobalProductRequestBody responsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
     return this;
   }
@@ -410,40 +427,40 @@ public class CreateGlobalProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A comma-delimited list of responsible person IDs. Retrieve the IDs from the [Search Responsible Persons API](67066a55f17b7d02f95d2fb1). **Note**: Applicable only for the EU market in certain categories. Use the [Get Global Category Rules API](650a056df1fd3102b91b5b8e) to check the requirements.
    * @return responsiblePersonIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getResponsiblePersonIds() {
     return responsiblePersonIds;
   }
 
-  public void setResponsiblePersonIds(List<String> responsiblePersonIds) {
+  public void setResponsiblePersonIds(@javax.annotation.Nullable List<String> responsiblePersonIds) {
     this.responsiblePersonIds = responsiblePersonIds;
   }
 
 
-  public CreateGlobalProductRequestBody sizeChart(CreateGlobalProductRequestBodySizeChart sizeChart) {
+  public CreateGlobalProductRequestBody sizeChart(@javax.annotation.Nullable CreateGlobalProductRequestBodySizeChart sizeChart) {
     this.sizeChart = sizeChart;
     return this;
   }
 
-   /**
+  /**
    * Get sizeChart
    * @return sizeChart
-  **/
+   */
   @javax.annotation.Nullable
   public CreateGlobalProductRequestBodySizeChart getSizeChart() {
     return sizeChart;
   }
 
-  public void setSizeChart(CreateGlobalProductRequestBodySizeChart sizeChart) {
+  public void setSizeChart(@javax.annotation.Nullable CreateGlobalProductRequestBodySizeChart sizeChart) {
     this.sizeChart = sizeChart;
   }
 
 
-  public CreateGlobalProductRequestBody skus(List<CreateGlobalProductRequestBodySkus> skus) {
+  public CreateGlobalProductRequestBody skus(@javax.annotation.Nullable List<CreateGlobalProductRequestBodySkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -456,74 +473,119 @@ public class CreateGlobalProductRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A list of global Stock Keeping Units (SKUs) used to identify distinct variants of the product.  **Note**: - Max SKUs for EU, JP, UK, US: 300 - Max SKUs for other regions: 100  **Recommendations**: Place the most important variant at the beginning of the array.
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<CreateGlobalProductRequestBodySkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<CreateGlobalProductRequestBodySkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<CreateGlobalProductRequestBodySkus> skus) {
     this.skus = skus;
   }
 
 
-  public CreateGlobalProductRequestBody sourceLocale(String sourceLocale) {
+  public CreateGlobalProductRequestBody sourceLocale(@javax.annotation.Nullable String sourceLocale) {
     this.sourceLocale = sourceLocale;
     return this;
   }
 
-   /**
+  /**
    * The BCP-47 locale code representing the source language used for specifying the product information. Default: en-US Possible values: - de-DE - en-IE - es-ES - fr-FR - it-IT  **Note**:  - Applicable only for intra-EU sellers. Other sellers can ignore this field and provide the product information in English. - The information provided will be automatically translated into all EU languages supported by TikTok Shop. Ensure the locale matches the language used in field values to avoid inaccurate translations.
    * @return sourceLocale
-  **/
+   */
   @javax.annotation.Nullable
   public String getSourceLocale() {
     return sourceLocale;
   }
 
-  public void setSourceLocale(String sourceLocale) {
+  public void setSourceLocale(@javax.annotation.Nullable String sourceLocale) {
     this.sourceLocale = sourceLocale;
   }
 
 
-  public CreateGlobalProductRequestBody title(String title) {
+  public CreateGlobalProductRequestBody title(@javax.annotation.Nullable String title) {
     this.title = title;
     return this;
   }
 
-   /**
+  /**
    * The product title.  Title length: - DE, ES, FR, IE, IT, JP, UK, US: [1, 255]  - MX:[1,300]  - Other regions: [25, 255]
    * @return title
-  **/
+   */
   @javax.annotation.Nullable
   public String getTitle() {
     return title;
   }
 
-  public void setTitle(String title) {
+  public void setTitle(@javax.annotation.Nullable String title) {
     this.title = title;
   }
 
 
-  public CreateGlobalProductRequestBody video(CreateGlobalProductRequestBodyVideo video) {
+  public CreateGlobalProductRequestBody video(@javax.annotation.Nullable CreateGlobalProductRequestBodyVideo video) {
     this.video = video;
     return this;
   }
 
-   /**
+  /**
    * Get video
    * @return video
-  **/
+   */
   @javax.annotation.Nullable
   public CreateGlobalProductRequestBodyVideo getVideo() {
     return video;
   }
 
-  public void setVideo(CreateGlobalProductRequestBodyVideo video) {
+  public void setVideo(@javax.annotation.Nullable CreateGlobalProductRequestBodyVideo video) {
     this.video = video;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CreateGlobalProductRequestBody instance itself
+   */
+  public CreateGlobalProductRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -554,12 +616,13 @@ public class CreateGlobalProductRequestBody {
         Objects.equals(this.skus, product202309CreateGlobalProductRequestBody.skus) &&
         Objects.equals(this.sourceLocale, product202309CreateGlobalProductRequestBody.sourceLocale) &&
         Objects.equals(this.title, product202309CreateGlobalProductRequestBody.title) &&
-        Objects.equals(this.video, product202309CreateGlobalProductRequestBody.video);
+        Objects.equals(this.video, product202309CreateGlobalProductRequestBody.video)&&
+        Objects.equals(this.additionalProperties, product202309CreateGlobalProductRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(brandId, categoryId, categoryVersion, certifications, description, externalGlobalProductId, mainImages, manufacturer, manufacturerIds, packageDimensions, packageWeight, productAttributes, responsiblePersonIds, sizeChart, skus, sourceLocale, title, video);
+    return Objects.hash(brandId, categoryId, categoryVersion, certifications, description, externalGlobalProductId, mainImages, manufacturer, manufacturerIds, packageDimensions, packageWeight, productAttributes, responsiblePersonIds, sizeChart, skus, sourceLocale, title, video, additionalProperties);
   }
 
   @Override
@@ -584,6 +647,7 @@ public class CreateGlobalProductRequestBody {
     sb.append("    sourceLocale: ").append(toIndentedString(sourceLocale)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    video: ").append(toIndentedString(video)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -605,48 +669,22 @@ public class CreateGlobalProductRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("brand_id");
-    openapiFields.add("category_id");
-    openapiFields.add("category_version");
-    openapiFields.add("certifications");
-    openapiFields.add("description");
-    openapiFields.add("external_global_product_id");
-    openapiFields.add("main_images");
-    openapiFields.add("manufacturer");
-    openapiFields.add("manufacturer_ids");
-    openapiFields.add("package_dimensions");
-    openapiFields.add("package_weight");
-    openapiFields.add("product_attributes");
-    openapiFields.add("responsible_person_ids");
-    openapiFields.add("size_chart");
-    openapiFields.add("skus");
-    openapiFields.add("source_locale");
-    openapiFields.add("title");
-    openapiFields.add("video");
+    openapiFields = new HashSet<String>(Arrays.asList("brand_id", "category_id", "category_version", "certifications", "description", "external_global_product_id", "main_images", "manufacturer", "manufacturer_ids", "package_dimensions", "package_weight", "product_attributes", "responsible_person_ids", "size_chart", "skus", "source_locale", "title", "video"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateGlobalProductRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateGlobalProductRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateGlobalProductRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateGlobalProductRequestBody is not found in the empty JSON string", CreateGlobalProductRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateGlobalProductRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateGlobalProductRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -772,6 +810,28 @@ public class CreateGlobalProductRequestBody {
            @Override
            public void write(JsonWriter out, CreateGlobalProductRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -779,29 +839,50 @@ public class CreateGlobalProductRequestBody {
            public CreateGlobalProductRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CreateGlobalProductRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateGlobalProductRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateGlobalProductRequestBody
-  * @throws IOException if the JSON string is invalid with respect to CreateGlobalProductRequestBody
-  */
+  /**
+   * Create an instance of CreateGlobalProductRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateGlobalProductRequestBody
+   * @throws IOException if the JSON string is invalid with respect to CreateGlobalProductRequestBody
+   */
   public static CreateGlobalProductRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateGlobalProductRequestBody.class);
   }
 
- /**
-  * Convert an instance of CreateGlobalProductRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateGlobalProductRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

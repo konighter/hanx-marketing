@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes {
   public static final String SERIALIZED_NAME_ACCURATE_WAREHOUSE_CODE = "accurate_warehouse_code";
   @SerializedName(SERIALIZED_NAME_ACCURATE_WAREHOUSE_CODE)
+  @javax.annotation.Nullable
   private String accurateWarehouseCode;
 
   public static final String SERIALIZED_NAME_ARRIVED_TIME = "arrived_time";
   @SerializedName(SERIALIZED_NAME_ARRIVED_TIME)
+  @javax.annotation.Nullable
   private Long arrivedTime;
 
   public static final String SERIALIZED_NAME_CAN_RESERVE = "can_reserve";
   @SerializedName(SERIALIZED_NAME_CAN_RESERVE)
+  @javax.annotation.Nullable
   private Boolean canReserve;
 
   public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes() {
   }
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes accurateWarehouseCode(String accurateWarehouseCode) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes accurateWarehouseCode(@javax.annotation.Nullable String accurateWarehouseCode) {
     this.accurateWarehouseCode = accurateWarehouseCode;
     return this;
   }
 
-   /**
+  /**
    * warehouse code which is precisely assigned
    * @return accurateWarehouseCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getAccurateWarehouseCode() {
     return accurateWarehouseCode;
   }
 
-  public void setAccurateWarehouseCode(String accurateWarehouseCode) {
+  public void setAccurateWarehouseCode(@javax.annotation.Nullable String accurateWarehouseCode) {
     this.accurateWarehouseCode = accurateWarehouseCode;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes arrivedTime(Long arrivedTime) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes arrivedTime(@javax.annotation.Nullable Long arrivedTime) {
     this.arrivedTime = arrivedTime;
     return this;
   }
 
-   /**
+  /**
    * The time when goods arrive at warehouse 
    * @return arrivedTime
-  **/
+   */
   @javax.annotation.Nullable
   public Long getArrivedTime() {
     return arrivedTime;
   }
 
-  public void setArrivedTime(Long arrivedTime) {
+  public void setArrivedTime(@javax.annotation.Nullable Long arrivedTime) {
     this.arrivedTime = arrivedTime;
   }
 
 
-  public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes canReserve(Boolean canReserve) {
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes canReserve(@javax.annotation.Nullable Boolean canReserve) {
     this.canReserve = canReserve;
     return this;
   }
 
-   /**
+  /**
    * Whether the capacity of warehouse when specify arrival time can be reserve
    * @return canReserve
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getCanReserve() {
     return canReserve;
   }
 
-  public void setCanReserve(Boolean canReserve) {
+  public void setCanReserve(@javax.annotation.Nullable Boolean canReserve) {
     this.canReserve = canReserve;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes instance itself
+   */
+  public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArr
     GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes = (GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes) o;
     return Objects.equals(this.accurateWarehouseCode, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.accurateWarehouseCode) &&
         Objects.equals(this.arrivedTime, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.arrivedTime) &&
-        Objects.equals(this.canReserve, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.canReserve);
+        Objects.equals(this.canReserve, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.canReserve)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202410GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accurateWarehouseCode, arrivedTime, canReserve);
+    return Objects.hash(accurateWarehouseCode, arrivedTime, canReserve, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArr
     sb.append("    accurateWarehouseCode: ").append(toIndentedString(accurateWarehouseCode)).append("\n");
     sb.append("    arrivedTime: ").append(toIndentedString(arrivedTime)).append("\n");
     sb.append("    canReserve: ").append(toIndentedString(canReserve)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArr
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("accurate_warehouse_code");
-    openapiFields.add("arrived_time");
-    openapiFields.add("can_reserve");
+    openapiFields = new HashSet<String>(Arrays.asList("accurate_warehouse_code", "arrived_time", "can_reserve"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes is not found in the empty JSON string", GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -221,6 +259,28 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArr
            @Override
            public void write(JsonWriter out, GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -228,29 +288,50 @@ public class GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArr
            public GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes
-  */
+  /**
+   * Create an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes
+   */
   public static GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchAvailableShippingProvidersResponseDataReserveArrivedTimes to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

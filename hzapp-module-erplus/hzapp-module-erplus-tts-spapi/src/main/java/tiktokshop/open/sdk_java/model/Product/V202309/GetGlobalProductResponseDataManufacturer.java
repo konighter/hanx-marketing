@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,100 +48,149 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetGlobalProductResponseDataManufacturer
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetGlobalProductResponseDataManufacturer {
   public static final String SERIALIZED_NAME_ADDRESS = "address";
   @SerializedName(SERIALIZED_NAME_ADDRESS)
+  @javax.annotation.Nullable
   private String address;
 
   public static final String SERIALIZED_NAME_EMAIL = "email";
   @SerializedName(SERIALIZED_NAME_EMAIL)
+  @javax.annotation.Nullable
   private String email;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  @javax.annotation.Nullable
   private String phoneNumber;
 
   public GetGlobalProductResponseDataManufacturer() {
   }
 
-  public GetGlobalProductResponseDataManufacturer address(String address) {
+  public GetGlobalProductResponseDataManufacturer address(@javax.annotation.Nullable String address) {
     this.address = address;
     return this;
   }
 
-   /**
+  /**
    * The address of the manufacturer. 
    * @return address
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddress() {
     return address;
   }
 
-  public void setAddress(String address) {
+  public void setAddress(@javax.annotation.Nullable String address) {
     this.address = address;
   }
 
 
-  public GetGlobalProductResponseDataManufacturer email(String email) {
+  public GetGlobalProductResponseDataManufacturer email(@javax.annotation.Nullable String email) {
     this.email = email;
     return this;
   }
 
-   /**
+  /**
    * The email address of the manufacturer. 
    * @return email
-  **/
+   */
   @javax.annotation.Nullable
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
+  public void setEmail(@javax.annotation.Nullable String email) {
     this.email = email;
   }
 
 
-  public GetGlobalProductResponseDataManufacturer name(String name) {
+  public GetGlobalProductResponseDataManufacturer name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the manufacturer.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public GetGlobalProductResponseDataManufacturer phoneNumber(String phoneNumber) {
+  public GetGlobalProductResponseDataManufacturer phoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
 
-   /**
+  /**
    * The phone number of the manufacturer. 
    * @return phoneNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getPhoneNumber() {
     return phoneNumber;
   }
 
-  public void setPhoneNumber(String phoneNumber) {
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetGlobalProductResponseDataManufacturer instance itself
+   */
+  public GetGlobalProductResponseDataManufacturer putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -159,12 +207,13 @@ public class GetGlobalProductResponseDataManufacturer {
     return Objects.equals(this.address, product202309GetGlobalProductResponseDataManufacturer.address) &&
         Objects.equals(this.email, product202309GetGlobalProductResponseDataManufacturer.email) &&
         Objects.equals(this.name, product202309GetGlobalProductResponseDataManufacturer.name) &&
-        Objects.equals(this.phoneNumber, product202309GetGlobalProductResponseDataManufacturer.phoneNumber);
+        Objects.equals(this.phoneNumber, product202309GetGlobalProductResponseDataManufacturer.phoneNumber)&&
+        Objects.equals(this.additionalProperties, product202309GetGlobalProductResponseDataManufacturer.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(address, email, name, phoneNumber);
+    return Objects.hash(address, email, name, phoneNumber, additionalProperties);
   }
 
   @Override
@@ -175,6 +224,7 @@ public class GetGlobalProductResponseDataManufacturer {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -196,34 +246,22 @@ public class GetGlobalProductResponseDataManufacturer {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("address");
-    openapiFields.add("email");
-    openapiFields.add("name");
-    openapiFields.add("phone_number");
+    openapiFields = new HashSet<String>(Arrays.asList("address", "email", "name", "phone_number"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetGlobalProductResponseDataManufacturer
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetGlobalProductResponseDataManufacturer
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetGlobalProductResponseDataManufacturer.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetGlobalProductResponseDataManufacturer is not found in the empty JSON string", GetGlobalProductResponseDataManufacturer.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetGlobalProductResponseDataManufacturer.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetGlobalProductResponseDataManufacturer` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -256,6 +294,28 @@ public class GetGlobalProductResponseDataManufacturer {
            @Override
            public void write(JsonWriter out, GetGlobalProductResponseDataManufacturer value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -263,29 +323,50 @@ public class GetGlobalProductResponseDataManufacturer {
            public GetGlobalProductResponseDataManufacturer read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetGlobalProductResponseDataManufacturer instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetGlobalProductResponseDataManufacturer given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetGlobalProductResponseDataManufacturer
-  * @throws IOException if the JSON string is invalid with respect to GetGlobalProductResponseDataManufacturer
-  */
+  /**
+   * Create an instance of GetGlobalProductResponseDataManufacturer given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetGlobalProductResponseDataManufacturer
+   * @throws IOException if the JSON string is invalid with respect to GetGlobalProductResponseDataManufacturer
+   */
   public static GetGlobalProductResponseDataManufacturer fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetGlobalProductResponseDataManufacturer.class);
   }
 
- /**
-  * Convert an instance of GetGlobalProductResponseDataManufacturer to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetGlobalProductResponseDataManufacturer to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

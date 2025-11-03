@@ -22,7 +22,6 @@ public interface SellPlatformMapper extends BaseMapperX<SellPlatformDO> {
         return selectPage(reqVO, new LambdaQueryWrapperX<SellPlatformDO>()
                 .likeIfPresent(SellPlatformDO::getName, reqVO.getName())
                 .eqIfPresent(SellPlatformDO::getCode, reqVO.getCode())
-                .eqIfPresent(SellPlatformDO::getAvatar, reqVO.getAvatar())
                 .betweenIfPresent(SellPlatformDO::getCreateTime, reqVO.getCreateTime())
                 .orderByDesc(SellPlatformDO::getId));
     }

@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,134 +50,155 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSSearchDeliveryOrdersRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSSearchDeliveryOrdersRequestBody {
   public static final String SERIALIZED_NAME_ARRIVED_TIME_GE = "arrived_time_ge";
   @SerializedName(SERIALIZED_NAME_ARRIVED_TIME_GE)
+  @javax.annotation.Nullable
   private Long arrivedTimeGe;
 
   public static final String SERIALIZED_NAME_ARRIVED_TIME_LT = "arrived_time_lt";
   @SerializedName(SERIALIZED_NAME_ARRIVED_TIME_LT)
+  @javax.annotation.Nullable
   private Long arrivedTimeLt;
 
   public static final String SERIALIZED_NAME_DELIVERY_BATCH_CODES = "delivery_batch_codes";
   @SerializedName(SERIALIZED_NAME_DELIVERY_BATCH_CODES)
+  @javax.annotation.Nullable
   private List<String> deliveryBatchCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DELIVERY_ORDER_CODES = "delivery_order_codes";
   @SerializedName(SERIALIZED_NAME_DELIVERY_ORDER_CODES)
+  @javax.annotation.Nullable
   private List<String> deliveryOrderCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_DELIVERY_TYPES = "delivery_types";
   @SerializedName(SERIALIZED_NAME_DELIVERY_TYPES)
+  @javax.annotation.Nullable
   private List<String> deliveryTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EMERGENCY_LEVELS = "emergency_levels";
   @SerializedName(SERIALIZED_NAME_EMERGENCY_LEVELS)
+  @javax.annotation.Nullable
   private List<String> emergencyLevels = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EXTERNAL_SKC_CODES = "external_skc_codes";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKC_CODES)
+  @javax.annotation.Nullable
   private List<String> externalSkcCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_EXTERNAL_SKU_CODES = "external_sku_codes";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKU_CODES)
+  @javax.annotation.Nullable
   private List<String> externalSkuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_IS_SAMPLE_INCLUDED = "is_sample_included";
   @SerializedName(SERIALIZED_NAME_IS_SAMPLE_INCLUDED)
+  @javax.annotation.Nullable
   private Boolean isSampleIncluded;
 
   public static final String SERIALIZED_NAME_LATEST_STATUS_UPDATE_GE = "latest_status_update_ge";
   @SerializedName(SERIALIZED_NAME_LATEST_STATUS_UPDATE_GE)
+  @javax.annotation.Nullable
   private Long latestStatusUpdateGe;
 
   public static final String SERIALIZED_NAME_LATEST_STATUS_UPDATE_LT = "latest_status_update_lt";
   @SerializedName(SERIALIZED_NAME_LATEST_STATUS_UPDATE_LT)
+  @javax.annotation.Nullable
   private Long latestStatusUpdateLt;
 
   public static final String SERIALIZED_NAME_ORDER_TYPES = "order_types";
   @SerializedName(SERIALIZED_NAME_ORDER_TYPES)
+  @javax.annotation.Nullable
   private List<String> orderTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PAGE_SIZE = "page_size";
   @SerializedName(SERIALIZED_NAME_PAGE_SIZE)
+  @javax.annotation.Nullable
   private Long pageSize;
 
   public static final String SERIALIZED_NAME_PAGE_TOKEN = "page_token";
   @SerializedName(SERIALIZED_NAME_PAGE_TOKEN)
+  @javax.annotation.Nullable
   private String pageToken;
 
   public static final String SERIALIZED_NAME_PLATFORM_SPU_CODES = "platform_spu_codes";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SPU_CODES)
+  @javax.annotation.Nullable
   private List<String> platformSpuCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_RELATIVE_CODES = "relative_codes";
   @SerializedName(SERIALIZED_NAME_RELATIVE_CODES)
+  @javax.annotation.Nullable
   private List<String> relativeCodes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REQUIRE_ARRIVED_TIME_GE = "require_arrived_time_ge";
   @SerializedName(SERIALIZED_NAME_REQUIRE_ARRIVED_TIME_GE)
+  @javax.annotation.Nullable
   private Long requireArrivedTimeGe;
 
   public static final String SERIALIZED_NAME_REQUIRE_ARRIVED_TIME_LT = "require_arrived_time_lt";
   @SerializedName(SERIALIZED_NAME_REQUIRE_ARRIVED_TIME_LT)
+  @javax.annotation.Nullable
   private Long requireArrivedTimeLt;
 
   public static final String SERIALIZED_NAME_SHIP_TIME_GE = "ship_time_ge";
   @SerializedName(SERIALIZED_NAME_SHIP_TIME_GE)
+  @javax.annotation.Nullable
   private Long shipTimeGe;
 
   public static final String SERIALIZED_NAME_SHIP_TIME_LT = "ship_time_lt";
   @SerializedName(SERIALIZED_NAME_SHIP_TIME_LT)
+  @javax.annotation.Nullable
   private Long shipTimeLt;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_CODES = "warehouse_codes";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_CODES)
+  @javax.annotation.Nullable
   private List<String> warehouseCodes = new ArrayList<>();
 
   public GSSearchDeliveryOrdersRequestBody() {
   }
 
-  public GSSearchDeliveryOrdersRequestBody arrivedTimeGe(Long arrivedTimeGe) {
+  public GSSearchDeliveryOrdersRequestBody arrivedTimeGe(@javax.annotation.Nullable Long arrivedTimeGe) {
     this.arrivedTimeGe = arrivedTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Search delivery orders which the actual arrival time is greater or equal to arrived_time_ge.
    * @return arrivedTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getArrivedTimeGe() {
     return arrivedTimeGe;
   }
 
-  public void setArrivedTimeGe(Long arrivedTimeGe) {
+  public void setArrivedTimeGe(@javax.annotation.Nullable Long arrivedTimeGe) {
     this.arrivedTimeGe = arrivedTimeGe;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody arrivedTimeLt(Long arrivedTimeLt) {
+  public GSSearchDeliveryOrdersRequestBody arrivedTimeLt(@javax.annotation.Nullable Long arrivedTimeLt) {
     this.arrivedTimeLt = arrivedTimeLt;
     return this;
   }
 
-   /**
+  /**
    * Search delivery orders that the actual arrival time is less than arrived_time_lt.
    * @return arrivedTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getArrivedTimeLt() {
     return arrivedTimeLt;
   }
 
-  public void setArrivedTimeLt(Long arrivedTimeLt) {
+  public void setArrivedTimeLt(@javax.annotation.Nullable Long arrivedTimeLt) {
     this.arrivedTimeLt = arrivedTimeLt;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody deliveryBatchCodes(List<String> deliveryBatchCodes) {
+  public GSSearchDeliveryOrdersRequestBody deliveryBatchCodes(@javax.annotation.Nullable List<String> deliveryBatchCodes) {
     this.deliveryBatchCodes = deliveryBatchCodes;
     return this;
   }
@@ -191,21 +211,21 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * A main-logistics-order will be generated for logistics tracking when a delivery-order operated ship by logistics. Up to 50.
    * @return deliveryBatchCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getDeliveryBatchCodes() {
     return deliveryBatchCodes;
   }
 
-  public void setDeliveryBatchCodes(List<String> deliveryBatchCodes) {
+  public void setDeliveryBatchCodes(@javax.annotation.Nullable List<String> deliveryBatchCodes) {
     this.deliveryBatchCodes = deliveryBatchCodes;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody deliveryOrderCodes(List<String> deliveryOrderCodes) {
+  public GSSearchDeliveryOrdersRequestBody deliveryOrderCodes(@javax.annotation.Nullable List<String> deliveryOrderCodes) {
     this.deliveryOrderCodes = deliveryOrderCodes;
     return this;
   }
@@ -218,21 +238,21 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Delivery order code,  support multiple selection.Up to 50.
    * @return deliveryOrderCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getDeliveryOrderCodes() {
     return deliveryOrderCodes;
   }
 
-  public void setDeliveryOrderCodes(List<String> deliveryOrderCodes) {
+  public void setDeliveryOrderCodes(@javax.annotation.Nullable List<String> deliveryOrderCodes) {
     this.deliveryOrderCodes = deliveryOrderCodes;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody deliveryTypes(List<String> deliveryTypes) {
+  public GSSearchDeliveryOrdersRequestBody deliveryTypes(@javax.annotation.Nullable List<String> deliveryTypes) {
     this.deliveryTypes = deliveryTypes;
     return this;
   }
@@ -245,21 +265,21 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Delivery type, support multiple selection. 1. DELIVERY_NORMAL: Delivery of normal stockup process. 2. DEFECTIVE_REPAIR: Re-delivery of partial defective products returned for repair. 3. ALL_RETURN_REPAIR: Re-delivery of all defective products returned for repair. 4. LESS_SUPPLEMENT: Re-delivery of shortage of delivery quantity. 5. LOGISTICS_IN_BATCH: The logistics provider delivers the goods to the warehouse in multiple batches. 6. REPLENISH_IN_WAREHOUSE: The platform receives goods in multiple batches in the warehouse.
    * @return deliveryTypes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getDeliveryTypes() {
     return deliveryTypes;
   }
 
-  public void setDeliveryTypes(List<String> deliveryTypes) {
+  public void setDeliveryTypes(@javax.annotation.Nullable List<String> deliveryTypes) {
     this.deliveryTypes = deliveryTypes;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody emergencyLevels(List<String> emergencyLevels) {
+  public GSSearchDeliveryOrdersRequestBody emergencyLevels(@javax.annotation.Nullable List<String> emergencyLevels) {
     this.emergencyLevels = emergencyLevels;
     return this;
   }
@@ -272,21 +292,21 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Delivery-Order&#39;s Emergency level code. 1. URGENT: the emergency level of stockup order is defined as urgent once created. 2. EXPEDITED: the emergency level of stockup order is defined as expedited in transit. 3. GENERAL: the emergency level of stockup order is defined as general.
    * @return emergencyLevels
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getEmergencyLevels() {
     return emergencyLevels;
   }
 
-  public void setEmergencyLevels(List<String> emergencyLevels) {
+  public void setEmergencyLevels(@javax.annotation.Nullable List<String> emergencyLevels) {
     this.emergencyLevels = emergencyLevels;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody externalSkcCodes(List<String> externalSkcCodes) {
+  public GSSearchDeliveryOrdersRequestBody externalSkcCodes(@javax.annotation.Nullable List<String> externalSkcCodes) {
     this.externalSkcCodes = externalSkcCodes;
     return this;
   }
@@ -299,21 +319,21 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * merchant defined product code of skc. Up to 50.
    * @return externalSkcCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExternalSkcCodes() {
     return externalSkcCodes;
   }
 
-  public void setExternalSkcCodes(List<String> externalSkcCodes) {
+  public void setExternalSkcCodes(@javax.annotation.Nullable List<String> externalSkcCodes) {
     this.externalSkcCodes = externalSkcCodes;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody externalSkuCodes(List<String> externalSkuCodes) {
+  public GSSearchDeliveryOrdersRequestBody externalSkuCodes(@javax.annotation.Nullable List<String> externalSkuCodes) {
     this.externalSkuCodes = externalSkuCodes;
     return this;
   }
@@ -326,78 +346,78 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * merchant defined product code of sku. Up to 50.
    * @return externalSkuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getExternalSkuCodes() {
     return externalSkuCodes;
   }
 
-  public void setExternalSkuCodes(List<String> externalSkuCodes) {
+  public void setExternalSkuCodes(@javax.annotation.Nullable List<String> externalSkuCodes) {
     this.externalSkuCodes = externalSkuCodes;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody isSampleIncluded(Boolean isSampleIncluded) {
+  public GSSearchDeliveryOrdersRequestBody isSampleIncluded(@javax.annotation.Nullable Boolean isSampleIncluded) {
     this.isSampleIncluded = isSampleIncluded;
     return this;
   }
 
-   /**
+  /**
    * Whether sample product should be sent with bulk delivery.
    * @return isSampleIncluded
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsSampleIncluded() {
     return isSampleIncluded;
   }
 
-  public void setIsSampleIncluded(Boolean isSampleIncluded) {
+  public void setIsSampleIncluded(@javax.annotation.Nullable Boolean isSampleIncluded) {
     this.isSampleIncluded = isSampleIncluded;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody latestStatusUpdateGe(Long latestStatusUpdateGe) {
+  public GSSearchDeliveryOrdersRequestBody latestStatusUpdateGe(@javax.annotation.Nullable Long latestStatusUpdateGe) {
     this.latestStatusUpdateGe = latestStatusUpdateGe;
     return this;
   }
 
-   /**
+  /**
    * Search delivery orders that the time of the latest status update is greater or equal to latest_status_update_ge.
    * @return latestStatusUpdateGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getLatestStatusUpdateGe() {
     return latestStatusUpdateGe;
   }
 
-  public void setLatestStatusUpdateGe(Long latestStatusUpdateGe) {
+  public void setLatestStatusUpdateGe(@javax.annotation.Nullable Long latestStatusUpdateGe) {
     this.latestStatusUpdateGe = latestStatusUpdateGe;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody latestStatusUpdateLt(Long latestStatusUpdateLt) {
+  public GSSearchDeliveryOrdersRequestBody latestStatusUpdateLt(@javax.annotation.Nullable Long latestStatusUpdateLt) {
     this.latestStatusUpdateLt = latestStatusUpdateLt;
     return this;
   }
 
-   /**
+  /**
    * Search delivery orders that the time of the latest status update is less than latest_status_update_lt.
    * @return latestStatusUpdateLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getLatestStatusUpdateLt() {
     return latestStatusUpdateLt;
   }
 
-  public void setLatestStatusUpdateLt(Long latestStatusUpdateLt) {
+  public void setLatestStatusUpdateLt(@javax.annotation.Nullable Long latestStatusUpdateLt) {
     this.latestStatusUpdateLt = latestStatusUpdateLt;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody orderTypes(List<String> orderTypes) {
+  public GSSearchDeliveryOrdersRequestBody orderTypes(@javax.annotation.Nullable List<String> orderTypes) {
     this.orderTypes = orderTypes;
     return this;
   }
@@ -410,59 +430,59 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The order type of delivery JIT: Stockup is determined by sales. NORMAL: Stockup is for sales.
    * @return orderTypes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderTypes() {
     return orderTypes;
   }
 
-  public void setOrderTypes(List<String> orderTypes) {
+  public void setOrderTypes(@javax.annotation.Nullable List<String> orderTypes) {
     this.orderTypes = orderTypes;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody pageSize(Long pageSize) {
+  public GSSearchDeliveryOrdersRequestBody pageSize(@javax.annotation.Nullable Long pageSize) {
     this.pageSize = pageSize;
     return this;
   }
 
-   /**
+  /**
    * Page size,  default 10,  less or equal to 50.
    * @return pageSize
-  **/
+   */
   @javax.annotation.Nullable
   public Long getPageSize() {
     return pageSize;
   }
 
-  public void setPageSize(Long pageSize) {
+  public void setPageSize(@javax.annotation.Nullable Long pageSize) {
     this.pageSize = pageSize;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody pageToken(String pageToken) {
+  public GSSearchDeliveryOrdersRequestBody pageToken(@javax.annotation.Nullable String pageToken) {
     this.pageToken = pageToken;
     return this;
   }
 
-   /**
+  /**
    * Page offset.
    * @return pageToken
-  **/
+   */
   @javax.annotation.Nullable
   public String getPageToken() {
     return pageToken;
   }
 
-  public void setPageToken(String pageToken) {
+  public void setPageToken(@javax.annotation.Nullable String pageToken) {
     this.pageToken = pageToken;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody platformSpuCodes(List<String> platformSpuCodes) {
+  public GSSearchDeliveryOrdersRequestBody platformSpuCodes(@javax.annotation.Nullable List<String> platformSpuCodes) {
     this.platformSpuCodes = platformSpuCodes;
     return this;
   }
@@ -475,21 +495,21 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Platform-defined spu(Standard Product Unit) code. Up to 50.
    * @return platformSpuCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getPlatformSpuCodes() {
     return platformSpuCodes;
   }
 
-  public void setPlatformSpuCodes(List<String> platformSpuCodes) {
+  public void setPlatformSpuCodes(@javax.annotation.Nullable List<String> platformSpuCodes) {
     this.platformSpuCodes = platformSpuCodes;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody relativeCodes(List<String> relativeCodes) {
+  public GSSearchDeliveryOrdersRequestBody relativeCodes(@javax.annotation.Nullable List<String> relativeCodes) {
     this.relativeCodes = relativeCodes;
     return this;
   }
@@ -502,97 +522,97 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The relative code of delivery order, such as stockup order code and abnormal order code. Up to 50.
    * @return relativeCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getRelativeCodes() {
     return relativeCodes;
   }
 
-  public void setRelativeCodes(List<String> relativeCodes) {
+  public void setRelativeCodes(@javax.annotation.Nullable List<String> relativeCodes) {
     this.relativeCodes = relativeCodes;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody requireArrivedTimeGe(Long requireArrivedTimeGe) {
+  public GSSearchDeliveryOrdersRequestBody requireArrivedTimeGe(@javax.annotation.Nullable Long requireArrivedTimeGe) {
     this.requireArrivedTimeGe = requireArrivedTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Search delivery orders that the required arrival time is greater or equal to require_arrived_time_ge.
    * @return requireArrivedTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRequireArrivedTimeGe() {
     return requireArrivedTimeGe;
   }
 
-  public void setRequireArrivedTimeGe(Long requireArrivedTimeGe) {
+  public void setRequireArrivedTimeGe(@javax.annotation.Nullable Long requireArrivedTimeGe) {
     this.requireArrivedTimeGe = requireArrivedTimeGe;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody requireArrivedTimeLt(Long requireArrivedTimeLt) {
+  public GSSearchDeliveryOrdersRequestBody requireArrivedTimeLt(@javax.annotation.Nullable Long requireArrivedTimeLt) {
     this.requireArrivedTimeLt = requireArrivedTimeLt;
     return this;
   }
 
-   /**
+  /**
    * Search delivery orders that the required arrival time is less than require_arrived_time_lt.
    * @return requireArrivedTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRequireArrivedTimeLt() {
     return requireArrivedTimeLt;
   }
 
-  public void setRequireArrivedTimeLt(Long requireArrivedTimeLt) {
+  public void setRequireArrivedTimeLt(@javax.annotation.Nullable Long requireArrivedTimeLt) {
     this.requireArrivedTimeLt = requireArrivedTimeLt;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody shipTimeGe(Long shipTimeGe) {
+  public GSSearchDeliveryOrdersRequestBody shipTimeGe(@javax.annotation.Nullable Long shipTimeGe) {
     this.shipTimeGe = shipTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Search delivery orders that the required shipment time  is greater or equal to ship_time_ge.
    * @return shipTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getShipTimeGe() {
     return shipTimeGe;
   }
 
-  public void setShipTimeGe(Long shipTimeGe) {
+  public void setShipTimeGe(@javax.annotation.Nullable Long shipTimeGe) {
     this.shipTimeGe = shipTimeGe;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody shipTimeLt(Long shipTimeLt) {
+  public GSSearchDeliveryOrdersRequestBody shipTimeLt(@javax.annotation.Nullable Long shipTimeLt) {
     this.shipTimeLt = shipTimeLt;
     return this;
   }
 
-   /**
+  /**
    * Search delivery orders that the required shipment time  is less than ship_time_lt.
    * @return shipTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getShipTimeLt() {
     return shipTimeLt;
   }
 
-  public void setShipTimeLt(Long shipTimeLt) {
+  public void setShipTimeLt(@javax.annotation.Nullable Long shipTimeLt) {
     this.shipTimeLt = shipTimeLt;
   }
 
 
-  public GSSearchDeliveryOrdersRequestBody warehouseCodes(List<String> warehouseCodes) {
+  public GSSearchDeliveryOrdersRequestBody warehouseCodes(@javax.annotation.Nullable List<String> warehouseCodes) {
     this.warehouseCodes = warehouseCodes;
     return this;
   }
@@ -605,17 +625,62 @@ public class GSSearchDeliveryOrdersRequestBody {
     return this;
   }
 
-   /**
+  /**
    * The code list of warehouse which receive goods.
    * @return warehouseCodes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getWarehouseCodes() {
     return warehouseCodes;
   }
 
-  public void setWarehouseCodes(List<String> warehouseCodes) {
+  public void setWarehouseCodes(@javax.annotation.Nullable List<String> warehouseCodes) {
     this.warehouseCodes = warehouseCodes;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSSearchDeliveryOrdersRequestBody instance itself
+   */
+  public GSSearchDeliveryOrdersRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -649,12 +714,13 @@ public class GSSearchDeliveryOrdersRequestBody {
         Objects.equals(this.requireArrivedTimeLt, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody.requireArrivedTimeLt) &&
         Objects.equals(this.shipTimeGe, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody.shipTimeGe) &&
         Objects.equals(this.shipTimeLt, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody.shipTimeLt) &&
-        Objects.equals(this.warehouseCodes, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody.warehouseCodes);
+        Objects.equals(this.warehouseCodes, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody.warehouseCodes)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202405GSSearchDeliveryOrdersRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(arrivedTimeGe, arrivedTimeLt, deliveryBatchCodes, deliveryOrderCodes, deliveryTypes, emergencyLevels, externalSkcCodes, externalSkuCodes, isSampleIncluded, latestStatusUpdateGe, latestStatusUpdateLt, orderTypes, pageSize, pageToken, platformSpuCodes, relativeCodes, requireArrivedTimeGe, requireArrivedTimeLt, shipTimeGe, shipTimeLt, warehouseCodes);
+    return Objects.hash(arrivedTimeGe, arrivedTimeLt, deliveryBatchCodes, deliveryOrderCodes, deliveryTypes, emergencyLevels, externalSkcCodes, externalSkuCodes, isSampleIncluded, latestStatusUpdateGe, latestStatusUpdateLt, orderTypes, pageSize, pageToken, platformSpuCodes, relativeCodes, requireArrivedTimeGe, requireArrivedTimeLt, shipTimeGe, shipTimeLt, warehouseCodes, additionalProperties);
   }
 
   @Override
@@ -682,6 +748,7 @@ public class GSSearchDeliveryOrdersRequestBody {
     sb.append("    shipTimeGe: ").append(toIndentedString(shipTimeGe)).append("\n");
     sb.append("    shipTimeLt: ").append(toIndentedString(shipTimeLt)).append("\n");
     sb.append("    warehouseCodes: ").append(toIndentedString(warehouseCodes)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -703,51 +770,22 @@ public class GSSearchDeliveryOrdersRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("arrived_time_ge");
-    openapiFields.add("arrived_time_lt");
-    openapiFields.add("delivery_batch_codes");
-    openapiFields.add("delivery_order_codes");
-    openapiFields.add("delivery_types");
-    openapiFields.add("emergency_levels");
-    openapiFields.add("external_skc_codes");
-    openapiFields.add("external_sku_codes");
-    openapiFields.add("is_sample_included");
-    openapiFields.add("latest_status_update_ge");
-    openapiFields.add("latest_status_update_lt");
-    openapiFields.add("order_types");
-    openapiFields.add("page_size");
-    openapiFields.add("page_token");
-    openapiFields.add("platform_spu_codes");
-    openapiFields.add("relative_codes");
-    openapiFields.add("require_arrived_time_ge");
-    openapiFields.add("require_arrived_time_lt");
-    openapiFields.add("ship_time_ge");
-    openapiFields.add("ship_time_lt");
-    openapiFields.add("warehouse_codes");
+    openapiFields = new HashSet<String>(Arrays.asList("arrived_time_ge", "arrived_time_lt", "delivery_batch_codes", "delivery_order_codes", "delivery_types", "emergency_levels", "external_skc_codes", "external_sku_codes", "is_sample_included", "latest_status_update_ge", "latest_status_update_lt", "order_types", "page_size", "page_token", "platform_spu_codes", "relative_codes", "require_arrived_time_ge", "require_arrived_time_lt", "ship_time_ge", "ship_time_lt", "warehouse_codes"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSSearchDeliveryOrdersRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSSearchDeliveryOrdersRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSSearchDeliveryOrdersRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSSearchDeliveryOrdersRequestBody is not found in the empty JSON string", GSSearchDeliveryOrdersRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSSearchDeliveryOrdersRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSSearchDeliveryOrdersRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -811,6 +849,28 @@ public class GSSearchDeliveryOrdersRequestBody {
            @Override
            public void write(JsonWriter out, GSSearchDeliveryOrdersRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -818,29 +878,50 @@ public class GSSearchDeliveryOrdersRequestBody {
            public GSSearchDeliveryOrdersRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSSearchDeliveryOrdersRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSSearchDeliveryOrdersRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSSearchDeliveryOrdersRequestBody
-  * @throws IOException if the JSON string is invalid with respect to GSSearchDeliveryOrdersRequestBody
-  */
+  /**
+   * Create an instance of GSSearchDeliveryOrdersRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSSearchDeliveryOrdersRequestBody
+   * @throws IOException if the JSON string is invalid with respect to GSSearchDeliveryOrdersRequestBody
+   */
   public static GSSearchDeliveryOrdersRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSSearchDeliveryOrdersRequestBody.class);
   }
 
- /**
-  * Convert an instance of GSSearchDeliveryOrdersRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSSearchDeliveryOrdersRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

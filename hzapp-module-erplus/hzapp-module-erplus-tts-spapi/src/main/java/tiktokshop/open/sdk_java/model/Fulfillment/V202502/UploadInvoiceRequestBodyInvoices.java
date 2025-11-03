@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,66 +50,70 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * UploadInvoiceRequestBodyInvoices
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class UploadInvoiceRequestBodyInvoices {
   public static final String SERIALIZED_NAME_FILE = "file";
   @SerializedName(SERIALIZED_NAME_FILE)
+  @javax.annotation.Nullable
   private String _file;
 
   public static final String SERIALIZED_NAME_FILE_TYPE = "file_type";
   @SerializedName(SERIALIZED_NAME_FILE_TYPE)
+  @javax.annotation.Nullable
   private String fileType;
 
   public static final String SERIALIZED_NAME_ORDER_IDS = "order_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_IDS)
+  @javax.annotation.Nullable
   private List<String> orderIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PACKAGE_ID = "package_id";
   @SerializedName(SERIALIZED_NAME_PACKAGE_ID)
+  @javax.annotation.Nullable
   private String packageId;
 
   public UploadInvoiceRequestBodyInvoices() {
   }
 
-  public UploadInvoiceRequestBodyInvoices _file(String _file) {
+  public UploadInvoiceRequestBodyInvoices _file(@javax.annotation.Nullable String _file) {
     this._file = _file;
     return this;
   }
 
-   /**
+  /**
    * Base64 encoding of the invoice file to upload. Max file size: 1MB
    * @return _file
-  **/
+   */
   @javax.annotation.Nullable
   public String getFile() {
     return _file;
   }
 
-  public void setFile(String _file) {
+  public void setFile(@javax.annotation.Nullable String _file) {
     this._file = _file;
   }
 
 
-  public UploadInvoiceRequestBodyInvoices fileType(String fileType) {
+  public UploadInvoiceRequestBodyInvoices fileType(@javax.annotation.Nullable String fileType) {
     this.fileType = fileType;
     return this;
   }
 
-   /**
+  /**
    * The invoice file format. Possible values:  - &#x60;XML&#x60;
    * @return fileType
-  **/
+   */
   @javax.annotation.Nullable
   public String getFileType() {
     return fileType;
   }
 
-  public void setFileType(String fileType) {
+  public void setFileType(@javax.annotation.Nullable String fileType) {
     this.fileType = fileType;
   }
 
 
-  public UploadInvoiceRequestBodyInvoices orderIds(List<String> orderIds) {
+  public UploadInvoiceRequestBodyInvoices orderIds(@javax.annotation.Nullable List<String> orderIds) {
     this.orderIds = orderIds;
     return this;
   }
@@ -123,36 +126,81 @@ public class UploadInvoiceRequestBodyInvoices {
     return this;
   }
 
-   /**
+  /**
    * The list of TikTok Shop order IDs, retrieved from [Get Order List](650aa8094a0bb702c06df242).
    * @return orderIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderIds() {
     return orderIds;
   }
 
-  public void setOrderIds(List<String> orderIds) {
+  public void setOrderIds(@javax.annotation.Nullable List<String> orderIds) {
     this.orderIds = orderIds;
   }
 
 
-  public UploadInvoiceRequestBodyInvoices packageId(String packageId) {
+  public UploadInvoiceRequestBodyInvoices packageId(@javax.annotation.Nullable String packageId) {
     this.packageId = packageId;
     return this;
   }
 
-   /**
+  /**
    * The TikTok Shop package ID, retrieved from [Search Package](650aa592bace3e02b75db748).
    * @return packageId
-  **/
+   */
   @javax.annotation.Nullable
   public String getPackageId() {
     return packageId;
   }
 
-  public void setPackageId(String packageId) {
+  public void setPackageId(@javax.annotation.Nullable String packageId) {
     this.packageId = packageId;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the UploadInvoiceRequestBodyInvoices instance itself
+   */
+  public UploadInvoiceRequestBodyInvoices putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -169,12 +217,13 @@ public class UploadInvoiceRequestBodyInvoices {
     return Objects.equals(this._file, fulfillment202502UploadInvoiceRequestBodyInvoices._file) &&
         Objects.equals(this.fileType, fulfillment202502UploadInvoiceRequestBodyInvoices.fileType) &&
         Objects.equals(this.orderIds, fulfillment202502UploadInvoiceRequestBodyInvoices.orderIds) &&
-        Objects.equals(this.packageId, fulfillment202502UploadInvoiceRequestBodyInvoices.packageId);
+        Objects.equals(this.packageId, fulfillment202502UploadInvoiceRequestBodyInvoices.packageId)&&
+        Objects.equals(this.additionalProperties, fulfillment202502UploadInvoiceRequestBodyInvoices.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_file, fileType, orderIds, packageId);
+    return Objects.hash(_file, fileType, orderIds, packageId, additionalProperties);
   }
 
   @Override
@@ -185,6 +234,7 @@ public class UploadInvoiceRequestBodyInvoices {
     sb.append("    fileType: ").append(toIndentedString(fileType)).append("\n");
     sb.append("    orderIds: ").append(toIndentedString(orderIds)).append("\n");
     sb.append("    packageId: ").append(toIndentedString(packageId)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -206,34 +256,22 @@ public class UploadInvoiceRequestBodyInvoices {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("file");
-    openapiFields.add("file_type");
-    openapiFields.add("order_ids");
-    openapiFields.add("package_id");
+    openapiFields = new HashSet<String>(Arrays.asList("file", "file_type", "order_ids", "package_id"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to UploadInvoiceRequestBodyInvoices
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UploadInvoiceRequestBodyInvoices
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!UploadInvoiceRequestBodyInvoices.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UploadInvoiceRequestBodyInvoices is not found in the empty JSON string", UploadInvoiceRequestBodyInvoices.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!UploadInvoiceRequestBodyInvoices.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UploadInvoiceRequestBodyInvoices` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -267,6 +305,28 @@ public class UploadInvoiceRequestBodyInvoices {
            @Override
            public void write(JsonWriter out, UploadInvoiceRequestBodyInvoices value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -274,29 +334,50 @@ public class UploadInvoiceRequestBodyInvoices {
            public UploadInvoiceRequestBodyInvoices read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             UploadInvoiceRequestBodyInvoices instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UploadInvoiceRequestBodyInvoices given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UploadInvoiceRequestBodyInvoices
-  * @throws IOException if the JSON string is invalid with respect to UploadInvoiceRequestBodyInvoices
-  */
+  /**
+   * Create an instance of UploadInvoiceRequestBodyInvoices given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UploadInvoiceRequestBodyInvoices
+   * @throws IOException if the JSON string is invalid with respect to UploadInvoiceRequestBodyInvoices
+   */
   public static UploadInvoiceRequestBodyInvoices fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UploadInvoiceRequestBodyInvoices.class);
   }
 
- /**
-  * Convert an instance of UploadInvoiceRequestBodyInvoices to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UploadInvoiceRequestBodyInvoices to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

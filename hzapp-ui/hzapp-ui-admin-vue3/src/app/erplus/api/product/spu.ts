@@ -105,6 +105,7 @@ export interface Spu {
     validUntil: string
     issuingAuthority: string
   }>
+  attributes?: Record<string, any> // 产品属性
 }
 
 // 获得 Spu 列表

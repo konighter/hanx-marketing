@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,108 +51,113 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetPackageHandoverTimeSlotsResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetPackageHandoverTimeSlotsResponseData {
   public static final String SERIALIZED_NAME_CAN_DROP_OFF = "can_drop_off";
   @SerializedName(SERIALIZED_NAME_CAN_DROP_OFF)
+  @javax.annotation.Nullable
   private Boolean canDropOff;
 
   public static final String SERIALIZED_NAME_CAN_PICKUP = "can_pickup";
   @SerializedName(SERIALIZED_NAME_CAN_PICKUP)
+  @javax.annotation.Nullable
   private Boolean canPickup;
 
   public static final String SERIALIZED_NAME_CAN_VAN_COLLECTION = "can_van_collection";
   @SerializedName(SERIALIZED_NAME_CAN_VAN_COLLECTION)
+  @javax.annotation.Nullable
   private Boolean canVanCollection;
 
   public static final String SERIALIZED_NAME_DROP_OFF_POINT_URL = "drop_off_point_url";
   @SerializedName(SERIALIZED_NAME_DROP_OFF_POINT_URL)
+  @javax.annotation.Nullable
   private String dropOffPointUrl;
 
   public static final String SERIALIZED_NAME_PICKUP_SLOTS = "pickup_slots";
   @SerializedName(SERIALIZED_NAME_PICKUP_SLOTS)
+  @javax.annotation.Nullable
   private List<GetPackageHandoverTimeSlotsResponseDataPickupSlots> pickupSlots = new ArrayList<>();
 
   public GetPackageHandoverTimeSlotsResponseData() {
   }
 
-  public GetPackageHandoverTimeSlotsResponseData canDropOff(Boolean canDropOff) {
+  public GetPackageHandoverTimeSlotsResponseData canDropOff(@javax.annotation.Nullable Boolean canDropOff) {
     this.canDropOff = canDropOff;
     return this;
   }
 
-   /**
+  /**
    * Whether this package be dropped off at a drop-off location
    * @return canDropOff
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getCanDropOff() {
     return canDropOff;
   }
 
-  public void setCanDropOff(Boolean canDropOff) {
+  public void setCanDropOff(@javax.annotation.Nullable Boolean canDropOff) {
     this.canDropOff = canDropOff;
   }
 
 
-  public GetPackageHandoverTimeSlotsResponseData canPickup(Boolean canPickup) {
+  public GetPackageHandoverTimeSlotsResponseData canPickup(@javax.annotation.Nullable Boolean canPickup) {
     this.canPickup = canPickup;
     return this;
   }
 
-   /**
+  /**
    * Whether this package supports door-to-door collection.
    * @return canPickup
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getCanPickup() {
     return canPickup;
   }
 
-  public void setCanPickup(Boolean canPickup) {
+  public void setCanPickup(@javax.annotation.Nullable Boolean canPickup) {
     this.canPickup = canPickup;
   }
 
 
-  public GetPackageHandoverTimeSlotsResponseData canVanCollection(Boolean canVanCollection) {
+  public GetPackageHandoverTimeSlotsResponseData canVanCollection(@javax.annotation.Nullable Boolean canVanCollection) {
     this.canVanCollection = canVanCollection;
     return this;
   }
 
-   /**
+  /**
    * Specific to UK. Use this field to determine whether van collection is available.
    * @return canVanCollection
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getCanVanCollection() {
     return canVanCollection;
   }
 
-  public void setCanVanCollection(Boolean canVanCollection) {
+  public void setCanVanCollection(@javax.annotation.Nullable Boolean canVanCollection) {
     this.canVanCollection = canVanCollection;
   }
 
 
-  public GetPackageHandoverTimeSlotsResponseData dropOffPointUrl(String dropOffPointUrl) {
+  public GetPackageHandoverTimeSlotsResponseData dropOffPointUrl(@javax.annotation.Nullable String dropOffPointUrl) {
     this.dropOffPointUrl = dropOffPointUrl;
     return this;
   }
 
-   /**
+  /**
    * View package drop-off locations  via provided URL.
    * @return dropOffPointUrl
-  **/
+   */
   @javax.annotation.Nullable
   public String getDropOffPointUrl() {
     return dropOffPointUrl;
   }
 
-  public void setDropOffPointUrl(String dropOffPointUrl) {
+  public void setDropOffPointUrl(@javax.annotation.Nullable String dropOffPointUrl) {
     this.dropOffPointUrl = dropOffPointUrl;
   }
 
 
-  public GetPackageHandoverTimeSlotsResponseData pickupSlots(List<GetPackageHandoverTimeSlotsResponseDataPickupSlots> pickupSlots) {
+  public GetPackageHandoverTimeSlotsResponseData pickupSlots(@javax.annotation.Nullable List<GetPackageHandoverTimeSlotsResponseDataPickupSlots> pickupSlots) {
     this.pickupSlots = pickupSlots;
     return this;
   }
@@ -166,17 +170,62 @@ public class GetPackageHandoverTimeSlotsResponseData {
     return this;
   }
 
-   /**
+  /**
    * Time slot for door-to-door collection.
    * @return pickupSlots
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetPackageHandoverTimeSlotsResponseDataPickupSlots> getPickupSlots() {
     return pickupSlots;
   }
 
-  public void setPickupSlots(List<GetPackageHandoverTimeSlotsResponseDataPickupSlots> pickupSlots) {
+  public void setPickupSlots(@javax.annotation.Nullable List<GetPackageHandoverTimeSlotsResponseDataPickupSlots> pickupSlots) {
     this.pickupSlots = pickupSlots;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetPackageHandoverTimeSlotsResponseData instance itself
+   */
+  public GetPackageHandoverTimeSlotsResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -194,12 +243,13 @@ public class GetPackageHandoverTimeSlotsResponseData {
         Objects.equals(this.canPickup, fulfillment202309GetPackageHandoverTimeSlotsResponseData.canPickup) &&
         Objects.equals(this.canVanCollection, fulfillment202309GetPackageHandoverTimeSlotsResponseData.canVanCollection) &&
         Objects.equals(this.dropOffPointUrl, fulfillment202309GetPackageHandoverTimeSlotsResponseData.dropOffPointUrl) &&
-        Objects.equals(this.pickupSlots, fulfillment202309GetPackageHandoverTimeSlotsResponseData.pickupSlots);
+        Objects.equals(this.pickupSlots, fulfillment202309GetPackageHandoverTimeSlotsResponseData.pickupSlots)&&
+        Objects.equals(this.additionalProperties, fulfillment202309GetPackageHandoverTimeSlotsResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(canDropOff, canPickup, canVanCollection, dropOffPointUrl, pickupSlots);
+    return Objects.hash(canDropOff, canPickup, canVanCollection, dropOffPointUrl, pickupSlots, additionalProperties);
   }
 
   @Override
@@ -211,6 +261,7 @@ public class GetPackageHandoverTimeSlotsResponseData {
     sb.append("    canVanCollection: ").append(toIndentedString(canVanCollection)).append("\n");
     sb.append("    dropOffPointUrl: ").append(toIndentedString(dropOffPointUrl)).append("\n");
     sb.append("    pickupSlots: ").append(toIndentedString(pickupSlots)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -232,35 +283,22 @@ public class GetPackageHandoverTimeSlotsResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("can_drop_off");
-    openapiFields.add("can_pickup");
-    openapiFields.add("can_van_collection");
-    openapiFields.add("drop_off_point_url");
-    openapiFields.add("pickup_slots");
+    openapiFields = new HashSet<String>(Arrays.asList("can_drop_off", "can_pickup", "can_van_collection", "drop_off_point_url", "pickup_slots"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetPackageHandoverTimeSlotsResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetPackageHandoverTimeSlotsResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetPackageHandoverTimeSlotsResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetPackageHandoverTimeSlotsResponseData is not found in the empty JSON string", GetPackageHandoverTimeSlotsResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetPackageHandoverTimeSlotsResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetPackageHandoverTimeSlotsResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -298,6 +336,28 @@ public class GetPackageHandoverTimeSlotsResponseData {
            @Override
            public void write(JsonWriter out, GetPackageHandoverTimeSlotsResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -305,29 +365,50 @@ public class GetPackageHandoverTimeSlotsResponseData {
            public GetPackageHandoverTimeSlotsResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetPackageHandoverTimeSlotsResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetPackageHandoverTimeSlotsResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetPackageHandoverTimeSlotsResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetPackageHandoverTimeSlotsResponseData
-  */
+  /**
+   * Create an instance of GetPackageHandoverTimeSlotsResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetPackageHandoverTimeSlotsResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetPackageHandoverTimeSlotsResponseData
+   */
   public static GetPackageHandoverTimeSlotsResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetPackageHandoverTimeSlotsResponseData.class);
   }
 
- /**
-  * Convert an instance of GetPackageHandoverTimeSlotsResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetPackageHandoverTimeSlotsResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

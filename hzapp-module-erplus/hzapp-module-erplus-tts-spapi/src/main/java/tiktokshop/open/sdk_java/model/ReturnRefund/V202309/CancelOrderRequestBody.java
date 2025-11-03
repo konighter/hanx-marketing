@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,66 +51,70 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CancelOrderRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CancelOrderRequestBody {
   public static final String SERIALIZED_NAME_CANCEL_REASON = "cancel_reason";
   @SerializedName(SERIALIZED_NAME_CANCEL_REASON)
+  @javax.annotation.Nullable
   private String cancelReason;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEM_IDS = "order_line_item_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEM_IDS)
+  @javax.annotation.Nullable
   private List<String> orderLineItemIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<CancelOrderRequestBodySkus> skus = new ArrayList<>();
 
   public CancelOrderRequestBody() {
   }
 
-  public CancelOrderRequestBody cancelReason(String cancelReason) {
+  public CancelOrderRequestBody cancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
     return this;
   }
 
-   /**
+  /**
    * Reason to cancel the order  Please see \&quot;Return API Overview\&quot; for a list of reasons a seller can select to cancel the order. 
    * @return cancelReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelReason() {
     return cancelReason;
   }
 
-  public void setCancelReason(String cancelReason) {
+  public void setCancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
   }
 
 
-  public CancelOrderRequestBody orderId(String orderId) {
+  public CancelOrderRequestBody orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop order id
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public CancelOrderRequestBody orderLineItemIds(List<String> orderLineItemIds) {
+  public CancelOrderRequestBody orderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
     return this;
   }
@@ -124,21 +127,21 @@ public class CancelOrderRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of order line item ids to cancel. In the US and UK markets, when an item is out of stock, partial cancellation on the single item level is supported. To initiate a partial cancellation, specify the item&#39;s order line id.
    * @return orderLineItemIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineItemIds() {
     return orderLineItemIds;
   }
 
-  public void setOrderLineItemIds(List<String> orderLineItemIds) {
+  public void setOrderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
   }
 
 
-  public CancelOrderRequestBody skus(List<CancelOrderRequestBodySkus> skus) {
+  public CancelOrderRequestBody skus(@javax.annotation.Nullable List<CancelOrderRequestBodySkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -151,17 +154,62 @@ public class CancelOrderRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of SKU to cancel
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<CancelOrderRequestBodySkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<CancelOrderRequestBodySkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<CancelOrderRequestBodySkus> skus) {
     this.skus = skus;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CancelOrderRequestBody instance itself
+   */
+  public CancelOrderRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -178,12 +226,13 @@ public class CancelOrderRequestBody {
     return Objects.equals(this.cancelReason, returnRefund202309CancelOrderRequestBody.cancelReason) &&
         Objects.equals(this.orderId, returnRefund202309CancelOrderRequestBody.orderId) &&
         Objects.equals(this.orderLineItemIds, returnRefund202309CancelOrderRequestBody.orderLineItemIds) &&
-        Objects.equals(this.skus, returnRefund202309CancelOrderRequestBody.skus);
+        Objects.equals(this.skus, returnRefund202309CancelOrderRequestBody.skus)&&
+        Objects.equals(this.additionalProperties, returnRefund202309CancelOrderRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cancelReason, orderId, orderLineItemIds, skus);
+    return Objects.hash(cancelReason, orderId, orderLineItemIds, skus, additionalProperties);
   }
 
   @Override
@@ -194,6 +243,7 @@ public class CancelOrderRequestBody {
     sb.append("    orderId: ").append(toIndentedString(orderId)).append("\n");
     sb.append("    orderLineItemIds: ").append(toIndentedString(orderLineItemIds)).append("\n");
     sb.append("    skus: ").append(toIndentedString(skus)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -215,34 +265,22 @@ public class CancelOrderRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("cancel_reason");
-    openapiFields.add("order_id");
-    openapiFields.add("order_line_item_ids");
-    openapiFields.add("skus");
+    openapiFields = new HashSet<String>(Arrays.asList("cancel_reason", "order_id", "order_line_item_ids", "skus"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CancelOrderRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CancelOrderRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CancelOrderRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CancelOrderRequestBody is not found in the empty JSON string", CancelOrderRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CancelOrderRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CancelOrderRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -287,6 +325,28 @@ public class CancelOrderRequestBody {
            @Override
            public void write(JsonWriter out, CancelOrderRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -294,29 +354,50 @@ public class CancelOrderRequestBody {
            public CancelOrderRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CancelOrderRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CancelOrderRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CancelOrderRequestBody
-  * @throws IOException if the JSON string is invalid with respect to CancelOrderRequestBody
-  */
+  /**
+   * Create an instance of CancelOrderRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CancelOrderRequestBody
+   * @throws IOException if the JSON string is invalid with respect to CancelOrderRequestBody
+   */
   public static CancelOrderRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CancelOrderRequestBody.class);
   }
 
- /**
-  * Convert an instance of CancelOrderRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CancelOrderRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

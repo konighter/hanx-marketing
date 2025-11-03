@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,422 +48,485 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus {
   public static final String SERIALIZED_NAME_ACTUAL_QUANTITY = "actual_quantity";
   @SerializedName(SERIALIZED_NAME_ACTUAL_QUANTITY)
+  @javax.annotation.Nullable
   private Long actualQuantity;
 
   public static final String SERIALIZED_NAME_BARCODE = "barcode";
   @SerializedName(SERIALIZED_NAME_BARCODE)
+  @javax.annotation.Nullable
   private String barcode;
 
   public static final String SERIALIZED_NAME_CANCEL_REASON = "cancel_reason";
   @SerializedName(SERIALIZED_NAME_CANCEL_REASON)
+  @javax.annotation.Nullable
   private String cancelReason;
 
   public static final String SERIALIZED_NAME_CONFIRM_QUANTITY = "confirm_quantity";
   @SerializedName(SERIALIZED_NAME_CONFIRM_QUANTITY)
+  @javax.annotation.Nullable
   private Long confirmQuantity;
 
   public static final String SERIALIZED_NAME_CONFIRM_REASON = "confirm_reason";
   @SerializedName(SERIALIZED_NAME_CONFIRM_REASON)
+  @javax.annotation.Nullable
   private String confirmReason;
 
   public static final String SERIALIZED_NAME_EXTERNAL_SKC_CODE = "external_skc_code";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKC_CODE)
+  @javax.annotation.Nullable
   private String externalSkcCode;
 
   public static final String SERIALIZED_NAME_EXTERNAL_SKU_CODE = "external_sku_code";
   @SerializedName(SERIALIZED_NAME_EXTERNAL_SKU_CODE)
+  @javax.annotation.Nullable
   private String externalSkuCode;
 
   public static final String SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_NAME_EN = "first_key_attribute_name_en";
   @SerializedName(SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_NAME_EN)
+  @javax.annotation.Nullable
   private String firstKeyAttributeNameEn;
 
   public static final String SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_NAME_ZH = "first_key_attribute_name_zh";
   @SerializedName(SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_NAME_ZH)
+  @javax.annotation.Nullable
   private String firstKeyAttributeNameZh;
 
   public static final String SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_VALUE_EN = "first_key_attribute_value_en";
   @SerializedName(SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_VALUE_EN)
+  @javax.annotation.Nullable
   private String firstKeyAttributeValueEn;
 
   public static final String SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_VALUE_ZH = "first_key_attribute_value_zh";
   @SerializedName(SERIALIZED_NAME_FIRST_KEY_ATTRIBUTE_VALUE_ZH)
+  @javax.annotation.Nullable
   private String firstKeyAttributeValueZh;
 
   public static final String SERIALIZED_NAME_IMAGE_URL = "image_url";
   @SerializedName(SERIALIZED_NAME_IMAGE_URL)
+  @javax.annotation.Nullable
   private String imageUrl;
 
   public static final String SERIALIZED_NAME_PLATFORM_SKU_CODE = "platform_sku_code";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SKU_CODE)
+  @javax.annotation.Nullable
   private String platformSkuCode;
 
   public static final String SERIALIZED_NAME_REQUEST_QUANTITY = "request_quantity";
   @SerializedName(SERIALIZED_NAME_REQUEST_QUANTITY)
+  @javax.annotation.Nullable
   private Long requestQuantity;
 
   public static final String SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_NAME_EN = "second_key_attribute_name_en";
   @SerializedName(SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_NAME_EN)
+  @javax.annotation.Nullable
   private String secondKeyAttributeNameEn;
 
   public static final String SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_NAME_ZH = "second_key_attribute_name_zh";
   @SerializedName(SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_NAME_ZH)
+  @javax.annotation.Nullable
   private String secondKeyAttributeNameZh;
 
   public static final String SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_VALUE_EN = "second_key_attribute_value_en";
   @SerializedName(SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_VALUE_EN)
+  @javax.annotation.Nullable
   private String secondKeyAttributeValueEn;
 
   public static final String SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_VALUE_ZH = "second_key_attribute_value_zh";
   @SerializedName(SERIALIZED_NAME_SECOND_KEY_ATTRIBUTE_VALUE_ZH)
+  @javax.annotation.Nullable
   private String secondKeyAttributeValueZh;
 
   public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus() {
   }
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus actualQuantity(Long actualQuantity) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus actualQuantity(@javax.annotation.Nullable Long actualQuantity) {
     this.actualQuantity = actualQuantity;
     return this;
   }
 
-   /**
+  /**
    * The sku actual quantity of returning goods
    * @return actualQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getActualQuantity() {
     return actualQuantity;
   }
 
-  public void setActualQuantity(Long actualQuantity) {
+  public void setActualQuantity(@javax.annotation.Nullable Long actualQuantity) {
     this.actualQuantity = actualQuantity;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus barcode(String barcode) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus barcode(@javax.annotation.Nullable String barcode) {
     this.barcode = barcode;
     return this;
   }
 
-   /**
+  /**
    * The SKU barcode of TikTok Shop.
    * @return barcode
-  **/
+   */
   @javax.annotation.Nullable
   public String getBarcode() {
     return barcode;
   }
 
-  public void setBarcode(String barcode) {
+  public void setBarcode(@javax.annotation.Nullable String barcode) {
     this.barcode = barcode;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus cancelReason(String cancelReason) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus cancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
     return this;
   }
 
-   /**
+  /**
    * The reason for canceling return goods.
    * @return cancelReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getCancelReason() {
     return cancelReason;
   }
 
-  public void setCancelReason(String cancelReason) {
+  public void setCancelReason(@javax.annotation.Nullable String cancelReason) {
     this.cancelReason = cancelReason;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus confirmQuantity(Long confirmQuantity) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus confirmQuantity(@javax.annotation.Nullable Long confirmQuantity) {
     this.confirmQuantity = confirmQuantity;
     return this;
   }
 
-   /**
+  /**
    * The sku quantity that confirms returning goods
    * @return confirmQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getConfirmQuantity() {
     return confirmQuantity;
   }
 
-  public void setConfirmQuantity(Long confirmQuantity) {
+  public void setConfirmQuantity(@javax.annotation.Nullable Long confirmQuantity) {
     this.confirmQuantity = confirmQuantity;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus confirmReason(String confirmReason) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus confirmReason(@javax.annotation.Nullable String confirmReason) {
     this.confirmReason = confirmReason;
     return this;
   }
 
-   /**
+  /**
    * The reason for modifying quantity or confirming return goods.
    * @return confirmReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getConfirmReason() {
     return confirmReason;
   }
 
-  public void setConfirmReason(String confirmReason) {
+  public void setConfirmReason(@javax.annotation.Nullable String confirmReason) {
     this.confirmReason = confirmReason;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus externalSkcCode(String externalSkcCode) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus externalSkcCode(@javax.annotation.Nullable String externalSkcCode) {
     this.externalSkcCode = externalSkcCode;
     return this;
   }
 
-   /**
+  /**
    * The SKC code of your OMS.
    * @return externalSkcCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getExternalSkcCode() {
     return externalSkcCode;
   }
 
-  public void setExternalSkcCode(String externalSkcCode) {
+  public void setExternalSkcCode(@javax.annotation.Nullable String externalSkcCode) {
     this.externalSkcCode = externalSkcCode;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus externalSkuCode(String externalSkuCode) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus externalSkuCode(@javax.annotation.Nullable String externalSkuCode) {
     this.externalSkuCode = externalSkuCode;
     return this;
   }
 
-   /**
+  /**
    * The SKU code of your OMS.
    * @return externalSkuCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getExternalSkuCode() {
     return externalSkuCode;
   }
 
-  public void setExternalSkuCode(String externalSkuCode) {
+  public void setExternalSkuCode(@javax.annotation.Nullable String externalSkuCode) {
     this.externalSkuCode = externalSkuCode;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus firstKeyAttributeNameEn(String firstKeyAttributeNameEn) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus firstKeyAttributeNameEn(@javax.annotation.Nullable String firstKeyAttributeNameEn) {
     this.firstKeyAttributeNameEn = firstKeyAttributeNameEn;
     return this;
   }
 
-   /**
+  /**
    * The first key attribute is the English name of SKC.
    * @return firstKeyAttributeNameEn
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstKeyAttributeNameEn() {
     return firstKeyAttributeNameEn;
   }
 
-  public void setFirstKeyAttributeNameEn(String firstKeyAttributeNameEn) {
+  public void setFirstKeyAttributeNameEn(@javax.annotation.Nullable String firstKeyAttributeNameEn) {
     this.firstKeyAttributeNameEn = firstKeyAttributeNameEn;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus firstKeyAttributeNameZh(String firstKeyAttributeNameZh) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus firstKeyAttributeNameZh(@javax.annotation.Nullable String firstKeyAttributeNameZh) {
     this.firstKeyAttributeNameZh = firstKeyAttributeNameZh;
     return this;
   }
 
-   /**
+  /**
    * The first key attribute is the Chinese name of SKC.
    * @return firstKeyAttributeNameZh
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstKeyAttributeNameZh() {
     return firstKeyAttributeNameZh;
   }
 
-  public void setFirstKeyAttributeNameZh(String firstKeyAttributeNameZh) {
+  public void setFirstKeyAttributeNameZh(@javax.annotation.Nullable String firstKeyAttributeNameZh) {
     this.firstKeyAttributeNameZh = firstKeyAttributeNameZh;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus firstKeyAttributeValueEn(String firstKeyAttributeValueEn) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus firstKeyAttributeValueEn(@javax.annotation.Nullable String firstKeyAttributeValueEn) {
     this.firstKeyAttributeValueEn = firstKeyAttributeValueEn;
     return this;
   }
 
-   /**
+  /**
    * The first key attribute is the English value of SKC.
    * @return firstKeyAttributeValueEn
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstKeyAttributeValueEn() {
     return firstKeyAttributeValueEn;
   }
 
-  public void setFirstKeyAttributeValueEn(String firstKeyAttributeValueEn) {
+  public void setFirstKeyAttributeValueEn(@javax.annotation.Nullable String firstKeyAttributeValueEn) {
     this.firstKeyAttributeValueEn = firstKeyAttributeValueEn;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus firstKeyAttributeValueZh(String firstKeyAttributeValueZh) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus firstKeyAttributeValueZh(@javax.annotation.Nullable String firstKeyAttributeValueZh) {
     this.firstKeyAttributeValueZh = firstKeyAttributeValueZh;
     return this;
   }
 
-   /**
+  /**
    * The first key attribute is the Chinese value of SKC.
    * @return firstKeyAttributeValueZh
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstKeyAttributeValueZh() {
     return firstKeyAttributeValueZh;
   }
 
-  public void setFirstKeyAttributeValueZh(String firstKeyAttributeValueZh) {
+  public void setFirstKeyAttributeValueZh(@javax.annotation.Nullable String firstKeyAttributeValueZh) {
     this.firstKeyAttributeValueZh = firstKeyAttributeValueZh;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus imageUrl(String imageUrl) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus imageUrl(@javax.annotation.Nullable String imageUrl) {
     this.imageUrl = imageUrl;
     return this;
   }
 
-   /**
+  /**
    * The image url address for SKU of TikTok Shop. 
    * @return imageUrl
-  **/
+   */
   @javax.annotation.Nullable
   public String getImageUrl() {
     return imageUrl;
   }
 
-  public void setImageUrl(String imageUrl) {
+  public void setImageUrl(@javax.annotation.Nullable String imageUrl) {
     this.imageUrl = imageUrl;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus platformSkuCode(String platformSkuCode) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus platformSkuCode(@javax.annotation.Nullable String platformSkuCode) {
     this.platformSkuCode = platformSkuCode;
     return this;
   }
 
-   /**
+  /**
    * The SKU code of TikTok Shop.
    * @return platformSkuCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformSkuCode() {
     return platformSkuCode;
   }
 
-  public void setPlatformSkuCode(String platformSkuCode) {
+  public void setPlatformSkuCode(@javax.annotation.Nullable String platformSkuCode) {
     this.platformSkuCode = platformSkuCode;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus requestQuantity(Long requestQuantity) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus requestQuantity(@javax.annotation.Nullable Long requestQuantity) {
     this.requestQuantity = requestQuantity;
     return this;
   }
 
-   /**
+  /**
    * The sku quantity of requests for returning goods
    * @return requestQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRequestQuantity() {
     return requestQuantity;
   }
 
-  public void setRequestQuantity(Long requestQuantity) {
+  public void setRequestQuantity(@javax.annotation.Nullable Long requestQuantity) {
     this.requestQuantity = requestQuantity;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus secondKeyAttributeNameEn(String secondKeyAttributeNameEn) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus secondKeyAttributeNameEn(@javax.annotation.Nullable String secondKeyAttributeNameEn) {
     this.secondKeyAttributeNameEn = secondKeyAttributeNameEn;
     return this;
   }
 
-   /**
+  /**
    * The English name of the second key attribute for SKU of TikTok Shop.
    * @return secondKeyAttributeNameEn
-  **/
+   */
   @javax.annotation.Nullable
   public String getSecondKeyAttributeNameEn() {
     return secondKeyAttributeNameEn;
   }
 
-  public void setSecondKeyAttributeNameEn(String secondKeyAttributeNameEn) {
+  public void setSecondKeyAttributeNameEn(@javax.annotation.Nullable String secondKeyAttributeNameEn) {
     this.secondKeyAttributeNameEn = secondKeyAttributeNameEn;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus secondKeyAttributeNameZh(String secondKeyAttributeNameZh) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus secondKeyAttributeNameZh(@javax.annotation.Nullable String secondKeyAttributeNameZh) {
     this.secondKeyAttributeNameZh = secondKeyAttributeNameZh;
     return this;
   }
 
-   /**
+  /**
    * The Chinese name of the second key attribute for SKU of TikTok Shop.
    * @return secondKeyAttributeNameZh
-  **/
+   */
   @javax.annotation.Nullable
   public String getSecondKeyAttributeNameZh() {
     return secondKeyAttributeNameZh;
   }
 
-  public void setSecondKeyAttributeNameZh(String secondKeyAttributeNameZh) {
+  public void setSecondKeyAttributeNameZh(@javax.annotation.Nullable String secondKeyAttributeNameZh) {
     this.secondKeyAttributeNameZh = secondKeyAttributeNameZh;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus secondKeyAttributeValueEn(String secondKeyAttributeValueEn) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus secondKeyAttributeValueEn(@javax.annotation.Nullable String secondKeyAttributeValueEn) {
     this.secondKeyAttributeValueEn = secondKeyAttributeValueEn;
     return this;
   }
 
-   /**
+  /**
    * The English value of the second key attribute for SKU of TikTok Shop.
    * @return secondKeyAttributeValueEn
-  **/
+   */
   @javax.annotation.Nullable
   public String getSecondKeyAttributeValueEn() {
     return secondKeyAttributeValueEn;
   }
 
-  public void setSecondKeyAttributeValueEn(String secondKeyAttributeValueEn) {
+  public void setSecondKeyAttributeValueEn(@javax.annotation.Nullable String secondKeyAttributeValueEn) {
     this.secondKeyAttributeValueEn = secondKeyAttributeValueEn;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus secondKeyAttributeValueZh(String secondKeyAttributeValueZh) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus secondKeyAttributeValueZh(@javax.annotation.Nullable String secondKeyAttributeValueZh) {
     this.secondKeyAttributeValueZh = secondKeyAttributeValueZh;
     return this;
   }
 
-   /**
+  /**
    * The Chinese value of the second key attribute for SKU of TikTok Shop.
    * @return secondKeyAttributeValueZh
-  **/
+   */
   @javax.annotation.Nullable
   public String getSecondKeyAttributeValueZh() {
     return secondKeyAttributeValueZh;
   }
 
-  public void setSecondKeyAttributeValueZh(String secondKeyAttributeValueZh) {
+  public void setSecondKeyAttributeValueZh(@javax.annotation.Nullable String secondKeyAttributeValueZh) {
     this.secondKeyAttributeValueZh = secondKeyAttributeValueZh;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus instance itself
+   */
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -495,12 +557,13 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSku
         Objects.equals(this.secondKeyAttributeNameEn, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.secondKeyAttributeNameEn) &&
         Objects.equals(this.secondKeyAttributeNameZh, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.secondKeyAttributeNameZh) &&
         Objects.equals(this.secondKeyAttributeValueEn, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.secondKeyAttributeValueEn) &&
-        Objects.equals(this.secondKeyAttributeValueZh, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.secondKeyAttributeValueZh);
+        Objects.equals(this.secondKeyAttributeValueZh, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.secondKeyAttributeValueZh)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(actualQuantity, barcode, cancelReason, confirmQuantity, confirmReason, externalSkcCode, externalSkuCode, firstKeyAttributeNameEn, firstKeyAttributeNameZh, firstKeyAttributeValueEn, firstKeyAttributeValueZh, imageUrl, platformSkuCode, requestQuantity, secondKeyAttributeNameEn, secondKeyAttributeNameZh, secondKeyAttributeValueEn, secondKeyAttributeValueZh);
+    return Objects.hash(actualQuantity, barcode, cancelReason, confirmQuantity, confirmReason, externalSkcCode, externalSkuCode, firstKeyAttributeNameEn, firstKeyAttributeNameZh, firstKeyAttributeValueEn, firstKeyAttributeValueZh, imageUrl, platformSkuCode, requestQuantity, secondKeyAttributeNameEn, secondKeyAttributeNameZh, secondKeyAttributeValueEn, secondKeyAttributeValueZh, additionalProperties);
   }
 
   @Override
@@ -525,6 +588,7 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSku
     sb.append("    secondKeyAttributeNameZh: ").append(toIndentedString(secondKeyAttributeNameZh)).append("\n");
     sb.append("    secondKeyAttributeValueEn: ").append(toIndentedString(secondKeyAttributeValueEn)).append("\n");
     sb.append("    secondKeyAttributeValueZh: ").append(toIndentedString(secondKeyAttributeValueZh)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -546,48 +610,22 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSku
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("actual_quantity");
-    openapiFields.add("barcode");
-    openapiFields.add("cancel_reason");
-    openapiFields.add("confirm_quantity");
-    openapiFields.add("confirm_reason");
-    openapiFields.add("external_skc_code");
-    openapiFields.add("external_sku_code");
-    openapiFields.add("first_key_attribute_name_en");
-    openapiFields.add("first_key_attribute_name_zh");
-    openapiFields.add("first_key_attribute_value_en");
-    openapiFields.add("first_key_attribute_value_zh");
-    openapiFields.add("image_url");
-    openapiFields.add("platform_sku_code");
-    openapiFields.add("request_quantity");
-    openapiFields.add("second_key_attribute_name_en");
-    openapiFields.add("second_key_attribute_name_zh");
-    openapiFields.add("second_key_attribute_value_en");
-    openapiFields.add("second_key_attribute_value_zh");
+    openapiFields = new HashSet<String>(Arrays.asList("actual_quantity", "barcode", "cancel_reason", "confirm_quantity", "confirm_reason", "external_skc_code", "external_sku_code", "first_key_attribute_name_en", "first_key_attribute_name_zh", "first_key_attribute_value_en", "first_key_attribute_value_zh", "image_url", "platform_sku_code", "request_quantity", "second_key_attribute_name_en", "second_key_attribute_name_zh", "second_key_attribute_value_en", "second_key_attribute_value_zh"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus is not found in the empty JSON string", GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -653,6 +691,28 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSku
            @Override
            public void write(JsonWriter out, GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -660,29 +720,50 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSku
            public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus
-  */
+  /**
+   * Create an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus
+   */
   public static GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,66 +51,70 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * RecommendGlobalCategoriesRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class RecommendGlobalCategoriesRequestBody {
   public static final String SERIALIZED_NAME_CATEGORY_VERSION = "category_version";
   @SerializedName(SERIALIZED_NAME_CATEGORY_VERSION)
+  @javax.annotation.Nullable
   private String categoryVersion;
 
   public static final String SERIALIZED_NAME_DESCRIPTION = "description";
   @SerializedName(SERIALIZED_NAME_DESCRIPTION)
+  @javax.annotation.Nullable
   private String description;
 
   public static final String SERIALIZED_NAME_IMAGES = "images";
   @SerializedName(SERIALIZED_NAME_IMAGES)
+  @javax.annotation.Nullable
   private List<RecommendGlobalCategoriesRequestBodyImages> images = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_PRODUCT_TITLE = "product_title";
   @SerializedName(SERIALIZED_NAME_PRODUCT_TITLE)
+  @javax.annotation.Nullable
   private String productTitle;
 
   public RecommendGlobalCategoriesRequestBody() {
   }
 
-  public RecommendGlobalCategoriesRequestBody categoryVersion(String categoryVersion) {
+  public RecommendGlobalCategoriesRequestBody categoryVersion(@javax.annotation.Nullable String categoryVersion) {
     this.categoryVersion = categoryVersion;
     return this;
   }
 
-   /**
+  /**
    * The category tree version to use for this product. Possible values based on region: - US: &#x60;v2&#x60;, represents the 7-level category tree.   **Important**: If the seller account contains an active US shop, you must pass &#x60;v2&#x60; when using this API. - Other regions: &#x60;v1&#x60;, represents the 3-level category tree. Default: &#x60;v1&#x60;
    * @return categoryVersion
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryVersion() {
     return categoryVersion;
   }
 
-  public void setCategoryVersion(String categoryVersion) {
+  public void setCategoryVersion(@javax.annotation.Nullable String categoryVersion) {
     this.categoryVersion = categoryVersion;
   }
 
 
-  public RecommendGlobalCategoriesRequestBody description(String description) {
+  public RecommendGlobalCategoriesRequestBody description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
   }
 
-   /**
+  /**
    * The product description in HTML format.  **Note**: - The content must conform to the [HTML syntax](https://html.spec.whatwg.org/). All HTML tags are accepted but to optimize display on the TikTok Shop product detail page, the system will automatically convert certain tags into alternative formats, such as rendering &#x60;&lt;table&gt;&#x60; tags as images. - Max length: 10,000 characters. - Image guidelines: You must use [TikTok Shop image URLs](6509df95defece02be598a22). Max 30 &#x60;&lt;img&gt;&#x60; tags, each under 4000px with &#x60;src&#x60;, &#x60;width&#x60;, and &#x60;height&#x60; attributes.  **Recommendations**:  - If you are syncing a pre-existing description from another platform, include the full HTML source description here. - Provide a detailed description, ideally over 300 characters. - Include 3-5 key selling points, each under 250 characters, with supporting images. - Use 1600x1600 px for the image dimensions.
    * @return description
-  **/
+   */
   @javax.annotation.Nullable
   public String getDescription() {
     return description;
   }
 
-  public void setDescription(String description) {
+  public void setDescription(@javax.annotation.Nullable String description) {
     this.description = description;
   }
 
 
-  public RecommendGlobalCategoriesRequestBody images(List<RecommendGlobalCategoriesRequestBodyImages> images) {
+  public RecommendGlobalCategoriesRequestBody images(@javax.annotation.Nullable List<RecommendGlobalCategoriesRequestBodyImages> images) {
     this.images = images;
     return this;
   }
@@ -124,36 +127,81 @@ public class RecommendGlobalCategoriesRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Product images, including gallery images, images that appear in the description, product variant images. 
    * @return images
-  **/
+   */
   @javax.annotation.Nullable
   public List<RecommendGlobalCategoriesRequestBodyImages> getImages() {
     return images;
   }
 
-  public void setImages(List<RecommendGlobalCategoriesRequestBodyImages> images) {
+  public void setImages(@javax.annotation.Nullable List<RecommendGlobalCategoriesRequestBodyImages> images) {
     this.images = images;
   }
 
 
-  public RecommendGlobalCategoriesRequestBody productTitle(String productTitle) {
+  public RecommendGlobalCategoriesRequestBody productTitle(@javax.annotation.Nullable String productTitle) {
     this.productTitle = productTitle;
     return this;
   }
 
-   /**
+  /**
    * The product title.  Title length: - DE, ES, FR, IE, IT, JP, UK, US: [1, 255]  - MX:[1,300]  - Other regions: [25, 255] 
    * @return productTitle
-  **/
+   */
   @javax.annotation.Nullable
   public String getProductTitle() {
     return productTitle;
   }
 
-  public void setProductTitle(String productTitle) {
+  public void setProductTitle(@javax.annotation.Nullable String productTitle) {
     this.productTitle = productTitle;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the RecommendGlobalCategoriesRequestBody instance itself
+   */
+  public RecommendGlobalCategoriesRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -170,12 +218,13 @@ public class RecommendGlobalCategoriesRequestBody {
     return Objects.equals(this.categoryVersion, product202309RecommendGlobalCategoriesRequestBody.categoryVersion) &&
         Objects.equals(this.description, product202309RecommendGlobalCategoriesRequestBody.description) &&
         Objects.equals(this.images, product202309RecommendGlobalCategoriesRequestBody.images) &&
-        Objects.equals(this.productTitle, product202309RecommendGlobalCategoriesRequestBody.productTitle);
+        Objects.equals(this.productTitle, product202309RecommendGlobalCategoriesRequestBody.productTitle)&&
+        Objects.equals(this.additionalProperties, product202309RecommendGlobalCategoriesRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(categoryVersion, description, images, productTitle);
+    return Objects.hash(categoryVersion, description, images, productTitle, additionalProperties);
   }
 
   @Override
@@ -186,6 +235,7 @@ public class RecommendGlobalCategoriesRequestBody {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    productTitle: ").append(toIndentedString(productTitle)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -207,34 +257,22 @@ public class RecommendGlobalCategoriesRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("category_version");
-    openapiFields.add("description");
-    openapiFields.add("images");
-    openapiFields.add("product_title");
+    openapiFields = new HashSet<String>(Arrays.asList("category_version", "description", "images", "product_title"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RecommendGlobalCategoriesRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RecommendGlobalCategoriesRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RecommendGlobalCategoriesRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RecommendGlobalCategoriesRequestBody is not found in the empty JSON string", RecommendGlobalCategoriesRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!RecommendGlobalCategoriesRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RecommendGlobalCategoriesRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -278,6 +316,28 @@ public class RecommendGlobalCategoriesRequestBody {
            @Override
            public void write(JsonWriter out, RecommendGlobalCategoriesRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -285,29 +345,50 @@ public class RecommendGlobalCategoriesRequestBody {
            public RecommendGlobalCategoriesRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             RecommendGlobalCategoriesRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RecommendGlobalCategoriesRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RecommendGlobalCategoriesRequestBody
-  * @throws IOException if the JSON string is invalid with respect to RecommendGlobalCategoriesRequestBody
-  */
+  /**
+   * Create an instance of RecommendGlobalCategoriesRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RecommendGlobalCategoriesRequestBody
+   * @throws IOException if the JSON string is invalid with respect to RecommendGlobalCategoriesRequestBody
+   */
   public static RecommendGlobalCategoriesRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RecommendGlobalCategoriesRequestBody.class);
   }
 
- /**
-  * Convert an instance of RecommendGlobalCategoriesRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RecommendGlobalCategoriesRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -8,16 +8,30 @@
       v-loading="formLoading"
     >
       <el-form-item label="平台名称" prop="name">
-        <el-input v-model="formData.name" placeholder="请输入平台名称" />
+        <el-input v-model="formData.name" placeholder="请输入平台名称" class="!w-280px"/>
       </el-form-item>
       <el-form-item label="编码" prop="code">
-        <el-input v-model="formData.code" placeholder="请输入编码" />
+        <el-input v-model="formData.code" placeholder="请输入编码" class="!w-280px"/>
       </el-form-item>
-      <el-form-item label="头像" prop="avatar">
-        <el-input v-model="formData.avatar" placeholder="请输入头像" />
-      </el-form-item>
+
       <el-form-item label="配送模式" prop="shipModes">
-        <el-input v-model="formData.shipModes" placeholder="请输入配送模式" />
+
+        <el-select
+          v-model="formData.shipModes"
+          multiple
+          placeholder="请选择配送模式"
+          class="!w-280px"
+          >
+        <el-option v-for="mode in serviceModes"
+        :key="mode.code"
+        :value="mode.code"
+        :label="mode.name"
+        />
+        
+        
+        </el-select>
+
+
       </el-form-item>
     </el-form>
     <template #footer>
@@ -27,7 +41,7 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import { SellPlatformApi, SellPlatformVO } from '@/app/erp/api/sellplatform'
+import { SellPlatformApi, SellPlatformVO, ServiceMode } from '@/app/erp/api/sellplatform'
 
 /** 销售平台 表单 */
 defineOptions({ name: 'SellPlatformForm' })
@@ -103,4 +117,16 @@ const resetForm = () => {
   }
   formRef.value?.resetFields()
 }
+
+onMounted(() => {
+  loadServiceModes();
+})
+
+const serviceModes = ref<ServiceMode[]>([]) // 平台列表
+
+const loadServiceModes = async () => {
+  serviceModes.value = await SellPlatformApi.getServieModesCache()
+}
+
+
 </script>

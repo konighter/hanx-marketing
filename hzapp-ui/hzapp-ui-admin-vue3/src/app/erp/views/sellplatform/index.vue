@@ -65,10 +65,9 @@
   <!-- 列表 -->
   <ContentWrap>
     <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true">
-      <el-table-column label="ID" align="center" prop="id" />
+      <el-table-column label="ID" align="center" prop="id" width="50px"/>
       <el-table-column label="平台名称" align="center" prop="name" />
       <el-table-column label="编码" align="center" prop="code" />
-      <el-table-column label="头像" align="center" prop="avatar" />
       <el-table-column label="服务模式" align="center" prop="serviceModes" >
         <template #default="{ row }">
              <el-tag  v-for="(m,idx) in row.serviceModes" :key="idx" >{{m.name}}</el-tag>

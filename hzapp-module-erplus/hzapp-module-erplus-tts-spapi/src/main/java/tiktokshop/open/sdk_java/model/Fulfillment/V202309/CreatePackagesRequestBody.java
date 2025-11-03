@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,70 +52,75 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CreatePackagesRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CreatePackagesRequestBody {
   public static final String SERIALIZED_NAME_DIMENSION = "dimension";
   @SerializedName(SERIALIZED_NAME_DIMENSION)
+  @javax.annotation.Nullable
   private CreatePackagesRequestBodyDimension dimension;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEM_IDS = "order_line_item_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEM_IDS)
+  @javax.annotation.Nullable
   private List<String> orderLineItemIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SHIPPING_SERVICE_ID = "shipping_service_id";
   @SerializedName(SERIALIZED_NAME_SHIPPING_SERVICE_ID)
+  @javax.annotation.Nullable
   private String shippingServiceId;
 
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
   @SerializedName(SERIALIZED_NAME_WEIGHT)
+  @javax.annotation.Nullable
   private CreatePackagesRequestBodyWeight weight;
 
   public CreatePackagesRequestBody() {
   }
 
-  public CreatePackagesRequestBody dimension(CreatePackagesRequestBodyDimension dimension) {
+  public CreatePackagesRequestBody dimension(@javax.annotation.Nullable CreatePackagesRequestBodyDimension dimension) {
     this.dimension = dimension;
     return this;
   }
 
-   /**
+  /**
    * Get dimension
    * @return dimension
-  **/
+   */
   @javax.annotation.Nullable
   public CreatePackagesRequestBodyDimension getDimension() {
     return dimension;
   }
 
-  public void setDimension(CreatePackagesRequestBodyDimension dimension) {
+  public void setDimension(@javax.annotation.Nullable CreatePackagesRequestBodyDimension dimension) {
     this.dimension = dimension;
   }
 
 
-  public CreatePackagesRequestBody orderId(String orderId) {
+  public CreatePackagesRequestBody orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop order ID.
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public CreatePackagesRequestBody orderLineItemIds(List<String> orderLineItemIds) {
+  public CreatePackagesRequestBody orderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
     return this;
   }
@@ -129,55 +133,100 @@ public class CreatePackagesRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of order line item IDs.
    * @return orderLineItemIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineItemIds() {
     return orderLineItemIds;
   }
 
-  public void setOrderLineItemIds(List<String> orderLineItemIds) {
+  public void setOrderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
   }
 
 
-  public CreatePackagesRequestBody shippingServiceId(String shippingServiceId) {
+  public CreatePackagesRequestBody shippingServiceId(@javax.annotation.Nullable String shippingServiceId) {
     this.shippingServiceId = shippingServiceId;
     return this;
   }
 
-   /**
+  /**
    * Specify the shipping service used.  If not specified, use the default service obtained from [Get Eligible Shipping Service](https://partner.tiktokshop.com/docv2/page/650aa6b2bace3e02b75dda4e).
    * @return shippingServiceId
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingServiceId() {
     return shippingServiceId;
   }
 
-  public void setShippingServiceId(String shippingServiceId) {
+  public void setShippingServiceId(@javax.annotation.Nullable String shippingServiceId) {
     this.shippingServiceId = shippingServiceId;
   }
 
 
-  public CreatePackagesRequestBody weight(CreatePackagesRequestBodyWeight weight) {
+  public CreatePackagesRequestBody weight(@javax.annotation.Nullable CreatePackagesRequestBodyWeight weight) {
     this.weight = weight;
     return this;
   }
 
-   /**
+  /**
    * Get weight
    * @return weight
-  **/
+   */
   @javax.annotation.Nullable
   public CreatePackagesRequestBodyWeight getWeight() {
     return weight;
   }
 
-  public void setWeight(CreatePackagesRequestBodyWeight weight) {
+  public void setWeight(@javax.annotation.Nullable CreatePackagesRequestBodyWeight weight) {
     this.weight = weight;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CreatePackagesRequestBody instance itself
+   */
+  public CreatePackagesRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -195,12 +244,13 @@ public class CreatePackagesRequestBody {
         Objects.equals(this.orderId, fulfillment202309CreatePackagesRequestBody.orderId) &&
         Objects.equals(this.orderLineItemIds, fulfillment202309CreatePackagesRequestBody.orderLineItemIds) &&
         Objects.equals(this.shippingServiceId, fulfillment202309CreatePackagesRequestBody.shippingServiceId) &&
-        Objects.equals(this.weight, fulfillment202309CreatePackagesRequestBody.weight);
+        Objects.equals(this.weight, fulfillment202309CreatePackagesRequestBody.weight)&&
+        Objects.equals(this.additionalProperties, fulfillment202309CreatePackagesRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dimension, orderId, orderLineItemIds, shippingServiceId, weight);
+    return Objects.hash(dimension, orderId, orderLineItemIds, shippingServiceId, weight, additionalProperties);
   }
 
   @Override
@@ -212,6 +262,7 @@ public class CreatePackagesRequestBody {
     sb.append("    orderLineItemIds: ").append(toIndentedString(orderLineItemIds)).append("\n");
     sb.append("    shippingServiceId: ").append(toIndentedString(shippingServiceId)).append("\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -233,35 +284,22 @@ public class CreatePackagesRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("dimension");
-    openapiFields.add("order_id");
-    openapiFields.add("order_line_item_ids");
-    openapiFields.add("shipping_service_id");
-    openapiFields.add("weight");
+    openapiFields = new HashSet<String>(Arrays.asList("dimension", "order_id", "order_line_item_ids", "shipping_service_id", "weight"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreatePackagesRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreatePackagesRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreatePackagesRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreatePackagesRequestBody is not found in the empty JSON string", CreatePackagesRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreatePackagesRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreatePackagesRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -300,6 +338,28 @@ public class CreatePackagesRequestBody {
            @Override
            public void write(JsonWriter out, CreatePackagesRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -307,29 +367,50 @@ public class CreatePackagesRequestBody {
            public CreatePackagesRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CreatePackagesRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreatePackagesRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreatePackagesRequestBody
-  * @throws IOException if the JSON string is invalid with respect to CreatePackagesRequestBody
-  */
+  /**
+   * Create an instance of CreatePackagesRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreatePackagesRequestBody
+   * @throws IOException if the JSON string is invalid with respect to CreatePackagesRequestBody
+   */
   public static CreatePackagesRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreatePackagesRequestBody.class);
   }
 
- /**
-  * Convert an instance of CreatePackagesRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreatePackagesRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,43 +51,46 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * RejectCancellationRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class RejectCancellationRequestBody {
   public static final String SERIALIZED_NAME_COMMENT = "comment";
   @SerializedName(SERIALIZED_NAME_COMMENT)
+  @javax.annotation.Nullable
   private String comment;
 
   public static final String SERIALIZED_NAME_IMAGES = "images";
   @SerializedName(SERIALIZED_NAME_IMAGES)
+  @javax.annotation.Nullable
   private List<RejectCancellationRequestBodyImages> images = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REJECT_REASON = "reject_reason";
   @SerializedName(SERIALIZED_NAME_REJECT_REASON)
+  @javax.annotation.Nullable
   private String rejectReason;
 
   public RejectCancellationRequestBody() {
   }
 
-  public RejectCancellationRequestBody comment(String comment) {
+  public RejectCancellationRequestBody comment(@javax.annotation.Nullable String comment) {
     this.comment = comment;
     return this;
   }
 
-   /**
+  /**
    * Seller&#39;s comment on rejection decision. This is where a seller will provide more information about rejecting the request. 
    * @return comment
-  **/
+   */
   @javax.annotation.Nullable
   public String getComment() {
     return comment;
   }
 
-  public void setComment(String comment) {
+  public void setComment(@javax.annotation.Nullable String comment) {
     this.comment = comment;
   }
 
 
-  public RejectCancellationRequestBody images(List<RejectCancellationRequestBodyImages> images) {
+  public RejectCancellationRequestBody images(@javax.annotation.Nullable List<RejectCancellationRequestBodyImages> images) {
     this.images = images;
     return this;
   }
@@ -101,36 +103,81 @@ public class RejectCancellationRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of images provided by the seller to support seller&#39;s decision to reject the order cancellation request. 
    * @return images
-  **/
+   */
   @javax.annotation.Nullable
   public List<RejectCancellationRequestBodyImages> getImages() {
     return images;
   }
 
-  public void setImages(List<RejectCancellationRequestBodyImages> images) {
+  public void setImages(@javax.annotation.Nullable List<RejectCancellationRequestBodyImages> images) {
     this.images = images;
   }
 
 
-  public RejectCancellationRequestBody rejectReason(String rejectReason) {
+  public RejectCancellationRequestBody rejectReason(@javax.annotation.Nullable String rejectReason) {
     this.rejectReason = rejectReason;
     return this;
   }
 
-   /**
+  /**
    * Seller&#39;s reason to reject buyer&#39;s order cancellation request.   Please visit our [cancel reason appendix ](650b28280fcef602bf435096) to see a list of possible rejection reasons.
    * @return rejectReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getRejectReason() {
     return rejectReason;
   }
 
-  public void setRejectReason(String rejectReason) {
+  public void setRejectReason(@javax.annotation.Nullable String rejectReason) {
     this.rejectReason = rejectReason;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the RejectCancellationRequestBody instance itself
+   */
+  public RejectCancellationRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -146,12 +193,13 @@ public class RejectCancellationRequestBody {
     RejectCancellationRequestBody returnRefund202309RejectCancellationRequestBody = (RejectCancellationRequestBody) o;
     return Objects.equals(this.comment, returnRefund202309RejectCancellationRequestBody.comment) &&
         Objects.equals(this.images, returnRefund202309RejectCancellationRequestBody.images) &&
-        Objects.equals(this.rejectReason, returnRefund202309RejectCancellationRequestBody.rejectReason);
+        Objects.equals(this.rejectReason, returnRefund202309RejectCancellationRequestBody.rejectReason)&&
+        Objects.equals(this.additionalProperties, returnRefund202309RejectCancellationRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(comment, images, rejectReason);
+    return Objects.hash(comment, images, rejectReason, additionalProperties);
   }
 
   @Override
@@ -161,6 +209,7 @@ public class RejectCancellationRequestBody {
     sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
     sb.append("    images: ").append(toIndentedString(images)).append("\n");
     sb.append("    rejectReason: ").append(toIndentedString(rejectReason)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -182,33 +231,22 @@ public class RejectCancellationRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("comment");
-    openapiFields.add("images");
-    openapiFields.add("reject_reason");
+    openapiFields = new HashSet<String>(Arrays.asList("comment", "images", "reject_reason"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RejectCancellationRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RejectCancellationRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RejectCancellationRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RejectCancellationRequestBody is not found in the empty JSON string", RejectCancellationRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!RejectCancellationRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RejectCancellationRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -249,6 +287,28 @@ public class RejectCancellationRequestBody {
            @Override
            public void write(JsonWriter out, RejectCancellationRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -256,29 +316,50 @@ public class RejectCancellationRequestBody {
            public RejectCancellationRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             RejectCancellationRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RejectCancellationRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RejectCancellationRequestBody
-  * @throws IOException if the JSON string is invalid with respect to RejectCancellationRequestBody
-  */
+  /**
+   * Create an instance of RejectCancellationRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RejectCancellationRequestBody
+   * @throws IOException if the JSON string is invalid with respect to RejectCancellationRequestBody
+   */
   public static RejectCancellationRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RejectCancellationRequestBody.class);
   }
 
- /**
-  * Convert an instance of RejectCancellationRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RejectCancellationRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

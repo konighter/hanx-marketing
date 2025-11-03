@@ -82,12 +82,13 @@ public class GsFullServiceCommodityV202504Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202504BetaProductsSearchPostCall(String xTtsAccessToken, String contentType, GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202504BetaProductsSearchPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -112,14 +113,6 @@ public class GsFullServiceCommodityV202504Api {
         Map<String, String> localVarCookieParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -136,12 +129,22 @@ public class GsFullServiceCommodityV202504Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call gsFullServiceCommodity202504BetaProductsSearchPostValidateBeforeCall(String xTtsAccessToken, String contentType, GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call gsFullServiceCommodity202504BetaProductsSearchPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling gsFullServiceCommodity202504BetaProductsSearchPost(Async)");
@@ -165,12 +168,13 @@ public class GsFullServiceCommodityV202504Api {
      * @return GSQuerySKUsandtheapprovalstatusofSKUsV2Response
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GSQuerySKUsandtheapprovalstatusofSKUsV2Response gsFullServiceCommodity202504BetaProductsSearchPost(String xTtsAccessToken, String contentType, GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody) throws ApiException {
+    public GSQuerySKUsandtheapprovalstatusofSKUsV2Response gsFullServiceCommodity202504BetaProductsSearchPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody) throws ApiException {
         ApiResponse<GSQuerySKUsandtheapprovalstatusofSKUsV2Response> localVarResp = gsFullServiceCommodity202504BetaProductsSearchPostWithHttpInfo(xTtsAccessToken, contentType, gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody);
         return localVarResp.getData();
     }
@@ -184,12 +188,13 @@ public class GsFullServiceCommodityV202504Api {
      * @return ApiResponse&lt;GSQuerySKUsandtheapprovalstatusofSKUsV2Response&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GSQuerySKUsandtheapprovalstatusofSKUsV2Response> gsFullServiceCommodity202504BetaProductsSearchPostWithHttpInfo(String xTtsAccessToken, String contentType, GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody) throws ApiException {
+    public ApiResponse<GSQuerySKUsandtheapprovalstatusofSKUsV2Response> gsFullServiceCommodity202504BetaProductsSearchPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody) throws ApiException {
         okhttp3.Call localVarCall = gsFullServiceCommodity202504BetaProductsSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody, null);
         Type localVarReturnType = new TypeToken<GSQuerySKUsandtheapprovalstatusofSKUsV2Response>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -205,12 +210,13 @@ public class GsFullServiceCommodityV202504Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call gsFullServiceCommodity202504BetaProductsSearchPostAsync(String xTtsAccessToken, String contentType, GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody, final ApiCallback<GSQuerySKUsandtheapprovalstatusofSKUsV2Response> _callback) throws ApiException {
+    public okhttp3.Call gsFullServiceCommodity202504BetaProductsSearchPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody, final ApiCallback<GSQuerySKUsandtheapprovalstatusofSKUsV2Response> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = gsFullServiceCommodity202504BetaProductsSearchPostValidateBeforeCall(xTtsAccessToken, contentType, gsFullServiceCommodity202504GSQuerySKUsandtheapprovalstatusofSKUsV2RequestBody, _callback);
         Type localVarReturnType = new TypeToken<GSQuerySKUsandtheapprovalstatusofSKUsV2Response>(){}.getType();

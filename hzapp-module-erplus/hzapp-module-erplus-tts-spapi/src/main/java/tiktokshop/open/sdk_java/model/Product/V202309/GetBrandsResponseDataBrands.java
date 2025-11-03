@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,123 +48,173 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetBrandsResponseDataBrands
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetBrandsResponseDataBrands {
   public static final String SERIALIZED_NAME_AUTHORIZED_STATUS = "authorized_status";
   @SerializedName(SERIALIZED_NAME_AUTHORIZED_STATUS)
+  @javax.annotation.Nullable
   private String authorizedStatus;
 
   public static final String SERIALIZED_NAME_BRAND_STATUS = "brand_status";
   @SerializedName(SERIALIZED_NAME_BRAND_STATUS)
+  @javax.annotation.Nullable
   private String brandStatus;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_IS_T1_BRAND = "is_t1_brand";
   @SerializedName(SERIALIZED_NAME_IS_T1_BRAND)
+  @javax.annotation.Nullable
   private Boolean isT1Brand;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public GetBrandsResponseDataBrands() {
   }
 
-  public GetBrandsResponseDataBrands authorizedStatus(String authorizedStatus) {
+  public GetBrandsResponseDataBrands authorizedStatus(@javax.annotation.Nullable String authorizedStatus) {
     this.authorizedStatus = authorizedStatus;
     return this;
   }
 
-   /**
+  /**
    * A status to indicate whether the seller has obtained prior authorization to sell goods bearing the brand&#39;s trademark, name, or logo.  Possible values: - UNAUTHORIEZD - AUTHORIZED  **Note**: If the brand is unauthorized, check &#x60;is_t1_brand&#x60; to determine if you can use it during product creation.
    * @return authorizedStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getAuthorizedStatus() {
     return authorizedStatus;
   }
 
-  public void setAuthorizedStatus(String authorizedStatus) {
+  public void setAuthorizedStatus(@javax.annotation.Nullable String authorizedStatus) {
     this.authorizedStatus = authorizedStatus;
   }
 
 
-  public GetBrandsResponseDataBrands brandStatus(String brandStatus) {
+  public GetBrandsResponseDataBrands brandStatus(@javax.annotation.Nullable String brandStatus) {
     this.brandStatus = brandStatus;
     return this;
   }
 
-   /**
+  /**
    * The availability of an **authorized brand** in the requested category. Possible values: - AVAILABLE - UNAVAILABLE  **Note**: Not applicable if you did not specify the category ID, or the brand is unauthorized.
    * @return brandStatus
-  **/
+   */
   @javax.annotation.Nullable
   public String getBrandStatus() {
     return brandStatus;
   }
 
-  public void setBrandStatus(String brandStatus) {
+  public void setBrandStatus(@javax.annotation.Nullable String brandStatus) {
     this.brandStatus = brandStatus;
   }
 
 
-  public GetBrandsResponseDataBrands id(String id) {
+  public GetBrandsResponseDataBrands id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The brand ID.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetBrandsResponseDataBrands isT1Brand(Boolean isT1Brand) {
+  public GetBrandsResponseDataBrands isT1Brand(@javax.annotation.Nullable Boolean isT1Brand) {
     this.isT1Brand = isT1Brand;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate whether the brand is a T1 brand, which refers to internationally renowned brands that may have compliance risks and require sellers to obtain brand authorization.  **Note**: - You cannot create products with unauthorized T1 brands. - You can create products with unauthorized non-T1 brands, **but** the brand information will not appear on the product display page.  You can obtain authorization by submitting the required qualifications through TikTok Shop Seller Center &gt; Qualification Center &gt; Brand qualification.
    * @return isT1Brand
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsT1Brand() {
     return isT1Brand;
   }
 
-  public void setIsT1Brand(Boolean isT1Brand) {
+  public void setIsT1Brand(@javax.annotation.Nullable Boolean isT1Brand) {
     this.isT1Brand = isT1Brand;
   }
 
 
-  public GetBrandsResponseDataBrands name(String name) {
+  public GetBrandsResponseDataBrands name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The brand name.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetBrandsResponseDataBrands instance itself
+   */
+  public GetBrandsResponseDataBrands putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -183,12 +232,13 @@ public class GetBrandsResponseDataBrands {
         Objects.equals(this.brandStatus, product202309GetBrandsResponseDataBrands.brandStatus) &&
         Objects.equals(this.id, product202309GetBrandsResponseDataBrands.id) &&
         Objects.equals(this.isT1Brand, product202309GetBrandsResponseDataBrands.isT1Brand) &&
-        Objects.equals(this.name, product202309GetBrandsResponseDataBrands.name);
+        Objects.equals(this.name, product202309GetBrandsResponseDataBrands.name)&&
+        Objects.equals(this.additionalProperties, product202309GetBrandsResponseDataBrands.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(authorizedStatus, brandStatus, id, isT1Brand, name);
+    return Objects.hash(authorizedStatus, brandStatus, id, isT1Brand, name, additionalProperties);
   }
 
   @Override
@@ -200,6 +250,7 @@ public class GetBrandsResponseDataBrands {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    isT1Brand: ").append(toIndentedString(isT1Brand)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,35 +272,22 @@ public class GetBrandsResponseDataBrands {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("authorized_status");
-    openapiFields.add("brand_status");
-    openapiFields.add("id");
-    openapiFields.add("is_t1_brand");
-    openapiFields.add("name");
+    openapiFields = new HashSet<String>(Arrays.asList("authorized_status", "brand_status", "id", "is_t1_brand", "name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetBrandsResponseDataBrands
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetBrandsResponseDataBrands
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetBrandsResponseDataBrands.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetBrandsResponseDataBrands is not found in the empty JSON string", GetBrandsResponseDataBrands.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetBrandsResponseDataBrands.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetBrandsResponseDataBrands` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -282,6 +320,28 @@ public class GetBrandsResponseDataBrands {
            @Override
            public void write(JsonWriter out, GetBrandsResponseDataBrands value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -289,29 +349,50 @@ public class GetBrandsResponseDataBrands {
            public GetBrandsResponseDataBrands read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetBrandsResponseDataBrands instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetBrandsResponseDataBrands given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetBrandsResponseDataBrands
-  * @throws IOException if the JSON string is invalid with respect to GetBrandsResponseDataBrands
-  */
+  /**
+   * Create an instance of GetBrandsResponseDataBrands given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetBrandsResponseDataBrands
+   * @throws IOException if the JSON string is invalid with respect to GetBrandsResponseDataBrands
+   */
   public static GetBrandsResponseDataBrands fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetBrandsResponseDataBrands.class);
   }
 
- /**
-  * Convert an instance of GetBrandsResponseDataBrands to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetBrandsResponseDataBrands to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

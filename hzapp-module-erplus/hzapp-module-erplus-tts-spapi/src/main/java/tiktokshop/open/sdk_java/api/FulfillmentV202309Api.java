@@ -118,12 +118,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309CombinablePackagesSearchGetCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309CombinablePackagesSearchGetCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -160,14 +161,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -183,12 +176,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309CombinablePackagesSearchGetValidateBeforeCall(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309CombinablePackagesSearchGetValidateBeforeCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pageSize' is set
         if (pageSize == null) {
             throw new ApiException("Missing the required parameter 'pageSize' when calling fulfillment202309CombinablePackagesSearchGet(Async)");
@@ -219,12 +222,13 @@ public class FulfillmentV202309Api {
      * @return SearchCombinablePackagesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchCombinablePackagesResponse fulfillment202309CombinablePackagesSearchGet(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher) throws ApiException {
+    public SearchCombinablePackagesResponse fulfillment202309CombinablePackagesSearchGet(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<SearchCombinablePackagesResponse> localVarResp = fulfillment202309CombinablePackagesSearchGetWithHttpInfo(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher);
         return localVarResp.getData();
     }
@@ -240,12 +244,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;SearchCombinablePackagesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchCombinablePackagesResponse> fulfillment202309CombinablePackagesSearchGetWithHttpInfo(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher) throws ApiException {
+    public ApiResponse<SearchCombinablePackagesResponse> fulfillment202309CombinablePackagesSearchGetWithHttpInfo(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309CombinablePackagesSearchGetValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher, null);
         Type localVarReturnType = new TypeToken<SearchCombinablePackagesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -263,12 +268,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309CombinablePackagesSearchGetAsync(Integer pageSize, String xTtsAccessToken, String contentType, String pageToken, String shopCipher, final ApiCallback<SearchCombinablePackagesResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309CombinablePackagesSearchGetAsync(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, final ApiCallback<SearchCombinablePackagesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309CombinablePackagesSearchGetValidateBeforeCall(pageSize, xTtsAccessToken, contentType, pageToken, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<SearchCombinablePackagesResponse>(){}.getType();
@@ -286,12 +292,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309FilesUploadPostCall(String xTtsAccessToken, String contentType, String shopCipher, File data, String name, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309FilesUploadPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -328,14 +335,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -352,12 +351,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309FilesUploadPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, File data, String name, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309FilesUploadPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202309FilesUploadPost(Async)");
@@ -383,12 +392,13 @@ public class FulfillmentV202309Api {
      * @return FulfillmentUploadDeliveryFileResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public FulfillmentUploadDeliveryFileResponse fulfillment202309FilesUploadPost(String xTtsAccessToken, String contentType, String shopCipher, File data, String name) throws ApiException {
+    public FulfillmentUploadDeliveryFileResponse fulfillment202309FilesUploadPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name) throws ApiException {
         ApiResponse<FulfillmentUploadDeliveryFileResponse> localVarResp = fulfillment202309FilesUploadPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, data, name);
         return localVarResp.getData();
     }
@@ -404,12 +414,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;FulfillmentUploadDeliveryFileResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FulfillmentUploadDeliveryFileResponse> fulfillment202309FilesUploadPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, File data, String name) throws ApiException {
+    public ApiResponse<FulfillmentUploadDeliveryFileResponse> fulfillment202309FilesUploadPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309FilesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, data, name, null);
         Type localVarReturnType = new TypeToken<FulfillmentUploadDeliveryFileResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -427,12 +438,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309FilesUploadPostAsync(String xTtsAccessToken, String contentType, String shopCipher, File data, String name, final ApiCallback<FulfillmentUploadDeliveryFileResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309FilesUploadPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data, @javax.annotation.Nullable String name, final ApiCallback<FulfillmentUploadDeliveryFileResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309FilesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, data, name, _callback);
         Type localVarReturnType = new TypeToken<FulfillmentUploadDeliveryFileResponse>(){}.getType();
@@ -449,12 +461,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309ImagesUploadPostCall(String xTtsAccessToken, String contentType, String shopCipher, File data, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309ImagesUploadPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -487,14 +500,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -511,12 +516,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309ImagesUploadPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, File data, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309ImagesUploadPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202309ImagesUploadPost(Async)");
@@ -541,12 +556,13 @@ public class FulfillmentV202309Api {
      * @return FulfillmentUploadDeliveryImageResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public FulfillmentUploadDeliveryImageResponse fulfillment202309ImagesUploadPost(String xTtsAccessToken, String contentType, String shopCipher, File data) throws ApiException {
+    public FulfillmentUploadDeliveryImageResponse fulfillment202309ImagesUploadPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data) throws ApiException {
         ApiResponse<FulfillmentUploadDeliveryImageResponse> localVarResp = fulfillment202309ImagesUploadPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, data);
         return localVarResp.getData();
     }
@@ -561,12 +577,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;FulfillmentUploadDeliveryImageResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<FulfillmentUploadDeliveryImageResponse> fulfillment202309ImagesUploadPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, File data) throws ApiException {
+    public ApiResponse<FulfillmentUploadDeliveryImageResponse> fulfillment202309ImagesUploadPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309ImagesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, data, null);
         Type localVarReturnType = new TypeToken<FulfillmentUploadDeliveryImageResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -583,12 +600,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309ImagesUploadPostAsync(String xTtsAccessToken, String contentType, String shopCipher, File data, final ApiCallback<FulfillmentUploadDeliveryImageResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309ImagesUploadPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable File data, final ApiCallback<FulfillmentUploadDeliveryImageResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309ImagesUploadPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, data, _callback);
         Type localVarReturnType = new TypeToken<FulfillmentUploadDeliveryImageResponse>(){}.getType();
@@ -606,12 +624,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdHandoverTimeSlotsGetCall(String orderId, String xTtsAccessToken, String contentType, List<String> orderLineItemIds, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdHandoverTimeSlotsGetCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable List<String> orderLineItemIds, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -645,14 +664,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -668,12 +679,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309OrdersOrderIdHandoverTimeSlotsGetValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, List<String> orderLineItemIds, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309OrdersOrderIdHandoverTimeSlotsGetValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable List<String> orderLineItemIds, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling fulfillment202309OrdersOrderIdHandoverTimeSlotsGet(Async)");
@@ -704,12 +725,13 @@ public class FulfillmentV202309Api {
      * @return GetHandoverTimeslotsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetHandoverTimeslotsResponse fulfillment202309OrdersOrderIdHandoverTimeSlotsGet(String orderId, String xTtsAccessToken, String contentType, List<String> orderLineItemIds, String shopCipher) throws ApiException {
+    public GetHandoverTimeslotsResponse fulfillment202309OrdersOrderIdHandoverTimeSlotsGet(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable List<String> orderLineItemIds, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetHandoverTimeslotsResponse> localVarResp = fulfillment202309OrdersOrderIdHandoverTimeSlotsGetWithHttpInfo(orderId, xTtsAccessToken, contentType, orderLineItemIds, shopCipher);
         return localVarResp.getData();
     }
@@ -725,12 +747,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;GetHandoverTimeslotsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetHandoverTimeslotsResponse> fulfillment202309OrdersOrderIdHandoverTimeSlotsGetWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, List<String> orderLineItemIds, String shopCipher) throws ApiException {
+    public ApiResponse<GetHandoverTimeslotsResponse> fulfillment202309OrdersOrderIdHandoverTimeSlotsGetWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable List<String> orderLineItemIds, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdHandoverTimeSlotsGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, orderLineItemIds, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetHandoverTimeslotsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -748,12 +771,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdHandoverTimeSlotsGetAsync(String orderId, String xTtsAccessToken, String contentType, List<String> orderLineItemIds, String shopCipher, final ApiCallback<GetHandoverTimeslotsResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdHandoverTimeSlotsGetAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable List<String> orderLineItemIds, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetHandoverTimeslotsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdHandoverTimeSlotsGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, orderLineItemIds, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetHandoverTimeslotsResponse>(){}.getType();
@@ -762,7 +786,7 @@ public class FulfillmentV202309Api {
     }
     /**
      * Build call for fulfillment202309OrdersOrderIdPackagesPost
-     * @param orderId  (required)
+     * @param orderId The unique identifier for a TikTok Shop order. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param shopCipher  (optional)
@@ -771,12 +795,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdPackagesPostCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdPackagesPostCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -806,14 +831,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -830,12 +847,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309OrdersOrderIdPackagesPostValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309OrdersOrderIdPackagesPostValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling fulfillment202309OrdersOrderIdPackagesPost(Async)");
@@ -857,8 +884,8 @@ public class FulfillmentV202309Api {
 
     /**
      * MarkPackageAsShipped
-     * **This API is currently exclusive to the following markets: US, UK, ES, IE.**  This API is for sellers who fulfill orders through their own selected/preferred logistics carrier, and allows sellers to upload valid package information (items in packages, shipping provider information, and tracking number) orders/order line items to TikTok Shop. Use [Get Shipping Providers API](https://partner.tiktokshop.com/docv2/page/650aa48d4a0bb702c06d85cd?external_id&#x3D;650aa48d4a0bb702c06d85cd) to retrieve the &#x60;shipping_provider_id&#x60; for shipping providers.
-     * @param orderId  (required)
+     * **This API is currently exclusive to the following markets: US, UK, ES, IE, IT, DE, FR, JP.** This API is for sellers who fulfill orders through their own selected/preferred logistics carrier, and allows sellers to upload valid package information (items in packages, shipping provider information, and tracking number) orders/order line items to TikTok Shop. Use [Get Shipping Providers API](https://partner.tiktokshop.com/docv2/page/650aa48d4a0bb702c06d85cd?external_id&#x3D;650aa48d4a0bb702c06d85cd) to retrieve the &#x60;shipping_provider_id&#x60; for shipping providers.
+     * @param orderId The unique identifier for a TikTok Shop order. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param shopCipher  (optional)
@@ -866,20 +893,21 @@ public class FulfillmentV202309Api {
      * @return MarkPackageAsShippedResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public MarkPackageAsShippedResponse fulfillment202309OrdersOrderIdPackagesPost(String orderId, String xTtsAccessToken, String contentType, String shopCipher, MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody) throws ApiException {
+    public MarkPackageAsShippedResponse fulfillment202309OrdersOrderIdPackagesPost(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody) throws ApiException {
         ApiResponse<MarkPackageAsShippedResponse> localVarResp = fulfillment202309OrdersOrderIdPackagesPostWithHttpInfo(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309MarkPackageAsShippedRequestBody);
         return localVarResp.getData();
     }
 
     /**
      * MarkPackageAsShipped
-     * **This API is currently exclusive to the following markets: US, UK, ES, IE.**  This API is for sellers who fulfill orders through their own selected/preferred logistics carrier, and allows sellers to upload valid package information (items in packages, shipping provider information, and tracking number) orders/order line items to TikTok Shop. Use [Get Shipping Providers API](https://partner.tiktokshop.com/docv2/page/650aa48d4a0bb702c06d85cd?external_id&#x3D;650aa48d4a0bb702c06d85cd) to retrieve the &#x60;shipping_provider_id&#x60; for shipping providers.
-     * @param orderId  (required)
+     * **This API is currently exclusive to the following markets: US, UK, ES, IE, IT, DE, FR, JP.** This API is for sellers who fulfill orders through their own selected/preferred logistics carrier, and allows sellers to upload valid package information (items in packages, shipping provider information, and tracking number) orders/order line items to TikTok Shop. Use [Get Shipping Providers API](https://partner.tiktokshop.com/docv2/page/650aa48d4a0bb702c06d85cd?external_id&#x3D;650aa48d4a0bb702c06d85cd) to retrieve the &#x60;shipping_provider_id&#x60; for shipping providers.
+     * @param orderId The unique identifier for a TikTok Shop order. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param shopCipher  (optional)
@@ -887,12 +915,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;MarkPackageAsShippedResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<MarkPackageAsShippedResponse> fulfillment202309OrdersOrderIdPackagesPostWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String shopCipher, MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody) throws ApiException {
+    public ApiResponse<MarkPackageAsShippedResponse> fulfillment202309OrdersOrderIdPackagesPostWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdPackagesPostValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309MarkPackageAsShippedRequestBody, null);
         Type localVarReturnType = new TypeToken<MarkPackageAsShippedResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -900,8 +929,8 @@ public class FulfillmentV202309Api {
 
     /**
      * MarkPackageAsShipped (asynchronously)
-     * **This API is currently exclusive to the following markets: US, UK, ES, IE.**  This API is for sellers who fulfill orders through their own selected/preferred logistics carrier, and allows sellers to upload valid package information (items in packages, shipping provider information, and tracking number) orders/order line items to TikTok Shop. Use [Get Shipping Providers API](https://partner.tiktokshop.com/docv2/page/650aa48d4a0bb702c06d85cd?external_id&#x3D;650aa48d4a0bb702c06d85cd) to retrieve the &#x60;shipping_provider_id&#x60; for shipping providers.
-     * @param orderId  (required)
+     * **This API is currently exclusive to the following markets: US, UK, ES, IE, IT, DE, FR, JP.** This API is for sellers who fulfill orders through their own selected/preferred logistics carrier, and allows sellers to upload valid package information (items in packages, shipping provider information, and tracking number) orders/order line items to TikTok Shop. Use [Get Shipping Providers API](https://partner.tiktokshop.com/docv2/page/650aa48d4a0bb702c06d85cd?external_id&#x3D;650aa48d4a0bb702c06d85cd) to retrieve the &#x60;shipping_provider_id&#x60; for shipping providers.
+     * @param orderId The unique identifier for a TikTok Shop order. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
      * @param shopCipher  (optional)
@@ -910,12 +939,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdPackagesPostAsync(String orderId, String xTtsAccessToken, String contentType, String shopCipher, MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody, final ApiCallback<MarkPackageAsShippedResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdPackagesPostAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable MarkPackageAsShippedRequestBody fulfillment202309MarkPackageAsShippedRequestBody, final ApiCallback<MarkPackageAsShippedResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdPackagesPostValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309MarkPackageAsShippedRequestBody, _callback);
         Type localVarReturnType = new TypeToken<MarkPackageAsShippedResponse>(){}.getType();
@@ -933,12 +963,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdShippingInfoUpdatePostCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdShippingInfoUpdatePostCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -968,14 +999,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -992,12 +1015,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309OrdersOrderIdShippingInfoUpdatePostValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309OrdersOrderIdShippingInfoUpdatePostValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling fulfillment202309OrdersOrderIdShippingInfoUpdatePost(Async)");
@@ -1028,12 +1061,13 @@ public class FulfillmentV202309Api {
      * @return UpdateShippingInfoResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdateShippingInfoResponse fulfillment202309OrdersOrderIdShippingInfoUpdatePost(String orderId, String xTtsAccessToken, String contentType, String shopCipher, UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody) throws ApiException {
+    public UpdateShippingInfoResponse fulfillment202309OrdersOrderIdShippingInfoUpdatePost(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody) throws ApiException {
         ApiResponse<UpdateShippingInfoResponse> localVarResp = fulfillment202309OrdersOrderIdShippingInfoUpdatePostWithHttpInfo(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdateShippingInfoRequestBody);
         return localVarResp.getData();
     }
@@ -1049,12 +1083,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;UpdateShippingInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdateShippingInfoResponse> fulfillment202309OrdersOrderIdShippingInfoUpdatePostWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String shopCipher, UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody) throws ApiException {
+    public ApiResponse<UpdateShippingInfoResponse> fulfillment202309OrdersOrderIdShippingInfoUpdatePostWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdShippingInfoUpdatePostValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdateShippingInfoRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdateShippingInfoResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1072,12 +1107,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdShippingInfoUpdatePostAsync(String orderId, String xTtsAccessToken, String contentType, String shopCipher, UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody, final ApiCallback<UpdateShippingInfoResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdShippingInfoUpdatePostAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdateShippingInfoRequestBody fulfillment202309UpdateShippingInfoRequestBody, final ApiCallback<UpdateShippingInfoResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdShippingInfoUpdatePostValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdateShippingInfoRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdateShippingInfoResponse>(){}.getType();
@@ -1095,12 +1131,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdShippingServicesQueryPostCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdShippingServicesQueryPostCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1130,14 +1167,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1154,12 +1183,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309OrdersOrderIdShippingServicesQueryPostValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309OrdersOrderIdShippingServicesQueryPostValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling fulfillment202309OrdersOrderIdShippingServicesQueryPost(Async)");
@@ -1190,12 +1229,13 @@ public class FulfillmentV202309Api {
      * @return GetEligibleShippingServiceResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetEligibleShippingServiceResponse fulfillment202309OrdersOrderIdShippingServicesQueryPost(String orderId, String xTtsAccessToken, String contentType, String shopCipher, GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody) throws ApiException {
+    public GetEligibleShippingServiceResponse fulfillment202309OrdersOrderIdShippingServicesQueryPost(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody) throws ApiException {
         ApiResponse<GetEligibleShippingServiceResponse> localVarResp = fulfillment202309OrdersOrderIdShippingServicesQueryPostWithHttpInfo(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309GetEligibleShippingServiceRequestBody);
         return localVarResp.getData();
     }
@@ -1211,12 +1251,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;GetEligibleShippingServiceResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetEligibleShippingServiceResponse> fulfillment202309OrdersOrderIdShippingServicesQueryPostWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String shopCipher, GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody) throws ApiException {
+    public ApiResponse<GetEligibleShippingServiceResponse> fulfillment202309OrdersOrderIdShippingServicesQueryPostWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdShippingServicesQueryPostValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309GetEligibleShippingServiceRequestBody, null);
         Type localVarReturnType = new TypeToken<GetEligibleShippingServiceResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1234,12 +1275,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdShippingServicesQueryPostAsync(String orderId, String xTtsAccessToken, String contentType, String shopCipher, GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody, final ApiCallback<GetEligibleShippingServiceResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdShippingServicesQueryPostAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable GetEligibleShippingServiceRequestBody fulfillment202309GetEligibleShippingServiceRequestBody, final ApiCallback<GetEligibleShippingServiceResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdShippingServicesQueryPostValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309GetEligibleShippingServiceRequestBody, _callback);
         Type localVarReturnType = new TypeToken<GetEligibleShippingServiceResponse>(){}.getType();
@@ -1257,12 +1299,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdSplitPostCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdSplitPostCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1292,14 +1335,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1316,12 +1351,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309OrdersOrderIdSplitPostValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309OrdersOrderIdSplitPostValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling fulfillment202309OrdersOrderIdSplitPost(Async)");
@@ -1343,7 +1388,7 @@ public class FulfillmentV202309Api {
 
     /**
      * SplitOrders
-     * Use this API to confirm an order split. Note that ​​supported split levels vary by region​​: - Some regions support ​​item-level splits​​ (splitting individual units of the same SKU). - Others only support ​​all-units splits​​ (splitting different SKUs into separate packages). You are recommended to call the [Get Order Split Attributes API](650aa9210fcef602bf32ae5b) first to verify the allowed split level for an order before invoking this endpoint.  Here are two examples of Supported Splits: - ​​Case 1: all-units split​​ Split a buyer order of SKU A of quantity 2 and SKU B of quantity 1 into two separate packages:   - ​​Package 1​​: all units of SKU A ​​  - Package 2​​: all unit of SKU B  - ​​Case 2: item-level Split​​ Split the same order contents into three individual packages:   - ​​Package 1​​: 1 unit of SKU A ​  - ​Package 2​​: 1 unit of SKU A ​​  - Package 3​​: 1 unit of SKU B
+     * Use this API to confirm an order split. Note that ​​supported split levels vary by region​​: - Some regions support ​​item-level splits​​ (splitting individual units of the same SKU). - Others only support ​​all-units splits​​ (splitting different SKUs into separate packages).  Here are two examples of supported splits: - ​​**Case 1**: all-units split​​, applicable for orders in BR, SEA, MX (local sellers) Split a buyer order of SKU A of quantity 2 and SKU B of quantity 1 into two separate packages:   - ​​Package 1​​: all units of SKU A ​​  - Package 2​​: all units of SKU B  - **​​Case 2**: item-level split​​, applicable for orders in EU, JP, MX (global sellers), UK, US Split the same order contents into three individual packages:   - ​​Package 1​​: 1 unit of SKU A ​  - ​Package 2​​: 1 unit of SKU A ​​  - Package 3​​: 1 unit of SKU B
      * @param orderId TikTok Shop order ID. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -1352,19 +1397,20 @@ public class FulfillmentV202309Api {
      * @return SplitOrdersResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SplitOrdersResponse fulfillment202309OrdersOrderIdSplitPost(String orderId, String xTtsAccessToken, String contentType, String shopCipher, SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody) throws ApiException {
+    public SplitOrdersResponse fulfillment202309OrdersOrderIdSplitPost(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody) throws ApiException {
         ApiResponse<SplitOrdersResponse> localVarResp = fulfillment202309OrdersOrderIdSplitPostWithHttpInfo(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309SplitOrdersRequestBody);
         return localVarResp.getData();
     }
 
     /**
      * SplitOrders
-     * Use this API to confirm an order split. Note that ​​supported split levels vary by region​​: - Some regions support ​​item-level splits​​ (splitting individual units of the same SKU). - Others only support ​​all-units splits​​ (splitting different SKUs into separate packages). You are recommended to call the [Get Order Split Attributes API](650aa9210fcef602bf32ae5b) first to verify the allowed split level for an order before invoking this endpoint.  Here are two examples of Supported Splits: - ​​Case 1: all-units split​​ Split a buyer order of SKU A of quantity 2 and SKU B of quantity 1 into two separate packages:   - ​​Package 1​​: all units of SKU A ​​  - Package 2​​: all unit of SKU B  - ​​Case 2: item-level Split​​ Split the same order contents into three individual packages:   - ​​Package 1​​: 1 unit of SKU A ​  - ​Package 2​​: 1 unit of SKU A ​​  - Package 3​​: 1 unit of SKU B
+     * Use this API to confirm an order split. Note that ​​supported split levels vary by region​​: - Some regions support ​​item-level splits​​ (splitting individual units of the same SKU). - Others only support ​​all-units splits​​ (splitting different SKUs into separate packages).  Here are two examples of supported splits: - ​​**Case 1**: all-units split​​, applicable for orders in BR, SEA, MX (local sellers) Split a buyer order of SKU A of quantity 2 and SKU B of quantity 1 into two separate packages:   - ​​Package 1​​: all units of SKU A ​​  - Package 2​​: all units of SKU B  - **​​Case 2**: item-level split​​, applicable for orders in EU, JP, MX (global sellers), UK, US Split the same order contents into three individual packages:   - ​​Package 1​​: 1 unit of SKU A ​  - ​Package 2​​: 1 unit of SKU A ​​  - Package 3​​: 1 unit of SKU B
      * @param orderId TikTok Shop order ID. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -1373,12 +1419,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;SplitOrdersResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SplitOrdersResponse> fulfillment202309OrdersOrderIdSplitPostWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String shopCipher, SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody) throws ApiException {
+    public ApiResponse<SplitOrdersResponse> fulfillment202309OrdersOrderIdSplitPostWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdSplitPostValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309SplitOrdersRequestBody, null);
         Type localVarReturnType = new TypeToken<SplitOrdersResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1386,7 +1433,7 @@ public class FulfillmentV202309Api {
 
     /**
      * SplitOrders (asynchronously)
-     * Use this API to confirm an order split. Note that ​​supported split levels vary by region​​: - Some regions support ​​item-level splits​​ (splitting individual units of the same SKU). - Others only support ​​all-units splits​​ (splitting different SKUs into separate packages). You are recommended to call the [Get Order Split Attributes API](650aa9210fcef602bf32ae5b) first to verify the allowed split level for an order before invoking this endpoint.  Here are two examples of Supported Splits: - ​​Case 1: all-units split​​ Split a buyer order of SKU A of quantity 2 and SKU B of quantity 1 into two separate packages:   - ​​Package 1​​: all units of SKU A ​​  - Package 2​​: all unit of SKU B  - ​​Case 2: item-level Split​​ Split the same order contents into three individual packages:   - ​​Package 1​​: 1 unit of SKU A ​  - ​Package 2​​: 1 unit of SKU A ​​  - Package 3​​: 1 unit of SKU B
+     * Use this API to confirm an order split. Note that ​​supported split levels vary by region​​: - Some regions support ​​item-level splits​​ (splitting individual units of the same SKU). - Others only support ​​all-units splits​​ (splitting different SKUs into separate packages).  Here are two examples of supported splits: - ​​**Case 1**: all-units split​​, applicable for orders in BR, SEA, MX (local sellers) Split a buyer order of SKU A of quantity 2 and SKU B of quantity 1 into two separate packages:   - ​​Package 1​​: all units of SKU A ​​  - Package 2​​: all units of SKU B  - **​​Case 2**: item-level split​​, applicable for orders in EU, JP, MX (global sellers), UK, US Split the same order contents into three individual packages:   - ​​Package 1​​: 1 unit of SKU A ​  - ​Package 2​​: 1 unit of SKU A ​​  - Package 3​​: 1 unit of SKU B
      * @param orderId TikTok Shop order ID. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
@@ -1396,12 +1443,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdSplitPostAsync(String orderId, String xTtsAccessToken, String contentType, String shopCipher, SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody, final ApiCallback<SplitOrdersResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdSplitPostAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SplitOrdersRequestBody fulfillment202309SplitOrdersRequestBody, final ApiCallback<SplitOrdersResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdSplitPostValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, fulfillment202309SplitOrdersRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SplitOrdersResponse>(){}.getType();
@@ -1418,12 +1466,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdTrackingGetCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdTrackingGetCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1453,14 +1502,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1476,12 +1517,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309OrdersOrderIdTrackingGetValidateBeforeCall(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309OrdersOrderIdTrackingGetValidateBeforeCall(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderId' is set
         if (orderId == null) {
             throw new ApiException("Missing the required parameter 'orderId' when calling fulfillment202309OrdersOrderIdTrackingGet(Async)");
@@ -1511,12 +1562,13 @@ public class FulfillmentV202309Api {
      * @return GetTrackingResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetTrackingResponse fulfillment202309OrdersOrderIdTrackingGet(String orderId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetTrackingResponse fulfillment202309OrdersOrderIdTrackingGet(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetTrackingResponse> localVarResp = fulfillment202309OrdersOrderIdTrackingGetWithHttpInfo(orderId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -1531,12 +1583,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;GetTrackingResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetTrackingResponse> fulfillment202309OrdersOrderIdTrackingGetWithHttpInfo(String orderId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetTrackingResponse> fulfillment202309OrdersOrderIdTrackingGetWithHttpInfo(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdTrackingGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetTrackingResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1553,12 +1606,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersOrderIdTrackingGetAsync(String orderId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetTrackingResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersOrderIdTrackingGetAsync(@javax.annotation.Nonnull String orderId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetTrackingResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309OrdersOrderIdTrackingGetValidateBeforeCall(orderId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetTrackingResponse>(){}.getType();
@@ -1575,12 +1629,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersSplitAttributesGetCall(List<String> orderIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersSplitAttributesGetCall(@javax.annotation.Nonnull List<String> orderIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1613,14 +1668,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1636,12 +1683,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309OrdersSplitAttributesGetValidateBeforeCall(List<String> orderIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309OrdersSplitAttributesGetValidateBeforeCall(@javax.annotation.Nonnull List<String> orderIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'orderIds' is set
         if (orderIds == null) {
             throw new ApiException("Missing the required parameter 'orderIds' when calling fulfillment202309OrdersSplitAttributesGet(Async)");
@@ -1671,12 +1728,13 @@ public class FulfillmentV202309Api {
      * @return GetOrderSplitAttributesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetOrderSplitAttributesResponse fulfillment202309OrdersSplitAttributesGet(List<String> orderIds, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetOrderSplitAttributesResponse fulfillment202309OrdersSplitAttributesGet(@javax.annotation.Nonnull List<String> orderIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetOrderSplitAttributesResponse> localVarResp = fulfillment202309OrdersSplitAttributesGetWithHttpInfo(orderIds, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -1691,12 +1749,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;GetOrderSplitAttributesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetOrderSplitAttributesResponse> fulfillment202309OrdersSplitAttributesGetWithHttpInfo(List<String> orderIds, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetOrderSplitAttributesResponse> fulfillment202309OrdersSplitAttributesGetWithHttpInfo(@javax.annotation.Nonnull List<String> orderIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309OrdersSplitAttributesGetValidateBeforeCall(orderIds, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetOrderSplitAttributesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1713,12 +1772,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309OrdersSplitAttributesGetAsync(List<String> orderIds, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetOrderSplitAttributesResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309OrdersSplitAttributesGetAsync(@javax.annotation.Nonnull List<String> orderIds, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetOrderSplitAttributesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309OrdersSplitAttributesGetValidateBeforeCall(orderIds, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetOrderSplitAttributesResponse>(){}.getType();
@@ -1735,12 +1795,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesCombinePostCall(String xTtsAccessToken, String contentType, String shopCipher, CombinePackageRequestBody fulfillment202309CombinePackageRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesCombinePostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CombinePackageRequestBody fulfillment202309CombinePackageRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1769,14 +1830,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1793,12 +1846,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesCombinePostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, CombinePackageRequestBody fulfillment202309CombinePackageRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesCombinePostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CombinePackageRequestBody fulfillment202309CombinePackageRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202309PackagesCombinePost(Async)");
@@ -1823,12 +1886,13 @@ public class FulfillmentV202309Api {
      * @return CombinePackageResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CombinePackageResponse fulfillment202309PackagesCombinePost(String xTtsAccessToken, String contentType, String shopCipher, CombinePackageRequestBody fulfillment202309CombinePackageRequestBody) throws ApiException {
+    public CombinePackageResponse fulfillment202309PackagesCombinePost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CombinePackageRequestBody fulfillment202309CombinePackageRequestBody) throws ApiException {
         ApiResponse<CombinePackageResponse> localVarResp = fulfillment202309PackagesCombinePostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, fulfillment202309CombinePackageRequestBody);
         return localVarResp.getData();
     }
@@ -1843,12 +1907,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;CombinePackageResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CombinePackageResponse> fulfillment202309PackagesCombinePostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, CombinePackageRequestBody fulfillment202309CombinePackageRequestBody) throws ApiException {
+    public ApiResponse<CombinePackageResponse> fulfillment202309PackagesCombinePostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CombinePackageRequestBody fulfillment202309CombinePackageRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesCombinePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309CombinePackageRequestBody, null);
         Type localVarReturnType = new TypeToken<CombinePackageResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -1865,12 +1930,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesCombinePostAsync(String xTtsAccessToken, String contentType, String shopCipher, CombinePackageRequestBody fulfillment202309CombinePackageRequestBody, final ApiCallback<CombinePackageResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesCombinePostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CombinePackageRequestBody fulfillment202309CombinePackageRequestBody, final ApiCallback<CombinePackageResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesCombinePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309CombinePackageRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CombinePackageResponse>(){}.getType();
@@ -1887,12 +1953,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesDeliverPostCall(String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesDeliverPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -1921,14 +1988,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -1945,12 +2004,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesDeliverPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesDeliverPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202309PackagesDeliverPost(Async)");
@@ -1975,12 +2044,13 @@ public class FulfillmentV202309Api {
      * @return UpdatePackageDeliveryStatusResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdatePackageDeliveryStatusResponse fulfillment202309PackagesDeliverPost(String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody) throws ApiException {
+    public UpdatePackageDeliveryStatusResponse fulfillment202309PackagesDeliverPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody) throws ApiException {
         ApiResponse<UpdatePackageDeliveryStatusResponse> localVarResp = fulfillment202309PackagesDeliverPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdatePackageDeliveryStatusRequestBody);
         return localVarResp.getData();
     }
@@ -1995,12 +2065,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;UpdatePackageDeliveryStatusResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdatePackageDeliveryStatusResponse> fulfillment202309PackagesDeliverPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody) throws ApiException {
+    public ApiResponse<UpdatePackageDeliveryStatusResponse> fulfillment202309PackagesDeliverPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesDeliverPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdatePackageDeliveryStatusRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdatePackageDeliveryStatusResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2017,12 +2088,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesDeliverPostAsync(String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody, final ApiCallback<UpdatePackageDeliveryStatusResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesDeliverPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageDeliveryStatusRequestBody fulfillment202309UpdatePackageDeliveryStatusRequestBody, final ApiCallback<UpdatePackageDeliveryStatusResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesDeliverPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdatePackageDeliveryStatusRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdatePackageDeliveryStatusResponse>(){}.getType();
@@ -2034,17 +2106,18 @@ public class FulfillmentV202309Api {
      * @param packageId TikTok Shop package ID. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdGetCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdGetCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2074,14 +2147,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2097,12 +2162,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesPackageIdGetValidateBeforeCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesPackageIdGetValidateBeforeCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'packageId' is set
         if (packageId == null) {
             throw new ApiException("Missing the required parameter 'packageId' when calling fulfillment202309PackagesPackageIdGet(Async)");
@@ -2128,16 +2203,17 @@ public class FulfillmentV202309Api {
      * @param packageId TikTok Shop package ID. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @return GetPackageDetailResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetPackageDetailResponse fulfillment202309PackagesPackageIdGet(String packageId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetPackageDetailResponse fulfillment202309PackagesPackageIdGet(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetPackageDetailResponse> localVarResp = fulfillment202309PackagesPackageIdGetWithHttpInfo(packageId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -2148,16 +2224,17 @@ public class FulfillmentV202309Api {
      * @param packageId TikTok Shop package ID. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @return ApiResponse&lt;GetPackageDetailResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetPackageDetailResponse> fulfillment202309PackagesPackageIdGetWithHttpInfo(String packageId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetPackageDetailResponse> fulfillment202309PackagesPackageIdGetWithHttpInfo(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdGetValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetPackageDetailResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2169,17 +2246,18 @@ public class FulfillmentV202309Api {
      * @param packageId TikTok Shop package ID. (required)
      * @param xTtsAccessToken  (required)
      * @param contentType Allowed type: application/json (required)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdGetAsync(String packageId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetPackageDetailResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdGetAsync(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetPackageDetailResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdGetValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetPackageDetailResponse>(){}.getType();
@@ -2196,12 +2274,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdHandoverTimeSlotsGetCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdHandoverTimeSlotsGetCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2231,14 +2310,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2254,12 +2325,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesPackageIdHandoverTimeSlotsGetValidateBeforeCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesPackageIdHandoverTimeSlotsGetValidateBeforeCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'packageId' is set
         if (packageId == null) {
             throw new ApiException("Missing the required parameter 'packageId' when calling fulfillment202309PackagesPackageIdHandoverTimeSlotsGet(Async)");
@@ -2289,12 +2370,13 @@ public class FulfillmentV202309Api {
      * @return GetPackageHandoverTimeSlotsResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetPackageHandoverTimeSlotsResponse fulfillment202309PackagesPackageIdHandoverTimeSlotsGet(String packageId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public GetPackageHandoverTimeSlotsResponse fulfillment202309PackagesPackageIdHandoverTimeSlotsGet(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetPackageHandoverTimeSlotsResponse> localVarResp = fulfillment202309PackagesPackageIdHandoverTimeSlotsGetWithHttpInfo(packageId, xTtsAccessToken, contentType, shopCipher);
         return localVarResp.getData();
     }
@@ -2309,12 +2391,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;GetPackageHandoverTimeSlotsResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetPackageHandoverTimeSlotsResponse> fulfillment202309PackagesPackageIdHandoverTimeSlotsGetWithHttpInfo(String packageId, String xTtsAccessToken, String contentType, String shopCipher) throws ApiException {
+    public ApiResponse<GetPackageHandoverTimeSlotsResponse> fulfillment202309PackagesPackageIdHandoverTimeSlotsGetWithHttpInfo(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdHandoverTimeSlotsGetValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetPackageHandoverTimeSlotsResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2331,12 +2414,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdHandoverTimeSlotsGetAsync(String packageId, String xTtsAccessToken, String contentType, String shopCipher, final ApiCallback<GetPackageHandoverTimeSlotsResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdHandoverTimeSlotsGetAsync(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetPackageHandoverTimeSlotsResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdHandoverTimeSlotsGetValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetPackageHandoverTimeSlotsResponse>(){}.getType();
@@ -2354,12 +2438,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdShipPostCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, ShipPackageRequestBody fulfillment202309ShipPackageRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdShipPostCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ShipPackageRequestBody fulfillment202309ShipPackageRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2389,14 +2474,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2413,12 +2490,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesPackageIdShipPostValidateBeforeCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, ShipPackageRequestBody fulfillment202309ShipPackageRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesPackageIdShipPostValidateBeforeCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ShipPackageRequestBody fulfillment202309ShipPackageRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'packageId' is set
         if (packageId == null) {
             throw new ApiException("Missing the required parameter 'packageId' when calling fulfillment202309PackagesPackageIdShipPost(Async)");
@@ -2449,12 +2536,13 @@ public class FulfillmentV202309Api {
      * @return ShipPackageResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ShipPackageResponse fulfillment202309PackagesPackageIdShipPost(String packageId, String xTtsAccessToken, String contentType, String shopCipher, ShipPackageRequestBody fulfillment202309ShipPackageRequestBody) throws ApiException {
+    public ShipPackageResponse fulfillment202309PackagesPackageIdShipPost(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ShipPackageRequestBody fulfillment202309ShipPackageRequestBody) throws ApiException {
         ApiResponse<ShipPackageResponse> localVarResp = fulfillment202309PackagesPackageIdShipPostWithHttpInfo(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309ShipPackageRequestBody);
         return localVarResp.getData();
     }
@@ -2470,12 +2558,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;ShipPackageResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<ShipPackageResponse> fulfillment202309PackagesPackageIdShipPostWithHttpInfo(String packageId, String xTtsAccessToken, String contentType, String shopCipher, ShipPackageRequestBody fulfillment202309ShipPackageRequestBody) throws ApiException {
+    public ApiResponse<ShipPackageResponse> fulfillment202309PackagesPackageIdShipPostWithHttpInfo(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ShipPackageRequestBody fulfillment202309ShipPackageRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdShipPostValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309ShipPackageRequestBody, null);
         Type localVarReturnType = new TypeToken<ShipPackageResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2493,12 +2582,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdShipPostAsync(String packageId, String xTtsAccessToken, String contentType, String shopCipher, ShipPackageRequestBody fulfillment202309ShipPackageRequestBody, final ApiCallback<ShipPackageResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdShipPostAsync(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable ShipPackageRequestBody fulfillment202309ShipPackageRequestBody, final ApiCallback<ShipPackageResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdShipPostValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309ShipPackageRequestBody, _callback);
         Type localVarReturnType = new TypeToken<ShipPackageResponse>(){}.getType();
@@ -2518,12 +2608,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdShippingDocumentsGetCall(String packageId, String documentType, String xTtsAccessToken, String contentType, String documentSize, String documentFormat, String shopCipher, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdShippingDocumentsGetCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String documentType, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String documentSize, @javax.annotation.Nullable String documentFormat, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2565,14 +2656,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2588,12 +2671,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesPackageIdShippingDocumentsGetValidateBeforeCall(String packageId, String documentType, String xTtsAccessToken, String contentType, String documentSize, String documentFormat, String shopCipher, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesPackageIdShippingDocumentsGetValidateBeforeCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String documentType, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String documentSize, @javax.annotation.Nullable String documentFormat, @javax.annotation.Nullable String shopCipher, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'packageId' is set
         if (packageId == null) {
             throw new ApiException("Missing the required parameter 'packageId' when calling fulfillment202309PackagesPackageIdShippingDocumentsGet(Async)");
@@ -2631,12 +2724,13 @@ public class FulfillmentV202309Api {
      * @return GetPackageShippingDocumentResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public GetPackageShippingDocumentResponse fulfillment202309PackagesPackageIdShippingDocumentsGet(String packageId, String documentType, String xTtsAccessToken, String contentType, String documentSize, String documentFormat, String shopCipher) throws ApiException {
+    public GetPackageShippingDocumentResponse fulfillment202309PackagesPackageIdShippingDocumentsGet(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String documentType, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String documentSize, @javax.annotation.Nullable String documentFormat, @javax.annotation.Nullable String shopCipher) throws ApiException {
         ApiResponse<GetPackageShippingDocumentResponse> localVarResp = fulfillment202309PackagesPackageIdShippingDocumentsGetWithHttpInfo(packageId, documentType, xTtsAccessToken, contentType, documentSize, documentFormat, shopCipher);
         return localVarResp.getData();
     }
@@ -2654,12 +2748,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;GetPackageShippingDocumentResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<GetPackageShippingDocumentResponse> fulfillment202309PackagesPackageIdShippingDocumentsGetWithHttpInfo(String packageId, String documentType, String xTtsAccessToken, String contentType, String documentSize, String documentFormat, String shopCipher) throws ApiException {
+    public ApiResponse<GetPackageShippingDocumentResponse> fulfillment202309PackagesPackageIdShippingDocumentsGetWithHttpInfo(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String documentType, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String documentSize, @javax.annotation.Nullable String documentFormat, @javax.annotation.Nullable String shopCipher) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdShippingDocumentsGetValidateBeforeCall(packageId, documentType, xTtsAccessToken, contentType, documentSize, documentFormat, shopCipher, null);
         Type localVarReturnType = new TypeToken<GetPackageShippingDocumentResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2679,12 +2774,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdShippingDocumentsGetAsync(String packageId, String documentType, String xTtsAccessToken, String contentType, String documentSize, String documentFormat, String shopCipher, final ApiCallback<GetPackageShippingDocumentResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdShippingDocumentsGetAsync(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String documentType, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String documentSize, @javax.annotation.Nullable String documentFormat, @javax.annotation.Nullable String shopCipher, final ApiCallback<GetPackageShippingDocumentResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdShippingDocumentsGetValidateBeforeCall(packageId, documentType, xTtsAccessToken, contentType, documentSize, documentFormat, shopCipher, _callback);
         Type localVarReturnType = new TypeToken<GetPackageShippingDocumentResponse>(){}.getType();
@@ -2702,12 +2798,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdShippingInfoUpdatePostCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdShippingInfoUpdatePostCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2737,14 +2834,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2761,12 +2850,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesPackageIdShippingInfoUpdatePostValidateBeforeCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesPackageIdShippingInfoUpdatePostValidateBeforeCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'packageId' is set
         if (packageId == null) {
             throw new ApiException("Missing the required parameter 'packageId' when calling fulfillment202309PackagesPackageIdShippingInfoUpdatePost(Async)");
@@ -2797,12 +2896,13 @@ public class FulfillmentV202309Api {
      * @return UpdatePackageShippingInfoResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UpdatePackageShippingInfoResponse fulfillment202309PackagesPackageIdShippingInfoUpdatePost(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody) throws ApiException {
+    public UpdatePackageShippingInfoResponse fulfillment202309PackagesPackageIdShippingInfoUpdatePost(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody) throws ApiException {
         ApiResponse<UpdatePackageShippingInfoResponse> localVarResp = fulfillment202309PackagesPackageIdShippingInfoUpdatePostWithHttpInfo(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdatePackageShippingInfoRequestBody);
         return localVarResp.getData();
     }
@@ -2818,12 +2918,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;UpdatePackageShippingInfoResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UpdatePackageShippingInfoResponse> fulfillment202309PackagesPackageIdShippingInfoUpdatePostWithHttpInfo(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody) throws ApiException {
+    public ApiResponse<UpdatePackageShippingInfoResponse> fulfillment202309PackagesPackageIdShippingInfoUpdatePostWithHttpInfo(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdShippingInfoUpdatePostValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdatePackageShippingInfoRequestBody, null);
         Type localVarReturnType = new TypeToken<UpdatePackageShippingInfoResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -2841,12 +2942,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdShippingInfoUpdatePostAsync(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody, final ApiCallback<UpdatePackageShippingInfoResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdShippingInfoUpdatePostAsync(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UpdatePackageShippingInfoRequestBody fulfillment202309UpdatePackageShippingInfoRequestBody, final ApiCallback<UpdatePackageShippingInfoResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdShippingInfoUpdatePostValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UpdatePackageShippingInfoRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UpdatePackageShippingInfoResponse>(){}.getType();
@@ -2864,12 +2966,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdUncombinePostCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdUncombinePostCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -2899,14 +3002,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -2923,12 +3018,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesPackageIdUncombinePostValidateBeforeCall(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesPackageIdUncombinePostValidateBeforeCall(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'packageId' is set
         if (packageId == null) {
             throw new ApiException("Missing the required parameter 'packageId' when calling fulfillment202309PackagesPackageIdUncombinePost(Async)");
@@ -2959,12 +3064,13 @@ public class FulfillmentV202309Api {
      * @return UncombinePackagesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public UncombinePackagesResponse fulfillment202309PackagesPackageIdUncombinePost(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody) throws ApiException {
+    public UncombinePackagesResponse fulfillment202309PackagesPackageIdUncombinePost(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody) throws ApiException {
         ApiResponse<UncombinePackagesResponse> localVarResp = fulfillment202309PackagesPackageIdUncombinePostWithHttpInfo(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UncombinePackagesRequestBody);
         return localVarResp.getData();
     }
@@ -2980,12 +3086,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;UncombinePackagesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<UncombinePackagesResponse> fulfillment202309PackagesPackageIdUncombinePostWithHttpInfo(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody) throws ApiException {
+    public ApiResponse<UncombinePackagesResponse> fulfillment202309PackagesPackageIdUncombinePostWithHttpInfo(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdUncombinePostValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UncombinePackagesRequestBody, null);
         Type localVarReturnType = new TypeToken<UncombinePackagesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3003,12 +3110,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPackageIdUncombinePostAsync(String packageId, String xTtsAccessToken, String contentType, String shopCipher, UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody, final ApiCallback<UncombinePackagesResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPackageIdUncombinePostAsync(@javax.annotation.Nonnull String packageId, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable UncombinePackagesRequestBody fulfillment202309UncombinePackagesRequestBody, final ApiCallback<UncombinePackagesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesPackageIdUncombinePostValidateBeforeCall(packageId, xTtsAccessToken, contentType, shopCipher, fulfillment202309UncombinePackagesRequestBody, _callback);
         Type localVarReturnType = new TypeToken<UncombinePackagesResponse>(){}.getType();
@@ -3025,12 +3133,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPostCall(String xTtsAccessToken, String contentType, String shopCipher, CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3059,14 +3168,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3083,12 +3184,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202309PackagesPost(Async)");
@@ -3113,12 +3224,13 @@ public class FulfillmentV202309Api {
      * @return CreatePackagesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public CreatePackagesResponse fulfillment202309PackagesPost(String xTtsAccessToken, String contentType, String shopCipher, CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody) throws ApiException {
+    public CreatePackagesResponse fulfillment202309PackagesPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody) throws ApiException {
         ApiResponse<CreatePackagesResponse> localVarResp = fulfillment202309PackagesPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, fulfillment202309CreatePackagesRequestBody);
         return localVarResp.getData();
     }
@@ -3133,12 +3245,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;CreatePackagesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<CreatePackagesResponse> fulfillment202309PackagesPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody) throws ApiException {
+    public ApiResponse<CreatePackagesResponse> fulfillment202309PackagesPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309CreatePackagesRequestBody, null);
         Type localVarReturnType = new TypeToken<CreatePackagesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3155,12 +3268,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesPostAsync(String xTtsAccessToken, String contentType, String shopCipher, CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody, final ApiCallback<CreatePackagesResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable CreatePackagesRequestBody fulfillment202309CreatePackagesRequestBody, final ApiCallback<CreatePackagesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309CreatePackagesRequestBody, _callback);
         Type localVarReturnType = new TypeToken<CreatePackagesResponse>(){}.getType();
@@ -3177,12 +3291,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesSchedulePostCall(String xTtsAccessToken, String contentType, String shopCipher, SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesSchedulePostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3211,14 +3326,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3235,12 +3342,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesSchedulePostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesSchedulePostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202309PackagesSchedulePost(Async)");
@@ -3265,12 +3382,13 @@ public class FulfillmentV202309Api {
      * @return SchedulePackageHandoverResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SchedulePackageHandoverResponse fulfillment202309PackagesSchedulePost(String xTtsAccessToken, String contentType, String shopCipher, SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody) throws ApiException {
+    public SchedulePackageHandoverResponse fulfillment202309PackagesSchedulePost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody) throws ApiException {
         ApiResponse<SchedulePackageHandoverResponse> localVarResp = fulfillment202309PackagesSchedulePostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, fulfillment202309SchedulePackageHandoverRequestBody);
         return localVarResp.getData();
     }
@@ -3285,12 +3403,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;SchedulePackageHandoverResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SchedulePackageHandoverResponse> fulfillment202309PackagesSchedulePostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody) throws ApiException {
+    public ApiResponse<SchedulePackageHandoverResponse> fulfillment202309PackagesSchedulePostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesSchedulePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309SchedulePackageHandoverRequestBody, null);
         Type localVarReturnType = new TypeToken<SchedulePackageHandoverResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3307,12 +3426,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesSchedulePostAsync(String xTtsAccessToken, String contentType, String shopCipher, SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody, final ApiCallback<SchedulePackageHandoverResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesSchedulePostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SchedulePackageHandoverRequestBody fulfillment202309SchedulePackageHandoverRequestBody, final ApiCallback<SchedulePackageHandoverResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesSchedulePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309SchedulePackageHandoverRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SchedulePackageHandoverResponse>(){}.getType();
@@ -3327,18 +3447,19 @@ public class FulfillmentV202309Api {
      * @param sortField The returned results will be sorted by the specified field.  Default: &#x60;create_time&#x60; Possible values: - &#x60;create_time&#x60; - &#x60;update_time&#x60; - &#x60;order_pay_time&#x60;  Specify the order for sorting the returned results by using the sort_order parameter. (optional)
      * @param sortOrder The sort order for the sort_field parameter. Default: &#x60;DESC&#x60; Possible values: - &#x60;ASC&#x60;: Ascending order - &#x60;DESC&#x60;: Descending order (optional)
      * @param pageToken An opaque token used to retrieve the next page of a paginated result set. Retrieve this value from the result of the &#x60;next_page_token&#x60; from a previous response. It is not needed for the first page. (optional)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param fulfillment202309SearchPackageRequestBody  (optional)
      * @param _callback Callback for upload/download progress
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesSearchPostCall(Integer pageSize, String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageToken, String shopCipher, SearchPackageRequestBody fulfillment202309SearchPackageRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesSearchPostCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchPackageRequestBody fulfillment202309SearchPackageRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3383,14 +3504,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3407,12 +3520,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesSearchPostValidateBeforeCall(Integer pageSize, String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageToken, String shopCipher, SearchPackageRequestBody fulfillment202309SearchPackageRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesSearchPostValidateBeforeCall(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchPackageRequestBody fulfillment202309SearchPackageRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'pageSize' is set
         if (pageSize == null) {
             throw new ApiException("Missing the required parameter 'pageSize' when calling fulfillment202309PackagesSearchPost(Async)");
@@ -3441,17 +3564,18 @@ public class FulfillmentV202309Api {
      * @param sortField The returned results will be sorted by the specified field.  Default: &#x60;create_time&#x60; Possible values: - &#x60;create_time&#x60; - &#x60;update_time&#x60; - &#x60;order_pay_time&#x60;  Specify the order for sorting the returned results by using the sort_order parameter. (optional)
      * @param sortOrder The sort order for the sort_field parameter. Default: &#x60;DESC&#x60; Possible values: - &#x60;ASC&#x60;: Ascending order - &#x60;DESC&#x60;: Descending order (optional)
      * @param pageToken An opaque token used to retrieve the next page of a paginated result set. Retrieve this value from the result of the &#x60;next_page_token&#x60; from a previous response. It is not needed for the first page. (optional)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param fulfillment202309SearchPackageRequestBody  (optional)
      * @return SearchPackageResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public SearchPackageResponse fulfillment202309PackagesSearchPost(Integer pageSize, String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageToken, String shopCipher, SearchPackageRequestBody fulfillment202309SearchPackageRequestBody) throws ApiException {
+    public SearchPackageResponse fulfillment202309PackagesSearchPost(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchPackageRequestBody fulfillment202309SearchPackageRequestBody) throws ApiException {
         ApiResponse<SearchPackageResponse> localVarResp = fulfillment202309PackagesSearchPostWithHttpInfo(pageSize, xTtsAccessToken, contentType, sortField, sortOrder, pageToken, shopCipher, fulfillment202309SearchPackageRequestBody);
         return localVarResp.getData();
     }
@@ -3465,17 +3589,18 @@ public class FulfillmentV202309Api {
      * @param sortField The returned results will be sorted by the specified field.  Default: &#x60;create_time&#x60; Possible values: - &#x60;create_time&#x60; - &#x60;update_time&#x60; - &#x60;order_pay_time&#x60;  Specify the order for sorting the returned results by using the sort_order parameter. (optional)
      * @param sortOrder The sort order for the sort_field parameter. Default: &#x60;DESC&#x60; Possible values: - &#x60;ASC&#x60;: Ascending order - &#x60;DESC&#x60;: Descending order (optional)
      * @param pageToken An opaque token used to retrieve the next page of a paginated result set. Retrieve this value from the result of the &#x60;next_page_token&#x60; from a previous response. It is not needed for the first page. (optional)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param fulfillment202309SearchPackageRequestBody  (optional)
      * @return ApiResponse&lt;SearchPackageResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<SearchPackageResponse> fulfillment202309PackagesSearchPostWithHttpInfo(Integer pageSize, String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageToken, String shopCipher, SearchPackageRequestBody fulfillment202309SearchPackageRequestBody) throws ApiException {
+    public ApiResponse<SearchPackageResponse> fulfillment202309PackagesSearchPostWithHttpInfo(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchPackageRequestBody fulfillment202309SearchPackageRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, sortField, sortOrder, pageToken, shopCipher, fulfillment202309SearchPackageRequestBody, null);
         Type localVarReturnType = new TypeToken<SearchPackageResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3490,18 +3615,19 @@ public class FulfillmentV202309Api {
      * @param sortField The returned results will be sorted by the specified field.  Default: &#x60;create_time&#x60; Possible values: - &#x60;create_time&#x60; - &#x60;update_time&#x60; - &#x60;order_pay_time&#x60;  Specify the order for sorting the returned results by using the sort_order parameter. (optional)
      * @param sortOrder The sort order for the sort_field parameter. Default: &#x60;DESC&#x60; Possible values: - &#x60;ASC&#x60;: Ascending order - &#x60;DESC&#x60;: Descending order (optional)
      * @param pageToken An opaque token used to retrieve the next page of a paginated result set. Retrieve this value from the result of the &#x60;next_page_token&#x60; from a previous response. It is not needed for the first page. (optional)
-     * @param shopCipher  (optional)
+     * @param shopCipher Use this property to pass shop information in requesting the API. Failure in passing the correct value when requesting the API for cross-border shops will return incorrect response. Get by API [Get Authorization Shop](https://partner.tiktokshop.com/docv2/page/6507ead7b99d5302be949ba9?external_id&#x3D;6507ead7b99d5302be949ba9) (optional)
      * @param fulfillment202309SearchPackageRequestBody  (optional)
      * @param _callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesSearchPostAsync(Integer pageSize, String xTtsAccessToken, String contentType, String sortField, String sortOrder, String pageToken, String shopCipher, SearchPackageRequestBody fulfillment202309SearchPackageRequestBody, final ApiCallback<SearchPackageResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesSearchPostAsync(@javax.annotation.Nonnull Integer pageSize, @javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String sortField, @javax.annotation.Nullable String sortOrder, @javax.annotation.Nullable String pageToken, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable SearchPackageRequestBody fulfillment202309SearchPackageRequestBody, final ApiCallback<SearchPackageResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesSearchPostValidateBeforeCall(pageSize, xTtsAccessToken, contentType, sortField, sortOrder, pageToken, shopCipher, fulfillment202309SearchPackageRequestBody, _callback);
         Type localVarReturnType = new TypeToken<SearchPackageResponse>(){}.getType();
@@ -3518,12 +3644,13 @@ public class FulfillmentV202309Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesShipPostCall(String xTtsAccessToken, String contentType, String shopCipher, BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesShipPostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -3552,14 +3679,6 @@ public class FulfillmentV202309Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -3576,12 +3695,22 @@ public class FulfillmentV202309Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call fulfillment202309PackagesShipPostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call fulfillment202309PackagesShipPostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling fulfillment202309PackagesShipPost(Async)");
@@ -3606,12 +3735,13 @@ public class FulfillmentV202309Api {
      * @return BatchShipPackagesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public BatchShipPackagesResponse fulfillment202309PackagesShipPost(String xTtsAccessToken, String contentType, String shopCipher, BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody) throws ApiException {
+    public BatchShipPackagesResponse fulfillment202309PackagesShipPost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody) throws ApiException {
         ApiResponse<BatchShipPackagesResponse> localVarResp = fulfillment202309PackagesShipPostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, fulfillment202309BatchShipPackagesRequestBody);
         return localVarResp.getData();
     }
@@ -3626,12 +3756,13 @@ public class FulfillmentV202309Api {
      * @return ApiResponse&lt;BatchShipPackagesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<BatchShipPackagesResponse> fulfillment202309PackagesShipPostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody) throws ApiException {
+    public ApiResponse<BatchShipPackagesResponse> fulfillment202309PackagesShipPostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody) throws ApiException {
         okhttp3.Call localVarCall = fulfillment202309PackagesShipPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309BatchShipPackagesRequestBody, null);
         Type localVarReturnType = new TypeToken<BatchShipPackagesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -3648,12 +3779,13 @@ public class FulfillmentV202309Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call fulfillment202309PackagesShipPostAsync(String xTtsAccessToken, String contentType, String shopCipher, BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody, final ApiCallback<BatchShipPackagesResponse> _callback) throws ApiException {
+    public okhttp3.Call fulfillment202309PackagesShipPostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable BatchShipPackagesRequestBody fulfillment202309BatchShipPackagesRequestBody, final ApiCallback<BatchShipPackagesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = fulfillment202309PackagesShipPostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, fulfillment202309BatchShipPackagesRequestBody, _callback);
         Type localVarReturnType = new TypeToken<BatchShipPackagesResponse>(){}.getType();

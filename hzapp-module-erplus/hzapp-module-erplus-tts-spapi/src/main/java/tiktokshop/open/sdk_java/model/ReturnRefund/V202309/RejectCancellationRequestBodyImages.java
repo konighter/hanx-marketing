@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,100 +48,149 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * RejectCancellationRequestBodyImages
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class RejectCancellationRequestBodyImages {
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)
+  @javax.annotation.Nullable
   private Integer height;
 
   public static final String SERIALIZED_NAME_IMAGE_ID = "image_id";
   @SerializedName(SERIALIZED_NAME_IMAGE_ID)
+  @javax.annotation.Nullable
   private String imageId;
 
   public static final String SERIALIZED_NAME_MIME_TYPE = "mime_type";
   @SerializedName(SERIALIZED_NAME_MIME_TYPE)
+  @javax.annotation.Nullable
   private String mimeType;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
+  @javax.annotation.Nullable
   private Integer width;
 
   public RejectCancellationRequestBodyImages() {
   }
 
-  public RejectCancellationRequestBodyImages height(Integer height) {
+  public RejectCancellationRequestBodyImages height(@javax.annotation.Nullable Integer height) {
     this.height = height;
     return this;
   }
 
-   /**
+  /**
    * Image height. Unit: px
    * @return height
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getHeight() {
     return height;
   }
 
-  public void setHeight(Integer height) {
+  public void setHeight(@javax.annotation.Nullable Integer height) {
     this.height = height;
   }
 
 
-  public RejectCancellationRequestBodyImages imageId(String imageId) {
+  public RejectCancellationRequestBodyImages imageId(@javax.annotation.Nullable String imageId) {
     this.imageId = imageId;
     return this;
   }
 
-   /**
+  /**
    * Image ID.
    * @return imageId
-  **/
+   */
   @javax.annotation.Nullable
   public String getImageId() {
     return imageId;
   }
 
-  public void setImageId(String imageId) {
+  public void setImageId(@javax.annotation.Nullable String imageId) {
     this.imageId = imageId;
   }
 
 
-  public RejectCancellationRequestBodyImages mimeType(String mimeType) {
+  public RejectCancellationRequestBodyImages mimeType(@javax.annotation.Nullable String mimeType) {
     this.mimeType = mimeType;
     return this;
   }
 
-   /**
+  /**
    * MIME type.
    * @return mimeType
-  **/
+   */
   @javax.annotation.Nullable
   public String getMimeType() {
     return mimeType;
   }
 
-  public void setMimeType(String mimeType) {
+  public void setMimeType(@javax.annotation.Nullable String mimeType) {
     this.mimeType = mimeType;
   }
 
 
-  public RejectCancellationRequestBodyImages width(Integer width) {
+  public RejectCancellationRequestBodyImages width(@javax.annotation.Nullable Integer width) {
     this.width = width;
     return this;
   }
 
-   /**
+  /**
    * Image width. Unit: px
    * @return width
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getWidth() {
     return width;
   }
 
-  public void setWidth(Integer width) {
+  public void setWidth(@javax.annotation.Nullable Integer width) {
     this.width = width;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the RejectCancellationRequestBodyImages instance itself
+   */
+  public RejectCancellationRequestBodyImages putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -159,12 +207,13 @@ public class RejectCancellationRequestBodyImages {
     return Objects.equals(this.height, returnRefund202309RejectCancellationRequestBodyImages.height) &&
         Objects.equals(this.imageId, returnRefund202309RejectCancellationRequestBodyImages.imageId) &&
         Objects.equals(this.mimeType, returnRefund202309RejectCancellationRequestBodyImages.mimeType) &&
-        Objects.equals(this.width, returnRefund202309RejectCancellationRequestBodyImages.width);
+        Objects.equals(this.width, returnRefund202309RejectCancellationRequestBodyImages.width)&&
+        Objects.equals(this.additionalProperties, returnRefund202309RejectCancellationRequestBodyImages.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(height, imageId, mimeType, width);
+    return Objects.hash(height, imageId, mimeType, width, additionalProperties);
   }
 
   @Override
@@ -175,6 +224,7 @@ public class RejectCancellationRequestBodyImages {
     sb.append("    imageId: ").append(toIndentedString(imageId)).append("\n");
     sb.append("    mimeType: ").append(toIndentedString(mimeType)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -196,34 +246,22 @@ public class RejectCancellationRequestBodyImages {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("height");
-    openapiFields.add("image_id");
-    openapiFields.add("mime_type");
-    openapiFields.add("width");
+    openapiFields = new HashSet<String>(Arrays.asList("height", "image_id", "mime_type", "width"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to RejectCancellationRequestBodyImages
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to RejectCancellationRequestBodyImages
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!RejectCancellationRequestBodyImages.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in RejectCancellationRequestBodyImages is not found in the empty JSON string", RejectCancellationRequestBodyImages.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!RejectCancellationRequestBodyImages.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `RejectCancellationRequestBodyImages` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -250,6 +288,28 @@ public class RejectCancellationRequestBodyImages {
            @Override
            public void write(JsonWriter out, RejectCancellationRequestBodyImages value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -257,29 +317,50 @@ public class RejectCancellationRequestBodyImages {
            public RejectCancellationRequestBodyImages read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             RejectCancellationRequestBodyImages instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of RejectCancellationRequestBodyImages given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of RejectCancellationRequestBodyImages
-  * @throws IOException if the JSON string is invalid with respect to RejectCancellationRequestBodyImages
-  */
+  /**
+   * Create an instance of RejectCancellationRequestBodyImages given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of RejectCancellationRequestBodyImages
+   * @throws IOException if the JSON string is invalid with respect to RejectCancellationRequestBodyImages
+   */
   public static RejectCancellationRequestBodyImages fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, RejectCancellationRequestBodyImages.class);
   }
 
- /**
-  * Convert an instance of RejectCancellationRequestBodyImages to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of RejectCancellationRequestBodyImages to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

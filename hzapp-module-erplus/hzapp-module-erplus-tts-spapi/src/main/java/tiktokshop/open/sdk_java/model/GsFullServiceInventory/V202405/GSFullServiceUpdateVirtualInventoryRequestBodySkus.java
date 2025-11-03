@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GSFullServiceUpdateVirtualInventoryRequestBodySkus
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GSFullServiceUpdateVirtualInventoryRequestBodySkus {
   public static final String SERIALIZED_NAME_CODE = "code";
   @SerializedName(SERIALIZED_NAME_CODE)
+  @javax.annotation.Nullable
   private String code;
 
   public static final String SERIALIZED_NAME_QUANTITY = "quantity";
   @SerializedName(SERIALIZED_NAME_QUANTITY)
+  @javax.annotation.Nullable
   private Long quantity;
 
   public static final String SERIALIZED_NAME_WAREHOUSE_CODE = "warehouse_code";
   @SerializedName(SERIALIZED_NAME_WAREHOUSE_CODE)
+  @javax.annotation.Nullable
   private String warehouseCode;
 
   public GSFullServiceUpdateVirtualInventoryRequestBodySkus() {
   }
 
-  public GSFullServiceUpdateVirtualInventoryRequestBodySkus code(String code) {
+  public GSFullServiceUpdateVirtualInventoryRequestBodySkus code(@javax.annotation.Nullable String code) {
     this.code = code;
     return this;
   }
 
-   /**
+  /**
    * sku code
    * @return code
-  **/
+   */
   @javax.annotation.Nullable
   public String getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(@javax.annotation.Nullable String code) {
     this.code = code;
   }
 
 
-  public GSFullServiceUpdateVirtualInventoryRequestBodySkus quantity(Long quantity) {
+  public GSFullServiceUpdateVirtualInventoryRequestBodySkus quantity(@javax.annotation.Nullable Long quantity) {
     this.quantity = quantity;
     return this;
   }
 
-   /**
+  /**
    * available quantity,0-99999
    * @return quantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getQuantity() {
     return quantity;
   }
 
-  public void setQuantity(Long quantity) {
+  public void setQuantity(@javax.annotation.Nullable Long quantity) {
     this.quantity = quantity;
   }
 
 
-  public GSFullServiceUpdateVirtualInventoryRequestBodySkus warehouseCode(String warehouseCode) {
+  public GSFullServiceUpdateVirtualInventoryRequestBodySkus warehouseCode(@javax.annotation.Nullable String warehouseCode) {
     this.warehouseCode = warehouseCode;
     return this;
   }
 
-   /**
+  /**
    * warehouse code,must be V_FC-CNHN-CY01
    * @return warehouseCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getWarehouseCode() {
     return warehouseCode;
   }
 
-  public void setWarehouseCode(String warehouseCode) {
+  public void setWarehouseCode(@javax.annotation.Nullable String warehouseCode) {
     this.warehouseCode = warehouseCode;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GSFullServiceUpdateVirtualInventoryRequestBodySkus instance itself
+   */
+  public GSFullServiceUpdateVirtualInventoryRequestBodySkus putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class GSFullServiceUpdateVirtualInventoryRequestBodySkus {
     GSFullServiceUpdateVirtualInventoryRequestBodySkus gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBodySkus = (GSFullServiceUpdateVirtualInventoryRequestBodySkus) o;
     return Objects.equals(this.code, gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBodySkus.code) &&
         Objects.equals(this.quantity, gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBodySkus.quantity) &&
-        Objects.equals(this.warehouseCode, gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBodySkus.warehouseCode);
+        Objects.equals(this.warehouseCode, gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBodySkus.warehouseCode)&&
+        Objects.equals(this.additionalProperties, gsFullServiceInventory202405GSFullServiceUpdateVirtualInventoryRequestBodySkus.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, quantity, warehouseCode);
+    return Objects.hash(code, quantity, warehouseCode, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class GSFullServiceUpdateVirtualInventoryRequestBodySkus {
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    quantity: ").append(toIndentedString(quantity)).append("\n");
     sb.append("    warehouseCode: ").append(toIndentedString(warehouseCode)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class GSFullServiceUpdateVirtualInventoryRequestBodySkus {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("code");
-    openapiFields.add("quantity");
-    openapiFields.add("warehouse_code");
+    openapiFields = new HashSet<String>(Arrays.asList("code", "quantity", "warehouse_code"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GSFullServiceUpdateVirtualInventoryRequestBodySkus
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GSFullServiceUpdateVirtualInventoryRequestBodySkus
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GSFullServiceUpdateVirtualInventoryRequestBodySkus.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GSFullServiceUpdateVirtualInventoryRequestBodySkus is not found in the empty JSON string", GSFullServiceUpdateVirtualInventoryRequestBodySkus.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GSFullServiceUpdateVirtualInventoryRequestBodySkus.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GSFullServiceUpdateVirtualInventoryRequestBodySkus` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -224,6 +262,28 @@ public class GSFullServiceUpdateVirtualInventoryRequestBodySkus {
            @Override
            public void write(JsonWriter out, GSFullServiceUpdateVirtualInventoryRequestBodySkus value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -231,29 +291,50 @@ public class GSFullServiceUpdateVirtualInventoryRequestBodySkus {
            public GSFullServiceUpdateVirtualInventoryRequestBodySkus read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GSFullServiceUpdateVirtualInventoryRequestBodySkus instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GSFullServiceUpdateVirtualInventoryRequestBodySkus given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GSFullServiceUpdateVirtualInventoryRequestBodySkus
-  * @throws IOException if the JSON string is invalid with respect to GSFullServiceUpdateVirtualInventoryRequestBodySkus
-  */
+  /**
+   * Create an instance of GSFullServiceUpdateVirtualInventoryRequestBodySkus given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GSFullServiceUpdateVirtualInventoryRequestBodySkus
+   * @throws IOException if the JSON string is invalid with respect to GSFullServiceUpdateVirtualInventoryRequestBodySkus
+   */
   public static GSFullServiceUpdateVirtualInventoryRequestBodySkus fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GSFullServiceUpdateVirtualInventoryRequestBodySkus.class);
   }
 
- /**
-  * Convert an instance of GSFullServiceUpdateVirtualInventoryRequestBodySkus to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GSFullServiceUpdateVirtualInventoryRequestBodySkus to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

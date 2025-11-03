@@ -83,12 +83,13 @@ public class ProductV202404Api {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202404ImagesOptimizePostCall(String xTtsAccessToken, String contentType, String shopCipher, OptimizedImagesRequestBody product202404OptimizedImagesRequestBody, final ApiCallback _callback) throws ApiException {
+    public okhttp3.Call product202404ImagesOptimizePostCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable OptimizedImagesRequestBody product202404OptimizedImagesRequestBody, final ApiCallback _callback) throws ApiException {
         String basePath = null;
         // Operation Servers
         String[] localBasePaths = new String[] {  };
@@ -117,14 +118,6 @@ public class ProductV202404Api {
             localVarQueryParams.addAll(localVarApiClient.parameterToPair("shop_cipher", shopCipher));
         }
 
-        if (xTtsAccessToken != null) {
-            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
-        }
-
-        if (contentType != null) {
-            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
-        }
-
         final String[] localVarAccepts = {
             "application/json"
         };
@@ -141,12 +134,22 @@ public class ProductV202404Api {
             localVarHeaderParams.put("Content-Type", localVarContentType);
         }
 
+        if (xTtsAccessToken != null) {
+            localVarHeaderParams.put("x-tts-access-token", localVarApiClient.parameterToString(xTtsAccessToken));
+        }
+
+
+        if (contentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarApiClient.parameterToString(contentType));
+        }
+
+
         String[] localVarAuthNames = new String[] {  };
         return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
     }
 
     @SuppressWarnings("rawtypes")
-    private okhttp3.Call product202404ImagesOptimizePostValidateBeforeCall(String xTtsAccessToken, String contentType, String shopCipher, OptimizedImagesRequestBody product202404OptimizedImagesRequestBody, final ApiCallback _callback) throws ApiException {
+    private okhttp3.Call product202404ImagesOptimizePostValidateBeforeCall(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable OptimizedImagesRequestBody product202404OptimizedImagesRequestBody, final ApiCallback _callback) throws ApiException {
         // verify the required parameter 'xTtsAccessToken' is set
         if (xTtsAccessToken == null) {
             throw new ApiException("Missing the required parameter 'xTtsAccessToken' when calling product202404ImagesOptimizePost(Async)");
@@ -171,12 +174,13 @@ public class ProductV202404Api {
      * @return OptimizedImagesResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public OptimizedImagesResponse product202404ImagesOptimizePost(String xTtsAccessToken, String contentType, String shopCipher, OptimizedImagesRequestBody product202404OptimizedImagesRequestBody) throws ApiException {
+    public OptimizedImagesResponse product202404ImagesOptimizePost(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable OptimizedImagesRequestBody product202404OptimizedImagesRequestBody) throws ApiException {
         ApiResponse<OptimizedImagesResponse> localVarResp = product202404ImagesOptimizePostWithHttpInfo(xTtsAccessToken, contentType, shopCipher, product202404OptimizedImagesRequestBody);
         return localVarResp.getData();
     }
@@ -191,12 +195,13 @@ public class ProductV202404Api {
      * @return ApiResponse&lt;OptimizedImagesResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<OptimizedImagesResponse> product202404ImagesOptimizePostWithHttpInfo(String xTtsAccessToken, String contentType, String shopCipher, OptimizedImagesRequestBody product202404OptimizedImagesRequestBody) throws ApiException {
+    public ApiResponse<OptimizedImagesResponse> product202404ImagesOptimizePostWithHttpInfo(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable OptimizedImagesRequestBody product202404OptimizedImagesRequestBody) throws ApiException {
         okhttp3.Call localVarCall = product202404ImagesOptimizePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202404OptimizedImagesRequestBody, null);
         Type localVarReturnType = new TypeToken<OptimizedImagesResponse>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
@@ -213,12 +218,13 @@ public class ProductV202404Api {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      * @http.response.details
-     <table summary="Response Details" border="1">
+     <table border="1">
+       <caption>Response Details</caption>
         <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
         <tr><td> 200 </td><td> Successful response </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call product202404ImagesOptimizePostAsync(String xTtsAccessToken, String contentType, String shopCipher, OptimizedImagesRequestBody product202404OptimizedImagesRequestBody, final ApiCallback<OptimizedImagesResponse> _callback) throws ApiException {
+    public okhttp3.Call product202404ImagesOptimizePostAsync(@javax.annotation.Nonnull String xTtsAccessToken, @javax.annotation.Nonnull String contentType, @javax.annotation.Nullable String shopCipher, @javax.annotation.Nullable OptimizedImagesRequestBody product202404OptimizedImagesRequestBody, final ApiCallback<OptimizedImagesResponse> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = product202404ImagesOptimizePostValidateBeforeCall(xTtsAccessToken, contentType, shopCipher, product202404OptimizedImagesRequestBody, _callback);
         Type localVarReturnType = new TypeToken<OptimizedImagesResponse>(){}.getType();

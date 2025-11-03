@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,177 +51,185 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics {
   public static final String SERIALIZED_NAME_ACTUAL_QUANTITY = "actual_quantity";
   @SerializedName(SERIALIZED_NAME_ACTUAL_QUANTITY)
+  @javax.annotation.Nullable
   private Long actualQuantity;
 
   public static final String SERIALIZED_NAME_CATEGORY_ID = "category_id";
   @SerializedName(SERIALIZED_NAME_CATEGORY_ID)
+  @javax.annotation.Nullable
   private String categoryId;
 
   public static final String SERIALIZED_NAME_CONFIRM_QUANTITY = "confirm_quantity";
   @SerializedName(SERIALIZED_NAME_CONFIRM_QUANTITY)
+  @javax.annotation.Nullable
   private Long confirmQuantity;
 
   public static final String SERIALIZED_NAME_LOGISTICS_ORDER = "logistics_order";
   @SerializedName(SERIALIZED_NAME_LOGISTICS_ORDER)
+  @javax.annotation.Nullable
   private String logisticsOrder;
 
   public static final String SERIALIZED_NAME_PLATFORM_SPU_CODE = "platform_spu_code";
   @SerializedName(SERIALIZED_NAME_PLATFORM_SPU_CODE)
+  @javax.annotation.Nullable
   private String platformSpuCode;
 
   public static final String SERIALIZED_NAME_REQUEST_QUANTITY = "request_quantity";
   @SerializedName(SERIALIZED_NAME_REQUEST_QUANTITY)
+  @javax.annotation.Nullable
   private Long requestQuantity;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_CODE = "shipping_provider_code";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_CODE)
+  @javax.annotation.Nullable
   private String shippingProviderCode;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus> skus = new ArrayList<>();
 
   public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics() {
   }
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics actualQuantity(Long actualQuantity) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics actualQuantity(@javax.annotation.Nullable Long actualQuantity) {
     this.actualQuantity = actualQuantity;
     return this;
   }
 
-   /**
+  /**
    * The SKC actual quantity of returning goods.
    * @return actualQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getActualQuantity() {
     return actualQuantity;
   }
 
-  public void setActualQuantity(Long actualQuantity) {
+  public void setActualQuantity(@javax.annotation.Nullable Long actualQuantity) {
     this.actualQuantity = actualQuantity;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics categoryId(String categoryId) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics categoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
     return this;
   }
 
-   /**
+  /**
    * The category ID of product which has been defined by platform.
    * @return categoryId
-  **/
+   */
   @javax.annotation.Nullable
   public String getCategoryId() {
     return categoryId;
   }
 
-  public void setCategoryId(String categoryId) {
+  public void setCategoryId(@javax.annotation.Nullable String categoryId) {
     this.categoryId = categoryId;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics confirmQuantity(Long confirmQuantity) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics confirmQuantity(@javax.annotation.Nullable Long confirmQuantity) {
     this.confirmQuantity = confirmQuantity;
     return this;
   }
 
-   /**
+  /**
    * The SKC quantity that confirms returning goods.
    * @return confirmQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getConfirmQuantity() {
     return confirmQuantity;
   }
 
-  public void setConfirmQuantity(Long confirmQuantity) {
+  public void setConfirmQuantity(@javax.annotation.Nullable Long confirmQuantity) {
     this.confirmQuantity = confirmQuantity;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics logisticsOrder(String logisticsOrder) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics logisticsOrder(@javax.annotation.Nullable String logisticsOrder) {
     this.logisticsOrder = logisticsOrder;
     return this;
   }
 
-   /**
+  /**
    * A delivery batch order will be generated for logistics tracking when returning goods to merchat by logistics.
    * @return logisticsOrder
-  **/
+   */
   @javax.annotation.Nullable
   public String getLogisticsOrder() {
     return logisticsOrder;
   }
 
-  public void setLogisticsOrder(String logisticsOrder) {
+  public void setLogisticsOrder(@javax.annotation.Nullable String logisticsOrder) {
     this.logisticsOrder = logisticsOrder;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics platformSpuCode(String platformSpuCode) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics platformSpuCode(@javax.annotation.Nullable String platformSpuCode) {
     this.platformSpuCode = platformSpuCode;
     return this;
   }
 
-   /**
+  /**
    * The SPU code list of TikTok Shop.
    * @return platformSpuCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPlatformSpuCode() {
     return platformSpuCode;
   }
 
-  public void setPlatformSpuCode(String platformSpuCode) {
+  public void setPlatformSpuCode(@javax.annotation.Nullable String platformSpuCode) {
     this.platformSpuCode = platformSpuCode;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics requestQuantity(Long requestQuantity) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics requestQuantity(@javax.annotation.Nullable Long requestQuantity) {
     this.requestQuantity = requestQuantity;
     return this;
   }
 
-   /**
+  /**
    * The SKC quantity of requests for returning goods.
    * @return requestQuantity
-  **/
+   */
   @javax.annotation.Nullable
   public Long getRequestQuantity() {
     return requestQuantity;
   }
 
-  public void setRequestQuantity(Long requestQuantity) {
+  public void setRequestQuantity(@javax.annotation.Nullable Long requestQuantity) {
     this.requestQuantity = requestQuantity;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics shippingProviderCode(String shippingProviderCode) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics shippingProviderCode(@javax.annotation.Nullable String shippingProviderCode) {
     this.shippingProviderCode = shippingProviderCode;
     return this;
   }
 
-   /**
+  /**
    * The name of logistics provider which transports merchant&#39;s goods to warehouse.
    * @return shippingProviderCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderCode() {
     return shippingProviderCode;
   }
 
-  public void setShippingProviderCode(String shippingProviderCode) {
+  public void setShippingProviderCode(@javax.annotation.Nullable String shippingProviderCode) {
     this.shippingProviderCode = shippingProviderCode;
   }
 
 
-  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics skus(List<GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus> skus) {
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics skus(@javax.annotation.Nullable List<GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -235,17 +242,62 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics {
     return this;
   }
 
-   /**
+  /**
    * The information list for SKU of TikTok Shop.
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogisticsSkus> skus) {
     this.skus = skus;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics instance itself
+   */
+  public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -266,12 +318,13 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics {
         Objects.equals(this.platformSpuCode, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.platformSpuCode) &&
         Objects.equals(this.requestQuantity, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.requestQuantity) &&
         Objects.equals(this.shippingProviderCode, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.shippingProviderCode) &&
-        Objects.equals(this.skus, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.skus);
+        Objects.equals(this.skus, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.skus)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(actualQuantity, categoryId, confirmQuantity, logisticsOrder, platformSpuCode, requestQuantity, shippingProviderCode, skus);
+    return Objects.hash(actualQuantity, categoryId, confirmQuantity, logisticsOrder, platformSpuCode, requestQuantity, shippingProviderCode, skus, additionalProperties);
   }
 
   @Override
@@ -286,6 +339,7 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics {
     sb.append("    requestQuantity: ").append(toIndentedString(requestQuantity)).append("\n");
     sb.append("    shippingProviderCode: ").append(toIndentedString(shippingProviderCode)).append("\n");
     sb.append("    skus: ").append(toIndentedString(skus)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -307,38 +361,22 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("actual_quantity");
-    openapiFields.add("category_id");
-    openapiFields.add("confirm_quantity");
-    openapiFields.add("logistics_order");
-    openapiFields.add("platform_spu_code");
-    openapiFields.add("request_quantity");
-    openapiFields.add("shipping_provider_code");
-    openapiFields.add("skus");
+    openapiFields = new HashSet<String>(Arrays.asList("actual_quantity", "category_id", "confirm_quantity", "logistics_order", "platform_spu_code", "request_quantity", "shipping_provider_code", "skus"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics is not found in the empty JSON string", GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -385,6 +423,28 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics {
            @Override
            public void write(JsonWriter out, GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -392,29 +452,50 @@ public class GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics {
            public GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics
-  */
+  /**
+   * Create an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics
+   */
   public static GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingSearchReturnOrdersResponseDataReturnOrdersLogistics to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

@@ -40,8 +40,8 @@ public class ResponseInfo {
         this.data = data;
     }
 
-    @java.lang.Override
-    public java.lang.String toString() {
+    @Override
+    public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("ResponseInfo {\n");
         sb.append("  code=").append(code).append(",\n");

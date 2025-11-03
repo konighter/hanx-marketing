@@ -109,6 +109,30 @@ const erplusRoutes: AppRouteRecordRaw[] = [
     ]
   },
 
+  // {
+  //   path: '/erplusv2/product_box', // 商品库
+  //   component: Layout,
+  //   name: 'ErplusProductBox',
+  //   meta: {
+  //     hidden: true
+  //   },
+  //   children: [
+  //     {
+  //       path: 'potential_create',
+  //       component: () => import('@/app/erplus/views/product/product_box_potential/form/index.vue'),
+  //       name: 'ErplusProductBoxPotentialCreate',
+  //       meta: {
+  //         noCache: true,
+  //         hidden: true,
+  //         canTo: true,
+  //         icon: 'ep:edit',
+  //         title: '新增选品提案',
+  //         activeMenu: '/erplusv2/product_box/potential_create'
+  //       }
+  //     },
+  //   ]
+  // }
+
 ]
 
 export default erplusRoutes

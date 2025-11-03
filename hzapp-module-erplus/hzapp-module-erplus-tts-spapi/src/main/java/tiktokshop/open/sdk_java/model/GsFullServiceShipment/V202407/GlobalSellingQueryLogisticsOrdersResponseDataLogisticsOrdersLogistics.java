@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,77 +48,125 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics {
   public static final String SERIALIZED_NAME_DELIVERY_OPTION = "delivery_option";
   @SerializedName(SERIALIZED_NAME_DELIVERY_OPTION)
+  @javax.annotation.Nullable
   private String deliveryOption;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_CODE = "shipping_provider_code";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_CODE)
+  @javax.annotation.Nullable
   private String shippingProviderCode;
 
   public static final String SERIALIZED_NAME_SHIPPING_PROVIDER_NAME = "shipping_provider_name";
   @SerializedName(SERIALIZED_NAME_SHIPPING_PROVIDER_NAME)
+  @javax.annotation.Nullable
   private String shippingProviderName;
 
   public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics() {
   }
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics deliveryOption(String deliveryOption) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics deliveryOption(@javax.annotation.Nullable String deliveryOption) {
     this.deliveryOption = deliveryOption;
     return this;
   }
 
-   /**
+  /**
    * The type of delivery service. The possible enumerations are:  - &#x60;\&quot;SUPER_SPEEDY_EXPRESS\&quot;&#x60; - &#x60;\&quot;SPEEDY_EXPRESS\&quot;&#x60; - &#x60;\&quot;STANDARD_EXPRESS\&quot;&#x60;  Notes: - &#x60;\&quot;SUPER_SPEEDY_EXPRESS\&quot;&#x60; is the only option for JIT orders. - &#x60;\&quot;SPEEDY_EXPRESS\&quot;&#x60; and &#x60;\&quot;STANDARD_EXPRESS\&quot;&#x60; are options for ordinary orders.
    * @return deliveryOption
-  **/
+   */
   @javax.annotation.Nullable
   public String getDeliveryOption() {
     return deliveryOption;
   }
 
-  public void setDeliveryOption(String deliveryOption) {
+  public void setDeliveryOption(@javax.annotation.Nullable String deliveryOption) {
     this.deliveryOption = deliveryOption;
   }
 
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics shippingProviderCode(String shippingProviderCode) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics shippingProviderCode(@javax.annotation.Nullable String shippingProviderCode) {
     this.shippingProviderCode = shippingProviderCode;
     return this;
   }
 
-   /**
+  /**
    * The name of logistics provider which transports merchant&#39;s goods to warehouse
    * @return shippingProviderCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderCode() {
     return shippingProviderCode;
   }
 
-  public void setShippingProviderCode(String shippingProviderCode) {
+  public void setShippingProviderCode(@javax.annotation.Nullable String shippingProviderCode) {
     this.shippingProviderCode = shippingProviderCode;
   }
 
 
-  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics shippingProviderName(String shippingProviderName) {
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics shippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
     return this;
   }
 
-   /**
+  /**
    * The code of logistics provider which transports merchant&#39;s goods to warehouse
    * @return shippingProviderName
-  **/
+   */
   @javax.annotation.Nullable
   public String getShippingProviderName() {
     return shippingProviderName;
   }
 
-  public void setShippingProviderName(String shippingProviderName) {
+  public void setShippingProviderName(@javax.annotation.Nullable String shippingProviderName) {
     this.shippingProviderName = shippingProviderName;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics instance itself
+   */
+  public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -135,12 +182,13 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogisti
     GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics = (GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics) o;
     return Objects.equals(this.deliveryOption, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.deliveryOption) &&
         Objects.equals(this.shippingProviderCode, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.shippingProviderCode) &&
-        Objects.equals(this.shippingProviderName, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.shippingProviderName);
+        Objects.equals(this.shippingProviderName, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.shippingProviderName)&&
+        Objects.equals(this.additionalProperties, gsFullServiceShipment202407GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(deliveryOption, shippingProviderCode, shippingProviderName);
+    return Objects.hash(deliveryOption, shippingProviderCode, shippingProviderName, additionalProperties);
   }
 
   @Override
@@ -150,6 +198,7 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogisti
     sb.append("    deliveryOption: ").append(toIndentedString(deliveryOption)).append("\n");
     sb.append("    shippingProviderCode: ").append(toIndentedString(shippingProviderCode)).append("\n");
     sb.append("    shippingProviderName: ").append(toIndentedString(shippingProviderName)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -171,33 +220,22 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogisti
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("delivery_option");
-    openapiFields.add("shipping_provider_code");
-    openapiFields.add("shipping_provider_name");
+    openapiFields = new HashSet<String>(Arrays.asList("delivery_option", "shipping_provider_code", "shipping_provider_name"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics is not found in the empty JSON string", GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -227,6 +265,28 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogisti
            @Override
            public void write(JsonWriter out, GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -234,29 +294,50 @@ public class GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogisti
            public GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics
-  * @throws IOException if the JSON string is invalid with respect to GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics
-  */
+  /**
+   * Create an instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics
+   * @throws IOException if the JSON string is invalid with respect to GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics
+   */
   public static GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics.class);
   }
 
- /**
-  * Convert an instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GlobalSellingQueryLogisticsOrdersResponseDataLogisticsOrdersLogistics to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

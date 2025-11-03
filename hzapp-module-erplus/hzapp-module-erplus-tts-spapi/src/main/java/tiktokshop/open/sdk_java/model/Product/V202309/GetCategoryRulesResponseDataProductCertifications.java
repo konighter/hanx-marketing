@@ -41,7 +41,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -53,135 +52,142 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetCategoryRulesResponseDataProductCertifications
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetCategoryRulesResponseDataProductCertifications {
   public static final String SERIALIZED_NAME_DOCUMENT_DETAILS = "document_details";
   @SerializedName(SERIALIZED_NAME_DOCUMENT_DETAILS)
+  @javax.annotation.Nullable
   private String documentDetails;
 
   public static final String SERIALIZED_NAME_EXPIRATION_DATE = "expiration_date";
   @SerializedName(SERIALIZED_NAME_EXPIRATION_DATE)
+  @javax.annotation.Nullable
   private GetCategoryRulesResponseDataProductCertificationsExpirationDate expirationDate;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
+  @javax.annotation.Nullable
   private String id;
 
   public static final String SERIALIZED_NAME_IS_REQUIRED = "is_required";
   @SerializedName(SERIALIZED_NAME_IS_REQUIRED)
+  @javax.annotation.Nullable
   private Boolean isRequired;
 
   public static final String SERIALIZED_NAME_NAME = "name";
   @SerializedName(SERIALIZED_NAME_NAME)
+  @javax.annotation.Nullable
   private String name;
 
   public static final String SERIALIZED_NAME_REQUIREMENT_CONDITIONS = "requirement_conditions";
   @SerializedName(SERIALIZED_NAME_REQUIREMENT_CONDITIONS)
+  @javax.annotation.Nullable
   private List<GetCategoryRulesResponseDataProductCertificationsRequirementConditions> requirementConditions = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SAMPLE_IMAGE_URL = "sample_image_url";
   @SerializedName(SERIALIZED_NAME_SAMPLE_IMAGE_URL)
+  @javax.annotation.Nullable
   private String sampleImageUrl;
 
   public GetCategoryRulesResponseDataProductCertifications() {
   }
 
-  public GetCategoryRulesResponseDataProductCertifications documentDetails(String documentDetails) {
+  public GetCategoryRulesResponseDataProductCertifications documentDetails(@javax.annotation.Nullable String documentDetails) {
     this.documentDetails = documentDetails;
     return this;
   }
 
-   /**
+  /**
    * Details about the certification documents that you must submit, including the content, format, and any other guidelines.
    * @return documentDetails
-  **/
+   */
   @javax.annotation.Nullable
   public String getDocumentDetails() {
     return documentDetails;
   }
 
-  public void setDocumentDetails(String documentDetails) {
+  public void setDocumentDetails(@javax.annotation.Nullable String documentDetails) {
     this.documentDetails = documentDetails;
   }
 
 
-  public GetCategoryRulesResponseDataProductCertifications expirationDate(GetCategoryRulesResponseDataProductCertificationsExpirationDate expirationDate) {
+  public GetCategoryRulesResponseDataProductCertifications expirationDate(@javax.annotation.Nullable GetCategoryRulesResponseDataProductCertificationsExpirationDate expirationDate) {
     this.expirationDate = expirationDate;
     return this;
   }
 
-   /**
+  /**
    * Get expirationDate
    * @return expirationDate
-  **/
+   */
   @javax.annotation.Nullable
   public GetCategoryRulesResponseDataProductCertificationsExpirationDate getExpirationDate() {
     return expirationDate;
   }
 
-  public void setExpirationDate(GetCategoryRulesResponseDataProductCertificationsExpirationDate expirationDate) {
+  public void setExpirationDate(@javax.annotation.Nullable GetCategoryRulesResponseDataProductCertificationsExpirationDate expirationDate) {
     this.expirationDate = expirationDate;
   }
 
 
-  public GetCategoryRulesResponseDataProductCertifications id(String id) {
+  public GetCategoryRulesResponseDataProductCertifications id(@javax.annotation.Nullable String id) {
     this.id = id;
     return this;
   }
 
-   /**
+  /**
    * The ID to identify the type of certification required.
    * @return id
-  **/
+   */
   @javax.annotation.Nullable
   public String getId() {
     return id;
   }
 
-  public void setId(String id) {
+  public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
   }
 
 
-  public GetCategoryRulesResponseDataProductCertifications isRequired(Boolean isRequired) {
+  public GetCategoryRulesResponseDataProductCertifications isRequired(@javax.annotation.Nullable Boolean isRequired) {
     this.isRequired = isRequired;
     return this;
   }
 
-   /**
+  /**
    * A flag to indicate if the certification is always required when creating or editing a product. - true: The certification is always required. - false: The certification is not required, or required only if certain conditions are met. Refer to &#x60;requirement_conditions&#x60; for the specific requirements.
    * @return isRequired
-  **/
+   */
   @javax.annotation.Nullable
   public Boolean getIsRequired() {
     return isRequired;
   }
 
-  public void setIsRequired(Boolean isRequired) {
+  public void setIsRequired(@javax.annotation.Nullable Boolean isRequired) {
     this.isRequired = isRequired;
   }
 
 
-  public GetCategoryRulesResponseDataProductCertifications name(String name) {
+  public GetCategoryRulesResponseDataProductCertifications name(@javax.annotation.Nullable String name) {
     this.name = name;
     return this;
   }
 
-   /**
+  /**
    * The name of the certification type.
    * @return name
-  **/
+   */
   @javax.annotation.Nullable
   public String getName() {
     return name;
   }
 
-  public void setName(String name) {
+  public void setName(@javax.annotation.Nullable String name) {
     this.name = name;
   }
 
 
-  public GetCategoryRulesResponseDataProductCertifications requirementConditions(List<GetCategoryRulesResponseDataProductCertificationsRequirementConditions> requirementConditions) {
+  public GetCategoryRulesResponseDataProductCertifications requirementConditions(@javax.annotation.Nullable List<GetCategoryRulesResponseDataProductCertificationsRequirementConditions> requirementConditions) {
     this.requirementConditions = requirementConditions;
     return this;
   }
@@ -194,36 +200,81 @@ public class GetCategoryRulesResponseDataProductCertifications {
     return this;
   }
 
-   /**
+  /**
    * A list of conditions that determine if the certification is required based on the seller&#39;s inputs for a product attribute. If any of the conditions is met, the certification is required; otherwise, it is optional.  For example, there&#39;s a condition that states that the \&quot;Safety Data Sheet (SDS) for flammable materials\&quot; certification is required if the seller selects the value \&quot;Yes\&quot; for the attribute \&quot;Flammable Liquid?\&quot;. For more scenario-based guidance on using this parameter, refer to the [Solution Guide - CAT-PRE-HAZMAT](https://partner.tiktokshop.com/openlearn/guide/usecase?parent_id&#x3D;7256668359046153985).  Applicable only if &#x60;is_required&#x3D;false&#x60;.
    * @return requirementConditions
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetCategoryRulesResponseDataProductCertificationsRequirementConditions> getRequirementConditions() {
     return requirementConditions;
   }
 
-  public void setRequirementConditions(List<GetCategoryRulesResponseDataProductCertificationsRequirementConditions> requirementConditions) {
+  public void setRequirementConditions(@javax.annotation.Nullable List<GetCategoryRulesResponseDataProductCertificationsRequirementConditions> requirementConditions) {
     this.requirementConditions = requirementConditions;
   }
 
 
-  public GetCategoryRulesResponseDataProductCertifications sampleImageUrl(String sampleImageUrl) {
+  public GetCategoryRulesResponseDataProductCertifications sampleImageUrl(@javax.annotation.Nullable String sampleImageUrl) {
     this.sampleImageUrl = sampleImageUrl;
     return this;
   }
 
-   /**
+  /**
    * The URL to view an image of the sample certification document.
    * @return sampleImageUrl
-  **/
+   */
   @javax.annotation.Nullable
   public String getSampleImageUrl() {
     return sampleImageUrl;
   }
 
-  public void setSampleImageUrl(String sampleImageUrl) {
+  public void setSampleImageUrl(@javax.annotation.Nullable String sampleImageUrl) {
     this.sampleImageUrl = sampleImageUrl;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetCategoryRulesResponseDataProductCertifications instance itself
+   */
+  public GetCategoryRulesResponseDataProductCertifications putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -243,12 +294,13 @@ public class GetCategoryRulesResponseDataProductCertifications {
         Objects.equals(this.isRequired, product202309GetCategoryRulesResponseDataProductCertifications.isRequired) &&
         Objects.equals(this.name, product202309GetCategoryRulesResponseDataProductCertifications.name) &&
         Objects.equals(this.requirementConditions, product202309GetCategoryRulesResponseDataProductCertifications.requirementConditions) &&
-        Objects.equals(this.sampleImageUrl, product202309GetCategoryRulesResponseDataProductCertifications.sampleImageUrl);
+        Objects.equals(this.sampleImageUrl, product202309GetCategoryRulesResponseDataProductCertifications.sampleImageUrl)&&
+        Objects.equals(this.additionalProperties, product202309GetCategoryRulesResponseDataProductCertifications.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(documentDetails, expirationDate, id, isRequired, name, requirementConditions, sampleImageUrl);
+    return Objects.hash(documentDetails, expirationDate, id, isRequired, name, requirementConditions, sampleImageUrl, additionalProperties);
   }
 
   @Override
@@ -262,6 +314,7 @@ public class GetCategoryRulesResponseDataProductCertifications {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    requirementConditions: ").append(toIndentedString(requirementConditions)).append("\n");
     sb.append("    sampleImageUrl: ").append(toIndentedString(sampleImageUrl)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -283,37 +336,22 @@ public class GetCategoryRulesResponseDataProductCertifications {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("document_details");
-    openapiFields.add("expiration_date");
-    openapiFields.add("id");
-    openapiFields.add("is_required");
-    openapiFields.add("name");
-    openapiFields.add("requirement_conditions");
-    openapiFields.add("sample_image_url");
+    openapiFields = new HashSet<String>(Arrays.asList("document_details", "expiration_date", "id", "is_required", "name", "requirement_conditions", "sample_image_url"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetCategoryRulesResponseDataProductCertifications
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetCategoryRulesResponseDataProductCertifications
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetCategoryRulesResponseDataProductCertifications.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetCategoryRulesResponseDataProductCertifications is not found in the empty JSON string", GetCategoryRulesResponseDataProductCertifications.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetCategoryRulesResponseDataProductCertifications.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetCategoryRulesResponseDataProductCertifications` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -364,6 +402,28 @@ public class GetCategoryRulesResponseDataProductCertifications {
            @Override
            public void write(JsonWriter out, GetCategoryRulesResponseDataProductCertifications value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -371,29 +431,50 @@ public class GetCategoryRulesResponseDataProductCertifications {
            public GetCategoryRulesResponseDataProductCertifications read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetCategoryRulesResponseDataProductCertifications instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetCategoryRulesResponseDataProductCertifications given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetCategoryRulesResponseDataProductCertifications
-  * @throws IOException if the JSON string is invalid with respect to GetCategoryRulesResponseDataProductCertifications
-  */
+  /**
+   * Create an instance of GetCategoryRulesResponseDataProductCertifications given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetCategoryRulesResponseDataProductCertifications
+   * @throws IOException if the JSON string is invalid with respect to GetCategoryRulesResponseDataProductCertifications
+   */
   public static GetCategoryRulesResponseDataProductCertifications fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetCategoryRulesResponseDataProductCertifications.class);
   }
 
- /**
-  * Convert an instance of GetCategoryRulesResponseDataProductCertifications to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetCategoryRulesResponseDataProductCertifications to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

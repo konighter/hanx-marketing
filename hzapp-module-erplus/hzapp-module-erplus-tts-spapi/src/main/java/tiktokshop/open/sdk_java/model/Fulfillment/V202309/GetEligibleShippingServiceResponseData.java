@@ -42,7 +42,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -54,70 +53,75 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetEligibleShippingServiceResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetEligibleShippingServiceResponseData {
   public static final String SERIALIZED_NAME_DIMENSION = "dimension";
   @SerializedName(SERIALIZED_NAME_DIMENSION)
+  @javax.annotation.Nullable
   private GetEligibleShippingServiceResponseDataDimension dimension;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ID = "order_line_id";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ID)
+  @javax.annotation.Nullable
   private List<String> orderLineId = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_SHIPPING_SERVICES = "shipping_services";
   @SerializedName(SERIALIZED_NAME_SHIPPING_SERVICES)
+  @javax.annotation.Nullable
   private List<GetEligibleShippingServiceResponseDataShippingServices> shippingServices = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_WEIGHT = "weight";
   @SerializedName(SERIALIZED_NAME_WEIGHT)
+  @javax.annotation.Nullable
   private GetEligibleShippingServiceResponseDataWeight weight;
 
   public GetEligibleShippingServiceResponseData() {
   }
 
-  public GetEligibleShippingServiceResponseData dimension(GetEligibleShippingServiceResponseDataDimension dimension) {
+  public GetEligibleShippingServiceResponseData dimension(@javax.annotation.Nullable GetEligibleShippingServiceResponseDataDimension dimension) {
     this.dimension = dimension;
     return this;
   }
 
-   /**
+  /**
    * Get dimension
    * @return dimension
-  **/
+   */
   @javax.annotation.Nullable
   public GetEligibleShippingServiceResponseDataDimension getDimension() {
     return dimension;
   }
 
-  public void setDimension(GetEligibleShippingServiceResponseDataDimension dimension) {
+  public void setDimension(@javax.annotation.Nullable GetEligibleShippingServiceResponseDataDimension dimension) {
     this.dimension = dimension;
   }
 
 
-  public GetEligibleShippingServiceResponseData orderId(String orderId) {
+  public GetEligibleShippingServiceResponseData orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * TikTok Shop order ID
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public GetEligibleShippingServiceResponseData orderLineId(List<String> orderLineId) {
+  public GetEligibleShippingServiceResponseData orderLineId(@javax.annotation.Nullable List<String> orderLineId) {
     this.orderLineId = orderLineId;
     return this;
   }
@@ -130,21 +134,21 @@ public class GetEligibleShippingServiceResponseData {
     return this;
   }
 
-   /**
+  /**
    * Line item ID list
    * @return orderLineId
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineId() {
     return orderLineId;
   }
 
-  public void setOrderLineId(List<String> orderLineId) {
+  public void setOrderLineId(@javax.annotation.Nullable List<String> orderLineId) {
     this.orderLineId = orderLineId;
   }
 
 
-  public GetEligibleShippingServiceResponseData shippingServices(List<GetEligibleShippingServiceResponseDataShippingServices> shippingServices) {
+  public GetEligibleShippingServiceResponseData shippingServices(@javax.annotation.Nullable List<GetEligibleShippingServiceResponseDataShippingServices> shippingServices) {
     this.shippingServices = shippingServices;
     return this;
   }
@@ -157,36 +161,81 @@ public class GetEligibleShippingServiceResponseData {
     return this;
   }
 
-   /**
+  /**
    * Shipping services info.
    * @return shippingServices
-  **/
+   */
   @javax.annotation.Nullable
   public List<GetEligibleShippingServiceResponseDataShippingServices> getShippingServices() {
     return shippingServices;
   }
 
-  public void setShippingServices(List<GetEligibleShippingServiceResponseDataShippingServices> shippingServices) {
+  public void setShippingServices(@javax.annotation.Nullable List<GetEligibleShippingServiceResponseDataShippingServices> shippingServices) {
     this.shippingServices = shippingServices;
   }
 
 
-  public GetEligibleShippingServiceResponseData weight(GetEligibleShippingServiceResponseDataWeight weight) {
+  public GetEligibleShippingServiceResponseData weight(@javax.annotation.Nullable GetEligibleShippingServiceResponseDataWeight weight) {
     this.weight = weight;
     return this;
   }
 
-   /**
+  /**
    * Get weight
    * @return weight
-  **/
+   */
   @javax.annotation.Nullable
   public GetEligibleShippingServiceResponseDataWeight getWeight() {
     return weight;
   }
 
-  public void setWeight(GetEligibleShippingServiceResponseDataWeight weight) {
+  public void setWeight(@javax.annotation.Nullable GetEligibleShippingServiceResponseDataWeight weight) {
     this.weight = weight;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetEligibleShippingServiceResponseData instance itself
+   */
+  public GetEligibleShippingServiceResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -204,12 +253,13 @@ public class GetEligibleShippingServiceResponseData {
         Objects.equals(this.orderId, fulfillment202309GetEligibleShippingServiceResponseData.orderId) &&
         Objects.equals(this.orderLineId, fulfillment202309GetEligibleShippingServiceResponseData.orderLineId) &&
         Objects.equals(this.shippingServices, fulfillment202309GetEligibleShippingServiceResponseData.shippingServices) &&
-        Objects.equals(this.weight, fulfillment202309GetEligibleShippingServiceResponseData.weight);
+        Objects.equals(this.weight, fulfillment202309GetEligibleShippingServiceResponseData.weight)&&
+        Objects.equals(this.additionalProperties, fulfillment202309GetEligibleShippingServiceResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dimension, orderId, orderLineId, shippingServices, weight);
+    return Objects.hash(dimension, orderId, orderLineId, shippingServices, weight, additionalProperties);
   }
 
   @Override
@@ -221,6 +271,7 @@ public class GetEligibleShippingServiceResponseData {
     sb.append("    orderLineId: ").append(toIndentedString(orderLineId)).append("\n");
     sb.append("    shippingServices: ").append(toIndentedString(shippingServices)).append("\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -242,35 +293,22 @@ public class GetEligibleShippingServiceResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("dimension");
-    openapiFields.add("order_id");
-    openapiFields.add("order_line_id");
-    openapiFields.add("shipping_services");
-    openapiFields.add("weight");
+    openapiFields = new HashSet<String>(Arrays.asList("dimension", "order_id", "order_line_id", "shipping_services", "weight"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetEligibleShippingServiceResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetEligibleShippingServiceResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetEligibleShippingServiceResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetEligibleShippingServiceResponseData is not found in the empty JSON string", GetEligibleShippingServiceResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetEligibleShippingServiceResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetEligibleShippingServiceResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -320,6 +358,28 @@ public class GetEligibleShippingServiceResponseData {
            @Override
            public void write(JsonWriter out, GetEligibleShippingServiceResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -327,29 +387,50 @@ public class GetEligibleShippingServiceResponseData {
            public GetEligibleShippingServiceResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetEligibleShippingServiceResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetEligibleShippingServiceResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetEligibleShippingServiceResponseData
-  * @throws IOException if the JSON string is invalid with respect to GetEligibleShippingServiceResponseData
-  */
+  /**
+   * Create an instance of GetEligibleShippingServiceResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetEligibleShippingServiceResponseData
+   * @throws IOException if the JSON string is invalid with respect to GetEligibleShippingServiceResponseData
+   */
   public static GetEligibleShippingServiceResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetEligibleShippingServiceResponseData.class);
   }
 
- /**
-  * Convert an instance of GetEligibleShippingServiceResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetEligibleShippingServiceResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

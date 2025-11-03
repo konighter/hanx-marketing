@@ -38,7 +38,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,445 +49,509 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * GetWarehouseListResponseDataWarehousesAddress
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class GetWarehouseListResponseDataWarehousesAddress {
   public static final String SERIALIZED_NAME_ADDRESS_LINE1 = "address_line1";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE1)
+  @javax.annotation.Nullable
   private String addressLine1;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE2 = "address_line2";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE2)
+  @javax.annotation.Nullable
   private String addressLine2;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE3 = "address_line3";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE3)
+  @javax.annotation.Nullable
   private String addressLine3;
 
   public static final String SERIALIZED_NAME_ADDRESS_LINE4 = "address_line4";
   @SerializedName(SERIALIZED_NAME_ADDRESS_LINE4)
+  @javax.annotation.Nullable
   private String addressLine4;
 
   public static final String SERIALIZED_NAME_CITY = "city";
   @SerializedName(SERIALIZED_NAME_CITY)
+  @javax.annotation.Nullable
   private String city;
 
   public static final String SERIALIZED_NAME_CONTACT_PERSON = "contact_person";
   @SerializedName(SERIALIZED_NAME_CONTACT_PERSON)
+  @javax.annotation.Nullable
   private String contactPerson;
 
   public static final String SERIALIZED_NAME_DISTICT = "distict";
   @SerializedName(SERIALIZED_NAME_DISTICT)
+  @javax.annotation.Nullable
   private String distict;
 
   public static final String SERIALIZED_NAME_FIRST_NAME = "first_name";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME)
+  @javax.annotation.Nullable
   private String firstName;
 
   public static final String SERIALIZED_NAME_FIRST_NAME_LOCAL_SCRIPT = "first_name_local_script";
   @SerializedName(SERIALIZED_NAME_FIRST_NAME_LOCAL_SCRIPT)
+  @javax.annotation.Nullable
   private String firstNameLocalScript;
 
   public static final String SERIALIZED_NAME_FULL_ADDRESS = "full_address";
   @SerializedName(SERIALIZED_NAME_FULL_ADDRESS)
+  @javax.annotation.Nullable
   private String fullAddress;
 
   public static final String SERIALIZED_NAME_GEOLOCATION = "geolocation";
   @SerializedName(SERIALIZED_NAME_GEOLOCATION)
+  @javax.annotation.Nullable
   private GetWarehouseListResponseDataWarehousesAddressGeolocation geolocation;
 
   public static final String SERIALIZED_NAME_LAST_NAME = "last_name";
   @SerializedName(SERIALIZED_NAME_LAST_NAME)
+  @javax.annotation.Nullable
   private String lastName;
 
   public static final String SERIALIZED_NAME_LAST_NAME_LOCAL_SCRIPT = "last_name_local_script";
   @SerializedName(SERIALIZED_NAME_LAST_NAME_LOCAL_SCRIPT)
+  @javax.annotation.Nullable
   private String lastNameLocalScript;
 
   public static final String SERIALIZED_NAME_PHONE_NUMBER = "phone_number";
   @SerializedName(SERIALIZED_NAME_PHONE_NUMBER)
+  @javax.annotation.Nullable
   private String phoneNumber;
 
   public static final String SERIALIZED_NAME_POSTAL_CODE = "postal_code";
   @SerializedName(SERIALIZED_NAME_POSTAL_CODE)
+  @javax.annotation.Nullable
   private String postalCode;
 
   public static final String SERIALIZED_NAME_REGION = "region";
   @SerializedName(SERIALIZED_NAME_REGION)
+  @javax.annotation.Nullable
   private String region;
 
   public static final String SERIALIZED_NAME_REGION_CODE = "region_code";
   @SerializedName(SERIALIZED_NAME_REGION_CODE)
+  @javax.annotation.Nullable
   private String regionCode;
 
   public static final String SERIALIZED_NAME_STATE = "state";
   @SerializedName(SERIALIZED_NAME_STATE)
+  @javax.annotation.Nullable
   private String state;
 
   public static final String SERIALIZED_NAME_TOWN = "town";
   @SerializedName(SERIALIZED_NAME_TOWN)
+  @javax.annotation.Nullable
   private String town;
 
   public GetWarehouseListResponseDataWarehousesAddress() {
   }
 
-  public GetWarehouseListResponseDataWarehousesAddress addressLine1(String addressLine1) {
+  public GetWarehouseListResponseDataWarehousesAddress addressLine1(@javax.annotation.Nullable String addressLine1) {
     this.addressLine1 = addressLine1;
     return this;
   }
 
-   /**
+  /**
    * The first line of the warehouse address, like street name and street number. Note:  - For Brazilian market, this represents the neighborhood or district. - For the JP market, this represents the district (Chome), block (Banchi), building number (Go).
    * @return addressLine1
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine1() {
     return addressLine1;
   }
 
-  public void setAddressLine1(String addressLine1) {
+  public void setAddressLine1(@javax.annotation.Nullable String addressLine1) {
     this.addressLine1 = addressLine1;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress addressLine2(String addressLine2) {
+  public GetWarehouseListResponseDataWarehousesAddress addressLine2(@javax.annotation.Nullable String addressLine2) {
     this.addressLine2 = addressLine2;
     return this;
   }
 
-   /**
+  /**
    * The second line of the warehouse address, like flat, apartment, or suit. Note: For the Brazilian market, this represents the street name.
    * @return addressLine2
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine2() {
     return addressLine2;
   }
 
-  public void setAddressLine2(String addressLine2) {
+  public void setAddressLine2(@javax.annotation.Nullable String addressLine2) {
     this.addressLine2 = addressLine2;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress addressLine3(String addressLine3) {
+  public GetWarehouseListResponseDataWarehousesAddress addressLine3(@javax.annotation.Nullable String addressLine3) {
     this.addressLine3 = addressLine3;
     return this;
   }
 
-   /**
+  /**
    * This represents the street number. If it&#39;s &#x60;s/n&#x60;, it means null. Note: Available only in the Brazilian market.
    * @return addressLine3
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine3() {
     return addressLine3;
   }
 
-  public void setAddressLine3(String addressLine3) {
+  public void setAddressLine3(@javax.annotation.Nullable String addressLine3) {
     this.addressLine3 = addressLine3;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress addressLine4(String addressLine4) {
+  public GetWarehouseListResponseDataWarehousesAddress addressLine4(@javax.annotation.Nullable String addressLine4) {
     this.addressLine4 = addressLine4;
     return this;
   }
 
-   /**
+  /**
    * This represents supplement information, like flat, apartment, or suit (optional). Note: Available only in the Brazilian market.
    * @return addressLine4
-  **/
+   */
   @javax.annotation.Nullable
   public String getAddressLine4() {
     return addressLine4;
   }
 
-  public void setAddressLine4(String addressLine4) {
+  public void setAddressLine4(@javax.annotation.Nullable String addressLine4) {
     this.addressLine4 = addressLine4;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress city(String city) {
+  public GetWarehouseListResponseDataWarehousesAddress city(@javax.annotation.Nullable String city) {
     this.city = city;
     return this;
   }
 
-   /**
+  /**
    * Warehouse city.
    * @return city
-  **/
+   */
   @javax.annotation.Nullable
   public String getCity() {
     return city;
   }
 
-  public void setCity(String city) {
+  public void setCity(@javax.annotation.Nullable String city) {
     this.city = city;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress contactPerson(String contactPerson) {
+  public GetWarehouseListResponseDataWarehousesAddress contactPerson(@javax.annotation.Nullable String contactPerson) {
     this.contactPerson = contactPerson;
     return this;
   }
 
-   /**
+  /**
    * Warehouse contact person name.
    * @return contactPerson
-  **/
+   */
   @javax.annotation.Nullable
   public String getContactPerson() {
     return contactPerson;
   }
 
-  public void setContactPerson(String contactPerson) {
+  public void setContactPerson(@javax.annotation.Nullable String contactPerson) {
     this.contactPerson = contactPerson;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress distict(String distict) {
+  public GetWarehouseListResponseDataWarehousesAddress distict(@javax.annotation.Nullable String distict) {
     this.distict = distict;
     return this;
   }
 
-   /**
+  /**
    * Warehouse district.
    * @return distict
-  **/
+   */
   @javax.annotation.Nullable
   public String getDistict() {
     return distict;
   }
 
-  public void setDistict(String distict) {
+  public void setDistict(@javax.annotation.Nullable String distict) {
     this.distict = distict;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress firstName(String firstName) {
+  public GetWarehouseListResponseDataWarehousesAddress firstName(@javax.annotation.Nullable String firstName) {
     this.firstName = firstName;
     return this;
   }
 
-   /**
+  /**
    * Kanji first name Applicable only for the JP market.
    * @return firstName
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstName() {
     return firstName;
   }
 
-  public void setFirstName(String firstName) {
+  public void setFirstName(@javax.annotation.Nullable String firstName) {
     this.firstName = firstName;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress firstNameLocalScript(String firstNameLocalScript) {
+  public GetWarehouseListResponseDataWarehousesAddress firstNameLocalScript(@javax.annotation.Nullable String firstNameLocalScript) {
     this.firstNameLocalScript = firstNameLocalScript;
     return this;
   }
 
-   /**
+  /**
    * Hiragana or Katakana first name Applicable only for the JP market.
    * @return firstNameLocalScript
-  **/
+   */
   @javax.annotation.Nullable
   public String getFirstNameLocalScript() {
     return firstNameLocalScript;
   }
 
-  public void setFirstNameLocalScript(String firstNameLocalScript) {
+  public void setFirstNameLocalScript(@javax.annotation.Nullable String firstNameLocalScript) {
     this.firstNameLocalScript = firstNameLocalScript;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress fullAddress(String fullAddress) {
+  public GetWarehouseListResponseDataWarehousesAddress fullAddress(@javax.annotation.Nullable String fullAddress) {
     this.fullAddress = fullAddress;
     return this;
   }
 
-   /**
+  /**
    * The combined warehouse address, including the street address and other address information such as apartment number, building, floor..etc (optional)
    * @return fullAddress
-  **/
+   */
   @javax.annotation.Nullable
   public String getFullAddress() {
     return fullAddress;
   }
 
-  public void setFullAddress(String fullAddress) {
+  public void setFullAddress(@javax.annotation.Nullable String fullAddress) {
     this.fullAddress = fullAddress;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress geolocation(GetWarehouseListResponseDataWarehousesAddressGeolocation geolocation) {
+  public GetWarehouseListResponseDataWarehousesAddress geolocation(@javax.annotation.Nullable GetWarehouseListResponseDataWarehousesAddressGeolocation geolocation) {
     this.geolocation = geolocation;
     return this;
   }
 
-   /**
+  /**
    * Get geolocation
    * @return geolocation
-  **/
+   */
   @javax.annotation.Nullable
   public GetWarehouseListResponseDataWarehousesAddressGeolocation getGeolocation() {
     return geolocation;
   }
 
-  public void setGeolocation(GetWarehouseListResponseDataWarehousesAddressGeolocation geolocation) {
+  public void setGeolocation(@javax.annotation.Nullable GetWarehouseListResponseDataWarehousesAddressGeolocation geolocation) {
     this.geolocation = geolocation;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress lastName(String lastName) {
+  public GetWarehouseListResponseDataWarehousesAddress lastName(@javax.annotation.Nullable String lastName) {
     this.lastName = lastName;
     return this;
   }
 
-   /**
+  /**
    * Kanji last name Applicable only for the JP market.
    * @return lastName
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastName() {
     return lastName;
   }
 
-  public void setLastName(String lastName) {
+  public void setLastName(@javax.annotation.Nullable String lastName) {
     this.lastName = lastName;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress lastNameLocalScript(String lastNameLocalScript) {
+  public GetWarehouseListResponseDataWarehousesAddress lastNameLocalScript(@javax.annotation.Nullable String lastNameLocalScript) {
     this.lastNameLocalScript = lastNameLocalScript;
     return this;
   }
 
-   /**
+  /**
    * Hiragana or Katakana last name Applicable only for the JP market.
    * @return lastNameLocalScript
-  **/
+   */
   @javax.annotation.Nullable
   public String getLastNameLocalScript() {
     return lastNameLocalScript;
   }
 
-  public void setLastNameLocalScript(String lastNameLocalScript) {
+  public void setLastNameLocalScript(@javax.annotation.Nullable String lastNameLocalScript) {
     this.lastNameLocalScript = lastNameLocalScript;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress phoneNumber(String phoneNumber) {
+  public GetWarehouseListResponseDataWarehousesAddress phoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
     return this;
   }
 
-   /**
+  /**
    * Warehouse phone number.
    * @return phoneNumber
-  **/
+   */
   @javax.annotation.Nullable
   public String getPhoneNumber() {
     return phoneNumber;
   }
 
-  public void setPhoneNumber(String phoneNumber) {
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress postalCode(String postalCode) {
+  public GetWarehouseListResponseDataWarehousesAddress postalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
 
-   /**
+  /**
    * Warehouse address postal code (also known as zip code)
    * @return postalCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getPostalCode() {
     return postalCode;
   }
 
-  public void setPostalCode(String postalCode) {
+  public void setPostalCode(@javax.annotation.Nullable String postalCode) {
     this.postalCode = postalCode;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress region(String region) {
+  public GetWarehouseListResponseDataWarehousesAddress region(@javax.annotation.Nullable String region) {
     this.region = region;
     return this;
   }
 
-   /**
+  /**
    * Warehouse region.
    * @return region
-  **/
+   */
   @javax.annotation.Nullable
   public String getRegion() {
     return region;
   }
 
-  public void setRegion(String region) {
+  public void setRegion(@javax.annotation.Nullable String region) {
     this.region = region;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress regionCode(String regionCode) {
+  public GetWarehouseListResponseDataWarehousesAddress regionCode(@javax.annotation.Nullable String regionCode) {
     this.regionCode = regionCode;
     return this;
   }
 
-   /**
+  /**
    * Warehouse region code.
    * @return regionCode
-  **/
+   */
   @javax.annotation.Nullable
   public String getRegionCode() {
     return regionCode;
   }
 
-  public void setRegionCode(String regionCode) {
+  public void setRegionCode(@javax.annotation.Nullable String regionCode) {
     this.regionCode = regionCode;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress state(String state) {
+  public GetWarehouseListResponseDataWarehousesAddress state(@javax.annotation.Nullable String state) {
     this.state = state;
     return this;
   }
 
-   /**
+  /**
    * Warehouse state or province.
    * @return state
-  **/
+   */
   @javax.annotation.Nullable
   public String getState() {
     return state;
   }
 
-  public void setState(String state) {
+  public void setState(@javax.annotation.Nullable String state) {
     this.state = state;
   }
 
 
-  public GetWarehouseListResponseDataWarehousesAddress town(String town) {
+  public GetWarehouseListResponseDataWarehousesAddress town(@javax.annotation.Nullable String town) {
     this.town = town;
     return this;
   }
 
-   /**
+  /**
    * Warehouse town.
    * @return town
-  **/
+   */
   @javax.annotation.Nullable
   public String getTown() {
     return town;
   }
 
-  public void setTown(String town) {
+  public void setTown(@javax.annotation.Nullable String town) {
     this.town = town;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the GetWarehouseListResponseDataWarehousesAddress instance itself
+   */
+  public GetWarehouseListResponseDataWarehousesAddress putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -520,12 +583,13 @@ public class GetWarehouseListResponseDataWarehousesAddress {
         Objects.equals(this.region, logistics202309GetWarehouseListResponseDataWarehousesAddress.region) &&
         Objects.equals(this.regionCode, logistics202309GetWarehouseListResponseDataWarehousesAddress.regionCode) &&
         Objects.equals(this.state, logistics202309GetWarehouseListResponseDataWarehousesAddress.state) &&
-        Objects.equals(this.town, logistics202309GetWarehouseListResponseDataWarehousesAddress.town);
+        Objects.equals(this.town, logistics202309GetWarehouseListResponseDataWarehousesAddress.town)&&
+        Objects.equals(this.additionalProperties, logistics202309GetWarehouseListResponseDataWarehousesAddress.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(addressLine1, addressLine2, addressLine3, addressLine4, city, contactPerson, distict, firstName, firstNameLocalScript, fullAddress, geolocation, lastName, lastNameLocalScript, phoneNumber, postalCode, region, regionCode, state, town);
+    return Objects.hash(addressLine1, addressLine2, addressLine3, addressLine4, city, contactPerson, distict, firstName, firstNameLocalScript, fullAddress, geolocation, lastName, lastNameLocalScript, phoneNumber, postalCode, region, regionCode, state, town, additionalProperties);
   }
 
   @Override
@@ -551,6 +615,7 @@ public class GetWarehouseListResponseDataWarehousesAddress {
     sb.append("    regionCode: ").append(toIndentedString(regionCode)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    town: ").append(toIndentedString(town)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -572,49 +637,22 @@ public class GetWarehouseListResponseDataWarehousesAddress {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("address_line1");
-    openapiFields.add("address_line2");
-    openapiFields.add("address_line3");
-    openapiFields.add("address_line4");
-    openapiFields.add("city");
-    openapiFields.add("contact_person");
-    openapiFields.add("distict");
-    openapiFields.add("first_name");
-    openapiFields.add("first_name_local_script");
-    openapiFields.add("full_address");
-    openapiFields.add("geolocation");
-    openapiFields.add("last_name");
-    openapiFields.add("last_name_local_script");
-    openapiFields.add("phone_number");
-    openapiFields.add("postal_code");
-    openapiFields.add("region");
-    openapiFields.add("region_code");
-    openapiFields.add("state");
-    openapiFields.add("town");
+    openapiFields = new HashSet<String>(Arrays.asList("address_line1", "address_line2", "address_line3", "address_line4", "city", "contact_person", "distict", "first_name", "first_name_local_script", "full_address", "geolocation", "last_name", "last_name_local_script", "phone_number", "postal_code", "region", "region_code", "state", "town"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to GetWarehouseListResponseDataWarehousesAddress
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to GetWarehouseListResponseDataWarehousesAddress
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!GetWarehouseListResponseDataWarehousesAddress.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in GetWarehouseListResponseDataWarehousesAddress is not found in the empty JSON string", GetWarehouseListResponseDataWarehousesAddress.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!GetWarehouseListResponseDataWarehousesAddress.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `GetWarehouseListResponseDataWarehousesAddress` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -693,6 +731,28 @@ public class GetWarehouseListResponseDataWarehousesAddress {
            @Override
            public void write(JsonWriter out, GetWarehouseListResponseDataWarehousesAddress value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -700,29 +760,50 @@ public class GetWarehouseListResponseDataWarehousesAddress {
            public GetWarehouseListResponseDataWarehousesAddress read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             GetWarehouseListResponseDataWarehousesAddress instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of GetWarehouseListResponseDataWarehousesAddress given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of GetWarehouseListResponseDataWarehousesAddress
-  * @throws IOException if the JSON string is invalid with respect to GetWarehouseListResponseDataWarehousesAddress
-  */
+  /**
+   * Create an instance of GetWarehouseListResponseDataWarehousesAddress given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of GetWarehouseListResponseDataWarehousesAddress
+   * @throws IOException if the JSON string is invalid with respect to GetWarehouseListResponseDataWarehousesAddress
+   */
   public static GetWarehouseListResponseDataWarehousesAddress fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, GetWarehouseListResponseDataWarehousesAddress.class);
   }
 
- /**
-  * Convert an instance of GetWarehouseListResponseDataWarehousesAddress to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of GetWarehouseListResponseDataWarehousesAddress to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

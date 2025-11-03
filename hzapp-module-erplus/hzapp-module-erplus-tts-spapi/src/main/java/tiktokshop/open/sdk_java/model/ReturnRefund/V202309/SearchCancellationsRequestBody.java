@@ -39,7 +39,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -51,52 +50,62 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * SearchCancellationsRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class SearchCancellationsRequestBody {
   public static final String SERIALIZED_NAME_BUYER_USER_IDS = "buyer_user_ids";
   @SerializedName(SERIALIZED_NAME_BUYER_USER_IDS)
+  @javax.annotation.Nullable
   private List<String> buyerUserIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CANCEL_IDS = "cancel_ids";
   @SerializedName(SERIALIZED_NAME_CANCEL_IDS)
+  @javax.annotation.Nullable
   private List<String> cancelIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CANCEL_STATUS = "cancel_status";
   @SerializedName(SERIALIZED_NAME_CANCEL_STATUS)
+  @javax.annotation.Nullable
   private List<String> cancelStatus = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CANCEL_TYPES = "cancel_types";
   @SerializedName(SERIALIZED_NAME_CANCEL_TYPES)
+  @javax.annotation.Nullable
   private List<String> cancelTypes = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_CREATE_TIME_GE = "create_time_ge";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long createTimeGe;
 
   public static final String SERIALIZED_NAME_CREATE_TIME_LT = "create_time_lt";
   @SerializedName(SERIALIZED_NAME_CREATE_TIME_LT)
+  @javax.annotation.Nullable
   private Long createTimeLt;
 
   public static final String SERIALIZED_NAME_LOCALE = "locale";
   @SerializedName(SERIALIZED_NAME_LOCALE)
+  @javax.annotation.Nullable
   private String locale;
 
   public static final String SERIALIZED_NAME_ORDER_IDS = "order_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_IDS)
+  @javax.annotation.Nullable
   private List<String> orderIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_UPDATE_TIME_GE = "update_time_ge";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME_GE)
+  @javax.annotation.Nullable
   private Long updateTimeGe;
 
   public static final String SERIALIZED_NAME_UPDATE_TIME_LT = "update_time_lt";
   @SerializedName(SERIALIZED_NAME_UPDATE_TIME_LT)
+  @javax.annotation.Nullable
   private Long updateTimeLt;
 
   public SearchCancellationsRequestBody() {
   }
 
-  public SearchCancellationsRequestBody buyerUserIds(List<String> buyerUserIds) {
+  public SearchCancellationsRequestBody buyerUserIds(@javax.annotation.Nullable List<String> buyerUserIds) {
     this.buyerUserIds = buyerUserIds;
     return this;
   }
@@ -109,21 +118,21 @@ public class SearchCancellationsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of TikTok Shop buyer user IDs.
    * @return buyerUserIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getBuyerUserIds() {
     return buyerUserIds;
   }
 
-  public void setBuyerUserIds(List<String> buyerUserIds) {
+  public void setBuyerUserIds(@javax.annotation.Nullable List<String> buyerUserIds) {
     this.buyerUserIds = buyerUserIds;
   }
 
 
-  public SearchCancellationsRequestBody cancelIds(List<String> cancelIds) {
+  public SearchCancellationsRequestBody cancelIds(@javax.annotation.Nullable List<String> cancelIds) {
     this.cancelIds = cancelIds;
     return this;
   }
@@ -136,21 +145,21 @@ public class SearchCancellationsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of order cancellations IDs.
    * @return cancelIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getCancelIds() {
     return cancelIds;
   }
 
-  public void setCancelIds(List<String> cancelIds) {
+  public void setCancelIds(@javax.annotation.Nullable List<String> cancelIds) {
     this.cancelIds = cancelIds;
   }
 
 
-  public SearchCancellationsRequestBody cancelStatus(List<String> cancelStatus) {
+  public SearchCancellationsRequestBody cancelStatus(@javax.annotation.Nullable List<String> cancelStatus) {
     this.cancelStatus = cancelStatus;
     return this;
   }
@@ -163,21 +172,21 @@ public class SearchCancellationsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of order cancellation statuses. Possible values: - CANCELLATION_REQUEST_PENDING - CANCELLATION_REQUEST_SUCCESS - CANCELLATION_REQUEST_CANCEL - CANCELLATION_REQUEST_COMPLETE  Please see \&quot;API Overview\&quot; for more information about these statuses.
    * @return cancelStatus
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getCancelStatus() {
     return cancelStatus;
   }
 
-  public void setCancelStatus(List<String> cancelStatus) {
+  public void setCancelStatus(@javax.annotation.Nullable List<String> cancelStatus) {
     this.cancelStatus = cancelStatus;
   }
 
 
-  public SearchCancellationsRequestBody cancelTypes(List<String> cancelTypes) {
+  public SearchCancellationsRequestBody cancelTypes(@javax.annotation.Nullable List<String> cancelTypes) {
     this.cancelTypes = cancelTypes;
     return this;
   }
@@ -190,78 +199,78 @@ public class SearchCancellationsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of order cancellation types. Possible values: - CANCEL: Cancel by seller or system. - BUYER_CANCEL: Cancel by buyer. Need to be approved by seller or system.
    * @return cancelTypes
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getCancelTypes() {
     return cancelTypes;
   }
 
-  public void setCancelTypes(List<String> cancelTypes) {
+  public void setCancelTypes(@javax.annotation.Nullable List<String> cancelTypes) {
     this.cancelTypes = cancelTypes;
   }
 
 
-  public SearchCancellationsRequestBody createTimeGe(Long createTimeGe) {
+  public SearchCancellationsRequestBody createTimeGe(@javax.annotation.Nullable Long createTimeGe) {
     this.createTimeGe = createTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Filter cancellations to show only orders that have been created after a specified date and time. Unix timestamp. 
    * @return createTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTimeGe() {
     return createTimeGe;
   }
 
-  public void setCreateTimeGe(Long createTimeGe) {
+  public void setCreateTimeGe(@javax.annotation.Nullable Long createTimeGe) {
     this.createTimeGe = createTimeGe;
   }
 
 
-  public SearchCancellationsRequestBody createTimeLt(Long createTimeLt) {
+  public SearchCancellationsRequestBody createTimeLt(@javax.annotation.Nullable Long createTimeLt) {
     this.createTimeLt = createTimeLt;
     return this;
   }
 
-   /**
+  /**
    * Filter cancellations to show only orders that have been created before a specified date and time. Unix timestamp. 
    * @return createTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getCreateTimeLt() {
     return createTimeLt;
   }
 
-  public void setCreateTimeLt(Long createTimeLt) {
+  public void setCreateTimeLt(@javax.annotation.Nullable Long createTimeLt) {
     this.createTimeLt = createTimeLt;
   }
 
 
-  public SearchCancellationsRequestBody locale(String locale) {
+  public SearchCancellationsRequestBody locale(@javax.annotation.Nullable String locale) {
     this.locale = locale;
     return this;
   }
 
-   /**
+  /**
    * The BCP-47 locale codes for displaying the order, delimited by commas. Default: en-US Refer to [Locale codes](678e3a47bae28f030a8c7523) for the list of supported locale codes.
    * @return locale
-  **/
+   */
   @javax.annotation.Nullable
   public String getLocale() {
     return locale;
   }
 
-  public void setLocale(String locale) {
+  public void setLocale(@javax.annotation.Nullable String locale) {
     this.locale = locale;
   }
 
 
-  public SearchCancellationsRequestBody orderIds(List<String> orderIds) {
+  public SearchCancellationsRequestBody orderIds(@javax.annotation.Nullable List<String> orderIds) {
     this.orderIds = orderIds;
     return this;
   }
@@ -274,55 +283,100 @@ public class SearchCancellationsRequestBody {
     return this;
   }
 
-   /**
+  /**
    * List of TikTok Shop order IDs.
    * @return orderIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderIds() {
     return orderIds;
   }
 
-  public void setOrderIds(List<String> orderIds) {
+  public void setOrderIds(@javax.annotation.Nullable List<String> orderIds) {
     this.orderIds = orderIds;
   }
 
 
-  public SearchCancellationsRequestBody updateTimeGe(Long updateTimeGe) {
+  public SearchCancellationsRequestBody updateTimeGe(@javax.annotation.Nullable Long updateTimeGe) {
     this.updateTimeGe = updateTimeGe;
     return this;
   }
 
-   /**
+  /**
    * Filter cancellations to show only orders that have been updated after a specified date and time. Unix timestamp.
    * @return updateTimeGe
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTimeGe() {
     return updateTimeGe;
   }
 
-  public void setUpdateTimeGe(Long updateTimeGe) {
+  public void setUpdateTimeGe(@javax.annotation.Nullable Long updateTimeGe) {
     this.updateTimeGe = updateTimeGe;
   }
 
 
-  public SearchCancellationsRequestBody updateTimeLt(Long updateTimeLt) {
+  public SearchCancellationsRequestBody updateTimeLt(@javax.annotation.Nullable Long updateTimeLt) {
     this.updateTimeLt = updateTimeLt;
     return this;
   }
 
-   /**
+  /**
    * Filter cancellations to show only orders that have been updated before a specified date and time. Unix timestamp.
    * @return updateTimeLt
-  **/
+   */
   @javax.annotation.Nullable
   public Long getUpdateTimeLt() {
     return updateTimeLt;
   }
 
-  public void setUpdateTimeLt(Long updateTimeLt) {
+  public void setUpdateTimeLt(@javax.annotation.Nullable Long updateTimeLt) {
     this.updateTimeLt = updateTimeLt;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the SearchCancellationsRequestBody instance itself
+   */
+  public SearchCancellationsRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -345,12 +399,13 @@ public class SearchCancellationsRequestBody {
         Objects.equals(this.locale, returnRefund202309SearchCancellationsRequestBody.locale) &&
         Objects.equals(this.orderIds, returnRefund202309SearchCancellationsRequestBody.orderIds) &&
         Objects.equals(this.updateTimeGe, returnRefund202309SearchCancellationsRequestBody.updateTimeGe) &&
-        Objects.equals(this.updateTimeLt, returnRefund202309SearchCancellationsRequestBody.updateTimeLt);
+        Objects.equals(this.updateTimeLt, returnRefund202309SearchCancellationsRequestBody.updateTimeLt)&&
+        Objects.equals(this.additionalProperties, returnRefund202309SearchCancellationsRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(buyerUserIds, cancelIds, cancelStatus, cancelTypes, createTimeGe, createTimeLt, locale, orderIds, updateTimeGe, updateTimeLt);
+    return Objects.hash(buyerUserIds, cancelIds, cancelStatus, cancelTypes, createTimeGe, createTimeLt, locale, orderIds, updateTimeGe, updateTimeLt, additionalProperties);
   }
 
   @Override
@@ -367,6 +422,7 @@ public class SearchCancellationsRequestBody {
     sb.append("    orderIds: ").append(toIndentedString(orderIds)).append("\n");
     sb.append("    updateTimeGe: ").append(toIndentedString(updateTimeGe)).append("\n");
     sb.append("    updateTimeLt: ").append(toIndentedString(updateTimeLt)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -388,40 +444,22 @@ public class SearchCancellationsRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("buyer_user_ids");
-    openapiFields.add("cancel_ids");
-    openapiFields.add("cancel_status");
-    openapiFields.add("cancel_types");
-    openapiFields.add("create_time_ge");
-    openapiFields.add("create_time_lt");
-    openapiFields.add("locale");
-    openapiFields.add("order_ids");
-    openapiFields.add("update_time_ge");
-    openapiFields.add("update_time_lt");
+    openapiFields = new HashSet<String>(Arrays.asList("buyer_user_ids", "cancel_ids", "cancel_status", "cancel_types", "create_time_ge", "create_time_lt", "locale", "order_ids", "update_time_ge", "update_time_lt"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to SearchCancellationsRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to SearchCancellationsRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!SearchCancellationsRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in SearchCancellationsRequestBody is not found in the empty JSON string", SearchCancellationsRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!SearchCancellationsRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `SearchCancellationsRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -465,6 +503,28 @@ public class SearchCancellationsRequestBody {
            @Override
            public void write(JsonWriter out, SearchCancellationsRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -472,29 +532,50 @@ public class SearchCancellationsRequestBody {
            public SearchCancellationsRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             SearchCancellationsRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of SearchCancellationsRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of SearchCancellationsRequestBody
-  * @throws IOException if the JSON string is invalid with respect to SearchCancellationsRequestBody
-  */
+  /**
+   * Create an instance of SearchCancellationsRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of SearchCancellationsRequestBody
+   * @throws IOException if the JSON string is invalid with respect to SearchCancellationsRequestBody
+   */
   public static SearchCancellationsRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, SearchCancellationsRequestBody.class);
   }
 
- /**
-  * Convert an instance of SearchCancellationsRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of SearchCancellationsRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

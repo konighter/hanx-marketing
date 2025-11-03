@@ -37,7 +37,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -49,123 +48,173 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * UploadProductImageResponseData
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class UploadProductImageResponseData {
   public static final String SERIALIZED_NAME_HEIGHT = "height";
   @SerializedName(SERIALIZED_NAME_HEIGHT)
+  @javax.annotation.Nullable
   private Integer height;
 
   public static final String SERIALIZED_NAME_URI = "uri";
   @SerializedName(SERIALIZED_NAME_URI)
+  @javax.annotation.Nullable
   private String uri;
 
   public static final String SERIALIZED_NAME_URL = "url";
   @SerializedName(SERIALIZED_NAME_URL)
+  @javax.annotation.Nullable
   private String url;
 
   public static final String SERIALIZED_NAME_USE_CASE = "use_case";
   @SerializedName(SERIALIZED_NAME_USE_CASE)
+  @javax.annotation.Nullable
   private String useCase;
 
   public static final String SERIALIZED_NAME_WIDTH = "width";
   @SerializedName(SERIALIZED_NAME_WIDTH)
+  @javax.annotation.Nullable
   private Integer width;
 
   public UploadProductImageResponseData() {
   }
 
-  public UploadProductImageResponseData height(Integer height) {
+  public UploadProductImageResponseData height(@javax.annotation.Nullable Integer height) {
     this.height = height;
     return this;
   }
 
-   /**
+  /**
    * The height of the image after aspect ratio adjustment. 
    * @return height
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getHeight() {
     return height;
   }
 
-  public void setHeight(Integer height) {
+  public void setHeight(@javax.annotation.Nullable Integer height) {
     this.height = height;
   }
 
 
-  public UploadProductImageResponseData uri(String uri) {
+  public UploadProductImageResponseData uri(@javax.annotation.Nullable String uri) {
     this.uri = uri;
     return this;
   }
 
-   /**
+  /**
    * The URI to identify the image in API requests and responses. Pass this value when creating or editing a product to associate the image with the product.
    * @return uri
-  **/
+   */
   @javax.annotation.Nullable
   public String getUri() {
     return uri;
   }
 
-  public void setUri(String uri) {
+  public void setUri(@javax.annotation.Nullable String uri) {
     this.uri = uri;
   }
 
 
-  public UploadProductImageResponseData url(String url) {
+  public UploadProductImageResponseData url(@javax.annotation.Nullable String url) {
     this.url = url;
     return this;
   }
 
-   /**
+  /**
    * The URL to access and view the image. Use this URL in product descriptions by embedding it within an HTML &#x60;&lt;img&gt;&#x60; tag.
    * @return url
-  **/
+   */
   @javax.annotation.Nullable
   public String getUrl() {
     return url;
   }
 
-  public void setUrl(String url) {
+  public void setUrl(@javax.annotation.Nullable String url) {
     this.url = url;
   }
 
 
-  public UploadProductImageResponseData useCase(String useCase) {
+  public UploadProductImageResponseData useCase(@javax.annotation.Nullable String useCase) {
     this.useCase = useCase;
     return this;
   }
 
-   /**
+  /**
    * The usage scenario specified during upload. Possible values: - MAIN_IMAGE - ATTRIBUTE_IMAGE - DESCRIPTION_IMAGE - CERTIFICATION_IMAGE - SIZE_CHART_IMAGE
    * @return useCase
-  **/
+   */
   @javax.annotation.Nullable
   public String getUseCase() {
     return useCase;
   }
 
-  public void setUseCase(String useCase) {
+  public void setUseCase(@javax.annotation.Nullable String useCase) {
     this.useCase = useCase;
   }
 
 
-  public UploadProductImageResponseData width(Integer width) {
+  public UploadProductImageResponseData width(@javax.annotation.Nullable Integer width) {
     this.width = width;
     return this;
   }
 
-   /**
+  /**
    * The width of the image after aspect ratio adjustment. 
    * @return width
-  **/
+   */
   @javax.annotation.Nullable
   public Integer getWidth() {
     return width;
   }
 
-  public void setWidth(Integer width) {
+  public void setWidth(@javax.annotation.Nullable Integer width) {
     this.width = width;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the UploadProductImageResponseData instance itself
+   */
+  public UploadProductImageResponseData putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -183,12 +232,13 @@ public class UploadProductImageResponseData {
         Objects.equals(this.uri, product202309UploadProductImageResponseData.uri) &&
         Objects.equals(this.url, product202309UploadProductImageResponseData.url) &&
         Objects.equals(this.useCase, product202309UploadProductImageResponseData.useCase) &&
-        Objects.equals(this.width, product202309UploadProductImageResponseData.width);
+        Objects.equals(this.width, product202309UploadProductImageResponseData.width)&&
+        Objects.equals(this.additionalProperties, product202309UploadProductImageResponseData.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(height, uri, url, useCase, width);
+    return Objects.hash(height, uri, url, useCase, width, additionalProperties);
   }
 
   @Override
@@ -200,6 +250,7 @@ public class UploadProductImageResponseData {
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    useCase: ").append(toIndentedString(useCase)).append("\n");
     sb.append("    width: ").append(toIndentedString(width)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -221,35 +272,22 @@ public class UploadProductImageResponseData {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("height");
-    openapiFields.add("uri");
-    openapiFields.add("url");
-    openapiFields.add("use_case");
-    openapiFields.add("width");
+    openapiFields = new HashSet<String>(Arrays.asList("height", "uri", "url", "use_case", "width"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to UploadProductImageResponseData
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to UploadProductImageResponseData
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!UploadProductImageResponseData.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in UploadProductImageResponseData is not found in the empty JSON string", UploadProductImageResponseData.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!UploadProductImageResponseData.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `UploadProductImageResponseData` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -279,6 +317,28 @@ public class UploadProductImageResponseData {
            @Override
            public void write(JsonWriter out, UploadProductImageResponseData value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -286,29 +346,50 @@ public class UploadProductImageResponseData {
            public UploadProductImageResponseData read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             UploadProductImageResponseData instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of UploadProductImageResponseData given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of UploadProductImageResponseData
-  * @throws IOException if the JSON string is invalid with respect to UploadProductImageResponseData
-  */
+  /**
+   * Create an instance of UploadProductImageResponseData given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of UploadProductImageResponseData
+   * @throws IOException if the JSON string is invalid with respect to UploadProductImageResponseData
+   */
   public static UploadProductImageResponseData fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, UploadProductImageResponseData.class);
   }
 
- /**
-  * Convert an instance of UploadProductImageResponseData to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of UploadProductImageResponseData to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }

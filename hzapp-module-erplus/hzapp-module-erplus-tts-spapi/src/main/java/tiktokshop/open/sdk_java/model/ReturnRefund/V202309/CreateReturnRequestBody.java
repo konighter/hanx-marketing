@@ -40,7 +40,6 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
 
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -52,105 +51,114 @@ import tiktokshop.open.sdk_java.invoke.JSON;
 /**
  * CreateReturnRequestBody
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-06-30T06:06:20.240402Z[Etc/UTC]", comments = "Generator version: 7.6.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2025-10-28T03:28:06.328409Z[Etc/UTC]", comments = "Generator version: 7.15.0")
 public class CreateReturnRequestBody {
   public static final String SERIALIZED_NAME_CURRENCY = "currency";
   @SerializedName(SERIALIZED_NAME_CURRENCY)
+  @javax.annotation.Nullable
   private String currency;
 
   public static final String SERIALIZED_NAME_HANDOVER_METHOD = "handover_method";
   @SerializedName(SERIALIZED_NAME_HANDOVER_METHOD)
+  @javax.annotation.Nullable
   private String handoverMethod;
 
   public static final String SERIALIZED_NAME_ORDER_ID = "order_id";
   @SerializedName(SERIALIZED_NAME_ORDER_ID)
+  @javax.annotation.Nullable
   private String orderId;
 
   public static final String SERIALIZED_NAME_ORDER_LINE_ITEM_IDS = "order_line_item_ids";
   @SerializedName(SERIALIZED_NAME_ORDER_LINE_ITEM_IDS)
+  @javax.annotation.Nullable
   private List<String> orderLineItemIds = new ArrayList<>();
 
   public static final String SERIALIZED_NAME_REFUND_TOTAL = "refund_total";
   @SerializedName(SERIALIZED_NAME_REFUND_TOTAL)
+  @javax.annotation.Nullable
   private String refundTotal;
 
   public static final String SERIALIZED_NAME_RETURN_REASON = "return_reason";
   @SerializedName(SERIALIZED_NAME_RETURN_REASON)
+  @javax.annotation.Nullable
   private String returnReason;
 
   public static final String SERIALIZED_NAME_RETURN_TYPE = "return_type";
   @SerializedName(SERIALIZED_NAME_RETURN_TYPE)
+  @javax.annotation.Nullable
   private String returnType;
 
   public static final String SERIALIZED_NAME_SHIPMENT_TYPE = "shipment_type";
   @SerializedName(SERIALIZED_NAME_SHIPMENT_TYPE)
+  @javax.annotation.Nullable
   private String shipmentType;
 
   public static final String SERIALIZED_NAME_SKUS = "skus";
   @SerializedName(SERIALIZED_NAME_SKUS)
+  @javax.annotation.Nullable
   private List<CreateReturnRequestBodySkus> skus = new ArrayList<>();
 
   public CreateReturnRequestBody() {
   }
 
-  public CreateReturnRequestBody currency(String currency) {
+  public CreateReturnRequestBody currency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
     return this;
   }
 
-   /**
+  /**
    * Currency for refund which should be same as currency in TikTok Ship Order.
    * @return currency
-  **/
+   */
   @javax.annotation.Nullable
   public String getCurrency() {
     return currency;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
   }
 
 
-  public CreateReturnRequestBody handoverMethod(String handoverMethod) {
+  public CreateReturnRequestBody handoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
     return this;
   }
 
-   /**
+  /**
    * Which handover method buyer chooses to use when returning goods to seller by platform - DROP_OFF - PICKUP
    * @return handoverMethod
-  **/
+   */
   @javax.annotation.Nullable
   public String getHandoverMethod() {
     return handoverMethod;
   }
 
-  public void setHandoverMethod(String handoverMethod) {
+  public void setHandoverMethod(@javax.annotation.Nullable String handoverMethod) {
     this.handoverMethod = handoverMethod;
   }
 
 
-  public CreateReturnRequestBody orderId(String orderId) {
+  public CreateReturnRequestBody orderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
     return this;
   }
 
-   /**
+  /**
    * Tiktok Shop order id
    * @return orderId
-  **/
+   */
   @javax.annotation.Nullable
   public String getOrderId() {
     return orderId;
   }
 
-  public void setOrderId(String orderId) {
+  public void setOrderId(@javax.annotation.Nullable String orderId) {
     this.orderId = orderId;
   }
 
 
-  public CreateReturnRequestBody orderLineItemIds(List<String> orderLineItemIds) {
+  public CreateReturnRequestBody orderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
     return this;
   }
@@ -163,97 +171,97 @@ public class CreateReturnRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Order line ids seller wants to create return request, should use order line ids to create return request if had split parcel to multiple packages, default value is all order line ids in the order if not input order_line_ids and skus
    * @return orderLineItemIds
-  **/
+   */
   @javax.annotation.Nullable
   public List<String> getOrderLineItemIds() {
     return orderLineItemIds;
   }
 
-  public void setOrderLineItemIds(List<String> orderLineItemIds) {
+  public void setOrderLineItemIds(@javax.annotation.Nullable List<String> orderLineItemIds) {
     this.orderLineItemIds = orderLineItemIds;
   }
 
 
-  public CreateReturnRequestBody refundTotal(String refundTotal) {
+  public CreateReturnRequestBody refundTotal(@javax.annotation.Nullable String refundTotal) {
     this.refundTotal = refundTotal;
     return this;
   }
 
-   /**
+  /**
    * Total refund amount to the buyer.  The total refund amount can not exceed the refundable amount
    * @return refundTotal
-  **/
+   */
   @javax.annotation.Nullable
   public String getRefundTotal() {
     return refundTotal;
   }
 
-  public void setRefundTotal(String refundTotal) {
+  public void setRefundTotal(@javax.annotation.Nullable String refundTotal) {
     this.refundTotal = refundTotal;
   }
 
 
-  public CreateReturnRequestBody returnReason(String returnReason) {
+  public CreateReturnRequestBody returnReason(@javax.annotation.Nullable String returnReason) {
     this.returnReason = returnReason;
     return this;
   }
 
-   /**
+  /**
    * Seller&#39;s reason to create a return
    * @return returnReason
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnReason() {
     return returnReason;
   }
 
-  public void setReturnReason(String returnReason) {
+  public void setReturnReason(@javax.annotation.Nullable String returnReason) {
     this.returnReason = returnReason;
   }
 
 
-  public CreateReturnRequestBody returnType(String returnType) {
+  public CreateReturnRequestBody returnType(@javax.annotation.Nullable String returnType) {
     this.returnType = returnType;
     return this;
   }
 
-   /**
+  /**
    * Which type to create:  - REFUND - RETURN_AND_REFUND
    * @return returnType
-  **/
+   */
   @javax.annotation.Nullable
   public String getReturnType() {
     return returnType;
   }
 
-  public void setReturnType(String returnType) {
+  public void setReturnType(@javax.annotation.Nullable String returnType) {
     this.returnType = returnType;
   }
 
 
-  public CreateReturnRequestBody shipmentType(String shipmentType) {
+  public CreateReturnRequestBody shipmentType(@javax.annotation.Nullable String shipmentType) {
     this.shipmentType = shipmentType;
     return this;
   }
 
-   /**
+  /**
    * How buyer ships items to seller when in a return request, could be: - PLATFORM - BUYER_ARRANGE
    * @return shipmentType
-  **/
+   */
   @javax.annotation.Nullable
   public String getShipmentType() {
     return shipmentType;
   }
 
-  public void setShipmentType(String shipmentType) {
+  public void setShipmentType(@javax.annotation.Nullable String shipmentType) {
     this.shipmentType = shipmentType;
   }
 
 
-  public CreateReturnRequestBody skus(List<CreateReturnRequestBodySkus> skus) {
+  public CreateReturnRequestBody skus(@javax.annotation.Nullable List<CreateReturnRequestBodySkus> skus) {
     this.skus = skus;
     return this;
   }
@@ -266,17 +274,62 @@ public class CreateReturnRequestBody {
     return this;
   }
 
-   /**
+  /**
    * Skus
    * @return skus
-  **/
+   */
   @javax.annotation.Nullable
   public List<CreateReturnRequestBodySkus> getSkus() {
     return skus;
   }
 
-  public void setSkus(List<CreateReturnRequestBodySkus> skus) {
+  public void setSkus(@javax.annotation.Nullable List<CreateReturnRequestBodySkus> skus) {
     this.skus = skus;
+  }
+
+  /**
+   * A container for additional, undeclared properties.
+   * This is a holder for any undeclared properties as specified with
+   * the 'additionalProperties' keyword in the OAS document.
+   */
+  private Map<String, Object> additionalProperties;
+
+  /**
+   * Set the additional (undeclared) property with the specified name and value.
+   * If the property does not already exist, create it otherwise replace it.
+   *
+   * @param key name of the property
+   * @param value value of the property
+   * @return the CreateReturnRequestBody instance itself
+   */
+  public CreateReturnRequestBody putAdditionalProperty(String key, Object value) {
+    if (this.additionalProperties == null) {
+        this.additionalProperties = new HashMap<String, Object>();
+    }
+    this.additionalProperties.put(key, value);
+    return this;
+  }
+
+  /**
+   * Return the additional (undeclared) property.
+   *
+   * @return a map of objects
+   */
+  public Map<String, Object> getAdditionalProperties() {
+    return additionalProperties;
+  }
+
+  /**
+   * Return the additional (undeclared) property with the specified name.
+   *
+   * @param key name of the property
+   * @return an object
+   */
+  public Object getAdditionalProperty(String key) {
+    if (this.additionalProperties == null) {
+        return null;
+    }
+    return this.additionalProperties.get(key);
   }
 
 
@@ -298,12 +351,13 @@ public class CreateReturnRequestBody {
         Objects.equals(this.returnReason, returnRefund202309CreateReturnRequestBody.returnReason) &&
         Objects.equals(this.returnType, returnRefund202309CreateReturnRequestBody.returnType) &&
         Objects.equals(this.shipmentType, returnRefund202309CreateReturnRequestBody.shipmentType) &&
-        Objects.equals(this.skus, returnRefund202309CreateReturnRequestBody.skus);
+        Objects.equals(this.skus, returnRefund202309CreateReturnRequestBody.skus)&&
+        Objects.equals(this.additionalProperties, returnRefund202309CreateReturnRequestBody.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(currency, handoverMethod, orderId, orderLineItemIds, refundTotal, returnReason, returnType, shipmentType, skus);
+    return Objects.hash(currency, handoverMethod, orderId, orderLineItemIds, refundTotal, returnReason, returnType, shipmentType, skus, additionalProperties);
   }
 
   @Override
@@ -319,6 +373,7 @@ public class CreateReturnRequestBody {
     sb.append("    returnType: ").append(toIndentedString(returnType)).append("\n");
     sb.append("    shipmentType: ").append(toIndentedString(shipmentType)).append("\n");
     sb.append("    skus: ").append(toIndentedString(skus)).append("\n");
+    sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -340,39 +395,22 @@ public class CreateReturnRequestBody {
 
   static {
     // a set of all properties/fields (JSON key names)
-    openapiFields = new HashSet<String>();
-    openapiFields.add("currency");
-    openapiFields.add("handover_method");
-    openapiFields.add("order_id");
-    openapiFields.add("order_line_item_ids");
-    openapiFields.add("refund_total");
-    openapiFields.add("return_reason");
-    openapiFields.add("return_type");
-    openapiFields.add("shipment_type");
-    openapiFields.add("skus");
+    openapiFields = new HashSet<String>(Arrays.asList("currency", "handover_method", "order_id", "order_line_item_ids", "refund_total", "return_reason", "return_type", "shipment_type", "skus"));
 
     // a set of required properties/fields (JSON key names)
-    openapiRequiredFields = new HashSet<String>();
+    openapiRequiredFields = new HashSet<String>(0);
   }
 
- /**
-  * Validates the JSON Element and throws an exception if issues found
-  *
-  * @param jsonElement JSON Element
-  * @throws IOException if the JSON Element is invalid with respect to CreateReturnRequestBody
-  */
+  /**
+   * Validates the JSON Element and throws an exception if issues found
+   *
+   * @param jsonElement JSON Element
+   * @throws IOException if the JSON Element is invalid with respect to CreateReturnRequestBody
+   */
   public static void validateJsonElement(JsonElement jsonElement) throws IOException {
       if (jsonElement == null) {
         if (!CreateReturnRequestBody.openapiRequiredFields.isEmpty()) { // has required fields but JSON element is null
           throw new IllegalArgumentException(String.format("The required field(s) %s in CreateReturnRequestBody is not found in the empty JSON string", CreateReturnRequestBody.openapiRequiredFields.toString()));
-        }
-      }
-
-      Set<Map.Entry<String, JsonElement>> entries = jsonElement.getAsJsonObject().entrySet();
-      // check to see if the JSON string contains additional fields
-      for (Map.Entry<String, JsonElement> entry : entries) {
-        if (!CreateReturnRequestBody.openapiFields.contains(entry.getKey())) {
-          throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `CreateReturnRequestBody` properties. JSON: %s", entry.getKey(), jsonElement.toString()));
         }
       }
         JsonObject jsonObj = jsonElement.getAsJsonObject();
@@ -432,6 +470,28 @@ public class CreateReturnRequestBody {
            @Override
            public void write(JsonWriter out, CreateReturnRequestBody value) throws IOException {
              JsonObject obj = thisAdapter.toJsonTree(value).getAsJsonObject();
+             obj.remove("additionalProperties");
+             // serialize additional properties
+             if (value.getAdditionalProperties() != null) {
+               for (Map.Entry<String, Object> entry : value.getAdditionalProperties().entrySet()) {
+                 if (entry.getValue() instanceof String)
+                   obj.addProperty(entry.getKey(), (String) entry.getValue());
+                 else if (entry.getValue() instanceof Number)
+                   obj.addProperty(entry.getKey(), (Number) entry.getValue());
+                 else if (entry.getValue() instanceof Boolean)
+                   obj.addProperty(entry.getKey(), (Boolean) entry.getValue());
+                 else if (entry.getValue() instanceof Character)
+                   obj.addProperty(entry.getKey(), (Character) entry.getValue());
+                 else {
+                   JsonElement jsonElement = gson.toJsonTree(entry.getValue());
+                   if (jsonElement.isJsonArray()) {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonArray());
+                   } else {
+                     obj.add(entry.getKey(), jsonElement.getAsJsonObject());
+                   }
+                 }
+               }
+             }
              elementAdapter.write(out, obj);
            }
 
@@ -439,29 +499,50 @@ public class CreateReturnRequestBody {
            public CreateReturnRequestBody read(JsonReader in) throws IOException {
              JsonElement jsonElement = elementAdapter.read(in);
              validateJsonElement(jsonElement);
-             return thisAdapter.fromJsonTree(jsonElement);
+             JsonObject jsonObj = jsonElement.getAsJsonObject();
+             // store additional fields in the deserialized instance
+             CreateReturnRequestBody instance = thisAdapter.fromJsonTree(jsonObj);
+             for (Map.Entry<String, JsonElement> entry : jsonObj.entrySet()) {
+               if (!openapiFields.contains(entry.getKey())) {
+                 if (entry.getValue().isJsonPrimitive()) { // primitive type
+                   if (entry.getValue().getAsJsonPrimitive().isString())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsString());
+                   else if (entry.getValue().getAsJsonPrimitive().isNumber())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsNumber());
+                   else if (entry.getValue().getAsJsonPrimitive().isBoolean())
+                     instance.putAdditionalProperty(entry.getKey(), entry.getValue().getAsBoolean());
+                   else
+                     throw new IllegalArgumentException(String.format("The field `%s` has unknown primitive type. Value: %s", entry.getKey(), entry.getValue().toString()));
+                 } else if (entry.getValue().isJsonArray()) {
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), List.class));
+                 } else { // JSON object
+                     instance.putAdditionalProperty(entry.getKey(), gson.fromJson(entry.getValue(), HashMap.class));
+                 }
+               }
+             }
+             return instance;
            }
 
        }.nullSafe();
     }
   }
 
- /**
-  * Create an instance of CreateReturnRequestBody given an JSON string
-  *
-  * @param jsonString JSON string
-  * @return An instance of CreateReturnRequestBody
-  * @throws IOException if the JSON string is invalid with respect to CreateReturnRequestBody
-  */
+  /**
+   * Create an instance of CreateReturnRequestBody given an JSON string
+   *
+   * @param jsonString JSON string
+   * @return An instance of CreateReturnRequestBody
+   * @throws IOException if the JSON string is invalid with respect to CreateReturnRequestBody
+   */
   public static CreateReturnRequestBody fromJson(String jsonString) throws IOException {
     return JSON.getGson().fromJson(jsonString, CreateReturnRequestBody.class);
   }
 
- /**
-  * Convert an instance of CreateReturnRequestBody to an JSON string
-  *
-  * @return JSON string
-  */
+  /**
+   * Convert an instance of CreateReturnRequestBody to an JSON string
+   *
+   * @return JSON string
+   */
   public String toJson() {
     return JSON.getGson().toJson(this);
   }
