@@ -7,6 +7,6 @@ import java.util.List;
 @Data
 public class ProductMetricsReqVO {
 
-    private List<String> metircs;
+    private List<String> metrics;
 
 }

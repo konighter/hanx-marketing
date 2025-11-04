@@ -141,7 +141,7 @@ public class ProductMonitorServiceImpl implements ProductMonitorService {
 
     @Override
     public List<ProductMetricsRespVO> getProductMetrics(List<String> metircs) {
-        return METRICS_LIST.stream().filter(item -> metircs.contains(item.getField())).collect(Collectors.toList());
+        return METRICS_LIST.stream().filter(item -> CollectionUtils.isEmpty(metircs) || metircs.contains(item.getField())).collect(Collectors.toList());
     }
 
 
@@ -152,9 +152,10 @@ public class ProductMonitorServiceImpl implements ProductMonitorService {
         List<ProductMetricsRespVO> list = new ArrayList<>();
         list.add(new ProductMetricsRespVO("销量", "sales"));
         list.add(new ProductMetricsRespVO("转化率", "conversionRate"));
+        list.add(new ProductMetricsRespVO("访问量", "visitors"));
         list.add(new ProductMetricsRespVO("价格", "price"));
         list.add(new ProductMetricsRespVO("库存", "stock"));
-        list.add(new ProductMetricsRespVO("访问量", "visitors"));
+
         METRICS_LIST = new UnmodifiableList<>(list);
     }
 

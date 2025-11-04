@@ -66,7 +66,7 @@ const submitForm = async () => {
 
     dialogVisible.value = false
     // 发送操作成功的事件
-    emit('success', formData.value)
+    emit('success', formData.value.metrics)
   } finally {
     formLoading.value = false
   }

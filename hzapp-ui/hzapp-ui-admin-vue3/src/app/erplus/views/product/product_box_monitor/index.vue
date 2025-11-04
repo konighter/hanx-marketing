@@ -44,7 +44,7 @@
   <!-- 列表 -->
   <ContentWrap>
     <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true">
-      <el-table-column label="ID" align="center" prop="id" />
+      <!-- <el-table-column label="ID" align="center" prop="id" /> -->
       <el-table-column label="商品图片" align="center" width="100">
         <template #default="scope">
           <el-image style="width: 60px; height: 60px" :src="scope.row.imageLink"
@@ -80,7 +80,7 @@
             v-hasPermi="['erplus:product-monitor:update']">
             编辑
           </el-button>
-          <el-button link type="danger" @click="handleDelete(scope.row)"
+          <el-button link type="danger" @click="handleDelete(scope.row.id)"
             v-hasPermi="['erplus:product-monitor:delete']">
             删除
           </el-button>

@@ -25,7 +25,7 @@
   <ContentWrap>
     <div class="flex justify-right">
       <el-button type="text" @click="triggerTable">
-        <Icon v-if="showTable" icon="fa:table" class="mr-5px" />
+        <Icon v-if="!showTable" icon="fa:table" class="mr-5px" />
         <Icon v-else icon="ep:data-line" class="mr-5px" />
 
       </el-button>
@@ -36,11 +36,10 @@
 
     </div>
     <template v-if="showTable">
-      <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" :show-summary="true"
-        sum-text="summary" fixed="right">
-        <el-table-column label="日期" align="center" prop="datekey" width="80" :fixed="true" />
+      <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true">
+        <el-table-column label="日期" align="center" prop="datekey" width="100" :fixed="true" />
         <el-table-column label="产品ID" align="center" prop="productId" width="80" :fixed="true" />
-        <el-table-column v-for="m in metricsDefs" :label="m.lable" align="center" :prop="m.field" :key="m.field" />
+        <el-table-column v-for="m in metricsDefs" :label="m.name" align="center" :prop="m.field" :key="m.field" />
 
       </el-table>
       <!-- 分页 -->
@@ -97,28 +96,7 @@ const queryParams = reactive({
   datekey: []
 })
 const queryFormRef = ref() // 搜索的表单
-const metricsDefs = ref<ProductMetricsApi.MetricsDefVO[]>([
-  {
-    lable: '销量',
-    field: 'sales'
-  },
-  {
-    lable: '访客数',
-    field: 'visitors'
-  },
-  {
-    lable: '转化率',
-    field: 'conversionRate'
-  },
-  {
-    lable: '库存',
-    field: 'stock'
-  },
-  {
-    lable: '价格',
-    field: 'price'
-  }
-])
+const metricsDefs = ref<ProductMetricsApi.MetricsDefVO[]>([]) // 指标定义列表
 
 
 
@@ -139,9 +117,10 @@ const getList = async () => {
 }
 
 const updateMetrics = async (metrics: string[]) => {
-  queryParams.metrics = metrics
-  metricsDefs.value = await ProductMetricsApi.getMetricsDef(queryParams);
-  getList()
+  metricsDefs.value = await ProductMetricsApi.getMetricsDef({metrics});
+  queryParams.metrics = metricsDefs.value.map( m => m.field );
+  await getList()
+  await getMonthlySales()
 }
 
 
@@ -167,10 +146,11 @@ const triggerTable = () => {
 
 
 /** 初始化 **/
-onMounted(() => {
+onMounted(async () => {
 
-  getList()
-  getMonthlySales()
+  await updateMetrics([])
+  
+  await getMonthlySales()
 })
 
 
@@ -180,44 +160,30 @@ const lineOptionsData = reactive<EChartsOption>(lineOptions) as EChartsOption
 
 // 每月销售总额
 const getMonthlySales = async () => {
-  const data = [
-    { estimate: 100, actual: 120, name: 'analysis.january' },
-    { estimate: 120, actual: 82, name: 'analysis.february' },
-    { estimate: 161, actual: 91, name: 'analysis.march' },
-    { estimate: 134, actual: 154, name: 'analysis.april' },
-    { estimate: 105, actual: 162, name: 'analysis.may' },
-    { estimate: 160, actual: 140, name: 'analysis.june' },
-    { estimate: 165, actual: 145, name: 'analysis.july' },
-    { estimate: 114, actual: 250, name: 'analysis.august' },
-    { estimate: 163, actual: 134, name: 'analysis.september' },
-    { estimate: 185, actual: 56, name: 'analysis.october' },
-    { estimate: 118, actual: 99, name: 'analysis.november' },
-    { estimate: 123, actual: 123, name: 'analysis.december' }
-  ]
+
+  const data = list.value
   set(
     lineOptionsData,
     'xAxis.data',
-    data.map((v) => t(v.name))
+    data.map((v) => v.datekey)
   )
-  set(lineOptionsData, 'series', [
-    {
-      name: t('analysis.estimate'),
-      smooth: true,
-      type: 'line',
-      data: data.map((v) => v.estimate),
-      animationDuration: 2800,
-      animationEasing: 'cubicInOut'
-    },
-    {
-      name: t('analysis.actual'),
-      smooth: true,
-      type: 'line',
-      itemStyle: {},
-      data: data.map((v) => v.actual),
-      animationDuration: 2800,
-      animationEasing: 'quadraticOut'
+  set(lineOptionsData, 'series', 
+    metricsDefs.value.map( m => {
+      return {
+        name: m.name,
+        smooth: true,
+        type: 'line',
+        data: data.map((v) => (v as any)[m.field]),
+        animationDuration: 2800,
+        animationEasing: 'cubicInOut'
+      }
     }
-  ])
+
+  )
+  )
+  
+
+
 }
 
 

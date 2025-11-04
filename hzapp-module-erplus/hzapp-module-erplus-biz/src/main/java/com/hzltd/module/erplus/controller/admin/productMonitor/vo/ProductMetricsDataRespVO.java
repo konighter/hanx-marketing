@@ -1,6 +1,8 @@
 package com.hzltd.module.erplus.controller.admin.productMonitor.vo;
 
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.Data;
 
@@ -27,13 +29,12 @@ public class ProductMetricsDataRespVO {
     /**
      * 指标值
      */
-    @JsonUnwrapped
+    @JsonIgnore
     private Map<String, BigDecimal> metricsData;
 
-
-
-
-
-
+    @JsonAnyGetter
+    public Map<String, BigDecimal> getMetricsData() {
+        return metricsData;
+    }
 
 }

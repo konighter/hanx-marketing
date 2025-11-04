@@ -106,7 +106,7 @@ public class ProductMonitorController {
     @Operation(summary = "获得产品监控指标")
     @PreAuthorize("@ss.hasPermission('erplus:product-monitor:query')")
     public CommonResult<List<ProductMetricsRespVO>> getProductMetrics(@Valid @RequestBody ProductMetricsReqVO reqVO) {
-        List<ProductMetricsRespVO> list = productMonitorService.getProductMetrics(reqVO.getMetircs());
+        List<ProductMetricsRespVO> list = productMonitorService.getProductMetrics(reqVO.getMetrics());
         return success(list);
     }
 
