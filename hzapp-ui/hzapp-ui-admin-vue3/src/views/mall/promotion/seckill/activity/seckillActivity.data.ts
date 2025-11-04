@@ -1,6 +1,6 @@
 import type { CrudSchema } from '@/hooks/web/useCrudSchemas'
-import { dateFormatter, dateFormatter2 } from '@/utils/formatTime'
-import { getSimpleSeckillConfigList } from '@/api/mall/promotion/seckill/seckillConfig'
+import { dateFormatter2 } from '@/utils/formatTime'
+import { SeckillConfigApi } from '@/api/mall/promotion/seckill/seckillConfig'
 
 // 表单校验
 export const rules = reactive({
@@ -15,7 +15,7 @@ export const rules = reactive({
   totalStock: [required]
 })
 
-// CrudSchema https://help.h2z.ltd/vue3/crud-schema/
+// CrudSchema https://doc.h2z.ltd/vue3/crud-schema/
 const crudSchemas = reactive<CrudSchema[]>([
   {
     label: '秒杀活动名称',
@@ -88,7 +88,7 @@ const crudSchemas = reactive<CrudSchema[]>([
           valueField: 'id'
         }
       },
-      api: getSimpleSeckillConfigList
+      api: SeckillConfigApi.getSimpleSeckillConfigList
     },
     table: {
       width: 300

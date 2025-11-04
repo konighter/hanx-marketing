@@ -1,12 +1,7 @@
 package com.hzltd.module.erplus.model.common;
 
-import com.hzltd.module.erplus.model.common.IdentifierCodeModel;
-import com.hzltd.module.erplus.model.common.InventoryModel;
-import com.hzltd.module.erplus.model.common.PriceModel;
-import com.hzltd.module.erplus.model.common.SkuAttribute;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 

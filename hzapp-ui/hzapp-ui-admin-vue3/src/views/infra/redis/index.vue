@@ -1,6 +1,6 @@
 <template>
-  <doc-alert title="Redis 缓存" url="https://help.h2z.ltd/redis-cache/" />
-  <doc-alert title="本地缓存" url="https://help.h2z.ltd/local-cache/" />
+  <doc-alert title="Redis 缓存" url="https://doc.h2z.ltd/redis-cache/" />
+  <doc-alert title="本地缓存" url="https://doc.h2z.ltd/local-cache/" />
   <el-scrollbar height="calc(100vh - 88px - 40px - 50px)">
     <el-row>
       <!-- 基本信息 -->

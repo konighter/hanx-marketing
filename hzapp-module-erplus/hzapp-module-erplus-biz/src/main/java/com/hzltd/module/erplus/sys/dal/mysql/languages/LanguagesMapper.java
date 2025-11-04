@@ -1,10 +1,10 @@
 package com.hzltd.module.erplus.sys.dal.mysql.languages;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
-import com.hzltd.module.erplus.sys.dal.dataobject.languages.LanguagesDO;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.sys.controller.admin.languages.vo.LanguagesPageReqVO;
+import com.hzltd.module.erplus.sys.dal.dataobject.languages.LanguagesDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

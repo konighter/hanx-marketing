@@ -1,13 +1,9 @@
 package com.hzltd.module.erplus.dal.mysql.productpub;
 
-import java.util.*;
-
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.dal.dataobject.productpub.ErpProductPublishTaskDO;
 import org.apache.ibatis.annotations.Mapper;
-import com.hzltd.module.erplus.controller.admin.productpub.vo.*;
 
 /**
  * 商品发布任务 Mapper

@@ -28,13 +28,14 @@ public class ProjectReactor {
     private static final String GROUP_ID = "com.hzltd";
     private static final String ARTIFACT_ID = "hzapp";
     private static final String PACKAGE_NAME = "com.hzltd";
-    private static final String TITLE = "翰展管理系统";
+    private static final String TITLE = "翰展科技";
 
     /**
      * 白名单文件，不进行重写，避免出问题
      */
     private static final Set<String> WHITE_FILE_TYPES = SetUtils.asSet("gif", "jpg", "svg", "png", // 图片
-            "eot", "woff2", "ttf", "woff"); // 字体
+            "eot", "woff2", "ttf", "woff",  // 字体
+            "xdb"); // IP 库
 
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
@@ -45,8 +46,8 @@ public class ProjectReactor {
         String groupIdNew = "com.hzltd";
         String artifactIdNew = "hzapp";
         String packageNameNew = "com.hzltd";
-        String titleNew = "翰展管理系统";
-        String projectBaseDirNew = projectBaseDir + "-2.0.1"; // 一键改名后，“新”项目所在的目录
+        String titleNew = "翰展科技";
+        String projectBaseDirNew = projectBaseDir + "-3.0.0"; // 一键改名后，“新”项目所在的目录
         log.info("[main][检测新项目目录 ({})是否存在]", projectBaseDirNew);
         if (FileUtil.exist(projectBaseDirNew)) {
             log.error("[main][新项目目录检测 ({})已存在，请更改新的目录！程序退出]", projectBaseDirNew);

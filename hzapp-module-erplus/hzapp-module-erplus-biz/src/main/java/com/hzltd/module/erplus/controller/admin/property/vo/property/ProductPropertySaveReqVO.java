@@ -1,9 +1,8 @@
 package com.hzltd.module.erplus.controller.admin.property.vo.property;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
-
-import javax.validation.constraints.NotBlank;
 
 @Schema(description = "管理后台 - 属性项新增/更新 Request VO")
 @Data

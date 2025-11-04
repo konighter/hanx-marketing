@@ -8,12 +8,12 @@ import com.hzltd.module.erplus.controller.admin.property.vo.property.ProductProp
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ErpProductPropertyMapper;
 import com.hzltd.module.erplus.service.spu.ProductSkuService;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 

@@ -1,11 +1,9 @@
 package com.hzltd.module.erplus.sys.dal.dataobject.hscodes;
 
-import lombok.*;
-import java.util.*;
-import java.time.LocalDateTime;
-import java.time.LocalDateTime;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import lombok.*;
 
 /**
  * [Erplus] 海关编码(HS Code) DO

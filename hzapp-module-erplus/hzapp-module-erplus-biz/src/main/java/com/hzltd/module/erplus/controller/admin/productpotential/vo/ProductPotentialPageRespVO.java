@@ -1,10 +1,11 @@
 package com.hzltd.module.erplus.controller.admin.productpotential.vo;
 
+import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
+import cn.idev.excel.annotation.ExcelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
-import com.alibaba.excel.annotation.*;
 
 @Schema(description = "管理后台 - 选品提案 Response VO")
 @Data

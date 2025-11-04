@@ -76,7 +76,7 @@
   <!-- 表单弹窗：添加/修改 -->
   <CustomerForm ref="formRef" @success="getCustomer" />
   <CustomerDistributeForm ref="distributeForm" @success="getCustomer" />
-  <CrmTransferForm ref="transferFormRef" @success="getCustomer" />
+  <CrmTransferForm ref="transferFormRef" :biz-type="BizTypeEnum.CRM_CUSTOMER" @success="close" />
 </template>
 <script lang="ts" setup>
 import { useTagsViewStore } from '@/store/modules/tagsView'
@@ -93,7 +93,7 @@ import PermissionList from '@/views/crm/permission/components/PermissionList.vue
 import CrmTransferForm from '@/views/crm/permission/components/TransferForm.vue'
 import FollowUpList from '@/views/crm/followup/index.vue'
 import { BizTypeEnum } from '@/api/crm/permission'
-import type { OperateLogV2VO } from '@/api/system/operatelog'
+import type { OperateLogVO } from '@/api/system/operatelog'
 import { getOperateLogPage } from '@/api/crm/operateLog'
 import CustomerDistributeForm from '@/views/crm/customer/pool/CustomerDistributeForm.vue'
 
@@ -142,7 +142,7 @@ const handleUpdateDealStatus = async () => {
 /** 客户转移 */
 const transferFormRef = ref<InstanceType<typeof CrmTransferForm>>() // 客户转移表单 ref
 const transfer = () => {
-  transferFormRef.value?.open('客户转移', customerId.value, CustomerApi.transferCustomer)
+  transferFormRef.value?.open(customerId.value)
 }
 
 /** 锁定客户 */
@@ -185,7 +185,7 @@ const handlePutPool = async () => {
 }
 
 /** 获取操作日志 */
-const logList = ref<OperateLogV2VO[]>([]) // 操作日志列表
+const logList = ref<OperateLogVO[]>([]) // 操作日志列表
 const getOperateLog = async () => {
   if (!customerId.value) {
     return

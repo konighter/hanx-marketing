@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="会员手册（功能开启）" url="https://help.h2z.ltd/member/build/" />
+  <doc-alert title="会员手册（功能开启）" url="https://doc.h2z.ltd/member/build/" />
 
   <ContentWrap>
     <el-form

@@ -1,20 +1,27 @@
 <!-- 商品发布 - 库存价格 -->
 <template>
-  <el-form ref="formRef" :model="formData" :rules="rules" label-width="120px" :disabled="isDetail">
-    <el-form-item label="分销类型" props="subCommissionType">
+  <el-form
+    ref="formRef"
+    v-loading="formLoading"
+    :disabled="isDetail"
+    :model="formData"
+    :rules="rules"
+    label-width="120px"
+  >
+    <el-form-item label="分销类型" prop="subCommissionType">
       <el-radio-group
         v-model="formData.subCommissionType"
-        @change="changeSubCommissionType"
         class="w-80"
+        @change="changeSubCommissionType"
       >
-        <el-radio :label="false">默认设置</el-radio>
-        <el-radio :label="true" class="radio">单独设置</el-radio>
+        <el-radio :value="false">默认设置</el-radio>
+        <el-radio :value="true" class="radio">单独设置</el-radio>
       </el-radio-group>
     </el-form-item>
-    <el-form-item label="商品规格" props="specType">
-      <el-radio-group v-model="formData.specType" @change="onChangeSpec" class="w-80">
-        <el-radio :label="false" class="radio">单规格</el-radio>
-        <el-radio :label="true">多规格</el-radio>
+    <el-form-item label="商品规格" prop="specType">
+      <el-radio-group v-model="formData.specType" class="w-80" @change="onChangeSpec">
+        <el-radio :value="false" class="radio">单规格</el-radio>
+        <el-radio :value="true">多规格</el-radio>
       </el-radio-group>
     </el-form-item>
     <!-- 多规格添加-->
@@ -29,22 +36,22 @@
     <el-form-item v-if="formData.specType" label="商品属性">
       <el-button class="mb-10px mr-15px" @click="attributesAddFormRef.open">添加属性</el-button>
       <ProductAttributes
+        :is-detail="isDetail"
         :property-list="propertyList"
         @success="generateSkus"
-        :is-detail="isDetail"
       />
     </el-form-item>
     <template v-if="formData.specType && propertyList.length > 0">
-      <el-form-item label="批量设置" v-if="!isDetail">
+      <el-form-item v-if="!isDetail" label="批量设置">
         <SkuList :is-batch="true" :prop-form-data="formData" :property-list="propertyList" />
       </el-form-item>
       <el-form-item label="规格列表">
         <SkuList
           ref="skuListRef"
+          :is-detail="isDetail"
           :prop-form-data="formData"
           :property-list="propertyList"
           :rule-config="ruleConfig"
-          :is-detail="isDetail"
         />
       </el-form-item>
     </template>
@@ -94,7 +101,7 @@ const ruleConfig: RuleConfig[] = [
 ]
 
 const message = useMessage() // 消息弹窗
-
+const formLoading = ref(false)
 const props = defineProps({
   propFormData: {
     type: Object as PropType<Spu>,
@@ -181,7 +188,7 @@ const onChangeSpec = () => {
 }
 
 /** 调用 SkuList generateTableData 方法*/
-const generateSkus = (propertyList) => {
+const generateSkus = (propertyList: any[]) => {
   skuListRef.value.generateTableData(propertyList)
 }
 </script>

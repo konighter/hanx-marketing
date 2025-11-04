@@ -1,6 +1,6 @@
 <!-- 商品中心 - 商品列表  -->
 <template>
-  <doc-alert title="【商品】商品 SPU 与 SKU" url="https://help.h2z.ltd/mall/product-spu-sku/" />
+  <doc-alert title="【商品】商品 SPU 与 SKU" url="https://doc.h2z.ltd/mall/product-spu-sku/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>
@@ -135,7 +135,7 @@
             <el-image
               fit="cover"
               :src="row.picUrl"
-              class="h-50px w-50px flex-none"
+              class="flex-none w-50px h-50px"
               @click="imagePreview(row.picUrl)"
             />
             <div class="ml-4 overflow-hidden">
@@ -244,6 +244,7 @@ import * as ProductCategoryApi from '@/api/mall/product/category'
 defineOptions({ name: 'ProductSpu' })
 
 const message = useMessage() // 消息弹窗
+const route = useRoute() // 路由
 const { t } = useI18n() // 国际化
 const { push } = useRouter() // 路由跳转
 
@@ -410,7 +411,7 @@ const handleExport = async () => {
     await message.exportConfirm()
     // 发起导出
     exportLoading.value = true
-    const data = await ProductSpuApi.exportSpu(queryParams)
+    const data = await ProductSpuApi.exportSpu(queryParams.value)
     download.excel(data, '商品列表.xls')
   } catch {
   } finally {
@@ -431,6 +432,11 @@ onActivated(() => {
 
 /** 初始化 **/
 onMounted(async () => {
+  // 解析路由的 categoryId
+  if (route.query.categoryId) {
+    queryParams.value.categoryId = route.query.categoryId
+  }
+  // 获得商品信息
   await getTabsCount()
   await getList()
   // 获得分类树

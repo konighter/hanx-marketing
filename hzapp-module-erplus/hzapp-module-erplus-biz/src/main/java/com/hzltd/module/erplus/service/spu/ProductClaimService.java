@@ -1,13 +1,14 @@
 package com.hzltd.module.erplus.service.spu;
 
-import java.util.*;
-import javax.validation.*;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductClaimBatchReqVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductClaimPageReqVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductClaimRespVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductClaimSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductClaimDO;
+import jakarta.validation.Valid;
+
+import java.util.List;
 
 /**
  * 商品认领 Service 接口

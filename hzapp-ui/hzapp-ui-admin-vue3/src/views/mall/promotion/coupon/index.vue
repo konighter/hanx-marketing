@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【营销】优惠劵" url="https://help.h2z.ltd/mall/promotion-coupon/" />
+  <doc-alert title="【营销】优惠劵" url="https://doc.h2z.ltd/mall/promotion-coupon/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>

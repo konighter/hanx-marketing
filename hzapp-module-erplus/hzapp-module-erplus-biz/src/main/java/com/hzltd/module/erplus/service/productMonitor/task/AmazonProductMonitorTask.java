@@ -8,11 +8,10 @@ import com.hzltd.module.erplus.service.productMonitor.crawlers.PlaywrightCrawler
 import com.hzltd.module.erplus.service.productMonitor.vo.MonitorMetricsVO;
 import com.hzltd.module.erplus.service.productMonitor.vo.TaskConfig;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
-import lombok.Setter;
+import jakarta.annotation.PostConstruct;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.Resource;
 import java.util.List;
 
 @Service

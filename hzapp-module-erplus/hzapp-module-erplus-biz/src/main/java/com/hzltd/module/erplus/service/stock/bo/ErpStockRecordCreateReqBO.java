@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.service.stock.bo;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

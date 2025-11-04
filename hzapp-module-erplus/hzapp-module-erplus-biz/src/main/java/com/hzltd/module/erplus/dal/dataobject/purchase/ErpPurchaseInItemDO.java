@@ -1,11 +1,11 @@
 package com.hzltd.module.erplus.dal.dataobject.purchase;
 
-import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductDO;
-import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.module.erplus.dal.dataobject.product.ErpProductDO;
+import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
 import lombok.*;
 
 import java.math.BigDecimal;

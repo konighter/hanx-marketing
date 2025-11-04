@@ -4,14 +4,14 @@ import { Message } from '@/layout/components//Message'
 import { Collapse } from '@/layout/components/Collapse'
 import { UserInfo } from '@/layout/components/UserInfo'
 import { Screenfull } from '@/layout/components/Screenfull'
-import { TenantSelect} from "@/layout/components/TenantSelect";
 import { Breadcrumb } from '@/layout/components/Breadcrumb'
 import { SizeDropdown } from '@/layout/components/SizeDropdown'
 import { LocaleDropdown } from '@/layout/components/LocaleDropdown'
 import RouterSearch from '@/components/RouterSearch/index.vue'
+import TenantVisit from '@/layout/components/TenantVisit/index.vue'
 import { useAppStore } from '@/store/modules/app'
 import { useDesign } from '@/hooks/web/useDesign'
-import {useTenant} from "@/utils/auth";
+import { checkPermi } from '@/utils/permission'
 
 const { getPrefixCls, variables } = useDesign()
 
@@ -43,7 +43,10 @@ const locale = computed(() => appStore.getLocale)
 // 消息图标
 const message = computed(() => appStore.getMessage)
 
-const isTenant = computed(() => useTenant())
+// 租户切换权限
+const hasTenantVisitPermission = computed(
+  () => import.meta.env.VITE_APP_TENANT_ENABLE === 'true' 
+)
 
 export default defineComponent({
   name: 'ToolHeader',
@@ -66,15 +69,11 @@ export default defineComponent({
           </div>
         ) : undefined}
         <div class="h-full flex items-center">
-          {isTenant.value ? (
-            <TenantSelect class="custom-hover" color="var(--top-header-text-color)"></TenantSelect>
-          ) : undefined}
-
-
+          {hasTenantVisitPermission.value ? <TenantVisit /> : undefined}
           {screenfull.value ? (
             <Screenfull class="custom-hover" color="var(--top-header-text-color)"></Screenfull>
           ) : undefined}
-          {search.value ? <RouterSearch isModal={false} /> : undefined}
+          {search.value ? <RouterSearch isModal={false} color="var(--top-header-text-color)"/> : undefined}
           {size.value ? (
             <SizeDropdown class="custom-hover" color="var(--top-header-text-color)"></SizeDropdown>
           ) : undefined}

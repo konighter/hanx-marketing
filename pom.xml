@@ -5,36 +5,33 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.hzltd</groupId>
     <artifactId>hzapp</artifactId>
-    <version>2.0.1</version>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
         <!-- Server 主项目 -->
         <module>hzapp-server</module>
+        <!-- 各种 module 拓展 -->
         <module>hzapp-module-erplus</module>
-        <!-- 示例项目 -->
-<!--        <module>hzapp-example</module>-->
-
     </modules>
 
     <name>${project.artifactId}</name>
-    <description>芋道项目基础脚手架</description>
+    <description>翰展项目基础脚手架</description>
     <url>https://github.com/YunaiV/ruoyi-vue-pro</url>
 
     <properties>
-        <revision>2.0.1</revision>
+        <revision>3.0.0-SNAPSHOT</revision>
         <!-- Maven 相关 -->
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
-        <!-- 看看咋放到 bom 里 -->
-        <lombok.version>1.18.30</lombok.version>
-        <spring.boot.version>2.7.18</spring.boot.version>
-        <mapstruct.version>1.5.5.Final</mapstruct.version>
+        <maven-surefire-plugin.version>3.5.3</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
+        <flatten-maven-plugin.version>1.7.2</flatten-maven-plugin.version>
+        <!-- maven-surefire-plugin 暂时无法通过 bom 的依赖读取（兼容老版本 IDEA 2024 及以前版本） -->
+        <lombok.version>1.18.38</lombok.version>
+        <spring.boot.version>3.5.5</spring.boot.version>
+        <mapstruct.version>1.6.3</mapstruct.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <eVersion>2.0.2-SNAPSHOT</eVersion>
     </properties>
 
     <dependencyManagement>
@@ -46,127 +43,6 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-<!--            <dependency>-->
-<!--                <groupId>com.hzltd</groupId>-->
-<!--                <artifactId>hzapp-module-mall</artifactId>-->
-<!--                <version>${revision}</version>-->
-<!--                <type>pom</type>-->
-<!--                <scope>import</scope>-->
-<!--            </dependency>-->
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-crm-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-crm-biz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-erplus-api</artifactId>
-                <version>2.0.2-SNAPSHOT</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-erplus-biz</artifactId>
-                <version>2.0.2-SNAPSHOT</version>
-            </dependency>
-
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-system-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-system-biz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-infra-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-infra-biz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-member-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-member-biz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-pay-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-pay-biz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-mp-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-mp-biz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-bpm-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-bpm-biz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-report-api</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-report-biz</artifactId>
-                <version>${revision}</version>
-            </dependency>
-
-
-
-
         </dependencies>
     </dependencyManagement>
 
@@ -187,7 +63,6 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
                     <configuration>
-                        <skip>true</skip>
                         <annotationProcessorPaths>
                             <path>
                                 <groupId>org.springframework.boot</groupId>
@@ -200,11 +75,23 @@
                                 <version>${lombok.version}</version>
                             </path>
                             <path>
+                                <!-- 确保 Lombok 生成的 getter/setter 方法能被 MapStruct 正确识别，
+                                     避免出现 No property named “xxx" exists 的编译错误 -->
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok-mapstruct-binding</artifactId>
+                                <version>0.2.0</version>
+                            </path>
+                            <path>
                                 <groupId>org.mapstruct</groupId>
                                 <artifactId>mapstruct-processor</artifactId>
                                 <version>${mapstruct.version}</version>
                             </path>
                         </annotationProcessorPaths>
+                        <!-- 编译参数写在 arg 内，解决 Spring Boot 3.2 的 Parameter Name Discovery 问题 -->
+                        <debug>false</debug>
+                        <compilerArgs>
+                            <arg>-parameters</arg>
+                        </compilerArgs>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -221,7 +108,7 @@
                 <artifactId>flatten-maven-plugin</artifactId>
                 <version>${flatten-maven-plugin.version}</version>
                 <configuration>
-                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                    <flattenMode>oss</flattenMode>
                     <updatePomFile>true</updatePomFile>
                 </configuration>
                 <executions>
@@ -247,6 +134,17 @@
     <!-- 使用 huawei / aliyun 的 Maven 源，提升下载速度 -->
     <repositories>
         <repository>
+            <id>2153565-snapshot-kpytvb</id>
+            <url>https://packages.aliyun.com/6188d705e84c82e792917a32/maven/2153565-snapshot-kpytvb</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+
+        <repository>
             <id>huaweicloud</id>
             <name>huawei</name>
             <url>https://mirrors.huaweicloud.com/repository/maven/</url>
@@ -257,19 +155,22 @@
             <url>https://maven.aliyun.com/repository/public</url>
         </repository>
 
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
     </repositories>
-
-<!--    <distributionManagement>-->
-<!--        <snapshotRepository>-->
-<!--            <id>rdc-snapshots</id>-->
-<!--            <name>rdc-snapshots</name>-->
-<!--            <url>https://packages.aliyun.com/maven/repository/2153565-snapshot-kpytvb/</url>-->
-<!--        </snapshotRepository>-->
-<!--        <repository>-->
-<!--            <id>rdc-releases</id>-->
-<!--            <name>rdc-releases</name>-->
-<!--            <url>https://packages.aliyun.com/maven/repository/2153565-release-xg1vkB/</url>-->
-<!--        </repository>-->
-<!--    </distributionManagement>-->
 
 </project>

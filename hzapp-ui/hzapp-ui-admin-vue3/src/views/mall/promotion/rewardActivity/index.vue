@@ -1,33 +1,33 @@
 <template>
-  <doc-alert title="【营销】满减送" url="https://help.h2z.ltd/mall/promotion-record/" />
+  <doc-alert title="【营销】满减送" url="https://doc.h2z.ltd/mall/promotion-record/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>
     <el-form
-      class="-mb-15px"
-      :model="queryParams"
       ref="queryFormRef"
       :inline="true"
+      :model="queryParams"
+      class="-mb-15px"
       label-width="68px"
     >
       <el-form-item label="活动名称" prop="name">
         <el-input
           v-model="queryParams.name"
-          placeholder="请输入活动名称"
-          clearable
-          @keyup.enter="handleQuery"
           class="!w-240px"
+          clearable
+          placeholder="请输入活动名称"
+          @keyup.enter="handleQuery"
         />
       </el-form-item>
       <el-form-item label="活动状态" prop="status">
         <el-select
           v-model="queryParams.status"
-          placeholder="请选择活动状态"
-          clearable
           class="!w-240px"
+          clearable
+          placeholder="请选择活动状态"
         >
           <el-option
-            v-for="dict in getIntDictOptions(DICT_TYPE.PROMOTION_ACTIVITY_STATUS)"
+            v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)"
             :key="dict.value"
             :label="dict.label"
             :value="dict.value"
@@ -37,24 +37,31 @@
       <el-form-item label="活动时间" prop="createTime">
         <el-date-picker
           v-model="queryParams.createTime"
-          value-format="YYYY-MM-DD HH:mm:ss"
-          type="daterange"
-          start-placeholder="活动开始日期"
-          end-placeholder="活动结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]"
           class="!w-240px"
+          end-placeholder="活动结束日期"
+          start-placeholder="活动开始日期"
+          type="daterange"
+          value-format="YYYY-MM-DD HH:mm:ss"
         />
       </el-form-item>
       <el-form-item>
-        <el-button @click="handleQuery"><Icon icon="ep:search" class="mr-5px" /> 搜索</el-button>
-        <el-button @click="resetQuery"><Icon icon="ep:refresh" class="mr-5px" /> 重置</el-button>
+        <el-button @click="handleQuery">
+          <Icon class="mr-5px" icon="ep:search" />
+          搜索
+        </el-button>
+        <el-button @click="resetQuery">
+          <Icon class="mr-5px" icon="ep:refresh" />
+          重置
+        </el-button>
         <el-button
-          type="primary"
+          v-hasPermi="['promotion:reward-activity:create']"
           plain
+          type="primary"
           @click="openForm('create')"
-          v-hasPermi="['product:brand:create']"
         >
-          <Icon icon="ep:plus" class="mr-5px" /> 新增
+          <Icon class="mr-5px" icon="ep:plus" />
+          新增
         </el-button>
       </el-form-item>
     </el-form>
@@ -62,47 +69,61 @@
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading" :data="list" row-key="id" default-expand-all>
+    <el-table v-loading="loading" :data="list" default-expand-all row-key="id">
       <el-table-column label="活动名称" prop="name" />
-      <el-table-column
-        label="活动开始时间"
-        align="center"
-        prop="startTime"
-        :formatter="dateFormatter"
-      />
-      <el-table-column
-        label="活动结束时间"
-        align="center"
-        prop="endTime"
-        :formatter="dateFormatter"
-      />
-      <el-table-column label="状态" align="center" prop="status">
+      <el-table-column label="活动范围" prop="productScope" >
         <template #default="scope">
-          <dict-tag :type="DICT_TYPE.PROMOTION_ACTIVITY_STATUS" :value="scope.row.status" />
+          <dict-tag :type="DICT_TYPE.PROMOTION_PRODUCT_SCOPE" :value="scope.row.productScope" />
         </template>
       </el-table-column>
       <el-table-column
-        label="创建时间"
+        :formatter="dateFormatter"
         align="center"
+        label="活动开始时间"
+        prop="startTime"
+      />
+      <el-table-column
+        :formatter="dateFormatter"
+        align="center"
+        label="活动结束时间"
+        prop="endTime"
+      />
+      <el-table-column align="center" label="状态" prop="status">
+        <template #default="scope">
+          <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status" />
+        </template>
+      </el-table-column>
+      <el-table-column
+        :formatter="dateFormatter"
+        align="center"
+        label="创建时间"
         prop="createTime"
         width="180"
-        :formatter="dateFormatter"
       />
-      <el-table-column label="操作" align="center">
+      <el-table-column align="center" label="操作">
         <template #default="scope">
           <el-button
+            v-hasPermi="['promotion:reward-activity:update']"
             link
             type="primary"
             @click="openForm('update', scope.row.id)"
-            v-hasPermi="['product:brand:update']"
           >
             编辑
           </el-button>
           <el-button
+            v-if="scope.row.status === 0"
+            v-hasPermi="['promotion:reward-activity:close']"
+            link
+            type="danger"
+            @click="handleClose(scope.row.id)"
+          >
+            关闭
+          </el-button>
+          <el-button
+            v-hasPermi="['promotion:reward-activity:delete']"
             link
             type="danger"
             @click="handleDelete(scope.row.id)"
-            v-hasPermi="['product:brand:delete']"
           >
             删除
           </el-button>
@@ -111,9 +132,9 @@
     </el-table>
     <!-- 分页 -->
     <Pagination
-      :total="total"
-      v-model:page="queryParams.pageNo"
       v-model:limit="queryParams.pageSize"
+      v-model:page="queryParams.pageNo"
+      :total="total"
       @pagination="getList"
     />
   </ContentWrap>
@@ -168,9 +189,22 @@ const resetQuery = () => {
 }
 
 /** 添加/修改操作 */
-const formRef = ref()
+const formRef = ref<InstanceType<typeof RewardForm>>()
 const openForm = (type: string, id?: number) => {
-  formRef.value.open(type, id)
+  formRef.value?.open(type, id)
+}
+
+/** 关闭按钮操作 */
+const handleClose = async (id: number) => {
+  try {
+    // 关闭的二次确认
+    await message.confirm('确认关闭该满减活动吗？')
+    // 发起关闭
+    await RewardActivityApi.closeRewardActivity(id)
+    message.success('关闭成功')
+    // 刷新列表
+    await getList()
+  } catch {}
 }
 
 /** 删除按钮操作 */

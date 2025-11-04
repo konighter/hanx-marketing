@@ -4,12 +4,11 @@ package com.hzltd.module.erplus.controller.admin.category;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.module.erplus.controller.admin.category.vo.*;
 import com.hzltd.module.erplus.service.category.CrossCategoryService;
+import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @RestController

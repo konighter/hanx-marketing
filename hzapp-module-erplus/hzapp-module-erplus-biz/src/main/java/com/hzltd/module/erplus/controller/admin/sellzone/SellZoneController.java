@@ -1,11 +1,11 @@
 package com.hzltd.module.erplus.controller.admin.sellzone;
 
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZonePageReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneRespVO;
@@ -15,18 +15,19 @@ import com.hzltd.module.erplus.service.sellzone.SellZoneService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static com.hzltd.framework.common.pojo.CommonResult.success;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
+
 
 @Tag(name = "管理后台 - 销售区域")
 @RestController
@@ -90,7 +91,7 @@ public class SellZoneController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出销售区域 Excel")
     @PreAuthorize("@ss.hasPermission('erp:sell-zone:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = EXPORT)
     public void exportSellZoneExcel(@Valid SellZonePageReqVO pageReqVO,
               HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

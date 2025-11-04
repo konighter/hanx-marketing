@@ -7,10 +7,6 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.common.util.object.ObjectUtils;
 import com.hzltd.module.erplus.api.service.CrossApiServiceFactory;
-import com.hzltd.module.erplus.model.ApiRequest;
-import com.hzltd.module.erplus.model.ApiResponse;
-import com.hzltd.module.erplus.model.product.CreateProductRequest;
-import com.hzltd.module.erplus.model.product.CreateProductResponse;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishResponse;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishTaskVO;
@@ -20,23 +16,27 @@ import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.productpub.ErpProductPublishTaskDO;
 import com.hzltd.module.erplus.enums.CrossProductPublishStatus;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
+import com.hzltd.module.erplus.model.ApiRequest;
+import com.hzltd.module.erplus.model.ApiResponse;
+import com.hzltd.module.erplus.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.model.product.CreateProductResponse;
 import com.hzltd.module.erplus.service.executor.ExecutorService;
 import com.hzltd.module.erplus.service.product.ErpCrossProductService;
 import com.hzltd.module.erplus.service.product.ProductApi;
 import com.hzltd.module.erplus.service.spu.ProductSpuService;
+import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_EXISTS;
 
 @Slf4j
 @Service

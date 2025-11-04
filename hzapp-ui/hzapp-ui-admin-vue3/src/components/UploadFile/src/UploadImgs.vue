@@ -6,13 +6,14 @@
       :action="uploadUrl"
       :before-upload="beforeUpload"
       :class="['upload', drag ? 'no-border' : '']"
+      :disabled="disabled"
       :drag="drag"
+      :http-request="httpRequest"
       :limit="limit"
       :multiple="true"
       :on-error="uploadError"
       :on-exceed="handleExceed"
       :on-success="uploadSuccess"
-      :http-request="httpRequest"
       list-type="picture-card"
     >
       <div class="upload-empty">
@@ -24,7 +25,7 @@
       <template #file="{ file }">
         <img :src="file.url" class="upload-image" />
         <div class="upload-handle" @click.stop>
-          <div class="handle-icon" @click="handlePictureCardPreview(file)">
+          <div class="handle-icon" @click="imagePreview(file.url!)">
             <Icon icon="ep:zoom-in" />
             <span>查看</span>
           </div>
@@ -38,16 +39,12 @@
     <div class="el-upload__tip">
       <slot name="tip"></slot>
     </div>
-    <el-image-viewer
-      v-if="imgViewVisible"
-      :url-list="[viewImageUrl]"
-      @close="imgViewVisible = false"
-    />
   </div>
 </template>
 <script lang="ts" setup>
 import type { UploadFile, UploadProps, UploadUserFile } from 'element-plus'
 import { ElNotification } from 'element-plus'
+import { createImageViewer } from '@/components/ImageViewer'
 
 import { propTypes } from '@/utils/propTypes'
 import { useUpload } from '@/components/UploadFile/src/useUpload'
@@ -55,6 +52,13 @@ import { useUpload } from '@/components/UploadFile/src/useUpload'
 defineOptions({ name: 'UploadImgs' })
 
 const message = useMessage() // 消息弹窗
+// 查看图片
+const imagePreview = (imgUrl: string) => {
+  createImageViewer({
+    zIndex: 9999999,
+    urlList: [imgUrl]
+  })
+}
 
 type FileTypes =
   | 'image/apng'
@@ -77,10 +81,11 @@ const props = defineProps({
   fileType: propTypes.array.def(['image/jpeg', 'image/png', 'image/gif']), // 图片类型限制 ==> 非必传（默认为 ["image/jpeg", "image/png", "image/gif"]）
   height: propTypes.string.def('150px'), // 组件高度 ==> 非必传（默认为 150px）
   width: propTypes.string.def('150px'), // 组件宽度 ==> 非必传（默认为 150px）
-  borderradius: propTypes.string.def('8px') // 组件边框圆角 ==> 非必传（默认为 8px）
+  borderradius: propTypes.string.def('8px'), // 组件边框圆角 ==> 非必传（默认为 8px）
+  directory: propTypes.string.def(undefined) // 上传目录 ==> 非必传（默认为 undefined）
 })
 
-const { uploadUrl, httpRequest } = useUpload()
+const { uploadUrl, httpRequest } = useUpload(props.directory)
 
 const fileList = ref<UploadUserFile[]>([])
 const uploadNumber = ref<number>(0)
@@ -92,20 +97,28 @@ const uploadList = ref<UploadUserFile[]>([])
 const beforeUpload: UploadProps['beforeUpload'] = (rawFile) => {
   const imgSize = rawFile.size / 1024 / 1024 < props.fileSize
   const imgType = props.fileType
-  if (!imgType.includes(rawFile.type as FileTypes))
+  const isValidType = imgType.includes(rawFile.type as FileTypes)
+  const isValidSize = imgSize
+
+  if (!isValidType)
     ElNotification({
       title: '温馨提示',
       message: '上传图片不符合所需的格式！',
       type: 'warning'
     })
-  if (!imgSize)
+  if (!isValidSize)
     ElNotification({
       title: '温馨提示',
       message: `上传图片大小不能超过 ${props.fileSize}M！`,
       type: 'warning'
     })
-  uploadNumber.value++
-  return imgType.includes(rawFile.type as FileTypes) && imgSize
+
+  // 只有在验证通过后才增加计数器
+  if (isValidType && isValidSize) {
+    uploadNumber.value++
+  }
+
+  return isValidType && isValidSize
 }
 
 // 图片上传成功
@@ -138,9 +151,8 @@ watch(
     }
 
     fileList.value = [] // 保障数据为空
-    //
     fileList.value.push(
-      ...(val as string[]).filter((url) => url!).map((url) => ({ name: url.substring(url.lastIndexOf('/') + 1), url }))
+      ...(val as string[]).map((url) => ({ name: url.substring(url.lastIndexOf('/') + 1), url }))
     )
   },
   { immediate: true, deep: true }
@@ -168,6 +180,8 @@ const uploadError = () => {
     message: '图片上传失败，请您重新上传！',
     type: 'error'
   })
+  // 上传失败时减少计数器，避免后续上传被阻塞
+  uploadNumber.value = Math.max(0, uploadNumber.value - 1)
 }
 
 // 文件数超出提示
@@ -177,14 +191,6 @@ const handleExceed = () => {
     message: `当前最多只能上传 ${props.limit} 张图片，请移除后上传！`,
     type: 'warning'
   })
-}
-
-// 图片预览
-const viewImageUrl = ref('')
-const imgViewVisible = ref(false)
-const handlePictureCardPreview: UploadProps['onPreview'] = (uploadFile) => {
-  viewImageUrl.value = uploadFile.url!
-  imgViewVisible.value = true
 }
 </script>
 

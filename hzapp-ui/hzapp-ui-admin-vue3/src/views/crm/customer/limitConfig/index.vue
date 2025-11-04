@@ -1,6 +1,4 @@
 <template>
-  <doc-alert title="【客户】客户管理、公海客户" url="https://help.h2z.ltd/crm/customer/" />
-  <doc-alert title="【通用】数据权限" url="https://help.h2z.ltd/crm/permission/" />
 
   <!-- 列表 -->
   <ContentWrap>

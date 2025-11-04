@@ -36,7 +36,7 @@
           ref="permissionListRef"
           :biz-id="contract.id!"
           :biz-type="BizTypeEnum.CRM_CONTRACT"
-          :show-action="false"
+          :show-action="true"
           @quit-team="close"
         />
       </el-tab-pane>
@@ -48,11 +48,11 @@
 
   <!-- 表单弹窗：添加/修改 -->
   <ContractForm ref="formRef" @success="getContractData" />
-  <CrmTransferForm ref="transferFormRef" @success="close" />
+  <CrmTransferForm ref="transferFormRef" :biz-type="BizTypeEnum.CRM_CONTRACT" @success="close" />
 </template>
 <script lang="ts" setup>
 import { useTagsViewStore } from '@/store/modules/tagsView'
-import { OperateLogV2VO } from '@/api/system/operatelog'
+import { OperateLogVO } from '@/api/system/operatelog'
 import * as ContractApi from '@/api/crm/contract'
 import ContractDetailsInfo from './ContractDetailsInfo.vue'
 import ContractDetailsHeader from './ContractDetailsHeader.vue'
@@ -94,7 +94,7 @@ const getContractData = async () => {
 }
 
 /** 获取操作日志 */
-const logList = ref<OperateLogV2VO[]>([]) // 操作日志列表
+const logList = ref<OperateLogVO[]>([]) // 操作日志列表
 const getOperateLog = async (contractId: number) => {
   if (!contractId) {
     return
@@ -113,10 +113,9 @@ const createReceivable = (planData: any) => {
 }
 
 /** 转移 */
-// TODO @puhui999：这个组件，要不传递业务类型，然后组件里判断 title 和 api 能调用哪个；整体治理掉；好呢
 const transferFormRef = ref<InstanceType<typeof CrmTransferForm>>() // 合同转移表单 ref
 const transferContract = () => {
-  transferFormRef.value?.open('合同转移', contract.value.id, ContractApi.transferContract)
+  transferFormRef.value?.open(contract.value.id)
 }
 
 /** 关闭 */

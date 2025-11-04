@@ -1,6 +1,4 @@
 <template>
-  <doc-alert title="【商机】商机管理、商机状态" url="https://help.h2z.ltd/crm/business/" />
-  <doc-alert title="【通用】数据权限" url="https://help.h2z.ltd/crm/permission/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

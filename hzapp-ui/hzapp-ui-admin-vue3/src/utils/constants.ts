@@ -1,5 +1,5 @@
 /**
- * Created by 芋道源码
+ * Created by 翰展源码
  *
  * 枚举类
  */
@@ -71,7 +71,7 @@ export const SystemUserSocialTypeEnum = {
 export const InfraCodegenTemplateTypeEnum = {
   CRUD: 1, // 基础 CRUD
   TREE: 2, // 树形 CRUD
-  SUB: 3 // 主子表 CRUD
+  SUB: 15 // 主子表 CRUD
 }
 
 /**
@@ -108,6 +108,14 @@ export const PayChannelEnum = {
   WX_APP: {
     code: 'wx_app',
     name: '微信 APP 支付'
+  },
+  WX_NATIVE: {
+    code: 'wx_native',
+    name: '微信 Native 支付'
+  },
+  WX_WAP: {
+    code: 'wx_wap',
+    name: '微信 WAP 网站支付'
   },
   WX_BAR: {
     code: 'wx_bar',
@@ -248,15 +256,15 @@ export const CouponTemplateTakeTypeEnum = {
  */
 export const PromotionProductScopeEnum = {
   ALL: {
-    scope: 10,
+    scope: 1,
     name: '通用劵'
   },
   SPU: {
-    scope: 20,
+    scope: 2,
     name: '商品劵'
   },
   CATEGORY: {
-    scope: 30,
+    scope: 3,
     name: '品类劵'
   }
 }
@@ -428,4 +436,30 @@ export const ErpBizType = {
   SALE_ORDER: 20,
   SALE_OUT: 21,
   SALE_RETURN: 22
+}
+
+// ========== BPM 模块 ==========
+
+export const BpmModelType = {
+  BPMN: 10, // BPMN 设计器
+  SIMPLE: 20 // 简易设计器
+}
+
+export const BpmModelFormType = {
+  NORMAL: 10, // 流程表单
+  CUSTOM: 20 // 业务表单
+}
+
+export const BpmProcessInstanceStatus = {
+  NOT_START: -1, // 未开始
+  RUNNING: 1, // 审批中
+  APPROVE: 2, // 审批通过
+  REJECT: 3, // 审批不通过
+  CANCEL: 4 // 已取消
+}
+
+export const BpmAutoApproveType = {
+  NONE: 0, // 不自动通过
+  APPROVE_ALL: 1, // 仅审批一次，后续重复的审批节点均自动通过
+  APPROVE_SEQUENT: 2 // 仅针对连续审批的节点自动通过
 }

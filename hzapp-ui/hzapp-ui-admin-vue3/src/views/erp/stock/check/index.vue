@@ -1,7 +1,7 @@
 <template>
   <doc-alert
     title="【库存】库存调拨、库存盘点"
-    url="https://help.h2z.ltd/erp/stock-move-check/"
+    url="https://doc.h2z.ltd/erp/stock-move-check/"
   />
 
   <ContentWrap>

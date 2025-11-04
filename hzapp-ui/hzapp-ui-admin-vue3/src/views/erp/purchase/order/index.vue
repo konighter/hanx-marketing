@@ -1,5 +1,4 @@
 <template>
-  <doc-alert title="【采购】采购订单、入库、退货" url="https://help.h2z.ltd/erp/purchase/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->
@@ -43,7 +42,7 @@
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]"
-          class="!w-220px"
+          class="!w-240px"
         />
       </el-form-item>
       <el-form-item label="供应商" prop="supplierId">

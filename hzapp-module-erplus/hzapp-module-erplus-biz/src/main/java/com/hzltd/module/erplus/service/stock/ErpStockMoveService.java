@@ -5,8 +5,8 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.move.ErpStockMovePageRe
 import com.hzltd.module.erplus.controller.admin.stock.vo.move.ErpStockMoveSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockMoveDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockMoveItemDO;
+import jakarta.validation.Valid;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 

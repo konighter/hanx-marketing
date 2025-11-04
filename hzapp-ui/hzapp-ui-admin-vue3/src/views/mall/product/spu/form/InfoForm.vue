@@ -45,7 +45,7 @@
         :show-word-limit="true"
         class="w-80!"
         maxlength="128"
-        placeholder="请输入商品名称"
+        placeholder="请输入商品简介"
         type="textarea"
       />
     </el-form-item>
@@ -53,8 +53,7 @@
       <UploadImg v-model="formData.picUrl" :disabled="isDetail" height="80px" />
     </el-form-item>
     <el-form-item label="商品轮播图" prop="sliderPicUrls">
-      <UploadImgsPlus v-model="formData.sliderPicUrls" :disabled="isDetail" />
-
+      <UploadImgs v-model="formData.sliderPicUrls" :disabled="isDetail" />
     </el-form-item>
   </el-form>
 </template>
@@ -68,7 +67,6 @@ import * as ProductCategoryApi from '@/api/mall/product/category'
 import { CategoryVO } from '@/api/mall/product/category'
 import * as ProductBrandApi from '@/api/mall/product/brand'
 import { BrandVO } from '@/api/mall/product/brand'
-import UploadImgsPlus from '../components/UploadImgsPlus.vue'
 
 defineOptions({ name: 'ProductSpuInfoForm' })
 const props = defineProps({

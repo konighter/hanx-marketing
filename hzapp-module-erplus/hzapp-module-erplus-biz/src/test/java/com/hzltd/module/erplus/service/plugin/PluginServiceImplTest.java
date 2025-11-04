@@ -1,32 +1,23 @@
 package com.hzltd.module.erplus.service.plugin;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.MockBean;
-
-import javax.annotation.Resource;
-
+import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.test.core.ut.BaseDbUnitTest;
-
-import com.hzltd.module.erplus.controller.admin.plugin.vo.*;
+import com.hzltd.module.erplus.controller.admin.plugin.vo.PluginPageReqVO;
+import com.hzltd.module.erplus.controller.admin.plugin.vo.PluginSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.plugin.PluginDO;
 import com.hzltd.module.erplus.dal.mysql.plugin.PluginMapper;
-import com.hzltd.framework.common.pojo.PageResult;
-
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Import;
-import java.util.*;
-import java.time.LocalDateTime;
 
-import static cn.hutool.core.util.RandomUtil.*;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
-import static com.hzltd.framework.test.core.util.AssertUtils.*;
-import static com.hzltd.framework.test.core.util.RandomUtils.*;
-import static com.hzltd.framework.common.util.date.LocalDateTimeUtils.*;
-import static com.hzltd.framework.common.util.object.ObjectUtils.*;
-import static com.hzltd.framework.common.util.date.DateUtils.*;
+import static com.hzltd.framework.common.util.date.LocalDateTimeUtils.buildBetweenTime;
+import static com.hzltd.framework.common.util.object.ObjectUtils.cloneIgnoreId;
+import static com.hzltd.framework.test.core.util.AssertUtils.assertPojoEquals;
+import static com.hzltd.framework.test.core.util.AssertUtils.assertServiceException;
+import static com.hzltd.framework.test.core.util.RandomUtils.randomPojo;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PLUGIN_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 /**
  * {@link PluginServiceImpl} 的单元测试类

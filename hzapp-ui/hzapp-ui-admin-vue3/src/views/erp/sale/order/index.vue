@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【销售】销售订单、出库、退货" url="https://help.h2z.ltd/erp/sale/" />
+  <doc-alert title="【销售】销售订单、出库、退货" url="https://doc.h2z.ltd/erp/sale/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->
@@ -43,7 +43,7 @@
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]"
-          class="!w-220px"
+          class="!w-240px"
         />
       </el-form-item>
       <el-form-item label="客户" prop="customerId">

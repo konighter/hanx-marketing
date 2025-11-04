@@ -1,6 +1,6 @@
 <!-- ERP 产品库存列表 -->
 <template>
-  <doc-alert title="【库存】产品库存、库存明细" url="https://help.h2z.ltd/erp/stock/" />
+  <doc-alert title="【库存】产品库存、库存明细" url="https://doc.h2z.ltd/erp/stock/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

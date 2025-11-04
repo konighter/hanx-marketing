@@ -7,12 +7,11 @@ import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequ
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishResponse;
 import com.hzltd.module.erplus.service.productpub.ProductPublishServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 
 @Slf4j
 @Validated

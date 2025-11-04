@@ -2,7 +2,6 @@ package com.hzltd.module.erplus.enums.common;
 
 import cn.hutool.core.util.ArrayUtil;
 import com.hzltd.framework.common.core.IntArrayValuable;
-import com.hzltd.framework.common.enums.UserTypeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

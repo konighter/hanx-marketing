@@ -1,11 +1,12 @@
 package com.hzltd.module.erplus.controller.admin.sellplatform;
 
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
+import com.hzltd.framework.apilog.core.enums.OperateTypeEnum;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformPageReqVO;
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformReqVO;
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformRespVO;
@@ -17,20 +18,19 @@ import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
 
 
 @Tag(name = "管理后台 - 销售平台")
@@ -104,7 +104,7 @@ public class SellPlatformController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出销售平台 Excel")
     @PreAuthorize("@ss.hasPermission('erp:sell-platform:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = OperateTypeEnum.EXPORT)
     public void exportSellPlatformExcel(@Valid SellPlatformPageReqVO pageReqVO,
                                         HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

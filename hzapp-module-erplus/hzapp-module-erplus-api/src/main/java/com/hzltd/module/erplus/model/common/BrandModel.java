@@ -1,6 +1,5 @@
 package com.hzltd.module.erplus.model.common;
 
-import com.hzltd.module.erplus.model.common.CertificationModel;
 import lombok.Data;
 
 @Data

@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【营销】秒杀活动" url="https://help.h2z.ltd/mall/promotion-seckill/" />
+  <doc-alert title="【营销】秒杀活动" url="https://doc.h2z.ltd/mall/promotion-seckill/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->
@@ -157,7 +157,7 @@
 import { DICT_TYPE, getIntDictOptions } from '@/utils/dict'
 import { dateFormatter } from '@/utils/formatTime'
 import * as SeckillActivityApi from '@/api/mall/promotion/seckill/seckillActivity'
-import * as SeckillConfigApi from '@/api/mall/promotion/seckill/seckillConfig'
+import { SeckillConfigApi } from '@/api/mall/promotion/seckill/seckillConfig'
 import SeckillActivityForm from './SeckillActivityForm.vue'
 import { formatDate } from '@/utils/formatTime'
 import { fenToYuanFormat } from '@/utils/formatter'

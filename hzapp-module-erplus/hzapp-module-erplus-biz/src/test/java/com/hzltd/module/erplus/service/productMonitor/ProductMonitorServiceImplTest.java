@@ -1,32 +1,23 @@
 package com.hzltd.module.erplus.service.productMonitor;
 
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.mock.mockito.MockBean;
-
-import javax.annotation.Resource;
-
+import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.test.core.ut.BaseDbUnitTest;
-
-import com.hzltd.module.erplus.controller.admin.productMonitor.vo.*;
+import com.hzltd.module.erplus.controller.admin.productMonitor.vo.ProductMonitorPageReqVO;
+import com.hzltd.module.erplus.controller.admin.productMonitor.vo.ProductMonitorSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.productMonitor.ProductMonitorDO;
 import com.hzltd.module.erplus.dal.mysql.productMonitor.ProductMonitorMapper;
-import com.hzltd.framework.common.pojo.PageResult;
-
-import javax.annotation.Resource;
+import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Import;
-import java.util.*;
-import java.time.LocalDateTime;
 
-import static cn.hutool.core.util.RandomUtil.*;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
-import static com.hzltd.framework.test.core.util.AssertUtils.*;
-import static com.hzltd.framework.test.core.util.RandomUtils.*;
-import static com.hzltd.framework.common.util.date.LocalDateTimeUtils.*;
-import static com.hzltd.framework.common.util.object.ObjectUtils.*;
-import static com.hzltd.framework.common.util.date.DateUtils.*;
+import static com.hzltd.framework.common.util.date.LocalDateTimeUtils.buildBetweenTime;
+import static com.hzltd.framework.common.util.object.ObjectUtils.cloneIgnoreId;
+import static com.hzltd.framework.test.core.util.AssertUtils.assertPojoEquals;
+import static com.hzltd.framework.test.core.util.AssertUtils.assertServiceException;
+import static com.hzltd.framework.test.core.util.RandomUtils.randomPojo;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_MONITOR_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 /**
  * {@link ProductMonitorServiceImpl} 的单元测试类

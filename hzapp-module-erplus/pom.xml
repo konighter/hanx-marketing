@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.hzltd</groupId>
         <artifactId>hzapp</artifactId>
-        <version>2.0.1</version>
+        <version>${revision}</version>
     </parent>
 
     <modules>
@@ -22,14 +22,14 @@
     <packaging>pom</packaging>
 
     <name>${project.artifactId}</name>
-    <version>2.0.2-SNAPSHOT</version>
+    <version>${revision}</version>
     <description>
         erp 包下，企业资源管理（Enterprise Resource Planning）。
         例如说：采购、销售、库存、财务、产品等等
     </description>
 
     <properties>
-        <eVersion>2.0.2-SNAPSHOT</eVersion>
+        <eVersion>3.0.0-SNAPSHOT</eVersion>
 
     </properties>
 

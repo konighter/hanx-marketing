@@ -1,6 +1,5 @@
 package com.hzltd.module.erplus.service.productMonitor.crawlers;
 
-import com.hzltd.module.erplus.service.productMonitor.vo.MonitorMetricsVO;
 import com.microsoft.playwright.*;
 import com.microsoft.playwright.options.LoadState;
 

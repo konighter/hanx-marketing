@@ -1,7 +1,6 @@
 package com.hzltd.module.erplus.service.product;
 
 import cn.hutool.core.collection.CollUtil;
-import com.hzltd.framework.common.enums.CommonStatusEnum;
 import com.hzltd.framework.common.util.collection.MapUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
@@ -12,12 +11,11 @@ import com.hzltd.module.erplus.dal.dataobject.product.ErpProductUnitDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ErpProductSpuMapper;
 import com.hzltd.module.erplus.enums.ErrorCodeConstants;
-import com.hzltd.module.erplus.enums.ProductClaimStatus;
 import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;

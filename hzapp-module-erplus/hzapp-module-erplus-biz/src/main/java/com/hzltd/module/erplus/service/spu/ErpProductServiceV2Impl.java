@@ -1,7 +1,5 @@
 package com.hzltd.module.erplus.service.spu;
 
-import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.service.product.ErpProductServiceImpl;
 

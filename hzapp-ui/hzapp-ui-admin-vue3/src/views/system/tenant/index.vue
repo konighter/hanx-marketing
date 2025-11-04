@@ -1,5 +1,4 @@
 <template>
-  <doc-alert title="SaaS 多租户" url="https://help.h2z.ltd/saas-tenant/" />
 
   <!-- 搜索 -->
   <ContentWrap>
@@ -92,26 +91,32 @@
           <Icon icon="ep:download" class="mr-5px" />
           导出
         </el-button>
+        <el-button
+          type="danger"
+          plain
+          :disabled="checkedIds.length === 0"
+          @click="handleDeleteBatch"
+          v-hasPermi="['system:tenant:delete']"
+        >
+          <Icon icon="ep:delete" class="mr-5px" />
+          批量删除
+        </el-button>
       </el-form-item>
     </el-form>
   </ContentWrap>
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading"
-              :data="list"
-              :stripe="true"
-              :show-overflow-tooltip="true"
-              highlight-current-row
-              @current-change="handleCurrentChange">
+    <el-table v-loading="loading" :data="list" @selection-change="handleRowCheckboxChange">
+      <el-table-column type="selection" width="55" />
       <el-table-column label="租户编号" align="center" prop="id" />
       <el-table-column label="租户名" align="center" prop="name" />
-      <el-table-column label="租户类型" align="center" prop="packageId">
+      <el-table-column label="租户套餐" align="center" prop="packageId">
         <template #default="scope">
           <el-tag v-if="scope.row.packageId === 0" type="danger">系统租户</el-tag>
-          <template v-else >
-            <el-tag type="success">
-              普通租户
+          <template v-else v-for="item in packageList">
+            <el-tag type="success" :key="item.id" v-if="item.id === scope.row.packageId">
+              {{ item.name }}
             </el-tag>
           </template>
         </template>
@@ -130,7 +135,14 @@
         width="180"
         :formatter="dateFormatter"
       />
-      <el-table-column label="绑定域名" align="center" prop="website" width="180" />
+      <el-table-column label="绑定域名" align="center" prop="websites" width="180">
+        <template #default="scope">
+          <el-tag v-for="website in scope.row.websites || []" :key="website" class="mr-1 mb-1">
+            {{ website }}
+          </el-tag>
+          <span v-if="!scope.row.websites || scope.row.websites.length === 0">-</span>
+        </template>
+      </el-table-column>
       <el-table-column label="租户状态" align="center" prop="status">
         <template #default="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status" />
@@ -175,17 +187,6 @@
 
   <!-- 表单弹窗：添加/修改 -->
   <TenantForm ref="formRef" @success="getList" />
-
-
-  <!-- 子表的列表 -->
-  <ContentWrap>
-    <el-tabs model-value="tenantPackageSubscription">
-      <el-tab-pane label="订阅套餐" name="tenantPackageSubscription">
-        <TenantPackageSubscriptionList :tenant-id="currentRow.id" />
-      </el-tab-pane>
-    </el-tabs>
-  </ContentWrap>
-
 </template>
 <script lang="ts" setup>
 import { DICT_TYPE, getIntDictOptions } from '@/utils/dict'
@@ -194,7 +195,6 @@ import download from '@/utils/download'
 import * as TenantApi from '@/api/system/tenant'
 import * as TenantPackageApi from '@/api/system/tenantPackage'
 import TenantForm from './TenantForm.vue'
-import TenantPackageSubscriptionList from './components/TenantPackageSubscriptionList.vue'
 
 defineOptions({ name: 'SystemTenant' })
 
@@ -224,7 +224,6 @@ const getList = async () => {
     const data = await TenantApi.getTenantPage(queryParams)
     list.value = data.list
     total.value = data.total
-    currentRow.value = -1
   } finally {
     loading.value = false
   }
@@ -261,6 +260,25 @@ const handleDelete = async (id: number) => {
   } catch {}
 }
 
+/** 批量删除按钮操作 */
+const checkedIds = ref<number[]>([])
+const handleRowCheckboxChange = (rows: TenantApi.TenantVO[]) => {
+  checkedIds.value = rows.map((row) => row.id)
+}
+
+const handleDeleteBatch = async () => {
+  try {
+    // 删除的二次确认
+    await message.delConfirm()
+    // 发起批量删除
+    await TenantApi.deleteTenantList(checkedIds.value)
+    checkedIds.value = []
+    message.success(t('common.delSuccess'))
+    // 刷新列表
+    await getList()
+  } catch {}
+}
+
 /** 导出按钮操作 */
 const handleExport = async () => {
   try {
@@ -276,24 +294,10 @@ const handleExport = async () => {
   }
 }
 
-
-/** 选中行操作 */
-const currentRow = ref({}) // 选中行
-const handleCurrentChange = (row) => {
-  if (row) {
-    currentRow.value = row
-  } else {
-    currentRow.value = -1
-  }
-}
-
-
-
-
-
 /** 初始化 **/
 onMounted(async () => {
   await getList()
+  // 获取租户套餐列表
   packageList.value = await TenantPackageApi.getTenantPackageList()
 })
 </script>

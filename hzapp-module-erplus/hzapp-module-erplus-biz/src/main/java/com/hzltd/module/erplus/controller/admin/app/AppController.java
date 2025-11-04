@@ -1,36 +1,34 @@
 package com.hzltd.module.erplus.controller.admin.app;
 
-import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
-import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.security.access.prepost.PreAuthorize;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Operation;
-
-import javax.validation.constraints.*;
-import javax.validation.*;
-import javax.servlet.http.*;
-import java.util.*;
-import java.io.IOException;
-
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
+import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import static com.hzltd.framework.common.pojo.CommonResult.success;
-
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.*;
-
-import com.hzltd.module.erplus.controller.admin.app.vo.*;
+import com.hzltd.module.erplus.controller.admin.app.vo.AppPageReqVO;
+import com.hzltd.module.erplus.controller.admin.app.vo.AppRespVO;
+import com.hzltd.module.erplus.controller.admin.app.vo.AppSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.app.AppDO;
+import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.service.app.AppService;
+import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.List;
+
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
+import static com.hzltd.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 应用注册信息")
 @RestController
@@ -93,7 +91,7 @@ public class AppController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出应用注册信息 Excel")
     @PreAuthorize("@ss.hasPermission('erplus:app:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = EXPORT)
     public void exportAppExcel(@Valid AppPageReqVO pageReqVO,
               HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

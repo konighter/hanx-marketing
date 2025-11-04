@@ -3,8 +3,8 @@ package com.hzltd.module.erplus.service.product;
 import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategoryListReqVO;
 import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategorySaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
+import jakarta.validation.Valid;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;

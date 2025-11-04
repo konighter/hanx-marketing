@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="会员等级、积分、签到" url="https://help.h2z.ltd/member/level/" />
+  <doc-alert title="会员等级、积分、签到" url="https://doc.h2z.ltd/member/level/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>

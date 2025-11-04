@@ -7,10 +7,10 @@ import com.hzltd.module.erplus.controller.admin.finance.vo.account.ErpAccountPag
 import com.hzltd.module.erplus.controller.admin.finance.vo.account.ErpAccountSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.finance.ErpAccountDO;
 import com.hzltd.module.erplus.dal.mysql.finance.ErpAccountMapper;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 

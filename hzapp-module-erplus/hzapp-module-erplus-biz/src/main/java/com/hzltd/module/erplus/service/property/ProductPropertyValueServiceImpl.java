@@ -7,16 +7,17 @@ import com.hzltd.module.erplus.controller.admin.property.vo.value.ProductPropert
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyValueDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ErpProductPropertyValueMapper;
 import com.hzltd.module.erplus.service.spu.ProductSkuService;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PROPERTY_VALUE_EXISTS;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PROPERTY_VALUE_NOT_EXISTS;
 /**
  * 商品属性值 Service 实现类
  *

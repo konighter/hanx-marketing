@@ -1,11 +1,10 @@
 package com.hzltd.module.erplus.service.app;
 
-import java.util.*;
-import javax.validation.*;
-import com.hzltd.module.erplus.controller.admin.app.vo.*;
-import com.hzltd.module.erplus.dal.dataobject.app.AppDO;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.pojo.PageParam;
+import com.hzltd.module.erplus.controller.admin.app.vo.AppPageReqVO;
+import com.hzltd.module.erplus.controller.admin.app.vo.AppSaveReqVO;
+import com.hzltd.module.erplus.dal.dataobject.app.AppDO;
+import jakarta.validation.Valid;
 
 /**
  * 应用注册信息 Service 接口

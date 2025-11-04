@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="会员用户、标签、分组" url="https://help.h2z.ltd/member/user/" />
+  <doc-alert title="会员用户、标签、分组" url="https://doc.h2z.ltd/member/user/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

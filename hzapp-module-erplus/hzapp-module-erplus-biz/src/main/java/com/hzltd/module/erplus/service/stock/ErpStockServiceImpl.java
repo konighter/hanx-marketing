@@ -5,10 +5,10 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpStockPageReqVO
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockDO;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpStockMapper;
 import com.hzltd.module.erplus.service.product.ErpProductService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;

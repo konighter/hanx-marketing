@@ -5,8 +5,8 @@ import com.hzltd.module.erplus.controller.admin.sale.vo.out.ErpSaleOutPageReqVO;
 import com.hzltd.module.erplus.controller.admin.sale.vo.out.ErpSaleOutSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sale.ErpSaleOutDO;
 import com.hzltd.module.erplus.dal.dataobject.sale.ErpSaleOutItemDO;
+import jakarta.validation.Valid;
 
-import javax.validation.Valid;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.List;

@@ -1,29 +1,30 @@
 package com.hzltd.module.erplus.controller.admin.spu;
 
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
 import com.hzltd.module.erplus.controller.admin.spu.vo.*;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductClaimDO;
 import com.hzltd.module.erplus.service.spu.ProductClaimService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static com.hzltd.framework.common.pojo.CommonResult.success;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
+
 
 @Tag(name = "管理后台 - 商品认领")
 @RestController
@@ -85,7 +86,7 @@ public class ProductClaimController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出商品认领 Excel")
     @PreAuthorize("@ss.hasPermission('erp:product-claim:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = EXPORT)
     public void exportProductClaimExcel(@Valid ProductClaimPageReqVO pageReqVO,
               HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

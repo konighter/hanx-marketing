@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="代码生成（树表）" url="https://help.h2z.ltd/new-feature/tree/" />
+  <doc-alert title="代码生成（树表）" url="https://doc.h2z.ltd/new-feature/tree/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

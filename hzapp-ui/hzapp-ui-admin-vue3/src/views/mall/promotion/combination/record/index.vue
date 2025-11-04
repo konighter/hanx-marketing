@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【营销】拼团活动" url="https://help.h2z.ltd/mall/promotion-combination/" />
+  <doc-alert title="【营销】拼团活动" url="https://doc.h2z.ltd/mall/promotion-combination/" />
 
   <!-- 统计信息展示 -->
   <el-row :gutter="12">
@@ -144,7 +144,7 @@
         show-overflow-tooltip
         min-width="300"
       >
-        <template #defaul="{ row }">
+        <template #default="{ row }">
           <el-image
             :src="row.picUrl"
             class="mr-5px h-30px w-30px align-middle"

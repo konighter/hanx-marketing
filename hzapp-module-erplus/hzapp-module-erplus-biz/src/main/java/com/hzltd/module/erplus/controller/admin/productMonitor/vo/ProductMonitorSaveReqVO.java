@@ -1,10 +1,9 @@
 package com.hzltd.module.erplus.controller.admin.productMonitor.vo;
 
-import com.alibaba.excel.annotation.ExcelProperty;
+import cn.idev.excel.annotation.ExcelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Schema(description = "管理后台 - 产品监控新增/修改 Request VO")
 @Data

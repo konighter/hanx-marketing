@@ -1,8 +1,5 @@
 package com.hzltd.module.erplus.controller.admin.sellplatform.vo;
 
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.annotation.JsonTypeIdResolver;
-import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

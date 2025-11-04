@@ -3,10 +3,9 @@ package com.hzltd.module.erplus.controller.admin.finance.vo.account;
 import com.hzltd.framework.common.enums.CommonStatusEnum;
 import com.hzltd.framework.common.validation.InEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 
 @Schema(description = "管理后台 - ERP 结算账户新增/修改 Request VO")
 @Data

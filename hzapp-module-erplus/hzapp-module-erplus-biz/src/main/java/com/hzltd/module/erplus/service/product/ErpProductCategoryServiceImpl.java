@@ -5,11 +5,11 @@ import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCa
 import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategorySaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
 import com.hzltd.module.erplus.dal.mysql.product.ErpProductCategoryMapper;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;

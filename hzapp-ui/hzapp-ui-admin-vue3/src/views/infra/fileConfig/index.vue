@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="上传下载" url="https://help.h2z.ltd/file/" />
+  <doc-alert title="上传下载" url="https://doc.h2z.ltd/file/" />
 
   <!-- 搜索 -->
   <ContentWrap>
@@ -56,13 +56,23 @@
         >
           <Icon icon="ep:plus" class="mr-5px" /> 新增
         </el-button>
+        <el-button
+          type="danger"
+          plain
+          :disabled="checkedIds.length === 0"
+          @click="handleDeleteBatch"
+          v-hasPermi="['infra:file-config:delete']"
+        >
+          <Icon icon="ep:delete" class="mr-5px" /> 批量删除
+        </el-button>
       </el-form-item>
     </el-form>
   </ContentWrap>
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading" :data="list">
+    <el-table v-loading="loading" :data="list" @selection-change="handleRowCheckboxChange">
+      <el-table-column type="selection" width="55" />
       <el-table-column label="编号" align="center" prop="id" />
       <el-table-column label="配置名" align="center" prop="name" />
       <el-table-column label="存储器" align="center" prop="storage">
@@ -107,7 +117,7 @@
             link
             type="danger"
             @click="handleDelete(scope.row.id)"
-            v-hasPermi="['infra:config:delete']"
+            v-hasPermi="['infra:file-config:delete']"
           >
             删除
           </el-button>
@@ -192,6 +202,25 @@ const handleDelete = async (id: number) => {
   } catch {}
 }
 
+/** 批量删除按钮操作 */
+const checkedIds = ref<number[]>([])
+const handleRowCheckboxChange = (rows) => {
+  checkedIds.value = rows.map((row) => row.id)
+}
+
+const handleDeleteBatch = async () => {
+  try {
+    // 删除的二次确认
+    await message.delConfirm()
+    // 发起批量删除
+    await FileConfigApi.deleteFileConfigList(checkedIds.value)
+    checkedIds.value = []
+    message.success(t('common.delSuccess'))
+    // 刷新列表
+    await getList()
+  } catch {}
+}
+
 /** 主配置按钮操作 */
 const handleMaster = async (id) => {
   try {
@@ -206,7 +235,8 @@ const handleMaster = async (id) => {
 const handleTest = async (id) => {
   try {
     const response = await FileConfigApi.testFileConfig(id)
-    message.alert('测试通过，上传文件成功！访问地址：' + response)
+    await message.confirm('是否要访问该文件？', '测试上传成功')
+    window.open(response, '_blank')
   } catch {}
 }
 

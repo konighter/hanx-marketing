@@ -2,15 +2,10 @@ package com.hzltd.module.erplus.controller.admin.productpotential.vo;
 
 import com.hzltd.framework.common.pojo.PageParam;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.springframework.format.annotation.DateTimeFormat;
-
-import javax.validation.constraints.NotNull;
-import java.time.LocalDateTime;
-
-import static com.hzltd.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND;
 
 @Schema(description = "管理后台 - 选品提案分页 Request VO")
 @Data

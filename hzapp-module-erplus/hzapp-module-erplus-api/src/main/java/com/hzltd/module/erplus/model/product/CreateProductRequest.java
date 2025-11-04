@@ -3,14 +3,14 @@ package com.hzltd.module.erplus.model.product;
 import com.hzltd.module.erplus.constant.FulfillTypeEnum;
 import com.hzltd.module.erplus.constant.LanguageEnum;
 import com.hzltd.module.erplus.constant.SaveModeEnum;
+import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.category.CategoryModel;
 import com.hzltd.module.erplus.model.common.*;
 import com.hzltd.module.erplus.model.logistics.LogisticsModel;
-import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.util.List;
 import java.util.Map;
 

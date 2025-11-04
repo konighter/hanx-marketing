@@ -1,7 +1,7 @@
 <template>
-  <doc-alert title="支付宝支付接入" url="https://help.h2z.ltd/pay/alipay-pay-demo/" />
-  <doc-alert title="微信公众号支付接入" url="https://help.h2z.ltd/pay/wx-pub-pay-demo/" />
-  <doc-alert title="微信小程序支付接入" url="https://help.h2z.ltd/pay/wx-lite-pay-demo/" />
+  <doc-alert title="支付宝支付接入" url="https://doc.h2z.ltd/pay/alipay-pay-demo/" />
+  <doc-alert title="微信公众号支付接入" url="https://doc.h2z.ltd/pay/wx-pub-pay-demo/" />
+  <doc-alert title="微信小程序支付接入" url="https://doc.h2z.ltd/pay/wx-lite-pay-demo/" />
 
   <ContentWrap>
     <el-form
@@ -97,7 +97,7 @@
           plain
           @click="handleExport"
           :loading="exportLoading"
-          v-hasPermi="['system:tenant:export']"
+          v-hasPermi="['pay:order:export']"
         >
           <Icon icon="ep:download" class="mr-5px" /> 导出
         </el-button>
@@ -192,6 +192,7 @@ import { dateFormatter } from '@/utils/formatTime'
 import * as OrderApi from '@/api/pay/order'
 import OrderDetail from './OrderDetail.vue'
 import download from '@/utils/download'
+import { getAppList } from '@/api/pay/app'
 
 defineOptions({ name: 'PayOrder' })
 
@@ -263,6 +264,7 @@ const openDetail = (id: number) => {
 /** 初始化 **/
 onMounted(async () => {
   await getList()
+  appList.value = await getAppList()
 })
 </script>
 <style>

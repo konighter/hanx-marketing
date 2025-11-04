@@ -2,22 +2,21 @@ package com.hzltd.module.erplus.service.product;
 
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.model.common.ProductAttributeModel;
-import com.hzltd.module.erplus.model.product.CreateProductRequest;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.convert.productpub.CrossPlatformProductConvert;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductAttrsDO;
-import com.hzltd.module.erplus.dal.mysql.product.ErpCrossProductMapper;
+import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
 import com.hzltd.module.erplus.dal.mysql.product.ErpCrossProductAttrsMapper;
+import com.hzltd.module.erplus.dal.mysql.product.ErpCrossProductMapper;
 import com.hzltd.module.erplus.enums.CrossProductPublishStatus;
 import com.hzltd.module.erplus.enums.CrossProductStatus;
+import com.hzltd.module.erplus.model.common.ProductAttributeModel;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
+import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
 

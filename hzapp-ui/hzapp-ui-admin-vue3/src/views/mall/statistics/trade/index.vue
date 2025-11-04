@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【统计】会员、商品、交易统计" url="https://help.h2z.ltd/mall/statistics/" />
+  <doc-alert title="【统计】会员、商品、交易统计" url="https://doc.h2z.ltd/mall/statistics/" />
 
   <div class="flex flex-col">
     <el-row :gutter="16" class="summary">

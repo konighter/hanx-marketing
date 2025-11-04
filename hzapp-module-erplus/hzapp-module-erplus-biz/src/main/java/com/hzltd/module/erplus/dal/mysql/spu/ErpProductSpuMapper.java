@@ -5,10 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.enums.ProductConstants;
 import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
-import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuPageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

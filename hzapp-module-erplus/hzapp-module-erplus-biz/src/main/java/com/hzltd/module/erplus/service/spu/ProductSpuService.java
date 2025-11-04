@@ -6,9 +6,9 @@ import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuPageReqVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuSaveReqVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuUpdateStatusReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
+import jakarta.validation.Valid;
 import org.springframework.scheduling.annotation.Async;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;

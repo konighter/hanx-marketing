@@ -8,6 +8,7 @@ export interface MailAccountVO {
   host: string
   port: number
   sslEnable: boolean
+  starttlsEnable: boolean
 }
 
 // 查询邮箱账号列表
@@ -33,6 +34,11 @@ export const updateMailAccount = async (data: MailAccountVO) => {
 // 删除邮箱账号
 export const deleteMailAccount = async (id: number) => {
   return await request.delete({ url: '/system/mail-account/delete?id=' + id })
+}
+
+// 批量删除邮箱账号
+export const deleteMailAccountList = async (ids: number[]) => {
+  return await request.delete({ url: '/system/mail-account/delete-list', params: { ids: ids.join(',') } })
 }
 
 // 获得邮箱账号精简列表

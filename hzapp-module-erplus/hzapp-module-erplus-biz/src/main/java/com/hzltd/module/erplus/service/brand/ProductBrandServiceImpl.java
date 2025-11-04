@@ -3,7 +3,6 @@ package com.hzltd.module.erplus.service.brand;
 import com.google.common.annotations.VisibleForTesting;
 import com.hzltd.framework.common.enums.CommonStatusEnum;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.erplus.enums.RedisKeyConstants;
 import com.hzltd.module.erplus.controller.admin.brand.vo.ProductBrandCreateReqVO;
 import com.hzltd.module.erplus.controller.admin.brand.vo.ProductBrandListReqVO;
 import com.hzltd.module.erplus.controller.admin.brand.vo.ProductBrandPageReqVO;
@@ -11,11 +10,12 @@ import com.hzltd.module.erplus.controller.admin.brand.vo.ProductBrandUpdateReqVO
 import com.hzltd.module.erplus.convert.brand.ProductBrandConvert;
 import com.hzltd.module.erplus.dal.dataobject.brand.ProductBrandDO;
 import com.hzltd.module.erplus.dal.mysql.brand.ErpProductBrandMapper;
+import com.hzltd.module.erplus.enums.RedisKeyConstants;
+import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 

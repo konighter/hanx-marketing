@@ -1,9 +1,9 @@
 <template>
-  <doc-alert title="数据库 MyBatis" url="https://help.h2z.ltd/mybatis/" />
-  <doc-alert title="多数据源（读写分离）" url="https://help.h2z.ltd/dynamic-datasource/" />
+  <doc-alert title="数据库 MyBatis" url="https://doc.h2z.ltd/mybatis/" />
+  <doc-alert title="多数据源（读写分离）" url="https://doc.h2z.ltd/dynamic-datasource/" />
 
-  <ContentWrap>
-    <IFrame v-if="!loading" :src="url" />
+  <ContentWrap :bodyStyle="{ padding: '0px' }" class="!mb-0">
+    <IFrame v-if="!loading" v-loading="loading" :src="url" />
   </ContentWrap>
 </template>
 <script lang="ts" setup>

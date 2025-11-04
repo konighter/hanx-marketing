@@ -1,6 +1,4 @@
 <template>
-  <doc-alert title="【线索】线索管理" url="https://help.h2z.ltd/crm/clue/" />
-  <doc-alert title="【通用】数据权限" url="https://help.h2z.ltd/crm/permission/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

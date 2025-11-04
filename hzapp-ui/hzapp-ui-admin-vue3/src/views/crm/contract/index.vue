@@ -1,6 +1,4 @@
 <template>
-  <doc-alert title="【合同】合同管理、合同提醒" url="https://help.h2z.ltd/crm/contract/" />
-  <doc-alert title="【通用】数据权限" url="https://help.h2z.ltd/crm/permission/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

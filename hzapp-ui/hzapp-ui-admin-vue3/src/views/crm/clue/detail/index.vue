@@ -18,7 +18,7 @@
     >
       转化为客户
     </el-button>
-    <el-button v-else type="success" disabled>已转化客户</el-button>
+    <el-button v-else disabled type="success">已转化客户</el-button>
   </ClueDetailsHeader>
   <el-col>
     <el-tabs>
@@ -45,7 +45,7 @@
 
   <!-- 表单弹窗：添加/修改 -->
   <ClueForm ref="formRef" @success="getClue" />
-  <CrmTransferForm ref="transferFormRef" @success="close" />
+  <CrmTransferForm ref="transferFormRef" :biz-type="BizTypeEnum.CRM_CLUE" @success="close" />
 </template>
 <script lang="ts" setup>
 import { useTagsViewStore } from '@/store/modules/tagsView'
@@ -57,7 +57,7 @@ import PermissionList from '@/views/crm/permission/components/PermissionList.vue
 import CrmTransferForm from '@/views/crm/permission/components/TransferForm.vue'
 import FollowUpList from '@/views/crm/followup/index.vue'
 import { BizTypeEnum } from '@/api/crm/permission'
-import type { OperateLogV2VO } from '@/api/system/operatelog'
+import type { OperateLogVO } from '@/api/system/operatelog'
 import { getOperateLogPage } from '@/api/crm/operateLog'
 
 defineOptions({ name: 'CrmClueDetail' })
@@ -91,7 +91,7 @@ const openForm = () => {
 /** 线索转移 */
 const transferFormRef = ref<InstanceType<typeof CrmTransferForm>>() // 线索转移表单 ref
 const transfer = () => {
-  transferFormRef.value?.open('线索转移', clueId.value, ClueApi.transferClue)
+  transferFormRef.value?.open(clueId.value)
 }
 
 /** 转化为客户 */
@@ -103,7 +103,7 @@ const handleTransform = async () => {
 }
 
 /** 获取操作日志 */
-const logList = ref<OperateLogV2VO[]>([]) // 操作日志列表
+const logList = ref<OperateLogVO[]>([]) // 操作日志列表
 const getOperateLog = async () => {
   const data = await getOperateLogPage({
     bizType: BizTypeEnum.CRM_CLUE,

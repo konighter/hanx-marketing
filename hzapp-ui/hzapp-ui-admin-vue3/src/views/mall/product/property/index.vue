@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【商品】商品属性" url="https://help.h2z.ltd/mall/product-property/" />
+  <doc-alert title="【商品】商品属性" url="https://doc.h2z.ltd/mall/product-property/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>

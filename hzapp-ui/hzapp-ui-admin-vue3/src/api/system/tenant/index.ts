@@ -12,6 +12,7 @@ export interface TenantVO {
   password: string
   expireTime: Date
   accountCount: number
+  websites: string[]
   createTime: Date
 }
 
@@ -33,56 +34,40 @@ export interface TenantExportReqVO {
 
 // 查询租户列表
 export const getTenantPage = (params: TenantPageReqVO) => {
-  return request.get({url: '/system/tenant/page', params})
+  return request.get({ url: '/system/tenant/page', params })
 }
 
 // 查询租户详情
 export const getTenant = (id: number) => {
-  return request.get({url: '/system/tenant/get?id=' + id})
+  return request.get({ url: '/system/tenant/get?id=' + id })
+}
+
+// 获取租户精简信息列表
+export const getTenantList = () => {
+  return request.get({ url: '/system/tenant/simple-list' })
 }
 
 // 新增租户
 export const createTenant = (data: TenantVO) => {
-  return request.post({url: '/system/tenant/create', data})
+  return request.post({ url: '/system/tenant/create', data })
 }
 
 // 修改租户
 export const updateTenant = (data: TenantVO) => {
-  return request.put({url: '/system/tenant/update', data})
+  return request.put({ url: '/system/tenant/update', data })
 }
 
 // 删除租户
 export const deleteTenant = (id: number) => {
-  return request.delete({url: '/system/tenant/delete?id=' + id})
+  return request.delete({ url: '/system/tenant/delete?id=' + id })
+}
+
+// 批量删除租户
+export const deleteTenantList = (ids: number[]) => {
+  return request.delete({ url: '/system/tenant/delete-list', params: { ids: ids.join(',') } })
 }
 
 // 导出租户
 export const exportTenant = (params: TenantExportReqVO) => {
-  return request.download({url: '/system/tenant/export-excel', params})
-}
-
-// ==================== 子表（租户套餐订阅） ====================
-
-// 获得租户套餐订阅分页
-export const getTenantPackageSubscriptionPage = async (params) => {
-  return await request.get({url: `/system/tenant/tenant-package-subscription/page`, params})
-}
-// 新增租户套餐订阅
-export const createTenantPackageSubscription = async (data) => {
-  return await request.post({url: `/system/tenant/tenant-package-subscription/create`, data})
-}
-
-// 修改租户套餐订阅
-export const updateTenantPackageSubscription = async (data) => {
-  return await request.put({url: `/system/tenant/tenant-package-subscription/update`, data})
-}
-
-// 删除租户套餐订阅
-export const deleteTenantPackageSubscription = async (id: number) => {
-  return await request.delete({url: `/system/tenant/tenant-package-subscription/delete?id=` + id})
-}
-
-// 获得租户套餐订阅
-export const getTenantPackageSubscription = async (id: number) => {
-  return await request.get({url: `/system/tenant/tenant-package-subscription/get?id=` + id})
+  return request.download({ url: '/system/tenant/export-excel', params })
 }

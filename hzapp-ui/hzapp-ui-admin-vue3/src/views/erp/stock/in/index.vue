@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【库存】其它入库、其它出库" url="https://help.h2z.ltd/erp/stock-in-out/" />
+  <doc-alert title="【库存】其它入库、其它出库" url="https://doc.h2z.ltd/erp/stock-in-out/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->
@@ -43,7 +43,7 @@
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]"
-          class="!w-220px"
+          class="!w-240px"
         />
       </el-form-item>
       <el-form-item label="供应商" prop="supplierId">

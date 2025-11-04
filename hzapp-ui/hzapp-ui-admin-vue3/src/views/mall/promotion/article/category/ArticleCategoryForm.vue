@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【营销】内容管理" url="https://help.h2z.ltd/mall/promotion-content/" />
+  <doc-alert title="【营销】内容管理" url="https://doc.h2z.ltd/mall/promotion-content/" />
 
   <Dialog v-model="dialogVisible" :title="dialogTitle">
     <el-form
@@ -20,7 +20,7 @@
           <el-radio
             v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)"
             :key="dict.value"
-            :label="dict.value"
+            :value="dict.value"
           >
             {{ dict.label }}
           </el-radio>

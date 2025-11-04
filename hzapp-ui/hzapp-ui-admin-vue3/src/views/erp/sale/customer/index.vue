@@ -1,5 +1,4 @@
 <template>
-  <doc-alert title="【销售】销售订单、出库、退货" url="https://help.h2z.ltd/erp/sale/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

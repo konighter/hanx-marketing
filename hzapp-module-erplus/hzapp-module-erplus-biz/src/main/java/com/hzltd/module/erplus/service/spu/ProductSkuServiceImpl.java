@@ -13,12 +13,12 @@ import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ErpProductSkuMapper;
 import com.hzltd.module.erplus.service.property.ProductPropertyService;
 import com.hzltd.module.erplus.service.property.ProductPropertyValueService;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.*;
 import java.util.stream.Collectors;
 

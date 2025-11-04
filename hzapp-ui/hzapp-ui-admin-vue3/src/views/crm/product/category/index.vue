@@ -1,5 +1,4 @@
 <template>
-  <doc-alert title="【产品】产品管理、产品分类" url="https://help.h2z.ltd/crm/product/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

@@ -3,7 +3,6 @@ package com.hzltd.module.erplus.controller.admin.productMonitor.vo;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.Data;
 
 import java.math.BigDecimal;

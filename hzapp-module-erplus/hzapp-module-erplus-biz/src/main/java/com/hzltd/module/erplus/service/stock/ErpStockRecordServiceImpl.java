@@ -6,11 +6,11 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.record.ErpStockRecordPa
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockRecordDO;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpStockRecordMapper;
 import com.hzltd.module.erplus.service.stock.bo.ErpStockRecordCreateReqBO;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.math.BigDecimal;
 
 /**

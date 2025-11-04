@@ -1,9 +1,10 @@
 package com.hzltd.module.erplus.sys.controller.admin.currencies.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+
 import java.math.BigDecimal;
 
 @Schema(description = "管理后台 - [Erplus] 货币定义新增/修改 Request VO")

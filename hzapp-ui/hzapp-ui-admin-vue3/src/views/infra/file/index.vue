@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="上传下载" url="https://help.h2z.ltd/file/" />
+  <doc-alert title="上传下载" url="https://doc.h2z.ltd/file/" />
   <!-- 搜索 -->
   <ContentWrap>
     <el-form
@@ -15,6 +15,7 @@
           placeholder="请输入文件路径"
           clearable
           @keyup.enter="handleQuery"
+          class="!w-240px"
         />
       </el-form-item>
       <el-form-item label="文件类型" prop="type" width="80">
@@ -23,6 +24,7 @@
           placeholder="请输入文件类型"
           clearable
           @keyup.enter="handleQuery"
+          class="!w-240px"
         />
       </el-form-item>
       <el-form-item label="创建时间" prop="createTime">
@@ -33,6 +35,7 @@
           start-placeholder="开始日期"
           end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]"
+          class="!w-240px"
         />
       </el-form-item>
       <el-form-item>
@@ -41,13 +44,23 @@
         <el-button type="primary" plain @click="openForm">
           <Icon icon="ep:upload" class="mr-5px" /> 上传文件
         </el-button>
+        <el-button
+          type="danger"
+          plain
+          :disabled="checkedIds.length === 0"
+          @click="handleDeleteBatch"
+          v-hasPermi="['infra:file:delete']"
+        >
+          <Icon icon="ep:delete" class="mr-5px" /> 批量删除
+        </el-button>
       </el-form-item>
     </el-form>
   </ContentWrap>
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading" :data="list">
+    <el-table v-loading="loading" :data="list" @selection-change="handleRowCheckboxChange">
+      <el-table-column type="selection" width="55" />
       <el-table-column label="文件名" align="center" prop="name" :show-overflow-tooltip="true" />
       <el-table-column label="文件路径" align="center" prop="path" :show-overflow-tooltip="true" />
       <el-table-column label="URL" align="center" prop="url" :show-overflow-tooltip="true" />
@@ -92,11 +105,14 @@
       />
       <el-table-column label="操作" align="center">
         <template #default="scope">
+          <el-button link type="primary" @click="copyToClipboard(scope.row.url)">
+            复制链接
+          </el-button>
           <el-button
             link
             type="danger"
             @click="handleDelete(scope.row.id)"
-            v-hasPermi="['infra:config:delete']"
+            v-hasPermi="['infra:file:delete']"
           >
             删除
           </el-button>
@@ -169,6 +185,13 @@ const openForm = () => {
   formRef.value.open()
 }
 
+/** 复制到剪贴板方法 */
+const copyToClipboard = (text: string) => {
+  navigator.clipboard.writeText(text).then(() => {
+    message.success('复制成功')
+  })
+}
+
 /** 删除按钮操作 */
 const handleDelete = async (id: number) => {
   try {
@@ -176,6 +199,25 @@ const handleDelete = async (id: number) => {
     await message.delConfirm()
     // 发起删除
     await FileApi.deleteFile(id)
+    message.success(t('common.delSuccess'))
+    // 刷新列表
+    await getList()
+  } catch {}
+}
+
+/** 批量删除按钮操作 */
+const checkedIds = ref<number[]>([])
+const handleRowCheckboxChange = (rows) => {
+  checkedIds.value = rows.map((row) => row.id)
+}
+
+const handleDeleteBatch = async () => {
+  try {
+    // 删除的二次确认
+    await message.delConfirm()
+    // 发起批量删除
+    await FileApi.deleteFileList(checkedIds.value)
+    checkedIds.value = []
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()

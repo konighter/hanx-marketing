@@ -1,8 +1,8 @@
 <template>
-  <doc-alert title="支付宝支付接入" url="https://help.h2z.ltd/pay/alipay-pay-demo/" />
-  <doc-alert title="支付宝、微信退款接入" url="https://help.h2z.ltd/pay/refund-demo/" />
-  <doc-alert title="微信公众号支付接入" url="https://help.h2z.ltd/pay/wx-pub-pay-demo/" />
-  <doc-alert title="微信小程序支付接入" url="https://help.h2z.ltd/pay/wx-lite-pay-demo/" />
+  <doc-alert title="支付宝支付接入" url="https://doc.h2z.ltd/pay/alipay-pay-demo/" />
+  <doc-alert title="支付宝、微信退款接入" url="https://doc.h2z.ltd/pay/refund-demo/" />
+  <doc-alert title="微信公众号支付接入" url="https://doc.h2z.ltd/pay/wx-pub-pay-demo/" />
+  <doc-alert title="微信小程序支付接入" url="https://doc.h2z.ltd/pay/wx-lite-pay-demo/" />
 
   <!-- 操作工具栏 -->
   <el-row :gutter="10" class="mb8">
@@ -110,7 +110,7 @@
   </Dialog>
 </template>
 <script lang="ts" setup name="PayDemoOrder">
-import * as PayDemoApi from '@/api/pay/demo'
+import * as PayDemoApi from '@/api/pay/demo/order'
 import { dateFormatter, formatDate } from '@/utils/formatTime'
 import { DICT_TYPE } from '@/utils/dict'
 
@@ -147,7 +147,7 @@ const handlePay = (row: any) => {
     name: 'PayCashier',
     query: {
       id: row.payOrderId,
-      returnUrl: encodeURIComponent('/pay/demo-order?id=' + row.id)
+      returnUrl: encodeURIComponent('/pay/demo/order?id=' + row.id)
     }
   })
 }

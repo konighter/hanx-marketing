@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【交易】快递发货" url="https://help.h2z.ltd/mall/trade-delivery-express/" />
+  <doc-alert title="【交易】快递发货" url="https://doc.h2z.ltd/mall/trade-delivery-express/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>

@@ -1,7 +1,7 @@
 <template>
   <doc-alert
     title="【财务】采购付款、销售收款"
-    url="https://help.h2z.ltd/sale/finance-payment-receipt/"
+    url="https://doc.h2z.ltd/sale/finance-payment-receipt/"
   />
 
   <ContentWrap>

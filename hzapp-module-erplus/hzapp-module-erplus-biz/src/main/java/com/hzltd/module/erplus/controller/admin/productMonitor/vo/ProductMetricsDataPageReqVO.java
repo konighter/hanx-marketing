@@ -1,10 +1,12 @@
 package com.hzltd.module.erplus.controller.admin.productMonitor.vo;
 
-import lombok.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 import com.hzltd.framework.common.pojo.PageParam;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Schema(description = "管理后台 - 产品监控指标分页 Request VO")

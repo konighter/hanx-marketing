@@ -1,14 +1,14 @@
 package com.hzltd.module.erplus.dal.mysql.shop;
 
-import java.util.*;
-
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
-import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopPageReqVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopReqVO;
+import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 店铺信息 Mapper

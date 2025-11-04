@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.enums;
 
-import com.hzltd.framework.common.core.IntArrayValuable;
+import com.hzltd.framework.common.core.ArrayValuable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -13,13 +13,13 @@ import java.util.Arrays;
  */
 @Getter
 @AllArgsConstructor
-public enum ProductSpuStatusEnum implements IntArrayValuable {
+public enum ProductSpuStatusEnum implements ArrayValuable<Integer> {
 
     RECYCLE(-1, "回收站"),
     COLLECTED(0, "已采集"),
     CLAIMED(1, "已认领");
 
-    public static final int[] ARRAYS = Arrays.stream(values()).mapToInt(ProductSpuStatusEnum::getStatus).toArray();
+    public static final Integer[] ARRAYS = Arrays.stream(values()).map(ProductSpuStatusEnum::getStatus).toArray(Integer[]::new);
 
     /**
      * 状态
@@ -31,7 +31,7 @@ public enum ProductSpuStatusEnum implements IntArrayValuable {
     private final String name;
 
     @Override
-    public int[] array() {
+    public Integer[] array() {
         return ARRAYS;
     }
 

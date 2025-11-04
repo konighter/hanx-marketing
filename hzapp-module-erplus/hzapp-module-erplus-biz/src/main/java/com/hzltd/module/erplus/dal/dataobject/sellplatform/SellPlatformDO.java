@@ -1,11 +1,14 @@
 package com.hzltd.module.erplus.dal.dataobject.sellplatform;
 
-import com.hzltd.module.erplus.enums.ServiceModeEnum;
-import lombok.*;
-import java.util.*;
-
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.framework.tenant.core.aop.TenantIgnore;
+import lombok.*;
+
+import java.util.List;
 
 /**
  * 销售平台 DO
@@ -20,6 +23,7 @@ import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@TenantIgnore
 public class SellPlatformDO extends BaseDO {
 
     /**

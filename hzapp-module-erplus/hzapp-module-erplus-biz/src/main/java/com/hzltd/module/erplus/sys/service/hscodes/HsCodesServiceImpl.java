@@ -1,19 +1,17 @@
 package com.hzltd.module.erplus.sys.service.hscodes;
 
-import com.hzltd.module.erplus.sys.controller.admin.hscodes.vo.HsCodesPageReqVO;
-import com.hzltd.module.erplus.sys.controller.admin.hscodes.vo.HsCodesSaveReqVO;
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-
-import com.hzltd.module.erplus.sys.dal.dataobject.hscodes.HsCodesDO;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
-
+import com.hzltd.module.erplus.sys.controller.admin.hscodes.vo.HsCodesPageReqVO;
+import com.hzltd.module.erplus.sys.controller.admin.hscodes.vo.HsCodesSaveReqVO;
+import com.hzltd.module.erplus.sys.dal.dataobject.hscodes.HsCodesDO;
 import com.hzltd.module.erplus.sys.dal.mysql.hscodes.HsCodesMapper;
+import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.HS_CODES_NOT_EXISTS;
 
 /**
  * [Erplus] 海关编码(HS Code) Service 实现类

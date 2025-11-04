@@ -4,8 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.stock.vo.record.ErpStockRecordPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockRecordDO;
 import com.hzltd.module.erplus.service.stock.bo.ErpStockRecordCreateReqBO;
-
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 
 /**
  * ERP 产品库存明细 Service 接口

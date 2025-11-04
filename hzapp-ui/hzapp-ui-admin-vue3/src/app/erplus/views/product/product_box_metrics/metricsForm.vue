@@ -9,11 +9,11 @@
       <el-form-item label="指标" prop="metrics">
 
          <el-checkbox-group v-model="formData.metrics" placeholder="请输入监控任务ID">  
-            <el-checkbox  label="销量" value="sales" ></el-checkbox>
-            <el-checkbox  label="访客数" value="visitors" ></el-checkbox>
-            <el-checkbox  label="转化率" value="conversionRate" ></el-checkbox>
-            <el-checkbox  label="库存" value="stock" ></el-checkbox>
-            <el-checkbox  label="价格" value="price" ></el-checkbox>
+            <el-checkbox  label="销量" value="sales" />
+            <el-checkbox  label="访客数" value="visitors" />
+            <el-checkbox  label="转化率" value="conversionRate" />
+            <el-checkbox  label="库存" value="stock" />
+            <el-checkbox  label="价格" value="price" />
 
          </el-checkbox-group>
         

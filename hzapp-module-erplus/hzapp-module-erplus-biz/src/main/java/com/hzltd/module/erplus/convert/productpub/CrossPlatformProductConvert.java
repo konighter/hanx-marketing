@@ -1,11 +1,11 @@
 package com.hzltd.module.erplus.convert.productpub;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
+import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductAttrsDO;
+import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
 import com.hzltd.module.erplus.model.common.ProductAttributeModel;
 import com.hzltd.module.erplus.model.product.CreateProductRequest;
-import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductAttrsDO;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

@@ -37,26 +37,26 @@
     </el-table-column>
     <el-table-column label="插入" min-width="4%">
       <template #default="scope">
-        <el-checkbox v-model="scope.row.createOperation" false-label="false" true-label="true" />
+        <el-checkbox v-model="scope.row.createOperation" false-value="false" true-value="true" />
       </template>
     </el-table-column>
     <el-table-column label="编辑" min-width="4%">
       <template #default="scope">
-        <el-checkbox v-model="scope.row.updateOperation" false-label="false" true-label="true" />
+        <el-checkbox v-model="scope.row.updateOperation" false-value="false" true-value="true" />
       </template>
     </el-table-column>
     <el-table-column label="列表" min-width="4%">
       <template #default="scope">
         <el-checkbox
           v-model="scope.row.listOperationResult"
-          false-label="false"
-          true-label="true"
+          false-value="false"
+          true-value="true"
         />
       </template>
     </el-table-column>
     <el-table-column label="查询" min-width="4%">
       <template #default="scope">
-        <el-checkbox v-model="scope.row.listOperation" false-label="false" true-label="true" />
+        <el-checkbox v-model="scope.row.listOperation" false-value="false" true-value="true" />
       </template>
     </el-table-column>
     <el-table-column label="查询方式" min-width="10%">
@@ -75,7 +75,7 @@
     </el-table-column>
     <el-table-column label="允许空" min-width="5%">
       <template #default="scope">
-        <el-checkbox v-model="scope.row.nullable" false-label="false" true-label="true" />
+        <el-checkbox v-model="scope.row.nullable" false-value="false" true-value="true" />
       </template>
     </el-table-column>
     <el-table-column label="显示类型" min-width="12%">
@@ -95,7 +95,20 @@
     </el-table-column>
     <el-table-column label="字典类型" min-width="12%">
       <template #default="scope">
-        <el-select v-model="scope.row.dictType" clearable filterable placeholder="请选择">
+        <el-select v-model="scope.row.dictType" :value-on-clear="''" clearable filterable placeholder="请选择">
+          <template #header>
+            <div class="flex justify-end">
+              <el-popover
+                class="box-item"
+                content="加载最新字典"
+                placement="top-start"
+              >
+                <template #reference>
+                  <el-button :icon="Refresh" size="small" circle @click="getDictOptions" class=""/>
+                </template>
+              </el-popover>
+            </div>
+          </template>
           <el-option
             v-for="dict in dictOptions"
             :key="dict.id"
@@ -114,6 +127,7 @@
 </template>
 <script lang="ts" setup>
 import { PropType } from 'vue'
+import { Refresh } from '@element-plus/icons-vue'
 import * as CodegenApi from '@/api/infra/codegen'
 import * as DictDataApi from '@/api/system/dict/dict.type'
 

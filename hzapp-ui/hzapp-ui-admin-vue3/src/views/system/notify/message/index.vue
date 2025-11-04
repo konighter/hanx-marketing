@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="站内信配置" url="https://help.h2z.ltd/notify/" />
+  <doc-alert title="站内信配置" url="https://doc.h2z.ltd/notify/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

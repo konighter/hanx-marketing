@@ -1,34 +1,33 @@
 package com.hzltd.module.erplus.service.shop;
 
+import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.collection.MapUtils;
+import com.hzltd.framework.common.util.object.BeanUtils;
+import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformReqVO;
+import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopPageReqVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopReqVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopRespVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopSaveReqVO;
-import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformReqVO;
-import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.dataobject.sellzone.SellZoneDO;
+import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
+import com.hzltd.module.erplus.dal.mysql.shop.ShopMapper;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.erplus.service.sellzone.SellZoneService;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.util.object.BeanUtils;
-
-import com.hzltd.module.erplus.dal.mysql.shop.ShopMapper;
-
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.SHOP_NOT_EXISTS;
 
 /**
  * 店铺信息 Service 实现类

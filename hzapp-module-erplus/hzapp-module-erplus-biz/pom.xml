@@ -5,7 +5,7 @@
     <parent>
         <groupId>com.hzltd</groupId>
         <artifactId>hzapp-module-erplus</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>hzapp-module-erplus-biz</artifactId>
@@ -19,8 +19,10 @@
     <dependencies>
         <dependency>
             <groupId>com.hzltd</groupId>
-            <artifactId>hzapp-module-system-api</artifactId>
+            <artifactId>hzapp-module-system</artifactId>
+            <version>${revision}</version>
         </dependency>
+
         <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-module-erplus-api</artifactId>
@@ -31,11 +33,6 @@
         </dependency>
 
         <!-- 业务组件 -->
-        <dependency>
-            <groupId>com.hzltd</groupId>
-            <artifactId>hzapp-spring-boot-starter-biz-operatelog</artifactId>
-        </dependency>
-
         <!-- Web 相关 -->
         <dependency>
             <groupId>com.hzltd</groupId>
@@ -62,10 +59,6 @@
         <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-spring-boot-starter-excel</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.hzltd</groupId>
-            <artifactId>hzapp-spring-boot-starter-biz-dict</artifactId>
         </dependency>
 
         <dependency>

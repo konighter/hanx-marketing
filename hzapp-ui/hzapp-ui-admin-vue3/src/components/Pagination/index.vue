@@ -5,7 +5,7 @@
     v-model:current-page="currentPage"
     v-model:page-size="pageSize"
     :background="true"
-    :page-sizes="[5, 10, 20, 30, 50, 100]"
+    :page-sizes="[10, 20, 30, 50, 100]"
     :pager-count="pagerCount"
     :total="total"
     :small="isSmall"
@@ -53,7 +53,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['update:page', 'update:limit', 'pagination', 'pagination'])
+const emit = defineEmits(['update:page', 'update:limit', 'pagination'])
 const currentPage = computed({
   get() {
     return props.page

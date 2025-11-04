@@ -1,8 +1,8 @@
 package com.hzltd.module.erplus.controller.admin.spu.vo;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Data

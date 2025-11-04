@@ -5,8 +5,8 @@ import com.hzltd.module.erplus.controller.admin.finance.vo.receipt.ErpFinanceRec
 import com.hzltd.module.erplus.controller.admin.finance.vo.receipt.ErpFinanceReceiptSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.finance.ErpFinanceReceiptDO;
 import com.hzltd.module.erplus.dal.dataobject.finance.ErpFinanceReceiptItemDO;
+import jakarta.validation.Valid;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 

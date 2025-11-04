@@ -2,7 +2,6 @@ package com.hzltd.module.erplus.dal.mysql.spu;
 
 import cn.hutool.core.lang.Assert;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.github.yulichang.base.MPJBaseMapper;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;

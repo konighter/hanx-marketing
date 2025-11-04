@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="系统日志" url="https://help.h2z.ltd/system-log/" />
+  <doc-alert title="系统日志" url="https://doc.h2z.ltd/system-log/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

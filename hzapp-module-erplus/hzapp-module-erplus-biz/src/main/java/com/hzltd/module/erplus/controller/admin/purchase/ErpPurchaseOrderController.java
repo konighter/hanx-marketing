@@ -1,14 +1,15 @@
 package com.hzltd.module.erplus.controller.admin.purchase;
 
 import cn.hutool.core.collection.CollUtil;
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
+import com.hzltd.framework.common.biz.system.user.AdminUserApi;
+import com.hzltd.framework.common.biz.system.user.dto.AdminUserRespDTO;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.collection.MapUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
-import com.hzltd.module.erplus.controller.admin.product.vo.product.ErpProductRespVO;
 import com.hzltd.module.erplus.controller.admin.purchase.vo.order.ErpPurchaseOrderPageReqVO;
 import com.hzltd.module.erplus.controller.admin.purchase.vo.order.ErpPurchaseOrderRespVO;
 import com.hzltd.module.erplus.controller.admin.purchase.vo.order.ErpPurchaseOrderSaveReqVO;
@@ -20,27 +21,26 @@ import com.hzltd.module.erplus.service.product.ErpProductService;
 import com.hzltd.module.erplus.service.purchase.ErpPurchaseOrderService;
 import com.hzltd.module.erplus.service.purchase.ErpSupplierService;
 import com.hzltd.module.erplus.service.stock.ErpStockService;
-import com.hzltd.module.system.api.user.AdminUserApi;
-import com.hzltd.module.system.api.user.dto.AdminUserRespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertMultiMap;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertSet;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
+
 
 @Tag(name = "管理后台 - ERP 采购订单")
 @RestController
@@ -125,7 +125,7 @@ public class ErpPurchaseOrderController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出采购订单 Excel")
     @PreAuthorize("@ss.hasPermission('erp:purchase-create:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = EXPORT)
     public void exportPurchaseOrderExcel(@Valid ErpPurchaseOrderPageReqVO pageReqVO,
                                     HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

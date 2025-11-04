@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【营销】砍价活动" url="https://help.h2z.ltd/mall/promotion-bargain/" />
+  <doc-alert title="【营销】砍价活动" url="https://doc.h2z.ltd/mall/promotion-bargain/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->
@@ -206,7 +206,7 @@ const handleClose = async (id: number) => {
     // 关闭的二次确认
     await message.confirm('确认关闭该砍价活动吗？')
     // 发起关闭
-    await BargainActivityApi.closeSeckillActivity(id)
+    await BargainActivityApi.closeBargainActivity(id)
     message.success('关闭成功')
     // 刷新列表
     await getList()

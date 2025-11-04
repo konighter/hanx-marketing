@@ -1,29 +1,17 @@
 import router from './router'
 import type { RouteRecordRaw } from 'vue-router'
 import { isRelogin } from '@/config/axios/service'
-import { getAccessToken, useTenant, getTenantId } from '@/utils/auth'
+import { getAccessToken } from '@/utils/auth'
 import { useTitle } from '@/hooks/web/useTitle'
 import { useNProgress } from '@/hooks/web/useNProgress'
 import { usePageLoading } from '@/hooks/web/usePageLoading'
 import { useDictStoreWithOut } from '@/store/modules/dict'
-import {useUserStore, useUserStoreWithOut} from '@/store/modules/user'
+import { useUserStoreWithOut } from '@/store/modules/user'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
-import {useTagsViewStore} from "@/store/modules/tagsView";
-import {sync} from "rimraf";
-
 
 const { start, done } = useNProgress()
 
 const { loadStart, loadDone } = usePageLoading()
-
-const userStore = useUserStore()
-
-const tagsViewStore = useTagsViewStore()
-
-const logoutFunc = async () => {
-  await userStore.loginOut()
-  await tagsViewStore.delAllViews()
-}
 
 const parseURL = (
   url: string | null | undefined
@@ -73,14 +61,6 @@ router.beforeEach(async (to, from, next) => {
   start()
   loadStart()
   if (getAccessToken()) {
-
-    // 如何开启多租户且没有设置租户的情况下，强制登出到登录页
-    if (useTenant() && !getTenantId()) {
-      await logoutFunc()
-      next(`/login`) // 否则全部重定向到登录页
-      return
-    }
-
     if (to.path === '/login') {
       next({ path: '/' })
     } else {
@@ -103,7 +83,7 @@ router.beforeEach(async (to, from, next) => {
         const redirectPath = from.query.redirect || to.path
         // 修复跳转时不带参数的问题
         const redirect = decodeURIComponent(redirectPath as string)
-        const { basePath, paramsObject: query } = parseURL(redirect)
+        const { paramsObject: query } = parseURL(redirect)
         const nextData = to.path === redirect ? { ...to, replace: true } : { path: redirect, query }
         next(nextData)
       } else {

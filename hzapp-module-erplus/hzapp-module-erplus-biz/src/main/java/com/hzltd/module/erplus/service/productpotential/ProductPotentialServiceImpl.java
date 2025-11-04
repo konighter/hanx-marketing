@@ -1,24 +1,21 @@
 package com.hzltd.module.erplus.service.productpotential;
 
+import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.controller.admin.productpotential.enums.ProductpotentialStatusEnum;
-import org.springframework.context.annotation.Bean;
+import com.hzltd.module.erplus.controller.admin.productpotential.vo.ProductPotentialPageReqVO;
+import com.hzltd.module.erplus.controller.admin.productpotential.vo.ProductPotentialRespVO;
+import com.hzltd.module.erplus.controller.admin.productpotential.vo.ProductPotentialSaveReqVO;
+import com.hzltd.module.erplus.controller.admin.productpotential.vo.ProductPotentialSimpleReqVO;
+import com.hzltd.module.erplus.dal.dataobject.productpotential.ProductPotentialDO;
+import com.hzltd.module.erplus.dal.mysql.productpotential.ProductPotentialMapper;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import javax.validation.Valid;
-
 import org.springframework.validation.annotation.Validated;
 
-import com.hzltd.module.erplus.controller.admin.productpotential.vo.*;
-import com.hzltd.module.erplus.dal.dataobject.productpotential.ProductPotentialDO;
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.util.object.BeanUtils;
-
-import com.hzltd.module.erplus.dal.mysql.productpotential.ProductPotentialMapper;
-
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_POTENTIAL_NOT_EXISTS;
 
 /**
  * 选品提案 Service 实现类

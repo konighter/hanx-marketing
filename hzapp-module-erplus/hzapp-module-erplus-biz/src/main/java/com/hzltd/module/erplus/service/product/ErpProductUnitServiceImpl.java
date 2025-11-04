@@ -1,17 +1,17 @@
 package com.hzltd.module.erplus.service.product;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.controller.admin.product.vo.unit.ErpProductUnitPageReqVO;
 import com.hzltd.module.erplus.controller.admin.product.vo.unit.ErpProductUnitSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductUnitDO;
 import com.hzltd.module.erplus.dal.mysql.product.ErpProductUnitMapper;
-import com.google.common.annotations.VisibleForTesting;
+import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 

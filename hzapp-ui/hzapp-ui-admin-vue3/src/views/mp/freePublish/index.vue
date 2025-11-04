@@ -1,5 +1,4 @@
 <template>
-  <doc-alert title="公众号图文" url="https://help.h2z.ltd/mp/article/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>
@@ -97,7 +96,9 @@ const handleDelete = async (item: any) => {
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()
-  } catch {}
+  } catch {
+    //
+  }
 }
 </script>
 <style lang="scss" scoped>

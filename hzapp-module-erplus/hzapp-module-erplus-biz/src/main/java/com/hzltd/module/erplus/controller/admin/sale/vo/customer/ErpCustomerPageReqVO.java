@@ -1,8 +1,10 @@
 package com.hzltd.module.erplus.controller.admin.sale.vo.customer;
 
-import lombok.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 import com.hzltd.framework.common.pojo.PageParam;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 @Schema(description = "管理后台 - ERP 客户分页 Request VO")
 @Data

@@ -1,9 +1,8 @@
 package com.hzltd.module.erplus.sys.controller.admin.hscodes.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
 
 @Schema(description = "管理后台 - [Erplus] 海关编码(HS Code)新增/修改 Request VO")
 @Data

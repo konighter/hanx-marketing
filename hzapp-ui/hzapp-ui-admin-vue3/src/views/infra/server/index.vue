@@ -1,7 +1,7 @@
 <template>
-  <doc-alert title="服务监控" url="https://help.h2z.ltd/server-monitor/" />
+  <doc-alert title="服务监控" url="https://doc.h2z.ltd/server-monitor/" />
 
-  <ContentWrap>
+  <ContentWrap :bodyStyle="{ padding: '0px' }" class="!mb-0">
     <IFrame v-if="!loading" v-loading="loading" :src="src" />
   </ContentWrap>
 </template>
@@ -17,7 +17,7 @@ const src = ref(import.meta.env.VITE_BASE_URL + '/admin/applications')
 onMounted(async () => {
   try {
     // 友情提示：如果访问出现 404 问题：
-    // 1）boot 参考 https://help.h2z.ltd/server-monitor/ 解决；
+    // 1）boot 参考 https://doc.h2z.ltd/server-monitor/ 解决；
     // 2）cloud 参考 https://cloud.iocoder.cn/server-monitor/ 解决
     const data = await ConfigApi.getConfigKey('url.spring-boot-admin')
     if (data && data.length > 0) {

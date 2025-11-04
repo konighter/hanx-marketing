@@ -1,10 +1,10 @@
 package com.hzltd.module.erplus.controller.admin.spu;
 
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
 import com.hzltd.module.erplus.controller.admin.spu.vo.*;
 import com.hzltd.module.erplus.convert.spu.ProductSpuConvert;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
@@ -15,22 +15,23 @@ import com.hzltd.module.erplus.service.spu.ProductSpuService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 import static com.hzltd.framework.common.pojo.PageParam.PAGE_SIZE_NONE;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
+
 
 @Tag(name = "管理后台 - 商品 SPU")
 @RestController
@@ -127,7 +128,7 @@ public class ProductSpuController {
     @GetMapping("/export")
     @Operation(summary = "导出商品")
     @PreAuthorize("@ss.hasPermission('product:spu:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = EXPORT)
     public void exportSpuList(@Validated ProductSpuPageReqVO reqVO,
                                HttpServletResponse response) throws IOException {
         reqVO.setPageSize(PAGE_SIZE_NONE);

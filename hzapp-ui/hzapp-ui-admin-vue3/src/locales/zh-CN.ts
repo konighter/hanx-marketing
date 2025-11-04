@@ -44,7 +44,6 @@ export default {
     importMessage: '是否确认导入数据项？',
     createSuccess: '新增成功',
     updateSuccess: '修改成功',
-    submitSuccess: '提交成功',
     delMessage: '是否删除所选中数据？',
     delDataMessage: '是否删除数据？',
     delNoData: '请选择需要删除的数据',
@@ -57,6 +56,16 @@ export default {
     copySuccess: '复制成功',
     copyError: '复制失败'
   },
+  lock: {
+    lockScreen: '锁定屏幕',
+    lock: '锁定',
+    lockPassword: '锁屏密码',
+    unlock: '点击解锁',
+    backToLogin: '返回登录',
+    entrySystem: '进入系统',
+    placeholder: '请输入锁屏密码',
+    message: '锁屏密码错误'
+  },
   error: {
     noPermission: `抱歉，您无权访问此页面。`,
     pageError: '抱歉，您访问的页面不存在。',
@@ -65,8 +74,7 @@ export default {
   },
   permission: {
     hasPermission: `请设置操作权限标签值`,
-    hasRole: `请设置角色权限标签值`,
-    dontHaveTenant: `您没有任何租户`
+    hasRole: `请设置角色权限标签值`
   },
   setting: {
     projectSetting: '项目配置',
@@ -84,6 +92,7 @@ export default {
     localeIcon: '多语言图标',
     messageIcon: '消息图标',
     tagsView: '标签页',
+    tagsViewImmerse: '标签页沉浸',
     logo: '标志',
     greyMode: '灰色模式',
     fixedHeader: '固定头部',
@@ -132,12 +141,17 @@ export default {
     btnQRCode: '二维码登录',
     qrcode: '扫描二维码登录',
     btnRegister: '注册',
-    SmsSendMsg: '验证码已发送'
+    SmsSendMsg: '验证码已发送',
+    resetPassword: '重置密码',
+    resetPasswordSuccess: '重置密码成功',
+    invalidTenantName: '无效的租户名称'
   },
   captcha: {
+    verify: '验证',
     verification: '请完成安全验证',
     slide: '向右滑动完成验证',
     point: '请依次点击',
+    code: '请输入验证码',
     success: '验证成功',
     fail: '验证失败'
   },
@@ -297,18 +311,6 @@ export default {
     generate: '生成',
     logout: '强制退出',
     test: '测试',
-    audit: '审核',
-    debrief: '复盘',
-    submit: '提交',
-    search: '搜索',
-    reset: '重置',
-    download: '下载',
-    confirm: '确认',
-    cancel: '取消',
-    back: '返回',
-    copy: '复制',
-    handle: '处理',
-    view: '查看',
     typeCreate: '字典类型新增',
     typeUpdate: '字典类型编辑',
     dataCreate: '字典数据新增',
@@ -416,9 +418,9 @@ export default {
     },
     info: {
       title: '基本信息',
-      basicInfo: '基本资料',
-      resetPwd: '修改密码',
-      userSocial: '社交信息'
+      basicInfo: '基本设置',
+      resetPwd: '密码设置',
+      userSocial: '社交绑定'
     },
     rules: {
       nickname: '请输入用户昵称',

@@ -1,9 +1,12 @@
 package com.hzltd.module.erplus.service.productpotential;
 
-import javax.validation.*;
-import com.hzltd.module.erplus.controller.admin.productpotential.vo.*;
-import com.hzltd.module.erplus.dal.dataobject.productpotential.ProductPotentialDO;
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.module.erplus.controller.admin.productpotential.vo.ProductPotentialPageReqVO;
+import com.hzltd.module.erplus.controller.admin.productpotential.vo.ProductPotentialRespVO;
+import com.hzltd.module.erplus.controller.admin.productpotential.vo.ProductPotentialSaveReqVO;
+import com.hzltd.module.erplus.controller.admin.productpotential.vo.ProductPotentialSimpleReqVO;
+import com.hzltd.module.erplus.dal.dataobject.productpotential.ProductPotentialDO;
+import jakarta.validation.Valid;
 
 /**
  * 选品提案 Service 接口

@@ -29,13 +29,17 @@ public class ServiceMode {
     @MappedTypes(List.class)
     public static class ServiceModeHandler extends AbstractJsonTypeHandler<List<ServiceMode>> {
 
+        public ServiceModeHandler(Class<?> type) {
+            super(type);
+        }
+
         @Override
-        protected List<ServiceMode> parse(String json) {
+        public List<ServiceMode> parse(String json) {
             return JsonUtils.parseArray(json, ServiceMode.class);
         }
 
         @Override
-        protected String toJson(List<ServiceMode> obj) {
+        public String toJson(List<ServiceMode> obj) {
             return JsonUtils.toJsonString(obj);
         }
 

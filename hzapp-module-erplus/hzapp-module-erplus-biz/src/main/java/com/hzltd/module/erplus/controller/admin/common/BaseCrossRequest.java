@@ -2,9 +2,8 @@ package com.hzltd.module.erplus.controller.admin.common;
 
 import com.hzltd.module.erplus.constant.LanguageEnum;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
 
 @Data
 public class BaseCrossRequest {

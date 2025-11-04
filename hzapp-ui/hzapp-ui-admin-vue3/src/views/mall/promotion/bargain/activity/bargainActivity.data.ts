@@ -11,7 +11,7 @@ export const rules = reactive({
   singleLimitCount: [required]
 })
 
-// CrudSchema https://help.h2z.ltd/vue3/crud-schema/
+// CrudSchema https://doc.h2z.ltd/vue3/crud-schema/
 const crudSchemas = reactive<CrudSchema[]>([
   {
     label: '砍价活动名称',

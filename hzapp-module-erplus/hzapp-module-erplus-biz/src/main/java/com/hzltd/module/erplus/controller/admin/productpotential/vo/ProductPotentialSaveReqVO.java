@@ -1,11 +1,12 @@
 package com.hzltd.module.erplus.controller.admin.productpotential.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.*;
-import javax.validation.constraints.*;
+import java.util.List;
 
 @Schema(description = "管理后台 - 选品提案新增/修改 Request VO")
 @Data

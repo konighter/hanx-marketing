@@ -3,9 +3,8 @@ package com.hzltd.module.erplus.controller.admin.spu.vo;
 import com.hzltd.framework.common.validation.InEnum;
 import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import javax.validation.constraints.NotNull;
 
 @Schema(description = "管理后台 - 商品 SPU Status 更新 Request VO")
 @Data

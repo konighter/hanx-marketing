@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="OAuth 2.0（SSO 单点登录)" url="https://help.h2z.ltd/oauth2/" />
+  <doc-alert title="OAuth 2.0（SSO 单点登录)" url="https://doc.h2z.ltd/oauth2/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

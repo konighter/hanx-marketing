@@ -1,6 +1,9 @@
 package com.hzltd.module.erplus.controller.admin.finance;
 
 import cn.hutool.core.collection.CollUtil;
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
+import com.hzltd.framework.common.biz.system.user.AdminUserApi;
+import com.hzltd.framework.common.biz.system.user.dto.AdminUserRespDTO;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
@@ -8,7 +11,6 @@ import com.hzltd.framework.common.util.collection.MapUtils;
 import com.hzltd.framework.common.util.number.NumberUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
 import com.hzltd.module.erplus.controller.admin.finance.vo.payment.ErpFinancePaymentPageReqVO;
 import com.hzltd.module.erplus.controller.admin.finance.vo.payment.ErpFinancePaymentRespVO;
 import com.hzltd.module.erplus.controller.admin.finance.vo.payment.ErpFinancePaymentSaveReqVO;
@@ -19,26 +21,25 @@ import com.hzltd.module.erplus.dal.dataobject.purchase.ErpSupplierDO;
 import com.hzltd.module.erplus.service.finance.ErpAccountService;
 import com.hzltd.module.erplus.service.finance.ErpFinancePaymentService;
 import com.hzltd.module.erplus.service.purchase.ErpSupplierService;
-import com.hzltd.module.system.api.user.AdminUserApi;
-import com.hzltd.module.system.api.user.dto.AdminUserRespDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Stream;
 
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.*;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
+
 
 @Tag(name = "管理后台 - ERP 付款单")
 @RestController
@@ -114,7 +115,7 @@ public class ErpFinancePaymentController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出付款单 Excel")
     @PreAuthorize("@ss.hasPermission('erp:finance-payment:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = EXPORT)
     public void exportFinancePaymentExcel(@Valid ErpFinancePaymentPageReqVO pageReqVO,
                                          HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

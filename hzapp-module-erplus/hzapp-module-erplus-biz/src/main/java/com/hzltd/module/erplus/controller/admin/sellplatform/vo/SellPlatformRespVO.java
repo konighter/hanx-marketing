@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.controller.admin.sellplatform.vo;
 
-import com.alibaba.excel.annotation.ExcelIgnoreUnannotated;
-import com.alibaba.excel.annotation.ExcelProperty;
+import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
+import cn.idev.excel.annotation.ExcelProperty;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;

@@ -1,5 +1,6 @@
 import request from '@/config/axios'
-
+import { ProcessDefinitionVO } from '@/api/bpm/model'
+import { NodeType, CandidateStrategy } from '@/components/SimpleProcessDesignerV2/src/consts'
 export type Task = {
   id: string
   name: string
@@ -18,53 +19,97 @@ export type ProcessInstanceVO = {
   businessKey: string
   createTime: string
   endTime: string
+  processDefinition?: ProcessDefinitionVO
 }
 
-export type ProcessInstanceCCVO = {
-  type: number,
-  taskName: string,
-  taskKey: string,
-  processInstanceName: string,
-  processInstanceKey: string,
-  startUserId: string,
-  options:string [],
+// 用户信息
+export type User = {
+  id: number
+  nickname: string
+  avatar: string
+}
+
+// 审批任务信息
+export type ApprovalTaskInfo = {
+  id: number
+  ownerUser: User
+  assigneeUser: User
+  status: number
   reason: string
+  signPicUrl: string
 }
 
-export const getMyProcessInstancePage = async (params) => {
+// 审批节点信息
+export type ApprovalNodeInfo = {
+  id: number
+  name: string
+  nodeType: NodeType
+  candidateStrategy?: CandidateStrategy
+  status: number
+  startTime?: Date
+  endTime?: Date
+  processInstanceId?: string
+  candidateUsers?: User[]
+  tasks: ApprovalTaskInfo[]
+}
+
+export const getProcessInstanceMyPage = async (params: any) => {
   return await request.get({ url: '/bpm/process-instance/my-page', params })
+}
+
+export const getProcessInstanceManagerPage = async (params: any) => {
+  return await request.get({ url: '/bpm/process-instance/manager-page', params })
 }
 
 export const createProcessInstance = async (data) => {
   return await request.post({ url: '/bpm/process-instance/create', data: data })
 }
 
-export const cancelProcessInstance = async (id: number, reason: string) => {
+export const cancelProcessInstanceByStartUser = async (id: number, reason: string) => {
   const data = {
     id: id,
     reason: reason
   }
-  return await request.delete({ url: '/bpm/process-instance/cancel', data: data })
+  return await request.delete({ url: '/bpm/process-instance/cancel-by-start-user', data: data })
 }
 
-export const getProcessInstance = async (id: number) => {
+export const cancelProcessInstanceByAdmin = async (id: number, reason: string) => {
+  const data = {
+    id: id,
+    reason: reason
+  }
+  return await request.delete({ url: '/bpm/process-instance/cancel-by-admin', data: data })
+}
+
+export const getProcessInstance = async (id: string) => {
   return await request.get({ url: '/bpm/process-instance/get?id=' + id })
 }
 
-/**
- * 抄送
- * @param data 抄送数据
- * @returns 是否抄送成功
- */
-export const createProcessInstanceCC = async (data) => {
-  return await request.post({ url: '/bpm/process-instance/cc/create', data: data })
+export const getProcessInstanceCopyPage = async (params: any) => {
+  return await request.get({ url: '/bpm/process-instance/copy/page', params })
 }
 
-/**
- * 抄送列表
- * @param params 
- * @returns 
- */
-export const getProcessInstanceCCPage = async (params) => {
-  return await request.get({ url: '/bpm/process-instance/cc/my-page', params })
+// 获取审批详情
+export const getApprovalDetail = async (params: any) => {
+  return await request.get({ url: '/bpm/process-instance/get-approval-detail', params })
+}
+
+// 获取下一个执行的流程节点
+export const getNextApprovalNodes = async (params: any) => {
+  return await request.get({ url: '/bpm/process-instance/get-next-approval-nodes', params })
+}
+
+// 获取表单字段权限
+export const getFormFieldsPermission = async (params: any) => {
+  return await request.get({ url: '/bpm/process-instance/get-form-fields-permission', params })
+}
+
+// 获取流程实例的 BPMN 模型视图
+export const getProcessInstanceBpmnModelView = async (id: string) => {
+  return await request.get({ url: '/bpm/process-instance/get-bpmn-model-view?id=' + id })
+}
+
+// 获取流程实例打印数据
+export const getProcessInstancePrintData = async (id: string) => {
+  return await request.get({ url: '/bpm/process-instance/get-print-data?processInstanceId=' + id })
 }

@@ -1,6 +1,6 @@
 <template>
-  <doc-alert title="【交易】交易订单" url="https://help.h2z.ltd/mall/trade-order/" />
-  <doc-alert title="【交易】购物车" url="https://help.h2z.ltd/mall/trade-cart/" />
+  <doc-alert title="【交易】交易订单" url="https://doc.h2z.ltd/mall/trade-order/" />
+  <doc-alert title="【交易】购物车" url="https://doc.h2z.ltd/mall/trade-cart/" />
 
   <ContentWrap>
     <el-form
@@ -82,7 +82,7 @@
               <el-radio
                 v-for="dict in getIntDictOptions(DICT_TYPE.BROKERAGE_ENABLED_CONDITION)"
                 :key="dict.value"
-                :label="dict.value"
+                :value="dict.value"
               >
                 {{ dict.label }}
               </el-radio>
@@ -99,7 +99,7 @@
               <el-radio
                 v-for="dict in getIntDictOptions(DICT_TYPE.BROKERAGE_BIND_MODE)"
                 :key="dict.value"
-                :label="dict.value"
+                :value="dict.value"
               >
                 {{ dict.label }}
               </el-radio>
@@ -182,7 +182,7 @@
               <el-checkbox
                 v-for="dict in getIntDictOptions(DICT_TYPE.BROKERAGE_WITHDRAW_TYPE)"
                 :key="dict.value"
-                :label="dict.value"
+                :value="dict.value"
               >
                 {{ dict.label }}
               </el-checkbox>

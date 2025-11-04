@@ -1,5 +1,4 @@
 <template>
-  <doc-alert title="【采购】采购订单、入库、退货" url="https://help.h2z.ltd/erp/purchase/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

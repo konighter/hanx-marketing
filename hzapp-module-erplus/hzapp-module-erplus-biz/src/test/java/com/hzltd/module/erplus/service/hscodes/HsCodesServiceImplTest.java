@@ -1,23 +1,20 @@
 package com.hzltd.module.erplus.service.hscodes;
 
-import com.alibaba.excel.EasyExcel;
+import cn.idev.excel.EasyExcel;
+import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.date.LocalDateTimeUtils;
-import com.hzltd.module.erplus.sys.controller.admin.hscodes.vo.*;
-import com.hzltd.module.erplus.sys.convert.hscode.HsCodeConvert;
-import com.hzltd.module.erplus.sys.service.hscodes.HsCodesServiceImpl;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
-
-import javax.annotation.Resource;
-
 import com.hzltd.framework.test.core.ut.BaseDbUnitTest;
-
+import com.hzltd.module.erplus.sys.controller.admin.hscodes.vo.HsCodesPageReqVO;
+import com.hzltd.module.erplus.sys.controller.admin.hscodes.vo.HsCodesRespVO;
+import com.hzltd.module.erplus.sys.controller.admin.hscodes.vo.HsCodesSaveReqVO;
+import com.hzltd.module.erplus.sys.convert.hscode.HsCodeConvert;
 import com.hzltd.module.erplus.sys.dal.dataobject.hscodes.HsCodesDO;
 import com.hzltd.module.erplus.sys.dal.mysql.hscodes.HsCodesMapper;
-import com.hzltd.framework.common.pojo.PageResult;
-
+import com.hzltd.module.erplus.sys.service.hscodes.HsCodesServiceImpl;
+import jakarta.annotation.Resource;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.annotation.Import;
-import org.springframework.test.context.jdbc.Sql;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -25,11 +22,13 @@ import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
-import static com.hzltd.framework.test.core.util.AssertUtils.*;
-import static com.hzltd.framework.test.core.util.RandomUtils.*;
-import static com.hzltd.framework.common.util.date.LocalDateTimeUtils.*;
-import static com.hzltd.framework.common.util.object.ObjectUtils.*;
+import static com.hzltd.framework.common.util.date.LocalDateTimeUtils.buildBetweenTime;
+import static com.hzltd.framework.common.util.object.ObjectUtils.cloneIgnoreId;
+import static com.hzltd.framework.test.core.util.AssertUtils.assertPojoEquals;
+import static com.hzltd.framework.test.core.util.AssertUtils.assertServiceException;
+import static com.hzltd.framework.test.core.util.RandomUtils.randomLongId;
+import static com.hzltd.framework.test.core.util.RandomUtils.randomPojo;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.HS_CODES_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

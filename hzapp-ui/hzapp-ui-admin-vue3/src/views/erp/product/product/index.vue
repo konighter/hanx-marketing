@@ -1,6 +1,5 @@
 <!-- ERP 产品列表 -->
 <template>
-  <doc-alert title="【产品】产品信息、分类、单位" url="https://help.h2z.ltd/erp/product/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

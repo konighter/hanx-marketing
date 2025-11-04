@@ -1,5 +1,4 @@
 <template>
-  <doc-alert title="公众号标签" url="https://help.h2z.ltd/mp/tag/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>
@@ -139,7 +138,9 @@ const handleDelete = async (id: number) => {
     message.success(t('common.delSuccess'))
     // 刷新列表
     await getList()
-  } catch {}
+  } catch {
+    //
+  }
 }
 
 /** 同步操作 */
@@ -149,6 +150,8 @@ const handleSync = async () => {
     await MpTagApi.syncTag(queryParams.accountId as number)
     message.success('同步标签成功')
     await getList()
-  } catch {}
+  } catch {
+    //
+  }
 }
 </script>

@@ -3,8 +3,8 @@ package com.hzltd.module.erplus.dal.mysql.spu;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyValueDO;
 import com.hzltd.module.erplus.controller.admin.property.vo.value.ProductPropertyValuePageReqVO;
+import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyValueDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collection;

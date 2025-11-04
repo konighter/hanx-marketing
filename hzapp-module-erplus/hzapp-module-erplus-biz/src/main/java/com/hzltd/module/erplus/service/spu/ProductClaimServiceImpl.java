@@ -3,37 +3,36 @@ package com.hzltd.module.erplus.service.spu;
 import cn.hutool.core.util.StrUtil;
 import com.baomidou.dynamic.datasource.annotation.DSTransactional;
 import com.google.common.collect.Lists;
+import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.controller.admin.spu.vo.*;
-import com.hzltd.module.erplus.enums.ErrorCodeConstants;
-import com.hzltd.module.erplus.enums.ProductClaimStatus;
 import com.hzltd.module.erplus.convert.spu.ProductClaimConvert;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductClaimDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductClaimMapper;
+import com.hzltd.module.erplus.enums.ErrorCodeConstants;
+import com.hzltd.module.erplus.enums.ProductClaimStatus;
 import com.hzltd.module.erplus.service.brand.ProductBrandService;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.erplus.service.sellzone.SellZoneService;
 import com.hzltd.module.erplus.service.shop.ShopService;
+import jakarta.annotation.Resource;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.util.object.BeanUtils;
-
-
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_CLAIM_NOT_EXISTS;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_CLAIM_SKU_RULE_PLT;
 
 /**
  * 商品认领 Service 实现类

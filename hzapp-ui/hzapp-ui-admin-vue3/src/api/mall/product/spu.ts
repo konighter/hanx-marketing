@@ -35,7 +35,6 @@ export interface Spu {
   name?: string // 商品名称
   categoryId?: number // 商品分类
   keyword?: string // 关键字
-  sellPoints?: string[] // 卖点
   unit?: number | undefined // 单位
   picUrl?: string // 商品封面图
   sliderPicUrls?: string[] // 商品轮播图
@@ -51,6 +50,8 @@ export interface Spu {
   giveIntegral?: number // 赠送积分
   virtualSalesCount?: number // 虚拟销量
   price?: number // 商品价格
+  combinationPrice?: number // 商品拼团价格
+  seckillPrice?: number // 商品秒杀价格
   salesCount?: number // 商品销量
   marketPrice?: number // 市场价
   costPrice?: number // 成本价
@@ -100,8 +101,8 @@ export const deleteSpu = (id: number) => {
 }
 
 // 导出商品 Spu Excel
-export const exportSpu = async (params) => {
-  return await request.download({ url: '/product/spu/export', params })
+export const exportSpu = async (params: any) => {
+  return await request.download({ url: '/product/spu/export-excel', params })
 }
 
 // 获得商品 SPU 精简列表

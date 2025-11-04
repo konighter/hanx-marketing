@@ -1,12 +1,13 @@
 package com.hzltd.module.erplus.service.sellzone;
 
-import java.util.*;
-import javax.validation.*;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZonePageReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellzone.SellZoneDO;
+import jakarta.validation.Valid;
+
+import java.util.List;
 
 /**
  * 销售区域 Service 接口

@@ -1,25 +1,25 @@
 package com.hzltd.module.erplus.service.app;
 
 import com.hzltd.framework.common.enums.CommonStatusEnum;
+import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.controller.admin.app.vo.AppPageReqVO;
+import com.hzltd.module.erplus.controller.admin.app.vo.AppSaveReqVO;
+import com.hzltd.module.erplus.dal.dataobject.app.AppDO;
+import com.hzltd.module.erplus.dal.mysql.app.AppMapper;
 import com.hzltd.module.erplus.enums.RedisKeyConstants;
+import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
-import com.hzltd.module.erplus.controller.admin.app.vo.*;
-import com.hzltd.module.erplus.dal.dataobject.app.AppDO;
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.util.object.BeanUtils;
-
-import com.hzltd.module.erplus.dal.mysql.app.AppMapper;
+import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.APP_ALREADY_EXISTS;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.APP_NOT_EXISTS;
 
 /**
  * 应用注册信息 Service 实现类

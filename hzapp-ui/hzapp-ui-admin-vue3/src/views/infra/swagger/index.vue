@@ -1,8 +1,8 @@
 <template>
-  <doc-alert title="接口文档" url="https://help.h2z.ltd/api-doc/" />
+  <doc-alert title="接口文档" url="https://doc.h2z.ltd/api-doc/" />
 
-  <ContentWrap>
-    <IFrame :src="src" />
+  <ContentWrap :bodyStyle="{ padding: '0px' }" class="!mb-0">
+    <IFrame v-if="!loading" v-loading="loading" :src="src" />
   </ContentWrap>
 </template>
 <script lang="ts" setup>

@@ -1,14 +1,10 @@
 package com.hzltd.module.erplus.service.product;
 
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.erplus.controller.admin.product.vo.product.ErpProductPageReqVO;
-import com.hzltd.module.erplus.controller.admin.product.vo.product.ErpProductRespVO;
 import com.hzltd.module.erplus.controller.admin.product.vo.product.ProductSaveReqVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
+import jakarta.validation.Valid;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;

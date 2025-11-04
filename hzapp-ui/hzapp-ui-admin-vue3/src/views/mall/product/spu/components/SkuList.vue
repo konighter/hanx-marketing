@@ -24,7 +24,7 @@
       >
         <template #default="{ row }">
           <span style="font-weight: bold; color: #40aaff">
-            {{ row.properties[index]?.valueName }}
+            {{ row.properties?.[index]?.valueName }}
           </span>
         </template>
       </el-table-column>
@@ -168,7 +168,7 @@
       >
         <template #default="{ row }">
           <span style="font-weight: bold; color: #40aaff">
-            {{ row.properties[index]?.valueName }}
+            {{ row.properties?.[index]?.valueName }}
           </span>
         </template>
       </el-table-column>
@@ -248,7 +248,7 @@
       >
         <template #default="{ row }">
           <span style="font-weight: bold; color: #40aaff">
-            {{ row.properties[index]?.valueName }}
+            {{ row.properties?.[index]?.valueName }}
           </span>
         </template>
       </el-table-column>
@@ -260,17 +260,17 @@
     </el-table-column>
     <el-table-column align="center" label="销售价(元)" min-width="80">
       <template #default="{ row }">
-        {{ row.price }}
+        {{ formatToFraction(row.price) }}
       </template>
     </el-table-column>
     <el-table-column align="center" label="市场价(元)" min-width="80">
       <template #default="{ row }">
-        {{ row.marketPrice }}
+        {{ formatToFraction(row.marketPrice) }}
       </template>
     </el-table-column>
     <el-table-column align="center" label="成本价(元)" min-width="80">
       <template #default="{ row }">
-        {{ row.costPrice }}
+        {{ formatToFraction(row.costPrice) }}
       </template>
     </el-table-column>
     <el-table-column align="center" label="库存" min-width="80">
@@ -284,7 +284,7 @@
 </template>
 <script lang="ts" setup>
 import { PropType, Ref } from 'vue'
-import { copyValueToTarget } from '@/utils'
+import { copyValueToTarget, formatToFraction } from '@/utils'
 import { propTypes } from '@/utils/propTypes'
 import { UploadImg } from '@/components/UploadFile'
 import type { Property, Sku, Spu } from '@/api/mall/product/spu'
@@ -292,6 +292,7 @@ import { createImageViewer } from '@/components/ImageViewer'
 import { RuleConfig } from '@/views/mall/product/spu/components/index'
 import { PropertyAndValues } from './index'
 import { ElTable } from 'element-plus'
+import { isEmpty } from '@/utils/is'
 
 defineOptions({ name: 'SkuList' })
 const message = useMessage() // 消息弹窗
@@ -340,11 +341,22 @@ const imagePreview = (imgUrl: string) => {
 
 /** 批量添加 */
 const batchAdd = () => {
+  validateProperty()
   formData.value!.skus!.forEach((item) => {
     copyValueToTarget(item, skuList.value[0])
   })
 }
-
+/** 校验商品属性属性值 */
+const validateProperty = () => {
+  // 校验商品属性属性值是否为空，有一个为空都不给过
+  const warningInfo = '存在属性属性值为空，请先检查完善属性值后重试！！！'
+  for (const item of props.propertyList) {
+    if (!item.values || isEmpty(item.values)) {
+      message.warning(warningInfo)
+      throw new Error(warningInfo)
+    }
+  }
+}
 /** 删除 sku */
 const deleteSku = (row) => {
   const index = formData.value!.skus!.findIndex(
@@ -358,6 +370,7 @@ const tableHeaders = ref<{ prop: string; label: string }[]>([]) // 多属性表�
  * 保存时，每个商品规格的表单要校验下。例如说，销售金额最低是 0.01 这种。
  */
 const validateSku = () => {
+  validateProperty()
   let warningInfo = '请检查商品各行相关属性配置，'
   let validate = true // 默认通过
   for (const sku of formData.value!.skus!) {
@@ -421,7 +434,7 @@ watch(
 const generateTableData = (propertyList: any[]) => {
   // 构建数据结构
   const propertyValues = propertyList.map((item) =>
-    item.values.map((v) => ({
+    item.values.map((v: any) => ({
       propertyId: item.id,
       propertyName: item.name,
       valueId: v.id,
@@ -464,15 +477,14 @@ const generateTableData = (propertyList: any[]) => {
  */
 const validateData = (propertyList: any[]) => {
   const skuPropertyIds: number[] = []
-  formData.value!.skus!.forEach(
-    (sku) =>
-      sku.properties
-        ?.map((property) => property.propertyId)
-        ?.forEach((propertyId) => {
-          if (skuPropertyIds.indexOf(propertyId!) === -1) {
-            skuPropertyIds.push(propertyId!)
-          }
-        })
+  formData.value!.skus!.forEach((sku) =>
+    sku.properties
+      ?.map((property) => property.propertyId)
+      ?.forEach((propertyId) => {
+        if (skuPropertyIds.indexOf(propertyId!) === -1) {
+          skuPropertyIds.push(propertyId!)
+        }
+      })
   )
   const propertyIds = propertyList.map((item) => item.id)
   return skuPropertyIds.length === propertyIds.length
@@ -543,7 +555,7 @@ watch(
       return
     }
     // 添加新属性没有属性值也不做处理
-    if (propertyList.some((item) => item.values!.length === 0)) {
+    if (propertyList.some((item) => !item.values || isEmpty(item.values))) {
       return
     }
     // 生成 table 数据，即 sku 列表

@@ -1,14 +1,14 @@
 package com.hzltd.module.erplus.dal.mysql.sellzone;
 
-import java.util.*;
-
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZonePageReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellzone.SellZoneDO;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 销售区域 Mapper

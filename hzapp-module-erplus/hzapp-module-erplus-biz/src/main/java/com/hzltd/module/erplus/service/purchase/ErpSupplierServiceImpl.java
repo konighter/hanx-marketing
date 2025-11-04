@@ -7,10 +7,10 @@ import com.hzltd.module.erplus.controller.admin.purchase.vo.supplier.ErpSupplier
 import com.hzltd.module.erplus.controller.admin.purchase.vo.supplier.ErpSupplierSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpSupplierDO;
 import com.hzltd.module.erplus.dal.mysql.purchase.ErpSupplierMapper;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 

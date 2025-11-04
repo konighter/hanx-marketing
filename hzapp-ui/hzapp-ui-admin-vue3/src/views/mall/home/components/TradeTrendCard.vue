@@ -6,7 +6,7 @@
         <!-- 查询条件 -->
         <div class="flex flex-row items-center gap-2">
           <el-radio-group v-model="timeRangeType" @change="handleTimeRangeTypeChange">
-            <el-radio-button v-for="[key, value] in timeRange.entries()" :key="key" :label="key">
+            <el-radio-button v-for="[key, value] in timeRange.entries()" :key="key" :value="key">
               {{ value.name }}
             </el-radio-button>
           </el-radio-group>
@@ -186,7 +186,7 @@ const getOrderCountTrendComparison = async (
     dates.push(item.value.date)
     if (series.length === 2) {
       series[0].data.push(fenToYuan(item?.value?.orderPayPrice || 0)) // 当前金额
-      series[1].data.push(fenToYuan(item?.value?.orderPayCount || 0)) // 当前数量
+      series[1].data.push(item?.value?.orderPayCount || 0) // 当前数量
     } else {
       series[0].data.push(fenToYuan(item?.reference?.orderPayPrice || 0)) // 对照金额
       series[1].data.push(fenToYuan(item?.value?.orderPayPrice || 0)) // 当前金额
@@ -196,7 +196,7 @@ const getOrderCountTrendComparison = async (
   }
   eChartOptions.xAxis!['data'] = dates
   eChartOptions.series = series
-  // legend在4个切换到2个的时候，还是显示成4个，需要手动配置一下
+  // legend 在 4 个切换到 2 个的时候，还是显示成 4 个，需要手动配置一下
   eChartOptions.legend['data'] = series.map((item) => item.name)
   loading.value = false
 }

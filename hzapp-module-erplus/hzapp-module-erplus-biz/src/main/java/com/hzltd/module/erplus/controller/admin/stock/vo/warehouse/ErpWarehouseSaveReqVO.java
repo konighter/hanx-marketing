@@ -3,8 +3,8 @@ package com.hzltd.module.erplus.controller.admin.stock.vo.warehouse;
 import com.hzltd.framework.common.enums.CommonStatusEnum;
 import com.hzltd.framework.common.validation.InEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;

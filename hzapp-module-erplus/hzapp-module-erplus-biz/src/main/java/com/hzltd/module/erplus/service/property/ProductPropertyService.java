@@ -4,8 +4,8 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.property.vo.property.ProductPropertyPageReqVO;
 import com.hzltd.module.erplus.controller.admin.property.vo.property.ProductPropertySaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyDO;
+import jakarta.validation.Valid;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 

@@ -1,35 +1,31 @@
 package com.hzltd.module.erplus.sys.controller.admin.countries;
 
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
+import com.hzltd.framework.common.pojo.CommonResult;
+import com.hzltd.framework.common.pojo.PageParam;
+import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.framework.common.util.object.BeanUtils;
+import com.hzltd.framework.excel.core.util.ExcelUtils;
 import com.hzltd.module.erplus.sys.controller.admin.countries.vo.CountriesPageReqVO;
 import com.hzltd.module.erplus.sys.controller.admin.countries.vo.CountriesRespVO;
 import com.hzltd.module.erplus.sys.controller.admin.countries.vo.CountriesSaveReqVO;
-import org.springframework.web.bind.annotation.*;
-import javax.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.security.access.prepost.PreAuthorize;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Operation;
-
-import javax.validation.*;
-import javax.servlet.http.*;
-import java.util.*;
-import java.io.IOException;
-
-import com.hzltd.framework.common.pojo.PageParam;
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.pojo.CommonResult;
-import com.hzltd.framework.common.util.object.BeanUtils;
-import static com.hzltd.framework.common.pojo.CommonResult.success;
-
-import com.hzltd.framework.excel.core.util.ExcelUtils;
-
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.*;
-
-import com.hzltd.module.erplus.sys.controller.admin.countries.vo.*;
 import com.hzltd.module.erplus.sys.dal.dataobject.countries.CountriesDO;
 import com.hzltd.module.erplus.sys.service.countries.CountriesService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.List;
+
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
+import static com.hzltd.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - [Erplus] 国家/地区定义")
 @RestController
@@ -84,7 +80,7 @@ public class CountriesController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出[Erplus] 国家/地区定义 Excel")
     @PreAuthorize("@ss.hasPermission('erplus:countries:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = EXPORT)
     public void exportCountriesExcel(@Valid CountriesPageReqVO pageReqVO,
               HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【营销】内容管理" url="https://help.h2z.ltd/mall/promotion-content/" />
+  <doc-alert title="【营销】内容管理" url="https://doc.h2z.ltd/mall/promotion-content/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

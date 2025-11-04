@@ -1,19 +1,17 @@
 package com.hzltd.module.erplus.sys.service.languages;
 
-import com.hzltd.module.erplus.sys.controller.admin.languages.vo.LanguagesPageReqVO;
-import com.hzltd.module.erplus.sys.controller.admin.languages.vo.LanguagesSaveReqVO;
-import org.springframework.stereotype.Service;
-import javax.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-
-import com.hzltd.module.erplus.sys.dal.dataobject.languages.LanguagesDO;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
-
+import com.hzltd.module.erplus.sys.controller.admin.languages.vo.LanguagesPageReqVO;
+import com.hzltd.module.erplus.sys.controller.admin.languages.vo.LanguagesSaveReqVO;
+import com.hzltd.module.erplus.sys.dal.dataobject.languages.LanguagesDO;
 import com.hzltd.module.erplus.sys.dal.mysql.languages.LanguagesMapper;
+import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.LANGUAGES_NOT_EXISTS;
 
 /**
  * [Erplus] 语言定义 Service 实现类

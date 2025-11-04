@@ -3,12 +3,10 @@ package com.hzltd.module.erplus.service.categoryattr;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.dal.dataobject.categoryattr.CategoryAttributeDO;
 import com.hzltd.module.erplus.dal.mysql.categoryattr.CategoryAttributeMapper;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
-
-import java.util.Collections;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;

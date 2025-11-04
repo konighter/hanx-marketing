@@ -6,14 +6,14 @@
     <parent>
         <groupId>com.hzltd</groupId>
         <artifactId>hzapp-module-erplus</artifactId>
-        <version>2.0.2-SNAPSHOT</version>
+        <version>${revision}</version>
     </parent>
 
     <artifactId>hzapp-module-erplus-amz-spapi</artifactId>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gson-fire-version>1.8.0</gson-fire-version>
         <okhttp-version>2.7.5</okhttp-version>

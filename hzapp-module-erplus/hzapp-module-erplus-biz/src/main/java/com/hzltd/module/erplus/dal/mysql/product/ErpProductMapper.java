@@ -1,8 +1,8 @@
 package com.hzltd.module.erplus.dal.mysql.product;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.controller.admin.product.vo.product.ErpProductPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductDO;
 import org.apache.ibatis.annotations.Mapper;

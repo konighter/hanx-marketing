@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【库存】其它入库、其它出库" url="https://help.h2z.ltd/erp/stock-in-out/" />
+  <doc-alert title="【库存】其它入库、其它出库" url="https://doc.h2z.ltd/erp/stock-in-out/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.model.category;
 
-import com.hzltd.module.erplus.model.common.ExtraParamRequest;
 import com.hzltd.module.erplus.constant.LanguageEnum;
+import com.hzltd.module.erplus.model.common.ExtraParamRequest;
 import lombok.Data;
 
 @Data

@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="商城手册（功能开启）" url="https://help.h2z.ltd/mall/build/" />
+  <doc-alert title="商城手册（功能开启）" url="https://doc.h2z.ltd/mall/build/" />
 
   <!-- 搜索工作栏 -->
   <ContentWrap>

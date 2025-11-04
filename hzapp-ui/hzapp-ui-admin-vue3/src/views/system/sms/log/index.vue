@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="短信配置" url="https://help.h2z.ltd/sms/" />
+  <doc-alert title="短信配置" url="https://doc.h2z.ltd/sms/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

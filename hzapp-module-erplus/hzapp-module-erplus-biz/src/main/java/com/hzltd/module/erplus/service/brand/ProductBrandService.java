@@ -6,8 +6,8 @@ import com.hzltd.module.erplus.controller.admin.brand.vo.ProductBrandListReqVO;
 import com.hzltd.module.erplus.controller.admin.brand.vo.ProductBrandPageReqVO;
 import com.hzltd.module.erplus.controller.admin.brand.vo.ProductBrandUpdateReqVO;
 import com.hzltd.module.erplus.dal.dataobject.brand.ProductBrandDO;
+import jakarta.validation.Valid;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 

@@ -1,14 +1,14 @@
 package com.hzltd.module.erplus.service.shop;
 
-import java.util.*;
-import javax.validation.*;
-
+import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopPageReqVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopReqVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopRespVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.ShopSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
-import com.hzltd.framework.common.pojo.PageResult;
+import jakarta.validation.Valid;
+
+import java.util.List;
 
 /**
  * 店铺信息 Service 接口

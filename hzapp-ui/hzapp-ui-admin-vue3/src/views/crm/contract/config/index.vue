@@ -1,6 +1,4 @@
 <template>
-  <doc-alert title="【合同】合同管理、合同提醒" url="https://help.h2z.ltd/crm/contract/" />
-  <doc-alert title="【通用】数据权限" url="https://help.h2z.ltd/crm/permission/" />
 
   <ContentWrap>
     <el-form
@@ -27,8 +25,8 @@
             @change="changeNotifyEnable"
             class="ml-4"
           >
-            <el-radio :label="false" size="large">不提醒</el-radio>
-            <el-radio :label="true" size="large">提醒</el-radio>
+            <el-radio :value="false" size="large">不提醒</el-radio>
+            <el-radio :value="true" size="large">提醒</el-radio>
           </el-radio-group>
         </el-form-item>
         <div v-if="formData.notifyEnabled">

@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【营销】商城装修" url="https://help.h2z.ltd/mall/diy/" />
+  <doc-alert title="【营销】商城装修" url="https://doc.h2z.ltd/mall/diy/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

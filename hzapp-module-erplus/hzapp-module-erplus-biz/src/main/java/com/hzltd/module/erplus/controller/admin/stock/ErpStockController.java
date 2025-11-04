@@ -1,14 +1,13 @@
 package com.hzltd.module.erplus.controller.admin.stock;
 
 import cn.hutool.core.collection.CollUtil;
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.collection.MapUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-import com.hzltd.framework.operatelog.core.annotations.OperateLog;
-import com.hzltd.module.erplus.controller.admin.product.vo.product.ErpProductRespVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpStockPageReqVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpStockRespVO;
@@ -21,6 +20,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,17 +30,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertSet;
-import static com.hzltd.framework.operatelog.core.enums.OperateTypeEnum.EXPORT;
+
 
 @Tag(name = "管理后台 - ERP 产品库存")
 @RestController
@@ -86,7 +86,7 @@ public class ErpStockController {
     @GetMapping("/export-excel")
     @Operation(summary = "导出产品库存 Excel")
     @PreAuthorize("@ss.hasPermission('erp:stock:export')")
-    @OperateLog(type = EXPORT)
+    @ApiAccessLog(operateType = EXPORT)
     public void exportStockExcel(@Valid ErpStockPageReqVO pageReqVO,
               HttpServletResponse response) throws IOException {
         pageReqVO.setPageSize(PageParam.PAGE_SIZE_NONE);

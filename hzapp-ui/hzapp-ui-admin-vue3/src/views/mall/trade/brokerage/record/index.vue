@@ -1,5 +1,5 @@
 <template>
-  <doc-alert title="【交易】分销返佣" url="https://help.h2z.ltd/mall/trade-brokerage/" />
+  <doc-alert title="【交易】分销返佣" url="https://doc.h2z.ltd/mall/trade-brokerage/" />
 
   <ContentWrap>
     <!-- 搜索工作栏 -->

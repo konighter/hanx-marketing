@@ -1,9 +1,7 @@
 package com.hzltd.module.erplus.controller.admin.app.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import javax.validation.constraints.*;
+import lombok.Data;
 
 @Schema(description = "管理后台 - 应用注册信息新增/修改 Request VO")
 @Data

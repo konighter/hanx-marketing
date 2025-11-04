@@ -1,8 +1,11 @@
 package com.hzltd.module.erplus.dal.dataobject.sellzone;
 
-import lombok.*;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.framework.tenant.core.aop.TenantIgnore;
+import lombok.*;
 
 /**
  * 销售区域 DO
@@ -17,6 +20,7 @@ import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@TenantIgnore
 public class SellZoneDO extends BaseDO {
 
     /**

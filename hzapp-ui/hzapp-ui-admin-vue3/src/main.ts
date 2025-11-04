@@ -28,8 +28,8 @@ import '@/plugins/animate.css'
 // 路由
 import router, { setupRouter } from '@/router'
 
-// 权限
-import { setupAuth } from '@/directives'
+// 指令
+import { setupAuth, setupMountedFocus } from '@/directives'
 
 import { createApp } from 'vue'
 
@@ -41,6 +41,11 @@ import '@/plugins/tongji' // 百度统计
 import Logger from '@/utils/Logger'
 
 import VueDOMPurifyHTML from 'vue-dompurify-html' // 解决v-html 的安全隐患
+
+// wangEditor 插件注册
+import { setupWangEditorPlugin } from '@/views/bpm/model/form/PrintTemplate'
+
+import print from 'vue3-print-nb' // 打印插件
 
 // 创建实例
 const setupAll = async () => {
@@ -58,11 +63,19 @@ const setupAll = async () => {
 
   setupRouter(app)
 
+  // directives 指令
   setupAuth(app)
+  setupMountedFocus(app)
+
+  // wangEditor 插件注册
+  setupWangEditorPlugin()
 
   await router.isReady()
 
   app.use(VueDOMPurifyHTML)
+
+  // 打印
+  app.use(print)
 
   app.mount('#app')
 }

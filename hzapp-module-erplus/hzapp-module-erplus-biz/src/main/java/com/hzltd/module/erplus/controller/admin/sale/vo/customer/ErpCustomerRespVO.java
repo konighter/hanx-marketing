@@ -1,13 +1,14 @@
 package com.hzltd.module.erplus.controller.admin.sale.vo.customer;
 
+import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
+import cn.idev.excel.annotation.ExcelProperty;
+import com.hzltd.framework.excel.core.annotations.DictFormat;
+import com.hzltd.framework.excel.core.convert.DictConvert;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
+import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import com.alibaba.excel.annotation.*;
-import com.hzltd.framework.excel.core.annotations.DictFormat;
-import com.hzltd.framework.excel.core.convert.DictConvert;
 
 @Schema(description = "管理后台 - ERP 客户 Response VO")
 @Data

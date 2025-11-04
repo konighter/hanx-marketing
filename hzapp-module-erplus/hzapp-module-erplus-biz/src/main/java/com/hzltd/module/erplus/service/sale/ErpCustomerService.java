@@ -4,8 +4,8 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.sale.vo.customer.ErpCustomerPageReqVO;
 import com.hzltd.module.erplus.controller.admin.sale.vo.customer.ErpCustomerSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sale.ErpCustomerDO;
+import jakarta.validation.Valid;
 
-import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;

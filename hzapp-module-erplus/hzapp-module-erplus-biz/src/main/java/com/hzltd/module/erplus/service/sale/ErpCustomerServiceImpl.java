@@ -7,10 +7,10 @@ import com.hzltd.module.erplus.controller.admin.sale.vo.customer.ErpCustomerPage
 import com.hzltd.module.erplus.controller.admin.sale.vo.customer.ErpCustomerSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sale.ErpCustomerDO;
 import com.hzltd.module.erplus.dal.mysql.sale.ErpCustomerMapper;
+import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.List;
 
