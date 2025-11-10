@@ -42,52 +42,60 @@ export interface PropertyValueDetailVO {
 
 // 创建属性项
 export const createProperty = (data: PropertyVO) => {
-  return request.post({ url: '/product/property/create', data })
+  return request.post({ url: '/erplus/spu/property/create', data })
 }
 
 // 更新属性项
 export const updateProperty = (data: PropertyVO) => {
-  return request.put({ url: '/product/property/update', data })
+  return request.put({ url: '/erplus/spu/property/update', data })
 }
 
 // 删除属性项
 export const deleteProperty = (id: number) => {
-  return request.delete({ url: `/product/property/delete?id=${id}` })
+  return request.delete({ url: `/erplus/spu/property/delete?id=${id}` })
 }
 
 // 获得属性项
 export const getProperty = (id: number): Promise<PropertyVO> => {
-  return request.get({ url: `/product/property/get?id=${id}` })
+  return request.get({ url: `/erplus/spu/property/get?id=${id}` })
 }
 
 // 获得属性项分页
 export const getPropertyPage = (params: PageParam) => {
-  return request.get({ url: '/product/property/page', params })
+  return request.get({ url: '/erplus/spu/property/page', params })
+}
+
+export const getPropertySimpleList = () => {
+  return request.get({ url: '/erplus/spu/property/simple-list' })
 }
 
 // ------------------------ 属性值 -------------------
 
 // 获得属性值分页
 export const getPropertyValuePage = (params: PageParam & any) => {
-  return request.get({ url: '/product/property/value/page', params })
+  return request.get({ url: '/erplus/spu/property/value/page', params })
 }
 
 // 获得属性值
 export const getPropertyValue = (id: number): Promise<PropertyValueVO> => {
-  return request.get({ url: `/product/property/value/get?id=${id}` })
+  return request.get({ url: `/erplus/spu/property/value/get?id=${id}` })
 }
 
 // 创建属性值
 export const createPropertyValue = (data: PropertyValueVO) => {
-  return request.post({ url: '/product/property/value/create', data })
+  return request.post({ url: '/erplus/spu/property/value/create', data })
 }
 
 // 更新属性值
 export const updatePropertyValue = (data: PropertyValueVO) => {
-  return request.put({ url: '/product/property/value/update', data })
+  return request.put({ url: '/erplus/spu/property/value/update', data })
 }
 
 // 删除属性值
 export const deletePropertyValue = (id: number) => {
-  return request.delete({ url: `/product/property/value/delete?id=${id}` })
+  return request.delete({ url: `/erplus/spu/property/value/delete?id=${id}` })
+}
+
+export const getPropertyValueSimpleList = (propertyId: number) => {
+  return request.get({ url: `/erplus/spu/property/value/simple-list?propertyId=${propertyId}` })
 }

@@ -50,7 +50,7 @@ const download = {
     drawWithImageSize?: boolean // 将图片绘制在画布上时带上图片的宽高值, 默认是要带上的
   }) => {
     const image = new Image()
-    // image.setAttribute('crossOrigin', 'anonymous')
+    image.setAttribute('crossOrigin', 'anonymous')
     image.src = url
     image.onload = () => {
       const canvas = document.createElement('canvas')

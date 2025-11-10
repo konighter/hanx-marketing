@@ -32,30 +32,30 @@ export interface BrandVO {
 
 // 创建商品品牌
 export const createBrand = (data: BrandVO) => {
-  return request.post({ url: '/product/brand/create', data })
+  return request.post({ url: '/erplus/product/brand/create', data })
 }
 
 // 更新商品品牌
 export const updateBrand = (data: BrandVO) => {
-  return request.put({ url: '/product/brand/update', data })
+  return request.put({ url: '/erplus/product/brand/update', data })
 }
 
 // 删除商品品牌
 export const deleteBrand = (id: number) => {
-  return request.delete({ url: `/product/brand/delete?id=${id}` })
+  return request.delete({ url: `/erplus/product/brand/delete?id=${id}` })
 }
 
 // 获得商品品牌
 export const getBrand = (id: number) => {
-  return request.get({ url: `/product/brand/get?id=${id}` })
+  return request.get({ url: `/erplus/product/brand/get?id=${id}` })
 }
 
 // 获得商品品牌列表
 export const getBrandParam = (params: PageParam) => {
-  return request.get({ url: '/product/brand/page', params })
+  return request.get({ url: '/erplus/product/brand/page', params })
 }
 
 // 获得商品品牌精简信息列表
 export const getSimpleBrandList = () => {
-  return request.get({ url: '/product/brand/list-all-simple' })
+  return request.get({ url: '/erplus/product/brand/list-all-simple' })
 }

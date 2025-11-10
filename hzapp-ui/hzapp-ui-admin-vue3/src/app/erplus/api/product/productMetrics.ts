@@ -11,7 +11,7 @@ export interface ProductMetricsVO {
 
 
 export interface MetricsDefVO {
-            lable: string
+            name: string
             field: string
 }
 

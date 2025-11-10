@@ -1,13 +1,7 @@
 <template>
   <!-- 情况一：添加/修改 -->
-  <el-table
-    v-if="!isDetail && !isActivityComponent"
-    :data="isBatch ? skuList : formData!.skus!"
-    border
-    class="tabNumWidth"
-    max-height="500"
-    size="small"
-  >
+  <el-table v-if="!isDetail && !isActivityComponent" :data="isBatch ? skuList : formData!.skus!" border
+    class="tabNumWidth" max-height="500" size="small">
     <el-table-column align="center" label="图片" min-width="65">
       <template #default="{ row }">
         <UploadImg v-model="row.picUrl" height="50px" width="50px" />
@@ -15,59 +9,36 @@
     </el-table-column>
     <template v-if="formData!.specType && !isBatch">
       <!--  根据商品属性动态添加 -->
-      <el-table-column
-        v-for="(item, index) in tableHeaders"
-        :key="index"
-        :label="item.label"
-        align="center"
-        min-width="120"
-      >
+      <el-table-column v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
+        min-width="120">
         <template #default="{ row }">
           <span style="font-weight: bold; color: #40aaff">
-            {{ row.properties[index]?.valueName }}
+            {{ row.properties?.[index]?.valueName }}
           </span>
         </template>
       </el-table-column>
     </template>
-    <el-table-column align="center" label="商品条码" min-width="168">
+    <el-table-column align="center" label="商品编码" min-width="168">
       <template #default="{ row }">
         <el-input v-model="row.barCode" class="w-100%" />
       </template>
     </el-table-column>
     <el-table-column align="center" label="销售价" min-width="168">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.price"
-          :min="0"
-          :precision="2"
-          :step="0.1"
-          class="w-100%"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.price" :min="0" :precision="2" :step="0.1" class="w-100%"
+          controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column align="center" label="市场价" min-width="168">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.marketPrice"
-          :min="0"
-          :precision="2"
-          :step="0.1"
-          class="w-100%"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.marketPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+          controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column align="center" label="成本价" min-width="168">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.costPrice"
-          :min="0"
-          :precision="2"
-          :step="0.1"
-          class="w-100%"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+          controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column align="center" label="库存" min-width="168">
@@ -77,51 +48,27 @@
     </el-table-column>
     <el-table-column align="center" label="重量(kg)" min-width="168">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.weight"
-          :min="0"
-          :precision="2"
-          :step="0.1"
-          class="w-100%"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.weight" :min="0" :precision="2" :step="0.1" class="w-100%"
+          controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column align="center" label="体积(m^3)" min-width="168">
       <template #default="{ row }">
-        <el-input-number
-          v-model="row.volume"
-          :min="0"
-          :precision="2"
-          :step="0.1"
-          class="w-100%"
-          controls-position="right"
-        />
+        <el-input-number v-model="row.volume" :min="0" :precision="2" :step="0.1" class="w-100%"
+          controls-position="right" />
       </template>
     </el-table-column>
     <template v-if="formData!.subCommissionType">
       <el-table-column align="center" label="一级返佣(元)" min-width="168">
         <template #default="{ row }">
-          <el-input-number
-            v-model="row.firstBrokeragePrice"
-            :min="0"
-            :precision="2"
-            :step="0.1"
-            class="w-100%"
-            controls-position="right"
-          />
+          <el-input-number v-model="row.firstBrokeragePrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+            controls-position="right" />
         </template>
       </el-table-column>
       <el-table-column align="center" label="二级返佣(元)" min-width="168">
         <template #default="{ row }">
-          <el-input-number
-            v-model="row.secondBrokeragePrice"
-            :min="0"
-            :precision="2"
-            :step="0.1"
-            class="w-100%"
-            controls-position="right"
-          />
+          <el-input-number v-model="row.secondBrokeragePrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+            controls-position="right" />
         </template>
       </el-table-column>
     </template>
@@ -136,44 +83,26 @@
   </el-table>
 
   <!-- 情况二：详情 -->
-  <el-table
-    v-if="isDetail"
-    ref="activitySkuListRef"
-    :data="formData!.skus!"
-    border
-    max-height="500"
-    size="small"
-    style="width: 99%"
-    @selection-change="handleSelectionChange"
-  >
+  <el-table v-if="isDetail" ref="activitySkuListRef" :data="formData!.skus!" border max-height="500" size="small"
+    style="width: 99%" @selection-change="handleSelectionChange">
     <el-table-column v-if="isComponent" type="selection" width="45" />
     <el-table-column align="center" label="图片" min-width="80">
       <template #default="{ row }">
-        <el-image
-          v-if="row.picUrl"
-          :src="row.picUrl"
-          class="h-50px w-50px"
-          @click="imagePreview(row.picUrl)"
-        />
+        <el-image v-if="row.picUrl" :src="row.picUrl" class="h-50px w-50px" @click="imagePreview(row.picUrl)" />
       </template>
     </el-table-column>
     <template v-if="formData!.specType && !isBatch">
       <!--  根据商品属性动态添加 -->
-      <el-table-column
-        v-for="(item, index) in tableHeaders"
-        :key="index"
-        :label="item.label"
-        align="center"
-        min-width="80"
-      >
+      <el-table-column v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
+        min-width="80">
         <template #default="{ row }">
           <span style="font-weight: bold; color: #40aaff">
-            {{ row.properties[index]?.valueName }}
+            {{ row.properties?.[index]?.valueName }}
           </span>
         </template>
       </el-table-column>
     </template>
-    <el-table-column align="center" label="商品条码" min-width="100">
+    <el-table-column align="center" label="商品编码" min-width="100">
       <template #default="{ row }">
         {{ row.barCode }}
       </template>
@@ -223,14 +152,7 @@
   </el-table>
 
   <!-- 情况三：作为活动组件 -->
-  <el-table
-    v-if="isActivityComponent"
-    :data="formData!.skus!"
-    border
-    max-height="500"
-    size="small"
-    style="width: 99%"
-  >
+  <el-table v-if="isActivityComponent" :data="formData!.skus!" border max-height="500" size="small" style="width: 99%">
     <el-table-column v-if="isComponent" type="selection" width="45" />
     <el-table-column align="center" label="图片" min-width="80">
       <template #default="{ row }">
@@ -239,38 +161,33 @@
     </el-table-column>
     <template v-if="formData!.specType">
       <!--  根据商品属性动态添加 -->
-      <el-table-column
-        v-for="(item, index) in tableHeaders"
-        :key="index"
-        :label="item.label"
-        align="center"
-        min-width="80"
-      >
+      <el-table-column v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
+        min-width="80">
         <template #default="{ row }">
           <span style="font-weight: bold; color: #40aaff">
-            {{ row.properties[index]?.valueName }}
+            {{ row.properties?.[index]?.valueName }}
           </span>
         </template>
       </el-table-column>
     </template>
-    <el-table-column align="center" label="商品条码" min-width="100">
+    <el-table-column align="center" label="商品编码" min-width="100">
       <template #default="{ row }">
         {{ row.barCode }}
       </template>
     </el-table-column>
     <el-table-column align="center" label="销售价(元)" min-width="80">
       <template #default="{ row }">
-        {{ row.price }}
+        {{ formatToFraction(row.price) }}
       </template>
     </el-table-column>
     <el-table-column align="center" label="市场价(元)" min-width="80">
       <template #default="{ row }">
-        {{ row.marketPrice }}
+        {{ formatToFraction(row.marketPrice) }}
       </template>
     </el-table-column>
     <el-table-column align="center" label="成本价(元)" min-width="80">
       <template #default="{ row }">
-        {{ row.costPrice }}
+        {{ formatToFraction(row.costPrice) }}
       </template>
     </el-table-column>
     <el-table-column align="center" label="库存" min-width="80">
@@ -284,14 +201,15 @@
 </template>
 <script lang="ts" setup>
 import { PropType, Ref } from 'vue'
-import { copyValueToTarget } from '@/utils'
+import { copyValueToTarget, formatToFraction } from '@/utils'
 import { propTypes } from '@/utils/propTypes'
 import { UploadImg } from '@/components/UploadFile'
-import type { Property, Sku, Spu } from '@/api/mall/product/spu'
+import type { Property, Sku, Spu } from '@/app/erplus/api/product/spu'
 import { createImageViewer } from '@/components/ImageViewer'
-import { RuleConfig } from '@/views/mall/product/spu/components/index'
+import { RuleConfig } from '@/app/erplus/views/product/spu/components/index'
 import { PropertyAndValues } from './index'
 import { ElTable } from 'element-plus'
+import { isEmpty } from '@/utils/is'
 
 defineOptions({ name: 'SkuList' })
 const message = useMessage() // 消息弹窗
@@ -299,7 +217,7 @@ const message = useMessage() // 消息弹窗
 const props = defineProps({
   propFormData: {
     type: Object as PropType<Spu>,
-    default: () => {}
+    default: () => { }
   },
   propertyList: {
     type: Array as PropType<PropertyAndValues[]>,
@@ -320,7 +238,7 @@ const skuList = ref<Sku[]>([
     price: 0, // 商品价格
     marketPrice: 0, // 市场价
     costPrice: 0, // 成本价
-    barCode: '', // 商品条码
+    barCode: '', // 商品编码
     picUrl: '', // 图片地址
     stock: 0, // 库存
     weight: 0, // 商品重量
@@ -340,11 +258,22 @@ const imagePreview = (imgUrl: string) => {
 
 /** 批量添加 */
 const batchAdd = () => {
+  validateProperty()
   formData.value!.skus!.forEach((item) => {
     copyValueToTarget(item, skuList.value[0])
   })
 }
-
+/** 校验商品属性属性值 */
+const validateProperty = () => {
+  // 校验商品属性属性值是否为空，有一个为空都不给过
+  const warningInfo = '存在属性属性值为空，请先检查完善属性值后重试！！！'
+  for (const item of props.propertyList) {
+    if (!item.values || isEmpty(item.values)) {
+      message.warning(warningInfo)
+      throw new Error(warningInfo)
+    }
+  }
+}
 /** 删除 sku */
 const deleteSku = (row) => {
   const index = formData.value!.skus!.findIndex(
@@ -358,6 +287,7 @@ const tableHeaders = ref<{ prop: string; label: string }[]>([]) // 多属性表�
  * 保存时，每个商品规格的表单要校验下。例如说，销售金额最低是 0.01 这种。
  */
 const validateSku = () => {
+  validateProperty()
   let warningInfo = '请检查商品各行相关属性配置，'
   let validate = true // 默认通过
   for (const sku of formData.value!.skus!) {
@@ -421,7 +351,7 @@ watch(
 const generateTableData = (propertyList: any[]) => {
   // 构建数据结构
   const propertyValues = propertyList.map((item) =>
-    item.values.map((v) => ({
+    item.values.map((v: any) => ({
       propertyId: item.id,
       propertyName: item.name,
       valueId: v.id,
@@ -464,15 +394,14 @@ const generateTableData = (propertyList: any[]) => {
  */
 const validateData = (propertyList: any[]) => {
   const skuPropertyIds: number[] = []
-  formData.value!.skus!.forEach(
-    (sku) =>
-      sku.properties
-        ?.map((property) => property.propertyId)
-        ?.forEach((propertyId) => {
-          if (skuPropertyIds.indexOf(propertyId!) === -1) {
-            skuPropertyIds.push(propertyId!)
-          }
-        })
+  formData.value!.skus!.forEach((sku) =>
+    sku.properties
+      ?.map((property) => property.propertyId)
+      ?.forEach((propertyId) => {
+        if (skuPropertyIds.indexOf(propertyId!) === -1) {
+          skuPropertyIds.push(propertyId!)
+        }
+      })
   )
   const propertyIds = propertyList.map((item) => item.id)
   return skuPropertyIds.length === propertyIds.length
@@ -543,7 +472,7 @@ watch(
       return
     }
     // 添加新属性没有属性值也不做处理
-    if (propertyList.some((item) => item.values!.length === 0)) {
+    if (propertyList.some((item) => !item.values || isEmpty(item.values))) {
       return
     }
     // 生成 table 数据，即 sku 列表

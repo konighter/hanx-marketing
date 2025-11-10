@@ -15,6 +15,7 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons-ng'
 import UnoCSS from 'unocss/vite'
+import { vitePluginForArco } from '@arco-plugins/vite-vue'
 
 export function createVitePlugins() {
   const root = process.cwd()
@@ -94,6 +95,9 @@ export function createVitePlugins() {
       promiseExportName: '__tla',
       // The function to generate import names of top-level await promise in each chunk module
       promiseImportName: (i) => `__tla_${i}`
+    }),
+    vitePluginForArco({
+      style: 'css'
     })
   ]
 }

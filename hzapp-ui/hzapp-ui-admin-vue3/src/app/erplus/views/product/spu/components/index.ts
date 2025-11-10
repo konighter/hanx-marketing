@@ -1,5 +1,5 @@
 import SkuList from './SkuList.vue'
-import { Spu } from '@/api/mall/product/spu'
+import { Spu } from '@/app/erplus/api/product/spu'
 
 interface PropertyAndValues {
   id: number

@@ -1,70 +1,33 @@
 <template>
   <ContentWrap v-loading="formLoading">
     <el-tabs v-model="activeName">
-      <el-tab-pane label="发布设置" name="publish">
-        <PublishForm
-          ref="publishRef"
-          v-model:activeName="activeName"
-          :is-detail="isDetail"
-          :propFormData="formData"
-        />
-      </el-tab-pane>
       <el-tab-pane label="基础设置" name="info">
-        <InfoForm
-          ref="infoRef"
-          v-model:activeName="activeName"
-          :is-detail="isDetail"
-          :propFormData="formData"
-        />
+        <InfoForm ref="infoRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData" />
       </el-tab-pane>
-
+      <el-tab-pane label="商品详情" name="description">
+        <DescriptionForm ref="descriptionRef" v-model:activeName="activeName" :is-detail="isDetail"
+          :propFormData="formData" />
+      </el-tab-pane>
       <el-tab-pane label="价格库存" name="sku">
-        <SkuForm
-          ref="skuRef"
-          v-model:activeName="activeName"
-          :is-detail="isDetail"
-          :propFormData="formData"
-        />
-      </el-tab-pane>
-      <el-tab-pane label="产品属性" name="attributes">
-        <ProductAttributesForm
-          ref="attributesRef"
-          v-model:activeName="activeName"
-          :is-detail="isDetail"
-          :propFormData="formData"
-        />
+        <SkuForm ref="skuRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData" />
       </el-tab-pane>
       <el-tab-pane label="物流设置" name="delivery">
-        <DeliveryForm
-          ref="deliveryRef"
-          v-model:activeName="activeName"
-          :is-detail="isDetail"
-          :propFormData="formData"
-        />
+        <DeliveryForm ref="deliveryRef" v-model:activeName="activeName" :is-detail="isDetail"
+          :propFormData="formData" />
       </el-tab-pane>
-      
-      
-  
-      <el-tab-pane label="安全合规" name="compliance">
-        <ComplianceForm
-          ref="complianceRef"
-          v-model:activeName="activeName"
-          :is-detail="isDetail"
-          :propFormData="formData"
-        />
+
+      <el-tab-pane label="其它设置" name="other">
+        <OtherForm ref="otherRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData" />
       </el-tab-pane>
     </el-tabs>
-
     <el-form>
       <el-form-item style="float: right">
         <el-button v-if="!isDetail" :loading="formLoading" type="primary" @click="submitForm">
           保存
         </el-button>
-        <el-button @click="nextStep">下一步</el-button>
         <el-button @click="close">返回</el-button>
       </el-form-item>
     </el-form>
-
   </ContentWrap>
 </template>
 <script lang="ts" setup>
@@ -72,14 +35,13 @@ import { cloneDeep } from 'lodash-es'
 import { useTagsViewStore } from '@/store/modules/tagsView'
 import * as ProductSpuApi from '@/app/erplus/api/product/spu'
 import InfoForm from './InfoForm.vue'
+import DescriptionForm from './DescriptionForm.vue'
+import OtherForm from './OtherForm.vue'
 import SkuForm from './SkuForm.vue'
-import ProductAttributesForm from './ProductAttributesForm.vue'
 import DeliveryForm from './DeliveryForm.vue'
-import PublishForm from './PublishForm.vue'
-import ComplianceForm from './ComplianceForm.vue'
 import { convertToInteger, floatToFixed2, formatToFraction } from '@/utils'
 
-defineOptions({ name: 'ProductSpuForm' })
+defineOptions({ name: 'ProductSpuAdd' })
 
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
@@ -88,19 +50,13 @@ const { params, name } = useRoute() // 查询参数
 const { delView } = useTagsViewStore() // 视图操作
 
 const formLoading = ref(false) // 表单的加载中：1）修改时的数据加载；2）提交的按钮禁用
-const activeName = ref('publish') // Tag 激活的窗口
+const activeName = ref('info') // Tag 激活的窗口
 const isDetail = ref(false) // 是否查看详情
 const infoRef = ref() // 商品信息 Ref
 const skuRef = ref() // 商品规格 Ref
-const attributesRef = ref() // 产品属性 Ref
 const deliveryRef = ref() // 物流设置 Ref
+const descriptionRef = ref() // 商品详情 Ref
 const otherRef = ref() // 其他设置 Ref
-const publishRef = ref() // 发布设置 Ref
-const complianceRef = ref() // 安全合规 Ref
-
-const tabs: string[] = ['publish', 'info', 'sku', 'attributes', 'delivery', 'compliance']
- 
-
 // SPU 表单数据
 const formData = ref<ProductSpuApi.Spu>({
   name: '', // 商品名称
@@ -108,51 +64,30 @@ const formData = ref<ProductSpuApi.Spu>({
   keyword: '', // 关键字
   picUrl: '', // 商品封面图
   sliderPicUrls: [], // 商品轮播图
-  introduction: '', // 商品简介
+  introduction: [''], // 商品简介
   deliveryTypes: [], // 配送方式数组
   deliveryTemplateId: undefined, // 运费模版
   brandId: undefined, // 商品品牌
-  specType: false, // 商品规格
-  subCommissionType: false, // 分销类型
-  skus: [],
+  specType: true, // 商品规格
+  // subCommissionType: false, // 分销类型
+  skus: [
+    {
+      price: 0, // 商品价格
+      marketPrice: 0, // 市场价
+      costPrice: 0, // 成本价
+      barCode: '', // 商品条码
+      picUrl: '', // 图片地址
+      stock: 0, // 库存
+      weight: 0, // 商品重量
+      volume: 0, // 商品体积
+      // firstBrokeragePrice: 0, // 一级分销的佣金
+      // secondBrokeragePrice: 0 // 二级分销的佣金
+    }
+  ],
   description: '', // 商品详情
-  sort: 1, // 商品排序
-  giveIntegral: 1, // 赠送积分
-  virtualSalesCount: 1, // 虚拟销量
-  
-  // 产品属性
-  attributes: {},
-  
-  // 发布设置相关属性
-  crossPlatform: '',
-  marketId: '',
-  shopIds: [],
-  saveMode: '',
-  fulfillType: '',
-  delaySync: false,
-  scheduleTime: '',
-  productAttributes: [],
-  packageDimensions: {
-    length: 0,
-    width: 0,
-    height: 0,
-    unit: 'cm',
-    weight: 0,
-    weightUnit: 'kg'
-  },
-  certifications: [],
-  
-  // 安全合规相关属性
-  safetyStandards: [],
-  safetyWarnings: [],
-  materials: [],
-  hazardousSubstances: [],
-  environmentalCertifications: [],
-  packagingMaterials: [],
-  applicableRegulations: [],
-  restrictedRegions: [],
-  specialLicenses: [],
-  qualityReports: []
+  sort: 0, // 商品排序
+  giveIntegral: 0, // 赠送积分
+  virtualSalesCount: 0 // 虚拟销量
 })
 
 /** 获得详情 */
@@ -185,7 +120,6 @@ const getDetail = async () => {
     } finally {
       formLoading.value = false
     }
-
   }
 }
 
@@ -197,13 +131,11 @@ const submitForm = async () => {
     // 校验各表单
     await unref(infoRef)?.validate()
     await unref(skuRef)?.validate()
-    await unref(attributesRef)?.validate()
     await unref(deliveryRef)?.validate()
+    await unref(descriptionRef)?.validate()
     await unref(otherRef)?.validate()
-    await unref(publishRef)?.validate()
-    await unref(complianceRef)?.validate()
     // 深拷贝一份, 这样最终 server 端不满足，不需要影响原始数据
-    const deepCopyFormData = cloneDeep(unref(formData)) as ProductSpuApi.Spu
+    const deepCopyFormData = cloneDeep(unref(formData.value)) as ProductSpuApi.Spu
     deepCopyFormData.skus!.forEach((item) => {
       // 给sku name赋值
       item.name = deepCopyFormData.name
@@ -237,15 +169,10 @@ const submitForm = async () => {
   }
 }
 
-const nextStep = () => {
-  const index = (tabs.indexOf(activeName.value) + 1) % tabs.length
-  activeName.value = tabs[index]
-}
-
 /** 关闭按钮 */
 const close = () => {
   delView(unref(currentRoute))
-  push({ name: 'ErplusProductSpu' })
+  push({ name: 'ProductSpu' })
 }
 
 /** 初始化 */
@@ -253,4 +180,3 @@ onMounted(async () => {
   await getDetail()
 })
 </script>
-

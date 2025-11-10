@@ -20,8 +20,8 @@ export interface Sku {
   stock?: number // 库存
   weight?: number // 商品重量，单位：kg 千克
   volume?: number // 商品体积，单位：m^3 平米
-  firstBrokeragePrice?: number | string // 一级分销的佣金
-  secondBrokeragePrice?: number | string // 二级分销的佣金
+  // firstBrokeragePrice?: number | string // 一级分销的佣金
+  // secondBrokeragePrice?: number | string // 二级分销的佣金
   salesCount?: number // 商品销量
 }
 
@@ -39,7 +39,7 @@ export interface Spu {
   unit?: number | undefined // 单位
   picUrl?: string // 商品封面图
   sliderPicUrls?: string[] // 商品轮播图
-  introduction?: string // 商品简介
+  introduction: string[] // 商品简介
   deliveryTypes?: number[] // 配送方式
   deliveryTemplateId?: number | undefined // 运费模版
   brandId?: number // 商品品牌编号
@@ -110,50 +110,50 @@ export interface Spu {
 
 // 获得 Spu 列表
 export const getSpuPage = (params: PageParam) => {
-  return request.get({ url: '/product/spu/page', params })
+  return request.get({ url: '/erplus/spu/page', params })
 }
 
 // 获得 Spu 列表 tabsCount
 export const getTabsCount = () => {
-  return request.get({ url: '/product/spu/get-count' })
+  return request.get({ url: '/erplus/spu/get-count' })
 }
 
 // 创建商品 Spu
 export const createSpu = (data: Spu) => {
-  return request.post({ url: '/product/spu/create', data })
+  return request.post({ url: '/erplus/spu/create', data })
 }
 
 // 更新商品 Spu
 export const updateSpu = (data: Spu) => {
-  return request.put({ url: '/product/spu/update', data })
+  return request.put({ url: '/erplus/spu/update', data })
 }
 
 // 更新商品 Spu status
 export const updateStatus = (data: { id: number; status: number }) => {
-  return request.put({ url: '/product/spu/update-status', data })
+  return request.put({ url: '/erplus/spu/update-status', data })
 }
 
 // 获得商品 Spu
 export const getSpu = (id: number) => {
-  return request.get({ url: `/product/spu/get-detail?id=${id}` })
+  return request.get({ url: `/erplus/spu/get-detail?id=${id}` })
 }
 
 // 获得商品 Spu 详情列表
 export const getSpuDetailList = (ids: number[]) => {
-  return request.get({ url: `/product/spu/list?spuIds=${ids}` })
+  return request.get({ url: `/erplus/spu/list?spuIds=${ids}` })
 }
 
 // 删除商品 Spu
 export const deleteSpu = (id: number) => {
-  return request.delete({ url: `/product/spu/delete?id=${id}` })
+  return request.delete({ url: `/erplus/spu/delete?id=${id}` })
 }
 
 // 导出商品 Spu Excel
 export const exportSpu = async (params) => {
-  return await request.download({ url: '/product/spu/export', params })
+  return await request.download({ url: '/erplus/spu/export', params })
 }
 
 // 获得商品 SPU 精简列表
 export const getSpuSimpleList = async () => {
-  return request.get({ url: '/product/spu/list-all-simple' })
+  return request.get({ url: '/erplus/spu/list-all-simple' })
 }

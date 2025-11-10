@@ -32,6 +32,12 @@
         <el-button
           class="!p-10px !m-0"
           text
+          :icon="Plus"
+          @click="handleButtonClick('plus', detail)"
+        />
+        <el-button
+          class="!p-10px !m-0"
+          text
           :icon="Delete"
           @click="handleButtonClick('delete', detail)"
         />
@@ -41,6 +47,7 @@
           :icon="More"
           @click="handleButtonClick('more', detail)"
         />
+                
       </div>
     </div>
     <div class="!overflow-hidden !mt-20px !h-280px !flex-1" ref="cardImageRef">
@@ -69,7 +76,7 @@
   </el-card>
 </template>
 <script setup lang="ts">
-import { Delete, Download, More, RefreshRight } from '@element-plus/icons-vue'
+import { Delete, Download, More, Plus, RefreshRight } from '@element-plus/icons-vue'
 import { ImageVO, ImageMidjourneyButtonsVO } from '@/api/ai/image'
 import { PropType } from 'vue'
 import { ElLoading, LoadingOptionsResolved } from 'element-plus'
