@@ -5,14 +5,19 @@ import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.controller.admin.spu_new.vo.ProductSpuPageReqVO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.enums.ProductConstants;
 import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 @Mapper
-public interface ErpProductSpuMapper extends BaseMapperX<ProductSpuDO> {
+public interface ProductSpuMapper extends BaseMapperX<ProductSpuDO> {
+
+    @Select("SELECT * FROM product_sku WHERE id = #{id}")
+    ProductSpuDO selectByIdIncludeDeleted(@Param("id") Long id);
 
     /**
      * 获取商品 SPU 分页列表数据

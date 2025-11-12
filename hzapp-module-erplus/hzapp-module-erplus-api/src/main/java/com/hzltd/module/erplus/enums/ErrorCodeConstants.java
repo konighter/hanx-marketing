@@ -207,8 +207,8 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
     ErrorCode PRODUCT_POTENTIAL_NOT_EXISTS = new ErrorCode(1_031_008_000, "选品信息不存在");
     ErrorCode PRODUCT_POTENTIAL_COMPETITIVE_NOT_EXISTS = new ErrorCode(1_031_008_001, "选品信息不存在");
     ErrorCode PRODUCT_MONITOR_NOT_EXISTS = new ErrorCode(1_031_008_002, "商品监控信息不存在");
-
-
+    ErrorCode PRODUCT_ASSETS_NOT_EXISTS = new ErrorCode(1_031_008_003, "商品素材不存在");
+    ErrorCode PRODUCT_ASSETS_EXISTS = new ErrorCode(1_031_008_004, "素材已经存在");
 
 
     // ========== 店铺管理 ==========

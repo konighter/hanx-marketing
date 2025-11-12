@@ -43,14 +43,25 @@ public class ProductAssetsDO extends BaseDO {
      * 素材类型
      */
     private Integer type;
+
+    /**
+     * 来源
+     */
+    private Integer source;
     /**
      * 素材链接
      */
     private String assetLink;
+
+    /**
+     * 素材信息哈希值
+     */
+    private String assetInfoHash;
     /**
      * 素材信息
      */
     private String assetInfo;
+
     /**
      * 状态
      *

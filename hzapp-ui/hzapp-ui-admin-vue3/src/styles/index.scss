@@ -35,3 +35,32 @@
     border-left-color: var(--el-color-primary);
   }
 }
+
+
+/* 输入框组 */
+  .el-input-group-thir {
+	   display:flex;
+  }
+ .el-input-group-thir .el-input .el-input__wrapper{
+	width: 100px;
+ }
+ .el-input-group-thir .el-input  .el-input__wrapper{
+	border-radius: 0;
+	border:1px solid #dcdfe6;
+	border-left-color:transparent;
+	border-right-color:transparent;
+	box-shadow:none;
+ }
+ .el-input-group-thir .el-input:first-child .el-input__wrapper{
+	border-color: #dcdfe6;
+	border-bottom-left-radius: 4px;
+	border-top-left-radius: 4px;
+	  
+  }
+  .el-input-group-thir .el-input:last-child .el-input__wrapper{
+  	border-color:#dcdfe6; 
+	width:100px
+  }
+  .el-input-group-thir .el-input  .is-focus{
+  	border-color:var(--el-color-primary)!important;
+  }

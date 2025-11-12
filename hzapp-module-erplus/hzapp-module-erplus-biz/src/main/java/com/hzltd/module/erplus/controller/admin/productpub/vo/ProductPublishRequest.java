@@ -4,7 +4,7 @@ import com.hzltd.module.erplus.constant.FulfillTypeEnum;
 import com.hzltd.module.erplus.constant.LanguageEnum;
 import com.hzltd.module.erplus.constant.SaveModeEnum;
 import com.hzltd.module.erplus.dal.dataobject.brand.ProductBrandDO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
+import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.category.CategoryModel;
 import com.hzltd.module.erplus.model.common.*;
@@ -84,7 +84,7 @@ public class ProductPublishRequest {
     /**
      * 关联的本地系统的品类
      */
-    private ErpProductCategoryDO relatedCategory;
+    private ProductCategoryDO relatedCategory;
 
     /**
      * 品牌

@@ -18,7 +18,7 @@ import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseReturnDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseReturnItemDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpSupplierDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockDO;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import com.hzltd.module.erplus.service.purchase.ErpPurchaseReturnService;
 import com.hzltd.module.erplus.service.purchase.ErpSupplierService;
 import com.hzltd.module.erplus.service.stock.ErpStockService;
@@ -54,7 +54,7 @@ public class ErpPurchaseReturnController {
     @Resource
     private ErpStockService stockService;
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
     @Resource
     private ErpSupplierService supplierService;
 

@@ -14,7 +14,7 @@ import com.hzltd.module.erplus.dal.mysql.stock.ErpStockCheckMapper;
 import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
 import com.hzltd.module.erplus.enums.ErpAuditStatus;
 import com.hzltd.module.erplus.enums.stock.ErpStockRecordBizTypeEnum;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import com.hzltd.module.erplus.service.stock.bo.ErpStockRecordCreateReqBO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,7 @@ public class ErpStockCheckServiceImpl implements ErpStockCheckService {
     private ErpNoRedisDAO noRedisDAO;
 
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
     @Resource
     private ErpWarehouseService warehouseService;
     @Resource

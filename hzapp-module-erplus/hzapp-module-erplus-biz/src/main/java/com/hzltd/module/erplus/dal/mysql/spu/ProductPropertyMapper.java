@@ -1,14 +1,15 @@
 package com.hzltd.module.erplus.dal.mysql.spu;
 
+import com.hzltd.framework.common.enums.CommonStatusEnum;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.controller.admin.property.vo.property.ProductPropertyPageReqVO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.property.ProductPropertyPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyDO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ErpProductPropertyMapper extends BaseMapperX<ProductPropertyDO> {
+public interface ProductPropertyMapper extends BaseMapperX<ProductPropertyDO> {
 
     default PageResult<ProductPropertyDO> selectPage(ProductPropertyPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<ProductPropertyDO>()
@@ -18,7 +19,7 @@ public interface ErpProductPropertyMapper extends BaseMapperX<ProductPropertyDO>
     }
 
     default ProductPropertyDO selectByName(String name) {
-        return selectOne(ProductPropertyDO::getName, name);
+        return selectOne(new LambdaQueryWrapperX<ProductPropertyDO>().eq(ProductPropertyDO::getName, name).eq(ProductPropertyDO::getStatus, CommonStatusEnum.ENABLE.getStatus()));
     }
 
 }

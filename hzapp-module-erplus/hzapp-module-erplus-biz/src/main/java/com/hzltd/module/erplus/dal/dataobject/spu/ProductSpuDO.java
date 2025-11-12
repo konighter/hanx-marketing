@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import com.hzltd.framework.mybatis.core.type.IntegerListTypeHandler;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductUnitDO;
+import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
 import lombok.*;
 
@@ -18,7 +19,7 @@ import java.util.List;
  *
  * @author 翰展科技
  */
-@TableName(value = "erp_product_spu", autoResultMap = true)
+@TableName(value = "erplus_product_spu", autoResultMap = true)
 @KeySequence("product_spu_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -56,7 +57,7 @@ public class ProductSpuDO extends BaseDO {
     /**
      * 商品分类编号
      *
-     * 关联 {@link com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO#getId()}
+     * 关联 {@link ProductCategoryDO#getId()}
      */
     private Long categoryId;
     /**

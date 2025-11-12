@@ -10,7 +10,7 @@ public class PlaywrightTest  {
     @Test
     public void testCrawl() {
         PlaywrightCrawler crawler = new PlaywrightCrawler();
-        String metrics = crawler.crawl("https://www.baidu.com");
+        String metrics = crawler.crawl("https://www.amazon.com/dp/B0F9PF5ZLK");
         System.out.println(metrics);
     }
 

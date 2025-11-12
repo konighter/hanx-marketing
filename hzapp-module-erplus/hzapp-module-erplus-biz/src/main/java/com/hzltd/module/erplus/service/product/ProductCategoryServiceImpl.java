@@ -1,9 +1,9 @@
 package com.hzltd.module.erplus.service.product;
 
 import com.hzltd.framework.common.util.object.BeanUtils;
-import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategoryListReqVO;
-import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategorySaveReqVO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
+import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListReqVO;
+import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategorySaveReqVO;
+import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.dal.mysql.product.ErpProductCategoryMapper;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
@@ -24,31 +24,31 @@ import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
  */
 @Service
 @Validated
-public class ErpProductCategoryServiceImpl implements ErpProductCategoryService {
+public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Resource
     private ErpProductCategoryMapper erpProductCategoryMapper;
 
     @Resource
     @Lazy // 延迟加载，避免循环依赖
-    private ErpProductService productService;
+    private ProductService productService;
 
     @Override
-    public Long createProductCategory(ErpProductCategorySaveReqVO createReqVO) {
+    public Long createProductCategory(ProductCategorySaveReqVO createReqVO) {
         // 校验父分类编号的有效性
         validateParentProductCategory(null, createReqVO.getParentId());
         // 校验分类名称的唯一性
         validateProductCategoryNameUnique(null, createReqVO.getParentId(), createReqVO.getName());
 
         // 插入
-        ErpProductCategoryDO category = BeanUtils.toBean(createReqVO, ErpProductCategoryDO.class);
+        ProductCategoryDO category = BeanUtils.toBean(createReqVO, ProductCategoryDO.class);
         erpProductCategoryMapper.insert(category);
         // 返回
         return category.getId();
     }
 
     @Override
-    public void updateProductCategory(ErpProductCategorySaveReqVO updateReqVO) {
+    public void updateProductCategory(ProductCategorySaveReqVO updateReqVO) {
         // 校验存在
         validateProductCategoryExists(updateReqVO.getId());
         // 校验父分类编号的有效性
@@ -57,7 +57,7 @@ public class ErpProductCategoryServiceImpl implements ErpProductCategoryService 
         validateProductCategoryNameUnique(updateReqVO.getId(), updateReqVO.getParentId(), updateReqVO.getName());
 
         // 更新
-        ErpProductCategoryDO updateObj = BeanUtils.toBean(updateReqVO, ErpProductCategoryDO.class);
+        ProductCategoryDO updateObj = BeanUtils.toBean(updateReqVO, ProductCategoryDO.class);
         erpProductCategoryMapper.updateById(updateObj);
     }
 
@@ -84,7 +84,7 @@ public class ErpProductCategoryServiceImpl implements ErpProductCategoryService 
     }
 
     private void validateParentProductCategory(Long id, Long parentId) {
-        if (parentId == null || ErpProductCategoryDO.PARENT_ID_ROOT.equals(parentId)) {
+        if (parentId == null || ProductCategoryDO.PARENT_ID_ROOT.equals(parentId)) {
             return;
         }
         // 1. 不能设置自己为父产品分类
@@ -92,7 +92,7 @@ public class ErpProductCategoryServiceImpl implements ErpProductCategoryService 
             throw exception(PRODUCT_CATEGORY_PARENT_ERROR);
         }
         // 2. 父产品分类不存在
-        ErpProductCategoryDO parentCategory = erpProductCategoryMapper.selectById(parentId);
+        ProductCategoryDO parentCategory = erpProductCategoryMapper.selectById(parentId);
         if (parentCategory == null) {
             throw exception(PRODUCT_CATEGORY_PARENT_NOT_EXITS);
         }
@@ -107,7 +107,7 @@ public class ErpProductCategoryServiceImpl implements ErpProductCategoryService 
                 throw exception(PRODUCT_CATEGORY_PARENT_IS_CHILD);
             }
             // 3.2 继续递归下一级父产品分类
-            if (parentId == null || ErpProductCategoryDO.PARENT_ID_ROOT.equals(parentId)) {
+            if (parentId == null || ProductCategoryDO.PARENT_ID_ROOT.equals(parentId)) {
                 break;
             }
             parentCategory = erpProductCategoryMapper.selectById(parentId);
@@ -118,7 +118,7 @@ public class ErpProductCategoryServiceImpl implements ErpProductCategoryService 
     }
 
     private void validateProductCategoryNameUnique(Long id, Long parentId, String name) {
-        ErpProductCategoryDO productCategory = erpProductCategoryMapper.selectByParentIdAndName(parentId, name);
+        ProductCategoryDO productCategory = erpProductCategoryMapper.selectByParentIdAndName(parentId, name);
         if (productCategory == null) {
             return;
         }
@@ -132,18 +132,28 @@ public class ErpProductCategoryServiceImpl implements ErpProductCategoryService 
     }
 
     @Override
-    public ErpProductCategoryDO getProductCategory(Long id) {
+    public ProductCategoryDO getProductCategory(Long id) {
         return erpProductCategoryMapper.selectById(id);
     }
 
     @Override
-    public List<ErpProductCategoryDO> getProductCategoryList(ErpProductCategoryListReqVO listReqVO) {
+    public List<ProductCategoryDO> getProductCategoryList(ProductCategoryListReqVO listReqVO) {
         return erpProductCategoryMapper.selectList(listReqVO);
     }
 
     @Override
-    public List<ErpProductCategoryDO> getProductCategoryList(Collection<Long> ids) {
+    public List<ProductCategoryDO> getProductCategoryList(Collection<Long> ids) {
         return erpProductCategoryMapper.selectBatchIds(ids);
+    }
+
+    @Override
+    public void validateCategory(Long id) {
+
+    }
+
+    @Override
+    public int getCategoryLevel(Long id) {
+        return 0;
     }
 
 }

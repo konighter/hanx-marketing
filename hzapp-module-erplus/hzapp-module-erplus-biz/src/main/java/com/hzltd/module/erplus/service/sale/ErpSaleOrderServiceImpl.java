@@ -16,7 +16,7 @@ import com.hzltd.module.erplus.dal.mysql.sale.ErpSaleOrderMapper;
 import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
 import com.hzltd.module.erplus.enums.ErpAuditStatus;
 import com.hzltd.module.erplus.service.finance.ErpAccountService;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -52,7 +52,7 @@ public class ErpSaleOrderServiceImpl implements ErpSaleOrderService {
     private ErpNoRedisDAO noRedisDAO;
 
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
     @Resource
     private ErpCustomerService customerService;
     @Resource

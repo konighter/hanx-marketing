@@ -2,8 +2,8 @@ package com.hzltd.module.erplus.dal.mysql.product;
 
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategoryListReqVO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
+import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListReqVO;
+import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -14,21 +14,21 @@ import java.util.List;
  * @author 翰展科技
  */
 @Mapper
-public interface ErpProductCategoryMapper extends BaseMapperX<ErpProductCategoryDO> {
+public interface ErpProductCategoryMapper extends BaseMapperX<ProductCategoryDO> {
 
-    default List<ErpProductCategoryDO> selectList(ErpProductCategoryListReqVO reqVO) {
-        return selectList(new LambdaQueryWrapperX<ErpProductCategoryDO>()
-                .likeIfPresent(ErpProductCategoryDO::getName, reqVO.getName())
-                .eqIfPresent(ErpProductCategoryDO::getStatus, reqVO.getStatus())
-                .orderByDesc(ErpProductCategoryDO::getId));
+    default List<ProductCategoryDO> selectList(ProductCategoryListReqVO reqVO) {
+        return selectList(new LambdaQueryWrapperX<ProductCategoryDO>()
+                .likeIfPresent(ProductCategoryDO::getName, reqVO.getName())
+                .eqIfPresent(ProductCategoryDO::getStatus, reqVO.getStatus())
+                .orderByDesc(ProductCategoryDO::getId));
     }
 
-	default ErpProductCategoryDO selectByParentIdAndName(Long parentId, String name) {
-	    return selectOne(ErpProductCategoryDO::getParentId, parentId, ErpProductCategoryDO::getName, name);
+	default ProductCategoryDO selectByParentIdAndName(Long parentId, String name) {
+	    return selectOne(ProductCategoryDO::getParentId, parentId, ProductCategoryDO::getName, name);
 	}
 
     default Long selectCountByParentId(Long parentId) {
-        return selectCount(ErpProductCategoryDO::getParentId, parentId);
+        return selectCount(ProductCategoryDO::getParentId, parentId);
     }
 
 }

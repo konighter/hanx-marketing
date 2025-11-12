@@ -17,7 +17,7 @@ import static com.hzltd.framework.common.util.collection.CollectionUtils.convert
  *
  * @author 翰展科技
  */
-public interface ErpProductUnitService {
+public interface ProductUnitService {
 
     /**
      * 创建产品单位

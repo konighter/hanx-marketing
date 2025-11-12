@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.controller.admin.product.vo.category;
+package com.hzltd.module.erplus.controller.admin.category.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Schema(description = "管理后台 - ERP 产品分类新增/修改 Request VO")
 @Data
-public class ErpProductCategorySaveReqVO {
+public class ProductCategorySaveReqVO {
 
     @Schema(description = "分类编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "5860")
     private Long id;

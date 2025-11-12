@@ -11,7 +11,7 @@ import com.hzltd.module.erplus.controller.admin.product.vo.unit.ErpProductUnitPa
 import com.hzltd.module.erplus.controller.admin.product.vo.unit.ErpProductUnitRespVO;
 import com.hzltd.module.erplus.controller.admin.product.vo.unit.ErpProductUnitSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductUnitDO;
-import com.hzltd.module.erplus.service.product.ErpProductUnitService;
+import com.hzltd.module.erplus.service.product.ProductUnitService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -37,7 +37,7 @@ import static com.hzltd.framework.common.util.collection.CollectionUtils.convert
 public class ErpProductUnitController {
 
     @Resource
-    private ErpProductUnitService productUnitService;
+    private ProductUnitService productUnitService;
 
     @PostMapping("/create")
     @Operation(summary = "创建产品单位")

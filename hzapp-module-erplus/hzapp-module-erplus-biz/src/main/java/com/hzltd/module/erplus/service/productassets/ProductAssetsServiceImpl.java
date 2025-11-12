@@ -1,12 +1,20 @@
 package com.hzltd.module.erplus.service.productassets;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.io.checksum.CRC16;
+import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.digest.HMac;
+import com.hzltd.framework.common.enums.CommonStatusEnum;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.zip.CRC32;
+
 import com.hzltd.module.erplus.controller.admin.productassets.vo.*;
 import com.hzltd.module.erplus.dal.dataobject.productassets.ProductAssetsDO;
 import com.hzltd.framework.common.pojo.PageResult;
@@ -36,6 +44,14 @@ public class ProductAssetsServiceImpl implements ProductAssetsService {
     public Integer createProductAssets(ProductAssetsSaveReqVO createReqVO) {
         // 插入
         ProductAssetsDO productAssets = BeanUtils.toBean(createReqVO, ProductAssetsDO.class);
+        productAssets.setStatus(CommonStatusEnum.ENABLE.getStatus());
+        productAssets.setAssetInfoHash(SecureUtil.md5(productAssets.getAssetLink()));
+
+        if (CollectionUtils.isNotEmpty(productAssetsMapper.selectList(new LambdaQueryWrapperX<ProductAssetsDO>()
+                .eq(ProductAssetsDO::getAssetInfoHash, productAssets.getAssetInfoHash())))) {
+            throw exception(PRODUCT_ASSETS_EXISTS);
+        }
+
         productAssetsMapper.insert(productAssets);
 
         // 返回

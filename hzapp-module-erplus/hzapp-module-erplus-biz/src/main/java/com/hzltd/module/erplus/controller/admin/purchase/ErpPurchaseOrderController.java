@@ -17,7 +17,7 @@ import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseOrderDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseOrderItemDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpSupplierDO;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import com.hzltd.module.erplus.service.purchase.ErpPurchaseOrderService;
 import com.hzltd.module.erplus.service.purchase.ErpSupplierService;
 import com.hzltd.module.erplus.service.stock.ErpStockService;
@@ -53,7 +53,7 @@ public class ErpPurchaseOrderController {
     @Resource
     private ErpStockService stockService;
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
     @Resource
     private ErpSupplierService supplierService;
 

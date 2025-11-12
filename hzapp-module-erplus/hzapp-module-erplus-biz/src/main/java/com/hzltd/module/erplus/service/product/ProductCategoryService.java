@@ -1,8 +1,8 @@
 package com.hzltd.module.erplus.service.product;
 
-import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategoryListReqVO;
-import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategorySaveReqVO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
+import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListReqVO;
+import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategorySaveReqVO;
+import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import jakarta.validation.Valid;
 
 import java.util.Collection;
@@ -16,7 +16,7 @@ import static com.hzltd.framework.common.util.collection.CollectionUtils.convert
  *
  * @author 翰展科技
  */
-public interface ErpProductCategoryService {
+public interface ProductCategoryService {
 
     /**
      * 创建产品分类
@@ -24,14 +24,14 @@ public interface ErpProductCategoryService {
      * @param createReqVO 创建信息
      * @return 编号
      */
-    Long createProductCategory(@Valid ErpProductCategorySaveReqVO createReqVO);
+    Long createProductCategory(@Valid ProductCategorySaveReqVO createReqVO);
 
     /**
      * 更新产品分类
      *
      * @param updateReqVO 更新信息
      */
-    void updateProductCategory(@Valid ErpProductCategorySaveReqVO updateReqVO);
+    void updateProductCategory(@Valid ProductCategorySaveReqVO updateReqVO);
 
     /**
      * 删除产品分类
@@ -46,7 +46,7 @@ public interface ErpProductCategoryService {
      * @param id 编号
      * @return 产品分类
      */
-    ErpProductCategoryDO getProductCategory(Long id);
+    ProductCategoryDO getProductCategory(Long id);
 
     /**
      * 获得产品分类列表
@@ -54,7 +54,7 @@ public interface ErpProductCategoryService {
      * @param listReqVO 查询条件
      * @return 产品分类列表
      */
-    List<ErpProductCategoryDO> getProductCategoryList(ErpProductCategoryListReqVO listReqVO);
+    List<ProductCategoryDO> getProductCategoryList(ProductCategoryListReqVO listReqVO);
 
     /**
      * 获得产品分类列表
@@ -62,7 +62,7 @@ public interface ErpProductCategoryService {
      * @param ids 编号数组
      * @return 产品分类列表
      */
-    List<ErpProductCategoryDO> getProductCategoryList(Collection<Long> ids);
+    List<ProductCategoryDO> getProductCategoryList(Collection<Long> ids);
 
     /**
      * 获得产品分类 Map
@@ -70,8 +70,22 @@ public interface ErpProductCategoryService {
      * @param ids 编号数组
      * @return 产品分类 Map
      */
-    default Map<Long, ErpProductCategoryDO> getProductCategoryMap(Collection<Long> ids) {
-        return convertMap(getProductCategoryList(ids), ErpProductCategoryDO::getId);
+    default Map<Long, ProductCategoryDO> getProductCategoryMap(Collection<Long> ids) {
+        return convertMap(getProductCategoryList(ids), ProductCategoryDO::getId);
     }
 
+    /**
+     * 校验分类是否存在
+     *
+     * @param id 分类编号
+     */
+    void validateCategory(Long id);
+
+    /**
+     * 获得分类层级
+     *
+     * @param id 分类编号
+     * @return 分类层级
+     */
+    int getCategoryLevel(Long id);
 }

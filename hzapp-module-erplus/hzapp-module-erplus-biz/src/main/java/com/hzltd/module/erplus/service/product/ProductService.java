@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.service.product;
 
 import com.hzltd.module.erplus.controller.admin.product.vo.product.ProductSaveReqVO;
-import com.hzltd.module.erplus.controller.admin.spu_new.vo.ProductSpuRespVO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import jakarta.validation.Valid;
 
@@ -16,7 +16,7 @@ import static com.hzltd.framework.common.util.collection.CollectionUtils.convert
  *
  * @author 翰展科技
  */
-public interface ErpProductService {
+public interface ProductService {
 
     /**
      * 创建产品

@@ -14,13 +14,16 @@ import static com.hzltd.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_D
 public class ProductAssetsPageReqVO extends PageParam {
 
     @Schema(description = "产品名称", example = "王五")
-    private Integer productName;
+    private String productName;
 
     @Schema(description = "标签")
     private String tags;
 
     @Schema(description = "素材类型", example = "2")
     private Integer type;
+
+    @Schema(description = "来源", example = "1")
+    private Integer source;
 
     @Schema(description = "素材信息")
     private String assetInfo;

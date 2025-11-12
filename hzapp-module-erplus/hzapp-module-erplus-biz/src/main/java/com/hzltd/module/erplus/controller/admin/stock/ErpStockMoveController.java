@@ -17,7 +17,7 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.move.ErpStockMoveSaveRe
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockMoveDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockMoveItemDO;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import com.hzltd.module.erplus.service.stock.ErpStockMoveService;
 import com.hzltd.module.erplus.service.stock.ErpStockService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,7 +51,7 @@ public class ErpStockMoveController {
     @Resource
     private ErpStockService stockService;
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
 
     @Resource
     private AdminUserApi adminUserApi;

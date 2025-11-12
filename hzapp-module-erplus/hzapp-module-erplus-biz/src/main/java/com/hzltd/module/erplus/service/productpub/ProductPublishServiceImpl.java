@@ -63,7 +63,7 @@ public class ProductPublishServiceImpl implements ProductPublishService {
                 .collect(Collectors.toList());
 
         // 保存平台商品信息
-        List<Long> productIds = productPublishRequests.stream().map(this::saveCrossPlatformProduct).collect(Collectors.toList());
+        List<Long> productIds = productPublishRequests.stream().map(this::saveCrossPlatformProduct).toList();
 
         // 生成并提交发布任务
         List<ProductPublishTaskVO> productPublishTasks = productIds.stream().map(id -> {

@@ -16,7 +16,7 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.check.ErpStockCheckResp
 import com.hzltd.module.erplus.controller.admin.stock.vo.check.ErpStockCheckSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockCheckDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockCheckItemDO;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import com.hzltd.module.erplus.service.stock.ErpStockCheckService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -47,7 +47,7 @@ public class ErpStockCheckController {
     @Resource
     private ErpStockCheckService stockCheckService;
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
 
     @Resource
     private AdminUserApi adminUserApi;

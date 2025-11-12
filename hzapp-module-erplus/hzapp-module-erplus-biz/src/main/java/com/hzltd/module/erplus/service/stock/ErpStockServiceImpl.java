@@ -4,7 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpStockPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockDO;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpStockMapper;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -32,7 +32,7 @@ public class ErpStockServiceImpl implements ErpStockService {
     private static final Boolean NEGATIVE_STOCK_COUNT_ENABLE = false;
 
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
     @Resource
     private ErpWarehouseService warehouseService;
 

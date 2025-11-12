@@ -1,6 +1,6 @@
 <template>
-  <ContentWrap v-loading="formLoading">
-    <el-tabs v-model="activeName">
+  <ContentWrap v-loading="formLoading" class="px-10">
+    <el-tabs v-model="activeName" @tab-change="onChange">
       <el-tab-pane label="基础设置" name="info">
         <InfoForm ref="infoRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData" />
       </el-tab-pane>
@@ -9,7 +9,12 @@
           :propFormData="formData" />
       </el-tab-pane>
       <el-tab-pane label="价格库存" name="sku">
-        <SkuForm ref="skuRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData" />
+        <SkuForm ref="skuRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData"
+          @spec-change="onSpecTypeChange" />
+      </el-tab-pane>
+      <el-tab-pane label="变体详情" name="productSkuSpec" v-if="showSpec">
+        <ProductSkuSpecForm ref="skuSpecRef" v-model:active-name="activeName" :is-detail="isDetail"
+          :propFormData="formData" />
       </el-tab-pane>
       <el-tab-pane label="物流设置" name="delivery">
         <DeliveryForm ref="deliveryRef" v-model:activeName="activeName" :is-detail="isDetail"
@@ -17,7 +22,7 @@
       </el-tab-pane>
 
       <el-tab-pane label="其它设置" name="other">
-        <OtherForm ref="otherRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData" />
+        <ComplianceForm ref="otherRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData" />
       </el-tab-pane>
     </el-tabs>
     <el-form>
@@ -37,9 +42,11 @@ import * as ProductSpuApi from '@/app/erplus/api/product/spu'
 import InfoForm from './InfoForm.vue'
 import DescriptionForm from './DescriptionForm.vue'
 import OtherForm from './OtherForm.vue'
+import ComplianceForm from './ComplianceForm.vue'
 import SkuForm from './SkuForm.vue'
 import DeliveryForm from './DeliveryForm.vue'
 import { convertToInteger, floatToFixed2, formatToFraction } from '@/utils'
+import ProductSkuSpecForm from './ProductSkuSpecForm.vue'
 
 defineOptions({ name: 'ProductSpuAdd' })
 
@@ -54,6 +61,7 @@ const activeName = ref('info') // Tag 激活的窗口
 const isDetail = ref(false) // 是否查看详情
 const infoRef = ref() // 商品信息 Ref
 const skuRef = ref() // 商品规格 Ref
+const skuSpecRef = ref() // 商品规格特性 Ref
 const deliveryRef = ref() // 物流设置 Ref
 const descriptionRef = ref() // 商品详情 Ref
 const otherRef = ref() // 其他设置 Ref
@@ -76,12 +84,18 @@ const formData = ref<ProductSpuApi.Spu>({
       marketPrice: 0, // 市场价
       costPrice: 0, // 成本价
       barCode: '', // 商品条码
+      keyword: '', // 关键字
+      introduction: [''], // 商品简介
       picUrl: '', // 图片地址
+      sliderPicUrls: [], // 商品轮播图
+      description: '', // 商品详情
       stock: 0, // 库存
-      weight: 0, // 商品重量
-      volume: 0, // 商品体积
-      // firstBrokeragePrice: 0, // 一级分销的佣金
-      // secondBrokeragePrice: 0 // 二级分销的佣金
+      itemDim: {},
+      pkgDim: {},
+      boxDim: {},
+      inboxnum: undefined
+
+
     }
   ],
   description: '', // 商品详情
@@ -89,6 +103,10 @@ const formData = ref<ProductSpuApi.Spu>({
   giveIntegral: 0, // 赠送积分
   virtualSalesCount: 0 // 虚拟销量
 })
+
+
+
+
 
 /** 获得详情 */
 const getDetail = async () => {
@@ -105,15 +123,13 @@ const getDetail = async () => {
           item.price = floatToFixed2(item.price)
           item.marketPrice = floatToFixed2(item.marketPrice)
           item.costPrice = floatToFixed2(item.costPrice)
-          item.firstBrokeragePrice = floatToFixed2(item.firstBrokeragePrice)
-          item.secondBrokeragePrice = floatToFixed2(item.secondBrokeragePrice)
+
         } else {
           // 回显价格分转元
           item.price = formatToFraction(item.price)
           item.marketPrice = formatToFraction(item.marketPrice)
           item.costPrice = formatToFraction(item.costPrice)
-          item.firstBrokeragePrice = formatToFraction(item.firstBrokeragePrice)
-          item.secondBrokeragePrice = formatToFraction(item.secondBrokeragePrice)
+
         }
       })
       formData.value = res
@@ -135,7 +151,9 @@ const submitForm = async () => {
     await unref(descriptionRef)?.validate()
     await unref(otherRef)?.validate()
     // 深拷贝一份, 这样最终 server 端不满足，不需要影响原始数据
+    console.log('IndexForm: deepCopyFormData', formData.value)
     const deepCopyFormData = cloneDeep(unref(formData.value)) as ProductSpuApi.Spu
+    console.log('IndexForm: deepCopyFormData', deepCopyFormData)
     deepCopyFormData.skus!.forEach((item) => {
       // 给sku name赋值
       item.name = deepCopyFormData.name
@@ -143,8 +161,7 @@ const submitForm = async () => {
       item.price = convertToInteger(item.price)
       item.marketPrice = convertToInteger(item.marketPrice)
       item.costPrice = convertToInteger(item.costPrice)
-      item.firstBrokeragePrice = convertToInteger(item.firstBrokeragePrice)
-      item.secondBrokeragePrice = convertToInteger(item.secondBrokeragePrice)
+
     })
     // 处理轮播图列表
     const newSliderPicUrls: any[] = []
@@ -179,4 +196,28 @@ const close = () => {
 onMounted(async () => {
   await getDetail()
 })
+
+const preTabView = ref('info')
+
+const onChange = (name) => {
+  console.log(`${preTabView.value}`)
+
+  if (preTabView.value === 'sku') {
+    skuRef.value.syncData()
+  }
+
+  preTabView.value = name
+  console.log('Index- formData=', formData.value)
+}
+
+const showSpec = computed(() => {
+  return specType.value
+})
+
+const specType = ref<boolean>(true)
+
+const onSpecTypeChange = async (spec: boolean) => {
+  specType.value = spec
+}
+
 </script>

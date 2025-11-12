@@ -18,7 +18,7 @@ import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
 import com.hzltd.module.erplus.enums.ErpAuditStatus;
 import com.hzltd.module.erplus.enums.stock.ErpStockRecordBizTypeEnum;
 import com.hzltd.module.erplus.service.finance.ErpAccountService;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import com.hzltd.module.erplus.service.stock.ErpStockRecordService;
 import com.hzltd.module.erplus.service.stock.bo.ErpStockRecordCreateReqBO;
 import jakarta.annotation.Resource;
@@ -57,7 +57,7 @@ public class ErpPurchaseInServiceImpl implements ErpPurchaseInService {
     private ErpNoRedisDAO noRedisDAO;
 
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
     @Resource
     @Lazy // 延迟加载，避免循环依赖
     private ErpPurchaseOrderService purchaseOrderService;

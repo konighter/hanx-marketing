@@ -6,12 +6,17 @@ import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.Collection;
 import java.util.List;
 
 @Mapper
-public interface ErpProductSkuMapper extends BaseMapperX<ProductSkuDO> {
+public interface ProductSkuMapper extends BaseMapperX<ProductSkuDO> {
+
+    @Select("SELECT * FROM product_sku WHERE id = #{id}")
+    ProductSkuDO selectByIdIncludeDeleted(@Param("id") Long id);
 
     default List<ProductSkuDO> selectListBySpuId(Long spuId) {
         return selectList(ProductSkuDO::getSpuId, spuId);

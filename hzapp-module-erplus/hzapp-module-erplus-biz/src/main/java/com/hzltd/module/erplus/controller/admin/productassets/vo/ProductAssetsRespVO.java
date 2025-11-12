@@ -34,6 +34,13 @@ public class ProductAssetsRespVO {
     @ExcelProperty("素材类型")
     private Integer type;
 
+    /**
+     * 来源
+     */
+    @Schema(description = "来源", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+    @ExcelProperty("来源")
+    private Integer source;
+
     @Schema(description = "素材链接", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("素材链接")
     private String assetLink;

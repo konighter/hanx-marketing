@@ -18,9 +18,9 @@
       <ProductAttributes :is-detail="isDetail" :property-list="propertyList" @success="generateSkus" />
     </el-form-item>
     <template v-if="formData.specType && propertyList.length > 0">
-      <el-form-item v-if="!isDetail" label="批量设置">
+      <!-- <el-form-item v-if="!isDetail" label="批量设置">
         <SkuList :is-batch="true" :prop-form-data="formData" :property-list="propertyList" />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="规格列表">
         <SkuList ref="skuListRef" :is-detail="isDetail" :prop-form-data="formData" :property-list="propertyList"
           :rule-config="ruleConfig" />
@@ -43,7 +43,7 @@ import {
 } from '@/app/erplus/views/product/spu/components/index'
 import ProductAttributes from './ProductAttributes.vue'
 import ErpProductPropertyForm from './ProductPropertyAddForm.vue'
-import type { Spu } from '@/api/mall/product/spu'
+import type { Spu } from '@/app/erplus/api/product/spu'
 
 defineOptions({ name: 'ProductSpuSkuForm' })
 
@@ -86,12 +86,10 @@ const propertyList = ref<PropertyAndValues[]>([]) // 商品属性列表
 const skuListRef = ref() // 商品属性列表 Ref
 const formData = reactive<Spu>({
   specType: false, // 商品规格
-  subCommissionType: false, // 分销类型
-  skus: []
+  skus: [] // Sku信息
 })
 const rules = reactive({
   specType: [required],
-  subCommissionType: [required]
 })
 
 /** 将传进来的值赋值给 formData */
@@ -111,7 +109,7 @@ watch(
 )
 
 /** 表单校验 */
-const emit = defineEmits(['update:activeName'])
+const emit = defineEmits(['update:activeName', 'specChange'])
 const validate = async () => {
   if (!formRef) return
   try {
@@ -126,7 +124,13 @@ const validate = async () => {
     throw e // 目的截断之后的校验
   }
 }
-defineExpose({ validate })
+
+const syncData = async () => {
+
+  Object.assign(props.propFormData, formData)
+  console.log("skuForm syncData", props.propFormData)
+}
+defineExpose({ validate, syncData })
 
 
 /** 选择规格 */
@@ -140,19 +144,31 @@ const onChangeSpec = () => {
       marketPrice: 0,
       costPrice: 0,
       barCode: '',
-      picUrl: '',
+
+
+      // SKU与SPU的差异属性, 为Null取SPU对应值
+      keyword: '', // 关键字
+      description: '', // 商品详情
+      introduction: [''], // 商品简介
+      picUrl: '', // 图片地址
+      sliderPicUrls: [], // 商品轮播图
+
+
+
       stock: 0,
-      weight: 0,
-      volume: 0,
-      firstBrokeragePrice: 0,
-      secondBrokeragePrice: 0
+      itemDim: {},
+      pkgDim: {},
+      boxDim: {},
+      inboxnum: undefined
     }
   ]
+  emit("specChange", formData.specType)
 }
 
 /** 调用 SkuList generateTableData 方法*/
 const generateSkus = (propertyList: any[]) => {
   skuListRef.value.generateTableData(propertyList)
+  console.log('SkuForm: skus=', formData.skus)
 }
 
 

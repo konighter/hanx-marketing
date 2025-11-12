@@ -1,4 +1,5 @@
 import SkuList from './SkuList.vue'
+import SkuDimList from './SkuDimList.vue'
 import { Spu } from '@/app/erplus/api/product/spu'
 
 interface PropertyAndValues {
@@ -51,4 +52,4 @@ const getPropertyList = (spu: Spu): PropertyAndValues[] => {
   return properties
 }
 
-export { SkuList, PropertyAndValues, RuleConfig, getPropertyList }
+export { SkuList,SkuDimList, PropertyAndValues, RuleConfig, getPropertyList }

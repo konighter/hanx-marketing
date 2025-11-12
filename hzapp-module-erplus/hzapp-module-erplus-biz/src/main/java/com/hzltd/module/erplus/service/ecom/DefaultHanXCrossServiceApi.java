@@ -1,9 +1,9 @@
 package com.hzltd.module.erplus.service.ecom;
 
 import com.hzltd.module.erplus.constant.AttributeTypeEnum;
-import com.hzltd.module.erplus.controller.admin.product.vo.category.ErpProductCategoryListReqVO;
+import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListReqVO;
 import com.hzltd.module.erplus.dal.dataobject.categoryattr.CategoryAttributeDO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
+import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
@@ -14,7 +14,7 @@ import com.hzltd.module.erplus.model.product.CreateProductResponse;
 import com.hzltd.module.erplus.service.PlatformIdentity;
 import com.hzltd.module.erplus.service.category.CategoryApi;
 import com.hzltd.module.erplus.service.categoryattr.CategoryAttributeService;
-import com.hzltd.module.erplus.service.product.ErpProductCategoryService;
+import com.hzltd.module.erplus.service.product.ProductCategoryService;
 import com.hzltd.module.erplus.service.product.ProductApi;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -29,12 +29,12 @@ public class DefaultHanXCrossServiceApi implements ProductApi, CategoryApi, Plat
     private CategoryAttributeService categoryAttributeService;
 
     @Resource
-    private ErpProductCategoryService categoryService;
+    private ProductCategoryService categoryService;
 
 
     @Override
     public ApiResponse<List<CategoryModel>> getCategories(ApiRequest<GetCategoryRequest> apiRequest) {
-        List<ErpProductCategoryDO> categories = categoryService.getProductCategoryList(new ErpProductCategoryListReqVO());
+        List<ProductCategoryDO> categories = categoryService.getProductCategoryList(new ProductCategoryListReqVO());
        return ApiResponse.success(categories.stream().map(c -> {
             CategoryModel model = new CategoryModel();
             model.setCategoryId(c.getId().toString());

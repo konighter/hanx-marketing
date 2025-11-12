@@ -11,7 +11,7 @@ import lombok.*;
  *
  * @author 翰展科技
  */
-@TableName("erplus_brand")
+@TableName("erplus_product_brand")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)

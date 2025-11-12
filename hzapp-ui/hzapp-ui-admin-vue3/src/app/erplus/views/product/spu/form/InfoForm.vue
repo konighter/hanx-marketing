@@ -18,7 +18,7 @@
       <el-input-tag v-model="formData.keyword" class="w-100!" placeholder="请输入商品关键字" tag-type="primary" />
     </el-form-item>
     <el-form-item label="条形码" prop="barCode">
-      <el-input v-model="formData.name" :clearable="true" :show-word-limit="true" class="w-100!" maxlength="64"
+      <el-input v-model="formData.productCode" :clearable="true" :show-word-limit="true" class="w-100!" maxlength="64"
         placeholder="请输入条形码" />
     </el-form-item>
     <el-form-item label="商品特性" prop="introduction">
@@ -27,15 +27,15 @@
           class="w-100!" maxlength="500" placeholder="请输入商品简介" type="textarea"
           :autosize="{ minRows: 2, maxRows: 20 }" />
         <span class="mx-2">
-          <el-button type="primary" :icon="Plus" circle @click="addIntroduction(idx)" />
-          <el-button v-if="formData.introduction.length > 1" type="danger" :icon="Delete" circle
+          <el-button type="primary" :icon="Plus" circle @click="addIntroduction(idx)" size="small" />
+          <el-button v-if="formData.introduction.length > 1" type="danger" :icon="Delete" circle size="small"
             @click="delIntroduction(idx)" />
         </span>
 
       </dev>
 
     </el-form-item>
-    <el-form-item label="商品封面图" prop="picUrl">
+    <el-form-item label="商品主图" prop="picUrl">
       <UploadImg v-model="formData.picUrl" :disabled="isDetail" height="80px" />
     </el-form-item>
     <el-form-item label="商品轮播图" prop="sliderPicUrls">
@@ -48,7 +48,7 @@ import { PropType } from 'vue'
 import { copyValueToTarget } from '@/utils'
 import { propTypes } from '@/utils/propTypes'
 import { defaultProps, handleTree } from '@/utils/tree'
-import type { Spu } from '@/api/mall/product/spu'
+import type { Spu } from '@/app/erplus/api/product/spu'
 import * as ProductCategoryApi from '@/app/erplus/api/product/category'
 import { CategoryVO } from '@/app/erplus/api/product/category'
 import * as ProductBrandApi from '@/app/erplus/api/product/brand'
@@ -72,6 +72,7 @@ const message = useMessage() // 消息弹窗
 const formRef = ref() // 表单 Ref
 const formData = reactive<Spu>({
   name: '', // 商品名称
+  productCode: '', // 商品编码
   categoryId: undefined, // 商品分类
   keyword: '', // 关键字
   picUrl: '', // 商品封面图

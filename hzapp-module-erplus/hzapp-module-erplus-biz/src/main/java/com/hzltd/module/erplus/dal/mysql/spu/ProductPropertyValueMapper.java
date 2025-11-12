@@ -3,7 +3,7 @@ package com.hzltd.module.erplus.dal.mysql.spu;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.controller.admin.property.vo.value.ProductPropertyValuePageReqVO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.value.ProductPropertyValuePageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyValueDO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -11,7 +11,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Mapper
-public interface ErpProductPropertyValueMapper extends BaseMapperX<ProductPropertyValueDO> {
+public interface ProductPropertyValueMapper extends BaseMapperX<ProductPropertyValueDO> {
 
     default List<ProductPropertyValueDO> selectListByPropertyId(Collection<Long> propertyIds) {
         return selectList(new LambdaQueryWrapperX<ProductPropertyValueDO>()

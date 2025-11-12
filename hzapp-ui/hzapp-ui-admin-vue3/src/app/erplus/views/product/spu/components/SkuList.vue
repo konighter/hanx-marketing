@@ -7,7 +7,7 @@
         <UploadImg v-model="row.picUrl" height="50px" width="50px" />
       </template>
     </el-table-column>
-    <template v-if="formData!.specType && !isBatch">
+    <template v-if="formData!.specType">
       <!--  根据商品属性动态添加 -->
       <el-table-column v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
         min-width="120">
@@ -23,19 +23,19 @@
         <el-input v-model="row.barCode" class="w-100%" />
       </template>
     </el-table-column>
-    <el-table-column align="center" label="销售价" min-width="168">
+    <el-table-column align="center" label="销售价(元)" min-width="168">
       <template #default="{ row }">
         <el-input-number v-model="row.price" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
       </template>
     </el-table-column>
-    <el-table-column align="center" label="市场价" min-width="168">
+    <el-table-column align="center" label="市场价(元)" min-width="168">
       <template #default="{ row }">
         <el-input-number v-model="row.marketPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
       </template>
     </el-table-column>
-    <el-table-column align="center" label="成本价" min-width="168">
+    <el-table-column align="center" label="成本价(元)" min-width="168">
       <template #default="{ row }">
         <el-input-number v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
@@ -46,7 +46,28 @@
         <el-input-number v-model="row.stock" :min="0" class="w-100%" controls-position="right" />
       </template>
     </el-table-column>
-    <el-table-column align="center" label="重量(kg)" min-width="168">
+    <el-table-column align="center" label="尺寸" min-width="450">
+      <template #default="{ row }">
+
+        <el-space :size="10">
+          <div class="el-input-group-thir">
+            <el-input v-model="row!.pkgDim!.length" placeholder="长" class="w-20!" />
+
+            <el-input v-model="row!.pkgDim!.width" placeholder="宽" class="w-20!" />
+            <el-input v-model="row!.pkgDim!.height" placeholder="高" class="!w-35">
+              <template #append>cm</template>
+            </el-input>
+          </div>
+          <el-input v-model="row!.pkgDim!.weight" placeholder="重" class="w-30!">
+            <template #append>kg</template>
+          </el-input>
+        </el-space>
+
+
+
+      </template>
+    </el-table-column>
+    <!-- <el-table-column align="center" label="重量(kg)" min-width="168">
       <template #default="{ row }">
         <el-input-number v-model="row.weight" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
@@ -57,21 +78,8 @@
         <el-input-number v-model="row.volume" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
       </template>
-    </el-table-column>
-    <template v-if="formData!.subCommissionType">
-      <el-table-column align="center" label="一级返佣(元)" min-width="168">
-        <template #default="{ row }">
-          <el-input-number v-model="row.firstBrokeragePrice" :min="0" :precision="2" :step="0.1" class="w-100%"
-            controls-position="right" />
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="二级返佣(元)" min-width="168">
-        <template #default="{ row }">
-          <el-input-number v-model="row.secondBrokeragePrice" :min="0" :precision="2" :step="0.1" class="w-100%"
-            controls-position="right" />
-        </template>
-      </el-table-column>
-    </template>
+    </el-table-column> -->
+
     <el-table-column v-if="formData?.specType" align="center" fixed="right" label="操作" width="80">
       <template #default="{ row }">
         <el-button v-if="isBatch" link size="small" type="primary" @click="batchAdd">
@@ -117,11 +125,7 @@
         {{ row.marketPrice }}
       </template>
     </el-table-column>
-    <el-table-column align="center" label="成本价(元)" min-width="80">
-      <template #default="{ row }">
-        {{ row.costPrice }}
-      </template>
-    </el-table-column>
+
     <el-table-column align="center" label="库存" min-width="80">
       <template #default="{ row }">
         {{ row.stock }}
@@ -137,67 +141,9 @@
         {{ row.volume }}
       </template>
     </el-table-column>
-    <template v-if="formData!.subCommissionType">
-      <el-table-column align="center" label="一级返佣(元)" min-width="80">
-        <template #default="{ row }">
-          {{ row.firstBrokeragePrice }}
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="二级返佣(元)" min-width="80">
-        <template #default="{ row }">
-          {{ row.secondBrokeragePrice }}
-        </template>
-      </el-table-column>
-    </template>
+
   </el-table>
 
-  <!-- 情况三：作为活动组件 -->
-  <el-table v-if="isActivityComponent" :data="formData!.skus!" border max-height="500" size="small" style="width: 99%">
-    <el-table-column v-if="isComponent" type="selection" width="45" />
-    <el-table-column align="center" label="图片" min-width="80">
-      <template #default="{ row }">
-        <el-image :src="row.picUrl" class="h-60px w-60px" @click="imagePreview(row.picUrl)" />
-      </template>
-    </el-table-column>
-    <template v-if="formData!.specType">
-      <!--  根据商品属性动态添加 -->
-      <el-table-column v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
-        min-width="80">
-        <template #default="{ row }">
-          <span style="font-weight: bold; color: #40aaff">
-            {{ row.properties?.[index]?.valueName }}
-          </span>
-        </template>
-      </el-table-column>
-    </template>
-    <el-table-column align="center" label="商品编码" min-width="100">
-      <template #default="{ row }">
-        {{ row.barCode }}
-      </template>
-    </el-table-column>
-    <el-table-column align="center" label="销售价(元)" min-width="80">
-      <template #default="{ row }">
-        {{ formatToFraction(row.price) }}
-      </template>
-    </el-table-column>
-    <el-table-column align="center" label="市场价(元)" min-width="80">
-      <template #default="{ row }">
-        {{ formatToFraction(row.marketPrice) }}
-      </template>
-    </el-table-column>
-    <el-table-column align="center" label="成本价(元)" min-width="80">
-      <template #default="{ row }">
-        {{ formatToFraction(row.costPrice) }}
-      </template>
-    </el-table-column>
-    <el-table-column align="center" label="库存" min-width="80">
-      <template #default="{ row }">
-        {{ row.stock }}
-      </template>
-    </el-table-column>
-    <!--  方便扩展每个活动配置的属性不一样  -->
-    <slot name="extension"></slot>
-  </el-table>
 </template>
 <script lang="ts" setup>
 import { PropType, Ref } from 'vue'
@@ -240,11 +186,17 @@ const skuList = ref<Sku[]>([
     costPrice: 0, // 成本价
     barCode: '', // 商品编码
     picUrl: '', // 图片地址
+    // SKU与SPU的差异属性, 为Null取SPU对应值
+    keyword: '', // 关键字
+    description: '', // 商品详情
+    introduction: [''], // 商品简介
+    sliderPicUrls: [], // 商品轮播图
     stock: 0, // 库存
-    weight: 0, // 商品重量
-    volume: 0, // 商品体积
-    firstBrokeragePrice: 0, // 一级分销的佣金
-    secondBrokeragePrice: 0 // 二级分销的佣金
+    itemDim: {},
+    pkgDim: {},
+    boxDim: {},
+    inboxnum: undefined
+
   }
 ]) // 批量添加时的临时数据
 
@@ -372,11 +324,19 @@ const generateTableData = (propertyList: any[]) => {
       costPrice: 0,
       barCode: '',
       picUrl: '',
+
+      // SKU与SPU的差异属性, 为Null取SPU对应值
+      keyword: '', // 关键字
+      description: '', // 商品详情
+      introduction: [''], // 商品简介
+      sliderPicUrls: [], // 商品轮播图
+
       stock: 0,
-      weight: 0,
-      volume: 0,
-      firstBrokeragePrice: 0,
-      secondBrokeragePrice: 0
+      itemDim: {},
+      pkgDim: {},
+      boxDim: {},
+      inboxnum: undefined
+
     }
     // 如果存在属性相同的 sku 则不做处理
     const index = formData.value!.skus!.findIndex(
@@ -448,10 +408,8 @@ watch(
           barCode: '',
           picUrl: '',
           stock: 0,
-          weight: 0,
-          volume: 0,
-          firstBrokeragePrice: 0,
-          secondBrokeragePrice: 0
+          // weight: 0,
+          // volume: 0,
         }
       ]
     }

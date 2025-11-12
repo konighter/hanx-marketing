@@ -5,8 +5,8 @@ import com.hzltd.framework.common.util.collection.MapUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.controller.admin.product.vo.product.ProductSaveReqVO;
-import com.hzltd.module.erplus.controller.admin.spu_new.vo.ProductSpuRespVO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpProductCategoryDO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
+import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductUnitDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
@@ -34,15 +34,15 @@ import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_EXIST
  */
 @Service
 @Validated
-public class ErpProductServiceImpl implements ErpProductService {
+public class ProductServiceImpl implements ProductService {
 
     @Resource
     private ProductSpuMapper productSpuMapper;
 
     @Resource
-    private ErpProductCategoryService productCategoryService;
+    private ProductCategoryService productCategoryService;
     @Resource
-    private ErpProductUnitService productUnitService;
+    private ProductUnitService productUnitService;
 
     @Override
     public Long createProduct(ProductSaveReqVO createReqVO) {
@@ -105,19 +105,20 @@ public class ErpProductServiceImpl implements ErpProductService {
     }
 
     private List<ProductSpuRespVO> buildProductVOList(List<ProductSpuDO> list) {
-        if (CollUtil.isEmpty(list)) {
-            return Collections.emptyList();
-        }
-        Map<Long, ErpProductCategoryDO> categoryMap = productCategoryService.getProductCategoryMap(
-                convertSet(list, ProductSpuDO::getCategoryId));
-        Map<Long, ErpProductUnitDO> unitMap = productUnitService.getProductUnitMap(
-                convertSet(list, ProductSpuDO::getUnitId));
-        return BeanUtils.toBean(list, ProductSpuRespVO.class, product -> {
-            MapUtils.findAndThen(categoryMap, product.getCategoryId(),
-                    category -> product.setCategoryName(category.getName()));
-            MapUtils.findAndThen(unitMap, product.getUnitId(),
-                    unit -> product.setUnitName(unit.getName()));
-        });
+                    return Collections.emptyList();
+//        if (CollUtil.isEmpty(list)) {
+//            return Collections.emptyList();
+//        }
+//        Map<Long, ProductCategoryDO> categoryMap = productCategoryService.getProductCategoryMap(
+//                convertSet(list, ProductSpuDO::getCategoryId));
+//        Map<Long, ErpProductUnitDO> unitMap = productUnitService.getProductUnitMap(
+//                convertSet(list, ProductSpuDO::getUnitId));
+//        return BeanUtils.toBean(list, ProductSpuRespVO.class, product -> {
+//            MapUtils.findAndThen(categoryMap, product.getCategoryId(),
+//                    category -> product.setCategoryName(category.getName()));
+//            MapUtils.findAndThen(unitMap, product.getUnitId(),
+//                    unit -> product.setUnitName(unit.getName()));
+//        });
     }
 
     @Override

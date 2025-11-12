@@ -18,7 +18,7 @@ import com.hzltd.module.erplus.dal.dataobject.sale.ErpCustomerDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockOutDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockOutItemDO;
-import com.hzltd.module.erplus.service.product.ErpProductService;
+import com.hzltd.module.erplus.service.product.ProductService;
 import com.hzltd.module.erplus.service.sale.ErpCustomerService;
 import com.hzltd.module.erplus.service.stock.ErpStockOutService;
 import com.hzltd.module.erplus.service.stock.ErpStockService;
@@ -54,7 +54,7 @@ public class ErpStockOutController {
     @Resource
     private ErpStockService stockService;
     @Resource
-    private ErpProductService productService;
+    private ProductService productService;
     @Resource
     private ErpCustomerService customerService;
 

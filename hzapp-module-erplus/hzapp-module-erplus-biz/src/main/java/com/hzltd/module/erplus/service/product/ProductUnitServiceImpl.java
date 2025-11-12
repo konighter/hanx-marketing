@@ -25,14 +25,14 @@ import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
  */
 @Service
 @Validated
-public class ErpProductUnitServiceImpl implements ErpProductUnitService {
+public class ProductUnitServiceImpl implements ProductUnitService {
 
     @Resource
     private ErpProductUnitMapper productUnitMapper;
 
     @Resource
     @Lazy // 延迟加载，避免循环依赖
-    private ErpProductService productService;
+    private ProductService productService;
 
     @Override
     public Long createProductUnit(ErpProductUnitSaveReqVO createReqVO) {

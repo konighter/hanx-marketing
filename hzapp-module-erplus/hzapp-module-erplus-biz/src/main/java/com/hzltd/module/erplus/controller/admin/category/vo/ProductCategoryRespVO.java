@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.controller.admin.product.vo.category;
+package com.hzltd.module.erplus.controller.admin.category.vo;
 
 import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Schema(description = "管理后台 - ERP 产品分类 Response VO")
 @Data
 @ExcelIgnoreUnannotated
-public class ErpProductCategoryRespVO {
+public class ProductCategoryRespVO {
 
     @Schema(description = "分类编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "5860")
     @ExcelProperty("分类编号")

@@ -39,7 +39,7 @@ public class ErpProductDO extends BaseDO {
     /**
      * 产品分类编号
      *
-     * 关联 {@link ErpProductCategoryDO#getId()}
+     * 关联 {@link ProductCategoryDO#getId()}
      */
     private Long categoryId;
     /**

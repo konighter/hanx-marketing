@@ -1,41 +1,80 @@
 <!-- 商品发布 - 物流设置 -->
 <template>
   <el-form ref="formRef" :model="formData" :rules="rules" label-width="120px" :disabled="isDetail">
-    <el-form-item label="配送方式" prop="deliveryTypes">
-      <el-checkbox-group v-model="formData.deliveryTypes" class="w-80">
-        <el-checkbox
-          v-for="dict in getIntDictOptions(DICT_TYPE.TRADE_DELIVERY_TYPE)"
-          :key="dict.value"
-          :value="dict.value"
-        >
-          {{ dict.label }}
-        </el-checkbox>
-      </el-checkbox-group>
+    <el-divider content-position="left">包裹信息</el-divider>
+
+
+    <el-form-item label="单箱规格">
+      <el-space :size="56">
+        <div class="el-input-group-thir">
+          <el-input v-model="formData!.boxDim!.length" placeholder="长" />
+          <el-input v-model="formData!.boxDim!.width" placeholder="宽" />
+          <el-input v-model="formData!.boxDim!.height" placeholder="高">
+            <template #append>cm</template>
+          </el-input>
+        </div>
+        <el-input v-model="formData!.boxDim!.weight" placeholder="重">
+          <template #append>kg</template>
+        </el-input>
+      </el-space>
     </el-form-item>
-    <el-form-item
-      label="运费模板"
-      prop="deliveryTemplateId"
-      v-if="formData.deliveryTypes?.includes(DeliveryTypeEnum.EXPRESS.type)"
-    >
-      <el-select placeholder="请选择运费模板" v-model="formData.deliveryTemplateId" class="w-80">
-        <el-option
-          v-for="item in deliveryTemplateList"
-          :key="item.id"
-          :label="item.name"
-          :value="item.id"
-        />
-      </el-select>
+    <el-form-item label="单箱数量">
+      <el-input class="w-160!" v-model="formData.inboxnum" />
     </el-form-item>
+    <el-divider content-position="left">物流信息</el-divider>
+    <el-form-item label="附加费">
+      <el-input class="w-160!" v-model="formData.additionalFee">
+
+        <template #append>元</template>
+      </el-input>
+    </el-form-item>
+
+    <el-form-item label="物流报关">
+      <el-table>
+        <el-table-column min-width="40">
+          <template #header>
+            <el-button :icon="Plus" text size="small" />
+          </template>
+        </el-table-column>
+        <el-table-column label="国家" />
+        <el-table-column label="海关编码" />
+        <el-table-column label="中文名" />
+        <el-table-column label="英文名" />
+        <el-table-column label="报价" />
+        <el-table-column label="材质(英文)" />
+        <el-table-column label="材质(中文)" />
+        <el-table-column label="用途" />
+        <el-table-column label="税率" />
+        <el-table-column>
+          <template #header>
+            <span> 操作 </span> <span> <el-button type="primary" link>清除</el-button> </span>
+          </template>
+
+
+
+        </el-table-column>
+
+
+
+      </el-table>
+
+
+
+    </el-form-item>
+
+
+
+
   </el-form>
 </template>
 <script lang="ts" setup>
 import { PropType } from 'vue'
 import { copyValueToTarget } from '@/utils'
 import { propTypes } from '@/utils/propTypes'
-import type { Spu } from '@/api/mall/product/spu'
-import * as ExpressTemplateApi from '@/api/mall/trade/delivery/expressTemplate'
-import { DICT_TYPE, getIntDictOptions } from '@/utils/dict'
-import { DeliveryTypeEnum } from '@/utils/constants'
+import type { Spu, Sku } from '@/app/erplus/api/product/spu'
+
+import { Plus } from '@element-plus/icons-vue'
+
 
 defineOptions({ name: 'ProductDeliveryForm' })
 
@@ -44,15 +83,25 @@ const message = useMessage() // 消息弹窗
 const props = defineProps({
   propFormData: {
     type: Object as PropType<Spu>,
-    default: () => {}
+    default: () => { }
   },
   isDetail: propTypes.bool.def(false) // 是否作为详情组件
 })
 const formRef = ref() // 表单 Ref
 const formData = reactive<Spu>({
-  deliveryTypes: [], // 配送方式
-  deliveryTemplateId: undefined // 运费模版
+  specType: false,
+  pkgDim: {},
+  itemDim: {},
+  boxDim: {},
+  inboxnum: undefined
 })
+
+
+
+
+const SkuDimList = ref<Sku[]>([])
+
+
 const rules = reactive({
   deliveryTypes: [required],
   deliveryTemplateId: [required]
@@ -66,6 +115,8 @@ watch(
       return
     }
     copyValueToTarget(formData, data)
+    console.log(formData)
+
   },
   {
     immediate: true
@@ -88,9 +139,8 @@ const validate = async () => {
 }
 defineExpose({ validate })
 
-/** 初始化 */
-const deliveryTemplateList = ref([]) // 运费模版
+
 onMounted(async () => {
-  deliveryTemplateList.value = await ExpressTemplateApi.getSimpleTemplateList()
+
 })
 </script>
