@@ -30,21 +30,6 @@ export interface CategoryVO {
   status: number
 }
 
-/**
- * 跨平台枚举
- */
-export enum CrossPlatformEnum {
-  AMZ = 1, // 亚马逊
-  OZON = 2, // Ozon
-  TTS = 3 // Tiktok Shop
-}
-
-/**
- * 语言枚举
- */
-export enum LanguageEnum {
-  ZH_CN = 1 // 汉语
-}
 
 /**
  * 跨平台分类VO
@@ -75,15 +60,20 @@ export interface PlatformCategoryReqVO {
   /**
    * 跨平台类型
    */
-  crossPlatform: CrossPlatformEnum
+  platformId: number
+
+  /**
+   * 店铺ID列表
+   */
+  shopIds: number[]
   /**
    * 语言
    */
-  language: LanguageEnum
+  language: string
   /**
    * 关键词
    */
-  keyword: string
+  name: string
 }
 
 /**
@@ -93,7 +83,7 @@ export interface PlatformCategoryRespVO {
   /**
    * 语言
    */
-  language: LanguageEnum
+  language: string
   /**
    * 分类列表
    */
@@ -139,21 +129,22 @@ export const getCategoryList = (params: any) => {
   return request.get({ url: '/erplus/product-category/list', params })
 }
 
+
 // ==================== 跨平台分类相关API ====================
 
-// 获取跨平台分类列表
-export const getCrossCategories = (params: PlatformCategoryReqVO) => {
-  return request.get({ url: '/erplus/cross/category/list', params })
+// 获取跨境平台分类列表
+export const getCrossCategories = (data: PlatformCategoryReqVO) => {
+  return request.post({ url: '/erplus/cross/category/list', data })
 }
 
-// 获取分类规则
-export const getCategoryRules = (categoryId: string) => {
-  return request.get({ url: `/erplus/cross/category/${categoryId}/rules` })
+// 获取跨境分类规则
+export const getCategoryRules = (categoryId: string, platformId: number) => {
+  return request.get({ url: `/erplus/cross/category/${platformId}/rules?id=${categoryId}`})
 }
 
-// 获取分类属性
-export const getCategoryAttributes = (categoryId: string) => {
-  return request.get({ url: `/erplus/cross/category/${categoryId}/attributes` })
+// 获取跨境分类属性
+export const getCategoryAttributes = (categoryId: string[], platformId: number, shopId: number) => {
+  return request.post({ url: `/erplus/cross/category/attributes`, data: { categoryIds: categoryId, platformId, shopId } })
 }
 
 

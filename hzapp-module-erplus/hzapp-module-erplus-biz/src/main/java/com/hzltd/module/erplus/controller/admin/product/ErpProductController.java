@@ -64,14 +64,14 @@ public class ErpProductController {
         return success(BeanUtils.toBean(pageResult, ProductSpuRespVO.class));
     }
 
-    @GetMapping("/simple-list")
-    @Operation(summary = "获得产品精简列表", description = "只包含被开启的产品，主要用于前端的下拉选项")
-    public CommonResult<List<ProductSpuSimpleRespVO>> getProductSimpleList() {
-        List<ProductSpuDO> list = productSpuService.getSpuListByStatus(ProductSpuStatusEnum.CLAIMED.getStatus());
-        // 降序排序后，返回给前端
-        list.sort(Comparator.comparing(ProductSpuDO::getSort).reversed());
-        return success(BeanUtils.toBean(list, ProductSpuSimpleRespVO.class));
-    }
+//    @GetMapping("/simple-list")
+//    @Operation(summary = "获得产品精简列表", description = "只包含被开启的产品，主要用于前端的下拉选项")
+//    public CommonResult<List<ProductSpuSimpleRespVO>> getProductSimpleList() {
+//        List<ProductSpuDO> list = productSpuService.getSpuListByStatus(ProductSpuStatusEnum.CLAIMED.getStatus());
+//        // 降序排序后，返回给前端
+//        list.sort(Comparator.comparing(ProductSpuDO::getSort).reversed());
+//        return success(BeanUtils.toBean(list, ProductSpuSimpleRespVO.class));
+//    }
 
 
 }

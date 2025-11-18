@@ -57,7 +57,7 @@ public class ProductSpuDO extends BaseDO {
     /**
      * 商品分类编号
      *
-     * 关联 {@link ProductCategoryDO#getId()}
+     * 关联
      */
     private Long categoryId;
     /**
@@ -67,11 +67,14 @@ public class ProductSpuDO extends BaseDO {
      */
     private Long brandId;
 
+
     /**
-     * 商品单位
-     *  {@link ErpProductUnitDO#getId()} ()}
+     * 商品单位编号
+     *
+     * 关联 {@link ErpProductUnitDO#getId()}
      */
     private Long unitId;
+
     /**
      * 商品封面图
      */
@@ -127,50 +130,5 @@ public class ProductSpuDO extends BaseDO {
      */
     private Integer stock;
 
-    // ========== 物流相关字段 =========
 
-    /**
-     * 配送方式数组
-     *
-     * 对应 DeliveryTypeEnum 枚举
-     */
-    @TableField(typeHandler = IntegerListTypeHandler.class)
-    private List<Integer> deliveryTypes;
-    /**
-     * 物流配置模板编号
-     *
-     * 对应 TradeDeliveryExpressTemplateDO 的 id 编号
-     */
-    private Long deliveryTemplateId;
-
-    // ========== 营销相关字段 =========
-
-    /**
-     * 赠送积分
-     */
-    private Integer giveIntegral;
-
-    // TODO @puhui999：字段估计要改成 brokerageType
-    /**
-     * 分销类型
-     *
-     * false - 默认
-     * true - 自行设置
-     */
-    private Boolean subCommissionType;
-
-    // ========== 统计相关字段 =========
-
-    /**
-     * 商品销量
-     */
-    private Integer salesCount;
-    /**
-     * 虚拟销量
-     */
-    private Integer virtualSalesCount;
-    /**
-     * 浏览量
-     */
-    private Integer browseCount;
 }

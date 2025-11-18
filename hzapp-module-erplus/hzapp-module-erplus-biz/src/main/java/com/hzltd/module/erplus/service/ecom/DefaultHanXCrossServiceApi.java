@@ -48,11 +48,11 @@ public class DefaultHanXCrossServiceApi implements ProductApi, CategoryApi, Plat
     @Override
     public ApiResponse<List<CategoryAttributeModel>> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
         CategoryAttributeDO attributeDO = new CategoryAttributeDO();
-        attributeDO.setCategoryId(apiRequest.getRequest().getCategoryId());
+//        attributeDO.setCategoryId(apiRequest.getRequest().getCategoryId());
         List<CategoryAttributeDO> categoryAttributes = categoryAttributeService.getCategoryAttributes(attributeDO);
         return ApiResponse.success( categoryAttributes.stream().map(a -> {
             CategoryAttributeModel model = new CategoryAttributeModel();
-            model.setAttrId(a.getAttrId());
+            model.setAttrCode(a.getAttrId());
             model.setAttrName(a.getAttrName());
             model.setAttrType(AttributeTypeEnum.valueOf(a.getAttrType()));
             model.setRequired(a.isRequired());

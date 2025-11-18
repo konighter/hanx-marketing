@@ -1,9 +1,12 @@
 package com.hzltd.module.erplus.dal.dataobject.shop;
 
 import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.module.erplus.model.authorization.AuthorizationModel;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -13,7 +16,7 @@ import java.time.LocalDateTime;
  *
  * @author hzadd
  */
-@TableName(value = "ov_shop", autoResultMap = true)
+@TableName(value = "erplus_platform_shop", autoResultMap = true)
 @KeySequence("ov_shop_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -43,11 +46,12 @@ public class ShopDO extends BaseDO {
     /**
      * 授权信息
      */
-    private String authorInfo;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private AuthorizationModel authInfo;
     /**
      * 授权刷新
      */
-    private String authRefreshInfo;
+//    private String authRefreshInfo;
     /**
      * 授权开始时间
      */

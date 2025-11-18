@@ -11,7 +11,7 @@ public interface CrossCategoryService {
 
     List<CategoryVO> getCrossCategoryList(CrossCategoryReqVO reqVO);
 
-    List<CategoryAttributeVO> getCrossAttributeByCategory(CrossCategoryAttrReqVO crossCategoryAttrReqVO);
+    List<CategoryAttributeVO> getCrossAttributeByCategory(CrossCategoryAttrReqVO platformCategoryAttrReqVO);
 
 
 

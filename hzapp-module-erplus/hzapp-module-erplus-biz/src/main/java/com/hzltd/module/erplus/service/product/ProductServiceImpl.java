@@ -126,9 +126,6 @@ public class ProductServiceImpl implements ProductService {
         return productSpuMapper.selectCount(new LambdaQueryWrapperX<ProductSpuDO>().eq(ProductSpuDO::getCategoryId, categoryId));
     }
 
-    @Override
-    public Long getProductCountByUnitId(Long unitId) {
-        return productSpuMapper.selectCount(new LambdaQueryWrapperX<ProductSpuDO>().eq(ProductSpuDO::getUnitId, unitId));
-    }
+
 
 }

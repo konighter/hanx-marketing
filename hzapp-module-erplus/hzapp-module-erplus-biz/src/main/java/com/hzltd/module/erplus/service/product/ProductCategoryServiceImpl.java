@@ -153,7 +153,8 @@ public class ProductCategoryServiceImpl implements ProductCategoryService {
 
     @Override
     public int getCategoryLevel(Long id) {
-        return 0;
+        // todo-- 补齐逻辑
+        return 5;
     }
 
 }

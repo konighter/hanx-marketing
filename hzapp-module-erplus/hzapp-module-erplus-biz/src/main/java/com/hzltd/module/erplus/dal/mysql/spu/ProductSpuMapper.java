@@ -46,7 +46,7 @@ public interface ProductSpuMapper extends BaseMapperX<ProductSpuDO> {
         // 库存小于等于警戒库存
         queryWrapper.le(ProductSpuDO::getStock, ProductConstants.ALERT_STOCK)
                 // 如果库存触发警戒库存且状态为回收站的话则不计入触发警戒库存的个数
-                .notIn(ProductSpuDO::getStatus, ProductSpuStatusEnum.RECYCLE.getStatus());
+                .notIn(ProductSpuDO::getStatus, ProductSpuStatusEnum.ARCHIVED.getStatus());
         return selectCount(queryWrapper);
     }
 
@@ -100,12 +100,16 @@ public interface ProductSpuMapper extends BaseMapperX<ProductSpuDO> {
      */
     static void appendTabQuery(Integer tabType, LambdaQueryWrapperX<ProductSpuDO> query) {
         // 出售中商品
+        if (ObjectUtil.equals(ProductSpuPageReqVO.DRAFT, tabType)) {
+            query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.DRAFT.getStatus());
+        }
+        // 出售中商品
         if (ObjectUtil.equals(ProductSpuPageReqVO.FOR_SALE, tabType)) {
-            query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.CLAIMED.getStatus());
+            query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.FOR_SALE.getStatus());
         }
         // 仓储中商品
-        if (ObjectUtil.equals(ProductSpuPageReqVO.IN_WAREHOUSE, tabType)) {
-            query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.COLLECTED.getStatus());
+        if (ObjectUtil.equals(ProductSpuPageReqVO.OFF_SALE, tabType)) {
+            query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.OFF_SALE.getStatus());
         }
         // 已售空商品
         if (ObjectUtil.equals(ProductSpuPageReqVO.SOLD_OUT, tabType)) {
@@ -115,11 +119,11 @@ public interface ProductSpuMapper extends BaseMapperX<ProductSpuDO> {
         if (ObjectUtil.equals(ProductSpuPageReqVO.ALERT_STOCK, tabType)) {
             query.le(ProductSpuDO::getStock, ProductConstants.ALERT_STOCK)
                     // 如果库存触发警戒库存且状态为回收站的话则不在警戒库存列表展示
-                    .notIn(ProductSpuDO::getStatus, ProductSpuStatusEnum.RECYCLE.getStatus());
+                    .notIn(ProductSpuDO::getStatus, ProductSpuStatusEnum.ARCHIVED.getStatus());
         }
         // 回收站
-        if (ObjectUtil.equals(ProductSpuPageReqVO.RECYCLE_BIN, tabType)) {
-            query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.RECYCLE.getStatus());
+        if (ObjectUtil.equals(ProductSpuPageReqVO.ARCHIVED, tabType)) {
+            query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.ARCHIVED.getStatus());
         }
     }
 

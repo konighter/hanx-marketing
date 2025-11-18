@@ -6,13 +6,11 @@ import com.google.common.collect.Maps;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.collection.CollectionUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuSaveReqVO;
-import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuPageReqVO;
-import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuSaveReqVO;
-import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuUpdateStatusReqVO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.*;
+import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
-import com.hzltd.module.erplus.enums.spu.ProductSpuStatusEnum;
+import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
 import com.hzltd.module.erplus.service.brand.ProductBrandService;
 import com.hzltd.module.erplus.service.product.ProductCategoryService;
 import jakarta.annotation.Resource;
@@ -107,9 +105,7 @@ public class ProductSpuServiceImpl implements ProductSpuService {
         spu.setStock(getSumValue(skus, ProductSkuSaveReqVO::getStock, Integer::sum));
         // 若是 spu 已有状态则不处理
         if (spu.getStatus() == null) {
-            spu.setStatus(ProductSpuStatusEnum.ENABLE.getStatus()); // 默认状态为上架
-            spu.setSalesCount(0); // 默认商品销量
-            spu.setBrowseCount(0); // 默认商品浏览量
+            spu.setStatus(ProductSpuStatusEnum.DRAFT.getStatus()); // 默认状态为草稿
         }
     }
 
@@ -212,7 +208,19 @@ public class ProductSpuServiceImpl implements ProductSpuService {
         return productSpuMapper.selectPage(pageReqVO);
     }
 
+    @Override
+    public PageResult<ProductSpuRespVO> getSpuPageWithSku(ProductSpuPageReqVO pageReqVO) {
+        PageResult<ProductSpuDO> spuPageResult = productSpuMapper.selectPage(pageReqVO);
 
+        // 转换为响应 VO
+        List<ProductSpuRespVO> respList = convertList(spuPageResult.getList(), spu -> {
+            ProductSpuRespVO respVO = BeanUtils.toBean(spu, ProductSpuRespVO.class);
+            respVO.setSkus(BeanUtils.toBean(productSkuService.getSkuListBySpuId(respVO.getId()), ProductSkuRespVO.class));
+            return respVO;
+        });
+
+        return new PageResult<>(respList, spuPageResult.getTotal());
+    }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -234,13 +242,16 @@ public class ProductSpuServiceImpl implements ProductSpuService {
 
     @Override
     public Map<Integer, Long> getTabsCount() {
-        Map<Integer, Long> counts = Maps.newLinkedHashMapWithExpectedSize(5);
+        Map<Integer, Long> counts = Maps.newLinkedHashMapWithExpectedSize(6);
+        // 草稿中的数量
+        counts.put(ProductSpuPageReqVO.DRAFT,
+                productSpuMapper.selectCount(ProductSpuDO::getStatus, ProductSpuStatusEnum.DRAFT.getStatus()));
         // 查询销售中的商品数量
         counts.put(ProductSpuPageReqVO.FOR_SALE,
-                productSpuMapper.selectCount(ProductSpuDO::getStatus, ProductSpuStatusEnum.ENABLE.getStatus()));
-        // 查询仓库中的商品数量
-        counts.put(ProductSpuPageReqVO.IN_WAREHOUSE,
-                productSpuMapper.selectCount(ProductSpuDO::getStatus, ProductSpuStatusEnum.DISABLE.getStatus()));
+                productSpuMapper.selectCount(ProductSpuDO::getStatus, ProductSpuStatusEnum.FOR_SALE.getStatus()));
+        // 查询下架的商品数量
+        counts.put(ProductSpuPageReqVO.OFF_SALE,
+                productSpuMapper.selectCount(ProductSpuDO::getStatus, ProductSpuStatusEnum.OFF_SALE.getStatus()));
         // 查询售空的商品数量
         counts.put(ProductSpuPageReqVO.SOLD_OUT,
                 productSpuMapper.selectCount(ProductSpuDO::getStock, 0));
@@ -248,7 +259,7 @@ public class ProductSpuServiceImpl implements ProductSpuService {
         counts.put(ProductSpuPageReqVO.ALERT_STOCK,
                 productSpuMapper.selectCount());
         // 查询回收站中的商品数量
-        counts.put(ProductSpuPageReqVO.RECYCLE_BIN,
+        counts.put(ProductSpuPageReqVO.ARCHIVED,
                 productSpuMapper.selectCount(ProductSpuDO::getStatus, ProductSpuStatusEnum.ARCHIVED.getStatus()));
         return counts;
     }

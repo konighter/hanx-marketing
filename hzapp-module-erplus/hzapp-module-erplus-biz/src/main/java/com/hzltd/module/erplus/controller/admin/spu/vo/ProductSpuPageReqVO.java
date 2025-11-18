@@ -18,29 +18,33 @@ import static com.hzltd.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_D
 public class ProductSpuPageReqVO extends PageParam {
 
     /**
+     * 草稿
+     */
+    public static final Integer DRAFT = 0;
+    /**
      * 出售中商品
      */
-    public static final Integer FOR_SALE = 0;
+    public static final Integer FOR_SALE = 1;
 
     /**
-     * 仓库中商品
+     * 下架
      */
-    public static final Integer IN_WAREHOUSE = 1;
+    public static final Integer OFF_SALE = 2;
 
     /**
      * 已售空商品
      */
-    public static final Integer SOLD_OUT = 2;
+    public static final Integer SOLD_OUT = 3;
 
     /**
      * 警戒库存
      */
-    public static final Integer ALERT_STOCK = 3;
+    public static final Integer ALERT_STOCK = 4;
 
     /**
      * 商品回收站
      */
-    public static final Integer RECYCLE_BIN = 4;
+    public static final Integer ARCHIVED = 5;
 
     @Schema(description = "商品名称", example = "清凉小短袖")
     private String name;

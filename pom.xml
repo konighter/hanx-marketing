@@ -12,7 +12,7 @@
         <module>hzapp-server</module>
         <!-- 各种 module 拓展 -->
         <module>hzapp-module-erplus</module>
-        <module>hzapp-module-mall</module>
+<!--        <module>hzapp-module-mall</module>-->
     </modules>
 
     <name>${project.artifactId}</name>
@@ -43,6 +43,13 @@
                 <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>4.12.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

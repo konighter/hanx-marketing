@@ -5,8 +5,9 @@ import lombok.Data;
 @Data
 public class GetCategoryRequest {
 
-    private String keyword;
+    private String name;
 
+    private Long shopId;
     
 
 }

@@ -234,4 +234,11 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
     ErrorCode PRODUCT_NOT_VALID = new ErrorCode(2_100_000_001, "商品完整性校验失败");
 
     ErrorCode CATEGORY_ATTRIBUTE_NOT_EXISTS = new ErrorCode(2_100_100_001, "品类属性不存在");
+
+    ErrorCode CATEGORY_NOT_EMPTY = new ErrorCode(2_100_100_001, "品类不能为空");
+
+    ErrorCode CATEGORY_NOT_EXISTS = new ErrorCode(2_100_100_002, "品类不存在");
+
+    ErrorCode CROSS_API_ERROR = new ErrorCode(2_100_200_001, "平台接口调用失败");
+
 }

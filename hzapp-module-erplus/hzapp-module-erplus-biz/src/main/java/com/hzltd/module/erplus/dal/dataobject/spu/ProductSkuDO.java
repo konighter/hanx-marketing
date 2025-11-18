@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.AbstractJsonTypeHandler;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import lombok.*;
@@ -16,7 +17,7 @@ import java.util.List;
  *
  * @author 翰展科技
  */
-@TableName(value = "erp_product_sku", autoResultMap = true)
+@TableName(value = "erplus_product_sku", autoResultMap = true)
 @KeySequence("product_sku_seq") // 用于 Oracle、PostgreSQL、Kingbase、DB2、H2 数据库的主键自增。如果是 MySQL 等数据库，可不写。
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -43,6 +44,37 @@ public class ProductSkuDO extends BaseDO {
     @TableField(typeHandler = PropertyTypeHandler.class)
     private List<Property> properties;
     /**
+     * 商品条码
+     */
+    private String barCode;
+
+    /**
+     * 关键字
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> keyword;
+    /**
+     * 商品简介
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> introduction;
+    /**
+     * 商品详情
+     */
+    private String description;
+
+    /**
+     * 图片地址
+     */
+    private String picUrl;
+
+    /**
+     * 商品轮播图
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> sliderPicUrls;
+
+    /**
      * 商品价格，单位：分
      */
     private Integer price;
@@ -54,14 +86,7 @@ public class ProductSkuDO extends BaseDO {
      * 成本价，单位：分
      */
     private Integer costPrice;
-    /**
-     * 商品条码
-     */
-    private String barCode;
-    /**
-     * 图片地址
-     */
-    private String picUrl;
+
     /**
      * 库存
      */
@@ -75,22 +100,6 @@ public class ProductSkuDO extends BaseDO {
      */
     private Double volume;
 
-    /**
-     * 一级分销的佣金，单位：分
-     */
-    private Integer firstBrokeragePrice;
-    /**
-     * 二级分销的佣金，单位：分
-     */
-    private Integer secondBrokeragePrice;
-
-    // ========== 营销相关字段 =========
-
-    // ========== 统计相关字段 =========
-    /**
-     * 商品销量
-     */
-    private Integer salesCount;
 
     /**
      * 商品属性
@@ -128,7 +137,6 @@ public class ProductSkuDO extends BaseDO {
 
     }
 
-    // TODO @芋艿：可以找一些新的思路
     public static class PropertyTypeHandler extends AbstractJsonTypeHandler<Object> {
 
         public PropertyTypeHandler(Class<?> type) {
@@ -146,12 +154,6 @@ public class ProductSkuDO extends BaseDO {
         }
 
     }
-
-    // TODO 芋艿：integral from y
-    // TODO 芋艿：pinkPrice from y
-    // TODO 芋艿：seckillPrice from y
-    // TODO 芋艿：pinkStock from y
-    // TODO 芋艿：seckillStock from y
 
 }
 

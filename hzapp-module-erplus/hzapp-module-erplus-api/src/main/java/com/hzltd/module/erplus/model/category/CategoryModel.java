@@ -1,6 +1,9 @@
 package com.hzltd.module.erplus.model.category;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 public class CategoryModel {
@@ -12,4 +15,6 @@ public class CategoryModel {
     private String parentCategoryId;
 
     private boolean isLeaf;
+
+    private String extra;
 }

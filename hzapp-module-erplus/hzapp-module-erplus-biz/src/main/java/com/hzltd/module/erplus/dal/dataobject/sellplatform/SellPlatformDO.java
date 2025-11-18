@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import com.hzltd.framework.tenant.core.aop.TenantIgnore;
 import lombok.*;
@@ -45,7 +46,11 @@ public class SellPlatformDO extends BaseDO {
     @TableField(typeHandler = ServiceMode.ServiceModeHandler.class)
     private List<ServiceMode> serviceModes;
 
-
+    /**
+     * 配置信息
+     */
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private PlatformConfig config;
 
 
 }

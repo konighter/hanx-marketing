@@ -11,6 +11,8 @@ import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
 import com.hzltd.module.erplus.dal.mysql.sellplatform.SellPlatformMapper;
 import com.hzltd.module.erplus.enums.RedisKeyConstants;
 import com.hzltd.module.erplus.enums.ServiceModeEnum;
+import com.hzltd.module.erplus.sys.SystemPlatformService;
+import com.hzltd.module.erplus.sys.model.SellPlatformModel;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -29,7 +31,7 @@ import static com.hzltd.module.erplus.enums.ErrorCodeConstants.SELL_PLATFORM_NOT
  */
 @Service
 @Validated
-public class SellPlatformServiceImpl implements SellPlatformService {
+public class SellPlatformServiceImpl implements SellPlatformService, SystemPlatformService {
 
     @Resource
     private SellPlatformMapper sellPlatformMapper;
@@ -100,5 +102,11 @@ public class SellPlatformServiceImpl implements SellPlatformService {
     @Override
     public List<SellPlatformDO> getSellPlatformList(SellPlatformReqVO reqVO) {
         return sellPlatformMapper.selectList(reqVO);
+    }
+
+    @Override
+    public SellPlatformModel getSellPlatformDetail(Integer id) {
+        SellPlatformDO platformDO = sellPlatformMapper.selectById(id);
+        return BeanUtils.toBean(platformDO, SellPlatformModel.class);
     }
 }

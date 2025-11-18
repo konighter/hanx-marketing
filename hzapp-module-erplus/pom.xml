@@ -11,7 +11,7 @@
     <modules>
         <module>hzapp-module-erplus-api</module>
         <module>hzapp-module-erplus-biz</module>
-        <module>hzapp-module-erplus-amz-spapi</module>
+<!--        <module>hzapp-module-erplus-amz-spapi</module>-->
         <module>hzapp-module-erplus-ozon-spapi</module>
         <module>hzapp-module-erplus-api-adaptor</module>
         <module>hzapp-module-erplus-tts-spapi</module>

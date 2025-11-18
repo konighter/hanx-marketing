@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.model;
 
 import com.hzltd.module.erplus.constant.LanguageEnum;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
+import com.hzltd.module.erplus.sys.model.BaseCrossRequest;
 import lombok.Data;
 
 import java.util.Locale;
@@ -43,11 +44,21 @@ public class ApiRequest<T> {
     /**
      * Unix timestamp
      */
-    private Integer timestamp;
+    private Long timestamp;
 
     /**
      * 请求体
      */
     private T request;
+
+    public static <T extends BaseCrossRequest, R> ApiRequest<R> of(T request, R req) {
+        ApiRequest<R> apiRequest = new ApiRequest<>();
+        apiRequest.setLanguage(request.getLanguage());
+        apiRequest.setCrossPlatform(CrossPlatformEnum.valueOf(request.getPlatformId()));
+        apiRequest.setShopId(String.valueOf(request.getShopId()));
+        apiRequest.setTimestamp(System.currentTimeMillis() / 1000);
+        apiRequest.setRequest(req);
+        return apiRequest;
+    }
 
 }

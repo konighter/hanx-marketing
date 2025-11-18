@@ -88,39 +88,6 @@ public class ProductSpuRespVO {
     @Schema(description = "SKU 数组")
     private List<ProductSkuRespVO> skus;
 
-    // ========== 物流相关字段 =========
-
-    @Schema(description = "配送方式数组", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
-    private List<Integer> deliveryTypes;
-
-    @Schema(description = "物流配置模板编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "111")
-    @ExcelProperty("物流配置模板编号")
-    private Long deliveryTemplateId;
-
-    // ========== 营销相关字段 =========
-
-    @Schema(description = "赠送积分", requiredMode = Schema.RequiredMode.REQUIRED, example = "111")
-    @ExcelProperty("赠送积分")
-    private Integer giveIntegral;
-
-    @Schema(description = "分销类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "true")
-    @ExcelProperty("分销类型")
-    private Boolean subCommissionType;
-
-    // ========== 统计相关字段 =========
-
-    @Schema(description = "商品销量", requiredMode = Schema.RequiredMode.REQUIRED, example = "2000")
-    @ExcelProperty("商品销量")
-    private Integer salesCount;
-
-    @Schema(description = "虚拟销量", example = "66")
-    @ExcelProperty("虚拟销量")
-    private Integer virtualSalesCount;
-
-    @Schema(description = "浏览量", requiredMode = Schema.RequiredMode.REQUIRED, example = "888")
-    @ExcelProperty("商品点击量")
-    private Integer browseCount;
-
 
     private String barCode;
 

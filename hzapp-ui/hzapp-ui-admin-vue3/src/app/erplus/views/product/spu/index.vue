@@ -48,78 +48,153 @@
     </el-tabs>
     <el-table v-loading="loading" :data="list">
       <el-table-column type="expand">
-        <template #default="{ row }">
-          <el-form class="spu-table-expand" label-position="left">
-            <el-row>
-              <el-col :span="24">
-                <el-row>
-                  <el-col :span="8">
-                    <el-form-item label="商品分类:">
-                      <span>{{ formatCategoryName(row.categoryId) }}</span>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="8">
-                    <el-form-item label="市场价:">
-                      <span>{{ fenToYuan(row.marketPrice) }}</span>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="8">
-                    <el-form-item label="成本价:">
-                      <span>{{ fenToYuan(row.costPrice) }}</span>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-              </el-col>
-            </el-row>
-            <el-row>
-              <el-col :span="24">
-                <el-row>
-                  <el-col :span="8">
-                    <el-form-item label="浏览量:">
-                      <span>{{ row.browseCount }}</span>
-                    </el-form-item>
-                  </el-col>
-                  <el-col :span="8">
-                    <el-form-item label="虚拟销量:">
-                      <span>{{ row.virtualSalesCount }}</span>
-                    </el-form-item>
-                  </el-col>
-                </el-row>
-              </el-col>
-            </el-row>
-          </el-form>
+        <template #default="{ row: spu }">
+          <ContentWrap class="pl-9">
+
+
+            <el-table :data="spu.skus" size="small" :stripe="true" @selection-change="handleListingSelect">
+              <el-table-column type="selection" />
+
+
+              <el-table-column label="图片" width="100">
+                <template #default="{ row: sku }">
+                  <el-image fit="cover" :src="sku.picUrl" class="h-50px w-50px flex-none" />
+                </template>
+              </el-table-column>
+              <el-table-column label="属性" prop="id" width="100" :show-overflow-tooltip="true">
+                <template #default="{ row: sku }">
+                  <el-space spacer="-">
+                    <span v-for="p, i in sku.properties" :key="i"> {{ p.valueName }}</span>
+                  </el-space>
+
+                </template>
+              </el-table-column>
+              <el-table-column label="编码" prop="barCode" width="200" />
+              <el-table-column label="价格" prop="price" width="100">
+                <template #default="{ row: sku }">
+                  <el-tooltip placement="top">
+                    <template #content>
+                      <div>
+                        市场价:<span>{{ fenToYuan(sku.marketPrice) }}</span>
+                      </div>
+                      <div>
+                        成本价:<span>{{ fenToYuan(sku.costPrice) }}</span>
+                      </div>
+                    </template>
+                    {{ fenToYuan(sku.price) }}
+                  </el-tooltip>
+                </template>
+
+              </el-table-column>
+              <el-table-column label="库存" prop="stock" width="100" />
+
+              <el-table-column label="规格" width="200">
+                <template #default="{ row: sku }">
+                  <div v-if="sku.pkgDim">
+
+                    <div>
+                      长:{{ sku.pkgDim?.length }} 宽: {{ sku.pkgDim?.width }} 高: {{ sku.pkgDim?.height }}
+                    </div>
+                    <div>
+                      体积: {{ sku.volume }} 重量: {{ sku.weight }}
+                    </div>
+                  </div>
+                  <div v-else>
+                    <div>
+                      长:{{ spu.pkgDim?.length }} 宽: {{ spu.pkgDim?.width }} 高: {{ spu.pkgDim?.height }}
+                    </div>
+                    <div>
+                      体积: {{ spu.pkgDim?.length * spu.pkgDim?.width * spu.pkgDim?.height }} 重量: {{ spu.pkgDim?.weight }}
+                    </div>
+                  </div>
+
+                </template>
+              </el-table-column>
+              <el-table-column label="操作" width="100">
+
+
+                <template #header>
+                  <div v-if="skus2Listing.length > 0">
+                    <el-button type="primary" link size="small" @click="submitSkuListing([])">批量刊登</el-button>
+                  </div>
+                  <div v-else>
+                    操作
+                  </div>
+                </template>
+
+                <template #default="{ row: sku }">
+                  <el-button type="primary" link size="small" @click="submitSkuListing([sku.id])">刊登</el-button>
+                </template>
+
+
+              </el-table-column>
+
+
+
+            </el-table>
+
+          </ContentWrap>
+
+
         </template>
       </el-table-column>
-      <el-table-column label="商品编号" min-width="140" prop="id" />
-      <el-table-column label="商品信息" min-width="300">
+      <el-table-column label="图片" width="100">
+        <template #default="{ row }">
+          <el-image style="width: 60px; height: 60px" :src="row.picUrl"
+            :preview-src-list="[row.picUrl, ...row.sliderPicUrls]" fit="cover" :preview-teleported=true />
+        </template>
+      </el-table-column>
+      <el-table-column label="名称" min-width="300">
         <template #default="{ row }">
           <div class="flex">
-            <el-image fit="cover" :src="row.picUrl" class="h-50px w-50px flex-none" @click="imagePreview(row.picUrl)" />
-            <div class="ml-4 overflow-hidden">
-              <el-tooltip effect="dark" :content="row.name" placement="top">
+            <div class="ml-1 overflow-hidden">
+              <el-tooltip :content="row.name" placement="top">
                 <div>
                   {{ row.name }}
                 </div>
               </el-tooltip>
             </div>
+            <div>
+              {{ row.productCode }}
+            </div>
           </div>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="价格" min-width="160" prop="price">
-        <template #default="{ row }"> ¥ {{ fenToYuan(row.price) }}</template>
-      </el-table-column>
-      <el-table-column align="center" label="销量" min-width="90" prop="salesCount" />
-      <el-table-column align="center" label="库存" min-width="90" prop="stock" />
-      <el-table-column align="center" label="排序" min-width="70" prop="sort" />
-      <el-table-column align="center" label="销售状态" min-width="80">
+      <el-table-column align="center" label="分类" min-width="90" prop="categoryId" show-overflow-tooltip="true">
         <template #default="{ row }">
-          <template v-if="row.status >= 0">
-            <el-switch v-model="row.status" :active-value="1" :inactive-value="0" active-text="上架" inactive-text="下架"
-              inline-prompt @change="handleStatusChange(row)" />
-          </template>
-          <template v-else>
-            <el-tag type="info">回收站</el-tag>
-          </template>
+          <span>{{ formatCategoryName(row.categoryId) }}</span>
+        </template>
+
+
+      </el-table-column>
+      <el-table-column align="center" label="价格" min-width="160" prop="price">
+        <template #default="{ row }">
+          <div class="text-xs text-gray-500">
+            <div>
+              售价:<span>{{ fenToYuan(row.price) }}</span>
+            </div>
+
+            <div>
+              市场价:<span>{{ fenToYuan(row.marketPrice) }}</span>
+            </div>
+            <div>
+              成本价:<span>{{ fenToYuan(row.costPrice) }}</span>
+            </div>
+          </div>
+
+        </template>
+      </el-table-column>
+
+      <el-table-column align="center" label="库存" min-width="90" prop="stock" />
+      <el-table-column align="center" label="在售平台" min-width="100" prop="platforms" />
+      <el-table-column align="center" label="状态" min-width="80">
+        <template #default="{ row }">
+          <div class="transform-none" v-if="row.status !== undefined">
+            <el-switch v-show="Number(row.status) > 0" v-model="row.status" :active-value="1" :inactive-value="0"
+              active-text="上架" inactive-text="下架" inline-prompt @change="handleStatusChange(row)" />
+            <el-tag v-show="Number(row.status) === 0" type="info">草稿</el-tag>
+            <el-tag v-show="Number(row.status) < 0" type="info">已归档</el-tag>
+          </div>
         </template>
       </el-table-column>
       <el-table-column :formatter="dateFormatter" align="center" label="创建时间" prop="createTime" width="180" />
@@ -138,12 +213,7 @@
               恢复
             </el-button>
           </template>
-          <template v-else>
-            <el-button v-hasPermi="['product:spu:update']" link type="danger"
-              @click="handleStatus02Change(row, ProductSpuStatusEnum.RECYCLE.status)">
-              回收
-            </el-button>
-          </template>
+
         </template>
       </el-table-column>
     </el-table>
@@ -176,28 +246,33 @@ const list = ref<ProductSpuApi.Spu[]>([]) // 列表的数据
 // tabs 数据
 const tabsData = ref([
   {
-    name: '出售中',
+    name: '草稿',
     type: 0,
     count: 0
   },
   {
-    name: '仓库中',
+    name: '出售中',
     type: 1,
     count: 0
   },
   {
-    name: '已售罄',
+    name: '下架',
     type: 2,
     count: 0
   },
   {
-    name: '警戒库存',
+    name: '已售罄',
     type: 3,
     count: 0
   },
   {
-    name: '回收站',
+    name: '警戒库存',
     type: 4,
+    count: 0
+  },
+  {
+    name: '已归档',
+    type: 5,
     count: 0
   }
 ])
@@ -359,6 +434,25 @@ onMounted(async () => {
   const data = await ProductCategoryApi.getCategoryList({})
   categoryList.value = handleTree(data, 'id', 'parentId')
 })
+
+
+// 列表项展开
+
+const skus2Listing = ref<ProductSpuApi.Sku[]>([])
+
+const handleListingSelect = async (val: ProductSpuApi.Sku[]) => {
+  skus2Listing.value = val
+}
+
+const submitSkuListing = async (ids: number[]) => {
+  if (ids.length === 0) {
+    ids = skus2Listing.value.map(s => s.id) as number[]
+  }
+  message.info(`刊登成功-${ids}`)
+}
+
+
+
 </script>
 <style lang="scss" scoped>
 .spu-table-expand {

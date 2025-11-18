@@ -76,7 +76,7 @@ const formData = ref<ProductSpuApi.Spu>({
   deliveryTypes: [], // 配送方式数组
   deliveryTemplateId: undefined, // 运费模版
   brandId: undefined, // 商品品牌
-  specType: true, // 商品规格
+  specType: false, // 商品规格
   // subCommissionType: false, // 分销类型
   skus: [
     {
@@ -189,7 +189,7 @@ const submitForm = async () => {
 /** 关闭按钮 */
 const close = () => {
   delView(unref(currentRoute))
-  push({ name: 'ProductSpu' })
+  push({ path: '/erplusv2/product/spu' })
 }
 
 /** 初始化 */
@@ -214,7 +214,7 @@ const showSpec = computed(() => {
   return specType.value
 })
 
-const specType = ref<boolean>(true)
+const specType = ref<boolean>(false)
 
 const onSpecTypeChange = async (spec: boolean) => {
   specType.value = spec

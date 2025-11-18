@@ -11,12 +11,17 @@ public class CategoryAttributeModel {
     /**
      * 属性ID
      */
-    private String attrId;
+    private String attrCode;
 
     /**
      * 属性名
      */
     private String attrName;
+
+    /**
+     * 属性描述, 用于提示用户输入
+     */
+    private String attrDescription;
 
     /**
      * 属性类型
@@ -31,7 +36,7 @@ public class CategoryAttributeModel {
     /**
      * 可选值
      */
-    private List<AttributeValueModel> selectValues;
+    private List<AttributeValueModel> options;
 
     /**
      * 满足任一条件, 本属性必填
@@ -47,6 +52,16 @@ public class CategoryAttributeModel {
      * 是否支持自定义
      */
     private boolean isCustomizable;
+
+    /**
+     * 是否通用属性
+     */
+    private boolean isCommon;
+
+    /**
+     * 扩展信息
+     */
+    private String extra;
 
 
 

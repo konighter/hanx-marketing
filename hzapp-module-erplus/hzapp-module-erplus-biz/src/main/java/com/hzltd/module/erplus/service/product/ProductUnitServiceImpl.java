@@ -74,10 +74,6 @@ public class ProductUnitServiceImpl implements ProductUnitService {
     public void deleteProductUnit(Long id) {
         // 1.1 校验存在
         validateProductUnitExists(id);
-        // 1.2 校验产品是否使用
-        if (productService.getProductCountByUnitId(id) > 0) {
-            throw exception(PRODUCT_UNIT_EXITS_PRODUCT);
-        }
         // 2. 删除
         productUnitMapper.deleteById(id);
     }

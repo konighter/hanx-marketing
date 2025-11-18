@@ -206,7 +206,6 @@ public class ErpPurchaseInServiceImpl implements ErpPurchaseInService {
         Map<Long, ProductSpuDO> productMap = convertMap(productList, ProductSpuDO::getId);
         // 2. 转化为 ErpPurchaseInItemDO 列表
         return convertList(list, o -> BeanUtils.toBean(o, ErpPurchaseInItemDO.class, item -> {
-            item.setProductUnitId(productMap.get(item.getProductId()).getUnitId());
             item.setTotalPrice(MoneyUtils.priceMultiply(item.getProductPrice(), item.getCount()));
             if (item.getTotalPrice() == null) {
                 return;

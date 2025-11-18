@@ -7,7 +7,7 @@ import com.hzltd.module.erplus.controller.admin.spu.vo.*;
 import com.hzltd.module.erplus.convert.spu.ProductSpuConvert;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
-import com.hzltd.module.erplus.enums.spu.ProductSpuStatusEnum;
+import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
 import com.hzltd.module.erplus.service.spu.ProductSkuService;
 import com.hzltd.module.erplus.service.spu.ProductSpuService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -88,7 +88,7 @@ public class ProductSpuController {
     @Operation(summary = "获得商品 SPU 精简列表")
     @PreAuthorize("@ss.hasPermission('product:spu:query')")
     public CommonResult<List<ProductSpuSimpleRespVO>> getSpuSimpleList() {
-        List<ProductSpuDO> list = productSpuService.getSpuListByStatus(ProductSpuStatusEnum.ENABLE.getStatus());
+        List<ProductSpuDO> list = productSpuService.getSpuListByStatus(ProductSpuStatusEnum.FOR_SALE.getStatus());
         // 降序排序后，返回给前端
         list.sort(Comparator.comparing(ProductSpuDO::getSort).reversed());
         return success(BeanUtils.toBean(list, ProductSpuSimpleRespVO.class));
@@ -107,8 +107,8 @@ public class ProductSpuController {
     @Operation(summary = "获得商品 SPU 分页")
     @PreAuthorize("@ss.hasPermission('product:spu:query')")
     public CommonResult<PageResult<ProductSpuRespVO>> getSpuPage(@Valid ProductSpuPageReqVO pageVO) {
-        PageResult<ProductSpuDO> pageResult = productSpuService.getSpuPage(pageVO);
-        return success(BeanUtils.toBean(pageResult, ProductSpuRespVO.class));
+        PageResult<ProductSpuRespVO> pageResult = productSpuService.getSpuPageWithSku(pageVO);
+        return success(pageResult);
     }
 
     @GetMapping("/get-count")

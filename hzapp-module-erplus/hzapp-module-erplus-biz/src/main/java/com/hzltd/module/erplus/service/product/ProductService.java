@@ -91,12 +91,5 @@ public interface ProductService {
      */
     Long getProductCountByCategoryId(Long categoryId);
 
-    /**
-     * 基于产品单位编号，获得产品数量
-     *
-     * @param unitId 产品单位编号
-     * @return 产品数量
-     */
-    Long getProductCountByUnitId(Long unitId);
 
 }

@@ -39,12 +39,6 @@ public class ProductSkuRespVO {
     @Schema(description = "商品体积,单位：m^3 平米", example = "2.5")
     private Double volume;
 
-    @Schema(description = "一级分销的佣金，单位：分", example = "199")
-    private Integer firstBrokeragePrice;
-
-    @Schema(description = "二级分销的佣金，单位：分", example = "19")
-    private Integer secondBrokeragePrice;
-
     @Schema(description = "属性数组")
     private List<ProductSkuSaveReqVO.Property> properties;
 

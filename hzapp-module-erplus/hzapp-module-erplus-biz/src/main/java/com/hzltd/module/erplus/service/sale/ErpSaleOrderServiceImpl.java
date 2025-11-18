@@ -169,7 +169,6 @@ public class ErpSaleOrderServiceImpl implements ErpSaleOrderService {
         Map<Long, ProductSpuDO> productMap = convertMap(productList, ProductSpuDO::getId);
         // 2. 转化为 ErpSaleOrderItemDO 列表
         return convertList(list, o -> BeanUtils.toBean(o, ErpSaleOrderItemDO.class, item -> {
-            item.setProductUnitId(productMap.get(item.getProductId()).getUnitId());
             item.setTotalPrice(MoneyUtils.priceMultiply(item.getProductPrice(), item.getCount()));
             if (item.getTotalPrice() == null) {
                 return;

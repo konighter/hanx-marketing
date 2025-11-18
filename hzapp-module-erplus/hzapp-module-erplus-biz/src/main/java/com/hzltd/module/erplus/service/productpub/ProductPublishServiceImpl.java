@@ -6,7 +6,7 @@ import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.common.util.object.ObjectUtils;
-import com.hzltd.module.erplus.api.service.CrossApiServiceFactory;
+import com.hzltd.module.erplus.api.service.ProductApiFactory;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishResponse;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishTaskVO;
@@ -52,7 +52,7 @@ public class ProductPublishServiceImpl implements ProductPublishService {
     private ErpProductPublishTaskService productPublishTaskService;
 
     @Resource
-    private CrossApiServiceFactory crossApiServiceFactory;
+    private ProductApiFactory productApiFactory;
 
 
 
@@ -177,7 +177,7 @@ public class ProductPublishServiceImpl implements ProductPublishService {
                 throw new ServiceException(PRODUCT_NOT_EXISTS);
             }
 
-            ProductApi crossServiceCompositeApi =crossApiServiceFactory.getProductApi(CrossPlatformEnum.valueOf(crossProduct.get().getPlatformId()));
+            ProductApi crossServiceCompositeApi = productApiFactory.getCrossApiService(CrossPlatformEnum.AMAZON);
 
             ApiResponse<CreateProductResponse> response = crossServiceCompositeApi.createProduct(new ApiRequest<CreateProductRequest>().setRequest(buildCrossCreateProductRequest(crossProduct.get().getId())));
             // 更新任务为提交成功或者失败

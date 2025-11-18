@@ -8,6 +8,12 @@ import java.util.Arrays;
 
 /**
  * 商品 SPU 状态
+ * | 状态 | 含义 | 可操作 |
+ * |------|------|--------|
+ * | `DRAFT` | 草稿，信息不完整或未审核 | 编辑、提交审核 |
+ * | `APPROVED` | 已批准，可用于刊登 | 选品、查看、停售 |
+ * | `REJECTED` | 审核拒绝（如缺品牌、类目错） | 查看原因、重新编辑 |
+ * | `ARCHIVED` | 已归档（不再铺货） | 仅查看、可重新启用 |
  *
  * @author 翰展科技
  */
@@ -15,10 +21,16 @@ import java.util.Arrays;
 @AllArgsConstructor
 public enum ProductSpuStatusEnum implements ArrayValuable<Integer> {
 
-    RECYCLE(-1, "回收站"),
-    COLLECTED(0, "已采集"),
-    CLAIMED(1, "已认领");
+    DRAFT(0, "草稿"),
 
+    FOR_SALE(1, "上架"),
+    OFF_SALE(2, "下架"),
+    APPROVED(3, "已批准"),
+    REJECTED(4, "审核拒绝"),
+    ARCHIVED(-1, "已归档"),
+//    ARCHIVED(-1, "已归档");
+
+    ;
     public static final Integer[] ARRAYS = Arrays.stream(values()).map(ProductSpuStatusEnum::getStatus).toArray(Integer[]::new);
 
     /**
@@ -42,7 +54,7 @@ public enum ProductSpuStatusEnum implements ArrayValuable<Integer> {
      * @return 是否处于【上架】状态
      */
     public static boolean isEnable(Integer status) {
-        return CLAIMED.getStatus().equals(status);
+        return FOR_SALE.getStatus().equals(status);
     }
 
 }

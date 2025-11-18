@@ -1,10 +1,8 @@
 package com.hzltd.module.erplus.service.shop;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.erplus.controller.admin.shop.vo.ShopPageReqVO;
-import com.hzltd.module.erplus.controller.admin.shop.vo.ShopReqVO;
-import com.hzltd.module.erplus.controller.admin.shop.vo.ShopRespVO;
-import com.hzltd.module.erplus.controller.admin.shop.vo.ShopSaveReqVO;
+import com.hzltd.framework.tenant.core.aop.TenantIgnore;
+import com.hzltd.module.erplus.controller.admin.shop.vo.*;
 import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
 import jakarta.validation.Valid;
 
@@ -59,4 +57,10 @@ public interface ShopService {
 
     List<ShopRespVO> getShopList(ShopReqVO pageReqVO);
 
+    List<ShopDO> getShopListByPlatform(Integer platformId);
+
+    ShopAuthRespVO submitShopAuth(ShopAuthReqVO authReqVO);
+
+    @TenantIgnore
+    void refreshShopPlatformAccessToken();
 }

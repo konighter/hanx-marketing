@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum LanguageEnum implements IntArrayValuable {
-    ZH_CN(1, "汉语"),
+    ZH_CN(1, "zh_cn"),
     ;
 
     private final Integer code;

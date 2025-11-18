@@ -3,6 +3,7 @@ package com.hzltd.module.erplus.service.spu;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.collection.CollectionUtils;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuPageReqVO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuSaveReqVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuUpdateStatusReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
@@ -87,13 +88,20 @@ public interface ProductSpuService {
     List<ProductSpuDO> getSpuListByStatus(Integer status);
 
     /**
-     * 获得商品 SPU 分页，提供给挂你兰后台使用
+     * 获得商品 SPU 分页，提供给管理后台使用
      *
      * @param pageReqVO 分页查询
      * @return 商品spu分页
      */
     PageResult<ProductSpuDO> getSpuPage(ProductSpuPageReqVO pageReqVO);
 
+    /**
+     * 获得商品 SPU 分页，提供给管理后台使用
+     *
+     * @param pageReqVO 分页查询
+     * @return 商品spu分页
+     */
+    PageResult<ProductSpuRespVO> getSpuPageWithSku(ProductSpuPageReqVO pageReqVO);
 
     /**
      * 更新商品 SPU 库存（增量）
