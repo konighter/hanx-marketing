@@ -3,6 +3,7 @@ package com.hzltd.module.erplus.service.category;
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.api.service.CategoryApiFactory;
+import com.hzltd.module.erplus.api.service.CategoryAttributeApiFactory;
 import com.hzltd.module.erplus.api.service.ProductApiFactory;
 import com.hzltd.module.erplus.controller.admin.category.vo.CategoryAttributeVO;
 import com.hzltd.module.erplus.controller.admin.category.vo.CategoryVO;
@@ -12,6 +13,7 @@ import com.hzltd.module.erplus.convert.category.CrossCategoryConvert;
 import com.hzltd.module.erplus.dal.dataobject.category.CrossMetaCategoryAttributeDO;
 import com.hzltd.module.erplus.dal.dataobject.category.CrossMetaCategoryDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
+import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.category.CrossMetaCategoryAttributeMapper;
 import com.hzltd.module.erplus.dal.mysql.category.CrossMetaCategoryMapper;
 import com.hzltd.module.erplus.dal.mysql.categoryattr.CategoryAttributeMapper;
@@ -21,6 +23,9 @@ import com.hzltd.module.erplus.model.ApiResponse;
 import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
 import com.hzltd.module.erplus.model.category.CategoryModel;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
+import com.hzltd.module.erplus.service.spu.ProductSpuService;
+import com.hzltd.module.erplus.sys.SystemProductService;
+import com.hzltd.module.erplus.sys.model.ProductSpuModel;
 import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -32,11 +37,15 @@ import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.module.erplus.enums.ErrorCodeConstants.CATEGORY_NOT_EMPTY;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_EXISTS;
 
 @Service
 public class CrossCategoryServiceImpl implements CrossCategoryService {
     @Resource
     private CategoryApiFactory categoryApiFactory;
+
+    @Resource
+    private CategoryAttributeApiFactory categoryAttributeApiFactory;
 
     @Resource
     private SellPlatformService sellPlatformService;
@@ -46,6 +55,9 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
 
     @Resource
     private CrossMetaCategoryAttributeMapper crossMetaCategoryAttributeMapper;
+
+    @Resource
+    private SystemProductService productSpuService;
 
     @Override
     public List<CategoryVO> getCrossCategoryList(CrossCategoryReqVO reqVO) {
@@ -118,4 +130,20 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
         return apiResponse.getData().stream().map(CrossCategoryConvert.INSTANCE::toCategoryAttrVO).collect(Collectors.toList());
     }
 
+
+    @Override
+    public List<CategoryAttributeVO> renderCategoryAttribute(CrossCategoryAttrReqVO crossCategoryAttrReqVO) {
+        SellPlatformDO platformDO = sellPlatformService.getSellPlatform(crossCategoryAttrReqVO.getPlatformId());
+        List<CategoryAttributeVO> categoryAttributeVOS = getCrossAttributeByCategory(crossCategoryAttrReqVO);
+        ProductSpuModel spu = productSpuService.getProductSpu(crossCategoryAttrReqVO.getSpuId());
+        if (spu == null) {
+            throw exception(PRODUCT_NOT_EXISTS);
+        }
+        spu.setCrossCategory(crossCategoryAttrReqVO.getCategoryId());
+
+       CategoryAttributeMappingApi categoryAttributeApi = categoryAttributeApiFactory.getCrossApiService(CrossPlatformEnum.of(platformDO.getCode()));
+       categoryAttributeApi.mapCategoryAttributeValues(categoryAttributeVOS, spu);
+
+        return categoryAttributeVOS;
+    }
 }

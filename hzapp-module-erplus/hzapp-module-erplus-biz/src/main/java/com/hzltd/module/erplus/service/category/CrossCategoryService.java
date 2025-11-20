@@ -13,6 +13,6 @@ public interface CrossCategoryService {
 
     List<CategoryAttributeVO> getCrossAttributeByCategory(CrossCategoryAttrReqVO platformCategoryAttrReqVO);
 
-
+    List<CategoryAttributeVO> renderCategoryAttribute(CrossCategoryAttrReqVO crossCategoryAttrReqVO);
 
 }

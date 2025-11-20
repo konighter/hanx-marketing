@@ -58,23 +58,42 @@ public class CrossMetaCategoryAttributeDO extends BaseDO {
     private String attrOptions;
 
     /**
+     * 属性分组
+     */
+    private String groupName;
+
+    /**
+     * 属性字段类型
+     */
+    private String fieldType;
+
+    /**
+     * 是否可编辑
+     */
+    private Boolean isEditable;
+    /**
      * 是否必填
      */
-    private boolean isRequired;
+    private Boolean isRequired;
 
     /**
      * 是否多选
      */
-    private boolean isMulSelection;
+    private Boolean isMulSelection;
 
     /**
      * 是否支持自定义
      */
-    private boolean isCustomizable;
+    private Boolean isCustomizable;
 
     /**
      * 是否通用属性
      */
-    private boolean isCommon;
+    private Boolean isCommon;
+
+    /**
+     * 扩展信息
+     */
+    private String extra;
 
 }

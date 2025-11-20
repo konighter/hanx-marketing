@@ -15,6 +15,11 @@ public class BrandModel {
      */
     private String name;
 
+     /**
+     * 品牌编码
+     */
+    private String code;
+
     /**
      * 品牌状态
      */

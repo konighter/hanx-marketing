@@ -4,6 +4,7 @@ import com.hzltd.module.erplus.constant.FulfillTypeEnum;
 import com.hzltd.module.erplus.constant.LanguageEnum;
 import com.hzltd.module.erplus.constant.SaveModeEnum;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
+import com.hzltd.module.erplus.model.category.BrandModel;
 import com.hzltd.module.erplus.model.category.CategoryModel;
 import com.hzltd.module.erplus.model.common.*;
 import com.hzltd.module.erplus.model.logistics.LogisticsModel;
@@ -52,7 +53,9 @@ public class CreateProductRequest {
     @NotNull
     private CategoryModel category;
 
-
+    /**
+     * 品牌
+     */
     private BrandModel brand;
 
     @NotNull

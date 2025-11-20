@@ -56,17 +56,19 @@ public class MetaMappingUtils {
             categoryAttributeModel.setAttrName(attri.getName());
             categoryAttributeModel.setAttrDescription(attri.getDescription());
             categoryAttributeModel.setAttrType(attri.getIsAspect() ? AttributeTypeEnum.SALES_PROPERTY : AttributeTypeEnum.PRODUCT_PROPERTY);
-            categoryAttributeModel.setRequired(attri.getIsRequired());
-            categoryAttributeModel.setMulSelection(attri.getIsCollection());
-            categoryAttributeModel.setCommon(!attri.getCategoryDependent());
-            categoryAttributeModel.setCustomizable(attri.getDescription().contains("手动指定")); // todo -- ai判断
+           categoryAttributeModel.setFieldType(attri.getType());
+           categoryAttributeModel.setGroupName(attri.getGroupName());
+            categoryAttributeModel.setIsRequired(attri.getIsRequired());
+            categoryAttributeModel.setIsMulSelection(attri.getIsCollection());
+            categoryAttributeModel.setIsCommon(!attri.getCategoryDependent());
+            categoryAttributeModel.setIsCustomizable(attri.getDescription().contains("手动指定")); // todo -- ai判断
             categoryAttributeModel.setExtra(JsonUtils.toJsonString(attri));
 
             if (attri.getDictionaryId() != null && attri.getDictionaryId() > 0L) {
                 List<OzonCategoryService.CategoryAttributeValueRespModel> categoryAttributeValueRespModels = mapper.apply(attri);
                 categoryAttributeModel.setOptions(categoryAttributeValueRespModels.stream().map(item -> {
                     AttributeValueModel attributeValueModel = new AttributeValueModel();
-                    attributeValueModel.setValueId(item.getId());
+                    attributeValueModel.setValue(item.getId());
                     attributeValueModel.setValueName(item.getValue());
                     return attributeValueModel;
                 }).collect(Collectors.toList()));

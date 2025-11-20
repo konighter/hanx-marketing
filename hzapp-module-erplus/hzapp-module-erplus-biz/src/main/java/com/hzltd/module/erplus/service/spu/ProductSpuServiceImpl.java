@@ -7,12 +7,19 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.collection.CollectionUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.controller.admin.spu.vo.*;
+import com.hzltd.module.erplus.dal.dataobject.brand.ProductBrandDO;
+import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
 import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
+import com.hzltd.module.erplus.model.category.BrandModel;
+import com.hzltd.module.erplus.model.category.CategoryModel;
 import com.hzltd.module.erplus.service.brand.ProductBrandService;
 import com.hzltd.module.erplus.service.product.ProductCategoryService;
+import com.hzltd.module.erplus.sys.SystemProductService;
+import com.hzltd.module.erplus.sys.model.ProductSkuModel;
+import com.hzltd.module.erplus.sys.model.ProductSpuModel;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -33,7 +40,7 @@ import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
  */
 @Service
 @Validated
-public class ProductSpuServiceImpl implements ProductSpuService {
+public class ProductSpuServiceImpl implements ProductSpuService, SystemProductService {
 
     @Resource
     private ProductSpuMapper productSpuMapper;
@@ -269,4 +276,18 @@ public class ProductSpuServiceImpl implements ProductSpuService {
         return productSpuMapper.selectCount(ProductSpuDO::getCategoryId, categoryId);
     }
 
+    @Override
+    public ProductSpuModel getProductSpu(Long spuId) {
+        ProductSpuDO spuDO = getSpu(spuId);
+        List<ProductSkuDO> skuDOList = productSkuService.getSkuListBySpuId(spuId);
+        ProductCategoryDO categoryDO = categoryService.getProductCategory(spuDO.getCategoryId());
+        ProductBrandDO brandDO = brandService.getBrand(spuDO.getBrandId());
+
+        ProductSpuModel spuModel = BeanUtils.toBean(spuDO, ProductSpuModel.class);
+        spuModel.setCategoryModel(BeanUtils.toBean(categoryDO, CategoryModel.class));
+        spuModel.setBrandModel(BeanUtils.toBean(brandDO, BrandModel.class));
+        spuModel.setSkuModelList(BeanUtils.toBean(skuDOList, ProductSkuModel.class));
+
+        return spuModel;
+    }
 }

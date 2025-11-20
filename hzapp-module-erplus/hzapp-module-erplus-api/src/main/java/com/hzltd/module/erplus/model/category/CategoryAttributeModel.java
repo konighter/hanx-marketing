@@ -4,6 +4,7 @@ import com.hzltd.module.erplus.constant.AttributeTypeEnum;
 import lombok.Data;
 
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class CategoryAttributeModel {
@@ -29,9 +30,29 @@ public class CategoryAttributeModel {
     private AttributeTypeEnum attrType;
 
     /**
+     * 属性值
+     */
+    private AttributeValueModel attrValue;
+
+    /**
+     * 属性分组名
+     */
+    private String groupName;
+
+    /**
+     * 属性字段类型
+     */
+    private String fieldType;
+
+    /**
+     * 是否可编辑
+     */
+    private Boolean isEditable;
+
+    /**
      * 是否必填
      */
-    private boolean isRequired;
+    private Boolean isRequired;
 
     /**
      * 可选值
@@ -46,23 +67,42 @@ public class CategoryAttributeModel {
     /**
      * 是否多选
      */
-    private boolean isMulSelection;
+    private Boolean isMulSelection;
 
     /**
      * 是否支持自定义
      */
-    private boolean isCustomizable;
+    private Boolean isCustomizable;
 
     /**
      * 是否通用属性
      */
-    private boolean isCommon;
+    private Boolean isCommon;
 
     /**
      * 扩展信息
      */
     private String extra;
 
+    /**
+     * 是否聚合属性
+     */
+    private Boolean isComposite;
+
+     /**
+     * 聚合属性值
+     */
+    private List<CategoryAttributeModel> compositeAttributes;
+
+
+
+    public void setValue(Object attrValue) {
+        if (attrValue instanceof AttributeValueModel) {
+            this.attrValue = (AttributeValueModel) attrValue;
+        } else if (attrValue instanceof String) {
+            this.attrValue = AttributeValueModel.of((String) attrValue, (String) attrValue);
+        }
+    }
 
 
 }

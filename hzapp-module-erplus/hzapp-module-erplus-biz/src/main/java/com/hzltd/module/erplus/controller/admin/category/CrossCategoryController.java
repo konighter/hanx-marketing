@@ -30,6 +30,11 @@ public class CrossCategoryController {
         return CommonResult.success(crossCategoryService.getCrossAttributeByCategory(crossCategoryAttrReqVO));
     }
 
+    @PostMapping("/attributes/render")
+    public CommonResult<List<CategoryAttributeVO>> renderCategoryAttribute( @RequestBody CrossCategoryAttrReqVO crossCategoryAttrReqVO) {
+        return CommonResult.success(crossCategoryService.renderCategoryAttribute(crossCategoryAttrReqVO));
+    }
+
 
 
 

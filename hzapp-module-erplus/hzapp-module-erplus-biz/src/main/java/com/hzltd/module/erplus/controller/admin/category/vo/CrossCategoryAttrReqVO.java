@@ -16,4 +16,6 @@ public class CrossCategoryAttrReqVO extends BaseCrossRequest {
 
     private List<String> categoryIds;
 
+    private Long spuId;
+
 }

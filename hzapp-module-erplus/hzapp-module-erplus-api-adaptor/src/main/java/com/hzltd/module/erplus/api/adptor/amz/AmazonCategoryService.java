@@ -4,6 +4,7 @@ import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
 import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
 import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.module.erplus.api.adptor.LocalAuthProvider;
+import com.hzltd.module.erplus.api.adptor.amz.proto.ProductTypeSchemaUtils;
 import com.hzltd.module.erplus.api.annotations.ServiceRegister;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.ApiRequest;
@@ -29,9 +30,6 @@ import java.util.stream.Collectors;
 public class AmazonCategoryService extends LocalAuthProvider implements CategoryApi {
 
     @Resource
-    private RedisLWAAccessTokenCache redisLWAAccessTokenCache;
-
-    @Resource
     private SystemShopService systemShopService;
 
 
@@ -49,10 +47,10 @@ public class AmazonCategoryService extends LocalAuthProvider implements Category
                         .endpoint("https://api.amazon.com/auth/o2/token")
                         .build())
                     .lwaAccessTokenCache(new LWAAccessTokenCacheImpl())
-                .endpoint("https://sandbox.sellingpartnerapi-na.amazon.com")
+                .endpoint("https://sellingpartnerapi-na.amazon.com")
                 .build();
 
-            ProductTypeList productTypes = definitionsApi.searchDefinitionsProductTypes(systemShopService.getShopRegion(apiRequest.getShopId()), List.of(apiRequest.getRequest().getName()), null, null, null);
+            ProductTypeList productTypes = definitionsApi.searchDefinitionsProductTypes(systemShopService.getShopRegion(apiRequest.getShopId()), List.of(apiRequest.getRequest().getName()), null, "zh_CN", null);
             return ApiResponse.success(productTypes.getProductTypes().stream()
                     .map(productType -> {
                         CategoryModel model = new CategoryModel();
@@ -82,12 +80,12 @@ public class AmazonCategoryService extends LocalAuthProvider implements Category
                         .endpoint("https://api.amazon.com/auth/o2/token")
                         .build())
                 .lwaAccessTokenCache(new LWAAccessTokenCacheImpl())
-                .endpoint("https://sandbox.sellingpartnerapi-na.amazon.com")
+                .endpoint("https://sellingpartnerapi-na.amazon.com")
                 .build();
         try {
-            ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(apiRequest.getRequest().getCategoryId(), List.of("ATVPDKIKX0DER"), null, null, null, null, null);
-            log.info("getCategoryAttributes, productTypeDefinition: {}", productTypeDefinition);
-            return null;
+            ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(apiRequest.getRequest().getCategoryId(), systemShopService.getShopRegion(apiRequest.getShopId()), null, null, null, null, "zh_CN");
+            List<CategoryAttributeModel> categoryAttributeModels = ProductTypeSchemaUtils.parseProductTypeSchema(productTypeDefinition.getSchema().getLink().getResource(), productTypeDefinition);
+            return ApiResponse.success(categoryAttributeModels);
         } catch (ApiException e) {
             throw new RuntimeException(e);
         } catch (LWAException e) {

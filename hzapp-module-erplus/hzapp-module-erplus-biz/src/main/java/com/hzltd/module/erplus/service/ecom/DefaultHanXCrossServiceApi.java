@@ -55,7 +55,7 @@ public class DefaultHanXCrossServiceApi implements ProductApi, CategoryApi, Plat
             model.setAttrCode(a.getAttrId());
             model.setAttrName(a.getAttrName());
             model.setAttrType(AttributeTypeEnum.valueOf(a.getAttrType()));
-            model.setRequired(a.isRequired());
+            model.setIsRequired(a.isRequired());
             return model;
         }).collect(Collectors.toList()));
     }

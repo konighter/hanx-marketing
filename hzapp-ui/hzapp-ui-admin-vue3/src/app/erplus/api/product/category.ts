@@ -97,12 +97,72 @@ export interface CategoryRuleVO {
   // 根据实际业务需求添加字段
 }
 
-/**
- * 分类属性VO
- */
-export interface CategoryAttributeVO {
-  // 根据实际业务需求添加字段
+// 属性类型枚举
+export enum AttributeTypeEnum {
+  SALES_PROPERTY = 0,  // 销售属性, 用于变体
+  PRODUCT_PROPERTY = 1  // 商品属性, 用户商品描述
 }
+
+// 属性值模型
+export interface AttributeValueModel {
+  valueId: string;
+  valueName: string;
+}
+
+// 分类属性模型
+export interface CategoryAttributeModel {
+  /**
+   * 属性ID
+   */
+  attrCode: string;
+  
+  /**
+   * 属性名
+   */
+  attrName: string;
+  
+  /**
+   * 属性描述, 用于提示用户输入
+   */
+  attrDescription: string;
+  
+  /**
+   * 属性类型
+   */
+  attrType: AttributeTypeEnum;
+  
+  /**
+   * 是否必填
+   */
+  isRequired: boolean;
+  
+  /**
+   * 可选值
+   */
+  options?: AttributeValueModel[];
+  
+  
+  /**
+   * 是否多选
+   */
+  isMulSelection: boolean;
+  
+  /**
+   * 是否支持自定义
+   */
+  isCustomizable: boolean;
+  
+  /**
+   * 是否通用属性
+   */
+  isCommon: boolean;
+  
+  /**
+   * 扩展信息
+   */
+  extra?: string;
+}
+
 
 // 创建商品分类
 export const createCategory = (data: CategoryVO) => {
@@ -145,6 +205,11 @@ export const getCategoryRules = (categoryId: string, platformId: number) => {
 // 获取跨境分类属性
 export const getCategoryAttributes = (categoryId: string[], platformId: number, shopId: number) => {
   return request.post({ url: `/erplus/cross/category/attributes`, data: { categoryIds: categoryId, platformId, shopId } })
+}
+
+// 获取跨境分类属性
+export const renderCategoryAttributes = (categoryId: string[], platformId: number, shopId: number, spuId: number) => {
+  return request.post({ url: `/erplus/cross/category/attributes/render`, data: { categoryIds: categoryId, platformId, shopId, spuId } })
 }
 
 

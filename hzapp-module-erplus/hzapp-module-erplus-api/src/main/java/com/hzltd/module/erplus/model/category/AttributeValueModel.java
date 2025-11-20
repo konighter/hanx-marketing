@@ -5,7 +5,15 @@ import lombok.Data;
 @Data
 public class AttributeValueModel {
 
-    private String valueId;
+
+    private String value;
 
     private String valueName;
+
+    public static AttributeValueModel of(String value, String valueName) {
+        AttributeValueModel model = new AttributeValueModel();
+        model.setValue(value);
+        model.setValueName(valueName);
+        return model;
+    }
 }

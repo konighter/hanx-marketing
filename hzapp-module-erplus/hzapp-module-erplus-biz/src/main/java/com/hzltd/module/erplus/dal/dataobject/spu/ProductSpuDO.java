@@ -48,7 +48,8 @@ public class ProductSpuDO extends BaseDO {
     /**
      * 商品简介
      */
-    private String introduction;
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private List<String> introduction;
     /**
      * 商品详情
      */

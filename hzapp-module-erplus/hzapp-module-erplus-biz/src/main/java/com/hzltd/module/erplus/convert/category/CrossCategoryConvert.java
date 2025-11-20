@@ -62,11 +62,16 @@ public interface CrossCategoryConvert {
        if ( crossMetaCategoryAttributeDO.getAttrType() != null ) {
            categoryAttributeVO.setAttrType( AttributeTypeEnum.values()[ crossMetaCategoryAttributeDO.getAttrType() ] );
        }
+       categoryAttributeVO.setGroupName( crossMetaCategoryAttributeDO.getGroupName() );
+       categoryAttributeVO.setFieldType( crossMetaCategoryAttributeDO.getFieldType() );
+
        categoryAttributeVO.setOptions(JsonUtils.parseArray(crossMetaCategoryAttributeDO.getAttrOptions(), AttributeValueModel.class));
-       categoryAttributeVO.setRequired( crossMetaCategoryAttributeDO.isRequired() );
-       categoryAttributeVO.setMulSelection( crossMetaCategoryAttributeDO.isMulSelection() );
-       categoryAttributeVO.setCustomizable( crossMetaCategoryAttributeDO.isCustomizable() );
-       categoryAttributeVO.setCommon( crossMetaCategoryAttributeDO.isCommon() );
+
+       categoryAttributeVO.setIsRequired( crossMetaCategoryAttributeDO.getIsRequired() );
+       categoryAttributeVO.setIsMulSelection( crossMetaCategoryAttributeDO.getIsMulSelection() );
+       categoryAttributeVO.setIsCustomizable( crossMetaCategoryAttributeDO.getIsCustomizable() );
+       categoryAttributeVO.setIsCommon( crossMetaCategoryAttributeDO.getIsCommon() );
+       categoryAttributeVO.setIsEditable( crossMetaCategoryAttributeDO.getIsEditable() );
 
        return categoryAttributeVO;
    }
@@ -85,11 +90,18 @@ public interface CrossCategoryConvert {
         crossMetaCategoryAttributeDO.setAttrCode(categoryAttributeModel.getAttrCode());
         crossMetaCategoryAttributeDO.setAttrName(categoryAttributeModel.getAttrName());
         crossMetaCategoryAttributeDO.setAttrDescription(categoryAttributeModel.getAttrDescription());
-        crossMetaCategoryAttributeDO.setAttrType(categoryAttributeModel.getAttrType().getValue());
+        if (categoryAttributeModel.getAttrType() != null) {
+            crossMetaCategoryAttributeDO.setAttrType(categoryAttributeModel.getAttrType().getValue());
+        }
         crossMetaCategoryAttributeDO.setAttrOptions(JsonUtils.toJsonString(categoryAttributeModel.getOptions()));
-        crossMetaCategoryAttributeDO.setMulSelection(categoryAttributeModel.isMulSelection());
-        crossMetaCategoryAttributeDO.setRequired(categoryAttributeModel.isRequired());
-        crossMetaCategoryAttributeDO.setCommon(categoryAttributeModel.isCommon());
+        crossMetaCategoryAttributeDO.setFieldType(categoryAttributeModel.getFieldType());
+        crossMetaCategoryAttributeDO.setGroupName(categoryAttributeModel.getGroupName());
+        crossMetaCategoryAttributeDO.setIsEditable(categoryAttributeModel.getIsEditable());
+        crossMetaCategoryAttributeDO.setIsMulSelection(categoryAttributeModel.getIsMulSelection());
+        crossMetaCategoryAttributeDO.setIsRequired(categoryAttributeModel.getIsRequired());
+        crossMetaCategoryAttributeDO.setIsCustomizable(categoryAttributeModel.getIsCustomizable());
+        crossMetaCategoryAttributeDO.setIsCommon(categoryAttributeModel.getIsCommon());
+        crossMetaCategoryAttributeDO.setExtra(categoryAttributeModel.getExtra());
         return crossMetaCategoryAttributeDO;
     }
 }
