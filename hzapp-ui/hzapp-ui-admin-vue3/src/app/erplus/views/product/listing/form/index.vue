@@ -1,7 +1,7 @@
 <template>
   <ContentWrap class="px-10 h-full!">
 
-    <el-divider content-position="left">平台信息</el-divider>
+    <el-divider content-position="left">刊登设置</el-divider>
     <el-form ref="formRef" :model="formData" :rules="rules" label-width="200px" :inline="true">
       <el-form-item label="售卖平台" prop="platformId">
         <el-select v-model="formData.platformId" placeholder="请选择平台" @change="onPlatformChange" class="w-100!">
@@ -22,6 +22,10 @@
           :disabled="!(formData.platformId && formData.shopIds && formData.shopIds.length > 0)" clearable filterable
           @change="onCategoryChange" placeholder="请选择分类" />
 
+      </el-form-item>
+
+      <el-form-item label="是否翻译文本" prop="translateText">
+        <el-switch v-model="formData.translateText" />
       </el-form-item>
 
 
@@ -93,10 +97,18 @@
 
           </ExpendBox>
 
-          <el-divider content-position="left">变体</el-divider>
+          <VariationAttributes ref="variationAttributesRef" :attributes="attributes" :skus="spuInfo.skus"
+            v-model="formData.variationAttributes" :attributeValues="formData.attributes"
+            @selectionChange="handleSelectionChange" />
 
-          <ListingSkuList :propFormData="spuInfo"
-            :attributeList="attributes.filter(i => i.attrType === CategoryApi.AttributeTypeEnum.SALES_PROPERTY)" />
+
+
+
+
+
+
+
+
         </template>
 
 
@@ -105,7 +117,7 @@
       </template>
 
       <div class="flex justify-center mt-20px space-x-10px">
-        <el-button type="primary" @click="$emit('update:activeName', 'spuInfo')">刊登</el-button>
+        <el-button type="primary" @click="handleSubmit">刊登</el-button>
         <el-button type="info" @click="$emit('update:activeName', 'spuInfo')">返回</el-button>
       </div>
 
@@ -115,9 +127,10 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue'
-import { ref, reactive, watch, onMounted } from 'vue'
-import { propTypes } from '@/utils/propTypes'
+
+import { ref, reactive, watch, onMounted, unref } from 'vue'
+import { ElMessage } from 'element-plus'
+
 import { SellPlatformApi } from '@/app/erp/api/sellplatform' // 已存在模块
 // 假设存在下面的 API 模块，如不存在请替换为项目实际 API
 import * as CategoryApi from '@/app/erplus/api/product/category' // getCategoriesByPlatform, getCategoryAttributes
@@ -125,9 +138,10 @@ import * as SpuApi from '@/app/erplus/api/product/spu'
 import { ShopApi } from '@/app/erplus/api/system/shop'
 import { defaultProps, handleTree } from '@/utils/tree'
 import type { CascaderNode } from 'element-plus'
-import { debounce } from 'lodash-es'
+
 import ListingSkuList from './ListingSkuList.vue'
 import ExpendBox from '@/app/erplus/compononts/ExpendBox.vue'
+import VariationAttributes from './VariationAttributes.vue'
 
 defineOptions({ name: 'ProductListingForm' })
 
@@ -137,6 +151,7 @@ defineOptions({ name: 'ProductListingForm' })
 const { query } = useRoute()
 
 const formRef = ref()
+const variationAttributesRef = ref()
 const spuInfo = ref<SpuApi.Spu>({} as SpuApi.Spu)
 const platforms = ref<any[]>([])
 const shops = ref<any[]>([])
@@ -155,10 +170,12 @@ const categoryCasOpt = Object.assign({}, defaultProps, {
 // 表单数据：platformId, shopIds, categoryId, attributes 为 id->value 映射
 const formData = reactive({
   platformId: undefined,
-  shopIds: [],
+  shopIds: [] as any[],
   categoryId: undefined,
   attributes: {},
-  skus: [],
+  skus: [] as any[],
+  variationAttributes: [] as any[],
+  translateText: false,
 })
 
 const rules = reactive({
@@ -176,6 +193,12 @@ onMounted(async () => {
 
 const loadSpuData = async () => {
   spuInfo.value = await SpuApi.getSpu(query.id as number)
+  if (spuInfo.value) {
+    spuInfo.value.skus?.forEach((sku: any) => {
+      sku.attrValues = {}
+      sku.originalStock = sku.stock
+    })
+  }
 }
 
 
@@ -196,7 +219,7 @@ const loadShops = async (platformId: number) => {
 
 const loadCategories = async (node: CascaderNode, name: string) => {
 
-  const result = await CategoryApi.getCrossCategories({ platformId: formData.platformId, shopIds: formData.shopIds, name } as CategoryApi.PlatformCategoryReqVO) || {}
+  const result = await CategoryApi.getCrossCategories({ platformId: formData.platformId, shopIds: formData.shopIds, name } as unknown as CategoryApi.PlatformCategoryReqVO) || {}
   if (result.categories && result.categories.length !== 0) {
     categories.value = handleTree(result.categories, 'categoryId', 'parentCategoryId')
   }
@@ -229,6 +252,7 @@ const loadCategoryAttributes = async (categoryId: string[], platformId: number, 
 
 
     console.log('加载属性', formData.attributes)
+    console.log('加载销售属性', attributes.value.filter(i => i.attrType === 'SALES_PROPERTY'))
   } finally {
     loadingAttributes.value = false
   }
@@ -274,14 +298,40 @@ const onCategoryChange = async () => {
 const emit = defineEmits(['update:activeName'])
 const validate = async () => {
   await unref(formRef)?.validate()
-  // 合并回父 propFormData
-  Object.assign(props.propFormData, {
-    platformId: formData.platformId,
-    shopIds: [...formData.shopIds],
-    categoryId: formData.categoryId,
-    attributes: { ...formData.attributes }
-  })
+  console.log('formValidate passed')
+  await unref(variationAttributesRef)?.validate()
+  console.log('variationAttributesRef passed')
+  // // 合并回父 propFormData
+  // Object.assign(props.propFormData, {
+  //   platformId: formData.platformId,
+  //   shopIds: [...formData.shopIds],
+  //   categoryId: formData.categoryId,
+  //   attributes: { ...formData.attributes }
+  // })
 }
+
+const handleSubmit = async () => {
+  try {
+    await validate()
+    const data = {
+      spuId: spuInfo.value.id,
+      ...formData,
+      skus: formData.skus // Use selected SKUs
+    }
+    await SpuApi.spuListing(data)
+    ElMessage.success('刊登成功')
+    emit('update:activeName', 'spuInfo')
+  } catch (e: any) {
+    console.error(e)
+    // Check if e is a string (custom rejection) or object (Element Plus validation error)
+    if (typeof e === 'string') {
+      ElMessage.warning(e)
+    } else {
+      ElMessage.warning('请完善表单信息')
+    }
+  }
+}
+
 defineExpose({ validate })
 
 /** 模板辅助函数 */
@@ -321,6 +371,16 @@ const fieldProps = (attr: any) => {
 
   return props
 }
+
+
+const handleSelectionChange = (val: any[]) => {
+  formData.skus = val
+}
+
+
+
+
+
 </script>
 
 <style scoped>

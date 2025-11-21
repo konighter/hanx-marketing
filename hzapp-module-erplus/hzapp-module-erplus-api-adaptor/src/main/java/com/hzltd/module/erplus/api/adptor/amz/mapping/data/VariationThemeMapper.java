@@ -22,6 +22,8 @@ public class VariationThemeMapper implements AttributeValueMapper, AttributeSche
             categoryAttributeModel.setIsRequired(true);
         }
 
+        categoryAttributeModel.setIsComposite(true);
+
     }
 
     public void mapAttributeSchema(CategoryAttributeModel categoryAttributeModel, ProductTypeSchemaItem schemaItem) {

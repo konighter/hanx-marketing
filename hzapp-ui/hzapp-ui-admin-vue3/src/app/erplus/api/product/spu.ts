@@ -187,3 +187,8 @@ export const exportSpu = async (params) => {
 export const getSpuSimpleList = async () => {
   return request.get({ url: '/erplus/spu/list-all-simple' })
 }
+
+// 商品刊登
+export const spuListing = (data: any) => {
+  return request.post({ url: '/erplus/spu/listing', data })
+}

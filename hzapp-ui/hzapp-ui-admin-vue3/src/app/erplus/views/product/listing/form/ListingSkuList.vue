@@ -1,4 +1,23 @@
 <template>
+
+  <el-form>
+
+    <el-form-item label="变体属性">
+      <el-radio-group v-model="formData.variationAttributes">
+        <el-radio v-for="attr in attributeList" :label="attr.attrCode" :key="attr.attrCode">{{ attr.attrName
+          }}</el-radio>
+      </el-radio-group>
+
+
+    </el-form-item>
+
+
+
+
+  </el-form>
+
+
+
   <!-- 情况一：添加/修改 -->
   <el-table v-if="!isDetail" :data="formData?.skus" border class="tabNumWidth" max-height="500" size="small">
     <el-table-column type="selection" width="45" />
@@ -90,6 +109,10 @@ const message = useMessage() // 消息弹窗
 
 const props = defineProps({
   propFormData: {
+    type: Object,
+    default: () => { }
+  },
+  spuData: {
     type: Object as PropType<Spu>,
     default: () => { }
   },
@@ -100,7 +123,10 @@ const props = defineProps({
 
   isDetail: propTypes.bool.def(false), // 是否作为 sku 详情组件
 })
-const formData: Ref<Spu | undefined> = ref<Spu>() // 表单数据
+const formData = ref({
+  variationAttributes: [], // 变体属性列表
+  skuAttrVals: [], // 变体属性列表
+}) // 表单数据
 
 
 
@@ -115,7 +141,7 @@ const emit = defineEmits<{
  * 将传进来的值赋值给 skuList
  */
 watch(
-  () => props.propFormData,
+  () => props.spuData,
   (data) => {
     if (!data) return
     formData.value = data
