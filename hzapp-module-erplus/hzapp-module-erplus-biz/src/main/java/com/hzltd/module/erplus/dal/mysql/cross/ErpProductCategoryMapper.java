@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.dal.mysql.product;
+package com.hzltd.module.erplus.dal.mysql.cross;
 
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;

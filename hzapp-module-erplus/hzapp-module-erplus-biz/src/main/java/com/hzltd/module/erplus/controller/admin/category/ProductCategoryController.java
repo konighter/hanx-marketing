@@ -9,7 +9,7 @@ import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListR
 import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryRespVO;
 import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategorySaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
-import com.hzltd.module.erplus.service.product.ProductCategoryService;
+import com.hzltd.module.erplus.service.cross.ProductCategoryService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

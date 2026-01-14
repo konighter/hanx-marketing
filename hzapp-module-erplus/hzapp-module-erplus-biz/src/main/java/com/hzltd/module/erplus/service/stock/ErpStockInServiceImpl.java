@@ -14,7 +14,7 @@ import com.hzltd.module.erplus.dal.mysql.stock.ErpStockInMapper;
 import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
 import com.hzltd.module.erplus.enums.ErpAuditStatus;
 import com.hzltd.module.erplus.enums.stock.ErpStockRecordBizTypeEnum;
-import com.hzltd.module.erplus.service.product.ProductService;
+import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import com.hzltd.module.erplus.service.purchase.ErpSupplierService;
 import com.hzltd.module.erplus.service.stock.bo.ErpStockRecordCreateReqBO;
 import jakarta.annotation.Resource;

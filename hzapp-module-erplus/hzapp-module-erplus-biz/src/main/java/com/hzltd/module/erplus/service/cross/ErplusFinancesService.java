@@ -1,4 +1,14 @@
 package com.hzltd.module.erplus.service.cross;
 
-public class ErplusFinacesService {
+import com.hzltd.module.erplus.model.order.FeeModel;
+
+import java.util.List;
+
+public interface ErplusFinancesService {
+
+    void syncProductFee(List<Long> orderId);
+
+    List<FeeModel> getProductEstimatedFee(Integer platformId, Integer shopId, String marketId, List<String> sellerSkuList);
+
+    FeeModel getProductEstimatedFee(Long productId);
 }

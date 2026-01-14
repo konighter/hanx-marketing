@@ -20,6 +20,10 @@ public interface ErpWarehouseMapper extends BaseMapperX<ErpWarehouseDO> {
     default PageResult<ErpWarehouseDO> selectPage(ErpWarehousePageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<ErpWarehouseDO>()
                 .likeIfPresent(ErpWarehouseDO::getName, reqVO.getName())
+                .eqIfPresent(ErpWarehouseDO::getType, reqVO.getType())
+                .eqIfPresent(ErpWarehouseDO::getShopId, reqVO.getShopId())
+                .eqIfPresent(ErpWarehouseDO::getPlatformId, reqVO.getPlatformId())
+                .eqIfPresent(ErpWarehouseDO::getMarketId, reqVO.getMarketId())
                 .eqIfPresent(ErpWarehouseDO::getStatus, reqVO.getStatus())
                 .orderByDesc(ErpWarehouseDO::getId));
     }

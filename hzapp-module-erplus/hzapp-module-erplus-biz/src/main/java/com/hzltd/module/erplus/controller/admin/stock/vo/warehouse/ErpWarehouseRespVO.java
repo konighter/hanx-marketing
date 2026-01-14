@@ -1,16 +1,16 @@
-package com.hzltd.module.erplus.controller.admin.warehouse.vo;
+package com.hzltd.module.erplus.controller.admin.stock.vo.warehouse;
 
+import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
+import cn.idev.excel.annotation.ExcelProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.Data;
+
 import java.time.LocalDateTime;
-import cn.idev.excel.annotation.*;
 
 @Schema(description = "管理后台 - ERP 仓库 Response VO")
 @Data
 @ExcelIgnoreUnannotated
-public class WarehouseRespVO {
+public class ErpWarehouseRespVO {
 
     @Schema(description = "仓库编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "21598")
     @ExcelProperty("仓库编号")

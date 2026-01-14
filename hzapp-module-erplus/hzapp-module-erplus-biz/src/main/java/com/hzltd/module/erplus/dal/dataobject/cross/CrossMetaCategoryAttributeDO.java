@@ -1,9 +1,6 @@
-package com.hzltd.module.erplus.dal.dataobject.category;
+package com.hzltd.module.erplus.dal.dataobject.cross;
 
 import lombok.*;
-import java.util.*;
-import java.time.LocalDateTime;
-import java.time.LocalDateTime;
 import com.baomidou.mybatisplus.annotation.*;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 

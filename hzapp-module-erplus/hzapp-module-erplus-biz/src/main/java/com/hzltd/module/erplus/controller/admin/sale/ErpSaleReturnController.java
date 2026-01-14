@@ -18,7 +18,7 @@ import com.hzltd.module.erplus.dal.dataobject.sale.ErpCustomerDO;
 import com.hzltd.module.erplus.dal.dataobject.sale.ErpSaleReturnDO;
 import com.hzltd.module.erplus.dal.dataobject.sale.ErpSaleReturnItemDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockDO;
-import com.hzltd.module.erplus.service.product.ProductService;
+import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import com.hzltd.module.erplus.service.sale.ErpCustomerService;
 import com.hzltd.module.erplus.service.sale.ErpSaleReturnService;
 import com.hzltd.module.erplus.service.stock.ErpStockService;

@@ -1,6 +1,7 @@
-package com.hzltd.module.erplus.service.product;
+package com.hzltd.module.erplus.service.cross;
 
-import com.hzltd.module.erplus.controller.admin.product.vo.CrossProductPriceUpdateRequest;
+import com.hzltd.module.erplus.controller.admin.cross.vo.CrossProductPriceUpdateRequest;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.pricing.GetOfferResponse;
 
@@ -38,5 +39,7 @@ public interface ErplusCrossPriceInventoryService {
     void getCrossInventory(Long productId);
 
     void getCrossInventories(List<Long> productIds);
+
+    CrossProductPriceDO getEffectivePrice(Long productId);
 
 }

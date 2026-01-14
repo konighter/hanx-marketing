@@ -1,4 +1,102 @@
 package com.hzltd.module.erplus.service;
 
+// DownloadExample.java
+// This example is for use with the Selling Partner API for Reports, Version: 2021-06-30
+// and the Selling Partner API for Feeds, Version: 2021-06-30
+import okhttp3.*;
+
+import java.io.BufferedReader;
+import java.io.Closeable;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+import java.util.zip.GZIPInputStream;
+
+
+
+/**
+ * Example that downloads a document.
+ */
 public class DownLoad {
+
+    public static void main(String args[]) {
+        String url = "<URL from the getFeedDocument/getReportDocument response>";
+        String compressionAlgorithm = "<compressionAlgorithm from the getFeedDocument/getReportDocument response>";
+
+        DownLoad obj = new DownLoad();
+        try {
+            obj.download(url, compressionAlgorithm);
+        } catch (IOException e) {
+            //Handle exception here.
+        } catch (IllegalArgumentException e) {
+            //Handle exception here.
+        }
+    }
+
+    /**
+     * Download and optionally decompress the document retrieved from the given url.
+     *
+     * @param url                  the url pointing to a document
+     * @param compressionAlgorithm the compressionAlgorithm used for the document
+     * @throws IOException              when there is an error reading the response
+     * @throws IllegalArgumentException when the charset is missing
+     */
+    public void download(String url, String compressionAlgorithm) throws IOException, IllegalArgumentException {
+        OkHttpClient httpclient = new OkHttpClient();
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .build();
+
+        Response response = httpclient.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            System.out.println(
+                    String.format("Call to download content was unsuccessful with response code: %d and message: %s",
+                            response.code(), response.message()));
+            return;
+        }
+
+        try (ResponseBody responseBody = response.body()) {
+            MediaType mediaType = MediaType.parse(response.header("Content-Type"));
+            Charset charset = mediaType.charset();
+            if (charset == null) {
+                throw new IllegalArgumentException(String.format(
+                        "Could not parse character set from '%s'", mediaType.toString()));
+            }
+
+            Closeable closeThis = null;
+            try {
+                InputStream inputStream = responseBody.byteStream();
+                closeThis = inputStream;
+
+                if ("GZIP".equals(compressionAlgorithm)) {
+                    inputStream = new GZIPInputStream(inputStream);
+                    closeThis = inputStream;
+                }
+
+                // This example assumes that the download content has a charset in the content-type header, e.g.
+                // text/plain; charset=UTF-8
+                if ("text".equals(mediaType.type()) && "plain".equals(mediaType.subtype())) {
+                    InputStreamReader inputStreamReader = new InputStreamReader(inputStream, charset);
+                    closeThis = inputStreamReader;
+
+                    BufferedReader reader = new BufferedReader(inputStreamReader);
+                    closeThis = reader;
+
+                    String line;
+                    do {
+                        line = reader.readLine();
+                        // Process line by line.
+                    } while (line != null);
+                } else {
+                    //Handle content with binary data/other media types here.
+                }
+            } finally {
+                if (closeThis != null) {
+                    closeThis.close();
+                }
+            }
+        }
+    }
 }

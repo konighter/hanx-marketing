@@ -1,10 +1,13 @@
-package com.hzltd.module.erplus.service.product;
+package com.hzltd.module.erplus.service.cross;
 
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.api.service.PricingInventoryApiFactory;
-import com.hzltd.module.erplus.controller.admin.product.vo.CrossProductPriceUpdateRequest;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
+import com.hzltd.module.erplus.controller.admin.cross.vo.CrossProductPriceUpdateRequest;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
-import com.hzltd.module.erplus.dal.mysql.product.ErpCrossProductMapper;
+import com.hzltd.module.erplus.dal.mysql.cross.CrossProductMapper;
+import com.hzltd.module.erplus.dal.mysql.cross.CrossProductPriceMapper;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
@@ -29,7 +32,10 @@ import java.util.stream.Collectors;
 public class ErplusCrossPriceInventoryServiceImpl implements ErplusCrossPriceInventoryService {
 
     @Resource
-    private ErpCrossProductMapper crossProductMapper;
+    private CrossProductMapper crossProductMapper;
+
+    @Resource
+    private CrossProductPriceMapper crossProductPriceMapper;
 
     @Lazy
     @Resource
@@ -38,13 +44,12 @@ public class ErplusCrossPriceInventoryServiceImpl implements ErplusCrossPriceInv
     @Resource
     private SellPlatformService sellPlatformService;
 
-
     @Resource
     private PricingInventoryApiFactory pricingInventoryApiFactory;
 
     @Override
     public Boolean updateCrossPlatformProductPrice(CrossProductPriceUpdateRequest request) {
-        Optional<ErpCrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(request.getProductId());
+        Optional<CrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(request.getProductId());
         if (crossProduct.isEmpty()) {
             log.warn("getCrossPlatformProductPrice, crossProduct not found, productId: {}", request.getProductId());
             return false;
@@ -72,7 +77,7 @@ public class ErplusCrossPriceInventoryServiceImpl implements ErplusCrossPriceInv
 
      @Override
     public GetOfferResponse getCrossProductOffer(Long productId) {
-        Optional<ErpCrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(productId);
+        Optional<CrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(productId);
         if (crossProduct.isEmpty()) {
             log.warn("getCrossPlatformProductPrice, crossProduct not found, productId: {}", productId);
             return null;
@@ -109,7 +114,7 @@ public class ErplusCrossPriceInventoryServiceImpl implements ErplusCrossPriceInv
 
     @Override
     public void getCrossInventory(Long productId) {
-        Optional<ErpCrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(productId);
+        Optional<CrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(productId);
         if (crossProduct.isEmpty()) {
             log.warn("getCrossPlatformProductPrice, crossProduct not found, productId: {}", productId);
             return;
@@ -130,13 +135,33 @@ public class ErplusCrossPriceInventoryServiceImpl implements ErplusCrossPriceInv
     @Override
     public void getCrossInventories(List<Long> productIds) {
         // 按MarketId分组
-        Map<String, List<ErpCrossProductDO>> productsByMarketId = productIds.stream()
+        Map<String, List<CrossProductDO>> productsByMarketId = productIds.stream()
                 .map(crossProductService::getBasicCrossPlatformProduct)
                 .filter(Optional::isPresent)
                 .map(Optional::get)
-                .collect(Collectors.groupingBy(ErpCrossProductDO::getMarketId));
+                .collect(Collectors.groupingBy(CrossProductDO::getMarketId));
+
+    }
+
+    @Override
+    public CrossProductPriceDO getEffectivePrice(Long productId) {
+        CrossProductDO product = crossProductMapper.selectById(productId);
+
+        return crossProductPriceMapper.selectOne(new LambdaQueryWrapperX<CrossProductPriceDO>()
+                .eqIfPresent(CrossProductPriceDO::getShopId, product.getShopId())
+                .eqIfPresent(CrossProductPriceDO::getMarketId, product.getMarketId())
+                .eqIfPresent(CrossProductPriceDO::getProductId, productId)
+                .leIfPresent(CrossProductPriceDO::getStartAt, System.currentTimeMillis() / 1000)
+                .and(wrapper -> {
+                    wrapper.ge(CrossProductPriceDO::getEndAt, System.currentTimeMillis() / 1000)
+                            .or()
+                            .isNull(CrossProductPriceDO::getEndAt);
+                })
+        );
 
 
 
     }
+
+
 }

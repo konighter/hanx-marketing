@@ -98,7 +98,8 @@ public class ErpWarehouseController {
     public CommonResult<List<ErpWarehouseRespVO>> getWarehouseSimpleList() {
         List<ErpWarehouseDO> list = warehouseService.getWarehouseListByStatus(CommonStatusEnum.ENABLE.getStatus());
         return success(convertList(list, warehouse -> new ErpWarehouseRespVO().setId(warehouse.getId())
-                .setName(warehouse.getName()).setDefaultStatus(warehouse.getDefaultStatus())));
+                .setName(warehouse.getName()).setType(warehouse.getType()).setPlatformId(warehouse.getPlatformId()).setShopId(warehouse.getShopId())
+                .setMarketId(warehouse.getMarketId()).setDefaultStatus(warehouse.getDefaultStatus())));
     }
 
     @GetMapping("/export-excel")

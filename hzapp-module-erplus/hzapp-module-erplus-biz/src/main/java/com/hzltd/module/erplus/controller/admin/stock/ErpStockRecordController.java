@@ -15,7 +15,7 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.record.ErpStockRecordPa
 import com.hzltd.module.erplus.controller.admin.stock.vo.record.ErpStockRecordRespVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockRecordDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
-import com.hzltd.module.erplus.service.product.ProductService;
+import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import com.hzltd.module.erplus.service.stock.ErpStockRecordService;
 import com.hzltd.module.erplus.service.stock.ErpWarehouseService;
 import io.swagger.v3.oas.annotations.Operation;

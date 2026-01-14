@@ -1,15 +1,11 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
-import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
-import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
 import com.amazon.SellingPartnerAPIAA.LWAException;
-import com.hzltd.module.erplus.api.adptor.LocalAuthProvider;
-import com.hzltd.module.erplus.api.adptor.amz.proto.ProductTypeSchemaUtils;
+import com.hzltd.module.erplus.api.amz.proto.ProductTypeSchemaUtils;
 import com.hzltd.module.erplus.api.annotations.ServiceRegister;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
-import com.hzltd.module.erplus.model.authorization.AuthorizationModel;
 import com.hzltd.module.erplus.model.category.*;
 import com.hzltd.module.erplus.service.category.CategoryApi;
 import com.hzltd.module.erplus.sys.SystemShopService;

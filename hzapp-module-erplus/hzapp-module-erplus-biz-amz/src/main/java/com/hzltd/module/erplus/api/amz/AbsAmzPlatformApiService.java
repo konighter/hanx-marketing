@@ -1,12 +1,16 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
+import cn.hutool.core.date.DateUnit;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.Maps;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.api.adptor.AbsPlatformService;
 import com.hzltd.module.erplus.api.adptor.RefreshTokenCacheAdaptor;
-import com.hzltd.module.erplus.api.adptor.amz.model.AmzPurchasableOfferModel;
+import com.hzltd.module.erplus.api.amz.model.AmzPurchasableOfferModel;
 import com.hzltd.module.erplus.constant.FulfillTypeEnum;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzConfirmTransportOptionRequest;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzSetPackingInfoRequest;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzTransportOptionGenerateRequest;
 import com.hzltd.module.erplus.enums.CrossListingStatus;
 import com.hzltd.module.erplus.enums.CrossOrderStatus;
 import com.hzltd.module.erplus.enums.RelationLevel;
@@ -30,6 +34,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.compress.utils.Lists;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import software.amazon.spapi.api.fba.inventory.v1.FbaInventoryApi;
 import software.amazon.spapi.api.finances.v0.DefaultApi;
 import software.amazon.spapi.api.fulfillment.inbound.v2024_03_20.FbaInboundApi;
@@ -39,11 +44,14 @@ import software.amazon.spapi.api.orders.v0.OrdersV0Api;
 import software.amazon.spapi.api.pricing.v0.ProductPricingApi;
 import software.amazon.spapi.api.productfees.v0.FeesApi;
 import software.amazon.spapi.api.producttypedefinitions.v2020_09_01.DefinitionsApi;
+import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.*;
 import software.amazon.spapi.models.listings.items.v2021_08_01.*;
+import software.amazon.spapi.models.listings.items.v2021_08_01.Item;
 import software.amazon.spapi.models.orders.v0.Order;
 import software.amazon.spapi.models.pricing.v0.*;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -164,9 +172,6 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     }
 
 
-
-
-
 //============== 数据转换 ==============
 
     public MultiMarketProductModel convertProduct(Item item) {
@@ -230,7 +235,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
                         if ("product_description".equalsIgnoreCase(key)) {
                             product.setProductDescription(attrValStr);
                         }
-                        
+
                         // 价格
                         if ("purchasable_offer".equalsIgnoreCase(key)) {
                             product.setPrices(convertPurchaseOfferAttr(attrValStr));
@@ -362,7 +367,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     }
 
     public IssueModel convert(Issue issue) {
-       return new IssueModel()
+        return new IssueModel()
                 .setCode(issue.getCode())
                 .setMessage(issue.getMessage())
                 .setSeverity(issue.getSeverity().getValue())
@@ -395,6 +400,40 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         );
     }
 
+    public SetPackingInformationRequest convert(AmzSetPackingInfoRequest request) {
+
+        List<PackageGroupingInput> groupingInputs = request.getOption().getGroupItems().entrySet().stream().map(item -> {
+            return new PackageGroupingInput()
+                    .packingGroupId(item.getKey())
+                    .boxes(item.getValue().stream().map(box -> new BoxInput()
+                            .quantity(box.getBoxQuantity())
+                            .contentInformationSource(BoxContentInformationSource.BOX_CONTENT_PROVIDED)
+                            .items(List.of(new ItemInput()
+                                    .msku(box.getMsku())
+                                    .quantity(box.getQuantityInBox())
+                                    .labelOwner(LabelOwner.SELLER)
+                                    .prepOwner(PrepOwner.SELLER)))
+                            .weight(new Weight().value(new BigDecimal(box.getBoxWeight())).unit(UnitOfWeight.KG))
+                            .dimensions(new Dimensions().height(BigDecimal.valueOf(box.getBoxHeight()))
+                                    .width(BigDecimal.valueOf(box.getBoxWidth()))
+                                    .length(BigDecimal.valueOf(box.getBoxLength()))
+                                    .unitOfMeasurement(UnitOfMeasurement.CM))).toList()
+                    );
+        }).toList();
+
+        return new SetPackingInformationRequest().packageGroupings(groupingInputs);
+    }
+
+    public Long formatToTimestampYYYYMMDD(String dateStr) {
+        if (StringUtils.isBlank(dateStr)) {
+            return null;
+        }
+        try {
+            return DateFormatUtils.ISO_8601_EXTENDED_DATE_FORMAT.parse(dateStr).toInstant().getEpochSecond();
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Long formatToTimestamp(String dateStr) {
         if (StringUtils.isBlank(dateStr)) {
@@ -407,7 +446,45 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         if (timestamp == null) {
             return null;
         }
-        return OffsetDateTime.ofInstant(java.time.Instant.ofEpochSecond(timestamp), java.time.ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+        return OffsetDateTime.ofInstant(java.time.Instant.ofEpochSecond(timestamp), ZoneOffset.UTC).format(DateTimeFormatter.ISO_OFFSET_DATE_TIME);
+    }
+
+    public org.threeten.bp.OffsetDateTime convertToOffsetDateTime(Long timestamp) {
+        if (timestamp == null) {
+            return null;
+        }
+        return org.threeten.bp.OffsetDateTime.ofInstant(org.threeten.bp.Instant.ofEpochSecond(timestamp), org.threeten.bp.ZoneOffset.UTC);
+    }
+
+    public GenerateTransportationOptionsRequest convert(AmzTransportOptionGenerateRequest request) {
+        GenerateTransportationOptionsRequest r = new GenerateTransportationOptionsRequest();
+        r.setPlacementOptionId(request.getPlacementOptionId());
+        r.setShipmentTransportationConfigurations(request.getShipmentIds().stream()
+                .map(id -> new ShipmentTransportationConfiguration()
+                        .shipmentId(id)
+                        .readyToShipWindow(new WindowInput().start(convertToOffsetDateTime(formatToTimestampYYYYMMDD(request.getShipmentDate()))))
+                )
+                .collect(Collectors.toList()));
+
+        return r;
+    }
+
+    public ConfirmTransportationOptionsRequest convert(AmzConfirmTransportOptionRequest r) {
+        ConfirmTransportationOptionsRequest request = new ConfirmTransportationOptionsRequest();
+
+        request.setTransportationSelections(r.getShipments().stream()
+                .map(shipment ->
+                        new TransportationSelection()
+                                .shipmentId(shipment.getShipmentId())
+                                .transportationOptionId(shipment.getTransportationOptionId())
+                ).collect(Collectors.toList())
+        );
+
+        return request;
+
+
+
+
     }
 
 

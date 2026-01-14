@@ -1,11 +1,12 @@
 package com.hzltd.module.erplus.dal.dataobject.amz;
 
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import lombok.*;
 
 import java.time.LocalDateTime;
-
-import com.baomidou.mybatisplus.annotation.*;
-import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 
 /**
  * 亚马逊报告任务 DO

@@ -1,10 +1,10 @@
 package com.hzltd.module.erplus.service.amz;
 
-import java.util.*;
-import jakarta.validation.*;
-import com.hzltd.module.erplus.controller.admin.amz.vo.*;
-import com.hzltd.module.erplus.dal.dataobject.amz.AmzReportTaskDO;
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzReportTaskPageReqVO;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzReportTaskSaveReqVO;
+import com.hzltd.module.erplus.dal.dataobject.amz.AmzReportTaskDO;
+import jakarta.validation.Valid;
 
 /**
  * 亚马逊报告任务 Service 接口

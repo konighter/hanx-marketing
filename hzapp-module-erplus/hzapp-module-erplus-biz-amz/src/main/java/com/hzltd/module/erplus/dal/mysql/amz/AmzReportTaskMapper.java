@@ -1,11 +1,11 @@
 package com.hzltd.module.erplus.dal.mysql.amz;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzReportTaskPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.amz.AmzReportTaskDO;
 import org.apache.ibatis.annotations.Mapper;
-import com.hzltd.module.erplus.controller.admin.amz.vo.*;
 
 /**
  * 亚马逊报告任务 Mapper

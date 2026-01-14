@@ -99,4 +99,12 @@ public interface ErpWarehouseService {
      */
     PageResult<ErpWarehouseDO> getWarehousePage(ErpWarehousePageReqVO pageReqVO);
 
+
+    /**
+     * 获得仓库列表
+     *
+     * @param ids 编号数组
+     * @return 仓库列表
+     */
+    List<ErpWarehouseDO> getWarehouseListByIds(List<Integer> ids);
 }

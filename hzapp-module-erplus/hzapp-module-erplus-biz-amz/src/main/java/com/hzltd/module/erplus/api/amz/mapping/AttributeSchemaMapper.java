@@ -1,6 +1,6 @@
-package com.hzltd.module.erplus.api.adptor.amz.mapping;
+package com.hzltd.module.erplus.api.amz.mapping;
 
-import com.hzltd.module.erplus.api.adptor.amz.proto.ProductTypeSchemaItem;
+import com.hzltd.module.erplus.api.amz.proto.ProductTypeSchemaItem;
 import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
 
 public interface AttributeSchemaMapper {

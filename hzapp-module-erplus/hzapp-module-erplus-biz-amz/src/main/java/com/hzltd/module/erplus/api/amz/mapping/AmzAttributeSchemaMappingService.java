@@ -1,9 +1,9 @@
-package com.hzltd.module.erplus.api.adptor.amz.mapping;
+package com.hzltd.module.erplus.api.amz.mapping;
 
-import com.hzltd.module.erplus.api.adptor.amz.mapping.data.OriginCountryMapper;
-import com.hzltd.module.erplus.api.adptor.amz.mapping.data.SupplierDeclaredDGHXRegulationMapper;
-import com.hzltd.module.erplus.api.adptor.amz.mapping.data.VariationThemeMapper;
-import com.hzltd.module.erplus.api.adptor.amz.proto.ProductTypeSchemaItem;
+import com.hzltd.module.erplus.api.amz.mapping.data.OriginCountryMapper;
+import com.hzltd.module.erplus.api.amz.mapping.data.SupplierDeclaredDGHXRegulationMapper;
+import com.hzltd.module.erplus.api.amz.mapping.data.VariationThemeMapper;
+import com.hzltd.module.erplus.api.amz.proto.ProductTypeSchemaItem;
 import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
 import org.springframework.stereotype.Service;
 

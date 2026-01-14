@@ -1,7 +1,6 @@
-package com.hzltd.module.erplus.dal.dataobject.shipmentitem;
+package com.hzltd.module.erplus.dal.dataobject.stock;
 
 import lombok.*;
-import java.util.*;
 import com.baomidou.mybatisplus.annotation.*;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 
@@ -28,7 +27,7 @@ public class ShipmentItemDO extends BaseDO {
     /**
      * 货件ID
      */
-    private Long shipmentId;
+    private Integer shipmentId;
     /**
      * SKU
      */
@@ -48,7 +47,7 @@ public class ShipmentItemDO extends BaseDO {
     /**
      * 高度
      */
-    private Long heigth;
+    private Long height;
     /**
      * 长度单位
      */

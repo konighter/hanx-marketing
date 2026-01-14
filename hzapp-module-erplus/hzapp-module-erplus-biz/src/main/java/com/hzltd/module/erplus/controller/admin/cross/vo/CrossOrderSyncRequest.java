@@ -1,4 +1,7 @@
-package com.hzltd.module.erplus.controller.admin.product.vo.order;
+package com.hzltd.module.erplus.controller.admin.cross.vo;
 
-public class SyncOrderRequest {
+import lombok.Data;
+
+@Data
+public class CrossOrderSyncRequest extends CrossOrderPageRequest{
 }

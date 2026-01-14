@@ -1,4 +1,13 @@
 package com.hzltd.module.erplus.api.service;
 
-public class OrderApiFactory {
+import com.hzltd.module.erplus.api.config.AbsCrossApiServiceFactory;
+import com.hzltd.module.erplus.service.order.OrderApi;
+import org.springframework.stereotype.Service;
+
+@Service
+public class OrderApiFactory extends AbsCrossApiServiceFactory<OrderApi> {
+    @Override
+    public Class<OrderApi> getCrossApiServiceClass() {
+        return OrderApi.class;
+    }
 }

@@ -9,12 +9,11 @@ import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
 import com.hzltd.module.erplus.model.category.*;
 import com.hzltd.module.erplus.model.common.MediaModel;
-import com.hzltd.module.erplus.model.product.CreateProductRequest;
-import com.hzltd.module.erplus.model.product.CreateProductResponse;
+import com.hzltd.module.erplus.model.product.*;
 import com.hzltd.module.erplus.service.PlatformIdentity;
 import com.hzltd.module.erplus.service.category.CategoryApi;
 import com.hzltd.module.erplus.service.categoryattr.CategoryAttributeService;
-import com.hzltd.module.erplus.service.product.ProductCategoryService;
+import com.hzltd.module.erplus.service.cross.ProductCategoryService;
 import com.hzltd.module.erplus.service.product.ProductApi;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -98,5 +97,15 @@ public class DefaultHanXCrossServiceApi implements ProductApi, CategoryApi, Plat
     @Override
     public CrossPlatformEnum getPlatform() {
         return CrossPlatformEnum.LOCAL;
+    }
+
+    @Override
+    public ApiResponse<List<MultiMarketProductModel>> searchProduct(ApiRequest<SearchProductRequest> request) {
+        return null;
+    }
+
+    @Override
+    public ApiResponse<MultiMarketProductModel> getProduct(ApiRequest<GetProductRequest> request) {
+        return null;
     }
 }

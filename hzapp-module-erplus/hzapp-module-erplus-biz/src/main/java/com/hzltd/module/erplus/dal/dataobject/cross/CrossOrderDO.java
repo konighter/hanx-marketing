@@ -17,13 +17,13 @@ import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErpCrossOrderDO extends BaseDO {
+public class CrossOrderDO extends BaseDO {
 
     /**
      * ID
      */
     @TableId
-    private Integer id;
+    private Long id;
     /**
      * 平台ID
      */

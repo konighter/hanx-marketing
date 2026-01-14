@@ -5,7 +5,7 @@ import com.hzltd.module.erplus.service.product.PricingInventoryApi;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PricingApiFactory extends AbsCrossApiServiceFactory<PricingInventoryApi> {
+public class PricingInventoryApiFactory extends AbsCrossApiServiceFactory<PricingInventoryApi> {
     @Override
     public Class<PricingInventoryApi> getCrossApiServiceClass() {
         return PricingInventoryApi.class;

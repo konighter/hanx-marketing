@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.api.adptor.amz.model;
+package com.hzltd.module.erplus.api.amz.model;
 
 import com.hzltd.module.erplus.constant.FulfillTypeEnum;
 import lombok.Data;

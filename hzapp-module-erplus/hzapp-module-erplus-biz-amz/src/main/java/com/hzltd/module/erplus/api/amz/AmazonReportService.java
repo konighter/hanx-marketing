@@ -1,10 +1,7 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
 import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
-import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
 import com.amazon.SellingPartnerAPIAA.LWAException;
-import com.google.common.base.Joiner;
-import com.hzltd.module.erplus.api.adptor.LocalAuthProvider;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.authorization.AuthorizationModel;
 import com.hzltd.module.erplus.sys.SystemShopService;
@@ -12,9 +9,11 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.ApiException;
-import software.amazon.spapi.api.producttypedefinitions.v2020_09_01.DefinitionsApi;
 import software.amazon.spapi.api.reports.v2021_06_30.ReportsApi;
-import software.amazon.spapi.models.reports.v2021_06_30.*;
+import software.amazon.spapi.models.reports.v2021_06_30.CreateReportResponse;
+import software.amazon.spapi.models.reports.v2021_06_30.CreateReportSpecification;
+import software.amazon.spapi.models.reports.v2021_06_30.Report;
+import software.amazon.spapi.models.reports.v2021_06_30.ReportDocument;
 
 import java.util.List;
 

@@ -3,7 +3,7 @@ package com.hzltd.module.erplus.controller.admin.amz.vo;
 import lombok.Data;
 
 @Data
-public class AmzGeneratePlacementOptionRequest {
+public class AmzPlacementOptionRequest {
     private Integer shopId;
 
     private String planId;

@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.api.adptor.amz.mapping;
+package com.hzltd.module.erplus.api.amz.mapping;
 
 import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
 import com.hzltd.module.erplus.sys.model.ProductSpuModel;

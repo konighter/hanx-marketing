@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.dal.dataobject.shipmentplan;
+package com.hzltd.module.erplus.dal.dataobject.stock;
 
 import lombok.*;
 import java.util.*;
@@ -50,7 +50,7 @@ public class ShipmentPlanDO extends BaseDO {
     /**
      * 发货仓库
      */
-    private Integer warehouseId;
+    private Long warehouseId;
     /**
      * 地址
      */
@@ -58,7 +58,7 @@ public class ShipmentPlanDO extends BaseDO {
     /**
      * 备注
      */
-    private Integer remark;
+    private String remark;
     /**
      * extra_id
      */
@@ -67,6 +67,10 @@ public class ShipmentPlanDO extends BaseDO {
      * 状态
      */
     private Integer status;
+
+    private Integer auditStatus;
+
+    private String auditRemark;
     /**
      * 商品总量
      */

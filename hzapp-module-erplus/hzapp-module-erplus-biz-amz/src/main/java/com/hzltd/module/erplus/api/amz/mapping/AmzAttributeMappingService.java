@@ -1,6 +1,6 @@
-package com.hzltd.module.erplus.api.adptor.amz.mapping;
+package com.hzltd.module.erplus.api.amz.mapping;
 
-import com.hzltd.module.erplus.api.adptor.amz.mapping.data.*;
+import com.hzltd.module.erplus.api.amz.mapping.data.*;
 import com.hzltd.module.erplus.api.annotations.ServiceRegister;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.category.CategoryAttributeModel;

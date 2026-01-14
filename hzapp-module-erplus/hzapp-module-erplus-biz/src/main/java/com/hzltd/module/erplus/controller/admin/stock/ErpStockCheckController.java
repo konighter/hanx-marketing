@@ -16,7 +16,7 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.check.ErpStockCheckResp
 import com.hzltd.module.erplus.controller.admin.stock.vo.check.ErpStockCheckSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockCheckDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockCheckItemDO;
-import com.hzltd.module.erplus.service.product.ProductService;
+import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import com.hzltd.module.erplus.service.stock.ErpStockCheckService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

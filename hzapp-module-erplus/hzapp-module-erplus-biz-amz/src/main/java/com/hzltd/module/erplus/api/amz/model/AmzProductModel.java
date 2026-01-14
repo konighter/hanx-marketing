@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.api.adptor.amz.model;
+package com.hzltd.module.erplus.api.amz.model;
 
 import com.hzltd.module.erplus.model.product.ProductModel;
 import lombok.Data;

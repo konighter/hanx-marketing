@@ -1,18 +1,24 @@
-package com.hzltd.module.erplus.convert.product;
+package com.hzltd.module.erplus.convert.cross;
 
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossProductListingResp;
-import com.hzltd.module.erplus.dal.dataobject.cross.ErpCrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductInventoryDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
 import com.hzltd.module.erplus.model.common.Image;
+import com.hzltd.module.erplus.model.common.InventoryModel;
+import com.hzltd.module.erplus.model.common.PriceModel;
 import com.hzltd.module.erplus.model.product.ProductModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
+
+import java.math.BigDecimal;
 
 @Mapper
 public interface CrossProductListingConvert {
 
     CrossProductListingConvert INSTANCE = Mappers.getMapper(CrossProductListingConvert.class);
 
-    default CrossProductListingResp convert(ErpCrossProductDO crossProductDO) {
+    default CrossProductListingResp convert(CrossProductDO crossProductDO) {
         if (crossProductDO == null) {
             return null;
         }
@@ -32,21 +38,21 @@ public interface CrossProductListingConvert {
         return respVO;
     }
 
-    default ErpCrossProductDO convert(ProductModel productModel) {
+    default CrossProductDO convert(ProductModel productModel) {
         if (productModel == null) {
             return null;
         }
-        ErpCrossProductDO crossProductDO = new ErpCrossProductDO();
+        CrossProductDO crossProductDO = new CrossProductDO();
         update(productModel, crossProductDO);
         return crossProductDO;
     }
 
-    default ErpCrossProductDO update(ProductModel productModel, ErpCrossProductDO crossProductDO) {
+    default CrossProductDO update(ProductModel productModel, CrossProductDO crossProductDO) {
         if (productModel == null) {
             return null;
         }
         if (crossProductDO == null) {
-            crossProductDO = new ErpCrossProductDO();
+            crossProductDO = new CrossProductDO();
         }
         crossProductDO.setPlatformProductCode(productModel.getProductCode());
         crossProductDO.setSellerSkuCode(productModel.getSellerSku());
@@ -66,4 +72,63 @@ public interface CrossProductListingConvert {
         crossProductDO.setUpdateTime(productModel.getUpdateTime());
         return crossProductDO;
     }
+
+
+    default CrossProductInventoryDO convert(InventoryModel inventoryModel) {
+        if (inventoryModel == null) {
+            return null;
+        }
+        CrossProductInventoryDO crossProductInventoryDO = new CrossProductInventoryDO();
+        return update(inventoryModel, crossProductInventoryDO);
+    }
+
+    default CrossProductInventoryDO update(InventoryModel inventoryModel, CrossProductInventoryDO crossProductInventoryDO) {
+        if (inventoryModel == null) {
+            return crossProductInventoryDO;
+        }
+
+        crossProductInventoryDO.setFnsku(inventoryModel.getFnSku());
+        crossProductInventoryDO.setFulfillableQuantity(inventoryModel.getFulfillableQuantity());
+        crossProductInventoryDO.setInboundWorkingQuantity(inventoryModel.getInboundWorkingQuantity());
+        crossProductInventoryDO.setInboundShippedQuantity(inventoryModel.getInboundShippedQuantity());
+        crossProductInventoryDO.setInboundReceivingQuantity(inventoryModel.getInboundReceivingQuantity());
+        crossProductInventoryDO.setReservedQuantity(inventoryModel.getReservedQuantity());
+        crossProductInventoryDO.setReservedPendingOrderQuantity(inventoryModel.getReservedPendingCustomerOrderQuantity());
+        crossProductInventoryDO.setReservedTransshippingQuantity(inventoryModel.getReservedPendingTransshipmentQuantity());
+        crossProductInventoryDO.setReservedFcprocessingQuantity(inventoryModel.getReservedFcProcessingQuantity());
+
+        crossProductInventoryDO.setResearchingQuantity(inventoryModel.getResearchingQuantity());
+        crossProductInventoryDO.setUnfulfillableQuantity(inventoryModel.getUnfulfillableQuantity());
+
+        crossProductInventoryDO.setLastModifiedTimestamp(inventoryModel.getLastUpdateTime());
+        return crossProductInventoryDO;
+    }
+
+
+
+
+    default CrossProductPriceDO convert(PriceModel priceModel) {
+        if (priceModel == null) {
+            return null;
+        }
+        CrossProductPriceDO priceDO = new CrossProductPriceDO();
+        return update(priceModel, priceDO);
+    }
+
+    default CrossProductPriceDO update(PriceModel priceModel, CrossProductPriceDO priceDO) {
+        if (priceModel == null) {
+            return priceDO;
+        }
+        if (priceDO == null) {
+            priceDO = new CrossProductPriceDO();
+        }
+        priceDO.setSalePrice(priceModel.getAmount().multiply(BigDecimal.valueOf(100)).intValue());
+        priceDO.setCurrency(priceModel.getCurrency());
+        priceDO.setStartAt(priceModel.getStartAt());
+        priceDO.setEndAt(priceModel.getEndAt());
+
+        return priceDO;
+    }
+
+
 }

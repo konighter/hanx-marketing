@@ -118,6 +118,18 @@ public class CrossShopController {
 
 
 
+    @GetMapping("/cascader-list")
+    @Operation(summary = "获得店铺级联信息")
+    @Parameter(name = "id", description = "编号", required = true, example = "1024")
+    @PreAuthorize("@ss.hasPermission('ov:shop:query')")
+    public CommonResult<?> cascaderShop() {
+        return success(shopService.getCascaderShopList());
+    }
+
+
+
+
+
 
 
 }

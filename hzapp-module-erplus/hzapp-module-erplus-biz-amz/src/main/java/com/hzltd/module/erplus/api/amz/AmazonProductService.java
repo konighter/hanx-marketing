@@ -1,40 +1,25 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
 import com.amazon.SellingPartnerAPIAA.LWAException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.google.common.collect.Maps;
 import com.hzltd.framework.common.pojo.PageParam;
-import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.erplus.api.adptor.AbsPlatformService;
 import com.hzltd.module.erplus.api.annotations.ServiceRegister;
-import com.hzltd.module.erplus.constant.FulfillTypeEnum;
-import com.hzltd.module.erplus.enums.CrossListingStatus;
-import com.hzltd.module.erplus.enums.RelationLevel;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
-import com.hzltd.module.erplus.model.authorization.AuthorizationModel;
-import com.hzltd.module.erplus.model.common.Image;
 import com.hzltd.module.erplus.model.common.MediaModel;
-import com.hzltd.module.erplus.model.common.PriceModel;
-import com.hzltd.module.erplus.model.common.ProductAttributeModel;
 import com.hzltd.module.erplus.model.product.*;
 import com.hzltd.module.erplus.service.product.ProductApi;
-import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
 import org.threeten.bp.OffsetDateTime;
 import software.amazon.spapi.ApiException;
 import software.amazon.spapi.api.listings.items.v2021_08_01.ListingsApi;
-import software.amazon.spapi.models.listings.items.v2021_08_01.*;
+import software.amazon.spapi.models.listings.items.v2021_08_01.Item;
+import software.amazon.spapi.models.listings.items.v2021_08_01.ItemSearchResults;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j

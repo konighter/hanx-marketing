@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ChangeProductPriceResponse {
+public class ChangePriceResponse {
 
     /**
      * 操作状态

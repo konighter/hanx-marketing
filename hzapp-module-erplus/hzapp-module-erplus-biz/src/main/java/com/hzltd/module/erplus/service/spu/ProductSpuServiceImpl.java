@@ -16,7 +16,7 @@ import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
 import com.hzltd.module.erplus.model.category.BrandModel;
 import com.hzltd.module.erplus.model.category.CategoryModel;
 import com.hzltd.module.erplus.service.brand.ProductBrandService;
-import com.hzltd.module.erplus.service.product.ProductCategoryService;
+import com.hzltd.module.erplus.service.cross.ProductCategoryService;
 import com.hzltd.module.erplus.sys.SystemProductService;
 import com.hzltd.module.erplus.sys.model.ProductSkuModel;
 import com.hzltd.module.erplus.sys.model.ProductSpuModel;

@@ -19,13 +19,15 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CrossInboundPlanDO extends BaseDO {
+public class AmzInboundPlanDO extends BaseDO {
 
     /**
      * ID
      */
     @TableId
     private Integer id;
+
+    private String name;
     /**
      * 平台ID
      */
@@ -41,7 +43,7 @@ public class CrossInboundPlanDO extends BaseDO {
     /**
      * 计划ID
      */
-    private String planeId;
+    private String planId;
     /**
      * 发货地址
      */
@@ -54,6 +56,10 @@ public class CrossInboundPlanDO extends BaseDO {
      * 打包信息
      */
     private String packingInfo;
+
+    private String packingOptionId;
+
+    private String packingOptions;
     /**
      * 配置项
      */
@@ -62,6 +68,30 @@ public class CrossInboundPlanDO extends BaseDO {
      * 配置项详情
      */
     private String placementDetail;
+
+    /**
+     * 配置项
+     */
+    private String placementOptions;
+
+
+    /**
+     * 运输项
+     */
+    private String transportOptionId;
+    /**
+     * 运输项详情
+     */
+    private String transportDetail;
+
+    /**
+     * 运输项
+     */
+    private String transportOptions;
+
+
+
+
     /**
      * 运输项
      */

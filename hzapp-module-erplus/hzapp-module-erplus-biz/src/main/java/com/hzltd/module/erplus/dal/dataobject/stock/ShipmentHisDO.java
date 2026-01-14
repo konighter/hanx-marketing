@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.dal.dataobject.shipmenthis;
+package com.hzltd.module.erplus.dal.dataobject.stock;
 
 import lombok.*;
 import java.util.*;

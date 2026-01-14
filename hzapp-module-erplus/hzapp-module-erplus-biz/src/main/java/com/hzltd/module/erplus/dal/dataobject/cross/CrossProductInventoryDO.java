@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.dal.dataobject.crossproductinventory;
+package com.hzltd.module.erplus.dal.dataobject.cross;
 
 import lombok.*;
 import java.util.*;
@@ -87,6 +87,11 @@ public class CrossProductInventoryDO extends BaseDO {
      * 预留库存-仓库处理中
      */
     private Integer reservedFcprocessingQuantity;
+
+    /**
+     * 最后修改时间
+     */
+    private Long lastModifiedTimestamp;
 
 
 }

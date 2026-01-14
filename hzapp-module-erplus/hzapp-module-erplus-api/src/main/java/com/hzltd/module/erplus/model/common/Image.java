@@ -15,7 +15,7 @@ public class Image {
 
     private Integer width;
 
-    private Integer length;
+    private Integer height;
 
     /**
      * 单位KB

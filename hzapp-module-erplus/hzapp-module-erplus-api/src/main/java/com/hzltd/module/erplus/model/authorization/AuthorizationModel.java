@@ -35,10 +35,16 @@ public class AuthorizationModel {
     private String tokenType;
 
     @JsonProperty("expires_in")
-    private Integer   expireIn;
+    private Integer expireIn;
 
     private String state;
 
     @JsonProperty("grant_type")
     private String grantType;
+
+    /**
+     * 卖家标记, 自授权输入, OAuth授权Api获取
+     */
+    @JsonProperty("seller_id")
+    private String sellerId;
 }

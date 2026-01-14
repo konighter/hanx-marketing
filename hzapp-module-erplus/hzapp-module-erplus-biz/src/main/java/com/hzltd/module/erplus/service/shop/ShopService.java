@@ -47,6 +47,8 @@ public interface ShopService {
 
     ShopRespVO getShopResp(Integer id);
 
+    List<ShopDO> getShopsByIds(List<Integer> ids);
+
     /**
      * 获得店铺信息分页
      *
@@ -63,4 +65,16 @@ public interface ShopService {
 
     @TenantIgnore
     void refreshShopPlatformAccessToken();
+
+     /**
+      * 获得店铺级联信息
+      * 平台 -> 店铺-> 子店铺
+      *
+      * @return 店铺级联信息
+      */
+    List<CascaderShopRespVO> getCascaderShopList();
+
+
+
+
 }

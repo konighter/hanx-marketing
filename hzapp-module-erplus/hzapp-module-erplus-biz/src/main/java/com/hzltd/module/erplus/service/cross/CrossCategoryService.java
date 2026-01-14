@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.service.category;
+package com.hzltd.module.erplus.service.cross;
 
 import com.hzltd.module.erplus.controller.admin.category.vo.CategoryAttributeVO;
 import com.hzltd.module.erplus.controller.admin.category.vo.CategoryVO;

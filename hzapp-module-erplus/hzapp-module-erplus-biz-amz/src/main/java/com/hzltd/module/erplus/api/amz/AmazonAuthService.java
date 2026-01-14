@@ -1,11 +1,14 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.api.annotations.ServiceRegister;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.authorization.AuthorizationModel;
 import com.hzltd.module.erplus.service.authorization.AuthorizationApi;
-import okhttp3.*;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

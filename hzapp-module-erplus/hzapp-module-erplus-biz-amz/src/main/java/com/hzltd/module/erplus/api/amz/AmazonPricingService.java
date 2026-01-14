@@ -1,7 +1,7 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
 import com.amazon.SellingPartnerAPIAA.LWAException;
-import com.hzltd.module.erplus.api.adptor.amz.model.AmzPurchasableOfferModel;
+import com.hzltd.module.erplus.api.amz.model.AmzPurchasableOfferModel;
 import com.hzltd.module.erplus.api.annotations.ServiceRegister;
 import com.hzltd.module.erplus.enums.CrossOperationStatus;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;

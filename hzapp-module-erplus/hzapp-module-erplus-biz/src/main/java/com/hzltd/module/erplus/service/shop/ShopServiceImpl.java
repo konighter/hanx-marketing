@@ -21,6 +21,7 @@ import com.hzltd.module.erplus.sys.SystemShopService;
 import com.hzltd.module.erplus.sys.model.ShopModel;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
@@ -110,6 +111,11 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
     @Override
     public List<ShopRespVO> getShopList(ShopReqVO reqVO) {
         return buildShopRespVOList(shopMapper.selectList(reqVO));
+    }
+
+    @Override
+    public List<ShopDO> getShopsByIds(List<Integer> ids) {
+        return shopMapper.selectByIds(ids);
     }
 
     private List<ShopRespVO> buildShopRespVOList(List<ShopDO> shopDOS) {
@@ -236,6 +242,7 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
     }
 
     @Override
+//    @Cacheable(cacheNames = "shopRegion", key = "#shopId")
     public List<String> getShopRegion(String shopId) {
         ShopDO shopDO = shopMapper.selectById(Long.valueOf(shopId));
         if (shopDO == null) {
@@ -246,5 +253,34 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
             return List.of();
         }
         return List.of(sellZoneDO.getZoneCode());
+    }
+
+    @Override
+        public List<CascaderShopRespVO> getCascaderShopList() {
+
+        List<SellPlatformDO> platformDOList = sellPlatformService.getSellPlatformList(new SellPlatformReqVO());
+        if (CollectionUtils.isEmpty(platformDOList)) {
+            return List.of();
+        }
+        List<CascaderShopRespVO> platformRespVOList = platformDOList.stream().map(platformDO -> {
+            CascaderShopRespVO respVO = new CascaderShopRespVO();
+            respVO.setId(platformDO.getId());
+            respVO.setName(platformDO.getName());
+
+            List<ShopDO> shopDOList = shopMapper.selectList(new LambdaQueryWrapperX<ShopDO>().eq(ShopDO::getPlatform, platformDO.getId()));
+            if (CollectionUtils.isEmpty(shopDOList)) {
+                return respVO;
+            }
+            respVO.setChildren(shopDOList.stream().map(shopDO -> {
+                CascaderShopRespVO childRespVO = new CascaderShopRespVO();
+                childRespVO.setId(shopDO.getId());
+                childRespVO.setName(shopDO.getName());
+                return childRespVO;
+            }).collect(Collectors.toList()));
+
+            return respVO;
+        }).collect(Collectors.toList());
+
+        return platformRespVOList;
     }
 }

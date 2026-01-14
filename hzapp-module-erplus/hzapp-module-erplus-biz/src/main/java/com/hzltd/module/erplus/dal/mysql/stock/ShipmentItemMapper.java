@@ -1,13 +1,14 @@
-package com.hzltd.module.erplus.dal.mysql.shipmentitem;
+package com.hzltd.module.erplus.dal.mysql.stock;
 
 import java.util.*;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
-import com.hzltd.module.erplus.dal.dataobject.shipmentitem.ShipmentItemDO;
+import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentItemVO;
+import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentItemDO;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
-import com.hzltd.module.erplus.controller.admin.shipmentitem.vo.*;
 
 /**
  * 货件详情 Mapper
@@ -17,18 +18,21 @@ import com.hzltd.module.erplus.controller.admin.shipmentitem.vo.*;
 @Mapper
 public interface ShipmentItemMapper extends BaseMapperX<ShipmentItemDO> {
 
-    default PageResult<ShipmentItemDO> selectPage(ShipmentItemPageReqVO reqVO) {
-        return selectPage(reqVO, new LambdaQueryWrapperX<ShipmentItemDO>()
-                .eqIfPresent(ShipmentItemDO::getShipmentId, reqVO.getShipmentId())
-                .eqIfPresent(ShipmentItemDO::getSellerSku, reqVO.getSellerSku())
-                .eqIfPresent(ShipmentItemDO::getQuantity, reqVO.getQuantity())
-                .eqIfPresent(ShipmentItemDO::getLength, reqVO.getLength())
-                .eqIfPresent(ShipmentItemDO::getWidth, reqVO.getWidth())
-                .eqIfPresent(ShipmentItemDO::getHeigth, reqVO.getHeigth())
-                .eqIfPresent(ShipmentItemDO::getUnit, reqVO.getUnit())
-                .eqIfPresent(ShipmentItemDO::getWeight, reqVO.getWeight())
-                .eqIfPresent(ShipmentItemDO::getWeightUnit, reqVO.getWeightUnit())
-                .orderByDesc(ShipmentItemDO::getId));
-    }
-
+        /**
+         * 根据货件计划ID删除货件计划商品
+         *
+         * @param planId 货件计划ID
+         */
+        @Delete("delete from erplus_shipment_item where shipment_id = #{planId}")
+        void deleteBatchByPlanId(Integer planId);
+        /**
+         * 根据货件计划ID查询货件计划商品
+         *
+         * @param id 货件计划ID
+         * @return 货件计划商品列表
+         */
+       default List<ShipmentItemDO> selectListByPlanId(Integer id) {
+                return selectList(new LambdaQueryWrapperX<ShipmentItemDO>()
+                                .eq(ShipmentItemDO::getShipmentId, id));
+        }
 }

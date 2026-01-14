@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
 import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.module.erplus.api.annotations.ServiceRegister;
@@ -60,7 +60,7 @@ public class AmazonFinancesService extends AbsAmzPlatformApiService implements F
                         );
                         return feesEstReqById;
                     }
-            ).collect(java.util.stream.Collectors.toList()));
+            ).collect(Collectors.toList()));
 
            List<FeeModel> feeModels = response.stream().map(feesEstResp -> {
 

@@ -12,7 +12,7 @@ import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishResp
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishTaskVO;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.SkuVO;
 import com.hzltd.module.erplus.convert.spu.ProductSpuConvert;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.productpub.ErpProductPublishTaskDO;
 import com.hzltd.module.erplus.enums.CrossProductPublishStatus;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
@@ -21,7 +21,7 @@ import com.hzltd.module.erplus.model.ApiResponse;
 import com.hzltd.module.erplus.model.product.CreateProductRequest;
 import com.hzltd.module.erplus.model.product.CreateProductResponse;
 import com.hzltd.module.erplus.service.executor.ExecutorService;
-import com.hzltd.module.erplus.service.product.ErpCrossProductService;
+import com.hzltd.module.erplus.service.cross.ErplusCrossProductService;
 import com.hzltd.module.erplus.service.product.ProductApi;
 import com.hzltd.module.erplus.service.spu.ProductSpuService;
 import jakarta.annotation.Resource;
@@ -46,7 +46,7 @@ public class ProductPublishServiceImpl implements ProductPublishService {
     private ProductSpuService productSpuService;
 
     @Resource
-    private ErpCrossProductService crossProductService;
+    private ErplusCrossProductService crossProductService;
 
 //    @Resource
     private ErpProductPublishTaskService productPublishTaskService;
@@ -107,12 +107,12 @@ public class ProductPublishServiceImpl implements ProductPublishService {
 
 
     private ProductPublishTaskVO createProductPublishTask(Long productId, DateTime scheduleTime) {
-        Optional<ErpCrossProductDO> crossProductOption = crossProductService.getBasicCrossPlatformProduct(productId);
+        Optional<CrossProductDO> crossProductOption = crossProductService.getBasicCrossPlatformProduct(productId);
         if (!crossProductOption.isPresent()) {
             throw new ServiceException(PRODUCT_NOT_EXISTS);
         }
 
-        ErpCrossProductDO crossProduct = crossProductOption.get();
+        CrossProductDO crossProduct = crossProductOption.get();
 
         Optional<ErpProductPublishTaskDO> taskOptional = productPublishTaskService.getProductPublishTask(crossProduct.getId(),crossProduct.getVersion());
         if (taskOptional.isPresent()) {
@@ -172,7 +172,7 @@ public class ProductPublishServiceImpl implements ProductPublishService {
             if (!publishTask.isPresent()) {
                 throw new ServiceException(PRODUCT_NOT_EXISTS);
             }
-            Optional<ErpCrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(publishTask.get().getProductId());
+            Optional<CrossProductDO> crossProduct = crossProductService.getBasicCrossPlatformProduct(publishTask.get().getProductId());
             if (!crossProduct.isPresent()) {
                 throw new ServiceException(PRODUCT_NOT_EXISTS);
             }

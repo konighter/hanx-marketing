@@ -1,11 +1,9 @@
-package com.hzltd.module.erplus.api.adptor.amz.model;
+package com.hzltd.module.erplus.api.amz.model;
 
 import cn.hutool.core.date.DatePattern;
 import cn.hutool.core.date.DateUtil;
 
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

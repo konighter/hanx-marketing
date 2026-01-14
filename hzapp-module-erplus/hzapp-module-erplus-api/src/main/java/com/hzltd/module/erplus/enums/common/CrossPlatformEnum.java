@@ -20,7 +20,6 @@ public enum CrossPlatformEnum implements ArrayValuable<Integer> {
     ALIEXPRESS(4, "ALIEXPRESS","速卖通"),
     LOCAL(0, "LOCAL","独立站"),
     UNKUOWN(-1, "unknown","未知"),
-
     ;
 
 

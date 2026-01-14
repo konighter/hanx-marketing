@@ -33,13 +33,21 @@ public class ErpWarehouseDO extends BaseDO {
      */
     private String name;
     /**
-     * 仓库地址
+     * 类型: 平台仓/海外仓/家庭仓/活动仓
      */
-    private String address;
+    private Integer type;
     /**
-     * 排序
+     * 店铺
      */
-    private Long sort;
+    private Integer shopId;
+    /**
+     * 平台ID
+     */
+    private Integer platformId;
+    /**
+     * 市场
+     */
+    private String marketId;
     /**
      * 备注
      */
@@ -49,22 +57,11 @@ public class ErpWarehouseDO extends BaseDO {
      */
     private String principal;
     /**
-     * 仓储费，单位：元
-     */
-    private BigDecimal warehousePrice;
-    /**
-     * 搬运费，单位：元
-     */
-    private BigDecimal truckagePrice;
-    /**
      * 开启状态
-     *
-     * 枚举 {@link com.hzltd.framework.common.enums.CommonStatusEnum}
      */
     private Integer status;
     /**
      * 是否默认
      */
     private Boolean defaultStatus;
-
 }

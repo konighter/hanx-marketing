@@ -14,7 +14,7 @@ import java.util.List;
  * @author 翰展科技
  */
 @Mapper
-public interface ErpCrossProductMapper extends BaseMapperX<CrossProductDO> {
+public interface CrossProductMapper extends BaseMapperX<CrossProductDO> {
 
     default List<CrossProductDO> selectByShopId(Integer shopId) {
         return selectList(new LambdaQueryWrapperX<CrossProductDO>().eqIfPresent(CrossProductDO::getShopId, shopId));

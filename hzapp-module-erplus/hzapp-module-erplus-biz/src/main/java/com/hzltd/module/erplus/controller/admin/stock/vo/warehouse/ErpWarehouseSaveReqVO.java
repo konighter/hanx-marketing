@@ -1,13 +1,13 @@
-package com.hzltd.module.erplus.controller.admin.warehouse.vo;
+package com.hzltd.module.erplus.controller.admin.stock.vo.warehouse;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Schema(description = "管理后台 - ERP 仓库新增/修改 Request VO")
 @Data
-public class WarehouseSaveReqVO {
+public class ErpWarehouseSaveReqVO {
 
     @Schema(description = "仓库编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "21598")
     private Long id;

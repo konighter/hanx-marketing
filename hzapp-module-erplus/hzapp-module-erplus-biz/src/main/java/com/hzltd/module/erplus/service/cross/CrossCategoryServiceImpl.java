@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.service.category;
+package com.hzltd.module.erplus.service.cross;
 
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
@@ -19,6 +19,8 @@ import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
 import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
 import com.hzltd.module.erplus.model.category.CategoryModel;
+import com.hzltd.module.erplus.service.category.CategoryApi;
+import com.hzltd.module.erplus.service.category.CategoryAttributeMappingApi;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.erplus.sys.SystemProductService;
 import com.hzltd.module.erplus.sys.model.ProductSpuModel;

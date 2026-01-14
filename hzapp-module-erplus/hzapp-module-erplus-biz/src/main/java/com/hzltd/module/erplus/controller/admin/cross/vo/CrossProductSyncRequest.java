@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.controller.admin.product.vo;
+package com.hzltd.module.erplus.controller.admin.cross.vo;
 
 import lombok.Data;
 

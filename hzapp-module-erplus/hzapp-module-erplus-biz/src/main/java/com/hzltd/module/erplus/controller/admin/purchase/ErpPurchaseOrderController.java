@@ -17,7 +17,7 @@ import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseOrderDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseOrderItemDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpSupplierDO;
-import com.hzltd.module.erplus.service.product.ProductService;
+import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import com.hzltd.module.erplus.service.purchase.ErpPurchaseOrderService;
 import com.hzltd.module.erplus.service.purchase.ErpSupplierService;
 import com.hzltd.module.erplus.service.stock.ErpStockService;

@@ -1,8 +1,8 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
 import com.amazon.SellingPartnerAPIAA.LWAException;
-import com.hzltd.module.erplus.api.adptor.amz.model.AmzDestinationModel;
-import com.hzltd.module.erplus.api.adptor.amz.model.AmzSubscriptionModel;
+import com.hzltd.module.erplus.api.amz.model.AmzDestinationModel;
+import com.hzltd.module.erplus.api.amz.model.AmzSubscriptionModel;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,9 @@
-package com.hzltd.module.erplus.convert.product;
+package com.hzltd.module.erplus.convert.cross;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
-import com.hzltd.module.erplus.dal.dataobject.cross.ErpCrossProductAttrsDO;
-import com.hzltd.module.erplus.dal.dataobject.cross.ErpCrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductAttrsDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
 import com.hzltd.module.erplus.model.common.ProductAttributeModel;
 import com.hzltd.module.erplus.model.product.CreateProductRequest;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 public interface CrossPlatformProductConvert {
     CrossPlatformProductConvert INSTANCE = Mappers.getMapper(CrossPlatformProductConvert.class);
 
-    default ErpCrossProductDO convert(CreateProductRequest product) {
-       return ErpCrossProductDO.builder()
+    default CrossProductDO convert(CreateProductRequest product) {
+       return CrossProductDO.builder()
                 .platformId(product.getCrossPlatform().getValue())
                 .shopId(product.getShopId())
                 .marketId(product.getMarketId())
@@ -40,13 +40,13 @@ public interface CrossPlatformProductConvert {
                 .build();
     }
 
-    default ErpCrossProductDO convert(ProductPublishRequest product) {
-        return new ErpCrossProductDO();
+    default CrossProductDO convert(ProductPublishRequest product) {
+        return new CrossProductDO();
     }
 
-    default List<ErpCrossProductAttrsDO> convertProperties(Long productId, List<ProductAttributeModel> productAttributes) {
+    default List<CrossProductAttrsDO> convertProperties(Long productId, List<ProductAttributeModel> productAttributes) {
         return productAttributes.stream().map(attr -> {
-            return ErpCrossProductAttrsDO.builder()
+            return CrossProductAttrsDO.builder()
                     .productId(productId)
                     .attrId(attr.getAttrId())
                     .attrName(attr.getAttrName())
@@ -57,11 +57,11 @@ public interface CrossPlatformProductConvert {
 
     }
 
-    default CrossPlatformProductVO convert(ErpCrossProductDO productDO) {
+    default CrossPlatformProductVO convert(CrossProductDO productDO) {
         return null;
     }
 
-    default List<ProductAttributeModel> convert(List<ErpCrossProductAttrsDO> productAttrDOs) {
+    default List<ProductAttributeModel> convert(List<CrossProductAttrsDO> productAttrDOs) {
         return null;
     }
 

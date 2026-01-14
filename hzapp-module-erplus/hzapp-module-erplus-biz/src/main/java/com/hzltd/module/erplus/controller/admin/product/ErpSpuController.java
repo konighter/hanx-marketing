@@ -5,11 +5,9 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuPageReqVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
-import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuSimpleRespVO;
 import com.hzltd.module.erplus.convert.spu.ProductSpuConvert;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
-import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
 import com.hzltd.module.erplus.service.spu.ProductSkuService;
 import com.hzltd.module.erplus.service.spu.ProductSpuService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Comparator;
 import java.util.List;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
@@ -34,7 +31,7 @@ import static com.hzltd.framework.common.pojo.CommonResult.success;
 @RestController
 @RequestMapping("/erplus/product")
 @Validated
-public class ErpProductController {
+public class ErpSpuController {
 
     @Resource
     private ProductSpuService productSpuService;

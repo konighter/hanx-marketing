@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ProductApiFactory extends AbsCrossApiServiceFactory<ProductApi> {
 
-
     @Override
     public Class<ProductApi> getCrossApiServiceClass() {
         return ProductApi.class;

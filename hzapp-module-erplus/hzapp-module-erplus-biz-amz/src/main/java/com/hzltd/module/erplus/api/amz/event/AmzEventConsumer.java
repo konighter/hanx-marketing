@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.api.adptor.amz.event;
+package com.hzltd.module.erplus.api.amz.event;
 
 import com.amazon.sqs.javamessaging.message.SQSTextMessage;
 import com.hzltd.framework.common.util.json.JsonUtils;
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 @Slf4j
-@Service
+//@Service
 public class AmzEventConsumer {
 
     @JmsListener(destination = "HanXErplus-OrderEventQueue-us-east", containerFactory = "listenerContainerFactory")

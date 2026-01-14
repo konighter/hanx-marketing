@@ -239,6 +239,11 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
 
     ErrorCode CATEGORY_NOT_EXISTS = new ErrorCode(2_100_100_002, "品类不存在");
 
+    ErrorCode LISTING_NOT_VALID = new ErrorCode(2_100_100_003, "刊登数据校验失败");
+
     ErrorCode CROSS_API_ERROR = new ErrorCode(2_100_200_001, "平台接口调用失败");
 
+
+    ErrorCode SHIPMENT_NOT_EXISTS = new ErrorCode(2_100_300_001, "货件计划不存在");
+    ErrorCode SHIPMENT_STATUS_INVALID = new ErrorCode(2_100_300_002, "货件计划状态无效");
 }

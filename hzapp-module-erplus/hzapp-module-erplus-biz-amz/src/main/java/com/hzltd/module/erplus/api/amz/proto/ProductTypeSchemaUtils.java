@@ -1,10 +1,10 @@
-package com.hzltd.module.erplus.api.adptor.amz.proto;
+package com.hzltd.module.erplus.api.amz.proto;
 
 import com.google.common.collect.Maps;
 import com.hzltd.framework.common.util.http.HttpUtils;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.spring.SpringUtils;
-import com.hzltd.module.erplus.api.adptor.amz.mapping.AmzAttributeSchemaMappingService;
+import com.hzltd.module.erplus.api.amz.mapping.AmzAttributeSchemaMappingService;
 import com.hzltd.module.erplus.model.category.AttributeValueModel;
 import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
 import org.apache.commons.collections4.CollectionUtils;

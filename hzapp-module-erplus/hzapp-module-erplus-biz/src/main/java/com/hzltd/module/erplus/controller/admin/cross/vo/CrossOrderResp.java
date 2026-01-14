@@ -2,7 +2,6 @@ package com.hzltd.module.erplus.controller.admin.cross.vo;
 
 import com.hzltd.module.erplus.constant.FulfillTypeEnum;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderDO;
-import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderItemDO;
 import com.hzltd.module.erplus.enums.CrossOrderStatus;
 import lombok.Data;
 
@@ -11,7 +10,7 @@ import java.math.RoundingMode;
 import java.util.List;
 
 @Data
-public class CrossOrderPageResp extends CrossOrderDO {
+public class CrossOrderResp extends CrossOrderDO {
 
     private List<CrossOrderItemResp> orderItemList;
 

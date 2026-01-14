@@ -1,12 +1,13 @@
-package com.hzltd.module.erplus.service.product;
+package com.hzltd.module.erplus.service.cross;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.erplus.controller.admin.product.vo.*;
+import com.hzltd.module.erplus.controller.admin.cross.vo.*;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
 import org.springframework.scheduling.annotation.Async;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -54,7 +55,13 @@ public interface ErplusCrossProductService {
 
     Optional<CrossPlatformProductVO> getCrossPlatformProduct(Long productId);
 
-    Optional<ErpCrossProductDO> getBasicCrossPlatformProduct(Long productId);
+    Optional<CrossProductDO> getBasicCrossPlatformProduct(Long productId);
+
+    Optional<List<CrossProductDO>> getBasicCrossPlatformProduct(List<Long> productIds);
+
+    Optional<CrossProductDO> getBasicCrossPlatformProductByPlatformIdAndProductId(Integer platformId, String sellerSku, String platformProductCode);
+
+    List<CrossProductDO> getBasicCrossProductBySkus(Integer platformId, Integer shopId, String marketId, List<String> skus);
 
     Long saveCrossPlatformProduct(ProductPublishRequest request);
 

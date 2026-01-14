@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.service.product.backup;
+package com.hzltd.module.erplus.service.cross.backup;
 
 import cn.hutool.core.collection.CollUtil;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
@@ -8,7 +8,7 @@ import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
 import com.hzltd.module.erplus.enums.ErrorCodeConstants;
 import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
-import com.hzltd.module.erplus.service.product.ProductCategoryService;
+import com.hzltd.module.erplus.service.cross.ProductCategoryService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;

@@ -34,5 +34,4 @@ public class ProductListingReqVO {
     @NotEmpty
     private List<ListingSkuVO> skus;
 
-
 }

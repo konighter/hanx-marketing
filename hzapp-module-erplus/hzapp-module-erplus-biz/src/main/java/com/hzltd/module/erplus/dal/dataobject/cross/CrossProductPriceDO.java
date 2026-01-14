@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.dal.dataobject.crossproductprice;
+package com.hzltd.module.erplus.dal.dataobject.cross;
 
 import lombok.*;
 import java.util.*;
@@ -31,6 +31,15 @@ public class CrossProductPriceDO extends BaseDO {
      * 产品ID
      */
     private Long productId;
+
+     /**
+     * 店铺ID
+     */
+    private Integer shopId;
+    /**
+     * 市场ID
+     */
+    private String marketId;
     /**
      * 成本价
      */
@@ -43,6 +52,16 @@ public class CrossProductPriceDO extends BaseDO {
      * 币种
      */
     private String currency;
+
+    /**
+     * 价格生效开始时间
+     */
+    private Long startAt;
+
+     /**
+     * 价格生效开始时间
+     */
+    private Long endAt;
     /**
      * 平台费用(预估)
      */

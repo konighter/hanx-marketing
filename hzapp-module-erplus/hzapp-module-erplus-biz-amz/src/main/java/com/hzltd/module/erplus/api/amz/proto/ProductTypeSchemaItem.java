@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.api.adptor.amz.proto;
+package com.hzltd.module.erplus.api.amz.proto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

@@ -7,7 +7,6 @@ import com.hzltd.module.erplus.service.stock.ErplusStockService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
@@ -18,9 +17,9 @@ import static com.hzltd.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - ERP 产品库存")
 @RestController
-@RequestMapping("/erplus/stock")
+@RequestMapping("/erplus/inventory")
 @Validated
-public class ErplusStockController {
+public class ErplusInventoryController {
 
     @Resource
     @Qualifier("erplusStockService")
@@ -34,7 +33,7 @@ public class ErplusStockController {
         return success(erplusStockService.getTransferAvailableStock(reqVO));
     }
 
-    @PostMapping("/v2/page")
+    @PostMapping("/page")
     @Operation(summary = "查询产品库存分页")
     @PreAuthorize("@ss.hasPermission('erp:stock:query')")
     public CommonResult<?> getWarehouseInventoryPage(@RequestBody ErpWarehouseInventoryPageReqVO reqVO) {

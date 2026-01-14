@@ -1,16 +1,14 @@
-package com.hzltd.module.erplus.api.adptor.amz.mapping.data;
+package com.hzltd.module.erplus.api.amz.mapping.data;
 
 import com.google.common.collect.Lists;
-import com.hzltd.module.erplus.api.adptor.amz.mapping.AttributeSchemaMapper;
-import com.hzltd.module.erplus.api.adptor.amz.mapping.AttributeValueMapper;
-import com.hzltd.module.erplus.api.adptor.amz.proto.ProductTypeSchemaItem;
+import com.hzltd.module.erplus.api.amz.mapping.AttributeSchemaMapper;
+import com.hzltd.module.erplus.api.amz.mapping.AttributeValueMapper;
+import com.hzltd.module.erplus.api.amz.proto.ProductTypeSchemaItem;
 import com.hzltd.module.erplus.constant.AttributeTypeEnum;
 import com.hzltd.module.erplus.model.category.AttributeValueModel;
 import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
 import com.hzltd.module.erplus.sys.model.ProductSpuModel;
 import org.apache.commons.collections4.CollectionUtils;
-
-import java.util.List;
 
 public class VariationThemeMapper implements AttributeValueMapper, AttributeSchemaMapper {
 

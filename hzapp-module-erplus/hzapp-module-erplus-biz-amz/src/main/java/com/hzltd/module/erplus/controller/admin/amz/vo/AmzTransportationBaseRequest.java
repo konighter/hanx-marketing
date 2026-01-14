@@ -1,6 +1,9 @@
 package com.hzltd.module.erplus.controller.admin.amz.vo;
 
-public class AmzDeliveryWindowGenerateRequest {
+import lombok.Data;
+
+@Data
+public class AmzTransportationBaseRequest extends AmzBaseRequest {
 
     private Integer shopId;
 
@@ -9,5 +12,7 @@ public class AmzDeliveryWindowGenerateRequest {
     private String placementOperationId;
 
     private String shipmentId;
-    
+
+    private String cursor;
+
 }

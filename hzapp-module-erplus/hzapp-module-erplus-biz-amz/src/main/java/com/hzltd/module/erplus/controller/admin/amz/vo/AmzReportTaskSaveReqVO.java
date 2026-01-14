@@ -1,11 +1,10 @@
 package com.hzltd.module.erplus.controller.admin.amz.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.*;
-import java.util.*;
-import jakarta.validation.constraints.*;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.time.LocalDateTime;
+import lombok.Data;
+
+import java.util.Date;
+import java.util.List;
 
 @Schema(description = "管理后台 - 亚马逊报告任务新增/修改 Request VO")
 @Data

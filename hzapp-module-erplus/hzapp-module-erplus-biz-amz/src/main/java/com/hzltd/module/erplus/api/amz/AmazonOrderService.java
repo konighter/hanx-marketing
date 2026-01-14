@@ -1,8 +1,8 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
 import cn.hutool.core.date.DateUtil;
 import com.amazon.SellingPartnerAPIAA.LWAException;
-import com.hzltd.module.erplus.api.adptor.amz.model.AmzOrderModel;
+import com.hzltd.module.erplus.api.amz.model.AmzOrderModel;
 import com.hzltd.module.erplus.api.annotations.ServiceRegister;
 import com.hzltd.module.erplus.constant.FulfillTypeEnum;
 import com.hzltd.module.erplus.enums.CrossOrderStatus;
@@ -15,11 +15,9 @@ import com.hzltd.module.erplus.model.order.OrderModel;
 import com.hzltd.module.erplus.service.order.OrderApi;
 import com.hzltd.module.erplus.sys.SystemPlatformService;
 import com.hzltd.module.erplus.sys.SystemShopService;
-import com.hzltd.module.erplus.sys.model.ShopModel;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.utils.Lists;
-import org.assertj.core.data.Offset;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.ApiException;
 import software.amazon.spapi.api.orders.v0.OrdersV0Api;

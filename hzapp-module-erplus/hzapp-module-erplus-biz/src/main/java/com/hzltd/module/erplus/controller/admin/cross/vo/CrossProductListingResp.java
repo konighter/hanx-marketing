@@ -1,14 +1,17 @@
 package com.hzltd.module.erplus.controller.admin.cross.vo;
 
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductInventoryDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
 import com.hzltd.module.erplus.model.common.Image;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 
 @Data
-public class ErplusCrossProductListingResp {
+public class CrossProductListingResp {
 
     private Long id;
 
@@ -55,5 +58,9 @@ public class ErplusCrossProductListingResp {
     private LocalDateTime updateTime;
 
     private LocalDateTime createTime;
+
+     private CrossProductInventoryDO inventory;
+
+     private Collection<CrossProductPriceDO> price;
 
 }

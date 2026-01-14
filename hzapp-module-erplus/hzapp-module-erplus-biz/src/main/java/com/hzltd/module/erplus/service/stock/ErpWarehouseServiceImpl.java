@@ -123,4 +123,8 @@ public class ErpWarehouseServiceImpl implements ErpWarehouseService {
         return warehouseMapper.selectPage(pageReqVO);
     }
 
+    @Override
+    public List<ErpWarehouseDO> getWarehouseListByIds(List<Integer> ids) {
+        return warehouseMapper.selectByIds(ids);
+    }
 }

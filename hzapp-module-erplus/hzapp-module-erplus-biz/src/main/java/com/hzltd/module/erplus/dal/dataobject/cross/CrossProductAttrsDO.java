@@ -19,7 +19,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ErpCrossProductAttrsDO extends BaseDO {
+public class CrossProductAttrsDO extends BaseDO {
 
     /**
      * ID

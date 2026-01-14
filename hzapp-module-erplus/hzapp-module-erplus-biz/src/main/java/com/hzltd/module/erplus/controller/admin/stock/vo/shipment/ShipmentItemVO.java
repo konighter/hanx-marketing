@@ -1,4 +1,7 @@
 package com.hzltd.module.erplus.controller.admin.stock.vo.shipment;
 
-public class ShipmentItemVO {
+
+import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentItemDO;
+
+public class ShipmentItemVO extends ShipmentItemDO {
 }

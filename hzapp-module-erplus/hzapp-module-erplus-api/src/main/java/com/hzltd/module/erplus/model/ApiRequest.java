@@ -20,16 +20,21 @@ public class ApiRequest<T> {
      */
     private String shopId;
 
+    public ApiRequest<T> setShopIdInt(Integer shopId) {
+        this.shopId = String.valueOf(shopId);
+        return this;
+    }
+
     /**
      * locale属性, 每个市场可能对应不同的Locale
      * 1、涉及接口当地时间等的转换：比如 AMZ US 请求时间为当地8:00～12:00 UK 为 9:00～12:00等
      */
-    private Locale locale;
+    private Locale locale = Locale.SIMPLIFIED_CHINESE;
 
     /**
      * 文本翻译目标语言
      */
-    private LanguageEnum language;
+    private LanguageEnum language = LanguageEnum.ZH_CN;
 
     /**
      * 市场ID

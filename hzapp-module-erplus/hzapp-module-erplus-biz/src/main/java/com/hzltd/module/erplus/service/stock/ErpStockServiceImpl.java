@@ -4,8 +4,9 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpStockPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockDO;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpStockMapper;
-import com.hzltd.module.erplus.service.product.ProductService;
+import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import jakarta.annotation.Resource;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -20,6 +21,7 @@ import static com.hzltd.module.erplus.enums.ErrorCodeConstants.STOCK_COUNT_NEGAT
  *
  * @author 翰展科技
  */
+@Primary
 @Service
 @Validated
 public class ErpStockServiceImpl implements ErpStockService {
@@ -35,7 +37,6 @@ public class ErpStockServiceImpl implements ErpStockService {
     private ProductService productService;
     @Resource
     private ErpWarehouseService warehouseService;
-
     @Resource
     private ErpStockMapper stockMapper;
 
@@ -85,5 +86,4 @@ public class ErpStockServiceImpl implements ErpStockService {
         // 3. 返回最新库存
         return stock.getCount().add(count);
     }
-
 }

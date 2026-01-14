@@ -24,7 +24,7 @@ import java.util.Map;
 @Slf4j
 @Service
 @ServiceRegister(platform = CrossPlatformEnum.OZON, serviceClass = CategoryApi.class)
-public class OzonCategoryService extends LocalAuthProvider implements CategoryApi {
+public class OzonCategoryService extends OzonPlatformApiService implements CategoryApi {
     @Override
     public ApiResponse<List<CategoryModel>> getCategories(ApiRequest<GetCategoryRequest> apiRequest) {
         apiRequest.setShopId(String.valueOf(apiRequest.getRequest().getShopId()));

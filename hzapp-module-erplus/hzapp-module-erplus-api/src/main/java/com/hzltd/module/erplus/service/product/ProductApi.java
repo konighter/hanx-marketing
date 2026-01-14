@@ -3,8 +3,9 @@ package com.hzltd.module.erplus.service.product;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
 import com.hzltd.module.erplus.model.common.MediaModel;
-import com.hzltd.module.erplus.model.product.CreateProductRequest;
-import com.hzltd.module.erplus.model.product.CreateProductResponse;
+import com.hzltd.module.erplus.model.product.*;
+
+import java.util.List;
 
 public interface ProductApi {
 
@@ -18,5 +19,8 @@ public interface ProductApi {
 
     ApiResponse<CreateProductResponse> createProduct(ApiRequest<CreateProductRequest> request);
 
+    ApiResponse<List<MultiMarketProductModel>> searchProduct(ApiRequest<SearchProductRequest> request);
 
+
+    ApiResponse<MultiMarketProductModel> getProduct(ApiRequest<GetProductRequest> request);
 }

@@ -32,6 +32,11 @@
             <artifactId>hzapp-module-erplus-api-adaptor</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-erplus-biz-amz</artifactId>
+        </dependency>
+
         <!-- 业务组件 -->
         <!-- Web 相关 -->
         <dependency>

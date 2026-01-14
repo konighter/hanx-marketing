@@ -2,33 +2,37 @@ package com.hzltd.module.erplus.service.product;
 
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
-import com.hzltd.module.erplus.model.pricing.ChangeProductInventoryRequest;
-import com.hzltd.module.erplus.model.pricing.ChangeProductInventoryResponse;
-import com.hzltd.module.erplus.model.pricing.ChangeProductPricingRequest;
-import com.hzltd.module.erplus.model.pricing.ChangeProductPricingResponse;
+import com.hzltd.module.erplus.model.common.InventoryModel;
+import com.hzltd.module.erplus.model.pricing.*;
 
-public interface PricingApi {
+import java.util.List;
 
+/**
+ * 价格库存操作API
+ */
+public interface PricingInventoryApi {
+
+    // -- 价格相关 --
     /**
      * 获取ASIN的竞争力价格
      * @param request
      * @return
      */
-    ApiResponse<?> getCompetitivePricing(ApiRequest<?> request);
+    ApiResponse<GetOfferResponse> getCompetitivePricing(ApiRequest<?> request);
 
     /**
      * 获取ASIN的商品报价
      * @param request
      * @return
      */
-    ApiResponse<?> getItemOffers(ApiRequest<String> request);
+    ApiResponse<GetOfferResponse> getItemOffers(ApiRequest<String> request);
 
     /**
-     * 获取ASIN的商品 listing 报价
+     * 获取SKU的商品 listing 报价
      * @param request
      * @return
      */
-    ApiResponse<?> getListingsOffers(ApiRequest<String> request);
+    ApiResponse<GetOfferResponse> getListingsOffers(ApiRequest<String> request);
 
 
     /**
@@ -36,15 +40,25 @@ public interface PricingApi {
      * @param request
      * @return
      */
-    ApiResponse<ChangeProductPricingResponse> changeProductPricing(ApiRequest<ChangeProductPricingRequest> request);
+    ApiResponse<ChangePriceResponse> changeProductPricing(ApiRequest<ChangePriceRequest> request);
+
+
+
+
+    // -- 库存相关 --
+
+    /**
+     * 获取ASIN的商品库存
+     * @param request
+     * @return
+     */
+    ApiResponse<List<InventoryModel>> getInventory(ApiRequest<GetInventoryRequest> request);
 
     /**
      * 修改商品库存
      * @param request
      * @return
      */
-    ApiResponse<ChangeProductInventoryResponse> changeProductInventory(ApiRequest<ChangeProductInventoryRequest> request);
-
-
+    ApiResponse<ChangeInventoryResponse> changeProductInventory(ApiRequest<ChangeInventoryRequest> request);
 
 }

@@ -1,17 +1,17 @@
-package com.hzltd.module.erplus.controller.admin.warehouse.vo;
+package com.hzltd.module.erplus.controller.admin.stock.vo.warehouse;
 
-import lombok.*;
-import java.util.*;
-import io.swagger.v3.oas.annotations.media.Schema;
 import com.hzltd.framework.common.pojo.PageParam;
+import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDateTime;
 
 import static com.hzltd.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND;
 
 @Schema(description = "管理后台 - ERP 仓库分页 Request VO")
 @Data
-public class WarehousePageReqVO extends PageParam {
+public class ErpWarehousePageReqVO extends PageParam {
 
     @Schema(description = "仓库名称", example = "张三")
     private String name;

@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.dal.dataobject.crossorderitem;
+package com.hzltd.module.erplus.dal.dataobject.cross;
 
 import lombok.*;
 import java.util.*;
@@ -32,6 +32,18 @@ public class CrossOrderItemDO extends BaseDO {
      */
     private Long orderId;
     /**
+     * 平台ID
+     */
+    private Integer platformId;
+    /**
+     * 店铺ID
+     */
+    private Integer shopId;
+    /**
+     * 平台订单ID
+     */
+    private String platformOrderId;
+    /**
      * 产品ID
      */
     private Long productId;
@@ -60,6 +72,14 @@ public class CrossOrderItemDO extends BaseDO {
      */
     private Integer amount;
     /**
+     * Item价格(单价*数量)
+     */
+    private Integer itemPrice;
+    /**
+     * 税费
+     */
+    private Integer itemTax;
+    /**
      * 总价
      */
     private Integer totalAmount;
@@ -68,9 +88,33 @@ public class CrossOrderItemDO extends BaseDO {
      */
     private Integer shipFee;
     /**
+     * 运费税费
+     */
+    private Integer shipFeeTax;
+    /**
+     * 运费折扣
+     */
+    private Integer shipFeeDiscount;
+    /**
+     * 运费折扣税费
+     */
+    private Integer shipFeeDiscountTax;
+    /**
+     * 优惠折扣
+     */
+    private Integer promoDiscount;
+    /**
+     * 优惠税费
+     */
+    private Integer promoDiscountTax;
+    /**
      * cod费用
      */
     private Integer codFee;
+    /**
+     * cod折扣
+     */
+    private Integer codFeeDiscount;
     /**
      * 积分
      */
@@ -78,7 +122,32 @@ public class CrossOrderItemDO extends BaseDO {
     /**
      * 积分抵扣金额
      */
-    private Integer pointsMoneyValue;
+    private Integer pointsAsMoney;
+    /**
+     * 预估佣金(商家)
+     */
+    private Integer estimatedReferralFee;
+    /**
+     * 佣金(商家)
+     */
+    private Integer actualReferralFee;
+    /**
+     * 预估平台配送费(商家)
+     */
+    private Integer estimatedFulfillFee;
+    /**
+     * 平台配送费(商家)
+     */
+    private Integer actualFulfillFee;
+
+     /**
+     * 预估总费用(包含佣金、配送费、税费等)
+     */
+    private Integer estimatedTotalFee;
+    /**
+     * 总费用(包含佣金、配送费、税费等)
+     */
+    private Integer actualTotalFee;
 
 
 }

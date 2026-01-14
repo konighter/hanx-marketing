@@ -1,4 +1,12 @@
 package com.hzltd.module.erplus.controller.admin.amz.vo;
 
-public class AmzConfirmTransportOptionsRequest {
+import lombok.Data;
+
+import java.util.List;
+
+@Data
+public class AmzConfirmTransportOptionRequest {
+    private Integer shopId;
+    private String planId;
+    List<AmzShipment> shipments;
 }

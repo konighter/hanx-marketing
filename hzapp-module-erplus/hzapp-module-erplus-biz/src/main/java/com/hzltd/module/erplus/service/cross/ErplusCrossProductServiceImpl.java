@@ -1,36 +1,46 @@
-package com.hzltd.module.erplus.service.product;
+package com.hzltd.module.erplus.service.cross;
 
 import cn.hutool.core.date.DateUtil;
+import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Multimap;
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.api.service.OrderApiFactory;
 import com.hzltd.module.erplus.api.service.PricingInventoryApiFactory;
 import com.hzltd.module.erplus.api.service.ProductApiFactory;
 import com.hzltd.module.erplus.constant.FulfillTypeEnum;
 import com.hzltd.module.erplus.constant.LanguageEnum;
-import com.hzltd.module.erplus.controller.admin.product.vo.*;
-import com.hzltd.module.erplus.controller.admin.product.vo.product.ErplusCrossProductListingRespVO;
+import com.hzltd.module.erplus.controller.admin.cross.vo.*;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
-import com.hzltd.module.erplus.convert.product.CrossPlatformProductConvert;
-import com.hzltd.module.erplus.convert.product.CrossProductListingConvert;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductAttrsDO;
-import com.hzltd.module.erplus.dal.dataobject.product.ErpCrossProductDO;
+import com.hzltd.module.erplus.convert.cross.CrossPlatformProductConvert;
+import com.hzltd.module.erplus.convert.cross.CrossProductListingConvert;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductAttrsDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductInventoryDO;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
-import com.hzltd.module.erplus.dal.mysql.product.ErpCrossProductAttrsMapper;
-import com.hzltd.module.erplus.dal.mysql.product.ErpCrossProductMapper;
+import com.hzltd.module.erplus.dal.mysql.cross.CrossProductInventoryMapper;
+import com.hzltd.module.erplus.dal.mysql.cross.CrossProductMapper;
+import com.hzltd.module.erplus.dal.mysql.cross.CrossProductPriceMapper;
+import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossProductAttrsMapper;
 import com.hzltd.module.erplus.enums.CrossListingStatus;
 import com.hzltd.module.erplus.enums.CrossProductStatus;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
-import com.hzltd.module.erplus.model.common.PriceModel;
+import com.hzltd.module.erplus.model.common.InventoryModel;
+import com.hzltd.module.erplus.model.order.FeeModel;
+import com.hzltd.module.erplus.model.pricing.GetInventoryRequest;
 import com.hzltd.module.erplus.model.product.MultiMarketProductModel;
 import com.hzltd.module.erplus.model.product.ProductModel;
 import com.hzltd.module.erplus.model.product.SearchProductRequest;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import jakarta.annotation.Resource;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -38,8 +48,8 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_VALID;
@@ -49,10 +59,16 @@ import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_VALID
 public class ErplusCrossProductServiceImpl implements ErplusCrossProductService {
 
     @Resource
-    private ErpCrossProductMapper crossProductMapper;
+    private CrossProductMapper crossProductMapper;
 
     @Resource
     private ErpCrossProductAttrsMapper crossProductAttrsMapper;
+
+    @Resource
+    private CrossProductPriceMapper crossProductPriceMapper;
+
+    @Resource
+    private CrossProductInventoryMapper inventoryMapper;
 
     @Resource
     private SellPlatformService sellPlatformService;
@@ -61,15 +77,28 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
     private ProductApiFactory productApiFactory;
 
     @Resource
+    private OrderApiFactory orderApiFactory;
+
+    @Resource
     private PricingInventoryApiFactory pricingInventoryApiFactory;
 
     @Resource
     private ErplusCrossPriceInventoryService crossProductPriceService;
 
+    @Resource
+    private ErplusFinancesService financesService;
+
 
     @Override
     public Optional<CrossPlatformProductVO> getCrossPlatformProduct(Long productId) {
-//        ErpCrossProductDO crossPlatformProductDO = crossProductMapper.selectById(productId);
+        CrossProductDO crossPlatformProductDO = crossProductMapper.selectById(productId);
+
+        FeeModel feeModel = financesService.getProductEstimatedFee(productId);
+
+
+        log.info("estimatedFeeApiResponse: {}", feeModel);
+
+
 //        if (crossPlatformProductDO == null) {
 //            return Optional.empty();
 //        }
@@ -85,10 +114,6 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
 //                                .setRequest(new GetProductRequest().setSellerSku(crossPlatformProductDO.getSellerSkuCode())));
 
 
-
-
-
-
 //        CrossPlatformProductVO platformProductVO = CrossPlatformProductConvert.INSTANCE.convert(crossPlatformProductDO);
 //
 //        List<ErpCrossProductAttrsDO> productAttrsDOs = crossProductAttrsMapper.selectByProductId(productId);
@@ -102,7 +127,13 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
 //            crossProductPriceService.updateCrossPlatformProductPrice(new CrossProductPriceUpdateRequest()
 //                    .setProductId(productId).addSalePrice(new PriceModel().setCurrency("USD").setAmount(new BigDecimal("6.98"))));
 
-        crossProductPriceService.getCrossInventory(productId);
+//        crossProductPriceService.getCrossInventory(productId);
+
+//        orderApiFactory.getCrossApiService(CrossPlatformEnum.AMAZON)
+//                .searchOrders(new ApiRequest<GetOrdersRequest>()
+//                        .setShopIdInt(crossPlatformProductDO.getShopId())
+//                        .setRequest(new GetOrdersRequest().setCreateTimeStart(LocalDateTime.now().minusDays(60))));
+
 
         return Optional.of(null);
     }
@@ -113,34 +144,84 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
     }
 
     @Override
-    public Optional<ErpCrossProductDO> getBasicCrossPlatformProduct(Long productId) {
-        return Optional.ofNullable(crossProductMapper.selectOne(new LambdaQueryWrapperX<ErpCrossProductDO>().select(
-                ErpCrossProductDO::getId,
-                ErpCrossProductDO::getPlatformId,
-                ErpCrossProductDO::getShopId,
-                ErpCrossProductDO::getMarketId,
-                ErpCrossProductDO::getFulfillType,
-                ErpCrossProductDO::getTitle,
-                ErpCrossProductDO::getSellerSkuCode,
-                ErpCrossProductDO::getPlatformProductCode,
-                ErpCrossProductDO::getCategoryId,
-                ErpCrossProductDO::getBrand,
-                ErpCrossProductDO::getStatus
+    public Optional<CrossProductDO> getBasicCrossPlatformProduct(Long productId) {
+        return Optional.ofNullable(crossProductMapper.selectOne(new LambdaQueryWrapperX<CrossProductDO>().select(
+                CrossProductDO::getId,
+                CrossProductDO::getPlatformId,
+                CrossProductDO::getShopId,
+                CrossProductDO::getMarketId,
+                CrossProductDO::getFulfillType,
+                CrossProductDO::getTitle,
+                CrossProductDO::getSellerSkuCode,
+                CrossProductDO::getPlatformProductCode,
+                CrossProductDO::getCategoryId,
+                CrossProductDO::getBrand,
+                CrossProductDO::getStatus
 //                ErpCrossProductDO::getPublishStatus
-        ).eq(ErpCrossProductDO::getId, productId)));
+        ).eq(CrossProductDO::getId, productId)));
+    }
+
+    @Override
+    public Optional<CrossProductDO> getBasicCrossPlatformProductByPlatformIdAndProductId(Integer platformId, String sellerSku, String platformProductCode) {
+        return Optional.ofNullable(crossProductMapper.selectOne(new LambdaQueryWrapperX<CrossProductDO>()
+                .eqIfPresent(CrossProductDO::getPlatformId, platformId)
+                .eqIfPresent(CrossProductDO::getSellerSkuCode, sellerSku)
+                .eqIfPresent(CrossProductDO::getPlatformProductCode, platformProductCode).select(
+                        CrossProductDO::getId,
+                        CrossProductDO::getPlatformId,
+                        CrossProductDO::getShopId,
+                        CrossProductDO::getMarketId,
+                        CrossProductDO::getFulfillType,
+                        CrossProductDO::getTitle,
+                        CrossProductDO::getSellerSkuCode,
+                        CrossProductDO::getPlatformProductCode,
+                        CrossProductDO::getCategoryId,
+                        CrossProductDO::getBrand,
+                        CrossProductDO::getStatus
+//                ErpCrossProductDO::getPublishStatus
+                )));
+    }
+
+    @Override
+    public List<CrossProductDO> getBasicCrossProductBySkus(@NotNull Integer platformId, @NotNull Integer shopId, @NotNull String marketId, @NotEmpty List<String> skus) {
+        return crossProductMapper.selectList(new LambdaQueryWrapperX<CrossProductDO>()
+                .eqIfPresent(CrossProductDO::getPlatformId, platformId)
+                .eqIfPresent(CrossProductDO::getShopId, shopId)
+                .eqIfPresent(CrossProductDO::getMarketId, marketId)
+                .inIfPresent(CrossProductDO::getSellerSkuCode, skus)
+                .eq(CrossProductDO::getStatus, CrossListingStatus.ACTIVATE.getStatus()));
+    }
+
+    @Override
+    public Optional<List<CrossProductDO>> getBasicCrossPlatformProduct(List<Long> productIds) {
+        return Optional.ofNullable(crossProductMapper.selectList(new LambdaQueryWrapperX<CrossProductDO>().select(
+                CrossProductDO::getId,
+                CrossProductDO::getPlatformId,
+                CrossProductDO::getShopId,
+                CrossProductDO::getMarketId,
+                CrossProductDO::getFulfillType,
+                CrossProductDO::getTitle,
+                CrossProductDO::getSellerSkuCode,
+                CrossProductDO::getPlatformProductCode,
+                CrossProductDO::getCategoryId,
+                CrossProductDO::getBrand,
+                CrossProductDO::getStatus,
+                CrossProductDO::getMainImageUrl
+//                ErpCrossProductDO::getPublishStatus
+        ).in(CrossProductDO::getId, productIds)));
     }
 
     @Transactional
     @Override
     public Long saveCrossPlatformProduct(ProductPublishRequest product) {
         // 保存商品信息
-        ErpCrossProductDO crossPlatformProduct = CrossPlatformProductConvert.INSTANCE.convert(product);
+        CrossProductDO crossPlatformProduct = CrossPlatformProductConvert.INSTANCE.convert(product);
         crossPlatformProduct.setStatus(CrossProductStatus.INIT.getStatus());
 //        crossPlatformProduct.setPublishStatus(CrossProductPublishStatus.INIT.getStatus());
         crossProductMapper.insert(crossPlatformProduct);
         Long productId = crossPlatformProduct.getId();
         // 保存商品属性
-        List<ErpCrossProductAttrsDO> crossProductAttrs = CrossPlatformProductConvert.INSTANCE.convertProperties(productId, product.getProductAttributes());
+        List<CrossProductAttrsDO> crossProductAttrs = CrossPlatformProductConvert.INSTANCE.convertProperties(productId, product.getProductAttributes());
         crossProductAttrsMapper.insertBatch(crossProductAttrs);
 
         if (!this.validCrossPlatformProduct(productId)) {
@@ -194,18 +275,18 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
         } while (hasNext);
 
 
-        // 处理价格和库存
-
-        multiMarketProducts.forEach(productByMaket -> {
-            productByMaket.forEach((market, product) -> {
-                ApiRequest<String> productOfferRequest = new ApiRequest<String>().setShopId(request.getShopId().toString())
-                        .setMarketId(market).setRequest(product.getProductCode());
-                pricingInventoryApiFactory.getCrossApiService(CrossPlatformEnum.of(sellPlatform.getCode()))
-                        .getItemOffers(productOfferRequest);
+        // 库存
+        multiMarketProducts.forEach(productByMarket -> {
+            productByMarket.forEach((market, product) -> {
+                ApiRequest<GetInventoryRequest> productInventoryRequest = new ApiRequest<GetInventoryRequest>().setShopId(request.getShopId().toString())
+                        .setMarketId(market).setRequest(new GetInventoryRequest().setSellerSkus(Collections.singletonList(product.getSellerSku())));
+                ApiResponse<List<InventoryModel>> inventoryResponse = pricingInventoryApiFactory.getCrossApiService(CrossPlatformEnum.of(sellPlatform.getCode()))
+                        .getInventory(productInventoryRequest);
+                product.setInventory(inventoryResponse.getData());
             });
         });
 
-
+        //Todo-- Issue: 处理库存更新问题
 
 
         multiMarketProducts.forEach(productModel -> {
@@ -215,20 +296,16 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
         });
 
 
-
-
-
-
         log.info("syncProductListing success, platformId: {}, shopId: {}, total: {}", request.getPlatformId(), request.getShopId(), multiMarketProducts.size());
     }
 
     private void saveOrUpdateCrossPlatformProduct(Integer platformId, Integer shopId, ProductModel productModel) {
 
-        ErpCrossProductDO crossProductDO = crossProductMapper.selectOne(new LambdaQueryWrapperX<ErpCrossProductDO>()
-                .eqIfPresent(ErpCrossProductDO::getPlatformId, platformId)
-                .eqIfPresent(ErpCrossProductDO::getShopId, shopId)
-                .eqIfPresent(ErpCrossProductDO::getPlatformProductCode, productModel.getProductCode())
-                .eqIfPresent(ErpCrossProductDO::getSellerSkuCode, productModel.getSellerSku()));
+        CrossProductDO crossProductDO = crossProductMapper.selectOne(new LambdaQueryWrapperX<CrossProductDO>()
+                .eqIfPresent(CrossProductDO::getPlatformId, platformId)
+                .eqIfPresent(CrossProductDO::getShopId, shopId)
+                .eqIfPresent(CrossProductDO::getPlatformProductCode, productModel.getProductCode())
+                .eqIfPresent(CrossProductDO::getSellerSkuCode, productModel.getSellerSku()));
         Long version = Long.valueOf(DateUtil.format(new Date(), "yyyyMMddHHmmss"));
         if (crossProductDO == null) {
             crossProductDO = CrossProductListingConvert.INSTANCE.convert(productModel);
@@ -242,8 +319,58 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
             crossProductMapper.updateById(crossProductDO);
         }
 
-        // todo -- 处理ralationShip和Issue, 价格库存, 其他不处理
+        Long crossProductId = crossProductDO.getId();
 
+        // todo -- 处理ralationShip和Issue, 价格库存, 其他不处理
+        // 处理价格
+
+        if (CollectionUtils.isNotEmpty(productModel.getPrices())) {
+            productModel.getPrices().forEach(priceModel -> {
+                CrossProductPriceDO priceDO = crossProductPriceMapper.selectOne(new LambdaQueryWrapperX<CrossProductPriceDO>()
+                        .eqIfPresent(CrossProductPriceDO::getMarketId, productModel.getMarketId())
+                        .eqIfPresent(CrossProductPriceDO::getShopId, shopId)
+                        .eqIfPresent(CrossProductPriceDO::getProductId, crossProductId));
+                if (priceDO == null) {
+                    priceDO = CrossProductListingConvert.INSTANCE.convert(priceModel);
+                    priceDO.setMarketId(productModel.getMarketId());
+                    priceDO.setShopId(shopId);
+                    priceDO.setProductId(crossProductId);
+                    crossProductPriceMapper.insert(priceDO);
+                } else {
+                    priceDO = CrossProductListingConvert.INSTANCE.update(priceModel, priceDO);
+                    crossProductPriceMapper.updateById(priceDO);
+                }
+            });
+        }
+
+        // 处理库存
+        if (CollectionUtils.isNotEmpty(productModel.getInventory())) {
+            productModel.getInventory().forEach(inventoryModel -> {
+                CrossProductInventoryDO inventoryDO = inventoryMapper.selectOne(new LambdaQueryWrapperX<CrossProductInventoryDO>()
+                        .eqIfPresent(CrossProductInventoryDO::getMarketId, productModel.getMarketId())
+                        .eqIfPresent(CrossProductInventoryDO::getShopId, shopId)
+                        .eqIfPresent(CrossProductInventoryDO::getProductId, crossProductId));
+
+                if (inventoryDO == null) {
+                    inventoryDO = CrossProductListingConvert.INSTANCE.convert(inventoryModel);
+                    inventoryDO.setMarketId(productModel.getMarketId());
+                    inventoryDO.setShopId(shopId);
+                    inventoryDO.setProductId(crossProductId);
+                    inventoryDO.setLastModifiedTimestamp(inventoryModel.getLastUpdateTime());
+                    inventoryMapper.insert(inventoryDO);
+                } else {
+                    // 如何本地库存更新时间大于等于接口返回的更新时间，说明本地库存已经更新，无需更新
+//                    if (inventoryDO.getLastModifiedTimestamp() >= inventoryModel.getLastUpdateTime()) {
+//                        return;
+//                    }
+                    inventoryDO = CrossProductListingConvert.INSTANCE.update(inventoryModel, inventoryDO);
+                    inventoryDO.setLastModifiedTimestamp(inventoryModel.getLastUpdateTime());
+                    inventoryMapper.updateById(inventoryDO);
+                }
+
+
+            });
+        }
 
     }
 
@@ -268,35 +395,59 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
             // 其他平台，根据SPU查询
             return getCrossProductSpuPage(request);
         }
-
     }
 
-    private PageResult<ErplusCrossProductListingRespVO> getCrossProductSkuPage(CrossProductPageRequest request) {
-        PageResult<ErpCrossProductDO> productPageResult = crossProductMapper.selectPage(request, new LambdaQueryWrapperX<ErpCrossProductDO>()
-                .eqIfPresent(ErpCrossProductDO::getPlatformId, request.getPlatformId())
-                .eqIfPresent(ErpCrossProductDO::getShopId, request.getShopId())
-                .inIfPresent(ErpCrossProductDO::getStatus, request.getStatus())
+    private PageResult<CrossProductListingResp> getCrossProductSkuPage(CrossProductPageRequest request) {
+        PageResult<CrossProductDO> productPageResult = crossProductMapper.selectPage(request, new LambdaQueryWrapperX<CrossProductDO>()
+                .eqIfPresent(CrossProductDO::getPlatformId, request.getPlatformId())
+                .eqIfPresent(CrossProductDO::getShopId, request.getShopId())
+                .inIfPresent(CrossProductDO::getStatus, request.getStatus())
                 // 从请求时间到现在
-                .betweenIfPresent(ErpCrossProductDO::getUpdateTime, request.getUpdateTimeRange())
-                .betweenIfPresent(ErpCrossProductDO::getCreateTime, request.getCreateTimeRange())
-                .likeIfPresent(ErpCrossProductDO::getSellerSkuCode, request.getSellerSkuCode())
-                .likeIfPresent(ErpCrossProductDO::getPlatformProductCode, request.getPlatformProductCode())
-                .eqIfPresent(ErpCrossProductDO::getFulfillType, request.getFulfillType())
+                .betweenIfPresent(CrossProductDO::getUpdateTime, request.getUpdateTimeRange())
+                .betweenIfPresent(CrossProductDO::getCreateTime, request.getCreateTimeRange())
+                .likeIfPresent(CrossProductDO::getSellerSkuCode, request.getSellerSkuCode())
+                .likeIfPresent(CrossProductDO::getPlatformProductCode, request.getPlatformProductCode())
+                .eqIfPresent(CrossProductDO::getFulfillType, request.getFulfillType())
         );
 
+        List<CrossProductInventoryDO> inventoryDOList = inventoryMapper.selectList(new LambdaQueryWrapperX<CrossProductInventoryDO>()
+                .eqIfPresent(CrossProductInventoryDO::getMarketId, request.getMarketId())
+                .eqIfPresent(CrossProductInventoryDO::getShopId, request.getShopId())
+                .inIfPresent(CrossProductInventoryDO::getProductId, productPageResult.getList().stream().map(CrossProductDO::getId).collect(Collectors.toList()))
+        );
+
+        List<CrossProductPriceDO> priceDOList = crossProductPriceMapper.selectList(new LambdaQueryWrapperX<CrossProductPriceDO>()
+                .eqIfPresent(CrossProductPriceDO::getMarketId, request.getMarketId())
+                .eqIfPresent(CrossProductPriceDO::getShopId, request.getShopId())
+                .inIfPresent(CrossProductPriceDO::getProductId, productPageResult.getList().stream().map(CrossProductDO::getId).collect(Collectors.toList()))
+        );
+
+
+        Map<Long, CrossProductInventoryDO> inventoryDOMap = inventoryDOList.stream().collect(Collectors.toMap(CrossProductInventoryDO::getProductId, Function.identity()));
+        Multimap<Long, CrossProductPriceDO> priceDOMultimap = ArrayListMultimap.create();
+        priceDOList.forEach(priceDO -> priceDOMultimap.put(priceDO.getProductId(), priceDO));
+
+
         // 转换为VO
-        List<ErplusCrossProductListingRespVO> productListingRespVOS = productPageResult.getList().stream()
+        List<CrossProductListingResp> productListingRespVOS = productPageResult.getList().stream()
                 .map(CrossProductListingConvert.INSTANCE::convert)
                 .map(respVo -> {
                     // format
                     respVo.setFulfillTypeName(FulfillTypeEnum.of(respVo.getFulfillType()).getName());
                     respVo.setPlatformName(CrossPlatformEnum.valueOf(respVo.getPlatformId()).getName());
                     respVo.setStatusName(CrossListingStatus.of(respVo.getStatus()).getName());
+                    // 合并库存信息
+                    CrossProductInventoryDO inventoryDO = inventoryDOMap.get(respVo.getId());
+                    if (inventoryDO != null) {
+                        respVo.setInventory(inventoryDO);
+                    }
+                    // 合并价格信息
+                    respVo.setPrice(priceDOMultimap.get(respVo.getId()));
                     return respVo;
                 })
                 .collect(Collectors.toList());
 
-        PageResult<ErplusCrossProductListingRespVO> respVO = new PageResult<>();
+        PageResult<CrossProductListingResp> respVO = new PageResult<>();
         respVO.setList(productListingRespVOS);
         respVO.setTotal(productPageResult.getTotal());
         return respVO;

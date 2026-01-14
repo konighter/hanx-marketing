@@ -5,6 +5,7 @@ import com.hzltd.framework.test.core.ut.BaseDbUnitTest;
 import com.hzltd.module.erplus.controller.admin.app.vo.AppPageReqVO;
 import com.hzltd.module.erplus.controller.admin.app.vo.AppSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.app.AppDO;
+import com.hzltd.module.erplus.dal.mysql.amz.AmzInboundPlanMapper;
 import com.hzltd.module.erplus.dal.mysql.app.AppMapper;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Disabled;
@@ -33,8 +34,15 @@ public class AppServiceImplTest extends BaseDbUnitTest {
     @Resource
     private AppMapper appMapper;
 
+    @Resource
+    private AmzInboundPlanMapper inboundPlanMapper;
+
     @Test
     public void testCreateApp_success() {
+
+        inboundPlanMapper.selectById(1L);
+
+
         // 准备参数
         AppSaveReqVO createReqVO = randomPojo(AppSaveReqVO.class).setId(null);
 

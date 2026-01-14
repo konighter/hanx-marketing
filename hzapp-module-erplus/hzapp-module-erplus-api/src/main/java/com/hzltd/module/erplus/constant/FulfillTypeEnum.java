@@ -24,7 +24,13 @@ public enum FulfillTypeEnum implements IntArrayValuable {
      * 全托管模式
      */
     FMA(4, "全托管模式"),
-    ;
+
+    /**
+     * 全托管模式
+     */
+    FMO(5, "半托管模式"),
+
+    UNKNOWN(99, "未知");
 
     private final Integer code;
     private final String name;
@@ -34,5 +40,14 @@ public enum FulfillTypeEnum implements IntArrayValuable {
     @Override
     public int[] array() {
         return new int[0];
+    }
+
+    public static FulfillTypeEnum of(Integer code) {
+        for (FulfillTypeEnum value : values()) {
+            if (value.getCode().equals(code)) {
+                return value;
+            }
+        }
+        return UNKNOWN;
     }
 }

@@ -1,33 +1,24 @@
 package com.hzltd.module.erplus.controller.admin.amz;
 
 
-import org.springframework.web.bind.annotation.*;
-import jakarta.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.security.access.prepost.PreAuthorize;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Operation;
-
-import jakarta.validation.*;
-import jakarta.servlet.http.*;
-import java.util.*;
-import java.io.IOException;
-
-import com.hzltd.framework.common.pojo.PageParam;
-import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.pojo.CommonResult;
+import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import static com.hzltd.framework.common.pojo.CommonResult.success;
-
-import com.hzltd.framework.excel.core.util.ExcelUtils;
-
-import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
-import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.*;
-
-import com.hzltd.module.erplus.controller.admin.amz.vo.*;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzReportTaskPageReqVO;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzReportTaskRespVO;
+import com.hzltd.module.erplus.controller.admin.amz.vo.AmzReportTaskSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.amz.AmzReportTaskDO;
 import com.hzltd.module.erplus.service.amz.AmzReportTaskService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import static com.hzltd.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 亚马逊报告任务")
 @RestController

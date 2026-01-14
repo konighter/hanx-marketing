@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.api.adptor.amz;
+package com.hzltd.module.erplus.api.amz;
 
 import com.hzltd.module.erplus.api.adptor.RefreshTokenCacheAdaptor;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,11 @@
-package com.hzltd.module.erplus.service.product;
+package com.hzltd.module.erplus.service.cross;
 
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListReqVO;
 import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategorySaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
-import com.hzltd.module.erplus.dal.mysql.product.ErpProductCategoryMapper;
-import com.hzltd.module.erplus.service.product.backup.ProductService;
+import com.hzltd.module.erplus.dal.mysql.cross.ErpProductCategoryMapper;
+import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;

@@ -11,11 +11,13 @@ import com.hzltd.framework.excel.core.util.ExcelUtils;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpStockPageReqVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpStockRespVO;
+import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpTransferAvailableReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
-import com.hzltd.module.erplus.service.product.ProductService;
+import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import com.hzltd.module.erplus.service.stock.ErpStockService;
 import com.hzltd.module.erplus.service.stock.ErpWarehouseService;
+import com.hzltd.module.erplus.service.stock.ErplusStockService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -23,6 +25,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -68,6 +71,7 @@ public class ErpStockController {
         return success(BeanUtils.toBean(stock, ErpStockRespVO.class));
     }
 
+
     @GetMapping("/get-count")
     @Operation(summary = "获得产品库存数量")
     @Parameter(name = "productId", description = "产品编号", example = "10")
@@ -109,5 +113,4 @@ public class ErpStockController {
             MapUtils.findAndThen(warehouseMap, stock.getWarehouseId(), warehouse -> stock.setWarehouseName(warehouse.getName()));
         });
     }
-
 }

@@ -1,6 +1,6 @@
-package com.hzltd.module.erplus.controller.admin.product;
+package com.hzltd.module.erplus.controller.admin.cross;
 
-import com.hzltd.module.erplus.controller.admin.product.vo.*;
+import com.hzltd.module.erplus.controller.admin.cross.vo.*;
 import com.hzltd.module.erplus.model.ApiResponse;
 import com.hzltd.module.erplus.service.cross.ErplusCrossPriceInventoryService;
 import com.hzltd.module.erplus.service.cross.ErplusCrossProductService;

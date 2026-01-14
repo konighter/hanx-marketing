@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.api.adptor.amz.event;
+package com.hzltd.module.erplus.api.amz.event;
 
 import com.amazon.sqs.javamessaging.ProviderConfiguration;
 import com.amazon.sqs.javamessaging.SQSConnectionFactory;
@@ -12,7 +12,7 @@ import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.sqs.SqsClient;
 
-@Configuration
+//@Configuration
 public class AQSConfiguration {
 
     @Bean
