@@ -132,10 +132,11 @@ import { ref, reactive, watch, onMounted, unref } from 'vue'
 import { ElMessage } from 'element-plus'
 
 import { SellPlatformApi } from '@/app/erp/api/sellplatform' // 已存在模块
+import { ShopApi } from '@/app/erplus/api/system/shop'
 // 假设存在下面的 API 模块，如不存在请替换为项目实际 API
 import * as CategoryApi from '@/app/erplus/api/product/category' // getCategoriesByPlatform, getCategoryAttributes
 import * as SpuApi from '@/app/erplus/api/product/spu'
-import { ShopApi } from '@/app/erplus/api/system/shop'
+
 import { defaultProps, handleTree } from '@/utils/tree'
 import type { CascaderNode } from 'element-plus'
 

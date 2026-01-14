@@ -71,42 +71,20 @@ function closedHandler() {
 </script>
 
 <template>
-  <ElDialog
-    v-bind="getBindValue"
-    :close-on-click-modal="true"
-    :fullscreen="isFullscreen"
-    :width="width"
-    destroy-on-close
-    lock-scroll
-    draggable
-    class="com-dialog"
-    :show-close="false"
-    @close="closeHandler"
-    @closed="closedHandler"
-  >
+  <ElDialog v-bind="getBindValue" :close-on-click-modal="true" :fullscreen="isFullscreen" :width="width"
+    destroy-on-close lock-scroll draggable class="com-dialog" :show-close="false" @close="closeHandler"
+    @closed="closedHandler">
     <template #header="{ close }">
       <div class="relative h-54px flex items-center justify-between pl-15px pr-15px">
         <slot name="title">
           {{ title }}
         </slot>
-        <div
-          class="absolute right-15px top-[50%] h-54px flex translate-y-[-50%] items-center justify-between"
-        >
-          <Icon
-            v-if="fullscreen"
-            class="is-hover mr-10px cursor-pointer"
+        <div class="absolute right-15px top-[50%] h-54px flex translate-y-[-50%] items-center justify-between">
+          <Icon v-if="fullscreen" class="is-hover mr-10px cursor-pointer"
             :icon="isFullscreen ? 'radix-icons:exit-full-screen' : 'radix-icons:enter-full-screen'"
-            color="var(--el-color-info)"
-            hover-color="var(--el-color-primary)"
-            @click="toggleFull"
-          />
-          <Icon
-            class="is-hover cursor-pointer"
-            icon="ep:close"
-            hover-color="var(--el-color-primary)"
-            color="var(--el-color-info)"
-            @click.stop="close"
-          />
+            color="var(--el-color-info)" hover-color="var(--el-color-primary)" @click="toggleFull" />
+          <Icon class="is-hover cursor-pointer" icon="ep:close" hover-color="var(--el-color-primary)"
+            color="var(--el-color-info)" @click.stop="close" />
         </div>
       </div>
     </template>
@@ -115,6 +93,7 @@ function closedHandler() {
       <slot></slot>
     </ElScrollbar>
     <slot v-else></slot>
+    <slot name="bottom"></slot>
     <template v-if="slots.footer" #footer>
       <div :style="{ 'pointer-events': closing ? 'none' : 'auto' }">
         <slot name="footer"></slot>

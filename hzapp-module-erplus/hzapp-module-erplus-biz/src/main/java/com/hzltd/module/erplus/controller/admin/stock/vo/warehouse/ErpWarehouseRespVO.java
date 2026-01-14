@@ -1,56 +1,51 @@
-package com.hzltd.module.erplus.controller.admin.stock.vo.warehouse;
+package com.hzltd.module.erplus.controller.admin.warehouse.vo;
 
-import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
-import cn.idev.excel.annotation.ExcelProperty;
-import com.hzltd.framework.excel.core.annotations.DictFormat;
-import com.hzltd.framework.excel.core.convert.DictConvert;
-import com.hzltd.module.system.enums.DictTypeConstants;
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-
-import java.math.BigDecimal;
+import lombok.*;
+import java.util.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import java.time.LocalDateTime;
+import cn.idev.excel.annotation.*;
 
 @Schema(description = "管理后台 - ERP 仓库 Response VO")
 @Data
 @ExcelIgnoreUnannotated
-public class ErpWarehouseRespVO {
+public class WarehouseRespVO {
 
-    @Schema(description = "仓库编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "11614")
+    @Schema(description = "仓库编号", requiredMode = Schema.RequiredMode.REQUIRED, example = "21598")
     @ExcelProperty("仓库编号")
     private Long id;
 
-    @Schema(description = "仓库名称", requiredMode = Schema.RequiredMode.REQUIRED, example = "李四")
+    @Schema(description = "仓库名称", requiredMode = Schema.RequiredMode.REQUIRED, example = "张三")
     @ExcelProperty("仓库名称")
     private String name;
 
-    @Schema(description = "仓库地址", example = "上海陆家嘴")
-    @ExcelProperty("仓库地址")
-    private String address;
+    @Schema(description = "类型: 平台仓/海外仓/家庭仓/活动仓", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+    @ExcelProperty("类型: 平台仓/海外仓/家庭仓/活动仓")
+    private Integer type;
 
-    @Schema(description = "排序", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")
-    @ExcelProperty("排序")
-    private Long sort;
+    @Schema(description = "店铺", example = "15932")
+    @ExcelProperty("店铺")
+    private Integer shopId;
+
+    @Schema(description = "平台ID", example = "16669")
+    @ExcelProperty("平台ID")
+    private Integer platformId;
+
+    @Schema(description = "市场", example = "9111")
+    @ExcelProperty("市场")
+    private String marketId;
 
     @Schema(description = "备注", example = "随便")
     @ExcelProperty("备注")
     private String remark;
 
-    @Schema(description = "负责人", example = "芋头")
+    @Schema(description = "负责人")
     @ExcelProperty("负责人")
     private String principal;
 
-    @Schema(description = "仓储费，单位：元", example = "13973")
-    @ExcelProperty("仓储费，单位：元")
-    private BigDecimal warehousePrice;
-
-    @Schema(description = "搬运费，单位：元", example = "9903")
-    @ExcelProperty("搬运费，单位：元")
-    private BigDecimal truckagePrice;
-
-    @Schema(description = "开启状态", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
-    @ExcelProperty(value = "开启状态", converter = DictConvert.class)
-    @DictFormat(DictTypeConstants.COMMON_STATUS)
+    @Schema(description = "开启状态", requiredMode = Schema.RequiredMode.REQUIRED, example = "2")
+    @ExcelProperty("开启状态")
     private Integer status;
 
     @Schema(description = "是否默认", example = "1")

@@ -34,6 +34,10 @@ export const ShopApi = {
     return await request.get({ url: `/erplus/cross/shop/platform?id=${id}` })
   },
 
+  getPlatformShopByCode: async (code: any) => {
+    return await request.get({ url: `/erplus/cross/shop/platform?code=${code}` })
+  },
+
   // 查询店铺信息详情
   getShop: async (id: number) => {
     return await request.get({ url: `/erplus/cross/shop/get?id=` + id })
@@ -59,7 +63,11 @@ export const ShopApi = {
     return await request.download({ url: `/erplus/cross/shop/export-excel`, params })
   },
 
-  submitShopAuth: async (data : ShopAuthReqVO) => {
-    return await request.post({ url: '/erplus/cross/shop/auth', data})
+  submitShopAuth: async (data: ShopAuthReqVO) => {
+    return await request.post({ url: '/erplus/cross/shop/auth', data })
   },
+
+  getCascaderShopList: async () => {
+    return await request.get({ url: '/erplus/cross/shop/cascader-list' })
+  }
 }
