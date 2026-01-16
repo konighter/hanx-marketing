@@ -14,7 +14,6 @@ public class AmzPackingOption extends PackingOption {
      * 整装 or 散装
      */
     private Boolean packingType;
-
     /**
      * 每个打包组的物品列表
      */

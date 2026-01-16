@@ -3,6 +3,7 @@ package com.hzltd.module.erplus.controller.admin.stock.vo.stock;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentItemVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpAddressDO;
+import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentItemDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentPlanDO;
 import lombok.Data;
 
@@ -15,7 +16,7 @@ public class StockShipmentPlanRespVO extends ShipmentPlanDO {
 
     private String shopName;
 
-
+    private ErpAddressDO addressDetail;
 
     private List<ShipmentItemVO> items;
 

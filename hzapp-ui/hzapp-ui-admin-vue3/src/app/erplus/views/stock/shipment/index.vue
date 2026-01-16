@@ -101,13 +101,19 @@
 
           <el-table-column label="操作" align="center" width="200">
             <template #default="{ row }">
-              <el-button type="text" size="small" v-if="row.status === ShipmentStatus.INIT"
-                @click="handleEdit(row)">编辑</el-button>
-              <el-button type="text" size="small" v-if="row.status === ShipmentStatus.AUDITING"
-                @click="handleAudit(row)">审核</el-button>
-              <el-button type="text" size="small"
-                v-if="row.status !== ShipmentStatus.AUDITING && row.status !== ShipmentStatus.INIT"
-                @click="handleConfig(row)">配置</el-button>
+              <template v-if="row.status !== ShipmentStatus.CANCELED">
+                <el-button type="text" size="small" @click="handleDetail(row)">详情</el-button>
+
+
+
+                <el-button type="text" size="small" v-if="row.status === ShipmentStatus.INIT"
+                  @click="handleEdit(row)">编辑</el-button>
+                <el-button type="text" size="small" v-if="row.status === ShipmentStatus.AUDITING"
+                  @click="handleAudit(row)">审核</el-button>
+                <el-button type="text" size="small"
+                  v-if="row.status !== ShipmentStatus.AUDITING && row.status !== ShipmentStatus.INIT"
+                  @click="handleConfig(row)">配置</el-button>
+              </template>
             </template>
           </el-table-column>
         </el-table>
@@ -121,11 +127,9 @@
     <!-- 表单视图 -->
     <!-- <ShipmentForm v-if="showForm" @close="showForm = false" @success="handleFormSuccess" /> -->
 
-    <!-- 审核侧滑 -->
-    <ShipmentAudit ref="auditRef" @success="handleQuery" />
 
     <!-- 配置侧滑 -->
-    <ShipmentConfig ref="configRef" />
+    <ShipmentConfig ref="configRef" @close="handleConfigClose" />
   </div>
 
 </template>
@@ -138,11 +142,10 @@ import { ContentWrap } from '@/components/ContentWrap'
 import { Icon } from '@/components/Icon'
 
 import { SellPlatformApi } from '@/app/erp/api/sellplatform' // 已存在模块
-import { ShopApi } from '@/app/erplus/api/system/shop'
+
 import { shipmentApi, ShipmentStatus } from '@/app/erplus/api/stock/shipment'
 import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
 import { dateFormatter } from '@/utils/formatTime'
-import ShipmentAudit from './components/ShipmentAudit.vue'
 import ShipmentConfig from './components/ShipmentConfig.vue'
 
 
@@ -153,6 +156,10 @@ const showForm = ref(false)
 /** 新建成功回调 */
 const handleFormSuccess = () => {
   showForm.value = false
+  handleQuery()
+}
+
+const handleConfigClose = () => {
   handleQuery()
 }
 
@@ -192,14 +199,10 @@ const loading = ref(false)
 const list = ref([])
 const total = ref(0) // 列表的总页数
 
-const auditRef = ref()
 const configRef = ref()
 
 const platforms = ref([])
 
-const shops = ref([])
-
-const markets = ref([])
 
 
 const handleQuery = async () => {
@@ -230,14 +233,7 @@ const loadPlatforms = async () => {
   platforms.value = await SellPlatformApi.getSellPlatformListCache() || []
 }
 
-const loadShops = async (platformId: number) => {
-  // 示例 API，替换为真实实现
-  try {
-    shops.value = await ShopApi.getPlatformShop(platformId) || []
-  } catch {
-    shops.value = []
-  }
-}
+
 
 /** 标签切换 */
 const handleTabChange = (name: string) => {
@@ -250,7 +246,6 @@ const handleTabChange = (name: string) => {
 
 /** 获取状态标签 */
 const getStatusLabel = (status: number) => {
-  console.log('status', status)
   const tab = statusTabs.find((t) => t.value === status)
   return tab ? tab.label : '未知'
 }
@@ -274,7 +269,7 @@ const handleEdit = (row: any) => {
 
 /** 审核发货计划 */
 const handleAudit = (row: any) => {
-  auditRef.value.open(row)
+  configRef.value.open(row)
 }
 
 /** 配置发货计划 */
@@ -282,8 +277,15 @@ const handleConfig = (row: any) => {
   configRef.value.open(row)
 }
 
+/** 配置发货计划 */
+const handleDetail = (row: any) => {
+  configRef.value.open(row, true)
+}
 
 
+onMounted(() => {
+  handleQuery()
+})
 
 
 

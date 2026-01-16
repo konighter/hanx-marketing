@@ -9,7 +9,7 @@
         </el-tag>
         <el-tag v-else type="info">未选择方案</el-tag>
       </div>
-      <div class="flex gap-2">
+      <div class="flex gap-2" v-if="!readonly">
         <el-button type="primary" plain @click="openOptionDialog">
           <Icon icon="ep:list" class="mr-1" /> 选择/更换装箱方案
         </el-button>
@@ -30,7 +30,8 @@
               <span class="text-sm text-gray-500">组内箱数: <span class="text-blue-600 font-bold">{{ group[0]?.boxQuantity
                 || 0 }}</span></span>
               <span>
-                <el-switch v-model="packingType" active-text="整装" inactive-text="散装" inline-prompt />
+                <el-switch v-model="selectedPackingOption.packingType" active-text="整装" inactive-text="散装" inline-prompt
+                  :disabled="readonly" />
 
 
               </span>
@@ -55,12 +56,12 @@
             </el-table-column>
             <el-table-column label="单箱装载数量" width="150" align="center">
               <template #default="{ row }">
-                <el-input-number v-model="row.quantityInBox" :min="1" size="small" class="w-full"
+                <el-input-number v-model="row.quantityInBox" :min="1" size="small" class="w-full" :disabled="readonly"
                   @change="updateGroupConsistency(group, row, 'quantityInBox')" />
               </template>
             </el-table-column>
             <el-table-column label="计划发货总数" width="120" align="center" prop="quantity" />
-            <el-table-column label="箱子总数" width="120" align="center" v-if="packingType">
+            <el-table-column label="箱子总数" width="120" align="center" v-if="selectedPackingOption.packingType">
               <template #default="scope">
                 {{ scope.row.boxQuantity }}
               </template>
@@ -81,20 +82,20 @@
               <template #default="{ row, $index }">
 
                 <!-- 整装, 每个箱子只有一个品, 每个品单独设置箱子规格 -->
-                <div v-if="packingType" class="flex gap-1">
-                  <el-input v-model="row.boxWeight" placeholder="重" size="small" class="w-16" />
-                  <el-input v-model="row.boxLength" placeholder="长" size="small" class="w-12" />
-                  <el-input v-model="row.boxWidth" placeholder="宽" size="small" class="w-12" />
-                  <el-input v-model="row.boxHeight" placeholder="高" size="small" class="w-12" />
+                <div v-if="selectedPackingOption.packingType" class="flex gap-1">
+                  <el-input v-model="row.boxWeight" placeholder="重" size="small" class="w-16" :disabled="readonly" />
+                  <el-input v-model="row.boxLength" placeholder="长" size="small" class="w-12" :disabled="readonly" />
+                  <el-input v-model="row.boxWidth" placeholder="宽" size="small" class="w-12" :disabled="readonly" />
+                  <el-input v-model="row.boxHeight" placeholder="高" size="small" class="w-12" :disabled="readonly" />
                 </div>
 
                 <template v-else>
                   <!-- 仅在第一行显示汇总编辑，或者每行都可调但保持组内一致 -->
                   <div v-if="$index === 0" class="flex gap-1">
-                    <el-input v-model="row.boxWeight" placeholder="重" size="small" class="w-16" />
-                    <el-input v-model="row.boxLength" placeholder="长" size="small" class="w-12" />
-                    <el-input v-model="row.boxWidth" placeholder="宽" size="small" class="w-12" />
-                    <el-input v-model="row.boxHeight" placeholder="高" size="small" class="w-12" />
+                    <el-input v-model="row.boxWeight" placeholder="重" size="small" class="w-16" :disabled="readonly" />
+                    <el-input v-model="row.boxLength" placeholder="长" size="small" class="w-12" :disabled="readonly" />
+                    <el-input v-model="row.boxWidth" placeholder="宽" size="small" class="w-12" :disabled="readonly" />
+                    <el-input v-model="row.boxHeight" placeholder="高" size="small" class="w-12" :disabled="readonly" />
                   </div>
                   <div v-else class="text-center text-gray-300 text-xs italic">
                     跟随本组设置
@@ -109,8 +110,7 @@
 
         <!-- Footer Actions -->
         <div class="flex justify-center gap-4 mt-8 pb-10">
-          <el-button size="large" @click="$emit('back')">上一步</el-button>
-          <el-button type="primary" size="large" :loading="submitting" @click="submitPacking">
+          <el-button type="primary" :loading="submitting" @click="submitPacking" v-if="!readonly">
             确认并提交装箱明细
           </el-button>
         </div>
@@ -119,8 +119,9 @@
       <div v-else-if="!loading" class="empty-state p-20 text-center bg-white rounded-lg border-2 border-dashed">
         <Icon icon="ep:box" :size="64" class="text-gray-200 mb-4" />
         <h3 class="text-gray-500 font-bold">尚未加载装箱方案</h3>
-        <p class="text-gray-400 text-sm mt-2">请点击右上角按钮以生成或选择一个装箱方案</p>
-        <el-button type="primary" class="mt-6" @click="handleGenerate" :loading="generating">生成装箱方案</el-button>
+        <p class="text-gray-400 text-sm mt-2">{{ readonly ? '尚未配置装箱方案' : '请点击右上角按钮以生成或选择一个装箱方案' }}</p>
+        <el-button type="primary" class="mt-6" @click="handleGenerate" :loading="generating"
+          v-if="!readonly">生成装箱方案</el-button>
       </div>
     </div>
 
@@ -144,6 +145,10 @@ const props = defineProps({
   active: {
     type: Boolean,
     default: false
+  },
+  readonly: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -155,7 +160,6 @@ const emit = defineEmits(['back', 'next'])
 const loading = ref(false)
 const generating = ref(false)
 const submitting = ref(false)
-const packingType = ref(false)
 const packingOptionConfirmed = ref(false)
 const selectedOptionId = ref('')
 const selectedPackingOption = ref<any>({})
@@ -211,7 +215,7 @@ const handleOptionSelected = async (option: any) => {
 const updateGroupConsistency = (group: any[], changedRow: any, field: string) => {
 
   // 如果是散装, 确保每个箱子的规格相同
-  if (!packingType.value) {
+  if (!selectedPackingOption.value.packingType) {
     // 如果修改了单箱装载数量，重新计算推导的箱数（简化逻辑：取所有SKU推导出来的最大箱数）
     if (field === 'quantityInBox') {
       const boxQty = Math.ceil(changedRow.quantity / changedRow.quantityInBox)
@@ -247,7 +251,6 @@ const submitPacking = async () => {
     submitting.value = true
     await AmzInboundApi.setPackingInformation({
       planId: planId.value,
-      packingType: packingType.value,
       option: selectedPackingOption.value
     })
     ElMessage.success('装箱明细提交成功')

@@ -29,6 +29,7 @@ import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.erplus.service.shop.ShopService;
 import io.swagger.v3.core.util.Json;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -37,6 +38,7 @@ import org.springframework.transaction.annotation.Transactional;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.InboundOperationStatus;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -82,7 +84,9 @@ public class ErplusShipmentServiceImpl implements ErplusShipmentService {
 
         // 1. 查询货件计划分页
         PageResult<ShipmentPlanDO> pageResult = shipmentPlanMapper.selectPage(reqVO);
-
+        if (CollectionUtils.isEmpty(pageResult.getList())) {
+            return new PageResult<>(Collections.emptyList(), pageResult.getTotal());
+        }
 
         Map<Integer, ShopDO> shopMap = shopService.getShopsByIds(pageResult.getList().stream().map(ShipmentPlanDO::getShopId).collect(Collectors.toList())).stream().collect(Collectors.toMap(ShopDO::getId, a -> a));
         Map<Long, ErpWarehouseDO> warehouseDOMap = warehouseService.getWarehouseMap(pageResult.getList().stream().map(ShipmentPlanDO::getWarehouseId).toList());
@@ -119,6 +123,7 @@ public class ErplusShipmentServiceImpl implements ErplusShipmentService {
         });
         // 2. 查询货件计划商品
         respVO.setItems(BeanUtils.toBean(shipmentItemMapper.selectListByPlanId(shipmentPlan.getId()), ShipmentItemVO.class));
+        respVO.setAddressDetail(addressService.getAddressById(respVO.getFromAddress()));
         return respVO;
     }
 
@@ -149,6 +154,7 @@ public class ErplusShipmentServiceImpl implements ErplusShipmentService {
         shipmentItemMapper.insertBatch(reqVO.getItems().stream().map(item -> {
             ShipmentItemDO shipmentItem = ShipmentConvert.INSTANCE.convert(item);
             shipmentItem.setShipmentId(shipmentPlanId);
+            shipmentItem.setId(null);
             return shipmentItem;
         }).collect(Collectors.toList()));
 
@@ -184,6 +190,7 @@ public class ErplusShipmentServiceImpl implements ErplusShipmentService {
 
 
     @Override
+    @Transactional
     public void auditShipment(ShipmentAuditReqVO reqVO) {
         // 1. 校验货件计划是否存在
         ShipmentPlanDO shipmentPlan = shipmentPlanMapper.selectById(reqVO.getShipmentId());
@@ -201,29 +208,30 @@ public class ErplusShipmentServiceImpl implements ErplusShipmentService {
         if (AuditAction.APPROVE.getValue().equals(reqVO.getAction())) {
             newStatus = ShipmentStatusEnum.PENDING_BOXING;
             shipmentPlan.setStatus(newStatus.getStatus());
+        } else {
+            newStatus = ShipmentStatusEnum.INIT;
+            shipmentPlan.setStatus(newStatus.getStatus());
         }
         // 4. 更新货件计划
         shipmentPlanMapper.updateById(shipmentPlan);
+        // 5. 保存货件计划状态历史
+        saveShipmentHis(reqVO.getShipmentId(), newStatus, reqVO.getRemark());
 
-
-        // 4. 保存货件计划状态历史
-        if (newStatus != null) {
-            saveShipmentHis(reqVO.getShipmentId(), newStatus, reqVO.getRemark());
+        // 6.创建对一个平台的货件计划
+        if (reqVO.getAction().equals(AuditAction.APPROVE.getValue())) {
+            createPlatformShipment(shipmentPlan);
         }
-
-        // 创建对一个平台的货件计划
-        createPlatformShipment(shipmentPlan);
 
     }
 
     private void createPlatformShipment(ShipmentPlanDO shipmentPlan) {
+        StockShipmentPlanRespVO respVO = getShipmentPlan(shipmentPlan.getId());
 
         SellPlatformDO platform = platformService.getSellPlatform(shipmentPlan.getPlatformId());
         String planId = null;
         if ("Amazon".equalsIgnoreCase(platform.getCode())) {
-            AmzInboundPlanCreateRequest amzInboundPlanCreateRequest = new AmzInboundPlanCreateRequest();
             // 创建 Amazon 发货计划
-            planId = amzFulfillmentService.createInboundPlan(amzInboundPlanCreateRequest);
+            planId = amzFulfillmentService.createInboundPlan(ShipmentConvert.INSTANCE.convert(respVO));
         }
 
         if (StringUtils.isNotEmpty(planId)) {

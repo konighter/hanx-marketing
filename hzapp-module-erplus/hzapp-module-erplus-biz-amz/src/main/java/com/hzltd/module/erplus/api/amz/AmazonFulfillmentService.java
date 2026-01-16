@@ -5,9 +5,11 @@ import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.module.erplus.controller.admin.amz.vo.*;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.ApiException;
 import software.amazon.spapi.api.fulfillment.inbound.v2024_03_20.FbaInboundApi;
+import software.amazon.spapi.models.fulfillment.inbound.v0.GetLabelsResponse;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.*;
 
 import java.util.List;
@@ -16,11 +18,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 
+@Slf4j
 @Service
 public class AmazonFulfillmentService extends AbsAmzPlatformApiService {
 
     private ExecutorService executorService = Executors.newFixedThreadPool(10);
-
 
     public ApiResponse<CreateInboundPlanResponse> createInboundPlan(ApiRequest<CreateInboundPlanRequest> request) {
         FbaInboundApi fbaInboundApi = this.getFbaInboundApi(request);
@@ -29,10 +31,12 @@ public class AmazonFulfillmentService extends AbsAmzPlatformApiService {
             CreateInboundPlanResponse response = fbaInboundApi.createInboundPlan(request.getRequest());
             ApiResponse<InboundOperationStatus> statusResponse = this.getOperationStatus(new ApiRequest<String>().setShopId(request.getShopId()).setRequest(response.getOperationId()));
             if (!OperationStatus.SUCCESS.equals(statusResponse.getData().getOperationStatus())) {
+                log.error("创建入仓计划失败, 问题: {}", statusResponse.getData().getOperationProblems());
                 throw new RuntimeException("创建入仓计划失败");
             }
             return ApiResponse.success(response);
         } catch (ApiException | LWAException e) {
+            log.error("创建入仓计划失败", e);
             throw new RuntimeException(e);
         }
     }
@@ -91,7 +95,7 @@ public class AmazonFulfillmentService extends AbsAmzPlatformApiService {
         FbaInboundApi fbaInboundApi = this.getFbaInboundApi(request);
         try {
             SetPackingInformationResponse response = fbaInboundApi.setPackingInformation(convert(request.getRequest()), request.getRequest().getPlanId());
-            ApiResponse<InboundOperationStatus> statusResponse = this.getOperationStatus(new ApiRequest<String>().setShopId(request.getShopId()).setRequest(response.getOperationId()), 20);
+            ApiResponse<InboundOperationStatus> statusResponse = this.getOperationStatus(new ApiRequest<String>().setShopId(request.getShopId()).setRequest(response.getOperationId()), 60);
             return ApiResponse.success(statusResponse.getData());
         } catch (ApiException | LWAException e) {
             throw new RuntimeException(e);
@@ -178,7 +182,7 @@ public class AmazonFulfillmentService extends AbsAmzPlatformApiService {
         try {
             GenerateTransportationOptionsResponse response = fbaInboundApi.generateTransportationOptions(convert(request.getRequest()), request.getRequest().getPlanId());
 
-            ApiResponse<InboundOperationStatus> statusResponse = this.getOperationStatus(new ApiRequest<String>().setShopId(request.getShopId()).setRequest(response.getOperationId()));
+            ApiResponse<InboundOperationStatus> statusResponse = this.getOperationStatus(new ApiRequest<String>().setShopId(request.getShopId()).setRequest(response.getOperationId()), 120);
             if (!OperationStatus.SUCCESS.equals(statusResponse.getData().getOperationStatus())) {
                 throw new RuntimeException("生成运输配置失败");
             }
@@ -275,6 +279,7 @@ public class AmazonFulfillmentService extends AbsAmzPlatformApiService {
         Future<InboundOperationStatus> statusFuture = executorService.submit(() -> {
             try {
                 while (true) {
+                    log.info("get operation status, operationId: {}", request.getRequest());
                     if (Thread.currentThread().isInterrupted()) {
                         throw new InterruptedException();
                     }
@@ -320,9 +325,36 @@ public class AmazonFulfillmentService extends AbsAmzPlatformApiService {
         }
     }
 
-    ApiResponse<?> getShipmentLabels(ApiRequest<?> request) {
-        return ApiResponse.success(null);
+    public ApiResponse<String> getShipmentLabels(ApiRequest<AmzLabelsRequest> request) {
+        software.amazon.spapi.api.fulfillment.inbound.v0.FbaInboundApi fbaInboundApi = this.getFbaInboundApiV0(request);
+        try {
+            Integer boxNum = request.getRequest().getBoxIds().size();
+            GetLabelsResponse response = fbaInboundApi.getLabels(request.getRequest().getShipmentId(), request.getRequest().getPageType(), request.getRequest().getLabelType(), boxNum, request.getRequest().getBoxIds(), null, boxNum , null);
+            return ApiResponse.success(response.getPayload().getDownloadURL());
+        } catch (ApiException | LWAException e) {
+            log.error("getShipmentLabels, error: {}", ((ApiException) e).getResponseBody());
+            throw new RuntimeException(e);
+        }
     }
 
+    public ApiResponse<List<Box>> getShipmentBox(ApiRequest<AmzListShipmentBoxRequest> request) {
+        FbaInboundApi fbaInboundApi = this.getFbaInboundApi(request);
+        try {
+            ListShipmentBoxesResponse response = fbaInboundApi.listShipmentBoxes(request.getRequest().getPlanId(), request.getRequest().getShipmentId(),  request.getRequest().getPageSize(), request.getRequest().getCursor());
+            return ApiResponse.success(response.getBoxes());
+        } catch (ApiException | LWAException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ApiResponse<List<Box>> getInboundPlanBox(ApiRequest<AmzListShipmentBoxRequest> request) {
+        FbaInboundApi fbaInboundApi = this.getFbaInboundApi(request);
+        try {
+            ListInboundPlanBoxesResponse response = fbaInboundApi.listInboundPlanBoxes(request.getRequest().getPlanId(),  request.getRequest().getPageSize(), request.getRequest().getCursor());
+            return ApiResponse.success(response.getBoxes());
+        } catch (ApiException | LWAException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }

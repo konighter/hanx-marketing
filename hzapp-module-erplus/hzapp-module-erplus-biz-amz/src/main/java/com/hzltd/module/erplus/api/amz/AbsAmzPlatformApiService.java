@@ -171,6 +171,15 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
                 .build();
     }
 
+    public software.amazon.spapi.api.fulfillment.inbound.v0.FbaInboundApi getFbaInboundApiV0(ApiRequest<?> apiRequest) {
+        List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
+        return new software.amazon.spapi.api.fulfillment.inbound.v0.FbaInboundApi.Builder()
+                .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
+                .lwaAccessTokenCache(this.getTokenCache())
+                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .build();
+    }
+
 
 //============== 数据转换 ==============
 

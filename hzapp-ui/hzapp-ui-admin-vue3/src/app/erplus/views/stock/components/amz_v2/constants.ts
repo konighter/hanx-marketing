@@ -35,3 +35,14 @@ export const AVAILABILITY_TYPES_MAP: Record<string, string> = {
   UNAVAILABLE: '不可用',
   LIMITED: '有限'
 }
+
+export const LABEL_PAGE_TYPES = [
+  { label: 'Thermal Window (4x6)', value: 'PACKAGE_LABEL_THERMAL_PRINT' },
+  { label: 'Plain Paper (A4)', value: 'PACKAGE_LABEL_PLAIN_PAPER' },
+  { label: 'Plain Paper (Letter)', value: 'PACKAGE_LABEL_PLAIN_PAPER_LETTER' }
+]
+
+export const LABEL_FORMATS = [
+  { label: 'PDF', value: 'PDF' },
+  { label: 'PNG', value: 'PNG' }
+]

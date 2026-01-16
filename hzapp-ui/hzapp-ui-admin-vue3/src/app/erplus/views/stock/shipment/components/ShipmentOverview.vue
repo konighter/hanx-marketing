@@ -51,13 +51,17 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { } from 'vue'
 
 const props = defineProps({
   shipmentData: {
     type: Object,
     required: true,
     default: () => ({})
+  },
+  readonly: {
+    type: Boolean,
+    default: false
   }
 })
 

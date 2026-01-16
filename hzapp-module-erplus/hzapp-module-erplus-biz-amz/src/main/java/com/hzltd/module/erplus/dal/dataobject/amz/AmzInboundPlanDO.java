@@ -52,6 +52,12 @@ public class AmzInboundPlanDO extends BaseDO {
      * 发货SKU
      */
     private String items;
+
+    /**
+     * 事务ID, 同事务內的操作具备前后逻辑关联
+     *
+     */
+    private String transactionId;
     /**
      * 打包信息
      */

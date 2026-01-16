@@ -4,6 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.api.amz.AmzCancelInboundPlanRequest;
 import com.hzltd.module.erplus.controller.admin.amz.vo.*;
 import com.hzltd.module.erplus.dal.dataobject.amz.AmzInboundPlanDO;
+import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.Box;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.InboundPlan;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.TransportationOption;
 
@@ -113,7 +114,7 @@ public interface AmzFulfillmentService {
      * @param request
      * @return placement option
      */
-    AmzPlacementOption getPlacementOption(AmzPlacementOptionRequest request);
+    AmzPlacementDetailResp getPlacementOption(AmzPlacementOptionRequest request);
 
 
      /**
@@ -150,5 +151,12 @@ public interface AmzFulfillmentService {
     //========= 运输选项 start ===========
 
 
+
+    // ========= 获取标签 ==========
+    List<Box> getShipmentBox(AmzListShipmentBoxRequest request);
+
+    public List<AmzShipment> getShipmentLabel(AmzLabelsRequest request);
+
+    List<AmzShipment> generateShipmentLabel(AmzLabelsRequest request);
 
 }

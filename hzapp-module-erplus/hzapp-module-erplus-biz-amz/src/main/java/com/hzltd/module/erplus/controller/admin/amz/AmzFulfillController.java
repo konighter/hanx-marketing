@@ -52,6 +52,11 @@ public class AmzFulfillController {
         return CommonResult.success(amzFulfillmentService.setPlacementOption(request));
     }
 
+    @PostMapping("/get-placement-option")
+    public CommonResult<?> getPlacementOption(@RequestBody AmzPlacementOptionRequest request) {
+        return CommonResult.success(amzFulfillmentService.getPlacementOption(request));
+    }
+
 
     // generateTransportationOptions
 
@@ -115,8 +120,8 @@ public class AmzFulfillController {
     // getLabels
 
     @PostMapping("/get-labels")
-    public CommonResult<?> getLabels() {
-        return CommonResult.success(null);
+    public CommonResult<?> getLabels(@RequestBody AmzLabelsRequest request) {
+        return CommonResult.success(amzFulfillmentService.getShipmentLabel(request));
     }
 
     /**

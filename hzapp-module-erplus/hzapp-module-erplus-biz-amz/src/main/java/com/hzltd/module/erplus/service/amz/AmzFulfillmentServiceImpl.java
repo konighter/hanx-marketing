@@ -1,7 +1,10 @@
 package com.hzltd.module.erplus.service.amz;
 
+import cn.hutool.core.util.URLUtil;
 import com.google.common.collect.Lists;
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.framework.common.util.io.FileUtils;
+import com.hzltd.framework.common.util.io.IoUtils;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
@@ -14,6 +17,7 @@ import com.hzltd.module.erplus.dal.mysql.amz.AmzInboundPlanMapper;
 import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
 import com.hzltd.module.erplus.model.ApiRequest;
 import com.hzltd.module.erplus.model.ApiResponse;
+import com.hzltd.module.erplus.service.ErplusFileService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -21,10 +25,9 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.io.InputStream;
+import java.net.URL;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -45,12 +48,12 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
     @Resource
     private AmazonFulfillmentService amazonFulfillmentService;
 
+    @Resource
+    private ErplusFileService fileService;
+
 
     /**
      * wf5ccb8490-3129-44e1-95a8-e7505e1c2216
-     *
-     *
-     *
      * {
      *   "inboundPlanId" : "wf0785f998-19e0-4fa2-b32d-62c75f652cbe",
      *   "operationId" : "29804f2b-1619-4e47-b636-e39435321727"
@@ -141,7 +144,7 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
             throw new RuntimeException("inboundPlan not found");
         }
         request.setShopId(inboundPlan.getShopId());
-        resetPlacementOptions(inboundPlan.getPlanId());
+        resetPlacementOptions(inboundPlan, true);
 
         ApiResponse<List<PlacementOption>> response = amazonFulfillmentService.generatePlacementOptions(new ApiRequest<String>()
                 .setShopIdInt(request.getShopId())
@@ -161,11 +164,44 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
         return amzPlacementOptions;
     }
 
-    private void resetPlacementOptions(String inboundPlanId) {
-        AmzInboundPlanDO inboundPlanDO = getAmzInboundPlanLocal(null, inboundPlanId);
+    private void resetPlacementOptions(AmzInboundPlanDO inboundPlanDO, boolean doUpdate) {
         inboundPlanDO.setPlacementId("").setPlacementOptions("").setPlacementDetail("");
+        if (doUpdate) {
+            inboundPlanMapper.updateById(inboundPlanDO);
+        }
+    }
+
+    private void resetTransportOptions(AmzInboundPlanDO inboundPlanDO, boolean doUpdate) {
+        inboundPlanDO.setTransportOptionId("").setTransportOptions("");
+        if (doUpdate) {
+            inboundPlanMapper.updateById(inboundPlanDO);
+        }
+    }
+
+    private void resetPackingOptions(AmzInboundPlanDO inboundPlanDO, boolean doUpdate) {
+        inboundPlanDO.setPackingOptionId("").setPackingOptions("").setPackingInfo("");
+        if (doUpdate) {
+            inboundPlanMapper.updateById(inboundPlanDO);
+        }
+    }
+
+    private void resetLabels(AmzInboundPlanDO inboundPlanDO, boolean doUpdate) {
+        inboundPlanDO.setLableInfo("");
+        if (doUpdate) {
+            inboundPlanMapper.updateById(inboundPlanDO);
+        }
+    }
+
+    private void resetAllOptions(AmzInboundPlanDO inboundPlanDO) {
+        inboundPlanDO.setTransactionId(UUID.randomUUID().toString());
+        resetPlacementOptions(inboundPlanDO, false);
+        resetTransportOptions(inboundPlanDO,false);
+        resetPackingOptions(inboundPlanDO,false);
+        resetLabels(inboundPlanDO, false);
         inboundPlanMapper.updateById(inboundPlanDO);
     }
+
+
 
     private AmzPlacementOption fillPlacementOptionDetail(Integer shopId, String inboundPlanId, PlacementOption option) {
         AmzPlacementOption amzPlacementOption = BeanUtils.toBean(option, AmzPlacementOption.class);
@@ -319,14 +355,27 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
 
 
     @Override
-    public AmzPlacementOption getPlacementOption(AmzPlacementOptionRequest request) {
+    public AmzPlacementDetailResp getPlacementOption(AmzPlacementOptionRequest request) {
         AmzInboundPlanDO inboundPlan = getAmzInboundPlanLocal(request.getShopId(), request.getPlanId());
         if (inboundPlan == null) {
             throw new RuntimeException("inboundPlan not found");
         }
         request.setShopId(inboundPlan.getShopId());
+        if (StringUtils.isEmpty(inboundPlan.getPlacementDetail())) {
+            return null;
+        }
 
-        return JsonUtils.parseObject(inboundPlan.getPlacementDetail(), AmzPlacementOption.class);
+        AmzSetPlacementOptionRequest amzSetPlacementOptionRequest = JsonUtils.parseObject(inboundPlan.getPlacementDetail(), AmzSetPlacementOptionRequest.class);
+        List<AmzTransportationOption> amzTransportationOptions = JsonUtils.parseArray(inboundPlan.getTransportOptions(), AmzTransportationOption.class);
+
+        AmzPlacementDetailResp amzPlacementDetailResp = new AmzPlacementDetailResp();
+        amzPlacementDetailResp.setShipmentDate(amzSetPlacementOptionRequest.getShipmentDate());
+        amzPlacementDetailResp.setShipments(amzSetPlacementOptionRequest.getShipments());
+        amzPlacementDetailResp.setPlacementOption(amzSetPlacementOptionRequest.getPlacementOption());
+        amzPlacementDetailResp.setAmzTransportationOptions(amzTransportationOptions);
+
+
+        return amzPlacementDetailResp;
     }
 
     @Override
@@ -446,7 +495,7 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
         }
         request.setShopId(inboundPlan.getShopId());
 
-        if (StringUtils.isNotEmpty(inboundPlan.getTransportOptionId())) {
+        if (StringUtils.isNotEmpty(inboundPlan.getTransportDetail())) {
             AmzConfirmTransportOptionRequest confirmedTransport = JsonUtils.parseObject(inboundPlan.getTransportOptionId(), AmzConfirmTransportOptionRequest.class);
             Map<String, String> shipmentTransportOptionMap = confirmedTransport.getShipments().stream().collect(Collectors.toMap(item -> item.getShipmentId(), item -> item.getTransportationOptionId()));
             List<AmzShipment> shipmentsToConfirm = request.getShipments().stream().filter(item -> !shipmentTransportOptionMap.containsKey(item.getShipmentId()) || !shipmentTransportOptionMap.get(item.getShipmentId()).equals(item.getTransportationOptionId())).collect(Collectors.toList());
@@ -466,7 +515,7 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
             throw new RuntimeException(response.getMsg());
         }
 
-        inboundPlan.setTransportOptionId(JsonUtils.toJsonString(request));
+        inboundPlan.setTransportDetail(JsonUtils.toJsonString(request));
         inboundPlanMapper.updateById(inboundPlan);
 
     }
@@ -567,7 +616,7 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
         if (inboundPlan == null) {
             throw new RuntimeException("inboundPlan not found");
         }
-        if (StringUtils.isNotEmpty(inboundPlan.getPackingInfo())) {
+        if (StringUtils.isNotEmpty(inboundPlan.getPackingOptions())) {
             return JsonUtils.parseArray(inboundPlan.getPackingOptions(), AmzPackingOption.class);
         } else {
             return List.of();
@@ -587,6 +636,87 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
         return null;
     }
 
+    @Override
+    public List<Box> getShipmentBox(AmzListShipmentBoxRequest request) {
+        ApiResponse<List<Box>> response = amazonFulfillmentService.getInboundPlanBox(new ApiRequest<AmzListShipmentBoxRequest>()
+                .setShopIdInt(request.getShopId())
+                .setCrossPlatform(CrossPlatformEnum.AMAZON)
+                .setRequest(request));
+        if (!response.success()) {
+            throw new RuntimeException(response.getMsg());
+        }
+        return response.getData();
+    }
+
+    @Override
+    public List<AmzShipment> getShipmentLabel(AmzLabelsRequest request) {
+        AmzInboundPlanDO inboundPlan = getAmzInboundPlanLocal(request.getShopId(), request.getPlanId());
+        if (inboundPlan == null) {
+            throw new RuntimeException("inboundPlan not found");
+        }
+        if (StringUtils.isNotEmpty(inboundPlan.getShipmentDetail())) {
+            return JsonUtils.parseArray(inboundPlan.getShipmentDetail(), AmzShipment.class);
+        } else {
+            return this.generateShipmentLabel(request);
+        }
+
+    }
+
+
+    /**
+     * `ABANDONED`, `CANCELLED`, `CHECKED_IN`, `CLOSED`, `DELETED`, `DELIVERED`, `IN_TRANSIT`, `MIXED`, `READY_TO_SHIP`, `RECEIVING`, `SHIPPED`, `UNCONFIRMED`, `WORKING`
+     */
+    private static final List<String> SHIPMENT_STATUS_Labeled = List.of("DELIVERED", "READY_TO_SHIP", "RECEIVING", "SHIPPED", "WORKING");
+    public List<AmzShipment> generateShipmentLabel(AmzLabelsRequest request) {
+        AmzInboundPlanDO inboundPlan = getAmzInboundPlanLocal(request.getShopId(), request.getPlanId());
+        if (inboundPlan == null) {
+            throw new RuntimeException("inboundPlan not found");
+        }
+
+        AmzPlacementDetailResp placementOption = getPlacementOption(new AmzPlacementOptionRequest().setShopId(inboundPlan.getShopId()).setPlanId(inboundPlan.getPlanId()));
+        for (AmzShipment shipment : placementOption.getShipments()) {
+            Shipment shipmentDetail = this.getShipment(inboundPlan.getShopId(), inboundPlan.getPlanId(), shipment.getShipmentId());
+//            if (shipmentDetail == null || !SHIPMENT_STATUS_Labeled.contains(shipment.getStatus())) {
+//                log.warn("generateShipmentLabel, invalid shipment: {} ", shipment);
+//                continue;
+//            }
+
+            shipment.setShipmentConfirmationId(shipmentDetail.getShipmentConfirmationId());
+
+            List<Box> boxes = this.getShipmentBox((AmzListShipmentBoxRequest) new AmzListShipmentBoxRequest().setShipmentId(shipmentDetail.getShipmentId()).setPlanId(inboundPlan.getPlanId()).setShopId(inboundPlan.getShopId()));
+            if (CollectionUtils.isEmpty(boxes)) {
+                log.warn("generateShipmentLabel, invalid boxes: {} ", boxes);
+                continue;
+            }
+
+            for (Box box : boxes) {
+                AmzBox amzBox = BeanUtils.toBean(box, AmzBox.class);
+                shipment.addBox(amzBox);
+                AmzLabelsRequest boxLabelRequest = new AmzLabelsRequest()
+                        .setLabelType("UNIQUE")
+                        .setShipmentId(shipment.getShipmentConfirmationId())
+                        .setBoxIds(List.of(box.getBoxId()))
+                        .setPageType("PackageLabel_Thermal_NonPCP");
+
+                ApiResponse<String> labelResponse = amazonFulfillmentService.getShipmentLabels(new ApiRequest<AmzLabelsRequest>()
+                        .setShopIdInt(inboundPlan.getShopId())
+                        .setCrossPlatform(CrossPlatformEnum.AMAZON)
+                        .setRequest(boxLabelRequest));
+                if (!labelResponse.success()) {
+                    log.warn("generateShipmentLabel, getShipmentLabels failed, shipmentId: {}, boxId: {}, response: {}", shipment.getShipmentConfirmationId(), box.getBoxId(), labelResponse);
+                    continue;
+                }
+
+                String fileUrl = fileService.createFile(labelResponse.getData(), box.getBoxId() + ".pdf", inboundPlan.getPlanId());
+                amzBox.setLabelUrl(fileUrl);
+            }
+        }
+
+        inboundPlan.setShipmentDetail(JsonUtils.toJsonString(placementOption.getShipments()));
+        inboundPlanMapper.updateById(inboundPlan);
+        return placementOption.getShipments();
+    }
+
 
     private List<Item> listPackingGroupItems(Integer shopId, String inboundPlanId, String packingGroupId) {
         ApiResponse<List<Item>> response = amazonFulfillmentService.listPackingGroups(new ApiRequest<AmzListPackingGroupItemRequest>()
@@ -600,7 +730,6 @@ public class AmzFulfillmentServiceImpl implements AmzFulfillmentService {
         }
         return response.getData();
     }
-
 
     private InboundPlan getInboundPlan(Integer shopId, String inboundPlanId) {
         ApiResponse<InboundPlan> response = amazonFulfillmentService.getInboundPlan(new ApiRequest<String>()

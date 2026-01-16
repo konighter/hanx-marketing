@@ -14,10 +14,20 @@ public class AmzSetPlacementOptionRequest {
      * 入仓计划ID
      */
     private String planId;
+
+    /**
+     * 发货日期
+     */
+    private String shipmentDate;
     /**
      * 入仓计划选项ID
      */
     private String placementOptionId;
+
+    /**
+     * 入仓计划选项
+     */
+    private AmzPlacementOption placementOption;
     /**
      * 入仓计划选项中的货件列表
      */

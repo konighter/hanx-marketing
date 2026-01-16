@@ -104,7 +104,7 @@ export const AmzInboundApi = {
 
   getPlacementInfo: async (data: any) => {
     return await request.post({
-      url: `/erplus/amz-fulfill/get-placement-info`,
+      url: `/erplus/amz-fulfill/get-placement-option`,
       data
     })
   },
@@ -140,10 +140,26 @@ export const AmzInboundApi = {
   },
 
   // 7. Get Labels
-  getLabels: async (planId: string, shipmentId: string, params: any) => {
-    return await request.get({
-      url: `/erplus/amz-fulfill/plans/${planId}/shipments/${shipmentId}/labels`,
-      params
+  getLabels: async (data: any) => {
+    return await request.post({
+      url: `/erplus/amz-fulfill/get-labels`,
+      data
+    })
+  },
+
+  // 8. Save Tracking Details
+  saveTrackingDetails: async (data: any) => {
+    return await request.post({
+      url: `/erplus/amz-fulfill/save-tracking-details`,
+      data
+    })
+  },
+
+  // 9. Confirm Delivery
+  confirmDelivery: async (data: any) => {
+    return await request.post({
+      url: `/erplus/amz-fulfill/confirm-delivery`,
+      data
     })
   },
 

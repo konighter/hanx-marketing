@@ -72,7 +72,7 @@ public class StockShipmentController {
 
 
     @PostMapping("/shipment/page")
-    public CommonResult<?> getShipmentPlanPage(StockShipmentPlanPageReqVO reqVO) {
+    public CommonResult<?> getShipmentPlanPage(@RequestBody StockShipmentPlanPageReqVO reqVO) {
         return success(shipmentService.getShipmentPlanPage(reqVO));
     }
 

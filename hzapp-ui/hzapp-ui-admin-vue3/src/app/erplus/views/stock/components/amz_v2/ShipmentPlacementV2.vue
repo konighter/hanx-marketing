@@ -22,9 +22,10 @@
             </el-form-item>
             <el-form-item label="计划发货时间" class="mb-0">
               <el-date-picker v-model="shipmentDate" type="datetime" placeholder="选择发货时间" class="w-full"
-                format="YYYY-MM-DD HH:mm" value-format="YYYY-MM-DD" :disabled-date="disabledDate" />
+                format="YYYY-MM-DD HH:mm" value-format="YYYY-MM-DD" :disabled-date="disabledDate"
+                :disabled="readonly" />
             </el-form-item>
-            <el-form-item class="mb-0">
+            <el-form-item class="mb-0" v-if="!readonly">
               <el-button type="primary" @click="handleTransportGenerate" plain :loading="generating">
                 <Icon icon="ep:list" class="mr-1" />获取物流配置
               </el-button>
@@ -34,7 +35,7 @@
 
       </div>
       <div class="flex gap-2 items-center">
-        <el-form-item>
+        <el-form-item v-if="!readonly">
           <el-button type="primary" plain @click="openPlacementDialog">
             <Icon icon="ep:list" class="mr-1" /> 选择/更换分仓方案
           </el-button>
@@ -84,19 +85,22 @@
               v-if="Object.keys(transportationData).length > 0">
               <div class="grid grid-cols-3 gap-4 mb-0">
                 <el-form-item label="运输方式" class="mb-0">
-                  <el-select v-model="shipment.shippingMode" placeholder="请选择运输方式" class="w-full" clearable>
+                  <el-select v-model="shipment.shippingMode" placeholder="请选择运输方式" class="w-full" clearable
+                    :disabled="readonly">
                     <el-option v-for="mode in SHIPPING_MODES" :key="mode.value" :label="mode.label"
                       :value="mode.value" />
                   </el-select>
                 </el-form-item>
                 <el-form-item label="承运商" class="mb-0">
-                  <el-select v-model="shipment.shippingSolution" placeholder="请选择承运商类型" class="w-full" clearable>
+                  <el-select v-model="shipment.shippingSolution" placeholder="请选择承运商类型" class="w-full" clearable
+                    :disabled="readonly">
                     <el-option v-for="sol in SHIPPING_SOLUTIONS" :key="sol.value" :label="sol.label"
                       :value="sol.value" />
                   </el-select>
                 </el-form-item>
                 <el-form-item label="送货窗口" class="mb-0" prop="deliveryWindowOptionId">
-                  <el-select v-model="shipment.deliveryWindowOptionId" placeholder="请选择送货窗口" class="w-full" clearable>
+                  <el-select v-model="shipment.deliveryWindowOptionId" placeholder="请选择送货窗口" class="w-full" clearable
+                    :disabled="readonly">
                     <el-option v-for="window in getDeliveryWindows(shipment)" :key="window.value" :label="window.label"
                       :value="window.value" class="!h-auto !py-2">
                       <div class="flex justify-between items-center w-full">
@@ -113,7 +117,7 @@
 
               <el-form-item label="运输渠道" prop="transportationOptionId">
                 <el-select v-model="shipment.transportationOptionId" placeholder="选择运输选项" class="w-full"
-                  @change="onTransportChange(shipment)" clearable>
+                  @change="onTransportChange(shipment)" clearable :disabled="readonly">
                   <el-option v-for="option in getFilteredTransportOptions(shipment)" :key="option.value"
                     :label="option.label" :value="option.value" class="!h-auto !py-2">
                     <div class="flex flex-col gap-1">
@@ -166,9 +170,8 @@
 
         <!-- Footer Actions -->
         <div class="flex justify-center gap-4 mt-8 pb-10">
-          <el-button size="large" @click="$emit('back')">上一步</el-button>
-          <el-button type="primary" size="large" :disabled="!allShipmentsConfirmed" :loading="submitting"
-            @click="submitPlacement">
+          <el-button type="primary" :disabled="!allShipmentsConfirmed" :loading="submitting" @click="submitPlacement"
+            v-if="!readonly">
             确认并提交分仓方案
           </el-button>
         </div>
@@ -178,8 +181,9 @@
       <div v-else-if="!loading" class="empty-state p-20 text-center bg-white rounded-lg border-2 border-dashed">
         <Icon icon="ep:map-location" :size="64" class="text-gray-200 mb-4" />
         <h3 class="text-gray-500 font-bold">尚未加载分仓方案</h3>
-        <p class="text-gray-400 text-sm mt-2">请点击右上角按钮以生成或选择一个分仓方案</p>
-        <el-button type="primary" class="mt-6" @click="handleGenerate" :loading="generating">生成分仓方案</el-button>
+        <p class="text-gray-400 text-sm mt-2">{{ readonly ? '尚未配置分仓方案' : '请点击右上角按钮以生成或选择一个分仓方案' }}</p>
+        <el-button type="primary" class="mt-6" @click="handleGenerate" :loading="generating"
+          v-if="!readonly">生成分仓方案</el-button>
       </div>
     </div>
 
@@ -203,6 +207,10 @@ const props = defineProps({
     required: true
   },
   active: {
+    type: Boolean,
+    default: false
+  },
+  readonly: {
     type: Boolean,
     default: false
   }
@@ -389,12 +397,16 @@ const submitPlacement = async () => {
     submitting.value = true
     await AmzInboundApi.setPlacementInformation({
       planId: planId.value,
+      shipmentDate: shipmentDate.value,
       placementOptionId: selectedPlacementOptionId.value,
+      placementOption: selectedPlacementOption.value,
       shipments: confirmedShipments.value
     })
 
     ElMessage.success('分仓方案提交成功')
+    console.log('ShipmentPlacementV2: emitting next event')
     emit('next')
+    console.log('ShipmentPlacementV2: next event emitted')
   } catch (error) {
     if (error !== 'cancel') {
       ElMessage.error('提交失败，请重试')
@@ -411,14 +423,22 @@ const init = async () => {
 
   try {
     // 尝试获取已保存的分仓信息
-    const placementInfo = null
-    //  await AmzInboundApi.getPlacementInfo({ planId: planId.value })
+    const placementInfo = await AmzInboundApi.getPlacementInfo({ planId: planId.value })
 
     if (placementInfo) {
-      selectedPlacementOptionId.value = placementInfo.placementOptionId
-      selectedPlacementOption.value = placementInfo
+      selectedPlacementOptionId.value = placementInfo.placementOption?.placementOptionId
+      selectedPlacementOption.value = placementInfo.placementOption
+      shipmentDate.value = placementInfo.shipmentDate
       placementOptionConfirmed.value = true
       confirmedShipments.value = placementInfo.shipments || []
+
+
+      const dataMap: Record<string, any> = {}
+      placementInfo.amzTransportationOptions.forEach((item: any) => {
+        dataMap[item.shipmentId] = item
+      })
+      transportationData.value = dataMap
+
     } else {
       // 如果没有已保存的信息，尝试获取可用方案列表
       const options = await AmzInboundApi.listPlacementOptions({ planId: planId.value })

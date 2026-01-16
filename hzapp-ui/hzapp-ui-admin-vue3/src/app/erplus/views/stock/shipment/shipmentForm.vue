@@ -288,15 +288,18 @@ const doSubmit = async (type: 'save' | 'submit') => {
         console.log(`${type === 'save' ? 'Saving' : 'Submitting'} data:`, formData)
 
         if (type === 'save') {
-          const data = await shipmentApi.saveShipment(formData)
-          formData.id = data.id
+          const res = await shipmentApi.saveShipment(formData)
+
+          formData.id = res
         } else {
           await shipmentApi.submitShipment(formData)
         }
 
         ElMessage.success(type === 'save' ? '保存成功' : '提交成功')
         emit('success')
-        close()
+        if (type === 'submit') {
+          close()
+        }
       } catch (error) {
         ElMessage.error(type === 'save' ? '保存失败' : '提交失败')
       } finally {

@@ -9,6 +9,7 @@ public class AmzSetPackingInfoRequest {
 
     private Integer shopId;
     private String planId;
+
     private AmzPackingOption option;
 
 }
