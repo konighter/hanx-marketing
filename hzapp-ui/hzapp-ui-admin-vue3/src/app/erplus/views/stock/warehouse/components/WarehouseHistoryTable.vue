@@ -3,11 +3,17 @@
     <div class="flex justify-between items-center mb-10px flex-shrink-0">
       <div class="flex gap-2">
         <el-select v-model="queryParams.type" placeholder="记录类型" clearable class="!w-120px" size="small">
-          <el-option label="全部" :value="undefined" />
+          <el-option label="全部" value="" />
           <el-option label="采购入库" :value="10" />
           <el-option label="出库发货" :value="20" />
           <el-option label="调拨变动" :value="30" />
         </el-select>
+        <el-input v-model="queryParams.sellerSku" placeholder="搜索 SKU" clearable class="!w-180px" size="small"
+          @keyup.enter="handleSearch">
+          <template #prefix>
+            <Icon icon="ep:search" />
+          </template>
+        </el-input>
         <el-date-picker v-model="queryParams.timeRange" type="daterange" size="small" range-separator="-"
           start-placeholder="开始" end-placeholder="结束" class="!w-240px" value-format="YYYY-MM-DD" />
         <el-button type="primary" size="small" @click="handleSearch">查询</el-button>
@@ -15,6 +21,9 @@
     </div>
 
     <el-table v-loading="loading" :data="list" stripe border class="flex-1" height="100%">
+      <template #empty>
+        <el-empty description="暂无历史记录" />
+      </template>
       <el-table-column label="操作时间" prop="createTime" width="160" :formatter="dateFormatter" />
       <el-table-column label="操作类型" prop="typeLabel" width="100" align="center">
         <template #default="{ row }">
@@ -42,9 +51,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, onMounted } from 'vue'
-import { Icon } from '@/components/Icon'
 import { dateFormatter } from '@/utils/formatTime'
+import { InventoryBillApi } from '@/app/erplus/api/stock/inventoryBill'
 
 defineOptions({ name: 'WarehouseHistoryTable' })
 
@@ -60,6 +68,7 @@ const queryParams = reactive({
   pageSize: 20,
   type: undefined,
   timeRange: [],
+  sellerSku: undefined,
 })
 
 const getTypeTag = (type: number) => {
@@ -72,17 +81,67 @@ const getList = async () => {
   if (!props.warehouseId) return
   loading.value = true
   try {
-    // Mock simulation
-    await new Promise(resolve => setTimeout(resolve, 400))
-    list.value = [
-      { id: 101, createTime: new Date().getTime() - 86400000, type: 10, typeLabel: '采购入库', sellerSku: 'SKU-001', count: 100, afterCount: 150, billCode: 'PO-20240115-01', remark: '正品入库' },
-      { id: 102, createTime: new Date().getTime() - 43200000, type: 20, typeLabel: '出库发货', sellerSku: 'SKU-001', count: -20, afterCount: 130, billCode: 'SO-20240115-05', remark: '订单发货' },
-      { id: 103, createTime: new Date().getTime() - 3600000, type: 30, typeLabel: '调拨变动', sellerSku: 'SKU-002', count: -10, afterCount: 40, billCode: 'TR-20240115-02', remark: '移仓调拨' },
-    ]
-    total.value = 3
+    const params = {
+      ...queryParams,
+      warehouseId: props.warehouseId,
+    }
+
+    // 如果指定了 SKU，则查询明细分页；否则查询账单分页（按单展示）
+    let data
+    let isItemView = false
+
+    if (params.sellerSku) {
+      data = await InventoryBillApi.getInventoryBillItemPage(params)
+      isItemView = true
+    } else {
+      data = await InventoryBillApi.getInventoryBillPage(params)
+    }
+
+    list.value = data.list.map(record => {
+      // 这里的 count 应该是该仓库对应的变动
+      // 简单逻辑：如果是出库（fromId=warehouseId），数量为负；如果是入库（toId=warehouseId），数量为正
+      // 注意：明细查询返回的 record.fromId / toId 是 flattened 后的，逻辑一致
+      const direction = record.fromId === props.warehouseId ? -1 : 1
+
+      if (isItemView) {
+        // 明细视图：list item 是 InventoryBillItemRespVO (Flat)
+        return {
+          ...record,
+          typeLabel: getBillTypeLabel(record.type),
+          count: (record.qty || 0) * direction,
+          afterCount: record.snapshotQty || 0
+        }
+      } else {
+        // 账单视图：list item 是 InventoryBillDo (Header)，可能包含 items
+        // 如果 WarehouseHistoryTable 指向的是某个仓库的所有变动，
+        // 那么理想情况下，后端应该提供一个 InventoryBillItem 的分页查询，带上 Header 信息。
+        // 这里为了兼容旧逻辑，我们取 items 的第一个作为代表（或者假设后端做了平铺）
+        const firstItem = record.items?.[0] || {}
+        return {
+          ...record,
+          typeLabel: getBillTypeLabel(record.type),
+          sellerSku: record.sellerSku || firstItem.sellerSku || '-',
+          count: (record.totalCount || firstItem.count || 0) * direction, // Header 通常用 totalCount
+          afterCount: record.snapshotQty || firstItem.snapshotQty || 0 // Header 没有 snapshotQty，取 item 的
+        }
+      }
+    })
+    total.value = data.total
+  } catch (error) {
+    console.error(error)
   } finally {
     loading.value = false
   }
+}
+
+const getBillTypeLabel = (type: number) => {
+  const map: Record<number, string> = {
+    10: '采购入库',
+    20: '出库发货',
+    30: '调拨变动',
+    40: '库存调整'
+  }
+  return map[type] || '未知'
 }
 
 const handleSearch = () => {
@@ -95,6 +154,7 @@ watch(() => props.warehouseId, (newId) => {
     queryParams.pageNo = 1
     queryParams.type = undefined
     queryParams.timeRange = []
+    queryParams.sellerSku = undefined
     getList()
   }
 })

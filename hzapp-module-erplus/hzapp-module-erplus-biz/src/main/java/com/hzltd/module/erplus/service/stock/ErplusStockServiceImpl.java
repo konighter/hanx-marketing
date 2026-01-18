@@ -40,7 +40,6 @@ public class ErplusStockServiceImpl extends ErpStockServiceImpl implements Erplu
     @Resource
     private ErplusCrossProductService crossProductService;
 
-
     @Override
     public List<ErpTransferAvailableRespVO> getTransferAvailableStock(ErpTransferAvailableReqVO reqVO) {
         if (reqVO.getWarehouseId().equals(reqVO.getInboundWarehouseId())) {
@@ -50,16 +49,21 @@ public class ErplusStockServiceImpl extends ErpStockServiceImpl implements Erplu
         ErpWarehouseDO inboundWarehouse = warehouseService.getWarehouse(reqVO.getInboundWarehouseId());
 
         // 获得出库仓库的库存
-        List<ErpWarehouseInventoryDO> warehouseInventoryList = getWarehouseInventoryList(reqVO.getWarehouseId(), reqVO.getSkus());
+        List<ErpWarehouseInventoryDO> warehouseInventoryList = getWarehouseInventoryList(reqVO.getWarehouseId(),
+                reqVO.getSkus());
 
         if (WarehouseTypeEnum.PLATFORM.getValue().equals(inboundWarehouse.getType())) {
             List<String> skus = warehouseInventoryList.stream().map(ErpWarehouseInventoryDO::getSellerSku).toList();
             // 筛选已在平台上架的产品
-            List<CrossProductDO> crossProducts = crossProductService.getBasicCrossProductBySkus(inboundWarehouse.getPlatformId(), inboundWarehouse.getShopId(), inboundWarehouse.getMarketId(), skus);
+            List<CrossProductDO> crossProducts = crossProductService.getBasicCrossProductBySkus(
+                    inboundWarehouse.getPlatformId(), inboundWarehouse.getShopId(), inboundWarehouse.getMarketId(),
+                    skus);
             // 筛选已在平台上架的产品的SKU
-            Map<String, CrossProductDO> availableSkus = crossProducts.stream().collect(Collectors.toMap(CrossProductDO::getSellerSkuCode, Function.identity()));
+            Map<String, CrossProductDO> availableSkus = crossProducts.stream()
+                    .collect(Collectors.toMap(CrossProductDO::getSellerSkuCode, Function.identity()));
 
-            warehouseInventoryList = warehouseInventoryList.stream().filter(inventory -> availableSkus.containsKey(inventory.getSellerSku())).toList();
+            warehouseInventoryList = warehouseInventoryList.stream()
+                    .filter(inventory -> availableSkus.containsKey(inventory.getSellerSku())).toList();
 
             return BeanUtils.toBean(warehouseInventoryList, ErpTransferAvailableRespVO.class, (respVO) -> {
                 CrossProductDO crossProduct = availableSkus.get(respVO.getSellerSku());
@@ -72,14 +76,12 @@ public class ErplusStockServiceImpl extends ErpStockServiceImpl implements Erplu
         return BeanUtils.toBean(warehouseInventoryList, ErpTransferAvailableRespVO.class);
     }
 
-
     private List<ErpWarehouseInventoryDO> getWarehouseInventoryList(Long warehouseId, List<String> skus) {
 
         return warehouseInventoryMapper.selectList(new LambdaQueryWrapperX<ErpWarehouseInventoryDO>()
                 .eq(ErpWarehouseInventoryDO::getWarehouseId, warehouseId)
                 .inIfPresent(ErpWarehouseInventoryDO::getSellerSku, skus));
     }
-
 
     @Override
     public PageResult<ErpWarehouseInventoryDO> getWarehouseInventoryPage(ErpWarehouseInventoryPageReqVO reqVO) {

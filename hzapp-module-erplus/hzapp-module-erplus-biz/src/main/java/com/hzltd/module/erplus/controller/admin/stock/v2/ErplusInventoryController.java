@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.controller.admin.stock;
+package com.hzltd.module.erplus.controller.admin.stock.v2;
 
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpTransferAvailableReqVO;

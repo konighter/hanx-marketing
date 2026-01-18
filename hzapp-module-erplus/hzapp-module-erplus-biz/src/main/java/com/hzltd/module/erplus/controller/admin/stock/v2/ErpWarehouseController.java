@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.controller.admin.stock;
+package com.hzltd.module.erplus.controller.admin.stock.v2;
 
 import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
 import com.hzltd.framework.common.enums.CommonStatusEnum;

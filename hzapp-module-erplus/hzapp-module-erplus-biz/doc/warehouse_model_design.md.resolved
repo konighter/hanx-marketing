@@ -1,0 +1,221 @@
+# Warehouse Transaction Model Design Analysis
+
+This document analyzes the architectural choice between a **Flat SKU-level** history and a **Two-Layer (Header/Detail)** structure for inventory movements.
+
+## 1. Design Comparison
+
+### Option A: Flat Model (SKU-Centric)
+
+Every row in the history represents a change for a single SKU.
+
+- **Data Structure**: `[id, warehouse_id, sku, change_qty, after_qty, bill_type, bill_code, operator, timestamp]`
+- **Pros**:
+  - Extremely fast for "Show me the inventory history for SKU X".
+  - Simple API (single table query).
+- **Cons**:
+  - Data redundancy: If one transfer has 50 SKUs, the `bill_code`, `timestamp`, and `operator` are repeated 50 times.
+  - Difficulty in Atomic Auditing: Hard to visualize the "intent" of a multi-item shipment as a single event.
+
+### Option B: Two-Layer Model (Document-Centric)
+
+Logic is split into a **Bill Header** (The event) and **Bill Details** (The items).
+
+- **Data Structure**:
+  - **Header**: `[id, bill_code, type, warehouse_id, target_warehouse, operator, status, created_at]`
+  - **Details**: `[id, header_id, sku, qty, batch_no]`
+- **Pros**:
+  - **No Redundancy**: Metadata is stored once per transaction.
+  - **Atomic Integrity**: Business logic (like "Shipment Approved") applies to the Header, ensuring all items move together.
+  - **UI/UX**: Allows for a "Master-Detail" view (Click a row to expand items).
+- **Cons**:
+  - Requires `JOIN` or two-step queries for full history.
+  - Slightly more complex frontend state management.
+
+---
+
+## 2. Recommended Model for ERP+
+
+Given the complexity of E-commerce ERP operations (Shipments, Transfers, Returns), a **Two-Layer Model** is objectively superior for scalability.
+
+### Proposed Entity Relationship (Unified Flow Model)
+
+```mermaid
+erDiagram
+    INVENTORY_BILL ||--|{ INVENTORY_BILL_ITEM : contains
+    ENTITY ||--o{ INVENTORY_BILL : "from/to"
+    PRODUCT ||--o{ INVENTORY_BILL_ITEM : "sku"
+
+    INVENTORY_BILL {
+        Long id
+        String bill_code
+        Integer type "10:In, 20:Out, 30:Trans, 40:Adj"
+        String from_type "WH, VENDOR, CUST, VIRTUAL"
+        Long from_id
+        String to_type "WH, VENDOR, CUST, VIRTUAL"
+        Long to_id
+        String ref_code "Original Doc No"
+        Long operator_id
+        DateTime created_at
+    }
+
+    INVENTORY_BILL_ITEM {
+        Long id
+        Long bill_id
+        String seller_sku
+        Integer qty
+        Integer snapshot_qty
+    }
+```
+
+## 3. Implementation Analysis
+
+### A. API Design
+
+To maintain high performance while supporting the 2-layer UI, the API should return:
+
+1. **`getBillPage`**: Returns headers with basic stats (e.g., `skuCount`, `totalQty`).
+2. **`getBillDetail`**: Returns full item list for a specific bill entry.
+
+### B. UI Representation
+
+The **Inventory Records** tab should be redesigned as:
+
+- **Level 1**: A list of Transactions (Bills).
+- **Level 2**:
+  - **Option 1**: Expandable rows (Table within a Table).
+  - **Option 2**: A side-drawer or dialog that opens when a transaction is clicked.
+  - **Option 3**: A hybrid list where each transaction is a "block" containing a mini-table of items.
+
+## 4. Conclusion
+
+For **HZApp-ERPlus**, the **Two-Layer (Document-Centric)** model is recommended because:
+
+1. It mirrors existing [Shipment](file:///Users/work/proj/repo/hzapp/hzapp-erplus/hzapp-ui/hzapp-ui-admin-vue3/src/app/erplus/api/stock/shipment.ts#31-34) logic (Shipment Header -> MSKUs).
+2. It provides much better traceability for auditing batches of inventory.
+3. It scales better for "Inbound from Purchase" where hundreds of SKUs might arrive at once.
+
+**Verdict**: Proceed with a **Two-Layer Model** but implement **Flat Query Views** (using Database View or SQL Join) for specific search requirements (e.g., "Find all bills containing SKU X").
+
+## 6. Concurrent Accuracy (MySQL 8 Pattern)
+
+Since **MySQL 8 does not support the `RETURNING` clause**, the following "Pessimistic Locking" pattern is required to ensure the `snapshot_qty` is 100% accurate:
+
+```sql
+-- 必须在事务内执行
+START TRANSACTION;
+
+-- 1. 锁定并查询当前最新库存 (避免并发漂移)
+SELECT total_stock FROM stock_inventory
+WHERE sku = 'SKU-001' AND warehouse_id = 1
+FOR UPDATE;
+
+-- 2. 计算新库存
+-- SET @new_stock = current_stock + 10;
+
+-- 3. 更新主库存表
+UPDATE stock_inventory SET total_stock = @new_stock
+WHERE sku = 'SKU-001' AND warehouse_id = 1;
+
+-- 4. 将计算后的 @new_stock 存入流水表的 snapshot_qty
+INSERT INTO stock_inventory_bill_item (bill_id, seller_sku, qty, snapshot_qty)
+VALUES (100, 'SKU-001', 10, @new_stock);
+
+COMMIT;
+```
+
+> [!IMPORTANT]
+> 绝对不要在应用代码级计算 `snapshot_qty` 后直接写入（如 `old_stock + qty`），必须直接使用数据库在锁定状态下更新后的结果，以防止高并发下的数据覆盖。
+
+## 5. SQL Implementation (Unified Model)
+
+```sql
+-- 库存账单主表 (Header) - 统一流转模型
+CREATE TABLE `stock_inventory_bill` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '账单ID',
+    `bill_code` VARCHAR(64) NOT NULL COMMENT '单据编号',
+    `type` TINYINT NOT NULL COMMENT '单据大类 (10:入, 20:出, 30:调, 40:平)',
+
+    -- 来源方向 (Polymorphic From)
+    `from_type` VARCHAR(16) DEFAULT NULL COMMENT '来源类型 (WH, VENDOR, CUST, VIRTUAL)',
+    `from_id` BIGINT DEFAULT NULL COMMENT '来源ID (如 仓库ID / 合作伙伴ID)',
+
+    -- 去向方向 (Polymorphic To)
+    `to_type` VARCHAR(16) DEFAULT NULL COMMENT '去向类型 (WH, VENDOR, CUST, VIRTUAL)',
+    `to_id` BIGINT DEFAULT NULL COMMENT '去向ID (如 仓库ID / 合作伙伴ID)',
+
+    -- 业务关联
+    `ref_type` VARCHAR(32) DEFAULT NULL COMMENT '业务前置单据类型',
+    `ref_code` VARCHAR(64) DEFAULT NULL COMMENT '关联单据号 (PO / SO / SHIP)',
+
+    `operator_id` BIGINT NOT NULL COMMENT '操作人ID',
+    `status` TINYINT DEFAULT 10 COMMENT '状态 (10:完成, 90:作废)',
+    `remark` VARCHAR(512) DEFAULT NULL COMMENT '备注',
+
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_bill_code` (`bill_code`),
+    KEY `idx_from` (`from_type`, `from_id`),
+    KEY `idx_to` (`to_type`, `to_id`),
+    KEY `idx_ref` (`ref_type`, `ref_code`),
+    KEY `idx_created_at` (`created_at`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='库存账单主表';
+
+-- 库存账单明细表 (Detail)
+CREATE TABLE `stock_inventory_bill_item` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `bill_id` BIGINT NOT NULL,
+    `seller_sku` VARCHAR(128) NOT NULL,
+    `qty` INT NOT NULL COMMENT '变动数量',
+    `snapshot_qty` INT DEFAULT NULL COMMENT '期末存',
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    KEY `idx_bill_id` (`bill_id`),
+    KEY `idx_sku` (`seller_sku`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='库存账单明细表';
+```
+
+## 7. Periodic Inventory Check (盘点模型)
+
+盘点单（Inventory Check）用于定期核对系统库存与仓库实物。为了保证过程严谨，设计为“任务-明细”两层结构。
+
+### 业务流建议：
+1. **生成任务**：选定仓库，记录该时刻系统库存快照（`book_qty`）。
+2. **仓库实盘**：录入仓库实际清点数量（`check_qty`）。
+3. **差异确认**：系统自动计算 `diff_qty = check_qty - book_qty`。
+4. **审核过账**：审核通过后，系统自动生成一条类型为 `40:平 (Adj)` 的 `stock_inventory_bill` 流水，补齐库存。
+
+### SQL Implementation
+
+```sql
+-- 盘点任务主表
+CREATE TABLE `erplus_inventory_check` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `check_code` VARCHAR(64) NOT NULL COMMENT '盘点单号',
+    `warehouse_id` BIGINT NOT NULL COMMENT '盘点仓库 ID',
+    `status` TINYINT DEFAULT 1 COMMENT '状态 (1: 进行中, 10: 待审核, 20: 已过账, 90: 已取消)',
+    `operator_id` BIGINT NOT NULL COMMENT '创建者 ID',
+    `check_user_id` BIGINT DEFAULT NULL COMMENT '盘点执行人 ID',
+    `remark` VARCHAR(512) DEFAULT NULL COMMENT '备注',
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `uk_check_code` (`check_code`),
+    KEY `idx_warehouse` (`warehouse_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='库存盘点表';
+
+-- 盘点明细表
+CREATE TABLE `erplus_inventory_check_item` (
+    `id` BIGINT NOT NULL AUTO_INCREMENT,
+    `check_id` BIGINT NOT NULL COMMENT '所属盘点任务 ID',
+    `seller_sku` VARCHAR(128) NOT NULL COMMENT 'SKU',
+    `book_qty` INT NOT NULL DEFAULT 0 COMMENT '账面数量 (时刻快照)',
+    `check_qty` INT DEFAULT NULL COMMENT '盘点数量 (实清数量)',
+    `diff_qty` INT GENERATED ALWAYS AS (check_qty - book_qty) VIRTUAL COMMENT '差异数量',
+    `adjust_bill_id` BIGINT DEFAULT NULL COMMENT '关联的库存流水 ID',
+    `remark` VARCHAR(256) DEFAULT NULL COMMENT '备注',
+    PRIMARY KEY (`id`),
+    KEY `idx_check_id` (`check_id`),
+    KEY `idx_sku` (`seller_sku`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='库存盘点明细表';
+```
