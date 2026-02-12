@@ -41,7 +41,7 @@ public class AmzAdvLwaService {
     }
 
     private String refreshAccessToken(AuthorizationModel authModel, String cacheKey) {
-        log.info("Refreshing Amazon Adv LWA token for shop: {}", authModel.getShopModel().getShopName());
+        log.info("Refreshing Amazon Adv LWA token for shop: {}", authModel.getShopModel().getId());
 
         RequestBody body = new FormBody.Builder()
                 .add("grant_type", "refresh_token")
