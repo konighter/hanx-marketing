@@ -1,0 +1,13 @@
+
+
+# SBKPI
+
+## Enum
+
+
+* `CLICKS` (value: `"CLICKS"`)
+
+* `TOP_OF_SEARCH_IMPRESSION_SHARE` (value: `"TOP_OF_SEARCH_IMPRESSION_SHARE"`)
+
+
+

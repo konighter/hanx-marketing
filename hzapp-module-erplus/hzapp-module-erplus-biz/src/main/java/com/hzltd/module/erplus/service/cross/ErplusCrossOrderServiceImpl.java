@@ -145,7 +145,7 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
             crossOrderItemDO = CrossOrderConvert.INSTANCE.update(orderItemModel, crossOrderItemDO);
         }
 
-        dealOrderItemFee(crossOrderItemDO);
+//        dealOrderItemFee(crossOrderItemDO);
         crossOrderItemMapper.insertOrUpdate(crossOrderItemDO);
 
     }

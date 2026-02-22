@@ -1,0 +1,14 @@
+
+
+# ResponsiveEcommerceLandingPage
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**landingPageType** | **ResponsiveEcommerceLandingPageType** |  |  |
+|**landingPageUrl** | **String** | The URL of landing page where the ad directs. |  |
+
+
+

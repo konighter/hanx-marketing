@@ -1,0 +1,25 @@
+
+
+# BidStrategy
+
+## Enum
+
+
+* `MANUAL` (value: `"MANUAL"`)
+
+* `NEW_TO_BRAND` (value: `"NEW_TO_BRAND"`)
+
+* `PRIORITIZE_KPI_TARGET` (value: `"PRIORITIZE_KPI_TARGET"`)
+
+* `RULE_BASED` (value: `"RULE_BASED"`)
+
+* `SALES_DOWN_ONLY` (value: `"SALES_DOWN_ONLY"`)
+
+* `SALES_UP_AND_DOWN` (value: `"SALES_UP_AND_DOWN"`)
+
+* `SPEND_BUDGET_IN_FULL` (value: `"SPEND_BUDGET_IN_FULL"`)
+
+* `USE_CAMPAIGN_STRATEGY` (value: `"USE_CAMPAIGN_STRATEGY"`)
+
+
+

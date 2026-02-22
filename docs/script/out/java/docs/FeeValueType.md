@@ -1,0 +1,15 @@
+
+
+# FeeValueType
+
+## Enum
+
+
+* `FIXED_CPM` (value: `"FIXED_CPM"`)
+
+* `PERCENTAGE_OF_BUDGET` (value: `"PERCENTAGE_OF_BUDGET"`)
+
+* `PERCENTAGE_OF_SUPPLY_COST` (value: `"PERCENTAGE_OF_SUPPLY_COST"`)
+
+
+

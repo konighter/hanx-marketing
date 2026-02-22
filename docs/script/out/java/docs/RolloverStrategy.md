@@ -1,0 +1,15 @@
+
+
+# RolloverStrategy
+
+## Enum
+
+
+* `CUMULATIVE_BUDGET_ROLLOVER` (value: `"CUMULATIVE_BUDGET_ROLLOVER"`)
+
+* `NO_ROLLOVER` (value: `"NO_ROLLOVER"`)
+
+* `PRIOR_BUDGET_ROLLOVER` (value: `"PRIOR_BUDGET_ROLLOVER"`)
+
+
+

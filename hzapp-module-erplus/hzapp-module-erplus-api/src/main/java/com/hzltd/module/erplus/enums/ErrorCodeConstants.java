@@ -9,7 +9,7 @@ import com.hzltd.framework.common.exception.ErrorCode;
  */
 public interface ErrorCodeConstants {
 
-    ErrorCode OPT_NOT_SUPPORT    = new ErrorCode(1_030_000_000, "不支持该操作");
+    ErrorCode OPT_NOT_SUPPORT = new ErrorCode(1_030_000_000, "不支持该操作");
 
     // ========== ERP 供应商（1-030-100-000） ==========
     ErrorCode SUPPLIER_NOT_EXISTS = new ErrorCode(1_030_100_000, "供应商不存在");
@@ -25,7 +25,7 @@ public interface ErrorCodeConstants {
     ErrorCode PURCHASE_ORDER_NOT_APPROVE = new ErrorCode(1_030_101_006, "采购订单未审核，无法操作");
     ErrorCode PURCHASE_ORDER_ITEM_IN_FAIL_PRODUCT_EXCEED = new ErrorCode(1_030_101_007, "采购订单项({})超过最大允许入库数量({})");
     ErrorCode PURCHASE_ORDER_PROCESS_FAIL_EXISTS_IN = new ErrorCode(1_030_101_008, "反审核失败，已存在对应的采购入库单");
-ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_009, "采购订单项({})超过最大允许退货数量({})");
+    ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_009, "采购订单项({})超过最大允许退货数量({})");
     ErrorCode PURCHASE_ORDER_PROCESS_FAIL_EXISTS_RETURN = new ErrorCode(1_030_101_010, "反审核失败，已存在对应的采购退货单");
 
     // ========== ERP 采购入库（1-030-102-000） ==========
@@ -136,7 +136,7 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
     // ========== ERP 产品分类 1-030-501-000 ==========
     ErrorCode PRODUCT_CATEGORY_NOT_EXISTS = new ErrorCode(1_030_501_000, "产品分类不存在");
     ErrorCode PRODUCT_CATEGORY_EXITS_CHILDREN = new ErrorCode(1_030_501_001, "存在存在子产品分类，无法删除");
-    ErrorCode PRODUCT_CATEGORY_PARENT_NOT_EXITS = new ErrorCode(1_030_501_002,"父级产品分类不存在");
+    ErrorCode PRODUCT_CATEGORY_PARENT_NOT_EXITS = new ErrorCode(1_030_501_002, "父级产品分类不存在");
     ErrorCode PRODUCT_CATEGORY_PARENT_ERROR = new ErrorCode(1_030_501_003, "不能设置自己为父产品分类");
     ErrorCode PRODUCT_CATEGORY_NAME_DUPLICATE = new ErrorCode(1_030_501_004, "已经存在该分类名称的产品分类");
     ErrorCode PRODUCT_CATEGORY_PARENT_IS_CHILD = new ErrorCode(1_030_501_005, "不能设置自己的子分类为父分类");
@@ -166,8 +166,6 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
     ErrorCode FINANCE_RECEIPT_APPROVE_FAIL = new ErrorCode(1_030_602_003, "审核失败，只有未审核的收款单才能审核");
     ErrorCode FINANCE_RECEIPT_NO_EXISTS = new ErrorCode(1_030_602_004, "生成收款单号失败，请重新提交");
     ErrorCode FINANCE_RECEIPT_UPDATE_FAIL_APPROVE = new ErrorCode(1_030_602_005, "收款单({})已审核，无法修改");
-
-
 
     // ========== 商品属性项 1-008-003-000 ==========
     ErrorCode PROPERTY_NOT_EXISTS = new ErrorCode(1_031_003_000, "属性项不存在");
@@ -202,14 +200,12 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
     ErrorCode PRODUCT_CLAIM_SKU_EXISTS = new ErrorCode(1_031_007_001, "商品已认领");
     ErrorCode PRODUCT_CLAIM_SKU_RULE_PLT = new ErrorCode(1_031_007_002, "不符合平台认领规则:{}");
 
-
-    // ========== 商品库      ==========
+    // ========== 商品库 ==========
     ErrorCode PRODUCT_POTENTIAL_NOT_EXISTS = new ErrorCode(1_031_008_000, "选品信息不存在");
     ErrorCode PRODUCT_POTENTIAL_COMPETITIVE_NOT_EXISTS = new ErrorCode(1_031_008_001, "选品信息不存在");
     ErrorCode PRODUCT_MONITOR_NOT_EXISTS = new ErrorCode(1_031_008_002, "商品监控信息不存在");
     ErrorCode PRODUCT_ASSETS_NOT_EXISTS = new ErrorCode(1_031_008_003, "商品素材不存在");
     ErrorCode PRODUCT_ASSETS_EXISTS = new ErrorCode(1_031_008_004, "素材已经存在");
-
 
     // ========== 店铺管理 ==========
     ErrorCode SELL_PLATFORM_NOT_EXISTS = new ErrorCode(1_032_007_000, "销售平台不存在");
@@ -228,8 +224,6 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
     ErrorCode APP_NOT_EXISTS = new ErrorCode(1_099_000_005, "应用信息不存在");
     ErrorCode APP_ALREADY_EXISTS = new ErrorCode(1_099_000_006, "同平台下只能有一个有效应用信息");
 
-
-
     // ============ 跨境平台商品相关 ==========
     ErrorCode PRODUCT_NOT_VALID = new ErrorCode(2_100_000_001, "商品完整性校验失败");
 
@@ -243,7 +237,26 @@ ErrorCode PURCHASE_ORDER_ITEM_RETURN_FAIL_IN_EXCEED = new ErrorCode(1_030_101_00
 
     ErrorCode CROSS_API_ERROR = new ErrorCode(2_100_200_001, "平台接口调用失败");
 
-
-    ErrorCode SHIPMENT_NOT_EXISTS = new ErrorCode(2_100_300_001, "货件计划不存在");
     ErrorCode SHIPMENT_STATUS_INVALID = new ErrorCode(2_100_300_002, "货件计划状态无效");
+    ErrorCode SHIPMENT_NOT_EXISTS = new ErrorCode(2_100_300_003, "货件计划不存在");
+
+    // ========== 广告模块 1_033_000_000 ==========
+
+    ErrorCode ADS_ACCOUNT_NOT_EXISTS = new ErrorCode(1_033_000_001, "广告账号不存在");
+    ErrorCode ADS_PLATFORM_NOT_SUPPORTED = new ErrorCode(1_033_000_002, "不支持该广告平台");
+    ErrorCode ADS_AUTH_CALLBACK_ERROR = new ErrorCode(1_033_000_003, "广告授权回调失败：{}");
+
+    // ========== 广告计划 1_033_001_000 ==========
+    ErrorCode ADS_CAMPAIGN_NOT_EXISTS = new ErrorCode(1_033_001_001, "广告计划不存在");
+
+    // ========== 广告组 1_033_002_000 ==========
+    ErrorCode ADS_AD_GROUP_NOT_EXISTS = new ErrorCode(1_033_002_001, "广告组不存在");
+
+    // ========== 广告 1_033_003_000 ==========
+    ErrorCode ADS_AD_NOT_EXISTS = new ErrorCode(1_033_003_001, "广告不存在");
+
+    // ========== 关键词 1_033_004_000 ==========
+    ErrorCode ADS_KEYWORD_NOT_EXISTS = new ErrorCode(1_033_004_001, "广告关键词不存在");
+
+
 }

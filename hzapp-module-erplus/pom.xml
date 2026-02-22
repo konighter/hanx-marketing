@@ -17,6 +17,7 @@
         <module>hzapp-module-erplus-tts-spapi</module>
         <module>hzapp-module-erplus-biz-amz</module>
         <module>hzapp-module-erplus-amz-adv</module>
+        <module>hzapp-module-erplus-adv</module>
         <!--        <module>hzapp-module-erplus-oversea</module>-->
     </modules>
     <modelVersion>4.0.0</modelVersion>

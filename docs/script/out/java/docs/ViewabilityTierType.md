@@ -1,0 +1,21 @@
+
+
+# ViewabilityTierType
+
+## Enum
+
+
+* `ALLOW_ALL` (value: `"ALLOW_ALL"`)
+
+* `VIEWABILITY_TIER_GT_40` (value: `"VIEWABILITY_TIER_GT_40"`)
+
+* `VIEWABILITY_TIER_GT_50` (value: `"VIEWABILITY_TIER_GT_50"`)
+
+* `VIEWABILITY_TIER_GT_60` (value: `"VIEWABILITY_TIER_GT_60"`)
+
+* `VIEWABILITY_TIER_GT_70` (value: `"VIEWABILITY_TIER_GT_70"`)
+
+* `VIEWABILITY_TIER_LT_40` (value: `"VIEWABILITY_TIER_LT_40"`)
+
+
+

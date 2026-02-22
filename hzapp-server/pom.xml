@@ -36,6 +36,11 @@
             <artifactId>hzapp-module-erplus-biz</artifactId>
             <version>${revision}</version>
         </dependency>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-erplus-adv</artifactId>
+            <version>${revision}</version>
+        </dependency>
 
         <!-- 会员中心。默认注释，保证编译速度 -->
 <!--        <dependency>-->

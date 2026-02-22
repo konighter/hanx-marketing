@@ -1,0 +1,21 @@
+
+
+# SBMatchType
+
+## Enum
+
+
+* `BROAD` (value: `"BROAD"`)
+
+* `EXACT` (value: `"EXACT"`)
+
+* `KEYWORDS_RELATED_TO_YOUR_BRAND` (value: `"KEYWORDS_RELATED_TO_YOUR_BRAND"`)
+
+* `KEYWORDS_RELATED_TO_YOUR_LANDING_PAGES` (value: `"KEYWORDS_RELATED_TO_YOUR_LANDING_PAGES"`)
+
+* `PHRASE` (value: `"PHRASE"`)
+
+* `PRODUCT_EXACT` (value: `"PRODUCT_EXACT"`)
+
+
+

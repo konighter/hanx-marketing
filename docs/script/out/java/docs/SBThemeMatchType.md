@@ -1,0 +1,13 @@
+
+
+# SBThemeMatchType
+
+## Enum
+
+
+* `BRAND` (value: `"KEYWORDS_RELATED_TO_YOUR_BRAND"`)
+
+* `LANDING_PAGES` (value: `"KEYWORDS_RELATED_TO_YOUR_LANDING_PAGES"`)
+
+
+

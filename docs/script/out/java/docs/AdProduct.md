@@ -1,0 +1,19 @@
+
+
+# AdProduct
+
+## Enum
+
+
+* `AMAZON_DSP` (value: `"AMAZON_DSP"`)
+
+* `SPONSORED_BRANDS` (value: `"SPONSORED_BRANDS"`)
+
+* `SPONSORED_DISPLAY` (value: `"SPONSORED_DISPLAY"`)
+
+* `SPONSORED_PRODUCTS` (value: `"SPONSORED_PRODUCTS"`)
+
+* `SPONSORED_TELEVISION` (value: `"SPONSORED_TELEVISION"`)
+
+
+

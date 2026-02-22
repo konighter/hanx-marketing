@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.hzltd</groupId>
+        <artifactId>hzapp-module-erplus</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>hzapp-module-erplus-adv</artifactId>
+
+    <name>${project.artifactId}</name>
+    <description>
+        广告模块 (Advertising)。
+        包含：广告主认证授权、广告元数据同步、广告效果数据展示、广告运营策略
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-system</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-erplus-api</artifactId>
+        </dependency>
+
+        <!-- 业务组件 -->
+        <!-- Web 相关 -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- DB 相关 -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-redis</artifactId>
+        </dependency>
+
+        <!-- HTTP Client -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+        </dependency>
+
+        <!-- OpenAPI Generator SDK Dependencies -->
+        <dependency>
+            <groupId>com.google.code.findbugs</groupId>
+            <artifactId>jsr305</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openapitools</groupId>
+            <artifactId>jackson-databind-nullable</artifactId>
+            <version>0.2.6</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+
+        <!-- Test 测试相关 -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-test</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project>

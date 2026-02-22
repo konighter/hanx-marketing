@@ -1,0 +1,73 @@
+
+
+# KPI
+
+## Enum
+
+
+* `ADD_TO_CART` (value: `"ADD_TO_CART"`)
+
+* `APPLICATIONS` (value: `"APPLICATIONS"`)
+
+* `CHECKOUTS` (value: `"CHECKOUTS"`)
+
+* `CLICKS` (value: `"CLICKS"`)
+
+* `CLICK_THROUGH_RATE` (value: `"CLICK_THROUGH_RATE"`)
+
+* `COMBINED_RETURN_ON_AD_SPEND` (value: `"COMBINED_RETURN_ON_AD_SPEND"`)
+
+* `CONTACTS` (value: `"CONTACTS"`)
+
+* `COST_PER_ACTION` (value: `"COST_PER_ACTION"`)
+
+* `COST_PER_CLICK` (value: `"COST_PER_CLICK"`)
+
+* `COST_PER_CONVERSION_OFF_AMAZON` (value: `"COST_PER_CONVERSION_OFF_AMAZON"`)
+
+* `COST_PER_DETAIL_PAGE_VIEW` (value: `"COST_PER_DETAIL_PAGE_VIEW"`)
+
+* `COST_PER_FIRST_APP_OPEN` (value: `"COST_PER_FIRST_APP_OPEN"`)
+
+* `COST_PER_INSTALL` (value: `"COST_PER_INSTALL"`)
+
+* `COST_PER_SIGN_UP` (value: `"COST_PER_SIGN_UP"`)
+
+* `COST_PER_VIDEO_COMPLETION` (value: `"COST_PER_VIDEO_COMPLETION"`)
+
+* `DETAIL_PAGE_VIEW_RATE` (value: `"DETAIL_PAGE_VIEW_RATE"`)
+
+* `FREQUENCY_AVERAGE` (value: `"FREQUENCY_AVERAGE"`)
+
+* `LEADS` (value: `"LEADS"`)
+
+* `OTHER` (value: `"OTHER"`)
+
+* `PAGE_VIEWS` (value: `"PAGE_VIEWS"`)
+
+* `PURCHASES` (value: `"PURCHASES"`)
+
+* `REACH` (value: `"REACH"`)
+
+* `RETURN_ON_AD_SPEND` (value: `"RETURN_ON_AD_SPEND"`)
+
+* `ROAS` (value: `"ROAS"`)
+
+* `ROAS_COMBINED` (value: `"ROAS_COMBINED"`)
+
+* `ROAS_PROMOTED` (value: `"ROAS_PROMOTED"`)
+
+* `SEARCH` (value: `"SEARCH"`)
+
+* `SIGN_UP` (value: `"SIGN_UP"`)
+
+* `SUBSCRIBE` (value: `"SUBSCRIBE"`)
+
+* `TOP_OF_SEARCH_IMPRESSION_SHARE` (value: `"TOP_OF_SEARCH_IMPRESSION_SHARE"`)
+
+* `TOTAL_RETURN_ON_AD_SPEND` (value: `"TOTAL_RETURN_ON_AD_SPEND"`)
+
+* `VIDEO_COMPLETION_RATE` (value: `"VIDEO_COMPLETION_RATE"`)
+
+
+

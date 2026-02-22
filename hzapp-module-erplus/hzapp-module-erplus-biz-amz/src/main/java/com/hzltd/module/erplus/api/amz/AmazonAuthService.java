@@ -22,15 +22,35 @@ public class AmazonAuthService implements AuthorizationApi {
 
     private String host = "https://api.amazon.com";
 
+    private String grantAuthHost = "https://www.amazon.com/ap/oa";
+
     private OkHttpClient client = new OkHttpClient();
 
     @Override
     public String grantAuthInfo(AuthorizationModel authorizationModel) {
-        return "";
+        return new StringBuilder(grantAuthHost)
+                .append("?response_type=code")
+                .append("&scope=advertising::campaign_management")
+                .append("&client_id=").append(authorizationModel.getAppKey())
+                .append("&redirect_uri=").append("http://localhost")
+                .append("&state=").append(authorizationModel.getState())
+                .toString();
     }
 
     @Override
     public AuthorizationModel grantAccessToken(AuthorizationModel authorizationModel) {
+        Request request = new Request.Builder()
+                .url(host + "/auth/o2/token")
+                .post(new FormBody.Builder()
+                        .add("grant_type", "authorization_code")
+                        .add("client_id", authorizationModel.getAppKey())
+                        .add("client_secret", authorizationModel.getAppSecret())
+                        .add("code", authorizationModel.getGrantCode())
+                        .add("redirect_uri", "http://localhost")
+                        .build())
+                .build();
+
+
 
         return null;
     }

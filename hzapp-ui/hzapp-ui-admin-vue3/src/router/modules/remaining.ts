@@ -205,6 +205,16 @@ const remainingRouter: AppRouteRecordRaw[] = [
     }
   },
   {
+    path: '/erplus/adv/auth/callback',
+    component: () => import('@/app/erplus/views/adv/auth/callback.vue'),
+    name: 'AdsAuthCallback',
+    meta: {
+      hidden: true,
+      title: '授权处理',
+      noTagsView: true
+    }
+  },
+  {
     path: '/403',
     component: () => import('@/views/Error/403.vue'),
     name: 'NoAccess',

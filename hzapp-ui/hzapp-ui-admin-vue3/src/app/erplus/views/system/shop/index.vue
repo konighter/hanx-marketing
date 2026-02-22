@@ -63,6 +63,9 @@
           <el-button link type="primary" @click="openAuthForm(scope.row.id)" v-hasPermi="['ov:shop:update']">
             授权
           </el-button>
+          <el-button link type="primary" @click="openAdAuthForm(scope.row.id)" v-hasPermi="['ov:shop:update']">
+            广告授权
+          </el-button>
           <el-button link type="primary" @click="openForm('update', scope.row.id)" v-hasPermi="['ov:shop:update']">
             编辑
           </el-button>
@@ -144,6 +147,10 @@ const openForm = (type: string, id?: number) => {
 }
 
 const authRef = ref()
+
+const openAdAuthForm = (id: number) => {
+  authRef.value.openAdAuth(id)
+}
 const openAuthForm = (id: number) => {
   authRef.value.open(id)
 }

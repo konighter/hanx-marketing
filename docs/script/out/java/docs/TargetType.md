@@ -1,0 +1,63 @@
+
+
+# TargetType
+
+## Enum
+
+
+* `AD_INITIATION` (value: `"AD_INITIATION"`)
+
+* `AD_PLAYER_SIZE` (value: `"AD_PLAYER_SIZE"`)
+
+* `APP` (value: `"APP"`)
+
+* `AUDIENCE` (value: `"AUDIENCE"`)
+
+* `BRAND_SAFETY_CATEGORY` (value: `"BRAND_SAFETY_CATEGORY"`)
+
+* `BRAND_SAFETY_TIER` (value: `"BRAND_SAFETY_TIER"`)
+
+* `CONTENT_CATEGORY` (value: `"CONTENT_CATEGORY"`)
+
+* `CONTENT_GENRE` (value: `"CONTENT_GENRE"`)
+
+* `CONTENT_INSTREAM_POSITION` (value: `"CONTENT_INSTREAM_POSITION"`)
+
+* `CONTENT_OUTSTREAM_POSITION` (value: `"CONTENT_OUTSTREAM_POSITION"`)
+
+* `CONTENT_RATING` (value: `"CONTENT_RATING"`)
+
+* `DAYPART` (value: `"DAYPART"`)
+
+* `DEVICE` (value: `"DEVICE"`)
+
+* `DOMAIN` (value: `"DOMAIN"`)
+
+* `FOLD_POSITION` (value: `"FOLD_POSITION"`)
+
+* `INVENTORY_SOURCE` (value: `"INVENTORY_SOURCE"`)
+
+* `KEYWORD` (value: `"KEYWORD"`)
+
+* `LOCATION` (value: `"LOCATION"`)
+
+* `NATIVE_CONTENT_POSITION` (value: `"NATIVE_CONTENT_POSITION"`)
+
+* `PLACEMENT_TYPE` (value: `"PLACEMENT_TYPE"`)
+
+* `PRODUCT` (value: `"PRODUCT"`)
+
+* `PRODUCT_AUDIENCE` (value: `"PRODUCT_AUDIENCE"`)
+
+* `PRODUCT_CATEGORY` (value: `"PRODUCT_CATEGORY"`)
+
+* `THEME` (value: `"THEME"`)
+
+* `THIRD_PARTY` (value: `"THIRD_PARTY"`)
+
+* `VIDEO_AD_FORMAT` (value: `"VIDEO_AD_FORMAT"`)
+
+* `VIDEO_CONTENT_DURATION` (value: `"VIDEO_CONTENT_DURATION"`)
+
+
+
