@@ -36,6 +36,9 @@ public class AdsAdRespVO {
     @Schema(description = "同步时间")
     private LocalDateTime syncedAt;
 
+    @Schema(description = "平台扩展字段 (JSON)")
+    private Object extData;
+
     @Schema(description = "创建时间")
     private LocalDateTime createTime;
 

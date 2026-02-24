@@ -3,6 +3,7 @@ package com.hzltd.module.erplus.adv.metadata.service.sync;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
 import com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest;
+import com.hzltd.module.erplus.adv.auth.service.AdsAuthService;
 import com.hzltd.module.erplus.adv.dal.dataobject.*;
 import com.hzltd.module.erplus.adv.dal.mysql.*;
 import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
@@ -11,6 +12,7 @@ import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
 import cn.hutool.core.collection.CollUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.ADS_ACCOUNT_NOT_EXISTS;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
 
 /**
  * 广告元数据同步 Service 实现类
@@ -33,6 +35,9 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
 
     @Resource
     private AdsAccountMapper adsAccountMapper;
+
+    @Resource
+    private AdsAuthService adsAuthService;
     @Resource
     private AdsAccountCredentialMapper adsAccountCredentialMapper;
     @Resource
@@ -121,25 +126,14 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
         log.info("[executeSync] 开始执行账号 {} 的同步任务 {}", accountId, task.getTaskType());
 
         // 1. 获取账号和凭证
-        AdsAccountDO account = adsAccountMapper.selectById(accountId);
+        AdsAccountDO account = adsAuthService.getAccount(accountId);
         if (account == null) {
             throw exception(ADS_ACCOUNT_NOT_EXISTS);
         }
-        Long credentialId = account.getCredentialId();
-        if (credentialId == null && account.getParentId() != null) {
-            AdsAccountDO parentAccount = adsAccountMapper.selectById(account.getParentId());
-            if (parentAccount != null) {
-                credentialId = parentAccount.getCredentialId();
-            }
-        }
 
-        if (credentialId == null) {
-            throw new IllegalStateException("账号未关联凭证，无法同步");
-        }
-
-        AdsAccountCredentialDO credential = adsAccountCredentialMapper.selectById(credentialId);
+        AdsAccountCredentialDO credential =  adsAuthService.getAccountCredentialByAccount(accountId);
         if (credential == null) {
-            throw new IllegalStateException("凭证记录不存在，无法同步");
+            throw exception(ADS_ACCOUNT_Credential_NOT_EXISTS);
         }
 
         // 2. 获取适配器
@@ -194,7 +188,7 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
                         AdsAdGroupDO adGroup = adsAdGroupMapper.selectByCampaignAndExternalId(campaignDO.getId(),
                                 vo.getAdGroupExternalId());
                         if (adGroup != null) {
-                            saveKeyword(accountId, adGroup.getId(), vo);
+                            saveKeyword(accountId, campaignDO.getId(), adGroup.getId(), vo);
                         } else {
                             log.warn("Cannot find AdGroup for Keyword {} in db", vo.getExternalId());
                         }
@@ -211,7 +205,7 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
                         AdsAdGroupDO adGroup = adsAdGroupMapper.selectByCampaignAndExternalId(campaignDO.getId(),
                                 vo.getAdGroupExternalId());
                         if (adGroup != null) {
-                            saveAd(accountId, adGroup.getId(), vo);
+                            saveAd(accountId, campaignDO.getId(), adGroup.getId(), vo);
                         } else {
                             log.warn("Cannot find AdGroup for Ad {} in db", vo.getExternalId());
                         }
@@ -238,6 +232,8 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
             existing.setCampaignType(vo.getCampaignType());
             existing.setDailyBudget(vo.getDailyBudget());
             existing.setExtData(vo.getExtData());
+            existing.setStartDate(vo.getStartDate());
+            existing.setEndDate(vo.getEndDate());
             adsCampaignMapper.insert(existing);
         } else {
             existing.setName(vo.getName());
@@ -245,6 +241,8 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
             existing.setCampaignType(vo.getCampaignType());
             existing.setDailyBudget(vo.getDailyBudget());
             existing.setExtData(vo.getExtData());
+            existing.setStartDate(vo.getStartDate());
+            existing.setEndDate(vo.getEndDate());
             adsCampaignMapper.updateById(existing);
         }
     }
@@ -270,11 +268,12 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
         }
     }
 
-    private void saveKeyword(Long accountId, Long adGroupId, AdsKeywordVO vo) {
+    private void saveKeyword(Long accountId, Long campaignId, Long adGroupId, AdsKeywordVO vo) {
         AdsKeywordDO existing = adsKeywordMapper.selectByAdGroupAndExternalId(adGroupId, vo.getExternalId());
         if (existing == null) {
             existing = new AdsKeywordDO();
             existing.setAccountId(accountId);
+            existing.setCampaignId(campaignId);
             existing.setAdGroupId(adGroupId);
             existing.setExternalId(vo.getExternalId());
             existing.setKeywordText(vo.getKeywordText());
@@ -293,19 +292,20 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
         }
     }
 
-    private void saveAd(Long accountId, Long adGroupId, AdsAdVO vo) {
+    private void saveAd(Long accountId, Long campaignId, Long adGroupId, AdsAdVO vo) {
         AdsAdDO existing = adsAdMapper.selectByAdGroupAndExternalId(adGroupId, vo.getExternalId());
         if (existing == null) {
             existing = new AdsAdDO();
             existing.setAccountId(accountId);
+            existing.setCampaignId(campaignId);
             existing.setAdGroupId(adGroupId);
             existing.setExternalId(vo.getExternalId());
-            existing.setName(vo.getName());
+            existing.setName(StringUtils.isNotEmpty(vo.getAsin()) ? vo.getAsin() : vo.getName());
             existing.setStatus(vo.getStatus());
             existing.setExtData(vo.getExtData());
             adsAdMapper.insert(existing);
         } else {
-            existing.setName(vo.getName());
+            existing.setName(StringUtils.isNotEmpty(vo.getAsin()) ? vo.getAsin() : vo.getName());
             existing.setStatus(vo.getStatus());
             existing.setExtData(vo.getExtData());
             adsAdMapper.updateById(existing);

@@ -5,6 +5,7 @@ import com.hzltd.module.erplus.adv.auth.vo.AdsAccountPageReqVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountRespVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAuthCallbackReqVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAuthUrlReqVO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 
 import java.util.List;
@@ -62,4 +63,11 @@ public interface AdsAuthService {
      * 获得广告账号
      */
     AdsAccountDO getAccount(Long id);
+
+    /**
+     * 获取账号的授权信息
+     * @param accountId
+     * @return
+     */
+    AdsAccountCredentialDO getAccountCredentialByAccount(Long accountId);
 }

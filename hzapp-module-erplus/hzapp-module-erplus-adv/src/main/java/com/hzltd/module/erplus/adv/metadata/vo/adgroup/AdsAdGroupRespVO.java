@@ -40,4 +40,7 @@ public class AdsAdGroupRespVO {
     @Schema(description = "创建时间")
     private LocalDateTime createTime;
 
+    @Schema(description = "账号平台", example = "AMAZON")
+    private String platform;
+
 }

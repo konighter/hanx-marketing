@@ -6,6 +6,7 @@ import com.hzltd.module.erplus.adv.adapter.model.AdsTokenResult;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
 
 import java.util.List;
@@ -87,6 +88,18 @@ public interface AdsPlatformAdapter {
      */
     default void postAccountAction(AdsAccountDO account) {
         // 默认不进行额外处理
+    }
+
+    /**
+     * 广告计划更新后的平台同步 Hook
+     * 本地数据已保存成功后调用，供各平台适配器将变更同步到远端 API
+     *
+     * @param account   广告账户
+     * @param campaign  更新后的计划 DO（已持久化）
+     * @param extData   本次提交的扩展数据（平台配置 JSON），可能为 null
+     */
+    default void postCampaignUpdate(AdsAccountDO account, AdsCampaignDO campaign, Object extData) {
+        // 默认不进行额外处理，各平台适配器按需覆写
     }
 
 }

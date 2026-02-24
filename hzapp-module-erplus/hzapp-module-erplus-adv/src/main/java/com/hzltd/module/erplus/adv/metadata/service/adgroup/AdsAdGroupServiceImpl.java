@@ -20,6 +20,8 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
 
     @Resource
     private AdsAdGroupMapper adsAdGroupMapper;
+    @Resource
+    private com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper adsAccountMapper;
 
     @Override
     public PageResult<AdsAdGroupDO> getAdGroupPage(AdsAdGroupPageReqVO pageReqVO) {
@@ -44,6 +46,12 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
     @Override
     public AdsAdGroupDO getAdGroup(Long id) {
         return adsAdGroupMapper.selectById(id);
+    }
+
+    @Override
+    public String getPlatformByAccountId(Long accountId) {
+        com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO account = adsAccountMapper.selectById(accountId);
+        return account != null ? account.getPlatform() : null;
     }
 
 }

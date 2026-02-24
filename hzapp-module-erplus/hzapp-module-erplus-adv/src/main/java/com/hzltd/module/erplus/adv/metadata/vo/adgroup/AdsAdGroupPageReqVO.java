@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.Collection;
+
 @Schema(description = "管理后台 - 广告组分页请求 VO")
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -15,8 +17,8 @@ public class AdsAdGroupPageReqVO extends PageParam {
     @Schema(description = "广告账户编号", example = "1")
     private Long accountId;
 
-    @Schema(description = "广告计划编号", example = "10")
-    private Long campaignId;
+    @Schema(description = "广告计划编号集合", example = "10,11")
+    private Collection<Long> campaignIds;
 
     @Schema(description = "平台原始 AdGroup ID", example = "G123")
     private String externalId;

@@ -7,6 +7,7 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignRespVO;
+import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.Parameters;
@@ -28,12 +29,16 @@ public class AdsCampaignController {
     @Resource
     private AdsCampaignService adsCampaignService;
 
-    @GetMapping("/page")
+    @PostMapping("/page")
     @Operation(summary = "获得广告计划分页")
     @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:query')")
-    public CommonResult<PageResult<AdsCampaignRespVO>> getCampaignPage(@Valid AdsCampaignPageReqVO pageReqVO) {
+    public CommonResult<PageResult<AdsCampaignRespVO>> getCampaignPage(@Valid @RequestBody AdsCampaignPageReqVO pageReqVO) {
         PageResult<AdsCampaignDO> pageResult = adsCampaignService.getCampaignPage(pageReqVO);
-        return success(BeanUtils.toBean(pageResult, AdsCampaignRespVO.class));
+        PageResult<AdsCampaignRespVO> resultVO = BeanUtils.toBean(pageResult, AdsCampaignRespVO.class);
+        resultVO.getList().forEach(vo -> {
+            vo.setPlatform(adsCampaignService.getPlatformByAccountId(vo.getAccountId()));
+        });
+        return success(resultVO);
     }
 
     @PutMapping("/update-status")
@@ -49,13 +54,25 @@ public class AdsCampaignController {
         return success(true);
     }
 
+    @PutMapping("/update")
+    @Operation(summary = "更新广告计划")
+    @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:update')")
+    public CommonResult<Boolean> updateCampaign(@Valid @RequestBody AdsCampaignUpdateReqVO updateReqVO) {
+        adsCampaignService.updateCampaign(updateReqVO);
+        return success(true);
+    }
+
     @GetMapping("/get")
     @Operation(summary = "获得广告计划")
     @Parameter(name = "id", description = "编号", required = true)
     @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:query')")
     public CommonResult<AdsCampaignRespVO> getCampaign(@RequestParam("id") Long id) {
         AdsCampaignDO campaign = adsCampaignService.getCampaign(id);
-        return success(BeanUtils.toBean(campaign, AdsCampaignRespVO.class));
+        AdsCampaignRespVO respVO = BeanUtils.toBean(campaign, AdsCampaignRespVO.class);
+        if (respVO != null) {
+            respVO.setPlatform(adsCampaignService.getPlatformByAccountId(respVO.getAccountId()));
+        }
+        return success(respVO);
     }
 
 }

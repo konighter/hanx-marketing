@@ -33,4 +33,11 @@ public interface AdsAdGroupService {
      */
     AdsAdGroupDO getAdGroup(Long id);
 
+    /**
+     * 根据账户 ID 获取平台信息
+     * @param accountId 账户ID
+     * @return 平台
+     */
+    String getPlatformByAccountId(Long accountId);
+
 }

@@ -32,6 +32,10 @@ public class AdsAdDO extends BaseDO {
      * 关联广告组ID
      */
     private Long adGroupId;
+    /**
+     * 关联广告计划ID (冗余)
+     */
+    private Long campaignId;
 
     /**
      * 关联广告账户ID (冗余)

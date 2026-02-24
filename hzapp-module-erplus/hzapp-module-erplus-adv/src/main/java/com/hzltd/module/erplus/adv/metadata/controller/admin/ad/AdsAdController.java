@@ -28,10 +28,10 @@ public class AdsAdController {
     @Resource
     private AdsAdService adsAdService;
 
-    @GetMapping("/page")
+    @PostMapping("/page")
     @Operation(summary = "获得广告分页")
     @PreAuthorize("@ss.hasPermission('erplus:adv-ad:query')")
-    public CommonResult<PageResult<AdsAdRespVO>> getAdPage(@Valid AdsAdPageReqVO pageReqVO) {
+    public CommonResult<PageResult<AdsAdRespVO>> getAdPage(@Valid @RequestBody AdsAdPageReqVO pageReqVO) {
         PageResult<AdsAdDO> pageResult = adsAdService.getAdPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, AdsAdRespVO.class));
     }

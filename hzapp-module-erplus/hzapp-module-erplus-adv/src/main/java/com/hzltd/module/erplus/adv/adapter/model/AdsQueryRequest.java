@@ -20,9 +20,9 @@ public class AdsQueryRequest extends BaseQueryRequest {
 
     private List<String> adNames;
 
-    private List<String> targetIds;
+    private List<String> keywordIds;
 
-    private List<String> targetNames;
+    private List<String> keywords;
 
     private Map<String, Object> extraParam;
 

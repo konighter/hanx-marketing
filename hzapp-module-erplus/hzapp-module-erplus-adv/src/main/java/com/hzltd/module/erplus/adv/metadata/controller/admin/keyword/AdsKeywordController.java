@@ -28,10 +28,10 @@ public class AdsKeywordController {
     @Resource
     private AdsKeywordService adsKeywordService;
 
-    @GetMapping("/page")
+    @PostMapping("/page")
     @Operation(summary = "获得广告关键词分页")
     @PreAuthorize("@ss.hasPermission('erplus:adv-keyword:query')")
-    public CommonResult<PageResult<AdsKeywordRespVO>> getKeywordPage(@Valid AdsKeywordPageReqVO pageReqVO) {
+    public CommonResult<PageResult<AdsKeywordRespVO>> getKeywordPage(@Valid @RequestBody AdsKeywordPageReqVO pageReqVO) {
         PageResult<AdsKeywordDO> pageResult = adsKeywordService.getKeywordPage(pageReqVO);
         return success(BeanUtils.toBean(pageResult, AdsKeywordRespVO.class));
     }

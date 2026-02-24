@@ -249,4 +249,43 @@ public class AdsAuthServiceImpl implements AdsAuthService {
         return adsAccountMapper.selectById(id);
     }
 
+    @Override
+    public AdsAccountCredentialDO getAccountCredentialByAccount(Long accountId) {
+        AdsAccountDO accountDO = this.getAccount(accountId);
+        if (accountDO == null ) {
+            return null;
+        }
+
+        // 如果账号没有关联凭证, 检查父账号, 如果父账号也没有关联, 返回Null(默认只有2级账号)
+        Long credentialId = accountDO.getCredentialId();
+        if (credentialId == null && accountDO.getParentId() != null) {
+            AdsAccountDO parentAccount = getAccount(accountDO.getParentId());
+            if (parentAccount != null) {
+                credentialId = parentAccount.getCredentialId();
+            }
+        }
+
+        if (credentialId == null) {
+            return null;
+        }
+
+        AdsAccountCredentialDO accountCredential = adsAccountCredentialMapper.selectById(credentialId);
+
+        if (accountCredential != null) {
+            // check expireTime
+            if (accountCredential.getTokenExpiresAt() != null && 
+                accountCredential.getTokenExpiresAt().plusSeconds(60).isBefore(LocalDateTime.now())) {
+                AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(accountDO.getPlatform());
+                AdsTokenResult tokenResult = adapter.refreshToken(accountCredential);
+                
+                accountCredential.setAccessToken(tokenResult.getAccessToken());
+                if (tokenResult.getRefreshToken() != null) {
+                    accountCredential.setRefreshToken(tokenResult.getRefreshToken());
+                }
+                accountCredential.setTokenExpiresAt(tokenResult.getExpiresAt());
+                adsAccountCredentialMapper.updateById(accountCredential);
+            }
+        }
+        return accountCredential;
+    }
 }

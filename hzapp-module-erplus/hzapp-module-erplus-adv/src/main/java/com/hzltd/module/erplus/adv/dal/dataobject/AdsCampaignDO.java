@@ -91,6 +91,11 @@ public class AdsCampaignDO extends BaseDO {
     private LocalDate endDate;
 
     /**
+     * 分时投放配置 (JSON 字符串)
+     */
+    private String deliverySchedule;
+
+    /**
      * 出价策略 (MANUAL_CPC / AUTO_BID / TARGET_ROAS)
      */
     private String biddingStrategy;

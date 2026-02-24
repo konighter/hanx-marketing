@@ -1,5 +1,6 @@
 package com.hzltd.module.erplus.adv.metadata.vo.campaign;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -45,10 +46,15 @@ public class AdsCampaignRespVO {
     private BigDecimal totalBudget;
 
     @Schema(description = "投放开始日期")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
-
+    
     @Schema(description = "投放结束日期")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
+
+    @Schema(description = "分时投放配置")
+    private String deliverySchedule;
 
     @Schema(description = "出价策略", example = "MANUAL_CPC")
     private String biddingStrategy;
@@ -58,5 +64,11 @@ public class AdsCampaignRespVO {
 
     @Schema(description = "创建时间")
     private LocalDateTime createTime;
+
+    @Schema(description = "账号平台", example = "AMAZON")
+    private String platform;
+
+    @Schema(description = "扩展数据", example = "{\"amazonConfig\": {}}")
+    private Object extData;
 
 }

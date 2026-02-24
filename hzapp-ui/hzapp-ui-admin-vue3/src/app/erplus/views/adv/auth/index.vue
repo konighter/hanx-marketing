@@ -72,6 +72,7 @@
       <el-table-column label="操作" align="center" width="280px">
         <template #default="scope">
           <el-button link type="primary" @click="handleShowProfiles(scope.row)" v-if="scope.row.platform === 'AMAZON'"> 查看站点 </el-button>
+          <el-button link type="primary" @click="handleRefreshAuth(scope.row)"> 刷新授权 </el-button>
           <el-button link type="primary" @click="handleAuth(scope.row)"> 重新授权 </el-button>
           <el-button link type="danger" @click="handleDelete(scope.row.id)"> 删除 </el-button>
         </template>
@@ -209,6 +210,15 @@ const handleAuth = async (row: AdsAccount) => {
     shopId: row.shopId || 1 // 理论上应该有 shopId
   })
   window.open(url, '_blank')
+}
+
+const handleRefreshAuth = async (row: AdsAccount) => {
+  try {
+    await message.confirm('确认刷新该广告账号的授权吗？')
+    await AdsAuthApi.refreshAuth(row.id)
+    message.success('刷新授权成功')
+    await getList()
+  } catch (error) {}
 }
 
 const handleDelete = async (id: number) => {

@@ -32,11 +32,11 @@ public interface AdsAdGroupMapper extends BaseMapperX<AdsAdGroupDO> {
     default PageResult<AdsAdGroupDO> selectPage(AdsAdGroupPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsAdGroupDO>()
                 .eqIfPresent(AdsAdGroupDO::getAccountId, reqVO.getAccountId())
-                .eqIfPresent(AdsAdGroupDO::getCampaignId, reqVO.getCampaignId())
+                .inIfPresent(AdsAdGroupDO::getCampaignId, reqVO.getCampaignIds())
                 .eqIfPresent(AdsAdGroupDO::getExternalId, reqVO.getExternalId())
                 .likeIfPresent(AdsAdGroupDO::getName, reqVO.getName())
                 .eqIfPresent(AdsAdGroupDO::getStatus, reqVO.getStatus())
-                .orderByDesc(AdsAdGroupDO::getId));
+                .last("ORDER BY FIELD(status, 'ENABLED', 'PAUSED', 'ARCHIVED') ASC, id DESC"));
     }
 
     default List<AdsAdGroupDO> selectListByAccountId(Long accountId) {

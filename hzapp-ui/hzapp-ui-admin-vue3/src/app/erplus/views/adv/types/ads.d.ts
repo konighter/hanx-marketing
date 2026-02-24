@@ -15,12 +15,29 @@ export interface AdsCampaign {
   accountId: number
   externalId: string
   name: string
+  campaignType: string
   status: string
   platformStatus: string
   dailyBudget?: number
+  totalBudget?: number
   budgetType?: string
+  startDate?: string
+  endDate?: string
+  deliverySchedule?: any
+  platform?: string
+  extData?: any
   syncedAt?: string
   createTime?: string
+  // Indices
+  impressions?: number
+  clicks?: number
+  cost?: number
+  spend?: number
+  sales?: number
+  ctr?: number
+  cpc?: number
+  orders?: number
+  roas?: number
 }
 
 export interface AdsAdGroup {
@@ -32,6 +49,8 @@ export interface AdsAdGroup {
   status: string
   platformStatus: string
   defaultBid?: number
+  platform?: string
+  extData?: any
   syncedAt?: string
   createTime?: string
 }

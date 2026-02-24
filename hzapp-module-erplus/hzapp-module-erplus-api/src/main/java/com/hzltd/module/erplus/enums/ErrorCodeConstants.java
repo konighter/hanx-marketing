@@ -245,6 +245,7 @@ public interface ErrorCodeConstants {
     ErrorCode ADS_ACCOUNT_NOT_EXISTS = new ErrorCode(1_033_000_001, "广告账号不存在");
     ErrorCode ADS_PLATFORM_NOT_SUPPORTED = new ErrorCode(1_033_000_002, "不支持该广告平台");
     ErrorCode ADS_AUTH_CALLBACK_ERROR = new ErrorCode(1_033_000_003, "广告授权回调失败：{}");
+    ErrorCode ADS_ACCOUNT_Credential_NOT_EXISTS = new ErrorCode(1_033_000_004, "广告账号未授权");
 
     // ========== 广告计划 1_033_001_000 ==========
     ErrorCode ADS_CAMPAIGN_NOT_EXISTS = new ErrorCode(1_033_001_001, "广告计划不存在");

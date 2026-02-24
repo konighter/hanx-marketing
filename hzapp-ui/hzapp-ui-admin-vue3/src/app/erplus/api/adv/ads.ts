@@ -4,9 +4,15 @@ import { AdsAccount, AdsCampaign, AdsAdGroup, AdsAd, AdsKeyword } from '../views
 // 广告授权相关 API
 export const AdsAuthApi = {
   // 获得授权链接
-  getAuthorizeUrl: async (params: { platform: string; shopId: number; state?: string }) => {
+  getAuthorizeUrl: async (params: { platform: string; shopId: number; state?: string }): Promise<string> => {
     return await request.get({ url: `/erplus/adv/auth/authorize-url`, params })
   },
+
+  // 刷新授权
+  refreshAuth: async (id: number): Promise<void> => {
+    return await request.post({ url: `/erplus/adv/auth/refresh-token?id=${id}` })
+  },
+
   // 获得广告账号分页
   getAccountPage: async (params: any) => {
     return await request.get({ url: `/erplus/adv/auth/account/page`, params })
@@ -27,21 +33,24 @@ export const AdsAuthApi = {
 
 // 广告计划 API
 export const AdsCampaignApi = {
-  getCampaignPage: async (params: any) => {
-    return await request.get({ url: `/erplus/adv/campaign/page`, params })
+  getCampaignPage: async (data: any) => {
+    return await request.post({ url: `/erplus/adv/campaign/page`, data })
   },
   getCampaign: async (id: number) => {
     return await request.get({ url: `/erplus/adv/campaign/get?id=${id}` })
   },
   updateCampaignStatus: async (params: { id: number; status: string }) => {
     return await request.put({ url: `/erplus/adv/campaign/update-status`, params })
+  },
+  updateCampaign: async (data: any) => {
+    return await request.put({ url: `/erplus/adv/campaign/update`, data })
   }
 }
 
 // 广告组 API
 export const AdsAdGroupApi = {
-  getAdGroupPage: async (params: any) => {
-    return await request.get({ url: `/erplus/adv/ad-group/page`, params })
+  getAdGroupPage: async (data: any) => {
+    return await request.post({ url: `/erplus/adv/ad-group/page`, data })
   },
   getAdGroup: async (id: number) => {
     return await request.get({ url: `/erplus/adv/ad-group/get?id=${id}` })
@@ -53,8 +62,8 @@ export const AdsAdGroupApi = {
 
 // 广告 API
 export const AdsAdApi = {
-  getAdPage: async (params: any) => {
-    return await request.get({ url: `/erplus/adv/ad/page`, params })
+  getAdPage: async (data: any) => {
+    return await request.post({ url: `/erplus/adv/ad/page`, data })
   },
   getAd: async (id: number) => {
     return await request.get({ url: `/erplus/adv/ad/get?id=${id}` })
@@ -66,8 +75,8 @@ export const AdsAdApi = {
 
 // 关键词 API
 export const AdsKeywordApi = {
-  getKeywordPage: async (params: any) => {
-    return await request.get({ url: `/erplus/adv/keyword/page`, params })
+  getKeywordPage: async (data: any) => {
+    return await request.post({ url: `/erplus/adv/keyword/page`, data })
   },
   getKeyword: async (id: number) => {
     return await request.get({ url: `/erplus/adv/keyword/get?id=${id}` })

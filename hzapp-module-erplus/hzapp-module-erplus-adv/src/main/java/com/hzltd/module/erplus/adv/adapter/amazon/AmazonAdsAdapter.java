@@ -1,48 +1,48 @@
 package com.hzltd.module.erplus.adv.adapter.amazon;
 
 import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
-import com.hzltd.module.erplus.adv.adapter.amazon.api.sp.AdGroupsApi;
-import com.hzltd.module.erplus.adv.adapter.amazon.api.sp.AdsApi;
-import com.hzltd.module.erplus.adv.adapter.amazon.api.sp.CampaignsApi;
-import com.hzltd.module.erplus.adv.adapter.amazon.api.sp.TargetsApi;
-import com.hzltd.module.erplus.adv.adapter.amazon.client.ApiException;
 import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.*;
+import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonAdsApiService;
+import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.campaign.AmzCampaignListRequest;
+import com.hzltd.module.erplus.adv.adapter.amazon.v2.api.all.CampaignsApi;
+import com.hzltd.module.erplus.adv.adapter.amazon.v2.client.ApiClient;
+import com.hzltd.module.erplus.adv.adapter.amazon.v2.client.ApiException;
+import com.hzltd.module.erplus.adv.adapter.amazon.v2.model.all.*;
 import com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest;
 import com.hzltd.module.erplus.adv.adapter.model.AdsStatusUpdateRequest;
 import com.hzltd.module.erplus.adv.adapter.model.AdsTokenResult;
+import com.hzltd.module.erplus.adv.auth.service.AdsAuthService;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAmazonProfileDO;
-import com.hzltd.module.erplus.adv.enums.AdsAmazonRegionEnum;
+import com.hzltd.module.erplus.enums.amz.AmazonRegionEnum;
 import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
-import okhttp3.Request;
 import okhttp3.RequestBody;
-import okhttp3.Response;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDate;
+import java.util.*;
 import java.util.stream.Collectors;
+
+import static me.zhyd.oauth.enums.scope.AuthMiScope.profile;
 
 /**
  * Amazon Ads 平台适配器实现
@@ -50,6 +50,11 @@ import java.util.stream.Collectors;
 @Slf4j
 @Component
 public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPlatformAdapter {
+
+    @Resource
+    private AdsAuthService adsAuthService;
+    @Resource
+    private AmazonAdsApiService amazonAdsApiService;
 
     @Override
     public AdsPlatformEnum getPlatform() {
@@ -106,9 +111,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public List<AdsAccountVO> fetchAdsAccounts(AdsAccountCredentialDO credential, Long shopId) {
         log.info("[fetchAdsAccounts][Amazon] 开始拉取广告主账号列表, CredentialId: {}", credential.getId());
-        String clientId = getRequiredConfig(AMZ_CLIENT_ID);
-        // Default to NA for discovery
-        String endpoint = AdsAmazonRegionEnum.NA.getEndpoint();
+        String endpoint = AmazonRegionEnum.NA.getAdsEndpoint();
 
         return this.executePostequest(credential, null, "https://" + endpoint + "/adsAccounts/list", null, "", resp -> {
 
@@ -134,9 +137,12 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         log.info("[syncAccountProfiles][Amazon] 开始同步账号 {} ({}) 的站点 (Profiles)", account.getName(),
                 account.getExternalAccountId());
         String clientId = getRequiredConfig(AMZ_CLIENT_ID);
+        Map<String, List<String>> profilesByCountryCode = getProfileGroupByCountry(account);
+        Set<AmazonRegionEnum> regions = getAccountSupportRegion(account);
 
-        for (AdsAmazonRegionEnum regionEnum : AdsAmazonRegionEnum.values()) {
-            String endpoint = regionEnum.getEndpoint();
+
+        for (AmazonRegionEnum regionEnum : regions) {
+            String endpoint = regionEnum.getAdsEndpoint();
             log.info("[syncAccountProfiles][Amazon] 正在从 Region: {} 拉取 Profiles", regionEnum.name());
             String url = "https://" + endpoint + "/v2/profiles";
 
@@ -146,11 +152,9 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                 continue;
             }
             for (AmzProfileVO p : profiles) {
-                String accountEntityId = this.getAccountEntityId(p.getCountryCode(), account);
-                if (p.getAccountInfo() != null
-                        && accountEntityId.equalsIgnoreCase(p.getAccountInfo().getId())) {
+                if (CollectionUtils.isNotEmpty(profilesByCountryCode.get(p.getCountryCode())) && profilesByCountryCode.get(p.getCountryCode()).contains(p.getProfileId())) {
                     saveProfile(account.getId(), p.getProfileId(), p.getCountryCode(), regionEnum.name(),
-                            p.getCurrencyCode(), p.getTimezone(), accountEntityId, account.getName());
+                            p.getCurrencyCode(), p.getTimezone(), account.getExternalAccountId(), account.getName());
                 }
             }
         }
@@ -159,58 +163,94 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public List<AdsCampaignVO> queryCampaigns(Long accountId, AdsQueryRequest request) {
         log.info("[queryCampaigns][Amazon] 查询广告计划, accountId: {}, request: {}", accountId, request);
-        String clientId = getRequiredConfig(AMZ_CLIENT_ID);
-        AdsAccountCredentialDO credential = this.getAdsAccountCredential(accountId);
+//        return queryCampaignsInternal(accountId, request);
+
+        AdsAccountCredentialDO credential =  adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsCampaignVO> allCampaigns = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
-            AdsAmazonRegionEnum regionEnum = AdsAmazonRegionEnum.valueOf(profile.getRegion());
-            String baseUrl = "https://" + regionEnum.getEndpoint();
+            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
+            String baseUrl = "https://" + regionEnum.getAdsEndpoint();
 
-            CampaignsApi campaignsApi = new CampaignsApi(
-                    createApiClient(baseUrl, credential.getAccessToken(), profile.getProfileId()));
-            try {
-                SPCampaignSuccessResponse response = campaignsApi.sPQueryCampaign(clientId,
-                        convertQueryCampaignRequest(request), null,
-                        profile.getProfileId());
-                if (response != null && response.getCampaigns() != null) {
-                    for (SPCampaign campaign : response.getCampaigns()) {
-                        allCampaigns.add(convertCampaignResp(campaign));
-                    }
-                }
-            } catch (ApiException e) {
-                log.error("[queryCampaigns][Amazon] 查询广告计划失败, profileId: {}", profile.getProfileId(), e);
+            AdsSpCampaignQueryRequest spQuery = AdsSpCampaignQueryRequest.from(request);
+            AdsSpCampaignQueryResp response = executeApiPost(credential, profile.getProfileId(), baseUrl + "/sp/campaigns/list",
+                    null, JsonUtils.toJsonString(spQuery), "application/vnd.spCampaign.v3+json",
+                    resp -> JsonUtils.parseObject(resp, AdsSpCampaignQueryResp.class));
+
+            if (response != null && response.getCampaigns() != null) {
+                response.getCampaigns().forEach(c -> allCampaigns.add(c.toVO()));
             }
         }
         return allCampaigns;
     }
 
+    private List<AdsCampaignVO> queryCampaignsInternal(Long accountId, AdsQueryRequest request) {
+        AdsAccountDO adsAccount = adsAuthService.getAccount(accountId);
+        AdsAccountCredentialDO credential =  adsAuthService.getAccountCredentialByAccount(accountId);
+        List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
+        List<AdsCampaignVO> allCampaigns = new ArrayList<>();
+
+        ApiClient apiClient = new ApiClient();
+
+        apiClient.setRequestInterceptor(builder -> {
+            builder.header("Authorization", "Bearer " + credential.getAccessToken());
+        });
+
+
+
+
+        for (AdsAmazonProfileDO profile : profiles) {
+
+            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
+            String baseUrl = "https://" + regionEnum.getAdsEndpoint();
+            apiClient.updateBaseUri(baseUrl);
+            CampaignsApi campaignsApi = new CampaignsApi(apiClient);
+
+
+            try {
+                QueryCampaignRequest queryCampaignRequest = new QueryCampaignRequest();
+                queryCampaignRequest.setMaxResults(100);
+                queryCampaignRequest.adProductFilter(new CampaignAdProductFilter().addIncludeItem(AdProduct.SPONSORED_PRODUCTS));
+                queryCampaignRequest.marketplaceScopeFilter(new CampaignMarketplaceScopeFilter().addIncludeItem(MarketplaceScope.SINGLE_MARKETPLACE));
+
+                amazonAdsApiService.listCampaigns(credential, adsAccount.getExternalAccountId(), profile.getProfileId(), baseUrl,queryCampaignRequest);
+
+
+
+            } catch (Exception e) {
+                log.error("[queryCampaigns][Amazon] 查询广告计划出错, accountId: {}, request: {}", accountId, request, e);
+            }
+
+
+        }
+
+
+        return allCampaigns;
+
+    }
+
+
+
+
     @Override
     public List<AdsAdGroupVO> queryGroups(Long accountId, AdsQueryRequest request) {
         log.info("[queryGroups][Amazon] 查询广告组, accountId: {}, request: {}", accountId, request);
-        String clientId = getRequiredConfig(AMZ_CLIENT_ID);
         AdsAccountCredentialDO credential = this.getAdsAccountCredential(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsAdGroupVO> allAdGroups = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
-            AdsAmazonRegionEnum regionEnum = AdsAmazonRegionEnum.valueOf(profile.getRegion());
-            String baseUrl = "https://" + regionEnum.getEndpoint();
+            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
+            String baseUrl = "https://" + regionEnum.getAdsEndpoint();
 
-            AdGroupsApi adGroupsApi = new AdGroupsApi(
-                    createApiClient(baseUrl, credential.getAccessToken(), profile.getProfileId()));
-            try {
-                SPAdGroupSuccessResponse response = adGroupsApi.sPQueryAdGroup(clientId,
-                        convertQueryAdGroupRequest(request), null,
-                        profile.getProfileId());
-                if (response != null && response.getAdGroups() != null) {
-                    for (SPAdGroup adGroup : response.getAdGroups()) {
-                        allAdGroups.add(convertAdGroupResp(adGroup));
-                    }
-                }
-            } catch (ApiException e) {
-                log.error("[queryGroups][Amazon] 查询广告组失败, profileId: {}", profile.getProfileId(), e);
+            AdsSpAdGroupQueryRequest spQuery = AdsSpAdGroupQueryRequest.from(request);
+            AdsSpAdGroupQueryResp response = executeApiPost(credential, profile.getProfileId(), baseUrl + "/sp/adGroups/list",
+                    null, JsonUtils.toJsonString(spQuery), "application/vnd.spAdGroup.v3+json",
+                    resp -> JsonUtils.parseObject(resp, AdsSpAdGroupQueryResp.class));
+
+            if (response != null && response.getAdGroups() != null) {
+                response.getAdGroups().forEach(g -> allAdGroups.add(g.toVO()));
             }
         }
         return allAdGroups;
@@ -219,28 +259,21 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public List<AdsKeywordVO> queryTargets(Long accountId, AdsQueryRequest request) {
         log.info("[queryTargets][Amazon] 查询关键词和定向, accountId: {}, request: {}", accountId, request);
-        String clientId = getRequiredConfig(AMZ_CLIENT_ID);
         AdsAccountCredentialDO credential = this.getAdsAccountCredential(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsKeywordVO> allTargets = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
-            AdsAmazonRegionEnum regionEnum = AdsAmazonRegionEnum.valueOf(profile.getRegion());
-            String baseUrl = "https://" + regionEnum.getEndpoint();
+            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
+            String baseUrl = "https://" + regionEnum.getAdsEndpoint();
 
-            TargetsApi targetsApi = new TargetsApi(
-                    createApiClient(baseUrl, credential.getAccessToken(), profile.getProfileId()));
-            try {
-                SPTargetSuccessResponse response = targetsApi.sPQueryTarget(clientId,
-                        convertQueryTargetRequest(request), null,
-                        profile.getProfileId());
-                if (response != null && response.getTargets() != null) {
-                    for (SPTarget target : response.getTargets()) {
-                        allTargets.add(convertTargetResp(target));
-                    }
-                }
-            } catch (ApiException e) {
-                log.error("[queryTargets][Amazon] 查询关键词和定向失败, profileId: {}", profile.getProfileId(), e);
+            AdsSpKeywordQueryRequest spQuery = AdsSpKeywordQueryRequest.from(request);
+            AdsSpKeywordQueryResp response = executeApiPost(credential, profile.getProfileId(), baseUrl + "/sp/keywords/list",
+                    null, JsonUtils.toJsonString(spQuery), "application/vnd.spKeyword.v3+json",
+                    resp -> JsonUtils.parseObject(resp, AdsSpKeywordQueryResp.class));
+
+            if (response != null && response.getKeywords() != null) {
+                response.getKeywords().forEach(k -> allTargets.add(k.toVO()));
             }
         }
         return allTargets;
@@ -249,26 +282,21 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public List<AdsAdVO> queryAds(Long accountId, AdsQueryRequest request) {
         log.info("[queryAds][Amazon] 查询广告, accountId: {}, request: {}", accountId, request);
-        String clientId = getRequiredConfig(AMZ_CLIENT_ID);
         AdsAccountCredentialDO credential = this.getAdsAccountCredential(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsAdVO> allAds = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
-            AdsAmazonRegionEnum regionEnum = AdsAmazonRegionEnum.valueOf(profile.getRegion());
-            String baseUrl = "https://" + regionEnum.getEndpoint();
+            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
+            String baseUrl = "https://" + regionEnum.getAdsEndpoint();
 
-            AdsApi adsApi = new AdsApi(createApiClient(baseUrl, credential.getAccessToken(), profile.getProfileId()));
-            try {
-                SPAdSuccessResponse response = adsApi.sPQueryAd(clientId, convertQueryAdRequest(request), null,
-                        profile.getProfileId());
-                if (response != null && response.getAds() != null) {
-                    for (SPAd ad : response.getAds()) {
-                        allAds.add(convertAdResp(ad));
-                    }
-                }
-            } catch (ApiException e) {
-                log.error("[queryAds][Amazon] 查询广告失败, profileId: {}", profile.getProfileId(), e);
+            AdsSpProductAdQueryRequest spQuery = AdsSpProductAdQueryRequest.from(request);
+            AdsSpProductAdQueryResp response = executeApiPost(credential, profile.getProfileId(), baseUrl + "/sp/productAds/list",
+                    null, JsonUtils.toJsonString(spQuery), "application/vnd.spProductAd.v3+json",
+                    resp -> JsonUtils.parseObject(resp, AdsSpProductAdQueryResp.class));
+
+            if (response != null && response.getProductAds() != null) {
+                response.getProductAds().forEach(a -> allAds.add(a.toVO()));
             }
         }
         return allAds;
@@ -277,38 +305,8 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public Boolean updateStatus(Long accountId, AdsStatusUpdateRequest request) {
         log.info("[updateStatus][Amazon] 开始更新状态, accountId: {}, request: {}", accountId, request);
-        AdsAccountCredentialDO credential = this.getAdsAccountCredential(accountId);
-        List<AdsAmazonProfileDO> profiles = getProfiles(accountId);
-        if (profiles.isEmpty()) {
-            return false;
-        }
 
-        String clientId = getRequiredConfig(AMZ_CLIENT_ID);
-        SPUpdateState targetState = SPUpdateState.fromValue(request.getStatus().toUpperCase());
-
-        boolean anySuccess = false;
-        for (AdsAmazonProfileDO profile : profiles) {
-            AdsAmazonRegionEnum regionEnum = AdsAmazonRegionEnum.valueOf(profile.getRegion());
-            String baseUrl = "https://" + regionEnum.getEndpoint();
-
-            CampaignsApi campaignsApi = new CampaignsApi(
-                    createApiClient(baseUrl, credential.getAccessToken(), profile.getProfileId()));
-            SPUpdateCampaignRequest amzRequest = new SPUpdateCampaignRequest()
-                    .addCampaignsItem(new SPCampaignUpdate()
-                            .campaignId(request.getCampaignId())
-                            .state(targetState));
-
-            try {
-                campaignsApi.sPUpdateCampaign(clientId, null, profile.getProfileId(), amzRequest);
-                anySuccess = true;
-                log.info("[updateStatus][Amazon] 成功在 profile {} 下更新 campaign {}", profile.getProfileId(),
-                        request.getCampaignId());
-                break;
-            } catch (ApiException e) {
-                log.debug("Attempt failed in profile {}: {}", profile.getProfileId(), e.getMessage());
-            }
-        }
-        return anySuccess;
+        return true;
     }
 
     private List<AdsAmazonProfileDO> getFilteredProfiles(Long accountId, AdsQueryRequest request) {
@@ -352,6 +350,39 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         }
         return "";
     }
+
+    private Map<String, List<String>> getProfileGroupByCountry(AdsAccountDO account) {
+        AmzAccountVO amzAccount = JsonUtils.parseObject(account.getExtConfig(), AmzAccountVO.class);
+        if (amzAccount == null || CollectionUtils.isEmpty(amzAccount.getAlternateIds())) {
+            return Collections.emptyMap();
+        }
+
+        Map<String, List<String>> result = Maps.newHashMap();
+
+        for (Map<String, String> item : amzAccount.getAlternateIds()) {
+            if (item.containsKey("profileId") && StringUtils.isNotEmpty(item.get("profileId"))) {
+                String countryCode = item.get("countryCode");
+                if (!result.containsKey(countryCode)) {
+                    result.put(countryCode, Lists.newArrayList());
+                }
+                result.get(countryCode).add(item.get("profileId"));
+            }
+
+        }
+
+        return result;
+    }
+
+    private Set<AmazonRegionEnum> getAccountSupportRegion(AdsAccountDO account) {
+        AmzAccountVO amzAccount = JsonUtils.parseObject(account.getExtConfig(), AmzAccountVO.class);
+        Set<AmazonRegionEnum> result = Sets.newHashSet();
+        amzAccount.getCountryCodes().forEach(code -> {
+            result.add(AmazonRegionEnum.ofCountryCode(code));
+        });
+
+        return result;
+    }
+
 
     private void saveProfile(Long accountId, String profileId, String countryCode, String region,
             String currency, String timezone, String entityId, String entityName) {

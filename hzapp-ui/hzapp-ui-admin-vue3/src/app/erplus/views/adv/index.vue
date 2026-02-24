@@ -124,98 +124,9 @@
     </template>
   </el-dialog>
 
-
-</template>
-
-
-
-<template>
-  <ContentWrap>
-    <!-- 搜索工作栏 -->
-    <el-form
-      class="-mb-15px"
-      :model="queryParams"
-      ref="queryFormRef"
-      :inline="true"
-      label-width="80px"
-    >
-      <el-form-item label="广告账号" prop="accountId">
-        <el-select v-model="queryParams.accountId" placeholder="请选择广告账号" clearable class="!w-240px">
-          <el-option
-            v-for="item in accountList"
-            :key="item.id"
-            :label="item.name + ' (' + item.platform + ')'"
-            :value="item.id"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button 
-          type="primary" 
-          @click="handleSyncAll"
-          :loading="syncLoading"
-          :disabled="!queryParams.accountId"
-        >
-          <Icon icon="ep:refresh" class="mr-5px" /> 同步全量
-        </el-button>
-        <el-button 
-          type="success" 
-          @click="handleSyncIncr"
-          :loading="syncLoading"
-          :disabled="!queryParams.accountId"
-        >
-          <Icon icon="ep:refresh" class="mr-5px" /> 同步增量
-        </el-button>
-      </el-form-item>
-    </el-form>
-
-    <!-- 展示当前广告效果 (保留原有组件) -->
-    <AdDataChart 
-      v-if="queryParams.accountId"
-      :account-id="queryParams.accountId" 
-      :active-tab="activeTab"
-      :query-params="queryParams"
-    />
-  </ContentWrap>
-
-  <ContentWrap>
-    <el-tabs v-model="activeTab" type="card" @tab-change="handleTabChange">
-      <el-tab-pane label="广告活动" name="campaign">
-        <AdCampaignList 
-          :account-id="queryParams.accountId"
-          @select="handleCampaignSelect"
-        />
-      </el-tab-pane>
-      <el-tab-pane label="广告组" name="adGroup">
-        <AdGroupList 
-          :account-id="queryParams.accountId"
-          :campaign-ids="selectedCampaignIds"
-          @select="handleAdGroupSelect"
-        />
-      </el-tab-pane>
-      <el-tab-pane label="广告" name="ad">
-        <AdList 
-          :account-id="queryParams.accountId"
-          :ad-group-ids="selectedAdGroupIds"
-        />
-      </el-tab-pane>
-      <el-tab-pane label="关键词" name="keyword">
-        <AdKeywordList 
-          :account-id="queryParams.accountId"
-          :ad-group-ids="selectedAdGroupIds"
-        />
-      </el-tab-pane>
-    </el-tabs>
-  </ContentWrap>
 </template>
 
 <script setup lang="ts">
-import { AdsAuthApi, AdsSyncApi } from '@/app/erplus/api/adv/ads'
-import { AdsAccount } from './types/ads'
-import AdCampaignList from './components/AdCampaignList.vue'
-import AdGroupList from './components/AdGroupList.vue'
-import AdList from './components/AdList.vue'
-import AdKeywordList from './components/AdKeywordList.vue'
 import AdDataChart from './components/AdDataChart.vue'
 
 defineOptions({ name: 'AdsManager' })
@@ -223,60 +134,44 @@ defineOptions({ name: 'AdsManager' })
 const message = useMessage()
 const activeTab = ref('campaign')
 const syncLoading = ref(false)
-
-const accountList = ref<AdsAccount[]>([])
-const selectedCampaignIds = ref<number[]>([])
-const selectedAdGroupIds = ref<number[]>([])
+const syncDialogVisible = ref(false)
+const columnCustomizerVisible = ref(false)
 
 const queryParams = reactive({
-  accountId: undefined as number | undefined
+  shopId: undefined as number | undefined
 })
 
-const getAccountList = async () => {
-  try {
-    const data = await AdsAuthApi.getAccountPage({ pageNo: 1, pageSize: 100 })
-    accountList.value = data.list
-  } catch (error) {}
-}
+const syncForm = reactive({
+  dateRange: [] as string[]
+})
 
 const handleTabChange = (tab: string) => {
   console.log('Tab changed to:', tab)
 }
 
 const handleCampaignSelect = (selection: any[]) => {
-  selectedCampaignIds.value = selection.map(item => item.id)
-  selectedAdGroupIds.value = [] // 级联清空
+  console.log('Campaign selected:', selection)
 }
 
 const handleAdGroupSelect = (selection: any[]) => {
-  selectedAdGroupIds.value = selection.map(item => item.id)
+  console.log('AdGroup selected:', selection)
 }
 
-const handleSyncAll = async () => {
-  if (!queryParams.accountId) return
-  syncLoading.value = true
-  try {
-    await AdsSyncApi.syncAllMetadata(queryParams.accountId)
-    message.success('已触发全量同步任务')
-  } finally {
-    syncLoading.value = false
-  }
+const handleAdSelect = (selection: any[]) => {
+  console.log('Ad selected:', selection)
 }
 
-const handleSyncIncr = async () => {
-  if (!queryParams.accountId) return
-  syncLoading.value = true
-  try {
-    await AdsSyncApi.syncIncrMetadata(queryParams.accountId)
-    message.success('已触发增量同步任务')
-  } finally {
-    syncLoading.value = false
-  }
+const handleChartDataLoaded = (data: any) => {
+  console.log('Chart data loaded:', data)
 }
 
-onMounted(() => {
-  getAccountList()
-})
+const openSyncDialog = () => {
+  syncDialogVisible.value = true
+}
+
+const handleSyncConfirm = async () => {
+  syncDialogVisible.value = false
+}
 </script>
 
 <style scoped>

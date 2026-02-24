@@ -10,7 +10,7 @@ OPENAPI_GENERATOR_JAR="openapi-generator-cli-${OPENAPI_GENERATOR_VERSION}.jar"
 OUT_DIR="${SCRIPT_DIR}/out/java"
 
 # Target directory in the project
-TARGET_DIR="${SCRIPT_DIR}/../../hzapp-module-erplus/hzapp-module-erplus-adv/src/main/java/com/hzltd/module/erplus/adv/adapter/amazon"
+TARGET_DIR="${SCRIPT_DIR}/../../hzapp-module-erplus/hzapp-module-erplus-adv/src/main/java/com/hzltd/module/erplus/adv/adapter/amazon/v2"
 
 # 1. Download OpenAPI Generator if not present
 cd "${SCRIPT_DIR}"
@@ -31,9 +31,9 @@ echo "Generating ALL APIs (Profiles, reporting, etc.)..."
 java -jar "${OPENAPI_GENERATOR_JAR}" generate \
     -i AmazonAdsAPIALL_prod_3p.json \
     -g java \
-    --api-package com.hzltd.module.erplus.adv.adapter.amazon.api.all \
-    --model-package com.hzltd.module.erplus.adv.adapter.amazon.model.all \
-    --invoker-package com.hzltd.module.erplus.adv.adapter.amazon.client \
+    --api-package com.hzltd.module.erplus.adv.adapter.amazon.v2.api.all \
+    --model-package com.hzltd.module.erplus.adv.adapter.amazon.v2.model.all \
+    --invoker-package com.hzltd.module.erplus.adv.adapter.amazon.v2.client \
     -o out/java \
     --library native \
     --additional-properties="${COMMON_PROPS}"
@@ -42,9 +42,9 @@ echo "Generating SP (Sponsored Products) APIs..."
 java -jar "${OPENAPI_GENERATOR_JAR}" generate \
     -i AmazonAdsAPISP_prod_3p.json \
     -g java \
-    --api-package com.hzltd.module.erplus.adv.adapter.amazon.api.sp \
-    --model-package com.hzltd.module.erplus.adv.adapter.amazon.model.sp \
-    --invoker-package com.hzltd.module.erplus.adv.adapter.amazon.client \
+    --api-package com.hzltd.module.erplus.adv.adapter.amazon.v2.api.sp \
+    --model-package com.hzltd.module.erplus.adv.adapter.amazon.v2.model.sp \
+    --invoker-package com.hzltd.module.erplus.adv.adapter.amazon.v2.client \
     -o out/java \
     --library native \
     --additional-properties="${COMMON_PROPS}"
@@ -53,9 +53,9 @@ echo "Generating SB (Sponsored Brands) APIs..."
 java -jar "${OPENAPI_GENERATOR_JAR}" generate \
     -i AmazonAdsAPISB_prod_3p.json \
     -g java \
-    --api-package com.hzltd.module.erplus.adv.adapter.amazon.api.sb \
-    --model-package com.hzltd.module.erplus.adv.adapter.amazon.model.sb \
-    --invoker-package com.hzltd.module.erplus.adv.adapter.amazon.client \
+    --api-package com.hzltd.module.erplus.adv.adapter.amazon.v2.api.sb \
+    --model-package com.hzltd.module.erplus.adv.adapter.amazon.v2.model.sb \
+    --invoker-package com.hzltd.module.erplus.adv.adapter.amazon.v2.client \
     -o out/java \
     --library native \
     --additional-properties="${COMMON_PROPS}"
@@ -64,6 +64,6 @@ java -jar "${OPENAPI_GENERATOR_JAR}" generate \
 echo "Copying generated files to module at: ${TARGET_DIR}"
 rm -rf "${TARGET_DIR}/api" "${TARGET_DIR}/model" "${TARGET_DIR}/client"
 mkdir -p "${TARGET_DIR}/api" "${TARGET_DIR}/model" "${TARGET_DIR}/client"
-cp -R "${OUT_DIR}/src/main/java/com/hzltd/module/erplus/adv/adapter/amazon/"* "${TARGET_DIR}/"
+cp -R "${OUT_DIR}/src/main/java/com/hzltd/module/erplus/adv/adapter/amazon/v2/"* "${TARGET_DIR}/"
 
 echo "Generation and copy completed successfully."

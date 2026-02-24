@@ -38,11 +38,12 @@ public interface AdsKeywordMapper extends BaseMapperX<AdsKeywordDO> {
     default PageResult<AdsKeywordDO> selectPage(AdsKeywordPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsKeywordDO>()
                 .eqIfPresent(AdsKeywordDO::getAccountId, reqVO.getAccountId())
-                .eqIfPresent(AdsKeywordDO::getAdGroupId, reqVO.getAdGroupId())
+                .inIfPresent(AdsKeywordDO::getCampaignId, reqVO.getCampaignIds())
+                .inIfPresent(AdsKeywordDO::getAdGroupId, reqVO.getAdGroupIds())
                 .eqIfPresent(AdsKeywordDO::getExternalId, reqVO.getExternalId())
                 .likeIfPresent(AdsKeywordDO::getKeywordText, reqVO.getKeywordText())
                 .eqIfPresent(AdsKeywordDO::getMatchType, reqVO.getMatchType())
                 .eqIfPresent(AdsKeywordDO::getStatus, reqVO.getStatus())
-                .orderByDesc(AdsKeywordDO::getId));
+                .last("ORDER BY FIELD(status, 'ENABLED', 'PAUSED', 'ARCHIVED') ASC, id DESC"));
     }
 }

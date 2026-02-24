@@ -28,12 +28,14 @@ public class AdsAdGroupController {
     @Resource
     private AdsAdGroupService adsAdGroupService;
 
-    @GetMapping("/page")
+    @PostMapping("/page")
     @Operation(summary = "获得广告组分页")
     @PreAuthorize("@ss.hasPermission('erplus:adv-ad-group:query')")
-    public CommonResult<PageResult<AdsAdGroupRespVO>> getAdGroupPage(@Valid AdsAdGroupPageReqVO pageReqVO) {
+    public CommonResult<PageResult<AdsAdGroupRespVO>> getAdGroupPage(@Valid @RequestBody AdsAdGroupPageReqVO pageReqVO) {
         PageResult<AdsAdGroupDO> pageResult = adsAdGroupService.getAdGroupPage(pageReqVO);
-        return success(BeanUtils.toBean(pageResult, AdsAdGroupRespVO.class));
+        PageResult<AdsAdGroupRespVO> resultVO = BeanUtils.toBean(pageResult, AdsAdGroupRespVO.class);
+        // We'll need platform here too. For now let's focus on Campaign as per user request.
+        return success(resultVO);
     }
 
     @PutMapping("/update-status")
@@ -55,7 +57,9 @@ public class AdsAdGroupController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-ad-group:query')")
     public CommonResult<AdsAdGroupRespVO> getAdGroup(@RequestParam("id") Long id) {
         AdsAdGroupDO adGroup = adsAdGroupService.getAdGroup(id);
-        return success(BeanUtils.toBean(adGroup, AdsAdGroupRespVO.class));
+        AdsAdGroupRespVO respVO = BeanUtils.toBean(adGroup, AdsAdGroupRespVO.class);
+        // Populate platform if needed
+        return success(respVO);
     }
 
 }

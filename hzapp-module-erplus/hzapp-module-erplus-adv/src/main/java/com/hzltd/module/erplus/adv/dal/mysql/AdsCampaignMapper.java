@@ -43,6 +43,6 @@ public interface AdsCampaignMapper extends BaseMapperX<AdsCampaignDO> {
                 .likeIfPresent(AdsCampaignDO::getName, reqVO.getName())
                 .eqIfPresent(AdsCampaignDO::getStatus, reqVO.getStatus())
                 .betweenIfPresent(AdsCampaignDO::getCreateTime, reqVO.getCreateTime())
-                .orderByDesc(AdsCampaignDO::getId));
+                .last("ORDER BY start_date DESC, FIELD(status, 'ENABLED', 'PAUSED', 'ARCHIVED') ASC"));
     }
 }
