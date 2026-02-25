@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.hzltd</groupId>
+        <artifactId>hzapp-module-erplus</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>hzapp-module-erplus-ai</artifactId>
+    <packaging>jar</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>
+        AI 模块，基于 spring-ai-alibaba 实现 Agent 编排。
+    </description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-erplus-api</artifactId>
+        </dependency>
+
+        <!-- Spring AI Alibaba -->
+        <dependency>
+            <groupId>com.alibaba.cloud.ai</groupId>
+            <artifactId>spring-ai-alibaba-starter</artifactId>
+            <version>1.0.0-M6.1</version>
+        </dependency>
+
+        <!-- DB -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-mybatis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <!-- Test -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</project>

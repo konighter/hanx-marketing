@@ -102,4 +102,28 @@ public interface AdsPlatformAdapter {
         // 默认不进行额外处理，各平台适配器按需覆写
     }
 
+    /**
+     * 创建优化规则后的平台同步 Hook
+     *
+     * @param account    广告账户
+     * @param profileId  站点ID (Amazon ProfileId)
+     * @param saveReqVO  保存请求参数
+     * @return 平台返回的原始响应 (JSON)
+     */
+    default String postOptimizationRuleCreate(AdsAccountDO account, String profileId, Object saveReqVO) {
+        throw new UnsupportedOperationException("Platform does not support optimization rule creation");
+    }
+
+    /**
+     * 关联优化规则后的平台同步 Hook
+     *
+     * @param account         广告账户
+     * @param campaignId      平台原始计划ID
+     * @param profileId       站点ID
+     * @param associateReqVO  关联请求参数
+     */
+    default void postOptimizationRuleAssociate(AdsAccountDO account, String campaignId, String profileId, Object associateReqVO) {
+        throw new UnsupportedOperationException("Platform does not support optimization rule association");
+    }
+
 }

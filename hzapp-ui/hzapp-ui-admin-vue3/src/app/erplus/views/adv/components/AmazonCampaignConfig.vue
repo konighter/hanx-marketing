@@ -27,6 +27,16 @@
         />
       </el-form-item>
 
+      <el-form-item label="优化规则">
+        <AdsOptimizationRuleSelect 
+          :model-value="modelValue.optimizationRuleId"
+          :account-id="modelValue.accountId"
+          :profile-id="modelValue.profileId"
+          placeholder="请选择或创建优化规则"
+          @update:model-value="val => updateModelValue('optimizationRuleId', val)"
+        />
+      </el-form-item>
+
       <!-- 2. 分位置竞价调整 -->
       <el-divider content-position="left">分位置竞价调整</el-divider>
       <div class="mb-20px">
@@ -66,7 +76,7 @@
           <span class="mr-10px">否定关键词</span>
           <el-button type="primary" link @click="addNegativeKeyword">添加</el-button>
         </div>
-        <el-table :data="modelValue.negativeKeywords || []" border size="small">
+        <el-table :data="localNegativeKeywords" border size="small">
           <el-table-column label="关键词" prop="keywordText">
             <template #default="{ row }">
               <el-input v-model="row.keywordText" size="small" @change="updateNegativeKeywords" />
@@ -157,6 +167,7 @@
 import { ref, onMounted, watch } from 'vue'
 import { AdsAdGroupApi } from '@/app/erplus/api/adv/ads'
 import { AdsAdGroup } from '../types/ads'
+import AdsOptimizationRuleSelect from './AdsOptimizationRuleSelect.vue'
 
 const props = defineProps<{
   modelValue: any
@@ -172,6 +183,7 @@ const groupBids = ref<Record<number, number>>({})
 const activeAdGroupTab = ref('')
 const activeTargetingTab = ref('targeting')
 const activeNegativeType = ref('keyword')
+const localNegativeKeywords = ref<any[]>([])
 
 const placementData = ref([
   { type: 'PLACEMENT_TOP', label: '首页 (搜索顶部)', percentage: 0, targetBid: 1.0 },
@@ -189,6 +201,11 @@ watch(() => props.modelValue.bidding?.adjustments, (adjustments) => {
       item.targetBid = Number((1 * (1 + item.percentage / 100)).toFixed(2))
     })
   }
+}, { immediate: true })
+
+// Sync negative keywords from props to local ref
+watch(() => props.modelValue.negativeKeywords, (val) => {
+  localNegativeKeywords.value = JSON.parse(JSON.stringify(val || []))
 }, { immediate: true })
 
 const handlePercentageChange = (row: any) => {
@@ -233,19 +250,17 @@ const updatePlacement = (type: string, val: number) => {
 }
 
 const addNegativeKeyword = () => {
-  const list = [...(props.modelValue.negativeKeywords || [])]
-  list.push({ keywordText: '', matchType: 'NEGATIVE_EXACT' })
-  updateModelValue('negativeKeywords', list)
+  localNegativeKeywords.value.push({ keywordText: '', matchType: 'NEGATIVE_EXACT' })
+  updateNegativeKeywords()
 }
 
 const removeNegativeKeyword = (index: number) => {
-  const list = [...(props.modelValue.negativeKeywords || [])]
-  list.splice(index, 1)
-  updateModelValue('negativeKeywords', list)
+  localNegativeKeywords.value.splice(index, 1)
+  updateNegativeKeywords()
 }
 
 const updateNegativeKeywords = () => {
-  updateModelValue('negativeKeywords', props.modelValue.negativeKeywords)
+  updateModelValue('negativeKeywords', [...localNegativeKeywords.value])
 }
 
 const fetchAdGroups = async () => {
@@ -274,7 +289,8 @@ const fetchAdGroups = async () => {
   }
 }
 
-const handleGroupBidChange = (groupId: number, val: number) => {
+const handleGroupBidChange = (groupId: number, val: number | undefined) => {
+  if (val === undefined) return
   groupBids.value[groupId] = val
   const currentGroups = [...(props.modelValue.adGroups || [])]
   const index = currentGroups.findIndex(g => g.id === groupId)

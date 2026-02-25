@@ -2,23 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.hzltd</groupId>
         <artifactId>hzapp</artifactId>
         <version>${revision}</version>
     </parent>
-
-    <modules>
-        <module>hzapp-module-erplus-api</module>
-        <module>hzapp-module-erplus-biz</module>
-        <module>hzapp-module-erplus-ozon-spapi</module>
-        <module>hzapp-module-erplus-api-adaptor</module>
-        <module>hzapp-module-erplus-tts-spapi</module>
-        <module>hzapp-module-erplus-biz-amz</module>
-        <module>hzapp-module-erplus-amz-adv</module>
-        <module>hzapp-module-erplus-adv</module>
-    </modules>
-    <modelVersion>4.0.0</modelVersion>
     <artifactId>hzapp-module-erplus</artifactId>
     <packaging>pom</packaging>
 
@@ -29,14 +18,24 @@
         例如说：采购、销售、库存、财务、产品等等
     </description>
 
+    <modules>
+        <module>hzapp-module-erplus-api</module>
+        <module>hzapp-module-erplus-biz</module>
+        <module>hzapp-module-erplus-ozon-spapi</module>
+        <module>hzapp-module-erplus-api-adaptor</module>
+        <module>hzapp-module-erplus-tts-spapi</module>
+        <module>hzapp-module-erplus-biz-amz</module>
+        <module>hzapp-module-erplus-amz-adv</module>
+        <module>hzapp-module-erplus-adv</module>
+        <module>hzapp-module-erplus-ai</module>
+    </modules>
+
     <properties>
         <eVersion>3.0.0-SNAPSHOT</eVersion>
-
     </properties>
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus</artifactId>
@@ -67,13 +66,11 @@
                 <version>${eVersion}</version>
             </dependency>
 
-
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus-amz-spapi</artifactId>
                 <version>${eVersion}</version>
             </dependency>
-
 
             <dependency>
                 <groupId>com.hzltd</groupId>
@@ -87,6 +84,11 @@
                 <version>${eVersion}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus-ai</artifactId>
+                <version>${eVersion}</version>
+            </dependency>
 
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
@@ -95,11 +97,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
         </dependencies>
-
-
-
     </dependencyManagement>
 
 </project>

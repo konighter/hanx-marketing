@@ -11,6 +11,7 @@ import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.*;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonAdsApiService;
+import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonSpOptimizationRuleApiService;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.campaign.AmzCampaignListRequest;
 import com.hzltd.module.erplus.adv.adapter.amazon.v2.api.all.CampaignsApi;
 import com.hzltd.module.erplus.adv.adapter.amazon.v2.client.ApiClient;
@@ -55,6 +56,8 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     private AdsAuthService adsAuthService;
     @Resource
     private AmazonAdsApiService amazonAdsApiService;
+    @Resource
+    private AmazonSpOptimizationRuleApiService amazonSpOptimizationRuleApiService;
 
     @Override
     public AdsPlatformEnum getPlatform() {
@@ -407,5 +410,29 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
             profile.setStatus("ENABLED");
             adsAmazonProfileMapper.updateById(profile);
         }
+    }
+
+    @Override
+    public String postOptimizationRuleCreate(AdsAccountDO account, String profileId, Object saveReqVO) {
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(account.getId());
+        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
+        AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
+        String baseUrl = "https://" + regionEnum.getAdsEndpoint();
+
+        return amazonSpOptimizationRuleApiService.createRules(credential,
+                profile.getEntityId(), profile.getProfileId(), baseUrl,
+                (com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleSaveReqVO) saveReqVO);
+    }
+
+    @Override
+    public void postOptimizationRuleAssociate(AdsAccountDO account, String campaignId, String profileId, Object associateReqVO) {
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(account.getId());
+        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
+        AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
+        String baseUrl = "https://" + regionEnum.getAdsEndpoint();
+
+        amazonSpOptimizationRuleApiService.associateRules(credential,
+                profile.getEntityId(), profile.getProfileId(), baseUrl, campaignId,
+                (com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleAssociateReqVO) associateReqVO);
     }
 }
