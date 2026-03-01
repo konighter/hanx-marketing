@@ -16,7 +16,7 @@ public class AdsOptimizationRuleSaveReqVO {
     private String profileId;
 
     @Schema(description = "优化规则列表")
-    private List<OptimizationRule> optimizationRules;
+    private OptimizationRule optimizationRule;
 
     @Data
     public static class OptimizationRule {

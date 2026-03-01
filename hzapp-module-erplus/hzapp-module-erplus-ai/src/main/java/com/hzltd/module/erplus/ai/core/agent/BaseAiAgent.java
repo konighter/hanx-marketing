@@ -25,7 +25,7 @@ public abstract class BaseAiAgent implements AiAgent {
         chatClientBuilder.defaultSystem(getSystemPrompt());
         
         if (tools != null && tools.length > 0) {
-            chatClientBuilder.defaultFunctions(tools);
+            chatClientBuilder.defaultToolNames(tools);
         }
         
         this.chatClient = chatClientBuilder.build();

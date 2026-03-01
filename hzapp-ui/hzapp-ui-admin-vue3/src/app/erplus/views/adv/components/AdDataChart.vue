@@ -3,10 +3,6 @@
         <template #header>
             <div class="flex justify-between">
 
-                <span><el-date-picker v-model="chartDateRange" type="daterange" range-separator="至"
-                        start-placeholder="开始日期" end-placeholder="结束日期"
-                        :default-time="[new Date(2000, 1, 1, 0, 0, 0), new Date(2000, 1, 1, 23, 59, 59)]"
-                        value-format="YYYY-MM-DD" @change="loadChartData" class="date-picker" /></span>
                 <span class="chart-title">
                     {{ chartTitle }}
                 </span>
@@ -105,45 +101,51 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted, onUnmounted, watch, computed } from 'vue'
+import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 import * as echarts from 'echarts'
 
 // 定义组件属性
 interface Props {
-    shopId?: string | number
-    activeTab?: 'campaign' | 'adGroup' | 'ad'
+    accountId?: string | number
+    entityType?: 'CAMPAIGN' | 'ADGROUP' | 'AD' | 'ACCOUNT'
     queryParams?: {
         campaignIds?: number[]
         adGroupIds?: number[]
+        adIds?: number[]
     }
+    dateRange?: [string, string] | null
+    timeUnit?: 'day' | 'week' | 'month'
 }
 
 const props = withDefaults(defineProps<Props>(), {
-    activeTab: 'campaign',
-    queryParams: () => ({})
+    entityType: 'CAMPAIGN',
+    queryParams: () => ({}),
+    timeUnit: 'day'
 })
 
 // 定义 emits
 const emit = defineEmits<{
     (e: 'data-loaded', data: any): void
+    (e: 'update:dateRange', dates: [string, string]): void
 }>()
 
 // Tab 标签映射
-const tabLabels: Record<string, string> = {
-    campaign: '广告活动',
-    adGroup: '广告组',
-    ad: '广告'
+const entityLabels: Record<string, string> = {
+    CAMPAIGN: '广告活动',
+    ADGROUP: '广告组',
+    AD: '广告',
+    ACCOUNT: '广告账号'
 }
 
 // 根据 tab 获取选中的 IDs
 const getSelectedIds = () => {
-    switch (props.activeTab) {
-        case 'campaign':
+    switch (props.entityType) {
+        case 'CAMPAIGN':
             return props.queryParams?.campaignIds || []
-        case 'adGroup':
+        case 'ADGROUP':
             return props.queryParams?.adGroupIds || []
-        case 'ad':
+        case 'AD':
             return props.queryParams?.adIds || []
         default:
             return []
@@ -152,14 +154,13 @@ const getSelectedIds = () => {
 
 // 计算图表标题
 const chartTitle = computed(() => {
-    const tabLabel = tabLabels[props.activeTab] || '数据'
-    return `${tabLabel}数据趋势`
+    const label = entityLabels[props.entityType as string] || '数据'
+    return `${label}数据趋势`
 })
 
 // 响应式数据
 const chartContainer = ref<HTMLDivElement | null>(null)
 const chartInstance = ref<echarts.ECharts | null>(null)
-const chartDateRange = ref<[string, string]>(getDefaultDateRange())
 
 // 新增：高度相关的响应式数据
 const isCompactHeight = computed(() => {
@@ -190,12 +191,14 @@ const debounce = (func: Function, wait: number) => {
 const metricSelectorVisible = ref(false)
 const axisConfigVisible = ref(false)
 
+import { AdsReportApi } from '@/app/erplus/api/adv/report'
+
 // 可用指标配置
 const availableMetrics = [
     { key: 'impressions', label: '展示量', unit: '次' },
     { key: 'clicks', label: '点击量', unit: '次' },
     { key: 'ctr', label: '点击率', unit: '%' },
-    { key: 'cost', label: '花费', unit: '元' },
+    { key: 'spend', label: '花费', unit: '元' }, // Changed from cost to spend
     { key: 'sales', label: '销售额', unit: '元' },
     { key: 'acos', label: 'ACOS', unit: '%' },
     { key: 'roas', label: 'ROAS', unit: '' },
@@ -203,11 +206,11 @@ const availableMetrics = [
 ]
 
 // 选中的指标
-const selectedMetrics = ref<string[]>(['impressions', 'clicks', 'cost', 'sales'])
+const selectedMetrics = ref<string[]>(['impressions', 'clicks', 'spend', 'sales'])
 
 // 轴设置
 const leftAxisMetrics = ref<string[]>(['impressions', 'clicks'])
-const rightAxisMetrics = ref<string[]>(['cost', 'sales'])
+const rightAxisMetrics = ref<string[]>(['spend', 'sales'])
 
 // 图表数据
 const chartData = ref<any>({})
@@ -237,17 +240,6 @@ interface ChartYAxisItem {
 }
 
 // 方法
-function getDefaultDateRange(): [string, string] {
-    const endDate = new Date()
-    const startDate = new Date()
-    startDate.setDate(startDate.getDate() - 14)
-
-    return [
-        startDate.toISOString().split('T')[0],
-        endDate.toISOString().split('T')[0]
-    ]
-}
-
 function handleConfigCommand(command: string) {
     switch (command) {
         case 'selectMetrics':
@@ -268,9 +260,9 @@ function confirmMetrics() {
 }
 
 function resetMetrics() {
-    selectedMetrics.value = ['impressions', 'clicks', 'cost', 'sales']
+    selectedMetrics.value = ['impressions', 'clicks', 'spend', 'sales']
     leftAxisMetrics.value = ['impressions', 'clicks']
-    rightAxisMetrics.value = ['cost', 'sales']
+    rightAxisMetrics.value = ['spend', 'sales']
     updateChart()
 }
 
@@ -303,64 +295,30 @@ function getMetricUnit(key: string) {
 }
 
 async function loadChartData() {
-    if (!chartDateRange.value || chartDateRange.value.length !== 2) {
+    if (!props.dateRange || props.dateRange.length !== 2) {
         return
     }
 
     try {
-        const data = await fetchChartData({
-            shopId: props.shopId,
-            activeTab: props.activeTab,
-            selectedIds: getSelectedIds(),
-            startDate: chartDateRange.value[0],
-            endDate: chartDateRange.value[1],
-            metrics: selectedMetrics.value
+        const res = await AdsReportApi.getPerformanceTrend({
+            accountId: props.accountId as any,
+            entityType: props.entityType as any || 'CAMPAIGN',
+            entityId: getSelectedIds()[0], // Currently support single entity selection in detail
+            startDate: props.dateRange[0],
+            endDate: props.dateRange[1],
+            timeUnit: props.timeUnit
         })
 
-        chartData.value = data
-        emit('data-loaded', data)
+        chartData.value = {
+            dates: res.timeList,
+            series: res.seriesData
+        }
+        emit('data-loaded', res)
         updateChart()
     } catch (error) {
         console.error('加载图表数据失败:', error)
         ElMessage.error('加载数据失败')
     }
-}
-
-async function fetchChartData(params: any) {
-    // 模拟数据 - 实际应该调用真实 API
-    await new Promise(resolve => setTimeout(resolve, 500))
-
-    const dates = []
-    const startDate = new Date(params.startDate)
-    const endDate = new Date(params.endDate)
-
-    for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-        dates.push(d.toISOString().split('T')[0])
-    }
-
-    const result: any = {
-        dates,
-        series: {}
-    }
-
-    // 根据选中数据和 tab 生成不同的数据
-    const selectedCount = params.selectedIds?.length || 0
-    const baseMultiplier = selectedCount > 0 ? selectedCount : 1
-
-    params.metrics.forEach((metric: string) => {
-        const baseValue = selectedCount > 0 ? 500 : 100
-        result.series[metric] = dates.map(() => Math.random() * baseValue * baseMultiplier)
-    })
-
-    if (selectedCount > 1) {
-        params.metrics.forEach((metric: string) => {
-            result.series[metric] = result.series[metric].map((val: number, idx: number) => {
-                return val * (0.8 + (idx % 3) * 0.1)
-            })
-        })
-    }
-
-    return result
 }
 
 function updateChartAxis() {
@@ -607,17 +565,23 @@ onUnmounted(() => {
 })
 
 // 监听属性变化
-watch(() => props.shopId, () => {
+watch(() => props.accountId, () => {
     loadChartData()
 })
 
 // 监听 tab 切换，重新加载数据
-watch(() => props.activeTab, () => {
+watch(() => props.entityType, () => {
     loadChartData()
 })
 
-// 监听选中 IDs 变化，重新加载数据
-watch(() => [props.queryParams?.campaignIds, props.queryParams?.adGroupIds, props.queryParams?.adIds], () => {
+// 监听 selectedIds、dateRange、timeUnit 变化
+watch(() => [
+    props.queryParams?.campaignIds, 
+    props.queryParams?.adGroupIds, 
+    props.queryParams?.adIds,
+    props.dateRange,
+    props.timeUnit
+], () => {
     loadChartData()
 }, { deep: true })
 

@@ -17,6 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.ai.controller.admin.mas.vo.MasSessionPageReqVO;
+
 import java.util.List;
 import java.util.Map;
 
@@ -92,5 +96,23 @@ public class MasPersistenceServiceImpl implements MasPersistenceService {
     public void loadContextVariables(String sessionId, MasContext context) {
         List<MasSessionVariableDO> variables = variableMapper.selectListBySessionId(sessionId);
         variables.forEach(v -> context.setVariable(v.getVarKey(), v.getVarValue()));
+    }
+
+    @Override
+    public PageResult<MasSessionDO> getSessionPage(MasSessionPageReqVO pageReqVO) {
+        return sessionMapper.selectPage(pageReqVO, new LambdaQueryWrapperX<MasSessionDO>()
+                .likeIfPresent(MasSessionDO::getGoal, pageReqVO.getGoal())
+                .eqIfPresent(MasSessionDO::getStatus, pageReqVO.getStatus())
+                .orderByDesc(MasSessionDO::getId));
+    }
+
+    @Override
+    public MasSessionDO getSession(String sessionId) {
+        return sessionMapper.selectBySessionId(sessionId);
+    }
+
+    @Override
+    public List<MasTaskHistoryDO> getTaskHistoryList(String sessionId) {
+        return taskHistoryMapper.selectListBySessionId(sessionId);
     }
 }

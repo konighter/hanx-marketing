@@ -1,49 +1,35 @@
 <template>
   <ContentWrap>
     <!-- 搜索工作栏 -->
-    <el-form
-      class="-mb-15px"
-      :model="queryParams"
-      ref="queryFormRef"
-      :inline="true"
-      label-width="80px"
-    >
-      <el-form-item label="广告账号" prop="accountId">
-        <el-select v-model="queryParams.accountId" placeholder="请选择广告账号" clearable class="!w-240px">
-          <el-option
-            v-for="item in accountList"
-            :key="item.id"
-            :label="item.name + ' (' + item.platform + ')'"
-            :value="item.id"
-          />
-        </el-select>
-      </el-form-item>
-      <el-form-item>
-        <el-button 
-          type="primary" 
-          @click="handleSyncAll"
-          :loading="syncLoading"
-          :disabled="!queryParams.accountId"
-        >
-          <Icon icon="ep:refresh" class="mr-5px" /> 同步全量
-        </el-button>
-        <el-button 
-          type="success" 
-          @click="handleSyncIncr"
-          :loading="syncLoading"
-          :disabled="!queryParams.accountId"
-        >
-          <Icon icon="ep:refresh" class="mr-5px" /> 同步增量
-        </el-button>
-      </el-form-item>
-    </el-form>
+    <div class="flex justify-between items-center mb-15px">
+      <!-- 左侧：搜索工作栏 -->
+      <el-form
+        class="!mb-0"
+        :model="queryParams"
+        ref="queryFormRef"
+        :inline="true"
+        label-width="80px"
+      >
+        <el-form-item label="广告账号" prop="accountId">
+          <el-select v-model="queryParams.accountId" placeholder="请选择广告账号" clearable class="!w-240px">
+            <el-option
+              v-for="item in accountList"
+              :key="item.id"
+              :label="item.name + ' (' + item.platform + ')'"
+              :value="item.id"
+            />
+          </el-select>
+        </el-form-item>
+      </el-form>
 
-    <!-- 展示当前广告效果 -->
-    <AdDataChart 
+      <!-- 右侧：同步组件 -->
+      <AdSyncDialog :account-id="queryParams.accountId" />
+    </div>
+
+    <!-- 展示当前广告效果 (账户级别分析) -->
+    <AdAccountDataAnalysis 
       v-if="queryParams.accountId"
-      :account-id="queryParams.accountId" 
-      :active-tab="activeTab"
-      :query-params="queryParams"
+      :account-id="queryParams.accountId"
     />
   </ContentWrap>
 
@@ -107,20 +93,19 @@
 </template>
 
 <script setup lang="ts">
-import { AdsAuthApi, AdsSyncApi } from '@/app/erplus/api/adv/ads'
+import { AdsAuthApi } from '@/app/erplus/api/adv/ads'
 import { AdsAccount } from './types/ads'
 import AdCampaignList from './components/AdCampaignList.vue'
 import AdGroupList from './components/AdGroupList.vue'
 import AdList from './components/AdList.vue'
 import AdKeywordList from './components/AdKeywordList.vue'
-import AdDataChart from './components/AdDataChart.vue'
+import AdAccountDataAnalysis from './components/AdAccountDataAnalysis.vue'
+import AdSyncDialog from './components/AdSyncDialog.vue'
 
 defineOptions({ name: 'AdsAccountManager' })
 
 const message = useMessage()
 const activeTab = ref('campaign')
-const syncLoading = ref(false)
-
 const accountList = ref<AdsAccount[]>([])
 const selectedCampaignIds = ref<number[]>([])
 const selectedAdGroupIds = ref<number[]>([])
@@ -206,27 +191,7 @@ const handleAdClick = (row: any) => {
   console.log('Clicked ad:', row.name)
 }
 
-const handleSyncAll = async () => {
-  if (!queryParams.accountId) return
-  syncLoading.value = true
-  try {
-    await AdsSyncApi.syncAllMetadata(queryParams.accountId)
-    message.success('已触发全量同步任务')
-  } finally {
-    syncLoading.value = false
-  }
-}
 
-const handleSyncIncr = async () => {
-  if (!queryParams.accountId) return
-  syncLoading.value = true
-  try {
-    await AdsSyncApi.syncIncrMetadata(queryParams.accountId)
-    message.success('已触发增量同步任务')
-  } finally {
-    syncLoading.value = false
-  }
-}
 
 watch(() => queryParams.accountId, () => {
   filterContext.campaignId = undefined

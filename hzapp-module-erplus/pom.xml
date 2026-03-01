@@ -21,9 +21,9 @@
     <modules>
         <module>hzapp-module-erplus-api</module>
         <module>hzapp-module-erplus-biz</module>
-        <module>hzapp-module-erplus-ozon-spapi</module>
+<!--        <module>hzapp-module-erplus-ozon-spapi</module>-->
         <module>hzapp-module-erplus-api-adaptor</module>
-        <module>hzapp-module-erplus-tts-spapi</module>
+<!--        <module>hzapp-module-erplus-tts-spapi</module>-->
         <module>hzapp-module-erplus-biz-amz</module>
         <module>hzapp-module-erplus-amz-adv</module>
         <module>hzapp-module-erplus-adv</module>
@@ -72,11 +72,11 @@
                 <version>${eVersion}</version>
             </dependency>
 
-            <dependency>
-                <groupId>com.hzltd</groupId>
-                <artifactId>hzapp-module-erplus-ozon-spapi</artifactId>
-                <version>${eVersion}</version>
-            </dependency>
+<!--            <dependency>-->
+<!--                <groupId>com.hzltd</groupId>-->
+<!--                <artifactId>hzapp-module-erplus-ozon-spapi</artifactId>-->
+<!--                <version>${eVersion}</version>-->
+<!--            </dependency>-->
 
             <dependency>
                 <groupId>com.hzltd</groupId>

@@ -49,4 +49,11 @@ public interface AdsCampaignService {
      */
     String getPlatformByAccountId(Long accountId);
 
+    /**
+     * 计算并保存广告计划的下一次分时调度时间
+     * @param campaignId 广告计划ID
+     * @param scheduleJson 分时计划 JSON
+     */
+    void calculateAndSaveNextTransition(Long campaignId, String scheduleJson);
+
 }

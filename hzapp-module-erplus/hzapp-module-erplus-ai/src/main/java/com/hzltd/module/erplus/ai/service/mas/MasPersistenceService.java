@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.ai.service.mas;
 
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasAgentConfigDO;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSessionDO;
+import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskHistoryDO;
 import com.hzltd.module.erplus.ai.mas.framework.agent.MasRole;
 import com.hzltd.module.erplus.ai.mas.framework.execution.MasContext;
 import com.hzltd.module.erplus.ai.mas.framework.execution.MasTask;
@@ -36,4 +37,19 @@ public interface MasPersistenceService {
      * 加载会话上下文至 MasContext
      */
     void loadContextVariables(String sessionId, MasContext context);
+
+    /**
+     * 分页查询会话记录
+     */
+    com.hzltd.framework.common.pojo.PageResult<MasSessionDO> getSessionPage(com.hzltd.module.erplus.ai.controller.admin.mas.vo.MasSessionPageReqVO pageReqVO);
+
+    /**
+     * 获取指定会话
+     */
+    MasSessionDO getSession(String sessionId);
+
+    /**
+     * 获取指定会话的任务历史
+     */
+    java.util.List<MasTaskHistoryDO> getTaskHistoryList(String sessionId);
 }

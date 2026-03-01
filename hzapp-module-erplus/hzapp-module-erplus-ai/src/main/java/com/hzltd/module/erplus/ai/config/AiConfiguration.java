@@ -1,5 +1,8 @@
 package com.hzltd.module.erplus.ai.config;
 
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.chat.client.DefaultChatClientBuilder;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -11,5 +14,12 @@ import org.springframework.context.annotation.Configuration;
 public class AiConfiguration {
 
     // 可以在此配置 Agent 编排相关的 Bean
+
+
+
+
+
+
+
 
 }

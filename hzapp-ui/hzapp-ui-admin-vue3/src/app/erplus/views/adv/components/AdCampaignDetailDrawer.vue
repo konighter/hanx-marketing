@@ -1,8 +1,10 @@
 <template>
   <el-drawer
     v-model="visible"
-    size="60%"
+    title="广告计划详情"
+    size="90%"
     @closed="handleClosed"
+    destroy-on-close
   >
     <template #header>
       <div class="flex items-center">
@@ -65,14 +67,21 @@
               </el-form-item>
               <el-form-item label="投放时间">
                 <el-date-picker
-                  v-model="dateRange"
-                  unlink-panels
-                  type="daterange"
-                  range-separator="至"
-                  start-placeholder="开始日期"
-                  end-placeholder="结束日期"
+                  v-model="startDate"
+                  type="date"
+                  placeholder="开始日期"
                   value-format="YYYY-MM-DD"
                   clearable
+                  style="width: 140px"
+                />
+                <span class="mx-10px">至</span>
+                <el-date-picker
+                  v-model="endDate"
+                  type="date"
+                  placeholder="结束日期"
+                  value-format="YYYY-MM-DD"
+                  clearable
+                  style="width: 140px"
                 />
               </el-form-item>
               <el-form-item label="分时投放">
@@ -93,25 +102,13 @@
           </div>
         </el-tab-pane>
 
-        
-        <el-tab-pane label="数据表现" name="data">
+        <el-tab-pane label="数据分析" name="data">
           <div class="p-20px">
-            <AdDataChart 
+            <AdCampaignDataAnalysis 
               v-if="visible && activeTab === 'data'"
-              active-tab="campaign"
-              :query-params="{ campaignIds: [detail.id!] }"
+              :account-id="detail.accountId"
+              :campaign-id="detail.id!"
             />
-            
-            <el-descriptions :column="2" border class="mt-20px">
-              <el-descriptions-item label="曝光量">{{ detail.impressions || 0 }}</el-descriptions-item>
-              <el-descriptions-item label="点击量">{{ detail.clicks || 0 }}</el-descriptions-item>
-              <el-descriptions-item label="点击率 (CTR)">{{ detail.ctr ? `${(detail.ctr * 100).toFixed(2)}%` : '0%' }}</el-descriptions-item>
-              <el-descriptions-item label="花费 (Spend)">{{ detail.spend ? `$${detail.spend}` : '$0' }}</el-descriptions-item>
-              <el-descriptions-item label="CPC">{{ detail.cpc ? `$${detail.cpc.toFixed(2)}` : '$0' }}</el-descriptions-item>
-              <el-descriptions-item label="订单数">{{ detail.orders || 0 }}</el-descriptions-item>
-              <el-descriptions-item label="销售额 (Sales)">{{ detail.sales ? `$${detail.sales}` : '$0' }}</el-descriptions-item>
-              <el-descriptions-item label="ROAS">{{ detail.roas ? detail.roas.toFixed(2) : '0' }}</el-descriptions-item>
-            </el-descriptions>
           </div>
         </el-tab-pane>
       </el-tabs>
@@ -137,7 +134,7 @@ import { ElMessage } from 'element-plus'
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
 import { AdsCampaignApi } from '@/app/erplus/api/adv/ads'
 import { AdsCampaign } from '../types/ads'
-import AdDataChart from './AdDataChart.vue'
+import AdCampaignDataAnalysis from './AdCampaignDataAnalysis.vue'
 import DeliverySchedule from './DeliverySchedule.vue'
 import AmazonCampaignConfig from './AmazonCampaignConfig.vue'
 
@@ -154,7 +151,8 @@ const form = reactive({
   budget: 0,
 })
 
-const dateRange = ref<[string, string] | null>(null)
+const startDate = ref<string | null>(null)
+const endDate = ref<string | null>(null)
 const schedule = ref<boolean[][]>([])
 const amazonConfig = ref<any>({})
 
@@ -172,9 +170,8 @@ const open = async (id: number) => {
     form.name = res.name
     form.status = res.status
     form.budget = res.budgetType === 'DAILY' ? res.dailyBudget : res.totalBudget
-    dateRange.value = res.startDate ? [res.startDate, res.endDate || ''] : null
-    
-    console.log(dateRange.value)
+    startDate.value = res.startDate || null
+    endDate.value = res.endDate || null
 
     // Init schedule from standalone field
     if (res.deliverySchedule) {
@@ -194,7 +191,12 @@ const open = async (id: number) => {
 
     // Init amazon config from extData
     if (res.platform === 'AMAZON') {
-      amazonConfig.value = res.extData?.amazonConfig || {}
+      const extData = res.extData || {}
+      amazonConfig.value = {
+        ...(extData.amazonConfig || {}),
+        accountId: res.accountId,
+        profileId: extData.profileId
+      }
     }
   } finally {
     loading.value = false
@@ -210,8 +212,8 @@ const handleSave = async () => {
       id: detail.value.id,
       name: form.name,
       status: form.status,
-      startDate: dateRange.value?.[0] || null,
-      endDate: dateRange.value?.[1] || null,
+      startDate: startDate.value,
+      endDate: endDate.value,
       deliverySchedule: JSON.stringify(schedule.value),
       extData: {
         ...(detail.value.extData || {}),

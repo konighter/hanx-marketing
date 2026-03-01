@@ -148,17 +148,18 @@ const submit = async () => {
   if (!valid) return
 
   try {
+    console.log('accountId:', props.accountId)
     const submitData = {
       accountId: props.accountId,
       profileId: props.profileId,
-      optimizationRules: [formData]
+      optimizationRule: formData
     }
-    await AdsOptimizationRuleApi.createOptimizationRule(submitData)
-    message.success('创建成功')
-    emit('success')
+    const ruleId = await AdsOptimizationRuleApi.createOptimizationRule(submitData)
+    ElMessage.success('创建成功')
+    emit('success', ruleId)
   } catch (error) {
     console.error('新建优化规则失败', error)
-    message.error('创建失败')
+    ElMessage.error('创建失败')
   }
 }
 

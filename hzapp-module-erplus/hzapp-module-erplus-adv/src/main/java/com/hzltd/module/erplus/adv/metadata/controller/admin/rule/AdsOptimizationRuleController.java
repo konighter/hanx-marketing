@@ -3,10 +3,8 @@ package com.hzltd.module.erplus.adv.metadata.controller.admin.rule;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.module.erplus.adv.metadata.service.rule.AdsOptimizationRuleService;
 import com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleSaveReqVO;
-import com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleAssociateReqVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsOptimizationRuleDO;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
@@ -30,20 +28,11 @@ public class AdsOptimizationRuleController {
     @PostMapping("/ads/rules/optimization")
     @Operation(summary = "创建优化规则")
     @PreAuthorize("@ss.hasPermission('erplus:adv-rule:create')")
-    public CommonResult<Boolean> createOptimizationRule(@Valid @RequestBody AdsOptimizationRuleSaveReqVO createReqVO) {
-        adsOptimizationRuleService.createOptimizationRule(createReqVO);
-        return success(true);
+    public CommonResult<String> createOptimizationRule(@Valid @RequestBody AdsOptimizationRuleSaveReqVO createReqVO) {
+        String ruleId = adsOptimizationRuleService.createOptimizationRule(createReqVO);
+        return success(ruleId);
     }
 
-    @PostMapping("/sp/campaigns/{campaignId}/optimizationRules")
-    @Operation(summary = "关联优化规则")
-    @Parameter(name = "campaignId", description = "广告计划编号", required = true)
-    @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:update')")
-    public CommonResult<Boolean> associateOptimizationRules(@PathVariable("campaignId") Long campaignId,
-                                                            @Valid @RequestBody AdsOptimizationRuleAssociateReqVO associateReqVO) {
-        adsOptimizationRuleService.associateOptimizationRules(campaignId, associateReqVO);
-        return success(true);
-    }
 
     @GetMapping("/ads/rules/optimization/list")
     @Operation(summary = "获取优化规则列表")

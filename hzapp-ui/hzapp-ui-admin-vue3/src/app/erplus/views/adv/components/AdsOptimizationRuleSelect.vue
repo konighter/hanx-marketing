@@ -102,8 +102,11 @@ const openCreateDialog = () => {
 const handleCreateSuccess = async (newRuleId: string) => {
   dialogVisible.value = false
   await getRuleList()
-  modelValue.value = newRuleId
-  handleChange(newRuleId)
+  
+  if (newRuleId) {
+    modelValue.value = newRuleId
+    handleChange(newRuleId)
+  }
 }
 
 const submitForm = async () => {

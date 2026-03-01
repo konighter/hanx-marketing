@@ -414,14 +414,15 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
     @Override
     public String postOptimizationRuleCreate(AdsAccountDO account, String profileId, Object saveReqVO) {
-        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(account.getId());
-        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
-        AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
-        String baseUrl = "https://" + regionEnum.getAdsEndpoint();
-
-        return amazonSpOptimizationRuleApiService.createRules(credential,
-                profile.getEntityId(), profile.getProfileId(), baseUrl,
-                (com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleSaveReqVO) saveReqVO);
+//        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(account.getId());
+//        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
+//        AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
+//        String baseUrl = "https://" + regionEnum.getAdsEndpoint();
+//
+//        return amazonSpOptimizationRuleApiService.createRules(credential,
+//                profile.getEntityId(), profile.getProfileId(), baseUrl,
+//                (com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleSaveReqVO) saveReqVO);
+        return UUID.randomUUID().toString();
     }
 
     @Override

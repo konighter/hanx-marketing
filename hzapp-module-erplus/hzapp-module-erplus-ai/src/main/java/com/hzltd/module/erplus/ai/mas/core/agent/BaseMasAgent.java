@@ -5,12 +5,14 @@ import com.hzltd.module.erplus.ai.mas.framework.agent.MasRole;
 import com.hzltd.module.erplus.ai.mas.framework.execution.MasContext;
 import com.hzltd.module.erplus.ai.mas.framework.execution.MasTask;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import reactor.core.publisher.Mono;
 
 /**
  * MAS Agent 抽象基类，集成 Spring AI ChatClient
  */
+@Slf4j
 public abstract class BaseMasAgent implements MasAgent {
 
     @Getter
@@ -37,10 +39,12 @@ public abstract class BaseMasAgent implements MasAgent {
             // 动态注入工具
             if (task.getTools() != null && !task.getTools().isEmpty()) {
                 String[] toolArray = task.getTools().toArray(new String[0]);
-                spec.functions(toolArray);
+                spec.toolNames(toolArray);
             }
-            
-            return spec.call().content();
+
+            String response = spec.call().content();
+            log.debug("MAS Agent {} handle task {}, response: {}", name, task, response);
+            return response;
         });
     }
 

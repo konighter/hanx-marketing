@@ -74,6 +74,7 @@ CREATE TABLE `ads_campaign` (
   `total_budget` decimal(18,4) DEFAULT NULL COMMENT '总预算',
   `start_date` date DEFAULT NULL COMMENT '投放开始日期',
   `end_date` date DEFAULT NULL COMMENT '投放结束日期',
+  `delivery_schedule` text DEFAULT NULL COMMENT '分时投放配置 (7x24 布尔矩阵 JSON)',
   `bidding_strategy` varchar(32) NOT NULL DEFAULT '' COMMENT '出价策略 (MANUAL_CPC / AUTO_BID / TARGET_ROAS)',
   `ext_data` json DEFAULT NULL COMMENT '平台扩展字段',
   `synced_at` datetime DEFAULT NULL COMMENT '上次从平台同步的时间',
@@ -322,5 +323,81 @@ CREATE TABLE `ads_amazon_profile` (
   KEY `idx_account_id` (`account_id`),
   KEY `idx_entity_id` (`entity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='亚马逊广告 Profile 表';
+
+-- ----------------------------
+-- 12. 广告计划分时调度跟踪表
+-- ----------------------------
+DROP TABLE IF EXISTS `ads_campaign_schedule`;
+CREATE TABLE `ads_campaign_schedule` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `campaign_id` bigint NOT NULL COMMENT '广告计划 ID',
+  `account_id` bigint NOT NULL COMMENT '广告账户 ID',
+  `current_status` varchar(32) NOT NULL COMMENT '当前该调度逻辑认为的状态: ENABLED / PAUSED',
+  `next_transition_time` datetime NOT NULL COMMENT '下一次状态变迁时间',
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `creator` varchar(64) NOT NULL COMMENT '创建人ID',
+  `updater` varchar(64) NOT NULL COMMENT '最后修改人ID',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除（0: 未删除, 1: 已删除）',
+  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_campaign_id` (`campaign_id`),
+  KEY `idx_next_transition_time` (`next_transition_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='广告计划分时调度跟踪表';
+
+
+-- ----------------------------
+-- 13. 广告小时绩效报表 (原始明细层)
+-- ----------------------------
+DROP TABLE IF EXISTS `ads_report_hourly`;
+CREATE TABLE `ads_report_hourly` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `account_id` bigint NOT NULL COMMENT '关联广告账户ID',
+  `entity_type` varchar(16) NOT NULL COMMENT '实体类型: CAMPAIGN / ADGROUP / AD / KEYWORD',
+  `entity_id` bigint NOT NULL COMMENT '内部实体ID',
+  `report_hour` datetime NOT NULL COMMENT '报表小时点',
+  `metrics` json NOT NULL COMMENT '数值指标池 (spend, clicks, impressions, conversions, etc.)',
+  -- 常用指标虚拟列，用于性能加速和排序
+  `spend` decimal(18,4) GENERATED ALWAYS AS (COALESCE(metrics->'$.spend', 0)) VIRTUAL,
+  `clicks` bigint GENERATED ALWAYS AS (COALESCE(metrics->'$.clicks', 0)) VIRTUAL,
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `creator` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '创建人ID',
+  `updater` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '最后修改人ID',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除（0: 未删除, 1: 已删除）',
+  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_hour_entity` (`account_id`, `entity_type`, `entity_id`, `report_hour`),
+  KEY `idx_report_hour` (`report_hour`),
+  KEY `idx_spend` (`spend`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='广告小时绩效报表';
+
+-- ----------------------------
+-- 14. 广告性能预计算汇总表 (汇总层/分析层)
+-- ----------------------------
+DROP TABLE IF EXISTS `ads_report_summary`;
+CREATE TABLE `ads_report_summary` (
+  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
+  `account_id` bigint NOT NULL COMMENT '关联广告账户ID',
+  `entity_type` varchar(16) NOT NULL COMMENT '实体类型: ACCOUNT / CAMPAIGN / ADGROUP',
+  `entity_id` bigint NOT NULL COMMENT '内部实体ID',
+  `period_type` varchar(10) NOT NULL COMMENT '周期类型: DAY / WEEK / MONTH',
+  `period_value` varchar(20) NOT NULL COMMENT '周期值 (YYYY-MM-DD / YYYY-WW / YYYY-MM)',
+  `metrics` json NOT NULL COMMENT '聚合后的指标池',
+  -- 核心排序/分析指标虚拟化
+  `spend` decimal(18,4) GENERATED ALWAYS AS (COALESCE(metrics->'$.spend', 0)) VIRTUAL,
+  `conversions` int GENERATED ALWAYS AS (COALESCE(metrics->'$.conversions', 0)) VIRTUAL,
+  `sales` decimal(18,4) GENERATED ALWAYS AS (COALESCE(metrics->'$.sales', 0)) VIRTUAL,
+  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `creator` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '创建人ID',
+  `updater` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '最后修改人ID',
+  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除（0: 未删除, 1: 已删除）',
+  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_period_entity` (`account_id`, `entity_type`, `entity_id`, `period_type`, `period_value`),
+  KEY `idx_period_value` (`period_value`),
+  KEY `idx_sales` (`sales`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='广告性能预计算汇总表';
 
 SET FOREIGN_KEY_CHECKS = 1;

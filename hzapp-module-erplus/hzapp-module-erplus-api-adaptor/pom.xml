@@ -24,20 +24,20 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>com.hzltd</groupId>
-            <artifactId>hzapp-module-erplus-ozon-spapi</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.hzltd</groupId>-->
+<!--            <artifactId>hzapp-module-erplus-ozon-spapi</artifactId>-->
+<!--        </dependency>-->
 
 <!--        <dependency>-->
 <!--            <groupId>com.hzltd</groupId>-->
 <!--            <artifactId>hzapp-module-erplus-amz-spapi</artifactId>-->
 <!--        </dependency>-->
 
-        <dependency>
-            <groupId>com.hzltd</groupId>
-            <artifactId>hzapp-module-erplus-tts-spapi</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.hzltd</groupId>-->
+<!--            <artifactId>hzapp-module-erplus-tts-spapi</artifactId>-->
+<!--        </dependency>-->
 
 
         <dependency>
@@ -56,6 +56,13 @@
             <artifactId>commons-collections4</artifactId>
             <version>4.4</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+        </dependency>
+
+
         <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-module-infra</artifactId>

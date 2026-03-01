@@ -15,7 +15,6 @@
         erp 包下，企业资源管理（Enterprise Resource Planning）。
         例如说：采购、销售、库存、财务、产品等等
     </description>
-
     <dependencies>
         <dependency>
             <groupId>com.hzltd</groupId>
@@ -26,6 +25,7 @@
         <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-module-erplus-api</artifactId>
+            <version>${revision}</version>
         </dependency>
         <dependency>
             <groupId>com.hzltd</groupId>

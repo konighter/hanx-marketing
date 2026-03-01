@@ -29,8 +29,8 @@
 
     <!-- 展示当前广告活动的效果 -->
     <AdDataChart 
-      :shop-id="queryParams.shopId" 
-      :active-tab="activeTab"
+      :account-id="queryParams.shopId" 
+      :entity-type="activeTab"
       :query-params="queryParams"
       :sync-loading="syncLoading"
       @data-loaded="handleChartDataLoaded"
@@ -47,21 +47,21 @@
 <ContentWrap>
 <div class="tabs-with-actions">
   <el-tabs v-model="activeTab" type="card" class="adv-tabs" @tab-change="handleTabChange">
-    <el-tab-pane label="广告活动" name="campaign">
+    <el-tab-pane label="广告活动" name="CAMPAIGN">
       <CampaignList 
         :query-params="queryParams"
         :column-settings="campaignColumns"
         @select="handleCampaignSelect"
       />
     </el-tab-pane>
-    <el-tab-pane label="广告组" name="adGroup">
+    <el-tab-pane label="广告组" name="ADGROUP">
       <AdGroupList 
         :query-params="queryParams"
         :column-settings="adGroupColumns"
         @select="handleAdGroupSelect"
       />
     </el-tab-pane>
-    <el-tab-pane label="广告" name="ad">
+    <el-tab-pane label="广告" name="AD">
       <AdList 
         :query-params="queryParams"
         :column-settings="adColumns"
@@ -131,15 +131,22 @@ import AdDataChart from './components/AdDataChart.vue'
 
 defineOptions({ name: 'AdsManager' })
 
-const message = useMessage()
-const activeTab = ref('campaign')
+const activeTab = ref<'CAMPAIGN' | 'ADGROUP' | 'AD' | 'ACCOUNT'>('CAMPAIGN')
 const syncLoading = ref(false)
 const syncDialogVisible = ref(false)
 const columnCustomizerVisible = ref(false)
 
 const queryParams = reactive({
-  shopId: undefined as number | undefined
+  shopId: undefined as number | undefined,
+  campaignIds: [] as number[],
+  adGroupIds: [] as number[],
+  adIds: [] as number[]
 })
+
+// 模拟列定义
+const campaignColumns = ref([])
+const adGroupColumns = ref([])
+const adColumns = ref([])
 
 const syncForm = reactive({
   dateRange: [] as string[]
