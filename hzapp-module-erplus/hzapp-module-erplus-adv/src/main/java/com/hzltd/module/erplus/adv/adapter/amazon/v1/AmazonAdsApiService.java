@@ -1,9 +1,8 @@
 package com.hzltd.module.erplus.adv.adapter.amazon.v1;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.campaign.AmzCampaign;
-import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.campaign.AmzCampaignListRequest;
-import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.campaign.AmzCampaignListResponse;
+import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.AmzCampaign;
+import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.AmzCampaignListResponse;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +29,7 @@ public class AmazonAdsApiService {
     private static final String CAMPAIGNS_PATH = "/campaigns";
 
     @Resource
-    private AmazonAdsApiClient apiClient;
+    private AdsApiClient apiClient;
 
     // ==================== Campaign 管理 ====================
 

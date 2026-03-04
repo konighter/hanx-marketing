@@ -10,6 +10,7 @@ import com.google.common.collect.Sets;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.*;
+import com.hzltd.module.erplus.adv.adapter.amazon.service.AdsAmazonReportService;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonAdsApiService;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonSpOptimizationRuleApiService;
 import com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest;
@@ -58,7 +59,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Resource
     private AdsAmazonProfileService adsAmazonProfileService;
     @Resource
-    private AmazonAdvReportService amazonAdvReportService;
+    private AdsAmazonReportService adsAmazonReportService;
 
     @Override
     public AdsPlatformEnum getPlatform() {
@@ -311,6 +312,6 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public void executePerformanceSyncTask(AdsSyncTaskDO task) {
         // 核心任务分发与状态管理逻辑已迁移到 AmzSpReportParser
-        amazonAdvReportService.executeSyncTask(task);
+        adsAmazonReportService.executeSyncTask(task);
     }
 }

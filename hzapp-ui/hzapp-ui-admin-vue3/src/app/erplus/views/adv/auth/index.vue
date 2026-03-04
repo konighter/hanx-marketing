@@ -42,11 +42,7 @@
   <!-- 列表 -->
   <ContentWrap>
     <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true">
-      <el-table-column label="平台" align="center" prop="platform">
-        <!-- <template #default="scope">
-          <dict-tag :type="DICT_TYPE.ADS_PLATFORM" :value="scope.row.platform" />
-        </template> -->
-      </el-table-column>
+      <el-table-column label="平台" align="center" prop="platform" />
       <el-table-column label="账号名称" align="center" prop="name" />
       <el-table-column label="状态" align="center" prop="authStatus">
         <template #default="scope">
@@ -62,13 +58,6 @@
         :formatter="dateFormatter"
         width="180px"
       />
-      <!-- <el-table-column
-        label="创建时间"
-        align="center"
-        prop="createTime"
-        :formatter="dateFormatter"
-        width="180px"
-      /> -->
       <el-table-column label="操作" align="center" width="280px">
         <template #default="scope">
           <el-button link type="primary" @click="handleShowProfiles(scope.row)" v-if="scope.row.platform === 'AMAZON'"> 查看站点 </el-button>
@@ -111,23 +100,15 @@
   </el-dialog>
 
   <!-- Amazon Profile 列表抽屉 -->
-  <el-drawer v-model="profileDrawerVisible" title="亚马逊站点列表 (Profiles)" size="600px">
-    <el-table :data="profileList" v-loading="profileLoading">
-      <el-table-column label="Profile ID" align="center" prop="profileId" />
-      <el-table-column label="站点" align="center" prop="countryCode" width="80px" />
-      <el-table-column label="区域" align="center" prop="region" width="80px" />
-      <el-table-column label="币种" align="center" prop="currencyCode" width="80px" />
-      <el-table-column label="时区" align="center" prop="timezone" />
-    </el-table>
-  </el-drawer>
+  <AmazonProfileDrawer ref="profileDrawerRef" />
 </template>
 
 <script setup lang="ts">
-import { DICT_TYPE } from '@/utils/dict'
 import { dateFormatter } from '@/utils/formatTime'
 import { AdsAuthApi } from '@/app/erplus/api/adv/ads'
 import { ShopApi, ShopVO } from '@/app/erplus/api/system/shop'
-import { AdsAccount, AmazonProfile } from '../types/ads'
+import { AdsAccount } from '../types/ads'
+import AmazonProfileDrawer from './components/AmazonProfileDrawer.vue'
 
 defineOptions({ name: 'AdsAuth' })
 
@@ -146,9 +127,7 @@ const queryParams = reactive({
 const queryFormRef = ref()
 const shopList = ref<ShopVO[]>([])
 
-const profileDrawerVisible = ref(false)
-const profileLoading = ref(false)
-const profileList = ref<AmazonProfile[]>([])
+const profileDrawerRef = ref()
 
 const getShopList = async () => {
   shopList.value = await ShopApi.getShopList({})
@@ -231,13 +210,7 @@ const handleDelete = async (id: number) => {
 }
 
 const handleShowProfiles = async (row: AdsAccount) => {
-  profileDrawerVisible.value = true
-  profileLoading.value = true
-  try {
-    profileList.value = await AdsAuthApi.getAmazonProfileList(row.id)
-  } finally {
-    profileLoading.value = false
-  }
+  profileDrawerRef.value.open(row.id)
 }
 
 onMounted(() => {

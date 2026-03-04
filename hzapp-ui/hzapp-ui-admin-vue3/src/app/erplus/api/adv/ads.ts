@@ -1,5 +1,5 @@
 import request from '@/config/axios'
-import { AdsAccount, AdsCampaign, AdsAdGroup, AdsAd, AdsKeyword } from '../views/adv/types/ads'
+import { AdsAccount, AdsCampaign, AdsAdGroup, AdsAd, AdsKeyword, AmazonProfile } from '../../views/adv/types/ads'
 
 // 广告授权相关 API
 export const AdsAuthApi = {
@@ -20,6 +20,10 @@ export const AdsAuthApi = {
   // 获得亚马逊广告 Profile 列表
   getAmazonProfileList: async (accountId: number) => {
     return await request.get({ url: '/erplus/adv/amazon-profile/list', params: { accountId } })
+  },
+  // 初始化亚马逊广告 Stream 订阅
+  initStream: async (accountId: number) => {
+    return await request.get({ url: '/erplus/adv/amazon-profile/init-stream', params: { accountId } })
   },
   // 处理授权回调
   handleCallback: async (params: { platform: string; code: string; state?: string }) => {

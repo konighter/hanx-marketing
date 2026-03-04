@@ -355,30 +355,33 @@ CREATE TABLE `ads_campaign_schedule` (
 
 
 -- ----------------------------
--- 13. 广告小时绩效报表 (原始明细层)
+-- 13. 广告小时绩效报表 (Doris 聚合模型)
 -- ----------------------------
-DROP TABLE IF EXISTS `ads_report_hourly`;
-CREATE TABLE `ads_report_hourly` (
-  `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `account_id` bigint NOT NULL COMMENT '关联广告账户ID',
-  `entity_type` varchar(16) NOT NULL COMMENT '实体类型: CAMPAIGN / ADGROUP / AD / KEYWORD',
-  `entity_id` bigint NOT NULL COMMENT '内部实体ID',
-  `report_hour` datetime NOT NULL COMMENT '报表小时点',
-  `metrics` json NOT NULL COMMENT '数值指标池 (spend, clicks, impressions, conversions, etc.)',
-  -- 常用指标虚拟列，用于性能加速和排序
-  `spend` decimal(18,4) GENERATED ALWAYS AS (COALESCE(metrics->'$.spend', 0)) VIRTUAL,
-  `clicks` bigint GENERATED ALWAYS AS (COALESCE(metrics->'$.clicks', 0)) VIRTUAL,
-  `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `creator` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '创建人ID',
-  `updater` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '最后修改人ID',
-  `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除（0: 未删除, 1: 已删除）',
-  `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_hour_entity` (`account_id`, `entity_type`, `entity_id`, `report_hour`),
-  KEY `idx_report_hour` (`report_hour`),
-  KEY `idx_spend` (`spend`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='广告小时绩效报表';
+-- 注意: 此表使用 Apache Doris Aggregate Model, 需要在 Doris 中执行
+-- DROP TABLE IF EXISTS `ads_report_hourly`;
+-- CREATE TABLE `ads_report_hourly` (
+--   `account_id`     BIGINT         NOT NULL COMMENT '广告账户ID',
+--   `group_column`   VARCHAR(32)    NOT NULL COMMENT '聚合维度: campaign / adGroup / ad / keyword',
+--   `report_hour`    DATETIME       NOT NULL COMMENT '报表小时点',
+--   `campaign_id`    BIGINT         NOT NULL DEFAULT '-1' COMMENT '广告活动ID (-1 = 不在聚合维度)',
+--   `ad_group_id`    BIGINT         NOT NULL DEFAULT '-1' COMMENT '广告组ID',
+--   `ad_id`          BIGINT         NOT NULL DEFAULT '-1' COMMENT '广告ID',
+--   `keyword_id`     BIGINT         NOT NULL DEFAULT '-1' COMMENT '关键词ID',
+--   `impressions`    BIGINT         SUM      DEFAULT '0' COMMENT '展示数',
+--   `clicks`         BIGINT         SUM      DEFAULT '0' COMMENT '点击数',
+--   `cost`           DECIMAL(18,4)  SUM      DEFAULT '0' COMMENT '花费',
+--   `sales7d`        DECIMAL(18,4)  SUM      DEFAULT '0' COMMENT '7天归因销售额',
+--   `orders7d`       BIGINT         SUM      DEFAULT '0' COMMENT '7天归因订单量',
+--   `sales14d`       DECIMAL(18,4)  SUM      DEFAULT '0' COMMENT '14天归因销售额',
+--   `orders14d`      BIGINT         SUM      DEFAULT '0' COMMENT '14天归因订单量',
+--   `sales30d`       DECIMAL(18,4)  SUM      DEFAULT '0' COMMENT '30天归因销售额',
+--   `orders30d`      BIGINT         SUM      DEFAULT '0' COMMENT '30天归因订单量'
+-- ) ENGINE=OLAP
+-- AGGREGATE KEY(`account_id`, `group_column`, `report_hour`, `campaign_id`, `ad_group_id`, `ad_id`, `keyword_id`)
+-- DISTRIBUTED BY HASH(`account_id`) BUCKETS 8
+-- PROPERTIES (
+--   "replication_allocation" = "tag.location.default: 1"
+-- );
 
 -- ----------------------------
 -- 14. 广告性能预计算汇总表 (汇总层/分析层)

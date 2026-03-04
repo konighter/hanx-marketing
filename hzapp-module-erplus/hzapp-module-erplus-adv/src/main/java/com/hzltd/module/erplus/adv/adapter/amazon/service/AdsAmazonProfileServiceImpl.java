@@ -3,19 +3,13 @@ package com.hzltd.module.erplus.adv.adapter.amazon.service;
 import cn.hutool.json.JSONUtil;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.adapter.amazon.AbstractAmazonAdsAdapter;
-import com.hzltd.module.erplus.adv.adapter.amazon.AmazonAdsAdapter;
-import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonAdsApiClient;
-import com.hzltd.module.erplus.adv.adapter.amazon.v3.AmazonAdsReportApiService;
-import com.hzltd.module.erplus.adv.adapter.amazon.v3.model.AmzStreamSubscriptionRequest;
-import com.hzltd.module.erplus.adv.adapter.amazon.v3.model.AmzStreamSubscriptionResponse;
+import com.hzltd.module.erplus.adv.adapter.amazon.v1.AdsApiClient;
 import com.hzltd.module.erplus.adv.auth.service.AdsAuthService;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAmazonProfileDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAmazonProfileMapper;
 import com.hzltd.module.erplus.enums.amz.AmazonRegionEnum;
-import com.hzltd.module.infra.dal.dataobject.config.ConfigDO;
-import com.hzltd.module.infra.service.config.ConfigService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -34,13 +28,6 @@ import java.util.stream.Collectors;
 @Validated
 public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
 
-    private static final String AMZ_ADS_STREAM_SQS_QUEUE_ARN = "amz_ads_stream_sqs_queue_arn";
-    private static final String[] DATA_SET_IDS = {
-            "sp-traffic", "sp-conversion",
-            "sb-traffic", "sb-conversion",
-            "sd-traffic", "sd-conversion"
-    };
-
     @Resource
     private AdsAmazonProfileMapper adsAmazonProfileMapper;
 
@@ -49,16 +36,10 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     private AdsAuthService adsAuthService;
 
     @Resource
-    private AmazonAdsReportApiService amazonAdsReportApiService;
+    private AdsAmazonReportService adsAmazonReportService;
 
     @Resource
-    private ConfigService configService;
-
-    @Resource
-    private AmazonAdsAdapter amazonAdsAdapter;
-
-    @Resource
-    private AmazonAdsApiClient amazonAdsApiClient;
+    private AdsApiClient adsApiClient;
 
     @Override
     public void syncProfiles(AdsAccountDO account, AdsAccountCredentialDO credential) {
@@ -83,7 +64,7 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
                             account.getExternalAccountId(), account.getName());
                     
                     // 自动同步 Stream 订阅
-                    this.syncStreamSubscription(savedProfile);
+                    adsAmazonReportService.createStreamSubscription(savedProfile);
                 }
             }
         }
@@ -149,86 +130,6 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     }
 
     @Override
-    public void syncStreamSubscription(AdsAmazonProfileDO profile) {
-        if (profile == null || !"ENABLED".equals(profile.getStatus())) {
-            return;
-        }
-
-        // 1. 获取 SQS ARN 配置
-        String queueArn = Optional.ofNullable(configService.getConfigByKey(AMZ_ADS_STREAM_SQS_QUEUE_ARN))
-                .map(ConfigDO::getValue)
-                .orElse(null);
-        if (queueArn == null) {
-            log.warn("[syncStreamSubscription] 缺失 SQS ARN 配置 {}, 跳过订阅", AMZ_ADS_STREAM_SQS_QUEUE_ARN);
-            return;
-        }
-
-        // 2. 获取凭证
-        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(profile.getAccountId());
-        if (credential == null) {
-            log.warn("[syncStreamSubscription] 找不到账号 {} 的凭证, 跳过订阅", profile.getAccountId());
-            return;
-        }
-
-        // 3. 准备请求信息
-        String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
-        AdsAmazonProfileDO.Config config = profile.getConfig();
-        if (config == null) {
-            config = new AdsAmazonProfileDO.Config();
-            config.setStreamSubscriptions(new HashMap<>());
-        }
-        Map<String, String> subscriptions = config.getStreamSubscriptions();
-
-        boolean updated = false;
-        for (String dataSetId : DATA_SET_IDS) {
-            // 如果已经订阅过，则跳过
-            if (subscriptions.containsKey(dataSetId)) {
-                continue;
-            }
-
-            try {
-                log.info("[syncStreamSubscription] 开始为 Profile {} 订阅数据集 {}", profile.getProfileId(), dataSetId);
-                AmzStreamSubscriptionRequest request = AmzStreamSubscriptionRequest.builder()
-                        .clientRequestToken(java.util.UUID.randomUUID().toString())
-                        .dataSetId(dataSetId)
-                        .destination(AmzStreamSubscriptionRequest.Destination.builder()
-                                .sqsDestination(AmzStreamSubscriptionRequest.SqsDestination.builder()
-                                        .queueArn(queueArn)
-                                        .build())
-                                .build())
-                        .notes("Auto subscribed by HanX Erplus for " + dataSetId)
-                        .build();
-
-                AmzStreamSubscriptionResponse response = amazonAdsReportApiService.createStreamSubscription(
-                        credential, profile.getEntityId(), profile.getProfileId(), baseUrl, request);
-
-                if (response != null && response.getSubscriptionId() != null) {
-                    subscriptions.put(dataSetId, response.getSubscriptionId());
-                    updated = true;
-                    log.info("[syncStreamSubscription] Profile {} 订阅数据集 {} 成功, subscriptionId={}",
-                            profile.getProfileId(), dataSetId, response.getSubscriptionId());
-                }
-            } catch (Exception e) {
-                log.error("[syncStreamSubscription] Profile {} 订阅数据集 {} 失败", profile.getProfileId(), dataSetId, e);
-            }
-        }
-
-        // 4. 保存订阅信息
-        if (updated) {
-            profile.setConfig(config);
-            adsAmazonProfileMapper.updateById(profile);
-        }
-    }
-
-    @Override
-    public void syncStreamSubscriptionByAccountId(Long accountId) {
-        List<AdsAmazonProfileDO> profiles = getAmazonProfileList(accountId);
-        for (AdsAmazonProfileDO profile : profiles) {
-            syncStreamSubscription(profile);
-        }
-    }
-
-    @Override
     public List<AdsAmazonProfileDO> getAmazonProfileList(Long accountId) {
         return adsAmazonProfileMapper.selectList(AdsAmazonProfileDO::getAccountId, accountId);
     }
@@ -242,13 +143,8 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
         String endpoint = region.getAdsEndpoint();
         String url = "https://" + endpoint + "/v2/profiles?profileTypeFilter=seller";
 
-        String resp = amazonAdsApiClient.get(credential, null, null, url);
+        String resp = adsApiClient.get(credential, null, null, url);
         return JSONUtil.toList(resp, AbstractAmazonAdsAdapter.AmzProfileVO.class);
-
-//        String endpoint = region.getAdsEndpoint();
-//        String url = "https://" + endpoint + "/v2/profiles";
-//        return executeGetRequest(credential, null, url, null,
-//                resp -> JSONUtil.toList(resp, AbstractAmazonAdsAdapter.AmzProfileVO.class));
     }
 
 }

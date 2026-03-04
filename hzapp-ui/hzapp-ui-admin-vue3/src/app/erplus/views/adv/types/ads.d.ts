@@ -81,3 +81,14 @@ export interface AdsKeyword {
   syncedAt?: string
   createTime?: string
 }
+
+export interface AmazonProfile {
+  id: number
+  accountId: number
+  profileId: string
+  countryCode: string
+  currencyCode: string
+  timezone: string
+  region: string
+}
+

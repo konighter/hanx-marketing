@@ -27,3 +27,31 @@ CREATE TABLE IF NOT EXISTS ads_report_daily (
                    "dynamic_partition.prefix" = "p",
                    "dynamic_partition.buckets" = "10" -- 修正此处：将 AUTO 改为具体的数值
                );
+
+-- ----------------------------
+-- 广告小时绩效报表 (Doris 聚合模型)
+-- ----------------------------
+DROP TABLE IF EXISTS `ads_report_hourly`;
+CREATE TABLE `ads_report_hourly` (
+  `account_id`     BIGINT         NOT NULL COMMENT '广告账户ID',
+  `group_column`   VARCHAR(32)    NOT NULL COMMENT '聚合维度: campaign / adGroup / ad / keyword',
+  `report_hour`    DATETIME       NOT NULL COMMENT '报表小时点',
+  `campaign_id`    BIGINT         NOT NULL DEFAULT '-1' COMMENT '广告活动ID (-1 = 不在聚合维度)',
+  `ad_group_id`    BIGINT         NOT NULL DEFAULT '-1' COMMENT '广告组ID',
+  `ad_id`          BIGINT         NOT NULL DEFAULT '-1' COMMENT '广告ID',
+  `keyword_id`     BIGINT         NOT NULL DEFAULT '-1' COMMENT '关键词ID',
+  `impressions`    BIGINT         SUM      DEFAULT '0' COMMENT '展示数',
+  `clicks`         BIGINT         SUM      DEFAULT '0' COMMENT '点击数',
+  `cost`           DECIMAL(18,4)  SUM      DEFAULT '0' COMMENT '花费',
+  `sales7d`        DECIMAL(18,4)  SUM      DEFAULT '0' COMMENT '7天归因销售额',
+  `orders7d`       BIGINT         SUM      DEFAULT '0' COMMENT '7天归因订单量',
+  `sales14d`       DECIMAL(18,4)  SUM      DEFAULT '0' COMMENT '14天归因销售额',
+  `orders14d`      BIGINT         SUM      DEFAULT '0' COMMENT '14天归因订单量',
+  `sales30d`       DECIMAL(18,4)  SUM      DEFAULT '0' COMMENT '30天归因销售额',
+  `orders30d`      BIGINT         SUM      DEFAULT '0' COMMENT '30天归因订单量'
+) ENGINE=OLAP
+AGGREGATE KEY(`account_id`, `group_column`, `report_hour`, `campaign_id`, `ad_group_id`, `ad_id`, `keyword_id`)
+DISTRIBUTED BY HASH(`account_id`) BUCKETS 8
+PROPERTIES (
+  "replication_allocation" = "tag.location.default: 1"
+);

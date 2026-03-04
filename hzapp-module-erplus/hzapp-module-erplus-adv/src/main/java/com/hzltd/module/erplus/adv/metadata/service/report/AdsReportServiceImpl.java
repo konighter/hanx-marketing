@@ -40,24 +40,10 @@ public class AdsReportServiceImpl implements AdsReportService {
     @Transactional(rollbackFor = Exception.class)
     public void saveHourlyReports(List<AdsReportHourlyDO> reports) {
         if (reports == null || reports.isEmpty()) return;
-        
+
+        // Doris Aggregate Model: 直接 INSERT，同 Key 行会自动 SUM 聚合
         for (AdsReportHourlyDO report : reports) {
-            AdsReportHourlyDO existing = adsReportHourlyMapper.selectOne(
-                new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AdsReportHourlyDO>()
-                    .eq(AdsReportHourlyDO::getAccountId, report.getAccountId())
-                    .eq(AdsReportHourlyDO::getEntityType, report.getEntityType())
-                    .eq(AdsReportHourlyDO::getEntityId, report.getEntityId())
-                    .eq(AdsReportHourlyDO::getReportHour, report.getReportHour())
-            );
-
-            if (existing != null) {
-                report.setId(existing.getId());
-                adsReportHourlyMapper.updateById(report);
-            } else {
-                adsReportHourlyMapper.insert(report);
-            }
-
-            aggregateHourlyToSummary(report.getAccountId(), report.getEntityType(), report.getEntityId(), report.getReportHour());
+            adsReportHourlyMapper.insert(report);
         }
     }
 
@@ -337,13 +323,13 @@ public class AdsReportServiceImpl implements AdsReportService {
         List<AdsReportHourlyDO> hourlies = adsReportHourlyMapper.selectList(
             new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AdsReportHourlyDO>()
                 .eq(AdsReportHourlyDO::getAccountId, accountId)
-                .eq(AdsReportHourlyDO::getEntityType, entityType)
-                .eq(AdsReportHourlyDO::getEntityId, entityId)
+                .eq(AdsReportHourlyDO::getGroupColumn, entityType)
                 .between(AdsReportHourlyDO::getReportHour, rangeStart, rangeEnd)
         );
 
         for (AdsReportHourlyDO hour : hourlies) {
-            mergeMetrics(aggregatedMetrics, hour.getMetrics());
+            Map<String, Object> hourMetrics = hourlyToMetricsMap(hour);
+            mergeMetrics(aggregatedMetrics, hourMetrics);
         }
 
         summary.setMetrics(aggregatedMetrics);
@@ -385,6 +371,19 @@ public class AdsReportServiceImpl implements AdsReportService {
     }
 
     // ==================== 工具方法 ====================
+
+    /**
+     * 将 AdsReportHourlyDO 的展平指标列转换为 Map 格式
+     */
+    private Map<String, Object> hourlyToMetricsMap(AdsReportHourlyDO hour) {
+        Map<String, Object> map = new HashMap<>();
+        if (hour.getImpressions() != null) map.put("impressions", hour.getImpressions());
+        if (hour.getClicks() != null) map.put("clicks", hour.getClicks());
+        if (hour.getCost() != null) map.put("spend", hour.getCost());
+        if (hour.getSales7d() != null) map.put("sales", hour.getSales7d());
+        if (hour.getOrders7d() != null) map.put("orders", hour.getOrders7d());
+        return map;
+    }
 
     private void mergeMetrics(Map<String, Object> target, Map<String, Object> source) {
         if (source == null) return;

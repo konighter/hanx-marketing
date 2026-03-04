@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 public class AmazonSpOptimizationRuleApiService {
 
     @Resource
-    private AmazonAdsApiClient apiClient;
+    private AdsApiClient apiClient;
 
     /**
      * 创建优化规则
