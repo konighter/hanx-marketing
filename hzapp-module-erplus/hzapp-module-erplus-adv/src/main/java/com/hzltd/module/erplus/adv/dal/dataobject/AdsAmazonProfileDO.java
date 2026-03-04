@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.adv.dal.dataobject;
 
 import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
@@ -13,7 +14,7 @@ import lombok.*;
  *
  * @author hzadd
  */
-@TableName("ads_amazon_profile")
+@TableName(value = "ads_amazon_profile", autoResultMap = true)
 @KeySequence("ads_amazon_profile_seq")
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -73,5 +74,20 @@ public class AdsAmazonProfileDO extends BaseDO {
      * 状态
      */
     private String status;
+
+    /**
+     * 配置信息
+     */
+    @TableField(typeHandler = com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler.class)
+    private Config config;
+
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class Config {
+        /** 订阅 ID 映射: dataSetId -> subscriptionId */
+        private java.util.Map<String, String> streamSubscriptions;
+    }
 
 }

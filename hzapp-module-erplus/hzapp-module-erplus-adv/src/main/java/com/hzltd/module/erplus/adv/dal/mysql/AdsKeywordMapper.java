@@ -29,6 +29,12 @@ public interface AdsKeywordMapper extends BaseMapperX<AdsKeywordDO> {
                 .eq(AdsKeywordDO::getExternalId, externalId));
     }
 
+    default AdsKeywordDO selectByAccountAndExternalId(Long accountId, String externalId) {
+        return selectOne(new LambdaQueryWrapperX<AdsKeywordDO>()
+                .eq(AdsKeywordDO::getAccountId, accountId)
+                .eq(AdsKeywordDO::getExternalId, externalId));
+    }
+
     default List<AdsKeywordDO> selectListByAccountId(Long accountId) {
         return selectList(new LambdaQueryWrapperX<AdsKeywordDO>()
                 .eq(AdsKeywordDO::getAccountId, accountId)

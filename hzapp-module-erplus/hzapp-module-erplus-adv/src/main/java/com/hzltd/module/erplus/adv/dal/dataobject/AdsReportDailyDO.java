@@ -1,14 +1,11 @@
 package com.hzltd.module.erplus.adv.dal.dataobject;
 
-import com.baomidou.mybatisplus.annotation.KeySequence;
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import lombok.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 /**
  * 广告每日绩效报表 DO
@@ -16,41 +13,39 @@ import java.time.LocalDateTime;
  * @author hzadd
  */
 @TableName(value = "ads_report_daily", autoResultMap = true)
-@KeySequence("ads_report_daily_seq")
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode()
 @ToString(callSuper = true)
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdsReportDailyDO extends BaseDO {
+public class AdsReportDailyDO {
 
-    @TableId
-    private Long id;
-    /** 关联广告账户ID */
-    private Long accountId;
-    /** 实体类型: CAMPAIGN / ADGROUP / AD / KEYWORD */
-    private String entityType;
-    /** 内部实体ID */
-    private Long entityId;
-    /** 平台原始实体ID */
-    private String externalEntityId;
     /** 报表日期 */
+    @TableField("date")
     private LocalDate reportDate;
-    /** 展现量 */
-    private Long impressions;
-    /** 点击量 */
-    private Long clicks;
-    /** 花费 */
-    private BigDecimal spend;
-    /** 转化数量 */
-    private Integer conversions;
-    /** 转化总金额/销售额 */
-    private BigDecimal conversionValue;
-    /** 视频播放量 */
-    private Long videoViews;
-    /** 触达人数 */
-    private Long reach;
-    /** 数据写入/覆盖时间 */
-    private LocalDateTime syncedAt;
+
+    /** 关联广告账户ID  */
+    private Long accountId;
+
+    /** 聚合维度 */
+    private String groupColumn;
+
+    /** 广告活动ID */
+    private Long campaignId;
+
+    /** 广告组ID */
+    private Long adGroupId;
+
+    /** 投放关键词/对象 */
+    private String targeting;
+
+    /** 搜索词 */
+    private String searchTerm;
+
+    /** 指标明细 (JSON) */
+    @TableField(typeHandler = com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler.class)
+    private java.util.Map<String, Object> payload;
+
+
 }

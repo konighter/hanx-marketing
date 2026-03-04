@@ -225,6 +225,7 @@ CREATE TABLE `ads_report_daily` (
   `conversion_value` decimal(18,4) NOT NULL DEFAULT 0.0000 COMMENT '转化总金额/销售额',
   `video_views` bigint NOT NULL DEFAULT 0 COMMENT '视频播放量',
   `reach` bigint NOT NULL DEFAULT 0 COMMENT '触达人数 (Meta/TikTok)',
+  `placement` varchar(64) DEFAULT NULL COMMENT '广告位: Top of Search, Detail Page, etc.',
   `synced_at` datetime DEFAULT NULL COMMENT '数据写入/覆盖时间',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
@@ -233,7 +234,7 @@ CREATE TABLE `ads_report_daily` (
   `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除（0: 未删除, 1: 已删除）',
   `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `uk_entity_date` (`account_id`, `entity_type`, `entity_id`, `report_date`),
+  UNIQUE KEY `uk_entity_date` (`account_id`, `entity_type`, `entity_id`, `report_date`, `placement`),
   KEY `idx_report_date` (`report_date`),
   KEY `idx_entity` (`entity_type`, `entity_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='广告每日绩效报表';
@@ -275,14 +276,18 @@ DROP TABLE IF EXISTS `ads_sync_task`;
 CREATE TABLE `ads_sync_task` (
   `id` bigint NOT NULL AUTO_INCREMENT COMMENT '主键',
   `account_id` bigint NOT NULL COMMENT '关联广告账户ID',
-  `task_type` varchar(32) NOT NULL COMMENT '任务类型: METADATA_FULL / METADATA_INCR / REPORT_DAILY / TOKEN_REFRESH',
+  `parent_task_id` bigint DEFAULT NULL COMMENT '父任务ID（子任务才有值，父任务为 NULL）',
+  `platform` varchar(32) DEFAULT NULL COMMENT '广告平台: AMAZON / META / GOOGLE / TIKTOK',
+  `task_type` varchar(32) NOT NULL COMMENT '任务类型: METADATA_FULL / METADATA_INCR / REPORT_DAILY / REPORT_DIMENSION / TOKEN_REFRESH',
   `status` varchar(16) NOT NULL DEFAULT 'PENDING' COMMENT '任务状态: PENDING / RUNNING / SUCCESS / FAILED / PARTIAL',
   `platform_job_id` varchar(128) NOT NULL DEFAULT '' COMMENT '平台报表 Job ID (异步报表场景)',
   `date_range_start` date DEFAULT NULL COMMENT '报表起始日期',
   `date_range_end` date DEFAULT NULL COMMENT '报表结束日期',
+  `context` json DEFAULT NULL COMMENT '平台特定上下文 (JSON), 如 profileId / reportType / groupBy / baseUrl / region',
   `retry_count` int NOT NULL DEFAULT 0 COMMENT '已重试次数',
   `max_retries` int NOT NULL DEFAULT 3 COMMENT '最大重试次数',
   `error_message` text DEFAULT NULL COMMENT '失败原因',
+  `scheduled_at` bigint DEFAULT NULL COMMENT '预计执行时间 (epoch millis 时间戳，避免时区转换)',
   `started_at` datetime DEFAULT NULL COMMENT '开始执行时间',
   `finished_at` datetime DEFAULT NULL COMMENT '完成时间',
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
@@ -293,8 +298,10 @@ CREATE TABLE `ads_sync_task` (
   `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
   PRIMARY KEY (`id`),
   KEY `idx_account_id` (`account_id`),
+  KEY `idx_parent_task_id` (`parent_task_id`),
   KEY `idx_status` (`status`),
-  KEY `idx_task_type` (`task_type`)
+  KEY `idx_task_type` (`task_type`),
+  KEY `idx_scheduled_at` (`scheduled_at`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='广告数据同步任务表';
 
 -- ----------------------------
@@ -318,6 +325,7 @@ CREATE TABLE `ads_amazon_profile` (
   `updater` varchar(64) NOT NULL COMMENT '最后修改人ID',
   `deleted` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否删除（0: 未删除, 1: 已删除）',
   `tenant_id` bigint NOT NULL DEFAULT '0' COMMENT '租户编号',
+  `config` json DEFAULT NULL COMMENT '配置信息',
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_profile_id` (`profile_id`),
   KEY `idx_account_id` (`account_id`),

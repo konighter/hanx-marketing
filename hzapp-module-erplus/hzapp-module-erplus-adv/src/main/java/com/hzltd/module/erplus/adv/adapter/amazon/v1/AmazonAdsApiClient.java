@@ -100,7 +100,8 @@ public class AmazonAdsApiClient {
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .header("Authorization", "Bearer " + credential.getAccessToken())
-                .header("Amazon-Ads-ClientId", clientId);
+//                .header("Amazon-Ads-ClientId", clientId)
+                .header("Amazon-Advertising-API-ClientId", clientId);
 
         // 广告账户 ID
         if (StringUtils.isNotEmpty(accountId)) {

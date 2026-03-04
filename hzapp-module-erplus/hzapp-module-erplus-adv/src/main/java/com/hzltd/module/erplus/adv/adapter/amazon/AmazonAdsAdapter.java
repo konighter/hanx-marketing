@@ -12,11 +12,6 @@ import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.*;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonAdsApiService;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonSpOptimizationRuleApiService;
-import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.campaign.AmzCampaignListRequest;
-import com.hzltd.module.erplus.adv.adapter.amazon.v2.api.all.CampaignsApi;
-import com.hzltd.module.erplus.adv.adapter.amazon.v2.client.ApiClient;
-import com.hzltd.module.erplus.adv.adapter.amazon.v2.client.ApiException;
-import com.hzltd.module.erplus.adv.adapter.amazon.v2.model.all.*;
 import com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest;
 import com.hzltd.module.erplus.adv.adapter.model.AdsStatusUpdateRequest;
 import com.hzltd.module.erplus.adv.adapter.model.AdsTokenResult;
@@ -25,8 +20,11 @@ import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAmazonProfileDO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsAmazonProfileMapper;
 import com.hzltd.module.erplus.enums.amz.AmazonRegionEnum;
 import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.adv.adapter.amazon.service.AdsAmazonProfileService;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
@@ -39,11 +37,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static me.zhyd.oauth.enums.scope.AuthMiScope.profile;
 
 /**
  * Amazon Ads 平台适配器实现
@@ -58,6 +53,12 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     private AmazonAdsApiService amazonAdsApiService;
     @Resource
     private AmazonSpOptimizationRuleApiService amazonSpOptimizationRuleApiService;
+    @Resource
+    private AdsAmazonProfileMapper adsAmazonProfileMapper;
+    @Resource
+    private AdsAmazonProfileService adsAmazonProfileService;
+    @Resource
+    private AmazonAdvReportService amazonAdvReportService;
 
     @Override
     public AdsPlatformEnum getPlatform() {
@@ -69,7 +70,6 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         String clientId = getRequiredConfig(AMZ_CLIENT_ID);
         String redirectUri = getRequiredConfig(AMZ_REDIRECT_URI);
 
-        // Amazon LWA 授权链接
         return "https://www.amazon.com/ap/oa?client_id=" + clientId +
                 "&scope=advertising::test:create_account%20advertising::campaign_management" +
                 "&response_type=code" +
@@ -117,7 +117,6 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         String endpoint = AmazonRegionEnum.NA.getAdsEndpoint();
 
         return this.executePostequest(credential, null, "https://" + endpoint + "/adsAccounts/list", null, "", resp -> {
-
             JSONObject jsonResponse = JSONUtil.parseObj(resp);
             JSONArray adsAccountArray = jsonResponse.getJSONArray("adsAccounts");
             List<AmzAccountVO> amzAccounts = JSONUtil.toList(adsAccountArray, AmzAccountVO.class);
@@ -133,42 +132,10 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         });
     }
 
-    /**
-     * 同步亚马逊广告 Profile 并关联到账号
-     */
-    public void syncAccountProfiles(AdsAccountDO account, AdsAccountCredentialDO credential) {
-        log.info("[syncAccountProfiles][Amazon] 开始同步账号 {} ({}) 的站点 (Profiles)", account.getName(),
-                account.getExternalAccountId());
-        String clientId = getRequiredConfig(AMZ_CLIENT_ID);
-        Map<String, List<String>> profilesByCountryCode = getProfileGroupByCountry(account);
-        Set<AmazonRegionEnum> regions = getAccountSupportRegion(account);
-
-
-        for (AmazonRegionEnum regionEnum : regions) {
-            String endpoint = regionEnum.getAdsEndpoint();
-            log.info("[syncAccountProfiles][Amazon] 正在从 Region: {} 拉取 Profiles", regionEnum.name());
-            String url = "https://" + endpoint + "/v2/profiles";
-
-            List<AmzProfileVO> profiles = executeGetRequest(credential, null, url, null,
-                    resp -> JSONUtil.toList(resp, AmzProfileVO.class));
-            if (CollectionUtils.isEmpty(profiles)) {
-                continue;
-            }
-            for (AmzProfileVO p : profiles) {
-                if (CollectionUtils.isNotEmpty(profilesByCountryCode.get(p.getCountryCode())) && profilesByCountryCode.get(p.getCountryCode()).contains(p.getProfileId())) {
-                    saveProfile(account.getId(), p.getProfileId(), p.getCountryCode(), regionEnum.name(),
-                            p.getCurrencyCode(), p.getTimezone(), account.getExternalAccountId(), account.getName());
-                }
-            }
-        }
-    }
-
     @Override
     public List<AdsCampaignVO> queryCampaigns(Long accountId, AdsQueryRequest request) {
         log.info("[queryCampaigns][Amazon] 查询广告计划, accountId: {}, request: {}", accountId, request);
-//        return queryCampaignsInternal(accountId, request);
-
-        AdsAccountCredentialDO credential =  adsAuthService.getAccountCredentialByAccount(accountId);
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsCampaignVO> allCampaigns = new ArrayList<>();
 
@@ -188,58 +155,10 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         return allCampaigns;
     }
 
-    private List<AdsCampaignVO> queryCampaignsInternal(Long accountId, AdsQueryRequest request) {
-        AdsAccountDO adsAccount = adsAuthService.getAccount(accountId);
-        AdsAccountCredentialDO credential =  adsAuthService.getAccountCredentialByAccount(accountId);
-        List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
-        List<AdsCampaignVO> allCampaigns = new ArrayList<>();
-
-        ApiClient apiClient = new ApiClient();
-
-        apiClient.setRequestInterceptor(builder -> {
-            builder.header("Authorization", "Bearer " + credential.getAccessToken());
-        });
-
-
-
-
-        for (AdsAmazonProfileDO profile : profiles) {
-
-            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
-            String baseUrl = "https://" + regionEnum.getAdsEndpoint();
-            apiClient.updateBaseUri(baseUrl);
-            CampaignsApi campaignsApi = new CampaignsApi(apiClient);
-
-
-            try {
-                QueryCampaignRequest queryCampaignRequest = new QueryCampaignRequest();
-                queryCampaignRequest.setMaxResults(100);
-                queryCampaignRequest.adProductFilter(new CampaignAdProductFilter().addIncludeItem(AdProduct.SPONSORED_PRODUCTS));
-                queryCampaignRequest.marketplaceScopeFilter(new CampaignMarketplaceScopeFilter().addIncludeItem(MarketplaceScope.SINGLE_MARKETPLACE));
-
-                amazonAdsApiService.listCampaigns(credential, adsAccount.getExternalAccountId(), profile.getProfileId(), baseUrl,queryCampaignRequest);
-
-
-
-            } catch (Exception e) {
-                log.error("[queryCampaigns][Amazon] 查询广告计划出错, accountId: {}, request: {}", accountId, request, e);
-            }
-
-
-        }
-
-
-        return allCampaigns;
-
-    }
-
-
-
-
     @Override
     public List<AdsAdGroupVO> queryGroups(Long accountId, AdsQueryRequest request) {
         log.info("[queryGroups][Amazon] 查询广告组, accountId: {}, request: {}", accountId, request);
-        AdsAccountCredentialDO credential = this.getAdsAccountCredential(accountId);
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsAdGroupVO> allAdGroups = new ArrayList<>();
 
@@ -262,7 +181,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public List<AdsKeywordVO> queryTargets(Long accountId, AdsQueryRequest request) {
         log.info("[queryTargets][Amazon] 查询关键词和定向, accountId: {}, request: {}", accountId, request);
-        AdsAccountCredentialDO credential = this.getAdsAccountCredential(accountId);
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsKeywordVO> allTargets = new ArrayList<>();
 
@@ -285,7 +204,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public List<AdsAdVO> queryAds(Long accountId, AdsQueryRequest request) {
         log.info("[queryAds][Amazon] 查询广告, accountId: {}, request: {}", accountId, request);
-        AdsAccountCredentialDO credential = this.getAdsAccountCredential(accountId);
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsAdVO> allAds = new ArrayList<>();
 
@@ -308,7 +227,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public Boolean updateStatus(Long accountId, AdsStatusUpdateRequest request) {
         log.info("[updateStatus][Amazon] 开始更新状态, accountId: {}, request: {}", accountId, request);
-
+        // 原有实现可能为空或默认返回 true，这里按需补充逻辑
         return true;
     }
 
@@ -333,25 +252,13 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     @Override
     public void postAccountAction(AdsAccountDO account) {
         log.info("[postAccountAction][Amazon] 账号 {} 处理完成，正在同步站点 (Profiles)", account.getId());
-        AdsAccountCredentialDO credential = adsAccountCredentialMapper.selectById(account.getCredentialId());
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(account.getId());
         if (credential == null) {
-            log.error("[postAccountAction][Amazon] 找不到凭证 ID: {}", account.getCredentialId());
+            log.error("[postAccountAction][Amazon] 找不到凭证: accountId={}", account.getId());
             return;
         }
-        syncAccountProfiles(account, credential);
-    }
-
-    private String getAccountEntityId(String country, AdsAccountDO account) {
-        AmzAccountVO amzAccount = JsonUtils.parseObject(account.getExtConfig(), AmzAccountVO.class);
-        if (amzAccount == null || amzAccount.getAlternateIds() == null) {
-            return "";
-        }
-        for (Map<String, String> conf : amzAccount.getAlternateIds()) {
-            if (country.equalsIgnoreCase(conf.get("countryCode")) && StringUtils.isNotEmpty(conf.get("entityId"))) {
-                return conf.get("entityId");
-            }
-        }
-        return "";
+        // 核心同步逻辑已转移到 AdsAmazonProfileService
+        adsAmazonProfileService.syncProfiles(account, credential);
     }
 
     private Map<String, List<String>> getProfileGroupByCountry(AdsAccountDO account) {
@@ -361,7 +268,6 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         }
 
         Map<String, List<String>> result = Maps.newHashMap();
-
         for (Map<String, String> item : amzAccount.getAlternateIds()) {
             if (item.containsKey("profileId") && StringUtils.isNotEmpty(item.get("profileId"))) {
                 String countryCode = item.get("countryCode");
@@ -370,58 +276,23 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                 }
                 result.get(countryCode).add(item.get("profileId"));
             }
-
         }
-
         return result;
     }
 
+
     private Set<AmazonRegionEnum> getAccountSupportRegion(AdsAccountDO account) {
         AmzAccountVO amzAccount = JsonUtils.parseObject(account.getExtConfig(), AmzAccountVO.class);
+        if (amzAccount == null || amzAccount.getCountryCodes() == null) return Collections.emptySet();
         Set<AmazonRegionEnum> result = Sets.newHashSet();
         amzAccount.getCountryCodes().forEach(code -> {
             result.add(AmazonRegionEnum.ofCountryCode(code));
         });
-
-        return result;
-    }
-
-
-    private void saveProfile(Long accountId, String profileId, String countryCode, String region,
-            String currency, String timezone, String entityId, String entityName) {
-        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
-        if (profile == null) {
-            profile = AdsAmazonProfileDO.builder()
-                    .accountId(accountId)
-                    .profileId(profileId)
-                    .countryCode(countryCode)
-                    .region(region)
-                    .currencyCode(currency)
-                    .timezone(timezone)
-                    .entityId(entityId)
-                    .entityName(entityName)
-                    .status("ENABLED")
-                    .build();
-            adsAmazonProfileMapper.insert(profile);
-        } else {
-            profile.setAccountId(accountId);
-            profile.setEntityId(entityId);
-            profile.setEntityName(entityName);
-            profile.setStatus("ENABLED");
-            adsAmazonProfileMapper.updateById(profile);
-        }
+        return result.stream().filter(Objects::nonNull).collect(Collectors.toSet());
     }
 
     @Override
     public String postOptimizationRuleCreate(AdsAccountDO account, String profileId, Object saveReqVO) {
-//        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(account.getId());
-//        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
-//        AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
-//        String baseUrl = "https://" + regionEnum.getAdsEndpoint();
-//
-//        return amazonSpOptimizationRuleApiService.createRules(credential,
-//                profile.getEntityId(), profile.getProfileId(), baseUrl,
-//                (com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleSaveReqVO) saveReqVO);
         return UUID.randomUUID().toString();
     }
 
@@ -435,5 +306,11 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         amazonSpOptimizationRuleApiService.associateRules(credential,
                 profile.getEntityId(), profile.getProfileId(), baseUrl, campaignId,
                 (com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleAssociateReqVO) associateReqVO);
+    }
+
+    @Override
+    public void executePerformanceSyncTask(AdsSyncTaskDO task) {
+        // 核心任务分发与状态管理逻辑已迁移到 AmzSpReportParser
+        amazonAdvReportService.executeSyncTask(task);
     }
 }

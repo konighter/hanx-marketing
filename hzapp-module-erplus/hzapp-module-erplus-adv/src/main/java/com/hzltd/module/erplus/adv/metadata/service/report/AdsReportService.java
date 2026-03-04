@@ -4,6 +4,8 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportHourlyDO;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsPerformanceReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsPerformanceRespVO;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsReportTrendRespVO;
+
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -12,38 +14,28 @@ import java.util.List;
 public interface AdsReportService {
 
     /**
-     * 保存小时级原始报表数据
-     * @param reports 报表列表
+     * 保存小时性能报表数据
+     * @param reports 报表数据列表
      */
     void saveHourlyReports(List<AdsReportHourlyDO> reports);
 
     /**
-     * 将小时级数据聚合到汇总表 (日/周/月)
-     * @param accountId 账号ID
-     * @param entityType 实体类型
-     * @param entityId 实体ID
-     * @param reportHour 报表小时
+     * 聚合小时数据到汇总表
      */
-    void aggregateHourlyToSummary(Long accountId, String entityType, Long entityId, java.time.LocalDateTime reportHour);
+    void aggregateHourlyToSummary(Long accountId, String entityType, Long entityId, LocalDateTime reportHour);
 
     /**
-     * 获取性能核心指标卡片数据
-     * @param reqVO 请求
-     * @return 核心指标及环比
+     * 获得核心指标响应
      */
     AdsPerformanceRespVO getPerformanceScorecard(AdsPerformanceReqVO reqVO);
 
     /**
-     * 获取趋势图表数据
-     * @param reqVO 请求
-     * @return 趋势序列
+     * 获得性能趋势图
      */
     AdsReportTrendRespVO getPerformanceTrend(AdsPerformanceReqVO reqVO);
 
     /**
-     * 获取下钻层级数据 (Campaign -> AdGroup -> Ad)
-     * @param reqVO 请求
-     * @return 层级结构数据列表
+     * 获得多层级下钻性能数据
      */
-    List<java.util.Map<String, Object>> getPerformanceDrilldown(AdsPerformanceReqVO reqVO);
+    List<AdsPerformanceRespVO> getPerformanceDrilldown(AdsPerformanceReqVO reqVO);
 }

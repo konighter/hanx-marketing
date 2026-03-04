@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.Map;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 
@@ -47,7 +46,7 @@ public class AdsReportController {
     @PostMapping("/drilldown")
     @Operation(summary = "获得下钻层级数据")
     @PreAuthorize("@ss.hasPermission('erplus:adv-report:query')")
-    public CommonResult<List<Map<String, Object>>> getPerformanceDrilldown(@Valid @RequestBody AdsPerformanceReqVO reqVO) {
+    public CommonResult<List<AdsPerformanceRespVO>> getPerformanceDrilldown(@Valid @RequestBody AdsPerformanceReqVO reqVO) {
         return success(adsReportService.getPerformanceDrilldown(reqVO));
     }
 

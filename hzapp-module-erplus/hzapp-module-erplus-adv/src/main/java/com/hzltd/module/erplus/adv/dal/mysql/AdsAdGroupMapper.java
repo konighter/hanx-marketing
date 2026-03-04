@@ -23,6 +23,12 @@ public interface AdsAdGroupMapper extends BaseMapperX<AdsAdGroupDO> {
                 .eq(AdsAdGroupDO::getExternalId, externalId));
     }
 
+    default AdsAdGroupDO selectByAccountAndExternalId(Long accountId, String externalId) {
+        return selectOne(new LambdaQueryWrapperX<AdsAdGroupDO>()
+                .eq(AdsAdGroupDO::getAccountId, accountId)
+                .eq(AdsAdGroupDO::getExternalId, externalId));
+    }
+
     default List<AdsAdGroupDO> selectListByCampaignId(Long campaignId) {
         return selectList(new LambdaQueryWrapperX<AdsAdGroupDO>()
                 .eq(AdsAdGroupDO::getCampaignId, campaignId)

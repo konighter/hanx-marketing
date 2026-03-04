@@ -21,9 +21,9 @@
     <modules>
         <module>hzapp-module-erplus-api</module>
         <module>hzapp-module-erplus-biz</module>
-<!--        <module>hzapp-module-erplus-ozon-spapi</module>-->
+        <!--        <module>hzapp-module-erplus-ozon-spapi</module>-->
         <module>hzapp-module-erplus-api-adaptor</module>
-<!--        <module>hzapp-module-erplus-tts-spapi</module>-->
+        <!--        <module>hzapp-module-erplus-tts-spapi</module>-->
         <module>hzapp-module-erplus-biz-amz</module>
         <module>hzapp-module-erplus-amz-adv</module>
         <module>hzapp-module-erplus-adv</module>
@@ -32,6 +32,7 @@
 
     <properties>
         <eVersion>3.0.0-SNAPSHOT</eVersion>
+        <spring-cloud-aws>3.4.2</spring-cloud-aws>
     </properties>
 
     <dependencyManagement>
@@ -72,11 +73,11 @@
                 <version>${eVersion}</version>
             </dependency>
 
-<!--            <dependency>-->
-<!--                <groupId>com.hzltd</groupId>-->
-<!--                <artifactId>hzapp-module-erplus-ozon-spapi</artifactId>-->
-<!--                <version>${eVersion}</version>-->
-<!--            </dependency>-->
+            <!--            <dependency>-->
+            <!--                <groupId>com.hzltd</groupId>-->
+            <!--                <artifactId>hzapp-module-erplus-ozon-spapi</artifactId>-->
+            <!--                <version>${eVersion}</version>-->
+            <!--            </dependency>-->
 
             <dependency>
                 <groupId>com.hzltd</groupId>
@@ -93,10 +94,21 @@
             <dependency>
                 <groupId>software.amazon.awssdk</groupId>
                 <artifactId>bom</artifactId>
-                <version>2.30.14</version>
+                <version>2.31.78</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>io.awspring.cloud</groupId>
+                <artifactId>spring-cloud-aws-dependencies</artifactId>
+                <version>${spring-cloud-aws}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
+
         </dependencies>
     </dependencyManagement>
 

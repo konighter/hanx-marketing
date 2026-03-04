@@ -7,6 +7,7 @@ import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
 import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
 
 import java.util.List;
@@ -124,6 +125,16 @@ public interface AdsPlatformAdapter {
      */
     default void postOptimizationRuleAssociate(AdsAccountDO account, String campaignId, String profileId, Object associateReqVO) {
         throw new UnsupportedOperationException("Platform does not support optimization rule association");
+    }
+
+    /**
+     * 执行绩效数据同步任务
+     * 由具体适配器决定是同步还是异步处理，并更新任务状态
+     *
+     * @param task 同步任务记录
+     */
+    default void executePerformanceSyncTask(AdsSyncTaskDO task) {
+        throw new UnsupportedOperationException("Platform does not support performance sync task execution");
     }
 
 }

@@ -15,7 +15,7 @@ spring:
   autoconfigure:
     # noinspection SpringBootApplicationYaml
     exclude:
-      - org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration # 默认 local 环境，不开启 Quartz 的自动配置
+#      - org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration # 默认 local 环境，不开启 Quartz 的自动配置
       - org.springframework.ai.vectorstore.qdrant.autoconfigure.QdrantVectorStoreAutoConfiguration # 禁用 AI 模块的 Qdrant，手动创建
       - org.springframework.ai.vectorstore.milvus.autoconfigure.MilvusVectorStoreAutoConfiguration # 禁用 AI 模块的 Milvus，手动创建
       - com.hzltd.framework.operatelog.config.OperateLogAutoConfiguration # 操作日志自动配置
@@ -65,6 +65,11 @@ spring:
           url: jdbc:mysql://127.0.0.1:3307/ruoyi_vue_pro_2?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
           username: root
           password: 1234
+        doris: # doris数据库
+          lazy: true # 开启懒加载，保证启动速度
+          url: jdbc:mysql://127.0.0.1:9030/hanx_erplus?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+          username: root
+          password:
 
   # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
   data:
@@ -121,6 +126,21 @@ spring:
   # Kafka 配置项，对应 KafkaProperties 配置类
   kafka:
     bootstrap-servers: 127.0.0.1:9092 # 指定 Kafka Broker 地址，可以设置多个，以逗号分隔
+
+
+
+--- #################### aws 相关配置 ####################
+spring:
+  cloud:
+    aws:
+      credentials:
+        access-key: AKIAZVFYRE4OFJILEDM6
+        secret-key: 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
+      region:
+        static: us-east-1
+      sqs:
+        enabled: false
+
 
 --- #################### 服务保障相关配置 ####################
 
@@ -227,6 +247,11 @@ hzapp:
   wxa-subscribe-message:
     miniprogram-state: developer # 跳转小程序类型：开发版为 “developer”；体验版为 “trial”为；正式版为 “formal”
   tencent-lbs-key: TVDBZ-TDILD-4ON4B-PFDZA-RNLKH-VVF6E # QQ 地图的密钥 https://lbs.qq.com/service/staticV2/staticGuide/staticDoc
+
+  aws:
+    sqs:
+      adv-queue: arn:aws:sqs:us-east-1:663959447324:HanXErplus-advReportQueue-us-east
+      spapi-queue: arn:aws:sqs:us-east-1:663959447324:HanXErplus-OrderEventQueue-us-east
 
 justauth:
   enabled: true

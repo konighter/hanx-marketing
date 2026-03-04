@@ -30,6 +30,12 @@
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-module-infra</artifactId>
             <version>${revision}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>software.amazon.awssdk</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.hzltd</groupId>

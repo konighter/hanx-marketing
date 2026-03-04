@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.adv.auth.controller.admin;
 
 import com.hzltd.framework.common.pojo.CommonResult;
-import com.hzltd.module.erplus.adv.auth.service.AdsAmazonProfileService;
+import com.hzltd.module.erplus.adv.adapter.amazon.service.AdsAmazonProfileService;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAmazonProfileDO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

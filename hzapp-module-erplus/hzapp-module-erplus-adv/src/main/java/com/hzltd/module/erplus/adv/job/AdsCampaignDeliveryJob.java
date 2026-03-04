@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.adv.metadata.service.task;
+package com.hzltd.module.erplus.adv.job;
 
 import com.hzltd.framework.quartz.core.handler.JobHandler;
 import com.hzltd.framework.tenant.core.job.TenantJob;
@@ -9,8 +9,6 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsCampaignScheduleMapper;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.aop.framework.AopProxyUtils;
-import org.springframework.aop.support.AopUtils;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;

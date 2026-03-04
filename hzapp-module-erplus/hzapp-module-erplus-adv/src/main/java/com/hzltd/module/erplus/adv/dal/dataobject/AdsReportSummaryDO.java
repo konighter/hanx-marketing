@@ -49,6 +49,16 @@ public class AdsReportSummaryDO extends BaseDO {
     private Map<String, Object> metrics;
 
     /** 
+     * 聚合维度类型: CAMPAIGN / ADGROUP / PLACEMENT / SEARCH_TERM / TARGETING
+     */
+    private String groupBy;
+
+    /** 广告位 */
+    private String placement;
+    /** 搜索词 */
+    private String searchTerm;
+
+    /** 
      * 花费 (虚拟生成)
      */
     @TableField(exist = true, insertStrategy = com.baomidou.mybatisplus.annotation.FieldStrategy.NEVER, updateStrategy = com.baomidou.mybatisplus.annotation.FieldStrategy.NEVER)
