@@ -9,8 +9,10 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsCampaignMapper;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignScheduleDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsCampaignScheduleMapper;
+import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupUpdateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
 import com.hzltd.framework.common.util.object.BeanUtils;
@@ -18,6 +20,7 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
@@ -70,6 +73,14 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
         // 2. 本地保存：将 VO 转为 DO 并更新数据库（包含 extData、deliverySchedule 等所有字段）
         AdsCampaignDO updateObj = BeanUtils.toBean(updateReqVO, AdsCampaignDO.class);
         adsCampaignMapper.updateById(updateObj);
+
+        // 2.1 同步更新子广告组本地数据
+        if (!CollectionUtils.isEmpty(updateReqVO.getAdGroups())) {
+            for (AdsAdGroupUpdateReqVO adGroupVO : updateReqVO.getAdGroups()) {
+                AdsAdGroupDO adGroupDO = BeanUtils.toBean(adGroupVO, AdsAdGroupDO.class);
+                adsAdGroupMapper.updateById(adGroupDO);
+            }
+        }
 
         // 3. 平台同步 Hook：根据账户平台类型，调用对应适配器的 postCampaignUpdate
         AdsAccountDO account = adsAccountMapper.selectById(campaign.getAccountId());
@@ -175,6 +186,8 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
             throw exception(new com.hzltd.framework.common.exception.ErrorCode(1_033_001_001, "广告计划不存在"));
         }
 
+        // [USER_REQUEST] 暂缓亚马逊更新接口适配，仅做本地存储
+        /*
         AdsAccountDO account = adsAccountMapper.selectById(campaign.getAccountId());
         if (account != null && account.getCredentialId() != null) {
             AdsAccountCredentialDO credential = adsAccountCredentialMapper.selectById(account.getCredentialId());
@@ -198,6 +211,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
                 }
             }
         }
+        */
 
         AdsCampaignDO updateObj = new AdsCampaignDO();
         updateObj.setId(id);

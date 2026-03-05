@@ -1,11 +1,13 @@
 package com.hzltd.module.erplus.adv.metadata.vo.campaign;
 
+import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupUpdateReqVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 @Schema(description = "管理后台 - 广告计划更新 VO")
 @Data
@@ -38,5 +40,8 @@ public class AdsCampaignUpdateReqVO {
 
     @Schema(description = "平台扩展字段 (JSON)")
     private Object extData;
+
+    @Schema(description = "广告组列表")
+    private List<AdsAdGroupUpdateReqVO> adGroups;
 
 }

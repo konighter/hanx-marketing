@@ -95,7 +95,7 @@
           <div class="p-20px">
             <AmazonCampaignConfig 
               v-if="detail.id"
-              v-model="amazonConfig"
+              v-model="platformConfig"
               :campaign-id="detail.id"
               :disabled="isArchived"
             />
@@ -154,7 +154,7 @@ const form = reactive({
 const startDate = ref<string | null>(null)
 const endDate = ref<string | null>(null)
 const schedule = ref<boolean[][]>([])
-const amazonConfig = ref<any>({})
+const platformConfig = ref<any>({})
 
 const isArchived = computed(() => detail.value.status === 'ARCHIVED' || form.status === 'ARCHIVED')
 
@@ -192,8 +192,8 @@ const open = async (id: number) => {
     // Init amazon config from extData
     if (res.platform === 'AMAZON') {
       const extData = res.extData || {}
-      amazonConfig.value = {
-        ...(extData.amazonConfig || {}),
+      platformConfig.value = {
+        ...(extData.platformConfig || {}),
         accountId: res.accountId,
         profileId: extData.profileId
       }
@@ -208,6 +208,8 @@ const handleSave = async () => {
   
   saving.value = true
   try {
+    const { adGroups, ...cleanPlatformConfig } = platformConfig.value || {}
+
     const updateData: any = {
       id: detail.value.id,
       name: form.name,
@@ -215,9 +217,10 @@ const handleSave = async () => {
       startDate: startDate.value,
       endDate: endDate.value,
       deliverySchedule: JSON.stringify(schedule.value),
+      adGroups: adGroups,
       extData: {
         ...(detail.value.extData || {}),
-        amazonConfig: detail.value.platform === 'AMAZON' ? amazonConfig.value : undefined
+        platformConfig: detail.value.platform === 'AMAZON' ? cleanPlatformConfig : undefined
       }
     }
     
@@ -241,7 +244,7 @@ const handleSave = async () => {
 const handleClosed = () => {
   detail.value = {}
   activeTab.value = 'basic'
-  amazonConfig.value = {}
+  platformConfig.value = {}
 }
 
 const emit = defineEmits(['success'])

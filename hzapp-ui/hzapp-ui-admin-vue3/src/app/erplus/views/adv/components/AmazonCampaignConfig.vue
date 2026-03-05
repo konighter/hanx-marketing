@@ -5,25 +5,25 @@
       <el-divider content-position="left">竞价策略</el-divider>
       <el-form-item label="竞价策略">
         <el-select 
-          :model-value="modelValue.bidding?.strategy || modelValue.biddingStrategy" 
+          :model-value="modelValue.dynamicBidding?.strategy" 
           placeholder="请选择竞价策略"
           class="w-300px"
           @update:model-value="val => updateBidding('strategy', val)"
         >
-          <el-option label="基于规则 (ROAS)" value="RULE_BASED" />
+          <el-option label="基于规则 (ROAS)" value="RULE_BASED_BIDDING" />
           <el-option label="动态竞价 - 只降低" value="LEGACY_FOR_SALES" />
-          <el-option label="动态竞价 - 提高和降低" value="AUTO_OPTIMIZED" />
+          <el-option label="动态竞价 - 提高和降低" value="AUTO_FOR_SALES" />
           <el-option label="固定竞价" value="MANUAL" />
         </el-select>
       </el-form-item>
       
-      <el-form-item v-if="modelValue.bidding?.strategy === 'RULE_BASED'" label="目标 ROAS">
+      <el-form-item v-if="modelValue.dynamicBidding?.strategy === 'RULE_BASED_BIDDING'" label="目标 ROAS">
         <el-input-number 
-          :model-value="modelValue.bidding?.rules?.targetRoas" 
+          :model-value="modelValue.dynamicBidding?.rules?.[0]?.value" 
           :precision="2" 
           :step="0.1" 
           :min="0.1"
-          @change="val => updateBiddingRule('targetRoas', val)"
+          @change="val => updateBiddingRule(val)"
         />
       </el-form-item>
 
@@ -54,15 +54,15 @@
               /> %
             </template>
           </el-table-column>
-          <el-table-column label="目标出价 (参考 $1.00)">
+          <el-table-column label="目标出价">
             <template #default="{ row }">
               <el-input-number 
                 v-model="row.targetBid"
                 :precision="2" 
-                :step="0.1" 
-                :min="1.0" 
+                :step="0.01" 
+                :min="0" 
                 size="small"
-                @change="handleTargetBidChange(row)"
+                @change="handleTargetBidChange"
               />
             </template>
           </el-table-column>
@@ -127,31 +127,147 @@
               </div>
 
               <el-tabs v-model="activeTargetingTab" class="mt-10px">
-                <el-tab-pane label="关键词投放" name="targeting">
-                  <el-table :data="[]" border size="small" style="width: 100%">
-                    <el-table-column label="关键词" prop="keywordText" />
-                    <el-table-column label="匹配类型" prop="matchType" width="120" />
-                    <el-table-column label="建议出价" prop="suggestedBid" width="100" />
-                    <el-table-column label="状态" prop="status" width="80" />
-                  </el-table>
-                  <el-empty description="此功能待对接后端逻辑" :image-size="40" />
-                </el-tab-pane>
-                <el-tab-pane label="否定投放" name="negative">
-                  <div class="mb-10px">
-                    <el-radio-group v-model="activeNegativeType" size="small">
-                      <el-radio-button label="keyword">否定关键词</el-radio-button>
-                      <el-radio-button label="product">否定商品</el-radio-button>
-                    </el-radio-group>
+                <el-tab-pane label="投放数据" name="targeting">
+                  <div class="flex justify-between items-center mb-10px">
+                    <div class="flex items-center">
+                      <span class="text-14px font-bold mr-10px">定向类型:</span>
+                      <el-radio-group 
+                        v-model="activeGroupExtConfig.targetingType" 
+                        size="small"
+                        :disabled="!!activeGroupExtConfig.targetingType || activeGroupKeywords.length > 0 || activeGroupProducts.length > 0"
+                        @change="handleTargetingTypeChange"
+                      >
+                        <el-radio-button label="KEYWORD">关键词定向</el-radio-button>
+                        <el-radio-button label="PRODUCT">商品/品类定向</el-radio-button>
+                      </el-radio-group>
+                      <el-tooltip content="定向类型设定后不可修改" placement="top">
+                        <el-icon class="ml-5px text-gray-400"><QuestionFilled /></el-icon>
+                      </el-tooltip>
+                    </div>
+                    <el-button 
+                      v-if="activeGroupExtConfig.targetingType"
+                      type="primary" 
+                      size="small" 
+                      link 
+                      @click="addActiveTargeting"
+                    >
+                      + 添加{{ activeGroupExtConfig.targetingType === 'KEYWORD' ? '关键词' : '商品/类目' }}
+                    </el-button>
                   </div>
-                  <el-table v-if="activeNegativeType === 'keyword'" :data="[]" border size="small">
-                    <el-table-column label="否定关键词" prop="keywordText" />
-                    <el-table-column label="匹配类型" prop="matchType" width="120" />
+
+                  <!-- 互斥显示 -->
+                  <template v-if="activeGroupExtConfig.targetingType === 'KEYWORD'">
+                    <el-table :data="activeGroupKeywords" border size="small" style="width: 100%">
+                      <el-table-column label="关键词" prop="keywordText">
+                        <template #default="{ row }">
+                          <el-input v-model="row.keywordText" size="small" placeholder="输入关键词" @change="syncActiveGroupToModel" />
+                        </template>
+                      </el-table-column>
+                      <el-table-column label="匹配类型" prop="matchType" width="150">
+                        <template #default="{ row }">
+                          <el-select v-model="row.matchType" size="small" @change="syncActiveGroupToModel">
+                            <el-option label="EXACT" value="EXACT" />
+                            <el-option label="PHRASE" value="PHRASE" />
+                            <el-option label="BROAD" value="BROAD" />
+                          </el-select>
+                        </template>
+                      </el-table-column>
+                      <el-table-column label="出价" prop="bid" width="120">
+                        <template #default="{ row }">
+                          <el-input-number v-model="row.bid" :precision="2" :step="0.01" size="small" style="width: 100%" @change="syncActiveGroupToModel" />
+                        </template>
+                      </el-table-column>
+                      <el-table-column label="操作" width="60" align="center">
+                        <template #default="{ $index }">
+                          <el-button type="danger" :icon="Delete" circle size="small" @click="removeActiveTargeting($index)" />
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                  </template>
+
+                  <template v-else-if="activeGroupExtConfig.targetingType === 'PRODUCT'">
+                    <el-table :data="activeGroupProducts" border size="small" style="width: 100%">
+                      <el-table-column label="操作/类型" prop="expressionType" width="180">
+                        <template #default="{ row }">
+                          <el-select v-model="row.expressionType" size="small" placeholder="类型" @change="syncActiveGroupToModel">
+                            <el-option label="ASIN (asinSameAs)" value="asinSameAs" />
+                            <el-option label="类目 (category)" value="category" />
+                            <el-option label="品牌 (brand)" value="brand" />
+                          </el-select>
+                        </template>
+                      </el-table-column>
+                      <el-table-column label="值 (ASIN / ID)" prop="expressionValue">
+                        <template #default="{ row }">
+                          <el-input v-model="row.expressionValue" size="small" placeholder="输入 ASIN 或 ID" @change="syncActiveGroupToModel" />
+                        </template>
+                      </el-table-column>
+                      <el-table-column label="出价" prop="bid" width="120">
+                        <template #default="{ row }">
+                          <el-input-number v-model="row.bid" :precision="2" :step="0.01" size="small" style="width: 100%" @change="syncActiveGroupToModel" />
+                        </template>
+                      </el-table-column>
+                      <el-table-column label="操作" width="60" align="center">
+                        <template #default="{ $index }">
+                          <el-button type="danger" :icon="Delete" circle size="small" @click="removeActiveTargeting($index)" />
+                        </template>
+                      </el-table-column>
+                    </el-table>
+                  </template>
+
+                  <el-empty v-else description="请先选择定向类型" :image-size="40" />
+                </el-tab-pane>
+
+                <el-tab-pane label="否定数据" name="negative">
+                  <div class="flex justify-between items-center mb-10px">
+                    <el-radio-group v-model="activeNegativeType" size="small">
+                      <el-radio-button label="keyword">否定关键词 ({{ activeGroupNegativeKeywords.length }})</el-radio-button>
+                      <el-radio-button label="product">否定商品 ({{ activeGroupNegativeProducts.length }})</el-radio-button>
+                    </el-radio-group>
+                    <el-button type="primary" size="small" link @click="addActiveNegative">
+                      + 添加{{ activeNegativeType === 'keyword' ? '否定词' : '否定商品' }}
+                    </el-button>
+                  </div>
+
+                  <!-- 否定关键词表格 -->
+                  <el-table v-if="activeNegativeType === 'keyword'" :data="activeGroupNegativeKeywords" border size="small">
+                    <el-table-column label="否定关键词" prop="keywordText">
+                      <template #default="{ row }">
+                        <el-input v-model="row.keywordText" size="small" placeholder="输入否定词" @change="syncActiveGroupToModel" />
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="匹配类型" prop="matchType" width="180">
+                      <template #default="{ row }">
+                        <el-select v-model="row.matchType" size="small" @change="syncActiveGroupToModel">
+                          <el-option label="NEGATIVE_EXACT" value="NEGATIVE_EXACT" />
+                          <el-option label="NEGATIVE_PHRASE" value="NEGATIVE_PHRASE" />
+                        </el-select>
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="操作" width="60" align="center">
+                      <template #default="{ $index }">
+                        <el-button type="danger" :icon="Delete" circle size="small" @click="removeActiveNegative($index)" />
+                      </template>
+                    </el-table-column>
                   </el-table>
-                  <el-table v-else :data="[]" border size="small">
-                    <el-table-column label="否定商品 (ASIN/SKU)" prop="value" />
-                    <el-table-column label="匹配类型" prop="type" width="120" />
+
+                  <!-- 否定商品表格 -->
+                  <el-table v-else :data="activeGroupNegativeProducts" border size="small">
+                    <el-table-column label="否定商品 (ASIN/SKU)" prop="asin">
+                      <template #default="{ row }">
+                        <el-input v-model="row.asin" size="small" placeholder="输入 ASIN" @change="syncActiveGroupToModel" />
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="品牌ID (可选)" prop="brandId" width="150">
+                      <template #default="{ row }">
+                        <el-input v-model="row.brandId" size="small" placeholder="品牌 ID" @change="syncActiveGroupToModel" />
+                      </template>
+                    </el-table-column>
+                    <el-table-column label="操作" width="60" align="center">
+                      <template #default="{ $index }">
+                        <el-button type="danger" :icon="Delete" circle size="small" @click="removeActiveNegative($index)" />
+                      </template>
+                    </el-table-column>
                   </el-table>
-                  <el-empty description="此功能待对接后端逻辑" :image-size="40" />
                 </el-tab-pane>
               </el-tabs>
             </div>
@@ -164,10 +280,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, watch, computed, onMounted } from 'vue'
 import { AdsAdGroupApi } from '@/app/erplus/api/adv/ads'
 import { AdsAdGroup } from '../types/ads'
 import AdsOptimizationRuleSelect from './AdsOptimizationRuleSelect.vue'
+import { QuestionFilled, Delete } from '@element-plus/icons-vue'
 
 const props = defineProps<{
   modelValue: any
@@ -185,20 +302,121 @@ const activeTargetingTab = ref('targeting')
 const activeNegativeType = ref('keyword')
 const localNegativeKeywords = ref<any[]>([])
 
+const activeAdGroup = computed(() => {
+  return Array.isArray(adGroups.value) ? adGroups.value.find(g => g.id.toString() === activeAdGroupTab.value) : null
+})
+
+const activeGroupExtConfig = computed(() => activeAdGroup.value?.extData?.platformConfig || {})
+const activeGroupKeywords = computed(() => activeGroupExtConfig.value.keywordTargetings || [])
+const activeGroupProducts = computed(() => activeGroupExtConfig.value.productTargetings || [])
+const activeGroupNegativeKeywords = computed(() => activeGroupExtConfig.value.negativeKeywords || [])
+const activeGroupNegativeProducts = computed(() => activeGroupExtConfig.value.negativeTargetings || [])
+
+const ensureActiveGroupConfig = () => {
+  const group = adGroups.value.find(g => g.id.toString() === activeAdGroupTab.value)
+  if (!group) return null
+  if (!group.extData) {
+    group.extData = { platformConfig: {} }
+  } else if (!group.extData.platformConfig) {
+    group.extData.platformConfig = {}
+  }
+  return group.extData.platformConfig
+}
+
 const placementData = ref([
-  { type: 'PLACEMENT_TOP', label: '首页 (搜索顶部)', percentage: 0, targetBid: 1.0 },
-  { type: 'PLACEMENT_PRODUCT_PAGE', label: '商品详情页', percentage: 0, targetBid: 1.0 },
-  { type: 'PLACEMENT_REST_OF_SEARCH', label: '搜索其他位置', percentage: 0, targetBid: 1.0 }
+  { type: 'PLACEMENT_TOP', label: '首页 (搜索顶部)', percentage: 0, targetBid: 0 },
+  { type: 'PLACEMENT_PRODUCT_PAGE', label: '商品详情页', percentage: 0, targetBid: 0 },
+  { type: 'PLACEMENT_REST_OF_SEARCH', label: '搜索其他位置', percentage: 0, targetBid: 0 }
 ])
 
+const handleTargetingTypeChange = (val: any) => {
+  const config = ensureActiveGroupConfig()
+  if (!config) return
+  config.targetingType = val
+  if (val === 'KEYWORD') {
+    config.productTargetings = []
+  } else if (val === 'PRODUCT') {
+    config.keywordTargetings = []
+  }
+  syncActiveGroupToModel()
+}
+
+const addActiveTargeting = () => {
+  const config = ensureActiveGroupConfig()
+  if (!config) return
+  
+  const type = config.targetingType
+  if (type === 'KEYWORD') {
+    if (!config.keywordTargetings) config.keywordTargetings = []
+    config.keywordTargetings.push({ keywordText: '', matchType: 'EXACT', bid: activeAdGroup.value?.defaultBid || 1.0 })
+  } else if (type === 'PRODUCT') {
+    if (!config.productTargetings) config.productTargetings = []
+    config.productTargetings.push({ expressionType: 'asinSameAs', expressionValue: '', bid: activeAdGroup.value?.defaultBid || 1.0 })
+  }
+  syncActiveGroupToModel()
+}
+
+const removeActiveTargeting = (index: number) => {
+  const type = activeGroupExtConfig.value.targetingType
+  if (type === 'KEYWORD') {
+    activeGroupKeywords.value.splice(index, 1)
+  } else if (type === 'PRODUCT') {
+    activeGroupProducts.value.splice(index, 1)
+  }
+  syncActiveGroupToModel()
+}
+
+const addActiveNegative = () => {
+  const config = ensureActiveGroupConfig()
+  if (!config) return
+
+  if (activeNegativeType.value === 'keyword') {
+    if (!config.negativeKeywords) config.negativeKeywords = []
+    config.negativeKeywords.push({ keywordText: '', matchType: 'NEGATIVE_EXACT' })
+  } else {
+    if (!config.negativeTargetings) config.negativeTargetings = []
+    config.negativeTargetings.push({ asin: '', brandId: '' })
+  }
+  syncActiveGroupToModel()
+}
+
+const removeActiveNegative = (index: number) => {
+  if (activeNegativeType.value === 'keyword') {
+    activeGroupNegativeKeywords.value.splice(index, 1)
+  } else {
+    activeGroupNegativeProducts.value.splice(index, 1)
+  }
+  syncActiveGroupToModel()
+}
+
+const syncActiveGroupToModel = () => {
+  if (!activeAdGroup.value) return
+  handleGroupConfigUpdate(activeAdGroup.value.id, activeGroupExtConfig.value)
+}
+
+const handleGroupConfigUpdate = (groupId: number, config: any) => {
+  const currentGroups = [...(props.modelValue.adGroups || [])]
+  const index = currentGroups.findIndex(g => g.id === groupId)
+  
+  if (index > -1) {
+    currentGroups[index] = { ...currentGroups[index], extData: { platformConfig: config } }
+  } else {
+    currentGroups.push({ id: groupId, extData: { platformConfig: config } })
+  }
+  
+  updateModelValue('adGroups', currentGroups)
+}
+
 // 初始化分位置竞价数据
-watch(() => props.modelValue.bidding?.adjustments, (adjustments) => {
+watch(() => props.modelValue.dynamicBidding?.placementBidding, (adjustments) => {
   if (adjustments) {
     placementData.value.forEach(item => {
       const adj = adjustments.find(a => a.placement === item.type)
       item.percentage = adj ? adj.percentage : 0
-      // Initialize target bid based on current percentage as a starting point
-      item.targetBid = Number((1 * (1 + item.percentage / 100)).toFixed(2))
+      // 目标出价不随竞价调整比例而变化，仅初始化为 0 或保留手动输入值
+      if (item.targetBid === undefined) {
+        item.targetBid = 0
+      }
     })
   }
 }, { immediate: true })
@@ -209,44 +427,42 @@ watch(() => props.modelValue.negativeKeywords, (val) => {
 }, { immediate: true })
 
 const handlePercentageChange = (row: any) => {
-  // Percentage change only updates the model
   updatePlacement(row.type, row.percentage)
 }
 
 const handleTargetBidChange = () => {
-  // Target bid is now just a standalone field for manual calculation/reference
-  // No longer syncs back to percentage automatically
+  // Manual reference, no sync back
 }
 
 const updateBidding = (key: string, value: any) => {
-  const bidding = { ...(props.modelValue.bidding || {}) }
-  bidding[key] = value
-  // 同步旧字段保持兼容
-  if (key === 'strategy') {
-    updateModelValue('biddingStrategy', value)
-  }
-  updateModelValue('bidding', bidding)
+  const dynamicBidding = { ...(props.modelValue.dynamicBidding || {}) }
+  dynamicBidding[key] = value
+  updateModelValue('dynamicBidding', dynamicBidding)
 }
 
-const updateBiddingRule = (key: string, value: any) => {
-  const bidding = { ...(props.modelValue.bidding || {}) }
-  const rules = { ...(bidding.rules || {}) }
-  rules[key] = value
-  bidding.rules = rules
-  updateModelValue('bidding', bidding)
+const updateBiddingRule = (val: any) => {
+  const dynamicBidding = { ...(props.modelValue.dynamicBidding || {}) }
+  const rules = [...(dynamicBidding.rules || [])]
+  if (rules.length === 0) {
+    rules.push({ ruleType: 'BID', value: val })
+  } else {
+    rules[0] = { ...rules[0], value: val }
+  }
+  dynamicBidding.rules = rules
+  updateModelValue('dynamicBidding', dynamicBidding)
 }
 
 const updatePlacement = (type: string, val: number) => {
-  const bidding = { ...(props.modelValue.bidding || {}) }
-  const adjustments = [...(bidding.adjustments || [])]
+  const dynamicBidding = { ...(props.modelValue.dynamicBidding || {}) }
+  const adjustments = [...(dynamicBidding.placementBidding || [])]
   const index = adjustments.findIndex(a => a.placement === type)
   if (index > -1) {
     adjustments[index] = { placement: type, percentage: val }
   } else {
     adjustments.push({ placement: type, percentage: val })
   }
-  bidding.adjustments = adjustments
-  updateModelValue('bidding', bidding)
+  dynamicBidding.placementBidding = adjustments
+  updateModelValue('dynamicBidding', dynamicBidding)
 }
 
 const addNegativeKeyword = () => {
@@ -275,12 +491,10 @@ const fetchAdGroups = async () => {
     if (adGroups.value.length > 0 && !activeAdGroupTab.value) {
       activeAdGroupTab.value = adGroups.value[0].id.toString()
     }
-    // Init bids
     adGroups.value.forEach(group => {
       groupBids.value[group.id] = group.defaultBid || 0
     })
     
-    // Ensure amazonConfig has adGroups field
     if (!props.modelValue.adGroups) {
       updateModelValue('adGroups', [])
     }
@@ -323,8 +537,5 @@ onMounted(() => {
 <style scoped>
 .amazon-campaign-config {
   width: 100%;
-}
-.ad-group-item {
-  background-color: #f9f9f9;
 }
 </style>

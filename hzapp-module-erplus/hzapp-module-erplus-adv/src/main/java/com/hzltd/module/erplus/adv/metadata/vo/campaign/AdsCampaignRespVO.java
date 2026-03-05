@@ -68,7 +68,7 @@ public class AdsCampaignRespVO {
     @Schema(description = "账号平台", example = "AMAZON")
     private String platform;
 
-    @Schema(description = "扩展数据", example = "{\"amazonConfig\": {}}")
+    @Schema(description = "扩展数据", example = "{\"platformConfig\": {}}")
     private Object extData;
 
 }

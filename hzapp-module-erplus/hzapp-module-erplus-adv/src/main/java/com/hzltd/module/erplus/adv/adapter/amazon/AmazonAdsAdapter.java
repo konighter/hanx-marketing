@@ -30,6 +30,8 @@ import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
+import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AmazonAdGroupConfigVO;
+import com.hzltd.module.erplus.adv.metadata.vo.campaign.AmazonCampaignConfigVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -135,45 +137,174 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
     @Override
     public List<AdsCampaignVO> queryCampaigns(Long accountId, AdsQueryRequest request) {
-        log.info("[queryCampaigns][Amazon] 查询广告计划, accountId: {}, request: {}", accountId, request);
+        log.info("[queryCampaigns][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsCampaignVO> allCampaigns = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
+            String profileId = profile.getProfileId();
             AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
             String baseUrl = "https://" + regionEnum.getAdsEndpoint();
 
-            AdsSpCampaignQueryRequest spQuery = AdsSpCampaignQueryRequest.from(request);
-            AdsSpCampaignQueryResp response = executeApiPost(credential, profile.getProfileId(), baseUrl + "/sp/campaigns/list",
-                    null, JsonUtils.toJsonString(spQuery), "application/vnd.spCampaign.v3+json",
-                    resp -> JsonUtils.parseObject(resp, AdsSpCampaignQueryResp.class));
+            // 1. 拉取广告活动列表
+            AdsSpCampaignQueryResp response = amazonAdsApiService.listSpCampaigns(
+                    credential, profileId, baseUrl, AdsSpCampaignQueryRequest.from(request));
+            if (response == null || response.getCampaigns() == null) continue;
 
-            if (response != null && response.getCampaigns() != null) {
-                response.getCampaigns().forEach(c -> allCampaigns.add(c.toVO()));
+            List<String> campaignIds = response.getCampaigns().stream()
+                    .map(AdsSpCampaign::getCampaignId).collect(Collectors.toList());
+
+            // 2. 拉取广告活动级否定关键词
+            AdsSpNegativeKeywordQueryResp negKwResp = amazonAdsApiService.listCampaignNegativeKeywords(
+                    credential, profileId, baseUrl,
+                    AdsSpNegativeKeywordQueryRequest.byCampaignIds(campaignIds));
+
+            Map<String, List<AdsSpNegativeKeyword>> negKwMap = negKwResp != null && negKwResp.getNegativeKeywords() != null
+                    ? negKwResp.getNegativeKeywords().stream().collect(Collectors.groupingBy(AdsSpNegativeKeyword::getCampaignId))
+                    : Collections.emptyMap();
+
+            // 3. 批量拉取广告活动关联的 Optimization Rules
+            List<AdsSpOptimizationRule> apiRules = amazonAdsApiService.searchBiddingRulesByCampaignIds(
+                    credential, profileId, baseUrl, campaignIds);
+
+            Map<String, List<AdsSpOptimizationRule>> ruleMap = apiRules != null
+                    ? apiRules.stream()
+                        .filter(r -> r.getCampaignId() != null)
+                        .collect(Collectors.groupingBy(AdsSpOptimizationRule::getCampaignId))
+                    : Collections.emptyMap();
+
+            // 4. 逐 Campaign 将否定词 + Optimization Rules 补充到 platformConfig
+            for (AdsSpCampaign c : response.getCampaigns()) {
+                AdsCampaignVO vo = c.toVO();
+                AmazonCampaignConfigVO config = AmazonCampaignConfigVO.fromSpCampaign(c);
+                config.setProfileId(profileId);
+
+                // 补充 negativeKeywords
+                List<AdsSpNegativeKeyword> negKwList = negKwMap.getOrDefault(c.getCampaignId(), Collections.emptyList());
+                if (CollUtil.isNotEmpty(negKwList)) {
+                    config.setNegativeKeywords(negKwList);
+                }
+
+                // 补充 optimizationRules
+                List<AdsSpOptimizationRule> optRules = ruleMap.getOrDefault(c.getCampaignId(), Collections.emptyList());
+                if (CollUtil.isNotEmpty(optRules)) {
+                    config.setOptimizationRules(optRules);
+                }
+
+                vo.setExtData(buildExtData(config));
+                allCampaigns.add(vo);
             }
         }
         return allCampaigns;
     }
 
+
     @Override
     public List<AdsAdGroupVO> queryGroups(Long accountId, AdsQueryRequest request) {
-        log.info("[queryGroups][Amazon] 查询广告组, accountId: {}, request: {}", accountId, request);
+        log.info("[queryGroups][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsAdGroupVO> allAdGroups = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
+            String profileId = profile.getProfileId();
             AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
             String baseUrl = "https://" + regionEnum.getAdsEndpoint();
 
-            AdsSpAdGroupQueryRequest spQuery = AdsSpAdGroupQueryRequest.from(request);
-            AdsSpAdGroupQueryResp response = executeApiPost(credential, profile.getProfileId(), baseUrl + "/sp/adGroups/list",
-                    null, JsonUtils.toJsonString(spQuery), "application/vnd.spAdGroup.v3+json",
-                    resp -> JsonUtils.parseObject(resp, AdsSpAdGroupQueryResp.class));
+            // 1. 拉取广告组列表
+            AdsSpAdGroupQueryResp response = amazonAdsApiService.listSpAdGroups(
+                    credential, profileId, baseUrl, AdsSpAdGroupQueryRequest.from(request));
+            if (response == null || response.getAdGroups() == null) continue;
 
-            if (response != null && response.getAdGroups() != null) {
-                response.getAdGroups().forEach(g -> allAdGroups.add(g.toVO()));
+            List<String> adGroupIds = response.getAdGroups().stream()
+                    .map(AdsSpAdGroup::getAdGroupId).collect(Collectors.toList());
+
+            // 2. 拉取关键词定向
+            AdsSpKeywordQueryRequest kwQuery = AdsSpKeywordQueryRequest.builder()
+                    .maxResults(200)
+                    .adGroupIdFilter(AdsSpCommonQueryRequest.StringFilter.from(adGroupIds))
+                    .campaignIdFilter(AdsSpCommonQueryRequest.StringFilter.from(request.getCampaignIds()))
+                    .build();
+            AdsSpKeywordQueryResp kwResp = amazonAdsApiService.listSpKeywords(credential, profileId, baseUrl, kwQuery);
+            Map<String, List<AdsSpKeyword>> kwByGroup = kwResp != null && kwResp.getKeywords() != null
+                    ? kwResp.getKeywords().stream().collect(Collectors.groupingBy(AdsSpKeyword::getAdGroupId))
+                    : Collections.emptyMap();
+
+            // 3. 拉取商品/品类定向
+            AdsSpTargetQueryResp targetResp = amazonAdsApiService.listSpTargets(
+                    credential, profileId, baseUrl, AdsSpTargetQueryRequest.byAdGroupIds(adGroupIds));
+            Map<String, List<AdsSpTarget>> targetByGroup = targetResp != null && targetResp.getTargets() != null
+                    ? targetResp.getTargets().stream().collect(Collectors.groupingBy(AdsSpTarget::getAdGroupId))
+                    : Collections.emptyMap();
+
+            // 4. 拉取广告组级否定关键词
+            AdsSpNegativeKeywordQueryResp negKwResp = amazonAdsApiService.listAdGroupNegativeKeywords(
+                    credential, profileId, baseUrl, AdsSpNegativeKeywordQueryRequest.byAdGroupIds(adGroupIds));
+            Map<String, List<AdsSpNegativeKeyword>> negKwByGroup = negKwResp != null && negKwResp.getNegativeKeywords() != null
+                    ? negKwResp.getNegativeKeywords().stream().collect(Collectors.groupingBy(AdsSpNegativeKeyword::getAdGroupId))
+                    : Collections.emptyMap();
+
+            // 5. 拉取否定商品定向
+            AdsSpNegativeTargetQueryResp negTargetResp = amazonAdsApiService.listSpNegativeTargets(
+                    credential, profileId, baseUrl, AdsSpNegativeTargetQueryRequest.byAdGroupIds(adGroupIds));
+            Map<String, List<AdsSpNegativeTarget>> negTargetByGroup = negTargetResp != null && negTargetResp.getNegativeTargets() != null
+                    ? negTargetResp.getNegativeTargets().stream().collect(Collectors.groupingBy(AdsSpNegativeTarget::getAdGroupId))
+                    : Collections.emptyMap();
+
+            // 6. 组装每个 AdGroup VO 并补充配置
+            for (AdsSpAdGroup g : response.getAdGroups()) {
+                AdsAdGroupVO vo = g.toVO();
+                AmazonAdGroupConfigVO config = AmazonAdGroupConfigVO.fromSpAdGroup(g);
+                config.setProfileId(profileId);
+
+                // 1. 补充关键词定向
+                List<AdsSpKeyword> kwList = kwByGroup.getOrDefault(g.getAdGroupId(), Collections.emptyList());
+                if (CollUtil.isNotEmpty(kwList)) {
+                    config.setTargetingType("KEYWORD");
+                    config.setKeywordTargetings(kwList.stream()
+                            .map(k -> AmazonAdGroupConfigVO.KeywordTargeting.builder()
+                                    .targetId(k.getKeywordId())
+                                    .keywordText(k.getKeywordText())
+                                    .matchType(k.getMatchType())
+                                    .bid(k.getBid())
+                                    .build())
+                            .collect(Collectors.toList()));
+                }
+
+                // 2. 补充商品/品类定向
+                List<AdsSpTarget> targetList = targetByGroup.getOrDefault(g.getAdGroupId(), Collections.emptyList());
+                if (CollUtil.isNotEmpty(targetList)) {
+                    config.setTargetingType("PRODUCT");
+                    List<AmazonAdGroupConfigVO.ProductTargeting> pts = new ArrayList<>();
+                    for (AdsSpTarget t : targetList) {
+                        if (CollUtil.isEmpty(t.getExpression())) continue;
+                        for (AdsSpTarget.Expression expr : t.getExpression()) {
+                            pts.add(AmazonAdGroupConfigVO.ProductTargeting.builder()
+                                    .targetId(t.getTargetId())
+                                    .expressionValue(expr.getValue())
+                                    .expressionType(expr.getType())
+                                    .bid(t.getBid())
+                                    .build());
+                        }
+                    }
+                    if (CollUtil.isNotEmpty(pts)) config.setProductTargetings(pts);
+                }
+
+                // 3. 补充否定关键词
+                List<AdsSpNegativeKeyword> negKwList = negKwByGroup.getOrDefault(g.getAdGroupId(), Collections.emptyList());
+                if (CollUtil.isNotEmpty(negKwList)) {
+                    config.setNegativeKeywords(negKwList);
+                }
+
+                // 4. 补充否定商品定向
+                List<AdsSpNegativeTarget> negTargetList = negTargetByGroup.getOrDefault(g.getAdGroupId(), Collections.emptyList());
+                if (CollUtil.isNotEmpty(negTargetList)) {
+                    config.setNegativeTargetings(negTargetList);
+                }
+
+                vo.setExtData(buildExtData(config));
+                allAdGroups.add(vo);
             }
         }
         return allAdGroups;
@@ -181,22 +312,22 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
     @Override
     public List<AdsKeywordVO> queryTargets(Long accountId, AdsQueryRequest request) {
-        log.info("[queryTargets][Amazon] 查询关键词和定向, accountId: {}, request: {}", accountId, request);
+        log.info("[queryTargets][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
-        List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsKeywordVO> allTargets = new ArrayList<>();
-
-        for (AdsAmazonProfileDO profile : profiles) {
-            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
-            String baseUrl = "https://" + regionEnum.getAdsEndpoint();
-
-            AdsSpKeywordQueryRequest spQuery = AdsSpKeywordQueryRequest.from(request);
-            AdsSpKeywordQueryResp response = executeApiPost(credential, profile.getProfileId(), baseUrl + "/sp/keywords/list",
-                    null, JsonUtils.toJsonString(spQuery), "application/vnd.spKeyword.v3+json",
-                    resp -> JsonUtils.parseObject(resp, AdsSpKeywordQueryResp.class));
-
+        for (AdsAmazonProfileDO profile : getFilteredProfiles(accountId, request)) {
+            String profileId = profile.getProfileId();
+            String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
+            AdsSpKeywordQueryResp response = amazonAdsApiService.listSpKeywords(
+                    credential, profileId, baseUrl, AdsSpKeywordQueryRequest.from(request));
             if (response != null && response.getKeywords() != null) {
-                response.getKeywords().forEach(k -> allTargets.add(k.toVO()));
+                response.getKeywords().forEach(k -> {
+                    AdsKeywordVO vo = k.toVO();
+                    com.hzltd.module.erplus.adv.metadata.vo.keyword.AmazonKeywordConfigVO config = com.hzltd.module.erplus.adv.metadata.vo.keyword.AmazonKeywordConfigVO.fromSpKeyword(k);
+                    config.setProfileId(profileId);
+                    vo.setExtData(buildExtData(config));
+                    allTargets.add(vo);
+                });
             }
         }
         return allTargets;
@@ -204,26 +335,40 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
     @Override
     public List<AdsAdVO> queryAds(Long accountId, AdsQueryRequest request) {
-        log.info("[queryAds][Amazon] 查询广告, accountId: {}, request: {}", accountId, request);
+        log.info("[queryAds][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
-        List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
         List<AdsAdVO> allAds = new ArrayList<>();
-
-        for (AdsAmazonProfileDO profile : profiles) {
-            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(profile.getRegion());
-            String baseUrl = "https://" + regionEnum.getAdsEndpoint();
-
-            AdsSpProductAdQueryRequest spQuery = AdsSpProductAdQueryRequest.from(request);
-            AdsSpProductAdQueryResp response = executeApiPost(credential, profile.getProfileId(), baseUrl + "/sp/productAds/list",
-                    null, JsonUtils.toJsonString(spQuery), "application/vnd.spProductAd.v3+json",
-                    resp -> JsonUtils.parseObject(resp, AdsSpProductAdQueryResp.class));
-
+        for (AdsAmazonProfileDO profile : getFilteredProfiles(accountId, request)) {
+            String profileId = profile.getProfileId();
+            String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
+            AdsSpProductAdQueryResp response = amazonAdsApiService.listSpProductAds(
+                    credential, profileId, baseUrl, AdsSpProductAdQueryRequest.from(request));
             if (response != null && response.getProductAds() != null) {
-                response.getProductAds().forEach(a -> allAds.add(a.toVO()));
+                response.getProductAds().forEach(a -> {
+                    AdsAdVO vo = a.toVO();
+                    com.hzltd.module.erplus.adv.metadata.vo.ad.AmazonAdConfigVO config = com.hzltd.module.erplus.adv.metadata.vo.ad.AmazonAdConfigVO.fromSpProductAd(a);
+                    config.setProfileId(profileId);
+                    vo.setExtData(buildExtData(config));
+                    allAds.add(vo);
+                });
             }
         }
         return allAds;
     }
+
+    // ==================== 辅助方法 ====================
+
+
+
+    /**
+     * 将 platformConfig 对象写回 extData
+     */
+    private Object buildExtData(Object platformConfig) {
+        Map<String, Object> extData = new java.util.HashMap<>();
+        extData.put("platformConfig", platformConfig);
+        return extData;
+    }
+
 
     @Override
     public Boolean updateStatus(Long accountId, AdsStatusUpdateRequest request) {
@@ -231,6 +376,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         // 原有实现可能为空或默认返回 true，这里按需补充逻辑
         return true;
     }
+
 
     private List<AdsAmazonProfileDO> getFilteredProfiles(Long accountId, AdsQueryRequest request) {
         List<AdsAmazonProfileDO> profiles = getProfiles(accountId);

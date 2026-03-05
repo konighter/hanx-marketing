@@ -1,7 +1,6 @@
 package com.hzltd.module.erplus.adv.auth.service;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
@@ -15,8 +14,6 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.redis.AdsAuthStateRedisDAO;
-import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
-import com.hzltd.module.erplus.adv.adapter.amazon.AmazonAdsAdapter;
 import com.hzltd.module.erplus.adv.auth.service.dto.AdsAuthStateDTO;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.IdUtil;

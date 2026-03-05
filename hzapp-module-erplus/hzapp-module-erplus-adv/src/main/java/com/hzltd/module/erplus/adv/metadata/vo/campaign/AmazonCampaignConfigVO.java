@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.adv.metadata.vo.campaign;
 
 import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.AdsSpCampaign;
+import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.AdsSpExtendedData;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,18 +12,19 @@ import java.math.BigDecimal;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.AdsSpNegativeKeyword;
+import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.AdsSpOptimizationRule;
 
 /**
  * 亚马逊广告计划配置 VO
  *
- * 存储在 AdsCampaignDO.extData.amazonConfig 中（JSON 格式）
+ * 存储在 AdsCampaignDO.extData.platformConfig 中（JSON 格式）
  * 同时负责与 Amazon SP API 模型（AdsSpCampaign.DynamicBidding）之间的双向映射
  *
  * <pre>
  * extData 结构示例:
  * {
- *   "amazonConfig": {
+ *   "platformConfig": {
  *     "bidding": {
  *       "strategy": "LEGACY_FOR_SALES",
  *       "adjustments": [
@@ -45,11 +47,32 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 public class AmazonCampaignConfigVO {
 
+
+    private String profileId;
+
     @Schema(description = "竞价配置")
-    private Bidding bidding;
+    private AdsSpCampaign.DynamicBidding dynamicBidding;
+
+    /** 扩展数据 (投放状态、创建/更新时间等) */
+    private AdsSpExtendedData extendedData;
+
+    /** 非亚马逊广告设置 */
+    private AdsSpCampaign.OffAmazonSettings offAmazonSettings;
+
+    /** 广告组合 */
+    private String portfolioId;
+
+    /** 全球广告活动 ID */
+    private String globalCampaignId;
+
+    /** 标签列表 (Map 格式) */
+    private Map<String, String> tags;
 
     @Schema(description = "否定关键词列表")
-    private List<NegativeKeyword> negativeKeywords;
+    private List<AdsSpNegativeKeyword> negativeKeywords;
+
+    @Schema(description = "优化规则列表")
+    private List<AdsSpOptimizationRule> optimizationRules;
 
     // ==================== 竞价相关 ====================
 
@@ -102,20 +125,6 @@ public class AmazonCampaignConfigVO {
         private BigDecimal targetRoas;
     }
 
-    // ==================== 否定关键词 ====================
-
-    @Data
-    @Builder
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class NegativeKeyword {
-        @Schema(description = "关键词文本")
-        private String keywordText;
-
-        @Schema(description = "匹配类型: NEGATIVE_EXACT / NEGATIVE_PHRASE", example = "NEGATIVE_EXACT")
-        private String matchType;
-    }
-
     // ==================== 策略枚举映射 ====================
 
     /**
@@ -142,37 +151,17 @@ public class AmazonCampaignConfigVO {
      * 用于数据同步（平台 → 本地）
      */
     public static AmazonCampaignConfigVO fromSpCampaign(AdsSpCampaign spCampaign) {
-        AmazonCampaignConfigVO config = new AmazonCampaignConfigVO();
-
-        AdsSpCampaign.DynamicBidding dynamicBidding = spCampaign.getDynamicBidding();
-        if (dynamicBidding != null) {
-            Bidding bidding = new Bidding();
-
-            // 策略映射
-            bidding.setStrategy(AMAZON_TO_LOCAL_STRATEGY.getOrDefault(
-                    dynamicBidding.getStrategy(), dynamicBidding.getStrategy()));
-
-            // 分位置竞价调整
-            if (dynamicBidding.getPlacementBidding() != null) {
-                bidding.setAdjustments(dynamicBidding.getPlacementBidding().stream()
-                        .map(pb -> Adjustment.builder()
-                                .placement(pb.getPlacement())
-                                .percentage(pb.getPercentage())
-                                .build())
-                        .collect(Collectors.toList()));
-            }
-
-            // 竞价规则（RULE_BASED_BIDDING 时提取 targetRoas）
-            if (dynamicBidding.getRules() != null && !dynamicBidding.getRules().isEmpty()) {
-                dynamicBidding.getRules().stream()
-                        .filter(r -> "BID".equals(r.getRuleType()))
-                        .findFirst()
-                        .ifPresent(r -> bidding.setRules(Rule.builder().targetRoas(r.getValue()).build()));
-            }
-
-            config.setBidding(bidding);
+        if (spCampaign == null) {
+            return null;
         }
-        return config;
+        return AmazonCampaignConfigVO.builder()
+                .dynamicBidding(spCampaign.getDynamicBidding())
+                .extendedData(spCampaign.getExtendedData())
+                .offAmazonSettings(spCampaign.getOffAmazonSettings())
+                .globalCampaignId(spCampaign.getGlobalCampaignId())
+                .tags(spCampaign.getTags())
+                .portfolioId(spCampaign.getPortfolioId())
+                .build();
     }
 
     /**
@@ -180,37 +169,6 @@ public class AmazonCampaignConfigVO {
      * 用于数据同步（本地 → 平台）
      */
     public AdsSpCampaign.DynamicBidding toSpDynamicBidding() {
-        if (this.bidding == null) {
-            return null;
-        }
-
-        AdsSpCampaign.DynamicBidding dynamicBidding = new AdsSpCampaign.DynamicBidding();
-
-        // 策略映射
-        dynamicBidding.setStrategy(LOCAL_TO_AMAZON_STRATEGY.getOrDefault(
-                this.bidding.getStrategy(), this.bidding.getStrategy()));
-
-        // 分位置竞价调整
-        if (this.bidding.getAdjustments() != null) {
-            List<AdsSpCampaign.PlacementBidding> placementBiddings = this.bidding.getAdjustments().stream()
-                    .filter(adj -> !"PLACEMENT_REST_OF_SEARCH".equals(adj.getPlacement())) // API 不支持此位置
-                    .map(adj -> AdsSpCampaign.PlacementBidding.builder()
-                            .placement(adj.getPlacement())
-                            .percentage(adj.getPercentage())
-                            .build())
-                    .collect(Collectors.toList());
-            dynamicBidding.setPlacementBidding(placementBiddings);
-        }
-
-        // 竞价规则（RULE_BASED 时构建 BID 规则）
-        if (this.bidding.getRules() != null && this.bidding.getRules().getTargetRoas() != null) {
-            dynamicBidding.setRules(List.of(
-                    AdsSpCampaign.BiddingRule.builder()
-                            .ruleType("BID")
-                            .value(this.bidding.getRules().getTargetRoas())
-                            .build()
-            ));
-        }
 
         return dynamicBidding;
     }

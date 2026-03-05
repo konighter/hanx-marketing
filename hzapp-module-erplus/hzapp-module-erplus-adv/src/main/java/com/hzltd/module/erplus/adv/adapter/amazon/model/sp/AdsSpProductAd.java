@@ -1,6 +1,5 @@
 package com.hzltd.module.erplus.adv.adapter.amazon.model.sp;
 
-import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -62,10 +61,8 @@ public class AdsSpProductAd {
         return AdsAdVO.builder()
                 .externalId(this.getAdId())
                 .adGroupExternalId(this.getAdGroupId())
-                .asin(this.getAsin())
                 .sku(this.getSku())
                 .status(this.getState())
-                .extData(JsonUtils.toJsonString(this.getExtendedData()))
                 .build();
     }
 }

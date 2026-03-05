@@ -26,6 +26,6 @@ public class AdsAdVO {
     private String reviewStatus;
     private String asin;
     private String sku;
-    private String extData; // JSON string
+    private Object extData; // JSON or Object
 
 }

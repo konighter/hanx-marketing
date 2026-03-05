@@ -25,13 +25,22 @@ public class AdsAdRespVO {
     private String name;
 
     @Schema(description = "广告类型", example = "IMAGE")
-    private String adType;
+    private String adFormat;
 
     @Schema(description = "统一状态", example = "ENABLED")
     private String status;
 
     @Schema(description = "原始平台状态", example = "active")
     private String platformStatus;
+
+    @Schema(description = "ASIN", example = "B07XYZ1234")
+    private String asin;
+
+    @Schema(description = "SKU", example = "SKU-001")
+    private String sku;
+
+    @Schema(description = "平台审核状态", example = "APPROVED")
+    private String reviewStatus;
 
     @Schema(description = "同步时间")
     private LocalDateTime syncedAt;

@@ -45,4 +45,31 @@ public class AmazonSpOptimizationRuleApiService {
 
         return apiClient.post(credential, accountId, profileId, url, request);
     }
+
+    /**
+     * 查询广告活动关联的 Optimization Rules
+     * GET /sp/campaigns/{campaignId}/optimizationRules
+     *
+     * @return JSON 字符串（包含优化规则列表），null 表示失败
+     */
+    public String listRulesByCampaignId(AdsAccountCredentialDO credential,
+                                        String accountId, String profileId,
+                                        String baseUrl, String campaignId) {
+        String url = baseUrl + "/sp/rules/optimization/search";
+        log.info("[listRulesByCampaignId] accountId={}, profileId={}, campaignId={}", accountId, profileId, campaignId);
+        try {
+            java.util.Map<String, Object> campaignFilter = java.util.Map.of("include", java.util.Collections.singletonList(campaignId));
+            java.util.Map<String, Object> categoryFilter = java.util.Map.of("include", java.util.Collections.singletonList("BIDDING"));
+            java.util.Map<String, Object> subCategoryFilter = java.util.Map.of("include", java.util.Collections.singletonList("SCHEDULE"));
+            java.util.Map<String, Object> request = java.util.Map.of(
+                "campaignFilter", campaignFilter,
+                "ruleCategory", categoryFilter,
+                "ruleSubCategory", subCategoryFilter
+            );
+            return apiClient.post(credential, accountId, profileId, url, request);
+        } catch (Exception e) {
+            log.warn("[listRulesByCampaignId] 查询失败 campaignId={}: {}", campaignId, e.getMessage());
+            return null;
+        }
+    }
 }

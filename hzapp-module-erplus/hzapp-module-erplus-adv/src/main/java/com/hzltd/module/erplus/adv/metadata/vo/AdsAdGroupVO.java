@@ -23,6 +23,6 @@ public class AdsAdGroupVO {
     private BigDecimal defaultBid;
     private String bidStrategy;
     private String targetingType;
-    private String extData; // JSON string
+    private Object extData; // JSON or Object
 
 }

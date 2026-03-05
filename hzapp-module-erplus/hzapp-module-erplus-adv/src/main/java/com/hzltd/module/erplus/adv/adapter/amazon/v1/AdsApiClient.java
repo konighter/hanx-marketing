@@ -48,12 +48,27 @@ public class AdsApiClient {
     // ==================== Public API ====================
 
     /**
+     * 获取 LWA Client ID（供 AmazonAdsApiService 直接构建请求时使用）
+     */
+    public String getClientId() {
+        return Optional.ofNullable(configService.getConfigByKey(AMZ_CLIENT_ID))
+                .map(ConfigDO::getValue)
+                .orElseThrow(() -> new AmazonAdsApiException(0, "Missing config: " + AMZ_CLIENT_ID, "N/A"));
+    }
+
+    /**
      * 发送 GET 请求
      */
     public String get(AdsAccountCredentialDO credential, String accountId, String profileId, String url) {
-        HttpRequest request = buildRequest(credential, accountId, profileId, url)
-                .GET()
-                .build();
+        return get(credential, accountId, profileId, url, null);
+    }
+
+    public String get(AdsAccountCredentialDO credential, String accountId, String profileId, String url, String accept) {
+        HttpRequest.Builder builder = buildRequest(credential, accountId, profileId, url);
+        if (StringUtils.isNotEmpty(accept)) {
+            builder.header("Accept", accept);
+        }
+        HttpRequest request = builder.GET().build();
         return executeRequest(request, url);
     }
 

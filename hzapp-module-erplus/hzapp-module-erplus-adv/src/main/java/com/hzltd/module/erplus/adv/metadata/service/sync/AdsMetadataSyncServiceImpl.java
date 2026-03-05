@@ -230,19 +230,29 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
             existing.setName(vo.getName());
             existing.setStatus(vo.getStatus());
             existing.setCampaignType(vo.getCampaignType());
+            existing.setObjective(vo.getObjective());
+            existing.setBudgetType(vo.getBudgetType());
             existing.setDailyBudget(vo.getDailyBudget());
-            existing.setExtData(vo.getExtData());
+            existing.setTotalBudget(vo.getTotalBudget());
             existing.setStartDate(vo.getStartDate());
             existing.setEndDate(vo.getEndDate());
+//            existing.setBiddingStrategy(vo.getBiddingStrategy());
+            existing.setExtData(vo.getExtData());
+            existing.setSyncedAt(LocalDateTime.now());
             adsCampaignMapper.insert(existing);
         } else {
             existing.setName(vo.getName());
             existing.setStatus(vo.getStatus());
             existing.setCampaignType(vo.getCampaignType());
+            existing.setObjective(vo.getObjective());
+            existing.setBudgetType(vo.getBudgetType());
             existing.setDailyBudget(vo.getDailyBudget());
-            existing.setExtData(vo.getExtData());
+            existing.setTotalBudget(vo.getTotalBudget());
             existing.setStartDate(vo.getStartDate());
             existing.setEndDate(vo.getEndDate());
+//            existing.setBiddingStrategy(vo.getBiddingStrategy());
+            existing.setExtData(vo.getExtData());
+            existing.setSyncedAt(LocalDateTime.now());
             adsCampaignMapper.updateById(existing);
         }
     }
@@ -257,13 +267,19 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
             existing.setName(vo.getName());
             existing.setStatus(vo.getStatus());
             existing.setDefaultBid(vo.getDefaultBid());
+            existing.setBidStrategy(vo.getBidStrategy());
+            existing.setTargetingType(vo.getTargetingType());
             existing.setExtData(vo.getExtData());
+            existing.setSyncedAt(LocalDateTime.now());
             adsAdGroupMapper.insert(existing);
         } else {
             existing.setName(vo.getName());
             existing.setStatus(vo.getStatus());
             existing.setDefaultBid(vo.getDefaultBid());
+            existing.setBidStrategy(vo.getBidStrategy());
+            existing.setTargetingType(vo.getTargetingType());
             existing.setExtData(vo.getExtData());
+            existing.setSyncedAt(LocalDateTime.now());
             adsAdGroupMapper.updateById(existing);
         }
     }
@@ -280,14 +296,18 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
             existing.setMatchType(vo.getMatchType());
             existing.setBid(vo.getBid());
             existing.setStatus(vo.getStatus());
+            existing.setIsNegative(vo.getIsNegative());
             existing.setExtData(vo.getExtData());
+            existing.setSyncedAt(LocalDateTime.now());
             adsKeywordMapper.insert(existing);
         } else {
             existing.setKeywordText(vo.getKeywordText());
             existing.setMatchType(vo.getMatchType());
             existing.setBid(vo.getBid());
             existing.setStatus(vo.getStatus());
+            existing.setIsNegative(vo.getIsNegative());
             existing.setExtData(vo.getExtData());
+            existing.setSyncedAt(LocalDateTime.now());
             adsKeywordMapper.updateById(existing);
         }
     }
@@ -301,13 +321,27 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
             existing.setAdGroupId(adGroupId);
             existing.setExternalId(vo.getExternalId());
             existing.setName(StringUtils.isNotEmpty(vo.getAsin()) ? vo.getAsin() : vo.getName());
+            existing.setAdFormat(vo.getAdFormat());
             existing.setStatus(vo.getStatus());
+            existing.setHeadline(vo.getHeadline());
+            existing.setDescription(vo.getDescription());
+            existing.setLandingPageUrl(vo.getLandingPageUrl());
+            existing.setCallToAction(vo.getCallToAction());
+            existing.setReviewStatus(vo.getReviewStatus());
             existing.setExtData(vo.getExtData());
+            existing.setSyncedAt(LocalDateTime.now());
             adsAdMapper.insert(existing);
         } else {
             existing.setName(StringUtils.isNotEmpty(vo.getAsin()) ? vo.getAsin() : vo.getName());
+            existing.setAdFormat(vo.getAdFormat());
             existing.setStatus(vo.getStatus());
+            existing.setHeadline(vo.getHeadline());
+            existing.setDescription(vo.getDescription());
+            existing.setLandingPageUrl(vo.getLandingPageUrl());
+            existing.setCallToAction(vo.getCallToAction());
+            existing.setReviewStatus(vo.getReviewStatus());
             existing.setExtData(vo.getExtData());
+            existing.setSyncedAt(LocalDateTime.now());
             adsAdMapper.updateById(existing);
         }
     }

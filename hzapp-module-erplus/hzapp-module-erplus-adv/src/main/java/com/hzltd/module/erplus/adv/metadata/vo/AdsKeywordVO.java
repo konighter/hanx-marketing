@@ -23,6 +23,6 @@ public class AdsKeywordVO {
     private BigDecimal bid;
     private String status;
     private Boolean isNegative;
-    private String extData; // JSON string
+    private Object extData; // JSON or Object
 
 }

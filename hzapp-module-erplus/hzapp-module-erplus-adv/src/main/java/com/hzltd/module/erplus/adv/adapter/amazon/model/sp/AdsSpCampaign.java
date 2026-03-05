@@ -1,8 +1,6 @@
 package com.hzltd.module.erplus.adv.adapter.amazon.model.sp;
 
-import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
-import com.hzltd.module.erplus.adv.metadata.vo.campaign.AmazonCampaignConfigVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -169,12 +167,6 @@ public class AdsSpCampaign {
     }
 
     public AdsCampaignVO toVO() {
-        // 将 Amazon 动态竞价配置映射为本地 AmazonCampaignConfigVO
-        AmazonCampaignConfigVO amazonConfig = AmazonCampaignConfigVO.fromSpCampaign(this);
-        // 构造 extData: { "amazonConfig": { ... } }
-        Map<String, Object> extData = new java.util.HashMap<>();
-        extData.put("amazonConfig", amazonConfig);
-
         return AdsCampaignVO.builder()
                 .externalId(this.getCampaignId())
                 .name(this.getName())
@@ -183,8 +175,6 @@ public class AdsSpCampaign {
                 .dailyBudget(this.getBudget() != null ? this.getBudget().getBudget() : null)
                 .startDate(StringUtils.isNotEmpty(this.getStartDate()) ? LocalDate.parse(this.getStartDate()) : null)
                 .endDate(StringUtils.isNotEmpty(this.getEndDate()) ? LocalDate.parse(this.getEndDate()) : null)
-                .biddingStrategy(amazonConfig.getBidding() != null ? amazonConfig.getBidding().getStrategy() : null)
-                .extData(JsonUtils.toJsonString(extData))
                 .build();
     }
 }

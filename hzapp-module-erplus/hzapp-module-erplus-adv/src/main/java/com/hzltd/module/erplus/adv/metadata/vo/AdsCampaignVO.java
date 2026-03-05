@@ -27,7 +27,7 @@ public class AdsCampaignVO {
     private BigDecimal totalBudget;
     private LocalDate startDate;
     private LocalDate endDate;
-    private String biddingStrategy;
-    private String extData; // JSON string
+//    private String biddingStrategy;
+    private Object extData; // JSON or Object
 
 }

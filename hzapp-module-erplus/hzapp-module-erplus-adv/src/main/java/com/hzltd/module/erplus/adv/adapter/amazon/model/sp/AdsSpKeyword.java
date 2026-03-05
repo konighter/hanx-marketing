@@ -1,6 +1,5 @@
 package com.hzltd.module.erplus.adv.adapter.amazon.model.sp;
 
-import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -58,10 +57,8 @@ public class AdsSpKeyword {
                 .adGroupExternalId(this.getAdGroupId())
                 .keywordText(this.getKeywordText())
                 .matchType(this.getMatchType())
-                .bid(this.getBid())
                 .status(this.getState())
-                .isNegative(false)
-                .extData(JsonUtils.toJsonString(this.getExtendedData()))
+                .bid(this.getBid())
                 .build();
     }
 }

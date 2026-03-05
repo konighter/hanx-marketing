@@ -37,6 +37,12 @@ public class AdsKeywordRespVO {
     @Schema(description = "出价", example = "1.20")
     private BigDecimal bid;
 
+    @Schema(description = "是否为否定关键词", example = "false")
+    private Boolean isNegative;
+
+    @Schema(description = "平台扩展字段 (JSON)")
+    private Object extData;
+
     @Schema(description = "同步时间")
     private LocalDateTime syncedAt;
 

@@ -34,6 +34,15 @@ public class AdsAdGroupRespVO {
     @Schema(description = "默认出价", example = "1.50")
     private BigDecimal defaultBid;
 
+    @Schema(description = "出价策略", example = "AUTO_BID")
+    private String bidStrategy;
+
+    @Schema(description = "投放定向方式", example = "KEYWORD")
+    private String targetingType;
+
+    @Schema(description = "平台扩展字段 (JSON)")
+    private Object extData;
+
     @Schema(description = "同步时间")
     private LocalDateTime syncedAt;
 

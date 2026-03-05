@@ -1,6 +1,5 @@
 package com.hzltd.module.erplus.adv.adapter.amazon.model.sp;
 
-import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,7 +46,8 @@ public class AdsSpAdGroup {
                 .name(this.getName())
                 .status(this.getState())
                 .defaultBid(this.getDefaultBid())
-                .extData(JsonUtils.toJsonString(this.getExtendedData()))
                 .build();
     }
+
+
 }
