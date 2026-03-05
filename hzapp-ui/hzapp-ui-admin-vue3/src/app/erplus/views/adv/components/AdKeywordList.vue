@@ -47,14 +47,6 @@
             </el-link>
             <div class="flex items-center text-12px text-gray-400 mt-2px">
               <span class="truncate">ID: {{ scope.row.externalId }}</span>
-              <el-button
-                link
-                type="primary"
-                class="ml-5px !p-0 h-auto"
-                @click="handleDetail(scope.row)"
-              >
-                <Icon icon="ep:document" />
-              </el-button>
             </div>
           </div>
         </template>
@@ -72,9 +64,37 @@
           <dict-tag :type="DICT_TYPE.AD_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="出价" align="center" width="100" fixed="left">
+      <el-table-column label="出价" align="center" width="120" fixed="left">
         <template #default="scope">
-          <span class="text-13px">{{ scope.row.bid ? `$${scope.row.bid}` : '-' }}</span>
+          <div class="flex items-center justify-center group">
+            <template v-if="bidEditId === scope.row.id">
+              <el-input-number
+                v-model="bidEditValue"
+                :precision="3"
+                :step="0.01"
+                size="small"
+                controls-position="right"
+                class="!w-90px"
+              />
+              <el-button link type="primary" class="ml-5px" @click="handleSaveBid(scope.row)">
+                <Icon icon="ep:check" />
+              </el-button>
+              <el-button link @click="bidEditId = undefined">
+                <Icon icon="ep:close" />
+              </el-button>
+            </template>
+            <template v-else>
+              <span class="text-13px">{{ scope.row.bid ? `$${scope.row.bid}` : '-' }}</span>
+              <el-button
+                link
+                type="primary"
+                class="ml-5px invisible group-hover:visible"
+                @click="handleEditBid(scope.row)"
+              >
+                <Icon icon="ep:edit" />
+              </el-button>
+            </template>
+          </div>
         </template>
       </el-table-column>
 
@@ -131,7 +151,6 @@
 </template>
 
 <script setup lang="ts">
-import { dateFormatter } from '@/utils/formatTime'
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
 import { AdsKeywordApi } from '@/app/erplus/api/adv/ads'
 import { AdsKeyword } from '../types/ads'
@@ -153,6 +172,10 @@ const loading = ref(true)
 const list = ref<AdsKeyword[]>([])
 const total = ref(0)
 const tableRef = ref()
+
+const bidEditId = ref<number>()
+const bidEditValue = ref(0)
+
 const queryParams = reactive({
   pageNo: 1,
   pageSize: 10,
@@ -169,10 +192,24 @@ const handleSelectionChange = (selection: any[]) => {
   emit('select', selection)
 }
 
-const handleKeywordClick = (row: AdsKeyword) => {
+const handleNameClick = (row: AdsKeyword) => {
   // 同步选中状态
   tableRef.value.clearSelection()
   tableRef.value.toggleRowSelection(row, true)
+}
+
+const handleEditBid = (row: AdsKeyword) => {
+  bidEditId.value = row.id
+  bidEditValue.value = row.bid || 0
+}
+
+const handleSaveBid = async (row: AdsKeyword) => {
+  try {
+    await AdsKeywordApi.updateKeywordBid({ id: row.id, bid: bidEditValue.value })
+    ElMessage.success('更新出价成功')
+    bidEditId.value = undefined
+    await getList()
+  } catch (error) {}
 }
 
 const handleFilterChange = (filters: any) => {

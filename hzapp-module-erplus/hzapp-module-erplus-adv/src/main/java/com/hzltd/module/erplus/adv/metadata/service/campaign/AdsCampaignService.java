@@ -34,13 +34,15 @@ public interface AdsCampaignService {
      */
     void updateCampaignStatus(Long id, String status);
 
+    AdsCampaignDO getCampaign(Long id);
+
     /**
-     * 获得广告计划
+     * 更新广告计划预算
      *
      * @param id 编号
-     * @return 广告计划
+     * @param budget 预算
      */
-    AdsCampaignDO getCampaign(Long id);
+    void updateCampaignBudget(Long id, java.math.BigDecimal budget);
 
     /**
      * 根据账户 ID 获取平台信息

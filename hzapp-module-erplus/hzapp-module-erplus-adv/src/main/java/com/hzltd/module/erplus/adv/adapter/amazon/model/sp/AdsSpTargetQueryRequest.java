@@ -29,4 +29,13 @@ public class AdsSpTargetQueryRequest extends AdsSpCommonQueryRequest {
                 .adGroupIdFilter(StringFilter.from(adGroupIds))
                 .build();
     }
+
+    public static AdsSpTargetQueryRequest from(com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest query) {
+        return AdsSpTargetQueryRequest.builder()
+                .nextToken(query.getNextToken())
+                .maxResults(query.getLimit())
+                .adGroupIdFilter(StringFilter.from(query.getAdGroupIds()))
+                .campaignIdFilter(StringFilter.from(query.getCampaignIds()))
+                .build();
+    }
 }

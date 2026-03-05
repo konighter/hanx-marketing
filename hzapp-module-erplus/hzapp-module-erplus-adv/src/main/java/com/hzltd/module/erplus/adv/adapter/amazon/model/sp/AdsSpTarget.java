@@ -39,6 +39,23 @@ public class AdsSpTarget {
     /** 状态 */
     private String state;
 
+    public com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO toVO() {
+        StringBuilder sb = new StringBuilder();
+        if (expression != null) {
+            for (Expression e : expression) {
+                if (sb.length() > 0) sb.append("; ");
+                sb.append(e.getType()).append("=").append(e.getValue());
+            }
+        }
+        return com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO.builder()
+                .externalId(this.getTargetId())
+                .adGroupExternalId(this.getAdGroupId())
+                .keywordText(sb.length() > 0 ? sb.toString() : "Targeting")
+                .status(this.getState())
+                .bid(this.getBid())
+                .build();
+    }
+
     @Data
     @Builder
     @NoArgsConstructor

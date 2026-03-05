@@ -25,12 +25,14 @@ public interface AdsKeywordService {
      */
     void updateKeywordStatus(Long id, String status);
 
+    AdsKeywordDO getKeyword(Long id);
+
     /**
-     * 获得广告关键词
+     * 更新关键词出价
      *
      * @param id 编号
-     * @return 广告关键词
+     * @param bid 出价
      */
-    AdsKeywordDO getKeyword(Long id);
+    void updateKeywordBid(Long id, java.math.BigDecimal bid);
 
 }

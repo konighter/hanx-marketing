@@ -48,14 +48,6 @@
             </el-link>
             <div class="flex items-center text-12px text-gray-400 mt-2px">
               <span class="truncate">ID: {{ scope.row.externalId }}</span>
-              <el-button
-                link
-                type="primary"
-                class="ml-5px !p-0 h-auto"
-                @click="handleDetail(scope.row)"
-              >
-                <Icon icon="ep:document" />
-              </el-button>
             </div>
             <div v-if="scope.row.extData && (scope.row.extData.asin || scope.row.extData.sku)" class="text-12px text-orange-500 mt-2px">
               <span v-if="scope.row.extData.asin" class="mr-10px">ASIN: {{ scope.row.extData.asin }}</span>
@@ -131,7 +123,6 @@
 </template>
 
 <script setup lang="ts">
-import { dateFormatter } from '@/utils/formatTime'
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
 import { AdsAdApi } from '@/app/erplus/api/adv/ads'
 import { AdsAd } from '../types/ads'

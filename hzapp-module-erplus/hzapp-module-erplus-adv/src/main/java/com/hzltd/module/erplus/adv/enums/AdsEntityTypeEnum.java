@@ -17,6 +17,7 @@ public enum AdsEntityTypeEnum {
     ADGROUP("ADGROUP", "广告组"),
     AD("AD", "广告"),
     KEYWORD("KEYWORD", "关键词"),
+    TARGET("TARGET", "商品投放"),
     CREATIVE("CREATIVE", "创意素材");
 
     private final String code;

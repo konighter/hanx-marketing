@@ -46,6 +46,9 @@ export const AdsCampaignApi = {
   updateCampaignStatus: async (params: { id: number; status: string }) => {
     return await request.put({ url: `/erplus/adv/campaign/update-status`, params })
   },
+  updateCampaignBudget: async (params: { id: number; budget: number }) => {
+    return await request.put({ url: `/erplus/adv/campaign/update-budget`, params })
+  },
   updateCampaign: async (data: any) => {
     return await request.put({ url: `/erplus/adv/campaign/update`, data })
   }
@@ -87,6 +90,9 @@ export const AdsKeywordApi = {
   },
   updateKeywordStatus: async (params: { id: number; status: string }) => {
     return await request.put({ url: `/erplus/adv/keyword/update-status`, params })
+  },
+  updateKeywordBid: async (params: { id: number; bid: number }) => {
+    return await request.put({ url: `/erplus/adv/keyword/update-bid`, params })
   }
 }
 

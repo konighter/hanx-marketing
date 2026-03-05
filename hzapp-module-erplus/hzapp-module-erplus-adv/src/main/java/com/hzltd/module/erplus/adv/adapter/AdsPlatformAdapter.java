@@ -1,7 +1,6 @@
 package com.hzltd.module.erplus.adv.adapter;
 
-import com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest;
-import com.hzltd.module.erplus.adv.adapter.model.AdsStatusUpdateRequest;
+import com.hzltd.module.erplus.adv.adapter.model.*;
 import com.hzltd.module.erplus.adv.adapter.model.AdsTokenResult;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
@@ -81,6 +80,20 @@ public interface AdsPlatformAdapter {
      * 更新实体状态
      */
     Boolean updateStatus(Long accountId, AdsStatusUpdateRequest request);
+
+    /**
+     * 更新广告活动预算
+     */
+    default Boolean updateBudget(Long accountId, AdsBudgetUpdateRequest request) {
+        throw new UnsupportedOperationException("Platform does not support budget update");
+    }
+
+    /**
+     * 更新关键词/Target 出价
+     */
+    default Boolean updateBid(Long accountId, AdsBidUpdateRequest request) {
+        throw new UnsupportedOperationException("Platform does not support bid update");
+    }
 
 
     /**

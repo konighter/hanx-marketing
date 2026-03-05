@@ -49,6 +49,19 @@ public class AdsKeywordController {
         return success(true);
     }
 
+    @PutMapping("/update-bid")
+    @Operation(summary = "更新广告关键词出价")
+    @Parameters({
+            @Parameter(name = "id", description = "编号", required = true),
+            @Parameter(name = "bid", description = "出价", required = true)
+    })
+    @PreAuthorize("@ss.hasPermission('erplus:adv-keyword:update')")
+    public CommonResult<Boolean> updateKeywordBid(@RequestParam("id") Long id,
+                                                  @RequestParam("bid") java.math.BigDecimal bid) {
+        adsKeywordService.updateKeywordBid(id, bid);
+        return success(true);
+    }
+
     @GetMapping("/get")
     @Operation(summary = "获得广告关键词")
     @Parameter(name = "id", description = "编号", required = true)

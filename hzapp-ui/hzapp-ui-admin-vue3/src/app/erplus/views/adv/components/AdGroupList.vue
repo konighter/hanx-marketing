@@ -48,14 +48,6 @@
             </el-link>
             <div class="flex items-center text-12px text-gray-400 mt-2px">
               <span class="truncate">ID: {{ scope.row.externalId }}</span>
-              <el-button
-                link
-                type="primary"
-                class="ml-5px !p-0 h-auto"
-                @click="handleDetail(scope.row)"
-              >
-                <Icon icon="ep:document" />
-              </el-button>
             </div>
           </div>
         </template>
@@ -125,7 +117,6 @@
 </template>
 
 <script setup lang="ts">
-import { dateFormatter } from '@/utils/formatTime'
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
 import { AdsAdGroupApi } from '@/app/erplus/api/adv/ads'
 import { AdsAdGroup } from '../types/ads'
@@ -167,11 +158,6 @@ const handleNameClick = (row: AdsAdGroup) => {
   tableRef.value.clearSelection()
   tableRef.value.toggleRowSelection(row, true)
   emit('click-name', row)
-}
-
-const handleDetail = (row: AdsAdGroup) => {
-  // TODO: 实现广告组详情抽屉
-  ElMessage.info('广告组详情功能开发中')
 }
 
 const handleFilterChange = (filters: any) => {

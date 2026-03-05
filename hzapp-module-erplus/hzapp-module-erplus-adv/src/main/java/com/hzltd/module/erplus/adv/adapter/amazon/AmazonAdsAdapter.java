@@ -9,29 +9,22 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
+import com.hzltd.module.erplus.adv.adapter.model.AdsTokenResult;
 import com.hzltd.module.erplus.adv.adapter.amazon.model.sp.*;
 import com.hzltd.module.erplus.adv.adapter.amazon.service.AdsAmazonReportService;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonAdsApiService;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonSpOptimizationRuleApiService;
-import com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest;
-import com.hzltd.module.erplus.adv.adapter.model.AdsStatusUpdateRequest;
-import com.hzltd.module.erplus.adv.adapter.model.AdsTokenResult;
 import com.hzltd.module.erplus.adv.auth.service.AdsAuthService;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAmazonProfileDO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsAmazonProfileMapper;
+import com.hzltd.module.erplus.adv.dal.dataobject.*;
+import com.hzltd.module.erplus.adv.dal.mysql.*;
 import com.hzltd.module.erplus.enums.amz.AmazonRegionEnum;
 import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
 import com.hzltd.module.erplus.adv.adapter.amazon.service.AdsAmazonProfileService;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AmazonAdGroupConfigVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AmazonCampaignConfigVO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -62,6 +55,16 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     private AdsAmazonProfileService adsAmazonProfileService;
     @Resource
     private AdsAmazonReportService adsAmazonReportService;
+    @Resource
+    private AdsCampaignMapper adsCampaignMapper;
+    @Resource
+    private AdsAdGroupMapper adsAdGroupMapper;
+    @Resource
+    private AdsAdMapper adsAdMapper;
+    @Resource
+    private AdsKeywordMapper adsKeywordMapper;
+    @Resource
+    private ObjectMapper objectMapper;
 
     @Override
     public AdsPlatformEnum getPlatform() {
@@ -136,11 +139,11 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     }
 
     @Override
-    public List<AdsCampaignVO> queryCampaigns(Long accountId, AdsQueryRequest request) {
+    public List<com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO> queryCampaigns(Long accountId, com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest request) {
         log.info("[queryCampaigns][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
-        List<AdsCampaignVO> allCampaigns = new ArrayList<>();
+        List<com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO> allCampaigns = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
             String profileId = profile.getProfileId();
@@ -176,7 +179,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
             // 4. 逐 Campaign 将否定词 + Optimization Rules 补充到 platformConfig
             for (AdsSpCampaign c : response.getCampaigns()) {
-                AdsCampaignVO vo = c.toVO();
+                com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO vo = c.toVO();
                 AmazonCampaignConfigVO config = AmazonCampaignConfigVO.fromSpCampaign(c);
                 config.setProfileId(profileId);
 
@@ -201,11 +204,11 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
 
     @Override
-    public List<AdsAdGroupVO> queryGroups(Long accountId, AdsQueryRequest request) {
+    public List<com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO> queryGroups(Long accountId, com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest request) {
         log.info("[queryGroups][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
-        List<AdsAdGroupVO> allAdGroups = new ArrayList<>();
+        List<com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO> allAdGroups = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
             String profileId = profile.getProfileId();
@@ -254,7 +257,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
             // 6. 组装每个 AdGroup VO 并补充配置
             for (AdsSpAdGroup g : response.getAdGroups()) {
-                AdsAdGroupVO vo = g.toVO();
+                com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO vo = g.toVO();
                 AmazonAdGroupConfigVO config = AmazonAdGroupConfigVO.fromSpAdGroup(g);
                 config.setProfileId(profileId);
 
@@ -311,21 +314,38 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     }
 
     @Override
-    public List<AdsKeywordVO> queryTargets(Long accountId, AdsQueryRequest request) {
+    public List<com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO> queryTargets(Long accountId, com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest request) {
         log.info("[queryTargets][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
-        List<AdsKeywordVO> allTargets = new ArrayList<>();
+        List<com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO> allTargets = new ArrayList<>();
         for (AdsAmazonProfileDO profile : getFilteredProfiles(accountId, request)) {
             String profileId = profile.getProfileId();
             String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
-            AdsSpKeywordQueryResp response = amazonAdsApiService.listSpKeywords(
+            AdsSpKeywordQueryResp keywordResponse = amazonAdsApiService.listSpKeywords(
                     credential, profileId, baseUrl, AdsSpKeywordQueryRequest.from(request));
-            if (response != null && response.getKeywords() != null) {
-                response.getKeywords().forEach(k -> {
-                    AdsKeywordVO vo = k.toVO();
+            if (keywordResponse != null && keywordResponse.getKeywords() != null) {
+                keywordResponse.getKeywords().forEach(k -> {
+                    com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO vo = k.toVO();
                     com.hzltd.module.erplus.adv.metadata.vo.keyword.AmazonKeywordConfigVO config = com.hzltd.module.erplus.adv.metadata.vo.keyword.AmazonKeywordConfigVO.fromSpKeyword(k);
                     config.setProfileId(profileId);
                     vo.setExtData(buildExtData(config));
+                    allTargets.add(vo);
+                });
+            }
+
+            // Sync targets (Product/Category targeting)
+            com.hzltd.module.erplus.adv.adapter.amazon.model.sp.AdsSpTargetQueryResp targetResponse = amazonAdsApiService.listSpTargets(
+                    credential, profileId, baseUrl, com.hzltd.module.erplus.adv.adapter.amazon.model.sp.AdsSpTargetQueryRequest.from(request));
+            if (targetResponse != null && targetResponse.getTargets() != null) {
+                targetResponse.getTargets().forEach(t -> {
+                    com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO vo = t.toVO();
+                    // We can reuse AmazonKeywordConfigVO or just put profileId in extData
+                    Map<String, Object> extData = new HashMap<>();
+                    Map<String, Object> config = new HashMap<>();
+                    config.put("profileId", profileId);
+                    extData.put("platformConfig", config);
+                    extData.put("isTarget", true);
+                    vo.setExtData(extData);
                     allTargets.add(vo);
                 });
             }
@@ -334,10 +354,10 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     }
 
     @Override
-    public List<AdsAdVO> queryAds(Long accountId, AdsQueryRequest request) {
+    public List<com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO> queryAds(Long accountId, com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest request) {
         log.info("[queryAds][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
-        List<AdsAdVO> allAds = new ArrayList<>();
+        List<com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO> allAds = new ArrayList<>();
         for (AdsAmazonProfileDO profile : getFilteredProfiles(accountId, request)) {
             String profileId = profile.getProfileId();
             String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
@@ -345,7 +365,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                     credential, profileId, baseUrl, AdsSpProductAdQueryRequest.from(request));
             if (response != null && response.getProductAds() != null) {
                 response.getProductAds().forEach(a -> {
-                    AdsAdVO vo = a.toVO();
+                    com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO vo = a.toVO();
                     com.hzltd.module.erplus.adv.metadata.vo.ad.AmazonAdConfigVO config = com.hzltd.module.erplus.adv.metadata.vo.ad.AmazonAdConfigVO.fromSpProductAd(a);
                     config.setProfileId(profileId);
                     vo.setExtData(buildExtData(config));
@@ -371,14 +391,152 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
 
     @Override
-    public Boolean updateStatus(Long accountId, AdsStatusUpdateRequest request) {
+    public Boolean updateStatus(Long accountId, com.hzltd.module.erplus.adv.adapter.model.AdsStatusUpdateRequest request) {
         log.info("[updateStatus][Amazon] 开始更新状态, accountId: {}, request: {}", accountId, request);
-        // 原有实现可能为空或默认返回 true，这里按需补充逻辑
-        return true;
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
+        if (credential == null) {
+            log.error("[updateStatus][Amazon] 缺少凭证: accountId={}", accountId);
+            return false;
+        }
+
+        String profileId = request.getProfileId();
+        if (StringUtils.isEmpty(profileId)) {
+            profileId = getProfileId(request.getEntityType(), request.getLocalId());
+        }
+        if (StringUtils.isEmpty(profileId)) {
+            log.error("[updateStatus][Amazon] 无法获取 ProfileId: entityType={}, localId={}", request.getEntityType(), request.getLocalId());
+            return false;
+        }
+
+        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
+        if (profile == null) {
+            log.error("[updateStatus][Amazon] 找不到 Profile: profileId={}", profileId);
+            return false;
+        }
+        String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
+        String entityId = request.getEntityId();
+        String status = request.getStatus();
+
+        switch (request.getEntityType()) {
+            case CAMPAIGN:
+                AdsSpCampaign c = AdsSpCampaign.builder().campaignId(entityId).state(status).build();
+                return amazonAdsApiService.updateSpCampaigns(credential, profileId, baseUrl, Collections.singletonList(c)) != null;
+            case ADGROUP:
+                AdsSpAdGroup g = AdsSpAdGroup.builder().adGroupId(entityId).state(status).build();
+                return amazonAdsApiService.updateSpAdGroups(credential, profileId, baseUrl, Collections.singletonList(g)) != null;
+            case AD:
+                AdsSpProductAd a = AdsSpProductAd.builder().adId(entityId).state(status).build();
+                return amazonAdsApiService.updateSpProductAds(credential, profileId, baseUrl, Collections.singletonList(a)) != null;
+            case KEYWORD:
+                AdsSpKeyword k = AdsSpKeyword.builder().keywordId(entityId).state(status).build();
+                return amazonAdsApiService.updateSpKeywords(credential, profileId, baseUrl, Collections.singletonList(k)) != null;
+            case TARGET:
+                AdsSpTarget t = AdsSpTarget.builder().targetId(entityId).state(status).build();
+                return amazonAdsApiService.updateSpTargets(credential, profileId, baseUrl, Collections.singletonList(t)) != null;
+            default:
+                log.warn("[updateStatus][Amazon] 不支持的实体类型: {}", request.getEntityType());
+                return false;
+        }
+    }
+
+    @Override
+    public Boolean updateBudget(Long accountId, com.hzltd.module.erplus.adv.adapter.model.AdsBudgetUpdateRequest request) {
+        log.info("[updateBudget][Amazon] 开始更新预算, accountId: {}, request: {}", accountId, request);
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
+        if (credential == null) return false;
+
+        String profileId = request.getProfileId();
+        if (StringUtils.isEmpty(profileId)) {
+            profileId = getProfileId(request.getEntityType(), request.getLocalId());
+        }
+        if (StringUtils.isEmpty(profileId)) return false;
+
+        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
+        if (profile == null) return false;
+
+        String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
+        AdsSpCampaign c = AdsSpCampaign.builder()
+                .campaignId(request.getEntityId())
+                .budget(AdsSpCampaign.Budget.builder()
+                        .budget(request.getBudget())
+                        .budgetType("DAILY")
+                        .build())
+                .build();
+        return amazonAdsApiService.updateSpCampaigns(credential, profileId, baseUrl, Collections.singletonList(c)) != null;
+    }
+
+    @Override
+    public Boolean updateBid(Long accountId, com.hzltd.module.erplus.adv.adapter.model.AdsBidUpdateRequest request) {
+        log.info("[updateBid][Amazon] 开始更新出价, accountId: {}, request: {}", accountId, request);
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
+        if (credential == null) return false;
+
+        String profileId = request.getProfileId();
+        if (StringUtils.isEmpty(profileId)) {
+            profileId = getProfileId(request.getEntityType(), request.getLocalId());
+        }
+        if (StringUtils.isEmpty(profileId)) return false;
+
+        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
+        if (profile == null) return false;
+
+        String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
+        String entityId = request.getEntityId();
+        if (com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum.KEYWORD == request.getEntityType()) {
+            AdsSpKeyword k = AdsSpKeyword.builder().keywordId(entityId).bid(request.getBid()).build();
+            return amazonAdsApiService.updateSpKeywords(credential, profileId, baseUrl, Collections.singletonList(k)) != null;
+        } else if (com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum.TARGET == request.getEntityType()) {
+            AdsSpTarget t = AdsSpTarget.builder().targetId(entityId).bid(request.getBid()).build();
+            return amazonAdsApiService.updateSpTargets(credential, profileId, baseUrl, Collections.singletonList(t)) != null;
+        }
+        return false;
     }
 
 
-    private List<AdsAmazonProfileDO> getFilteredProfiles(Long accountId, AdsQueryRequest request) {
+    private String getProfileId(com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum entityType, Long localId) {
+        if (localId == null || entityType == null) {
+            return null;
+        }
+        Object extData = null;
+        switch (entityType) {
+            case CAMPAIGN:
+                AdsCampaignDO campaign = adsCampaignMapper.selectById(localId);
+                extData = campaign != null ? campaign.getExtData() : null;
+                break;
+            case ADGROUP:
+                AdsAdGroupDO adGroup = adsAdGroupMapper.selectById(localId);
+                extData = adGroup != null ? adGroup.getExtData() : null;
+                break;
+            case AD:
+                AdsAdDO ad = adsAdMapper.selectById(localId);
+                extData = ad != null ? ad.getExtData() : null;
+                break;
+            case KEYWORD:
+            case TARGET:
+                AdsKeywordDO keyword = adsKeywordMapper.selectById(localId);
+                extData = keyword != null ? keyword.getExtData() : null;
+                break;
+            default:
+                break;
+        }
+
+        if (extData != null) {
+            try {
+                Map<String, Object> extDataMap = objectMapper.convertValue(extData, new TypeReference<Map<String, Object>>() {});
+                if (extDataMap != null && extDataMap.get("platformConfig") instanceof Map) {
+                    Map<String, Object> config = objectMapper.convertValue(extDataMap.get("platformConfig"), new TypeReference<Map<String, Object>>() {});
+                    if (config != null && config.get("profileId") != null) {
+                        return String.valueOf(config.get("profileId"));
+                    }
+                }
+            } catch (Exception e) {
+                log.warn("[getProfileId] 解析 extData 异常: entityType={}, localId={}", entityType, localId, e);
+            }
+        }
+        return null;
+    }
+
+    private List<AdsAmazonProfileDO> getFilteredProfiles(Long accountId, com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest request) {
         List<AdsAmazonProfileDO> profiles = getProfiles(accountId);
         if (request == null || request.getExtraParam() == null) {
             return profiles;

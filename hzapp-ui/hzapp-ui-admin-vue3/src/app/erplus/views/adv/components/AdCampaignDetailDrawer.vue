@@ -189,14 +189,11 @@ const open = async (id: number) => {
       schedule.value = Array.from({ length: 7 }, () => Array(24).fill(true))
     }
 
-    // Init amazon config from extData
-    if (res.platform === 'AMAZON') {
-      const extData = res.extData || {}
-      platformConfig.value = {
-        ...(extData.platformConfig || {}),
-        accountId: res.accountId,
-        profileId: extData.profileId
-      }
+    // Init platform config from extData
+    const extData = res.extData || {}
+    platformConfig.value = {
+      ...(extData.platformConfig || {}),
+      accountId: res.accountId
     }
   } finally {
     loading.value = false
@@ -208,7 +205,7 @@ const handleSave = async () => {
   
   saving.value = true
   try {
-    const { adGroups, ...cleanPlatformConfig } = platformConfig.value || {}
+    const { adGroups, accountId, ...cleanPlatformConfig } = platformConfig.value || {}
 
     const updateData: any = {
       id: detail.value.id,
@@ -220,7 +217,7 @@ const handleSave = async () => {
       adGroups: adGroups,
       extData: {
         ...(detail.value.extData || {}),
-        platformConfig: detail.value.platform === 'AMAZON' ? cleanPlatformConfig : undefined
+        platformConfig: cleanPlatformConfig
       }
     }
     

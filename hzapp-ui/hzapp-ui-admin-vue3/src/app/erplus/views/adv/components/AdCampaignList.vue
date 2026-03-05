@@ -74,11 +74,39 @@
           <dict-tag :type="DICT_TYPE.AD_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="预算" align="center" width="120" fixed="left">
+      <el-table-column label="预算" align="center" width="150" fixed="left">
         <template #default="scope">
-          <span class="text-13px">
-            {{ getBudgetTypeLabel(scope.row.budgetType) }} / {{ scope.row.dailyBudget || scope.row.totalBudget ? `$${scope.row.dailyBudget || scope.row.totalBudget}` : '-' }}
-          </span>
+          <div class="flex items-center justify-center group">
+            <template v-if="budgetEditId === scope.row.id">
+              <el-input-number
+                v-model="budgetEditValue"
+                :precision="2"
+                :step="1"
+                size="small"
+                controls-position="right"
+                class="!w-90px"
+              />
+              <el-button link type="primary" class="ml-5px" @click="handleSaveBudget(scope.row)">
+                <Icon icon="ep:check" />
+              </el-button>
+              <el-button link @click="budgetEditId = undefined">
+                <Icon icon="ep:close" />
+              </el-button>
+            </template>
+            <template v-else>
+              <span class="text-13px">
+                {{ getBudgetTypeLabel(scope.row.budgetType) }} / {{ scope.row.dailyBudget || scope.row.totalBudget ? `$${scope.row.dailyBudget || scope.row.totalBudget}` : '-' }}
+              </span>
+              <el-button
+                link
+                type="primary"
+                class="ml-5px invisible group-hover:visible"
+                @click="handleEditBudget(scope.row)"
+              >
+                <Icon icon="ep:edit" />
+              </el-button>
+            </template>
+          </div>
         </template>
       </el-table-column>
       <el-table-column label="投放时间" align="center" width="200">
@@ -166,6 +194,10 @@ const list = ref<AdsCampaign[]>([])
 const total = ref(0)
 const tableRef = ref()
 const detailDrawerRef = ref()
+
+const budgetEditId = ref<number>()
+const budgetEditValue = ref(0)
+
 const queryParams = reactive({
   pageNo: 1,
   pageSize: 10,
@@ -198,6 +230,20 @@ const handleNameClick = (row: AdsCampaign) => {
 
 const handleDetail = (row: AdsCampaign) => {
   detailDrawerRef.value.open(row.id)
+}
+
+const handleEditBudget = (row: AdsCampaign) => {
+  budgetEditId.value = row.id
+  budgetEditValue.value = row.dailyBudget || row.totalBudget || 0
+}
+
+const handleSaveBudget = async (row: AdsCampaign) => {
+  try {
+    await AdsCampaignApi.updateCampaignBudget({ id: row.id, budget: budgetEditValue.value })
+    ElMessage.success('更新预算成功')
+    budgetEditId.value = undefined
+    await getList()
+  } catch (error) {}
 }
 
 const handleFilterChange = (filters: any) => {

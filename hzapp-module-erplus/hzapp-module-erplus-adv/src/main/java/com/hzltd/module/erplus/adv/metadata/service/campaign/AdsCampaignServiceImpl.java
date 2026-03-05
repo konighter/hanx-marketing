@@ -1,21 +1,26 @@
 package com.hzltd.module.erplus.adv.metadata.service.campaign;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
+import com.hzltd.module.erplus.adv.adapter.model.AdsBudgetUpdateRequest;
 import com.hzltd.module.erplus.adv.adapter.model.AdsStatusUpdateRequest;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
+import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignScheduleDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsCampaignMapper;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignScheduleDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsCampaignScheduleMapper;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupUpdateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
-import com.hzltd.framework.common.util.object.BeanUtils;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -23,14 +28,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 
 /**
@@ -186,37 +188,60 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
             throw exception(new com.hzltd.framework.common.exception.ErrorCode(1_033_001_001, "广告计划不存在"));
         }
 
-        // [USER_REQUEST] 暂缓亚马逊更新接口适配，仅做本地存储
-        /*
         AdsAccountDO account = adsAccountMapper.selectById(campaign.getAccountId());
-        if (account != null && account.getCredentialId() != null) {
-            AdsAccountCredentialDO credential = adsAccountCredentialMapper.selectById(account.getCredentialId());
-            if (credential != null && campaign.getExternalId() != null) {
-                try {
-                    AdsPlatformAdapter adapter = adsPlatformAdapterFactory
-                        .getAdapter(com.hzltd.module.erplus.adv.enums.AdsPlatformEnum.valueOf(account.getPlatform()));
-                    
-                    AdsStatusUpdateRequest updateReq = new AdsStatusUpdateRequest();
-                    updateReq.setCampaignId(campaign.getExternalId());
-                    updateReq.setStatus(status);
-                    
-                    Boolean success = adapter.updateStatus(account.getId(), updateReq);
-                    if (Boolean.TRUE.equals(success)) {
-                        log.info("[updateCampaignStatus] 平台状态同步成功: campaignId={}, status={}", id, status);
-                    } else {
-                        log.warn("[updateCampaignStatus] 平台状态同步失败: campaignId={}, status={}", id, status);
-                    }
-                } catch (Exception e) {
-                    log.warn("[updateCampaignStatus] 平台状态同步异常: campaignId={}", id, e);
+        if (account != null && account.getPlatform() != null) {
+            try {
+                AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(account.getPlatform());
+                AdsStatusUpdateRequest updateReq = new AdsStatusUpdateRequest();
+                updateReq.setEntityType(AdsEntityTypeEnum.CAMPAIGN);
+                updateReq.setEntityId(campaign.getExternalId());
+                updateReq.setLocalId(id);
+                updateReq.setStatus(status);
+                
+                boolean success = adapter.updateStatus(account.getId(), updateReq);
+                if (success) {
+                    AdsCampaignDO updateObj = new AdsCampaignDO();
+                    updateObj.setId(id);
+                    updateObj.setStatus(status);
+                    adsCampaignMapper.updateById(updateObj);
                 }
+            } catch (Exception e) {
+                log.warn("[updateCampaignStatus] 平台状态同步异常: campaignId={}, platform={}", id, account.getPlatform(), e);
             }
         }
-        */
+    }
 
-        AdsCampaignDO updateObj = new AdsCampaignDO();
-        updateObj.setId(id);
-        updateObj.setStatus(status);
-        adsCampaignMapper.updateById(updateObj);
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateCampaignBudget(Long id, java.math.BigDecimal budget) {
+        AdsCampaignDO campaign = adsCampaignMapper.selectById(id);
+        if (campaign == null) {
+            throw exception(new com.hzltd.framework.common.exception.ErrorCode(1_033_001_001, "广告计划不存在"));
+        }
+
+        AdsAccountDO account = adsAccountMapper.selectById(campaign.getAccountId());
+        if (account != null && account.getPlatform() != null) {
+            try {
+                AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(account.getPlatform());
+                AdsBudgetUpdateRequest updateReq = new AdsBudgetUpdateRequest();
+                updateReq.setEntityType(AdsEntityTypeEnum.CAMPAIGN);
+                updateReq.setEntityId(campaign.getExternalId());
+                updateReq.setLocalId(id);
+                updateReq.setBudget(budget);
+                
+                boolean success = adapter.updateBudget(account.getId(), updateReq);
+                if (success) {
+                    AdsCampaignDO updateObj = new AdsCampaignDO();
+                    updateObj.setId(id);
+                    updateObj.setDailyBudget(budget);
+                    adsCampaignMapper.updateById(updateObj);
+                }
+            } catch (Exception e) {
+                log.warn("[updateCampaignBudget] 平台预算同步异常: campaignId={}, platform={}", id, account.getPlatform(), e);
+            }
+        }
+
+
     }
 
     @Override

@@ -54,6 +54,19 @@ public class AdsCampaignController {
         return success(true);
     }
 
+    @PutMapping("/update-budget")
+    @Operation(summary = "更新广告计划预算")
+    @Parameters({
+            @Parameter(name = "id", description = "编号", required = true),
+            @Parameter(name = "budget", description = "预算", required = true)
+    })
+    @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:update')")
+    public CommonResult<Boolean> updateCampaignBudget(@RequestParam("id") Long id,
+                                                      @RequestParam("budget") java.math.BigDecimal budget) {
+        adsCampaignService.updateCampaignBudget(id, budget);
+        return success(true);
+    }
+
     @PutMapping("/update")
     @Operation(summary = "更新广告计划")
     @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:update')")

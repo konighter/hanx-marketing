@@ -239,7 +239,75 @@ public class AmazonAdsApiService {
                 resp -> JsonUtils.parseObject(resp, AdsSpProductAdQueryResp.class));
     }
 
+    // ==================== SP v3 Update ====================
+
+    public String updateSpCampaigns(AdsAccountCredentialDO credential, String profileId, String baseUrl, List<AdsSpCampaign> campaigns) {
+        return executeSpRequest(credential, profileId, baseUrl + "/sp/campaigns", "PUT",
+                JsonUtils.toJsonString(Map.of("campaigns", campaigns)), "application/vnd.spCampaign.v3+json",
+                resp -> resp);
+    }
+
+    public String updateSpAdGroups(AdsAccountCredentialDO credential, String profileId, String baseUrl, List<AdsSpAdGroup> adGroups) {
+        return executeSpRequest(credential, profileId, baseUrl + "/sp/adGroups", "PUT",
+                JsonUtils.toJsonString(Map.of("adGroups", adGroups)), "application/vnd.spAdGroup.v3+json",
+                resp -> resp);
+    }
+
+    public String updateSpKeywords(AdsAccountCredentialDO credential, String profileId, String baseUrl, List<AdsSpKeyword> keywords) {
+        return executeSpRequest(credential, profileId, baseUrl + "/sp/keywords", "PUT",
+                JsonUtils.toJsonString(Map.of("keywords", keywords)), "application/vnd.spKeyword.v3+json",
+                resp -> resp);
+    }
+
+    public String updateSpProductAds(AdsAccountCredentialDO credential, String profileId, String baseUrl, List<AdsSpProductAd> ads) {
+        return executeSpRequest(credential, profileId, baseUrl + "/sp/productAds", "PUT",
+                JsonUtils.toJsonString(Map.of("productAds", ads)), "application/vnd.spProductAd.v3+json",
+                resp -> resp);
+    }
+
+    public String updateSpTargets(AdsAccountCredentialDO credential, String profileId, String baseUrl, List<AdsSpTarget> targets) {
+        return executeSpRequest(credential, profileId, baseUrl + "/sp/targets", "PUT",
+                JsonUtils.toJsonString(Map.of("targets", targets)), "application/vnd.sptargetingClause.v3+json",
+                resp -> resp);
+    }
+
     // ==================== 内部工具方法 ====================
+
+    /**
+     * 统一的 SP v3 请求调用
+     */
+    private <T> T executeSpRequest(AdsAccountCredentialDO credential, String profileId,
+                                    String url, String method, String jsonBody, String contentType,
+                                    Function<String, T> parser) {
+        try {
+            String clientId = apiClient.getClientId();
+            HttpRequest.Builder builder = HttpRequest.newBuilder()
+                    .uri(URI.create(url))
+                    .header("Amazon-Advertising-API-ClientId", clientId)
+                    .header("Authorization", "Bearer " + credential.getAccessToken())
+                    .header("Accept", contentType)
+                    .header("Content-Type", contentType)
+                    .header("Amazon-Advertising-API-Scope", profileId);
+
+            HttpRequest request;
+            if ("PUT".equalsIgnoreCase(method)) {
+                request = builder.PUT(HttpRequest.BodyPublishers.ofString(jsonBody != null ? jsonBody : "{}")).build();
+            } else if ("PATCH".equalsIgnoreCase(method)) {
+                request = builder.method("PATCH", HttpRequest.BodyPublishers.ofString(jsonBody != null ? jsonBody : "{}")).build();
+            } else {
+                request = builder.POST(HttpRequest.BodyPublishers.ofString(jsonBody != null ? jsonBody : "{}")).build();
+            }
+
+            HttpResponse<String> resp = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+            if (resp.statusCode() >= 200 && resp.statusCode() < 300) {
+                return parser.apply(resp.body());
+            }
+            log.error("[executeSpRequest] {} {} → HTTP {}: {}", method, url, resp.statusCode(), resp.body());
+        } catch (Exception e) {
+            log.error("[executeSpRequest] {} {} 网络异常: {}", method, url, e.getMessage());
+        }
+        return null;
+    }
 
     /**
      * 统一的 SP v3 POST 调用（注入 Accept / Content-Type 版本头）
