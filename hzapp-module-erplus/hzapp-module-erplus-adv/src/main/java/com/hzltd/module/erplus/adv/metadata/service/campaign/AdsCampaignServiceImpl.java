@@ -23,6 +23,7 @@ import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -147,7 +148,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
             boolean[][] grid = objectMapper.readValue(scheduleJson, new TypeReference<boolean[][]>() {});
             if (grid.length != 7) return null;
 
-            ZoneId zoneId = ZoneId.of(timezoneStr != null ? timezoneStr : "UTC");
+            ZoneId zoneId = ZoneId.of(StringUtils.isNotEmpty(timezoneStr) ? timezoneStr : "UTC");
             ZonedDateTime nowInZone = ZonedDateTime.now(zoneId);
             
             int currentDayIdx = nowInZone.getDayOfWeek().getValue() - 1; 
