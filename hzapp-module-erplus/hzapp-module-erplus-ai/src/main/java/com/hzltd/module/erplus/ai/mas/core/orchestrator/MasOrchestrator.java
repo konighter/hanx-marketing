@@ -3,6 +3,7 @@ package com.hzltd.module.erplus.ai.mas.core.orchestrator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.module.erplus.ai.mas.framework.agent.MasAgent;
+import com.hzltd.module.erplus.ai.mas.framework.agent.MasAgentRegistry;
 import com.hzltd.module.erplus.ai.mas.framework.agent.MasRole;
 import com.hzltd.module.erplus.ai.mas.framework.event.*;
 import com.hzltd.module.erplus.ai.mas.framework.execution.MasContext;
@@ -18,6 +19,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
@@ -37,20 +39,33 @@ public class MasOrchestrator {
     private final MasTaskExecutor taskExecutor;
     private final MasPersistenceService persistenceService;
     private final ObjectMapper objectMapper = new ObjectMapper();
+    private final MasAgentRegistry agentRegistry;
     
     /** 用于从 LLM 输出中提取 JSON 代码块 */
     private static final Pattern JSON_BLOCK_PATTERN = Pattern.compile("```(?:json)?\\s*\\n?(\\{.*?\\}|\\[.*?\\])\\s*\\n?```", Pattern.DOTALL);
     /** 备用：直接匹配 JSON 对象 */
     private static final Pattern JSON_OBJECT_PATTERN = Pattern.compile("(\\{[^{}]*(?:\\{[^{}]*\\}[^{}]*)*\\})", Pattern.DOTALL);
     
-    // 当前参与的 Agents (Role -> Agent)
+    // 当前参与的 Agents (Role -> Agent) - 兼容旧版
     private final Map<MasRole, MasAgent> activeAgents = new ConcurrentHashMap<>();
 
+    /**
+     * 构造函数 - 兼容旧版
+     */
     public MasOrchestrator(String sessionId, MasEventBus eventBus, MasTaskExecutor taskExecutor, MasPersistenceService persistenceService) {
+        this(sessionId, eventBus, taskExecutor, persistenceService, null);
+    }
+
+    /**
+     * 构造函数 - 支持动态 Agent 注册
+     */
+    public MasOrchestrator(String sessionId, MasEventBus eventBus, MasTaskExecutor taskExecutor, 
+                           MasPersistenceService persistenceService, MasAgentRegistry agentRegistry) {
         this.sessionId = sessionId;
         this.eventBus = eventBus;
         this.taskExecutor = taskExecutor;
         this.persistenceService = persistenceService;
+        this.agentRegistry = agentRegistry;
         this.stateMachine = new SimpleMasStateMachine(sessionId, eventBus);
         this.context = new MasContext(sessionId);
         
@@ -80,6 +95,23 @@ public class MasOrchestrator {
     }
 
     /**
+     * 从注册中心或本地 Map 获取 Agent
+     */
+    private MasAgent resolveAgent(MasRole role) {
+        if (role == null) return null;
+        String roleId = role.name();
+        
+        if (agentRegistry != null) {
+            Optional<MasAgent> fromRegistry = agentRegistry.getAgent(roleId);
+            if (fromRegistry.isPresent()) {
+                return fromRegistry.get();
+            }
+        }
+        
+        return activeAgents.get(role);
+    }
+
+    /**
      * 启动会话 (从管理者初始化开始)
      */
     public Mono<Void> start(String goal) {
@@ -95,7 +127,7 @@ public class MasOrchestrator {
      * 初始化：将用户目标交给 Manager 进行分析和决策
      */
     private Mono<Void> routeGoalToManager(String goal) {
-        MasAgent manager = activeAgents.get(MasRole.MANAGER);
+        MasAgent manager = resolveAgent(MasRole.MANAGER);
         if (manager == null) {
             log.error("[Orchestrator] 会话 {} 未配置 MANAGER Role", sessionId);
             return Mono.empty();
@@ -122,7 +154,7 @@ public class MasOrchestrator {
         log.info("[Orchestrator] 任务 {} 完成 (状态: {})，向 Manager 反馈进行决策", 
                 event.getTask().getName(), event.getStatus());
         
-        MasAgent manager = activeAgents.get(MasRole.MANAGER);
+        MasAgent manager = resolveAgent(MasRole.MANAGER);
         if (manager == null) return Mono.empty();
 
         MasTask evaluationTask = MasTask.builder()
@@ -151,7 +183,7 @@ public class MasOrchestrator {
      */
     private Mono<Void> routeUserFeedbackToManager(UserFeedbackEvent event) {
         log.info("[Orchestrator] 收到用户反馈: {}，由 Manager 评估", event.getFeedback());
-        MasAgent manager = activeAgents.get(MasRole.MANAGER);
+        MasAgent manager = resolveAgent(MasRole.MANAGER);
         if (manager == null) return Mono.empty();
 
         MasTask feedbackTask = MasTask.builder()
@@ -174,7 +206,7 @@ public class MasOrchestrator {
      * 向 PM 派发规划任务：让 PM 将用户目标拆解为子任务列表
      */
     private Mono<Void> routeToPm() {
-        MasAgent pm = activeAgents.get(MasRole.PM);
+        MasAgent pm = resolveAgent(MasRole.PM);
         if (pm == null) {
             log.warn("[Orchestrator] 会话 {} 未配置 PM Role，跳过规划阶段", sessionId);
             return Mono.empty();
@@ -200,7 +232,7 @@ public class MasOrchestrator {
      * 向 Executor 派发执行任务：根据任务提示执行具体工作
      */
     private Mono<Void> routeToExecutor(String taskPrompt) {
-        MasAgent executor = activeAgents.get(MasRole.EXECUTOR);
+        MasAgent executor = resolveAgent(MasRole.EXECUTOR);
         if (executor == null) {
             log.warn("[Orchestrator] 会话 {} 未配置 EXECUTOR Role", sessionId);
             return Mono.empty();
