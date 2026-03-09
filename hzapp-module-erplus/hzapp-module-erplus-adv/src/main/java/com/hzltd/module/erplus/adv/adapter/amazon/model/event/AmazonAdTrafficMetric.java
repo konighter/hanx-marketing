@@ -54,7 +54,8 @@ public class AmazonAdTrafficMetric {
      * 时间窗口开始时间，建议使用 ZonedDateTime 处理 ISO 8601 时区
      */
     @JsonProperty("time_window_start")
-    private ZonedDateTime timeWindowStart;
+    @com.fasterxml.jackson.databind.annotation.JsonDeserialize(using = AmazonZonedDateTimeDeserializer.class)
+    private Long timeWindowStart;
 
     @JsonProperty("impressions")
     private Integer impressions;

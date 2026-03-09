@@ -139,7 +139,7 @@ spring:
       region:
         static: us-east-1
       sqs:
-        enabled: false
+        enabled: true
 
 
 --- #################### 服务保障相关配置 ####################
@@ -252,6 +252,7 @@ hzapp:
     sqs:
       adv-queue: arn:aws:sqs:us-east-1:663959447324:HanXErplus-advReportQueue-us-east
       spapi-queue: arn:aws:sqs:us-east-1:663959447324:HanXErplus-OrderEventQueue-us-east
+      ads-manager-queue: arn:aws:sqs:us-east-1:663959447324:HanXErplus-AdvManger-us-east
 
 justauth:
   enabled: true

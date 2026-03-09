@@ -187,6 +187,7 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
             accessTokenModel.setAppKey(authReqVO.getAppKey());
             accessTokenModel.setAppSecret(authReqVO.getAppSecret());
             accessTokenModel.setRefreshToken(authReqVO.getRefreshToken());
+            accessTokenModel.setSelfAuth(true);
 
             shopDO.setAuthInfo(accessTokenModel);
             shopDO.setAuthExpTime(LocalDateTime.now().plusSeconds(accessTokenModel.getExpireIn()));
@@ -194,6 +195,7 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
             // 自授权时, 写入 sellerId
             if (authReqVO.getSellerId() != null && !authReqVO.getSellerId().isEmpty()) {
                 shopDO.setSellerId(authReqVO.getSellerId());
+                accessTokenModel.setSellerId(authReqVO.getSellerId());
             }
 
             shopMapper.updateById(shopDO);

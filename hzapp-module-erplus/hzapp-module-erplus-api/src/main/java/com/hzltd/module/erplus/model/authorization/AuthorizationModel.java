@@ -47,4 +47,10 @@ public class AuthorizationModel {
      */
     @JsonProperty("seller_id")
     private String sellerId;
+
+    /**
+     * 是否自授权
+     */
+    @JsonProperty("self_auth")
+    private Boolean selfAuth;
 }

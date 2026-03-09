@@ -37,11 +37,25 @@ public class AmzStreamSubscriptionService {
     @Value("${hzapp.aws.sqs.adv-queue}")
     private String AMZ_ADS_STREAM_SQS_QUEUE_ARN;
 
-    private static final String[] DATA_SET_IDS = {
-            "sp-traffic", "sp-conversion",
-//            "sb-traffic", "sb-conversion",
-//            "sd-traffic", "sd-conversion"
-    };
+    @Value("${hzapp.aws.sqs.ads-manager-queue}")
+    private String AMZ_ADS_MANAGER_SQS_QUEUE_ARN;
+
+    private Map<String, List<String>> getDataSetToQueueMap() {
+        Map<String, List<String>> map = new HashMap<>();
+        // adv-queue 绑定的 dataset
+        map.put(AMZ_ADS_STREAM_SQS_QUEUE_ARN, Lists.newArrayList(
+                "sp-traffic", "sp-conversion"
+                // "sb-traffic", "sb-conversion",
+                // "sd-traffic", "sd-conversion"
+        ));
+        
+        // 测试等其他 queue，比如 budget-usage
+        map.put(AMZ_ADS_MANAGER_SQS_QUEUE_ARN, Lists.newArrayList(
+                "budget-usage"
+        ));
+        
+        return map;
+    }
 
     /**
      * 为指定 Profile 创建 Stream 订阅
@@ -75,54 +89,74 @@ public class AmzStreamSubscriptionService {
         }
 
         List<AmzStreamSubscriptionResponse> subscriptionResponses = reportApiService.listStreamSubscription(credential, profile.getEntityId(), profile.getProfileId(), baseUrl);
-        log.info("[createStreamSubscription] SubscriptionInfo: {}", subscriptionResponses);
+        log.info("[createStreamSubscription] Existing SubscriptionInfo: {}", subscriptionResponses);
 
-        List<String> dataSetToSubscription = Lists.newArrayList(DATA_SET_IDS);
-        Map<String, String> subscriptions = config.getStreamSubscriptions();
+        Map<String, String> existingSubscriptions = config.getStreamSubscriptions();
+        if (existingSubscriptions == null) {
+            existingSubscriptions = new HashMap<>();
+            config.setStreamSubscriptions(existingSubscriptions);
+        }
 
-        // 如果已经active，只需要更新 subscriptions 即可，其余的没有
+        // 收集远端已存在且 Active 的订阅
+        Map<String, String> remoteActiveSubscriptions = new HashMap<>();
         if (CollectionUtils.isNotEmpty(subscriptionResponses)) {
             for (AmzStreamSubscriptionResponse sub : subscriptionResponses) {
-                if (subscriptions.containsKey(sub.getDataSetId())) {
-                    dataSetToSubscription.remove(sub.getDataSetId());
-                } else if ("ACTIVE".equals(sub.getStatus())) {
-                    subscriptions.put(sub.getDataSetId(), sub.getSubscriptionId());
-                    dataSetToSubscription.remove(sub.getDataSetId());
+                if ("ACTIVE".equals(sub.getStatus())) {
+                    remoteActiveSubscriptions.put(sub.getDataSetId(), sub.getSubscriptionId());
                 }
             }
         }
 
         boolean updated = false;
-        for (String dataSetId : dataSetToSubscription) {
-            // 如果已经订阅过，则跳过
-            if (subscriptions.containsKey(dataSetId)) {
+        Map<String, List<String>> dataSetToQueueMap = getDataSetToQueueMap();
+
+        for (Map.Entry<String, List<String>> entry : dataSetToQueueMap.entrySet()) {
+            String queueArn = entry.getKey();
+            List<String> dataSetIds = entry.getValue();
+
+            if (queueArn == null || queueArn.isEmpty()) {
                 continue;
             }
 
-            try {
-                log.info("[createStreamSubscription] 开始为 Profile {} 订阅数据集 {}", profile.getProfileId(), dataSetId);
-                AmzStreamSubscriptionRequest request = AmzStreamSubscriptionRequest.builder()
-                        .clientRequestToken(java.util.UUID.randomUUID().toString())
-                        .dataSetId(dataSetId)
-                        .destination(AmzStreamSubscriptionRequest.Destination.builder()
-                                .sqsDestination(AmzStreamSubscriptionRequest.SqsDestination.builder()
-                                        .queueArn(AMZ_ADS_STREAM_SQS_QUEUE_ARN)
-                                        .build())
-                                .build())
-                        .notes("Auto subscribed by HanX Erplus for " + dataSetId)
-                        .build();
-
-                AmzStreamSubscriptionResponse response = reportApiService.createStreamSubscription(
-                        credential, profile.getEntityId(), profile.getProfileId(), baseUrl, request);
-
-                if (response != null && response.getSubscriptionId() != null) {
-                    subscriptions.put(dataSetId, response.getSubscriptionId());
-                    updated = true;
-                    log.info("[createStreamSubscription] Profile {} 订阅数据集 {} 成功, subscriptionId={}",
-                            profile.getProfileId(), dataSetId, response.getSubscriptionId());
+            for (String dataSetId : dataSetIds) {
+                // 如果本地配置显示该 dataset 已经有订阅，并且远端也有这个活跃的订阅，就可以跳过
+                if (existingSubscriptions.containsKey(dataSetId) && remoteActiveSubscriptions.containsKey(dataSetId)) {
+                    // 同步一下 SubscriptionId 以防不一致
+                    String existingSubId = existingSubscriptions.get(dataSetId);
+                    String remoteSubId = remoteActiveSubscriptions.get(dataSetId);
+                    if (!existingSubId.equals(remoteSubId)) {
+                        existingSubscriptions.put(dataSetId, remoteSubId);
+                        updated = true;
+                    }
+                    continue;
                 }
-            } catch (Exception e) {
-                log.error("[createStreamSubscription] Profile {} 订阅数据集 {} 失败", profile.getProfileId(), dataSetId, e);
+
+                // 没有订阅或者远端被删除了，重新发起订阅
+                try {
+                    log.info("[createStreamSubscription] 开始为 Profile {} 订阅数据集 {} 到队列 {}", profile.getProfileId(), dataSetId, queueArn);
+                    AmzStreamSubscriptionRequest request = AmzStreamSubscriptionRequest.builder()
+                            .clientRequestToken(java.util.UUID.randomUUID().toString())
+                            .dataSetId(dataSetId)
+                            .destination(AmzStreamSubscriptionRequest.Destination.builder()
+                                    .sqsDestination(AmzStreamSubscriptionRequest.SqsDestination.builder()
+                                            .queueArn(queueArn)
+                                            .build())
+                                    .build())
+                            .notes("Auto subscribed by HanX Erplus for " + dataSetId)
+                            .build();
+
+                    AmzStreamSubscriptionResponse response = reportApiService.createStreamSubscription(
+                            credential, profile.getEntityId(), profile.getProfileId(), baseUrl, request);
+
+                    if (response != null && response.getSubscriptionId() != null) {
+                        existingSubscriptions.put(dataSetId, response.getSubscriptionId());
+                        updated = true;
+                        log.info("[createStreamSubscription] Profile {} 订阅数据集 {} 成功, subscriptionId={}",
+                                profile.getProfileId(), dataSetId, response.getSubscriptionId());
+                    }
+                } catch (Exception e) {
+                    log.error("[createStreamSubscription] Profile {} 订阅数据集 {} 失败", profile.getProfileId(), dataSetId, e);
+                }
             }
         }
 

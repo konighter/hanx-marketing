@@ -9,6 +9,8 @@ export interface ShopVO {
   status: number // 状态
   platformName: string // 平台
   regionName: string // 区域
+  sellerId?: string
+  authInfo?: any
 }
 
 export interface ShopAuthReqVO {

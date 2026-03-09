@@ -67,7 +67,7 @@ const formData = ref({
   appSecret: '',
   refreshToken: '',
   sellerId: '',
-  selfAuth: undefined,
+  selfAuth: undefined as string | undefined,
 })
 const formRules = reactive({
   appKey: [{ required: true, message: '应用Key不能为空', trigger: 'blur' }],
@@ -84,6 +84,24 @@ const open = async (id: number) => {
   dialogTitle.value = '授权'
   formData.value.id = id
 
+  if (id) {
+    formLoading.value = true
+    try {
+      const data = await ShopApi.getShop(id)
+      if (data.authInfo && data.authInfo.self_auth === true) {
+        formData.value.selfAuth = 'true'
+        formData.value.appKey = data.authInfo.app_key || ''
+        formData.value.appSecret = data.authInfo.app_secret || ''
+        formData.value.refreshToken = data.authInfo.refresh_token || ''
+        formData.value.sellerId = data.sellerId || ''
+      } else if (data.authInfo && data.authInfo.self_auth === false) {
+        formData.value.selfAuth = 'false'
+        formData.value.sellerId = data.sellerId || ''
+      }
+    } finally {
+      formLoading.value = false
+    }
+  }
 }
 defineExpose({ open }) // 提供 open 方法，用于打开弹窗
 
@@ -112,8 +130,12 @@ const submitShopAuth = async () => {
 /** 重置表单 */
 const resetForm = () => {
   formData.value = {
+    id: undefined,
+    appKey: '',
+    appSecret: '',
+    refreshToken: '',
+    sellerId: '',
     selfAuth: undefined,
-
   }
   formRef.value?.resetFields()
 }

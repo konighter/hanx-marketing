@@ -8,7 +8,7 @@ import lombok.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@TableName(value = "ads_amazon_stream_raw", autoResultMap = true)
+@TableName(value = "ads_amazon_stream_sp_traffic", autoResultMap = true)
 @Data
 @EqualsAndHashCode
 @ToString
@@ -19,9 +19,11 @@ public class AdsReportStreamRawDO {
 
     private String datasetId;
 
+
+    @TableField(exist = false)
     private String idempotencyId;
 
-    private LocalDateTime timeWindowStart;
+    private Long timeWindowStart;
 
     @TableField("campaign_id")
     private String campaignId;

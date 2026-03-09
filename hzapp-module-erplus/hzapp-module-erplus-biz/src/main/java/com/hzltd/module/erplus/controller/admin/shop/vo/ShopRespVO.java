@@ -4,6 +4,7 @@ import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
 import com.hzltd.framework.excel.core.annotations.DictFormat;
 import com.hzltd.framework.excel.core.convert.DictConvert;
+import com.hzltd.module.erplus.model.authorization.AuthorizationModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -46,5 +47,12 @@ public class ShopRespVO {
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("创建时间")
     private LocalDateTime createTime;
+
+    @Schema(description = "卖家ID")
+    @ExcelProperty("卖家ID")
+    private String sellerId;
+
+    @Schema(description = "授权信息")
+    private AuthorizationModel authInfo;
 
 }

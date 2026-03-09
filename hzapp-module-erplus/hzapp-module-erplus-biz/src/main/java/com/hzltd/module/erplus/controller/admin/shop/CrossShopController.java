@@ -65,7 +65,9 @@ public class CrossShopController {
     @PreAuthorize("@ss.hasPermission('ov:shop:query')")
     public CommonResult<ShopRespVO> getShop(@RequestParam("id") Integer id) {
         ShopDO shop = shopService.getShop(id);
-        return success(BeanUtils.toBean(shop, ShopRespVO.class));
+        ShopRespVO respVO = BeanUtils.toBean(shop, ShopRespVO.class);
+        hideSensitiveAuthInfo(respVO);
+        return success(respVO);
     }
 
     @GetMapping("/platform")
@@ -74,7 +76,9 @@ public class CrossShopController {
     @PreAuthorize("@ss.hasPermission('ov:shop:query')")
     public CommonResult<List<ShopRespVO>> getShopByPlatform(@RequestParam("id") Integer platformId) {
         List<ShopDO> shop = shopService.getShopListByPlatform(platformId);
-        return success(BeanUtils.toBean(shop, ShopRespVO.class));
+        List<ShopRespVO> list = BeanUtils.toBean(shop, ShopRespVO.class);
+        hideSensitiveAuthInfo(list);
+        return success(list);
     }
 
     @GetMapping("/page")
@@ -82,6 +86,9 @@ public class CrossShopController {
     @PreAuthorize("@ss.hasPermission('ov:shop:query')")
     public CommonResult<PageResult<ShopRespVO>> getShopPage(@Valid ShopPageReqVO pageReqVO) {
         PageResult<ShopRespVO> pageResult = shopService.getShopPage(pageReqVO);
+        if (pageResult != null) {
+            hideSensitiveAuthInfo(pageResult.getList());
+        }
         return success(pageResult);
     }
 
@@ -90,6 +97,7 @@ public class CrossShopController {
     @PreAuthorize("@ss.hasPermission('ov:shop:query')")
     public CommonResult<List<ShopRespVO>> getShopPage(@Valid ShopReqVO reqVO) {
         List<ShopRespVO> result = shopService.getShopList(reqVO);
+        hideSensitiveAuthInfo(result);
         return success(result);
     }
 
@@ -126,10 +134,18 @@ public class CrossShopController {
         return success(shopService.getCascaderShopList());
     }
 
+    private void hideSensitiveAuthInfo(ShopRespVO respVO) {
+        if (respVO != null && respVO.getAuthInfo() != null) {
+            respVO.getAuthInfo().setAccessToken(null);
+        }
+    }
 
-
-
-
-
+    private void hideSensitiveAuthInfo(List<ShopRespVO> list) {
+        if (list != null) {
+            for (ShopRespVO respVO : list) {
+                hideSensitiveAuthInfo(respVO);
+            }
+        }
+    }
 
 }

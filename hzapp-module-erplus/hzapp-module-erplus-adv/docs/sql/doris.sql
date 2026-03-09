@@ -58,11 +58,11 @@ PROPERTIES (
 
 
 
-DROP TABLE IF EXISTS `ads_amazon_stream_raw`;
-CREATE TABLE `ads_amazon_stream_raw` (
+DROP TABLE IF EXISTS `ads_amazon_stream_sp_traffic`;
+CREATE TABLE `ads_amazon_stream_sp_traffic` (
   `advertiser_id`   VARCHAR(32)      COMMENT '广告主ID',
   `dataset_id`      VARCHAR(32)      NOT NULL COMMENT '数据集ID: sp-traffic, sp-conversion',
-  `time_window_start` VARCHAR(50)       NOT NULL COMMENT '时间窗口开始时间',
+  `time_window_start` VARCHAR(50)       NOT NULL COMMENT '时间窗口开始时间戳',
   `campaign_id`     VARCHAR(32)      NOT NULL COMMENT '广告活动外部ID',
   `ad_group_id`     VARCHAR(32)      COMMENT '广告组外部ID',
   `ad_id`           VARCHAR(32)      COMMENT '广告外部ID',

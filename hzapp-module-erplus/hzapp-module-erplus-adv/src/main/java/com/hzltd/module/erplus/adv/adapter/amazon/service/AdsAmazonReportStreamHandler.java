@@ -3,8 +3,10 @@ package com.hzltd.module.erplus.adv.adapter.amazon.service;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.tenant.core.aop.TenantIgnore;
 import com.hzltd.framework.tenant.core.util.TenantUtils;
+import com.hzltd.module.erplus.adv.adapter.amazon.model.event.AmazonAdTrafficMetric;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportStreamRawDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportStreamRawMapper;
 import jakarta.annotation.Resource;
@@ -42,8 +44,8 @@ public class AdsAmazonReportStreamHandler {
     private void processSPTrafficData(String sqsMessageBody) {
         TenantUtils.executeIgnore(() -> {
             log.info("[processSPTrafficData] message = {}", sqsMessageBody);
-            AdsReportStreamRawDO streamRawDO = JsonUtils.parseObject(sqsMessageBody, AdsReportStreamRawDO.class);
-            adsReportStreamRawMapper.insert(streamRawDO);
+            AmazonAdTrafficMetric trafficMetric = JsonUtils.parseObject(sqsMessageBody, AmazonAdTrafficMetric.class);
+            adsReportStreamRawMapper.insert(BeanUtils.toBean(trafficMetric, AdsReportStreamRawDO.class));
         });
 
     }
