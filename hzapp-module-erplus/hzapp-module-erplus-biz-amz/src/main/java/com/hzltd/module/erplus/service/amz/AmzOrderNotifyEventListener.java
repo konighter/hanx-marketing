@@ -1,0 +1,194 @@
+package com.hzltd.module.erplus.service.amz;
+
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.hzltd.module.erplus.sys.ChannelNotifySendService;
+import com.hzltd.module.erplus.sys.model.NotifyMessage;
+import io.awspring.cloud.sqs.annotation.SqsListener;
+import jakarta.annotation.Resource;
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * Amazon SP-API 事件通知监听器
+ * 
+ * 监听 spapi-queue, 处理 ORDER_CHANGE 等 SP-API 推送的通知消息
+ */
+@Slf4j
+@Service
+public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
+
+    @Resource
+    private ChannelNotifySendService channelNotifySendService;
+
+    @SqsListener("${hzapp.aws.sqs.spapi-queue}")
+    public void onMessage(String message) {
+        processMessage(message);
+    }
+
+    @Override
+    protected void handleBusinessMessage(String message) {
+        try {
+            if (JSONUtil.isTypeJSON(message)) {
+                JSONObject json = JSONUtil.parseObj(message);
+                String notificationType = json.getStr("NotificationType");
+
+                if ("ORDER_CHANGE".equals(notificationType)) {
+                    handleOrderChange(message);
+                } else {
+                    log.info("[AmzNotifyEventListener] 收到未知通知类型: type={}, message={}", notificationType, message);
+                }
+            } else {
+                log.info("[AmzNotifyEventListener] 收到非 JSON 消息: {}", message);
+            }
+        } catch (Exception e) {
+            log.error("[AmzNotifyEventListener] 处理消息异常", e);
+        }
+    }
+
+    /**
+     * 处理 ORDER_CHANGE 通知
+     */
+    private void handleOrderChange(String message) {
+        OrderChangeNotificationVO vo = JSONUtil.toBean(message, OrderChangeNotificationVO.class);
+        if (vo.getPayload() == null || vo.getPayload().getOrderChangeNotification() == null) {
+            log.warn("[handleOrderChange] Payload 或 OrderChangeNotification 为空");
+            return;
+        }
+
+        OrderChangeNotificationVO.OrderChangeNotification orderChange = vo.getPayload().getOrderChangeNotification();
+        String amazonOrderId = orderChange.getAmazonOrderId();
+        String sellerId = orderChange.getSellerId();
+        String orderChangeType = orderChange.getOrderChangeType();
+
+        // 变更原因
+        String changeReason = "";
+        if (orderChange.getOrderChangeTrigger() != null) {
+            changeReason = orderChange.getOrderChangeTrigger().getChangeReason();
+        }
+
+        // SKU 列表
+        String skuList = "";
+        if (orderChange.getSummary() != null && orderChange.getSummary().getOrderItems() != null) {
+            skuList = orderChange.getSummary().getOrderItems().stream()
+                    .map(item -> item.getSellerSKU() + " x" + item.getQuantity())
+                    .collect(Collectors.joining(", "));
+        }
+
+        log.info("[handleOrderChange] orderId={}, sellerId={}, changeType={}, changeReason={}, skus={}",
+                amazonOrderId, sellerId, orderChangeType, changeReason, skuList);
+
+        // 发送渠道通知
+        sendChannelNotify(vo, orderChange, changeReason, skuList);
+    }
+
+    /**
+     * 发送渠道通知 (飞书等)
+     */
+    private void sendChannelNotify(OrderChangeNotificationVO vo,
+                                   OrderChangeNotificationVO.OrderChangeNotification orderChange,
+                                   String changeReason, String skuList) {
+        try {
+            String amazonOrderId = orderChange.getAmazonOrderId();
+
+            StringBuilder content = new StringBuilder();
+            content.append("**订单号**: ").append(amazonOrderId).append("\n");
+            content.append("**变更类型**: ").append(orderChange.getOrderChangeType()).append("\n");
+            content.append("**变更原因**: ").append(changeReason).append("\n");
+            content.append("**SKU**: ").append(skuList).append("\n");
+            content.append("**卖家ID**: ").append(orderChange.getSellerId()).append("\n");
+
+            if (orderChange.getSummary() != null) {
+                content.append("**订单状态**: ").append(orderChange.getSummary().getOrderStatus()).append("\n");
+                content.append("**配送方式**: ").append(orderChange.getSummary().getFulfillmentType()).append("\n");
+            }
+
+            content.append("**事件时间**: ").append(vo.getEventTime());
+
+            String level = "BuyerRequestedChange".equals(orderChange.getOrderChangeType()) ? "warn" : "info";
+
+            NotifyMessage message = new NotifyMessage();
+            message.setTitle("Amazon 订单变更通知");
+            message.setContent(content.toString());
+            message.setLevel(level);
+            message.setCategory("ORDER_CHANGE");
+
+            channelNotifySendService.send(message);
+        } catch (Exception e) {
+            log.error("[sendChannelNotify] 发送渠道通知失败, orderId={}", orderChange.getAmazonOrderId(), e);
+        }
+    }
+
+    @Override
+    protected String getListenerName() {
+        return "SpApiNotify";
+    }
+
+    // ==================== 内部 VO ====================
+
+    @Data
+    static class OrderChangeNotificationVO {
+        private String notificationVersion;
+        private String notificationType;
+        private String payloadVersion;
+        private String eventTime;
+        private Payload payload;
+        private NotificationMetadata notificationMetadata;
+
+        @Data
+        static class Payload {
+            private OrderChangeNotification orderChangeNotification;
+        }
+
+        @Data
+        static class OrderChangeNotification {
+            private String notificationLevel;
+            private String sellerId;
+            private String amazonOrderId;
+            private String orderChangeType;
+            private OrderChangeTrigger orderChangeTrigger;
+            private Summary summary;
+        }
+
+        @Data
+        static class OrderChangeTrigger {
+            private String timeOfOrderChange;
+            private String changeReason;
+        }
+
+        @Data
+        static class Summary {
+            private String marketplaceId;
+            private String orderStatus;
+            private String purchaseDate;
+            private String destinationPostalCode;
+            private String fulfillmentType;
+            private String orderType;
+            private List<String> orderPrograms;
+            private List<String> shippingPrograms;
+            private List<OrderItem> orderItems;
+        }
+
+        @Data
+        static class OrderItem {
+            private String orderItemId;
+            private String sellerSKU;
+            private String supplySourceId;
+            private Integer quantity;
+        }
+
+        @Data
+        static class NotificationMetadata {
+            private String applicationId;
+            private String subscriptionId;
+            private String publishTime;
+            private String notificationId;
+        }
+    }
+}
+
+

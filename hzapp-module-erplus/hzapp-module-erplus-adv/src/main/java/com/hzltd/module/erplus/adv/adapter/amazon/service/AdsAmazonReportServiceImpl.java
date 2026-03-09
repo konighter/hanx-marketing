@@ -4,26 +4,17 @@ import cn.hutool.core.util.ZipUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.google.common.collect.Lists;
-import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.erplus.adv.adapter.amazon.model.event.AmazonAdTrafficMetric;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonAdsReportApiService;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmzSpReportConstants;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.AmzReportRequest;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.AmzReportResponse;
-import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.AmzStreamSubscriptionRequest;
-import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.AmzStreamSubscriptionResponse;
 import com.hzltd.module.erplus.adv.auth.service.AdsAuthService;
 import com.hzltd.module.erplus.adv.dal.dataobject.*;
 import com.hzltd.module.erplus.adv.dal.mysql.*;
 import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
 import com.hzltd.module.erplus.enums.amz.AmazonRegionEnum;
-import com.hzltd.module.infra.dal.dataobject.config.ConfigDO;
-import com.hzltd.module.infra.service.config.ConfigService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -63,18 +54,6 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
     private AdsAuthService adsAuthService;
     @Resource
     private AmazonAdsReportApiService reportApiService;
-    @Resource
-    private ConfigService configService;
-    @Resource
-    private AdsReportHourlyMapper adsReportHourlyMapper;
-
-    @Value("${hzapp.aws.sqs.adv-queue}")
-    private  String AMZ_ADS_STREAM_SQS_QUEUE_ARN;
-    private static final String[] DATA_SET_IDS = {
-            "sp-traffic", "sp-conversion",
-//            "sb-traffic", "sb-conversion",
-//            "sd-traffic", "sd-conversion"
-    };
 
     /**
      * 执行同步任务状态机
@@ -101,188 +80,7 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         }
     }
 
-    // ==================== 实时数据订阅 ====================
 
-    /**
-     * todo -- 目前SQS只授权了sp广告, 后续添加sb和sd
-     * @param profile 站点信息
-     */
-    @Override
-    public void createStreamSubscription(AdsAmazonProfileDO profile) {
-        if (profile == null || !"ENABLED".equals(profile.getStatus())) {
-            return;
-        }
-        // 1. 获取 SQS ARN 配置
-
-        if (AMZ_ADS_STREAM_SQS_QUEUE_ARN == null) {
-            log.warn("[createStreamSubscription] 缺失 SQS ARN 配置 , 跳过订阅", AMZ_ADS_STREAM_SQS_QUEUE_ARN);
-            return;
-        }
-
-        // 2. 获取凭证
-        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(profile.getAccountId());
-        if (credential == null) {
-            log.warn("[createStreamSubscription] 找不到账号 {} 的凭证, 跳过订阅", profile.getAccountId());
-            return;
-        }
-
-        // 3. 准备请求信息
-        String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
-        AdsAmazonProfileDO.Config config = profile.getConfig();
-        if (config == null) {
-            config = new AdsAmazonProfileDO.Config();
-            config.setStreamSubscriptions(new HashMap<>());
-        }
-
-        List<AmzStreamSubscriptionResponse> subscriptionResponses = reportApiService.listStreamSubscription(credential, profile.getEntityId(), profile.getProfileId(), baseUrl);
-        log.info("[createStreamSubscription] SubscriptionInfo: {}", subscriptionResponses);
-
-
-        List<String> dataSetToSubscription = Lists.newArrayList(DATA_SET_IDS);
-        Map<String, String> subscriptions = config.getStreamSubscriptions();
-
-        // 如果已经active，只需要更新 subscriptions 即可，其余的没有
-        if (CollectionUtils.isNotEmpty(subscriptionResponses)) {
-            for (AmzStreamSubscriptionResponse sub : subscriptionResponses) {
-                if (subscriptions.containsKey(sub.getDataSetId())) {
-                    dataSetToSubscription.remove(sub.getDataSetId());
-                } else if ("ACTIVE".equals(sub.getStatus())) {
-                    subscriptions.put(sub.getDataSetId(), sub.getSubscriptionId());
-                    dataSetToSubscription.remove(sub.getDataSetId());
-                }
-            }
-        }
-
-
-
-
-        boolean updated = false;
-        for (String dataSetId : dataSetToSubscription) {
-            // 如果已经订阅过，则跳过
-            if (subscriptions.containsKey(dataSetId)) {
-                continue;
-            }
-
-            try {
-                log.info("[createStreamSubscription] 开始为 Profile {} 订阅数据集 {}", profile.getProfileId(), dataSetId);
-                AmzStreamSubscriptionRequest request = AmzStreamSubscriptionRequest.builder()
-                        .clientRequestToken(java.util.UUID.randomUUID().toString())
-                        .dataSetId(dataSetId)
-                        .destination(AmzStreamSubscriptionRequest.Destination.builder()
-                                .sqsDestination(AmzStreamSubscriptionRequest.SqsDestination.builder()
-                                        .queueArn(AMZ_ADS_STREAM_SQS_QUEUE_ARN)
-                                        .build())
-                                .build())
-                        .notes("Auto subscribed by HanX Erplus for " + dataSetId)
-                        .build();
-
-                AmzStreamSubscriptionResponse response = reportApiService.createStreamSubscription(
-                        credential, profile.getEntityId(), profile.getProfileId(), baseUrl, request);
-
-                if (response != null && response.getSubscriptionId() != null) {
-                    subscriptions.put(dataSetId, response.getSubscriptionId());
-                    updated = true;
-                    log.info("[createStreamSubscription] Profile {} 订阅数据集 {} 成功, subscriptionId={}",
-                            profile.getProfileId(), dataSetId, response.getSubscriptionId());
-                }
-            } catch (Exception e) {
-                log.error("[createStreamSubscription] Profile {} 订阅数据集 {} 失败", profile.getProfileId(), dataSetId, e);
-            }
-        }
-
-        // 4. 保存订阅信息
-        if (updated) {
-            profile.setConfig(config);
-            adsAmazonProfileMapper.updateById(profile);
-        }
-    }
-
-    @Override
-    public void createStreamSubscriptionByAccountId(Long accountId) {
-        List<AdsAmazonProfileDO> profiles = adsAmazonProfileMapper.selectList(AdsAmazonProfileDO::getAccountId, accountId);
-        for (AdsAmazonProfileDO profile : profiles) {
-            createStreamSubscription(profile);
-        }
-    }
-
-
-    // ==================== 实时数据解析入库 ====================
-
-    /**
-     * 处理 Amazon Marketing Stream SQS 消息
-     * 
-     * SQS 消息结构:
-     {"advertiser_id":"A2K2SU3BU6HGRH","marketplace_id":"ATVPDKIKX0DER","dataset_id":"sp-traffic","impressions":3,"idempotency_id":"2187acbc-85cd-31a8-adcf-dc83e6cb463c","keyword_text":"charm kit with charm","time_window_start":"2026-03-08T03:00:00-07:00","ad_group_id":"448283180780832","placement":"Top of Search on-Amazon","cost":0.0,"clicks":0,"currency":"USD","ad_id":"511081845139234","match_type":"BROAD","campaign_id":"132925643619089","keyword_id":"327460168058110"}
-     */
-    @Override
-    public void processStreamMessage(String sqsMessageBody) {
-        try {
-            JSONObject message = JSONUtil.parseObj(sqsMessageBody);
-
-            String datasetId = message.getStr("dataset_id");
-
-            if ("sp-traffic".equals(datasetId)) {
-                this.processSPTrafficData(sqsMessageBody);
-            } else {
-                this.processSPConvertData(sqsMessageBody);
-            }
-
-
-            // SQS 消息可能是 SNS 封装的，也可能是直接的 Stream 消息
-            JSONArray details;
-            if (message.containsKey("detail")) {
-                Object detailObj = message.get("detail");
-                if (detailObj instanceof cn.hutool.json.JSONArray) {
-                    details = (JSONArray) detailObj;
-                } else {
-                    details = new JSONArray();
-                    details.add(detailObj);
-                }
-            } else {
-                // 简化处理: 整个消息就是一条数据
-                details = new JSONArray();
-                details.add(message);
-            }
-
-            List<AdsReportHourlyDO> allRecords = new ArrayList<>();
-            for (int i = 0; i < details.size(); i++) {
-                JSONObject detail = details.getJSONObject(i);
-                try {
-                    List<AdsReportHourlyDO> records = parseStreamDetail(detail);
-                    allRecords.addAll(records);
-                } catch (Exception e) {
-                    log.error("[processStreamMessage] 解析第 {} 条 detail 失败", i, e);
-                }
-            }
-
-            // 批量写入 Doris
-            if (!allRecords.isEmpty()) {
-                for (AdsReportHourlyDO record : allRecords) {
-                    adsReportHourlyMapper.insert(record);
-                }
-                log.info("[processStreamMessage] 写入 {} 条小时报表数据到 Doris", allRecords.size());
-            }
-        } catch (Exception e) {
-            log.error("[processStreamMessage] 解析 SQS 消息失败", e);
-            throw new RuntimeException("Failed to process stream message", e);
-        }
-    }
-
-
-
-    private void processSPTrafficData(String message) {
-
-        AmazonAdTrafficMetric metric = JsonUtils.parseObject(message, AmazonAdTrafficMetric.class);
-
-
-
-
-
-
-
-    }
-
-    private void processSPConvertData(String message) {}
 
 
 

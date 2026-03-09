@@ -18,6 +18,9 @@
         <el-form-item label="刷新令牌" prop="refreshToken">
           <el-input v-model="formData.refreshToken" placeholder="刷新令牌" />
         </el-form-item>
+        <el-form-item label="卖家ID" prop="sellerId">
+          <el-input v-model="formData.sellerId" placeholder="Seller ID (选填)" />
+        </el-form-item>
 
         <div class="flex justify-end w-full!">
           <el-button type="primary" @click="submitShopAuth">授 权</el-button>
@@ -63,6 +66,7 @@ const formData = ref({
   appKey: '',
   appSecret: '',
   refreshToken: '',
+  sellerId: '',
   selfAuth: undefined,
 })
 const formRules = reactive({

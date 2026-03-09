@@ -17,6 +17,7 @@ export interface ShopAuthReqVO {
   appkey: string // 应用key
   appSecret: string // 应用密钥
   refreshToken: string // 令牌
+  sellerId?: string // 卖家ID (非必填)
 }
 
 // 店铺信息 API

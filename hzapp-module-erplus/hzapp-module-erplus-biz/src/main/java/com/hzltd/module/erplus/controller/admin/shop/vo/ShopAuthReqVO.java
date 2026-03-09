@@ -13,4 +13,8 @@ public class ShopAuthReqVO {
     private String appKey;
     private String appSecret;
     private String refreshToken;
+    /**
+     * 卖家ID (非必填, 自授权时填入)
+     */
+    private String sellerId;
 }

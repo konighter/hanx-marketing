@@ -8,6 +8,11 @@ export interface SellZoneVO {
   zoneCode: string // 区域编码
   locale: string // 区域Locale
   language: string // 语言
+  currency?: string // 货币
+  region?: string // 所属大区
+  countryCode?: string // 国家代码
+  spEndpoint?: string // SP-API Endpoint
+  advEndpoint?: string // 广告 API Endpoint
 }
 
 // 销售区域 API

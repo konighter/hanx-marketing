@@ -61,6 +61,10 @@ public class ShopDO extends BaseDO {
      */
     private LocalDateTime authExpTime;
     /**
+     * 卖家ID (用于广告和店铺的关联)
+     */
+    private String sellerId;
+    /**
      * 状态
      *
      * 枚举 {@link TODO common_status 对应的类}

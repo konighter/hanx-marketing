@@ -6,6 +6,7 @@ import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.tenant.core.aop.TenantIgnore;
 import com.hzltd.module.erplus.api.service.AuthorizationApiFactory;
+import com.hzltd.module.erplus.api.service.NotificationSubscriptionApiFactory;
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.controller.admin.shop.vo.*;
@@ -19,6 +20,7 @@ import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.erplus.service.sellzone.SellZoneService;
 import com.hzltd.module.erplus.sys.SystemShopService;
 import com.hzltd.module.erplus.sys.model.ShopModel;
+import com.hzltd.module.erplus.service.notification.NotificationSubscriptionApi;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -58,6 +60,9 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
 
     @Resource
     private AuthorizationApiFactory authorizationApiFactory;
+
+    @Resource
+    private NotificationSubscriptionApiFactory notificationSubscriptionApiFactory;
 
     @Override
     public Integer createShop(ShopSaveReqVO createReqVO) {
@@ -185,7 +190,24 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
 
             shopDO.setAuthInfo(accessTokenModel);
             shopDO.setAuthExpTime(LocalDateTime.now().plusSeconds(accessTokenModel.getExpireIn()));
+
+            // 自授权时, 写入 sellerId
+            if (authReqVO.getSellerId() != null && !authReqVO.getSellerId().isEmpty()) {
+                shopDO.setSellerId(authReqVO.getSellerId());
+            }
+
             shopMapper.updateById(shopDO);
+
+            // 店铺授权成功后，自动初始化消息通知订阅
+            try {
+                NotificationSubscriptionApi notificationApi = notificationSubscriptionApiFactory
+                        .getCrossApiService(CrossPlatformEnum.of(platformDO.getCode()));
+                if (notificationApi != null) {
+                    notificationApi.setupNotificationSubscriptions(shopDO.getId().longValue());
+                }
+            } catch (Exception e) {
+                log.warn("初始化消息订阅失败，不影响授权流程, shopId={}", shopDO.getId(), e);
+            }
 
         } else {
             // 平台授权
@@ -196,6 +218,8 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
             respVO.setAuthGrantState(shopDO.getId().toString());
             respVO.setAuthGrantUrl(authGrantUrl);
             return respVO;
+            // TODO: OAuth 授权拿到 accessToken 后, 查询用户信息获取 sellerId 并填充到 shopDO
+            // 示例: shopDO.setSellerId(userInfo.getSellerId()); shopMapper.updateById(shopDO);
         }
 
 

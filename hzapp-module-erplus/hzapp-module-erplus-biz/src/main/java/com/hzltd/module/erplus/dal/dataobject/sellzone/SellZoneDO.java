@@ -48,5 +48,25 @@ public class SellZoneDO extends BaseDO {
      * 语言
      */
     private String language;
+    /**
+     * 货币
+     */
+    private String currency;
+    /**
+     * 所属大区 (如 NA, EU, FE)
+     */
+    private String region;
+    /**
+     * 国家代码 (如 US, GB, DE)
+     */
+    private String countryCode;
+    /**
+     * SP-API Endpoint
+     */
+    private String spEndpoint;
+    /**
+     * 广告 API Endpoint
+     */
+    private String advEndpoint;
 
 }

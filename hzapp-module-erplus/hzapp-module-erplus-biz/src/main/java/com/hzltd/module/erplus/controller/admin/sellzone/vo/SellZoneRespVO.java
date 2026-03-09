@@ -36,6 +36,26 @@ public class SellZoneRespVO {
     @ExcelProperty("语言")
     private String language;
 
+    @Schema(description = "货币")
+    @ExcelProperty("货币")
+    private String currency;
+
+    @Schema(description = "所属大区 (如 NA, EU, FE)")
+    @ExcelProperty("所属大区")
+    private String region;
+
+    @Schema(description = "国家代码 (如 US, GB, DE)")
+    @ExcelProperty("国家代码")
+    private String countryCode;
+
+    @Schema(description = "SP-API Endpoint")
+    @ExcelProperty("SP-API Endpoint")
+    private String spEndpoint;
+
+    @Schema(description = "广告 API Endpoint")
+    @ExcelProperty("广告 API Endpoint")
+    private String advEndpoint;
+
     @Schema(description = "创建时间", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("创建时间")
     private LocalDateTime createTime;

@@ -1,5 +1,7 @@
 package com.hzltd.module.erplus.adv.adapter.amazon.service;
 
+import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmzStreamSubscriptionService;
+
 import cn.hutool.json.JSONUtil;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.adapter.amazon.AbstractAmazonAdsAdapter;
@@ -36,7 +38,7 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     private AdsAuthService adsAuthService;
 
     @Resource
-    private AdsAmazonReportService adsAmazonReportService;
+    private AmzStreamSubscriptionService amzStreamSubscriptionService;
 
     @Resource
     private AdsApiClient adsApiClient;
@@ -64,7 +66,7 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
                             account.getExternalAccountId(), account.getName());
                     
                     // 自动同步 Stream 订阅
-                    adsAmazonReportService.createStreamSubscription(savedProfile);
+                    amzStreamSubscriptionService.createStreamSubscription(savedProfile);
                 }
             }
         }

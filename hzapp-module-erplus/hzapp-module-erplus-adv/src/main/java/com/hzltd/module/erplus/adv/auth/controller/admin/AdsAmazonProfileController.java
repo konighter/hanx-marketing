@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.adv.auth.controller.admin;
 
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.module.erplus.adv.adapter.amazon.service.AdsAmazonProfileService;
-import com.hzltd.module.erplus.adv.adapter.amazon.service.AdsAmazonReportService;
+import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmzStreamSubscriptionService;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAmazonProfileDO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -29,7 +29,7 @@ public class AdsAmazonProfileController {
     private AdsAmazonProfileService adsAmazonProfileService;
 
     @Resource
-    private AdsAmazonReportService adsAmazonReportService;
+    private AmzStreamSubscriptionService amzStreamSubscriptionService;
 
     @GetMapping("/list")
     @Operation(summary = "获得亚马逊广告 Profile 列表")
@@ -44,7 +44,7 @@ public class AdsAmazonProfileController {
     @Parameter(name = "accountId", description = "账号编号", required = true)
     @PreAuthorize("@ss.hasPermission('erplus:adv-account:update')")
     public CommonResult<Boolean> initStream(@RequestParam("accountId") Long accountId) {
-        adsAmazonReportService.createStreamSubscriptionByAccountId(accountId);
+        amzStreamSubscriptionService.createStreamSubscriptionByAccountId(accountId);
         return success(true);
     }
 
