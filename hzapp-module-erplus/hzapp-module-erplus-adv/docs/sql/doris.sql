@@ -83,3 +83,56 @@ AGGREGATE KEY(`advertiser_id`, `dataset_id`, `time_window_start`, `campaign_id`,
               `match_type`, `placement`, `currency`, `marketplace_id`)
 DISTRIBUTED BY HASH(`advertiser_id`) BUCKETS 8
 PROPERTIES ("replication_allocation" = "tag.location.default: 1");
+
+
+-- ----------------------------
+-- Amazon SP-Conversion 归因转化明细流数据
+-- ----------------------------
+DROP TABLE IF EXISTS `ads_amazon_stream_sp_conversion`;
+CREATE TABLE `ads_amazon_stream_sp_conversion` (
+  `advertiser_id`                        VARCHAR(32)     NOT NULL COMMENT '广告主ID (profileId)',
+  `dataset_id`                           VARCHAR(32)     NOT NULL COMMENT '数据集ID: sp-conversion',
+  `time_window_start`                    BIGINT          NOT NULL COMMENT '时间窗口开始时间戳(Unix秒)',
+  `campaign_id`                          VARCHAR(32)     NOT NULL COMMENT '广告活动外部ID',
+  `ad_group_id`                          VARCHAR(32)     NOT NULL DEFAULT '' COMMENT '广告组外部ID',
+  `ad_id`                                VARCHAR(32)     NOT NULL DEFAULT '' COMMENT '广告外部ID',
+  `keyword_id`                           VARCHAR(32)     NOT NULL DEFAULT '' COMMENT '关键词外部ID',
+  `placement`                            VARCHAR(128)    NOT NULL DEFAULT '' COMMENT '广告位',
+  `marketplace_id`                       VARCHAR(32)     NOT NULL DEFAULT '' COMMENT '市场ID',
+  `currency`                             VARCHAR(8)      NOT NULL DEFAULT '' COMMENT '币种',
+
+  -- 归因转化次数
+  `attributed_conversions_1d`            BIGINT          SUM DEFAULT 0 COMMENT '24h内归因转化次数',
+  `attributed_conversions_7d`            BIGINT          SUM DEFAULT 0 COMMENT '7天内归因转化次数',
+  `attributed_conversions_14d`           BIGINT          SUM DEFAULT 0 COMMENT '14天内归因转化次数',
+  `attributed_conversions_30d`           BIGINT          SUM DEFAULT 0 COMMENT '30天内归因转化次数',
+  `attributed_conversions_1d_same_sku`   BIGINT          SUM DEFAULT 0 COMMENT '24h内同SKU归因转化次数',
+  `attributed_conversions_7d_same_sku`   BIGINT          SUM DEFAULT 0 COMMENT '7天内同SKU归因转化次数',
+  `attributed_conversions_14d_same_sku`  BIGINT          SUM DEFAULT 0 COMMENT '14天内同SKU归因转化次数',
+  `attributed_conversions_30d_same_sku`  BIGINT          SUM DEFAULT 0 COMMENT '30天内同SKU归因转化次数',
+
+  -- 归因销售额
+  `attributed_sales_1d`                  DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '24h内归因销售额',
+  `attributed_sales_7d`                  DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '7天内归因销售额',
+  `attributed_sales_14d`                 DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '14天内归因销售额',
+  `attributed_sales_30d`                 DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '30天内归因销售额',
+  `attributed_sales_1d_same_sku`         DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '24h内同SKU归因销售额',
+  `attributed_sales_7d_same_sku`         DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '7天内同SKU归因销售额',
+  `attributed_sales_14d_same_sku`        DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '14天内同SKU归因销售额',
+  `attributed_sales_30d_same_sku`        DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '30天内同SKU归因销售额',
+
+  -- 归因订单单量
+  `attributed_units_ordered_1d`          BIGINT          SUM DEFAULT 0 COMMENT '24h内归因销售件数',
+  `attributed_units_ordered_7d`          BIGINT          SUM DEFAULT 0 COMMENT '7天内归因销售件数',
+  `attributed_units_ordered_14d`         BIGINT          SUM DEFAULT 0 COMMENT '14天内归因销售件数',
+  `attributed_units_ordered_30d`         BIGINT          SUM DEFAULT 0 COMMENT '30天内归因销售件数',
+  `attributed_units_ordered_1d_same_sku` BIGINT          SUM DEFAULT 0 COMMENT '24h内同SKU归因销售件数',
+  `attributed_units_ordered_7d_same_sku` BIGINT          SUM DEFAULT 0 COMMENT '7天内同SKU归因销售件数',
+  `attributed_units_ordered_14d_same_sku` BIGINT         SUM DEFAULT 0 COMMENT '14天内同SKU归因销售件数',
+  `attributed_units_ordered_30d_same_sku` BIGINT         SUM DEFAULT 0 COMMENT '30天内同SKU归因销售件数'
+
+) ENGINE=OLAP
+AGGREGATE KEY(`advertiser_id`, `dataset_id`, `time_window_start`, `campaign_id`,
+              `ad_group_id`, `ad_id`, `keyword_id`, `placement`, `marketplace_id`, `currency`)
+DISTRIBUTED BY HASH(`advertiser_id`) BUCKETS 8
+PROPERTIES ("replication_allocation" = "tag.location.default: 1");
