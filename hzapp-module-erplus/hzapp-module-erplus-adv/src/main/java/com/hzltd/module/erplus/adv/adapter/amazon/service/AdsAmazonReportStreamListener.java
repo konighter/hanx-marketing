@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class AdsAmazonReportStreamListener {
 
     @Resource
-    private AdsAmazonReportService adsAmazonReportService;
+    private AdsAmazonReportStreamHandler adsAmazonReportStreamHandler;
 
     @SqsListener("${hzapp.aws.sqs.adv-queue}")
     public void onMessage(String message) {
@@ -39,7 +39,7 @@ public class AdsAmazonReportStreamListener {
                 }
             }
 
-            adsAmazonReportService.processStreamMessage(message);
+            adsAmazonReportStreamHandler.processStreamMessage(message);
         } catch (Exception e) {
             log.error("[onMessage] 处理 Stream 消息失败, message={}", message, e);
             // SQS 消息消费失败后会自动重试

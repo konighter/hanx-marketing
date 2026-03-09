@@ -1,0 +1,18 @@
+{
+  "advertiser_id": "A2K2SU3BU6HGRH",
+  "marketplace_id": "ATVPDKIKX0DER",
+  "dataset_id": "sp-traffic",
+  "impressions": 2,
+  "idempotency_id": "a13f22eb-5980-3b05-b506-593158aaa33f",
+  "keyword_text": "key chain",
+  "time_window_start": "2026-03-08T07:00:00-07:00",
+  "ad_group_id": "448283180780832",
+  "placement": "Top of Search on-Amazon",
+  "cost": 0.0,
+  "clicks": 0,
+  "currency": "USD",
+  "ad_id": "511081845139234",
+  "match_type": "BROAD",
+  "campaign_id": "132925643619089",
+  "keyword_id": "367305939098673"
+}

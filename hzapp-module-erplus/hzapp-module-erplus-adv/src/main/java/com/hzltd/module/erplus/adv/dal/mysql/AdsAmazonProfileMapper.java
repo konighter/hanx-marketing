@@ -18,4 +18,8 @@ public interface AdsAmazonProfileMapper extends BaseMapperX<AdsAmazonProfileDO> 
         return selectList(AdsAmazonProfileDO::getAccountId, accountId);
     }
 
+    default AdsAmazonProfileDO selectByEntityId(String entityId) {
+        return selectOne(AdsAmazonProfileDO::getEntityId, entityId);
+    }
+
 }

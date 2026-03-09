@@ -55,3 +55,31 @@ DISTRIBUTED BY HASH(`account_id`) BUCKETS 8
 PROPERTIES (
   "replication_allocation" = "tag.location.default: 1"
 );
+
+
+
+DROP TABLE IF EXISTS `ads_amazon_stream_raw`;
+CREATE TABLE `ads_amazon_stream_raw` (
+  `advertiser_id`   VARCHAR(32)      COMMENT '广告主ID',
+  `dataset_id`      VARCHAR(32)      NOT NULL COMMENT '数据集ID: sp-traffic, sp-conversion',
+  `time_window_start` VARCHAR(50)       NOT NULL COMMENT '时间窗口开始时间',
+  `campaign_id`     VARCHAR(32)      NOT NULL COMMENT '广告活动外部ID',
+  `ad_group_id`     VARCHAR(32)      COMMENT '广告组外部ID',
+  `ad_id`           VARCHAR(32)      COMMENT '广告外部ID',
+  `keyword_id`      VARCHAR(32)      COMMENT '关键词外部ID',
+  `keyword_text`    VARCHAR(512)     COMMENT '关键词文本',
+  `match_type`      VARCHAR(16)      COMMENT '匹配类型',
+  `placement`       VARCHAR(128)     COMMENT '广告位',
+  `currency`        VARCHAR(8)       COMMENT '币种',
+  `marketplace_id`  VARCHAR(32)      COMMENT '市场ID',
+
+
+  `impressions`     BIGINT           SUM DEFAULT 0 COMMENT '展示数',
+  `clicks`          BIGINT           SUM DEFAULT 0 COMMENT '点击数',
+  `cost`            DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '花费'
+) ENGINE=OLAP
+AGGREGATE KEY(`advertiser_id`, `dataset_id`, `time_window_start`, `campaign_id`,
+              `ad_group_id`, `ad_id`, `keyword_id`, `keyword_text`,
+              `match_type`, `placement`, `currency`, `marketplace_id`)
+DISTRIBUTED BY HASH(`advertiser_id`) BUCKETS 8
+PROPERTIES ("replication_allocation" = "tag.location.default: 1");

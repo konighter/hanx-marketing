@@ -5,6 +5,8 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.google.common.collect.Lists;
+import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.module.erplus.adv.adapter.amazon.model.event.AmazonAdTrafficMetric;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmazonAdsReportApiService;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.AmzSpReportConstants;
 import com.hzltd.module.erplus.adv.adapter.amazon.v1.model.AmzReportRequest;
@@ -210,29 +212,22 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
      * 处理 Amazon Marketing Stream SQS 消息
      * 
      * SQS 消息结构:
-     * {
-     *   "source": "amazon:ads:reporting",
-     *   "detail": [
-     *     {
-     *       "datasetId": "sp-traffic",
-     *       "advertiserId": "xxx",
-     *       "campaignId": "xxx",
-     *       "adGroupId": "xxx",
-     *       "adId": "xxx",
-     *       "keywordId": "xxx",
-     *       "timeWindowStart": "2026-03-04T10:00:00Z",
-     *       "impressions": 100,
-     *       "clicks": 10,
-     *       "cost": 5.50
-     *     }
-     *   ]
-     * }
+     {"advertiser_id":"A2K2SU3BU6HGRH","marketplace_id":"ATVPDKIKX0DER","dataset_id":"sp-traffic","impressions":3,"idempotency_id":"2187acbc-85cd-31a8-adcf-dc83e6cb463c","keyword_text":"charm kit with charm","time_window_start":"2026-03-08T03:00:00-07:00","ad_group_id":"448283180780832","placement":"Top of Search on-Amazon","cost":0.0,"clicks":0,"currency":"USD","ad_id":"511081845139234","match_type":"BROAD","campaign_id":"132925643619089","keyword_id":"327460168058110"}
      */
     @Override
     public void processStreamMessage(String sqsMessageBody) {
         try {
             JSONObject message = JSONUtil.parseObj(sqsMessageBody);
-            
+
+            String datasetId = message.getStr("dataset_id");
+
+            if ("sp-traffic".equals(datasetId)) {
+                this.processSPTrafficData(sqsMessageBody);
+            } else {
+                this.processSPConvertData(sqsMessageBody);
+            }
+
+
             // SQS 消息可能是 SNS 封装的，也可能是直接的 Stream 消息
             JSONArray details;
             if (message.containsKey("detail")) {
@@ -272,6 +267,26 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
             throw new RuntimeException("Failed to process stream message", e);
         }
     }
+
+
+
+    private void processSPTrafficData(String message) {
+
+        AmazonAdTrafficMetric metric = JsonUtils.parseObject(message, AmazonAdTrafficMetric.class);
+
+
+
+
+
+
+
+    }
+
+    private void processSPConvertData(String message) {}
+
+
+
+
 
     /**
      * 解析单条 Stream detail 并按 group_column 拆分为多条入库记录
