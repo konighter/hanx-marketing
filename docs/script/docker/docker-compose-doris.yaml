@@ -20,6 +20,9 @@ services:
     networks:
       custom_network:
         ipv4_address: 172.20.80.2
+    volumes:
+      - /Users/work/proj/opt/dockers/doris/fe/meta:/opt/apache-doris/fe/doris-meta  # FE 元数据
+      - /Users/work/proj/opt/dockers/doris/fe/log:/opt/apache-doris/fe/log 
 
   be:
     image: apache/doris:be-4.0.1
@@ -30,6 +33,9 @@ services:
     environment:
       - FE_SERVERS=fe1:172.20.80.2:9010
       - BE_ADDR=172.20.80.3:9050
+    volumes:
+      - /Users/work/proj/opt/dockers/doris/be/data:/opt/apache-doris/be/storage  # BE 数据目录
+      - /Users/work/proj/opt/dockers/doris/be/log:/opt/apache-doris/be/log
     depends_on:
       - fe
     networks:
