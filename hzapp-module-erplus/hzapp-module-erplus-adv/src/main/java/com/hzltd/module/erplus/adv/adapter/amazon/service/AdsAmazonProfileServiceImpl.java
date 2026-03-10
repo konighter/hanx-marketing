@@ -21,6 +21,7 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Collectors;
 
 /**
  * 亚马逊广告 Profile Service 实现类
@@ -58,17 +59,19 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
                 continue;
             }
             for (AbstractAmazonAdsAdapter.AmzProfileVO p : profiles) {
+
                 if (CollectionUtils.isNotEmpty(profilesByCountryCode.get(p.getCountryCode())) 
                         && profilesByCountryCode.get(p.getCountryCode()).contains(p.getProfileId())) {
                     
                     AdsAmazonProfileDO savedProfile = saveProfile(account.getId(), p.getProfileId(), p.getCountryCode(), 
                             regionEnum.name(), p.getCurrencyCode(), p.getTimezone(), 
-                            account.getExternalAccountId(), account.getName());
+                            account.getExternalAccountId(), account.getName(), p.getAccountInfo() != null ? p.getAccountInfo().getId() : "");
                     
                     // 自动同步 Stream 订阅
                     amzStreamSubscriptionService.createStreamSubscription(savedProfile);
                 }
             }
+
         }
     }
 
@@ -102,11 +105,12 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     }
 
     private AdsAmazonProfileDO saveProfile(Long accountId, String profileId, String countryCode, String region,
-                                           String currency, String timezone, String entityId, String entityName) {
+                                           String currency, String timezone, String entityId, String entityName, String sellerId) {
         AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(profileId);
         if (profile == null) {
             profile = AdsAmazonProfileDO.builder()
                     .accountId(accountId)
+                    .sellerId(sellerId)
                     .profileId(profileId)
                     .countryCode(countryCode)
                     .region(region)
@@ -119,6 +123,7 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
             adsAmazonProfileMapper.insert(profile);
         } else {
             profile.setAccountId(accountId);
+            profile.setSellerId(sellerId);
             profile.setCountryCode(countryCode);
             profile.setRegion(region);
             profile.setCurrencyCode(currency);
@@ -129,6 +134,13 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
             adsAmazonProfileMapper.updateById(profile);
         }
         return profile;
+    }
+
+    @Override
+    public void syncByAccountId(Long accountId) {
+        AdsAccountDO account = adsAuthService.getAccount(accountId);
+        AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
+        syncProfiles(account, credential);
     }
 
     @Override

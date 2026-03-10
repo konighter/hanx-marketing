@@ -2,9 +2,14 @@
   <el-drawer v-model="drawerVisible" title="亚马逊站点列表 (Profiles)" size="800px">
     <div class="mb-15px flex justify-between">
       <div class="text-16px font-bold">账号ID: {{ accountId }}</div>
-      <el-button type="primary" :loading="initLoading" @click="handleInitStream">
-        <Icon icon="ep:refresh" class="mr-5px" /> 初始化 Stream 订阅
-      </el-button>
+      <div class="flex gap-10px">
+        <el-button type="success" :loading="syncLoading" @click="handleSyncProfiles">
+          <Icon icon="ep:refresh" class="mr-5px" /> 同步 Profiles
+        </el-button>
+        <el-button type="primary" :loading="initLoading" @click="handleInitStream">
+          <Icon icon="ep:bell" class="mr-5px" /> 初始化 Stream 订阅
+        </el-button>
+      </div>
     </div>
     <el-table :data="list" v-loading="loading">
       <el-table-column label="Profile ID" align="center" prop="profileId" width="180px" />
@@ -31,6 +36,7 @@ const emit = defineEmits(['update:modelValue'])
 const message = useMessage()
 const loading = ref(false)
 const initLoading = ref(false)
+const syncLoading = ref(false)
 const list = ref<AmazonProfile[]>([])
 const drawerVisible = ref(false)
 const accountId = ref<number>()
@@ -43,6 +49,22 @@ const getList = async () => {
     list.value = await AdsAuthApi.getAmazonProfileList(accountId.value)
   } finally {
     loading.value = false
+  }
+}
+
+/** 同步 Profiles */
+const handleSyncProfiles = async () => {
+  if (!accountId.value) return
+  try {
+    await message.confirm('确认从亚马逊广告 API 同步该账号下的 Profile 数据吗？')
+    syncLoading.value = true
+    await AdsAuthApi.syncProfiles(accountId.value)
+    message.success('同步成功，正在刷新列表...')
+    await getList()
+  } catch (error) {
+    // 处理取消确认或 API 错误
+  } finally {
+    syncLoading.value = false
   }
 }
 
@@ -89,3 +111,4 @@ watch(
   }
 )
 </script>
+

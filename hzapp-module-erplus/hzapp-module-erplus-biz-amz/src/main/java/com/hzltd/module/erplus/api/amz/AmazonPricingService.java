@@ -160,17 +160,6 @@ public class AmazonPricingService extends AbsAmzPlatformApiService implements Pr
         }
     }
 
-    private software.amazon.spapi.api.pricing.v2022_05_01.ProductPricingApi getPricingApiV2022_05_01(ApiRequest<?> request) {
-        AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
-        return new software.amazon.spapi.api.pricing.v2022_05_01.ProductPricingApi.Builder()
-                .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
-                .lwaAccessTokenCache(this.getTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
-                .build();
-    }
-
-
     private InventoryModel convert(InventorySummary inventorySummary) {
 
         if (inventorySummary == null) {

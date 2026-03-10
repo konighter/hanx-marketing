@@ -23,6 +23,13 @@ public interface AdsAmazonProfileService {
     void syncProfiles(AdsAccountDO account, AdsAccountCredentialDO credential);
 
     /**
+     * 通过账号ID同步亚马逊广告 Profiles
+     *
+     * @param accountId 账号编号
+     */
+    void syncByAccountId(Long accountId);
+
+    /**
      * 获得亚马逊广告 Profile 列表
      *
      * @param accountId 账号编号

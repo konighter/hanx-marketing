@@ -1,6 +1,8 @@
 package com.hzltd.module.erplus.api.amz;
 
 import cn.hutool.core.date.DateUnit;
+import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCache;
+import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.common.collect.Maps;
 import com.hzltd.framework.common.util.json.JsonUtils;
@@ -82,8 +84,17 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         return isSandbox ? "https://sandbox.sellingpartnerapi-na.amazon.com" : "https://sellingpartnerapi-na.amazon.com";
     }
 
-    public RefreshTokenCacheAdaptor getTokenCache() {
+    public LWAAccessTokenCache getLocalTokenCache() {
         return localLWAAccessTokenCache;
+    }
+
+    public LWAAuthorizationCredentials getLWAAuthorizationCredentials(AuthorizationModel authorizationModel) {
+        return LWAAuthorizationCredentials.builder()
+                .clientId(authorizationModel.getAppKey())
+                .clientSecret(authorizationModel.getAppSecret())
+                .refreshToken(authorizationModel.getRefreshToken())
+                .endpoint(this.getAuthEndpoint())
+                .build();
     }
 
     //============== Api初始化 ==============
@@ -92,7 +103,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
         return new ListingsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
@@ -102,7 +113,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
         return new ProductPricingApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
@@ -112,7 +123,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
         return new FbaInventoryApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
@@ -121,7 +132,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
         return new OrdersV0Api.Builder()
                 .lwaAuthorizationCredentials(getLWAAuthorizationCredentials(this.getAuthorizationModel(request)))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
@@ -130,7 +141,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
         return new DefinitionsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
@@ -139,7 +150,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
         return new NotificationsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
@@ -148,7 +159,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
         return new FeesApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(apiRequest.getMarketId()))
                 .build();
     }
@@ -157,7 +168,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
         return new DefaultApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
@@ -166,7 +177,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
         return new FbaInboundApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
@@ -175,7 +186,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
         return new software.amazon.spapi.api.fulfillment.inbound.v0.FbaInboundApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
-                .lwaAccessTokenCache(this.getTokenCache())
+                .lwaAccessTokenCache(this.getLocalTokenCache())
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }

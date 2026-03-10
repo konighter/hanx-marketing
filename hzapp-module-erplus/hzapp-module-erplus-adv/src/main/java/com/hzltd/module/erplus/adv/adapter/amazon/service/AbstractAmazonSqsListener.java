@@ -4,6 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.hzltd.framework.tenant.core.util.TenantUtils;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -43,7 +44,10 @@ public abstract class AbstractAmazonSqsListener {
                 }
             }
 
-            handleBusinessMessage(message);
+            TenantUtils.executeIgnore(() -> {
+                handleBusinessMessage(message);
+            });
+
         } catch (Exception e) {
             log.error("[processMessage][{}] 处理消息失败, message={}", getListenerName(), message, e);
             // SQS 消息消费失败后会自动重试

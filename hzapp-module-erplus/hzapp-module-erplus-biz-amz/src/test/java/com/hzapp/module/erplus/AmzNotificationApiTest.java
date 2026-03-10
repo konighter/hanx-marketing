@@ -1,14 +1,13 @@
-package com.hzltd.module.erplus.service.amz;
+package com.hzapp.module.erplus;
 
+import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.spapi.api.notifications.v1.NotificationsApi;
-import software.amazon.spapi.models.notifications.v1.GetDestinationsResponse;
-import software.amazon.spapi.api.producttypedefinitions.v2020_09_01.DefinitionsApi;
-import software.amazon.spapi.models.producttypedefinitions.v2020_09_01.ProductTypeList;
-import com.amazon.SellingPartnerAPIAA.LWAAuthorizationCredentials;
-
 import software.amazon.spapi.api.orders.v0.OrdersV0Api;
+import software.amazon.spapi.api.producttypedefinitions.v2020_09_01.DefinitionsApi;
+import software.amazon.spapi.models.notifications.v1.GetDestinationsResponse;
 import software.amazon.spapi.models.orders.v0.GetOrderResponse;
+import software.amazon.spapi.models.producttypedefinitions.v2020_09_01.ProductTypeList;
 
 import java.util.Collections;
 import java.util.List;

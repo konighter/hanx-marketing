@@ -29,6 +29,14 @@
             <artifactId>hzapp-module-erplus-api-adaptor</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>software.amazon.spapi</groupId>
+            <artifactId>spapi-sdk</artifactId>
+            <version>1.6.0</version>
+
+        </dependency>
+
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>

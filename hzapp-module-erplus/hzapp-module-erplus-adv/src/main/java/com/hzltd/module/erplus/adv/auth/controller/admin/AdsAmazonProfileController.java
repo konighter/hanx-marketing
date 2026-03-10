@@ -10,10 +10,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -48,4 +45,14 @@ public class AdsAmazonProfileController {
         return success(true);
     }
 
+    @PostMapping("/sync-profiles")
+    @Operation(summary = "从亚马逊广告 API 同步 Profile 数据")
+    @Parameter(name = "accountId", description = "账号编号", required = true)
+    @PreAuthorize("@ss.hasPermission('erplus:adv-account:update')")
+    public CommonResult<Boolean> syncProfiles(@RequestParam("accountId") Long accountId) {
+        adsAmazonProfileService.syncByAccountId(accountId);
+        return success(true);
+    }
+
 }
+

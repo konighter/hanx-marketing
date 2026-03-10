@@ -1,0 +1,26 @@
+Request{method=GET, url=https://sellingpartnerapi-na.amazon.com/notifications/v1/destinations, headers=[Accept:application/json, Content-Type:application/json, User-Agent:amazon-selling-partner-api-sdk/1.6.0/Java, x-amz-access-token:Atza|IwEBIHGvCZQpfbQkTwWuX74N9O3A9qJ4yLidg3WAtFYaKiHAxCRKLffFfvxKIiwUsxBQWTxJ-MaomszfkH2x-jwB37bwQo1KONqv7cP1bG74nbKF6ptM9Q8xVXW64fLl0DzjDCfiGVLMtL8F-47wBvJIBszlrSbhFI4tMhFYO24PHa7F664NoqxsvekP3j4wYPXBCAsknt2PrX9-p-ouydcU9cASQDeXDOfugM9HqiCyvB1O1FpFWF869TncejuiXLTNZ6-bsA3ku1vbUEEC9bVb-6ovvl8HewJcdjGNWGNg42Jo3QJEI-auv9_R5UYVUdPfSfS6bhyKtDeklj1iLLWUSxVOwtG6mbLqOWQgxC_0m6AE4w]}
+
+
+Header:
+  Server: Server
+  Date: Tue, 10 Mar 2026 00:52:54 GMT
+  Content-Type: application/json
+  Content-Length: 143
+  Connection: keep-alive
+  x-amz-rid: SHNH1BPP25TKRP1DCCDR
+  x-amzn-RequestId: 7676d5d8-e0c7-45e9-983d-e953de5ef91d
+  x-amz-apigw-id: OPF7676d5d8e0c7
+  X-Amzn-Trace-Id: Root=1-69af6b66-7676d5d8e0c745e9
+  x-amzn-ErrorType: AccessDeniedException
+  Vary: Content-Type,Accept-Encoding,User-Agent
+  Strict-Transport-Security: max-age=47474747; includeSubDomains; preload:
+
+
+response,:
+{
+  "errors" : [ {
+    "code" : "Unauthorized",
+    "message" : "Access to requested resource is denied.",
+    "details" : ""
+  } ]
+}

@@ -36,6 +36,11 @@ public class AdsAmazonProfileDO extends BaseDO {
     private Long accountId;
 
     /**
+     * 卖家ID
+     */
+    private String sellerId;
+
+    /**
      * 亚马逊原始 Profile ID
      */
     private String profileId;

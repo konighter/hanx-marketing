@@ -1,0 +1,27 @@
+{
+  "adsAccounts" : [ {
+    "accountName" : "hanzhan",
+    "adsAccountId" : "amzn1.ads-account.g.46urv0w7o9cejxduu598uh7vs",
+    "alternateIds" : [ {
+      "countryCode" : "CA",
+      "profileId" : 723502758791071
+    }, {
+      "countryCode" : "US",
+      "profileId" : 1510514840531949
+    }, {
+      "countryCode" : "MX",
+      "profileId" : 36770612627578
+    }, {
+      "countryCode" : "CA",
+      "entityId" : "ENTITY2JKAUIP6C2QW9"
+    }, {
+      "countryCode" : "US",
+      "entityId" : "ENTITY2Q6XPQHVD52EH"
+    }, {
+      "countryCode" : "MX",
+      "entityId" : "ENTITY2A4DOTMTXKUTU"
+    } ],
+    "countryCodes" : [ "CA", "US", "MX" ],
+    "status" : "CREATED"
+  } ]
+}

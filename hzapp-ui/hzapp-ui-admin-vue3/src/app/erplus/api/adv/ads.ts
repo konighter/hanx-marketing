@@ -25,6 +25,10 @@ export const AdsAuthApi = {
   initStream: async (accountId: number) => {
     return await request.get({ url: '/erplus/adv/amazon-profile/init-stream', params: { accountId } })
   },
+  // 从亚马逊广告 API 同步 Profile 数据
+  syncProfiles: async (accountId: number) => {
+    return await request.post({ url: '/erplus/adv/amazon-profile/sync-profiles', params: { accountId } })
+  },
   // 处理授权回调
   handleCallback: async (params: { platform: string; code: string; state?: string }) => {
     return await request.get({ url: `/erplus/adv/auth/callback`, params })

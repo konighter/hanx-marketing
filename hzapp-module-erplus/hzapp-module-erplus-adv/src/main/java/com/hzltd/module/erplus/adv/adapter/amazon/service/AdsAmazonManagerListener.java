@@ -13,11 +13,13 @@ import io.awspring.cloud.sqs.annotation.SqsListener;
 import jakarta.annotation.Resource;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 /**
  * Amazon 广告预算 Stream 消息监听器
@@ -68,12 +70,15 @@ public class AdsAmazonManagerListener extends AbstractAmazonSqsListener {
             return;
         }
 
+
         // 根据 advertiserId(对应通常是 profileId) 查找 Profile
-        AdsAmazonProfileDO profile = adsAmazonProfileMapper.selectByProfileId(advertiserId);
-        if (profile == null) {
+        List<AdsAmazonProfileDO> profiles = adsAmazonProfileMapper.selectBySellerId(advertiserId);
+        if (CollectionUtils.isEmpty(profiles)) {
             log.warn("[AdsAmazonManagerListener] 未找到 advertiserId={} 对应的 Profile", advertiserId);
             return;
         }
+        // todo -- 这里找出来的profileId不准确, 时区这些可能对不上
+        AdsAmazonProfileDO profile = profiles.get(0);
 
         ZoneId zoneId = ZoneId.of(profile.getTimezone() != null ? profile.getTimezone() : "UTC");
         ZonedDateTime updatedTime;

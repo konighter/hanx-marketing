@@ -1,0 +1,49 @@
+[ {
+  "profileId" : "723502758791071",
+  "countryCode" : "CA",
+  "currencyCode" : "CAD",
+  "timezone" : "America/Los_Angeles",
+  "accountInfo" : {
+    "accountName" : null,
+    "adsAccountId" : null,
+    "countryCodes" : null,
+    "alternateIds" : null,
+    "id" : "A2K2SU3BU6HGRH",
+    "name" : "hanzhan",
+    "marketplaceStringId" : "A2EUQ1WTGCTBG2",
+    "type" : "seller",
+    "subType" : null
+  }
+}, {
+  "profileId" : "36770612627578",
+  "countryCode" : "MX",
+  "currencyCode" : "MXN",
+  "timezone" : "America/Los_Angeles",
+  "accountInfo" : {
+    "accountName" : null,
+    "adsAccountId" : null,
+    "countryCodes" : null,
+    "alternateIds" : null,
+    "id" : "A2K2SU3BU6HGRH",
+    "name" : "hanzhan",
+    "marketplaceStringId" : "A1AM78C64UM0Y8",
+    "type" : "seller",
+    "subType" : null
+  }
+}, {
+  "profileId" : "1510514840531949",
+  "countryCode" : "US",
+  "currencyCode" : "USD",
+  "timezone" : "America/Los_Angeles",
+  "accountInfo" : {
+    "accountName" : null,
+    "adsAccountId" : null,
+    "countryCodes" : null,
+    "alternateIds" : null,
+    "id" : "A2K2SU3BU6HGRH",
+    "name" : "hanzhan",
+    "marketplaceStringId" : "ATVPDKIKX0DER",
+    "type" : "seller",
+    "subType" : null
+  }
+} ]
