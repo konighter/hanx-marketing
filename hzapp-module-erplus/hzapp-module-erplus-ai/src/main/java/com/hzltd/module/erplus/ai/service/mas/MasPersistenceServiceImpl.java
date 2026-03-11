@@ -8,10 +8,10 @@ import com.hzltd.module.erplus.ai.dal.mysql.mas.MasAgentConfigMapper;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasSessionMapper;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasSessionVariableMapper;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasTaskHistoryMapper;
-import com.hzltd.module.erplus.ai.mas.framework.agent.MasRole;
-import com.hzltd.module.erplus.ai.mas.framework.execution.MasContext;
-import com.hzltd.module.erplus.ai.mas.framework.execution.MasTask;
-import com.hzltd.module.erplus.ai.mas.framework.state.MasState;
+import com.hzltd.module.erplus.ai.masv0.framework.agent.MasRole;
+import com.hzltd.module.erplus.ai.masv0.framework.execution.MasContext;
+import com.hzltd.module.erplus.ai.masv0.framework.execution.MasTask;
+import com.hzltd.module.erplus.ai.masv0.framework.state.MasState;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -114,5 +114,14 @@ public class MasPersistenceServiceImpl implements MasPersistenceService {
     @Override
     public List<MasTaskHistoryDO> getTaskHistoryList(String sessionId) {
         return taskHistoryMapper.selectListBySessionId(sessionId);
+    }
+
+    @Override
+    public List<com.hzltd.module.erplus.ai.dal.dataobject.mas.MasEventLogDO> getEventLogList(String sessionId) {
+        return ((com.hzltd.module.erplus.ai.dal.mysql.mas.MasEventLogMapper)
+                com.hzltd.framework.common.util.spring.SpringUtils.getBean(com.hzltd.module.erplus.ai.dal.mysql.mas.MasEventLogMapper.class))
+                .selectList(new LambdaQueryWrapperX<com.hzltd.module.erplus.ai.dal.dataobject.mas.MasEventLogDO>()
+                        .eq(com.hzltd.module.erplus.ai.dal.dataobject.mas.MasEventLogDO::getSessionId, sessionId)
+                        .orderByAsc(com.hzltd.module.erplus.ai.dal.dataobject.mas.MasEventLogDO::getId));
     }
 }

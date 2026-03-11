@@ -27,6 +27,7 @@ import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -67,11 +68,18 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
         SellPlatformDO sellPlatform = sellPlatformService.getSellPlatform(request.getPlatformId());
         CrossPlatformEnum crossPlatform = CrossPlatformEnum.of(sellPlatform.getCode());
         boolean hasNext = false;
-        List<String> orderIds = null;
+        List<String> orderIds = Lists.newArrayList();
         if (CollectionUtils.isNotEmpty(request.getOrderIds())) {
             List<CrossOrderDO> orders = crossOrderMapper.selectByIds(request.getOrderIds());
-            orderIds = CollectionUtils.isNotEmpty(orders) ? orders.stream().map(CrossOrderDO::getPlatformOrderId).toList() : Collections.emptyList();
+            if (CollectionUtils.isNotEmpty(orders)) {
+                orderIds.addAll(orders.stream().map(CrossOrderDO::getPlatformOrderId).toList());
+            }
+//            orderIds = CollectionUtils.isNotEmpty(orders) ? orders.stream().map(CrossOrderDO::getPlatformOrderId).toList() : Collections.emptyList();
         }
+        if (StringUtils.isNotEmpty(request.getPlatformOrderId())) {
+            orderIds.add(request.getPlatformOrderId());
+        }
+
         ApiRequest<GetOrdersRequest> apiRequest = new ApiRequest<GetOrdersRequest>()
                 .setCrossPlatform(crossPlatform)
                 .setShopIdInt(request.getShopId())

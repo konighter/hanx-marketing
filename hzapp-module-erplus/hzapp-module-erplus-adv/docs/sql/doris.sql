@@ -68,7 +68,7 @@ CREATE TABLE `ads_amazon_stream_sp_traffic` (
   `ad_id`           VARCHAR(32)      COMMENT '广告外部ID',
   `keyword_id`      VARCHAR(32)      COMMENT '关键词外部ID',
   `keyword_text`    VARCHAR(512)     COMMENT '关键词文本',
-  `match_type`      VARCHAR(16)      COMMENT '匹配类型',
+  `match_type`      VARCHAR(50)      COMMENT '匹配类型',
   `placement`       VARCHAR(128)     COMMENT '广告位',
   `currency`        VARCHAR(8)       COMMENT '币种',
   `marketplace_id`  VARCHAR(32)      COMMENT '市场ID',

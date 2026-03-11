@@ -3,10 +3,10 @@ package com.hzltd.module.erplus.ai.service.mas;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasAgentConfigDO;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSessionDO;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskHistoryDO;
-import com.hzltd.module.erplus.ai.mas.framework.agent.MasRole;
-import com.hzltd.module.erplus.ai.mas.framework.execution.MasContext;
-import com.hzltd.module.erplus.ai.mas.framework.execution.MasTask;
-import com.hzltd.module.erplus.ai.mas.framework.state.MasState;
+import com.hzltd.module.erplus.ai.masv0.framework.agent.MasRole;
+import com.hzltd.module.erplus.ai.masv0.framework.execution.MasContext;
+import com.hzltd.module.erplus.ai.masv0.framework.execution.MasTask;
+import com.hzltd.module.erplus.ai.masv0.framework.state.MasState;
 
 /**
  * MAS 持久化服务接口
@@ -52,4 +52,9 @@ public interface MasPersistenceService {
      * 获取指定会话的任务历史
      */
     java.util.List<MasTaskHistoryDO> getTaskHistoryList(String sessionId);
+
+    /**
+     * 获取指定会话的执行事件日志
+     */
+    java.util.List<com.hzltd.module.erplus.ai.dal.dataobject.mas.MasEventLogDO> getEventLogList(String sessionId);
 }

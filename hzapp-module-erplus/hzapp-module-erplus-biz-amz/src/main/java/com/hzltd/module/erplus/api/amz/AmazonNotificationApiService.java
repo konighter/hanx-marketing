@@ -66,7 +66,7 @@ public class AmazonNotificationApiService extends AbsAmzPlatformApiService {
      * 获取指定 notificationType 的 Subscription
      */
     public ApiResponse<AmzSubscriptionModel> getSubscription(ApiRequest<?> request, String notificationType) {
-        NotificationsApi notificationsApi = getNotificationApi(request);
+        NotificationsApi notificationsApi = getNotificationApiAuth(request);
         try {
             GetSubscriptionResponse response = notificationsApi.getSubscription(notificationType, notificationType);
             Subscription sub = response.getPayload();
@@ -90,7 +90,7 @@ public class AmazonNotificationApiService extends AbsAmzPlatformApiService {
      */
     public ApiResponse<?> createSubscription(ApiRequest<AmzSubscriptionModel> request) {
 
-        NotificationsApi notificationsApi = getNotificationApi(request);
+        NotificationsApi notificationsApi = getNotificationApiAuth(request);
 
         try {
             CreateSubscriptionRequest subscriptionRequest = new CreateSubscriptionRequest()

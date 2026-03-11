@@ -81,6 +81,8 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
 
         log.info("[handleOrderChange] orderId={}, sellerId={}, changeType={}, changeReason={}, skus={}",
                 amazonOrderId, sellerId, orderChangeType, changeReason, skuList);
+        //todo-- 内部同步订单
+
 
         // 发送渠道通知
         sendChannelNotify(vo, orderChange, changeReason, skuList);

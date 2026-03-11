@@ -1,17 +1,17 @@
 package com.hzltd.module.erplus.ai.service.mas;
 
-import com.hzltd.module.erplus.ai.mas.core.agent.ExecutorAgent;
-import com.hzltd.module.erplus.ai.mas.core.agent.ManagerAgent;
-import com.hzltd.module.erplus.ai.mas.core.agent.PmAgent;
-import com.hzltd.module.erplus.ai.mas.core.orchestrator.MasOrchestrator;
-import com.hzltd.module.erplus.ai.mas.framework.event.MasEventBus;
-import com.hzltd.module.erplus.ai.mas.framework.execution.MasTaskExecutor;
+import com.hzltd.module.erplus.ai.masv0.core.agent.ExecutorAgent;
+import com.hzltd.module.erplus.ai.masv0.core.agent.ManagerAgent;
+import com.hzltd.module.erplus.ai.masv0.core.agent.PmAgent;
+import com.hzltd.module.erplus.ai.masv0.core.orchestrator.MasOrchestrator;
+import com.hzltd.module.erplus.ai.masv0.framework.event.MasEventBus;
+import com.hzltd.module.erplus.ai.masv0.framework.execution.MasTaskExecutor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import com.hzltd.module.erplus.ai.mas.framework.state.MasState;
+import com.hzltd.module.erplus.ai.masv0.framework.state.MasState;
 
 import java.util.Map;
 import java.util.UUID;

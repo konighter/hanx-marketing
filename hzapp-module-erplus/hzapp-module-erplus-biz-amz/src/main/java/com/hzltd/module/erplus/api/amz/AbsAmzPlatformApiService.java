@@ -97,6 +97,15 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
                 .build();
     }
 
+    public LWAAuthorizationCredentials getLWAAuthorizationCredentialsScoped(AuthorizationModel authorizationModel, String... scope) {
+        return LWAAuthorizationCredentials.builder()
+                .clientId(authorizationModel.getAppKey())
+                .clientSecret(authorizationModel.getAppSecret())
+                .withScopes(scope)
+                .endpoint(this.getAuthEndpoint())
+                .build();
+    }
+
     //============== Api初始化 ==============
     public ListingsApi getListingsApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
@@ -147,6 +156,15 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     }
 
     public NotificationsApi getNotificationApi(ApiRequest<?> apiRequest) {
+        List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
+        return new NotificationsApi.Builder()
+                .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentialsScoped(this.getAuthorizationModel(apiRequest), "sellingpartnerapi::notifications"))
+                .lwaAccessTokenCache(this.getLocalTokenCache())
+                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .build();
+    }
+
+    public NotificationsApi getNotificationApiAuth(ApiRequest<?> apiRequest) {
         List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
         return new NotificationsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))

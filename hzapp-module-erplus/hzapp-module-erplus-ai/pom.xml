@@ -36,6 +36,19 @@
             <version>1.0.1</version>
         </dependency>
 
+        <!-- Google ADK Java SDK for Agent Runtime -->
+        <dependency>
+            <groupId>com.google.adk</groupId>
+            <artifactId>google-adk</artifactId>
+            <version>0.8.0</version>
+        </dependency>
+        <!-- Dev UI -->
+        <dependency>
+            <groupId>com.google.adk</groupId>
+            <artifactId>google-adk-dev</artifactId>
+            <version>0.8.0</version>
+        </dependency>
+
         <!-- DB -->
         <dependency>
             <groupId>com.hzltd</groupId>

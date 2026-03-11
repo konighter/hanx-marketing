@@ -29,7 +29,7 @@ public class AmzNotificationApiTest {
             LWAAuthorizationCredentials credentials = LWAAuthorizationCredentials.builder()
                     .clientId(clientId)
                     .clientSecret(clientSecret)
-                    .refreshToken(refreshToken)
+                    .withScopes("sellingpartnerapi::notifications")
                     .endpoint("https://api.amazon.com/auth/o2/token")
                     .build();
 
