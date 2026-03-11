@@ -14,6 +14,7 @@ public class GlobalSessionMemory {
     private final String sessionId;
     // Thread-safe map to store session-wide variables
     private final Map<String, Object> globalContext = new ConcurrentHashMap<>();
+    private final java.util.List<com.google.adk.events.Event> sessionEvents = java.util.Collections.synchronizedList(new java.util.ArrayList<>());
     private CollisionStrategy defaultStrategy = CollisionStrategy.OVERWRITE;
 
     public GlobalSessionMemory(String sessionId) {
@@ -59,6 +60,10 @@ public class GlobalSessionMemory {
 
     public Object get(String key) {
         return key != null ? globalContext.get(key) : null;
+    }
+
+    public java.util.List<com.google.adk.events.Event> getSessionEvents() {
+        return sessionEvents;
     }
 
     public boolean containsKey(String key) {

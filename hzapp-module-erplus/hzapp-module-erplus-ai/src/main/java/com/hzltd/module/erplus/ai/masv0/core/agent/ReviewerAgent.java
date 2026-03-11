@@ -5,7 +5,7 @@ import com.hzltd.module.erplus.ai.masv0.framework.execution.MasContext;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("ReviewerAgentV0")
 public class ReviewerAgent extends BaseMasAgent {
 
     public ReviewerAgent(ChatClient.Builder chatClientBuilder) {

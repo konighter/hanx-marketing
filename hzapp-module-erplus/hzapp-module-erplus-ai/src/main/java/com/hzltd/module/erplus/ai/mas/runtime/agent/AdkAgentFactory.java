@@ -26,11 +26,15 @@ public class AdkAgentFactory {
 
     private final UnifiedToolRegistry toolRegistry;
     private final MasEventLogService eventLogService;
+    private final com.hzltd.module.erplus.ai.mas.runtime.memory.GraphMemoryService graphMemoryService;
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    public AdkAgentFactory(UnifiedToolRegistry toolRegistry, MasEventLogService eventLogService) {
+    public AdkAgentFactory(UnifiedToolRegistry toolRegistry, 
+                           MasEventLogService eventLogService,
+                           com.hzltd.module.erplus.ai.mas.runtime.memory.GraphMemoryService graphMemoryService) {
         this.toolRegistry = toolRegistry;
         this.eventLogService = eventLogService;
+        this.graphMemoryService = graphMemoryService;
     }
 
     /**
@@ -54,7 +58,7 @@ public class AdkAgentFactory {
                 .build();
 
         // 4. Wrap it in our framework structure
-        return new DynamicAdkAgent(configDO.getRoleCode(), configDO.getSystemPrompt(), adkNativeAgent, eventLogService);
+        return new DynamicAdkAgent(configDO.getRoleCode(), configDO.getSystemPrompt(), adkNativeAgent, eventLogService, graphMemoryService);
     }
 
     private BaseLlm initializeLanguageModel(String extConfigJson) {

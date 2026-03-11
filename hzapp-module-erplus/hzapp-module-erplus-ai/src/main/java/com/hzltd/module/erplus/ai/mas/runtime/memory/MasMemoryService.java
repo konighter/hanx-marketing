@@ -26,6 +26,10 @@ public class MasMemoryService {
     // In-memory cache for active sessions: sessionId -> GlobalSessionMemory
     private final Map<String, GlobalSessionMemory> activeSessions = new ConcurrentHashMap<>();
 
+    public java.util.Set<String> getActiveSessionIds() {
+        return activeSessions.keySet();
+    }
+
     /**
      * Retrieves or initializes the global memory for a session.
      */

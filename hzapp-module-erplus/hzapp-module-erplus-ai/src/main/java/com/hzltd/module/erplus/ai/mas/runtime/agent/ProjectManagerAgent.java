@@ -25,8 +25,9 @@ public class ProjectManagerAgent extends DynamicAdkAgent {
         "and synthesize the final result.";
 
     @Autowired
-    public ProjectManagerAgent(MasEventLogService eventLogService) {
-        super(ROLE_CODE, "Analyze the request and create a multi-agent plan.", buildNativeAgent(), eventLogService);
+    public ProjectManagerAgent(MasEventLogService eventLogService, 
+                               com.hzltd.module.erplus.ai.mas.runtime.memory.GraphMemoryService graphMemoryService) {
+        super(ROLE_CODE, "Analyze the request and create a multi-agent plan.", buildNativeAgent(), eventLogService, graphMemoryService);
         log.info("Initialized default system agent: {}", ROLE_CODE);
     }
 

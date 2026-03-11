@@ -4,31 +4,43 @@ import com.google.adk.agents.LlmAgent;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.AgentMessage;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
-import com.google.adk.agents.RunConfig;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.GraphMemoryService;
+import com.google.adk.runner.Runner;
 import com.google.genai.types.Content;
 import com.google.genai.types.Part;
-import com.google.adk.agents.InvocationContext;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * Wrapper class bridging a Google ADK native Agent with our MAS framework.
  * This class translates instructions and context, delegating the actual 
  * model inference and tool calling to the ADK `LlmAgent`.
+ * 
+ * Refactored to delegate memory management to ADK + GraphMemoryService.
  */
 @Slf4j
 public class DynamicAdkAgent implements BaseAgent {
 
-    private final String roleName;
+    private final String agentRole;
     private final String instruction;
-    private final LlmAgent adkNativeAgent;
     private final MasEventLogService eventLogService;
+    private final Runner runner;
+    private static final String APP_NAME = "MAS-Framework";
 
-    public DynamicAdkAgent(String roleName, String instruction, LlmAgent adkNativeAgent, MasEventLogService eventLogService) {
-        this.roleName = roleName;
+    public DynamicAdkAgent(String agentRole, 
+                           String instruction, 
+                           LlmAgent adkAgent, 
+                           MasEventLogService eventLogService,
+                           GraphMemoryService graphMemoryService) {
+        this.agentRole = agentRole;
         this.instruction = instruction;
-        this.adkNativeAgent = adkNativeAgent;
         this.eventLogService = eventLogService;
+        
+        // Initialize the runner using the customized GraphMemoryService
+        this.runner = Runner.builder()
+                .agent(adkAgent)
+                .appName(APP_NAME)
+                .memoryService(graphMemoryService)
+                .build();
     }
 
     @Override
@@ -38,90 +50,67 @@ public class DynamicAdkAgent implements BaseAgent {
 
     @Override
     public String getRoleName() {
-        return roleName;
+        return agentRole;
     }
 
     @Override
     public void onMessage(AgentMessage message) {
         log.info("[{}] Received message from [{}] (trace: {}): {}", 
-                roleName, message.getSenderRole(), message.getTraceId(), message.getPayload());
-        // Custom asynchronous A2A processing logic could be added here
+                agentRole, message.getSenderRole(), message.getTraceId(), message.getPayload());
     }
 
     @Override
     public String execute(LoopMemory memory) {
-        log.info("[{}] Executing ADK Agent for loop: {}", roleName, memory.getLoopId());
+        log.info("[{}] Executing ADK Agent for loop: {}", agentRole, memory.getLoopId());
         
-        // 1. Prepare contextual instruction by extracting globals or previous loop results
-        StringBuilder contextualPrompt = new StringBuilder();
-        contextualPrompt.append("Task Instruction:\n").append(instruction).append("\n\n");
-        
-        // Optional: Expose loop memory keys to the prompt if explicitly required
-        if (memory.get("common_goal") != null) {
-            contextualPrompt.append("Global Goal Context: ").append(memory.get("common_goal")).append("\n\n");
-        }
-        
-        // This supports the Coordinator/Dispatcher pattern by allowing a parent agent 
-        // to pass specific runtime instructions.
-        if (memory.get("taskInstruction") != null) {
-            contextualPrompt.append("Specific Assigned Task: ").append(memory.get("taskInstruction")).append("\n\n");
-        }
+        // 1. Determine the core instruction for this specific execution.
+        // We no longer manually append global context (like common_goal) here; 
+        // that's now handled by ADK + GraphMemoryService's search capability.
+        String dynamicTask = (String) memory.get("taskInstruction");
+        String finalPrompt = (dynamicTask != null) ? dynamicTask : instruction;
 
         try {
-            // 2. Delegate to Google ADK Agent using InvocationContext
-            // For now, we stub out external services and create a simple RunConfig context
-            RunConfig config = RunConfig.builder().build();
-            Content content = Content.builder()
-                    .role("user")
-                    .parts(List.of(
-                            Part.builder()
-                                    .text(contextualPrompt.toString())
-                                    .build()
-                    ))
-                    .build();
-                    
-            InvocationContext invContext = InvocationContext.builder()
-                    .invocationId("session-" + memory.getLoopId())
-                    .agent(adkNativeAgent)
-                    .userContent(content)
-                    .runConfig(config)
-                    .build();
-            
+            // 2. Delegate to Google ADK Agent via the Runner
+            Content content = Content.fromParts(Part.fromText(finalPrompt));
+            String sessionId = memory.getSessionId(); 
+
+            // Use sessionId as the ADK userId to ensure that GraphMemoryService searches 
+            // the context belonging to this specific MAS run (Macro-Session).
+            String adkUserId = sessionId;
+
+            // Ensure session exists in the memory service
+            runner.sessionService().createSession(adkUserId, sessionId).blockingGet();
+
             if (eventLogService != null) {
-                eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_START", roleName);
+                eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_START", agentRole);
             }
 
-            // ADK 0.8.0 runAsync returns RxJava flowable of events. 
-            // We subscribe to capture granular events (like tool calls) before blocking for completion.
-            StringBuilder finalContent = new StringBuilder();
-            adkNativeAgent.runAsync(invContext).blockingIterable().forEach(event -> {
+            StringBuilder accumulatedResponse = new StringBuilder();
+            
+            // runAsync will automatically invoke GraphMemoryService.searchMemory
+            runner.runAsync(adkUserId, sessionId, content).blockingIterable().forEach(event -> {
                 if (eventLogService != null) {
-                    // Log specific event types if needed (e.g. ToolInvocation)
-                    String eventTrigger = event.getClass().getSimpleName();
-                    eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_EVENT:" + eventTrigger, event.stringifyContent());
+                    eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_EVENT", event.stringifyContent());
                 }
-                // Typically the content is accumulated or captured in the last event
                 String snippet = event.stringifyContent();
-                if (snippet != null) finalContent.append(snippet);
+                if (snippet != null) accumulatedResponse.append(snippet);
             });
             
-            String textResult = finalContent.toString();
-            
-            log.debug("[{}] ADK Agent returned execution result", roleName);
+            String textResult = accumulatedResponse.toString();
+            log.debug("[{}] ADK Agent returned execution result (length: {})", agentRole, textResult.length());
             
             if (eventLogService != null) {
-                eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_DONE", roleName);
+                eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_DONE", agentRole);
             }
 
-            // 3. Persist output into memory for downstream nodes
-            memory.put(roleName + "_output", textResult);
-            
+            // 3. Persist output back into MAS memory
+            memory.put(agentRole + "_output", textResult);
             return textResult;
 
         } catch (Exception e) {
-            log.error("[{}] ADK Agent execution failed for loop {}", roleName, memory.getLoopId(), e);
+            log.error("[{}] ADK Agent execution failed for loop {}", agentRole, memory.getLoopId(), e);
             memory.put("error", e.getMessage());
-            throw new RuntimeException("Agent execution failed wrapping ADK", e);
+            throw new RuntimeException("Agent execution failed delegating to ADK", e);
         }
     }
 }

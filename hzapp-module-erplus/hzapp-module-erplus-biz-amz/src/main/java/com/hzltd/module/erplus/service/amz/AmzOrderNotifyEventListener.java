@@ -56,7 +56,7 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
     private void handleOrderChange(String message) {
         OrderChangeNotificationVO vo = JSONUtil.toBean(message, OrderChangeNotificationVO.class);
         if (vo.getPayload() == null || vo.getPayload().getOrderChangeNotification() == null) {
-            log.warn("[handleOrderChange] Payload 或 OrderChangeNotification 为空");
+            log.warn("[handleOrderChange] Payload 或 OrderChangeNotification 为空, message={}", message);
             return;
         }
 
@@ -127,7 +127,7 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
 
     @Override
     protected String getListenerName() {
-        return "SpApiNotify";
+        return "SpOrderNotify";
     }
 
     // ==================== 内部 VO ====================
