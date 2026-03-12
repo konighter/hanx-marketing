@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -84,5 +85,12 @@ public class CustomAgentLoaderService {
             log.warn("Cannot reload agent {}: Config not found or inactive.", roleCode);
             agentRegistry.remove(roleCode); // Remove if deactivated
         }
+    }
+
+    /**
+     * Returns the set of all registered agent role codes.
+     */
+    public Set<String> getAvailableRoles() {
+        return agentRegistry.keySet();
     }
 }

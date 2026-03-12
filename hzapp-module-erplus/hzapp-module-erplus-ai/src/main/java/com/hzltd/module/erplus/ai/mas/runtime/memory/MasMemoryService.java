@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
@@ -43,18 +44,29 @@ public class MasMemoryService {
     }
 
     /**
-     * Persists all current memory state to the database and checks for pruning.
+     * Persists only the modified (dirty) keys to the database, then clears the dirty set.
+     * This replaces the previous full-snapshot persistence approach for efficiency.
      */
     public void saveToDb(String sessionId) {
         GlobalSessionMemory memory = activeSessions.get(sessionId);
         if (memory == null) return;
 
-        Map<String, Object> snapshot = memory.snapshot();
-        for (Map.Entry<String, Object> entry : snapshot.entrySet()) {
-            saveVariable(sessionId, entry.getKey(), entry.getValue());
+        Set<String> dirty = memory.getDirtyKeys();
+        if (dirty.isEmpty()) {
+            log.debug("[Memory] No dirty keys for session {}. Skipping DB flush.", sessionId);
+            return;
         }
-        
-        // Phase 7: Context Pruning
+
+        log.info("[Memory] Flushing {} dirty keys for session {}", dirty.size(), sessionId);
+        for (String key : dirty) {
+            Object value = memory.get(key);
+            if (value != null) {
+                saveVariable(sessionId, key, value);
+            }
+        }
+        memory.clearDirtyKeys();
+
+        // Context Pruning
         pruneContext(sessionId);
     }
 

@@ -5,7 +5,7 @@ import com.google.adk.agents.LlmAgent;
 import com.google.adk.models.BaseLlm;
 import com.google.adk.models.Gemini;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.PromptTemplateFactory;
 import com.hzltd.module.erplus.ai.mas.runtime.orchestration.MasOrchestrationResult;
 import lombok.extern.slf4j.Slf4j;
@@ -64,7 +64,7 @@ public class ReviewerAgent extends DynamicAdkAgent {
                 .build();
     }
     
-    public MasOrchestrationResult review(LoopMemory memory, String issue) {
+    public MasOrchestrationResult review(NodeMemory memory, String issue) {
         log.info("[ReviewerAgent] Starting review for issue: {}", issue);
         
         String userGoal = memory.get("userGoal") != null ? memory.get("userGoal").toString() : "Unknown goal";

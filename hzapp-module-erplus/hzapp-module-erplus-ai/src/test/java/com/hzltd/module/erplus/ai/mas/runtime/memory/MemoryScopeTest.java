@@ -27,8 +27,8 @@ public class MemoryScopeTest {
             final int loopIndex = i;
             executor.submit(() -> {
                 try {
-                    // Each loop gets its own LocalLoopMemory backed by the common GlobalSessionMemory
-                    LocalLoopMemory localMemory = new LocalLoopMemory("loop-" + loopIndex, globalMemory);
+                    // Each loop gets its own LocalNodeMemory backed by the common GlobalSessionMemory
+                    LocalNodeMemory localMemory = new LocalNodeMemory("loop-" + loopIndex, globalMemory);
 
                     // Verify can read global
                     assertEquals("Generate Product Assets", localMemory.get("common_goal"));

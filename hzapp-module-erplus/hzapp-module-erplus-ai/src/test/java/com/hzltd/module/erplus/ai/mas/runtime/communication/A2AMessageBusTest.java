@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.ai.mas.runtime.communication;
 
 import com.hzltd.module.erplus.ai.mas.runtime.agent.BaseAgent;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CountDownLatch;
@@ -42,7 +42,7 @@ public class A2AMessageBusTest {
         }
 
         @Override
-        public String execute(LoopMemory memory) {
+        public String execute(NodeMemory memory) {
             return "ok";
         }
     }

@@ -1,10 +1,10 @@
-package com.hzltd.module.erplus.ai.mas.runtime.loop;
+package com.hzltd.module.erplus.ai.mas.runtime.execution;
 
 import lombok.Builder;
 import lombok.Data;
 
 /**
- * Configuration for retrying failed agent loop operations.
+ * Configuration for retrying failed node execution operations.
  */
 @Data
 @Builder

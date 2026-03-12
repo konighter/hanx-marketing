@@ -43,4 +43,14 @@ public interface MasTaskService {
      * 将任务设置为 RESUME 状态，并设置下次执行时间
      */
     void resumeTask(Long taskId, java.time.LocalDateTime nextTime, String outputData);
+
+    /**
+     * 审核通过：REVIEW_REQUIRED → SUCCESS
+     */
+    void approveReview(Long taskId);
+
+    /**
+     * 审核拒绝：REVIEW_REQUIRED → FAILED
+     */
+    void rejectReview(Long taskId, String reason);
 }

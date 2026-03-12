@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.ai.mas.runtime.agent;
 
 import com.google.adk.tools.BaseTool;
 import com.google.adk.tools.FunctionTool;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LocalLoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.LocalNodeMemory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -16,9 +16,9 @@ import java.lang.reflect.Method;
 public class SubAgentToolWrapper {
 
     private final BaseAgent delegateAgent;
-    private final LocalLoopMemory parentMemory;
+    private final LocalNodeMemory parentMemory;
 
-    public SubAgentToolWrapper(BaseAgent delegateAgent, LocalLoopMemory parentMemory) {
+    public SubAgentToolWrapper(BaseAgent delegateAgent, LocalNodeMemory parentMemory) {
         this.delegateAgent = delegateAgent;
         this.parentMemory = parentMemory;
     }
@@ -32,8 +32,8 @@ public class SubAgentToolWrapper {
                  subTaskInstruction, delegateAgent.getRoleName());
                  
         // Create an isolated memory space for the sub-agent
-        LocalLoopMemory childMemory = new LocalLoopMemory(
-                parentMemory.getLoopId() + "_sub_" + delegateAgent.getRoleName(), 
+        LocalNodeMemory childMemory = new LocalNodeMemory(
+                parentMemory.getNodeId() + "_sub_" + delegateAgent.getRoleName(), 
                 parentMemory.getGlobalSessionMemory());
                 
         // Instead of overriding the agent's core instruction, we pass the contextual task

@@ -1,14 +1,13 @@
 package com.hzltd.module.erplus.ai.mas.runtime.loop;
 
 import com.hzltd.module.erplus.ai.mas.runtime.agent.BaseAgent;
-import com.hzltd.module.erplus.ai.mas.runtime.communication.A2AMessageBus;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.AgentMessage;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.AdkNodeRunner;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.DagExecutionEngine;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.GraphNode;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.GlobalSessionMemory;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import org.junit.jupiter.api.Test;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -40,7 +39,7 @@ public class GraphExecutionTest {
         }
 
         @Override
-        public String execute(LoopMemory memory) {
+        public String execute(NodeMemory memory) {
             try {
                 // Simulate work
                 Thread.sleep(sleepMs);
@@ -57,23 +56,24 @@ public class GraphExecutionTest {
     public void testGraphExecution() {
         GlobalSessionMemory globalMemory = new GlobalSessionMemory("test-graph-session");
 
-        LoopGraphManager graphManager = new LoopGraphManager(globalMemory, null, null, null, new A2AMessageBus());
+        DagExecutionEngine graphManager = new DagExecutionEngine(globalMemory, null, null, null, 
+            java.util.concurrent.Executors.newFixedThreadPool(4), new AdkNodeRunner());
 
         // A is independent
-        GraphNode nodeA = new GraphNode("loopA", new DummyAgent("AgentA", 200));
+        GraphNode nodeA = new GraphNode("nodeA", new DummyAgent("AgentA", 200));
         
         // B depends on A
-        GraphNode nodeB = new GraphNode("loopB", new DummyAgent("AgentB", 500));
-        nodeB.addDependency("loopA");
+        GraphNode nodeB = new GraphNode("nodeB", new DummyAgent("AgentB", 500));
+        nodeB.addDependency("nodeA");
         
         // C depends on A
-        GraphNode nodeC = new GraphNode("loopC", new DummyAgent("AgentC", 300));
-        nodeC.addDependency("loopA");
+        GraphNode nodeC = new GraphNode("nodeC", new DummyAgent("AgentC", 300));
+        nodeC.addDependency("nodeA");
 
         // D depends on B and C
-        GraphNode nodeD = new GraphNode("loopD", new DummyAgent("AgentD", 100));
-        nodeD.addDependency("loopB");
-        nodeD.addDependency("loopC");
+        GraphNode nodeD = new GraphNode("nodeD", new DummyAgent("AgentD", 100));
+        nodeD.addDependency("nodeB");
+        nodeD.addDependency("nodeC");
 
         graphManager.addNode(nodeA);
         graphManager.addNode(nodeB);

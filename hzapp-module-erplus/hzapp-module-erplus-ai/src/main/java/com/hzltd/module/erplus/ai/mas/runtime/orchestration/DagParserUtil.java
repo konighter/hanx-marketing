@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.ai.mas.runtime.orchestration;
 
 import com.hzltd.module.erplus.ai.mas.runtime.agent.BaseAgent;
 import com.hzltd.module.erplus.ai.mas.runtime.agent.CustomAgentLoaderService;
-import com.hzltd.module.erplus.ai.mas.runtime.loop.GraphNode;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.GraphNode;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.schema.DagGenerationPlan;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.schema.DagPlanNode;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Slf4j
@@ -43,15 +44,25 @@ public class DagParserUtil {
 
             GraphNode node = new GraphNode(planNode.getId(), agent);
             
-            // Setup dependencies pointing to loopIds from other nodes
+            // Setup dependencies
             if (planNode.getDependsOn() != null) {
                 for (String dependencyId : planNode.getDependsOn()) {
                      node.addDependency(dependencyId);
                 }
             }
 
+            // Setup node type (REACT for tool-use nodes)
+            if ("REACT".equalsIgnoreCase(planNode.getNodeType())) {
+                node.setNodeType(GraphNode.NodeType.REACT);
+                if (planNode.getToolSet() != null && !planNode.getToolSet().isEmpty()) {
+                    node.setToolSet(new HashSet<>(planNode.getToolSet()));
+                }
+                log.debug("[DagParserUtil] Node {} configured as REACT with tools: {}", node.getNodeId(), node.getToolSet());
+            }
+
             graphNodes.add(node);
-            log.debug("[DagParserUtil] Created GraphNode {} with Agent {} requires {}", node.getLoopId(), role, node.getRequires());
+            log.debug("[DagParserUtil] Created GraphNode {} with Agent {} type={} requires {}", 
+                    node.getNodeId(), role, node.getNodeType(), node.getRequires());
         }
 
         return graphNodes;

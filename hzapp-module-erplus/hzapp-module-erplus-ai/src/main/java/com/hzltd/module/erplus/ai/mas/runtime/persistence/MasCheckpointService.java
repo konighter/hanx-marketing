@@ -3,7 +3,7 @@ package com.hzltd.module.erplus.ai.mas.runtime.persistence;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskHistoryDO;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasTaskHistoryMapper;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -35,7 +35,7 @@ public class MasCheckpointService {
      */
     public void saveCheckpoint(String sessionId, String taskId, String role, 
                               String prompt, String result, String status, 
-                              LoopMemory memory, long executionTime) {
+                              NodeMemory memory, long executionTime) {
         try {
             // Take a snapshot of the memory
             Map<String, Object> memorySnapshot = memory.asMap();

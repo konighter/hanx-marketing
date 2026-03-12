@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.ai.mas.runtime.loop;
+package com.hzltd.module.erplus.ai.mas.runtime.execution;
 
 import com.hzltd.module.erplus.ai.mas.runtime.agent.BaseAgent;
 import lombok.Data;
@@ -7,16 +7,37 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Represents a node in the execution graph.
+ * Represents a node in the execution graph (DAG).
  */
 @Data
 public class GraphNode {
-    private final String loopId;
+    /**
+     * Node execution type.
+     */
+    public enum NodeType {
+        /** Simple single-call execution (AdkNodeRunner). */
+        SIMPLE,
+        /** ReAct loop execution with tool use (ReActNodeRunner). */
+        REACT
+    }
+
+    private final String nodeId;
     private final BaseAgent agent;
     
     // Dependencies that must complete before this node can run
     private final Set<String> requires = new HashSet<>();
     
+    /**
+     * Execution type: SIMPLE (default) or REACT (with tool-use loop).
+     */
+    private NodeType nodeType = NodeType.SIMPLE;
+
+    /**
+     * Set of tool names available to this node when nodeType=REACT.
+     * If null or empty, all registered tools are available.
+     */
+    private Set<String> toolSet;
+
     /**
      * Optional: The role that must review this node's output.
      */
@@ -24,23 +45,19 @@ public class GraphNode {
     private long completionTimeoutMs = 300000; // Default 5 minutes
     private RetryPolicy retryPolicy;
 
-    // --- Graph Structure & Hierarchy ---
-    private NodeType type = NodeType.SINGLE;
-    private String parentId; // For GroupNode support
-
     // --- Execution Tracking ---
     private NodeStatus status = NodeStatus.PENDING;
     private String result;
     private long startTime;
     private long endTime;
 
-    public GraphNode(String loopId, BaseAgent agent) {
-        this.loopId = loopId;
+    public GraphNode(String nodeId, BaseAgent agent) {
+        this.nodeId = nodeId;
         this.agent = agent;
     }
 
-    public void addDependency(String requiredLoopId) {
-        this.requires.add(requiredLoopId);
+    public void addDependency(String requiredNodeId) {
+        this.requires.add(requiredNodeId);
     }
 
     /**
@@ -53,10 +70,5 @@ public class GraphNode {
         SUCCESS,
         FAILED,
         SKIPPED
-    }
-
-    public enum NodeType {
-        SINGLE,
-        GROUP
     }
 }

@@ -147,7 +147,7 @@ public class WorkflowOrchestratorIntegrationTest {
                 .build();
 
         // 3. Setup real PlannerAgent using the new testable constructor
-        PlannerAgent plannerAgent = new PlannerAgent(nativePlannerAgent, eventLogService, promptFactory, objectMapper, graphMemoryService);
+        PlannerAgent plannerAgent = new PlannerAgent(nativePlannerAgent, eventLogService, promptFactory, objectMapper, graphMemoryService, null, null);
 
         // 4. Setup real Loader stack with mocked Mapper
         com.hzltd.module.erplus.ai.dal.mysql.mas.MasAgentConfigMapper mockConfigMapper = Mockito.mock(com.hzltd.module.erplus.ai.dal.mysql.mas.MasAgentConfigMapper.class);

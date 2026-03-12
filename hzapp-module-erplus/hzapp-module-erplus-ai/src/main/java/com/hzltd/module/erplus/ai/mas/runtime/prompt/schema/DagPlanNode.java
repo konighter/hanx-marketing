@@ -31,4 +31,16 @@ public class DagPlanNode {
      * List of node IDs that must successfully complete before this node starts.
      */
     private List<String> dependsOn;
+
+    /**
+     * Execution type: "SIMPLE" (default) or "REACT" (tool-use loop).
+     * If null, defaults to SIMPLE.
+     */
+    private String nodeType;
+
+    /**
+     * Optional set of tool names available for REACT nodes.
+     * If null or empty, all registered tools are available.
+     */
+    private List<String> toolSet;
 }

@@ -1,19 +1,20 @@
 package com.hzltd.module.erplus.ai.mas.runtime.loop;
 
 import com.hzltd.module.erplus.ai.mas.runtime.agent.BaseAgent;
-import com.hzltd.module.erplus.ai.mas.runtime.communication.A2AMessageBus;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.AgentMessage;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.AdkNodeRunner;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.GraphNode;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.NodeExecutor;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.RetryPolicy;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.GlobalSessionMemory;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.MasMemoryService;
 import com.hzltd.module.erplus.ai.mas.runtime.persistence.MasCheckpointService;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -51,7 +52,7 @@ class MasPerformanceTest {
                 @Override public String getRoleName() { return "WorkerAgent"; }
                 @Override public void onMessage(AgentMessage message) {}
                 @Override public String getInstruction() { return "Do work " + index; }
-                @Override public String execute(LoopMemory memory) {
+                @Override public String execute(NodeMemory memory) {
                     try {
                         Thread.sleep(100); 
                     } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
@@ -64,8 +65,8 @@ class MasPerformanceTest {
             GraphNode node = new GraphNode("node-" + i, dummyAgent);
             nodes.add(node);
 
-            AgentLoopRunner runner = new AgentLoopRunner(
-                node, sessionMemory, checkpointService, memoryService, eventLogService
+            NodeExecutor runner = new NodeExecutor(
+                node, sessionMemory, checkpointService, memoryService, eventLogService, new AdkNodeRunner()
             );
             futures.add(concurrentPool.submit(runner));
         }
@@ -95,7 +96,7 @@ class MasPerformanceTest {
             @Override public String getRoleName() { return "FailureAgent"; }
             @Override public void onMessage(AgentMessage message) {}
             @Override public String getInstruction() { return "Retry task"; }
-            @Override public String execute(LoopMemory memory) {
+            @Override public String execute(NodeMemory memory) {
                 if (attemptCount.incrementAndGet() < 3) {
                     throw new RuntimeException("Transient Failure");
                 }
@@ -104,10 +105,10 @@ class MasPerformanceTest {
         };
 
         GraphNode node = new GraphNode("retry-node", failingAgent);
-        node.setRetryPolicy(new RetryPolicy(3, 50, 2.0, 500));
+        node.setRetryPolicy(RetryPolicy.builder().maxAttempts(3).initialBackoffMs(50).backoffMultiplier(2.0).maxBackoffMs(500).build());
 
-        AgentLoopRunner runner = new AgentLoopRunner(
-            node, sessionMemory, checkpointService, memoryService, null
+        NodeExecutor runner = new NodeExecutor(
+            node, sessionMemory, checkpointService, memoryService, null, new AdkNodeRunner()
         );
 
         long start = System.currentTimeMillis();

@@ -3,20 +3,21 @@ package com.hzltd.module.erplus.ai.mas.runtime.orchestration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.module.erplus.ai.mas.runtime.agent.PlannerAgent;
 import com.hzltd.module.erplus.ai.mas.runtime.agent.ReviewerAgent;
-import com.hzltd.module.erplus.ai.mas.runtime.communication.A2AMessageBus;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.NodeRunner;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.GlobalSessionMemory;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LocalLoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.LocalNodeMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.MasMemoryService;
 import com.hzltd.module.erplus.ai.mas.runtime.persistence.MasCheckpointService;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.schema.DagGenerationPlan;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -37,8 +38,9 @@ public class WorkflowOrchestratorTest {
     @Mock
     private MasEventLogService eventLogService;
     @Mock
-    private A2AMessageBus messageBus;
+    private NodeRunner nodeRunner;
 
+    private ExecutorService executorService;
     private ObjectMapper objectMapper = new ObjectMapper();
 
     private WorkflowOrchestrator orchestrator;
@@ -46,6 +48,7 @@ public class WorkflowOrchestratorTest {
     @BeforeEach
     public void setup() {
         MockitoAnnotations.openMocks(this);
+        executorService = Executors.newFixedThreadPool(4);
         orchestrator = new WorkflowOrchestrator(
                 plannerAgent,
                 reviewerAgent,
@@ -53,7 +56,9 @@ public class WorkflowOrchestratorTest {
                 memoryService,
                 checkpointService,
                 eventLogService,
-                messageBus,
+                executorService,
+                nodeRunner,
+                null,
                 objectMapper
         );
     }
@@ -70,11 +75,11 @@ public class WorkflowOrchestratorTest {
                 .build();
                 
         String jsonOutput = objectMapper.writeValueAsString(donePlan);
-        when(plannerAgent.execute(any(LocalLoopMemory.class))).thenReturn(jsonOutput);
+        when(plannerAgent.execute(any(LocalNodeMemory.class))).thenReturn(jsonOutput);
 
         orchestrator.executeMacroLoop("test-session", "Test Goal");
 
-        verify(plannerAgent, times(1)).execute(any(LocalLoopMemory.class));
+        verify(plannerAgent, times(1)).execute(any(LocalNodeMemory.class));
         verify(dagParserUtil, never()).parse(any());
     }
 
@@ -95,7 +100,7 @@ public class WorkflowOrchestratorTest {
                 .nodes(new ArrayList<>())
                 .build();
 
-        when(plannerAgent.execute(any(LocalLoopMemory.class)))
+        when(plannerAgent.execute(any(LocalNodeMemory.class)))
                 .thenReturn(objectMapper.writeValueAsString(progressPlan))
                 .thenReturn(objectMapper.writeValueAsString(donePlan));
 
@@ -104,6 +109,6 @@ public class WorkflowOrchestratorTest {
         
         orchestrator.executeMacroLoop("test-session-2", "MultiPhase Goal");
 
-        verify(plannerAgent, times(1)).execute(any(LocalLoopMemory.class));
+        verify(plannerAgent, times(1)).execute(any(LocalNodeMemory.class));
     }
 }

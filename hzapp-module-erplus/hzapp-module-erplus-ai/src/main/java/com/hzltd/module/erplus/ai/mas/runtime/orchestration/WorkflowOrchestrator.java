@@ -3,22 +3,25 @@ package com.hzltd.module.erplus.ai.mas.runtime.orchestration;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.module.erplus.ai.mas.runtime.agent.PlannerAgent;
 import com.hzltd.module.erplus.ai.mas.runtime.agent.ReviewerAgent;
-import com.hzltd.module.erplus.ai.mas.runtime.communication.A2AMessageBus;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
-import com.hzltd.module.erplus.ai.mas.runtime.loop.GraphNode;
-import com.hzltd.module.erplus.ai.mas.runtime.loop.LoopGraphManager;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.DagExecutionEngine;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.DagExecutionResult;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.GraphNode;
+import com.hzltd.module.erplus.ai.mas.runtime.execution.NodeRunner;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.GlobalSessionMemory;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LocalLoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.LocalNodeMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.MasMemoryService;
 import com.hzltd.module.erplus.ai.mas.runtime.persistence.MasCheckpointService;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.schema.DagGenerationPlan;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
 
 /**
  * Orchestrator implementing the "Multiple Dispatch Pattern" for dynamic DAG generation.
@@ -34,7 +37,9 @@ public class WorkflowOrchestrator {
     private final MasMemoryService memoryService;
     private final MasCheckpointService checkpointService;
     private final MasEventLogService eventLogService;
-    private final A2AMessageBus messageBus;
+    private final ExecutorService masNodeExecutorPool;
+    private final NodeRunner nodeRunner;
+    private final NodeRunner reactNodeRunner;
     private final ObjectMapper objectMapper;
 
     private static final int MAX_PHASES = 50;
@@ -46,7 +51,9 @@ public class WorkflowOrchestrator {
                                  MasMemoryService memoryService,
                                  MasCheckpointService checkpointService,
                                  MasEventLogService eventLogService,
-                                 A2AMessageBus messageBus,
+                                 @Qualifier("masNodeExecutorPool") ExecutorService masNodeExecutorPool,
+                                 NodeRunner nodeRunner,
+                                 @Autowired(required = false) @Qualifier("reactNodeRunner") NodeRunner reactNodeRunner,
                                  ObjectMapper objectMapper) {
         this.plannerAgent = plannerAgent;
         this.reviewerAgent = reviewerAgent;
@@ -54,7 +61,9 @@ public class WorkflowOrchestrator {
         this.memoryService = memoryService;
         this.checkpointService = checkpointService;
         this.eventLogService = eventLogService;
-        this.messageBus = messageBus;
+        this.masNodeExecutorPool = masNodeExecutorPool;
+        this.nodeRunner = nodeRunner;
+        this.reactNodeRunner = reactNodeRunner;
         this.objectMapper = objectMapper;
     }
 
@@ -64,20 +73,31 @@ public class WorkflowOrchestrator {
         GlobalSessionMemory sessionMemory = memoryService.getSessionMemory(sessionId);
         sessionMemory.put("userGoal", userGoal);
         
+        // Restore phaseCount from session (supports RESUME recovery)
         int phaseCount = 1;
+        Object savedPhaseCount = sessionMemory.get("_phaseCount");
+        if (savedPhaseCount != null) {
+            try {
+                phaseCount = Integer.parseInt(savedPhaseCount.toString());
+                log.info("[WorkflowOrchestrator] Restored phaseCount={} from session", phaseCount);
+            } catch (NumberFormatException e) {
+                log.warn("[WorkflowOrchestrator] Invalid saved phaseCount: {}, resetting to 1", savedPhaseCount);
+            }
+        }
+
         while (true) {
             log.info("[WorkflowOrchestrator] ======== BEGIN PHASE {} ========", phaseCount);
             
             // Safety cap: Delegate to Reviewer for a final decision instead of crashing
             if (phaseCount > MAX_PHASES) {
                  log.warn("[WorkflowOrchestrator] Reached safety iteration limit ({}). Calling Reviewer for final verdict.", MAX_PHASES);
-                 return reviewerAgent.review(new LocalLoopMemory("LIMIT-REVIEW-" + sessionId, sessionMemory), 
+                 return reviewerAgent.review(new LocalNodeMemory("LIMIT-REVIEW-" + sessionId, sessionMemory), 
                      "Reached maximum phase limit of " + MAX_PHASES + ". Task seems stuck in a loop.");
             }
 
             // 1. Give Planner Agent the context to evaluate
             String plannerLoopId = "PLANNER-PHASE-" + phaseCount;
-            LocalLoopMemory plannerLocalMem = new LocalLoopMemory(plannerLoopId, sessionMemory);
+            LocalNodeMemory plannerLocalMem = new LocalNodeMemory(plannerLoopId, sessionMemory);
             
             String planJson = null;
             int retries = 0;
@@ -154,29 +174,57 @@ public class WorkflowOrchestrator {
             }
 
             log.info("[WorkflowOrchestrator] Phase {}: Produced {} nodes. Reasoning: {}", phaseCount, microBatch.size(), plan.getReasoning());
-            LoopGraphManager graphManager = new LoopGraphManager(sessionMemory, checkpointService, memoryService, eventLogService, messageBus);
+            DagExecutionEngine engine = new DagExecutionEngine(
+                    sessionMemory, checkpointService, memoryService, eventLogService,
+                    masNodeExecutorPool, nodeRunner, reactNodeRunner);
             
             for (GraphNode node : microBatch) {
-                graphManager.addNode(node);
+                engine.addNode(node);
                 plan.getNodes().stream()
-                    .filter(p -> p.getId().equals(node.getLoopId()))
+                    .filter(p -> p.getId().equals(node.getNodeId()))
                     .findFirst()
-                    .ifPresent(p -> sessionMemory.put(node.getLoopId() + "_instruction", p.getInstruction()));
+                    .ifPresent(p -> sessionMemory.put(node.getNodeId() + "_instruction", p.getInstruction()));
             }
 
-            try {
-                graphManager.executeGraph();
-            } catch (Exception e) {
-                log.error("[WorkflowOrchestrator] Phase {} DAG Execution triggered an unexpected fault.", phaseCount, e);
-                // Optionally call reviewer here too, but graph failures might be handled by retry logic in GraphManager
+            DagExecutionResult dagResult = engine.execute();
+            if (!dagResult.isSuccess()) {
+                log.warn("[WorkflowOrchestrator] Phase {} DAG execution not fully successful: outcome={}, failed={}, skipped={}",
+                        phaseCount, dagResult.getOutcome(), dagResult.getFailedCount(), dagResult.getSkippedCount());
+                // Let the Reviewer decide how to handle partial failures
+                if (dagResult.getOutcome() == DagExecutionResult.Outcome.DEADLOCK
+                        || dagResult.getOutcome() == DagExecutionResult.Outcome.TIMEOUT) {
+                    return MasOrchestrationResult.builder()
+                            .type(MasOrchestrationResult.ResultType.FAIL)
+                            .errorMessage("DAG execution " + dagResult.getOutcome() + ": "
+                                    + dagResult.getFailedCount() + " failed, " + dagResult.getSkippedCount() + " skipped")
+                            .build();
+                }
+                // PARTIAL_FAILURE: continue to next phase so Planner can adapt
             }
             
             String history = sessionMemory.get("globalHistory") != null ? sessionMemory.get("globalHistory").toString() : "";
-            history += "\n- Phase " + phaseCount + " executed " + microBatch.size() + " nodes.";
+            StringBuilder phaseReport = new StringBuilder();
+            phaseReport.append("\n- Phase ").append(phaseCount)
+                    .append(": ").append(microBatch.size()).append(" nodes")
+                    .append(", outcome=").append(dagResult.getOutcome())
+                    .append(", success=").append(dagResult.getSuccessCount())
+                    .append(", failed=").append(dagResult.getFailedCount())
+                    .append(", skipped=").append(dagResult.getSkippedCount())
+                    .append(", duration=").append(dagResult.getDurationMs()).append("ms");
+            if (!dagResult.getFailures().isEmpty()) {
+                phaseReport.append("\n  Failures:");
+                for (DagExecutionResult.NodeFailureDetail f : dagResult.getFailures()) {
+                    phaseReport.append("\n    - [").append(f.getNodeId()).append("/").append(f.getAgentRole())
+                            .append("]: ").append(f.getErrorMessage());
+                }
+            }
+            history += phaseReport.toString();
             sessionMemory.put("globalHistory", history);
 
             log.info("[WorkflowOrchestrator] ======== END PHASE {} ========\n", phaseCount);
             phaseCount++;
+            // Persist phaseCount for RESUME recovery
+            sessionMemory.put("_phaseCount", phaseCount);
         }
     }
 }

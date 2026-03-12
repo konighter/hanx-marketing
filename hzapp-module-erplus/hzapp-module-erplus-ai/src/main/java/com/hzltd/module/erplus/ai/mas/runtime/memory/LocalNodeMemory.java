@@ -4,20 +4,20 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Context tightly bounded to a single AgentLoop execution.
- * Isolates scratchpads and intermediate results from parallel loops.
+ * Context tightly bounded to a single graph node execution.
+ * Isolates scratchpads and intermediate results from parallel nodes.
  * Reads fallback to GlobalSessionMemory. Writes stay local until merged.
  */
-public class LocalLoopMemory implements LoopMemory {
+public class LocalNodeMemory implements NodeMemory {
 
-    private final String loopId;
+    private final String nodeId;
     private final GlobalSessionMemory globalSessionMemory;
     
-    // Not thread-safe as it should only be accessed by the single loop thread executing it
+    // Not thread-safe as it should only be accessed by the single node thread executing it
     private final Map<String, Object> localContext = new HashMap<>();
 
-    public LocalLoopMemory(String loopId, GlobalSessionMemory globalSessionMemory) {
-        this.loopId = loopId;
+    public LocalNodeMemory(String nodeId, GlobalSessionMemory globalSessionMemory) {
+        this.nodeId = nodeId;
         this.globalSessionMemory = globalSessionMemory;
     }
 
@@ -26,8 +26,8 @@ public class LocalLoopMemory implements LoopMemory {
     }
 
     @Override
-    public String getLoopId() {
-        return loopId;
+    public String getNodeId() {
+        return nodeId;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class LocalLoopMemory implements LoopMemory {
 
     /**
      * Commits all local bounded variables into the global session memory.
-     * Typically called when the loop successfully completes.
+     * Typically called when the node successfully completes.
      */
     public void mergeToGlobal() {
         if (globalSessionMemory != null) {

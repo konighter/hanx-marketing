@@ -109,6 +109,45 @@ public class MasTaskServiceImpl implements MasTaskService {
         log.info("[MasTask] Task {} moved to RESUME state, next execution: {}", taskId, nextTime);
     }
 
+    @Override
+    public void approveReview(Long taskId) {
+        MasTaskDO task = taskMapper.selectById(taskId);
+        if (task == null) {
+            log.warn("[MasTask] approveReview: Task {} not found", taskId);
+            return;
+        }
+        if (!MasTaskStatusEnum.REVIEW_REQUIRED.getStatus().equals(task.getStatus())) {
+            log.warn("[MasTask] approveReview: Task {} is not in REVIEW_REQUIRED state (current: {})", taskId, task.getStatus());
+            return;
+        }
+        task.setStatus(MasTaskStatusEnum.SUCCESS.getStatus());
+        taskMapper.updateById(task);
+        log.info("[MasTask] Task {} approved: REVIEW_REQUIRED → SUCCESS", taskId);
+
+        // Propagate to parent if applicable
+        checkAndUpdateParentStatus(task.getParentId());
+    }
+
+    @Override
+    public void rejectReview(Long taskId, String reason) {
+        MasTaskDO task = taskMapper.selectById(taskId);
+        if (task == null) {
+            log.warn("[MasTask] rejectReview: Task {} not found", taskId);
+            return;
+        }
+        if (!MasTaskStatusEnum.REVIEW_REQUIRED.getStatus().equals(task.getStatus())) {
+            log.warn("[MasTask] rejectReview: Task {} is not in REVIEW_REQUIRED state (current: {})", taskId, task.getStatus());
+            return;
+        }
+        task.setStatus(MasTaskStatusEnum.FAILED.getStatus());
+        task.setOutputData("Review rejected: " + (reason != null ? reason : "No reason provided"));
+        taskMapper.updateById(task);
+        log.info("[MasTask] Task {} rejected: REVIEW_REQUIRED → FAILED, reason: {}", taskId, reason);
+
+        // Propagate to parent if applicable
+        checkAndUpdateParentStatus(task.getParentId());
+    }
+
     private void checkAndUpdateParentStatus(Long parentId) {
         if (parentId == null) return;
 
@@ -116,22 +155,43 @@ public class MasTaskServiceImpl implements MasTaskService {
         if (parent == null) return;
 
         List<MasTaskDO> children = getChildTasks(parentId);
-        boolean allFinished = children.stream().allMatch(c -> 
+
+        // --- FAILED propagation: if any child FAILED, parent FAILED ---
+        boolean anyFailed = children.stream().anyMatch(c ->
+            MasTaskStatusEnum.FAILED.getStatus().equals(c.getStatus()));
+
+        if (anyFailed) {
+            String errorDetails = children.stream()
+                .filter(c -> MasTaskStatusEnum.FAILED.getStatus().equals(c.getStatus()))
+                .map(c -> String.format("[%s]: %s", c.getName(),
+                        c.getOutputData() != null ? c.getOutputData() : "No error details"))
+                .collect(Collectors.joining("\n"));
+
+            parent.setStatus(MasTaskStatusEnum.FAILED.getStatus());
+            parent.setOutputData("Child task(s) failed:\n" + errorDetails);
+            taskMapper.updateById(parent);
+            log.error("[MasTask] Parent Task {} moved to FAILED due to child failure(s)", parentId);
+
+            // Recursively propagate to grandparent
+            checkAndUpdateParentStatus(parent.getParentId());
+            return;
+        }
+
+        // --- All SUCCESS → REVIEW_REQUIRED ---
+        boolean allSuccess = children.stream().allMatch(c ->
             MasTaskStatusEnum.SUCCESS.getStatus().equals(c.getStatus()));
-        
-        if (allFinished) {
-            // Aggregate child results into parent outputData
+
+        if (allSuccess) {
             String aggregateResult = children.stream()
                 .map(c -> String.format("[%s]: %s", c.getName(), c.getOutputData()))
                 .collect(Collectors.joining("\n"));
             parent.setOutputData(aggregateResult);
-            
-            // Parent moves to review stage
+
             parent.setStatus(MasTaskStatusEnum.REVIEW_REQUIRED.getStatus());
             taskMapper.updateById(parent);
             log.info("[MasTask] Parent Task {} moved to REVIEW_REQUIRED with aggregated results", parentId);
         } else if (MasTaskTypeEnum.SEQUENTIAL.getType().equals(parent.getTaskType())) {
-            // Check if we should trigger the next child
+            // Sequential: trigger next waiting child (only if no failures)
             children.stream()
                 .filter(c -> MasTaskStatusEnum.WAITING.getStatus().equals(c.getStatus()))
                 .findFirst()

@@ -3,7 +3,7 @@ package com.hzltd.module.erplus.ai.mas.runtime.agent;
 import com.google.adk.agents.LlmAgent;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.AgentMessage;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.GraphMemoryService;
 import com.google.adk.runner.Runner;
 import com.google.genai.types.Content;
@@ -60,8 +60,8 @@ public class DynamicAdkAgent implements BaseAgent {
     }
 
     @Override
-    public String execute(LoopMemory memory) {
-        log.info("[{}] Executing ADK Agent for loop: {}", agentRole, memory.getLoopId());
+    public String execute(NodeMemory memory) {
+        log.info("[{}] Executing ADK Agent for node: {}", agentRole, memory.getNodeId());
         
         // 1. Determine the core instruction for this specific execution.
         // We no longer manually append global context (like common_goal) here; 
@@ -82,7 +82,7 @@ public class DynamicAdkAgent implements BaseAgent {
             runner.sessionService().createSession(adkUserId, sessionId).blockingGet();
 
             if (eventLogService != null) {
-                eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_START", agentRole);
+                eventLogService.logEvent(memory.getSessionId(), memory.getNodeId(), "AGENT_START", agentRole);
             }
 
             StringBuilder accumulatedResponse = new StringBuilder();
@@ -90,7 +90,7 @@ public class DynamicAdkAgent implements BaseAgent {
             // runAsync will automatically invoke GraphMemoryService.searchMemory
             runner.runAsync(adkUserId, sessionId, content).blockingIterable().forEach(event -> {
                 if (eventLogService != null) {
-                    eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_EVENT", event.stringifyContent());
+                    eventLogService.logEvent(memory.getSessionId(), memory.getNodeId(), "AGENT_EVENT", event.stringifyContent());
                 }
                 String snippet = event.stringifyContent();
                 if (snippet != null) accumulatedResponse.append(snippet);
@@ -100,7 +100,7 @@ public class DynamicAdkAgent implements BaseAgent {
             log.debug("[{}] ADK Agent returned execution result (length: {})", agentRole, textResult.length());
             
             if (eventLogService != null) {
-                eventLogService.logEvent(memory.getSessionId(), memory.getLoopId(), "AGENT_DONE", agentRole);
+                eventLogService.logEvent(memory.getSessionId(), memory.getNodeId(), "AGENT_DONE", agentRole);
             }
 
             // 3. Persist output back into MAS memory
@@ -108,7 +108,7 @@ public class DynamicAdkAgent implements BaseAgent {
             return textResult;
 
         } catch (Exception e) {
-            log.error("[{}] ADK Agent execution failed for loop {}", agentRole, memory.getLoopId(), e);
+            log.error("[{}] ADK Agent execution failed for node {}", agentRole, memory.getNodeId(), e);
             memory.put("error", e.getMessage());
             throw new RuntimeException("Agent execution failed delegating to ADK", e);
         }

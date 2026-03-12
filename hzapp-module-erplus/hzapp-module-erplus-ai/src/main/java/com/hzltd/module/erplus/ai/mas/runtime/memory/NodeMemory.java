@@ -1,26 +1,27 @@
 package com.hzltd.module.erplus.ai.mas.runtime.memory;
 
 import java.util.Map;
+
 /**
- * Scoped local memory for a single AgentLoop execution.
- * Isolates scratchpads and intermediate results from parallel loops.
+ * Scoped local memory for a single graph node execution.
+ * Isolates scratchpads and intermediate results from parallel nodes.
  */
-public interface LoopMemory {
+public interface NodeMemory {
 
     /**
-     * Get a value from the loop's local context.
+     * Get a value from the node's local context.
      */
     Object get(String key);
 
     /**
-     * Put a value into the loop's local context.
+     * Put a value into the node's local context.
      */
     void put(String key, Object value);
 
     /**
-     * Get the unique ID of this execution loop.
+     * Get the unique ID of this execution node.
      */
-    String getLoopId();
+    String getNodeId();
 
     /**
      * Get the unique ID of the MAS session.

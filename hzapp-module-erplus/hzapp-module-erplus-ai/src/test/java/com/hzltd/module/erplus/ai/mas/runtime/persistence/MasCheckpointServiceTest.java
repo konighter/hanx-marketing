@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.ai.mas.runtime.persistence;
 
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskHistoryDO;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasTaskHistoryMapper;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
@@ -20,7 +20,7 @@ class MasCheckpointServiceTest {
         MasTaskHistoryMapper mockMapper = mock(MasTaskHistoryMapper.class);
         MasCheckpointService service = new MasCheckpointService(mockMapper);
 
-        LoopMemory mockMemory = mock(LoopMemory.class);
+        NodeMemory mockMemory = mock(NodeMemory.class);
         Map<String, Object> memoryMap = new HashMap<>();
         memoryMap.put("key1", "value1");
         when(mockMemory.asMap()).thenReturn(memoryMap);

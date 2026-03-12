@@ -1,10 +1,10 @@
 package com.hzltd.module.erplus.ai.mas.runtime.agent;
 
 import com.hzltd.module.erplus.ai.mas.runtime.communication.AgentMessage;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 
 /**
- * The base interface for all MAS Agents in the new runtime.
+ * The base interface for all MAS Agents in the runtime.
  */
 public interface BaseAgent {
 
@@ -27,8 +27,9 @@ public interface BaseAgent {
     /**
      * Execute the agent's logic within the scoped memory.
      *
-     * @param memory The scoped memory for this execution loop.
+     * @param memory The scoped memory for this execution node.
      * @return The agent's structured response or execution result.
      */
-    String execute(LoopMemory memory);
+    String execute(NodeMemory memory);
 }
+

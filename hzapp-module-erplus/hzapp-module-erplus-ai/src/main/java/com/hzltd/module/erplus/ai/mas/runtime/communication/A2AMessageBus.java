@@ -11,7 +11,10 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Message bus for Agent-to-Agent (A2A) communication within a session.
+ * @deprecated Not currently used in the execution pipeline. Will be removed or replaced
+ * with a proper inter-agent communication mechanism in a future version.
  */
+@Deprecated
 @Slf4j
 @Service
 public class A2AMessageBus {

@@ -4,7 +4,7 @@ import com.google.adk.agents.LlmAgent;
 import com.google.adk.models.BaseLlm;
 import com.google.adk.models.Gemini;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.LoopMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,7 +46,7 @@ public class ProjectManagerAgent extends DynamicAdkAgent {
     }
     
     @Override
-    public String execute(LoopMemory memory) {
+    public String execute(NodeMemory memory) {
         log.info("[ProjectManagerAgent] Starting execution for instruction: {}", getInstruction());
         
         // Custom pre-processing for the manager, e.g., analyzing the full global state
