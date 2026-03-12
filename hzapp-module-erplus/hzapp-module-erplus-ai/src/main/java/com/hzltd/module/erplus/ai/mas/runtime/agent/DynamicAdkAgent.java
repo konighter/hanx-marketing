@@ -104,7 +104,7 @@ public class DynamicAdkAgent implements BaseAgent {
             }
 
             // 3. Persist output back into MAS memory
-            memory.put(agentRole + "_output", textResult);
+            memory.put(memory.getNodeId() + "_" + agentRole + "_output", textResult);
             return textResult;
 
         } catch (Exception e) {

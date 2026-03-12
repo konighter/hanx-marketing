@@ -190,8 +190,11 @@ public class DagExecutionEngine {
             boolean upstreamFailed = false;
             for (String depId : node.getRequires()) {
                 GraphNode dep = nodes.get(depId);
-                if (dep != null && (dep.getStatus() == GraphNode.NodeStatus.FAILED
-                        || dep.getStatus() == GraphNode.NodeStatus.SKIPPED)) {
+                if (dep == null || dep.getStatus() == GraphNode.NodeStatus.FAILED
+                        || dep.getStatus() == GraphNode.NodeStatus.SKIPPED) {
+                    if (dep == null) {
+                        log.warn("[DagExecutionEngine] Node {} requires non-existent dependency {}, skipping.", nid, depId);
+                    }
                     upstreamFailed = true;
                     break;
                 }

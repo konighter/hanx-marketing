@@ -98,7 +98,7 @@ public class NodeExecutor implements Callable<String> {
                 node.setEndTime(System.currentTimeMillis());
                 
                 // Put output back into memory for downstream dependencies
-                nodeMemory.put(assignedAgent.getRoleName() + "_output", result);
+                nodeMemory.put(node.getNodeId() + "_" + assignedAgent.getRoleName() + "_output", result);
                 nodeMemory.mergeToGlobal();
 
                 if (eventLogService != null) {
@@ -127,7 +127,7 @@ public class NodeExecutor implements Callable<String> {
                     // If we reach here, execution succeeded
                     break;
 
-                } catch (Exception e) {
+                } catch (Throwable e) {
                     if (attempts >= retryPolicy.getMaxAttempts()) {
                         node.setStatus(GraphNode.NodeStatus.FAILED);
                         node.setEndTime(System.currentTimeMillis());
@@ -150,7 +150,7 @@ public class NodeExecutor implements Callable<String> {
             node.setStatus(GraphNode.NodeStatus.SUCCESS);
             node.setEndTime(System.currentTimeMillis());
 
-            nodeMemory.put(assignedAgent.getRoleName() + "_output", result);
+            nodeMemory.put(node.getNodeId() + "_" + assignedAgent.getRoleName() + "_output", result);
             if (eventLogService != null) eventLogService.logEvent(sessionId, nodeId, "DONE", "Execution Successful after " + attempts + " attempts");
             
             // Merge to global session memory
@@ -164,13 +164,13 @@ public class NodeExecutor implements Callable<String> {
             if (memoryService != null) {
                 memoryService.saveToDb(sessionMemory.getSessionId());
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             log.error("[NodeExecutor] Execution failed for node: {} after {} attempts", node.getNodeId(), attempts, e);
             if (eventLogService != null) {
                 eventLogService.logEvent(sessionId, nodeId, "ERROR", e.getMessage());
             }
             node.setResult(e.getMessage());
-            throw e;
+            throw new Exception(e);
         } finally {
             long duration = System.currentTimeMillis() - startTime;
             // Record execution in task history if checkpoint service is available
