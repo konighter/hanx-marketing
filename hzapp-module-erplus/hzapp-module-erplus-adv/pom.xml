@@ -23,6 +23,13 @@
             <version>${revision}</version>
         </dependency>
 
+        <!-- Use AI module for WorkflowOrchestrator and MasTaskService -->
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-erplus-ai</artifactId>
+            <version>${revision}</version>
+        </dependency>
+
         <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-module-erplus-api</artifactId>
