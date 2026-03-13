@@ -1,6 +1,10 @@
 package com.hzltd.module.erplus.ai.mas.runtime.execution;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+
+import com.hzltd.module.erplus.ai.mas.runtime.spi.execution.NodeRunner;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.execution.adk.AdkNodeRunner;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.execution.react.ReActLlmClient;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.execution.react.ReActNodeRunner;
 import com.hzltd.module.erplus.ai.mas.runtime.tools.ToolRegistry;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,14 +76,13 @@ public class MasExecutionConfig {
     @ConditionalOnMissingBean(name = "reactNodeRunner")
     public NodeRunner reactNodeRunner(@Autowired(required = false) ReActLlmClient llmClient,
                                       ToolRegistry toolRegistry,
-                                      ExecutionProgressReporter progressReporter,
-                                      ObjectMapper objectMapper) {
+                                      ExecutionProgressReporter progressReporter) {
         if (llmClient == null) {
             log.warn("[MasExecutionConfig] No ReActLlmClient bean found — ReActNodeRunner will NOT be available. " +
                      "REACT nodes will fall back to default runner.");
             return null;
         }
         log.info("[MasExecutionConfig] Initialised ReActNodeRunner with max 25 steps");
-        return new ReActNodeRunner(toolRegistry, progressReporter, llmClient, objectMapper, 25);
+        return new ReActNodeRunner(toolRegistry, progressReporter, llmClient, 25);
     }
 }

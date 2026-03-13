@@ -21,6 +21,7 @@ public interface MasTaskService {
 
     /**
      * 获取未完成的待调度任务 (用于 Job 扫描)
+     * Pending 或者 Suspend, 已经超过了下次调度时间的任务
      */
     List<MasTaskDO> getPendingTasks();
 
@@ -40,9 +41,9 @@ public interface MasTaskService {
     List<MasTaskDO> getChildTasks(Long parentId);
 
     /**
-     * 将任务设置为 RESUME 状态，并设置下次执行时间
+     * 将任务设置为 SUSPEND 状态，并设置下一次调度时间
      */
-    void resumeTask(Long taskId, java.time.LocalDateTime nextTime, String outputData);
+    void suspendTask(Long taskId, java.time.LocalDateTime nextTime, String outputData);
 
     /**
      * 审核通过：REVIEW_REQUIRED → SUCCESS
@@ -53,4 +54,8 @@ public interface MasTaskService {
      * 审核拒绝：REVIEW_REQUIRED → FAILED
      */
     void rejectReview(Long taskId, String reason);
+    /**
+     * 激活子任务：根据父任务类型（并行/串行）开启子任务的执行
+     */
+    void activateChildren(Long parentId);
 }

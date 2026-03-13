@@ -54,6 +54,11 @@ public class MasOrchestrationResult {
     private String history;
 
     /**
+     * 最终输出 (仅 type 为 FINISH 时有意义)
+     */
+    private String output;
+
+    /**
      * 错误详情 (如果有)
      */
     private String errorMessage;

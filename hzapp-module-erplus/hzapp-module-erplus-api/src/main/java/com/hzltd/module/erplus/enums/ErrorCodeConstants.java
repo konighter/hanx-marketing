@@ -259,5 +259,10 @@ public interface ErrorCodeConstants {
     // ========== 关键词 1_033_004_000 ==========
     ErrorCode ADS_KEYWORD_NOT_EXISTS = new ErrorCode(1_033_004_001, "广告关键词不存在");
 
+    // ========== 策略 1_033_005_000 ==========
+    ErrorCode ADV_SKILL_NOT_EXISTS = new ErrorCode(1_033_005_001, "策略不存在");
+
+
+
 
 }

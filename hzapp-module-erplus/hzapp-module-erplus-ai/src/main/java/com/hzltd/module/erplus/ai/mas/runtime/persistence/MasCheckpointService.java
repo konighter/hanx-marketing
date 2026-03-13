@@ -3,7 +3,7 @@ package com.hzltd.module.erplus.ai.mas.runtime.persistence;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskHistoryDO;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasTaskHistoryMapper;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.NodeMemory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

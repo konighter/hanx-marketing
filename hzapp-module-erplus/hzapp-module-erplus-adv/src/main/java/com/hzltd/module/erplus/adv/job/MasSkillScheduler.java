@@ -4,7 +4,6 @@ import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskDO;
 import com.hzltd.module.erplus.ai.mas.runtime.task.MasTaskService;
 import com.hzltd.module.erplus.ai.mas.runtime.orchestration.WorkflowOrchestrator;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.concurrent.Executors;
  */
 @Slf4j
 @Component
+@Deprecated
 public class MasSkillScheduler {
 
     private final MasTaskService masTaskService;

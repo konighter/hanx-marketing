@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.ai.mas.runtime.agent;
 
 import com.hzltd.module.erplus.ai.mas.runtime.communication.AgentMessage;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.NodeMemory;
 
 /**
  * The base interface for all MAS Agents in the runtime.

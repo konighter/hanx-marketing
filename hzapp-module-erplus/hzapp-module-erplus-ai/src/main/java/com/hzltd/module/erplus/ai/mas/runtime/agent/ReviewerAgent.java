@@ -1,13 +1,18 @@
 package com.hzltd.module.erplus.ai.mas.runtime.agent;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.google.adk.agents.LlmAgent;
 import com.google.adk.models.BaseLlm;
 import com.google.adk.models.Gemini;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
-import com.hzltd.module.erplus.ai.mas.runtime.prompt.PromptTemplateFactory;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.NodeMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.orchestration.MasOrchestrationResult;
+import com.hzltd.module.erplus.ai.mas.runtime.prompt.PromptTemplateFactory;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.llm.MasLlmClient;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.llm.adk.AdkLlmClientAdapter;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryManager;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.adk.AdkMemoryAdapter;
+import static com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryKeys.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,12 +25,12 @@ import java.util.Map;
  */
 @Slf4j
 @Component
-public class ReviewerAgent extends DynamicAdkAgent {
+public class ReviewerAgent extends AbstractMasAgent {
 
     public static final String ROLE_CODE = "REVIEWER";
     
     private final PromptTemplateFactory promptTemplateFactory;
-    private final ObjectMapper objectMapper;
+
     
     private static final String REVIEW_PROMPT_TEMPLATE = 
         "You are the Workflow Reviewer Agent. The system encountered an issue or reached its execution limit.\n" +
@@ -44,31 +49,37 @@ public class ReviewerAgent extends DynamicAdkAgent {
     @Autowired
     public ReviewerAgent(MasEventLogService eventLogService, 
                         PromptTemplateFactory promptTemplateFactory, 
-                        ObjectMapper objectMapper,
-                        com.hzltd.module.erplus.ai.mas.runtime.memory.GraphMemoryService graphMemoryService) {
-        super(ROLE_CODE, "Review and finalize workflow status.", buildNativeAgent(), eventLogService, graphMemoryService);
-        this.promptTemplateFactory = promptTemplateFactory;
-        this.objectMapper = objectMapper;
+                        MasMemoryManager memoryManager) {
+        this(eventLogService, promptTemplateFactory, buildMasLlmClient(memoryManager));
     }
 
-    private static LlmAgent buildNativeAgent() {
+    public ReviewerAgent(MasEventLogService eventLogService, 
+                        PromptTemplateFactory promptTemplateFactory, 
+                        MasLlmClient llmClient) {
+        super(ROLE_CODE, "Review and finalize workflow status.", eventLogService, llmClient);
+        this.promptTemplateFactory = promptTemplateFactory;
+    }
+
+    private static MasLlmClient buildMasLlmClient(MasMemoryManager memoryManager) {
         BaseLlm fallbackLlm = Gemini.builder()
                 .modelName("gemini-1.5-pro")
                 .apiKey("MOCK_DEFAULT_KEY") 
                 .build();
 
-        return LlmAgent.builder()
+        LlmAgent adkAgent = LlmAgent.builder()
                 .name("Workflow Reviewer")
                 .model(fallbackLlm)
                 .instruction("You are a strict JSON-speaking workflow reviewer and debugger.")
                 .build();
+                
+        return new AdkLlmClientAdapter(adkAgent, new AdkMemoryAdapter(memoryManager));
     }
     
     public MasOrchestrationResult review(NodeMemory memory, String issue) {
         log.info("[ReviewerAgent] Starting review for issue: {}", issue);
         
-        String userGoal = memory.get("userGoal") != null ? memory.get("userGoal").toString() : "Unknown goal";
-        String globalContext = memory.get("globalHistory") != null ? memory.get("globalHistory").toString() : "No prior history.";
+        String userGoal = memory.get(USER_GOAL) != null ? memory.get(USER_GOAL).toString() : "Unknown goal";
+        String globalContext = memory.get(GLOBAL_HISTORY) != null ? memory.get(GLOBAL_HISTORY).toString() : "No prior history.";
         
         String dynamicPrompt = promptTemplateFactory.render(REVIEW_PROMPT_TEMPLATE, Map.of(
             "userGoal", userGoal,
@@ -76,20 +87,13 @@ public class ReviewerAgent extends DynamicAdkAgent {
             "issue", issue
         ));
         
-        memory.put("taskInstruction", dynamicPrompt);
+        memory.put(TASK_INSTRUCTION, dynamicPrompt);
         String result = super.execute(memory);
         
-        // Basic cleaning
-        if (result != null) {
-            result = result.trim();
-            if (result.startsWith("```json")) result = result.substring(7);
-            else if (result.startsWith("```")) result = result.substring(3);
-            if (result.endsWith("```")) result = result.substring(0, result.length() - 3);
-            result = result.trim();
-        }
+
 
         try {
-            Map<String, Object> map = objectMapper.readValue(result, Map.class);
+            Map<String, Object> map = JsonUtils.parseObject(result, Map.class);
             String typeStr = (String) map.get("type");
             MasOrchestrationResult.ResultType type = MasOrchestrationResult.ResultType.FAIL;
             if ("FINISH".equals(typeStr)) type = MasOrchestrationResult.ResultType.FINISH;

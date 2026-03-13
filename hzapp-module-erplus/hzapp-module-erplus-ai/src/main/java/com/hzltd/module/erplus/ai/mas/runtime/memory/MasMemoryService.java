@@ -3,29 +3,41 @@ package com.hzltd.module.erplus.ai.mas.runtime.memory;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSessionVariableDO;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasSessionVariableMapper;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryEntry;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryManager;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasSessionMemory;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.time.Instant;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
  * Orchestrates session-wide memory, including persistence to the database and pruning.
+ * Now implements MasMemoryManager to provide framework-agnostic memory services.
  */
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class MasMemoryService {
+public class MasMemoryService implements MasMemoryManager {
 
     private final MasSessionVariableMapper sessionVariableMapper;
     
     // In-memory cache for active sessions: sessionId -> GlobalSessionMemory
     private final Map<String, GlobalSessionMemory> activeSessions = new ConcurrentHashMap<>();
+
+    /**
+     * Extended word pattern supporting:
+     * - Latin letters (A-Za-z)
+     * - CJK Unified Ideographs (\\u4e00-\\u9fff)
+     * - Digits (0-9)
+     */
+    private static final Pattern WORD_PATTERN = Pattern.compile("[\\u4e00-\\u9fff\\w]+");
 
     public java.util.Set<String> getActiveSessionIds() {
         return activeSessions.keySet();
@@ -34,7 +46,8 @@ public class MasMemoryService {
     /**
      * Retrieves or initializes the global memory for a session.
      */
-    public GlobalSessionMemory getSessionMemory(String sessionId) {
+    @Override
+    public MasSessionMemory getSessionMemory(String sessionId) {
         return activeSessions.computeIfAbsent(sessionId, id -> {
             log.info("[Memory] Initializing session memory from DB for: {}", id);
             GlobalSessionMemory memory = new GlobalSessionMemory(id);
@@ -45,8 +58,8 @@ public class MasMemoryService {
 
     /**
      * Persists only the modified (dirty) keys to the database, then clears the dirty set.
-     * This replaces the previous full-snapshot persistence approach for efficiency.
      */
+    @Override
     public void saveToDb(String sessionId) {
         GlobalSessionMemory memory = activeSessions.get(sessionId);
         if (memory == null) return;
@@ -70,8 +83,41 @@ public class MasMemoryService {
         pruneContext(sessionId);
     }
 
+    /**
+     * Core search logic moved from GraphMemoryService to be framework-agnostic.
+     */
+    @Override
+    public List<MasMemoryEntry> searchMemory(String sessionId, String query) {
+        log.debug("[Memory] Searching memory for query: '{}' in session: {}", query, sessionId);
+
+        Set<String> wordsInQuery = extractWords(query);
+        List<MasMemoryEntry> matchingMemories = new ArrayList<>();
+
+        // Get snapshot of session memory
+        MasSessionMemory sessionMemory = getSessionMemory(sessionId);
+        Map<String, Object> variables = sessionMemory.snapshot();
+
+        for (Map.Entry<String, Object> entry : variables.entrySet()) {
+            String key = entry.getKey();
+            String value = String.valueOf(entry.getValue());
+
+            Set<String> wordsInVar = extractWords(key + " " + value);
+            if (wordsInVar.isEmpty()) continue;
+
+            if (!Collections.disjoint(wordsInQuery, wordsInVar)) {
+                matchingMemories.add(MasMemoryEntry.builder()
+                        .content("Variable [" + key + "]: " + value)
+                        .author("MAS-Graph-State")
+                        .timestamp(Instant.now().toString())
+                        .build());
+            }
+        }
+
+        log.info("[Memory] Search in session {} found {} matching memory entries", sessionId, matchingMemories.size());
+        return matchingMemories;
+    }
+
     private void pruneContext(String sessionId) {
-        // threshold: 10,000 characters for demo. In reality, would be token-based.
         int threshold = 10000;
         
         List<MasSessionVariableDO> activeVars = sessionVariableMapper.selectList(
@@ -88,7 +134,6 @@ public class MasMemoryService {
             log.warn("[Memory] Session {} exceeds context threshold ({} > {}). Archiving oldest variables.", 
                     sessionId, totalSize, threshold);
             
-            // Sort by update time (oldest first). BaseDO has getUpdateTime()
             List<MasSessionVariableDO> sorted = activeVars.stream()
                     .sorted(Comparator.comparing(MasSessionVariableDO::getUpdateTime))
                     .collect(Collectors.toList());
@@ -97,14 +142,6 @@ public class MasMemoryService {
                 MasSessionVariableDO victim = sorted.remove(0);
                 victim.setVarType("ARCHIVED");
                 sessionVariableMapper.updateById(victim);
-                
-                // Also remove from in-memory cache if present
-                GlobalSessionMemory mem = activeSessions.get(sessionId);
-                if (mem != null) {
-                    // Logic to remove from memory could be added here
-                    // However, we might want to keep it in memory but just mark it "Long-term"
-                }
-
                 totalSize -= victim.getVarValue().length();
                 log.info("[Memory] Archived variable: {}", victim.getVarKey());
             }
@@ -139,15 +176,22 @@ public class MasMemoryService {
                     .sessionId(sessionId)
                     .varKey(key)
                     .varValue(valStr)
-                    .varType("STRING") // Default
+                    .varType("STRING") 
                     .build();
             sessionVariableMapper.insert(newVar);
         }
     }
     
-    /**
-     * Clear session from memory (e.g., on cleanup or completion)
-     */
+    private Set<String> extractWords(String text) {
+        if (text == null) return Collections.emptySet();
+        Set<String> words = new HashSet<>();
+        Matcher matcher = WORD_PATTERN.matcher(text);
+        while (matcher.find()) {
+            words.add(matcher.group().toLowerCase(Locale.ROOT));
+        }
+        return words;
+    }
+
     public void evictSession(String sessionId) {
         activeSessions.remove(sessionId);
         log.debug("[Memory] Evicted session {} from active memory", sessionId);

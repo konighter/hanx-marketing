@@ -3,62 +3,40 @@ package com.hzltd.module.erplus.ai.mas.runtime.execution;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskHistoryDO;
 import com.hzltd.module.erplus.ai.mas.runtime.agent.BaseAgent;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.GlobalSessionMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.LocalNodeMemory;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.MasMemoryService;
 import com.hzltd.module.erplus.ai.mas.runtime.persistence.MasCheckpointService;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.execution.NodeRunner;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryManager;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasSessionMemory;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.Callable;
 
 /**
- * Executes a single graph node through its lifecycle:
- * <ul>
- *   <li>Initialize isolated local memory</li>
- *   <li>Check for existing checkpoint (recovery)</li>
- *   <li>Delegate execution to {@link NodeRunner}</li>
- *   <li>Handle retries via {@link RetryPolicy}</li>
- *   <li>Merge results to global memory</li>
- *   <li>Persist checkpoint and event logs</li>
- * </ul>
+ * Executes a single graph node through its lifecycle.
  */
 @Slf4j
 public class NodeExecutor implements Callable<String> {
 
     private final GraphNode node;
-    private final GlobalSessionMemory sessionMemory;
+    private final MasSessionMemory sessionMemory;
     private final MasCheckpointService checkpointService;
-    private final MasMemoryService memoryService;
+    private final MasMemoryManager memoryManager;
     private final MasEventLogService eventLogService;
-    private final NodeRunner nodeRunner;
-    private final NodeRunner reactNodeRunner;
+    private final NodeRunnerProvider runnerProvider;
     
     public NodeExecutor(GraphNode node, 
-                        GlobalSessionMemory sessionMemory, 
+                        MasSessionMemory sessionMemory, 
                         MasCheckpointService checkpointService,
-                        MasMemoryService memoryService,
+                        MasMemoryManager memoryManager,
                         MasEventLogService eventLogService,
-                        NodeRunner nodeRunner,
-                        NodeRunner reactNodeRunner) {
+                        NodeRunnerProvider runnerProvider) {
         this.node = node;
         this.sessionMemory = sessionMemory;
         this.checkpointService = checkpointService;
-        this.memoryService = memoryService;
+        this.memoryManager = memoryManager;
         this.eventLogService = eventLogService;
-        this.nodeRunner = nodeRunner;
-        this.reactNodeRunner = reactNodeRunner;
-    }
-
-    /**
-     * Backward-compatible constructor (no ReAct runner).
-     */
-    public NodeExecutor(GraphNode node, 
-                        GlobalSessionMemory sessionMemory, 
-                        MasCheckpointService checkpointService,
-                        MasMemoryService memoryService,
-                        MasEventLogService eventLogService,
-                        NodeRunner nodeRunner) {
-        this(node, sessionMemory, checkpointService, memoryService, eventLogService, nodeRunner, null);
+        this.runnerProvider = runnerProvider;
     }
 
     @Override
@@ -87,17 +65,15 @@ public class NodeExecutor implements Callable<String> {
         // 1. Initialize Local Scope Memory
         LocalNodeMemory nodeMemory = new LocalNodeMemory(node.getNodeId(), sessionMemory);
         
-        // Recovery check
         if (checkpointService != null) {
             MasTaskHistoryDO existing = checkpointService.findLatestCheckpoint(sessionMemory.getSessionId(), node.getNodeId());
             if (existing != null) {
-                log.info("[NodeExecutor] Found existing checkpoint for node: {}. Recovering with previous SUCCESS result.", node.getNodeId());
+                log.info("[NodeExecutor] Found existing checkpoint for node: {}. Recovering.", node.getNodeId());
                 result = existing.getResult();
                 node.setResult(result);
                 node.setStatus(GraphNode.NodeStatus.SUCCESS);
                 node.setEndTime(System.currentTimeMillis());
                 
-                // Put output back into memory for downstream dependencies
                 nodeMemory.put(node.getNodeId() + "_" + assignedAgent.getRoleName() + "_output", result);
                 nodeMemory.mergeToGlobal();
 
@@ -115,16 +91,10 @@ public class NodeExecutor implements Callable<String> {
                     log.info("[NodeExecutor] Delegating execution to NodeRunner for agent: {}", assignedAgent.getRoleName());
                     if (eventLogService != null) eventLogService.logEvent(sessionId, nodeId, "AGENT_EXECUTION", "Starting agent execution");
                     
-                    // Select runner based on node type
-                    NodeRunner selectedRunner = nodeRunner; // default: SIMPLE
-                    if (node.getNodeType() == GraphNode.NodeType.REACT && reactNodeRunner != null) {
-                        selectedRunner = reactNodeRunner;
-                        log.info("[NodeExecutor] Using ReActNodeRunner for REACT node: {}", nodeId);
-                    }
+                    NodeRunner selectedRunner = runnerProvider.getRunner(node.getNodeType());
+                    
                     result = selectedRunner.run(node, nodeMemory);
                     nodeMemory.put("execution_result", result);
-
-                    // If we reach here, execution succeeded
                     break;
 
                 } catch (Throwable e) {
@@ -153,16 +123,14 @@ public class NodeExecutor implements Callable<String> {
             nodeMemory.put(node.getNodeId() + "_" + assignedAgent.getRoleName() + "_output", result);
             if (eventLogService != null) eventLogService.logEvent(sessionId, nodeId, "DONE", "Execution Successful after " + attempts + " attempts");
             
-            // Merge to global session memory
             nodeMemory.mergeToGlobal();
             
-            // Capture final state snapshot for visual playback
             if (eventLogService != null) {
                 eventLogService.logStateSnapshot(sessionId, nodeId, nodeMemory.asMap());
             }
             
-            if (memoryService != null) {
-                memoryService.saveToDb(sessionMemory.getSessionId());
+            if (memoryManager != null) {
+                memoryManager.saveToDb(sessionMemory.getSessionId());
             }
         } catch (Throwable e) {
             log.error("[NodeExecutor] Execution failed for node: {} after {} attempts", node.getNodeId(), attempts, e);
@@ -173,7 +141,6 @@ public class NodeExecutor implements Callable<String> {
             throw new Exception(e);
         } finally {
             long duration = System.currentTimeMillis() - startTime;
-            // Record execution in task history if checkpoint service is available
             if (checkpointService != null) {
                 checkpointService.saveCheckpoint(sessionMemory.getSessionId(), node.getNodeId(), 
                         assignedAgent.getRoleName(), assignedAgent.getInstruction(), node.getResult(), 

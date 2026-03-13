@@ -3,6 +3,10 @@ package com.hzltd.module.erplus.ai.mas.runtime.agent;
 import com.google.adk.tools.BaseTool;
 import com.google.adk.tools.FunctionTool;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.LocalNodeMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryKeys;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasSessionMemory;
+import static com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryKeys.TASK_INSTRUCTION;
+import com.hzltd.module.erplus.ai.mas.runtime.tools.annotation.MasTool;
 import lombok.extern.slf4j.Slf4j;
 
 import java.lang.reflect.Method;
@@ -34,11 +38,11 @@ public class SubAgentToolWrapper {
         // Create an isolated memory space for the sub-agent
         LocalNodeMemory childMemory = new LocalNodeMemory(
                 parentMemory.getNodeId() + "_sub_" + delegateAgent.getRoleName(), 
-                parentMemory.getGlobalSessionMemory());
+                parentMemory.getGlobalMemory());
                 
-        // Instead of overriding the agent's core instruction, we pass the contextual task
-        // through memory so the DynamicAdkAgent can append it.
-        childMemory.put("taskInstruction", subTaskInstruction);
+        // Instead of overriding the agent's core instruction, the contextual task is passed
+        // through memory so the agent can append it.
+        childMemory.put(TASK_INSTRUCTION, subTaskInstruction);
         
         try {
             return delegateAgent.execute(childMemory);

@@ -32,7 +32,7 @@ public enum MasTaskStatusEnum {
     /**
      * 等待恢复执行 (用于长周期任务)
      */
-    RESUME("RESUME"),
+    SUSPEND("SUSPEND"),
     /**
      * 执行失败
      */

@@ -1,32 +1,41 @@
 package com.hzltd.module.erplus.adv.service.mas;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillListVO;
 import com.hzltd.module.erplus.adv.controller.admin.mas.vo.StrategyInstructionVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasTaskSkillRelDO;
 import com.hzltd.module.erplus.adv.dal.mysql.mas.MasSkillDefMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.mas.MasTaskSkillRelMapper;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
+import static com.hzltd.module.erplus.enums.ErrorCodeConstants.ADV_SKILL_NOT_EXISTS;
 
 @Service
 @Slf4j
 public class MasSkillServiceImpl implements MasSkillService {
 
-    @Autowired
+    @Resource
     private MasSkillDefMapper masSkillDefMapper;
 
-    @Autowired
+    @Resource
     private MasTaskSkillRelMapper masTaskSkillRelMapper;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    @Resource
+    private MasStrategicPlannerService strategicPlannerService;
+
+
 
     @Override
     public List<MasSkillListVO> getAllSkills() {
@@ -36,19 +45,10 @@ public class MasSkillServiceImpl implements MasSkillService {
             MasSkillListVO vo = new MasSkillListVO();
             BeanUtils.copyProperties(po, vo);
             try {
-                if (po.getStrategyInstruction() != null && po.getStrategyInstruction().trim().startsWith("{")) {
-                    StrategyInstructionVO structuredVO = objectMapper.readValue(po.getStrategyInstruction(), StrategyInstructionVO.class);
+                if (StringUtils.isNotEmpty(po.getStrategyInstruction())) {
+                    StrategyInstructionVO structuredVO = JsonUtils.parseObject(po.getStrategyInstruction(), StrategyInstructionVO.class);
                     // 补充完整的 markdown 到 strategy 字段 (实际可能来源于库里另一个字段，这里模拟放入原始 JSON)
-                    structuredVO.setStrategy(po.getStrategyInstruction());
                     vo.setStrategyInstruction(structuredVO);
-                } else if (po.getStrategyInstruction() != null) {
-                    // 兼容旧的普通文本格式
-                    StrategyInstructionVO fallbackVO = new StrategyInstructionVO();
-                    StrategyInstructionVO.Summary summary = new StrategyInstructionVO.Summary();
-                    summary.setDescription(po.getStrategyInstruction());
-                    fallbackVO.setSummary(summary);
-                    fallbackVO.setStrategy(po.getStrategyInstruction());
-                    vo.setStrategyInstruction(fallbackVO);
                 }
             } catch (Exception e) {
                 log.error("Failed to parse strategyInstruction for skill {}", po.getSkillCode(), e);
@@ -65,12 +65,16 @@ public class MasSkillServiceImpl implements MasSkillService {
 
     @Override
     public Long activateSkillForAsin(String skillCode, String targetBizId, String configParams) {
-        // Mocking the creation of mas_task_job id since it usually requires interacting with mas-runtime APIs
-        Long mockedTaskId = System.currentTimeMillis(); 
-        log.info("Mocked MasTask Creation for TargetBizId {}: taskId={}", targetBizId, mockedTaskId);
+
+        MasSkillDefDO skillDefDO = masSkillDefMapper.selectBySkillCode(skillCode);
+        if (skillDefDO == null) {
+            throw exception(ADV_SKILL_NOT_EXISTS);
+        }
+
+        Long taskId = strategicPlannerService.createTaskFromSkill(UUID.randomUUID().toString(), skillDefDO, configParams);
 
         MasTaskSkillRelDO relation = MasTaskSkillRelDO.builder()
-                .taskId(mockedTaskId)
+                .taskId(taskId)
                 .skillCode(skillCode)
                 .targetBizId(targetBizId)
                 .configParams(configParams)
@@ -78,7 +82,8 @@ public class MasSkillServiceImpl implements MasSkillService {
                 .build();
         
         masTaskSkillRelMapper.insert(relation);
-        return mockedTaskId;
+
+        return taskId;
     }
 
     @Override

@@ -32,7 +32,7 @@ public class DagGenerationPlan {
         /**
          * The task needs to be paused and resumed later.
          */
-        RESUME
+        SUSPEND
     }
     
     /**
@@ -51,7 +51,7 @@ public class DagGenerationPlan {
     private String reasoning;
 
     /**
-     * Optional: Next execution time in ISO format if status is RESUME.
+     * Optional: Next execution time in ISO format if status is SUSPEND.
      */
     private String nextExecuteAt;
 }

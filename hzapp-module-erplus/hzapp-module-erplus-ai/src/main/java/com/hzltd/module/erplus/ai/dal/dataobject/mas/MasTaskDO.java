@@ -77,4 +77,9 @@ public class MasTaskDO extends BaseDO {
      */
     private LocalDateTime nextExecuteTime;
 
+    /**
+     * 策略指导书 (JSON)，包含 Phase 定义
+     */
+    private String strategyInstruction;
+
 }

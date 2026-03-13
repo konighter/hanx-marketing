@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Service responsible for loading and managing DynamicAdkAgents from the database.
+ * Service responsible for loading and managing DynamicMasAgents from the database.
  * This acts as the runtime registry for all configured agents.
  */
 @Slf4j
@@ -21,14 +21,14 @@ import java.util.concurrent.ConcurrentHashMap;
 public class CustomAgentLoaderService {
 
     private final MasAgentConfigMapper agentConfigMapper;
-    private final AdkAgentFactory adkAgentFactory;
+    private final MasAgentFactory agentFactory;
     
     // Registry holding instantiated agents by their roleCode
-    private final Map<String, DynamicAdkAgent> agentRegistry = new ConcurrentHashMap<>();
+    private final Map<String, DynamicMasAgent> agentRegistry = new ConcurrentHashMap<>();
 
-    public CustomAgentLoaderService(MasAgentConfigMapper agentConfigMapper, AdkAgentFactory adkAgentFactory) {
+    public CustomAgentLoaderService(MasAgentConfigMapper agentConfigMapper, MasAgentFactory agentFactory) {
         this.agentConfigMapper = agentConfigMapper;
-        this.adkAgentFactory = adkAgentFactory;
+        this.agentFactory = agentFactory;
     }
 
     /**
@@ -45,7 +45,7 @@ public class CustomAgentLoaderService {
         
         for (MasAgentConfigDO configDO : activeConfigs) {
             try {
-                DynamicAdkAgent agent = adkAgentFactory.createFromConfig(configDO);
+                DynamicMasAgent agent = agentFactory.createFromConfig(configDO);
                 agentRegistry.put(configDO.getRoleCode(), agent);
                 log.info("Successfully loaded agent role: {}", configDO.getRoleCode());
             } catch (Exception e) {
@@ -60,7 +60,7 @@ public class CustomAgentLoaderService {
      * @param roleCode The unique role code of the agent.
      * @return The agent instance, or null if not found.
      */
-    public DynamicAdkAgent getAgentByRole(String roleCode) {
+    public DynamicMasAgent getAgentByRole(String roleCode) {
         return agentRegistry.get(roleCode);
     }
     
@@ -75,7 +75,7 @@ public class CustomAgentLoaderService {
         MasAgentConfigDO configDO = agentConfigMapper.selectOne(query);
         if (configDO != null) {
             try {
-                DynamicAdkAgent agent = adkAgentFactory.createFromConfig(configDO);
+                DynamicMasAgent agent = agentFactory.createFromConfig(configDO);
                 agentRegistry.put(roleCode, agent);
                 log.info("Successfully reloaded agent role: {}", roleCode);
             } catch (Exception e) {

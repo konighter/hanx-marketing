@@ -1,28 +1,46 @@
 package com.hzltd.module.erplus.ai.mas.runtime.memory;
 
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasSessionMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.NodeMemory;
+import lombok.Getter;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Context tightly bounded to a single graph node execution.
- * Isolates scratchpads and intermediate results from parallel nodes.
- * Reads fallback to GlobalSessionMemory. Writes stay local until merged.
+ * Implementation of NodeMemory that keeps local state in an in-memory map
+ * and can optionally merge changes back to the global MasSessionMemory.
  */
 public class LocalNodeMemory implements NodeMemory {
 
     private final String nodeId;
-    private final GlobalSessionMemory globalSessionMemory;
+    private final String sessionId;
     
-    // Not thread-safe as it should only be accessed by the single node thread executing it
-    private final Map<String, Object> localContext = new HashMap<>();
+    @Getter
+    private final MasSessionMemory globalMemory;
+    
+    @Getter
+    private final Map<String, Object> localMap = new HashMap<>();
 
-    public LocalNodeMemory(String nodeId, GlobalSessionMemory globalSessionMemory) {
+    public LocalNodeMemory(String nodeId, MasSessionMemory globalMemory) {
         this.nodeId = nodeId;
-        this.globalSessionMemory = globalSessionMemory;
+        this.globalMemory = globalMemory;
+        this.sessionId = globalMemory instanceof GlobalSessionMemory 
+                ? ((GlobalSessionMemory) globalMemory).getSessionId() 
+                : "unknown";
     }
 
-    public GlobalSessionMemory getGlobalSessionMemory() {
-        return globalSessionMemory;
+    @Override
+    public Object get(String key) {
+        if (localMap.containsKey(key)) {
+            return localMap.get(key);
+        }
+        return globalMemory.get(key);
+    }
+
+    @Override
+    public void put(String key, Object value) {
+        localMap.put(key, value);
     }
 
     @Override
@@ -32,53 +50,15 @@ public class LocalNodeMemory implements NodeMemory {
 
     @Override
     public String getSessionId() {
-        return globalSessionMemory != null ? globalSessionMemory.getSessionId() : "unknown";
-    }
-
-    @Override
-    public Object get(String key) {
-        if (key == null) return null;
-        // Check local first
-        if (localContext.containsKey(key)) {
-            return localContext.get(key);
-        }
-        // Fallback to global
-        if (globalSessionMemory != null) {
-            return globalSessionMemory.get(key);
-        }
-        return null;
-    }
-
-    @Override
-    public void put(String key, Object value) {
-        if (key != null && value != null) {
-            localContext.put(key, value);
-        }
-    }
-
-    /**
-     * Commits all local bounded variables into the global session memory.
-     * Typically called when the node successfully completes.
-     */
-    public void mergeToGlobal() {
-        if (globalSessionMemory != null) {
-            localContext.forEach(globalSessionMemory::put);
-        }
-    }
-
-    /**
-     * Clears local scratchpad.
-     */
-    public void clearLocal() {
-        localContext.clear();
-    }
-    
-    public Map<String, Object> snapshotLocal() {
-        return new HashMap<>(localContext);
+        return sessionId;
     }
 
     @Override
     public Map<String, Object> asMap() {
-        return snapshotLocal();
+        return localMap; 
+    }
+
+    public void mergeToGlobal() {
+        localMap.forEach(globalMemory::put);
     }
 }

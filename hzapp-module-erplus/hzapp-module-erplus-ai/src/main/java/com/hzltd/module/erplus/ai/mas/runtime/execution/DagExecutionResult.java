@@ -2,6 +2,8 @@ package com.hzltd.module.erplus.ai.mas.runtime.execution;
 
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +66,8 @@ public class DagExecutionResult {
      */
     @Data
     @Builder
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class NodeFailureDetail {
         private String nodeId;
         private String agentRole;

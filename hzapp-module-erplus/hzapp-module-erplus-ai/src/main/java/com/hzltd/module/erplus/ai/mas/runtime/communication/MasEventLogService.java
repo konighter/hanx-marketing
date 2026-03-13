@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.ai.mas.runtime.communication;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasEventLogDO;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasEventLogMapper;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +17,14 @@ import java.util.Map;
 public class MasEventLogService {
 
     private final MasEventLogMapper eventLogMapper;
-    private final ObjectMapper objectMapper = new ObjectMapper();
+
 
     /**
      * Record a memory state snapshot for visual playback.
      */
     public void logStateSnapshot(String sessionId, String loopId, Map<String, Object> state) {
         try {
-            String json = objectMapper.writeValueAsString(state);
+            String json = JsonUtils.toJsonString(state);
             logEvent(sessionId, loopId, "STATE_SNAPSHOT", "Memory snapshot captured", json);
         } catch (Exception e) {
             log.error("[EventLog] Failed to serialize state snapshot", e);

@@ -1,13 +1,19 @@
 package com.hzltd.module.erplus.ai.mas.runtime.agent;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.google.adk.agents.LlmAgent;
 import com.google.adk.models.BaseLlm;
 import com.google.adk.models.Gemini;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
-import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.NodeMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.PromptTemplateFactory;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.schema.DagGenerationPlan;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.llm.MasLlmClient;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.llm.adk.AdkLlmClientAdapter;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryKeys;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryManager;
+import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.adk.AdkMemoryAdapter;
+import static com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryKeys.*;
 import com.hzltd.module.erplus.ai.mas.runtime.tools.ToolDefinition;
 import com.hzltd.module.erplus.ai.mas.runtime.tools.ToolRegistry;
 import lombok.extern.slf4j.Slf4j;
@@ -25,12 +31,12 @@ import java.util.stream.Collectors;
  */
 @Slf4j
 @Component
-public class PlannerAgent extends DynamicAdkAgent {
+public class PlannerAgent extends AbstractMasAgent {
 
     public static final String ROLE_CODE = "PLANNER";
 
     private final PromptTemplateFactory promptTemplateFactory;
-    private final ObjectMapper objectMapper;
+
     private final ToolRegistry toolRegistry;
     private final CustomAgentLoaderService agentLoaderService;
 
@@ -41,22 +47,17 @@ public class PlannerAgent extends DynamicAdkAgent {
         "# Role\n" +
         "You are a Workflow Planner Agent. Your job is to decompose a complex goal into executable phases.\n" +
         "Each phase is a small DAG (directed acyclic graph) of agent tasks that can run in parallel or in sequence.\n\n" +
-
+        // ... (rest of prompt remains same)
         "# Goal\n" +
         "${userGoal}\n\n" +
-
         "# Current Phase\n" +
         "Phase ${phaseCount}\n\n" +
-
         "# Execution History\n" +
         "${globalContext}\n\n" +
-
         "# Available Agents\n" +
         "${availableAgents}\n\n" +
-
         "# Available Tools (for REACT nodes)\n" +
         "${availableTools}\n\n" +
-
         "# Planning Rules\n" +
         "1. **Single Responsibility**: Each node should do ONE clear thing. Do NOT put multiple distinct tasks in one node.\n" +
         "2. **Minimum Viable Phase**: Each phase should contain 1-5 nodes. Prefer smaller phases — it's better to have more phases than large complex DAGs.\n" +
@@ -67,19 +68,18 @@ public class PlannerAgent extends DynamicAdkAgent {
         "5. **Tool Scoping**: For REACT nodes, specify only the tools that node needs in `toolSet`. This improves focus and safety.\n" +
         "6. **Read History Carefully**: Before planning, review the execution history to understand what has been done, what failed, and what remains.\n" +
         "7. **Self-Healing**: If a previous phase had failures, plan recovery actions in this phase (e.g., retry with different parameters, reduce scope, or skip).\n" +
-        "8. **RESUME**: If the task requires waiting (for data to accumulate, for external events, for user approval), set status=RESUME with `nextExecuteAt` in ISO format.\n" +
-        "9. **Completion**: Return status=DONE only when ALL sub-goals are fully achieved. Do NOT return DONE prematurely.\n" +
-        "10. **Instruction Quality**: Each node's `instruction` must be specific and actionable. Include:\n" +
+        "7. **SUSPEND**: If the task requires waiting (for data to accumulate, for external events, for user approval), set status=SUSPEND with `nextExecuteAt` in ISO format.\n" +
+        "8. **Completion**: Return status=DONE only when ALL sub-goals are fully achieved. Do NOT return DONE prematurely.\n" +
+        "9. **Instruction Quality**: Each node's `instruction` must be specific and actionable. Include:\n" +
         "    - What data to use (reference previous outputs by agent role name)\n" +
         "    - What the expected output should contain\n" +
         "    - Any constraints, thresholds, or formatting requirements\n\n" +
-
         "# Output Format\n" +
         "Output ONLY a pure JSON object (NO markdown fences, NO explanation before or after the JSON):\n" +
         "{\n" +
-        "  \"status\": \"IN_PROGRESS | DONE | FAILED | RESUME\",\n" +
+        "  \"status\": \"IN_PROGRESS | DONE | FAILED | SUSPEND\",\n" +
         "  \"reasoning\": \"Why you chose this plan (1-2 sentences)\",\n" +
-        "  \"nextExecuteAt\": \"2026-03-13T10:00:00 (only when status=RESUME)\",\n" +
+        "  \"nextExecuteAt\": \"2026-03-13T10:00:00 (only when status=SUSPEND)\",\n" +
         "  \"nodes\": [\n" +
         "    {\n" +
         "      \"id\": \"p${phaseCount}-n1\",\n" +
@@ -96,50 +96,48 @@ public class PlannerAgent extends DynamicAdkAgent {
     @Autowired
     public PlannerAgent(MasEventLogService eventLogService,
                         PromptTemplateFactory promptTemplateFactory,
-                        ObjectMapper objectMapper,
-                        com.hzltd.module.erplus.ai.mas.runtime.memory.GraphMemoryService graphMemoryService,
+                        MasMemoryManager memoryManager,
                         @Autowired(required = false) ToolRegistry toolRegistry,
                         CustomAgentLoaderService agentLoaderService) {
-        this(buildNativeAgent(), eventLogService, promptTemplateFactory, objectMapper, graphMemoryService, toolRegistry, agentLoaderService);
+        this(buildMasLlmClient(memoryManager), eventLogService, promptTemplateFactory, toolRegistry, agentLoaderService);
     }
 
-    public PlannerAgent(LlmAgent adkNativeAgent,
+    public PlannerAgent(MasLlmClient llmClient,
                         MasEventLogService eventLogService,
                         PromptTemplateFactory promptTemplateFactory,
-                        ObjectMapper objectMapper,
-                        com.hzltd.module.erplus.ai.mas.runtime.memory.GraphMemoryService graphMemoryService,
                         ToolRegistry toolRegistry,
                         CustomAgentLoaderService agentLoaderService) {
-        super(ROLE_CODE, "Analyze and plan macro-workflow stages.", adkNativeAgent, eventLogService, graphMemoryService);
+        super(ROLE_CODE, "Analyze and plan macro-workflow stages.", eventLogService, llmClient);
         this.promptTemplateFactory = promptTemplateFactory;
-        this.objectMapper = objectMapper;
         this.toolRegistry = toolRegistry;
         this.agentLoaderService = agentLoaderService;
-        log.info("Initialized system planner agent: {}", ROLE_CODE);
     }
 
-    private static LlmAgent buildNativeAgent() {
+    private static MasLlmClient buildMasLlmClient(MasMemoryManager memoryManager) {
         BaseLlm fallbackLlm = Gemini.builder()
                 .modelName("gemini-1.5-pro")
                 .apiKey("MOCK_DEFAULT_KEY")
                 .build();
 
-        return LlmAgent.builder()
+        LlmAgent adkAgent = LlmAgent.builder()
                 .name("Workflow Planner")
                 .model(fallbackLlm)
                 .instruction("You are a strict JSON-speaking workflow coordinator.")
                 .build();
+                
+        // Wrap generic memory manager into ADK adapter specifically for this client
+        return new AdkLlmClientAdapter(adkAgent, new AdkMemoryAdapter(memoryManager));
     }
 
     @Override
     public String execute(NodeMemory memory) {
+        // ... (rest of execute remains same)
         log.info("[PlannerAgent] Starting planning phase.");
 
-        String userGoal = memory.get("userGoal") != null ? memory.get("userGoal").toString() : "Unknown goal";
-        String globalContext = memory.get("globalHistory") != null ? memory.get("globalHistory").toString() : "No prior history — this is Phase 1.";
-        String phaseCount = memory.get("_phaseCount") != null ? memory.get("_phaseCount").toString() : "1";
+        String userGoal = memory.get(USER_GOAL) != null ? memory.get(USER_GOAL).toString() : "Unknown goal";
+        String globalContext = memory.get(GLOBAL_HISTORY) != null ? memory.get(GLOBAL_HISTORY).toString() : "No prior history — this is Phase 1.";
+        String phaseCount = memory.get(PHASE_COUNT) != null ? memory.get(PHASE_COUNT).toString() : "1";
 
-        // Build dynamic context: available agents and tools
         String availableAgents = buildAvailableAgentsList();
         String availableTools = buildAvailableToolsList();
 
@@ -151,29 +149,13 @@ public class PlannerAgent extends DynamicAdkAgent {
             "availableTools", availableTools
         ));
 
-        memory.put("taskInstruction", dynamicPrompt);
-
-        // Delegate to base DynamicAdkAgent (calls ADK LlmAgent)
+        memory.put(TASK_INSTRUCTION, dynamicPrompt);
+        log.info("[PlannerAgent] Delegating task to sub-agent chain...");
+        
         String result = super.execute(memory);
 
-        // Post-processing: strip markdown fences
-        if (result != null) {
-            result = result.trim();
-            if (result.startsWith("```json")) {
-                result = result.substring(7);
-            } else if (result.startsWith("```")) {
-                result = result.substring(3);
-            }
-            if (result.endsWith("```")) {
-                result = result.substring(0, result.length() - 3);
-            }
-            result = result.trim();
-        }
-
         try {
-            DagGenerationPlan plan = objectMapper.readValue(result, DagGenerationPlan.class);
-            log.info("[PlannerAgent] Generated valid DagGenerationPlan: status={}, nodes={}",
-                    plan.getStatus(), plan.getNodes() != null ? plan.getNodes().size() : 0);
+            JsonUtils.parseObject(result, DagGenerationPlan.class);
         } catch (Exception e) {
             log.warn("[PlannerAgent] Model output failed JSON validation. Raw: {}", result, e);
             throw new RuntimeException("PlannerAgent returned invalid JSON format", e);
@@ -182,9 +164,6 @@ public class PlannerAgent extends DynamicAdkAgent {
         return result;
     }
 
-    /**
-     * Build a formatted list of available agent roles for the prompt.
-     */
     private String buildAvailableAgentsList() {
         try {
             Set<String> roles = agentLoaderService.getAvailableRoles();
@@ -192,7 +171,7 @@ public class PlannerAgent extends DynamicAdkAgent {
                 return "No custom agents configured. Use generic roles: ANALYST, EXECUTOR, STRATEGIST, WRITER.";
             }
             return roles.stream()
-                    .filter(r -> !r.equals(ROLE_CODE)) // exclude PLANNER itself
+                    .filter(r -> !r.equals(ROLE_CODE))
                     .map(r -> "- " + r)
                     .collect(Collectors.joining("\n"));
         } catch (Exception e) {
@@ -201,18 +180,11 @@ public class PlannerAgent extends DynamicAdkAgent {
         }
     }
 
-    /**
-     * Build a formatted list of available tools for the prompt.
-     */
     private String buildAvailableToolsList() {
-        if (toolRegistry == null) {
-            return "No tools registered. Use SIMPLE nodes only.";
-        }
+        if (toolRegistry == null) return "No tools registered. Use SIMPLE nodes only.";
         try {
             List<ToolDefinition> defs = toolRegistry.getToolDefinitions();
-            if (defs.isEmpty()) {
-                return "No tools registered. Use SIMPLE nodes only.";
-            }
+            if (defs.isEmpty()) return "No tools registered. Use SIMPLE nodes only.";
             return defs.stream()
                     .map(ToolDefinition::toPromptDescription)
                     .collect(Collectors.joining("\n"));

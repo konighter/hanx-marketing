@@ -1,5 +1,6 @@
 package com.hzltd.module.erplus.ai.mas.runtime.task;
 
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskDO;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasTaskMapper;
 import com.hzltd.module.erplus.ai.mas.runtime.task.enums.MasTaskStatusEnum;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * MasTaskService 实现类
@@ -38,21 +38,17 @@ public class MasTaskServiceImpl implements MasTaskService {
         return taskMapper.selectById(id);
     }
 
+
     @Override
     public List<MasTaskDO> getPendingTasks() {
-        // Fetch PENDING tasks OR RESUME tasks whose nextExecuteTime is reached
-        return taskMapper.selectList(null).stream()
-            .filter(t -> {
-                String status = t.getStatus();
-                if (MasTaskStatusEnum.PENDING.getStatus().equals(status)) {
-                    return true;
-                }
-                if (MasTaskStatusEnum.RESUME.getStatus().equals(status)) {
-                    return t.getNextExecuteTime() == null || t.getNextExecuteTime().isBefore(LocalDateTime.now());
-                }
-                return false;
-            })
-            .collect(Collectors.toList());
+        // Fetch tasks that are "READY" for processing:
+        // 1. ROOT tasks in PENDING status whose nextExecuteTime is reached (to be moved to RUNNING and activate children)
+        // 2. LEAF tasks in PENDING/RESUME status whose nextExecuteTime is reached (to be executed by orchestrator)
+        return taskMapper.selectList(new LambdaQueryWrapperX<MasTaskDO>()
+                        .in(MasTaskDO::getStatus, List.of(MasTaskStatusEnum.PENDING.getStatus(), MasTaskStatusEnum.SUSPEND.getStatus()))
+                .le(MasTaskDO::getNextExecuteTime, LocalDateTime.now())
+
+        );
     }
 
     @Override
@@ -90,23 +86,22 @@ public class MasTaskServiceImpl implements MasTaskService {
 
     @Override
     public List<MasTaskDO> getChildTasks(Long parentId) {
-        return taskMapper.selectList(null).stream()
-            .filter(t -> parentId.equals(t.getParentId()))
-            .collect(Collectors.toList());
+        return taskMapper.selectList(new com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX<MasTaskDO>()
+                .eq(MasTaskDO::getParentId, parentId));
     }
 
     @Override
-    public void resumeTask(Long taskId, LocalDateTime nextTime, String outputData) {
+    public void suspendTask(Long taskId, LocalDateTime nextTime, String outputData) {
         MasTaskDO task = taskMapper.selectById(taskId);
         if (task == null) return;
 
-        task.setStatus(MasTaskStatusEnum.RESUME.getStatus());
+        task.setStatus(MasTaskStatusEnum.SUSPEND.getStatus());
         task.setNextExecuteTime(nextTime);
         if (outputData != null) {
             task.setOutputData(outputData);
         }
         taskMapper.updateById(task);
-        log.info("[MasTask] Task {} moved to RESUME state, next execution: {}", taskId, nextTime);
+        log.info("[MasTask] Task {} moved to SUSPEND state, next execution: {}", taskId, nextTime);
     }
 
     @Override
@@ -148,57 +143,72 @@ public class MasTaskServiceImpl implements MasTaskService {
         checkAndUpdateParentStatus(task.getParentId());
     }
 
-    private void checkAndUpdateParentStatus(Long parentId) {
+    @Override
+    public void activateChildren(Long parentId) {
         if (parentId == null) return;
-
         MasTaskDO parent = taskMapper.selectById(parentId);
         if (parent == null) return;
 
         List<MasTaskDO> children = getChildTasks(parentId);
+        if (children.isEmpty()) return;
 
-        // --- FAILED propagation: if any child FAILED, parent FAILED ---
-        boolean anyFailed = children.stream().anyMatch(c ->
-            MasTaskStatusEnum.FAILED.getStatus().equals(c.getStatus()));
+        if (MasTaskTypeEnum.PARALLEL.getType().equals(parent.getTaskType())) {
+            // Parallel: activate all WAITING children
+            children.stream()
+                .filter(c -> MasTaskStatusEnum.WAITING.getStatus().equals(c.getStatus()))
+                .forEach(c -> {
+                    c.setStatus(MasTaskStatusEnum.PENDING.getStatus());
+                    c.setNextExecuteTime(LocalDateTime.now()); // Immediate activation
+                    taskMapper.updateById(c);
+                    log.info("[MasTask] Parallel parent {}: Moving child {} to PENDING", parentId, c.getId());
+                });
+        } else {
+            // Sequential: activate the FIRST WAITING child (based on execution_order)
+            children.stream()
+                .filter(c -> MasTaskStatusEnum.WAITING.getStatus().equals(c.getStatus()))
+                .min(java.util.Comparator.comparingInt(MasTaskDO::getExecutionOrder))
+                .ifPresent(first -> {
+                    first.setStatus(MasTaskStatusEnum.PENDING.getStatus());
+                    first.setNextExecuteTime(LocalDateTime.now()); // Immediate activation
+                    taskMapper.updateById(first);
+                    log.info("[MasTask] Sequential parent {}: Moving first child {} to PENDING", parentId, first.getId());
+                });
+        }
+    }
 
+    private void checkAndUpdateParentStatus(Long parentId) {
+        if (parentId == null) return;
+        
+        MasTaskDO parent = taskMapper.selectById(parentId);
+        if (parent == null) return;
+        
+        List<MasTaskDO> children = getChildTasks(parentId);
+        if (children.isEmpty()) return;
+        
+        // --- FAILED propagation ---
+        boolean anyFailed = children.stream().anyMatch(c -> MasTaskStatusEnum.FAILED.getStatus().equals(c.getStatus()));
         if (anyFailed) {
-            String errorDetails = children.stream()
-                .filter(c -> MasTaskStatusEnum.FAILED.getStatus().equals(c.getStatus()))
-                .map(c -> String.format("[%s]: %s", c.getName(),
-                        c.getOutputData() != null ? c.getOutputData() : "No error details"))
-                .collect(Collectors.joining("\n"));
-
             parent.setStatus(MasTaskStatusEnum.FAILED.getStatus());
-            parent.setOutputData("Child task(s) failed:\n" + errorDetails);
+            parent.setOutputData("Child task(s) failed.");
             taskMapper.updateById(parent);
-            log.error("[MasTask] Parent Task {} moved to FAILED due to child failure(s)", parentId);
-
-            // Recursively propagate to grandparent
             checkAndUpdateParentStatus(parent.getParentId());
             return;
         }
-
+        
         // --- All SUCCESS → REVIEW_REQUIRED ---
-        boolean allSuccess = children.stream().allMatch(c ->
-            MasTaskStatusEnum.SUCCESS.getStatus().equals(c.getStatus()));
-
+        boolean allSuccess = children.stream().allMatch(c -> MasTaskStatusEnum.SUCCESS.getStatus().equals(c.getStatus()));
         if (allSuccess) {
-            String aggregateResult = children.stream()
-                .map(c -> String.format("[%s]: %s", c.getName(), c.getOutputData()))
-                .collect(Collectors.joining("\n"));
-            parent.setOutputData(aggregateResult);
-
             parent.setStatus(MasTaskStatusEnum.REVIEW_REQUIRED.getStatus());
             taskMapper.updateById(parent);
-            log.info("[MasTask] Parent Task {} moved to REVIEW_REQUIRED with aggregated results", parentId);
         } else if (MasTaskTypeEnum.SEQUENTIAL.getType().equals(parent.getTaskType())) {
-            // Sequential: trigger next waiting child (only if no failures)
+            // Trigger next waiting child
             children.stream()
                 .filter(c -> MasTaskStatusEnum.WAITING.getStatus().equals(c.getStatus()))
-                .findFirst()
+                .min(java.util.Comparator.comparingInt(MasTaskDO::getExecutionOrder))
                 .ifPresent(next -> {
                     next.setStatus(MasTaskStatusEnum.PENDING.getStatus());
+                    next.setNextExecuteTime(LocalDateTime.now());
                     taskMapper.updateById(next);
-                    log.info("[MasTask] Sequential parent {}: Moving child {} to PENDING", parentId, next.getId());
                 });
         }
     }
