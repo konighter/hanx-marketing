@@ -5,6 +5,7 @@ import com.google.adk.agents.LlmAgent;
 import com.google.adk.models.BaseLlm;
 import com.google.adk.models.Gemini;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
+import com.hzltd.module.erplus.ai.mas.runtime.llm.LlmProvider;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.PromptTemplateFactory;
 import com.hzltd.module.erplus.ai.mas.runtime.prompt.schema.DagGenerationPlan;
@@ -119,14 +120,10 @@ public class PlannerAgent extends DynamicAdkAgent {
     }
 
     private static LlmAgent buildNativeAgent() {
-        BaseLlm fallbackLlm = Gemini.builder()
-                .modelName("gemini-1.5-pro")
-                .apiKey("MOCK_DEFAULT_KEY")
-                .build();
 
         return LlmAgent.builder()
                 .name("Workflow Planner")
-                .model(fallbackLlm)
+                .model(LlmProvider.defaultLLM())
                 .instruction("You are a strict JSON-speaking workflow coordinator.")
                 .build();
     }

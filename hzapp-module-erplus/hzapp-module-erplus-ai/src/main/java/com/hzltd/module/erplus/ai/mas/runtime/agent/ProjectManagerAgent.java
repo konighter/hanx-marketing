@@ -4,6 +4,7 @@ import com.google.adk.agents.LlmAgent;
 import com.google.adk.models.BaseLlm;
 import com.google.adk.models.Gemini;
 import com.hzltd.module.erplus.ai.mas.runtime.communication.MasEventLogService;
+import com.hzltd.module.erplus.ai.mas.runtime.llm.LlmProvider;
 import com.hzltd.module.erplus.ai.mas.runtime.memory.NodeMemory;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +34,11 @@ public class ProjectManagerAgent extends DynamicAdkAgent {
 
     private static LlmAgent buildNativeAgent() {
         // Fallback model config using Gemini
-        BaseLlm fallbackLlm = Gemini.builder()
-                .modelName("gemini-1.5-pro")
-                .apiKey("MOCK_DEFAULT_KEY") // Assumes environment has appropriate credentials if actual call is made
-                .build();
+
 
         return LlmAgent.builder()
                 .name("Default Project Manager")
-                .model(fallbackLlm)
+                .model(LlmProvider.defaultLLM())
                 .instruction(DEFAULT_PROMPT)
                 .build();
     }
