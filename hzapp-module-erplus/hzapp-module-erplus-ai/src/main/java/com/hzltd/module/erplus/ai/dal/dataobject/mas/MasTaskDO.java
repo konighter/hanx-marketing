@@ -3,6 +3,8 @@ package com.hzltd.module.erplus.ai.dal.dataobject.mas;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.module.erplus.ai.mas.task.enums.MasTaskStatusEnum;
+import com.hzltd.module.erplus.ai.mas.task.enums.MasTaskTypeEnum;
 import lombok.*;
 import java.time.LocalDateTime;
 
@@ -42,13 +44,13 @@ public class MasTaskDO extends BaseDO {
 
     /**
      * 任务类型
-     * {@link com.hzltd.module.erplus.ai.mas.runtime.task.enums.MasTaskTypeEnum}
+     * {@link MasTaskTypeEnum}
      */
     private String taskType;
 
     /**
      * 任务状态
-     * {@link com.hzltd.module.erplus.ai.mas.runtime.task.enums.MasTaskStatusEnum}
+     * {@link MasTaskStatusEnum}
      */
     private String status;
 

@@ -4,11 +4,11 @@ import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.controller.admin.mas.vo.StrategyInstructionVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskDO;
-import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasMemoryManager;
-import com.hzltd.module.erplus.ai.mas.runtime.spi.memory.MasSessionMemory;
-import com.hzltd.module.erplus.ai.mas.runtime.task.MasTaskService;
-import com.hzltd.module.erplus.ai.mas.runtime.task.enums.MasTaskStatusEnum;
-import com.hzltd.module.erplus.ai.mas.runtime.task.enums.MasTaskTypeEnum;
+import com.hzltd.module.erplus.ai.mas.spi.memory.MasMemoryManager;
+import com.hzltd.module.erplus.ai.mas.spi.memory.MasSessionMemory;
+import com.hzltd.module.erplus.ai.mas.task.MasTaskService;
+import com.hzltd.module.erplus.ai.mas.task.enums.MasTaskStatusEnum;
+import com.hzltd.module.erplus.ai.mas.task.enums.MasTaskTypeEnum;
 import java.time.LocalDateTime;
 
 import jakarta.annotation.Resource;
