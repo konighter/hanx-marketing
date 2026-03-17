@@ -39,15 +39,15 @@ public class MasEventLogService {
     }
 
     public void logEvent(String sessionId, String loopId, String eventType, String description, String payload) {
-        MasEventLogDO event = MasEventLogDO.builder()
-                .sessionId(sessionId)
-                .loopId(loopId)
-                .eventType(eventType)
-                .description(description)
-                .payload(payload)
-                .build();
-        
-        eventLogMapper.insert(event);
-        log.debug("[EventLog] {} | Session: {} | Loop: {} | {}", eventType, sessionId, loopId, description);
+//        MasEventLogDO event = MasEventLogDO.builder()
+//                .sessionId(sessionId)
+//                .loopId(loopId)
+//                .eventType(eventType)
+//                .description(description)
+//                .payload(payload)
+//                .build();
+//
+//        eventLogMapper.insert(event);
+//        log.debug("[EventLog] {} | Session: {} | Loop: {} | {}", eventType, sessionId, loopId, description);
     }
 }

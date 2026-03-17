@@ -1,8 +1,12 @@
-package com.hzltd.module.erplus.ai.mas.task;
+package com.hzltd.module.erplus.ai.job;
 
+import com.hzltd.framework.quartz.core.handler.JobHandler;
+import com.hzltd.framework.tenant.core.job.TenantJob;
+import com.hzltd.framework.tenant.core.util.TenantUtils;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasTaskDO;
 import com.hzltd.module.erplus.ai.mas.orchestration.MasOrchestrationResult;
 import com.hzltd.module.erplus.ai.mas.orchestration.WorkflowOrchestrator;
+import com.hzltd.module.erplus.ai.mas.task.MasTaskService;
 import com.hzltd.module.erplus.ai.mas.task.enums.MasTaskStatusEnum;
 import com.hzltd.module.erplus.ai.mas.task.enums.MasTaskTypeEnum;
 import com.hzltd.module.erplus.ai.mas.spi.memory.MasMemoryKeys;
@@ -21,7 +25,7 @@ import java.util.concurrent.CompletableFuture;
  */
 @Slf4j
 @Component
-public class MasTaskJob {
+public class MasTaskJob implements JobHandler {
 
     private final MasTaskService taskService;
     private final WorkflowOrchestrator workflowOrchestrator;
@@ -33,11 +37,13 @@ public class MasTaskJob {
         this.memoryManager = memoryManager;
     }
 
-    /**
-     * 每 5 秒扫描一次待处理任务
-     * 实际生产环境建议使用分布式 Job 框架（如 XXL-JOB）
-     */
-//    @Scheduled(fixedDelay = 5000)
+    @Override
+    @TenantJob
+    public String execute(String param) throws Exception {
+        scheduleTasks();
+        return "";
+    }
+
     public void scheduleTasks() {
         List<MasTaskDO> pendingTasks = taskService.getPendingTasks();
         if (pendingTasks.isEmpty()) return;
@@ -80,16 +86,17 @@ public class MasTaskJob {
     }
 
     private void executeLeafTask(String sessionId, MasTaskDO task) {
-        // Execute asynchronously
+
+
         CompletableFuture.runAsync(() -> {
-            try {
+            TenantUtils.executeIgnore(() -> {try {
                 log.info("[MasTaskJob] Triggering WorkflowOrchestrator for task: {}", task.getId());
-                
+
                 // 2. Build rich prompt goal: Strategy + Retry + Input
                 String formattedGoal = TaskContextFormatter.formatTaskGoal(task);
-                
+
                 MasOrchestrationResult result = workflowOrchestrator.executeMacroLoop(sessionId, formattedGoal);
-                
+
                 if (result.getType() == MasOrchestrationResult.ResultType.SUSPEND) {
                     log.info("[MasTaskJob] Task {} matches SUSPEND. Moving to SUSPEND, nextExecuteAt={}", task.getId(), result.getNextExecuteTime());
                     taskService.suspendTask(task.getId(), result.getNextExecuteTime(), result.getHistory());
@@ -102,12 +109,12 @@ public class MasTaskJob {
                     // Success: Global History is persisted into outputData for audit/visibility
                     taskService.updateTaskStatus(task.getId(), MasTaskStatusEnum.SUCCESS.getStatus(), result.getHistory());
                 }
-                
+
                 log.info("[MasTaskJob] Leaf task {} finished with result type: {}", task.getId(), result.getType());
             } catch (Exception e) {
                 log.error("[MasTaskJob] Error during Leaf execution for task {}", task.getId(), e);
                 taskService.updateTaskStatus(task.getId(), MasTaskStatusEnum.FAILED.getStatus(), e.getMessage());
-            }
+            }});
         });
     }
 

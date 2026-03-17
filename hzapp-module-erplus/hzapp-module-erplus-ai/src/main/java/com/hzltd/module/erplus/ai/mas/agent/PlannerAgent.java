@@ -5,6 +5,8 @@ import com.google.adk.agents.LlmAgent;
 import com.google.adk.models.BaseLlm;
 import com.google.adk.models.Gemini;
 import com.hzltd.module.erplus.ai.mas.communication.MasEventLogService;
+import com.hzltd.module.erplus.ai.mas.llm.LlmProvider;
+import com.hzltd.module.erplus.ai.mas.spi.llm.LLMProvider;
 import com.hzltd.module.erplus.ai.mas.spi.memory.NodeMemory;
 import com.hzltd.module.erplus.ai.mas.prompt.PromptTemplateFactory;
 import com.hzltd.module.erplus.ai.mas.prompt.schema.DagGenerationPlan;
@@ -113,14 +115,11 @@ public class PlannerAgent extends AbstractMasAgent {
     }
 
     private static MasLlmClient buildMasLlmClient(MasMemoryManager memoryManager) {
-        BaseLlm fallbackLlm = Gemini.builder()
-                .modelName("gemini-1.5-pro")
-                .apiKey("MOCK_DEFAULT_KEY")
-                .build();
+
 
         LlmAgent adkAgent = LlmAgent.builder()
                 .name("Workflow Planner")
-                .model(fallbackLlm)
+                .model(LlmProvider.defaultLlm())
                 .instruction("You are a strict JSON-speaking workflow coordinator.")
                 .build();
                 
@@ -150,17 +149,8 @@ public class PlannerAgent extends AbstractMasAgent {
 
         memory.put(TASK_INSTRUCTION, dynamicPrompt);
         log.info("[PlannerAgent] Delegating task to sub-agent chain...");
-        
-        String result = super.execute(memory);
 
-        try {
-            JsonUtils.parseObject(result, DagGenerationPlan.class);
-        } catch (Exception e) {
-            log.warn("[PlannerAgent] Model output failed JSON validation. Raw: {}", result, e);
-            throw new RuntimeException("PlannerAgent returned invalid JSON format", e);
-        }
-
-        return result;
+        return super.execute(memory);
     }
 
     private String buildAvailableAgentsList() {

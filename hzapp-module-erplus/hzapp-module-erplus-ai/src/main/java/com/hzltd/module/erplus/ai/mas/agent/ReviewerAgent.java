@@ -5,6 +5,7 @@ import com.google.adk.agents.LlmAgent;
 import com.google.adk.models.BaseLlm;
 import com.google.adk.models.Gemini;
 import com.hzltd.module.erplus.ai.mas.communication.MasEventLogService;
+import com.hzltd.module.erplus.ai.mas.llm.LlmProvider;
 import com.hzltd.module.erplus.ai.mas.spi.memory.NodeMemory;
 import com.hzltd.module.erplus.ai.mas.orchestration.MasOrchestrationResult;
 import com.hzltd.module.erplus.ai.mas.prompt.PromptTemplateFactory;
@@ -61,14 +62,11 @@ public class ReviewerAgent extends AbstractMasAgent {
     }
 
     private static MasLlmClient buildMasLlmClient(MasMemoryManager memoryManager) {
-        BaseLlm fallbackLlm = Gemini.builder()
-                .modelName("gemini-1.5-pro")
-                .apiKey("MOCK_DEFAULT_KEY") 
-                .build();
+
 
         LlmAgent adkAgent = LlmAgent.builder()
                 .name("Workflow Reviewer")
-                .model(fallbackLlm)
+                .model(LlmProvider.defaultLlm())
                 .instruction("You are a strict JSON-speaking workflow reviewer and debugger.")
                 .build();
                 

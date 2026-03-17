@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
  * 这是 Orchestrator / Dispatcher 层发布事件的<b>唯一入口</b>，ADK Callbacks 中调用此类。
  */
 @Slf4j
-@Component
+//@Component
 @RequiredArgsConstructor
 public class MasEventPublisher {
 

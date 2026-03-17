@@ -60,7 +60,6 @@ import java.util.concurrent.atomic.AtomicReference;
  * 原 {@link WorkflowOrchestrator} 保持不变。待本类稳定后，MasTaskJob 切换引用到此类。
  */
 @Slf4j
-@Component
 @RequiredArgsConstructor
 public class WorkflowOrchestratorV1 {
 

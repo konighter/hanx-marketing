@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.ai.mas.spi.llm.adk;
 
 import com.google.adk.agents.LlmAgent;
+import com.google.adk.agents.RunConfig;
 import com.google.adk.memory.BaseMemoryService;
 import com.google.adk.runner.Runner;
 import com.google.genai.types.Content;
@@ -13,13 +14,14 @@ import com.hzltd.module.erplus.ai.mas.spi.llm.MasMessageHistory;
  * It uses ADK's BaseMemoryService for internal memory operations.
  */
 public class AdkLlmClientAdapter implements MasLlmClient {
+    private static final String APP_NAME = "MAS-Framework";
 
     private final Runner runner;
 
     public AdkLlmClientAdapter(LlmAgent adkAgent, BaseMemoryService memoryService) {
         this.runner = Runner.builder()
                 .agent(adkAgent)
-                .appName("MAS-Framework")
+                .appName(APP_NAME)
                 .memoryService(memoryService)
                 .build();
     }
@@ -36,12 +38,12 @@ public class AdkLlmClientAdapter implements MasLlmClient {
         Content content = Content.fromParts(Part.fromText(prompt));
         String adkUserId = sessionId;
 
-        runner.sessionService().createSession(adkUserId, sessionId).blockingGet();
+//        runner.sessionService().createSession(APP_NAME, sessionId).blockingGet();
 
         StringBuilder accumulatedResponse = new StringBuilder();
 
         // runAsync automatically calls the injected ADK memory service
-        runner.runAsync(adkUserId, sessionId, content).blockingIterable().forEach(event -> {
+        runner.runAsync(adkUserId, sessionId, content, RunConfig.builder().setAutoCreateSession(true).build()).blockingIterable().forEach(event -> {
             String snippet = event.stringifyContent();
             if (snippet != null) accumulatedResponse.append(snippet);
         });

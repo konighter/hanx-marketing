@@ -15,7 +15,7 @@ import java.util.List;
  * MasTaskService 实现类
  */
 @Slf4j
-@Service
+@Service("masTaskService")
 public class MasTaskServiceImpl implements MasTaskService {
 
     private final MasTaskMapper taskMapper;

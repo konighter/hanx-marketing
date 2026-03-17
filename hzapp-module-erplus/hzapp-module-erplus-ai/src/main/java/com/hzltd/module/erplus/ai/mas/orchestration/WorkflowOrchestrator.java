@@ -21,6 +21,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
+import java.util.function.Consumer;
 
 /**
  * Orchestrates the overall multi-phase workflow by looping between Planner,
@@ -62,8 +63,14 @@ public class WorkflowOrchestrator {
      * Executes the macro reasoning loop for a given goal.
      */
     public MasOrchestrationResult executeMacroLoop(String sessionId, String goal) {
+        return executeMacroLoop(sessionId, goal, s -> {
+            log.debug("[Session{}] session alive in {}, processing {}", sessionId, LocalDateTime.now(), s);
+        });
+    }
+
+    public MasOrchestrationResult executeMacroLoop(String sessionId, String goal, Consumer<String> heart) {
         log.info("[WorkflowOrchestrator] Starting macro loop for session: {} goal: {}", sessionId, goal);
-        
+
         MasSessionMemory sessionMemory = memoryManager.getSessionMemory(sessionId);
         if (sessionMemory.get(USER_GOAL) == null) {
             sessionMemory.put(USER_GOAL, goal);
@@ -82,29 +89,34 @@ public class WorkflowOrchestrator {
 
         while (true) {
             log.info("[WorkflowOrchestrator] ======== BEGIN PHASE {} ========", phaseCount);
-            
+
             if (phaseCount > MAX_PHASES) {
-                 log.warn("[WorkflowOrchestrator] Reached safety iteration limit ({}). Calling Reviewer for final verdict.", MAX_PHASES);
-                 return reviewerAgent.review(new LocalNodeMemory("LIMIT-REVIEW-" + sessionId, sessionMemory), 
-                     "Reached maximum phase limit of " + MAX_PHASES + ". Task seems stuck in a loop.");
+                log.warn("[WorkflowOrchestrator] Reached safety iteration limit ({}). Calling Reviewer for final verdict.", MAX_PHASES);
+                return reviewerAgent.review(new LocalNodeMemory("LIMIT-REVIEW-" + sessionId, sessionMemory),
+                        "Reached maximum phase limit of " + MAX_PHASES + ". Task seems stuck in a loop.");
             }
 
             // 1. Give Planner Agent the context to evaluate
             String plannerLoopId = "PLANNER-PHASE-" + phaseCount;
+            // 每次循环都发送心跳数据给调用者, 调用者可以感知当前的状态
+            heart.accept(plannerLoopId);
             LocalNodeMemory plannerLocalMem = new LocalNodeMemory(plannerLoopId, sessionMemory);
-            
+
             String planJson = null;
             int retries = 0;
             while (retries < 3) {
                 try {
                     planJson = plannerAgent.execute(plannerLocalMem);
-                    break; 
+                    break;
                 } catch (Exception e) {
                     retries++;
                     log.warn("[WorkflowOrchestrator] Planner execution attempt {} failed. Reason: {}", retries, e.getMessage());
                     if (retries >= 3) {
                         log.error("[WorkflowOrchestrator] Planner Agent failed after 3 retries.");
-                        return reviewerAgent.review(plannerLocalMem, "Planner execution failed repeatedly: " + e.getMessage());
+                        MasOrchestrationResult reviewResult = reviewerAgent.review(plannerLocalMem, "Planner execution failed repeatedly: " + e.getMessage());
+                        if (MasOrchestrationResult.ResultType.CONTINUE.equals(reviewResult.getType())) {
+                            continue;
+                        }
                     }
                 }
             }
@@ -117,12 +129,12 @@ public class WorkflowOrchestrator {
             } catch (Exception e) {
                 log.error("[WorkflowOrchestrator] Error parsing Planner JSON: {}", planJson, e);
                 log.info("[WorkflowOrchestrator] Tasking Reviewer to handle parsing failure.");
-                MasOrchestrationResult reviewResult = reviewerAgent.review(plannerLocalMem, 
-                    "Failed to parse Planner JSON output. Raw output was: " + planJson + ". Error: " + e.getMessage());
-                
+                MasOrchestrationResult reviewResult = reviewerAgent.review(plannerLocalMem,
+                        "Failed to parse Planner JSON output. Raw output was: " + planJson + ". Error: " + e.getMessage());
+
                 if (reviewResult.getType() == MasOrchestrationResult.ResultType.CONTINUE) {
                     log.info("[WorkflowOrchestrator] Reviewer suggested CONTINUE. Retrying loop...");
-                    continue; 
+                    continue;
                 }
                 return reviewResult;
             }
@@ -164,7 +176,7 @@ public class WorkflowOrchestrator {
             DagExecutionEngine engine = new DagExecutionEngine(
                     sessionMemory, checkpointService, memoryManager, eventLogService,
                     masNodeExecutorPool, nodeExecutorFactory);
-            
+
             for (GraphNode node : microBatch) {
                 engine.addNode(node);
             }
@@ -175,11 +187,11 @@ public class WorkflowOrchestrator {
             // 4. Update phase counter and context
             phaseCount++;
             sessionMemory.put(PHASE_COUNT, phaseCount);
-            
+
             // Incrementally append to history for human readability if needed
-            sessionMemory.put(GLOBAL_HISTORY, (sessionMemory.get(GLOBAL_HISTORY) != null ? sessionMemory.get(GLOBAL_HISTORY) : "") 
+            sessionMemory.put(GLOBAL_HISTORY, (sessionMemory.get(GLOBAL_HISTORY) != null ? sessionMemory.get(GLOBAL_HISTORY) : "")
                     + "\n--- Phase Result ---\n" + engineResult.toString());
-            
+
             memoryManager.saveToDb(sessionId);
 
             // Loop continues until Planner says DONE or Reviewer breaks it.

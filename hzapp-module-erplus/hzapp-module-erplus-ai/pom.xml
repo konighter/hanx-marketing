@@ -40,14 +40,14 @@
         <dependency>
             <groupId>com.google.adk</groupId>
             <artifactId>google-adk</artifactId>
-            <version>0.8.0</version>
+            <version>0.9.1-hzapp-SNAPSHOT</version>
         </dependency>
         <!-- Dev UI -->
-        <dependency>
-            <groupId>com.google.adk</groupId>
-            <artifactId>google-adk-dev</artifactId>
-            <version>0.8.0</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.google.adk</groupId>-->
+<!--            <artifactId>google-adk-dev</artifactId>-->
+<!--            <version>0.8.0</version>-->
+<!--        </dependency>-->
 
         <!-- DB -->
         <dependency>
@@ -79,6 +79,14 @@
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-job</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-biz-tenant</artifactId>
         </dependency>
     </dependencies>
 
