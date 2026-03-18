@@ -3,8 +3,14 @@ package com.hzltd.module.erplus.adv.dal.dataobject.mas;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.module.erplus.adv.controller.admin.mas.vo.FlowConfigVO;
 import lombok.*;
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Collections;
+import java.util.List;
 
 /**
  * MAS 技能定义表
@@ -64,5 +70,20 @@ public class MasSkillDefDO extends BaseDO {
      * 技能参数定义 schema (JSON)，供前端动态渲染初始化表单
      */
     private String paramSchema;
+
+    /**
+     * 流程配置信息
+     */
+    private String flowConfig;
+
+
+    public List<FlowConfigVO> getFlowConfigs() {
+        if (StringUtils.isNotEmpty(this.flowConfig)) {
+            return Collections.emptyList();
+        }
+
+        return JsonUtils.parseArray(this.flowConfig, FlowConfigVO.class);
+    }
+
 
 }

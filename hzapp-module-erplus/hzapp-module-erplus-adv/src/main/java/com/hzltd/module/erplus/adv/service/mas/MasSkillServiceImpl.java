@@ -1,23 +1,25 @@
 package com.hzltd.module.erplus.adv.service.mas;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.base.Joiner;
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.framework.tenant.core.context.TenantContextHolder;
 import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillListVO;
 import com.hzltd.module.erplus.adv.controller.admin.mas.vo.StrategyInstructionVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasTaskSkillRelDO;
 import com.hzltd.module.erplus.adv.dal.mysql.mas.MasSkillDefMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.mas.MasTaskSkillRelMapper;
+import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceRelDO;
+import com.hzltd.module.erplus.ai.dal.mysql.mas.MasSkillInstanceRelMapper;
+import com.hzltd.module.erplus.ai.workflow.MasWorkflowManager;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.module.erplus.enums.ErrorCodeConstants.ADV_SKILL_NOT_EXISTS;
@@ -30,10 +32,13 @@ public class MasSkillServiceImpl implements MasSkillService {
     private MasSkillDefMapper masSkillDefMapper;
 
     @Resource
-    private MasTaskSkillRelMapper masTaskSkillRelMapper;
+    private MasSkillInstanceRelMapper masSkillInstanceRelMapper;
 
     @Resource
-    private MasStrategicPlannerService strategicPlannerService;
+    private MasSkillAgenticService strategicPlannerService;
+
+    @Resource
+    private MasWorkflowManager masWorkflowManager;
 
 
 
@@ -71,23 +76,24 @@ public class MasSkillServiceImpl implements MasSkillService {
             throw exception(ADV_SKILL_NOT_EXISTS);
         }
 
-        Long taskId = strategicPlannerService.createTaskFromSkill(UUID.randomUUID().toString(), skillDefDO, configParams);
+        String skillBusinessKey = Joiner.on(":").join(TenantContextHolder.getTenantId(),skillCode,targetBizId);
 
-        MasTaskSkillRelDO relation = MasTaskSkillRelDO.builder()
-                .taskId(taskId)
+        String workflow = strategicPlannerService.createWorkflowFromSkill(skillBusinessKey, skillDefDO, configParams);
+
+        MasSkillInstanceRelDO relation = MasSkillInstanceRelDO.builder()
                 .skillCode(skillCode)
                 .targetBizId(targetBizId)
+                .workflowConfig(workflow)
                 .configParams(configParams)
-                .currentStage("Phase 1: Initializing")
                 .build();
-        
-        masTaskSkillRelMapper.insert(relation);
 
-        return taskId;
+        masSkillInstanceRelMapper.insert(relation);
+
+        return relation.getId();
     }
 
     @Override
-    public MasTaskSkillRelDO getSkillRelByTaskId(Long taskId) {
-        return masTaskSkillRelMapper.selectByTaskId(taskId);
+    public List<MasSkillInstanceRelDO> getSkillRelByTaskId(String skillCode) {
+        return masSkillInstanceRelMapper.selectBySkill(skillCode);
     }
 }

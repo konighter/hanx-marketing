@@ -3,6 +3,8 @@ package com.hzltd.module.erplus.adv.service.mas;
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasTaskSkillRelDO;
 import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillListVO;
+import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceRelDO;
+
 import java.util.List;
 
 public interface MasSkillService {
@@ -29,6 +31,6 @@ public interface MasSkillService {
     /**
      * 根据 TaskID 获取应用的技能关联信息
      */
-    MasTaskSkillRelDO getSkillRelByTaskId(Long taskId);
+    List<MasSkillInstanceRelDO> getSkillRelByTaskId(String skillCode);
     
 }
