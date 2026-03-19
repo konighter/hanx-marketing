@@ -59,6 +59,12 @@ public class StrategyInstructionVO {
         private Integer interval;
 
         /**
+         * Max iteration count per phase (default: 5).
+         * Controls how many collect-decide-execute-review cycles to run.
+         */
+        private Integer maxIterations;
+
+        /**
          * Required tools for this phase.
          */
         private List<String> tools;

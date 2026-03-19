@@ -78,7 +78,7 @@ public class MasSkillDefDO extends BaseDO {
 
 
     public List<FlowConfigVO> getFlowConfigs() {
-        if (StringUtils.isNotEmpty(this.flowConfig)) {
+        if (StringUtils.isEmpty(this.flowConfig)) {
             return Collections.emptyList();
         }
 

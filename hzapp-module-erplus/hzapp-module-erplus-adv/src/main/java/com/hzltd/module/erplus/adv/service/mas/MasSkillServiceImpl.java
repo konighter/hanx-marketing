@@ -78,7 +78,7 @@ public class MasSkillServiceImpl implements MasSkillService {
 
         String skillBusinessKey = Joiner.on(":").join(TenantContextHolder.getTenantId(),skillCode,targetBizId);
 
-        String workflow = strategicPlannerService.createWorkflowFromSkill(skillBusinessKey, skillDefDO, configParams);
+        String workflow = strategicPlannerService.createWorkflowFromSkill(skillBusinessKey, targetBizId, skillDefDO, configParams);
 
         MasSkillInstanceRelDO relation = MasSkillInstanceRelDO.builder()
                 .skillCode(skillCode)
