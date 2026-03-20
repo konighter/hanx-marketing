@@ -65,6 +65,7 @@ public class MasSkillAgenticService {
             String instanceId = masWorkflowManager.startFlowProcess(
                     flowConfig.getFlowDefineKey(), businessKey, params);
             flowConfig.setFlowInstanceId(instanceId);
+            flowConfig.setSessionId(sessionId); // 保存 sessionId 到 flowConfig
             processInstances.add(flowConfig);
 
             log.info("[MasSkillAgentic] 启动流程, key={}, instanceId={}, businessKey={}",

@@ -12,4 +12,6 @@ public class FlowConfigVO {
     private String orchestrationType;
     /** 监控间隔 ISO-8601 (e.g. "PT10M") */
     private String monitorInterval;
+    /** 会话 ID (chat 绑定) */
+    private String sessionId;
 }

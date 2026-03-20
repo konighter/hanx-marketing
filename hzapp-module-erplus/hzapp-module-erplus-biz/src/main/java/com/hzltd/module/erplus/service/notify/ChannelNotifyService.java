@@ -1,8 +1,8 @@
 package com.hzltd.module.erplus.service.notify;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.erplus.controller.admin.notify.vo.NotifyChannelPageReqVO;
-import com.hzltd.module.erplus.controller.admin.notify.vo.NotifyChannelSaveReqVO;
+import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelPageReqVO;
+import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.notify.NotifyChannelDO;
 
 import java.util.List;

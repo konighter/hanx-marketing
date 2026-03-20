@@ -2,10 +2,13 @@ package com.hzltd.module.erplus.ai.workflow;
 
 import com.hzltd.framework.tenant.core.context.TenantContextHolder;
 import lombok.extern.slf4j.Slf4j;
+import org.flowable.engine.HistoryService;
 import org.flowable.engine.RepositoryService;
 import org.flowable.engine.RuntimeService;
+import org.flowable.engine.TaskService;
 import org.flowable.engine.repository.Deployment;
 import org.flowable.engine.runtime.ProcessInstance;
+import org.flowable.task.api.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +27,12 @@ public class MasWorkflowManager {
 
     @Autowired
     private RepositoryService repositoryService;
+
+    @Autowired
+    private TaskService taskService;
+
+    @Autowired
+    private HistoryService historyService;
 
     /**
      * 手动部署流程定义（如果 Spring Boot 自动扫描未覆盖到该路径）
@@ -78,5 +87,28 @@ public class MasWorkflowManager {
                 .processInstanceBusinessKey(businessKey).list();
     }
 
+    /**
+     * 获取流程实例当前活跃的任务名称
+     */
+    public String getCurrentTaskName(String processInstanceId) {
+        if (processInstanceId == null) return null;
+        List<Task> tasks = taskService.createTaskQuery().processInstanceId(processInstanceId).list();
+        if (!tasks.isEmpty()) {
+            return tasks.get(0).getName();
+        }
+        return "已结束";
+    }
+
+    /**
+     * 获取流程实例运行状态
+     */
+    public String getProcessStatus(String processInstanceId) {
+        if (processInstanceId == null) return "未知";
+        ProcessInstance instance = runtimeService.createProcessInstanceQuery().processInstanceId(processInstanceId).singleResult();
+        if (instance != null) {
+            return instance.isSuspended() ? "已暂停" : "运行中";
+        }
+        return "已结束";
+    }
 
 }

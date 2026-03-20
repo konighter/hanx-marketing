@@ -1,9 +1,14 @@
 package com.hzltd.module.erplus.adv.service.mas;
 
+import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
-import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasTaskSkillRelDO;
+// com.hzltd.module.erplus.adv.dal.dataobject.mas.MasTaskSkillRelDO removed
 import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillListVO;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceRelDO;
+import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceLogDO;
+import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillInstanceMessageVO;
+import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillInstanceVO;
 
 import java.util.List;
 
@@ -27,6 +32,26 @@ public interface MasSkillService {
      * @return 关联的 TaskID
      */
     Long activateSkillForAsin(String skillCode, String targetBizId, String configParams);
+
+    /**
+     * 分页查询所有激活的技能实例关联信息 (包含 Flowable 状态)
+     */
+    PageResult<MasSkillInstanceVO> getSkillInstancePage(String skillCode, String targetBizId, PageParam pageParam);
+
+    /**
+     * 获取指定实例的运行日志
+     */
+    List<MasSkillInstanceLogDO> getSkillInstanceLogs(Long instanceId);
+
+    /**
+     * 获取指定实例的详细运行消息 (含 AI 思考和对话)
+     */
+    List<MasSkillInstanceMessageVO> getSkillInstanceMessages(String processInstanceId);
+    
+    /**
+     * 记录技能实例运行日志
+     */
+    void logSkillInstanceEvent(Long instanceId, String type, String title, String content);
 
     /**
      * 根据 TaskID 获取应用的技能关联信息
