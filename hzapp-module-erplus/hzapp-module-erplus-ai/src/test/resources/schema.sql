@@ -10,6 +10,8 @@ CREATE TABLE IF NOT EXISTS `ai_mas_task` (
   `output_data` LONGTEXT DEFAULT NULL,
   `execution_order` INT DEFAULT '0',
   `retry_data` TEXT DEFAULT NULL,
+  `strategy_instruction` LONGTEXT DEFAULT NULL,
+  `next_execute_time` DATETIME DEFAULT NULL,
   `create_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `creator` VARCHAR(64) DEFAULT NULL,

@@ -49,6 +49,18 @@
 <!--            <version>0.8.0</version>-->
 <!--        </dependency>-->
 
+
+        <!-- Flowable 工作流相关 -->
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-process</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-actuator</artifactId>
+        </dependency>
+
+
         <!-- DB -->
         <dependency>
             <groupId>com.hzltd</groupId>
@@ -79,6 +91,14 @@
             <groupId>io.projectreactor</groupId>
             <artifactId>reactor-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-job</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-spring-boot-starter-biz-tenant</artifactId>
         </dependency>
     </dependencies>
 

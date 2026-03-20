@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:flowable="http://flowable.org/bpmn"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
+             targetNamespace="http://flowable.org/mas"
+             exporter="Flowable"
+             exporterVersion="7.0">
+
+    <!--
+        Skill 串行主流程模板 (skill-seq-tasks)
+        按 PhaseDefinition.order 串行执行最多 5 个 Phase
+        内嵌监控 Event Sub-Process 和报警处理 Event Sub-Process
+
+        启动变量:
+          - skillCode:       Skill 编码
+          - targetBizId:     业务对象 ID (ASIN)
+          - tenantId:        租户 ID
+          - sessionId:       AI 会话 ID
+          - monitorInterval: 监控间隔 ISO-8601 (e.g. PT10M)
+          - totalPhases:     实际 Phase 数量 (1-5)
+
+          Per-Phase 变量 (通过 initTask 展开):
+          - phase_{N}_name, phase_{N}_instruction, phase_{N}_maxIterations
+          - phase_{N}_interval, phase_{N}_tools
+    -->
+
+    <signal id="alarmSignal" name="alarmSignal" flowable:scope="processInstance"/>
+
+    <process id="skill-seq-tasks" name="Skill Sequential Tasks" isExecutable="true">
+
+        <!-- ===== Start ===== -->
+        <startEvent id="startEvent" name="Skill 流程启动"/>
+
+        <!-- ===== 初始化: 展开 phaseConfigs JSON 为独立流程变量 ===== -->
+        <serviceTask id="initTask" name="初始化流程变量"
+                     flowable:expression="${skillInitDelegate.init(execution)}"/>
+
+        <!-- ========== Phase 1 ========== -->
+        <exclusiveGateway id="phase1Gate" name="执行Phase1?"/>
+
+        <callActivity id="phase1Call" name="Phase 1"
+                      calledElement="skill-task-loop"
+                      flowable:inheritVariables="false">
+            <extensionElements>
+                <flowable:in source="phase_1_name" target="phaseName"/>
+                <flowable:in source="phase_1_instruction" target="phaseInstruction"/>
+                <flowable:in source="phase_1_maxIterations" target="maxIterations"/>
+                <flowable:in source="phase_1_interval" target="taskInterval"/>
+                <flowable:in source="phase_1_tools" target="phaseTools"/>
+                <flowable:in source="sessionId" target="sessionId"/>
+                <flowable:in source="skillCode" target="skillCode"/>
+                <flowable:in source="targetBizId" target="targetBizId"/>
+                <flowable:in source="alarmAttribution" target="alarmAttribution"/>
+            </extensionElements>
+        </callActivity>
+
+        <!-- ========== Phase 2 ========== -->
+        <exclusiveGateway id="phase2Gate" name="执行Phase2?"/>
+
+        <callActivity id="phase2Call" name="Phase 2"
+                      calledElement="skill-task-loop"
+                      flowable:inheritVariables="false">
+            <extensionElements>
+                <flowable:in source="phase_2_name" target="phaseName"/>
+                <flowable:in source="phase_2_instruction" target="phaseInstruction"/>
+                <flowable:in source="phase_2_maxIterations" target="maxIterations"/>
+                <flowable:in source="phase_2_interval" target="taskInterval"/>
+                <flowable:in source="phase_2_tools" target="phaseTools"/>
+                <flowable:in source="sessionId" target="sessionId"/>
+                <flowable:in source="skillCode" target="skillCode"/>
+                <flowable:in source="targetBizId" target="targetBizId"/>
+                <flowable:in source="alarmAttribution" target="alarmAttribution"/>
+            </extensionElements>
+        </callActivity>
+
+        <!-- ========== Phase 3 ========== -->
+        <exclusiveGateway id="phase3Gate" name="执行Phase3?"/>
+
+        <callActivity id="phase3Call" name="Phase 3"
+                      calledElement="skill-task-loop"
+                      flowable:inheritVariables="false">
+            <extensionElements>
+                <flowable:in source="phase_3_name" target="phaseName"/>
+                <flowable:in source="phase_3_instruction" target="phaseInstruction"/>
+                <flowable:in source="phase_3_maxIterations" target="maxIterations"/>
+                <flowable:in source="phase_3_interval" target="taskInterval"/>
+                <flowable:in source="phase_3_tools" target="phaseTools"/>
+                <flowable:in source="sessionId" target="sessionId"/>
+                <flowable:in source="skillCode" target="skillCode"/>
+                <flowable:in source="targetBizId" target="targetBizId"/>
+                <flowable:in source="alarmAttribution" target="alarmAttribution"/>
+            </extensionElements>
+        </callActivity>
+
+        <!-- ========== Phase 4 ========== -->
+        <exclusiveGateway id="phase4Gate" name="执行Phase4?"/>
+
+        <callActivity id="phase4Call" name="Phase 4"
+                      calledElement="skill-task-loop"
+                      flowable:inheritVariables="false">
+            <extensionElements>
+                <flowable:in source="phase_4_name" target="phaseName"/>
+                <flowable:in source="phase_4_instruction" target="phaseInstruction"/>
+                <flowable:in source="phase_4_maxIterations" target="maxIterations"/>
+                <flowable:in source="phase_4_interval" target="taskInterval"/>
+                <flowable:in source="phase_4_tools" target="phaseTools"/>
+                <flowable:in source="sessionId" target="sessionId"/>
+                <flowable:in source="skillCode" target="skillCode"/>
+                <flowable:in source="targetBizId" target="targetBizId"/>
+                <flowable:in source="alarmAttribution" target="alarmAttribution"/>
+            </extensionElements>
+        </callActivity>
+
+        <!-- ========== Phase 5 ========== -->
+        <exclusiveGateway id="phase5Gate" name="执行Phase5?"/>
+
+        <callActivity id="phase5Call" name="Phase 5"
+                      calledElement="skill-task-loop"
+                      flowable:inheritVariables="false">
+            <extensionElements>
+                <flowable:in source="phase_5_name" target="phaseName"/>
+                <flowable:in source="phase_5_instruction" target="phaseInstruction"/>
+                <flowable:in source="phase_5_maxIterations" target="maxIterations"/>
+                <flowable:in source="phase_5_interval" target="taskInterval"/>
+                <flowable:in source="phase_5_tools" target="phaseTools"/>
+                <flowable:in source="sessionId" target="sessionId"/>
+                <flowable:in source="skillCode" target="skillCode"/>
+                <flowable:in source="targetBizId" target="targetBizId"/>
+                <flowable:in source="alarmAttribution" target="alarmAttribution"/>
+            </extensionElements>
+        </callActivity>
+
+        <!-- ===== End ===== -->
+        <endEvent id="endEvent" name="Skill 流程结束"/>
+
+        <!-- ========== Sequence Flows ========== -->
+
+        <sequenceFlow id="flow_start_init" sourceRef="startEvent" targetRef="initTask"/>
+        <sequenceFlow id="flow_init_phase1Gate" sourceRef="initTask" targetRef="phase1Gate"/>
+
+        <!-- Phase 1 -->
+        <sequenceFlow id="flow_phase1Gate_call" sourceRef="phase1Gate" targetRef="phase1Call">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases >= 1}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase1Gate_skip" sourceRef="phase1Gate" targetRef="endEvent">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases &lt; 1}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase1_phase2Gate" sourceRef="phase1Call" targetRef="phase2Gate"/>
+
+        <!-- Phase 2 -->
+        <sequenceFlow id="flow_phase2Gate_call" sourceRef="phase2Gate" targetRef="phase2Call">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases >= 2}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase2Gate_skip" sourceRef="phase2Gate" targetRef="endEvent">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases &lt; 2}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase2_phase3Gate" sourceRef="phase2Call" targetRef="phase3Gate"/>
+
+        <!-- Phase 3 -->
+        <sequenceFlow id="flow_phase3Gate_call" sourceRef="phase3Gate" targetRef="phase3Call">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases >= 3}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase3Gate_skip" sourceRef="phase3Gate" targetRef="endEvent">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases &lt; 3}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase3_phase4Gate" sourceRef="phase3Call" targetRef="phase4Gate"/>
+
+        <!-- Phase 4 -->
+        <sequenceFlow id="flow_phase4Gate_call" sourceRef="phase4Gate" targetRef="phase4Call">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases >= 4}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase4Gate_skip" sourceRef="phase4Gate" targetRef="endEvent">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases &lt; 4}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase4_phase5Gate" sourceRef="phase4Call" targetRef="phase5Gate"/>
+
+        <!-- Phase 5 -->
+        <sequenceFlow id="flow_phase5Gate_call" sourceRef="phase5Gate" targetRef="phase5Call">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases >= 5}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase5Gate_skip" sourceRef="phase5Gate" targetRef="endEvent">
+            <conditionExpression xsi:type="tFormalExpression">${totalPhases &lt; 5}</conditionExpression>
+        </sequenceFlow>
+        <sequenceFlow id="flow_phase5_end" sourceRef="phase5Call" targetRef="endEvent"/>
+
+        <!-- ========== 嵌入式事件子流程: 监控循环 (非中断) ========== -->
+        <subProcess id="monitorEventSubProcess" name="监控循环" triggeredByEvent="true">
+            <startEvent id="monitorTimerStart" name="监控定时器" isInterrupting="false">
+                <timerEventDefinition>
+                    <timeCycle>${monitorInterval}</timeCycle>
+                </timerEventDefinition>
+            </startEvent>
+
+            <serviceTask id="monitorTask" name="执行监控"
+                         flowable:expression="${skillMonitorDelegate.monitor(execution)}"/>
+
+            <exclusiveGateway id="alarmCheckGateway" name="发现异常?"/>
+
+            <intermediateThrowEvent id="throwAlarmSignal" name="抛出报警信号">
+                <signalEventDefinition signalRef="alarmSignal"/>
+            </intermediateThrowEvent>
+
+            <endEvent id="monitorNormalEnd" name="监控正常"/>
+            <endEvent id="monitorAlarmEnd" name="报警已发出"/>
+
+            <sequenceFlow id="flow_monTimer_monitor" sourceRef="monitorTimerStart" targetRef="monitorTask"/>
+            <sequenceFlow id="flow_monitor_alarmCheck" sourceRef="monitorTask" targetRef="alarmCheckGateway"/>
+            <sequenceFlow id="flow_alarmCheck_throw" sourceRef="alarmCheckGateway" targetRef="throwAlarmSignal">
+                <conditionExpression xsi:type="tFormalExpression">${alarmTriggered == true}</conditionExpression>
+            </sequenceFlow>
+            <sequenceFlow id="flow_alarmCheck_normal" sourceRef="alarmCheckGateway" targetRef="monitorNormalEnd">
+                <conditionExpression xsi:type="tFormalExpression">${alarmTriggered == false}</conditionExpression>
+            </sequenceFlow>
+            <sequenceFlow id="flow_throwAlarm_end" sourceRef="throwAlarmSignal" targetRef="monitorAlarmEnd"/>
+        </subProcess>
+
+        <!-- ========== 嵌入式事件子流程: 报警处理 (非中断) ========== -->
+        <subProcess id="alarmHandlerSubProcess" name="报警处理" triggeredByEvent="true">
+            <startEvent id="alarmSignalStart" name="接收报警信号" isInterrupting="false">
+                <signalEventDefinition signalRef="alarmSignal"/>
+            </startEvent>
+
+            <serviceTask id="attributionTask" name="归因分析"
+                         flowable:expression="${alarmDelegate.analyze(execution)}"/>
+
+            <exclusiveGateway id="actionGateway" name="建议动作?"/>
+
+            <serviceTask id="pauseActionTask" name="暂停相关投放"
+                         flowable:expression="${alarmDelegate.executePause(execution)}"/>
+
+            <serviceTask id="adjustActionTask" name="调整参数"
+                         flowable:expression="${alarmDelegate.executeAdjust(execution)}"/>
+
+            <serviceTask id="notifyActionTask" name="仅通知"
+                         flowable:expression="${alarmDelegate.executeNotify(execution)}"/>
+
+            <endEvent id="alarmHandlerEnd" name="报警处理完成"/>
+
+            <sequenceFlow id="flow_alarmStart_attr" sourceRef="alarmSignalStart" targetRef="attributionTask"/>
+            <sequenceFlow id="flow_attr_actionGw" sourceRef="attributionTask" targetRef="actionGateway"/>
+
+            <sequenceFlow id="flow_action_pause" sourceRef="actionGateway" targetRef="pauseActionTask">
+                <conditionExpression xsi:type="tFormalExpression">${suggestedAction == 'PAUSE'}</conditionExpression>
+            </sequenceFlow>
+            <sequenceFlow id="flow_action_adjust" sourceRef="actionGateway" targetRef="adjustActionTask">
+                <conditionExpression xsi:type="tFormalExpression">${suggestedAction == 'ADJUST'}</conditionExpression>
+            </sequenceFlow>
+            <sequenceFlow id="flow_action_notify" sourceRef="actionGateway" targetRef="notifyActionTask">
+                <conditionExpression xsi:type="tFormalExpression">${suggestedAction == 'NOTIFY_ONLY'}</conditionExpression>
+            </sequenceFlow>
+
+            <sequenceFlow id="flow_pause_end" sourceRef="pauseActionTask" targetRef="alarmHandlerEnd"/>
+            <sequenceFlow id="flow_adjust_end" sourceRef="adjustActionTask" targetRef="alarmHandlerEnd"/>
+            <sequenceFlow id="flow_notify_end" sourceRef="notifyActionTask" targetRef="alarmHandlerEnd"/>
+        </subProcess>
+
+    </process>
+
+    <!-- ========== BPMN Diagram ========== -->
+    <bpmndi:BPMNDiagram id="BPMNDiagram_skill_seq_tasks">
+        <bpmndi:BPMNPlane bpmnElement="skill-seq-tasks" id="BPMNPlane_skill_seq_tasks">
+            <bpmndi:BPMNShape id="shape_startEvent" bpmnElement="startEvent">
+                <omgdc:Bounds x="100" y="200" width="36" height="36"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="shape_initTask" bpmnElement="initTask">
+                <omgdc:Bounds x="190" y="178" width="120" height="80"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="shape_phase1Gate" bpmnElement="phase1Gate">
+                <omgdc:Bounds x="360" y="193" width="50" height="50"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="shape_phase1Call" bpmnElement="phase1Call">
+                <omgdc:Bounds x="460" y="178" width="120" height="80"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="shape_phase2Gate" bpmnElement="phase2Gate">
+                <omgdc:Bounds x="630" y="193" width="50" height="50"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="shape_phase2Call" bpmnElement="phase2Call">
+                <omgdc:Bounds x="730" y="178" width="120" height="80"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="shape_phase3Gate" bpmnElement="phase3Gate">
+                <omgdc:Bounds x="900" y="193" width="50" height="50"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="shape_phase3Call" bpmnElement="phase3Call">
+                <omgdc:Bounds x="1000" y="178" width="120" height="80"/>
+            </bpmndi:BPMNShape>
+            <bpmndi:BPMNShape id="shape_endEvent" bpmnElement="endEvent">
+                <omgdc:Bounds x="1600" y="200" width="36" height="36"/>
+            </bpmndi:BPMNShape>
+        </bpmndi:BPMNPlane>
+    </bpmndi:BPMNDiagram>
+
+</definitions>

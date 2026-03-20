@@ -1,43 +1,70 @@
 package com.hzltd.module.erplus.adv.controller.admin.mas;
 
 import com.hzltd.framework.common.pojo.CommonResult;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.ActivateReqVO;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillListVO;
+import com.hzltd.framework.common.pojo.PageParam;
+import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.module.erplus.adv.controller.admin.mas.vo.*;
+// import com.hzltd.module.erplus.adv.convert.mas.MasSkillConvert removed
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
 import com.hzltd.module.erplus.adv.service.mas.MasSkillService;
+import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceLogDO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import lombok.Data;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+import javax.validation.Valid;
 import java.util.List;
 
-@Tag(name = "MAS 技能大厅 API")
+import static com.hzltd.framework.common.pojo.CommonResult.success;
+
+@Tag(name = "管理后台 - 策略技能")
 @RestController
-@RequestMapping("/adv/mas-skills")
+@RequestMapping("/erplus/adv/mas/skill")
+@Validated
 public class MasSkillController {
 
-    @Autowired
-    private MasSkillService masSkillService;
+    @Resource
+    private MasSkillService skillService;
 
     @GetMapping("/list")
-    @Operation(summary = "获取技能大厅列表")
-    public CommonResult<List<MasSkillListVO>> listSkills() {
-        return CommonResult.success(masSkillService.getAllSkills());
+    @Operation(summary = "获得策略技能列表")
+    public CommonResult<List<MasSkillListVO>> getSkillList() {
+        return success(skillService.getAllSkills());
     }
 
     @GetMapping("/detail")
-    @Operation(summary = "获取单个技能详情 (包含参数 Schema)")
+    @Operation(summary = "获取单个技能详情")
     public CommonResult<MasSkillDefDO> getSkillDetail(@RequestParam("code") String code) {
-        return CommonResult.success(masSkillService.getSkillByCode(code));
+        return success(skillService.getSkillByCode(code));
     }
 
     @PostMapping("/activate")
     @Operation(summary = "为 ASIN 激活某策略技能")
     public CommonResult<Long> activateSkill(@RequestBody ActivateReqVO req) {
-        Long taskId = masSkillService.activateSkillForAsin(req.getSkillCode(), req.getTargetBizId(), req.getConfigParams());
-        return CommonResult.success(taskId);
+        return success(skillService.activateSkillForAsin(req.getSkillCode(), req.getTargetBizId(), req.getConfigParams()));
+    }
+
+    @GetMapping("/instance/page")
+    @Operation(summary = "获得策略技能实例分页")
+    public CommonResult<PageResult<MasSkillInstanceVO>> getSkillInstancePage(
+            @RequestParam(value = "skillCode", required = false) String skillCode,
+            @RequestParam(value = "targetBizId", required = false) String targetBizId,
+            @Valid PageParam pageParam) {
+        return success(skillService.getSkillInstancePage(skillCode, targetBizId, pageParam));
+    }
+
+    @GetMapping("/instance/logs")
+    @Operation(summary = "获得策略技能实例日志")
+    public CommonResult<List<MasSkillInstanceLogDO>> getSkillInstanceLogs(@RequestParam("id") Long id) {
+        return success(skillService.getSkillInstanceLogs(id));
+    }
+
+    @GetMapping("/instance/messages")
+    @Operation(summary = "获得策略技能实例消息")
+    public CommonResult<List<MasSkillInstanceMessageVO>> getSkillInstanceMessages(@RequestParam("processInstanceId") String processInstanceId) {
+        return success(skillService.getSkillInstanceMessages(processInstanceId));
     }
 
 }

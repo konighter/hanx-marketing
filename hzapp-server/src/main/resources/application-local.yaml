@@ -65,11 +65,12 @@ spring:
           url: jdbc:mysql://127.0.0.1:3307/ruoyi_vue_pro_2?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
           username: root
           password: 1234
-        doris: # doris数据库
-          lazy: true # 开启懒加载，保证启动速度
-          url: jdbc:mysql://127.0.0.1:9030/hanx_erplus?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
-          username: root
-          password:
+#        doris: # doris数据库
+#          lazy: true # 开启懒加载，保证启动速度
+#          url: jdbc:mysql://127.0.0.1:3307/ruoyi_vue_pro_2?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=truef
+##          url: jdbc:mysql://127.0.0.1:9030/hanx_erplus?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+#          username: root
+#          password:
 
   # Redis 配置。Redisson 默认的配置足够使用，一般不需要进行调优
   data:
@@ -139,7 +140,7 @@ spring:
       region:
         static: us-east-1
       sqs:
-        enabled: true
+        enabled: false
 
 
 --- #################### 服务保障相关配置 ####################

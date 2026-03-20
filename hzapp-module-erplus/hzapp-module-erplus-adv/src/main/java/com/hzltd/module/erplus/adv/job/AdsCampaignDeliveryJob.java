@@ -22,7 +22,7 @@ import java.util.List;
  */
 @Slf4j
 @Component
-public class AdsCampaignDeliveryJob implements JobHandler, ApplicationRunner {
+public class AdsCampaignDeliveryJob implements JobHandler {
 
     @Resource
     private AdsCampaignScheduleMapper adsCampaignScheduleMapper;
@@ -60,37 +60,6 @@ public class AdsCampaignDeliveryJob implements JobHandler, ApplicationRunner {
             }
         }
         return "执行完成: " + schedules.size();
-    }
-
-    @Override
-    public void run(ApplicationArguments args) {
-        log.info("[AdsCampaignDeliveryJob] 系统启动，执行分时投放调度初始化...");
-        try {
-            self.bootstrapSchedules();
-        } catch (Exception e) {
-            log.error("[AdsCampaignDeliveryJob] 初始化分时投放调度失败", e);
-        }
-    }
-
-
-    /**
-     * 初始化扫描：为所有设置了分时计划但尚未加入调度表的广告计划生成调度记录
-     */
-    @TenantJob
-    public void bootstrapSchedules() {
-        List<AdsCampaignDO> campaigns = adsCampaignMapper.selectList(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AdsCampaignDO>()
-                .isNotNull(AdsCampaignDO::getDeliverySchedule)
-                .ne(AdsCampaignDO::getDeliverySchedule, ""));
-        
-        log.info("[AdsCampaignDeliveryJob] 发现 {} 个配置了分时计划的广告活动，准备初始化调度表...", campaigns.size());
-        
-        for (AdsCampaignDO campaign : campaigns) {
-            AdsCampaignScheduleDO existing = adsCampaignScheduleMapper.selectByCampaignId(campaign.getId());
-            if (existing == null) {
-                log.info("[AdsCampaignDeliveryJob] 正在为计划初始化调度记录: campaignId={}", campaign.getId());
-                adsCampaignService.calculateAndSaveNextTransition(campaign.getId(), campaign.getDeliverySchedule());
-            }
-        }
     }
 
     private void processTransition(AdsCampaignScheduleDO schedule) {
