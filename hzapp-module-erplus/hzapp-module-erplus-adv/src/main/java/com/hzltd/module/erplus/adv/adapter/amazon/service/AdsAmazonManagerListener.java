@@ -5,7 +5,9 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAmazonProfileDO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsBudgetBurnRateDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAmazonProfileMapper;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsBudgetBurnRateMapper;
 import com.hzltd.module.erplus.enums.notify.NotifyChannelTypeEnum;
 import com.hzltd.module.erplus.sys.ChannelNotifySendService;
 import com.hzltd.module.erplus.sys.model.NotifyMessage;
@@ -17,6 +19,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.List;
@@ -35,6 +38,9 @@ public class AdsAmazonManagerListener extends AbstractAmazonSqsListener {
 
     @Resource
     private ChannelNotifySendService channelNotifySendService;
+
+    @Resource
+    private AdsBudgetBurnRateMapper adsBudgetBurnRateMapper;
 
     @SqsListener("${hzapp.aws.sqs.ads-manager-queue}")
     public void onMessage(String message) {
@@ -82,12 +88,30 @@ public class AdsAmazonManagerListener extends AbstractAmazonSqsListener {
 
         ZoneId zoneId = ZoneId.of(profile.getTimezone() != null ? profile.getTimezone() : "UTC");
         ZonedDateTime updatedTime;
+        Instant instant;
         try {
-            Instant instant = Instant.parse(usageUpdatedTimestampStr);
+            instant = Instant.parse(usageUpdatedTimestampStr);
             updatedTime = instant.atZone(zoneId);
         } catch (Exception e) {
             log.warn("[AdsAmazonManagerListener] 解析时间戳失败: {}", usageUpdatedTimestampStr);
             return;
+        }
+
+        try {
+            AdsBudgetBurnRateDO burnRateDO = AdsBudgetBurnRateDO.builder()
+                    .advertiserId(advertiserId)
+                    .marketplaceId(record.getMarketplaceId())
+                    .datasetId(record.getDatasetId())
+                    .budgetScopeId(campaignId)
+                    .budgetScopeType(record.getBudgetScopeType())
+                    .advertisingProductType(record.getAdvertisingProductType())
+                    .budget(record.getBudget())
+                    .budgetUsagePercentage(budgetUsagePercentage)
+                    .usageUpdatedTimestamp(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()))
+                    .build();
+            adsBudgetBurnRateMapper.insert(burnRateDO);
+        } catch (Exception e) {
+            log.error("[AdsAmazonManagerListener] 保存预算消耗记录失败", e);
         }
         
         // 计算当天的时间进度 (百分比)
