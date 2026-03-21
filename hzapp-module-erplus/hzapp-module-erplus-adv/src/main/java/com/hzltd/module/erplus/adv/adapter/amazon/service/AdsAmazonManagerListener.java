@@ -8,6 +8,7 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsAmazonProfileDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsBudgetBurnRateDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAmazonProfileMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsBudgetBurnRateMapper;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.enums.notify.NotifyChannelTypeEnum;
 import com.hzltd.module.erplus.sys.ChannelNotifySendService;
 import com.hzltd.module.erplus.sys.model.NotifyMessage;
@@ -97,6 +98,8 @@ public class AdsAmazonManagerListener extends AbstractAmazonSqsListener {
             return;
         }
 
+        double previousPercentage = getPreviousPercentageForToday(campaignId, updatedTime, zoneId);
+
         try {
             AdsBudgetBurnRateDO burnRateDO = AdsBudgetBurnRateDO.builder()
                     .advertiserId(advertiserId)
@@ -125,6 +128,13 @@ public class AdsAmazonManagerListener extends AbstractAmazonSqsListener {
         if (budgetUsagePercentage - timeProgressPercentage > 50.0) {
             sendBudgetAlertNotify(profile, campaignId, budgetUsagePercentage, timeProgressPercentage);
         }
+
+        // 预算使用率在第一次是整十数时，发送预算使用通知
+        int currentTens = (int) (budgetUsagePercentage / 10);
+        int previousTens = (int) (previousPercentage / 10);
+        if (currentTens > previousTens && currentTens > 0) {
+            sendBudgetUsageNotify(profile, campaignId, budgetUsagePercentage, currentTens * 10);
+        }
     }
 
     private void sendBudgetAlertNotify(AdsAmazonProfileDO profile, String campaignId, double usage, double progress) {
@@ -143,9 +153,47 @@ public class AdsAmazonManagerListener extends AbstractAmazonSqsListener {
         channelNotifySendService.send(notifyMessage, NotifyChannelTypeEnum.FEISHU);
     }
 
+    private void sendBudgetUsageNotify(AdsAmazonProfileDO profile, String campaignId, double usage, int threshold) {
+        NotifyMessage notifyMessage = new NotifyMessage();
+        notifyMessage.setTitle("【预算进度通知】亚马逊广告");
+        notifyMessage.setLevel("info");
+        
+        String content = String.format("广告账户 [%s] (%s) 的活动 (Campaign ID: %s) 预算使用达到新阶段！\n" +
+                "- 当前预算已使用: **%.2f%%**\n" +
+                "- 触发里程碑: **%d%%**\n" +
+                "- 当地时区: %s", 
+                profile.getEntityName(), profile.getCountryCode(), campaignId, usage, threshold, profile.getTimezone());
+        notifyMessage.setContent(content);
+
+        // 发送给启用的渠道
+        channelNotifySendService.send(notifyMessage, NotifyChannelTypeEnum.FEISHU);
+    }
+
     @Override
     protected String getListenerName() {
         return "Budget";
+    }
+
+    private double getPreviousPercentageForToday(String campaignId, ZonedDateTime updatedTime, ZoneId zoneId) {
+        try {
+            LocalDateTime startOfDayInDb = updatedTime.toLocalDate().atStartOfDay(zoneId)
+                    .withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+            LocalDateTime endOfDayInDb = updatedTime.toLocalDate().atTime(23, 59, 59)
+                    .atZone(zoneId).withZoneSameInstant(ZoneId.systemDefault()).toLocalDateTime();
+
+            AdsBudgetBurnRateDO lastRecord = adsBudgetBurnRateMapper.selectOne(new LambdaQueryWrapperX<AdsBudgetBurnRateDO>()
+                    .eq(AdsBudgetBurnRateDO::getBudgetScopeId, campaignId)
+                    .between(AdsBudgetBurnRateDO::getUsageUpdatedTimestamp, startOfDayInDb, endOfDayInDb)
+                    .orderByDesc(AdsBudgetBurnRateDO::getUsageUpdatedTimestamp)
+                    .last("LIMIT 1"));
+
+            if (lastRecord != null && lastRecord.getBudgetUsagePercentage() != null) {
+                return lastRecord.getBudgetUsagePercentage();
+            }
+        } catch (Exception e) {
+            log.error("[AdsAmazonManagerListener] 查询上一条记录失败", e);
+        }
+        return 0.0;
     }
 
     @Data

@@ -54,9 +54,17 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
      * 处理 ORDER_CHANGE 通知
      */
     private void handleOrderChange(String message) {
-        OrderChangeNotificationVO vo = JSONUtil.toBean(message, OrderChangeNotificationVO.class);
-        if (vo.getPayload() == null || vo.getPayload().getOrderChangeNotification() == null) {
-            log.warn("[handleOrderChange] Payload 或 OrderChangeNotification 为空, message={}", message);
+        OrderChangeNotificationVO vo;
+        try {
+            vo = JSONUtil.toBean(message, OrderChangeNotificationVO.class);
+            if (vo.getPayload() == null || vo.getPayload().getOrderChangeNotification() == null) {
+                log.warn("[handleOrderChange] Payload 或 OrderChangeNotification 为空, message={}", message);
+                sendRawNotifyError(message, "Payload 或 OrderChangeNotification 为空");
+                return;
+            }
+        } catch (Exception e) {
+            log.error("[handleOrderChange] 解析失败, message={}", message, e);
+            sendRawNotifyError(message, "解析异常：" + e.getMessage());
             return;
         }
 
@@ -122,6 +130,19 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
             channelNotifySendService.send(message);
         } catch (Exception e) {
             log.error("[sendChannelNotify] 发送渠道通知失败, orderId={}", orderChange.getAmazonOrderId(), e);
+        }
+    }
+
+    private void sendRawNotifyError(String message, String reason) {
+        try {
+            NotifyMessage notifyMsg = new NotifyMessage();
+            notifyMsg.setTitle("Amazon 订单变更通知解析失败");
+            notifyMsg.setContent("**原因**: " + reason + "\n**原始消息**:\n" + message);
+            notifyMsg.setLevel("error");
+            notifyMsg.setCategory("ORDER_CHANGE");
+            channelNotifySendService.send(notifyMsg);
+        } catch (Exception e) {
+            log.error("[sendRawNotifyError] 发送失败", e);
         }
     }
 

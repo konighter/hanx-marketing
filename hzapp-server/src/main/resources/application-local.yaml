@@ -140,7 +140,7 @@ spring:
       region:
         static: us-east-1
       sqs:
-        enabled: false
+        enabled: true
 
 
 --- #################### 服务保障相关配置 ####################
