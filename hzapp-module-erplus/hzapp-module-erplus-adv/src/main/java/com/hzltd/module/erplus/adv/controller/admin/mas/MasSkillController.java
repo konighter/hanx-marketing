@@ -6,7 +6,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.controller.admin.mas.vo.*;
 // import com.hzltd.module.erplus.adv.convert.mas.MasSkillConvert removed
 import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
-import com.hzltd.module.erplus.adv.service.mas.MasSkillService;
+import com.hzltd.module.erplus.adv.service.MasSkillService;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceLogDO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;

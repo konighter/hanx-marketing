@@ -41,7 +41,7 @@
       </el-table-column>
       <el-table-column label="部署ID" align="center" prop="deploymentId" width="300" />
       <el-table-column label="部署时间" align="center" prop="deployTime" :formatter="dateFormatter" width="180px" />
-      <el-table-column label="操作" align="center" width="300" fixed="right">
+      <el-table-column label="操作" align="center" width="450" fixed="right">
         <template #default="scope">
           <el-button link type="primary" @click="handleLoad(scope.row)">
             <Icon icon="ep:view" class="mr-3px" /> 加载
@@ -67,6 +67,14 @@
           <el-button link type="danger" @click="handleDelete(scope.row)">
             <Icon icon="ep:delete" class="mr-3px" /> 移除
           </el-button>
+
+          <el-button link type="primary" @click="handleExecute(scope.row)">
+            <Icon icon="ep:caret-right" class="mr-3px" /> 执行
+          </el-button>
+
+          <el-button link type="success" @click="handleViewInstances(scope.row)">
+            <Icon icon="ep:list" class="mr-3px" /> 实例
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -82,6 +90,30 @@
 
   <!-- 部署表单弹窗 -->
   <WorkflowDeployForm ref="deployFormRef" @success="getList" />
+
+  <!-- 手动执行弹窗 -->
+  <Dialog title="手动执行流程" v-model="executeDialogVisible" width="600px">
+    <el-form label-width="100px">
+      <el-form-item label="流程标识">
+        <el-input v-model="executeForm.key" disabled />
+      </el-form-item>
+      <el-form-item label="流程变量 (JSON)">
+        <el-input 
+          type="textarea" 
+          v-model="executeForm.variables" 
+          :rows="10" 
+          placeholder='例如：{"tenantId": 1, "skillCode": "ad-optimizer"}' 
+        />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <el-button @click="executeDialogVisible = false">取消</el-button>
+      <el-button type="primary" :loading="executeLoading" @click="handleStartProcess">启动</el-button>
+    </template>
+  </Dialog>
+
+  <!-- 流程实例管理列表 (抽屉) -->
+  <ProcessInstanceList ref="instanceListRef" />
 </template>
 
 <script setup lang="ts">
@@ -89,6 +121,7 @@ import { ref, reactive, onMounted } from 'vue'
 import { dateFormatter } from '@/utils/formatTime'
 import { WorkflowApi } from '@/app/system/api/workflow'
 import WorkflowDeployForm from './WorkflowDeployForm.vue'
+import ProcessInstanceList from './ProcessInstanceList.vue'
 import { useMessage } from '@/hooks/web/useMessage'
 
 defineOptions({ name: 'WorkflowProcess' })
@@ -181,6 +214,54 @@ const handleLoad = async (row: any) => {
     xmlDialogVisible.value = true
     message.success('流程已加载')
   } catch {}
+}
+
+/** 手动执行 */
+const executeDialogVisible = ref(false)
+const executeLoading = ref(false)
+const executeForm = reactive({
+  key: '',
+  variables: '{}'
+})
+
+const handleExecute = (row: any) => {
+  executeForm.key = row.key
+  executeForm.variables = JSON.stringify({
+    tenantId: 1,
+    skillCode: row.key === 'skill-seq-tasks' ? 'ad-optimizer' : undefined,
+    targetBizId: row.key === 'skill-seq-tasks' ? 'B00TEST001' : undefined,
+    phaseConfigs: row.key === 'skill-seq-tasks' ? '[{"name":"数据收集","instruction":"收集广告数据","maxIterations":3,"interval":"P1D","tools":"[\"getAdCampaigns\",\"getAdMetrics\"]"}]' : undefined
+  }, null, 2)
+  executeDialogVisible.value = true
+}
+
+const handleStartProcess = async () => {
+  try {
+    let vars = {}
+    if (executeForm.variables) {
+      try {
+        vars = JSON.parse(executeForm.variables)
+      } catch (e) {
+        message.error('流程变量 JSON 格式错误')
+        return
+      }
+    }
+    
+    executeLoading.value = true
+    const res = await WorkflowApi.startProcess(executeForm.key, vars)
+    message.success('流程启动成功，实例ID: ' + res.processInstanceId)
+    executeDialogVisible.value = false
+  } catch (error) {
+    console.error('Failed to start process:', error)
+  } finally {
+    executeLoading.value = false
+  }
+}
+
+/** 实例管理 */
+const instanceListRef = ref()
+const handleViewInstances = (row: any) => {
+  instanceListRef.value.open(row.key)
 }
 
 onMounted(() => {

@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.adv.service.mas;
+package com.hzltd.module.erplus.adv.service;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.pojo.PageParam;

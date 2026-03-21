@@ -44,5 +44,42 @@ export const WorkflowApi = {
   // 移除流程
   delete: async (deploymentId: string) => {
     return await request.delete({ url: `/erplus/sys/workflow/delete?deploymentId=` + deploymentId })
+  },
+
+  // 手动触发流程
+  startProcess: async (processKey: string, variables: any) => {
+    return await request.post({ 
+      url: `/erplus/sys/workflow/start?processKey=` + processKey,
+      data: variables
+    })
+  },
+
+  // 查询运行中的实例
+  listInstances: async (params: any) => {
+    return await request.get({ url: `/erplus/sys/workflow/instances`, params })
+  },
+
+  // 获取实例变量
+  getInstanceVariables: async (processInstanceId: string) => {
+    return await request.get({ url: `/erplus/sys/workflow/instance/variables?processInstanceId=` + processInstanceId })
+  },
+
+  // 终止实例
+  deleteInstance: async (processInstanceId: string, reason?: string) => {
+    return await request.delete({ 
+      url: `/erplus/sys/workflow/instance?processInstanceId=${processInstanceId}&reason=${reason || ''}` 
+    })
+  },
+
+  // 查询定时任务
+  listTimers: async (processInstanceId: string) => {
+    return await request.get({ url: `/erplus/sys/workflow/instance/timers?processInstanceId=` + processInstanceId })
+  },
+
+  // 触发定时任务
+  triggerTimer: async (processInstanceId: string, jobId?: string) => {
+    return await request.post({ 
+      url: `/erplus/sys/workflow/instance/trigger-timer?processInstanceId=${processInstanceId}${jobId ? '&jobId=' + jobId : ''}` 
+    })
   }
 }

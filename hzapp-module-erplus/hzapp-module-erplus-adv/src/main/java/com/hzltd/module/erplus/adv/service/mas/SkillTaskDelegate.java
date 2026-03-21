@@ -1,124 +1,219 @@
 package com.hzltd.module.erplus.adv.service.mas;
 
-import com.hzltd.module.erplus.ai.mas.orchestration.MasOrchestrationResult;
-import com.hzltd.module.erplus.ai.mas.orchestration.WorkflowOrchestrator;
+import com.hzltd.framework.tenant.core.context.TenantContextHolder;
+import com.hzltd.module.erplus.adv.service.MasSkillService;
+import com.hzltd.module.erplus.ai.mas.adk.SkillAgentFactory;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.delegate.DelegateExecution;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * 通用 Skill 任务委托 Bean
- * 供 skill-task-loop 子流程的 ServiceTask 调用
- * 内部通过 WorkflowOrchestrator 执行 AI 推理
+ * <p>
+ * 供 skill-task-loop 子流程的 ServiceTask 调用。
+ * 内部通过 {@link SkillAgentFactory} 路由到对应阶段的 ADK Agent 执行 AI 推理。
+ * </p>
  */
 @Slf4j
 @Service("skillTaskDelegate")
 public class SkillTaskDelegate {
+    @Resource
+    private SkillAgentFactory skillAgentFactory;
+    @Resource
+    private MasSkillService masSkillService;
 
-    private final WorkflowOrchestrator workflowOrchestrator;
+    /**
+     * 1. 收集数据
+     * 调用 CollectAgent，使用查询类 Tools 收集业务数据
+     */
+    public void collect(DelegateExecution execution) {
+        restoreTenantContext(execution);
 
-    public SkillTaskDelegate(WorkflowOrchestrator workflowOrchestrator) {
-        this.workflowOrchestrator = workflowOrchestrator;
+        String sessionId = (String) execution.getVariable("sessionId");
+        String phaseName = (String) execution.getVariable("phaseName");
+        String skillCode = (String) execution.getVariable("skillCode");
+        String targetBizId = (String) execution.getVariable("targetBizId");
+        String phaseInstruction = (String) execution.getVariable("phaseInstruction");
+        Integer iteration = (Integer) execution.getVariable("iteration");
+
+        log.info("[SkillTask:collect] sessionId={}, phase={}, skill={}, target={}, iteration={}",
+                sessionId, phaseName, skillCode, targetBizId, iteration);
+
+        // 构建用户消息
+        String userMessage = String.format(
+                "请为 ASIN: %s 收集数据。\n当前阶段: %s (第 %d 轮迭代)\n策略指引: %s",
+                targetBizId, phaseName, iteration, phaseInstruction
+        );
+
+        // 检查报警归因数据
+        String alarmAttribution = (String) execution.getVariable("alarmAttribution");
+        if (alarmAttribution != null) {
+            userMessage += "\n\n⚠️ 报警归因数据: " + alarmAttribution;
+        }
+
+        try {
+            List<String> tools = getRequiredTools(execution);
+            String output = skillAgentFactory.runAgent(skillCode, "collect", sessionId, userMessage, tools);
+
+            execution.setVariable("collectOutput", output);
+            logEvent(execution, "INFO", "数据收集完成", truncate(output, 500));
+
+            log.info("[SkillTask:collect] 完成, outputLength={}", output.length());
+        } catch (Exception e) {
+            log.error("[SkillTask:collect] 执行异常: {}", e.getMessage(), e);
+            execution.setVariable("collectOutput", "数据收集异常: " + e.getMessage());
+            logEvent(execution, "ERROR", "数据收集失败", e.getMessage());
+        }
     }
 
     /**
-     * 收集数据
-     * 读取业务数据、历史投放数据，写入会话内存供后续决策使用
+     * 2. AI 决策
+     * 调用 DecideAgent，产出结构化操作建议
      */
-    public void collect(DelegateExecution execution) {
+    public void decide(DelegateExecution execution) {
+        restoreTenantContext(execution);
+
+        String sessionId = (String) execution.getVariable("sessionId");
+        String phaseName = (String) execution.getVariable("phaseName");
+        String phaseInstruction = (String) execution.getVariable("phaseInstruction");
+        String skillCode = (String) execution.getVariable("skillCode");
+        Integer iteration = (Integer) execution.getVariable("iteration");
+
+        log.info("[SkillTask:decide] sessionId={}, phase={}, iteration={}", sessionId, phaseName, iteration);
+
+        String userMessage = String.format(
+                "基于已收集的数据，请制定操作方案。\n当前阶段: %s (第 %d 轮迭代)\n策略规则: %s",
+                phaseName, iteration, phaseInstruction
+        );
+
+        try {
+            List<String> tools = getRequiredTools(execution);
+            String output = skillAgentFactory.runAgent(skillCode, "decide", sessionId, userMessage, tools);
+
+            execution.setVariable("decisionOutput", output);
+            // 默认需要人工确认（后续可根据 AI 输出动态判断风险等级）
+            execution.setVariable("requiresConfirm", true);
+            logEvent(execution, "SUCCESS", "策略制定完成", truncate(output, 500));
+
+            log.info("[SkillTask:decide] 完成, outputLength={}", output.length());
+        } catch (Exception e) {
+            log.error("[SkillTask:decide] AI 决策异常: {}", e.getMessage(), e);
+            execution.setVariable("decisionOutput", "决策异常: " + e.getMessage());
+            execution.setVariable("requiresConfirm", true);
+            logEvent(execution, "ERROR", "策略制定失败", e.getMessage());
+        }
+    }
+
+    /**
+     * 3. 执行策略
+     * 调用 ExecuteAgent，逐条执行操作指令
+     */
+    public void execute(DelegateExecution execution) {
+        restoreTenantContext(execution);
+
+        String sessionId = (String) execution.getVariable("sessionId");
+        String phaseName = (String) execution.getVariable("phaseName");
+        String skillCode = (String) execution.getVariable("skillCode");
+        String decisionOutput = (String) execution.getVariable("decisionOutput");
+
+        log.info("[SkillTask:execute] sessionId={}, phase={}, 开始执行策略...", sessionId, phaseName);
+
+        String userMessage = "请严格按照以下操作方案逐条执行:\n\n" + decisionOutput;
+
+        try {
+            List<String> tools = getRequiredTools(execution);
+            String output = skillAgentFactory.runAgent(skillCode, "execute", sessionId, userMessage, tools);
+
+            execution.setVariable("executionResult", output);
+            logEvent(execution, "SUCCESS", "策略执行完成", truncate(output, 500));
+
+            log.info("[SkillTask:execute] 完成, outputLength={}", output.length());
+        } catch (Exception e) {
+            log.error("[SkillTask:execute] 执行异常: {}", e.getMessage(), e);
+            execution.setVariable("executionResult", "执行异常: " + e.getMessage());
+            logEvent(execution, "ERROR", "策略执行失败", e.getMessage());
+        }
+    }
+
+    /**
+     * 4. 复盘分析
+     * 调用 ReviewAgent，对比执行前后的数据变化
+     */
+    public void review(DelegateExecution execution) {
+        restoreTenantContext(execution);
+
         String sessionId = (String) execution.getVariable("sessionId");
         String phaseName = (String) execution.getVariable("phaseName");
         String skillCode = (String) execution.getVariable("skillCode");
         String targetBizId = (String) execution.getVariable("targetBizId");
         Integer iteration = (Integer) execution.getVariable("iteration");
 
-        log.info("[SkillTask:collect] sessionId={}, phase={}, skill={}, target={}, iteration={}",
-                sessionId, phaseName, skillCode, targetBizId, iteration);
-
-        // 检查是否有报警归因数据需要纳入本轮决策
-        String alarmAttribution = (String) execution.getVariable("alarmAttribution");
-        if (alarmAttribution != null) {
-            log.info("[SkillTask:collect] 发现报警归因数据, 将纳入本轮决策上下文");
-        }
-
-        // TODO: 实现业务数据收集逻辑
-        // 1. 根据 skillCode 和 targetBizId 获取业务数据
-        // 2. 写入 AI 会话内存 (通过 MasMemoryManager)
-    }
-
-    /**
-     * AI 决策
-     * 调用 WorkflowOrchestrator 执行 AI 推理循环，产出策略建议
-     */
-    public void decide(DelegateExecution execution) {
-        String sessionId = (String) execution.getVariable("sessionId");
-        String phaseName = (String) execution.getVariable("phaseName");
-        String instruction = (String) execution.getVariable("phaseInstruction");
-        Integer iteration = (Integer) execution.getVariable("iteration");
-
-        log.info("[SkillTask:decide] sessionId={}, phase={}, iteration={}", sessionId, phaseName, iteration);
-
-        // 构造目标描述（指导书 + 当前迭代信息）
-        String goal = String.format("[Phase: %s, Iteration: %d] %s", phaseName, iteration, instruction);
-
-        try {
-            WorkflowOrchestrator orchestrator = workflowOrchestrator;
-            MasOrchestrationResult result = orchestrator.executeMacroLoop(sessionId, goal);
-
-            log.info("[SkillTask:decide] AI 决策完成, resultType={}", result.getType());
-
-            // 将结果写入流程变量
-            execution.setVariable("decisionOutput", result.getOutput());
-            execution.setVariable("decisionHistory", result.getHistory());
-
-            // 默认需要人工确认（实际可根据 AI 输出动态判断风险等级）
-            execution.setVariable("requiresConfirm", true);
-
-        } catch (Exception e) {
-            log.error("[SkillTask:decide] AI 决策异常: {}", e.getMessage(), e);
-            execution.setVariable("decisionOutput", "决策异常: " + e.getMessage());
-            execution.setVariable("requiresConfirm", true); // 异常时强制人工确认
-        }
-    }
-
-    /**
-     * 执行策略
-     * 根据决策结果执行具体的操作（如广告竞价调整、预算修改等）
-     */
-    public void execute(DelegateExecution execution) {
-        String sessionId = (String) execution.getVariable("sessionId");
-        String phaseName = (String) execution.getVariable("phaseName");
-        String decisionOutput = (String) execution.getVariable("decisionOutput");
-
-        log.info("[SkillTask:execute] sessionId={}, phase={}, 开始执行策略...", sessionId, phaseName);
-
-        // TODO: 实现策略执行逻辑
-        // 1. 解析 decisionOutput 中的具体操作指令
-        // 2. 调用业务 API 执行操作
-        // 3. 记录执行结果
-
-        execution.setVariable("executionResult", "策略已执行");
-        log.info("[SkillTask:execute] 策略执行完成");
-    }
-
-    /**
-     * 复盘分析
-     * 对比执行前后的数据变化，评估策略效果
-     */
-    public void review(DelegateExecution execution) {
-        String sessionId = (String) execution.getVariable("sessionId");
-        String phaseName = (String) execution.getVariable("phaseName");
-        Integer iteration = (Integer) execution.getVariable("iteration");
-
         log.info("[SkillTask:review] sessionId={}, phase={}, iteration={}, 开始复盘分析...",
                 sessionId, phaseName, iteration);
 
-        // TODO: 实现复盘分析逻辑
-        // 1. 获取执行前后的核心指标对比
-        // 2. 评估策略效果（ROI、ACOS 等）
-        // 3. 将分析结果写入会话内存，供下一次 collect/decide 使用
+        String userMessage = String.format(
+                "请对 ASIN: %s 进行复盘分析。\n当前阶段: %s (第 %d 轮迭代)\n请查询最新数据，对比执行前后的变化，评估策略效果。",
+                targetBizId, phaseName, iteration
+        );
 
-        execution.setVariable("reviewResult", "复盘完成，效果待评估");
-        log.info("[SkillTask:review] 复盘分析完成");
+        try {
+            List<String> tools = getRequiredTools(execution);
+            String output = skillAgentFactory.runAgent(skillCode, "review", sessionId, userMessage, tools);
+
+            execution.setVariable("reviewResult", output);
+            logEvent(execution, "INFO", "复盘分析完成", truncate(output, 500));
+
+            log.info("[SkillTask:review] 完成, outputLength={}", output.length());
+        } catch (Exception e) {
+            log.error("[SkillTask:review] 复盘异常: {}", e.getMessage(), e);
+            execution.setVariable("reviewResult", "复盘异常: " + e.getMessage());
+            logEvent(execution, "ERROR", "复盘分析失败", e.getMessage());
+        }
+    }
+
+    // ========== 私有方法 ==========
+
+    /**
+     * 从流程变量恢复租户上下文
+     */
+    private void restoreTenantContext(DelegateExecution execution) {
+        Object tenantIdObj = execution.getVariable("tenantId");
+        if (tenantIdObj != null) {
+            Long tenantId = Long.valueOf(tenantIdObj.toString());
+            TenantContextHolder.setTenantId(tenantId);
+            log.debug("[SkillTask] Restored tenant context: {}", tenantId);
+        }
+    }
+
+    /**
+     * 从流程变量获取 Skill 声明的 requiredTools
+     */
+    private List<String> getRequiredTools(DelegateExecution execution) {
+        String toolsJson = (String) execution.getVariable("phaseTools");
+        return SkillAgentFactory.parseRequiredTools(toolsJson);
+    }
+
+    /**
+     * 记录技能实例日志
+     */
+    private void logEvent(DelegateExecution execution, String type, String title, String content) {
+        try {
+            // 获取实例 ID (通过 businessKey 反查或直接从变量获取)
+            Object instanceIdObj = execution.getVariable("instanceId");
+            if (instanceIdObj != null) {
+                Long instanceId = Long.valueOf(instanceIdObj.toString());
+                masSkillService.logSkillInstanceEvent(instanceId, type, title, content);
+            }
+        } catch (Exception e) {
+            log.warn("[SkillTask] Failed to log event: {}", e.getMessage());
+        }
+    }
+
+    private String truncate(String text, int maxLength) {
+        if (text == null) return "";
+        return text.length() > maxLength ? text.substring(0, maxLength) + "..." : text;
     }
 }

@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.adv.service.mas;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.framework.tenant.core.context.TenantContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.flowable.engine.delegate.DelegateExecution;
 import org.springframework.stereotype.Service;
@@ -25,9 +26,21 @@ public class SkillInitDelegate {
      * @param execution Flowable 执行上下文
      */
     public void init(DelegateExecution execution) {
+
+        // 恢复租户上下文 (Timer/Async Job 回调时线程没有租户信息)
+        Object tenantIdObj = execution.getVariable("tenantId");
+        if (tenantIdObj != null) {
+            TenantContextHolder.setTenantId(Long.valueOf(tenantIdObj.toString()));
+        }
+
         String skillCode = (String) execution.getVariable("skillCode");
         String targetBizId = (String) execution.getVariable("targetBizId");
         String phaseConfigsJson = (String) execution.getVariable("phaseConfigs");
+
+        // 生成共享 Session ID: tenantId:skillCode:targetBizId
+        String sessionId = String.format("%s:%s:%s",
+                tenantIdObj != null ? tenantIdObj : "0", skillCode, targetBizId);
+        execution.setVariable("sessionId", sessionId);
 
         log.info("[SkillInit] 初始化 Skill 流程变量, skillCode={}, targetBizId={}", skillCode, targetBizId);
 
@@ -62,6 +75,7 @@ public class SkillInitDelegate {
                     getOrDefault(phase, "interval", "P1D"));
             execution.setVariable("phase_" + idx + "_tools",
                     getOrDefault(phase, "tools", "[]"));
+            execution.setVariable("phase_" + idx + "_index", idx);
 
             log.info("[SkillInit] Phase-{}: name={}, maxIterations={}, interval={}",
                     idx,

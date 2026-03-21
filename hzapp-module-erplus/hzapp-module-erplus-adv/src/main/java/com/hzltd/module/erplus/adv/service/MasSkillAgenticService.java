@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.adv.service.mas;
+package com.hzltd.module.erplus.adv.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.hzltd.framework.common.util.json.JsonUtils;
