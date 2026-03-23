@@ -2,6 +2,9 @@ package com.hzltd.module.erplus.service.amz;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.framework.tenant.core.util.TenantUtils;
 import com.hzltd.module.erplus.sys.ChannelNotifySendService;
 import com.hzltd.module.erplus.sys.model.NotifyMessage;
 import io.awspring.cloud.sqs.annotation.SqsListener;
@@ -38,7 +41,12 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
                 String notificationType = json.getStr("NotificationType");
 
                 if ("ORDER_CHANGE".equals(notificationType)) {
-                    handleOrderChange(message);
+                    TenantUtils.executeIgnore(
+                            () ->{
+                                handleOrderChange(message);
+                            }
+                    );
+
                 } else {
                     log.info("[AmzNotifyEventListener] 收到未知通知类型: type={}, message={}", notificationType, message);
                 }
@@ -54,9 +62,10 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
      * 处理 ORDER_CHANGE 通知
      */
     private void handleOrderChange(String message) {
+        log.debug("[handleOrderChange] 收到订单变更通知, message={}", message);
         OrderChangeNotificationVO vo;
         try {
-            vo = JSONUtil.toBean(message, OrderChangeNotificationVO.class);
+            vo = JsonUtils.parseObject(message, OrderChangeNotificationVO.class);
             if (vo.getPayload() == null || vo.getPayload().getOrderChangeNotification() == null) {
                 log.warn("[handleOrderChange] Payload 或 OrderChangeNotification 为空, message={}", message);
                 sendRawNotifyError(message, "Payload 或 OrderChangeNotification 为空");
@@ -87,10 +96,20 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
                     .collect(Collectors.joining(", "));
         }
 
-        log.info("[handleOrderChange] orderId={}, sellerId={}, changeType={}, changeReason={}, skus={}",
-                amazonOrderId, sellerId, orderChangeType, changeReason, skuList);
-        //todo-- 内部同步订单
+        // 详细信息
+        String marketplaceId = "";
+        String orderStatus = "";
+        String fulfillmentType = "";
+        String orderType = "";
+        if (orderChange.getSummary() != null) {
+            marketplaceId = orderChange.getSummary().getMarketplaceId();
+            orderStatus = orderChange.getSummary().getOrderStatus();
+            fulfillmentType = orderChange.getSummary().getFulfillmentType();
+            orderType = orderChange.getSummary().getOrderType();
+        }
 
+        log.info("[handleOrderChange] orderId={}, sellerId={}, market={}, status={}, changeType={}, reason={}, skus={}",
+                amazonOrderId, sellerId, marketplaceId, orderStatus, orderChangeType, changeReason, skuList);
 
         // 发送渠道通知
         sendChannelNotify(vo, orderChange, changeReason, skuList);
@@ -113,8 +132,10 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
             content.append("**卖家ID**: ").append(orderChange.getSellerId()).append("\n");
 
             if (orderChange.getSummary() != null) {
+                content.append("**站点**: ").append(orderChange.getSummary().getMarketplaceId()).append("\n");
                 content.append("**订单状态**: ").append(orderChange.getSummary().getOrderStatus()).append("\n");
                 content.append("**配送方式**: ").append(orderChange.getSummary().getFulfillmentType()).append("\n");
+                content.append("**订单类型**: ").append(orderChange.getSummary().getOrderType()).append("\n");
             }
 
             content.append("**事件时间**: ").append(vo.getEventTime());
@@ -155,60 +176,92 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
 
     @Data
     static class OrderChangeNotificationVO {
+        @JsonProperty("NotificationVersion")
         private String notificationVersion;
+        @JsonProperty("NotificationType")
         private String notificationType;
+        @JsonProperty("PayloadVersion")
         private String payloadVersion;
+        @JsonProperty("EventTime")
         private String eventTime;
+        @JsonProperty("Payload")
         private Payload payload;
+        @JsonProperty("NotificationMetadata")
         private NotificationMetadata notificationMetadata;
 
         @Data
         static class Payload {
+            @JsonProperty("OrderChangeNotification")
             private OrderChangeNotification orderChangeNotification;
         }
 
         @Data
         static class OrderChangeNotification {
+            @JsonProperty("NotificationLevel")
             private String notificationLevel;
+            @JsonProperty("SellerId")
             private String sellerId;
+            @JsonProperty("AmazonOrderId")
             private String amazonOrderId;
+            @JsonProperty("OrderChangeType")
             private String orderChangeType;
+            @JsonProperty("OrderChangeTrigger")
             private OrderChangeTrigger orderChangeTrigger;
+            @JsonProperty("Summary")
             private Summary summary;
         }
 
         @Data
         static class OrderChangeTrigger {
+            @JsonProperty("TimeOfOrderChange")
             private String timeOfOrderChange;
+            @JsonProperty("ChangeReason")
             private String changeReason;
         }
 
         @Data
         static class Summary {
+            @JsonProperty("MarketplaceId")
             private String marketplaceId;
+            @JsonProperty("OrderStatus")
             private String orderStatus;
+            @JsonProperty("PurchaseDate")
             private String purchaseDate;
+            @JsonProperty("DestinationPostalCode")
             private String destinationPostalCode;
+            @JsonProperty("FulfillmentType")
             private String fulfillmentType;
+            @JsonProperty("OrderType")
             private String orderType;
+            @JsonProperty("OrderPrograms")
             private List<String> orderPrograms;
+            @JsonProperty("ShippingPrograms")
             private List<String> shippingPrograms;
+            @JsonProperty("OrderItems")
             private List<OrderItem> orderItems;
         }
 
         @Data
         static class OrderItem {
+            @JsonProperty("OrderItemId")
             private String orderItemId;
+            @JsonProperty("SellerSKU")
             private String sellerSKU;
+            @JsonProperty("SupplySourceId")
             private String supplySourceId;
+            @JsonProperty("Quantity")
             private Integer quantity;
         }
 
         @Data
         static class NotificationMetadata {
+            @JsonProperty("ApplicationId")
             private String applicationId;
+            @JsonProperty("SubscriptionId")
             private String subscriptionId;
+            @JsonProperty("PublishTime")
             private String publishTime;
+            @JsonProperty("NotificationId")
             private String notificationId;
         }
     }

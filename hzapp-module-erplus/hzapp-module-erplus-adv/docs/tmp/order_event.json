@@ -1,0 +1,83 @@
+{
+  "NotificationVersion" : "1.0",
+  "NotificationType" : "ORDER_CHANGE",
+  "PayloadVersion" : "1.0",
+  "EventTime" : "2026-03-22T22:22:51.428Z",
+  "Payload" : {
+    "OrderChangeNotification" : {
+      "NotificationLevel" : "OrderLevel",
+      "SellerId" : "A2K2SU3BU6HGRH",
+      "AmazonOrderId" : "111-2076857-6834662",
+      "OrderChangeType" : "OrderStatusChange",
+      "OrderChangeTrigger" : {
+        "TimeOfOrderChange" : "2026-03-22T22:22:46.000Z",
+        "ChangeReason" : "Order Status Change"
+      },
+      "Summary" : {
+        "MarketplaceId" : "ATVPDKIKX0DER",
+        "OrderStatus" : "Pending",
+        "PurchaseDate" : "2026-03-22T22:22:42.149Z",
+        "DestinationPostalCode" : null,
+        "FulfillmentType" : "AFN",
+        "OrderType" : "StandardOrder",
+        "OrderPrograms" : [ ],
+        "ShippingPrograms" : [ ],
+        "OrderItems" : [ {
+          "OrderItemId" : "156336624408801",
+          "SellerSKU" : "BG001",
+          "SupplySourceId" : null,
+          "Quantity" : 1
+        } ]
+      }
+    }
+  },
+  "NotificationMetadata" : {
+    "ApplicationId" : "amzn1.sp.solution.b5197946-a902-4235-b69b-5a27c124840e",
+    "SubscriptionId" : "3fe362e2-a677-4e81-b36e-7e9914d9c3fc",
+    "PublishTime" : "2026-03-22T22:22:52.041Z",
+    "NotificationId" : "43de90e9-19ee-46f1-9c7e-06718573e052"
+  }
+}
+
+
+
+{
+  "NotificationVersion" : "1.0",
+  "NotificationType" : "ORDER_CHANGE",
+  "PayloadVersion" : "1.0",
+  "EventTime" : "2026-03-22T22:30:03.316Z",
+  "Payload" : {
+    "OrderChangeNotification" : {
+      "NotificationLevel" : "OrderLevel",
+      "SellerId" : "A2K2SU3BU6HGRH",
+      "AmazonOrderId" : "111-9954012-7157849",
+      "OrderChangeType" : "OrderStatusChange",
+      "OrderChangeTrigger" : {
+        "TimeOfOrderChange" : "2026-03-22T22:29:57.000Z",
+        "ChangeReason" : "Order Status Change"
+      },
+      "Summary" : {
+        "MarketplaceId" : "ATVPDKIKX0DER",
+        "OrderStatus" : "Pending",
+        "PurchaseDate" : "2026-03-22T22:29:52.604Z",
+        "DestinationPostalCode" : null,
+        "FulfillmentType" : "AFN",
+        "OrderType" : "StandardOrder",
+        "OrderPrograms" : [ ],
+        "ShippingPrograms" : [ ],
+        "OrderItems" : [ {
+          "OrderItemId" : "156332854692321",
+          "SellerSKU" : "BG001",
+          "SupplySourceId" : null,
+          "Quantity" : 1
+        } ]
+      }
+    }
+  },
+  "NotificationMetadata" : {
+    "ApplicationId" : "amzn1.sp.solution.b5197946-a902-4235-b69b-5a27c124840e",
+    "SubscriptionId" : "3fe362e2-a677-4e81-b36e-7e9914d9c3fc",
+    "PublishTime" : "2026-03-22T22:30:03.396Z",
+    "NotificationId" : "da50685d-a987-4c2d-b97e-64b7b00cf7a6"
+  }
+}

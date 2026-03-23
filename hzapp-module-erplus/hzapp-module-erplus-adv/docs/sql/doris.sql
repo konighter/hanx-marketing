@@ -102,34 +102,34 @@ CREATE TABLE `ads_amazon_stream_sp_conversion` (
   `currency`                             VARCHAR(8)      NOT NULL DEFAULT '' COMMENT '币种',
 
   -- 归因转化次数
-  `attributed_conversions_1d`            BIGINT          SUM DEFAULT 0 COMMENT '24h内归因转化次数',
-  `attributed_conversions_7d`            BIGINT          SUM DEFAULT 0 COMMENT '7天内归因转化次数',
-  `attributed_conversions_14d`           BIGINT          SUM DEFAULT 0 COMMENT '14天内归因转化次数',
-  `attributed_conversions_30d`           BIGINT          SUM DEFAULT 0 COMMENT '30天内归因转化次数',
-  `attributed_conversions_1d_same_sku`   BIGINT          SUM DEFAULT 0 COMMENT '24h内同SKU归因转化次数',
-  `attributed_conversions_7d_same_sku`   BIGINT          SUM DEFAULT 0 COMMENT '7天内同SKU归因转化次数',
-  `attributed_conversions_14d_same_sku`  BIGINT          SUM DEFAULT 0 COMMENT '14天内同SKU归因转化次数',
-  `attributed_conversions_30d_same_sku`  BIGINT          SUM DEFAULT 0 COMMENT '30天内同SKU归因转化次数',
+  `attributed_conversions1d`            BIGINT          SUM DEFAULT 0 COMMENT '24h内归因转化次数',
+  `attributed_conversions7d`            BIGINT          SUM DEFAULT 0 COMMENT '7天内归因转化次数',
+  `attributed_conversions14d`           BIGINT          SUM DEFAULT 0 COMMENT '14天内归因转化次数',
+  `attributed_conversions30d`           BIGINT          SUM DEFAULT 0 COMMENT '30天内归因转化次数',
+  `attributed_conversions1d_same_sku`   BIGINT          SUM DEFAULT 0 COMMENT '24h内同SKU归因转化次数',
+  `attributed_conversions7d_same_sku`   BIGINT          SUM DEFAULT 0 COMMENT '7天内同SKU归因转化次数',
+  `attributed_conversions14d_same_sku`  BIGINT          SUM DEFAULT 0 COMMENT '14天内同SKU归因转化次数',
+  `attributed_conversions30d_same_sku`  BIGINT          SUM DEFAULT 0 COMMENT '30天内同SKU归因转化次数',
 
   -- 归因销售额
-  `attributed_sales_1d`                  DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '24h内归因销售额',
-  `attributed_sales_7d`                  DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '7天内归因销售额',
-  `attributed_sales_14d`                 DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '14天内归因销售额',
-  `attributed_sales_30d`                 DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '30天内归因销售额',
-  `attributed_sales_1d_same_sku`         DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '24h内同SKU归因销售额',
-  `attributed_sales_7d_same_sku`         DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '7天内同SKU归因销售额',
-  `attributed_sales_14d_same_sku`        DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '14天内同SKU归因销售额',
-  `attributed_sales_30d_same_sku`        DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '30天内同SKU归因销售额',
+  `attributed_sales1d`                  DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '24h内归因销售额',
+  `attributed_sales7d`                  DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '7天内归因销售额',
+  `attributed_sales14d`                 DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '14天内归因销售额',
+  `attributed_sales30d`                 DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '30天内归因销售额',
+  `attributed_sales1d_same_sku`         DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '24h内同SKU归因销售额',
+  `attributed_sales7d_same_sku`         DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '7天内同SKU归因销售额',
+  `attributed_sales14d_same_sku`        DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '14天内同SKU归因销售额',
+  `attributed_sales30d_same_sku`        DECIMAL(18,4)   SUM DEFAULT 0 COMMENT '30天内同SKU归因销售额',
 
   -- 归因订单单量
-  `attributed_units_ordered_1d`          BIGINT          SUM DEFAULT 0 COMMENT '24h内归因销售件数',
-  `attributed_units_ordered_7d`          BIGINT          SUM DEFAULT 0 COMMENT '7天内归因销售件数',
-  `attributed_units_ordered_14d`         BIGINT          SUM DEFAULT 0 COMMENT '14天内归因销售件数',
-  `attributed_units_ordered_30d`         BIGINT          SUM DEFAULT 0 COMMENT '30天内归因销售件数',
-  `attributed_units_ordered_1d_same_sku` BIGINT          SUM DEFAULT 0 COMMENT '24h内同SKU归因销售件数',
-  `attributed_units_ordered_7d_same_sku` BIGINT          SUM DEFAULT 0 COMMENT '7天内同SKU归因销售件数',
-  `attributed_units_ordered_14d_same_sku` BIGINT         SUM DEFAULT 0 COMMENT '14天内同SKU归因销售件数',
-  `attributed_units_ordered_30d_same_sku` BIGINT         SUM DEFAULT 0 COMMENT '30天内同SKU归因销售件数'
+  `attributed_units_ordered1d`          BIGINT          SUM DEFAULT 0 COMMENT '24h内归因销售件数',
+  `attributed_units_ordered7d`          BIGINT          SUM DEFAULT 0 COMMENT '7天内归因销售件数',
+  `attributed_units_ordered14d`         BIGINT          SUM DEFAULT 0 COMMENT '14天内归因销售件数',
+  `attributed_units_ordered30d`         BIGINT          SUM DEFAULT 0 COMMENT '30天内归因销售件数',
+  `attributed_units_ordered1d_same_sku` BIGINT          SUM DEFAULT 0 COMMENT '24h内同SKU归因销售件数',
+  `attributed_units_ordered7d_same_sku` BIGINT          SUM DEFAULT 0 COMMENT '7天内同SKU归因销售件数',
+  `attributed_units_ordered14d_same_sku` BIGINT         SUM DEFAULT 0 COMMENT '14天内同SKU归因销售件数',
+  `attributed_units_ordered30d_same_sku` BIGINT         SUM DEFAULT 0 COMMENT '30天内同SKU归因销售件数'
 
 ) ENGINE=OLAP
 AGGREGATE KEY(`advertiser_id`, `dataset_id`, `time_window_start`, `campaign_id`,
