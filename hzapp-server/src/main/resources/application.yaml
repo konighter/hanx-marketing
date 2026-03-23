@@ -3,7 +3,7 @@ spring:
     name: hzapp-server
 
   profiles:
-    active: local
+    active: prod
 
   main:
     allow-circular-references: true # 允许循环依赖，因为项目是三层架构，无法避免这个情况。
@@ -52,15 +52,6 @@ server:
       force: true
 
 --- #################### 接口文档配置 ####################
-
-springdoc:
-  api-docs:
-    enabled: true
-    path: /v3/api-docs
-  swagger-ui:
-    enabled: true
-    path: /swagger-ui
-  default-flat-param-object: true # 参见 https://doc.xiaominfo.com/docs/faq/v4/knife4j-parameterobject-flat-param 文档
 
 knife4j:
   enable: true

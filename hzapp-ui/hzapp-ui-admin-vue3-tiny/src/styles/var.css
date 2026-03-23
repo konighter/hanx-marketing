@@ -1,0 +1,102 @@
+:root {
+  --login-bg-color: #0f172a;
+
+  --left-menu-max-width: 200px;
+
+  --left-menu-min-width: 64px;
+
+  --left-menu-bg-color: #0f172a;
+
+  --left-menu-bg-light-color: #1e293b;
+
+  --left-menu-bg-active-color: var(--el-color-primary);
+
+  --left-menu-text-color: #94a3b8;
+
+  --left-menu-text-active-color: #fff;
+
+  --left-menu-collapse-bg-active-color: var(--el-color-primary);
+  /* left menu end */
+
+  /* logo start */
+  --logo-height: 50px;
+
+  --logo-title-text-color: #fff;
+  /* logo end */
+
+  /* header start */
+  --top-header-bg-color: rgba(255, 255, 255, 0.85);
+
+  --top-header-text-color: inherit;
+
+  --top-header-hover-color: #f6f6f6;
+
+  --top-tool-height: var(--logo-height);
+
+  --top-tool-p-x: 0;
+
+  --tags-view-height: 35px;
+  /* header start */
+
+  /* tab menu start */
+  --tab-menu-max-width: 80px;
+
+  --tab-menu-min-width: 30px;
+
+  --tab-menu-collapse-height: 36px;
+  /* tab menu end */
+
+  --app-content-padding: 16px;
+
+  --app-content-bg-color: transparent;
+
+  --app-footer-height: 50px;
+
+  --transition-time-02: 0.2s;
+
+  /* Pro Max: 圆角、阴影、字体 */
+  --app-border-radius: 8px;
+  --app-border-radius-lg: 12px;
+  --app-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --app-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  --app-shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --app-font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  /* Glassmorphism 毛玻璃 */
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-blur: 24px;
+  --glass-border: 1px solid rgba(255, 255, 255, 0.45);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.03);
+  --glass-sidebar-bg: rgba(15, 23, 42, 0.92);
+  --glass-sidebar-light-bg: rgba(30, 41, 59, 0.88);
+  --glass-gradient: linear-gradient(160deg, #f3f4f6 0%, #f0f1f3 40%, #edeef0 100%);
+}
+
+.dark {
+  --top-header-bg-color: rgba(30, 30, 30, 0.80);
+  --app-content-bg-color: transparent;
+
+  /* Glassmorphism dark overrides */
+  --glass-bg: rgba(30, 30, 30, 0.80);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.06);
+  --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  --glass-sidebar-bg: rgba(10, 10, 10, 0.94);
+  --glass-sidebar-light-bg: rgba(20, 20, 20, 0.90);
+  --glass-gradient: linear-gradient(160deg, #111418 0%, #151a1e 40%, #131618 100%);
+}
+
+html,
+body {
+  font-family: var(--app-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+:after,
+:before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

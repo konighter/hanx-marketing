@@ -1,0 +1,147 @@
+server:
+  port: 48080
+
+--- #################### 数据库相关配置 ####################
+spring:
+  autoconfigure:
+    # noinspection SpringBootApplicationYaml
+    exclude:
+      - org.springframework.boot.autoconfigure.quartz.QuartzAutoConfiguration # 默认 local 环境，不开启 Quartz 的自动配置
+      - org.springframework.ai.vectorstore.qdrant.autoconfigure.QdrantVectorStoreAutoConfiguration # 禁用 AI 模块的 Qdrant，手动创建
+      - org.springframework.ai.vectorstore.milvus.autoconfigure.MilvusVectorStoreAutoConfiguration # 禁用 AI 模块的 Milvus，手动创建
+      - com.hzltd.framework.operatelog.config.OperateLogAutoConfiguration # 操作日志自动配置
+  # 数据源配置项
+  datasource:
+    dynamic: # 多数据源配置
+      hikari: # HikariCP 相关的全局配置
+        minimum-idle: 5
+        maximum-pool-size: 10
+        idle-timeout: 600000
+        max-lifetime: 1800000
+        connection-timeout: 30000
+        connection-test-query: SELECT 1
+      primary: master
+      datasource:
+        master:
+          url: jdbc:mysql://${DATABASE_HOST:192.168.1.13}:3307/${DATABASE_NAME:hanx_erplus}?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&rewriteBatchedStatements=true
+          username: ${DATABASE_USERNAME:root}
+          password: ${DATABASE_PASSWORD:1234}
+        slave:
+          lazy: true
+          url: jdbc:mysql://${SLAVE_DATABASE_HOST:192.168.1.13}:3307/${DATABASE_NAME:hanx_erplus}?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+          username: ${DATABASE_USERNAME:root}
+          password: ${DATABASE_PASSWORD:1234}
+        doris:
+          lazy: true
+          url: jdbc:mysql://${DORIS_HOST:192.168.1.13}:9030/${DATABASE_NAME:hanx_erplus}?useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&rewriteBatchedStatements=true&nullCatalogMeansCurrent=true
+          username: ${DORIS_USERNAME:hanx}
+          password: ${DORIS_PASSWORD:123456}
+
+  # Redis 配置
+  data:
+    redis:
+      host: ${REDIS_HOST:192.168.1.13}
+      port: ${REDIS_PORT:6379}
+      database: ${REDIS_DB:0}
+#      password: ${REDIS_PASSWORD:''}
+
+--- #################### 定时任务相关配置 ####################
+
+spring:
+  quartz:
+    auto-startup: true
+    scheduler-name: schedulerName
+    job-store-type: jdbc
+    wait-for-jobs-to-complete-on-shutdown: true
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: schedulerName
+            instanceId: AUTO
+          jobStore:
+            class: org.springframework.scheduling.quartz.LocalDataSourceJobStore
+            isClustered: true
+            clusterCheckinInterval: 15000
+            misfireThreshold: 60000
+          threadPool:
+            threadCount: 5 # 生产环境线程池调大
+            threadPriority: 1
+            class: org.quartz.simpl.SimpleThreadPool
+    jdbc:
+      initialize-schema: NEVER
+
+--- #################### aws 相关配置 ####################
+spring:
+  cloud:
+    aws:
+      credentials:
+        access-key: ${AWS_ACCESS_KEY:AKIAZVFYRE4OFJILEDM6}
+        secret-key: ${AWS_SECRET_KEY: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}
+      region:
+        static: ${AWS_REGION:us-east-1}
+      sqs:
+        enabled: true
+
+--- #################### 服务保障相关配置 ####################
+
+lock4j:
+  acquire-timeout: 3000
+  expire: 30000
+
+--- #################### 监控相关配置 ####################
+
+logging:
+  file:
+    name: ${user.home}/logs/${spring.application.name}.log # 生产环境日志路径
+  level:
+    com.hzltd.module: info
+    com.agentsflex: info
+    org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR
+
+debug: false
+
+--- #################### 微信公众号、小程序相关配置 ####################
+wx:
+  mp: # 公众号配置（必填），参见 https://github.com/Wechat-Group/WxJava/blob/develop/spring-boot-starters/wx-java-mp-spring-boot-starter/README.md 文档
+    app-id: wxf56b1542b9e85f8a # 测试号（Kongdy 提供的）
+    secret: 496379dcef1ba869e9234de8d598cfd3
+    # 存储配置，解决 AccessToken 的跨节点的共享
+    config-storage:
+      type: RedisTemplate # 采用 RedisTemplate 操作 Redis，会自动从 Spring 中获取
+      key-prefix: wx # Redis Key 的前缀
+      http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
+  miniapp: # 小程序配置（必填），参见 https://github.com/Wechat-Group/WxJava/blob/develop/spring-boot-starters/wx-java-miniapp-spring-boot-starter/README.md 文档
+    appid: wxc4598c446f8a9cb3 # 测试号（Kongdy 提供的）
+    secret: 4a1a04e07f6a4a0751b39c3064a92c8b
+    config-storage:
+      type: RedisTemplate # 采用 RedisTemplate 操作 Redis，会自动从 Spring 中获取
+      key-prefix: wa # Redis Key 的前缀
+      http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
+
+
+--- #################### 项目相关配置 ####################
+
+hzapp:
+  captcha:
+    enable: true # 生产环境开启验证码
+  security:
+    mock-enable: false # 生产环境禁用 Mock 授权
+  pay:
+    order-notify-url: ${PAY_ORDER_NOTIFY_URL}
+    refund-notify-url: ${PAY_REFUND_NOTIFY_URL}
+    transfer-notify-url: ${PAY_TRANSFER_NOTIFY_URL}
+  access-log:
+    enable: true # 生产环境开启访问日志
+  demo: false
+  wxa-code:
+    env-version: release # 生产环境正式版
+  wxa-subscribe-message:
+    miniprogram-state: formal # 生产环境正式版
+  tencent-lbs-key: ${TENCENT_LBS_KEY}
+
+  aws:
+    sqs:
+      adv-queue: ${AWS_SQS_ADV_QUEUE:arn:aws:sqs:us-east-1:663959447324:HanXErplus-advReportQueue-us-east}
+      spapi-queue: ${AWS_SQS_SPAPI_QUEUE:arn:aws:sqs:us-east-1:663959447324:HanXErplus-OrderEventQueue-us-east}
+      ads-manager-queue: ${AWS_SQS_ADS_MANAGER_QUEUE:arn:aws:sqs:us-east-1:663959447324:HanXErplus-AdvManger-us-east}
