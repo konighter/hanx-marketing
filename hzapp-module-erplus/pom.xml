@@ -23,12 +23,11 @@
         <module>hzapp-module-erplus-biz</module>
         <module>hzapp-module-erplus-spapi</module>
         <module>hzapp-module-erplus-adv</module>
-        <module>hzapp-module-erplus-ai</module>
         <module>hzapp-module-erplus-amz</module>
     </modules>
 
     <properties>
-        <eVersion>3.0.0-SNAPSHOT</eVersion>
+<!--        <eVersion>3.0.0-SNAPSHOT</eVersion>-->
         <spring-cloud-aws>3.4.2</spring-cloud-aws>
     </properties>
 
@@ -37,54 +36,54 @@
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-system</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus-biz</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus-api</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus-spapi</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus-tts-spapi</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus-amz-biz</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus-adv</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>
                 <groupId>com.hzltd</groupId>
                 <artifactId>hzapp-module-erplus-ai</artifactId>
-                <version>${eVersion}</version>
+                <version>${revision}</version>
             </dependency>
 
             <dependency>

@@ -12,12 +12,13 @@
         <module>hzapp-server</module>
         <!-- 各种 module 拓展 -->
         <module>hzapp-module-erplus</module>
-<!--        <module>hzapp-module-mall</module>-->
+
+        <!--        hanx ai 引擎-->
+        <module>hzapp-module-hanx-ai</module>
     </modules>
 
     <name>${project.artifactId}</name>
     <description>翰展项目基础脚手架</description>
-    <url>https://github.com/YunaiV/ruoyi-vue-pro</url>
 
     <properties>
         <revision>3.0.0-SNAPSHOT</revision>
@@ -43,6 +44,18 @@
                 <version>${revision}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-hanx-ai</artifactId>
+                <version>${revision}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.hzltd</groupId>
+                <artifactId>hzapp-module-erplus-api</artifactId>
+                <version>${revision}</version>
             </dependency>
 
 
