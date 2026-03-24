@@ -20,20 +20,24 @@
         <el-divider content-position="left">平台信息</el-divider>
         <el-form ref="formRef" :model="formData" label-width="120px" :inline="true">
           <el-form-item label="平台" prop="platformId" :rules="[{ required: true, message: '请选择平台', trigger: 'change' }]">
-            <el-select v-model="formData.platformId" placeholder="请选择平台" clearable filterable
+            <el-select
+v-model="formData.platformId" placeholder="请选择平台" clearable filterable
               @change="handlePlatformChange">
               <el-option v-for="item in platformList" :key="item.id" :label="item.name" :value="item.id" />
             </el-select>
           </el-form-item>
           <el-form-item label="店铺" prop="shopIds" :rules="[{ required: true, message: '请选择店铺', trigger: 'change' }]">
-            <el-select v-model="formData.shopIds" placeholder="请选择店铺" multiple clearable filterable
+            <el-select
+v-model="formData.shopIds" placeholder="请选择店铺" multiple clearable filterable
               @change="handleShopChange">
               <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id" />
             </el-select>
           </el-form-item>
-          <el-form-item label="站点分类" prop="categoryId"
+          <el-form-item
+label="站点分类" prop="categoryId"
             :rules="[{ required: true, message: '请选择站点分类', trigger: 'change' }]">
-            <el-cascader v-model="formData.categoryId" :options="categoryList"
+            <el-cascader
+v-model="formData.categoryId" :options="categoryList"
               :props="{ label: 'categoryName', value: 'categoryId', checkStrictly: true, emitPath: true }" clearable
               filterable placeholder="请选择站点分类" class="w-full" @change="handleCategoryChange" />
           </el-form-item>
@@ -48,7 +52,8 @@
             </el-col>
           </el-row>
 
-          <VariationAttributes ref="variationRef" v-model="formData.variationAttributes" :attributes="attributeList"
+          <VariationAttributes
+ref="variationRef" v-model="formData.variationAttributes" :attributes="attributeList"
             :skus="spuInfo.skus" :attribute-values="formData.attributes" @selection-change="handleSkuSelection" />
 
           <el-form-item class="mt-4">

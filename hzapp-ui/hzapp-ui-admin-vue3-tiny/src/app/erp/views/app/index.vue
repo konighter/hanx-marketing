@@ -24,7 +24,8 @@
           clearable
           class="!w-240px"
         >
-          <el-option v-for="SellPlatform in sellplatformList" 
+          <el-option
+v-for="SellPlatform in sellplatformList" 
           :key="SellPlatform.id" 
           :label="SellPlatform.name" 
           :value="SellPlatform.id" />

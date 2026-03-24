@@ -3,11 +3,13 @@
     <!-- 搜索工作栏 -->
     <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="68px">
       <el-form-item label="产品名称" prop="productName">
-        <el-input v-model="queryParams.productName" placeholder="请输入产品名称" clearable @keyup.enter="handleQuery"
+        <el-input
+v-model="queryParams.productName" placeholder="请输入产品名称" clearable @keyup.enter="handleQuery"
           class="!w-240px" />
       </el-form-item>
       <el-form-item label="标签" prop="tags">
-        <el-input v-model="queryParams.tags" placeholder="请输入标签" clearable @keyup.enter="handleQuery"
+        <el-input
+v-model="queryParams.tags" placeholder="请输入标签" clearable @keyup.enter="handleQuery"
           class="!w-240px" />
       </el-form-item>
       <el-form-item label="素材类型" prop="type">
@@ -17,12 +19,14 @@
       </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择状态" clearable class="!w-240px">
-          <el-option v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)" :key="dict.value" :label="dict.label"
+          <el-option
+v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)" :key="dict.value" :label="dict.label"
             :value="dict.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="创建时间" prop="createTime">
-        <el-date-picker v-model="queryParams.createTime" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
+        <el-date-picker
+v-model="queryParams.createTime" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
           start-placeholder="开始日期" end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" />
       </el-form-item>
@@ -67,8 +71,9 @@
         class=" flex flex-row flex-wrap content-start justify-center h-full overflow-auto p-5 pb-[140px] box-border [&>div]:mr-3 [&>div]:mb-5"
         ref="imageListRef">
 
-        <ProductAssetImageCard v-for="(item, index) in list" :key="index" :detail="item"
-          @onBtnClick="handleImageClick" />
+        <ProductAssetImageCard
+v-for="(item, index) in list" :key="index" :detail="item"
+          @on-btn-click="handleImageClick" />
       </div>
     </el-skeleton>
     <!-- </el-card> -->
@@ -144,7 +149,8 @@
     <!-- 分页 -->
     <div
       class="absolute bottom-[60px] h-[50px] leading-[90px] w-full z-[999] bg-white flex flex-row justify-center items-center">
-      <Pagination :total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
+      <Pagination
+:total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
         @pagination="getList" />
     </div>
   </ContentWrap>

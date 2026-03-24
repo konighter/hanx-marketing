@@ -20,7 +20,8 @@
       </el-form-item>
       <el-form-item label="时间" prop="status">
 
-        <el-date-picker v-model="formData.dateRange" type="daterange" range-separator="至" start-placeholder="开始日期"
+        <el-date-picker
+v-model="formData.dateRange" type="daterange" range-separator="至" start-placeholder="开始日期"
           end-placeholder="结束日期" value-format="YYYY-MM-DD" class="w-100!" />
       </el-form-item>
 

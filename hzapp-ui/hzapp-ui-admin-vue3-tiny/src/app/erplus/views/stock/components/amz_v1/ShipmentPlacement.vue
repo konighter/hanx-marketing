@@ -11,7 +11,8 @@
           <el-skeleton-item variant="p" style="width: 100%" />
           <el-skeleton-item variant="p" style="width: 80%" />
         </template>
-        <div v-for="option in placementOptions" :key="option.placementOptionId"
+        <div
+v-for="option in placementOptions" :key="option.placementOptionId"
           class="option-card mb-15px p-15px border rounded hover:bg-gray-50 transition-colors">
           <div class="flex justify-between items-center">
             <div>
@@ -71,7 +72,8 @@
         </div>
       </el-skeleton>
 
-      <div v-if="!placementOptionConfirmed && placementOptions.length === 0 && !loading"
+      <div
+v-if="!placementOptionConfirmed && placementOptions.length === 0 && !loading"
         class="text-center p-40px text-gray-400 border-dashed border-2 rounded">
         暂无方案，请点击“生成/刷新方案”
       </div>
@@ -90,7 +92,8 @@
         <el-alert title="请为每个货件选择承运商" type="success" :closable="false" class="mb-15px" />
       </div>
 
-      <div v-for="shipment in confirmedShipments" :key="shipment.shipmentId"
+      <div
+v-for="shipment in confirmedShipments" :key="shipment.shipmentId"
         class="shipment-card mb-20px p-20px border rounded">
         <div class="flex justify-between mb-15px">
           <span class="font-bold">货件: {{ shipment.shipmentId }} ({{ shipment.destination }})</span>
@@ -99,7 +102,8 @@
 
         <el-form label-width="100px">
           <el-form-item label="运输渠道">
-            <el-select v-model="shipment.optionId" placeholder="选择运输选项" class="w-250px"
+            <el-select
+v-model="shipment.optionId" placeholder="选择运输选项" class="w-250px"
               @change="onTransportChange(shipment)">
               <el-option label="UPS (Ground)" value="ups_ground" />
               <el-option label="FedEx (Express)" value="fedex_exp" />

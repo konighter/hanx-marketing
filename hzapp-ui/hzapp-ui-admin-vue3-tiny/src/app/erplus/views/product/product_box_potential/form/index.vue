@@ -42,9 +42,11 @@
         <el-table :data="formData.competitorList" size="small" class="w-full">
           <el-table-column prop="platform" label="平台" width="120">
             <template #default="scope">
-              <el-select v-model="scope.row.platform" placeholder="请选择售卖平台" clearable class="!w-80%"
+              <el-select
+v-model="scope.row.platform" placeholder="请选择售卖平台" clearable class="!w-80%"
                 v-if="scope.row.edit" size="small">
-                <el-option v-for="SellPlatform in sellplatformList" :key="SellPlatform.id" :label="SellPlatform.name"
+                <el-option
+v-for="SellPlatform in sellplatformList" :key="SellPlatform.id" :label="SellPlatform.name"
                   :value="SellPlatform.id" />
               </el-select>
 
@@ -65,7 +67,8 @@
           <el-table-column prop="listDate" label="上架日期" width="140">
             <template #default="scope">
               <template v-if="scope.row.edit">
-                <el-date-picker v-model="scope.row.listDate" value-format="YYYY-MM-DD" type="date" placeholder="选择日期"
+                <el-date-picker
+v-model="scope.row.listDate" value-format="YYYY-MM-DD" type="date" placeholder="选择日期"
                   class="!w-80%" size="small" />
               </template>
               <template v-else>
@@ -90,7 +93,8 @@
           <el-table-column prop="monthSales" label="月均销量" width="120">
             <template #default="scope">
               <template v-if="scope.row.edit">
-                <el-input-number v-model="scope.row.monthSales" :min="0" controls-position="right" class="!w-full"
+                <el-input-number
+v-model="scope.row.monthSales" :min="0" controls-position="right" class="!w-full"
                   size="small" />
               </template>
               <template v-else>
@@ -101,7 +105,8 @@
           <el-table-column prop="reviews" label="评价数" width="100">
             <template #default="scope">
               <template v-if="scope.row.edit">
-                <el-input-number v-model="scope.row.reviews" :min="0" controls-position="right" class="!w-full"
+                <el-input-number
+v-model="scope.row.reviews" :min="0" controls-position="right" class="!w-full"
                   size="small" />
               </template>
               <template v-else>
@@ -140,7 +145,8 @@
 
           <el-table-column label="目标售价" align="center" width="120">
             <template #default="{ row }">
-              <el-input-number v-if="row.edit" v-model="row.targetPrice" :min="0" controls-position="right" size="small"
+              <el-input-number
+v-if="row.edit" v-model="row.targetPrice" :min="0" controls-position="right" size="small"
                 class="!w-full">
                 <template #prefix>
                   <span>$</span>
@@ -152,7 +158,8 @@
 
           <el-table-column label="采购价" align="center" width="120">
             <template #default="{ row }">
-              <el-input-number v-if="row.edit" v-model="row.purchasePrice" :min="0" controls-position="right"
+              <el-input-number
+v-if="row.edit" v-model="row.purchasePrice" :min="0" controls-position="right"
                 size="small" class="!w-full">
                 <template #prefix>
                   <span>$</span>
@@ -164,7 +171,8 @@
 
           <el-table-column label="头程(国内+国际)" align="center" width="140">
             <template #default="{ row }">
-              <el-input-number v-if="row.edit" v-model="row.freight" :min="0" controls-position="right" size="small"
+              <el-input-number
+v-if="row.edit" v-model="row.freight" :min="0" controls-position="right" size="small"
                 class="!w-full">
                 <template #prefix>
                   <span>$</span>
@@ -176,7 +184,8 @@
 
           <el-table-column label="佣金(率%)" align="center" width="120">
             <template #default="{ row }">
-              <el-input-number v-if="row.edit" v-model="row.commissionRate" :min="0" :max="100"
+              <el-input-number
+v-if="row.edit" v-model="row.commissionRate" :min="0" :max="100"
                 controls-position="right" size="small" class="!w-full">
                 <template #suffix>
                   <span>%</span>
@@ -188,7 +197,8 @@
 
           <el-table-column label="FBA 成本" align="center" width="120">
             <template #default="{ row }">
-              <el-input-number v-if="row.edit" v-model="row.fbaCost" :min="0" controls-position="right" size="small"
+              <el-input-number
+v-if="row.edit" v-model="row.fbaCost" :min="0" controls-position="right" size="small"
                 class="!w-full">
                 <template #prefix>
                   <span>$</span>
@@ -200,7 +210,8 @@
 
           <el-table-column label="推广-CPC" align="center" width="120">
             <template #default="{ row }">
-              <el-input-number v-if="row.edit" v-model="row.cpc" :min="0" controls-position="right" size="small"
+              <el-input-number
+v-if="row.edit" v-model="row.cpc" :min="0" controls-position="right" size="small"
                 class="!w-full">
                 <template #prefix>
                   <span>$</span>
@@ -212,7 +223,8 @@
 
           <el-table-column label="推广-ACOS(%)" align="center" width="140">
             <template #default="{ row }">
-              <el-input-number v-if="row.edit" v-model="row.targetAcos" :min="0" :max="100" controls-position="right"
+              <el-input-number
+v-if="row.edit" v-model="row.targetAcos" :min="0" :max="100" controls-position="right"
                 size="small" class="!w-full">
                 <template #suffix>
                   <span>%</span>

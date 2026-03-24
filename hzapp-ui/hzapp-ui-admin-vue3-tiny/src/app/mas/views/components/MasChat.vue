@@ -20,7 +20,8 @@
 
       <div v-else class="space-y-6 pb-4">
         <div v-for="msg in messages" :key="msg.id" :class="['flex', msg.role === 'user' ? 'justify-end' : 'justify-start anim-fade-in']">
-          <div :class="[
+          <div
+:class="[
             'max-w-[85%] px-4 py-3 rounded-2xl shadow-sm border',
             msg.role === 'user' 
               ? 'bg-gradient-to-br from-indigo-600 to-indigo-700 text-white border-indigo-500/30 rounded-tr-none' 

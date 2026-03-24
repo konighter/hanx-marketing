@@ -5,19 +5,23 @@
         <InfoForm ref="infoRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData" />
       </el-tab-pane>
       <el-tab-pane label="商品详情" name="description">
-        <DescriptionForm ref="descriptionRef" v-model:activeName="activeName" :is-detail="isDetail"
+        <DescriptionForm
+ref="descriptionRef" v-model:activeName="activeName" :is-detail="isDetail"
           :propFormData="formData" />
       </el-tab-pane>
       <el-tab-pane label="价格库存" name="sku">
-        <SkuForm ref="skuRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData"
+        <SkuForm
+ref="skuRef" v-model:activeName="activeName" :is-detail="isDetail" :propFormData="formData"
           @spec-change="onSpecTypeChange" />
       </el-tab-pane>
       <el-tab-pane label="变体详情" name="productSkuSpec" v-if="showSpec">
-        <ProductSkuSpecForm ref="skuSpecRef" v-model:active-name="activeName" :is-detail="isDetail"
+        <ProductSkuSpecForm
+ref="skuSpecRef" v-model:active-name="activeName" :is-detail="isDetail"
           :propFormData="formData" />
       </el-tab-pane>
       <el-tab-pane label="物流设置" name="delivery">
-        <DeliveryForm ref="deliveryRef" v-model:activeName="activeName" :is-detail="isDetail"
+        <DeliveryForm
+ref="deliveryRef" v-model:activeName="activeName" :is-detail="isDetail"
           :propFormData="formData" />
       </el-tab-pane>
 

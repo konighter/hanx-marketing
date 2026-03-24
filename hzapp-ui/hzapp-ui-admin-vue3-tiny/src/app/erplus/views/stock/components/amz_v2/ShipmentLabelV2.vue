@@ -24,7 +24,8 @@
         </div>
       </div>
 
-      <div v-for="shipment in confirmedShipments" :key="shipment.shipmentId"
+      <div
+v-for="shipment in confirmedShipments" :key="shipment.shipmentId"
         class="shipment-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         <div class="shipment-header bg-gray-50 p-4 border-b flex justify-between items-center">
           <div class="flex items-center gap-4">
@@ -63,7 +64,8 @@
             <el-table-column label="内容摘要" min-width="200">
               <template #default="{ row }">
                 <div class="flex flex-wrap gap-1">
-                  <el-tag v-for="item in row.items" :key="item.msku" size="small" type="info" effect="plain"
+                  <el-tag
+v-for="item in row.items" :key="item.msku" size="small" type="info" effect="plain"
                     class="!px-1">
                     {{ item.msku }} x <span class="font-bold">{{ item.quantity }}</span>
                   </el-tag>
@@ -73,13 +75,16 @@
             <el-table-column label="操作" width="180" align="center" fixed="right">
               <template #default="{ row }">
                 <div class="flex justify-center gap-2" v-if="row.labelUrl">
-                  <el-button type="primary" size="small" @click="handlePreview(row.labelUrl)"
+                  <el-button
+type="primary" size="small" @click="handlePreview(row.labelUrl)"
                     :loading="previewingId === (row.boxId || row.packageId)">预览</el-button>
-                  <el-button type="success" size="small" @click="handlePrint(row.labelUrl)"
+                  <el-button
+type="success" size="small" @click="handlePrint(row.labelUrl)"
                     :loading="printingId === (row.boxId || row.packageId)">打印</el-button>
                 </div>
                 <div v-else>
-                  <el-button type="primary" size="small" @click="handleGenerate(shipment, row)"
+                  <el-button
+type="primary" size="small" @click="handleGenerate(shipment, row)"
                     :loading="generatingId === (row.boxId || row.packageId)">生成</el-button>
                 </div>
               </template>
@@ -106,7 +111,8 @@
       <div class="flex flex-col items-center gap-4 py-4 min-h-[500px]" v-loading="previewLoading">
         <template v-if="previewUrl">
           <img v-if="labelConfig.labelFormat === 'PNG'" :src="previewUrl" class="max-w-full shadow-md" />
-          <iframe v-else-if="labelConfig.labelFormat === 'PDF'" :src="previewUrl"
+          <iframe
+v-else-if="labelConfig.labelFormat === 'PDF'" :src="previewUrl"
             class="w-full h-[600px] border shadow-sm rounded"></iframe>
         </template>
         <el-empty v-else description="暂无预览数据" />

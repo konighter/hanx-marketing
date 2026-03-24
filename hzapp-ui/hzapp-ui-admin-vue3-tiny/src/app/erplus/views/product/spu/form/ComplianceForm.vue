@@ -31,7 +31,8 @@
     <el-form-item label="适用年龄" prop="ageRange" class='w-full'>
       <el-row>
         <div>
-          <el-input-number v-model="formData.ageRange.min" placeholder="最小年龄" :min="0" :max="100" class="w-10"
+          <el-input-number
+v-model="formData.ageRange.min" placeholder="最小年龄" :min="0" :max="100" class="w-10"
             controls-position="right" />
           <div class="text-xs text-gray-500 mt-1">最小年龄 (岁)</div>
         </div>
@@ -39,7 +40,8 @@
           -
         </div>
         <div>
-          <el-input-number v-model="formData.ageRange.max" placeholder="最大年龄" :min="0" :max="100" class="w-full"
+          <el-input-number
+v-model="formData.ageRange.max" placeholder="最大年龄" :min="0" :max="100" class="w-full"
             controls-position="right" />
           <div class="text-xs text-gray-500 mt-1">最大年龄 (岁)</div>
         </div>
@@ -51,7 +53,8 @@
     <el-divider content-position="left">材料合规</el-divider>
     <!-- <el-card class="mb-4" header="材料合规"> -->
     <el-form-item label="主要材料">
-      <div v-for="(material, index) in formData.materials" :key="index"
+      <div
+v-for="(material, index) in formData.materials" :key="index"
         class="flex flex-row mb-2 items-start gap-2 !w-full border border-gray-200 rounded  ">
         <div>
           <el-input v-model="material.name" placeholder="材料名称" class="!w-50" />
@@ -59,7 +62,8 @@
         </div>
 
         <div>
-          <el-input-number v-model="material.percentage" placeholder="含量百分比" :min="0" :max="100" :precision="2"
+          <el-input-number
+v-model="material.percentage" placeholder="含量百分比" :min="0" :max="100" :precision="2"
             controls-position="right" class="!w-50" />
           <div class="text-xs text-gray-500 mt-1">含量百分比</div>
         </div>
@@ -168,7 +172,8 @@
     </el-form-item>
 
     <el-form-item label="特殊许可证">
-      <div v-for="(license, index) in formData.specialLicenses" :key="index"
+      <div
+v-for="(license, index) in formData.specialLicenses" :key="index"
         class="flex flex-row mb-2 items-center gap-2 !w-full border border-gray-200 rounded  ">
 
         <el-input v-model="license.name" placeholder="许可证名称" class="!w-50" />
@@ -233,7 +238,8 @@
     </el-form-item>
 
     <el-form-item label="质量承诺">
-      <el-input v-model="formData.qualityCommitment" type="textarea" placeholder="请输入质量承诺内容"
+      <el-input
+v-model="formData.qualityCommitment" type="textarea" placeholder="请输入质量承诺内容"
         :autosize="{ minRows: 3, maxRows: 6 }" class="w-80" />
     </el-form-item>
     <!-- </el-card> -->

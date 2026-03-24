@@ -36,7 +36,8 @@
       <!-- 列表滚动区 -->
       <el-scrollbar class="flex-1 overflow-hidden">
         <div v-loading="loading" class="pr-10px">
-          <div v-for="item in list" :key="item.id"
+          <div
+v-for="item in list" :key="item.id"
             class="warehouse-item p-10px mb-5px cursor-pointer border-rounded transition-all"
             :class="{ 'active bg-[var(--el-color-primary-light-9)] border-primary': modelValue === item.id }"
             @click="handleClick(item)">

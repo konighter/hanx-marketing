@@ -10,7 +10,8 @@
       </el-form-item>
 
       <el-form-item label="店铺" prop="shopIds">
-        <el-select v-model="formData.shopIds" multiple placeholder="请选择店铺" :disabled="!formData.platformId"
+        <el-select
+v-model="formData.shopIds" multiple placeholder="请选择店铺" :disabled="!formData.platformId"
           @change="onShopChange" class="w-100!">
           <el-option v-for="s in shops" :key="s.id" :label="s.name" :value="s.id" />
         </el-select>
@@ -18,7 +19,8 @@
 
       <el-form-item label="品类" prop="categoryId">
 
-        <el-cascader v-model="formData.categoryId" :options="categories" :props="categoryCasOpt" class="w-100!"
+        <el-cascader
+v-model="formData.categoryId" :options="categories" :props="categoryCasOpt" class="w-100!"
           :disabled="!(formData.platformId && formData.shopIds && formData.shopIds.length > 0)" clearable filterable
           @change="onCategoryChange" placeholder="请选择分类" />
 
@@ -38,16 +40,19 @@
 
           <ExpendBox :collapsedHeight="180" class="no-border-collapse">
             <template v-for="attr in attributes.filter(t => t.isRequired)" :key="attr.id">
-              <el-form-item :label="attr.attrName" :labelMessage="attr.attrDescription"
+              <el-form-item
+:label="attr.attrName" :labelMessage="attr.attrDescription"
                 :prop="'attributes.' + attr.attrCode" :required="attr.isRequired">
                 <template #label>
-                  <Tooltip :title="attr.attrName.substring(0, 10)" :message="attr.attrDescription"
+                  <Tooltip
+:title="attr.attrName.substring(0, 10)" :message="attr.attrDescription"
                     icon="ep:info-filled" />
 
                 </template>
 
 
-                <component :is="getFieldComponent(attr)" v-model="formData.attributes[attr.attrCode]"
+                <component
+:is="getFieldComponent(attr)" v-model="formData.attributes[attr.attrCode]"
                   v-bind="fieldProps(attr)" class="w-100!">
                   <template v-if="attr.compType === 'el-select'" #default>
                     <el-option v-for="opt in attr.options" :key="opt.value" :label="opt.valueName" :value="opt.value" />
@@ -69,19 +74,23 @@
 
               <template v-for="attr in attributes.filter(t => !t.isRequired)" :key="attr.id">
 
-                <el-form-item :label="attr.attrName" :labelMessage="attr.attrDescription"
+                <el-form-item
+:label="attr.attrName" :labelMessage="attr.attrDescription"
                   :prop="formData.attributes[attr.attrCode]" :required="attr.isRequired">
                   <template #label>
-                    <Tooltip :title="attr.attrName.substring(0, 10)" :message="attr.attrDescription"
+                    <Tooltip
+:title="attr.attrName.substring(0, 10)" :message="attr.attrDescription"
                       icon="ep:info-filled" />
 
                   </template>
 
 
-                  <component :is="getFieldComponent(attr)" v-model="formData.attributes[attr.attrCode]"
+                  <component
+:is="getFieldComponent(attr)" v-model="formData.attributes[attr.attrCode]"
                     v-bind="fieldProps(attr)" class="w-100!">
                     <template v-if="attr.compType === 'el-select'" #default>
-                      <el-option v-for="opt in attr.options" :key="opt.value" :label="opt.valueName"
+                      <el-option
+v-for="opt in attr.options" :key="opt.value" :label="opt.valueName"
                         :value="opt.value" />
                     </template>
                   </component>
@@ -97,9 +106,10 @@
 
           </ExpendBox>
 
-          <VariationAttributes ref="variationAttributesRef" :attributes="attributes" :skus="spuInfo.skus"
+          <VariationAttributes
+ref="variationAttributesRef" :attributes="attributes" :skus="spuInfo.skus"
             v-model="formData.variationAttributes" :attributeValues="formData.attributes"
-            @selectionChange="handleSelectionChange" />
+            @selection-change="handleSelectionChange" />
 
 
 

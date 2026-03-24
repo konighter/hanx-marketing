@@ -6,15 +6,18 @@
   <ContentWrap>
     <el-form ref="queryFormRef" :inline="true" :model="queryParams" class="-mb-15px" label-width="68px">
       <el-form-item label="商品名称" prop="name">
-        <el-input v-model="queryParams.name" class="!w-240px" clearable placeholder="请输入商品名称"
+        <el-input
+v-model="queryParams.name" class="!w-240px" clearable placeholder="请输入商品名称"
           @keyup.enter="handleQuery" />
       </el-form-item>
       <el-form-item label="商品分类" prop="categoryId">
-        <el-cascader v-model="queryParams.categoryId" :options="categoryList" :props="defaultProps" class="w-1/1"
+        <el-cascader
+v-model="queryParams.categoryId" :options="categoryList" :props="defaultProps" class="w-1/1"
           clearable filterable placeholder="请选择商品分类" />
       </el-form-item>
       <el-form-item label="创建时间" prop="createTime">
-        <el-date-picker v-model="queryParams.createTime"
+        <el-date-picker
+v-model="queryParams.createTime"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" end-placeholder="结束日期"
           start-placeholder="开始日期" type="daterange" value-format="YYYY-MM-DD HH:mm:ss" />
       </el-form-item>
@@ -31,7 +34,8 @@
           <Icon class="mr-5px" icon="ep:plus" />
           新增
         </el-button>
-        <el-button v-hasPermi="['product:spu:export']" :loading="exportLoading" plain type="success"
+        <el-button
+v-hasPermi="['product:spu:export']" :loading="exportLoading" plain type="success"
           @click="handleExport">
           <Icon class="mr-5px" icon="ep:download" />
           导出
@@ -43,7 +47,8 @@
   <!-- 列表 -->
   <ContentWrap>
     <el-tabs v-model="queryParams.tabType" @tab-click="handleTabClick">
-      <el-tab-pane v-for="item in tabsData" :key="item.type" :label="item.name + '(' + item.count + ')'"
+      <el-tab-pane
+v-for="item in tabsData" :key="item.type" :label="item.name + '(' + item.count + ')'"
         :name="item.type" />
     </el-tabs>
     <el-table v-loading="loading" :data="list">
@@ -140,7 +145,8 @@
       </el-table-column>
       <el-table-column label="图片" width="100">
         <template #default="{ row }">
-          <el-image style="width: 60px; height: 60px" :src="row.picUrl"
+          <el-image
+style="width: 60px; height: 60px" :src="row.picUrl"
             :preview-src-list="[row.picUrl, ...row.sliderPicUrls]" fit="cover" :preview-teleported=true />
         </template>
       </el-table-column>
@@ -190,7 +196,8 @@
       <el-table-column align="center" label="状态" min-width="80">
         <template #default="{ row }">
           <div class="transform-none" v-if="row.status !== undefined">
-            <el-switch v-show="Number(row.status) > 0" v-model="row.status" :active-value="1" :inactive-value="0"
+            <el-switch
+v-show="Number(row.status) > 0" v-model="row.status" :active-value="1" :inactive-value="0"
               active-text="上架" inactive-text="下架" inline-prompt @change="handleStatusChange(row)" />
             <el-tag v-show="Number(row.status) === 0" type="info">草稿</el-tag>
             <el-tag v-show="Number(row.status) < 0" type="info">已归档</el-tag>
@@ -208,7 +215,8 @@
             <el-button v-hasPermi="['product:spu:delete']" link type="danger" @click="handleDelete(row.id)">
               删除
             </el-button>
-            <el-button v-hasPermi="['product:spu:update']" link type="primary"
+            <el-button
+v-hasPermi="['product:spu:update']" link type="primary"
               @click="handleStatus02Change(row, ProductSpuStatusEnum.DISABLE.status)">
               恢复
             </el-button>
@@ -218,7 +226,8 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <Pagination v-model:limit="queryParams.pageSize" v-model:page="queryParams.pageNo" :total="total"
+    <Pagination
+v-model:limit="queryParams.pageSize" v-model:page="queryParams.pageNo" :total="total"
       @pagination="getList" />
   </ContentWrap>
 </template>

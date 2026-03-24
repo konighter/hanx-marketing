@@ -5,14 +5,16 @@
         <span class="text-lg font-bold flex items-center gap-2 shrink-0">
           <Icon icon="ep:setting" />
           {{ configTitle }}
-          <el-button v-if="!readonly && shipmentData.status !== ShipmentStatus.CANCELED" type="danger" link size="small"
+          <el-button
+v-if="!readonly && shipmentData.status !== ShipmentStatus.CANCELED" type="danger" link size="small"
             @click="handleCancel">
             <Icon icon="ep:circle-close" class="mr-1" /> 取消计划
           </el-button>
         </span>
         <div class="flex-1 max-w-600px">
           <el-steps :active="activeStep" align-center finish-status="success" simple class="clickable-steps">
-            <el-step v-for="(step, index) in steps" :key="index" :title="step.title"
+            <el-step
+v-for="(step, index) in steps" :key="index" :title="step.title"
               :class="{ 'is-clickable': index <= activeStep, 'is-selected': index === selectedStep }"
               @click="handleStepClick(index)" />
           </el-steps>
@@ -23,7 +25,8 @@
       <div class="flex-1 min-h-0 p-4">
         <!-- 中间主体：动态组件/内容 -->
         <div class="content-wrapper bg-white p-6 rounded shadow-sm mb-4">
-          <component :is="activeComponent" v-if="activeComponent" :shipment-plan="shipmentData" :active="visible"
+          <component
+:is="activeComponent" v-if="activeComponent" :shipment-plan="shipmentData" :active="visible"
             :readonly="effectiveReadonly" @next="handleNext" @back="handleBack" />
           <div v-else class="empty-content flex items-center justify-center border-dashed border-2 border-gray-200">
             <div class="text-center text-gray-400">

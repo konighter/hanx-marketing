@@ -164,9 +164,9 @@
 <script setup lang="ts">
 import { getIntDictOptions, DICT_TYPE, getStrDictOptions, getBoolDictOptions } from '@/utils/dict'
 import { dateFormatter } from '@/utils/formatTime'
-import { ImageApi, ImageVO } from '@/api/ai/image'
+import { ImageApi, ImageVO } from '@/app/ai/api/image'
 import * as UserApi from '@/api/system/user'
-import { AiImageStatusEnum } from '@/views/ai/utils/constants'
+import { AiImageStatusEnum } from '@/app/ai/utils/constants'
 
 /** AI 绘画 列表 */
 defineOptions({ name: 'AiImageManager' })

@@ -95,7 +95,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ImageApi, ImageDrawReqVO, ImageVO } from '@/api/ai/image'
+import { ImageApi, ImageDrawReqVO, ImageVO } from '@/app/ai/api/image'
 import {
   Dall3Models,
   Dall3StyleList,
@@ -104,8 +104,8 @@ import {
   ImageModelVO,
   AiPlatformEnum,
   ImageSizeVO
-} from '@/views/ai/utils/constants'
-import { ModelVO } from '@/api/ai/model/model'
+} from '@/app/ai/utils/constants'
+import { ModelVO } from '@/app/ai/api/model'
 
 const message = useMessage() // 消息弹窗
 

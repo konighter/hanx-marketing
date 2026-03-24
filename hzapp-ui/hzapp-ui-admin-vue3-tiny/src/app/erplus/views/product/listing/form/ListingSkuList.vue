@@ -24,7 +24,8 @@
     <el-table-column align="center" label="图片" min-width="65">
 
       <template #default="{ row }">
-        <el-image style="width: 60px; height: 60px" :src="row.picUrl" :preview-src-list="[row.picUrl]" fit="cover"
+        <el-image
+style="width: 60px; height: 60px" :src="row.picUrl" :preview-src-list="[row.picUrl]" fit="cover"
           :preview-teleported=true />
       </template>
 
@@ -40,15 +41,16 @@
 
 
 
-    <el-table-column v-for="attr in attributeList" :key="attr.attrCode" :label="attr.attrName" :prop="attr.attrCode"
+    <el-table-column
+v-for="attr in attributeList" :key="attr.attrCode" :label="attr.attrName" :prop="attr.attrCode"
       width="100" :show-overflow-tooltip="true">
-      <template #label="{ row: attr }">
+      <template #label>
         <span>{{ attr.attrName }}</span>
       </template>
-      <template #default="{ row: attr }">
+      <template #default="{ row }">
         <span>
           {{
-            attr.attrCode
+            row[attr.attrCode]
           }}
         </span>
       </template>
@@ -64,19 +66,22 @@
     </el-table-column>
     <el-table-column align="center" label="销售价(元)" min-width="168">
       <template #default="{ row }">
-        <el-input-number v-model="row.price" :min="0" :precision="2" :step="0.1" class="w-100%"
+        <el-input-number
+v-model="row.price" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column align="center" label="市场价(元)" min-width="168">
       <template #default="{ row }">
-        <el-input-number v-model="row.marketPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+        <el-input-number
+v-model="row.marketPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column align="center" label="成本价(元)" min-width="168">
       <template #default="{ row }">
-        <el-input-number v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+        <el-input-number
+v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
       </template>
     </el-table-column>
@@ -92,21 +97,14 @@
 
 </template>
 <script lang="ts" setup>
-import { PropType, Ref } from 'vue'
-import { copyValueToTarget, formatToFraction } from '@/utils'
+import { PropType } from 'vue'
 import { propTypes } from '@/utils/propTypes'
-import { UploadImg } from '@/components/UploadFile'
-import type { Property, Sku, Spu } from '@/app/erplus/api/product/spu'
+import type { Sku, Spu } from '@/app/erplus/api/product/spu'
 import type { CategoryAttributeModel } from '@/app/erplus/api/product/category'
-import { createImageViewer } from '@/components/ImageViewer'
-import { RuleConfig } from '@/app/erplus/views/product/spu/components/index'
 
 import { ElTable } from 'element-plus'
-import { isEmpty } from '@/utils/is'
 
 defineOptions({ name: 'SkuList' })
-const message = useMessage() // 消息弹窗
-
 const props = defineProps({
   propFormData: {
     type: Object,
@@ -126,6 +124,7 @@ const props = defineProps({
 const formData = ref({
   variationAttributes: [], // 变体属性列表
   skuAttrVals: [], // 变体属性列表
+  skus: []
 }) // 表单数据
 
 
@@ -144,7 +143,7 @@ watch(
   () => props.spuData,
   (data) => {
     if (!data) return
-    formData.value = data
+    formData.value = data as any
   },
   {
     deep: true,

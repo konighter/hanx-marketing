@@ -10,12 +10,14 @@
       </el-checkbox-group>
     </el-form-item>
 
-    <el-table :data="skus" border class="tabNumWidth" max-height="500" size="small"
+    <el-table
+:data="skus" border class="tabNumWidth" max-height="500" size="small"
       @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="45" />
       <el-table-column align="center" label="图片" min-width="65">
         <template #default="{ row }">
-          <el-image style="width: 60px; height: 60px" :src="row.picUrl" :preview-src-list="[row.picUrl]" fit="cover"
+          <el-image
+style="width: 60px; height: 60px" :src="row.picUrl" :preview-src-list="[row.picUrl]" fit="cover"
             :preview-teleported="true" />
         </template>
       </el-table-column>
@@ -27,7 +29,8 @@
         </template>
       </el-table-column>
 
-      <el-table-column v-for="(attr, idx) in selectedAttributes" :key="idx" min-width="200" :label="getLabel(attr)"
+      <el-table-column
+v-for="(attr, idx) in selectedAttributes" :key="idx" min-width="200" :label="getLabel(attr)"
         :show-overflow-tooltip="true">
         <template #default="{ row: sku }">
           <el-form-item :error="errors[`${sku.id}-${attr.attrCode}`]" class="mb-0!">
@@ -45,20 +48,23 @@
       <el-table-column align="center" label="销售价(元)" min-width="168">
         <template #default="{ row }">
           <el-form-item :error="errors[`${row.id}-price`]" class="mb-0!">
-            <el-input-number v-model="row.price" :min="0" :precision="2" :step="0.1" class="w-100%"
+            <el-input-number
+v-model="row.price" :min="0" :precision="2" :step="0.1" class="w-100%"
               controls-position="right" />
           </el-form-item>
         </template>
       </el-table-column>
       <el-table-column align="center" label="市场价(元)" min-width="168">
         <template #default="{ row }">
-          <el-input-number v-model="row.marketPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+          <el-input-number
+v-model="row.marketPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
             controls-position="right" />
         </template>
       </el-table-column>
       <el-table-column align="center" label="成本价(元)" min-width="168">
         <template #default="{ row }">
-          <el-input-number v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+          <el-input-number
+v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
             controls-position="right" />
         </template>
       </el-table-column>

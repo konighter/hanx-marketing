@@ -1,6 +1,7 @@
 <template>
   <div class="expandable-container w-full!">
-    <div ref="contentRef" class="content-text" :class="{ 'expanded': isExpanded, 'collapsed-fixed': !isExpanded }"
+    <div
+ref="contentRef" class="content-text" :class="{ 'expanded': isExpanded, 'collapsed-fixed': !isExpanded }"
       :style="!isExpanded ? { maxHeight: collapsedHeight + 'px' } : { maxHeight: '9999px' }">
       <slot></slot>
     </div>

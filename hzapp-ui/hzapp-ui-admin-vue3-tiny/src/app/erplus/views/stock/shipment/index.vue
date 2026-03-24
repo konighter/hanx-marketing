@@ -19,7 +19,8 @@
               </el-select>
             </el-form-item> -->
             <el-form-item prop="createTime" class="!mr-10px">
-              <el-date-picker v-model="queryForm.createTimeRange" type="daterange" range-separator="至"
+              <el-date-picker
+v-model="queryForm.createTimeRange" type="daterange" range-separator="至"
                 start-placeholder="开始时间" end-placeholder="结束时间" class="!w-280px" />
             </el-form-item>
 
@@ -38,7 +39,8 @@
         </div>
 
         <!-- 列表 (自动填充剩余空间) -->
-        <el-table row-key="id" v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true"
+        <el-table
+row-key="id" v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true"
           class="flex-1 mt-2" height="100%" :header-cell-style="{ fontSize: '12px' }">
           <template #empty>
             <div class="flex items-center justify-center h-full">
@@ -73,7 +75,8 @@
               <el-tooltip placement="top" effect="light">
                 <template #content>
                   <div class="w-200px">
-                    <el-table :data="scope.row.items" size="small" border
+                    <el-table
+:data="scope.row.items" size="small" border
                       :header-cell-style="{ background: '#f5f7fa', color: '#606266', fontWeight: 'bold' }">
                       <el-table-column prop="sellerSku" label="SKU" min-width="120" />
                       <el-table-column prop="quantity" label="数量" width="60" align="center" />
@@ -106,11 +109,14 @@
 
 
 
-                <el-button type="text" size="small" v-if="row.status === ShipmentStatus.INIT"
+                <el-button
+type="text" size="small" v-if="row.status === ShipmentStatus.INIT"
                   @click="handleEdit(row)">编辑</el-button>
-                <el-button type="text" size="small" v-if="row.status === ShipmentStatus.AUDITING"
+                <el-button
+type="text" size="small" v-if="row.status === ShipmentStatus.AUDITING"
                   @click="handleAudit(row)">审核</el-button>
-                <el-button type="text" size="small"
+                <el-button
+type="text" size="small"
                   v-if="row.status !== ShipmentStatus.AUDITING && row.status !== ShipmentStatus.INIT"
                   @click="handleConfig(row)">配置</el-button>
               </template>
@@ -119,7 +125,8 @@
         </el-table>
 
         <!-- 分页 (固定在底部) -->
-        <Pagination :total="total" v-model:page="queryForm.pageNo" v-model:limit="queryForm.pageSize"
+        <Pagination
+:total="total" v-model:page="queryForm.pageNo" v-model:limit="queryForm.pageSize"
           class="flex-shrink-0 justify-end" @pagination="handleQuery" />
       </div>
     </ContentWrap>

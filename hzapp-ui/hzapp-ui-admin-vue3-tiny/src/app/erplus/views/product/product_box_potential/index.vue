@@ -3,12 +3,14 @@
     <!-- 搜索工作栏 -->
     <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="68px">
       <el-form-item label="标题" prop="title">
-        <el-input v-model="queryParams.title" placeholder="请输入标题" clearable @keyup.enter="handleQuery"
+        <el-input
+v-model="queryParams.title" placeholder="请输入标题" clearable @keyup.enter="handleQuery"
           class="!w-240px" />
       </el-form-item>
       <el-form-item label="售卖平台" prop="platformId">
         <el-select v-model="queryParams.platformId" placeholder="请选择售卖平台" clearable class="!w-240px">
-          <el-option v-for="SellPlatform in sellplatformList" :key="SellPlatform.id" :label="SellPlatform.name"
+          <el-option
+v-for="SellPlatform in sellplatformList" :key="SellPlatform.id" :label="SellPlatform.name"
             :value="SellPlatform.id" />
         </el-select>
       </el-form-item>
@@ -23,12 +25,14 @@
         </el-select>
       </el-form-item>
       <el-form-item label="创建时间" prop="createTime">
-        <el-date-picker v-model="queryParams.createTime" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
+        <el-date-picker
+v-model="queryParams.createTime" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
           start-placeholder="开始日期" end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" />
       </el-form-item>
       <el-form-item label="创建人ID" prop="creator">
-        <el-input v-model="queryParams.creator" placeholder="请输入创建人ID" clearable @keyup.enter="handleQuery"
+        <el-input
+v-model="queryParams.creator" placeholder="请输入创建人ID" clearable @keyup.enter="handleQuery"
           class="!w-240px" />
       </el-form-item>
       <el-form-item>
@@ -41,7 +45,8 @@
         <el-button type="primary" plain @click="openForm('create')" v-hasPermi="['erplus:product-potential:create']">
           <Icon icon="ep:plus" class="mr-5px" /> 新增
         </el-button>
-        <el-button type="success" plain @click="handleExport" :loading="exportLoading"
+        <el-button
+type="success" plain @click="handleExport" :loading="exportLoading"
           v-hasPermi="['erplus:product-potential:export']">
           <Icon icon="ep:download" class="mr-5px" /> 导出
         </el-button>
@@ -66,30 +71,35 @@
       <el-table-column label="创建人ID" align="center" prop="creator" />
       <el-table-column label="操作" align="center">
         <template #default="scope">
-          <el-button link type="primary" @click="openForm('update', scope.row.id)"
+          <el-button
+link type="primary" @click="openForm('update', scope.row.id)"
             v-hasPermi="['erplus:product-potential:update']">
             编辑
           </el-button>
 
           
 
-          <el-button link type="primary" @click="openDialog('submit', scope.row.id)"
+          <el-button
+link type="primary" @click="openDialog('submit', scope.row.id)"
             v-hasPermi="['erplus:product-potential:update']" v-if="scope.row.status == 0">
             提交
           </el-button>
           <template v-else>
-            <el-button link type="primary" @click="openDialog('audit', scope.row.id)"
+            <el-button
+link type="primary" @click="openDialog('audit', scope.row.id)"
               v-hasPermi="['erplus:product-potential:update']">
               评审
             </el-button>
-            <el-button link type="primary" @click="openDialog('debrief', scope.row.id)"
+            <el-button
+link type="primary" @click="openDialog('debrief', scope.row.id)"
               v-hasPermi="['erplus:product-potential:update']">
               复盘
             </el-button>
           </template>
 
 
-          <el-button link type="danger" @click="handleDelete(scope.row.id)"
+          <el-button
+link type="danger" @click="handleDelete(scope.row.id)"
             v-hasPermi="['erplus:product-potential:delete']">
             删除
           </el-button>
@@ -97,7 +107,8 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <Pagination :total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
+    <Pagination
+:total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
       @pagination="getList" />
   </ContentWrap>
 

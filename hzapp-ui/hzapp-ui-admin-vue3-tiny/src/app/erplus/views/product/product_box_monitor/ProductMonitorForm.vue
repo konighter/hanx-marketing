@@ -12,7 +12,8 @@
       </el-form-item>
       <el-form-item label="平台" prop="platformId">
         <el-select v-model="formData.platformId" placeholder="请选择平台">
-          <el-option v-for="SellPlatform in sellplatformList" :key="SellPlatform.id" :label="SellPlatform.name"
+          <el-option
+v-for="SellPlatform in sellplatformList" :key="SellPlatform.id" :label="SellPlatform.name"
             :value="SellPlatform.id" />
         </el-select>
       </el-form-item>

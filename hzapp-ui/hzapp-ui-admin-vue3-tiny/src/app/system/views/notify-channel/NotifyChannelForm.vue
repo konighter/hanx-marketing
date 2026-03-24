@@ -5,27 +5,30 @@
         <el-input v-model="formData.name" placeholder="请输入渠道名称，如：飞书-运营群" />
       </el-form-item>
       <el-form-item label="渠道类型" prop="channelType">
-        <el-select v-model="formData.channelType" placeholder="请选择渠道类型" :disabled="formType === 'update'"
+        <el-select
+v-model="formData.channelType" placeholder="请选择渠道类型" :disabled="formType === 'update'"
           @change="handleChannelTypeChange" class="w-full">
           <el-option v-for="item in ChannelTypeOptions" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="Webhook 地址" prop="webhookUrl">
-        <el-input v-model="formData.webhookUrl" type="textarea" :rows="2"
+        <el-input
+v-model="formData.webhookUrl" type="textarea" :rows="2"
           placeholder="请输入 Webhook 地址" />
       </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-radio-group v-model="formData.status">
-          <el-radio v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)" :key="dict.value"
+          <el-radio
+v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)" :key="dict.value"
             :value="dict.value">{{ dict.label }}</el-radio>
         </el-radio-group>
       </el-form-item>
 
       <!-- 渠道个性化配置 -->
       <el-divider content-position="left">渠道配置</el-divider>
-      <FeishuConfig v-if="formData.channelType === 1" :modelValue="channelConfig" @update:modelValue="onConfigUpdate" />
-      <DingtalkConfig v-else-if="formData.channelType === 2" :modelValue="channelConfig" @update:modelValue="onConfigUpdate" />
-      <WecomConfig v-else-if="formData.channelType === 3" :modelValue="channelConfig" @update:modelValue="onConfigUpdate" />
+      <FeishuConfig v-if="formData.channelType === 1" :modelValue="channelConfig" @update:model-value="onConfigUpdate" />
+      <DingtalkConfig v-else-if="formData.channelType === 2" :modelValue="channelConfig" @update:model-value="onConfigUpdate" />
+      <WecomConfig v-else-if="formData.channelType === 3" :modelValue="channelConfig" @update:model-value="onConfigUpdate" />
       <el-empty v-else description="请先选择渠道类型" :image-size="60" />
     </el-form>
 

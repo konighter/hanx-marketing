@@ -21,7 +21,8 @@
 
           <div class="flex-1 flex flex-col overflow-hidden pt-10px">
             <template v-if="selectedWarehouseId">
-              <WarehouseStockTable v-if="activeTab === 'stock'" :warehouse-id="selectedWarehouseId"
+              <WarehouseStockTable
+v-if="activeTab === 'stock'" :warehouse-id="selectedWarehouseId"
                 :warehouse="selectedWarehouse" />
               <WarehouseHistoryTable v-else-if="activeTab === 'history'" :warehouse-id="selectedWarehouseId" />
             </template>

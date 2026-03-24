@@ -2,7 +2,8 @@
   <el-dialog v-model="visible" title="选择装箱方案" width="650px" append-to-body>
     <div v-loading="loading" class="max-h-[60vh] overflow-y-auto pr-2">
       <div v-if="packingOptions.length > 0">
-        <div v-for="option in packingOptions" :key="option.packingOptionId"
+        <div
+v-for="option in packingOptions" :key="option.packingOptionId"
           class="option-card mb-4 p-4 border rounded hover:bg-gray-50 transition-colors"
           :class="{ 'border-blue-500 bg-blue-50': selectedId === option.packingOptionId }">
           <div class="flex justify-between items-center">
@@ -22,7 +23,8 @@
           <!-- 分组详情展示 -->
           <div v-if="option.groupItems" class="mt-3">
             <el-collapse accordion>
-              <div v-for="(group, key) in option.groupItems" :key="key"
+              <div
+v-for="(group, key) in option.groupItems" :key="key"
                 class="mb-2 bg-gray-50 rounded border border-dashed border-gray-200 overflow-hidden">
                 <el-collapse-item :name="key">
                   <template #title>
@@ -55,9 +57,11 @@
                       </el-table-column>
                       <el-table-column label="预处理" min-width="120">
                         <template #default="{ row }">
-                          <div v-if="row.prepInstructions && row.prepInstructions.length > 0"
+                          <div
+v-if="row.prepInstructions && row.prepInstructions.length > 0"
                             class="flex flex-wrap gap-1">
-                            <el-tooltip v-for="(prep, index) in row.prepInstructions" :key="index" placement="top"
+                            <el-tooltip
+v-for="(prep, index) in row.prepInstructions" :key="index" placement="top"
                               effect="light">
                               <template #content>
                                 <div class="text-xs">

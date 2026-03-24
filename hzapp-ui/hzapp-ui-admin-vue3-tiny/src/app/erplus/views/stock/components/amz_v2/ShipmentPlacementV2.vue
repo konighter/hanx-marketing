@@ -21,7 +21,8 @@
               </div>
             </el-form-item>
             <el-form-item label="计划发货时间" class="mb-0">
-              <el-date-picker v-model="shipmentDate" type="datetime" placeholder="选择发货时间" class="w-full"
+              <el-date-picker
+v-model="shipmentDate" type="datetime" placeholder="选择发货时间" class="w-full"
                 format="YYYY-MM-DD HH:mm" value-format="YYYY-MM-DD" :disabled-date="disabledDate"
                 :disabled="readonly" />
             </el-form-item>
@@ -53,7 +54,8 @@
       <div v-if="placementOptionConfirmed && hasShipments" class="space-y-6">
         <el-alert title="请为每个货件选择承运商和运输方式" type="info" :closable="false" class="mb-4" />
 
-        <div v-for="shipment in confirmedShipments" :key="shipment.shipmentId"
+        <div
+v-for="shipment in confirmedShipments" :key="shipment.shipmentId"
           class="shipment-card bg-white rounded-lg shadow-sm border-l-4 border-blue-500 overflow-hidden">
           <div class="shipment-header bg-gray-50 p-4 border-b">
             <div class="flex justify-between items-center">
@@ -81,31 +83,39 @@
           <div class="p-4">
             <!-- 运输方式配置 -->
             <!-- 运输方式配置 -->
-            <el-form ref="shipmentForms" :model="shipment" :rules="rules" label-width="100px"
+            <el-form
+ref="shipmentForms" :model="shipment" :rules="rules" label-width="100px"
               v-if="Object.keys(transportationData).length > 0">
               <div class="grid grid-cols-3 gap-4 mb-0">
                 <el-form-item label="运输方式" class="mb-0">
-                  <el-select v-model="shipment.shippingMode" placeholder="请选择运输方式" class="w-full" clearable
+                  <el-select
+v-model="shipment.shippingMode" placeholder="请选择运输方式" class="w-full" clearable
                     :disabled="readonly">
-                    <el-option v-for="mode in SHIPPING_MODES" :key="mode.value" :label="mode.label"
+                    <el-option
+v-for="mode in SHIPPING_MODES" :key="mode.value" :label="mode.label"
                       :value="mode.value" />
                   </el-select>
                 </el-form-item>
                 <el-form-item label="承运商" class="mb-0">
-                  <el-select v-model="shipment.shippingSolution" placeholder="请选择承运商类型" class="w-full" clearable
+                  <el-select
+v-model="shipment.shippingSolution" placeholder="请选择承运商类型" class="w-full" clearable
                     :disabled="readonly">
-                    <el-option v-for="sol in SHIPPING_SOLUTIONS" :key="sol.value" :label="sol.label"
+                    <el-option
+v-for="sol in SHIPPING_SOLUTIONS" :key="sol.value" :label="sol.label"
                       :value="sol.value" />
                   </el-select>
                 </el-form-item>
                 <el-form-item label="送货窗口" class="mb-0" prop="deliveryWindowOptionId">
-                  <el-select v-model="shipment.deliveryWindowOptionId" placeholder="请选择送货窗口" class="w-full" clearable
+                  <el-select
+v-model="shipment.deliveryWindowOptionId" placeholder="请选择送货窗口" class="w-full" clearable
                     :disabled="readonly">
-                    <el-option v-for="window in getDeliveryWindows(shipment)" :key="window.value" :label="window.label"
+                    <el-option
+v-for="window in getDeliveryWindows(shipment)" :key="window.value" :label="window.label"
                       :value="window.value" class="!h-auto !py-2">
                       <div class="flex justify-between items-center w-full">
                         <span>{{ window.label }}</span>
-                        <el-tag v-if="window.availabilityType" size="small"
+                        <el-tag
+v-if="window.availabilityType" size="small"
                           :type="window.availabilityType === 'AVAILABLE' ? 'success' : 'warning'" effect="plain">
                           {{ AVAILABILITY_TYPES_MAP[window.availabilityType] || window.availabilityType }}
                         </el-tag>
@@ -116,9 +126,11 @@
               </div>
 
               <el-form-item label="运输渠道" prop="transportationOptionId">
-                <el-select v-model="shipment.transportationOptionId" placeholder="选择运输选项" class="w-full"
+                <el-select
+v-model="shipment.transportationOptionId" placeholder="选择运输选项" class="w-full"
                   @change="onTransportChange(shipment)" clearable :disabled="readonly">
-                  <el-option v-for="option in getFilteredTransportOptions(shipment)" :key="option.value"
+                  <el-option
+v-for="option in getFilteredTransportOptions(shipment)" :key="option.value"
                     :label="option.label" :value="option.value" class="!h-auto !py-2">
                     <div class="flex flex-col gap-1">
                       <div class="flex justify-between items-center">
@@ -170,7 +182,8 @@
 
         <!-- Footer Actions -->
         <div class="flex justify-center gap-4 mt-8 pb-10">
-          <el-button type="primary" :disabled="!allShipmentsConfirmed" :loading="submitting" @click="submitPlacement"
+          <el-button
+type="primary" :disabled="!allShipmentsConfirmed" :loading="submitting" @click="submitPlacement"
             v-if="!readonly">
             确认并提交分仓方案
           </el-button>
@@ -182,7 +195,8 @@
         <Icon icon="ep:map-location" :size="64" class="text-gray-200 mb-4" />
         <h3 class="text-gray-500 font-bold">尚未加载分仓方案</h3>
         <p class="text-gray-400 text-sm mt-2">{{ readonly ? '尚未配置分仓方案' : '请点击右上角按钮以生成或选择一个分仓方案' }}</p>
-        <el-button type="primary" class="mt-6" @click="handleGenerate" :loading="generating"
+        <el-button
+type="primary" class="mt-6" @click="handleGenerate" :loading="generating"
           v-if="!readonly">生成分仓方案</el-button>
       </div>
     </div>

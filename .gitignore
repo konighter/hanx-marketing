@@ -52,3 +52,4 @@ rebel.xml
 application-my.yaml
 
 /hzapp-ui-app/unpackage/
+script/docker/hzapp-server/*.jar

@@ -43,7 +43,8 @@
 
             <div>
               <span class="text-gray-500 text-sm block mb-1">审核意见</span>
-              <el-input v-model="auditForm.remark" type="textarea" :rows="6" placeholder="请输入审核意见（驳回时必填）"
+              <el-input
+v-model="auditForm.remark" type="textarea" :rows="6" placeholder="请输入审核意见（驳回时必填）"
                 :disabled="readonly" />
             </div>
           </div>

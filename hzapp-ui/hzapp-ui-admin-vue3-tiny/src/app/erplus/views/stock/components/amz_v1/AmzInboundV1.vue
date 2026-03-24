@@ -10,11 +10,14 @@
 
     <div class="step-content">
       <InboundPlan v-if="currentStep === 0" :sku-list="skuList" :warehouse="warehouse" @next="handlePlanCreated" />
-      <BoxPacking v-if="currentStep === 1" :plan-id="inboundPlanId" :active="currentStep === 1" @back="currentStep--"
+      <BoxPacking
+v-if="currentStep === 1" :plan-id="inboundPlanId" :active="currentStep === 1" @back="currentStep--"
         @next="handlePackingConfirmed" />
-      <ShipmentPlacement v-if="currentStep === 2" :plan-id="inboundPlanId" @back="currentStep--"
+      <ShipmentPlacement
+v-if="currentStep === 2" :plan-id="inboundPlanId" @back="currentStep--"
         :active="currentStep === 2" @next="handlePlacementConfirmed" />
-      <ShipmentLabel v-if="currentStep === 3" :plan-id="inboundPlanId" @back="currentStep--" @finish="handleFinish"
+      <ShipmentLabel
+v-if="currentStep === 3" :plan-id="inboundPlanId" @back="currentStep--" @finish="handleFinish"
         :active="currentStep === 3" />
     </div>
 

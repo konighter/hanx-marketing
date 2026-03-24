@@ -1,10 +1,12 @@
 <template>
   <!-- 情况一：添加/修改 -->
-  <el-table v-if="!isDetail && !isActivityComponent" :data="isBatch ? skuList : formData!.skus!" border
+  <el-table
+v-if="!isDetail && !isActivityComponent" :data="isBatch ? skuList : formData!.skus!" border
     class="tabNumWidth" max-height="500" size="small">
     <template v-if="formData!.specType && !isBatch">
       <!--  根据商品属性动态添加 -->
-      <el-table-column v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
+      <el-table-column
+v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
         min-width="120">
         <template #default="{ row }">
           <span style="font-weight: bold; color: #40aaff">
@@ -37,13 +39,15 @@
     </el-table-column>
     <el-table-column align="center" label="市场价(元)" min-width="168">
       <template #default="{ row }">
-        <el-input-number v-model="row.marketPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+        <el-input-number
+v-model="row.marketPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
       </template>
     </el-table-column>
     <el-table-column align="center" label="成本价(元)" min-width="168">
       <template #default="{ row }">
-        <el-input-number v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
+        <el-input-number
+v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
           controls-position="right" />
       </template>
     </el-table-column>
@@ -76,7 +80,8 @@
   </el-table>
 
   <!-- 情况二：详情 -->
-  <el-table v-if="isDetail" ref="activitySkuListRef" :data="formData!.skus!" border max-height="500" size="small"
+  <el-table
+v-if="isDetail" ref="activitySkuListRef" :data="formData!.skus!" border max-height="500" size="small"
     style="width: 99%" @selection-change="handleSelectionChange">
     <el-table-column v-if="isComponent" type="selection" width="45" />
     <el-table-column align="center" label="图片" min-width="80">
@@ -86,7 +91,8 @@
     </el-table-column>
     <template v-if="formData!.specType && !isBatch">
       <!--  根据商品属性动态添加 -->
-      <el-table-column v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
+      <el-table-column
+v-for="(item, index) in tableHeaders" :key="index" :label="item.label" align="center"
         min-width="80">
         <template #default="{ row }">
           <span style="font-weight: bold; color: #40aaff">

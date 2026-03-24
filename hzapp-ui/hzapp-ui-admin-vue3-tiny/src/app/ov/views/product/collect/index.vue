@@ -27,14 +27,16 @@ const submitCollect = async function () {
 <template>
   <ContentWrap>
     <div>
-      <el-tabs v-model="collectForm.collectType" @tabClick="clearTab">
+      <el-tabs v-model="collectForm.collectType" @tab-click="clearTab">
         <el-tab-pane label="链接采集" name="byLink" >
-          <el-input type="textarea" rows="10" placeholder="请输入链接,每行一个链接"
+          <el-input
+type="textarea" rows="10" placeholder="请输入链接,每行一个链接"
                     v-model="collectForm.links" />
 
         </el-tab-pane>
         <el-tab-pane label="关键字采集" name="byKeyword">
-          <el-input type="textarea" rows="10" placeholder="请输入链接,每行一个关键字"
+          <el-input
+type="textarea" rows="10" placeholder="请输入链接,每行一个关键字"
                     v-model="collectForm.keywords" />
         </el-tab-pane>
       </el-tabs>

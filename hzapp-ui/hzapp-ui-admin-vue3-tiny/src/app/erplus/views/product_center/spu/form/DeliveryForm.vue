@@ -13,9 +13,9 @@
                 v-model="formData.packageDimensions.length" 
                 class="flex-1" 
                 placeholder="长度"
-              >
+              />
                 
-              </el-input>
+
               <span class="text-gray-400">×</span>
               <el-input 
                 v-model="formData.packageDimensions.width" 

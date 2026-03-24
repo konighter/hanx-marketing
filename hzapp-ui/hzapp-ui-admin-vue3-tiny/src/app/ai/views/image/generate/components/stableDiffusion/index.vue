@@ -141,16 +141,16 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ImageApi, ImageDrawReqVO, ImageVO } from '@/api/ai/image'
-import { hasChinese } from '@/views/ai/utils/utils'
+import { ImageApi, ImageDrawReqVO, ImageVO } from '@/app/ai/api/image'
+import { hasChinese } from '@/app/ai/utils/utils'
 import {
   AiPlatformEnum,
   ImageHotEnglishWords,
   StableDiffusionClipGuidancePresets,
   StableDiffusionSamplers,
   StableDiffusionStylePresets
-} from '@/views/ai/utils/constants'
-import { ModelVO } from '@/api/ai/model/model'
+} from '@/app/ai/utils/constants'
+import { ModelVO } from '@/app/ai/api/model'
 
 const message = useMessage() // 消息弹窗
 

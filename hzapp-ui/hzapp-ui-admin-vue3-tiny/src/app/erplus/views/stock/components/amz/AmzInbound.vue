@@ -6,7 +6,8 @@
 
       <el-form-item label="发货地址">
         <el-select v-model="inventorySubmit.addressId" placeholder="请选择发货地址" style="width: 200px;">
-          <el-option v-for="address in addressList" :key="address.id" :label="address.fullAddress"
+          <el-option
+v-for="address in addressList" :key="address.id" :label="address.fullAddress"
             :value="address.id" />
         </el-select>
         <span class="ml-10px">
@@ -122,7 +123,7 @@
           <el-table-column prop="asin" label="时效" align="center" width="180" />
           <el-table-column prop="quantity" label="价格" width="100" align="center" />
           <el-table-column prop="shipmentMethod" label="操作" align="center" width="180">
-            <template>
+            <template #default>
               <el-button type="text" size="small" @click="inventorySubmit.shipmentMethod = ''">选择</el-button>
             </template>
           </el-table-column>

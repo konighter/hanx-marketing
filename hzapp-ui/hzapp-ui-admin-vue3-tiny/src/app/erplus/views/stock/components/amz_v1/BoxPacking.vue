@@ -12,7 +12,8 @@
           <el-skeleton-item variant="p" style="width: 100%" />
           <el-skeleton-item variant="p" style="width: 80%" />
         </template>
-        <div v-for="option in packingOptions" :key="option.packingOptionId"
+        <div
+v-for="option in packingOptions" :key="option.packingOptionId"
           class="option-card mb-15px p-15px border rounded hover:bg-gray-50 transition-colors">
           <div class="flex justify-between items-center">
             <div>
@@ -27,7 +28,8 @@
         </div>
       </el-skeleton>
 
-      <div v-if="packingOptions.length === 0 && !loading"
+      <div
+v-if="packingOptions.length === 0 && !loading"
         class="text-center p-40px text-gray-400 border-dashed border-2 rounded">
         暂无方案，请点击“生成/刷新方案”
       </div>
@@ -84,7 +86,8 @@
 
                 <template #default="{ row }">
                   <el-form-item class="mb-0!">
-                    <el-input-number v-model="row.quantityInBox" :min="1" :max="row.quantity" class="w-100%" @change="row.boxQuantity = row.quantityInBox <= 0 ? 0 : Math.round(row.quantity / row.quantityInBox) + (row.quantity %
+                    <el-input-number
+v-model="row.quantityInBox" :min="1" :max="row.quantity" class="w-100%" @change="row.boxQuantity = row.quantityInBox <= 0 ? 0 : Math.round(row.quantity / row.quantityInBox) + (row.quantity %
                       row.quantityInBox > 0 ? 1 : 0)" />
                   </el-form-item>
                 </template>

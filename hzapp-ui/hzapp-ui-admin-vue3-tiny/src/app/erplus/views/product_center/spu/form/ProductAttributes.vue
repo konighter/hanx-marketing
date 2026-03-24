@@ -45,7 +45,7 @@
 import { ElInput } from 'element-plus'
 import * as PropertyApi from '@/api/mall/product/property'
 import { PropertyVO } from '@/api/mall/product/property'
-import { PropertyAndValues } from '@/views/mall/product/spu/components'
+import { PropertyAndValues } from '@/views/mall/product/spu/components/index'
 import { propTypes } from '@/utils/propTypes'
 
 defineOptions({ name: 'ProductAttributes' })

@@ -2,11 +2,13 @@
 <template>
   <el-form ref="formRef" :disabled="isDetail" :model="formData" :rules="rules" label-width="120px">
     <el-form-item label="商品名称" prop="name">
-      <el-input v-model="formData.name" :autosize="{ minRows: 2, maxRows: 2 }" :clearable="true" :show-word-limit="true"
+      <el-input
+v-model="formData.name" :autosize="{ minRows: 2, maxRows: 2 }" :clearable="true" :show-word-limit="true"
         class="w-100!" maxlength="64" placeholder="请输入商品名称" type="textarea" />
     </el-form-item>
     <el-form-item label="商品分类" prop="categoryId">
-      <el-cascader v-model="formData.categoryId" :options="categoryList" :props="defaultProps" class="w-100!" clearable
+      <el-cascader
+v-model="formData.categoryId" :options="categoryList" :props="defaultProps" class="w-100!" clearable
         filterable placeholder="请选择商品分类" />
     </el-form-item>
     <el-form-item label="商品品牌" prop="brandId">
@@ -18,17 +20,20 @@
       <el-input-tag v-model="formData.keyword" class="w-100!" placeholder="请输入商品关键字" tag-type="primary" />
     </el-form-item>
     <el-form-item label="条形码" prop="barCode">
-      <el-input v-model="formData.productCode" :clearable="true" :show-word-limit="true" class="w-100!" maxlength="64"
+      <el-input
+v-model="formData.productCode" :clearable="true" :show-word-limit="true" class="w-100!" maxlength="64"
         placeholder="请输入条形码" />
     </el-form-item>
     <el-form-item label="商品特性" prop="introduction">
       <dev v-for="(feat, idx) in formData.introduction" :key="idx" class="flex flex-row !w-full mb-2">
-        <el-input :key="idx" v-model="formData.introduction[idx]" :clearable="true" :show-word-limit="true"
+        <el-input
+:key="idx" v-model="formData.introduction[idx]" :clearable="true" :show-word-limit="true"
           class="w-100!" maxlength="500" placeholder="请输入商品简介" type="textarea"
           :autosize="{ minRows: 2, maxRows: 20 }" />
         <span class="mx-2">
           <el-button type="primary" :icon="Plus" circle @click="addIntroduction(idx)" size="small" />
-          <el-button v-if="formData.introduction.length > 1" type="danger" :icon="Delete" circle size="small"
+          <el-button
+v-if="formData.introduction.length > 1" type="danger" :icon="Delete" circle size="small"
             @click="delIntroduction(idx)" />
         </span>
 

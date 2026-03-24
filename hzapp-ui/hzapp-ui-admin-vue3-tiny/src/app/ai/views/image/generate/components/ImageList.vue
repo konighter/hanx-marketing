@@ -9,12 +9,14 @@
     <div
       class="relative flex flex-row flex-wrap content-start h-full overflow-auto p-5 pb-[140px] box-border [&>div]:mr-5 [&>div]:mb-5"
       ref="imageListRef">
-      <ImageCard v-for="image in imageList" :key="image.id" :detail="image" @on-btn-click="handleImageButtonClick"
+      <ImageCard
+v-for="image in imageList" :key="image.id" :detail="image" @on-btn-click="handleImageButtonClick"
         @on-mj-btn-click="handleImageMidjourneyButtonClick" />
     </div>
     <div
       class="absolute bottom-[60px] h-[50px] leading-[90px] w-full z-[999] bg-white flex flex-row justify-center items-center">
-      <Pagination :total="pageTotal" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
+      <Pagination
+:total="pageTotal" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
         @pagination="getImageList" />
     </div>
   </el-card>
@@ -28,11 +30,11 @@ import {
   ImageVO,
   ImageMidjourneyActionVO,
   ImageMidjourneyButtonsVO
-} from '@/api/ai/image'
+} from '@/app/ai/api/image'
 import ImageDetail from './ImageDetail.vue'
 import ImageCard from './ImageCard.vue'
 import { ElLoading, LoadingOptionsResolved } from 'element-plus'
-import { AiImageStatusEnum } from '@/views/ai/utils/constants'
+import { AiImageStatusEnum } from '@/app/ai/utils/constants'
 import download from '@/utils/download'
 import { AssetSourceEnum, ProductAssets, ProductAssetsApi } from '@/app/erplus/api/product/productAsset'
 

@@ -3,20 +3,23 @@
     <!-- 搜索工作栏 -->
     <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="100px" :rules="rules">
       <el-form-item label="跨境平台" prop="platformId">
-        <el-select v-model="queryParams.platformId" placeholder="请选择跨境平台" clearable class="!w-240px"
+        <el-select
+v-model="queryParams.platformId" placeholder="请选择跨境平台" clearable class="!w-240px"
           @change="platformChange">
           <el-option v-for="p in platforms" :key="p.id" :label="p.name" :value="p.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="店铺" prop="shopId">
-        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable class="!w-240px"
+        <el-select
+v-model="queryParams.shopId" placeholder="请选择店铺" clearable class="!w-240px"
           :disabled="!queryParams.platformId">
           <el-option v-for="s in shops" :key="s.id" :label="s.name" :value="s.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="区域" prop="marketId">
 
-        <el-select v-model="queryParams.marketId" placeholder="请选择区域" clearable class="!w-240px"
+        <el-select
+v-model="queryParams.marketId" placeholder="请选择区域" clearable class="!w-240px"
           :disabled="!queryParams.shopId">
           <el-option v-for="r in regions" :key="r.id" :label="r.zoneName" :value="r.id" />
         </el-select>
@@ -41,12 +44,14 @@
         <el-input v-model="queryParams.orderId" placeholder="请输入订单ID" clearable class="!w-240px" />
       </el-form-item>
       <el-form-item label="创建时间" prop="createTimeRange">
-        <el-date-picker v-model="queryParams.createTimeRange" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
+        <el-date-picker
+v-model="queryParams.createTimeRange" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
           start-placeholder="开始日期" end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" />
       </el-form-item>
       <el-form-item label="更新时间" prop="createTimeRange">
-        <el-date-picker v-model="queryParams.updateTimeRange" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
+        <el-date-picker
+v-model="queryParams.updateTimeRange" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
           start-placeholder="开始日期" end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" />
       </el-form-item>
@@ -71,17 +76,20 @@
   </ContentWrap>
   <!-- 列表 -->
   <ContentWrap v-show="tableVisiable">
-    <el-table row-key="id" v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true"
+    <el-table
+row-key="id" v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true"
       @selection-change="handleRowCheckboxChange" :tree-props="{ children: 'orderItemList' }">
       <el-table-column type="selection" width="55" :selectable="selectable" />
       <!-- <el-table-column type="index" width="20" /> -->
       <el-table-column label="图片" align="left">
         <template #default="{ row }">
           <div style="display: inline-flex; align-items: center; vertical-align: middle;">
-            <el-image v-if="row.orderItemList && row.orderItemList.length > 0" style="width: 60px; height: 60px"
+            <el-image
+v-if="row.orderItemList && row.orderItemList.length > 0" style="width: 60px; height: 60px"
               :src="row.orderItemList[0].mainImageUrl" :preview-src-list="[row.mainImageUrl]" fit="cover"
               :preview-teleported=true />
-            <el-image v-else style="width: 60px; height: 60px" :src="row.mainImageUrl"
+            <el-image
+v-else style="width: 60px; height: 60px" :src="row.mainImageUrl"
               :preview-src-list="[row.mainImageUrl]" fit="cover" :preview-teleported=true />
           </div>
 
@@ -173,7 +181,8 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <Pagination :total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
+    <Pagination
+:total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
       @pagination="getList" />
   </ContentWrap>
 

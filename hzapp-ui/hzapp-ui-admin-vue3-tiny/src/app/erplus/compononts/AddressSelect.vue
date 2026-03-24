@@ -1,7 +1,8 @@
 <template>
   <div class="address-select-container">
     <div class="flex items-center gap-2 mb-2">
-      <el-select v-model="modelValue" :placeholder="placeholder" clearable filterable class="flex-1"
+      <el-select
+v-model="modelValue" :placeholder="placeholder" clearable filterable class="flex-1"
         @change="handleChange">
         <el-option v-for="item in addressList" :key="item.id" :label="item.name" :value="item.id as number">
           <div class="flex flex-col">

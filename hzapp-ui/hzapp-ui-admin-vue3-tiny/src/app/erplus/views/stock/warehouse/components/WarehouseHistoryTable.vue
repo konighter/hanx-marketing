@@ -8,13 +8,15 @@
           <el-option label="出库发货" :value="20" />
           <el-option label="调拨变动" :value="30" />
         </el-select>
-        <el-input v-model="queryParams.sellerSku" placeholder="搜索 SKU" clearable class="!w-180px" size="small"
+        <el-input
+v-model="queryParams.sellerSku" placeholder="搜索 SKU" clearable class="!w-180px" size="small"
           @keyup.enter="handleSearch">
           <template #prefix>
             <Icon icon="ep:search" />
           </template>
         </el-input>
-        <el-date-picker v-model="queryParams.timeRange" type="daterange" size="small" range-separator="-"
+        <el-date-picker
+v-model="queryParams.timeRange" type="daterange" size="small" range-separator="-"
           start-placeholder="开始" end-placeholder="结束" class="!w-240px" value-format="YYYY-MM-DD" />
         <el-button type="primary" size="small" @click="handleSearch">查询</el-button>
       </div>
@@ -45,7 +47,8 @@
       <el-table-column label="备注" prop="remark" show-overflow-tooltip />
     </el-table>
 
-    <Pagination class="justify-end mt-10px" :total="total" v-model:page="queryParams.pageNo"
+    <Pagination
+class="justify-end mt-10px" :total="total" v-model:page="queryParams.pageNo"
       v-model:limit="queryParams.pageSize" @pagination="getList" />
   </div>
 </template>

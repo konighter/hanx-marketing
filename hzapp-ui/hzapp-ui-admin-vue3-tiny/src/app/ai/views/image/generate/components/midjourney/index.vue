@@ -107,7 +107,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ImageApi, ImageMidjourneyImagineReqVO, ImageVO } from '@/api/ai/image'
+import { ImageApi, ImageMidjourneyImagineReqVO, ImageVO } from '@/app/ai/api/image'
 import {
   AiPlatformEnum,
   ImageHotWords,
@@ -117,8 +117,8 @@ import {
   MidjourneySizeList,
   MidjourneyVersions,
   NijiVersionList
-} from '@/views/ai/utils/constants'
-import { ModelVO } from '@/api/ai/model/model'
+} from '@/app/ai/utils/constants'
+import { ModelVO } from '@/app/ai/api/model'
 
 const message = useMessage() // 消息弹窗
 

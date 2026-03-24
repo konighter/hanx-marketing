@@ -22,7 +22,8 @@
     <!-- Main Content: Packing Groups -->
     <div v-loading="loading">
       <div v-if="packingOptionConfirmed && hasGroups" class="space-y-6">
-        <div v-for="(group, key) in selectedPackingOption.groupItems" :key="key"
+        <div
+v-for="(group, key) in selectedPackingOption.groupItems" :key="key"
           class="group-card bg-white rounded-lg shadow-sm border overflow-hidden">
           <div class="group-header bg-gray-50 p-4 border-b flex justify-between items-center">
             <div class="flex items-center gap-4">
@@ -30,7 +31,8 @@
               <span class="text-sm text-gray-500">组内箱数: <span class="text-blue-600 font-bold">{{ group[0]?.boxQuantity
                 || 0 }}</span></span>
               <span>
-                <el-switch v-model="selectedPackingOption.packingType" active-text="整装" inactive-text="散装" inline-prompt
+                <el-switch
+v-model="selectedPackingOption.packingType" active-text="整装" inactive-text="散装" inline-prompt
                   :disabled="readonly" />
 
 
@@ -56,7 +58,8 @@
             </el-table-column>
             <el-table-column label="单箱装载数量" width="150" align="center">
               <template #default="{ row }">
-                <el-input-number v-model="row.quantityInBox" :min="1" size="small" class="w-full" :disabled="readonly"
+                <el-input-number
+v-model="row.quantityInBox" :min="1" size="small" class="w-full" :disabled="readonly"
                   @change="updateGroupConsistency(group, row, 'quantityInBox')" />
               </template>
             </el-table-column>
@@ -120,7 +123,8 @@
         <Icon icon="ep:box" :size="64" class="text-gray-200 mb-4" />
         <h3 class="text-gray-500 font-bold">尚未加载装箱方案</h3>
         <p class="text-gray-400 text-sm mt-2">{{ readonly ? '尚未配置装箱方案' : '请点击右上角按钮以生成或选择一个装箱方案' }}</p>
-        <el-button type="primary" class="mt-6" @click="handleGenerate" :loading="generating"
+        <el-button
+type="primary" class="mt-6" @click="handleGenerate" :loading="generating"
           v-if="!readonly">生成装箱方案</el-button>
       </div>
     </div>

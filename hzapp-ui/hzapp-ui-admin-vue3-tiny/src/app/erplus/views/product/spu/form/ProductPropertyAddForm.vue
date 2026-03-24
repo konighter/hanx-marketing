@@ -1,10 +1,12 @@
 <!-- 商品发布 - 库存价格 - 添加属性 -->
 <template>
   <Dialog v-model="dialogVisible" title="添加商品属性">
-    <el-form ref="formRef" v-loading="formLoading" :model="formData" :rules="formRules" label-width="80px"
+    <el-form
+ref="formRef" v-loading="formLoading" :model="formData" :rules="formRules" label-width="80px"
       @keydown.enter.prevent="submitForm">
       <el-form-item label="属性名称" prop="name">
-        <el-select v-model="formData.name" :reserve-keyword="false" allow-create class="!w-360px" default-first-option
+        <el-select
+v-model="formData.name" :reserve-keyword="false" allow-create class="!w-360px" default-first-option
           filterable placeholder="请选择属性名称。如果不存在，可手动输入选择">
           <el-option v-for="item in attributeOptions" :key="item.id" :label="item.name" :value="item.name" />
         </el-select>

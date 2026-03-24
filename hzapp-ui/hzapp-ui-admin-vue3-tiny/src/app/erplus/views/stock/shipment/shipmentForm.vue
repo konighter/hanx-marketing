@@ -83,9 +83,11 @@
 
         <el-table-column prop="quantity" label="发货数量" width="150" align="center">
           <template #default="scope">
-            <el-form-item :prop="`items.${scope.$index}.quantity`" :rules="validateQuantity(scope.row)" class="mb-0px!"
+            <el-form-item
+:prop="`items.${scope.$index}.quantity`" :rules="validateQuantity(scope.row)" class="mb-0px!"
               label-width="0">
-              <el-input-number v-model="scope.row.quantity" :min="1" size="small" controls-position="right"
+              <el-input-number
+v-model="scope.row.quantity" :min="1" size="small" controls-position="right"
                 class="!w-full" />
             </el-form-item>
           </template>

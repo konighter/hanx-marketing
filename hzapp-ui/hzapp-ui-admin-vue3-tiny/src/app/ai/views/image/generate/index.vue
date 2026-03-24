@@ -51,15 +51,15 @@
 
 <script setup lang="ts">
 import ImageList from './components/ImageList.vue'
-import { AiPlatformEnum } from '@/views/ai/utils/constants'
-import { ImageVO } from '@/api/ai/image'
+import { AiPlatformEnum } from '@/app/ai/utils/constants'
+import { ImageVO } from '@/app/ai/api/image'
 import Dall3 from './components/dall3/index.vue'
 import Midjourney from './components/midjourney/index.vue'
 import StableDiffusion from './components/stableDiffusion/index.vue'
 import Common from './components/common/index.vue'
 import Image2Image from './components/Image2Image/index.vue'
-import { ModelApi, ModelVO } from '@/api/ai/model/model'
-import { AiModelTypeEnum } from '@/views/ai/utils/constants'
+import { ModelApi, ModelVO } from '@/app/ai/api/model'
+import { AiModelTypeEnum } from '@/app/ai/utils/constants'
 
 const imageListRef = ref<any>() // image 列表 ref
 const dall3Ref = ref<any>() // dall3(openai) ref

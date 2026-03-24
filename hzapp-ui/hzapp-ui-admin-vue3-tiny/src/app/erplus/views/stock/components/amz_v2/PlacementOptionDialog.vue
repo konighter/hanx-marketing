@@ -2,7 +2,8 @@
   <el-dialog v-model="visible" title="选择分仓方案" width="800px" append-to-body>
     <div v-loading="loading">
       <div v-if="placementOptions.length > 0">
-        <div v-for="option in placementOptions" :key="option.placementOptionId"
+        <div
+v-for="option in placementOptions" :key="option.placementOptionId"
           class="option-card mb-4 p-4 border rounded hover:bg-gray-50 transition-colors"
           :class="{ 'border-blue-500 bg-blue-50': selectedId === option.placementOptionId }">
           <div class="flex justify-between items-center mb-3">
@@ -27,7 +28,8 @@
               货件详情 ({{ option.shipmentDetails.length }} 个货件)
             </div>
             <div class="space-y-2">
-              <div v-for="(shipment, index) in option.shipmentDetails" :key="shipment.shipmentId"
+              <div
+v-for="(shipment, index) in option.shipmentDetails" :key="shipment.shipmentId"
                 class="bg-white p-3 rounded border border-gray-200">
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-xs font-bold text-gray-700">

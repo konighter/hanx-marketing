@@ -1,6 +1,7 @@
 <!-- 商品发布 - 库存价格 -->
 <template>
-  <el-form ref="formRef" v-loading="formLoading" :disabled="isDetail" :model="formData" :rules="rules"
+  <el-form
+ref="formRef" v-loading="formLoading" :disabled="isDetail" :model="formData" :rules="rules"
     label-width="120px">
 
     <el-form-item label="商品规格" prop="specType">
@@ -22,7 +23,8 @@
         <SkuList :is-batch="true" :prop-form-data="formData" :property-list="propertyList" />
       </el-form-item> -->
       <el-form-item label="规格列表">
-        <SkuList ref="skuListRef" :is-detail="isDetail" :prop-form-data="formData" :property-list="propertyList"
+        <SkuList
+ref="skuListRef" :is-detail="isDetail" :prop-form-data="formData" :property-list="propertyList"
           :rule-config="ruleConfig" />
       </el-form-item>
     </template>

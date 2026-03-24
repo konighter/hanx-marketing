@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-this-alias */
 var tf = Object.defineProperty;
 var Pa = (e) => {
   throw TypeError(e);

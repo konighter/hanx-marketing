@@ -4,7 +4,8 @@
     <!-- Header -->
     <div class="px-4 py-3 border-b border-slate-100 dark:border-slate-700/50 flex items-center justify-between relative z-10 bg-slate-50/50 dark:bg-slate-800/50">
       <div class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center text-white shadow-md relative"
+        <div
+class="w-8 h-8 rounded-lg flex items-center justify-center text-white shadow-md relative"
              :class="roleColorInfo.bg">
           <Icon :icon="roleColorInfo.icon" class="text-sm z-10" />
           <!-- Pulse effect when working -->
@@ -17,7 +18,8 @@
       </div>
       
       <!-- Status Badge -->
-      <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold"
+      <div
+class="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold"
            :class="badgeStyle">
         <Icon v-if="card.status === 'working'" icon="svg-spinners:180-ring" />
         <Icon v-else-if="card.status === 'done'" icon="solar:check-circle-bold" />
@@ -74,13 +76,15 @@
       <!-- Results List (Reverse Order) -->
       <div class="flex flex-col gap-3 relative z-0">
         <transition-group name="list-enter">
-          <div v-for="(res, index) in card.recentResults" :key="res.id"
+          <div
+v-for="(res, index) in card.recentResults" :key="res.id"
                class="bg-white dark:bg-slate-800 border rounded-xl overflow-hidden transition-all duration-300"
                :class="[
                  index === 0 ? 'border-indigo-200 dark:border-indigo-700 shadow-[0_4px_12px_rgba(99,102,241,0.08)]' : 'border-slate-200 dark:border-slate-700 shadow-sm opacity-80 scale-[0.98]'
                ]">
             
-            <div class="px-3 py-2 bg-slate-50 dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center cursor-pointer select-none"
+            <div
+class="px-3 py-2 bg-slate-50 dark:bg-slate-800 border-b border-slate-100 dark:border-slate-700 flex justify-between items-center cursor-pointer select-none"
                  @click="toggleResult(res.id)">
               <div class="flex items-center gap-1.5 truncate pr-2">
                 <Icon v-if="res.status === 'SUCCESS'" icon="solar:check-circle-bold" class="text-emerald-500" />

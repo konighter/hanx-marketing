@@ -9,11 +9,13 @@
     </div>
     <div>
       <el-text class="mx-1">属性值：</el-text>
-      <el-tag v-for="(value, valueIndex) in item.values" :key="value.id" :closable="!isDetail" class="mx-1"
+      <el-tag
+v-for="(value, valueIndex) in item.values" :key="value.id" :closable="!isDetail" class="mx-1"
         @close="handleCloseValue(index, valueIndex)">
         {{ value.name }}
       </el-tag>
-      <el-select v-show="inputVisible(index)" :id="`input${index}`" :ref="setInputRef" v-model="inputValue"
+      <el-select
+v-show="inputVisible(index)" :id="`input${index}`" :ref="setInputRef" v-model="inputValue"
         :reserve-keyword="false" allow-create class="!w-30" default-first-option filterable size="small"
         @blur="handleInputConfirm(index, item.id)" @change="handleInputConfirm(index, item.id)"
         @keyup.enter="handleInputConfirm(index, item.id)">

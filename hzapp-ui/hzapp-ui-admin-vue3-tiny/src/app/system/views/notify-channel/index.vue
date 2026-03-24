@@ -3,7 +3,8 @@
     <!-- 搜索工作栏 -->
     <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="68px">
       <el-form-item label="名称" prop="name">
-        <el-input v-model="queryParams.name" placeholder="请输入渠道名称" clearable @keyup.enter="handleQuery"
+        <el-input
+v-model="queryParams.name" placeholder="请输入渠道名称" clearable @keyup.enter="handleQuery"
           class="!w-240px" />
       </el-form-item>
       <el-form-item label="类型" prop="channelType">
@@ -13,7 +14,8 @@
       </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择状态" clearable class="!w-240px">
-          <el-option v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)" :key="dict.value" :label="dict.label"
+          <el-option
+v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)" :key="dict.value" :label="dict.label"
             :value="dict.value" />
         </el-select>
       </el-form-item>
@@ -69,7 +71,8 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <Pagination :total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
+    <Pagination
+:total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
       @pagination="getList" />
   </ContentWrap>
 

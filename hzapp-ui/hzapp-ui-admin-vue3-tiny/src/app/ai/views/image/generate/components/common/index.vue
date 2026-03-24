@@ -90,9 +90,9 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ImageApi, ImageDrawReqVO, ImageVO } from '@/api/ai/image'
-import { AiPlatformEnum, ImageHotWords, OtherPlatformEnum } from '@/views/ai/utils/constants'
-import { ModelVO } from '@/api/ai/model/model'
+import { ImageApi, ImageDrawReqVO, ImageVO } from '@/app/ai/api/image'
+import { AiPlatformEnum, ImageHotWords, OtherPlatformEnum } from '@/app/ai/utils/constants'
+import { ModelVO } from '@/app/ai/api/model'
 
 const message = useMessage() // 消息弹窗
 

@@ -45,7 +45,8 @@
                     最多可选择 4 个指标进行展示
                 </div>
                 <el-checkbox-group v-model="selectedMetrics" @change="onMetricsChange" class="metric-checkbox-group">
-                    <el-checkbox v-for="metric in availableMetrics" :key="metric.key" :label="metric.key"
+                    <el-checkbox
+v-for="metric in availableMetrics" :key="metric.key" :label="metric.key"
                         :disabled="selectedMetrics.length >= 4 && !selectedMetrics.includes(metric.key)">
                         {{ metric.label }}
                     </el-checkbox>
@@ -66,9 +67,11 @@
                     <div class="axis-config-title">
                         <Icon icon="ep:promotion" class="mr-2" /> 左轴指标配置
                     </div>
-                    <el-select v-model="leftAxisMetrics" multiple placeholder="请选择左轴指标（最多2个）" class="axis-select"
+                    <el-select
+v-model="leftAxisMetrics" multiple placeholder="请选择左轴指标（最多2个）" class="axis-select"
                         @change="updateChartAxis">
-                        <el-option v-for="metric in selectedMetrics" :key="metric" :label="getMetricLabel(metric)"
+                        <el-option
+v-for="metric in selectedMetrics" :key="metric" :label="getMetricLabel(metric)"
                             :value="metric" />
                     </el-select>
                     <div class="axis-tip">建议选择数值量级相近的指标</div>
@@ -78,9 +81,11 @@
                     <div class="axis-config-title">
                         <Icon icon="ep:rank" class="mr-2" /> 右轴指标配置
                     </div>
-                    <el-select v-model="rightAxisMetrics" multiple placeholder="请选择右轴指标（最多2个）" class="axis-select"
+                    <el-select
+v-model="rightAxisMetrics" multiple placeholder="请选择右轴指标（最多2个）" class="axis-select"
                         @change="updateChartAxis">
-                        <el-option v-for="metric in selectedMetrics.filter(m => !leftAxisMetrics.includes(m))"
+                        <el-option
+v-for="metric in selectedMetrics.filter(m => !leftAxisMetrics.includes(m))"
                             :key="metric" :label="getMetricLabel(metric)" :value="metric" />
                     </el-select>
                     <div class="axis-tip">右轴将自动排除左轴已选指标</div>

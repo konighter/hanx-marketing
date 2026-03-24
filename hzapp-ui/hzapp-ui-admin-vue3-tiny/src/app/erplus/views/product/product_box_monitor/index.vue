@@ -3,23 +3,27 @@
     <!-- 搜索工作栏 -->
     <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="68px">
       <el-form-item label="产品ID" prop="productId">
-        <el-input v-model="queryParams.productId" placeholder="请输入产品ID" clearable @keyup.enter="handleQuery"
+        <el-input
+v-model="queryParams.productId" placeholder="请输入产品ID" clearable @keyup.enter="handleQuery"
           class="!w-240px" />
       </el-form-item>
       <el-form-item label="平台" prop="platformId">
         <el-select v-model="queryParams.platformId" placeholder="请选择平台" clearable class="!w-240px">
-          <el-option v-for="SellPlatform in sellplatformList" :key="SellPlatform.id" :label="SellPlatform.name"
+          <el-option
+v-for="SellPlatform in sellplatformList" :key="SellPlatform.id" :label="SellPlatform.name"
             :value="SellPlatform.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="状态" prop="status">
         <el-select v-model="queryParams.status" placeholder="请选择状态" clearable class="!w-240px">
-          <el-option v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)" :key="dict.value" :label="dict.label"
+          <el-option
+v-for="dict in getIntDictOptions(DICT_TYPE.COMMON_STATUS)" :key="dict.value" :label="dict.label"
             :value="dict.value" />
         </el-select>
       </el-form-item>
       <el-form-item label="创建时间" prop="createTime">
-        <el-date-picker v-model="queryParams.createTime" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
+        <el-date-picker
+v-model="queryParams.createTime" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
           start-placeholder="开始日期" end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" />
       </el-form-item>
@@ -33,7 +37,8 @@
         <el-button type="primary" plain @click="openForm('create')" v-hasPermi="['erplus:product-monitor:create']">
           <Icon icon="ep:plus" class="mr-5px" /> 新增
         </el-button>
-        <el-button type="success" plain @click="handleExport" :loading="exportLoading"
+        <el-button
+type="success" plain @click="handleExport" :loading="exportLoading"
           v-hasPermi="['erplus:product-monitor:export']">
           <Icon icon="ep:download" class="mr-5px" /> 导出
         </el-button>
@@ -47,7 +52,8 @@
       <!-- <el-table-column label="ID" align="center" prop="id" /> -->
       <el-table-column label="商品图片" align="center" width="100">
         <template #default="scope">
-          <el-image style="width: 60px; height: 60px" :src="scope.row.imageLink"
+          <el-image
+style="width: 60px; height: 60px" :src="scope.row.imageLink"
             :preview-src-list="[scope.row.imageUrl]" fit="cover" :preview-teleported=true />
         </template>
       </el-table-column>
@@ -71,16 +77,19 @@
       <el-table-column label="操作" align="center">
         <template #default="scope">
 
-          <el-button link type="primary" @click="openForm('data', scope.row)"
+          <el-button
+link type="primary" @click="openForm('data', scope.row)"
             v-hasPermi="['erplus:product-monitor:update']">
             数据
           </el-button>
 
-          <el-button link type="primary" @click="openForm('update', scope.row)"
+          <el-button
+link type="primary" @click="openForm('update', scope.row)"
             v-hasPermi="['erplus:product-monitor:update']">
             编辑
           </el-button>
-          <el-button link type="danger" @click="handleDelete(scope.row.id)"
+          <el-button
+link type="danger" @click="handleDelete(scope.row.id)"
             v-hasPermi="['erplus:product-monitor:delete']">
             删除
           </el-button>
@@ -88,7 +97,8 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <Pagination :total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
+    <Pagination
+:total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
       @pagination="getList" />
   </ContentWrap>
 

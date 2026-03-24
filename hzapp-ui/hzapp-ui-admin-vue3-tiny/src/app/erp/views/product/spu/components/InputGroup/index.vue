@@ -3,7 +3,10 @@
 <template>
 
   <div v-for="(item, index) in dynamicVals" :key="index" class="flex items-center">
-    <el-input class="mr-5"  v-model="item.value"></el-input> <span class="flex mr-5"> <Icon class="mr-5px" icon="ep:plus" /> <Icon class="mr-5px" icon="ep:minus" /> </span>
+    <el-input class="mr-5"  v-model="item.value" />
+    <span class="flex mr-5"> <Icon class="mr-5px" icon="ep:plus" /> 
+      <Icon class="mr-5px" icon="ep:minus" /> 
+    </span>
   </div>
 
 

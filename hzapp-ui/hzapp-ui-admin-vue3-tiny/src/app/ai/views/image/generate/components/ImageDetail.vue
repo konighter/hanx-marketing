@@ -114,7 +114,7 @@
 </template>
 
 <script setup lang="ts">
-import { ImageApi, ImageVO } from '@/api/ai/image'
+import { ImageApi, ImageVO } from '@/app/ai/api/image'
 import {
   AiPlatformEnum,
   Dall3StyleList,
@@ -122,7 +122,7 @@ import {
   StableDiffusionClipGuidancePresets,
   StableDiffusionSamplers,
   StableDiffusionStylePresets
-} from '@/views/ai/utils/constants'
+} from '@/app/ai/utils/constants'
 import { formatTime } from '@/utils'
 
 const showDrawer = ref<boolean>(false) // 是否显示

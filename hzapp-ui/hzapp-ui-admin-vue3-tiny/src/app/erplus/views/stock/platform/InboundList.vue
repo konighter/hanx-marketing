@@ -4,19 +4,22 @@
 
     <el-form :model="queryForm" ref="queryFormRef" label-width="100px" class="mb-4" :inline="true">
       <el-form-item label="跨境平台" prop="platformId">
-        <el-select v-model="queryForm.platformId" placeholder="请选择跨境平台" clearable class="!w-240px"
+        <el-select
+v-model="queryForm.platformId" placeholder="请选择跨境平台" clearable class="!w-240px"
           @change="handlePlatformChange">
           <el-option v-for="p in platforms" :key="p.id" :label="p.name" :value="p.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="店铺" prop="shopId">
-        <el-select v-model="queryForm.shopId" placeholder="请选择店铺" clearable class="!w-240px"
+        <el-select
+v-model="queryForm.shopId" placeholder="请选择店铺" clearable class="!w-240px"
           :disabled="!queryForm.platformId" @change="handleShopChange">
           <el-option v-for="s in shops" :key="s.id" :label="s.name" :value="s.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="市场" prop="marketId">
-        <el-select v-model="queryForm.marketId" placeholder="请选择市场" clearable class="!w-240px"
+        <el-select
+v-model="queryForm.marketId" placeholder="请选择市场" clearable class="!w-240px"
           :disabled="!queryForm.shopId">
           <el-option v-for="r in markets" :key="r.id" :label="r.zoneName" :value="r.id" />
         </el-select>
@@ -65,7 +68,8 @@
     </el-table>
 
     <!-- 分页 -->
-    <Pagination :total="total" v-model:page="queryForm.pageNo" v-model:limit="queryForm.pageSize"
+    <Pagination
+:total="total" v-model:page="queryForm.pageNo" v-model:limit="queryForm.pageSize"
       @pagination="handleQuery" />
   </ContentWrap>
 

@@ -4,7 +4,8 @@
     <div class="flex justify-between items-center mb-10px flex-shrink-0">
       <!-- 左侧：搜索 -->
       <div class="flex items-center gap-2">
-        <el-input v-model="queryParams.keyword" placeholder="搜索产品名称/编号" clearable class="!w-240px" size="small"
+        <el-input
+v-model="queryParams.keyword" placeholder="搜索产品名称/编号" clearable class="!w-240px" size="small"
           @keyup.enter="handleSearch">
           <template #prefix>
             <Icon icon="ep:search" />
@@ -36,11 +37,13 @@
 
     <!-- 表格区域 -->
     <template v-if="warehouseId">
-      <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" class="flex-1"
+      <el-table
+v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" class="flex-1"
         height="100%">
         <el-table-column label="图片" align="center" width="80">
           <template #default="scope">
-            <el-image :src="scope.row.image" class="w-48px h-48px border-rounded" preview-teleported
+            <el-image
+:src="scope.row.image" class="w-48px h-48px border-rounded" preview-teleported
               :preview-src-list="[scope.row.image]" fit="cover" />
           </template>
         </el-table-column>
@@ -70,7 +73,8 @@
         <el-table-column label="更新时间" align="center" prop="updateTime" width="180" :formatter="dateFormatter" />
       </el-table>
 
-      <Pagination class="justify-end mt-10px" :total="total" v-model:page="queryParams.pageNo"
+      <Pagination
+class="justify-end mt-10px" :total="total" v-model:page="queryParams.pageNo"
         v-model:limit="queryParams.pageSize" @pagination="getList" />
     </template>
 

@@ -60,13 +60,7 @@
       <el-table v-loading="loading" :data="list" :show-overflow-tooltip="true" :stripe="true">
         <el-table-column type="selection" align="center" width="65" />
         <el-table-column min-width="180" label="产品ID" align="center" prop="spuId" />
-        <el-table-column min-width="180" label="产品信息" align="center" prop="skuId" >
-            <template scope="{row}" >
-
-
-
-            </template>
-        </el-table-column>
+        <el-table-column min-width="180" label="产品信息" align="center" prop="skuId" />
         <el-table-column label="库存" align="center" prop="stock" />
 
       </el-table>

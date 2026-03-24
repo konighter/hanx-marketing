@@ -52,7 +52,8 @@
 
       <el-form-item label="状态" prop="status">
         <el-select v-model="queryParams.status" clearable>
-          <el-option v-for="dict in getIntDictOptions(DICT_TYPE.OV_PROD_CLAIMSYNC_STATUS)"
+          <el-option
+v-for="dict in getIntDictOptions(DICT_TYPE.OV_PROD_CLAIMSYNC_STATUS)"
                      :key="dict.value"
                      :label="dict.label" :value="dict.value" />
 
@@ -76,7 +77,7 @@
        <el-button v-hasPermi="['erp:product-claim:create']" type="success" @click="claim" >新 增</el-button>
       <el-button v-hasPermi="['erp:product-claim:sync']" type="primary" @click="batchSync" >发 布</el-button>
     </el-row>
-    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" @selectionChange="handleSelectionChange">
+    <el-table v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" @selection-change="handleSelectionChange">
 
       <el-table-column type="selection" width="55" />
       <el-table-column type="expand" >

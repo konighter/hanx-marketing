@@ -4,7 +4,8 @@
     <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="68px">
 
       <el-form-item label="日期" prop="datekey">
-        <el-date-picker v-model="queryParams.datekey" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
+        <el-date-picker
+v-model="queryParams.datekey" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
           start-placeholder="开始日期" end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" />
       </el-form-item>
@@ -43,7 +44,8 @@
 
       </el-table>
       <!-- 分页 -->
-      <Pagination :total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
+      <Pagination
+:total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
         @pagination="getList" />
     </template>
 

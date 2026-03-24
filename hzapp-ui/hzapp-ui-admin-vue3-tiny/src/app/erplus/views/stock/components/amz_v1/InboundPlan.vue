@@ -49,7 +49,8 @@
             <template #header>
               <div class="flex items-center gap-2">
                 <span>预处理</span>
-                <el-select v-model="batchPrep" placeholder="批量设置" size="small" style="width: 140px;"
+                <el-select
+v-model="batchPrep" placeholder="批量设置" size="small" style="width: 140px;"
                   @change="handleBatchPrepChange">
                   <el-option v-for="item in preOwnerTypes" :key="item.value" :label="item.label" :value="item.value" />
                 </el-select>

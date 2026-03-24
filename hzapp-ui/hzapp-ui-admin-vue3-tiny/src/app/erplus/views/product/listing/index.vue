@@ -3,20 +3,23 @@
     <!-- 搜索工作栏 -->
     <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="100px" :rules="rules">
       <el-form-item label="跨境平台" prop="platformId">
-        <el-select v-model="queryParams.platformId" placeholder="请选择跨境平台" clearable class="!w-240px"
+        <el-select
+v-model="queryParams.platformId" placeholder="请选择跨境平台" clearable class="!w-240px"
           @change="platformChange">
           <el-option v-for="p in platforms" :key="p.id" :label="p.name" :value="p.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="店铺" prop="shopId">
-        <el-select v-model="queryParams.shopId" placeholder="请选择店铺" clearable class="!w-240px"
+        <el-select
+v-model="queryParams.shopId" placeholder="请选择店铺" clearable class="!w-240px"
           :disabled="!queryParams.platformId">
           <el-option v-for="s in shops" :key="s.id" :label="s.name" :value="s.id" />
         </el-select>
       </el-form-item>
       <el-form-item label="市场" prop="marketId">
 
-        <el-select v-model="queryParams.marketId" placeholder="请选择市场" clearable class="!w-240px"
+        <el-select
+v-model="queryParams.marketId" placeholder="请选择市场" clearable class="!w-240px"
           :disabled="!queryParams.shopId">
           <el-option v-for="r in regions" :key="r.id" :label="r.zoneName" :value="r.id" />
         </el-select>
@@ -27,7 +30,8 @@
         </el-select>
       </el-form-item>
       <el-form-item label="本地SKU" prop="sellerProductCode">
-        <el-input v-model="queryParams.sellerProductCode" placeholder="请输入关联本地商品SKU" clearable
+        <el-input
+v-model="queryParams.sellerProductCode" placeholder="请输入关联本地商品SKU" clearable
           @keyup.enter="handleQuery" class="!w-240px" />
       </el-form-item>
       <el-form-item label="平台商品ID" prop="platformProductCode">
@@ -44,12 +48,14 @@
         </el-select>
       </el-form-item>
       <el-form-item label="创建时间" prop="createTimeRange">
-        <el-date-picker v-model="queryParams.createTimeRange" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
+        <el-date-picker
+v-model="queryParams.createTimeRange" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
           start-placeholder="开始日期" end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" />
       </el-form-item>
       <el-form-item label="更新时间" prop="createTimeRange">
-        <el-date-picker v-model="queryParams.updateTimeRange" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
+        <el-date-picker
+v-model="queryParams.updateTimeRange" value-format="YYYY-MM-DD HH:mm:ss" type="daterange"
           start-placeholder="开始日期" end-placeholder="结束日期"
           :default-time="[new Date('1 00:00:00'), new Date('1 23:59:59')]" class="!w-240px" />
       </el-form-item>

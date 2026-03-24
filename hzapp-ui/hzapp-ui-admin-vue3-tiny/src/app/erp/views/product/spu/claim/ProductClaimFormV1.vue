@@ -38,7 +38,8 @@
           <el-select v-model="formData.language" placeholder="请选择语言" clearable>
 
 
-            <el-option v-for="dict in getStrDictOptions(DICT_TYPE.OV_LANGUAGE_TYPE)"
+            <el-option
+v-for="dict in getStrDictOptions(DICT_TYPE.OV_LANGUAGE_TYPE)"
                        :key="dict.value"
                        :label="dict.label" :value="dict.value" />
           </el-select>
@@ -47,7 +48,8 @@
           <el-select v-model="formData.currency" placeholder="请选择币种" clearable>
 
 
-            <el-option v-for="dict in getStrDictOptions(DICT_TYPE.OV_CURRENCY)"
+            <el-option
+v-for="dict in getStrDictOptions(DICT_TYPE.OV_CURRENCY)"
                        :key="dict.value"
                        :label="dict.label" :value="dict.value" />
           </el-select>

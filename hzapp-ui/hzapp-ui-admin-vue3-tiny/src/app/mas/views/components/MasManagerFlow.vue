@@ -42,7 +42,8 @@
         </div>
 
         <!-- Connecting Line -->
-        <div v-if="index < nodes.length - 1" class="flex-1 h-[2px] mx-[-20px] relative top-[-15px] z-0"
+        <div
+v-if="index < nodes.length - 1" class="flex-1 h-[2px] mx-[-20px] relative top-[-15px] z-0"
              :class="node.status === 'completed' ? 'bg-emerald-500/50' : 'bg-slate-200 dark:bg-slate-700'">
         </div>
       </template>

@@ -3,7 +3,8 @@
     <div v-if="hasShipments" class="space-y-6">
       <el-alert title="请核对货件及箱子详情，并为自送货件填写追踪号" type="info" :closable="false" class="mb-4" />
 
-      <div v-for="shipment in confirmedShipments" :key="shipment.shipmentId"
+      <div
+v-for="shipment in confirmedShipments" :key="shipment.shipmentId"
         class="shipment-card bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
         <div class="shipment-header bg-gray-50 p-4 border-b flex justify-between items-center">
           <div class="flex items-center gap-4">
@@ -14,7 +15,8 @@
             </el-tag>
           </div>
           <div class="flex items-center gap-2">
-            <el-button v-if="isOwnCarrier(shipment)" type="primary" size="small"
+            <el-button
+v-if="isOwnCarrier(shipment)" type="primary" size="small"
               @click="handleBatchSaveTracking(shipment)" :loading="savingShipmentId === shipment.shipmentId">
               保存追踪号
             </el-button>
@@ -42,7 +44,8 @@
             </el-table-column>
             <el-table-column label="追踪号" min-width="200">
               <template #default="{ row }">
-                <el-input v-if="isOwnCarrier(shipment)" v-model="row.trackingId" placeholder="输入追踪号" size="small"
+                <el-input
+v-if="isOwnCarrier(shipment)" v-model="row.trackingId" placeholder="输入追踪号" size="small"
                   :disabled="readonly" />
                 <span v-else class="text-gray-400 text-xs">亚马逊合作承运商自动生成</span>
               </template>
@@ -50,7 +53,8 @@
             <el-table-column label="内容摘要" min-width="200">
               <template #default="{ row }">
                 <div class="flex flex-wrap gap-1">
-                  <el-tag v-for="item in row.items" :key="item.msku" size="small" type="info" effect="plain"
+                  <el-tag
+v-for="item in row.items" :key="item.msku" size="small" type="info" effect="plain"
                     class="!px-1">
                     {{ item.msku }} x <span class="font-bold">{{ item.quantity }}</span>
                   </el-tag>

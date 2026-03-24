@@ -1,5 +1,6 @@
 <template>
-  <el-cascader v-model="modelValue" :options="options" :props="cascaderProps" :placeholder="placeholder" clearable
+  <el-cascader
+v-model="modelValue" :options="options" :props="cascaderProps" :placeholder="placeholder" clearable
     filterable @change="handleChange" />
 </template>
 

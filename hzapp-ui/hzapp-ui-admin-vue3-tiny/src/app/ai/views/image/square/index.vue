@@ -27,7 +27,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ImageApi, ImageVO } from '@/api/ai/image'
+import { ImageApi, ImageVO } from '@/app/ai/api/image'
 import { Search } from '@element-plus/icons-vue'
 
 // TODO @fan：加个 loading 加载中的状态

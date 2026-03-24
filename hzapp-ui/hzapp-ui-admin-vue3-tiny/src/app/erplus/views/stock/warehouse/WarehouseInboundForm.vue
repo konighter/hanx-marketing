@@ -5,10 +5,12 @@
     </template>
     <ContentWrap>
       <!-- 搜索工作栏 -->
-      <el-form class="-mb-15px" :model="inboundSubmit" ref="queryFormRef" :inline="true" label-width="100px"
+      <el-form
+class="-mb-15px" :model="inboundSubmit" ref="queryFormRef" :inline="true" label-width="100px"
         :rules="rules">
         <el-form-item label="入库仓" prop="name">
-          <el-select v-model="inboundSubmit.inboundWarehouseId" placeholder="请选择入库仓"
+          <el-select
+v-model="inboundSubmit.inboundWarehouseId" placeholder="请选择入库仓"
             :disabled="props.warehouse ? true : false" class="!w-240px">
             <el-option v-for="w in warehouseList" :key="w.id" :label="w.name" :value="w.id" />
           </el-select>
@@ -22,7 +24,8 @@
 
 
         <el-form-item label="出库仓" prop="srcWarehouseId" v-if="inboundSubmit.srcType === 1">
-          <el-select v-model="inboundSubmit.srcWarehouseId" placeholder="请选择出库仓" @change="onOutboundWarehouseChange"
+          <el-select
+v-model="inboundSubmit.srcWarehouseId" placeholder="请选择出库仓" @change="onOutboundWarehouseChange"
             class="!w-240px" clearable>
             <el-option v-for="w in warehouseList" :key="w.id" :label="w.name" :value="w.id" />
           </el-select>
@@ -59,7 +62,8 @@
 
 
 
-          <el-button type="danger" plain @click="removeSelectInventory" size="small"
+          <el-button
+type="danger" plain @click="removeSelectInventory" size="small"
             v-if="selectedInventory && selectedInventory.length > 0">
             移 除
           </el-button>
@@ -88,7 +92,8 @@
 
           <el-table-column label="操作" align="center" width="100">
             <template #default="scope">
-              <el-button type="text" size="small"
+              <el-button
+type="text" size="small"
                 @click="inboundSubmit.skuDetails.splice(scope.$index, 1)">移除</el-button>
             </template>
           </el-table-column>
@@ -106,14 +111,16 @@
     </ContentWrap>
 
     <!-- 亚马逊入库组件 -->
-    <AmzInbound ref="amzInboundRef" :skuList="inboundSubmit.skuDetails" v-if="platformInboundVisiable"
-      :warehouse-id="inboundSubmit.inboundWarehouseId" @inboundBizCreated="handleInboundBizCreated" />
+    <AmzInbound
+ref="amzInboundRef" :skuList="inboundSubmit.skuDetails" v-if="platformInboundVisiable"
+      :warehouse-id="inboundSubmit.inboundWarehouseId" @inbound-biz-created="handleInboundBizCreated" />
 
     <!-- 列表 -->
     <!-- <ContentWrap /> -->
 
-    <WarehouseInventroySelectList ref="warehouseInventroySelectRef" :transferData="warehouseTransfer"
-      @onSelected="fillAvailableInventroys" />
+    <WarehouseInventroySelectList
+ref="warehouseInventroySelectRef" :transferData="warehouseTransfer"
+      @on-selected="fillAvailableInventroys" />
 
   </el-drawer>
 </template>

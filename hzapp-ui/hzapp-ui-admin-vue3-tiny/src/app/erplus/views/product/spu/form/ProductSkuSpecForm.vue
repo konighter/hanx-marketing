@@ -1,13 +1,15 @@
 <!-- 商品信息, 物流信息-商品规格 -->
 <template>
-  <el-form ref="formRef" v-loading="formLoading" :disabled="isDetail" :model="formData" :rules="rules"
+  <el-form
+ref="formRef" v-loading="formLoading" :disabled="isDetail" :model="formData" :rules="rules"
     label-width="120px">
 
     <el-empty v-if="formData.skus?.filter(s => s.barCode !== '').length == 0" image-size="100" description="请先设置价格库存" />
 
     <el-tabs v-else v-model="activeName">
 
-      <el-tab-pane :label="sku.barCode" :name="sku.barCode"
+      <el-tab-pane
+:label="sku.barCode" :name="sku.barCode"
         v-for="(sku, idx) in formData.skus?.filter(s => s.barCode !== '')" :key="idx">
 
         <el-form-item label="商品关键字" prop="keyword">
@@ -17,16 +19,19 @@
 
         <el-form-item label="商品特性" prop="introduction">
           <dev v-for="(feat, i) in sku.introduction" :key="i" class="flex flex-row !w-full mb-2">
-            <el-input :key="i" v-model="sku.introduction[i]" :clearable="true" :show-word-limit="true" class="w-100!"
+            <el-input
+:key="i" v-model="sku.introduction[i]" :clearable="true" :show-word-limit="true" class="w-100!"
               maxlength="500" placeholder="请输入商品特性" type="textarea" :autosize="{ minRows: 2, maxRows: 20 }">
 
               <template #prefix>{{ i }}</template>
 
             </el-input>
             <span class="mx-2">
-              <el-button type="primary" :icon="Plus" circle @click="addIntroduction(sku.introduction, i)"
+              <el-button
+type="primary" :icon="Plus" circle @click="addIntroduction(sku.introduction, i)"
                 size="small" />
-              <el-button v-if="sku.introduction.length > 1" type="danger" :icon="Delete" circle size="small"
+              <el-button
+v-if="sku.introduction.length > 1" type="danger" :icon="Delete" circle size="small"
                 @click="delIntroduction(sku.introduction, i)" />
             </span>
 

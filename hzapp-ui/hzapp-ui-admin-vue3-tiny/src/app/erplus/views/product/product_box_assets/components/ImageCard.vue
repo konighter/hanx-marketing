@@ -23,7 +23,8 @@
       </div>
     </div>
     <div class="!overflow-hidden !mt-20px !h-280px !flex-1" ref="cardImageRef">
-      <el-image class="!w-full !rounded-10px" :src="detail?.assetLink" :preview-src-list="[detail?.assetLink as string]"
+      <el-image
+class="!w-full !rounded-10px" :src="detail?.assetLink" :preview-src-list="[detail?.assetLink as string]"
         preview-teleported />
 
     </div>
@@ -37,11 +38,11 @@
 </template>
 <script setup lang="ts">
 import { Delete, Download, Edit, More, InfoFilled } from '@element-plus/icons-vue'
-import { ImageVO, ImageMidjourneyButtonsVO } from '@/api/ai/image'
+import { ImageVO, ImageMidjourneyButtonsVO } from '@/app/ai/api/image'
 import { ProductAssets, AssetSourceEnum } from '@/app/erplus/api/product/productAsset'
 import { PropType } from 'vue'
 import { ElLoading, LoadingOptionsResolved } from 'element-plus'
-import { AiImageStatusEnum } from '@/views/ai/utils/constants'
+import { AiImageStatusEnum } from '@/app/ai/utils/constants'
 
 const message = useMessage() // 消息
 

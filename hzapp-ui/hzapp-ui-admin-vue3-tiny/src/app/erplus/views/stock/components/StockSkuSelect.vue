@@ -2,7 +2,8 @@
   <Dialog :title="title" v-model="dialogVisible" width="70%" :scroll="false" maxHeight="600px">
     <div class="flex flex-col h-550px">
       <div class="mb-10px">
-        <el-input v-model="queryParams.sellerSku" placeholder="请输入SKU" clearable class="!w-240px"
+        <el-input
+v-model="queryParams.sellerSku" placeholder="请输入SKU" clearable class="!w-240px"
           @keyup.enter="handleQuery" />
         <el-button class="ml-10px" @click="handleQuery">
           <Icon icon="ep:search" />
@@ -10,7 +11,8 @@
         </el-button>
       </div>
 
-      <el-table v-loading="loading" :data="list" @selection-change="handleSelectionChange" ref="tableRef"
+      <el-table
+v-loading="loading" :data="list" @selection-change="handleSelectionChange" ref="tableRef"
         row-key="sellerSku" class="flex-1" height="100%">
         <el-table-column type="selection" width="55" />
         <el-table-column label="SKU" align="center" prop="sellerSku" />
@@ -20,7 +22,8 @@
         <el-table-column label="挂起量" align="center" prop="blockCount" />
       </el-table>
 
-      <Pagination :total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
+      <Pagination
+:total="total" v-model:page="queryParams.pageNo" v-model:limit="queryParams.pageSize"
         @pagination="getList" class="mt-10px justify-end" />
     </div>
 

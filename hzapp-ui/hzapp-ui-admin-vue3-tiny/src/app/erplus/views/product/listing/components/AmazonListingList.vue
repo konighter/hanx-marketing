@@ -4,18 +4,21 @@
   <ContentWrap>
     <div class="flex mb-10px">
 
-      <el-button @click="syncListing" type="primary" :loading="syncLoading" v-show="selectedProduct.length > 0"
+      <el-button
+@click="syncListing" type="primary" :loading="syncLoading" v-show="selectedProduct.length > 0"
         size="small">
         <Icon icon="ep:refresh" class="mr-5px" /> 同步选中商品
       </el-button>
 
     </div>
-    <el-table row-key="id" v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true"
+    <el-table
+row-key="id" v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true"
       @selection-change="handleSelect">
       <el-table-column type="selection" width="55" />
       <el-table-column label="图片" align="center" prop="mainImageUrl">
         <template #default="{ row }">
-          <el-image style="width: 60px; height: 60px" :src="row.mainImage.url" :preview-src-list="[row.mainImage.url]"
+          <el-image
+style="width: 60px; height: 60px" :src="row.mainImage.url" :preview-src-list="[row.mainImage.url]"
             fit="cover" :preview-teleported=true />
         </template>
 
@@ -106,7 +109,8 @@
       </el-table-column>
     </el-table>
     <!-- 分页 -->
-    <Pagination :total="total" v-model:page="queryParamCopy.pageNo" v-model:limit="queryParamCopy.pageSize"
+    <Pagination
+:total="total" v-model:page="queryParamCopy.pageNo" v-model:limit="queryParamCopy.pageSize"
       @pagination="getList" />
   </ContentWrap>
 

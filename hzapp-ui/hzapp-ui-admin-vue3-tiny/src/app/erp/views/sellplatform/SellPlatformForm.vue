@@ -22,7 +22,8 @@
           placeholder="请选择配送模式"
           class="!w-280px"
           >
-        <el-option v-for="mode in serviceModes"
+        <el-option
+v-for="mode in serviceModes"
         :key="mode.code"
         :value="mode.code"
         :label="mode.name"
