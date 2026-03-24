@@ -8,7 +8,7 @@ import com.hzltd.framework.mybatis.core.query.MPJLambdaWrapperX;
 import com.hzltd.module.erplus.controller.admin.sale.vo.order.ErpSaleOrderPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sale.ErpSaleOrderDO;
 import com.hzltd.module.erplus.dal.dataobject.sale.ErpSaleOrderItemDO;
-import com.hzltd.module.erplus.enums.ErpAuditStatus;
+import com.hzltd.module.spapi.enums.ErpAuditStatus;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Objects;

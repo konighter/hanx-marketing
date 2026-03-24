@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.productpub.vo;
 
-import com.hzltd.module.erplus.enums.CrossProductPublishStatus;
+import com.hzltd.module.spapi.enums.CrossProductPublishStatus;
 import lombok.Data;
 
 

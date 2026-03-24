@@ -1,20 +1,18 @@
 package com.hzltd.module.erplus.adv.adapter;
 
-import com.hzltd.module.erplus.adv.adapter.model.*;
-import com.hzltd.module.erplus.adv.adapter.model.AdsTokenResult;
+import com.hzltd.module.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.adv.model.*;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
-import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
+import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
+import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
+import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
 
 import java.util.List;
-
-import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
 
 /**
  * 广告平台统一适配器接口

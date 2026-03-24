@@ -1,32 +1,25 @@
 package com.hzltd.module.erplus.service.productassets;
 
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.io.checksum.CRC16;
 import cn.hutool.crypto.SecureUtil;
-import cn.hutool.crypto.digest.HMac;
 import com.hzltd.framework.common.enums.CommonStatusEnum;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.zip.CRC32;
 
 import com.hzltd.module.erplus.controller.admin.productassets.vo.*;
 import com.hzltd.module.erplus.dal.dataobject.productassets.ProductAssetsDO;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.util.object.BeanUtils;
 
 import com.hzltd.module.erplus.dal.mysql.productassets.ProductAssetsMapper;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertList;
-import static com.hzltd.framework.common.util.collection.CollectionUtils.diffList;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
 
 /**
  * 商品素材 Service 实现类

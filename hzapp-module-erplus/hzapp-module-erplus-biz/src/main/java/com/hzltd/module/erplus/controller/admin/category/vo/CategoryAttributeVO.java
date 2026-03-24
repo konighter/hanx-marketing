@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.category.vo;
 
-import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
+import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
 import lombok.Data;
 
 @Data

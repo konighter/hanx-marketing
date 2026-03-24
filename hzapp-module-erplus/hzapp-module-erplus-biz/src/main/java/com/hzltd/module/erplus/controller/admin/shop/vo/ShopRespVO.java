@@ -4,7 +4,7 @@ import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
 import com.hzltd.framework.excel.core.annotations.DictFormat;
 import com.hzltd.framework.excel.core.convert.DictConvert;
-import com.hzltd.module.erplus.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 

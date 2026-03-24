@@ -1,15 +1,15 @@
 package com.hzltd.module.erplus.adv.metadata.service.adgroup;
 
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
+import com.hzltd.module.adv.model.AdsStatusUpdateRequest;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
-import com.hzltd.module.erplus.adv.adapter.model.AdsStatusUpdateRequest;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupMapper;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupPageReqVO;
-import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

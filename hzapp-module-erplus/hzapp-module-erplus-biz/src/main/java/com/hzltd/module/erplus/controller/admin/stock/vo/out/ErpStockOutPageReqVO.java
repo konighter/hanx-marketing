@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.controller.admin.stock.vo.out;
 
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.validation.InEnum;
-import com.hzltd.module.erplus.enums.ErpAuditStatus;
+import com.hzltd.module.spapi.enums.ErpAuditStatus;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

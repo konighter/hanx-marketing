@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.cross.vo;
 
-import com.hzltd.module.erplus.model.common.PriceModel;
+import com.hzltd.module.spapi.model.common.PriceModel;
 import lombok.Data;
 import org.apache.commons.compress.utils.Lists;
 

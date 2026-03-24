@@ -14,16 +14,16 @@ import com.hzltd.module.erplus.dal.dataobject.cross.CrossMetaCategoryDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.mysql.category.CrossMetaCategoryAttributeMapper;
 import com.hzltd.module.erplus.dal.mysql.category.CrossMetaCategoryMapper;
-import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
-import com.hzltd.module.erplus.model.ApiRequest;
-import com.hzltd.module.erplus.model.ApiResponse;
-import com.hzltd.module.erplus.model.category.CategoryAttributeModel;
-import com.hzltd.module.erplus.model.category.CategoryModel;
-import com.hzltd.module.erplus.service.category.CategoryApi;
-import com.hzltd.module.erplus.service.category.CategoryAttributeMappingApi;
+import com.hzltd.module.system.enums.CrossPlatformEnum;
+import com.hzltd.module.spapi.model.ApiRequest;
+import com.hzltd.module.spapi.model.ApiResponse;
+import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
+import com.hzltd.module.spapi.model.category.CategoryModel;
+import com.hzltd.module.spapi.service.category.CategoryApi;
+import com.hzltd.module.spapi.service.category.CategoryAttributeMappingApi;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
-import com.hzltd.module.erplus.sys.SystemProductService;
-import com.hzltd.module.erplus.sys.model.ProductSpuModel;
+import com.hzltd.module.system.service.SystemProductService;
+import com.hzltd.module.spapi.model.system.ProductSpuModel;
 import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.CATEGORY_NOT_EMPTY;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_EXISTS;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.CATEGORY_NOT_EMPTY;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.PRODUCT_NOT_EXISTS;
 
 @Service
 public class CrossCategoryServiceImpl implements CrossCategoryService {

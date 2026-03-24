@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.controller.admin.category;
 
 
 import com.hzltd.framework.common.pojo.CommonResult;
-import com.hzltd.module.erplus.constant.LanguageEnum;
+import com.hzltd.module.spapi.enums.LanguageEnum;
 import com.hzltd.module.erplus.controller.admin.category.vo.*;
 import com.hzltd.module.erplus.service.cross.CrossCategoryService;
 import jakarta.annotation.Resource;

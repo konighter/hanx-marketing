@@ -2,9 +2,9 @@ package com.hzltd.module.erplus.adv.auth.service;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.module.adv.model.AdsTokenResult;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
-import com.hzltd.module.erplus.adv.adapter.model.AdsTokenResult;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountPageReqVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAuthCallbackReqVO;
@@ -28,7 +28,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
 
 /**
  * 广告授权 Service 实现类

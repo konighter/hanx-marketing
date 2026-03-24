@@ -1,14 +1,14 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
+import com.hzltd.module.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.adv.enums.AdsSyncTaskTypeEnum;
+import com.hzltd.module.adv.model.AdsQueryRequest;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
-import com.hzltd.module.erplus.adv.adapter.model.AdsQueryRequest;
 import com.hzltd.module.erplus.adv.auth.service.AdsAuthService;
 import com.hzltd.module.erplus.adv.dal.dataobject.*;
 import com.hzltd.module.erplus.adv.dal.mysql.*;
-import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.*;
-import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
 import cn.hutool.core.collection.CollUtil;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -23,7 +23,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
 
 /**
  * 广告元数据同步 Service 实现类
@@ -44,8 +44,6 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
     private AdsSyncTaskMapper adsSyncTaskMapper;
     @Resource
     private AdsPlatformAdapterFactory adsPlatformAdapterFactory;
-    @Resource
-    private AdsAmazonProfileMapper adsAmazonProfileMapper;
     @Resource
     private AdsCampaignMapper adsCampaignMapper;
     @Resource

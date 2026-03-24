@@ -9,10 +9,10 @@ import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformSave
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
 import com.hzltd.module.erplus.dal.mysql.sellplatform.SellPlatformMapper;
-import com.hzltd.module.erplus.enums.RedisKeyConstants;
-import com.hzltd.module.erplus.enums.ServiceModeEnum;
-import com.hzltd.module.erplus.sys.SystemPlatformService;
-import com.hzltd.module.erplus.sys.model.SellPlatformModel;
+import com.hzltd.module.spapi.enums.RedisKeyConstants;
+import com.hzltd.module.spapi.enums.ServiceModeEnum;
+import com.hzltd.module.system.service.SystemPlatformService;
+import com.hzltd.module.spapi.model.system.SellPlatformModel;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.SELL_PLATFORM_NOT_EXISTS;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.SELL_PLATFORM_NOT_EXISTS;
 
 /**
  * 销售平台 Service 实现类

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PLUGIN_NOT_EXISTS;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.PLUGIN_NOT_EXISTS;
 
 /**
  * 插件 Service 实现类

@@ -3,8 +3,8 @@ package com.hzltd.module.erplus.service.stock;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import com.hzltd.module.erplus.api.amz.AmzCancelInboundPlanRequest;
-import com.hzltd.module.erplus.controller.admin.amz.vo.AmzInboundPlanCreateRequest;
+import com.hzltd.module.amz.api.spapi.AmzCancelInboundPlanRequest;
+import com.hzltd.module.amz.service.AmzFulfillmentService;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentAuditReqVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentItemVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.StockShipmentPlanReqVO;
@@ -17,17 +17,13 @@ import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentHisDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentItemDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentPlanDO;
-import com.hzltd.module.erplus.dal.mysql.stock.ErpWarehouseMapper;
 import com.hzltd.module.erplus.dal.mysql.stock.ShipmentHisMapper;
 import com.hzltd.module.erplus.dal.mysql.stock.ShipmentItemMapper;
 import com.hzltd.module.erplus.dal.mysql.stock.ShipmentPlanMapper;
 import com.hzltd.module.erplus.enums.AuditAction;
 import com.hzltd.module.erplus.enums.ShipmentStatusEnum;
-import com.hzltd.module.erplus.model.ApiRequest;
-import com.hzltd.module.erplus.service.amz.AmzFulfillmentService;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.erplus.service.shop.ShopService;
-import io.swagger.v3.core.util.Json;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -35,7 +31,6 @@ import org.springframework.stereotype.Service;
 
 import jakarta.annotation.Resource;
 import org.springframework.transaction.annotation.Transactional;
-import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.InboundOperationStatus;
 
 import java.time.LocalDateTime;
 import java.util.Collections;
@@ -43,7 +38,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
 
 /**
  * ERP 货件计划服务实现类
@@ -229,6 +224,7 @@ public class ErplusShipmentServiceImpl implements ErplusShipmentService {
 
         SellPlatformDO platform = platformService.getSellPlatform(shipmentPlan.getPlatformId());
         String planId = null;
+        // TODO- 消息路由
         if ("Amazon".equalsIgnoreCase(platform.getCode())) {
             // 创建 Amazon 发货计划
             planId = amzFulfillmentService.createInboundPlan(ShipmentConvert.INSTANCE.convert(respVO));

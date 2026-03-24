@@ -1,15 +1,14 @@
 package com.hzltd.module.erplus.convert.shipment;
 
-import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.erplus.controller.admin.amz.vo.AmzInboundPlanCreateRequest;
+import com.hzltd.module.amz.controller.admin.vo.AmzInboundPlanCreateRequest;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentItemVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.StockShipmentPlanReqVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.StockShipmentPlanRespVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpAddressDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentItemDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentPlanDO;
-import com.hzltd.module.erplus.model.common.AddressModel;
-import com.hzltd.module.erplus.model.inventory.InventoryItemModel;
+import com.hzltd.module.spapi.model.common.AddressModel;
+import com.hzltd.module.spapi.model.inventory.InventoryItemModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

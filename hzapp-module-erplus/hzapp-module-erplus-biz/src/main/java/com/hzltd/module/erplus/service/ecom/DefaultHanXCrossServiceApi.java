@@ -1,20 +1,20 @@
 package com.hzltd.module.erplus.service.ecom;
 
-import com.hzltd.module.erplus.constant.AttributeTypeEnum;
+import com.hzltd.module.spapi.enums.AttributeTypeEnum;
 import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListReqVO;
 import com.hzltd.module.erplus.dal.dataobject.categoryattr.CategoryAttributeDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
-import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
-import com.hzltd.module.erplus.model.ApiRequest;
-import com.hzltd.module.erplus.model.ApiResponse;
-import com.hzltd.module.erplus.model.category.*;
-import com.hzltd.module.erplus.model.common.MediaModel;
-import com.hzltd.module.erplus.model.product.*;
-import com.hzltd.module.erplus.service.PlatformIdentity;
-import com.hzltd.module.erplus.service.category.CategoryApi;
+import com.hzltd.module.system.enums.CrossPlatformEnum;
+import com.hzltd.module.spapi.model.ApiRequest;
+import com.hzltd.module.spapi.model.ApiResponse;
+import com.hzltd.module.spapi.model.category.*;
+import com.hzltd.module.spapi.model.common.MediaModel;
+import com.hzltd.module.spapi.model.product.*;
+import com.hzltd.module.spapi.service.PlatformIdentity;
+import com.hzltd.module.spapi.service.category.CategoryApi;
 import com.hzltd.module.erplus.service.categoryattr.CategoryAttributeService;
 import com.hzltd.module.erplus.service.cross.ProductCategoryService;
-import com.hzltd.module.erplus.service.product.ProductApi;
+import com.hzltd.module.spapi.service.product.ProductApi;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 

@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseInDO;
+import com.hzltd.module.system.enums.ErpBizTypeEnum;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -39,7 +40,7 @@ public class ErpFinancePaymentItemDO extends BaseDO {
     /**
      * 业务类型
      *
-     * 枚举 {@link com.hzltd.module.erplus.enums.common.ErpBizTypeEnum} 的采购入库、退货
+     * 枚举 {@link ErpBizTypeEnum} 的采购入库、退货
      */
     private Integer bizType;
     /**

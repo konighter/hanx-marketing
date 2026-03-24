@@ -12,14 +12,14 @@ import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
-import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
-import com.hzltd.module.erplus.model.category.BrandModel;
-import com.hzltd.module.erplus.model.category.CategoryModel;
+import com.hzltd.module.spapi.enums.ProductSpuStatusEnum;
+import com.hzltd.module.spapi.model.category.BrandModel;
+import com.hzltd.module.spapi.model.category.CategoryModel;
 import com.hzltd.module.erplus.service.brand.ProductBrandService;
 import com.hzltd.module.erplus.service.cross.ProductCategoryService;
-import com.hzltd.module.erplus.sys.SystemProductService;
-import com.hzltd.module.erplus.sys.model.ProductSkuModel;
-import com.hzltd.module.erplus.sys.model.ProductSpuModel;
+import com.hzltd.module.system.service.SystemProductService;
+import com.hzltd.module.spapi.model.system.ProductSkuModel;
+import com.hzltd.module.spapi.model.system.ProductSpuModel;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -31,7 +31,7 @@ import java.util.*;
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.*;
 import static com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO.CATEGORY_LEVEL;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
 
 /**
  * 商品 SPU Service 实现类

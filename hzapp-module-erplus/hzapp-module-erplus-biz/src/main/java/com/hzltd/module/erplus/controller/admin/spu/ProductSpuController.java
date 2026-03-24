@@ -7,7 +7,7 @@ import com.hzltd.module.erplus.controller.admin.spu.vo.*;
 import com.hzltd.module.erplus.convert.spu.ProductSpuConvert;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
-import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
+import com.hzltd.module.spapi.enums.ProductSpuStatusEnum;
 import com.hzltd.module.erplus.service.spu.ProductSkuService;
 import com.hzltd.module.erplus.service.spu.ProductSpuService;
 import io.swagger.v3.oas.annotations.Operation;

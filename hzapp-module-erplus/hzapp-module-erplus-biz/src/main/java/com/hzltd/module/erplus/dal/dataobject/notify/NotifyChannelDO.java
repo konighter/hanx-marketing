@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.module.system.enums.NotifyChannelTypeEnum;
 import lombok.*;
 
 /**
@@ -32,7 +33,7 @@ public class NotifyChannelDO extends BaseDO {
 
     /**
      * 渠道类型
-     * 枚举 {@link com.hzltd.module.erplus.enums.notify.NotifyChannelTypeEnum}
+     * 枚举 {@link NotifyChannelTypeEnum}
      */
     private Integer channelType;
 

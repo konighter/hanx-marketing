@@ -20,8 +20,8 @@ import java.util.Map;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertMap;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.WAREHOUSE_NOT_ENABLE;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.WAREHOUSE_NOT_EXISTS;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.WAREHOUSE_NOT_ENABLE;
+import static com.hzltd.module.spapi.enums.ErrorCodeConstants.WAREHOUSE_NOT_EXISTS;
 
 /**
  * ERP 仓库 Service 实现类

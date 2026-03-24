@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.service.productMonitor.task;
 
 import com.hzltd.module.erplus.dal.dataobject.productMonitor.ProductMonitorDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
-import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
+import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.erplus.service.productMonitor.ProductMonitorService;
 import com.hzltd.module.erplus.service.productMonitor.crawlers.PlaywrightCrawler;
 import com.hzltd.module.erplus.service.productMonitor.vo.MonitorMetricsVO;
