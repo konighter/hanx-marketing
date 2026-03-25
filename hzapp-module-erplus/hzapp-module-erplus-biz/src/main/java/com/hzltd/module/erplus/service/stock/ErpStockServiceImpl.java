@@ -13,8 +13,8 @@ import org.springframework.validation.annotation.Validated;
 import java.math.BigDecimal;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.STOCK_COUNT_NEGATIVE;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.STOCK_COUNT_NEGATIVE2;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.STOCK_COUNT_NEGATIVE;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.STOCK_COUNT_NEGATIVE2;
 
 /**
  * ERP 产品库存 Service 实现类

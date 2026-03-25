@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.module.system.enums.ErpAuditStatus;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -48,7 +49,7 @@ public class ErpStockMoveDO extends BaseDO {
     /**
      * 状态
      *
-     * 枚举 {@link com.hzltd.module.erplus.enums.ErpAuditStatus}
+     * 枚举 {@link ErpAuditStatus}
      */
     private Integer status;
     /**

@@ -2,8 +2,8 @@ package com.hzltd.module.erplus.convert.cross;
 
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderItemDO;
-import com.hzltd.module.erplus.model.order.OrderItemModel;
-import com.hzltd.module.erplus.model.order.OrderModel;
+import com.hzltd.module.spapi.model.order.OrderItemModel;
+import com.hzltd.module.spapi.model.order.OrderModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

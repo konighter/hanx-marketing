@@ -5,9 +5,9 @@ import com.fasterxml.jackson.datatype.threetenbp.ThreeTenModule;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.test.core.ut.BaseDbUnitTest;
 
-import com.hzltd.module.erplus.controller.admin.amz.vo.AmzPlacementOption;
-import com.hzltd.module.erplus.dal.dataobject.amz.AmzInboundPlanDO;
-import com.hzltd.module.erplus.dal.mysql.amz.AmzInboundPlanMapper;
+import com.hzltd.module.amz.controller.admin.vo.AmzPlacementOption;
+import com.hzltd.module.amz.dal.dataobject.AmzInboundPlanDO;
+import com.hzltd.module.amz.dal.mysql.AmzInboundPlanMapper;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

@@ -20,14 +20,12 @@
         <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-module-system</artifactId>
-            <version>${revision}</version>
         </dependency>
 
         <!-- Use AI module for WorkflowOrchestrator and MasTaskService -->
         <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-module-erplus-ai</artifactId>
-            <version>${revision}</version>
         </dependency>
 
         <dependency>

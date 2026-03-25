@@ -1,13 +1,13 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
+import com.hzltd.module.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.adv.enums.AdsSyncTaskTypeEnum;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsSyncTaskMapper;
-import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
-import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

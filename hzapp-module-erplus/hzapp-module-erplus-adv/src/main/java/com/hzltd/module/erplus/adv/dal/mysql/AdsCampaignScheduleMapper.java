@@ -5,7 +5,6 @@ import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignScheduleDO;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -18,9 +17,13 @@ public interface AdsCampaignScheduleMapper extends BaseMapperX<AdsCampaignSchedu
         return selectOne(AdsCampaignScheduleDO::getCampaignId, campaignId);
     }
 
-    default List<AdsCampaignScheduleDO> selectListByNextTransitionTime(LocalDateTime now) {
+    default List<AdsCampaignScheduleDO> selectListByNextTransitionTime(Long now) {
         return selectList(new LambdaQueryWrapperX<AdsCampaignScheduleDO>()
-                .le(AdsCampaignScheduleDO::getNextTransitionTime, now));
+                .le(AdsCampaignScheduleDO::getNextTransitionTimestamp, now));
+    }
+
+    default int deleteByCampaignId(Long campaignId) {
+        return delete(AdsCampaignScheduleDO::getCampaignId, campaignId);
     }
 
 }

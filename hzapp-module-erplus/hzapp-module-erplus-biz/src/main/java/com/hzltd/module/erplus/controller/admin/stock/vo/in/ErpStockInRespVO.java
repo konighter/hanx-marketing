@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static com.hzltd.module.erplus.enums.DictTypeConstants.AUDIT_STATUS;
+import static com.hzltd.module.spapi.enums.DictTypeConstants.AUDIT_STATUS;
 
 @Schema(description = "管理后台 - ERP 其它入库单 Response VO")
 @Data

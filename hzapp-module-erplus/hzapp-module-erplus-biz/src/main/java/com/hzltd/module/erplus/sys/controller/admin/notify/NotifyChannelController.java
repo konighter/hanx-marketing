@@ -7,8 +7,8 @@ import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelPageR
 import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.notify.NotifyChannelDO;
 import com.hzltd.module.erplus.service.notify.ChannelNotifyService;
-import com.hzltd.module.erplus.sys.ChannelNotifySendService;
-import com.hzltd.module.erplus.sys.model.NotifyMessage;
+import com.hzltd.module.system.service.ChannelNotifySendService;
+import com.hzltd.module.spapi.model.system.NotifyMessage;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;

@@ -16,8 +16,8 @@ import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseReturnDO;
 import com.hzltd.module.erplus.dal.mysql.finance.ErpFinancePaymentItemMapper;
 import com.hzltd.module.erplus.dal.mysql.finance.ErpFinancePaymentMapper;
 import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
-import com.hzltd.module.erplus.enums.ErpAuditStatus;
-import com.hzltd.module.erplus.enums.common.ErpBizTypeEnum;
+import com.hzltd.module.system.enums.ErpAuditStatus;
+import com.hzltd.module.system.enums.ErpBizTypeEnum;
 import com.hzltd.module.erplus.service.purchase.ErpPurchaseInService;
 import com.hzltd.module.erplus.service.purchase.ErpPurchaseReturnService;
 import com.hzltd.module.erplus.service.purchase.ErpSupplierService;
@@ -33,7 +33,7 @@ import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.*;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 
 // TODO 芋艿：记录操作日志
 

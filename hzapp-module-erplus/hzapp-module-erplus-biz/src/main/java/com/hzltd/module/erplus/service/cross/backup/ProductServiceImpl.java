@@ -6,8 +6,8 @@ import com.hzltd.module.erplus.controller.admin.product.vo.product.ProductSaveRe
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
-import com.hzltd.module.erplus.enums.ErrorCodeConstants;
-import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
+import com.hzltd.module.system.enums.ErplusErrorCodeConstants;
+import com.hzltd.module.spapi.enums.ProductSpuStatusEnum;
 import com.hzltd.module.erplus.service.cross.ProductCategoryService;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
@@ -21,8 +21,8 @@ import java.util.Map;
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertMap;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertSet;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_ENABLE;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_ENABLE;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_EXISTS;
 
 /**
  * ERP 产品 Service 实现类
@@ -43,17 +43,17 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Long createProduct(ProductSaveReqVO createReqVO) {
-        throw exception(ErrorCodeConstants.OPT_NOT_SUPPORT);
+        throw exception(ErplusErrorCodeConstants.OPT_NOT_SUPPORT);
     }
 
     @Override
     public void updateProduct(ProductSaveReqVO updateReqVO) {
-        throw exception(ErrorCodeConstants.OPT_NOT_SUPPORT);
+        throw exception(ErplusErrorCodeConstants.OPT_NOT_SUPPORT);
     }
 
     @Override
     public void deleteProduct(Long id) {
-        throw exception(ErrorCodeConstants.OPT_NOT_SUPPORT);
+        throw exception(ErplusErrorCodeConstants.OPT_NOT_SUPPORT);
     }
 
     @Override

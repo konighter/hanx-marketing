@@ -11,10 +11,6 @@ import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductPropertyValueDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSkuMapper;
-import com.hzltd.module.erplus.service.spu.ProductPropertyService;
-import com.hzltd.module.erplus.service.spu.ProductPropertyValueService;
-import com.hzltd.module.erplus.service.spu.ProductSkuService;
-import com.hzltd.module.erplus.service.spu.ProductSpuService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -27,8 +23,7 @@ import java.util.stream.Collectors;
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertMap;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertSet;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
-
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 /**
  * 商品 SKU Service 实现类
  *

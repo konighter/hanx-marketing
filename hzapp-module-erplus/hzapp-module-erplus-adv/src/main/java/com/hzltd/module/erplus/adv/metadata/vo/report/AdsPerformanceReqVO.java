@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.adv.metadata.vo.report;
 
-import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
+import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;

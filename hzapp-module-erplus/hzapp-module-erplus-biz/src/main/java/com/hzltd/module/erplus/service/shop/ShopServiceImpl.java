@@ -14,16 +14,15 @@ import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.dataobject.sellzone.SellZoneDO;
 import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
 import com.hzltd.module.erplus.dal.mysql.shop.ShopMapper;
-import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
-import com.hzltd.module.erplus.model.authorization.AuthorizationModel;
+import com.hzltd.module.system.enums.CrossPlatformEnum;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.erplus.service.sellzone.SellZoneService;
-import com.hzltd.module.erplus.sys.SystemShopService;
-import com.hzltd.module.erplus.sys.model.ShopModel;
-import com.hzltd.module.erplus.service.notification.NotificationSubscriptionApi;
+import com.hzltd.module.system.service.SystemShopService;
+import com.hzltd.module.spapi.model.system.ShopModel;
+import com.hzltd.module.spapi.service.notification.NotificationSubscriptionApi;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
@@ -36,8 +35,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.SELL_PLATFORM_NOT_EXISTS;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.SHOP_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SELL_PLATFORM_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SHOP_NOT_EXISTS;
 
 /**
  * 店铺信息 Service 实现类

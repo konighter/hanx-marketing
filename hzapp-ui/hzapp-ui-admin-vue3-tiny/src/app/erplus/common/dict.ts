@@ -8,6 +8,7 @@ export enum DICT_TYPE {
 export const ad_status = [
   { label: '启用', value: 'ENABLED', colorType: 'success' },
   { label: '暂停', value: 'PAUSED', colorType: 'warning' },
+  { label: '停止', value: 'STOPPED', colorType: 'danger' },
   { label: '归档', value: 'ARCHIVED', colorType: 'info' },
 ]
 

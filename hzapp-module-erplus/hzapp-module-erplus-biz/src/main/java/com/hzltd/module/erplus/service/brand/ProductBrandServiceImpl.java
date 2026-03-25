@@ -10,7 +10,7 @@ import com.hzltd.module.erplus.controller.admin.brand.vo.ProductBrandUpdateReqVO
 import com.hzltd.module.erplus.convert.brand.ProductBrandConvert;
 import com.hzltd.module.erplus.dal.dataobject.brand.ProductBrandDO;
 import com.hzltd.module.erplus.dal.mysql.brand.ErpProductBrandMapper;
-import com.hzltd.module.erplus.enums.RedisKeyConstants;
+import com.hzltd.module.spapi.enums.RedisKeyConstants;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -20,8 +20,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
-
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 /**
  * 品牌 Service 实现类
  *

@@ -10,8 +10,8 @@ import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.api.service.OrderApiFactory;
 import com.hzltd.module.erplus.api.service.PricingInventoryApiFactory;
 import com.hzltd.module.erplus.api.service.ProductApiFactory;
-import com.hzltd.module.erplus.constant.FulfillTypeEnum;
-import com.hzltd.module.erplus.constant.LanguageEnum;
+import com.hzltd.module.spapi.enums.FulfillTypeEnum;
+import com.hzltd.module.spapi.enums.LanguageEnum;
 import com.hzltd.module.erplus.controller.admin.cross.vo.*;
 import com.hzltd.module.erplus.controller.admin.productpub.vo.ProductPublishRequest;
 import com.hzltd.module.erplus.convert.cross.CrossPlatformProductConvert;
@@ -25,17 +25,17 @@ import com.hzltd.module.erplus.dal.mysql.cross.CrossProductInventoryMapper;
 import com.hzltd.module.erplus.dal.mysql.cross.CrossProductMapper;
 import com.hzltd.module.erplus.dal.mysql.cross.CrossProductPriceMapper;
 import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossProductAttrsMapper;
-import com.hzltd.module.erplus.enums.CrossListingStatus;
-import com.hzltd.module.erplus.enums.CrossProductStatus;
-import com.hzltd.module.erplus.enums.common.CrossPlatformEnum;
-import com.hzltd.module.erplus.model.ApiRequest;
-import com.hzltd.module.erplus.model.ApiResponse;
-import com.hzltd.module.erplus.model.common.InventoryModel;
-import com.hzltd.module.erplus.model.order.FeeModel;
-import com.hzltd.module.erplus.model.pricing.GetInventoryRequest;
-import com.hzltd.module.erplus.model.product.MultiMarketProductModel;
-import com.hzltd.module.erplus.model.product.ProductModel;
-import com.hzltd.module.erplus.model.product.SearchProductRequest;
+import com.hzltd.module.spapi.enums.CrossListingStatus;
+import com.hzltd.module.spapi.enums.CrossProductStatus;
+import com.hzltd.module.system.enums.CrossPlatformEnum;
+import com.hzltd.module.spapi.model.ApiRequest;
+import com.hzltd.module.spapi.model.ApiResponse;
+import com.hzltd.module.spapi.model.common.InventoryModel;
+import com.hzltd.module.spapi.model.order.FeeModel;
+import com.hzltd.module.spapi.model.pricing.GetInventoryRequest;
+import com.hzltd.module.spapi.model.product.MultiMarketProductModel;
+import com.hzltd.module.spapi.model.product.ProductModel;
+import com.hzltd.module.spapi.model.product.SearchProductRequest;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import jakarta.annotation.Resource;
@@ -52,7 +52,7 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.PRODUCT_NOT_VALID;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_VALID;
 
 @Slf4j
 @Service

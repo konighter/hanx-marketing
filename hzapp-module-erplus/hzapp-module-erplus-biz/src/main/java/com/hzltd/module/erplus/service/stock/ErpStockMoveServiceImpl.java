@@ -12,8 +12,8 @@ import com.hzltd.module.erplus.dal.dataobject.stock.ErpStockMoveItemDO;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpStockMoveItemMapper;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpStockMoveMapper;
 import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
-import com.hzltd.module.erplus.enums.ErpAuditStatus;
-import com.hzltd.module.erplus.enums.stock.ErpStockRecordBizTypeEnum;
+import com.hzltd.module.system.enums.ErpAuditStatus;
+import com.hzltd.module.system.enums.ErpStockRecordBizTypeEnum;
 import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import com.hzltd.module.erplus.service.stock.bo.ErpStockRecordCreateReqBO;
 import jakarta.annotation.Resource;
@@ -30,7 +30,7 @@ import java.util.stream.Stream;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.*;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 
 // TODO 芋艿：记录操作日志
 

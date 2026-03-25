@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.COUNTRIES_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.COUNTRIES_NOT_EXISTS;
 
 /**
  * [Erplus] 国家/地区定义 Service 实现类

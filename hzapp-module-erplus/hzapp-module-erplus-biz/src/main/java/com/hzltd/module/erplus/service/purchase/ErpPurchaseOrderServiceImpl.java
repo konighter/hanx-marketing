@@ -13,7 +13,7 @@ import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.purchase.ErpPurchaseOrderItemMapper;
 import com.hzltd.module.erplus.dal.mysql.purchase.ErpPurchaseOrderMapper;
 import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
-import com.hzltd.module.erplus.enums.ErpAuditStatus;
+import com.hzltd.module.system.enums.ErpAuditStatus;
 import com.hzltd.module.erplus.service.finance.ErpAccountService;
 import com.hzltd.module.erplus.service.cross.backup.ProductService;
 import jakarta.annotation.Resource;
@@ -29,8 +29,7 @@ import java.util.Map;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.*;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
-
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 // TODO 芋艿：记录操作日志
 
 /**

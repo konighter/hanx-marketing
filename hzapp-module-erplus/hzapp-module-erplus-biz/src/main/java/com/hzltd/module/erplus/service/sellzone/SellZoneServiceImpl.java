@@ -7,7 +7,7 @@ import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellzone.SellZoneDO;
 import com.hzltd.module.erplus.dal.mysql.sellzone.SellZoneMapper;
-import com.hzltd.module.erplus.enums.RedisKeyConstants;
+import com.hzltd.module.spapi.enums.RedisKeyConstants;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.SELL_ZONE_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SELL_ZONE_NOT_EXISTS;
 
 /**
  * 销售区域 Service 实现类

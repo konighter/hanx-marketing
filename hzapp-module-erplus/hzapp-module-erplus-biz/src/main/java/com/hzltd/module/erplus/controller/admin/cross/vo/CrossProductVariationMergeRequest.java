@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.cross.vo;
 
-import com.hzltd.module.erplus.model.common.ProductAttributeModel;
+import com.hzltd.module.spapi.model.common.ProductAttributeModel;
 
 import java.util.List;
 import java.util.Map;

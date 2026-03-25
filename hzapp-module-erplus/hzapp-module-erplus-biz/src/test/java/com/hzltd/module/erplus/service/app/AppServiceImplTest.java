@@ -5,7 +5,7 @@ import com.hzltd.framework.test.core.ut.BaseDbUnitTest;
 import com.hzltd.module.erplus.controller.admin.app.vo.AppPageReqVO;
 import com.hzltd.module.erplus.controller.admin.app.vo.AppSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.app.AppDO;
-import com.hzltd.module.erplus.dal.mysql.amz.AmzInboundPlanMapper;
+import com.hzltd.module.amz.dal.mysql.AmzInboundPlanMapper;
 import com.hzltd.module.erplus.dal.mysql.app.AppMapper;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.Disabled;
@@ -17,7 +17,7 @@ import static com.hzltd.framework.common.util.object.ObjectUtils.cloneIgnoreId;
 import static com.hzltd.framework.test.core.util.AssertUtils.assertPojoEquals;
 import static com.hzltd.framework.test.core.util.AssertUtils.assertServiceException;
 import static com.hzltd.framework.test.core.util.RandomUtils.randomPojo;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.APP_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.APP_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

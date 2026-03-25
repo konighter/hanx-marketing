@@ -15,8 +15,8 @@ import java.util.Collection;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.SUPPLIER_NOT_ENABLE;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.SUPPLIER_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SUPPLIER_NOT_ENABLE;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SUPPLIER_NOT_EXISTS;
 
 /**
  * ERP 供应商 Service 实现类

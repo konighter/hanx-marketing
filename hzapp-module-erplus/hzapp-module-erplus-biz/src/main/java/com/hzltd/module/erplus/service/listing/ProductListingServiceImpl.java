@@ -7,7 +7,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 
 @Service
 public class ProductListingServiceImpl implements ProductListingService {
@@ -23,11 +23,6 @@ public class ProductListingServiceImpl implements ProductListingService {
         if (!validListing(reqVO)) {
             throw exception(LISTING_NOT_VALID);
         }
-
-
-
-
-
 
     }
 

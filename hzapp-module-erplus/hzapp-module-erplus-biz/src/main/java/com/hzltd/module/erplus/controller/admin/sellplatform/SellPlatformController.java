@@ -13,7 +13,7 @@ import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformResp
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
-import com.hzltd.module.erplus.enums.ServiceModeEnum;
+import com.hzltd.module.spapi.enums.ServiceModeEnum;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

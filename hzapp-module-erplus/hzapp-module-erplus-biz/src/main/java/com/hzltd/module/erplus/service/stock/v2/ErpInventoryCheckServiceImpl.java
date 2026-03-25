@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.STOCK_CHECK_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.STOCK_CHECK_NOT_EXISTS;
 
 /**
  * ERP 库存盘点 (V2) Service 实现类

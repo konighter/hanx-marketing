@@ -28,7 +28,7 @@ import static com.hzltd.framework.test.core.util.AssertUtils.assertPojoEquals;
 import static com.hzltd.framework.test.core.util.AssertUtils.assertServiceException;
 import static com.hzltd.framework.test.core.util.RandomUtils.randomLongId;
 import static com.hzltd.framework.test.core.util.RandomUtils.randomPojo;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.HS_CODES_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.HS_CODES_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

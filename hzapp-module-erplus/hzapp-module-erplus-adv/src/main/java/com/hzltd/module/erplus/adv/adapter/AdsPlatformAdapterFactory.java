@@ -1,8 +1,9 @@
 package com.hzltd.module.erplus.adv.adapter;
 
-import com.hzltd.module.erplus.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.adv.enums.AdsPlatformEnum;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;

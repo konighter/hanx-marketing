@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.adv.metadata.service.report;
 
 import cn.hutool.core.date.DateUtil;
+import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportHourlyDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportSummaryDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportHourlyMapper;
@@ -19,7 +20,6 @@ import java.time.LocalTime;
 import java.time.temporal.WeekFields;
 import java.util.*;
 
-import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 
 /**
  * 广告性能报表 Service 实现类

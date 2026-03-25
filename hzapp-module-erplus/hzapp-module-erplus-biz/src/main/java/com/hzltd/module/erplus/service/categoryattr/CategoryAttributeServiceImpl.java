@@ -10,7 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.erplus.enums.ErrorCodeConstants.CATEGORY_ATTRIBUTE_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CATEGORY_ATTRIBUTE_NOT_EXISTS;
 
 /**
  * 品类属性 Service 实现类

@@ -1,8 +1,8 @@
 package com.hzltd.module.erplus.controller.admin.cross.vo;
 
-import com.hzltd.module.erplus.constant.FulfillTypeEnum;
+import com.hzltd.module.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderDO;
-import com.hzltd.module.erplus.enums.CrossOrderStatus;
+import com.hzltd.module.spapi.enums.CrossOrderStatus;
 import lombok.Data;
 
 import java.math.BigDecimal;

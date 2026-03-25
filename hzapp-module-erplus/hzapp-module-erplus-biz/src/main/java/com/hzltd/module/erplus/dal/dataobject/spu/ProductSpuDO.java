@@ -6,10 +6,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
-import com.hzltd.framework.mybatis.core.type.IntegerListTypeHandler;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductUnitDO;
-import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
-import com.hzltd.module.erplus.enums.ProductSpuStatusEnum;
+import com.hzltd.module.spapi.enums.ProductSpuStatusEnum;
 import lombok.*;
 
 import java.util.List;

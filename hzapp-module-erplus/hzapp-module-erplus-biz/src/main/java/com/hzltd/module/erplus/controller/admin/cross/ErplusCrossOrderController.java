@@ -4,7 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderPageRequest;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderResp;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderSyncRequest;
-import com.hzltd.module.erplus.model.ApiResponse;
+import com.hzltd.module.spapi.model.ApiResponse;
 import com.hzltd.module.erplus.service.cross.ErplusCrossOrderService;
 import jakarta.annotation.Resource;
 import org.springframework.web.bind.annotation.PostMapping;

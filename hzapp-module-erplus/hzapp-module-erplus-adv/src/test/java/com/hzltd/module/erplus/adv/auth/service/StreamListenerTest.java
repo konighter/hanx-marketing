@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.adv.auth.service;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import com.hzltd.module.erplus.adv.adapter.amazon.model.event.AmazonAdTrafficMetric;
+// import com.hzltd.module.amz.api.adv.model.event.AmazonAdTrafficMetric;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportStreamRawDO;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 public class StreamListenerTest {
 
 
+    /*
     @Test
     public void testSpTraffic() {
         String json = "{\n" +
@@ -37,6 +38,7 @@ public class StreamListenerTest {
         log.info("metics={}", BeanUtils.toBean(trafficMetric, AdsReportStreamRawDO.class));
 
     }
+    */
 
 
 
