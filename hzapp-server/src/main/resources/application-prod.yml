@@ -96,6 +96,7 @@ logging:
     name: ${user.home}/logs/${spring.application.name}.log # 生产环境日志路径
   level:
     com.hzltd.module: info
+    com.hzltd.framework: info
     com.agentsflex: info
     org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR
 
