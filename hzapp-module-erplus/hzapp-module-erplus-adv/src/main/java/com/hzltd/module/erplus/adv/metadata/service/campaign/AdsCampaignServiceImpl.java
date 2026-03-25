@@ -29,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -127,8 +128,12 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
         AdsCampaignDO campaign = adsCampaignMapper.selectById(campaignId);
         if (campaign == null) return;
         
-        // 停用或归档状态下不进行分时调度变更
+        // 停用或归档状态下不进行分时调度变更，并清理现有调度
         if (STOPPED.getCode().equals(campaign.getStatus()) || ARCHIVED.getCode().equals(campaign.getStatus())) {
+            AdsCampaignScheduleDO existing = adsCampaignScheduleMapper.selectByCampaignId(campaignId);
+            if (existing != null) {
+                adsCampaignScheduleMapper.deleteById(existing.getId());
+            }
             return;
         }
 
@@ -154,7 +159,10 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
                     .build();
         }
         scheduleDO.setCurrentStatus(transition.getRequiredEnabled() ? ENABLED.getCode() : PAUSED.getCode());
-        scheduleDO.setNextTransitionTime(transition.getNextTime());
+        scheduleDO.setNextTransitionTimestamp(transition.getNextTime());
+        
+        // 兼容性：同时设置旧的 LocalDateTime 字段 (统一使用 UTC)
+        scheduleDO.setNextTransitionTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(transition.getNextTime()), ZoneOffset.UTC));
         
         if (scheduleDO.getId() == null) {
             adsCampaignScheduleMapper.insert(scheduleDO);
@@ -192,13 +200,12 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
                 int dayIdx = next.getDayOfWeek().getValue() - 1;
                 int hour = next.getHour();
                 if (grid[dayIdx][hour] != currentTargetEnabled) {
-                    // 重要：这里将广告账户当地的变迁时间点转换为 UTC 时间存储，
-                    // 确保 Quartz 任务在物理时间点对齐触发，不受服务器时区影响。
-                    return new ScheduleTransition(currentTargetEnabled, next.withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
+                    // 重要：这里将广告账户当地的变迁时间点转换为 Epoch 毫秒时间戳存储
+                    return new ScheduleTransition(currentTargetEnabled, next.toInstant().toEpochMilli());
                 }
             }
-            // 如果 7x24 全部相同，则下一次切换时间设为很久以后，同样转为 UTC
-            return new ScheduleTransition(currentTargetEnabled, nowInZone.plusYears(10).withZoneSameInstant(ZoneOffset.UTC).toLocalDateTime());
+            // 如果 7x24 全部相同，则下一次切换时间设为很久以后
+            return new ScheduleTransition(currentTargetEnabled, nowInZone.plusYears(10).toInstant().toEpochMilli());
         } catch (Exception e) {
             log.error("Failed to calculate next transition for schedule: {}", scheduleJson, e);
             return null;
@@ -208,7 +215,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
     @lombok.Value
     public static class ScheduleTransition {
         Boolean requiredEnabled;
-        LocalDateTime nextTime;
+        Long nextTime;
     }
 
     @Override

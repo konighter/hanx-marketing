@@ -44,8 +44,13 @@ public class AdsCampaignScheduleDO extends BaseDO {
     private String currentStatus;
 
     /**
-     * 下一次状态变迁时间
+     * 下一次状态变迁时间 (兼容旧版本)
      */
     private LocalDateTime nextTransitionTime;
+    
+    /**
+     * 下一次状态变迁时间 (毫秒时间戳，推荐使用)
+     */
+    private Long nextTransitionTimestamp;
 
 }

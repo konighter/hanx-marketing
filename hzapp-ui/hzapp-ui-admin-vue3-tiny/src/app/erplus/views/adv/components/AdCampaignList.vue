@@ -144,16 +144,40 @@
       </template>
 
       <!-- 操作列 -->
-      <el-table-column label="操作" align="center" fixed="right" width="80">
+      <el-table-column label="操作" align="center" fixed="right" width="110">
         <template #default="scope">
-          <el-button
-            link
-            type="primary"
-            :disabled="scope.row.status === 'ARCHIVED'"
-            @click="handleUpdateStatus(scope.row)"
-          >
-            {{ scope.row.status === 'ENABLED' ? '暂停' : '启用' }}
-          </el-button>
+          <div class="flex items-center justify-center h-full">
+            <el-button
+              link
+              type="primary"
+              :disabled="scope.row.status === 'ARCHIVED'"
+              @click="handleUpdateStatus(scope.row)"
+              class="!p-0"
+            >
+              {{ scope.row.status === 'ENABLED' ? '暂停' : '启用' }}
+            </el-button>
+            <el-dropdown
+              @command="(command) => handleCommand(command, scope.row)"
+            >
+              <el-button link type="primary" class="!ml-12px !p-0">
+                <Icon icon="ep:more-filled" :size="16" />
+              </el-button>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="handleDetail">
+                    <Icon icon="ep:document" /> 详情
+                  </el-dropdown-item>
+                  <el-dropdown-item
+                    command="handleStop"
+                    v-if="scope.row.status !== 'STOPPED' && scope.row.status !== 'ARCHIVED'"
+                    class="!text-danger"
+                  >
+                    <Icon icon="ep:video-pause" /> 停止
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
+          </div>
         </template>
       </el-table-column>
     </el-table>
@@ -275,11 +299,37 @@ const getList = async () => {
   }
 }
 
+const handleCommand = (command: string, row: AdsCampaign) => {
+  switch (command) {
+    case 'handleDetail':
+      handleDetail(row)
+      break
+    case 'handleStop':
+      handleStop(row)
+      break
+    default:
+      break
+  }
+}
+
 const handleUpdateStatus = async (row: AdsCampaign) => {
   const newStatus = row.status === 'ENABLED' ? 'PAUSED' : 'ENABLED'
   try {
     await AdsCampaignApi.updateCampaignStatus({ id: row.id, status: newStatus })
     ElMessage.success('操作成功')
+    await getList()
+  } catch (error) {}
+}
+
+const handleStop = async (row: AdsCampaign) => {
+  try {
+    await ElMessageBox.confirm('确定要停止该广告活动吗？停止后将清除调度记录。', '提示', {
+      confirmButtonText: '确定',
+      cancelButtonText: '取消',
+      type: 'warning'
+    })
+    await AdsCampaignApi.updateCampaignStatus({ id: row.id, status: 'STOPPED' })
+    ElMessage.success('已停止')
     await getList()
   } catch (error) {}
 }

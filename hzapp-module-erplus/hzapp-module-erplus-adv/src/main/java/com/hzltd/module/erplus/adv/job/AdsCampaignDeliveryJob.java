@@ -9,12 +9,8 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsCampaignScheduleMapper;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
 import java.util.List;
 
 /**
@@ -41,10 +37,9 @@ public class AdsCampaignDeliveryJob implements JobHandler {
     public String execute(String param) throws Exception {
         log.info("[AdsCampaignDeliveryJob] 开始执行分时投放状态检查...");
         // 使用 UTC 时间进行检索
-        LocalDateTime nowUtc = LocalDateTime.now(ZoneOffset.UTC);
         
         // 1. 获取所有达到变迁时间点的记录
-        List<AdsCampaignScheduleDO> schedules = adsCampaignScheduleMapper.selectListByNextTransitionTime(nowUtc);
+        List<AdsCampaignScheduleDO> schedules = adsCampaignScheduleMapper.selectListByNextTransitionTime(System.currentTimeMillis());
         if (schedules.isEmpty()) {
             log.info("[AdsCampaignDeliveryJob] 无需执行变迁的广告计划");
             return "无任务";
