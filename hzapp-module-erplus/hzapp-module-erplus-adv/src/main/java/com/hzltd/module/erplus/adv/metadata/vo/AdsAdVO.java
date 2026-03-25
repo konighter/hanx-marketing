@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+
 /**
  * 广告素材/广告实体 VO
  */
@@ -26,6 +28,14 @@ public class AdsAdVO {
     private String reviewStatus;
     private String asin;
     private String sku;
+    /**
+     * 广告平台
+     */
+    private String platform;
+    /**
+     * 扩展属性
+     */
+    private Map<String, Object> attributes;
     private Object extData; // JSON or Object
 
 }

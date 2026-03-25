@@ -68,7 +68,11 @@ public class AdsKeywordController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-keyword:query')")
     public CommonResult<AdsKeywordRespVO> getKeyword(@RequestParam("id") Long id) {
         AdsKeywordDO keyword = adsKeywordService.getKeyword(id);
-        return success(BeanUtils.toBean(keyword, AdsKeywordRespVO.class));
+        AdsKeywordRespVO respVO = BeanUtils.toBean(keyword, AdsKeywordRespVO.class);
+        if (respVO != null) {
+            respVO.setAttributes(adsKeywordService.getKeywordAttributes(id));
+        }
+        return success(respVO);
     }
 
 }

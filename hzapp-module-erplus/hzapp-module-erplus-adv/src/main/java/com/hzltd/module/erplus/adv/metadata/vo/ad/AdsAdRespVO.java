@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Schema(description = "管理后台 - 广告响应 VO")
 @Data
@@ -50,5 +51,11 @@ public class AdsAdRespVO {
 
     @Schema(description = "创建时间")
     private LocalDateTime createTime;
+
+    @Schema(description = "账号平台", example = "AMAZON")
+    private String platform;
+
+    @Schema(description = "扩展属性")
+    private Map<String, Object> attributes;
 
 }

@@ -71,18 +71,26 @@ router.beforeEach(async (to, from, next) => {
       const userStore = useUserStoreWithOut()
       const permissionStore = usePermissionStoreWithOut()
       if (!userStore.getIsSetUser) {
-        isRelogin.show = true
-        // Pro Max: 并行加载字典和用户信息，减少首屏等待时间
-        await Promise.all([
-          !dictStore.getIsSetDict ? dictStore.setDictMap() : Promise.resolve(),
-          userStore.setUserInfoAction()
-        ])
-        isRelogin.show = false
-        // 后端过滤菜单
-        await permissionStore.generateRoutes()
-        permissionStore.getAddRouters.forEach((route) => {
-          router.addRoute(route as unknown as RouteRecordRaw) // 动态添加可访问路由表
-        })
+        try {
+          // Pro Max: 并行加载字典和用户信息，减少首屏等待时间
+          await Promise.all([
+            !dictStore.getIsSetDict ? dictStore.setDictMap() : Promise.resolve(),
+            userStore.setUserInfoAction()
+          ])
+          // 后端过滤菜单
+          await permissionStore.generateRoutes()
+          permissionStore.getAddRouters.forEach((route) => {
+            router.addRoute(route as unknown as RouteRecordRaw) // 动态添加可访问路由表
+          })
+        } catch (error) {
+          console.error('Initial data loading failed:', error)
+          // 如果加载失败，且不是因为已经弹出重新登录框（即不是 401 导致的），则强制进入登录页
+          if (!isRelogin.show) {
+            next({ path: '/login', query: { redirect: to.fullPath } })
+          }
+          return
+        }
+
         const redirectPath = (from.query.redirect || to.path) as string
         // 修复跳转时不带参数的问题
         const { paramsObject: query } = parseURL(redirectPath)

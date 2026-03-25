@@ -34,11 +34,7 @@ public class AdsCampaignController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:query')")
     public CommonResult<PageResult<AdsCampaignRespVO>> getCampaignPage(@Valid @RequestBody AdsCampaignPageReqVO pageReqVO) {
         PageResult<AdsCampaignDO> pageResult = adsCampaignService.getCampaignPage(pageReqVO);
-        PageResult<AdsCampaignRespVO> resultVO = BeanUtils.toBean(pageResult, AdsCampaignRespVO.class);
-        resultVO.getList().forEach(vo -> {
-            vo.setPlatform(adsCampaignService.getPlatformByAccountId(vo.getAccountId()));
-        });
-        return success(resultVO);
+        return success(BeanUtils.toBean(pageResult, AdsCampaignRespVO.class));
     }
 
     @PutMapping("/update-status")
@@ -83,7 +79,7 @@ public class AdsCampaignController {
         AdsCampaignDO campaign = adsCampaignService.getCampaign(id);
         AdsCampaignRespVO respVO = BeanUtils.toBean(campaign, AdsCampaignRespVO.class);
         if (respVO != null) {
-            respVO.setPlatform(adsCampaignService.getPlatformByAccountId(respVO.getAccountId()));
+            respVO.setAttributes(adsCampaignService.getCampaignAttributes(id));
         }
         return success(respVO);
     }

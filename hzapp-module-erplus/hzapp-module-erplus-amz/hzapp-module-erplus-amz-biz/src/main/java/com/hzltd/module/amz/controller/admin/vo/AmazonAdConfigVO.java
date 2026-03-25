@@ -29,6 +29,12 @@ public class AmazonAdConfigVO {
     @Schema(description = "全球店铺设置")
     private Object globalStoreSetting;
 
+    @Schema(description = "ASIN")
+    private String asin;
+
+    @Schema(description = "SKU")
+    private String sku;
+
     public static AmazonAdConfigVO fromSpProductAd(AdsSpProductAd spProductAd) {
         if (spProductAd == null) {
             return null;
@@ -38,6 +44,33 @@ public class AmazonAdConfigVO {
                 .customText(spProductAd.getCustomText())
                 .extendedData(spProductAd.getExtendedData())
                 .globalStoreSetting(spProductAd.getGlobalStoreSetting())
+                .asin(spProductAd.getAsin())
+                .sku(spProductAd.getSku())
+                .build();
+    }
+
+    public java.util.Map<String, Object> toAttributes() {
+        java.util.Map<String, Object> attrs = new java.util.HashMap<>();
+        if (profileId != null) attrs.put("amz.profile_id", profileId);
+        if (extendedData != null) attrs.put("amz.extended_data", extendedData);
+        if (globalAdId != null) attrs.put("amz.global_ad_id", globalAdId);
+        if (customText != null) attrs.put("amz.custom_text", customText);
+        if (globalStoreSetting != null) attrs.put("amz.global_store_setting", globalStoreSetting);
+        if (asin != null) attrs.put("amz.asin", asin);
+        if (sku != null) attrs.put("amz.sku", sku);
+        return attrs;
+    }
+
+    public static AmazonAdConfigVO fromAttributes(java.util.Map<String, Object> attributes) {
+        if (attributes == null) return null;
+        return AmazonAdConfigVO.builder()
+                .profileId((String) attributes.get("amz.profile_id"))
+                .extendedData(attributes.get("amz.extended_data"))
+                .globalAdId((String) attributes.get("amz.global_ad_id"))
+                .customText((String) attributes.get("amz.custom_text"))
+                .globalStoreSetting(attributes.get("amz.global_store_setting"))
+                .asin((String) attributes.get("amz.asin"))
+                .sku((String) attributes.get("amz.sku"))
                 .build();
     }
 }

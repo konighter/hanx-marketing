@@ -11,6 +11,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -45,6 +46,16 @@ import java.util.Map;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AmazonCampaignConfigVO {
+
+    public static final String PROFILE_ID = "amz_profile_id";
+    public static final String DYNAMIC_BIDDING = "amz_dynamic_bidding";
+    public static final String EXTENDED_DATA = "amz_extended_data";
+    public static final String OFF_AMAZON_SETTINGS = "amz_off_amazon_settings";
+    public static final String PORTFOLIO_ID = "amz_portfolio_id";
+    public static final String GLOBAL_CAMPAIGN_ID = "amz_global_campaign_id";
+    public static final String TAGS = "amz_tags";
+    public static final String NEGATIVE_KEYWORDS = "amz_negative_keywords";
+    public static final String OPTIMIZATION_RULES = "amz_optimization_rules";
 
 
     private String profileId;
@@ -160,6 +171,44 @@ public class AmazonCampaignConfigVO {
                 .globalCampaignId(spCampaign.getGlobalCampaignId())
                 .tags(spCampaign.getTags())
                 .portfolioId(spCampaign.getPortfolioId())
+                .build();
+    }
+
+    /**
+     * 将配置转换为扁平化的属性 Map
+     * 用于存储到 ads_campaign_attribute 表
+     */
+    public Map<String, Object> toAttributes() {
+        Map<String, Object> attrs = new HashMap<>();
+        if (profileId != null) attrs.put(PROFILE_ID, profileId);
+        if (dynamicBidding != null) attrs.put(DYNAMIC_BIDDING, dynamicBidding);
+        if (extendedData != null) attrs.put(EXTENDED_DATA, extendedData);
+        if (offAmazonSettings != null) attrs.put(OFF_AMAZON_SETTINGS, offAmazonSettings);
+        if (portfolioId != null) attrs.put(PORTFOLIO_ID, portfolioId);
+        if (globalCampaignId != null) attrs.put(GLOBAL_CAMPAIGN_ID, globalCampaignId);
+        if (tags != null) attrs.put(TAGS, tags);
+        if (negativeKeywords != null) attrs.put(NEGATIVE_KEYWORDS, negativeKeywords);
+        if (optimizationRules != null) attrs.put(OPTIMIZATION_RULES, optimizationRules);
+        return attrs;
+    }
+
+    /**
+     * 从扁平化的属性 Map 构建配置
+     * 用于从数据库加载
+     */
+    @SuppressWarnings("unchecked")
+    public static AmazonCampaignConfigVO fromAttributes(Map<String, Object> attributes) {
+        if (attributes == null) return null;
+        return AmazonCampaignConfigVO.builder()
+                .profileId((String) attributes.get(PROFILE_ID))
+                .dynamicBidding((AdsSpCampaign.DynamicBidding) attributes.get(DYNAMIC_BIDDING))
+                .extendedData((AdsSpExtendedData) attributes.get(EXTENDED_DATA))
+                .offAmazonSettings((AdsSpCampaign.OffAmazonSettings) attributes.get(OFF_AMAZON_SETTINGS))
+                .portfolioId((String) attributes.get(PORTFOLIO_ID))
+                .globalCampaignId((String) attributes.get(GLOBAL_CAMPAIGN_ID))
+                .tags((Map<String, String>) attributes.get(TAGS))
+                .negativeKeywords((List<AdsSpNegativeKeyword>) attributes.get(NEGATIVE_KEYWORDS))
+                .optimizationRules((List<AdsSpOptimizationRule>) attributes.get(OPTIMIZATION_RULES))
                 .build();
     }
 
