@@ -31,7 +31,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.ADS_PLATFORM_NOT_SUPPORTED;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.ADS_PLATFORM_NOT_SUPPORTED;
 
 @Slf4j
 public abstract class AbstractAmazonAdsAdapter {

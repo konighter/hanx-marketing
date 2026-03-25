@@ -23,7 +23,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.ADS_ACCOUNT_Credential_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.ADS_ACCOUNT_NOT_EXISTS;
 
 /**
  * 广告元数据同步 Service 实现类

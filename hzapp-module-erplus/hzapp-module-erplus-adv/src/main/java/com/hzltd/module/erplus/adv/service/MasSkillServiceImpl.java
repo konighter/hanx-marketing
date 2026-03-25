@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.ADV_SKILL_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.ADV_SKILL_NOT_EXISTS;
 
 /**
  * 策略技能 Service 实现类

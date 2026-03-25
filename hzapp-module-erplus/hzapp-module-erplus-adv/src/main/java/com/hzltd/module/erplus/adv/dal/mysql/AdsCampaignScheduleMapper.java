@@ -23,4 +23,8 @@ public interface AdsCampaignScheduleMapper extends BaseMapperX<AdsCampaignSchedu
                 .le(AdsCampaignScheduleDO::getNextTransitionTime, now));
     }
 
+    default int deleteByCampaignId(Long campaignId) {
+        return delete(AdsCampaignScheduleDO::getCampaignId, campaignId);
+    }
+
 }

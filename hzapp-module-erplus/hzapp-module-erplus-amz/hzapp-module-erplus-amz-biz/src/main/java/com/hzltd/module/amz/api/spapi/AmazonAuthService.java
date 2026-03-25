@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.CROSS_API_ERROR;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CROSS_API_ERROR;
 
 @Service
 @ServiceRegister(platform = CrossPlatformEnum.AMAZON, serviceClass = AuthorizationApi.class)

@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 
 /**
  * ERP 产品分类 Service 实现类

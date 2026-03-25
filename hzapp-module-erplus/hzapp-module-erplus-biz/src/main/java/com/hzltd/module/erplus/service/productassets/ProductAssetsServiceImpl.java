@@ -19,8 +19,7 @@ import com.hzltd.module.erplus.dal.mysql.productassets.ProductAssetsMapper;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertList;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
-
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 /**
  * 商品素材 Service 实现类
  *

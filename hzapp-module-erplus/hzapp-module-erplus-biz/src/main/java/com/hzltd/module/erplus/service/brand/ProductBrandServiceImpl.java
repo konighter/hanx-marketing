@@ -20,8 +20,7 @@ import java.util.Collection;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
-
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 /**
  * 品牌 Service 实现类
  *

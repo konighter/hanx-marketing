@@ -35,8 +35,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.SELL_PLATFORM_NOT_EXISTS;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.SHOP_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SELL_PLATFORM_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SHOP_NOT_EXISTS;
 
 /**
  * 店铺信息 Service 实现类

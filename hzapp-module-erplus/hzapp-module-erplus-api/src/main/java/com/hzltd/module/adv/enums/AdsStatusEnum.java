@@ -14,6 +14,7 @@ public enum AdsStatusEnum {
 
     ENABLED("ENABLED", "启用"),
     PAUSED("PAUSED", "暂停"),
+    STOPPED("STOPPED", "停用"),
     ARCHIVED("ARCHIVED", "归档"),
     REMOVED("REMOVED", "已删除");
 

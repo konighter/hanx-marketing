@@ -1,4 +1,4 @@
-package com.hzltd.module.spapi.enums;
+package com.hzltd.module.system.enums;
 
 import com.hzltd.framework.common.exception.ErrorCode;
 
@@ -7,7 +7,7 @@ import com.hzltd.framework.common.exception.ErrorCode;
  * <p>
  * erp 系统，使用 1-030-000-000 段
  */
-public interface ErrorCodeConstants {
+public interface ErplusErrorCodeConstants {
 
     ErrorCode OPT_NOT_SUPPORT = new ErrorCode(1_030_000_000, "不支持该操作");
 
@@ -249,6 +249,7 @@ public interface ErrorCodeConstants {
 
     // ========== 广告计划 1_033_001_000 ==========
     ErrorCode ADS_CAMPAIGN_NOT_EXISTS = new ErrorCode(1_033_001_001, "广告计划不存在");
+    ErrorCode ADS_CAMPAIGN_STATUS_TRANSITION_INVALID = new ErrorCode(1_033_001_002, "广告计划状态流转无效：无法从 {} 变更为 {}");
 
     // ========== 广告组 1_033_002_000 ==========
     ErrorCode ADS_AD_GROUP_NOT_EXISTS = new ErrorCode(1_033_002_001, "广告组不存在");
@@ -263,6 +264,7 @@ public interface ErrorCodeConstants {
     ErrorCode ADV_SKILL_NOT_EXISTS = new ErrorCode(1_033_005_001, "策略不存在");
 
 
+    ErrorCode CROSS_SERVICE_ERROR = new ErrorCode(2_100_000_001, "跨境平台服务异常");
 
 
 }

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.PRODUCT_POTENTIAL_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.PRODUCT_POTENTIAL_NOT_EXISTS;
 
 /**
  * 选品提案 Service 实现类

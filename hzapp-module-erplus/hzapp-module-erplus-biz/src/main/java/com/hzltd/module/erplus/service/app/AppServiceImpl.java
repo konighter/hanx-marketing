@@ -18,8 +18,8 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.APP_ALREADY_EXISTS;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.APP_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.APP_ALREADY_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.APP_NOT_EXISTS;
 
 /**
  * 应用注册信息 Service 实现类

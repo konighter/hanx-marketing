@@ -33,8 +33,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.CATEGORY_NOT_EMPTY;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.PRODUCT_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CATEGORY_NOT_EMPTY;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_EXISTS;
 
 @Service
 public class CrossCategoryServiceImpl implements CrossCategoryService {

@@ -23,8 +23,7 @@ import java.util.stream.Collectors;
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertMap;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.convertSet;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.*;
-
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
 /**
  * 商品 SKU Service 实现类
  *

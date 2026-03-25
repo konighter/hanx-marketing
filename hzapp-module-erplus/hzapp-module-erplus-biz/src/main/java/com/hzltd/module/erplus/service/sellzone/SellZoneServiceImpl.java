@@ -16,7 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.spapi.enums.ErrorCodeConstants.SELL_ZONE_NOT_EXISTS;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SELL_ZONE_NOT_EXISTS;
 
 /**
  * 销售区域 Service 实现类

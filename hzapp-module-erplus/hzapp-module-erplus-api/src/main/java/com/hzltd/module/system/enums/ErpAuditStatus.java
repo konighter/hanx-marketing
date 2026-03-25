@@ -1,4 +1,4 @@
-package com.hzltd.module.spapi.enums;
+package com.hzltd.module.system.enums;
 
 import com.hzltd.framework.common.core.ArrayValuable;
 import lombok.Getter;

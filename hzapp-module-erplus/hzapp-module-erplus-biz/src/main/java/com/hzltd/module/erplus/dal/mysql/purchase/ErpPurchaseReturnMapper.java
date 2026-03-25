@@ -8,7 +8,7 @@ import com.hzltd.module.erplus.controller.admin.purchase.vo.returns.ErpPurchaseR
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseInDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseReturnDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseReturnItemDO;
-import com.hzltd.module.spapi.enums.ErpAuditStatus;
+import com.hzltd.module.system.enums.ErpAuditStatus;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
