@@ -11,11 +11,15 @@ import com.hzltd.module.amz.service.AmzAdvAdGroupService;
 import com.hzltd.module.amz.service.AmzAdvBidStrategyService;
 import com.hzltd.module.amz.service.AmzAdvCampaignService;
 import com.hzltd.module.amz.service.AmzAdvKeywordService;
+import com.hzltd.module.amz.dal.mapper.AmzAdvCampaignMapper;
+import com.hzltd.framework.common.util.object.BeanUtils;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
+import java.util.Optional;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 
@@ -32,6 +36,8 @@ public class AmzAdvOperationController {
     private AmzAdvKeywordService amzAdvKeywordService;
     @Resource
     private AmzAdvBidStrategyService amzAdvBidStrategyService;
+    @Resource
+    private AmzAdvCampaignMapper amzAdvCampaignMapper;
 
     // ========== 广告活动管理 ==========
     
@@ -125,14 +131,38 @@ public class AmzAdvOperationController {
 
     @GetMapping("/keyword/get/{id}")
     @Operation(summary = "获取关键词")
-    public CommonResult<AmzAdvKeywordDO> getKeyword(@PathVariable("id") Long id) {
-        return success(amzAdvKeywordService.getAmzAdvKeyword(id));
+    public CommonResult<AmzAdvKeywordRespVO> getKeyword(@PathVariable("id") Long id) {
+        AmzAdvKeywordDO keywordDO = amzAdvKeywordService.getAmzAdvKeyword(id);
+        return success(buildKeywordRespVO(keywordDO));
     }
 
     @GetMapping("/keyword/page")
     @Operation(summary = "分页获取关键词")
-    public CommonResult<PageResult<AmzAdvKeywordDO>> getKeywordPage(@Valid AmzAdvKeywordPageReqVO pageReqVO) {
-        return success(amzAdvKeywordService.getAmzAdvKeywordPage(pageReqVO));
+    public CommonResult<PageResult<AmzAdvKeywordRespVO>> getKeywordPage(@Valid AmzAdvKeywordPageReqVO pageReqVO) {
+        PageResult<AmzAdvKeywordDO> pageResult = amzAdvKeywordService.getAmzAdvKeywordPage(pageReqVO);
+        List<AmzAdvKeywordRespVO> voList = pageResult.getList().stream()
+                .map(this::buildKeywordRespVO)
+                .toList();
+        return success(new PageResult<>(voList, pageResult.getTotal()));
+    }
+
+    private AmzAdvKeywordRespVO buildKeywordRespVO(AmzAdvKeywordDO keywordDO) {
+        if (keywordDO == null) return null;
+        AmzAdvKeywordRespVO vo = BeanUtils.toBean(keywordDO, AmzAdvKeywordRespVO.class);
+        if (vo.getBid() != null && vo.getCampaignId() != null) {
+            // Retrieve campaign to get bidding modifiers (assuming campaignId string in keyword matches campaignId string in campaign)
+            AmzAdvCampaignDO campaignDO = amzAdvCampaignMapper.selectOne(AmzAdvCampaignDO::getCampaignId, vo.getCampaignId());
+            if (campaignDO != null && campaignDO.getDynamicBidding() != null && campaignDO.getDynamicBidding().getPlacementBidding() != null) {
+                for (AmzAdvCampaignDO.PlacementBidding pb : campaignDO.getDynamicBidding().getPlacementBidding()) {
+                    if ("PLACEMENT_TOP_OF_SEARCH".equals(pb.getPlacement()) && pb.getPercentage() != null) {
+                        vo.setCalculatedTopBid(vo.getBid() * (1 + pb.getPercentage() / 100.0));
+                    } else if ("PLACEMENT_PRODUCT_PAGE".equals(pb.getPlacement()) && pb.getPercentage() != null) {
+                        vo.setCalculatedProductPageBid(vo.getBid() * (1 + pb.getPercentage() / 100.0));
+                    }
+                }
+            }
+        }
+        return vo;
     }
 
     // ========== 出价策略管理 ==========
