@@ -33,9 +33,7 @@ public class AdsAdGroupController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-ad-group:query')")
     public CommonResult<PageResult<AdsAdGroupRespVO>> getAdGroupPage(@Valid @RequestBody AdsAdGroupPageReqVO pageReqVO) {
         PageResult<AdsAdGroupDO> pageResult = adsAdGroupService.getAdGroupPage(pageReqVO);
-        PageResult<AdsAdGroupRespVO> resultVO = BeanUtils.toBean(pageResult, AdsAdGroupRespVO.class);
-        // We'll need platform here too. For now let's focus on Campaign as per user request.
-        return success(resultVO);
+        return success(BeanUtils.toBean(pageResult, AdsAdGroupRespVO.class));
     }
 
     @PutMapping("/update-status")
@@ -58,7 +56,9 @@ public class AdsAdGroupController {
     public CommonResult<AdsAdGroupRespVO> getAdGroup(@RequestParam("id") Long id) {
         AdsAdGroupDO adGroup = adsAdGroupService.getAdGroup(id);
         AdsAdGroupRespVO respVO = BeanUtils.toBean(adGroup, AdsAdGroupRespVO.class);
-        // Populate platform if needed
+        if (respVO != null) {
+            respVO.setAttributes(adsAdGroupService.getAdGroupAttributes(id));
+        }
         return success(respVO);
     }
 

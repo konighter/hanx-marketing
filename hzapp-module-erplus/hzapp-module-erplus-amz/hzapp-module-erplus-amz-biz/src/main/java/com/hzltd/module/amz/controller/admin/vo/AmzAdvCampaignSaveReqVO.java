@@ -4,6 +4,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.List;
+
 @Schema(description = "管理后台 - 亚马逊广告活动创建/更新 Request VO")
 @Data
 public class AmzAdvCampaignSaveReqVO {
@@ -37,4 +39,25 @@ public class AmzAdvCampaignSaveReqVO {
 
     @Schema(description = "描述", example = "这是夏季促销活动的描述")
     private String description;
+
+    @Schema(description = "竞价和位置出价策略")
+    private DynamicBidding dynamicBidding;
+
+    @Data
+    public static class DynamicBidding {
+        @Schema(description = "竞价策略: LEGACY_FOR_SALES, AUTO_FOR_SALES, MANUAL, RULE_BASED_BIDDING")
+        private String strategy;
+
+        @Schema(description = "展示位置出价调整")
+        private List<PlacementBidding> placementBidding;
+    }
+
+    @Data
+    public static class PlacementBidding {
+        @Schema(description = "调整百分比 (如 50 表示 +50%)")
+        private Integer percentage;
+
+        @Schema(description = "展示位置: PLACEMENT_PRODUCT_PAGE, PLACEMENT_TOP_OF_SEARCH 等")
+        private String placement;
+    }
 }

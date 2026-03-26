@@ -1,23 +1,20 @@
 package com.hzltd.module.erplus.adv.metadata.service.campaign;
 
+import cn.hutool.core.collection.CollUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
+import com.hzltd.module.adv.enums.AdsStatusEnum;
 import com.hzltd.module.adv.model.AdsBudgetUpdateRequest;
 import com.hzltd.module.adv.model.AdsStatusUpdateRequest;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignScheduleDO;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupMapper;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsCampaignMapper;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsCampaignScheduleMapper;
+import com.hzltd.module.erplus.adv.dal.dataobject.*;
+import com.hzltd.module.erplus.adv.dal.mysql.*;
+import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupUpdateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
@@ -29,18 +26,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
-import java.util.Map;
-import java.util.Set;
+import java.math.BigDecimal;
+import java.time.*;
+import java.util.*;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.module.adv.enums.AdsStatusEnum.*;
 import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
-
 
 /**
  * 广告计划 Service 实现类
@@ -62,6 +54,8 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
     private AdsPlatformAdapterFactory adsPlatformAdapterFactory;
     @Resource
     private AdsCampaignScheduleMapper adsCampaignScheduleMapper;
+    @Resource
+    private AdsCampaignAttributeMapper adsCampaignAttributeMapper;
     @Resource
     private ObjectMapper objectMapper;
 
@@ -235,17 +229,6 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
             }
         }
 
-        // 2. 停用状态特殊处理
-        if (STOPPED.getCode().equals(status)) {
-            // 2.1 本地停用：不进行平台同步，仅更新本地状态
-            updateCampaignStatusLocal(id, status);
-            
-            // 2.2 删除调度任务
-            adsCampaignScheduleMapper.deleteByCampaignId(id);
-            log.info("[updateCampaignStatus] 广告计划已在本地停用，删除调度任务: campaignId={}", id);
-            return;
-        }
-
         // 3. 平台同步
         AdsAccountDO account = adsAccountMapper.selectById(campaign.getAccountId());
         if (account != null && account.getPlatform() != null) {
@@ -261,15 +244,15 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
                 if (success) {
                     updateCampaignStatusLocal(id, status);
 
-                    // 1. 如果新状态是 ENABLED，触发计算。
+                    // 1. 如果新状态是 ENABLED/PAUSED，触发计算。
                     // 注意：这里使用 reconcile=false (策略A1)，即手动操作优先。
                     // 仅重算下一次切换点，不立即强制将状态改回网格预定状态，直到下一个调度点到来。
-                    if (ENABLED.getCode().equals(status)) {
+                    if (ENABLED.getCode().equals(status) || PAUSED.getCode().equals(status)) {
                         calculateAndSaveNextTransition(id, campaign.getDeliverySchedule(), false);
                     }
                     
-                    // 2. 如果新状态是 ARCHIVED，由于是终态，清理掉该计划的所有调度记录
-                    if (ARCHIVED.getCode().equals(status)) {
+                    // 2. 如果新状态 is ARCHIVED/STOPPED，清理掉该计划的所有调度记录
+                    if (ARCHIVED.getCode().equals(status) || STOPPED.getCode().equals(status)) {
                         adsCampaignScheduleMapper.deleteByCampaignId(id);
                     }
                 }
@@ -281,7 +264,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void updateCampaignBudget(Long id, java.math.BigDecimal budget) {
+    public void updateCampaignBudget(Long id, BigDecimal budget) {
         AdsCampaignDO campaign = adsCampaignMapper.selectById(id);
         if (campaign == null) {
             throw exception(ADS_CAMPAIGN_NOT_EXISTS);
@@ -302,11 +285,9 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
                     updateCampaignBudgetLocal(id, budget);
                 }
             } catch (Exception e) {
-                log.warn("[updateCampaignBudget] 平台预算同步异常: campaignId={}, platform={}", id, account.getPlatform(), e);
+                log.warn("[updateCampaignBudget] platform budget sync error: campaignId={}, platform={}", id, account.getPlatform(), e);
             }
         }
-
-
     }
 
     @Override
@@ -315,9 +296,89 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
     }
 
     @Override
-    public String getPlatformByAccountId(Long accountId) {
-        AdsAccountDO account = adsAccountMapper.selectById(accountId);
-        return account != null ? account.getPlatform() : null;
+    public Map<String, Object> getCampaignAttributes(Long campaignId) {
+        List<AdsCampaignAttributeDO> attributeDOs = adsCampaignAttributeMapper.selectList(
+                AdsCampaignAttributeDO::getCampaignId, campaignId);
+        if (CollectionUtils.isEmpty(attributeDOs)) {
+            return null;
+        }
+        Map<String, Object> map = new HashMap<>();
+        for (AdsCampaignAttributeDO attr : attributeDOs) {
+            try {
+                Object value;
+                if (StringUtils.isNotEmpty(attr.getAttrValueClass())) {
+                    value = objectMapper.readValue(attr.getAttrValue(), Class.forName(attr.getAttrValueClass()));
+                } else {
+                    value = objectMapper.readValue(attr.getAttrValue(), Object.class);
+                }
+                map.put(attr.getAttrKey(), value);
+            } catch (Exception e) {
+                log.warn("[getCampaignAttributes] error parsing campaign attribute, campaignId={}, key={}", campaignId, attr.getAttrKey(), e);
+            }
+        }
+        return map;
+    }
+
+    @Override
+    public List<AdsCampaignDO> getCampaignListByAccount(Long accountId) {
+        return adsCampaignMapper.selectList(AdsCampaignDO::getAccountId, accountId);
+    }
+
+    @Override
+    public AdsCampaignDO getCampaignByExternalId(Long accountId, String externalId) {
+        return adsCampaignMapper.selectByAccountAndExternalId(accountId, externalId);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Long saveCampaign(Long accountId, AdsCampaignVO vo) {
+        AdsCampaignDO existing = adsCampaignMapper.selectByAccountAndExternalId(accountId, vo.getExternalId());
+
+        if (existing == null) {
+            existing = new AdsCampaignDO();
+            existing.setAccountId(accountId);
+            existing.setExternalId(vo.getExternalId());
+        }
+
+        // 当本地是停用, 平台是暂停时, 不更新本地状态
+        if (!(STOPPED.getCode().equals(existing.getStatus()) || PAUSED.getCode().equals(vo.getStatus()))) {
+            existing.setStatus(vo.getStatus());
+        }
+
+        existing.setName(vo.getName());
+        existing.setCampaignType(vo.getCampaignType());
+        existing.setObjective(vo.getObjective());
+        existing.setBudgetType(vo.getBudgetType());
+        existing.setDailyBudget(vo.getDailyBudget());
+        existing.setTotalBudget(vo.getTotalBudget());
+        existing.setStartDate(vo.getStartDate());
+        existing.setEndDate(vo.getEndDate());
+        existing.setPlatform(vo.getPlatform());
+        existing.setExtData(vo.getExtData());
+        existing.setSyncedAt(LocalDateTime.now());
+
+        adsCampaignMapper.insertOrUpdate(existing);
+
+        // 保存属性
+        saveCampaignAttributes(existing.getId(), vo.getAttributes());
+        return existing.getId();
+    }
+
+    private void saveCampaignAttributes(Long campaignId, Map<String, Object> attributes) {
+        if (CollUtil.isEmpty(attributes)) {
+            return;
+        }
+        // 简单处理：每次同步都先删除旧属性，再插入新属性
+        adsCampaignAttributeMapper.deleteByCampaignId(campaignId, "PLATFORM");
+        attributes.forEach((key, value) -> {
+            AdsCampaignAttributeDO attr = new AdsCampaignAttributeDO();
+            attr.setCampaignId(campaignId);
+            attr.setAttrKey(key);
+            attr.setAttrValue(JsonUtils.toJsonString(value));
+            attr.setAttrValueClass(value.getClass().getName());
+            attr.setAttrType("PLATFORM"); // 默认都是平台属性
+            adsCampaignAttributeMapper.insert(attr);
+        });
     }
 
     private void updateCampaignStatusLocal(Long id, String status) {
@@ -327,7 +388,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
         adsCampaignMapper.updateById(updateObj);
     }
 
-    private void updateCampaignBudgetLocal(Long id, java.math.BigDecimal budget) {
+    private void updateCampaignBudgetLocal(Long id, BigDecimal budget) {
         AdsCampaignDO updateObj = new AdsCampaignDO();
         updateObj.setId(id);
         updateObj.setDailyBudget(budget);

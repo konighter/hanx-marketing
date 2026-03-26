@@ -47,7 +47,7 @@
             >
               <span class="truncate">{{ scope.row.name }}</span>
             </el-link>
-            <div class="flex items-center text-12px text-gray-400 mt-2px">
+            <div class="flex items-center text-12px text-[var(--el-text-color-placeholder)] mt-2px">
               <span class="truncate">ID: {{ scope.row.externalId }}</span>
               <el-button
                 link
@@ -114,8 +114,8 @@
           <div class="text-12px">
             <span>{{ formatPast(scope.row.startDate, 'YYYY-MM-DD') }}</span>
             
-            <span v-if=scope.row.endDate>~
-            <span class="text-gray-400">{{ scope.row.endDate ? formatPast(scope.row.endDate, 'YYYY-MM-dd') : '-' }}</span>
+            <span v-if="scope.row.endDate">~
+            <span class="text-[var(--el-text-color-placeholder)]">{{ scope.row.endDate ? formatPast(scope.row.endDate, 'YYYY-MM-DD') : '-' }}</span>
             </span>
           </div>
         </template>

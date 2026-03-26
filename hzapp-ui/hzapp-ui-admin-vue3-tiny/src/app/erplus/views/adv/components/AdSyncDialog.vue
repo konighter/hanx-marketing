@@ -37,12 +37,12 @@
             value-format="YYYY-MM-DD"
             class="!w-full"
           />
-          <div class="text-gray-400 text-12px mt-1">
+          <div class="text-[var(--el-text-color-placeholder)] text-12px mt-1">
             建议同步最近 7-14 天的数据以确保准确性。
           </div>
         </el-form-item>
         
-        <div v-else class="text-gray-400 text-12px ml-100px mb-10px">
+        <div v-else class="text-[var(--el-text-color-placeholder)] text-12px ml-100px mb-10px">
           全量同步将拉取该账户下的所有历史数据，耗时可能较长，请耐心等待。
         </div>
       </el-form>

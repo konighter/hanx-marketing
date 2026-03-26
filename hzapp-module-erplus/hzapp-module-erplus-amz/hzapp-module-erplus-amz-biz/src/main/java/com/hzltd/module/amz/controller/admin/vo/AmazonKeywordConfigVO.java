@@ -40,4 +40,25 @@ public class AmazonKeywordConfigVO {
                 .extendedData(spKeyword.getExtendedData())
                 .build();
     }
+
+    public java.util.Map<String, Object> toAttributes() {
+        java.util.Map<String, Object> attrs = new java.util.HashMap<>();
+        if (profileId != null) attrs.put("amz.profile_id", profileId);
+        if (extendedData != null) attrs.put("amz.extended_data", extendedData);
+        if (globalKeywordId != null) attrs.put("amz.global_keyword_id", globalKeywordId);
+        if (nativeLanguageKeyword != null) attrs.put("amz.native_language_keyword", nativeLanguageKeyword);
+        if (nativeLanguageLocale != null) attrs.put("amz.native_language_locale", nativeLanguageLocale);
+        return attrs;
+    }
+
+    public static AmazonKeywordConfigVO fromAttributes(java.util.Map<String, Object> attributes) {
+        if (attributes == null) return null;
+        return AmazonKeywordConfigVO.builder()
+                .profileId((String) attributes.get("amz.profile_id"))
+                .extendedData(attributes.get("amz.extended_data"))
+                .globalKeywordId((String) attributes.get("amz.global_keyword_id"))
+                .nativeLanguageKeyword((String) attributes.get("amz.native_language_keyword"))
+                .nativeLanguageLocale((String) attributes.get("amz.native_language_locale"))
+                .build();
+    }
 }

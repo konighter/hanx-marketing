@@ -43,6 +43,11 @@ public class AdsAdDO extends BaseDO {
     private Long accountId;
 
     /**
+     * 广告平台 (AMAZON, GOOGLE, etc.)
+     */
+    private String platform;
+
+    /**
      * 平台原始广告ID
      */
     private String externalId;
@@ -91,6 +96,18 @@ public class AdsAdDO extends BaseDO {
      * 平台审核状态 (APPROVED / PENDING / REJECTED)
      */
     private String reviewStatus;
+
+    /**
+     * 广告ASIN (亚马逊专用)
+     */
+    @TableField(exist = false)
+    private String asin;
+
+    /**
+     * 广告SKU (亚马逊专用)
+     */
+    @TableField(exist = false)
+    private String sku;
 
     /**
      * 平台扩展字段 (JSON)

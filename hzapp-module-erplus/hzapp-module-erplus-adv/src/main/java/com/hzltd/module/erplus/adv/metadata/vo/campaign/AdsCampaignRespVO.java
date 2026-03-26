@@ -7,6 +7,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Schema(description = "管理后台 - 广告计划响应 VO")
 @Data
@@ -67,6 +68,9 @@ public class AdsCampaignRespVO {
 
     @Schema(description = "账号平台", example = "AMAZON")
     private String platform;
+
+    @Schema(description = "扩展属性")
+    private Map<String, Object> attributes;
 
     @Schema(description = "扩展数据", example = "{\"platformConfig\": {}}")
     private Object extData;

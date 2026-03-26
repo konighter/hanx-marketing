@@ -55,7 +55,20 @@ public class AdsAdController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-ad:query')")
     public CommonResult<AdsAdRespVO> getAd(@RequestParam("id") Long id) {
         AdsAdDO ad = adsAdService.getAd(id);
-        return success(BeanUtils.toBean(ad, AdsAdRespVO.class));
+        AdsAdRespVO respVO = BeanUtils.toBean(ad, AdsAdRespVO.class);
+        if (respVO != null) {
+            respVO.setAttributes(adsAdService.getAdAttributes(id));
+            // 如果属性中包含 asin/sku，则回填到 VO 字段中 (因为 DO 中已标记为 exist=false)
+            if (respVO.getAttributes() != null) {
+                if (respVO.getAttributes().containsKey("amz.asin")) {
+                    respVO.setAsin((String) respVO.getAttributes().get("amz.asin"));
+                }
+                if (respVO.getAttributes().containsKey("amz.sku")) {
+                    respVO.setSku((String) respVO.getAttributes().get("amz.sku"));
+                }
+            }
+        }
+        return success(respVO);
     }
 
 }

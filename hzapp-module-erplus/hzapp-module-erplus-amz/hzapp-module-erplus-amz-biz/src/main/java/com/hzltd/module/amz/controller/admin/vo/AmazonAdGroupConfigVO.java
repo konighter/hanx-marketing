@@ -93,4 +93,32 @@ public class AmazonAdGroupConfigVO {
                 .extendedData(spAdGroup.getExtendedData())
                 .build();
     }
+
+    public java.util.Map<String, Object> toAttributes() {
+        java.util.Map<String, Object> attrs = new java.util.HashMap<>();
+        if (profileId != null) attrs.put("amz.profile_id", profileId);
+        if (extendedData != null) attrs.put("amz.extended_data", extendedData);
+        if (globalAdGroupId != null) attrs.put("amz.global_ad_group_id", globalAdGroupId);
+        if (targetingType != null) attrs.put("amz.targeting_type", targetingType);
+        if (keywordTargetings != null) attrs.put("amz.keyword_targetings", keywordTargetings);
+        if (productTargetings != null) attrs.put("amz.product_targetings", productTargetings);
+        if (negativeKeywords != null) attrs.put("amz.negative_keywords", negativeKeywords);
+        if (negativeTargetings != null) attrs.put("amz.negative_targetings", negativeTargetings);
+        return attrs;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static AmazonAdGroupConfigVO fromAttributes(java.util.Map<String, Object> attributes) {
+        if (attributes == null) return null;
+        return AmazonAdGroupConfigVO.builder()
+                .profileId((String) attributes.get("amz.profile_id"))
+                .extendedData(attributes.get("amz.extended_data"))
+                .globalAdGroupId((String) attributes.get("amz.global_ad_group_id"))
+                .targetingType((String) attributes.get("amz.targeting_type"))
+                .keywordTargetings((List<KeywordTargeting>) attributes.get("amz.keyword_targetings"))
+                .productTargetings((List<ProductTargeting>) attributes.get("amz.product_targetings"))
+                .negativeKeywords((List<com.hzltd.module.amz.api.adv.model.sp.AdsSpNegativeKeyword>) attributes.get("amz.negative_keywords"))
+                .negativeTargetings((List<com.hzltd.module.amz.api.adv.model.sp.AdsSpNegativeTarget>) attributes.get("amz.negative_targetings"))
+                .build();
+    }
 }

@@ -36,6 +36,11 @@ public class AdsCampaignDO extends BaseDO {
     private Long accountId;
 
     /**
+     * 广告平台 (AMAZON, GOOGLE, etc.)
+     */
+    private String platform;
+
+    /**
      * 平台原始 Campaign ID
      */
     private String externalId;

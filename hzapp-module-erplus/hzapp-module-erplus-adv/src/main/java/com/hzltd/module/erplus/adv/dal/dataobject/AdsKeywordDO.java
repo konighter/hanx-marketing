@@ -34,6 +34,12 @@ public class AdsKeywordDO extends BaseDO {
     private Long campaignId;
     /** 关联广告账户ID (冗余) */
     private Long accountId;
+
+    /**
+     * 广告平台 (AMAZON, GOOGLE, etc.)
+     */
+    private String platform;
+
     /** 平台关键词ID */
     private String externalId;
     /** 关键词文本 */
@@ -51,6 +57,8 @@ public class AdsKeywordDO extends BaseDO {
     /** 平台扩展字段 (JSON) */
     @TableField(typeHandler = JacksonTypeHandler.class)
     private Object extData;
-    /** 上次同步时间 */
+    /**
+     * 上次从平台同步的时间
+     */
     private LocalDateTime syncedAt;
 }

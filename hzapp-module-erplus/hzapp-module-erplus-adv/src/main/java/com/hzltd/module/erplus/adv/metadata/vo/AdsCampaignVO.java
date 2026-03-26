@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Map;
 
 /**
  * 广告计划 VO
@@ -27,7 +28,14 @@ public class AdsCampaignVO {
     private BigDecimal totalBudget;
     private LocalDate startDate;
     private LocalDate endDate;
-//    private String biddingStrategy;
+    /**
+     * 广告平台 (AMAZON, GOOGLE, etc.)
+     */
+    private String platform;
+    /**
+     * 扩展属性 (Map 格式)
+     */
+    private Map<String, Object> attributes;
     private Object extData; // JSON or Object
 
 }

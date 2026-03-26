@@ -2,7 +2,10 @@ package com.hzltd.module.erplus.adv.metadata.service.ad;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdDO;
+import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
+
+import java.util.Map;
 
 /**
  * 广告 Service 接口
@@ -32,5 +35,20 @@ public interface AdsAdService {
      * @return 广告
      */
     AdsAdDO getAd(Long id);
+
+    /**
+     * 获取广告扩展属性
+     * @param id 广告ID
+     * @return 属性 Map
+     */
+    Map<String, Object> getAdAttributes(Long id);
+
+    /**
+     * 保存广告（用于同步）
+     * @param accountId 账号ID
+     * @param vo 广告数据
+     * @return 本地广告ID
+     */
+    Long saveAd(Long accountId, AdsAdVO vo);
 
 }

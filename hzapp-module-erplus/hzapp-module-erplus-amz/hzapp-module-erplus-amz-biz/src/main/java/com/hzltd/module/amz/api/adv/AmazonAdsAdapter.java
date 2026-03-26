@@ -12,6 +12,7 @@ import com.google.common.collect.Sets;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.adv.enums.AdsStatusEnum;
 import com.hzltd.module.adv.model.*;
 import com.hzltd.module.amz.api.adv.model.sp.*;
 import com.hzltd.module.amz.api.adv.service.AdsAmazonProfileService;
@@ -207,6 +208,8 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                     config.setOptimizationRules(optRules);
                 }
 
+                vo.setPlatform(AdsPlatformEnum.AMAZON.getCode());
+                vo.setAttributes(config.toAttributes());
                 vo.setExtData(buildExtData(config));
                 allCampaigns.add(vo);
             }
@@ -318,6 +321,8 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                     config.setNegativeTargetings(negTargetList);
                 }
 
+                vo.setPlatform(AdsPlatformEnum.AMAZON.getCode());
+                vo.setAttributes(config.toAttributes());
                 vo.setExtData(buildExtData(config));
                 allAdGroups.add(vo);
             }
@@ -340,6 +345,8 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                     AdsKeywordVO vo = k.toVO();
                     AmazonKeywordConfigVO config = AmazonKeywordConfigVO.fromSpKeyword(k);
                     config.setProfileId(profileId);
+                    vo.setPlatform(AdsPlatformEnum.AMAZON.getCode());
+                    vo.setAttributes(config.toAttributes());
                     vo.setExtData(buildExtData(config));
                     allTargets.add(vo);
                 });
@@ -380,6 +387,8 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                     AdsAdVO vo = a.toVO();
                     AmazonAdConfigVO config = AmazonAdConfigVO.fromSpProductAd(a);
                     config.setProfileId(profileId);
+                    vo.setPlatform(AdsPlatformEnum.AMAZON.getCode());
+                    vo.setAttributes(config.toAttributes());
                     vo.setExtData(buildExtData(config));
                     allAds.add(vo);
                 });
@@ -429,8 +438,12 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
         String entityId = request.getEntityId();
         String status = request.getStatus();
 
+
         switch (request.getEntityType()) {
             case CAMPAIGN:
+                if (AdsStatusEnum.STOPPED.getCode().equals(status)) {
+                    status = AdsStatusEnum.PAUSED.getCode();
+                }
                 AdsSpCampaign c = AdsSpCampaign.builder().campaignId(entityId).state(status).build();
                 return amazonAdsApiService.updateSpCampaigns(credential, profileId, baseUrl, Collections.singletonList(c)) != null;
             case ADGROUP:

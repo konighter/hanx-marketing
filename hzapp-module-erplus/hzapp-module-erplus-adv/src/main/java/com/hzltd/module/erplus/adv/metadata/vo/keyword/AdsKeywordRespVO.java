@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Schema(description = "管理后台 - 广告关键词响应 VO")
 @Data
@@ -48,5 +49,11 @@ public class AdsKeywordRespVO {
 
     @Schema(description = "创建时间")
     private LocalDateTime createTime;
+
+    @Schema(description = "账号平台", example = "AMAZON")
+    private String platform;
+
+    @Schema(description = "扩展属性")
+    private Map<String, Object> attributes;
 
 }
