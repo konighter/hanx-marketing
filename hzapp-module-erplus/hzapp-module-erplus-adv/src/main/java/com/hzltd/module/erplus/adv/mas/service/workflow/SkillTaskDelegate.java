@@ -1,7 +1,7 @@
-package com.hzltd.module.erplus.adv.service.mas;
+package com.hzltd.module.erplus.adv.mas.service.workflow;
 
 import com.hzltd.framework.tenant.core.context.TenantContextHolder;
-import com.hzltd.module.erplus.adv.service.MasSkillService;
+import com.hzltd.module.erplus.adv.mas.service.MasSkillService;
 import com.hzltd.module.erplus.ai.mas.adk.SkillAgentFactory;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

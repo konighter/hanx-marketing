@@ -1,11 +1,11 @@
-package com.hzltd.module.erplus.adv.dal.dataobject.mas;
+package com.hzltd.module.erplus.adv.mas.dal.dataobject;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.FlowConfigVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.FlowConfigVO;
 import lombok.*;
 import org.apache.commons.lang3.StringUtils;
 

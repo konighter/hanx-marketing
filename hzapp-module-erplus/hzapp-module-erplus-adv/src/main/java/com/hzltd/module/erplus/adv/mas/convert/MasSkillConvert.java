@@ -1,7 +1,7 @@
-package com.hzltd.module.erplus.adv.convert.mas;
+package com.hzltd.module.erplus.adv.mas.convert;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillInstanceVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.MasSkillInstanceVO;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceRelDO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

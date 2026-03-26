@@ -1,10 +1,10 @@
-package com.hzltd.module.erplus.adv.service;
+package com.hzltd.module.erplus.adv.mas.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.FlowConfigVO;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.StrategyInstructionVO;
-import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.FlowConfigVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.StrategyInstructionVO;
+import com.hzltd.module.erplus.adv.mas.dal.dataobject.MasSkillDefDO;
 import com.hzltd.module.erplus.ai.workflow.MasWorkflowManager;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

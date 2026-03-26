@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.adv.dal.dataobject.mas;
+package com.hzltd.module.erplus.adv.mas.dal.dataobject;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

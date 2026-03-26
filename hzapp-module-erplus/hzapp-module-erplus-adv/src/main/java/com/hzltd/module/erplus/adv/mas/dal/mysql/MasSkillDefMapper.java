@@ -1,7 +1,7 @@
-package com.hzltd.module.erplus.adv.dal.mysql.mas;
+package com.hzltd.module.erplus.adv.mas.dal.mysql;
 
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
-import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
+import com.hzltd.module.erplus.adv.mas.dal.dataobject.MasSkillDefDO;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

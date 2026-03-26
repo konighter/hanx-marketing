@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.adv.service;
+package com.hzltd.module.erplus.adv.mas.service;
 
 import com.google.common.base.Joiner;
 import com.hzltd.framework.common.pojo.PageParam;
@@ -6,13 +6,13 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.tenant.core.context.TenantContextHolder;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillInstanceMessageVO;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillInstanceVO;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.MasSkillListVO;
-import com.hzltd.module.erplus.adv.controller.admin.mas.vo.StrategyInstructionVO;
-import com.hzltd.module.erplus.adv.convert.mas.MasSkillConvert;
-import com.hzltd.module.erplus.adv.dal.dataobject.mas.MasSkillDefDO;
-import com.hzltd.module.erplus.adv.dal.mysql.mas.MasSkillDefMapper;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.MasSkillInstanceMessageVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.MasSkillInstanceVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.MasSkillListVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.StrategyInstructionVO;
+import com.hzltd.module.erplus.adv.mas.convert.MasSkillConvert;
+import com.hzltd.module.erplus.adv.mas.dal.dataobject.MasSkillDefDO;
+import com.hzltd.module.erplus.adv.mas.dal.mysql.MasSkillDefMapper;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceLogDO;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceRelDO;
 import com.hzltd.module.erplus.ai.dal.mysql.mas.MasSkillInstanceLogMapper;

@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.adv.controller.admin.mas.vo;
+package com.hzltd.module.erplus.adv.mas.controller.admin.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
