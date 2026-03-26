@@ -45,7 +45,7 @@
             >
               <span class="truncate">{{ scope.row.keywordText }}</span>
             </el-link>
-            <div class="flex items-center text-12px text-gray-400 mt-2px">
+            <div class="flex items-center text-12px text-[var(--el-text-color-placeholder)] mt-2px">
               <span class="truncate">ID: {{ scope.row.externalId }}</span>
             </div>
           </div>

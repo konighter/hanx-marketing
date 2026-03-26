@@ -1,7 +1,7 @@
 <template>
   <div class="ad-account-data-analysis" v-loading="loading">
     <!-- 1. 全局筛选器 (Date & Granularity) -->
-    <div class="flex items-center justify-between mb-20px bg-white p-15px rounded-8px shadow-sm border border-gray-100 sticky top-0 z-10">
+    <div class="flex items-center justify-between mb-20px bg-[var(--el-bg-color)] p-15px rounded-8px shadow-sm border border-[var(--el-border-color-lighter)] sticky top-0 z-10">
       <div class="flex items-center gap-4">
         <span class="font-bold text-16px">账户概览</span>
         <el-date-picker
@@ -48,21 +48,21 @@
         v-for="metric in displayedMetrics" 
         :key="metric.key" 
         shadow="hover" 
-        class="metric-card border-none ring-1 ring-gray-100"
+        class="metric-card border-none ring-1 ring-[var(--el-border-color-lighter)]"
         :body-style="{ padding: '15px' }"
       >
         <div class="flex flex-col h-full justify-between">
-          <div class="text-gray-500 text-13px mb-2 flex items-center justify-between">
+          <div class="text-[var(--el-text-color-secondary)] text-13px mb-2 flex items-center justify-between">
             {{ metric.label }}
             <el-tooltip :content="metric.desc" placement="top">
-              <Icon icon="ep:question-filled" class="text-gray-300 cursor-help" />
+              <Icon icon="ep:question-filled" class="text-[var(--el-border-color-dark)] cursor-help" />
             </el-tooltip>
           </div>
-          <div class="text-22px font-bold text-gray-800 mb-2">
+          <div class="text-22px font-bold text-[var(--el-text-color-primary)] mb-2">
             {{ metric.prefix }}{{ metric.value }}{{ metric.suffix }}
           </div>
           <div class="flex items-center text-12px mt-1">
-            <span class="text-gray-400 mr-2">环比</span>
+            <span class="text-[var(--el-text-color-placeholder)] mr-2">环比</span>
             <span :class="metric.trend >= 0 ? 'text-green-500' : 'text-red-500'" class="flex items-center font-medium">
               <Icon :icon="metric.trend >= 0 ? 'ep:caret-top' : 'ep:caret-bottom'" />
               {{ Math.abs(metric.trend) }}%
@@ -81,7 +81,7 @@
             数据趋势图
           </div>
         </template>
-        <div class="p-4 bg-white rounded-b-8px">
+        <div class="p-4 bg-[var(--el-bg-color)] rounded-b-8px">
           <AdDataChart
             :account-id="accountId"
             entity-type="ACCOUNT"
@@ -178,20 +178,20 @@ defineExpose({
 
 .metric-card {
   transition: all 0.3s ease;
-  background: #fff;
+  background: var(--el-bg-color);
 }
 
 .metric-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--el-box-shadow-light);
 }
 
 :deep(.trend-collapse .el-collapse-item__header) {
   height: 48px;
   line-height: 48px;
-  background-color: #f8fafc;
+  background-color: var(--el-fill-color-light);
   border-radius: 8px;
-  border: 1px solid #eef2f7;
+  border: 1px solid var(--el-border-color-lighter);
   transition: all 0.3s;
 }
 
@@ -201,7 +201,7 @@ defineExpose({
 }
 
 :deep(.trend-collapse .el-collapse-item__wrap) {
-  border: 1px solid #eef2f7;
+  border: 1px solid var(--el-border-color-lighter);
   border-top: none;
   border-radius: 0 0 8px 8px;
 }

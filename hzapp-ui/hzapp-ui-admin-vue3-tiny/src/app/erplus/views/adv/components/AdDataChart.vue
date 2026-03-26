@@ -220,6 +220,29 @@ const rightAxisMetrics = ref<string[]>(['spend', 'sales'])
 // 图表数据
 const chartData = ref<any>({})
 
+// 检测是否为暗黑模式
+const isDark = ref(document.documentElement.classList.contains('dark'))
+const observer = new MutationObserver(() => {
+    isDark.value = document.documentElement.classList.contains('dark')
+})
+
+onMounted(() => {
+    observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['class']
+    })
+})
+
+onUnmounted(() => {
+    observer.disconnect()
+})
+
+watch(() => isDark.value, () => {
+    if (chartInstance.value) {
+        updateChart()
+    }
+})
+
 // 类型定义
 interface ChartSeriesItem {
     name: string
@@ -437,14 +460,14 @@ function generateChartOption() {
             position: 'left',
             axisLine: { show: false },
             axisLabel: {
-                color: '#999',
+                color: isDark.value ? '#aaa' : '#999',
                 fontSize: 12
             },
             axisTick: { show: false },
             splitLine: {
                 lineStyle: {
                     type: 'dashed',
-                    color: '#eee'
+                    color: isDark.value ? '#333' : '#eee'
                 }
             }
         })
@@ -457,7 +480,7 @@ function generateChartOption() {
             position: 'right',
             axisLine: { show: false },
             axisLabel: {
-                color: '#999',
+                color: isDark.value ? '#aaa' : '#999',
                 fontSize: 12
             },
             axisTick: { show: false },
@@ -466,32 +489,35 @@ function generateChartOption() {
     }
 
     return {
-        backgroundColor: '#fff',
+        backgroundColor: 'transparent',
         color: colorPalette,
         textStyle: {
             fontFamily: 'Arial, sans-serif',
-            fontSize: 12
+            fontSize: 12,
+            color: isDark.value ? '#eee' : '#333'
         },
         tooltip: {
             trigger: 'axis',
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            borderColor: '#eee',
+            backgroundColor: isDark.value ? '#1e1e1e' : 'rgba(255, 255, 255, 0.95)',
+            borderColor: isDark.value ? '#333' : '#eee',
             borderWidth: 1,
             padding: 12,
             textStyle: {
-                color: '#666',
+                color: isDark.value ? '#bbb' : '#666',
                 fontSize: 12
             },
             extraCssText: 'box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); border-radius: 4px;',
             formatter: function (params: any) {
-                let result = `<div style="font-weight: bold; margin-bottom: 6px; color: #333;">${params[0].name}</div>`
+                const titleColor = isDark.value ? '#fff' : '#333'
+                const textColor = isDark.value ? '#ccc' : '#666'
+                let result = `<div style="font-weight: bold; margin-bottom: 6px; color: ${titleColor};">${params[0].name}</div>`
                 params.forEach((item: any) => {
                     const unit = getMetricUnit(item.seriesName)
                     result += `
             <div style="display: flex; align-items: center; margin: 2px 0;">
               <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background-color: ${item.color}; margin-right: 6px;"></span>
-              <span style="color: #666;">${item.seriesName}:</span>
-              <span style="font-weight: 500; margin-left: 4px; color: #333;">${Number(item.value).toLocaleString()}${unit}</span>
+              <span style="color: ${textColor};">${item.seriesName}:</span>
+              <span style="font-weight: 500; margin-left: 4px; color: ${titleColor};">${Number(item.value).toLocaleString()}${unit}</span>
             </div>
           `
                 })
@@ -503,7 +529,7 @@ function generateChartOption() {
             top: 15,               // 固定15px顶部位置
             left: 'center',
             textStyle: {
-                color: '#666',
+                color: isDark.value ? '#bbb' : '#666',
                 fontSize: isCompactHeight.value ? 10 : 12
             },
             itemWidth: isCompactHeight.value ? 10 : 12,
@@ -523,12 +549,12 @@ function generateChartOption() {
             data: dates,
             axisLine: {
                 lineStyle: {
-                    color: '#eee'
+                    color: isDark.value ? '#333' : '#eee'
                 }
             },
             axisTick: { show: false },
             axisLabel: {
-                color: '#999',
+                color: isDark.value ? '#aaa' : '#999',
                 fontSize: 12
             },
             splitLine: { show: false }
@@ -657,7 +683,7 @@ defineExpose({
 .chart-title {
     font-size: 16px;
     font-weight: 600;
-    color: #303133;
+    color: var(--el-text-color-primary);
 }
 
 .chart-controls {
