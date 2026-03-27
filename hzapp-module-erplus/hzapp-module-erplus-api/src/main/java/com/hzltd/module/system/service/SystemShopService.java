@@ -1,6 +1,6 @@
 package com.hzltd.module.system.service;
 
-import com.hzltd.module.spapi.model.system.ShopModel;
+import com.hzltd.module.system.model.ShopModel;
 
 import java.util.List;
 

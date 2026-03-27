@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.adv.metadata.service.campaign;
 
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.module.adv.model.AdsCampaignResponse;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
@@ -79,6 +80,6 @@ public interface AdsCampaignService {
      * @param vo 计划数据
      * @return 本地计划ID
      */
-    Long saveCampaign(Long accountId, com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO vo);
+    Long saveCampaign(Long accountId, AdsCampaignResponse vo);
 
 }

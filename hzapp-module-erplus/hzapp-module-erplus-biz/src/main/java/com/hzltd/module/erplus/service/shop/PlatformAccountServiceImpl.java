@@ -2,7 +2,6 @@ package com.hzltd.module.erplus.service.shop;
 
 import com.hzltd.module.erplus.dal.dataobject.shop.PlatformAccountDO;
 import com.hzltd.module.erplus.dal.mysql.shop.PlatformAccountMapper;
-import com.hzltd.module.erplus.model.shop.PlatformAccountModel;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

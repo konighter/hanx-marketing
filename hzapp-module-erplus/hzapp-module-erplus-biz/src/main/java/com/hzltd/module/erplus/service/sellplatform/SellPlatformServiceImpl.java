@@ -12,7 +12,7 @@ import com.hzltd.module.erplus.dal.mysql.sellplatform.SellPlatformMapper;
 import com.hzltd.module.spapi.enums.RedisKeyConstants;
 import com.hzltd.module.spapi.enums.ServiceModeEnum;
 import com.hzltd.module.system.service.SystemPlatformService;
-import com.hzltd.module.spapi.model.system.SellPlatformModel;
+import com.hzltd.module.system.model.SellPlatformModel;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;

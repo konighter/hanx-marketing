@@ -2,8 +2,8 @@ package com.hzltd.module.amz.adv.controller.admin.campaign;
 
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.module.amz.adv.dal.dataobject.AmzAdvOptimizationRuleDO;
-import com.hzltd.module.amz.adv.service.AmzAdvCampaignBiddingService;
-import com.hzltd.module.amz.adv.service.AmzAdvRuleService;
+import com.hzltd.module.amz.adv.service.AdsAmazonCampaignBiddingService;
+import com.hzltd.module.amz.adv.service.AdsAmazonRuleService;
 import com.hzltd.module.amz.controller.admin.vo.AmzAdvCampaignSaveReqVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -21,22 +21,22 @@ import static com.hzltd.framework.common.pojo.CommonResult.success;
 public class AmzAdvCampaignBiddingController {
 
     @Resource
-    private AmzAdvCampaignBiddingService amzAdvCampaignBiddingService;
+    private AdsAmazonCampaignBiddingService adsAmazonCampaignBiddingService;
     
     @Resource
-    private AmzAdvRuleService amzAdvRuleService;
+    private AdsAmazonRuleService adsAmazonRuleService;
 
     @PostMapping("/update-bidding")
     @Operation(summary = "更新广告活动特定竞价与位置抢位策略 (Amazon Specific)")
     public CommonResult<Boolean> updateCampaignBiddingAndPlacement(@Valid @RequestBody AmzAdvCampaignSaveReqVO updateReqVO) {
-        amzAdvCampaignBiddingService.updateCampaignBiddingAndPlacement(updateReqVO);
+        adsAmazonCampaignBiddingService.updateCampaignBiddingAndPlacement(updateReqVO);
         return success(true);
     }
     
     @PostMapping("/rule/save")
     @Operation(summary = "保存亚马逊广告特定 Bid Rule 或 Budget Rule")
     public CommonResult<Boolean> saveOptimizationRule(@Valid @RequestBody AmzAdvOptimizationRuleDO reqVO) {
-        amzAdvRuleService.saveOptimizationRule(reqVO);
+        adsAmazonRuleService.saveOptimizationRule(reqVO);
         return success(true);
     }
 

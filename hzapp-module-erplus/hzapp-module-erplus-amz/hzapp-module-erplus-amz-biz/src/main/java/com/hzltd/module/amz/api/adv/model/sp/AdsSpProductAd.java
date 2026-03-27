@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.api.adv.model.sp;
 
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
+import com.hzltd.module.adv.model.AdsAdResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -57,8 +57,8 @@ public class AdsSpProductAd {
         private String catalogSourceCountryCode;
     }
 
-    public AdsAdVO toVO() {
-        return AdsAdVO.builder()
+    public AdsAdResponse toVO() {
+        return AdsAdResponse.builder()
                 .externalId(this.getAdId())
                 .adGroupExternalId(this.getAdGroupId())
                 .sku(this.getSku())

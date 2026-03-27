@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.api.adv.model.sp;
 
-import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
+import com.hzltd.module.adv.model.AdsCampaignResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -166,8 +166,8 @@ public class AdsSpCampaign {
         private String offAmazonBudgetControlStrategy;
     }
 
-    public AdsCampaignVO toVO() {
-        return AdsCampaignVO.builder()
+    public AdsCampaignResponse toVO() {
+        return AdsCampaignResponse.builder()
                 .externalId(this.getCampaignId())
                 .name(this.getName())
                 .campaignType("SP") // Amazon SP API

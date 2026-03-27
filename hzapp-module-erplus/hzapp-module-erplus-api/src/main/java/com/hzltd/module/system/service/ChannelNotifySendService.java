@@ -1,7 +1,7 @@
 package com.hzltd.module.system.service;
 
 import com.hzltd.module.system.enums.NotifyChannelTypeEnum;
-import com.hzltd.module.spapi.model.system.NotifyMessage;
+import com.hzltd.module.system.model.NotifyMessage;
 
 /**
  * 通知发送服务

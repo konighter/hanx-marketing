@@ -23,7 +23,7 @@ import com.hzltd.module.spapi.service.category.CategoryApi;
 import com.hzltd.module.spapi.service.category.CategoryAttributeMappingApi;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.system.service.SystemProductService;
-import com.hzltd.module.spapi.model.system.ProductSpuModel;
+import com.hzltd.module.system.model.ProductSpuModel;
 import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;

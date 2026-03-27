@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.tenant.core.util.TenantUtils;
 import com.hzltd.module.system.service.ChannelNotifySendService;
-import com.hzltd.module.spapi.model.system.NotifyMessage;
+import com.hzltd.module.system.model.NotifyMessage;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import jakarta.annotation.Resource;
 import lombok.Data;

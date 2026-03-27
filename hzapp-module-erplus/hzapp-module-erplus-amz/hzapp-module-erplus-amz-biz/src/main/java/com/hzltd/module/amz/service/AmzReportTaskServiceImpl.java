@@ -5,7 +5,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.amz.api.spapi.AmazonReportService;
+import com.hzltd.module.amz.spapi.AmazonReportService;
 import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskPageReqVO;
 import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskSaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzReportTaskDO;

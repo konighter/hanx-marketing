@@ -32,7 +32,7 @@ public class AmzAdvOperationIntegrationService {
     @Resource
     private AmzAdvKeywordService amzAdvKeywordService;
     @Resource
-    private AmzAdvOperationApiService amzAdvOperationApiService;
+    private AmzAdvOperationApiAdsService amzAdvOperationApiService;
     
     @Resource
     private AmzAdvCampaignMapper amzAdvCampaignMapper;

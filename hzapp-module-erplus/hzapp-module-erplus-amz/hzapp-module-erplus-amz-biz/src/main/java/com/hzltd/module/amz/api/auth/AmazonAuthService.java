@@ -1,18 +1,18 @@
 package com.hzltd.module.amz.api.auth;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.amz.api.spapi.AmazonAccountService;
-import com.hzltd.module.erplus.api.annotations.ServiceRegister;
+import com.hzltd.module.amz.spapi.AmazonAccountService;
+import com.hzltd.module.spapi.api.ServiceRegister;
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.spapi.model.system.ShopModel;
+import com.hzltd.module.system.model.ShopModel;
 import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import com.hzltd.module.spapi.service.authorization.AuthorizationApi;
 import com.hzltd.module.system.service.SystemAuthService;
 import com.hzltd.module.system.service.SystemShopService;
-import com.hzltd.module.erplus.model.shop.PlatformAccountModel;
+import com.hzltd.module.system.model.PlatformAccountModel;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -115,9 +115,7 @@ public class AmazonAuthService implements AuthorizationApi {
             spapiPostAuthorization(authorizationModel);
         } else {
             // 如果是ADV_API授权, 初始化profile
-            advapiPostAuthorization(authorizationModel);
-
-
+            adsApiPostAuthorization(authorizationModel);
         }
 
     }
@@ -187,7 +185,15 @@ public class AmazonAuthService implements AuthorizationApi {
 
     }
 
-    private void advapiPostAuthorization(AuthorizationModel authorizationModel) {
+    private void adsApiPostAuthorization(AuthorizationModel authorizationModel) {
+        // 获取profile, 筛选类型是seller的account, 保存account信息
+
+
+        // 初始化profile, 关联shopId(sellerId + marketplace)
+
+
+        // 初始化profile的订阅等信息
+
 
     }
 }

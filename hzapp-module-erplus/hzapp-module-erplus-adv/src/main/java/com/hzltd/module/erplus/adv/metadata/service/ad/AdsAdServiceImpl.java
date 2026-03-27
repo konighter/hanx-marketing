@@ -16,7 +16,7 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdAttributeMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdMapper;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
+import com.hzltd.module.adv.model.AdsAdResponse;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -125,7 +125,7 @@ public class AdsAdServiceImpl implements AdsAdService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Long saveAd(Long accountId, AdsAdVO vo) {
+    public Long saveAd(Long accountId, AdsAdResponse vo) {
         // 1. 根据外部广告组 ID 解析本地关联 ID
         AdsAdGroupDO adGroup = adsAdGroupService.getAdGroupByAccountAndExternalId(accountId, vo.getAdGroupExternalId());
         if (adGroup == null) {

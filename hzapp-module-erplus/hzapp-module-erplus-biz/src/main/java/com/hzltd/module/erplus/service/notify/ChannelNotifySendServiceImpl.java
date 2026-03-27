@@ -4,7 +4,7 @@ import com.hzltd.module.erplus.dal.dataobject.notify.NotifyChannelDO;
 import com.hzltd.module.system.enums.NotifyChannelTypeEnum;
 import com.hzltd.module.erplus.service.notify.sender.NotifyChannelSender;
 import com.hzltd.module.system.service.ChannelNotifySendService;
-import com.hzltd.module.spapi.model.system.NotifyMessage;
+import com.hzltd.module.system.model.NotifyMessage;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

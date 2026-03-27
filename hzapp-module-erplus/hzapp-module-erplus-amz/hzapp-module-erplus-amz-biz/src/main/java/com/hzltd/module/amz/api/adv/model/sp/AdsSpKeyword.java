@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.api.adv.model.sp;
 
-import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
+import com.hzltd.module.adv.model.AdsTargetResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -51,8 +51,8 @@ public class AdsSpKeyword {
     /** 关键词状态: ENABLED, PAUSED, ARCHIVED */
     private String state;
 
-    public AdsKeywordVO toVO() {
-        return AdsKeywordVO.builder()
+    public AdsTargetResponse toVO() {
+        return AdsTargetResponse.builder()
                 .externalId(this.getKeywordId())
                 .adGroupExternalId(this.getAdGroupId())
                 .keywordText(this.getKeywordText())

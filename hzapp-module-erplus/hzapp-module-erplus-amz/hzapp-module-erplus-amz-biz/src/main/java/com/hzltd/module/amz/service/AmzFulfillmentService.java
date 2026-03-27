@@ -1,7 +1,7 @@
 package com.hzltd.module.amz.service;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.amz.api.spapi.AmzCancelInboundPlanRequest;
+import com.hzltd.module.amz.spapi.AmzCancelInboundPlanRequest;
 import com.hzltd.module.amz.controller.admin.vo.*;
 import com.hzltd.module.amz.dal.dataobject.AmzInboundPlanDO;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.Box;

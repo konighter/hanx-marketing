@@ -1,6 +1,6 @@
 package com.hzltd.module.system.service;
 
-import com.hzltd.module.spapi.model.system.SellPlatformModel;
+import com.hzltd.module.system.model.SellPlatformModel;
 
 public interface SystemPlatformService {
 

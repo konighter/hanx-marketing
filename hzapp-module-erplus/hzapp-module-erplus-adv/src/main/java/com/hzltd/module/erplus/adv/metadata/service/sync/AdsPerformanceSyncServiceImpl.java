@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
-import com.hzltd.module.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.system.enums.AdsPlatformEnum;
 import com.hzltd.module.adv.enums.AdsSyncTaskTypeEnum;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;

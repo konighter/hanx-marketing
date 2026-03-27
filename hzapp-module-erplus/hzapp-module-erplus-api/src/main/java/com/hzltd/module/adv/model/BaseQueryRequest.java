@@ -22,5 +22,10 @@ public class BaseQueryRequest {
      */
     private Long endAt;
 
+    /**
+     * Page or All
+     */
+    private String queryType;
+
 
 }

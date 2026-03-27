@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.adv.metadata.service.ad;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdDO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
+import com.hzltd.module.adv.model.AdsAdResponse;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
 
 import java.util.Map;
@@ -49,6 +49,6 @@ public interface AdsAdService {
      * @param vo 广告数据
      * @return 本地广告ID
      */
-    Long saveAd(Long accountId, AdsAdVO vo);
+    Long saveAd(Long accountId, AdsAdResponse vo);
 
 }

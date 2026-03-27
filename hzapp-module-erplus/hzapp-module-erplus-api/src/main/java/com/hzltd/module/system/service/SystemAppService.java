@@ -1,7 +1,7 @@
 package com.hzltd.module.system.service;
 
 import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.system.AppModel;
+import com.hzltd.module.system.model.AppModel;
 
 public interface SystemAppService {
 

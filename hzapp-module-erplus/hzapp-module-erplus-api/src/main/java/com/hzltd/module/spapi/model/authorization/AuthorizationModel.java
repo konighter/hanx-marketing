@@ -16,6 +16,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AuthorizationModel {
     private Long id;
+    /**
+     * 店铺ID
+     */
+    private Long shopId;
 
     /**
      * 平台类型: AMAZON, TIKTOK

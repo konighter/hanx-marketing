@@ -3,7 +3,7 @@ package com.hzltd.module.amz.service;
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.erplus.api.adptor.RefreshTokenCacheAdaptor;
+import com.hzltd.module.erplus.api.adapter.RefreshTokenCacheAdaptor;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

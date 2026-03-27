@@ -1,7 +1,7 @@
 package com.hzltd.module.spapi.service.category;
 
 import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
-import com.hzltd.module.spapi.model.system.ProductSpuModel;
+import com.hzltd.module.system.model.ProductSpuModel;
 
 import java.util.List;
 

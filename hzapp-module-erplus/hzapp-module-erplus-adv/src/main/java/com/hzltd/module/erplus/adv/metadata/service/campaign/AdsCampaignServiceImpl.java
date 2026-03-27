@@ -7,14 +7,13 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
-import com.hzltd.module.adv.enums.AdsStatusEnum;
 import com.hzltd.module.adv.model.AdsBudgetUpdateRequest;
 import com.hzltd.module.adv.model.AdsStatusUpdateRequest;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.*;
 import com.hzltd.module.erplus.adv.dal.mysql.*;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
+import com.hzltd.module.adv.model.AdsCampaignResponse;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupUpdateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
@@ -331,7 +330,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Long saveCampaign(Long accountId, AdsCampaignVO vo) {
+    public Long saveCampaign(Long accountId, AdsCampaignResponse vo) {
         AdsCampaignDO existing = adsCampaignMapper.selectByAccountAndExternalId(accountId, vo.getExternalId());
 
         if (existing == null) {

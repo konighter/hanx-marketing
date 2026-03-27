@@ -32,4 +32,10 @@ public interface PlatformAuthMapper extends BaseMapperX<PlatformAuthDO> {
             "AND a.deleted = 0 AND s.deleted = 0")
     List<PlatformAuthDO> selectListByShopIdAndUserId(@Param("shopId") Long shopId, @Param("userId") Long userId);
 
+    @Select("SELECT a.* FROM erplus_platform_auth a " +
+            "JOIN erplus_shop_auth s ON a.id = s.auth_id " +
+            "WHERE s.shop_id = #{shopId} AND a.auth_scope = #{authScope} " +
+            "AND s.is_default = 1 AND a.deleted = 0 AND s.deleted = 0")
+    PlatformAuthDO selectDefaultAuthByShopIdAndScope(@Param("shopId") Long shopId, @Param("authScope") String authScope);
+
 }

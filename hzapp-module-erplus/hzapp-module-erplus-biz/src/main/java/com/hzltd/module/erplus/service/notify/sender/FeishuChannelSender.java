@@ -7,7 +7,7 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.hzltd.module.erplus.dal.dataobject.notify.NotifyChannelDO;
 import com.hzltd.module.system.enums.NotifyChannelTypeEnum;
-import com.hzltd.module.spapi.model.system.NotifyMessage;
+import com.hzltd.module.system.model.NotifyMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

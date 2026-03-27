@@ -7,7 +7,7 @@ import com.hzltd.module.amz.dal.dataobject.AmzAdvBidStrategyDO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvCampaignDO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvKeywordDO;
 import com.hzltd.module.amz.dal.mapper.*;
-import com.hzltd.module.amz.service.AmzAdvOperationApiService;
+import com.hzltd.module.amz.service.AmzAdvOperationApiAdsService;
 import com.hzltd.module.amz.service.AmzAdvSyncService;
 import com.hzltd.module.spapi.model.ApiRequest;
 import jakarta.annotation.Resource;
@@ -27,7 +27,7 @@ import java.util.Map;
 public class AmzAdvSyncServiceImpl implements AmzAdvSyncService {
 
     @Resource
-    private AmzAdvOperationApiService amzAdvOperationApiService;
+    private AmzAdvOperationApiAdsService amzAdvOperationApiService;
     @Resource
     private AmzAdvCampaignMapper amzAdvCampaignMapper;
     @Resource

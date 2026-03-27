@@ -1,8 +1,8 @@
 package com.hzltd.module.spapi.model.authorization;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hzltd.module.spapi.model.system.SellPlatformModel;
-import com.hzltd.module.spapi.model.system.ShopModel;
+import com.hzltd.module.system.model.SellPlatformModel;
+import com.hzltd.module.system.model.ShopModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

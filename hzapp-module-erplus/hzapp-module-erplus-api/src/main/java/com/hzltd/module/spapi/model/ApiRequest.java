@@ -3,7 +3,7 @@ package com.hzltd.module.spapi.model;
 import com.hzltd.module.spapi.enums.LanguageEnum;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
 import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.system.BaseCrossRequest;
+import com.hzltd.module.system.model.BaseCrossRequest;
 import lombok.Data;
 
 import java.util.Locale;

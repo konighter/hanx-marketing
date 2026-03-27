@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.adv.metadata.service.adgroup;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
+import com.hzltd.module.adv.model.AdsAdGroupResponse;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupPageReqVO;
 
 import java.util.Map;
@@ -49,7 +49,7 @@ public interface AdsAdGroupService {
      * @param vo 广告组数据
      * @return 本地广告组ID
      */
-    Long saveAdGroup(Long accountId, AdsAdGroupVO vo);
+    Long saveAdGroup(Long accountId, AdsAdGroupResponse vo);
 
     /**
      * 根据计划ID和外部ID查询广告组

@@ -11,12 +11,12 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
-import com.hzltd.module.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.system.enums.AdsPlatformEnum;
 import com.hzltd.module.adv.enums.AdsStatusEnum;
 import com.hzltd.module.adv.model.*;
 import com.hzltd.module.amz.api.adv.model.sp.*;
-import com.hzltd.module.amz.api.adv.service.AdsAmazonProfileService;
-import com.hzltd.module.amz.api.adv.service.AdsAmazonReportService;
+import com.hzltd.module.amz.adv.service.AdsAmazonProfileService;
+import com.hzltd.module.amz.adv.service.AdsAmazonReportService;
 import com.hzltd.module.amz.api.adv.v1.AmazonAdsApiService;
 import com.hzltd.module.amz.api.adv.v1.AmazonSpOptimizationRuleApiService;
 import com.hzltd.module.amz.api.enums.AmazonRegionEnum;
@@ -31,10 +31,10 @@ import com.hzltd.module.erplus.adv.auth.service.AdsAuthService;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.*;
 import com.hzltd.module.erplus.adv.dal.mysql.*;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
+import com.hzltd.module.adv.model.AdsAdGroupResponse;
+import com.hzltd.module.adv.model.AdsAdResponse;
+import com.hzltd.module.adv.model.AdsCampaignResponse;
+import com.hzltd.module.adv.model.AdsTargetResponse;
 import com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleAssociateReqVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -46,8 +46,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
-import static com.hzltd.module.adv.enums.AdsEntityTypeEnum.*;
 
 /**
  * Amazon Ads 平台适配器实现
@@ -152,11 +150,11 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     }
 
     @Override
-    public List<AdsCampaignVO> queryCampaigns(Long accountId, AdsQueryRequest request) {
+    public List<AdsCampaignResponse> queryCampaigns(Long accountId, AdsQueryRequest request) {
         log.info("[queryCampaigns][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
-        List<AdsCampaignVO> allCampaigns = new ArrayList<>();
+        List<AdsCampaignResponse> allCampaigns = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
             String profileId = profile.getProfileId();
@@ -192,7 +190,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
             // 4. 逐 Campaign 将否定词 + Optimization Rules 补充到 platformConfig
             for (AdsSpCampaign c : response.getCampaigns()) {
-                AdsCampaignVO vo = c.toVO();
+                AdsCampaignResponse vo = c.toVO();
                 AmazonCampaignConfigVO config = AmazonCampaignConfigVO.fromSpCampaign(c);
                 config.setProfileId(profileId);
 
@@ -219,11 +217,11 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
 
     @Override
-    public List<AdsAdGroupVO> queryGroups(Long accountId, AdsQueryRequest request) {
+    public List<AdsAdGroupResponse> queryGroups(Long accountId, AdsQueryRequest request) {
         log.info("[queryGroups][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
         List<AdsAmazonProfileDO> profiles = getFilteredProfiles(accountId, request);
-        List<AdsAdGroupVO> allAdGroups = new ArrayList<>();
+        List<AdsAdGroupResponse> allAdGroups = new ArrayList<>();
 
         for (AdsAmazonProfileDO profile : profiles) {
             String profileId = profile.getProfileId();
@@ -272,7 +270,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
 
             // 6. 组装每个 AdGroup VO 并补充配置
             for (AdsSpAdGroup g : response.getAdGroups()) {
-                AdsAdGroupVO vo = g.toVO();
+                AdsAdGroupResponse vo = g.toVO();
                 AmazonAdGroupConfigVO config = AmazonAdGroupConfigVO.fromSpAdGroup(g);
                 config.setProfileId(profileId);
 
@@ -331,10 +329,10 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     }
 
     @Override
-    public List<AdsKeywordVO> queryTargets(Long accountId, AdsQueryRequest request) {
+    public List<AdsTargetResponse> queryTargets(Long accountId, AdsQueryRequest request) {
         log.info("[queryTargets][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
-        List<AdsKeywordVO> allTargets = new ArrayList<>();
+        List<AdsTargetResponse> allTargets = new ArrayList<>();
         for (AdsAmazonProfileDO profile : getFilteredProfiles(accountId, request)) {
             String profileId = profile.getProfileId();
             String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
@@ -342,7 +340,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                     credential, profileId, baseUrl, AdsSpKeywordQueryRequest.from(request));
             if (keywordResponse != null && keywordResponse.getKeywords() != null) {
                 keywordResponse.getKeywords().forEach(k -> {
-                    AdsKeywordVO vo = k.toVO();
+                    AdsTargetResponse vo = k.toVO();
                     AmazonKeywordConfigVO config = AmazonKeywordConfigVO.fromSpKeyword(k);
                     config.setProfileId(profileId);
                     vo.setPlatform(AdsPlatformEnum.AMAZON.getCode());
@@ -357,7 +355,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                     credential, profileId, baseUrl, AdsSpTargetQueryRequest.from(request));
             if (targetResponse != null && targetResponse.getTargets() != null) {
                 targetResponse.getTargets().forEach(t -> {
-                    AdsKeywordVO vo = t.toVO();
+                    AdsTargetResponse vo = t.toVO();
                     // We can reuse AmazonKeywordConfigVO or just put profileId in extData
                     Map<String, Object> extData = new HashMap<>();
                     Map<String, Object> config = new HashMap<>();
@@ -373,10 +371,10 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
     }
 
     @Override
-    public List<AdsAdVO> queryAds(Long accountId, AdsQueryRequest request) {
+    public List<AdsAdResponse> queryAds(Long accountId, AdsQueryRequest request) {
         log.info("[queryAds][Amazon] accountId: {}", accountId);
         AdsAccountCredentialDO credential = adsAuthService.getAccountCredentialByAccount(accountId);
-        List<AdsAdVO> allAds = new ArrayList<>();
+        List<AdsAdResponse> allAds = new ArrayList<>();
         for (AdsAmazonProfileDO profile : getFilteredProfiles(accountId, request)) {
             String profileId = profile.getProfileId();
             String baseUrl = "https://" + AmazonRegionEnum.valueOf(profile.getRegion()).getAdsEndpoint();
@@ -384,7 +382,7 @@ public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPla
                     credential, profileId, baseUrl, AdsSpProductAdQueryRequest.from(request));
             if (response != null && response.getProductAds() != null) {
                 response.getProductAds().forEach(a -> {
-                    AdsAdVO vo = a.toVO();
+                    AdsAdResponse vo = a.toVO();
                     AmazonAdConfigVO config = AmazonAdConfigVO.fromSpProductAd(a);
                     config.setProfileId(profileId);
                     vo.setPlatform(AdsPlatformEnum.AMAZON.getCode());

@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.adv.metadata.service.keyword;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsKeywordDO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
+import com.hzltd.module.adv.model.AdsTargetResponse;
 import com.hzltd.module.erplus.adv.metadata.vo.keyword.AdsKeywordPageReqVO;
 
 import java.util.Map;
@@ -57,6 +57,6 @@ public interface AdsKeywordService {
      * @param vo 关键词数据
      * @return 本地关键词ID
      */
-    Long saveKeyword(Long accountId, AdsKeywordVO vo);
+    Long saveKeyword(Long accountId, AdsTargetResponse vo);
 
 }

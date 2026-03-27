@@ -9,10 +9,10 @@ import com.hzltd.module.erplus.adv.metadata.service.ad.AdsAdService;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
 import com.hzltd.module.erplus.adv.metadata.service.keyword.AdsKeywordService;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
+import com.hzltd.module.adv.model.AdsAdResponse;
+import com.hzltd.module.adv.model.AdsAdGroupResponse;
+import com.hzltd.module.adv.model.AdsCampaignResponse;
+import com.hzltd.module.adv.model.AdsTargetResponse;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -70,18 +70,18 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
         
         // 1. 同步广告计划
         log.info("[syncMetadata] 同步广告计划: accountId={}", accountId);
-        List<AdsCampaignVO> campaigns = adapter.queryCampaigns(accountId, request);
+        List<AdsCampaignResponse> campaigns = adapter.queryCampaigns(accountId, request);
         if (!CollectionUtils.isEmpty(campaigns)) {
-            for (AdsCampaignVO vo : campaigns) {
+            for (AdsCampaignResponse vo : campaigns) {
                 adsCampaignService.saveCampaign(accountId, vo);
             }
         }
 
         // 2. 同步广告组
         log.info("[syncMetadata] 同步广告组: accountId={}", accountId);
-        List<AdsAdGroupVO> adGroups = adapter.queryGroups(accountId, request);
+        List<AdsAdGroupResponse> adGroups = adapter.queryGroups(accountId, request);
         if (!CollectionUtils.isEmpty(adGroups)) {
-            for (AdsAdGroupVO vo : adGroups) {
+            for (AdsAdGroupResponse vo : adGroups) {
                 // 需要根据外部 ID 查找本地计划 ID
                 // 此处假设适配器返回的 VO 中包含足够的上下文，或者后面 saveAdGroup 内部处理
                 adsAdGroupService.saveAdGroup(accountId, vo);
@@ -90,18 +90,18 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
 
         // 3. 同步广告
         log.info("[syncMetadata] 同步广告: accountId={}", accountId);
-        List<AdsAdVO> ads = adapter.queryAds(accountId, request);
+        List<AdsAdResponse> ads = adapter.queryAds(accountId, request);
         if (!CollectionUtils.isEmpty(ads)) {
-            for (AdsAdVO vo : ads) {
+            for (AdsAdResponse vo : ads) {
                 adsAdService.saveAd(accountId, vo);
             }
         }
 
         // 4. 同步关键词/定向
         log.info("[syncMetadata] 同步关键词/定向: accountId={}", accountId);
-        List<AdsKeywordVO> keywords = adapter.queryTargets(accountId, request);
+        List<AdsTargetResponse> keywords = adapter.queryTargets(accountId, request);
         if (!CollectionUtils.isEmpty(keywords)) {
-            for (AdsKeywordVO vo : keywords) {
+            for (AdsTargetResponse vo : keywords) {
                 adsKeywordService.saveKeyword(accountId, vo);
             }
         }

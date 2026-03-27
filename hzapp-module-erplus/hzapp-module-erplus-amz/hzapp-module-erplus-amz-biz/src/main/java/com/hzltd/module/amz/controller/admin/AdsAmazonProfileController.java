@@ -1,7 +1,7 @@
 package com.hzltd.module.amz.controller.admin;
 
 import com.hzltd.framework.common.pojo.CommonResult;
-import com.hzltd.module.amz.api.adv.service.AdsAmazonProfileService;
+import com.hzltd.module.amz.adv.service.AdsAmazonProfileService;
 import com.hzltd.module.amz.api.adv.v1.AmzStreamSubscriptionService;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
 import io.swagger.v3.oas.annotations.Operation;

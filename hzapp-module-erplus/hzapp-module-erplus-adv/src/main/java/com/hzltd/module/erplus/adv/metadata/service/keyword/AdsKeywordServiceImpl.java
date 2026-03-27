@@ -17,7 +17,7 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsKeywordAttributeMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsKeywordMapper;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsKeywordVO;
+import com.hzltd.module.adv.model.AdsTargetResponse;
 import com.hzltd.module.erplus.adv.metadata.vo.keyword.AdsKeywordPageReqVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -158,7 +158,7 @@ public class AdsKeywordServiceImpl implements AdsKeywordService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Long saveKeyword(Long accountId, AdsKeywordVO vo) {
+    public Long saveKeyword(Long accountId, AdsTargetResponse vo) {
         // 1. 根据外部广告组 ID 解析本地关联 ID
         AdsAdGroupDO adGroup = adsAdGroupService.getAdGroupByAccountAndExternalId(accountId, vo.getAdGroupExternalId());
         if (adGroup == null) {

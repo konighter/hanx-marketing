@@ -2,8 +2,8 @@ package com.hzltd.module.amz.controller.admin;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hzltd.framework.common.pojo.CommonResult;
-import com.hzltd.module.amz.service.AmzAdvProfileService;
-import com.hzltd.module.amz.service.AmzAdvReportService;
+import com.hzltd.module.amz.service.AmzAdvProfileAdsService;
+import com.hzltd.module.amz.service.AmzAdvReportAdsService;
 import com.hzltd.module.spapi.model.ApiRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,10 +20,10 @@ import static com.hzltd.framework.common.pojo.CommonResult.success;
 public class AmzAdvReportController {
 
     @Resource
-    private AmzAdvProfileService amzAdvProfileService;
+    private AmzAdvProfileAdsService amzAdvProfileService;
 
     @Resource
-    private AmzAdvReportService amzAdvReportService;
+    private AmzAdvReportAdsService amzAdvReportService;
 
     @GetMapping("/profiles")
     @Operation(summary = "获取广告 Profiles")
