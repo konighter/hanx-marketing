@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.api.adptor;
 
 import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import com.hzltd.module.system.service.SystemShopService;
 import com.hzltd.module.spapi.model.system.ShopModel;
 import jakarta.annotation.Resource;
@@ -13,7 +13,7 @@ public abstract class LocalAuthProvider {
     private SystemShopService systemShopService;
 
 
-    public AuthorizationModel getAuthorizationModel(ApiRequest<?> request) {
+    public AuthorizationModelV0 getAuthorizationModel(ApiRequest<?> request) {
        ShopModel shopModel = systemShopService.getShopByExtraId(request.getShopId());
         return shopModel.getAuthInfo();
     }

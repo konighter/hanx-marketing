@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.service.sellzone;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZonePageReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneSaveReqVO;
@@ -66,6 +67,12 @@ public class SellZoneServiceImpl implements SellZoneService {
     @Cacheable(cacheNames = RedisKeyConstants.KEY_SELL_ZONE, key = "#id")
     public SellZoneDO getSellZone(Integer id) {
         return sellZoneMapper.selectById(id);
+    }
+
+    @Override
+    @Cacheable(cacheNames = RedisKeyConstants.KEY_SELL_ZONE, key = "#id")
+    public SellZoneDO getSellZone(String code) {
+        return sellZoneMapper.selectOne(new LambdaQueryWrapperX<SellZoneDO>().eq(SellZoneDO::getZoneCode, code));
     }
 
     @Override

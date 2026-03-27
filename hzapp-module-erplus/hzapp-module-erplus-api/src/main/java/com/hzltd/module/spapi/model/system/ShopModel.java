@@ -1,13 +1,19 @@
 package com.hzltd.module.spapi.model.system;
 
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class ShopModel {
     /**
      * ID
@@ -17,18 +23,35 @@ public class ShopModel {
      * 名称
      */
     private String name;
+
+    /**
+     * 卖家账号ID
+     */
+    private Long accountId;
     /**
      * 平台
      */
     private Integer platform;
+
+    private String platformCode;
     /**
      * 区域
      */
-    private Integer region;
+    private String region;
+
+    private String marketplace;
+
+    private String countryCode;
+
+    private String currency;
+
+    private String language;
+
+    private String sellerId;
     /**
      * 授权信息
      */
-    private AuthorizationModel authInfo;
+    private AuthorizationModelV0 authInfo;
     /**
      * 授权刷新
      */

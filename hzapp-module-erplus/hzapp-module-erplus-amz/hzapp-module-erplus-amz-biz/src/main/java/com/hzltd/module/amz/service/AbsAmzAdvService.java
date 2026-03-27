@@ -3,7 +3,7 @@ package com.hzltd.module.amz.service;
 import com.hzltd.module.erplus.api.adptor.LocalAuthProvider;
 import com.hzltd.module.erplus.api.adptor.RefreshTokenCacheAdaptor;
 import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import jakarta.annotation.Resource;
 import okhttp3.Request;
 
@@ -44,7 +44,7 @@ public abstract class AbsAmzAdvService extends LocalAuthProvider {
      * @return Request.Builder
      */
     protected Request.Builder newAuthenticatedRequestBuilder(ApiRequest<?> apiRequest, String url, String profileId) {
-        AuthorizationModel authModel = getAuthorizationModel(apiRequest);
+        AuthorizationModelV0 authModel = getAuthorizationModel(apiRequest);
         String accessToken = amzAdvLwaService.getAccessToken(authModel);
 
         Request.Builder builder = new Request.Builder()

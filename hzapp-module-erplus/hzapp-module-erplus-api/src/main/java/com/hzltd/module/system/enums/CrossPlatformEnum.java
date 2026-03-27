@@ -11,11 +11,11 @@ import java.util.Arrays;
 @Getter
 @AllArgsConstructor
 public enum CrossPlatformEnum implements ArrayValuable<Integer> {
-    AMAZON(1, "Amazon","亚马逊"),
-    OZON(2, "Ozon","Ozon"),
-    TTS(3, "TTS","Tiktok Shop"),
-    ALIEXPRESS(4, "ALIEXPRESS","速卖通"),
-    LOCAL(0, "LOCAL","独立站"),
+    AMAZON(3, "Amazon","亚马逊"),
+    OZON(5, "Ozon","Ozon"),
+    TTS(4, "TTS","Tiktok Shop"),
+    ALIEXPRESS(6, "ALIEXPRESS","速卖通"),
+    LOCAL(7, "LOCAL","独立站"),
     UNKUOWN(-1, "unknown","未知"),
     ;
 

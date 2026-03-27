@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public enum AmazonRegionEnum {
 
-    NA("North America","", "advertising-api.amazon.com", "https://www.amazon.com/ap/oa", "NA", List.of("US", "CA", "MX")),
+    NA("North America","https://sellingpartnerapi-na.amazon.com", "advertising-api.amazon.com", "https://www.amazon.com/ap/oa", "NA", List.of("US", "CA", "MX")),
     EU("Europe","", "advertising-api-eu.amazon.com","https://eu.account.amazon.com/ap/oa",  "EU", List.of("UK")),
     FE("Far East","", "advertising-api-fe.amazon.com","https://apac.account.amazon.com/ap/oa",  "FE", List.of("JP"));
 

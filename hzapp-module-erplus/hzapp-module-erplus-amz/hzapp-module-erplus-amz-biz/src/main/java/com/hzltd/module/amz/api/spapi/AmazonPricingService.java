@@ -7,7 +7,7 @@ import com.hzltd.module.spapi.enums.CrossOperationStatus;
 import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import com.hzltd.module.spapi.model.common.InventoryModel;
 import com.hzltd.module.spapi.model.pricing.*;
 import com.hzltd.module.spapi.service.product.PricingInventoryApi;
@@ -101,7 +101,7 @@ public class AmazonPricingService extends AbsAmzPlatformApiService implements Pr
     @Override
     public ApiResponse<ChangePriceResponse> changeProductPricing(ApiRequest<ChangePriceRequest> request) {
         ListingsApi listingsApi = this.getListingsApi(request);
-        AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
+        AuthorizationModelV0 authorizationModel = this.getAuthorizationModel(request);
         try {
             ListingsItemPatchRequest patchRequest = convertPricingRequest(request);
             ListingsItemSubmissionResponse response = listingsApi.patchListingsItem(patchRequest, authorizationModel.getSellerId(), request.getRequest().getSellerSku(), List.of(request.getMarketId()), List.of("issues"), request.getRequest().isPreview() ? "VALIDATION_PREVIEW" : null, request.getLocale().toString());

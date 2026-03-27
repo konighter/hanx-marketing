@@ -24,4 +24,7 @@ public interface SystemShopService {
      */
     List<String> getShopRegion(String shopId);
 
+
+    ShopModel createOrLoadShop(ShopModel shop);
+
 }

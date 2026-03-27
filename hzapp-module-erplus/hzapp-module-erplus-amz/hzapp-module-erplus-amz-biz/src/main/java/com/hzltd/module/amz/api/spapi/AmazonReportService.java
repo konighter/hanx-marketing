@@ -3,7 +3,7 @@ package com.hzltd.module.amz.api.spapi;
 import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
 import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import com.hzltd.module.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -76,7 +76,7 @@ public class AmazonReportService extends AbsAmzPlatformApiService {
     private final LWAAccessTokenCacheImpl lwaAccessTokenCache = new LWAAccessTokenCacheImpl();
 
     private ReportsApi getReportsApi(ApiRequest<?> apiRequest) {
-        AuthorizationModel authorizationModel = this.getAuthorizationModel(apiRequest);
+        AuthorizationModelV0 authorizationModel = this.getAuthorizationModel(apiRequest);
         List<String> marketPlaceIds = systemShopService.getShopRegion(apiRequest.getShopId());
         return new ReportsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))

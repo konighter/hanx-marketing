@@ -266,5 +266,7 @@ public interface ErplusErrorCodeConstants {
 
     ErrorCode CROSS_SERVICE_ERROR = new ErrorCode(2_100_000_001, "跨境平台服务异常");
 
+    ErrorCode PLATFORM_APP_NOT_EXISTS = new ErrorCode(2_100_000_002, "平台应用不存在");
+
 
 }

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -42,12 +42,12 @@ public class ShopDO extends BaseDO {
     /**
      * 区域
      */
-    private Integer region;
+    private String region;
     /**
      * 授权信息
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private AuthorizationModel authInfo;
+    private AuthorizationModelV0 authInfo;
     /**
      * 授权刷新
      */
@@ -61,9 +61,27 @@ public class ShopDO extends BaseDO {
      */
     private LocalDateTime authExpTime;
     /**
+     * 站点ID: 如ATVPDKIKX0DER(US)
+     */
+    private String marketplaceId;
+    /**
+     * 国家代码: US, GB, JP, MY
+     */
+    private String countryCode;
+    /**
+     * 币种
+     */
+    private String currency;
+    /**
      * 卖家ID (用于广告和店铺的关联)
      */
     private String sellerId;
+
+    /**
+     * 平台账号ID
+     */
+    private Long accountId;
+
     /**
      * 状态
      *

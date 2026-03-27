@@ -16,6 +16,7 @@ import com.hzltd.module.spapi.enums.CrossOrderStatus;
 import com.hzltd.module.spapi.enums.RelationLevel;
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import com.hzltd.module.spapi.model.common.Image;
 import com.hzltd.module.spapi.model.common.PriceModel;
 import com.hzltd.module.spapi.model.common.ProductAttributeModel;
@@ -44,6 +45,7 @@ import software.amazon.spapi.api.orders.v0.OrdersV0Api;
 import software.amazon.spapi.api.pricing.v0.ProductPricingApi;
 import software.amazon.spapi.api.productfees.v0.FeesApi;
 import software.amazon.spapi.api.producttypedefinitions.v2020_09_01.DefinitionsApi;
+import software.amazon.spapi.api.sellers.v1.SellersApi;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.*;
 import software.amazon.spapi.models.listings.items.v2021_08_01.*;
 import software.amazon.spapi.models.listings.items.v2021_08_01.Item;
@@ -86,6 +88,24 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         return localLWAAccessTokenCache;
     }
 
+    public LWAAuthorizationCredentials getLWAAuthorizationCredentials(AuthorizationModelV0 authorizationModel) {
+        return LWAAuthorizationCredentials.builder()
+                .clientId(authorizationModel.getAppKey())
+                .clientSecret(authorizationModel.getAppSecret())
+                .refreshToken(authorizationModel.getRefreshToken())
+                .endpoint(this.getAuthEndpoint())
+                .build();
+    }
+
+    public LWAAuthorizationCredentials getLWAAuthorizationCredentialsScoped(AuthorizationModelV0 authorizationModel, String... scope) {
+        return LWAAuthorizationCredentials.builder()
+                .clientId(authorizationModel.getAppKey())
+                .clientSecret(authorizationModel.getAppSecret())
+                .withScopes(scope)
+                .endpoint(this.getAuthEndpoint())
+                .build();
+    }
+
     public LWAAuthorizationCredentials getLWAAuthorizationCredentials(AuthorizationModel authorizationModel) {
         return LWAAuthorizationCredentials.builder()
                 .clientId(authorizationModel.getAppKey())
@@ -104,9 +124,10 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
                 .build();
     }
 
+
     //============== Api初始化 ==============
     public ListingsApi getListingsApi(ApiRequest<?> request) {
-        AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
+        AuthorizationModelV0 authorizationModel = this.getAuthorizationModel(request);
         List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
         return new ListingsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
@@ -116,7 +137,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     }
 
     public ProductPricingApi getPricingApi(ApiRequest<?> request) {
-        AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
+        AuthorizationModelV0 authorizationModel = this.getAuthorizationModel(request);
         List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
         return new ProductPricingApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
@@ -126,7 +147,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     }
 
     public FbaInventoryApi getFbaInventoryApi(ApiRequest<?> request) {
-        AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
+        AuthorizationModelV0 authorizationModel = this.getAuthorizationModel(request);
         List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
         return new FbaInventoryApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
@@ -206,6 +227,19 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
                 .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
                 .build();
     }
+
+    public SellersApi getSellersApi(ApiRequest<?> apiRequest) {
+//        List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
+        return new SellersApi.Builder()
+                .lwaAuthorizationCredentials(apiRequest.getAuthorizationModel() != null ? this.getLWAAuthorizationCredentials(apiRequest.getAuthorizationModel()): this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
+                .lwaAccessTokenCache(this.getLocalTokenCache())
+                .endpoint(this.getApiEndpoint(""))
+                .build();
+    }
+
+
+
+
 
 
 //============== 数据转换 ==============
@@ -517,9 +551,6 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         );
 
         return request;
-
-
-
 
     }
 

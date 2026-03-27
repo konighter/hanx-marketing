@@ -1,6 +1,7 @@
 package com.hzltd.module.spapi.model;
 
 import com.hzltd.module.spapi.enums.LanguageEnum;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
 import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.spapi.model.system.BaseCrossRequest;
 import lombok.Data;
@@ -19,6 +20,11 @@ public class ApiRequest<T> {
      * 店铺ID
      */
     private String shopId;
+
+    /**
+     * Auth 可以从shopId取，也可以自己带
+     */
+    private AuthorizationModel authorizationModel;
 
     public ApiRequest<T> setShopIdInt(Integer shopId) {
         this.shopId = String.valueOf(shopId);

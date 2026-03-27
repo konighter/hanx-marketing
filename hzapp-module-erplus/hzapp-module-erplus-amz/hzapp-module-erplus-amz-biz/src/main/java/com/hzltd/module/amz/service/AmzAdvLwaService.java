@@ -4,7 +4,7 @@ import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.api.adptor.RefreshTokenCacheAdaptor;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -30,7 +30,7 @@ public class AmzAdvLwaService {
      * @param authModel 授权信息
      * @return Access Token
      */
-    public String getAccessToken(AuthorizationModel authModel) {
+    public String getAccessToken(AuthorizationModelV0 authModel) {
         String cacheKey = "AMZ_ADV_LWA_" + authModel.getRefreshToken();
         String accessToken = localLWAAccessTokenCache.getCache(cacheKey);
         if (StrUtil.isNotEmpty(accessToken)) {
@@ -40,7 +40,7 @@ public class AmzAdvLwaService {
         return refreshAccessToken(authModel, cacheKey);
     }
 
-    private String refreshAccessToken(AuthorizationModel authModel, String cacheKey) {
+    private String refreshAccessToken(AuthorizationModelV0 authModel, String cacheKey) {
         log.info("Refreshing Amazon Adv LWA token for shop: {}", authModel.getShopModel().getId());
 
         RequestBody body = new FormBody.Builder()

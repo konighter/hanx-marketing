@@ -1,56 +1,64 @@
 package com.hzltd.module.spapi.model.authorization;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hzltd.module.spapi.model.system.SellPlatformModel;
-import com.hzltd.module.spapi.model.system.ShopModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
+/**
+ * 对应PlatformAuthDO
+ */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class AuthorizationModel {
-    private ShopModel shopModel;
-    private SellPlatformModel platformModel;
+    private Long id;
 
-    @JsonProperty("app_key")
+    /**
+     * 平台类型: AMAZON, TIKTOK
+     */
+    private String platform;
+    /**
+     * 员工ID
+     */
+    private Long userId;
+    /**
+     * 授权类型: AMAZON_SP, AMAZON_ADV, TTS_SHOP
+     */
+    private String authType;
+    /**
+     * 授权范围
+     */
+    private String authScope;
+    /**
+     * 区域代码: NA(北美), EU(欧洲), FE(远东), GLOBAL(TTS全球)
+     */
+    private String region;
+    /**
+     * 卖家后台的唯一身份标识
+     */
+    private String sellerId;
+    /**
+     * 用于刷新access_token的长效令牌
+     */
+    private String refreshToken;
+    /**
+     * 当前有效的访问令牌
+     */
+    private String accessToken;
+    /**
+     * access_token的过期时间
+     */
+    private LocalDateTime expiryTime;
+
     private String appKey;
 
-    @JsonProperty("app_secret")
     private String appSecret;
-
-    @JsonProperty("grant_code")
-    private String grantCode;
-
-    @JsonProperty("refresh_token")
-    private String refreshToken;
-
-    @JsonProperty("access_token")
-    private String accessToken;
-
-    @JsonProperty("token_type")
-    private String tokenType;
-
-    @JsonProperty("expires_in")
-    private Integer expireIn;
-
-    private String state;
-
-    @JsonProperty("grant_type")
-    private String grantType;
-
     /**
-     * 卖家标记, 自授权输入, OAuth授权Api获取
+     * 平台应用ID
      */
-    @JsonProperty("seller_id")
-    private String sellerId;
-
-    /**
-     * 是否自授权
-     */
-    @JsonProperty("self_auth")
-    private Boolean selfAuth;
+    private Long appId;
 }
