@@ -28,4 +28,7 @@ public class PlatformAppSaveReqVO {
     @NotEmpty(message = "应用密钥不能为空")
     private String appSecret;
 
+    @Schema(description = "回调地址", example = "https://example.com/callback")
+    private String callbackUrl;
+
 }

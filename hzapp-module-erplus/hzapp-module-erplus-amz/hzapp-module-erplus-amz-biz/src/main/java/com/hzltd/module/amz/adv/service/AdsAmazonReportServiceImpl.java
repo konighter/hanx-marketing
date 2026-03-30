@@ -4,6 +4,7 @@ import cn.hutool.core.util.ZipUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.hzltd.module.adv.model.AdsResponse;
 import com.hzltd.module.system.enums.AdsPlatformEnum;
 import com.hzltd.module.amz.api.adv.v1.AmazonAdsReportApiService;
 import com.hzltd.module.amz.api.adv.v1.AmzSpReportConstants;
@@ -17,6 +18,7 @@ import com.hzltd.module.erplus.adv.dal.dataobject.*;
 import com.hzltd.module.erplus.adv.dal.mysql.*;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
@@ -53,6 +55,7 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
     @Resource
     private AdsAmazonProfileMapper adsAmazonProfileMapper;
     @Resource
+    @Lazy
     private AdsAuthService adsAuthService;
     @Resource
     private AmazonAdsReportApiService reportApiService;

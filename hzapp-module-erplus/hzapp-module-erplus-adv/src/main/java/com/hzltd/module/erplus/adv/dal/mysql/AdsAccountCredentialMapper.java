@@ -13,4 +13,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface AdsAccountCredentialMapper extends BaseMapperX<AdsAccountCredentialDO> {
 
+    default AdsAccountCredentialDO selectByRefreshToken(String refreshToken) {
+        return selectOne(AdsAccountCredentialDO::getRefreshToken, refreshToken);
+    }
+
 }

@@ -1,8 +1,9 @@
-package com.hzltd.module.amz.adv;
+package com.hzltd.module.amz.adv.service;
 
 import com.hzltd.module.adv.api.AdsServiceRegister;
 import com.hzltd.module.adv.model.*;
 import com.hzltd.module.adv.service.AdsManagerApi;
+import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.api.sp.api.CampaignsApi;
 import com.hzltd.module.amz.adv.api.sp.model.*;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModel;

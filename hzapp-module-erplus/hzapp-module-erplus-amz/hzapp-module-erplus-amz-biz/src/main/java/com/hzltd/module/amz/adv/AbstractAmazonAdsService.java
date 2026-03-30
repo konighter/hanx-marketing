@@ -1,15 +1,21 @@
 package com.hzltd.module.amz.adv;
 
+import com.hzltd.module.amz.adv.api.client.ApiClient;
+import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
+import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
 import com.hzltd.module.amz.service.AmzAdvLwaService;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.api.adapter.LocalAuthProvider;
 import com.hzltd.module.erplus.api.adapter.RefreshTokenCacheAdaptor;
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
-import com.hzltd.module.system.model.ShopModel;
+import com.hzltd.module.system.service.SystemAuthService;
 import jakarta.annotation.Resource;
+import lombok.extern.slf4j.Slf4j;
 import okhttp3.Request;
 
+@Slf4j
 public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
 
     @Resource
@@ -18,13 +24,22 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
     @Resource
     private RefreshTokenCacheAdaptor localLWAAccessTokenCache;
 
+    @Resource
+    private SystemAuthService systemAuthService;
+
+    @Resource
+    private AdsAmazonProfileMapper amazonProfileMapper;
+
+    @Resource
+    private AdsAccountMapper adsAccountMapper;
+
     @Override
     public String getAuthEndpoint() {
         return "https://api.amazon.com/auth/o2/token";
     }
 
     @Override
-    public String getAuthScope() {
+    public String getAuthType() {
         return "AMAZON_ADV";
     }
 
@@ -35,6 +50,20 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
         // 欧洲: https://advertising-api-eu.amazon.com
         // 远东: https://advertising-api-fe.amazon.com
         // 这里可以根据 marketId 动态返回，暂时默认北美
+        return "https://advertising-api.amazon.com";
+    }
+
+    /**
+     * 根据 region 获取 API 端点
+     * @param region NA, EU, FE
+     * @return 对应的 API URL
+     */
+    public String getApiEndpointByRegion(String region) {
+        if ("EU".equalsIgnoreCase(region)) {
+            return "https://advertising-api-eu.amazon.com";
+        } else if ("FE".equalsIgnoreCase(region)) {
+            return "https://advertising-api-fe.amazon.com";
+        }
         return "https://advertising-api.amazon.com";
     }
 
@@ -57,15 +86,7 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
             throw new RuntimeException("Authorization not found for shop: " + apiRequest.getShopId());
         }
 
-        // 为保持与未修改的 AmzAdvLwaService 兼容，临时转换回 V0
-        AuthorizationModelV0 authModelV0 = AuthorizationModelV0.builder()
-                .appKey(authModel.getAppKey())
-                .appSecret(authModel.getAppSecret())
-                .refreshToken(authModel.getRefreshToken())
-                .shopModel(ShopModel.builder().id(authModel.getShopId().intValue()).build())
-                .build();
-
-        String accessToken = amzAdvLwaService.getAccessToken(authModelV0);
+        String accessToken = amzAdvLwaService.getAccessToken(authModel);
 
         Request.Builder builder = new Request.Builder()
                 .url(url)
@@ -77,5 +98,73 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
         }
 
         return builder;
+    }
+
+    /**
+     * 获取授权模型
+     *
+     * @param shopId 店铺 ID
+     * @return AuthorizationModel
+     */
+    protected AuthorizationModel getAuthorizationModel(Long shopId) {
+        AuthorizationModel authModel = systemAuthService.getAuthorizationModel(shopId, getAuthType());
+        if (authModel == null) {
+            throw new RuntimeException("Authorization not found for shop: " + shopId);
+        }
+        // 添加profileId
+        AdsAmazonProfileDO profileDO = amazonProfileMapper.selectByShopId(shopId);
+        if (profileDO == null) {
+            throw new RuntimeException("Profile not found for shop: " + shopId);
+        }
+
+        authModel.setProfileId(profileDO.getProfileId());
+        authModel.setRegion(profileDO.getRegion());
+
+        // 获取 adsAccountId (externalAccountId)
+        if (profileDO.getAccountId() != null) {
+            AdsAccountDO accountDO = adsAccountMapper.selectById(profileDO.getAccountId());
+            if (accountDO != null) {
+                authModel.setAdsAccountId(accountDO.getExternalAccountId());
+            }
+        }
+
+        return authModel;
+    }
+
+    /**
+     * 获取 Amazon Advertising SP API Client (v3)
+     *
+     * @param authModel
+     * @return ApiClient
+     */
+    protected ApiClient getApiClient(AuthorizationModel authModel) {
+        ApiClient apiClient = new ApiClient();
+        apiClient.updateBaseUri(getApiEndpointByRegion(authModel.getRegion()));
+        
+        // 获取 LWA 访问令牌
+        String accessToken = amzAdvLwaService.getAccessToken(authModel);
+
+        apiClient.setRequestInterceptor(builder -> {
+            builder.setHeader("Authorization", "Bearer " + accessToken);
+            builder.setHeader("Amazon-Advertising-API-ClientId", authModel.getAppKey());
+
+            if (authModel.getProfileId() != null) {
+                builder.setHeader("Amazon-Advertising-API-Scope", authModel.getProfileId());
+            }
+
+            if (authModel.getAdsAccountId() != null) {
+                builder.setHeader("Amazon-Advertising-API-Account-Id", authModel.getAdsAccountId());
+            }
+
+            log.debug("[AmazonAds] Request Info - Region: {}, profileId: {}, adsAccountId: {}",
+                    authModel.getRegion(), authModel.getProfileId(), authModel.getAdsAccountId());
+        });
+
+        return apiClient;
+    }
+
+
+    protected ApiClient getApiClient(Long shopId) {
+        return this.getApiClient(this.getAuthorizationModel(shopId));
     }
 }

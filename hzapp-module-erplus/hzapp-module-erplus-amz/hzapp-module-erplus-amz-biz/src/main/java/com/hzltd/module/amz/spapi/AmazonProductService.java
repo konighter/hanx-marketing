@@ -54,7 +54,7 @@ public class AmazonProductService extends AbsAmzPlatformApiService implements Pr
     @Override
     public ApiResponse<List<MultiMarketProductModel>> searchProduct(ApiRequest<SearchProductRequest> apiRequest) {
         ListingsApi listingsApi = getListingsApi(apiRequest);
-        List<String> marketPlaceIds = getShopMarkets(apiRequest.getShopId());
+        List<String> marketPlaceIds = getShopRegion(apiRequest.getShopId());
         String sellerId = this.getAuthorizationModel(apiRequest).getSellerId();
         SearchProductRequest query = apiRequest.getRequest();
         try {
@@ -88,7 +88,7 @@ public class AmazonProductService extends AbsAmzPlatformApiService implements Pr
         ListingsApi listingsApi = getListingsApi(apiRequest);
         String sellerId = this.getAuthorizationModel(apiRequest).getSellerId();
         try {
-            Item item = listingsApi.getListingsItem(sellerId, apiRequest.getRequest().getSellerSku(), this.getShopMarkets(apiRequest.getShopId()), null, ALL_CONTENT);
+            Item item = listingsApi.getListingsItem(sellerId, apiRequest.getRequest().getSellerSku(), this.getShopRegion(apiRequest.getShopId()), null, ALL_CONTENT);
             return ApiResponse.success(convertProduct(item));
         } catch (ApiException | LWAException e) {
             throw new RuntimeException(e);

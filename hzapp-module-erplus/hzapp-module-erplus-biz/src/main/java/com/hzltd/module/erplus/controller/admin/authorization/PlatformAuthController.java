@@ -42,18 +42,13 @@ public class PlatformAuthController {
         return success(true);
     }
 
-    @GetMapping("/callback/{authScope}")
+    @GetMapping("/callback/{authType}")
     @Operation(summary = "授权回调处理")
-    public void oauthCallback(@PathVariable("authScope") String authScope,
+    public CommonResult<Boolean> oauthCallback(@PathVariable("authType") String authType,
                                 @RequestParam("code") String code,
-                                @RequestParam("state") String state,
-                                HttpServletResponse response) throws IOException {
-        try {
-            platformAuthService.handleCallback(authScope, code, state);
-            response.sendRedirect(adminUiUrl + "/#/auth/callback?status=success");
-        } catch (Exception e) {
-            response.sendRedirect(adminUiUrl + "/#/auth/callback?status=error&message=" + e.getMessage());
-        }
+                                @RequestParam("state") String state) {
+        platformAuthService.handleCallback(authType, code, state);
+        return success(true);
     }
     @PostMapping("/refresh/{shopId}")
     @Operation(summary = "刷新授权 (通过 shopId)")

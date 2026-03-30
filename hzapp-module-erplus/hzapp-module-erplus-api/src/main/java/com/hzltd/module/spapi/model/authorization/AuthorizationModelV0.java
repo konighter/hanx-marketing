@@ -17,7 +17,7 @@ public class AuthorizationModelV0 {
     private SellPlatformModel platformModel;
 
     @JsonProperty("auth_scope")
-    private String authScope;
+    private String authType;
 
     @JsonProperty("region")
     private String region;

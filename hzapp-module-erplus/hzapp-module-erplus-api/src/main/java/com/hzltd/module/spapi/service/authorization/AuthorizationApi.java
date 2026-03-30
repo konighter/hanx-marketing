@@ -10,7 +10,12 @@ public interface AuthorizationApi {
      * @param authorizationModel
      * @return
      */
+    @Deprecated
     public String grantAuthInfo(AuthorizationModelV0 authorizationModel);
+
+    public default String grantAuthInfo(Long appId, String region, AuthorizationModel authorizationModel){
+        return null;
+    }
 
     /**
      * code 换取 AccessToken

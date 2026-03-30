@@ -1,10 +1,16 @@
 package com.hzltd.module.amz.api.adv.v1;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
+import com.hzltd.module.amz.adv.api.client.ApiException;
+import com.hzltd.module.amz.adv.api.sp.api.CampaignsApi;
+import com.hzltd.module.amz.adv.api.sp.model.SponsoredProductsListSponsoredProductsCampaignsRequestContent;
+import com.hzltd.module.amz.adv.api.sp.model.SponsoredProductsListSponsoredProductsCampaignsResponseContent;
 import com.hzltd.module.amz.api.adv.model.sp.*;
 import com.hzltd.module.amz.api.adv.v1.model.AmzCampaign;
 import com.hzltd.module.amz.api.adv.v1.model.AmzCampaignListResponse;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
+import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +34,7 @@ import java.util.function.Function;
  */
 @Slf4j
 @Service
-public class AmazonAdsApiService {
+public class AmazonAdsApiService extends AbstractAmazonAdsService {
 
     private static final String CAMPAIGNS_PATH = "/campaigns";
 
@@ -42,6 +48,7 @@ public class AmazonAdsApiService {
     public AmzCampaignListResponse listCampaigns(AdsAccountCredentialDO credential, String accountId,
                                                  String profileId, String baseUrl,
                                                  Object request) {
+
         String url = baseUrl + "/adsApi/v1/query/campaigns";
         log.info("[listCampaigns] accountId={}, profileId={}, url={}", accountId, profileId, url);
         String resp = apiClient.post(credential, accountId, profileId, url, request);

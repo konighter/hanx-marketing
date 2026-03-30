@@ -73,7 +73,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     private LocalLWAAccessTokenCache localLWAAccessTokenCache;
 
     @Override
-    public String getAuthScope() {
+    public String getAuthType() {
         return "AMAZON_SP";
     }
 
@@ -114,7 +114,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     //============== Api初始化 ==============
     public ListingsApi getListingsApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new ListingsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -124,7 +124,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public ProductPricingApi getPricingApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new ProductPricingApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -134,7 +134,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public FbaInventoryApi getFbaInventoryApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new FbaInventoryApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -144,7 +144,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public OrdersV0Api getOrdersApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new OrdersV0Api.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -158,17 +158,16 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public SellersApi getSellersApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = request.getAuthorizationModel() != null ? request.getAuthorizationModel() : this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
         return new SellersApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(authorizationModel.getRegion()))
                 .build();
     }
 
     public FeesApi getFeesApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new FeesApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -178,7 +177,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public DefinitionsApi getDefinitionsApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new DefinitionsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -188,7 +187,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public NotificationsApi getNotificationsApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new NotificationsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -198,7 +197,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public NotificationsApi getNotificationApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new NotificationsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentialsScoped(authorizationModel, "sellingpartnerapi::notifications"))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -212,7 +211,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public FbaInboundApi getFbaInboundApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopMarkets(request.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
         return new FbaInboundApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -221,7 +220,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     }
  
     public DefaultApi getFinancesDefaultV0Api(ApiRequest<?> apiRequest) {
-        List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(apiRequest.getShopId());
         return new DefaultApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
@@ -230,7 +229,7 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     }
 
     public software.amazon.spapi.api.fulfillment.inbound.v0.FbaInboundApi getFbaInboundApiV0(ApiRequest<?> apiRequest) {
-        List<String> marketPlaceIds = this.getShopMarkets(apiRequest.getShopId());
+        List<String> marketPlaceIds = this.getShopRegion(apiRequest.getShopId());
         return new software.amazon.spapi.api.fulfillment.inbound.v0.FbaInboundApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
                 .lwaAccessTokenCache(this.getLocalTokenCache())

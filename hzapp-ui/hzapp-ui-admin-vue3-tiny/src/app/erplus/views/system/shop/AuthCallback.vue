@@ -1,113 +1,88 @@
 <template>
-  <div class="callback-container">
-    <div class="glass-card">
-      <div v-if="loading" class="loading-state">
-        <el-icon class="is-loading"><Loading /></el-icon>
-        <p>正在处理授权结果...</p>
+  <div class="auth-callback-container h-full flex items-center justify-center">
+    <el-card class="w-[400px] text-center" shadow="hover">
+      <div v-if="loading" class="py-10">
+        <el-icon class="is-loading text-4xl text-primary mb-4"><Loading /></el-icon>
+        <div class="text-gray-500">正在处理授权回调，请稍候...</div>
       </div>
-      <div v-else-if="status === 'success'" class="result-state success">
-        <el-icon class="result-icon"><Check /></el-icon>
-        <h2>授权成功</h2>
-        <p>您的平台账号已成功绑定，正在自动关闭窗口...</p>
+      <div v-else-if="success" class="py-8">
+        <el-icon class="text-5xl text-success mb-4"><CircleCheckFilled /></el-icon>
+        <div class="text-xl font-bold mb-2">授权成功</div>
+        <div class="text-gray-500 mb-6">您已成功完成平台授权，可以关闭此窗口并刷新页面。</div>
+        <el-button type="primary" @click="closeWindow">关闭窗口</el-button>
       </div>
-      <div v-else class="result-state error">
-        <el-icon class="result-icon"><Close /></el-icon>
-        <h2>授权失败</h2>
-        <p>{{ message || '未知错误，请重试' }}</p>
-        <el-button type="primary" class="mt-4" @click="handleClose">关闭窗口</el-button>
+      <div v-else class="py-8">
+        <el-icon class="text-5xl text-danger mb-4"><CircleCloseFilled /></el-icon>
+        <div class="text-xl font-bold mb-2">授权失败</div>
+        <div class="text-gray-500 mb-6">{{ errorMessage || '处理授权回调时发生错误' }}</div>
+        <el-button @click="closeWindow">关闭窗口</el-button>
       </div>
-    </div>
+    </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
-import { Check, Close, Loading } from '@element-plus/icons-vue'
+import { useRoute, useRouter } from 'vue-router'
+import { PlatformAuthApi } from '@/app/erplus/api/authorization'
+import { Loading, CircleCheckFilled, CircleCloseFilled } from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
 
 const route = useRoute()
+const router = useRouter()
+
 const loading = ref(true)
-const status = ref('')
-const message = ref('')
+const success = ref(false)
+const errorMessage = ref('')
 
-const handleClose = () => {
-  window.close()
-}
+onMounted(async () => {
+  const authType = route.params.authType as string
+  const code = route.query.code as string
+  const state = route.query.state as string
 
-onMounted(() => {
-  // 从 URL 参数中获取状态信息
-  // 后端重定向时应携带 status 和 message
-  status.value = (route.query.status as string) || 'success'
-  message.value = (route.query.message as string) || ''
-  
-  loading.value = false
-  
-  if (status.value === 'success') {
-    // 通知父窗口刷新列表
-    if (window.opener) {
-      window.opener.postMessage({ type: 'PLATFORM_AUTH_SUCCESS' }, '*')
-    }
-    
-    // 3秒后自动关闭
-    setTimeout(() => {
-      handleClose()
-    }, 3000)
+  if (!authType || !code || !state) {
+    loading.value = false
+    errorMessage.value = '回调参数缺失或不完整，请检查访问链接'
+    return
+  }
+
+  try {
+    loading.value = true
+    await PlatformAuthApi.oauthCallback(authType, code, state)
+    success.value = true
+    ElMessage.success('授权回调处理成功')
+  } catch (error: any) {
+    success.value = false
+    errorMessage.value = error.message || '网络请求或后端处理失败'
+    ElMessage.error(errorMessage.value)
+  } finally {
+    loading.value = false
   }
 })
+
+const closeWindow = () => {
+  // Try to close window if opened via popup or blank target
+  if (window.opener && !window.opener.closed) {
+    window.close()
+  } else {
+    // If we're unable to close the window (e.g., opened in same tab), just route to shop list
+    router.replace('/system/shop')
+  }
+}
 </script>
 
 <style scoped>
-.callback-container {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+.auth-callback-container {
+  min-height: 100vh;
+  background-color: #f5f7fa;
 }
-
-.glass-card {
-  width: 400px;
-  padding: 40px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-  text-align: center;
+.text-success {
+  color: #67c23a;
 }
-
-.result-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.text-danger {
+  color: #f56c6c;
 }
-
-.result-icon {
-  font-size: 64px;
-  margin-bottom: 20px;
-}
-
-.success .result-icon {
-  color: #788c5d; /* Sage Green */
-}
-
-.error .result-icon {
-  color: #d97757; /* Orangey-Red */
-}
-
-h2 {
-  font-family: 'Poppins', sans-serif;
-  margin-bottom: 12px;
-  color: #333;
-}
-
-p {
-  font-family: 'Lora', serif;
-  color: #666;
-  line-height: 1.6;
-}
-
-.mt-4 {
-  margin-top: 16px;
+.text-primary {
+  color: #409eff;
 }
 </style>

@@ -14,7 +14,7 @@ public abstract class AbsPlatformService extends LocalAuthProvider {
     private SystemShopService systemShopService;
 
 
-    public List<String> getShopMarkets(String shopId) {
+    public List<String> getShopRegion(String shopId) {
         return systemShopService.getShopRegion(shopId);
     }
 

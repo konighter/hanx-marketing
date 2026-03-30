@@ -42,5 +42,9 @@ public class PlatformAppDO extends BaseDO {
      * 应用密钥
      */
     private String appSecret;
+    /**
+     * 回调地址
+     */
+    private String callbackUrl;
 
 }

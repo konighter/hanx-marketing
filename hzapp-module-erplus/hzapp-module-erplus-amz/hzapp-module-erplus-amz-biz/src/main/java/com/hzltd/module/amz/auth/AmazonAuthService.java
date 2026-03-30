@@ -1,14 +1,21 @@
-package com.hzltd.module.amz.api.auth;
+package com.hzltd.module.amz.auth;
 
+import com.google.common.collect.Maps;
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.module.adv.model.AdsRequest;
+import com.hzltd.module.adv.model.AdsResponse;
+import com.hzltd.module.amz.adv.api.account.model.AdsAccountWithMetaData;
+import com.hzltd.module.amz.adv.api.account.model.AlternateId;
+import com.hzltd.module.amz.adv.api.profiles.model.Profile;
+import com.hzltd.module.amz.adv.service.AdsAmazonAccountProfileService;
 import com.hzltd.module.amz.adv.service.AdsAmazonProfileService;
-import com.hzltd.module.amz.api.adv.AbstractAmazonAdsAdapter;
-import com.hzltd.module.amz.api.adv.v1.AmzStreamSubscriptionService;
+import com.hzltd.module.amz.adv.service.AdsAmazonStreamService;
+import com.hzltd.module.amz.api.adv.AmazonAdsAdapter;
 import com.hzltd.module.amz.api.enums.AmazonRegionEnum;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
 import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
 import com.hzltd.module.amz.spapi.AmazonAccountService;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
+import com.hzltd.module.amz.spapi.AmazonNotificationSubscriptionService;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
@@ -17,7 +24,6 @@ import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
 import com.hzltd.module.system.model.ShopModel;
-import com.hzltd.module.system.enums.AdsPlatformEnum;
 import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import com.hzltd.module.spapi.service.authorization.AuthorizationApi;
@@ -32,7 +38,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.models.sellers.v1.Account;
 import software.amazon.spapi.models.sellers.v1.Participation;
@@ -40,6 +46,7 @@ import software.amazon.spapi.models.sellers.v1.Participation;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CROSS_API_ERROR;
@@ -68,7 +75,7 @@ public class AmazonAuthService implements AuthorizationApi {
     private AdsAmazonProfileService adsAmazonProfileService;
 
     @Resource
-    private AmzStreamSubscriptionService amzStreamSubscriptionService;
+    private AdsAmazonStreamService adsAmazonStreamService;
 
     @Resource
     private AdsAccountCredentialMapper adsAccountCredentialMapper;
@@ -78,6 +85,15 @@ public class AmazonAuthService implements AuthorizationApi {
 
     @Resource
     private AdsAmazonProfileMapper adsAmazonProfileMapper;
+
+    @Resource
+    private AmazonAdsAdapter amazonAdsAdapter;
+
+    @Resource
+    private AdsAmazonAccountProfileService amazonProfileNewService;
+
+    @Resource
+    private AmazonNotificationSubscriptionService subscriptionService;
 
 
     @Override
@@ -92,20 +108,50 @@ public class AmazonAuthService implements AuthorizationApi {
     }
 
     @Override
+    public String grantAuthInfo(Long appId, String region, AuthorizationModel authorizationModel) {
+
+        StringBuilder urlBuilder = new StringBuilder(grantAuthHost)
+                .append("?response_type=code")
+                .append("&client_id=").append(authorizationModel.getAppKey())
+                .append("&redirect_uri=").append(authorizationModel.getCallbackUrl())
+                .append("&state=").append(authorizationModel.getState());
+        if ("AMAZON_ADV".equalsIgnoreCase(authorizationModel.getAuthType())) {
+            urlBuilder.append("&scope=advertising::campaign_management");
+        }
+
+        return urlBuilder.toString();
+    }
+
+    @Override
     public AuthorizationModelV0 grantAccessToken(AuthorizationModelV0 authorizationModel) {
+
+//        AdsTokenResult tokenResult = amazonAdsAdapter.exchangeToken(authorizationModel.getGrantCode());
+
+
         Request request = new Request.Builder()
+                //https://api.amazon.com/auth/o2/token
                 .url(host + "/auth/o2/token")
                 .post(new FormBody.Builder()
                         .add("grant_type", "authorization_code")
                         .add("client_id", authorizationModel.getAppKey())
                         .add("client_secret", authorizationModel.getAppSecret())
                         .add("code", authorizationModel.getGrantCode())
-                        .add("redirect_uri", "http://localhost")
+                        .add("redirect_uri", "http://localhost/auth/callback/amazon_adv")
                         .build())
                 .build();
 
+        try (Response response = client.newCall(request).execute()) {
+            String retResult = response.body().string();
+            log.info("exchangeAccessToken: {}", retResult);
+            if (!response.isSuccessful()) {
+                throw exception(CROSS_API_ERROR, "refresh access token failed, code: " + response.code() + ", message: " + response.message());
+            }
+            return JsonUtils.parseObject(retResult, AuthorizationModelV0.class);
 
-        return null;
+        } catch (IOException e) {
+            throw exception(CROSS_API_ERROR, "refresh access token failed");
+        }
+
     }
 
     @Override
@@ -137,11 +183,10 @@ public class AmazonAuthService implements AuthorizationApi {
     }
 
 
+    @Async
     @Override
     public void postAuthorization(AuthorizationModel authorizationModel) {
-        // todo -- 根据authScope来判断
-
-        if ("AMAZON_SP".equals(authorizationModel.getAuthScope())) {
+        if ("AMAZON_SP".equals(authorizationModel.getAuthType())) {
             spapiPostAuthorization(authorizationModel);
         } else {
             // 如果是ADV_API授权, 初始化profile
@@ -193,7 +238,8 @@ public class AmazonAuthService implements AuthorizationApi {
 
         account.getMarketplaceParticipationList().forEach(marketplace -> {
             Participation participation = marketplace.getParticipation();
-            if (!participation.isIsParticipating()) {
+            // 只支持生效的和亚马逊平台的市场, 非亚马逊平台市场不支持
+            if (!participation.isIsParticipating() || marketplace.getMarketplace().getName().startsWith("Non-")) {
                 return;
             }
             ShopModel shop = ShopModel.builder().name(marketplace.getStoreName() + "[" + marketplace.getMarketplace().getName() + "]")
@@ -211,77 +257,87 @@ public class AmazonAuthService implements AuthorizationApi {
 
             systemAuthService.grantShopAuth(authorizationModel.getId(), shop.getId().longValue());
 
+            // 创建订阅
+            try{
+                subscriptionService.setupNotificationSubscriptions(shop.getId().longValue());
+            } catch (Exception e) {
+                log.error("[spapiPostAuthorization] fail to setupNotificationSubscriptions, shopId={}[{}]", shop.getName(), shop.getId());
+            }
+
+
         });
 
     }
 
     private void adsApiPostAuthorization(AuthorizationModel authorizationModel) {
-        log.info("[adsApiPostAuthorization] 开始处理广告授权: sellerId={}, region={}", 
+        log.info("[adsApiPostAuthorization] 开始处理广告授权: sellerId={}, region={}",
                 authorizationModel.getSellerId(), authorizationModel.getRegion());
 
 
+        AdsRequest<AuthorizationModel> request = new AdsRequest<AuthorizationModel>().setRequest(authorizationModel);
+        AdsResponse<List<AdsAccountWithMetaData>> accountResponse = amazonProfileNewService.queryAccounts(request);
 
-        // 2. 创建一个虚拟的顶级广告账号 (用于关联凭证), 不用挂载凭证Credential, 这个只作为profile的归属Account
-        // 实际上 Amazon 广告授权包含多个 Profile，
-        AdsAccountDO adsAccount = adsAccountMapper.selectByPlatformAndExternalId(AdsPlatformEnum.AMAZON.name(), authorizationModel.getSellerId());
-        if (adsAccount == null) {
-            adsAccount = new AdsAccountDO();
-            adsAccount.setPlatform(AdsPlatformEnum.AMAZON.name());
-            adsAccount.setExternalAccountId(authorizationModel.getSellerId());
-            adsAccount.setName("Amazon Ads - " + authorizationModel.getSellerId());
-            adsAccount.setAuthStatus(1);
-            adsAccountMapper.insert(adsAccount);
-        } else {
-            adsAccount.setAuthStatus(1);
-            adsAccountMapper.updateById(adsAccount);
+        Map<Long, AdsAccountWithMetaData> profile2Account = Maps.newHashMap();
+        for (AdsAccountWithMetaData account : accountResponse.getData()) {
+            if (CollectionUtils.isEmpty(account.getAlternateIds())) {
+                continue;
+            }
+            for (AlternateId alternateId : account.getAlternateIds()) {
+                if (alternateId.getProfileId() == null) {
+                    continue;
+                }
+                profile2Account.putIfAbsent(alternateId.getProfileId().longValue(), account);
+            }
         }
 
-        // 3. 拉取 Profiles (根据该授权的 region)
-        AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(authorizationModel.getRegion());
-        List<AbstractAmazonAdsAdapter.AmzProfileVO> profiles = adsAmazonProfileService.fetchProfiles(adsAccount, null, regionEnum);
-        
-        if (CollectionUtils.isEmpty(profiles)) {
-            log.warn("[adsApiPostAuthorization] 未拉取到有效 Profiles: sellerId={}", authorizationModel.getSellerId());
+        AdsResponse<List<Profile>> response = amazonProfileNewService.queryProfiles(request);
+
+        if (!response.isSuccess()) {
+            log.error("获取Profile异常, error={}", response.getMessage());
             return;
         }
 
-        for (AbstractAmazonAdsAdapter.AmzProfileVO p : profiles) {
-            // 筛选类型是 seller 的 account (已经在 fetchProfiles 过滤了，但这里做双重检查)
-            if (p.getAccountInfo() == null || !"seller".equalsIgnoreCase(p.getAccountInfo().getType())) {
-                continue;
-            }
+        for (Profile p : response.getData()) {
+            log.info("Profile: {}", p);
 
-            // 保存 Profile 信息
-            AdsAmazonProfileDO profileDO = adsAmazonProfileMapper.selectByProfileId(p.getProfileId());
-            if (profileDO == null) {
-                profileDO = AdsAmazonProfileDO.builder()
-                        .accountId(adsAccount.getId())
-                        .sellerId(p.getAccountInfo().getId())
-                        .profileId(p.getProfileId())
-                        .countryCode(p.getCountryCode())
-                        .region(regionEnum.name())
-                        .currencyCode(p.getCurrencyCode())
-                        .timezone(p.getTimezone())
-                        .entityId(authorizationModel.getSellerId())
-                        .entityName(adsAccount.getName())
-                        .status("ENABLED")
-                        .build();
-                adsAmazonProfileMapper.insert(profileDO);
-            } else {
-                profileDO.setAccountId(adsAccount.getId());
-                profileDO.setSellerId(p.getAccountInfo().getId());
-                profileDO.setCountryCode(p.getCountryCode());
-                profileDO.setRegion(regionEnum.name());
-                profileDO.setCurrencyCode(p.getCurrencyCode());
-                profileDO.setTimezone(p.getTimezone());
-                profileDO.setStatus("ENABLED");
-                adsAmazonProfileMapper.updateById(profileDO);
-            }
+            String sellerId = p.getAccountInfo().getId();
+            String marketplaceId = p.getAccountInfo().getMarketplaceStringId();
 
-            // 4. 关联 ShopId (根据 sellerId + marketplace/countryCode)
+            AdsAccountWithMetaData accountInfo = profile2Account.get(p.getProfileId());
+            AdsAccountDO adsAccountDO = amazonProfileNewService.saveOrUpdateAdsAccount(AdsAccountDO.builder()
+                    .name(accountInfo.getAccountName())
+                    .externalAccountId(accountInfo.getAdsAccountId())
+                    .lastSyncedAt(LocalDateTime.now())
+                    .build());
 
-            // 5. 初始化 profile 的订阅等信息
-            amzStreamSubscriptionService.createStreamSubscription(profileDO);
+            ShopModel shop = systemShopService.getShopBySellerIdAndMarketplaceId(sellerId, marketplaceId);
+            Long shopId = shop != null ? shop.getId().longValue() : null;
+
+            AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(authorizationModel.getRegion());
+
+            AdsAmazonProfileDO profileDO = AdsAmazonProfileDO.builder()
+                    .sellerId(sellerId)
+                    .accountId(adsAccountDO.getId())
+                    .profileId(String.valueOf(p.getProfileId()))
+                    .countryCode(p.getCountryCode() != null ? p.getCountryCode().getValue() : null)
+                    .region(regionEnum.name())
+                    .currencyCode(p.getCurrencyCode() != null ? p.getCurrencyCode().name() : null)
+                    .timezone(p.getTimezone() != null ? p.getTimezone().getValue() : null)
+                    .shopId(shopId)
+                    .entityId(sellerId)
+                    .status("ENABLED")
+                    .build();
+
+            // saveOrUpdate profile
+            profileDO = amazonProfileNewService.saveOrUpdateProfile(profileDO);
+
+            // 绑定shopId和auth
+            systemAuthService.grantShopAuth(authorizationModel.getId(), shop.getId().longValue());
+
+            // 初始化profile订阅信息
+            adsAmazonStreamService.createStreamSubscription(profileDO);
+
+            log.info("初始化Profile[{}], SellerId={}, Region={}, ShopId={}", profileDO.getProfileId(), profileDO.getSellerId(), profileDO.getRegion(), profileDO.getShopId());
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.hzltd.module.amz.adv;
+package com.hzltd.module.amz.adv.service;
 
 import com.hzltd.module.adv.api.AdsServiceRegister;
 import com.hzltd.module.adv.service.AdsAccountApi;

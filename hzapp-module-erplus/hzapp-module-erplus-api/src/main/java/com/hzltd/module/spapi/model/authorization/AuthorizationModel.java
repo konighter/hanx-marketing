@@ -41,6 +41,15 @@ public class AuthorizationModel {
      * 区域代码: NA(北美), EU(欧洲), FE(远东), GLOBAL(TTS全球)
      */
     private String region;
+
+    /**
+     * 广告的profileId
+     */
+    private String profileId;
+    /**
+     * 广告的账户ID (Amazon-Advertising-API-Account-Id)
+     */
+    private String adsAccountId;
     /**
      * 卖家后台的唯一身份标识
      */
@@ -58,9 +67,13 @@ public class AuthorizationModel {
      */
     private LocalDateTime expiryTime;
 
+    private String state;
+
     private String appKey;
 
     private String appSecret;
+
+    private String callbackUrl;
     /**
      * 平台应用ID
      */

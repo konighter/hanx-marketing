@@ -164,17 +164,8 @@ public abstract class AbstractAmazonAdsAdapter {
             log.error("[executePostRequest][Amazon] Url {} 网络异常", url, e);
         }
 
-
-
-
-
-
         return null;
     }
-
-
-
-
 
     protected <T> T executePostequest(AdsAccountCredentialDO credential, String profileId, String url,
             List<Pair<String, String>> params, String jsonBody, Function<String, T> callback) {

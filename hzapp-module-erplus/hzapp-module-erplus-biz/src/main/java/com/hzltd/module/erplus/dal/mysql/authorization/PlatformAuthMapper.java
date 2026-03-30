@@ -22,7 +22,7 @@ public interface PlatformAuthMapper extends BaseMapperX<PlatformAuthDO> {
                 .eq(PlatformAuthDO::getUserId, userId)
                 .eq(PlatformAuthDO::getPlatform, platform)
                 .eq(PlatformAuthDO::getRegion, region)
-                .eq(PlatformAuthDO::getSellerId, sellerId)
+                .eqIfPresent(PlatformAuthDO::getSellerId, sellerId)
                 .eq(PlatformAuthDO::getAppId, appId));
     }
 
@@ -34,8 +34,8 @@ public interface PlatformAuthMapper extends BaseMapperX<PlatformAuthDO> {
 
     @Select("SELECT a.* FROM erplus_platform_auth a " +
             "JOIN erplus_shop_auth s ON a.id = s.auth_id " +
-            "WHERE s.shop_id = #{shopId} AND a.auth_scope = #{authScope} " +
+            "WHERE s.shop_id = #{shopId} AND a.auth_type = #{authType} " +
             "AND s.is_default = 1 AND a.deleted = 0 AND s.deleted = 0")
-    PlatformAuthDO selectDefaultAuthByShopIdAndScope(@Param("shopId") Long shopId, @Param("authScope") String authScope);
+    PlatformAuthDO selectDefaultAuthByShopIdAndType(@Param("shopId") Long shopId, @Param("authType") String authType);
 
 }

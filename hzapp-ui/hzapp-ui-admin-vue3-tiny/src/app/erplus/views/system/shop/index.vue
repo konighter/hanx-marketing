@@ -162,17 +162,17 @@ const showAuthDetails = (row: ShopVO) => {
   authDetailsVisible.value = true
 }
 
-const getAuthLabel = (scope: string, short = false) => {
-  if (scope === 'spapi') return short ? 'SP' : 'SP-API'
-  if (scope === 'adv') return short ? 'AD' : 'Advertising'
-  return scope.toUpperCase()
+const getAuthLabel = (authType: string, short = false) => {
+  if (authType === 'spapi') return short ? 'SP' : 'SP-API'
+  if (authType === 'adv') return short ? 'AD' : 'Advertising'
+  return authType.toUpperCase()
 }
 
 const getAuthTypes = (auths: any[]) => {
   if (!auths || auths.length === 0) return []
   const map = new Map<string, any>()
   auths.forEach((a) => {
-    const scope = a.authScope
+    const scope = a.authType
     if (!map.has(scope)) {
       map.set(scope, {
         scope,

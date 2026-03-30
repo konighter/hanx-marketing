@@ -21,8 +21,8 @@
         </el-select>
       </el-form-item>
       
-      <el-form-item label="授权范围" prop="authScope">
-        <el-select v-model="formData.authScope" placeholder="请选择授权范围" class="w-full">
+      <el-form-item label="授权类型" prop="authType">
+        <el-select v-model="formData.authType" placeholder="请选择授权类型" class="w-full">
           <template v-if="formData.platform === 'AMAZON'">
             <el-option label="Seller Partner (SP-API)" value="AMAZON_SP" />
             <el-option label="Advertising (ADV)" value="AMAZON_ADV" />
@@ -99,7 +99,7 @@
 
 <script setup lang="ts">
 import { ref, reactive, computed, onMounted, onUnmounted, watch } from 'vue'
-import { PlatformAuthApi, PlatformAuthSubmitReqVO, PlatformAppApi, PlatformAppVO } from '@/app/erplus/api/authorization'
+import { PlatformAuthApi, PlatformAuthSubmitReqVO, PlatformAppApi, PlatformAppVO, PlatformAuthGenerateReqVO } from '@/app/erplus/api/authorization'
 import { ElMessage } from 'element-plus'
 import PlatformAppForm from './PlatformAppForm.vue'
 
@@ -110,7 +110,7 @@ const appFormRef = ref()
 
 const formData = reactive({
   platform: 'AMAZON',
-  authScope: 'AMAZON_SP',
+  authType: 'AMAZON_SP',
   region: 'NA',
   selfAuth: false,
   refreshToken: '',
@@ -149,7 +149,7 @@ const handleAppSuccess = async (newId: number) => {
 const formRules = computed(() => {
   const rules: any = {
     platform: [{ required: true, message: '请选择平台', trigger: 'change' }],
-    authScope: [{ required: true, message: '请选择授权范围', trigger: 'change' }],
+    authType: [{ required: true, message: '请选择授权类型', trigger: 'change' }],
     region: [{ required: true, message: '请选择区域', trigger: 'change' }],
     appId: [{ required: true, message: '请选择平台应用', trigger: 'change' }]
   }
@@ -172,7 +172,7 @@ const open = () => {
 /** 重置表单 */
 const resetForm = () => {
   formData.platform = 'AMAZON'
-  formData.authScope = 'AMAZON_SP'
+  formData.authType = 'AMAZON_SP'
   formData.region = 'NA'
   formData.selfAuth = false
   formData.refreshToken = ''

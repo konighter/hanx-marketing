@@ -114,15 +114,15 @@ public class CrossShopController {
                         list);
     }
 
-
-    @PostMapping("/auth")
-    @Operation(summary = "获得店铺授权信息")
-    @Parameter(name = "id", description = "编号", required = true, example = "1024")
-    @PreAuthorize("@ss.hasPermission('ov:shop:query')")
-    public CommonResult<ShopAuthRespVO> submitShopAuth(@RequestBody ShopAuthReqVO authReqVO) {
-        ShopAuthRespVO shopAuthRespVO = shopService.submitShopAuth(authReqVO);
-        return success(shopAuthRespVO);
-    }
+//
+//    @PostMapping("/auth")
+//    @Operation(summary = "获得店铺授权信息")
+//    @Parameter(name = "id", description = "编号", required = true, example = "1024")
+//    @PreAuthorize("@ss.hasPermission('ov:shop:query')")
+//    public CommonResult<ShopAuthRespVO> submitShopAuth(@RequestBody ShopAuthReqVO authReqVO) {
+//        ShopAuthRespVO shopAuthRespVO = shopService.submitShopAuth(authReqVO);
+//        return success(shopAuthRespVO);
+//    }
 
 
 

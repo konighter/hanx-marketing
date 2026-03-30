@@ -16,11 +16,11 @@ public interface AuthInternalService {
      *
      * @param platform 平台类型
      * @param region   区域
-     * @param authScope 授权范围 (AMAZON_SP, AMAZON_ADV等)
+     * @param authType 授权范围 (AMAZON_SP, AMAZON_ADV等)
      * @param state    状态标识
      * @return 授权跳转地址
      */
-    String getAuthLink(CrossPlatformEnum platform, String region, String authScope, String state);
+    String getAuthLink(CrossPlatformEnum platform, Long appId,  String region, String authType, String state);
 
     /**
      * 换取AccessToken (适用于 code 换取 或 refreshToken 换取)
@@ -34,7 +34,7 @@ public interface AuthInternalService {
      * @param sellerId           卖家 ID (可选)
      * @return 授权信息模型
      */
-    AuthorizationModelV0 getAccessToken(CrossPlatformEnum platform, String region, String authScope, String codeOrRefreshToken, OAuthGrantTypeEnum grantType,
+    AuthorizationModelV0 getAccessToken(CrossPlatformEnum platform, String region, String authType, String codeOrRefreshToken, OAuthGrantTypeEnum grantType,
                                         String appKey, String appSecret, String sellerId);
 
     /**

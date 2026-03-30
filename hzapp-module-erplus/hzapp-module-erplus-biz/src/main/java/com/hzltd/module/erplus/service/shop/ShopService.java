@@ -61,6 +61,7 @@ public interface ShopService {
 
     List<ShopDO> getShopListByPlatform(Integer platformId);
 
+    @Deprecated
     ShopAuthRespVO submitShopAuth(ShopAuthReqVO authReqVO);
 
     @TenantIgnore

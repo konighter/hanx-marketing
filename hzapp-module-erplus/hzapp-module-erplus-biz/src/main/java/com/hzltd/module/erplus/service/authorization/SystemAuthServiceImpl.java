@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import jakarta.annotation.Resource;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static com.hzltd.framework.security.core.util.SecurityFrameworkUtils.getLoginUserId;
 
@@ -26,6 +28,18 @@ import static com.hzltd.framework.security.core.util.SecurityFrameworkUtils.getL
  */
 @Service
 public class SystemAuthServiceImpl implements SystemAuthService {
+
+    /** 缓存 TTL：5 分钟 */
+    private static final long CACHE_TTL_MS = 5 * 60 * 1000L;
+
+    /** key = "userId:shopId:authType", value = CacheEntry */
+    private final Map<String, CacheEntry> authModelCache = new ConcurrentHashMap<>();
+
+    private record CacheEntry(AuthorizationModel model, long expireAt) {
+        boolean isExpired() {
+            return System.currentTimeMillis() > expireAt;
+        }
+    }
 
     @Resource
     private ShopAuthMapper shopAuthMapper;
@@ -102,20 +116,37 @@ public class SystemAuthServiceImpl implements SystemAuthService {
     }
 
     @Override
-    public AuthorizationModel getAuthorizationModel(Long shopId, String authScope) {
+    public AuthorizationModel getAuthorizationModel(Long shopId, String authType) {
         Long userId = getLoginUserId();
+
+        // 构建缓存 key
+        String cacheKey = (userId != null ? userId : "anon") + ":" + shopId + ":" + authType;
+        CacheEntry entry = authModelCache.get(cacheKey);
+        if (entry != null && !entry.isExpired()) {
+            return entry.model();
+        }
+
+        // 缓存未命中或已过期，从 DB 查询
+        AuthorizationModel model = loadAuthorizationModel(shopId, authType, userId);
+
+        // 写入缓存（null 也缓存，避免缓存穿透）
+        authModelCache.put(cacheKey, new CacheEntry(model, System.currentTimeMillis() + CACHE_TTL_MS));
+        return model;
+    }
+
+    private AuthorizationModel loadAuthorizationModel(Long shopId, String authType, Long userId) {
         // 1. 优先查询当前用户的授权
         PlatformAuthDO authDO = null;
         if (userId != null) {
             authDO = platformAuthMapper.selectListByShopIdAndUserId(shopId, userId).stream()
-                    .filter(a -> authScope.equals(a.getAuthScope()))
+                    .filter(a -> authType.equals(a.getAuthType()))
                     .findFirst()
                     .orElse(null);
         }
 
         // 2. 如果不存在，查询默认授权
         if (authDO == null) {
-            authDO = platformAuthMapper.selectDefaultAuthByShopIdAndScope(shopId, authScope);
+            authDO = platformAuthMapper.selectDefaultAuthByShopIdAndType(shopId, authType);
         }
 
         if (authDO == null) {

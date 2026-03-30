@@ -57,6 +57,7 @@ CREATE TABLE `erplus_platform_app` (
     `platform` VARCHAR(20) NOT NULL COMMENT '平台类型: AMAZON, TIKTOK',
     `app_key` VARCHAR(100) NOT NULL COMMENT '应用Key',
     `app_secret` VARCHAR(100) NOT NULL COMMENT '应用密钥',
+    `callback_url` VARCHAR(1000) COMMENT '回调地址',
     `creator` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '创建者',
     `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `updater` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '更新者',

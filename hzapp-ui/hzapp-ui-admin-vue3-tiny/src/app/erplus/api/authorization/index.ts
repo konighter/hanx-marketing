@@ -2,7 +2,7 @@ import request from '@/config/axios'
 
 export interface PlatformAuthGenerateReqVO {
   platform: string
-  authScope: string
+  authType: string
   region: string
   appId: number
   sellerId?: string
@@ -27,6 +27,11 @@ export const PlatformAuthApi = {
   // 刷新授权 (通过 shopId)
   refreshAuth: (shopId: number) => {
     return request.post({ url: '/erplus/platform-auth/refresh/' + shopId })
+  },
+
+  // 处理 OAuth 回调
+  oauthCallback: (authType: string, code: string, state: string) => {
+    return request.get({ url: '/erplus/platform-auth/callback/' + authType, params: { code, state } })
   }
 }
 
@@ -34,6 +39,7 @@ export interface PlatformAppVO {
   id?: number
   name: string
   platform: string
+  callbackUrl?: string
 }
 
 export interface PlatformAppSaveReqVO extends PlatformAppVO {

@@ -26,11 +26,11 @@ public interface PlatformAuthService {
     /**
      * 处理授权回调
      *
-     * @param authScope 授权范围
+     * @param authType 授权范围
      * @param code      授权码
      * @param state     状态标识
      */
-    void handleCallback(String authScope, String code, String state);
+    void handleCallback(String authType, String code, String state);
 
     /**
      * 刷新特定店铺的授权信息

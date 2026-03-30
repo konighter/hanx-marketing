@@ -17,6 +17,10 @@ public interface AdsAmazonProfileMapper extends BaseMapperX<AdsAmazonProfileDO> 
         return selectOne(AdsAmazonProfileDO::getProfileId, profileId);
     }
 
+    default AdsAmazonProfileDO selectByShopId(Long shopId) {
+        return selectOne(AdsAmazonProfileDO::getShopId, shopId);
+    }
+
     default List<AdsAmazonProfileDO> selectBySellerId(String sellerId) {
         return selectList(new LambdaQueryWrapperX<AdsAmazonProfileDO>()
                 .eqIfPresent(AdsAmazonProfileDO::getSellerId, sellerId));

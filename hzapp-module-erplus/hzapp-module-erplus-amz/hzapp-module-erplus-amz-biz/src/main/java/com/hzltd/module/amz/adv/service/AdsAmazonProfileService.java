@@ -46,4 +46,5 @@ public interface AdsAmazonProfileService {
      */
     List<AbstractAmazonAdsAdapter.AmzProfileVO> fetchProfiles(AdsAccountDO account, AdsAccountCredentialDO credential, AmazonRegionEnum region);
 
+
 }

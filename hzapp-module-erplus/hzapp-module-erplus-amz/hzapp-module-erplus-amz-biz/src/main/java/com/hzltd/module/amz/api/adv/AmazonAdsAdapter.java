@@ -42,6 +42,7 @@ import okhttp3.FormBody;
 import okhttp3.RequestBody;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -55,6 +56,7 @@ import java.util.stream.Collectors;
 public class AmazonAdsAdapter extends AbstractAmazonAdsAdapter implements AdsPlatformAdapter {
 
     @Resource
+    @Lazy
     private AdsAuthService adsAuthService;
     @Resource
     private AmazonAdsApiService amazonAdsApiService;

@@ -27,6 +27,7 @@ import com.hzltd.module.system.model.ShopModel;
 import com.hzltd.module.spapi.service.notification.NotificationSubscriptionApi;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
@@ -336,15 +337,11 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
     @Override
 //    @Cacheable(cacheNames = "shopRegion", key = "#shopId")
     public List<String> getShopRegion(String shopId) {
+        if (StringUtils.isEmpty(shopId)) {
+            return List.of("NA");
+        }
         ShopDO shopDO = shopMapper.selectById(Long.valueOf(shopId));
-        if (shopDO == null) {
-            return List.of();
-        }
-        SellZoneDO sellZoneDO = sellZoneService.getSellZone(shopDO.getRegion());
-        if (sellZoneDO == null) {
-            return List.of();
-        }
-        return List.of(sellZoneDO.getZoneCode());
+        return shopDO == null ? List.of() : List.of(shopDO.getRegion());
     }
 
     @Override
@@ -402,5 +399,14 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
         }
         shopModel.setId(shop.getId());
         return shopModel;
+    }
+
+    @Override
+    public ShopModel getShopBySellerIdAndMarketplaceId(String sellerId, String marketplaceId) {
+        ShopDO shop = shopMapper.selectOne(new LambdaQueryWrapperX<ShopDO>()
+                .eq(ShopDO::getSellerId, sellerId)
+                .eq(ShopDO::getMarketplaceId, marketplaceId)
+                .last("LIMIT 1"));
+        return BeanUtils.toBean(shop, ShopModel.class);
     }
 }

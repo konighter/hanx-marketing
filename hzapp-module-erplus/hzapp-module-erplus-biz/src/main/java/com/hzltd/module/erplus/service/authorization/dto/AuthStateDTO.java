@@ -29,7 +29,7 @@ public class AuthStateDTO implements Serializable {
     /**
      * 授权范围
      */
-    private String authScope;
+    private String authType;
 
     /**
      * 应用 ID

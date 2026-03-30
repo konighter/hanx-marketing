@@ -28,6 +28,9 @@
       <el-form-item label="应用Secret" prop="appSecret">
         <el-input v-model="formData.appSecret" type="password" show-password placeholder="请输入 Client Secret" />
       </el-form-item>
+      <el-form-item label="回调地址" prop="callbackUrl">
+        <el-input v-model="formData.callbackUrl" placeholder="请输入回调地址 (Callback URL)" />
+      </el-form-item>
     </el-form>
     <template #footer>
       <div class="dialog-footer">
@@ -52,7 +55,8 @@ const formData = reactive<PlatformAppSaveReqVO>({
   name: '',
   platform: 'AMAZON',
   appKey: '',
-  appSecret: ''
+  appSecret: '',
+  callbackUrl: ''
 })
 
 const formRules = {
@@ -70,9 +74,11 @@ const open = (platform: string, item?: PlatformAppVO) => {
   formData.name = ''
   formData.appKey = ''
   formData.appSecret = ''
+  formData.callbackUrl = ''
   
   if (item) {
     formData.name = item.name
+    formData.callbackUrl = item.callbackUrl || ''
     // Note: appKey and appSecret are not returned by the list API for security
   }
 }

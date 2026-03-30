@@ -4,7 +4,6 @@ import cn.hutool.json.JSONUtil;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.amz.api.adv.AbstractAmazonAdsAdapter;
 import com.hzltd.module.amz.api.adv.v1.AdsApiClient;
-import com.hzltd.module.amz.api.adv.v1.AmzStreamSubscriptionService;
 import com.hzltd.module.amz.api.enums.AmazonRegionEnum;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
 import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
@@ -37,10 +36,13 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     private AdsAuthService adsAuthService;
 
     @Resource
-    private AmzStreamSubscriptionService amzStreamSubscriptionService;
+    private AdsAmazonStreamService adsAmazonStreamService;
 
     @Resource
     private AdsApiClient adsApiClient;
+
+    @Resource
+    private AdsAmazonAccountProfileService profileNewService;
 
     @Override
     public void syncProfiles(AdsAccountDO account, AdsAccountCredentialDO credential) {
@@ -66,7 +68,7 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
                             account.getExternalAccountId(), account.getName(), p.getAccountInfo() != null ? p.getAccountInfo().getId() : "");
                     
                     // 自动同步 Stream 订阅
-                    amzStreamSubscriptionService.createStreamSubscription(savedProfile);
+                    adsAmazonStreamService.createStreamSubscription(savedProfile);
                 }
             }
 

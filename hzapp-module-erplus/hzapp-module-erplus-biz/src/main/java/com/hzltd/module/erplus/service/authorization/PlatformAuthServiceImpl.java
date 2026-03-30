@@ -52,13 +52,13 @@ public class PlatformAuthServiceImpl implements PlatformAuthService {
                 .userId(getLoginUserId())
                 .tenantId(TenantContextHolder.getTenantId())
                 .appId(reqVO.getAppId())
-                .authScope(reqVO.getAuthScope())
+                .authType(reqVO.getAuthType())
                 .platform(reqVO.getPlatform().name())
                 .region(reqVO.getRegion())
                 .build();
         platformAuthStateRedisDAO.set(state, stateDTO);
 
-        return authInternalService.getAuthLink(reqVO.getPlatform(), reqVO.getRegion(), reqVO.getAuthScope(), state);
+        return authInternalService.getAuthLink(reqVO.getPlatform(), reqVO.getAppId(), reqVO.getRegion(), reqVO.getAuthType(), state);
     }
 
     @Override
@@ -73,10 +73,10 @@ public class PlatformAuthServiceImpl implements PlatformAuthService {
 
             // 自授权流程：直接使用 refreshToken 换取 accessToken 并保存
             AuthorizationModelV0 model = authInternalService.getAccessToken(
-                    reqVO.getPlatform(), reqVO.getRegion(), reqVO.getAuthScope(), reqVO.getRefreshToken(), OAuthGrantTypeEnum.REFRESH_TOKEN,
+                    reqVO.getPlatform(), reqVO.getRegion(), reqVO.getAuthType(), reqVO.getRefreshToken(), OAuthGrantTypeEnum.REFRESH_TOKEN,
                     app.getAppKey(), app.getAppSecret(), reqVO.getSellerId());
 
-            PlatformAuthDO authDO = savePlatformAuth(reqVO.getPlatform(), reqVO.getRegion(), reqVO.getAuthScope(), model, reqVO.getSellerId(), reqVO.getAppId(), getLoginUserId());
+            PlatformAuthDO authDO = savePlatformAuth(reqVO.getPlatform(), reqVO.getRegion(), reqVO.getAuthType(), model, reqVO.getSellerId(), reqVO.getAppId(), getLoginUserId());
 
             // 2.4 初始化账号 (例如同步店铺信息)
             authInternalService.initAccount(authDO);
@@ -88,7 +88,7 @@ public class PlatformAuthServiceImpl implements PlatformAuthService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void handleCallback(String authScope, String code, String state) {
+    public void handleCallback(String authType, String code, String state) {
         // 1. 从 Redis 获取 state 信息
         AuthStateDTO stateDTO = platformAuthStateRedisDAO.get(state);
         if (stateDTO == null) {
@@ -106,13 +106,14 @@ public class PlatformAuthServiceImpl implements PlatformAuthService {
             // 2.2 执行授权换码
             CrossPlatformEnum platform = CrossPlatformEnum.valueOf(stateDTO.getPlatform());
             String region = stateDTO.getRegion();
-            String finalAuthScope = authScope != null ? authScope : stateDTO.getAuthScope();
+            String finalAuthType = authType != null ? authType : stateDTO.getAuthType();
+            finalAuthType = finalAuthType.toUpperCase();
 
-            AuthorizationModelV0 model = authInternalService.getAccessToken(platform, region, finalAuthScope, code, OAuthGrantTypeEnum.AUTHORIZATION_CODE,
+            AuthorizationModelV0 model = authInternalService.getAccessToken(platform, region, finalAuthType, code, OAuthGrantTypeEnum.AUTHORIZATION_CODE,
                     app.getAppKey(), app.getAppSecret(), null);
 
             // 2.3 保存授权信息
-            PlatformAuthDO authDO = savePlatformAuth(platform, region, finalAuthScope, model, model.getSellerId(), stateDTO.getAppId(), stateDTO.getUserId());
+            PlatformAuthDO authDO = savePlatformAuth(platform, region, finalAuthType, model, model.getSellerId(), stateDTO.getAppId(), stateDTO.getUserId());
             
             // 2.4 初始化账号 (例如同步店铺信息)
             authInternalService.initAccount(authDO);
@@ -150,7 +151,7 @@ public class PlatformAuthServiceImpl implements PlatformAuthService {
                 AuthorizationModelV0 model = authInternalService.getAccessToken(
                         CrossPlatformEnum.valueOf(authDO.getPlatform()),
                         authDO.getRegion(),
-                        authDO.getAuthScope(),
+                        authDO.getAuthType(),
                         authDO.getRefreshToken(),
                         OAuthGrantTypeEnum.REFRESH_TOKEN,
                         app.getAppKey(),
@@ -169,7 +170,7 @@ public class PlatformAuthServiceImpl implements PlatformAuthService {
         }
     }
 
-    private PlatformAuthDO savePlatformAuth(CrossPlatformEnum platform, String region, String authScope, AuthorizationModelV0 model, String sellerId, Long appId, Long userId) {
+    private PlatformAuthDO savePlatformAuth(CrossPlatformEnum platform, String region, String authType, AuthorizationModelV0 model, String sellerId, Long appId, Long userId) {
         // 使用 selectByUserIdAndPlatformAndRegionAndSellerId 实现 saveOrUpdate 逻辑
         PlatformAuthDO authDO = platformAuthMapper.selectByUserIdAndPlatformAndRegionAndSellerId(
                 userId, platform.name(), region, appId, sellerId != null ? sellerId : model.getSellerId());
@@ -179,8 +180,8 @@ public class PlatformAuthServiceImpl implements PlatformAuthService {
             authDO = new PlatformAuthDO();
             authDO.setPlatform(platform.name());
             authDO.setUserId(userId);
-            authDO.setAuthScope(authScope);
-            authDO.setAuthType(authScope);
+            authDO.setAuthScope(authType.toUpperCase());
+            authDO.setAuthType(authType.toUpperCase());
             authDO.setRegion(region);
             authDO.setSellerId(sellerId != null ? sellerId : model.getSellerId());
             authDO.setAppId(appId);

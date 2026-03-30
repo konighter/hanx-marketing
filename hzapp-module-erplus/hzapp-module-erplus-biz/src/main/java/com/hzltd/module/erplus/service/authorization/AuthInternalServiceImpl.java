@@ -28,21 +28,32 @@ public class AuthInternalServiceImpl implements AuthInternalService {
     private PlatformAppService appService;
 
     @Override
-    public String getAuthLink(CrossPlatformEnum platform, String region, String authScope, String state) {
+    public String getAuthLink(CrossPlatformEnum platform, Long appId, String region, String authType, String state) {
         AuthorizationApi api = authorizationApiFactory.getCrossApiService(platform);
         if (api == null) {
             throw new RuntimeException("Platform not supported for authorization: " + platform);
         }
-        
-        AuthorizationModelV0 model = new AuthorizationModelV0();
+
+        PlatformAppDO platformApp = appService.getPlatformApp(appId);
+
+        if (platformApp == null) {
+            throw new RuntimeException("Platform not supported for authorization: " + platform);
+        }
+
+        AuthorizationModel model = new AuthorizationModel();
         model.setState(state);
+        model.setAppKey(platformApp.getAppKey());
+        model.setAppSecret(platformApp.getAppSecret());
+        model.setAuthType(authType);
+        model.setCallbackUrl(platformApp.getCallbackUrl());
+
         // Note: For Amazon, authScope might differentiate between SP-API and Advertising
         // This will be fully implemented when AmazonAuthService is updated.
-        return api.grantAuthInfo(model);
+        return api.grantAuthInfo(appId, region, model);
     }
 
     @Override
-    public AuthorizationModelV0 getAccessToken(CrossPlatformEnum platform, String region, String authScope, String codeOrRefreshToken, OAuthGrantTypeEnum grantType,
+    public AuthorizationModelV0 getAccessToken(CrossPlatformEnum platform, String region, String authType, String codeOrRefreshToken, OAuthGrantTypeEnum grantType,
                                                String appKey, String appSecret, String sellerId) {
         AuthorizationApi api = authorizationApiFactory.getCrossApiService(platform);
         if (api == null) {
@@ -51,7 +62,7 @@ public class AuthInternalServiceImpl implements AuthInternalService {
 
         AuthorizationModelV0 model = new AuthorizationModelV0();
         model.setRegion(region);
-        model.setAuthScope(authScope);
+        model.setAuthType(authType);
         model.setGrantType(grantType.getGrantType());
         model.setAppKey(appKey);
         model.setAppSecret(appSecret);
@@ -92,6 +103,7 @@ public class AuthInternalServiceImpl implements AuthInternalService {
         AuthorizationModel authorizationModel = BeanUtils.toBean(authDO, AuthorizationModel.class);
         authorizationModel.setAppKey(appDO.getAppKey());
         authorizationModel.setAppSecret(appDO.getAppSecret());
+        authorizationModel.setAppId(appDO.getId());
         api.postAuthorization(authorizationModel);
     }
 }

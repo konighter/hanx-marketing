@@ -22,10 +22,10 @@ public abstract class LocalAuthProvider {
         if (shopModel == null) {
             return null;
         }
-        return systemAuthService.getAuthorizationModel(Long.valueOf(shopModel.getId()), getAuthScope());
+        return systemAuthService.getAuthorizationModel(Long.valueOf(shopModel.getId()), getAuthType());
     }
 
-    public abstract String getAuthScope();
+    public abstract String getAuthType();
 
     public abstract String getAuthEndpoint();
 

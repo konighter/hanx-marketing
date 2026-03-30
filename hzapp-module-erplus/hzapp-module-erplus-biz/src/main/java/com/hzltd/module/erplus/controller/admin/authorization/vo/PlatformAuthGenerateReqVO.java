@@ -16,7 +16,7 @@ public class PlatformAuthGenerateReqVO {
 
     @Schema(description = "授权范围 (AMAZON_SP, AMAZON_ADV, TTS_SHOP)", requiredMode = Schema.RequiredMode.REQUIRED, example = "AMAZON_SP")
     @NotBlank(message = "授权范围不能为空")
-    private String authScope;
+    private String authType;
 
     @Schema(description = "区域代码", requiredMode = Schema.RequiredMode.REQUIRED, example = "NA")
     @NotBlank(message = "区域代码不能为空")

@@ -26,4 +26,9 @@ public class AdsAuthStateDTO implements Serializable {
      */
     private Long shopId;
 
+    /**
+     * 当前授权用户
+     */
+    private Long userId;
+
 }

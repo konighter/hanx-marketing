@@ -12,8 +12,6 @@
     <artifactId>hzapp-module-erplus-amz-biz</artifactId>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -32,6 +30,11 @@
         <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-module-erplus-adv</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hzltd</groupId>
+            <artifactId>hzapp-module-erplus-amz-api</artifactId>
         </dependency>
 
 

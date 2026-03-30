@@ -27,4 +27,12 @@ public interface SystemShopService {
 
     ShopModel createOrLoadShop(ShopModel shop);
 
+    /**
+     * 根据卖家ID和国家代码查找店铺
+     * @param sellerId 卖家ID
+     * @param marketplaceId 站点ID
+     * @return 店铺信息
+     */
+    ShopModel getShopBySellerIdAndMarketplaceId(String sellerId, String marketplaceId);
+
 }

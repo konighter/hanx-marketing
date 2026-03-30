@@ -3,11 +3,19 @@ package com.hzltd.module.amz.adv.service;
 import com.hzltd.module.adv.model.AdsRequest;
 import com.hzltd.module.adv.model.AdsResponse;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
+import com.hzltd.module.amz.adv.api.account.api.AccountApi;
+import com.hzltd.module.amz.adv.api.account.model.AdsAccountWithMetaData;
+import com.hzltd.module.amz.adv.api.account.model.GetAccountResponseContent;
+import com.hzltd.module.amz.adv.api.account.model.ListAdsAccountsRequestContent;
+import com.hzltd.module.amz.adv.api.account.model.ListAdsAccountsResponseContent;
 import com.hzltd.module.amz.adv.api.client.ApiException;
 import com.hzltd.module.amz.adv.api.profiles.api.ProfilesApi;
 import com.hzltd.module.amz.adv.api.profiles.model.Profile;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.system.enums.AdsPlatformEnum;
 import org.springframework.stereotype.Service;
 import jakarta.annotation.Resource;
 import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
@@ -15,15 +23,18 @@ import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
 import java.util.List;
 
 @Service
-public class AdsAmazonProfileNewService extends AbstractAmazonAdsService {
+public class AdsAmazonAccountProfileService extends AbstractAmazonAdsService {
 
 
     @Resource
     private AdsAmazonProfileMapper adsAmazonProfileMapper;
 
-    public AdsResponse<List<Profile>> fetchProfiles(AdsRequest<AuthorizationModel> request) {
+    @Resource
+    private AdsAccountMapper adsAccountMapper;
+
+    public AdsResponse<List<Profile>> queryProfiles(AdsRequest<AuthorizationModel> request) {
         AuthorizationModel authorizationModel = request.getShopId() != null ? this.getAuthorizationModel(request.getShopId()) : request.getRequest();
-        ProfilesApi profilesApi = new ProfilesApi(getSpApiClient(authorizationModel));
+        ProfilesApi profilesApi = new ProfilesApi(getApiClient(authorizationModel));
 
         try {
             List<Profile> profiles = profilesApi.listProfiles(authorizationModel.getAppKey(), null, null, "seller", null);
@@ -31,8 +42,41 @@ public class AdsAmazonProfileNewService extends AbstractAmazonAdsService {
         } catch (ApiException e) {
             return AdsResponse.error(e.getMessage());
         }
-
     }
+
+    public AdsResponse<Profile> queryProfile(AdsRequest<String> request) {
+        AuthorizationModel authorizationModel = getAuthorizationModel(request.getShopId());
+        ProfilesApi profilesApi = new ProfilesApi(getApiClient(authorizationModel));
+        try {
+            Profile profile = profilesApi.getProfileById(authorizationModel.getAppKey(), Long.valueOf(request.getRequest()));
+            return AdsResponse.success(profile);
+        } catch (ApiException e) {
+            return AdsResponse.error(e.getMessage());
+        }
+    }
+
+    public AdsResponse<List<AdsAccountWithMetaData>> queryAccounts(AdsRequest<AuthorizationModel> request) {
+        AuthorizationModel authorizationModel = request.getShopId() != null ? this.getAuthorizationModel(request.getShopId()) : request.getRequest();
+        AccountApi accountApi = new AccountApi(getApiClient(authorizationModel));
+        try {
+            ListAdsAccountsResponseContent response = accountApi.listAdsAccounts(authorizationModel.getAppKey(), new ListAdsAccountsRequestContent());
+            return AdsResponse.success(response.getAdsAccounts());
+        } catch (ApiException e) {
+            return AdsResponse.error(e.getMessage());
+        }
+    }
+
+    public AdsResponse<AdsAccountWithMetaData> queryAccount(AdsRequest<String> request) {
+        AuthorizationModel authorizationModel = getAuthorizationModel(request.getShopId());
+        AccountApi accountApi = new AccountApi(getApiClient(authorizationModel));
+        try {
+            GetAccountResponseContent response = accountApi.getAccount(request.getRequest(), authorizationModel.getAppKey());
+            return AdsResponse.success(response.getAdsAccount());
+        } catch (ApiException e) {
+            return AdsResponse.error(e.getMessage());
+        }
+    }
+
 
     public AdsAmazonProfileDO saveOrUpdateProfile(AdsAmazonProfileDO profileDO) {
         AdsAmazonProfileDO existingProfile = adsAmazonProfileMapper.selectByProfileId(profileDO.getProfileId());
@@ -45,4 +89,25 @@ public class AdsAmazonProfileNewService extends AbstractAmazonAdsService {
             return profileDO;
         }
     }
+
+
+    public AdsAccountDO saveOrUpdateAdsAccount(AdsAccountDO accountDO) {
+        AdsAccountDO account = adsAccountMapper.selectByPlatformAndExternalId(AdsPlatformEnum.AMAZON.getCode(), accountDO.getExternalAccountId());
+        accountDO.setPlatform(AdsPlatformEnum.AMAZON.getCode());
+        if (account == null) {
+            adsAccountMapper.insert(accountDO);
+            return accountDO;
+        } else {
+            accountDO.setId(account.getId());
+            adsAccountMapper.updateById(accountDO);
+            return accountDO;
+        }
+    }
+
+
+
+
+
+
+
 }
