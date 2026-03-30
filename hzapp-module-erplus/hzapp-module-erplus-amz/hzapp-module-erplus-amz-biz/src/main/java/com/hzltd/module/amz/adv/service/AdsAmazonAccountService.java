@@ -5,5 +5,5 @@ import com.hzltd.module.adv.service.AdsAccountApi;
 import com.hzltd.module.system.enums.AdsPlatformEnum;
 
 @AdsServiceRegister(platform = AdsPlatformEnum.AMAZON, serviceClass=AdsAccountApi.class)
-public class AmazonAdsAccountService implements AdsAccountApi {
+public class AdsAmazonAccountService implements AdsAccountApi {
 }

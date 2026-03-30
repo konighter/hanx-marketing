@@ -1,12 +1,23 @@
 package com.hzltd.module.amz.api.auth;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.module.amz.adv.service.AdsAmazonProfileService;
+import com.hzltd.module.amz.api.adv.AbstractAmazonAdsAdapter;
+import com.hzltd.module.amz.api.adv.v1.AmzStreamSubscriptionService;
+import com.hzltd.module.amz.api.enums.AmazonRegionEnum;
+import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
+import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
 import com.hzltd.module.amz.spapi.AmazonAccountService;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.spapi.api.ServiceRegister;
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
 import com.hzltd.module.system.model.ShopModel;
+import com.hzltd.module.system.enums.AdsPlatformEnum;
 import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
 import com.hzltd.module.spapi.service.authorization.AuthorizationApi;
@@ -19,12 +30,16 @@ import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.models.sellers.v1.Account;
 import software.amazon.spapi.models.sellers.v1.Participation;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CROSS_API_ERROR;
@@ -48,6 +63,21 @@ public class AmazonAuthService implements AuthorizationApi {
 
     @Resource
     private AmazonAccountService amazonAccountService;
+
+    @Resource
+    private AdsAmazonProfileService adsAmazonProfileService;
+
+    @Resource
+    private AmzStreamSubscriptionService amzStreamSubscriptionService;
+
+    @Resource
+    private AdsAccountCredentialMapper adsAccountCredentialMapper;
+
+    @Resource
+    private AdsAccountMapper adsAccountMapper;
+
+    @Resource
+    private AdsAmazonProfileMapper adsAmazonProfileMapper;
 
 
     @Override
@@ -186,14 +216,72 @@ public class AmazonAuthService implements AuthorizationApi {
     }
 
     private void adsApiPostAuthorization(AuthorizationModel authorizationModel) {
-        // 获取profile, 筛选类型是seller的account, 保存account信息
+        log.info("[adsApiPostAuthorization] 开始处理广告授权: sellerId={}, region={}", 
+                authorizationModel.getSellerId(), authorizationModel.getRegion());
 
 
-        // 初始化profile, 关联shopId(sellerId + marketplace)
 
+        // 2. 创建一个虚拟的顶级广告账号 (用于关联凭证), 不用挂载凭证Credential, 这个只作为profile的归属Account
+        // 实际上 Amazon 广告授权包含多个 Profile，
+        AdsAccountDO adsAccount = adsAccountMapper.selectByPlatformAndExternalId(AdsPlatformEnum.AMAZON.name(), authorizationModel.getSellerId());
+        if (adsAccount == null) {
+            adsAccount = new AdsAccountDO();
+            adsAccount.setPlatform(AdsPlatformEnum.AMAZON.name());
+            adsAccount.setExternalAccountId(authorizationModel.getSellerId());
+            adsAccount.setName("Amazon Ads - " + authorizationModel.getSellerId());
+            adsAccount.setAuthStatus(1);
+            adsAccountMapper.insert(adsAccount);
+        } else {
+            adsAccount.setAuthStatus(1);
+            adsAccountMapper.updateById(adsAccount);
+        }
 
-        // 初始化profile的订阅等信息
+        // 3. 拉取 Profiles (根据该授权的 region)
+        AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(authorizationModel.getRegion());
+        List<AbstractAmazonAdsAdapter.AmzProfileVO> profiles = adsAmazonProfileService.fetchProfiles(adsAccount, null, regionEnum);
+        
+        if (CollectionUtils.isEmpty(profiles)) {
+            log.warn("[adsApiPostAuthorization] 未拉取到有效 Profiles: sellerId={}", authorizationModel.getSellerId());
+            return;
+        }
 
+        for (AbstractAmazonAdsAdapter.AmzProfileVO p : profiles) {
+            // 筛选类型是 seller 的 account (已经在 fetchProfiles 过滤了，但这里做双重检查)
+            if (p.getAccountInfo() == null || !"seller".equalsIgnoreCase(p.getAccountInfo().getType())) {
+                continue;
+            }
 
+            // 保存 Profile 信息
+            AdsAmazonProfileDO profileDO = adsAmazonProfileMapper.selectByProfileId(p.getProfileId());
+            if (profileDO == null) {
+                profileDO = AdsAmazonProfileDO.builder()
+                        .accountId(adsAccount.getId())
+                        .sellerId(p.getAccountInfo().getId())
+                        .profileId(p.getProfileId())
+                        .countryCode(p.getCountryCode())
+                        .region(regionEnum.name())
+                        .currencyCode(p.getCurrencyCode())
+                        .timezone(p.getTimezone())
+                        .entityId(authorizationModel.getSellerId())
+                        .entityName(adsAccount.getName())
+                        .status("ENABLED")
+                        .build();
+                adsAmazonProfileMapper.insert(profileDO);
+            } else {
+                profileDO.setAccountId(adsAccount.getId());
+                profileDO.setSellerId(p.getAccountInfo().getId());
+                profileDO.setCountryCode(p.getCountryCode());
+                profileDO.setRegion(regionEnum.name());
+                profileDO.setCurrencyCode(p.getCurrencyCode());
+                profileDO.setTimezone(p.getTimezone());
+                profileDO.setStatus("ENABLED");
+                adsAmazonProfileMapper.updateById(profileDO);
+            }
+
+            // 4. 关联 ShopId (根据 sellerId + marketplace/countryCode)
+
+            // 5. 初始化 profile 的订阅等信息
+            amzStreamSubscriptionService.createStreamSubscription(profileDO);
+        }
     }
 }
