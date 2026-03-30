@@ -45,6 +45,11 @@ public class AdsAdGroupDO extends BaseDO {
     private Long accountId;
 
     /**
+     * 所属店铺ID
+     */
+    private Long shopId;
+
+    /**
      * 平台原始广告组ID
      */
     private String externalId;

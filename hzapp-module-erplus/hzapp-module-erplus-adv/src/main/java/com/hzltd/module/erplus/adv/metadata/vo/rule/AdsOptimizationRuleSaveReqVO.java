@@ -9,7 +9,11 @@ import java.util.List;
 @Data
 public class AdsOptimizationRuleSaveReqVO {
 
-    @Schema(description = "关联广告账户ID")
+    @Schema(description = "店铺ID")
+    private Long shopId;
+
+    @Schema(description = "关联广告账户ID (已弃用，请使用 shopId)")
+    @Deprecated
     private Long accountId;
 
     @Schema(description = "关联 profileId (亚马逊站点维度)")

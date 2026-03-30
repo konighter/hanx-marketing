@@ -28,6 +28,7 @@
       <el-form-item label="优化规则">
         <AdsOptimizationRuleSelect 
           :model-value="modelValue.optimizationRuleId"
+          :shop-id="modelValue.shopId"
           :account-id="modelValue.accountId"
           :profile-id="modelValue.profileId"
           @update:model-value="val => updateModelValue('optimizationRuleId', val)"
@@ -90,7 +91,7 @@
                   <AdGroupTargetingManager 
                     v-if="activeAdGroup"
                     :config="ensureActiveGroupConfig()" 
-                    :default-bid="activeAdGroup.defaultBid"
+                    :default-bid="activeAdGroup.defaultBid || 0"
                     :disabled="disabled"
                     @update="val => syncActiveGroupToModel(val)"
                   />

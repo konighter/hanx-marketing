@@ -34,6 +34,8 @@ public class AdsKeywordDO extends BaseDO {
     private Long campaignId;
     /** 关联广告账户ID (冗余) */
     private Long accountId;
+    /** 所属店铺ID */
+    private Long shopId;
 
     /**
      * 广告平台 (AMAZON, GOOGLE, etc.)

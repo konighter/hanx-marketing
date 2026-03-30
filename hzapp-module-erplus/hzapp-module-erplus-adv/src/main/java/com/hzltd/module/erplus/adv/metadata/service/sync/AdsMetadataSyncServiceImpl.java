@@ -1,18 +1,19 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
-import com.hzltd.module.adv.model.AdsQueryRequest;
+import com.hzltd.module.adv.model.*;
+import com.hzltd.module.adv.service.AdsManagerApi;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
+import com.hzltd.module.erplus.adv.adapter.service.AdsManagerApiFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.metadata.service.ad.AdsAdService;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
 import com.hzltd.module.erplus.adv.metadata.service.keyword.AdsKeywordService;
-import com.hzltd.module.adv.model.AdsAdResponse;
-import com.hzltd.module.adv.model.AdsAdGroupResponse;
-import com.hzltd.module.adv.model.AdsCampaignResponse;
-import com.hzltd.module.adv.model.AdsTargetResponse;
+import com.hzltd.module.system.enums.AdsPlatformEnum;
+import com.hzltd.module.system.model.ShopModel;
+import com.hzltd.module.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -39,6 +40,10 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
     private AdsAdService adsAdService;
     @Resource
     private AdsKeywordService adsKeywordService;
+    @Resource
+    private AdsManagerApiFactory adsManagerApiFactory;
+    @Resource
+    private SystemShopService systemShopService;
 
     @Override
     public void syncAllMetadata(Long accountId) {
@@ -47,10 +52,36 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
     }
 
     @Override
+    public void syncAllMetadataByShop(Long shopId) {
+        log.info("[syncAllMetadataByShop] 开始全量同步店铺元数据: shopId={}", shopId);
+        List<AdsAccountDO> accounts = adsAccountMapper.selectListByShopId(shopId);
+        if (CollectionUtils.isEmpty(accounts)) {
+            log.warn("[syncAllMetadataByShop] 店铺下无广告账号: shopId={}", shopId);
+            return;
+        }
+        for (AdsAccountDO account : accounts) {
+            syncAllMetadata(account.getId());
+        }
+    }
+
+    @Override
     public void syncIncrementalMetadata(Long accountId) {
         log.info("[syncIncrementalMetadata] 开始增量同步账号元数据: accountId={}", accountId);
         // 增量同步逻辑可以根据需要填充 AdsQueryRequest，例如设置 startAt
         syncMetadata(accountId, new AdsQueryRequest());
+    }
+
+    @Override
+    public void syncIncrementalMetadataByShop(Long shopId) {
+        log.info("[syncIncrementalMetadataByShop] 开始增量同步店铺元数据: shopId={}", shopId);
+        List<AdsAccountDO> accounts = adsAccountMapper.selectListByShopId(shopId);
+        if (CollectionUtils.isEmpty(accounts)) {
+            log.warn("[syncIncrementalMetadataByShop] 店铺下无广告账号: shopId={}", shopId);
+            return;
+        }
+        for (AdsAccountDO account : accounts) {
+            syncIncrementalMetadata(account.getId());
+        }
     }
 
     @Override
@@ -108,4 +139,36 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
         
         log.info("[syncMetadata] 账号元数据同步完成: accountId={}", accountId);
     }
+
+
+    private void syncMetadataByShopId(Long shopId, AdsQueryRequest request) {
+
+        ShopModel shopModel = systemShopService.getShopById(shopId);
+        if (shopModel == null) {
+            log.error("[syncMetadataByShopID] shop not exist,shopId={}", shopId);
+            return;
+        }
+
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(AdsPlatformEnum.of(shopModel.getPlatformCode()));
+
+        AdsResponse<List<AdsCampaignResponse>> campaignsResponse = adsManagerApi.queryCampaign(new AdsRequest<AdsQueryRequest>().setRequest(request).setShopId(shopId));
+        if (!campaignsResponse.isSuccess()) {
+            log.error("[syncMetadataByShopID] CampaignQuery Error, shopId={}, error={}", shopId, campaignsResponse.getMessage());
+            return;
+        }
+
+        if (!CollectionUtils.isEmpty(campaignsResponse.getData())) {
+            for (AdsCampaignResponse vo : campaignsResponse.getData()) {
+                adsCampaignService.saveCampaign(null, vo);
+            }
+        }
+
+
+
+
+
+
+    }
+
+
 }

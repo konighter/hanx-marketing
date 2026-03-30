@@ -22,6 +22,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class AdsReportHourlyDO {
 
+    /** 店铺ID */
+    private Long shopId;
+
     /** 关联广告账户ID */
     private Long accountId;
 

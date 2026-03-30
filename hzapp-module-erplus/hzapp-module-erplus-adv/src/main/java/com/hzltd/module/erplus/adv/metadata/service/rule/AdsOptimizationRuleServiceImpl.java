@@ -52,6 +52,8 @@ public class AdsOptimizationRuleServiceImpl implements AdsOptimizationRuleServic
         AdsOptimizationRuleSaveReqVO.OptimizationRule ruleVO = createReqVO.getOptimizationRule();
         if (ruleVO != null) {
             AdsOptimizationRuleDO ruleDO = new AdsOptimizationRuleDO();
+            ruleDO.setShopId(account.getShopId());
+            ruleDO.setAccountId(account.getId());
             ruleDO.setRuleId(ruleId); // 使用 mocked ruleId
             ruleDO.setName(ruleVO.getRuleName());
             ruleDO.setCategory(ruleVO.getRuleCategory());
@@ -67,7 +69,10 @@ public class AdsOptimizationRuleServiceImpl implements AdsOptimizationRuleServic
 
 
     @Override
-    public List<AdsOptimizationRuleDO> getOptimizationRuleList() {
-        return adsOptimizationRuleMapper.selectList();
+    public List<AdsOptimizationRuleDO> getOptimizationRuleList(Long shopId) {
+        return adsOptimizationRuleMapper.selectList(
+            new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AdsOptimizationRuleDO>()
+                .eq(shopId != null, AdsOptimizationRuleDO::getShopId, shopId)
+        );
     }
 }

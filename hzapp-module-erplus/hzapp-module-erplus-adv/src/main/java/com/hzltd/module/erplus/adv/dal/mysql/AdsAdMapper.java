@@ -35,6 +35,7 @@ public interface AdsAdMapper extends BaseMapperX<AdsAdDO> {
 
     default PageResult<AdsAdDO> selectPage(AdsAdPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsAdDO>()
+                .eqIfPresent(AdsAdDO::getShopId, reqVO.getShopId())
                 .eqIfPresent(AdsAdDO::getAccountId, reqVO.getAccountId())
                 .inIfPresent(AdsAdDO::getCampaignId, reqVO.getCampaignIds())
                 .inIfPresent(AdsAdDO::getAdGroupId, reqVO.getAdGroupIds())
@@ -47,6 +48,12 @@ public interface AdsAdMapper extends BaseMapperX<AdsAdDO> {
     default List<AdsAdDO> selectListByAccountId(Long accountId) {
         return selectList(new LambdaQueryWrapperX<AdsAdDO>()
                 .eq(AdsAdDO::getAccountId, accountId)
+                .orderByDesc(AdsAdDO::getId));
+    }
+
+    default List<AdsAdDO> selectListByShopId(Long shopId) {
+        return selectList(new LambdaQueryWrapperX<AdsAdDO>()
+                .eq(AdsAdDO::getShopId, shopId)
                 .orderByDesc(AdsAdDO::getId));
     }
 }

@@ -332,11 +332,17 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
     @Transactional(rollbackFor = Exception.class)
     public Long saveCampaign(Long accountId, AdsCampaignResponse vo) {
         AdsCampaignDO existing = adsCampaignMapper.selectByAccountAndExternalId(accountId, vo.getExternalId());
+        
+        AdsAccountDO account = adsAccountMapper.selectById(accountId);
+        Long shopId = account != null ? account.getShopId() : null;
 
         if (existing == null) {
             existing = new AdsCampaignDO();
+            existing.setShopId(shopId);
             existing.setAccountId(accountId);
             existing.setExternalId(vo.getExternalId());
+        } else {
+            existing.setShopId(shopId);
         }
 
         // 当本地是停用, 平台是暂停时, 不更新本地状态

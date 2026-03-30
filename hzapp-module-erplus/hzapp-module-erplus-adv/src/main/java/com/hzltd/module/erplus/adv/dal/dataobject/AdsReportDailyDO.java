@@ -25,6 +25,9 @@ public class AdsReportDailyDO {
     @TableField("date")
     private LocalDate reportDate;
 
+    /** 店铺ID */
+    private Long shopId;
+
     /** 关联广告账户ID  */
     private Long accountId;
 

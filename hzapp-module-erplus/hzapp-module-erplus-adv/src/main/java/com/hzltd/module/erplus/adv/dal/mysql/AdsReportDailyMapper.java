@@ -18,9 +18,10 @@ import java.util.List;
 @Mapper
 public interface AdsReportDailyMapper extends BaseMapperX<AdsReportDailyDO> {
 
-    default List<AdsReportDailyDO> selectListByEntityAndDateRange(String groupColumn, Long campaignId, Long adGroupId,
+    default List<AdsReportDailyDO> selectListByEntityAndDateRange(Long shopId, String groupColumn, Long campaignId, Long adGroupId,
                                                                    LocalDate startDate, LocalDate endDate) {
         return selectList(new LambdaQueryWrapperX<AdsReportDailyDO>()
+                .eqIfPresent(AdsReportDailyDO::getShopId, shopId)
                 .eq(AdsReportDailyDO::getGroupColumn, groupColumn)
                 .eq(AdsReportDailyDO::getCampaignId, campaignId)
                 .eqIfPresent(AdsReportDailyDO::getAdGroupId, adGroupId)
@@ -28,18 +29,20 @@ public interface AdsReportDailyMapper extends BaseMapperX<AdsReportDailyDO> {
                 .orderByAsc(AdsReportDailyDO::getReportDate));
     }
 
-    default List<AdsReportDailyDO> selectListByAccountAndDateRange(Long accountId, String groupColumn,
+    default List<AdsReportDailyDO> selectListByAccountAndDateRange(Long shopId, Long accountId, String groupColumn,
                                                                     LocalDate startDate, LocalDate endDate) {
         return selectList(new LambdaQueryWrapperX<AdsReportDailyDO>()
-                .eq(AdsReportDailyDO::getAccountId, accountId)
+                .eqIfPresent(AdsReportDailyDO::getShopId, shopId)
+                .eqIfPresent(AdsReportDailyDO::getAccountId, accountId)
                 .eqIfPresent(AdsReportDailyDO::getGroupColumn, groupColumn)
                 .betweenIfPresent(AdsReportDailyDO::getReportDate, startDate, endDate)
                 .orderByAsc(AdsReportDailyDO::getReportDate));
     }
 
-    default AdsReportDailyDO selectByUniqueKey(Long accountId, String groupColumn, Long campaignId, Long adGroupId, 
+    default AdsReportDailyDO selectByUniqueKey(Long shopId, Long accountId, String groupColumn, Long campaignId, Long adGroupId, 
                                                LocalDate reportDate, String targeting, String searchTerm) {
         return selectOne(new LambdaQueryWrapperX<AdsReportDailyDO>()
+                .eqIfPresent(AdsReportDailyDO::getShopId, shopId)
                 .eq(AdsReportDailyDO::getAccountId, accountId)
                 .eq(AdsReportDailyDO::getGroupColumn, groupColumn)
                 .eq(AdsReportDailyDO::getCampaignId, campaignId)

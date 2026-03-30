@@ -5,7 +5,7 @@
       type="primary" 
       circle
       :loading="loading"
-      :disabled="!accountId"
+      :disabled="!accountId && !shopId"
       @click="visible = true"
     >
       <Icon icon="ep:refresh" />
@@ -65,6 +65,7 @@ import { AdsSyncApi } from '@/app/erplus/api/adv/ads'
 
 const props = defineProps<{
   accountId?: number
+  shopId?: number
 }>()
 
 const emit = defineEmits(['success'])
@@ -79,17 +80,23 @@ const form = reactive({
 })
 
 const handleConfirm = async () => {
-  if (!props.accountId) return
+  if (!props.accountId && !props.shopId) return
   
   loading.value = true
   try {
     if (form.type === 'all') {
-      await AdsSyncApi.syncAllMetadata(props.accountId)
+      if (props.shopId) {
+        await AdsSyncApi.syncAllMetadataByShop(props.shopId)
+      } else {
+        await AdsSyncApi.syncAllMetadata(props.accountId!)
+      }
       message.success('已触发全量同步任务')
     } else {
-      // 如果后端支持传时间范围，可以在这里传递参数
-      // 目前 AdsSyncApi.syncIncrMetadata 仅支持 accountId
-      await AdsSyncApi.syncIncrMetadata(props.accountId)
+      if (props.shopId) {
+        await AdsSyncApi.syncIncrMetadataByShop(props.shopId)
+      } else {
+        await AdsSyncApi.syncIncrMetadata(props.accountId!)
+      }
       message.success('已触发增量同步任务')
     }
     visible.value = false

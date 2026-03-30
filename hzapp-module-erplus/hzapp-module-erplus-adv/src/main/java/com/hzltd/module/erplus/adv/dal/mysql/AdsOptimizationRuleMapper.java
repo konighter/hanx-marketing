@@ -13,4 +13,10 @@ public interface AdsOptimizationRuleMapper extends BaseMapperX<AdsOptimizationRu
     default AdsOptimizationRuleDO selectByRuleId(String ruleId) {
         return selectOne(AdsOptimizationRuleDO::getRuleId, ruleId);
     }
+
+    default java.util.List<AdsOptimizationRuleDO> selectListByShopId(Long shopId) {
+        return selectList(new com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX<AdsOptimizationRuleDO>()
+                .eq(AdsOptimizationRuleDO::getShopId, shopId)
+                .orderByDesc(AdsOptimizationRuleDO::getId));
+    }
 }

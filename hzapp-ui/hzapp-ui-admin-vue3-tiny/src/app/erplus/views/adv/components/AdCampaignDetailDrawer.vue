@@ -106,6 +106,7 @@
           <div class="p-20px">
             <AdCampaignDataAnalysis 
               v-if="visible && activeTab === 'data'"
+              :shop-id="detail.shopId"
               :account-id="detail.accountId"
               :campaign-id="detail.id!"
             />
@@ -193,6 +194,7 @@ const open = async (id: number) => {
     const extData = res.extData || {}
     platformConfig.value = {
       ...(extData.platformConfig || {}),
+      shopId: res.shopId,
       accountId: res.accountId
     }
   } finally {
@@ -205,7 +207,7 @@ const handleSave = async () => {
   
   saving.value = true
   try {
-    const { adGroups, accountId, ...cleanPlatformConfig } = platformConfig.value || {}
+    const { adGroups, accountId, shopId, ...cleanPlatformConfig } = platformConfig.value || {}
 
     const updateData: any = {
       id: detail.value.id,

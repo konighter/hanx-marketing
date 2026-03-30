@@ -20,6 +20,13 @@ public interface AdsPerformanceSyncService {
     void createDailySyncTask(Long accountId);
 
     /**
+     * 为指定店铺下所有已启用的广告账号创建每日绩效同步任务
+     *
+     * @param shopId 店铺 ID
+     */
+    void createDailySyncTasksByShop(Long shopId);
+
+    /**
      * 处理所有活跃的（PENDING/RUNNING）Report 类同步任务
      * 由定时任务高频调用（如每 5 分钟），推进异步报表状态
      */

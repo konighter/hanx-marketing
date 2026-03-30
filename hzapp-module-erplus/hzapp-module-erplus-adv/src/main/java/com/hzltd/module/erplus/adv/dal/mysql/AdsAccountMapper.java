@@ -22,6 +22,10 @@ public interface AdsAccountMapper extends BaseMapperX<AdsAccountDO> {
                 .eq(AdsAccountDO::getExternalAccountId, externalAccountId));
     }
 
+    default List<AdsAccountDO> selectListByShopId(Long shopId) {
+        return selectList(AdsAccountDO::getShopId, shopId);
+    }
+
     default List<AdsAccountDO> selectListByPlatform(String platform) {
         return selectList(new LambdaQueryWrapperX<AdsAccountDO>()
                 .eqIfPresent(AdsAccountDO::getPlatform, platform)

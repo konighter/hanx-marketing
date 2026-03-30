@@ -26,19 +26,31 @@ public class AdsMetadataSyncController {
 
     @PostMapping("/metadata-all")
     @Operation(summary = "全量同步广告元数据")
-    @Parameter(name = "accountId", description = "账号编号", required = true)
+    @Parameter(name = "accountId", description = "账号编号", required = false)
+    @Parameter(name = "shopId", description = "店铺编号", required = false)
     @PreAuthorize("@ss.hasPermission('erplus:adv-sync:metadata')")
-    public CommonResult<Boolean> syncAllMetadata(@RequestParam("accountId") Long accountId) {
-        adsMetadataSyncService.syncAllMetadata(accountId);
+    public CommonResult<Boolean> syncAllMetadata(@RequestParam(value = "accountId", required = false) Long accountId,
+                                                @RequestParam(value = "shopId", required = false) Long shopId) {
+        if (shopId != null) {
+            adsMetadataSyncService.syncAllMetadataByShop(shopId);
+        } else if (accountId != null) {
+            adsMetadataSyncService.syncAllMetadata(accountId);
+        }
         return success(true);
     }
 
     @PostMapping("/metadata-incr")
     @Operation(summary = "增量同步广告元数据")
-    @Parameter(name = "accountId", description = "账号编号", required = true)
+    @Parameter(name = "accountId", description = "账号编号", required = false)
+    @Parameter(name = "shopId", description = "店铺编号", required = false)
     @PreAuthorize("@ss.hasPermission('erplus:adv-sync:metadata')")
-    public CommonResult<Boolean> syncIncrementalMetadata(@RequestParam("accountId") Long accountId) {
-        adsMetadataSyncService.syncIncrementalMetadata(accountId);
+    public CommonResult<Boolean> syncIncrementalMetadata(@RequestParam(value = "accountId", required = false) Long accountId,
+                                                       @RequestParam(value = "shopId", required = false) Long shopId) {
+        if (shopId != null) {
+            adsMetadataSyncService.syncIncrementalMetadataByShop(shopId);
+        } else if (accountId != null) {
+            adsMetadataSyncService.syncIncrementalMetadata(accountId);
+        }
         return success(true);
     }
 

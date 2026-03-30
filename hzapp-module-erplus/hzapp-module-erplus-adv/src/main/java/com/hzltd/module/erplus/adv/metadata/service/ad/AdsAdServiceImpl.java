@@ -136,12 +136,19 @@ public class AdsAdServiceImpl implements AdsAdService {
         Long campaignId = adGroup.getCampaignId();
 
         AdsAdDO existing = adsAdMapper.selectByAdGroupAndExternalId(adGroupId, vo.getExternalId());
+        
+        AdsAccountDO account = adsAccountMapper.selectById(accountId);
+        Long shopId = account != null ? account.getShopId() : null;
+
         if (existing == null) {
             existing = new AdsAdDO();
+            existing.setShopId(shopId);
             existing.setAccountId(accountId);
             existing.setCampaignId(campaignId);
             existing.setAdGroupId(adGroupId);
             existing.setExternalId(vo.getExternalId());
+        } else {
+            existing.setShopId(shopId);
         }
         existing.setName(vo.getName());
         existing.setAdFormat(vo.getAdFormat());

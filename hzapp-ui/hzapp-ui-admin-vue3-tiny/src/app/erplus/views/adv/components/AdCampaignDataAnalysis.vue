@@ -43,6 +43,7 @@
       <el-col :span="16">
         <div class="chart-wrapper-border h-full">
           <AdDataChart
+            :shop-id="shopId"
             :account-id="accountId"
             entity-type="CAMPAIGN"
             :query-params="{ campaignIds: [campaignId] }"
@@ -159,6 +160,7 @@ import { DICT_TYPE } from '@/app/erplus/common/dict'
 import { AdsReportApi } from '@/app/erplus/api/adv/report'
 
 const props = defineProps<{
+  shopId?: number
   accountId?: number
   campaignId: number
 }>()
@@ -199,6 +201,7 @@ const loadScorecardData = async () => {
   if (!props.accountId || !props.campaignId) return
   try {
     const data = await AdsReportApi.getPerformanceScorecard({
+      shopId: props.shopId,
       accountId: props.accountId,
       entityType: 'CAMPAIGN',
       entityId: props.campaignId,
@@ -314,6 +317,7 @@ const loadDrilldownData = async () => {
   tableLoading.value = true
   try {
     const data = await AdsReportApi.getPerformanceDrilldown({
+      shopId: props.shopId,
       accountId: props.accountId,
       entityType: 'CAMPAIGN',
       entityId: props.campaignId,

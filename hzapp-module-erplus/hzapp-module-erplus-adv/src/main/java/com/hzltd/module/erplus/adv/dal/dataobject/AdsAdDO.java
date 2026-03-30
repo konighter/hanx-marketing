@@ -43,6 +43,11 @@ public class AdsAdDO extends BaseDO {
     private Long accountId;
 
     /**
+     * 所属店铺ID
+     */
+    private Long shopId;
+
+    /**
      * 广告平台 (AMAZON, GOOGLE, etc.)
      */
     private String platform;

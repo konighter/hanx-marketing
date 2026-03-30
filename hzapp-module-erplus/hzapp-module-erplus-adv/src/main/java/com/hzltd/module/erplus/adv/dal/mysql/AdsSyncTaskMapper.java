@@ -21,6 +21,12 @@ public interface AdsSyncTaskMapper extends BaseMapperX<AdsSyncTaskDO> {
                 .orderByDesc(AdsSyncTaskDO::getId));
     }
 
+    default List<AdsSyncTaskDO> selectListByShopId(Long shopId) {
+        return selectList(new LambdaQueryWrapperX<AdsSyncTaskDO>()
+                .eq(AdsSyncTaskDO::getShopId, shopId)
+                .orderByDesc(AdsSyncTaskDO::getId));
+    }
+
     default List<AdsSyncTaskDO> selectListByStatus(String status) {
         return selectList(new LambdaQueryWrapperX<AdsSyncTaskDO>()
                 .eq(AdsSyncTaskDO::getStatus, status)
@@ -59,6 +65,12 @@ public interface AdsSyncTaskMapper extends BaseMapperX<AdsSyncTaskDO> {
     default List<AdsSyncTaskDO> selectRunningByAccountId(Long accountId) {
         return selectList(new LambdaQueryWrapperX<AdsSyncTaskDO>()
                 .eq(AdsSyncTaskDO::getAccountId, accountId)
+                .eq(AdsSyncTaskDO::getStatus, "RUNNING"));
+    }
+
+    default List<AdsSyncTaskDO> selectRunningByShopId(Long shopId) {
+        return selectList(new LambdaQueryWrapperX<AdsSyncTaskDO>()
+                .eq(AdsSyncTaskDO::getShopId, shopId)
                 .eq(AdsSyncTaskDO::getStatus, "RUNNING"));
     }
 }

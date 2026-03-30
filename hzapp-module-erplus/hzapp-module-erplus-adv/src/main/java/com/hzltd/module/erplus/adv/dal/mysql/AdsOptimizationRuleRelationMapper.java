@@ -16,8 +16,14 @@ public interface AdsOptimizationRuleRelationMapper extends BaseMapperX<AdsOptimi
         return selectList(AdsOptimizationRuleRelationDO::getRuleId, ruleId);
     }
 
-    default List<AdsOptimizationRuleRelationDO> selectListByEntity(Long entityId, String entityType) {
-        return selectList(AdsOptimizationRuleRelationDO::getEntityId, entityId,
-                AdsOptimizationRuleRelationDO::getEntityType, entityType);
+    default List<AdsOptimizationRuleRelationDO> selectListByEntity(Long shopId, Long entityId, String entityType) {
+        return selectList(new com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX<AdsOptimizationRuleRelationDO>()
+                .eqIfPresent(AdsOptimizationRuleRelationDO::getShopId, shopId)
+                .eq(AdsOptimizationRuleRelationDO::getEntityId, entityId)
+                .eq(AdsOptimizationRuleRelationDO::getEntityType, entityType));
+    }
+
+    default List<AdsOptimizationRuleRelationDO> selectListByShopId(Long shopId) {
+        return selectList(AdsOptimizationRuleRelationDO::getShopId, shopId);
     }
 }

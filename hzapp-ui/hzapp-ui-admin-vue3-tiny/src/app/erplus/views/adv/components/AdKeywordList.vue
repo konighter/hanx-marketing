@@ -159,6 +159,7 @@ defineOptions({ name: 'AdKeywordList' })
 
 const props = defineProps<{
   accountId?: number
+  shopId?: number
   campaignIds?: number[]
   adGroupIds?: number[]
   metricColumns: any[]
@@ -180,6 +181,7 @@ const queryParams = reactive({
   pageNo: 1,
   pageSize: 10,
   accountId: props.accountId,
+  shopId: props.shopId,
   campaignIds: props.campaignIds && props.campaignIds.length > 0 ? props.campaignIds : undefined,
   adGroupIds: props.adGroupIds && props.adGroupIds.length > 0 ? props.adGroupIds : undefined,
   keywordText: undefined,
@@ -222,7 +224,7 @@ const handleFilterChange = (filters: any) => {
 }
 
 const getList = async () => {
-  if (!props.accountId) {
+  if (!props.accountId && !props.shopId) {
     list.value = []
     total.value = 0
     loading.value = false
@@ -233,6 +235,7 @@ const getList = async () => {
     const data = await AdsKeywordApi.getKeywordPage({
       ...queryParams,
       accountId: props.accountId,
+      shopId: props.shopId,
       campaignIds: props.campaignIds && props.campaignIds.length > 0 ? props.campaignIds : undefined,
       adGroupIds: props.adGroupIds && props.adGroupIds.length > 0 ? props.adGroupIds : undefined
     })
@@ -252,7 +255,7 @@ const handleUpdateStatus = async (row: AdsKeyword) => {
   } catch (error) {}
 }
 
-watch(() => [props.accountId, props.campaignIds, props.adGroupIds], () => {
+watch(() => [props.accountId, props.shopId, props.campaignIds, props.adGroupIds], () => {
   queryParams.pageNo = 1
   getList()
 }, { deep: true })

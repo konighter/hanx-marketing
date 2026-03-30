@@ -41,8 +41,15 @@ public interface AdsKeywordMapper extends BaseMapperX<AdsKeywordDO> {
                 .orderByDesc(AdsKeywordDO::getId));
     }
 
+    default List<AdsKeywordDO> selectListByShopId(Long shopId) {
+        return selectList(new LambdaQueryWrapperX<AdsKeywordDO>()
+                .eq(AdsKeywordDO::getShopId, shopId)
+                .orderByDesc(AdsKeywordDO::getId));
+    }
+
     default PageResult<AdsKeywordDO> selectPage(AdsKeywordPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsKeywordDO>()
+                .eqIfPresent(AdsKeywordDO::getShopId, reqVO.getShopId())
                 .eqIfPresent(AdsKeywordDO::getAccountId, reqVO.getAccountId())
                 .inIfPresent(AdsKeywordDO::getCampaignId, reqVO.getCampaignIds())
                 .inIfPresent(AdsKeywordDO::getAdGroupId, reqVO.getAdGroupIds())

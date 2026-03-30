@@ -36,8 +36,22 @@ public interface AdsCampaignMapper extends BaseMapperX<AdsCampaignDO> {
                 .orderByDesc(AdsCampaignDO::getId));
     }
 
+    default List<AdsCampaignDO> selectListByShopId(Long shopId) {
+        return selectList(new LambdaQueryWrapperX<AdsCampaignDO>()
+                .eq(AdsCampaignDO::getShopId, shopId)
+                .orderByDesc(AdsCampaignDO::getId));
+    }
+
+    default List<AdsCampaignDO> selectListByShopIdAndStatus(Long shopId, String status) {
+        return selectList(new LambdaQueryWrapperX<AdsCampaignDO>()
+                .eq(AdsCampaignDO::getShopId, shopId)
+                .eqIfPresent(AdsCampaignDO::getStatus, status)
+                .orderByDesc(AdsCampaignDO::getId));
+    }
+
     default PageResult<AdsCampaignDO> selectPage(AdsCampaignPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsCampaignDO>()
+                .eqIfPresent(AdsCampaignDO::getShopId, reqVO.getShopId())
                 .eqIfPresent(AdsCampaignDO::getAccountId, reqVO.getAccountId())
                 .eqIfPresent(AdsCampaignDO::getExternalId, reqVO.getExternalId())
                 .likeIfPresent(AdsCampaignDO::getName, reqVO.getName())

@@ -10,26 +10,26 @@
         :inline="true"
         label-width="80px"
       >
-        <el-form-item label="广告账号" prop="accountId">
-          <el-select v-model="queryParams.accountId" placeholder="请选择广告账号" clearable class="!w-240px">
-            <el-option
-              v-for="item in accountList"
-              :key="item.id"
-              :label="item.name + ' (' + item.platform + ')'"
-              :value="item.id"
-            />
-          </el-select>
+        <el-form-item label="店铺" prop="shopId">
+          <el-cascader
+            v-model="selectedShopPath"
+            :options="shopCascaderList"
+            :props="{ label: 'name', value: 'id', children: 'children' }"
+            placeholder="请选择平台/店铺"
+            clearable
+            class="!w-280px"
+            @change="handleShopChange"
+          />
         </el-form-item>
       </el-form>
-
       <!-- 右侧：同步组件 -->
-      <AdSyncDialog :account-id="queryParams.accountId" />
+      <AdSyncDialog :shop-id="queryParams.shopId" />
     </div>
 
     <!-- 展示当前广告效果 (账户级别分析) -->
     <AdAccountDataAnalysis 
-      v-if="queryParams.accountId"
-      :account-id="queryParams.accountId"
+      v-if="queryParams.shopId"
+      :shop-id="queryParams.shopId"
     />
   </ContentWrap>
 
@@ -57,7 +57,7 @@
     <el-tabs v-model="activeTab" type="card" @tab-change="handleTabChange">
       <el-tab-pane label="广告活动" name="campaign">
         <AdCampaignList 
-          :account-id="queryParams.accountId"
+          :shop-id="queryParams.shopId"
           :metric-columns="metricColumns"
           @select="handleCampaignSelect"
           @click-name="handleCampaignClick"
@@ -65,7 +65,7 @@
       </el-tab-pane>
       <el-tab-pane label="广告组" name="adGroup">
         <AdGroupList 
-          :account-id="queryParams.accountId"
+          :shop-id="queryParams.shopId"
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :metric-columns="metricColumns"
           @select="handleAdGroupSelect"
@@ -74,7 +74,7 @@
       </el-tab-pane>
       <el-tab-pane label="广告" name="ad">
         <AdList 
-          :account-id="queryParams.accountId"
+          :shop-id="queryParams.shopId"
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :ad-group-ids="filterContext.adGroupId ? [filterContext.adGroupId] : selectedAdGroupIds"
           :metric-columns="metricColumns"
@@ -82,7 +82,7 @@
       </el-tab-pane>
       <el-tab-pane label="关键词" name="keyword">
         <AdKeywordList 
-          :account-id="queryParams.accountId"
+          :shop-id="queryParams.shopId"
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :ad-group-ids="filterContext.adGroupId ? [filterContext.adGroupId] : selectedAdGroupIds"
           :metric-columns="metricColumns"
@@ -93,8 +93,7 @@
 </template>
 
 <script setup lang="ts">
-import { AdsAuthApi } from '@/app/erplus/api/adv/ads'
-import { AdsAccount } from './types/ads'
+import { ShopApi } from '@/app/erplus/api/system/shop'
 import AdCampaignList from './components/AdCampaignList.vue'
 import AdGroupList from './components/AdGroupList.vue'
 import AdList from './components/AdList.vue'
@@ -106,12 +105,13 @@ defineOptions({ name: 'AdsAccountManager' })
 
 const message = useMessage()
 const activeTab = ref('campaign')
-const accountList = ref<AdsAccount[]>([])
+const shopCascaderList = ref<any[]>([])
+const selectedShopPath = ref<any[]>([])
 const selectedCampaignIds = ref<number[]>([])
 const selectedAdGroupIds = ref<number[]>([])
 
 const queryParams = reactive({
-  accountId: undefined as number | undefined
+  shopId: undefined as number | undefined
 })
 
 // === 全局指标列配置 ===
@@ -132,12 +132,19 @@ const filterContext = reactive({
   adGroupName: ''
 })
 
-// 移除 clearHierarchy，改由账户切换或 Tab 切换自动处理逻辑
-const getAccountList = async () => {
+// 移除 getAccountList，改为 getShopCascaderList
+const getShopCascaderList = async () => {
   try {
-    const data = await AdsAuthApi.getAccountPage({ pageNo: 1, pageSize: 100 })
-    accountList.value = data.list
+    shopCascaderList.value = await ShopApi.getCascaderShopList()
   } catch (error) {}
+}
+
+const handleShopChange = (value: any[]) => {
+  if (value && value.length === 2) {
+    queryParams.shopId = value[1]
+  } else {
+    queryParams.shopId = undefined
+  }
 }
 
 const handleTabChange = (tab: string) => {
@@ -191,9 +198,7 @@ const handleAdClick = (row: any) => {
   console.log('Clicked ad:', row.name)
 }
 
-
-
-watch(() => queryParams.accountId, () => {
+watch(() => queryParams.shopId, () => {
   filterContext.campaignId = undefined
   filterContext.campaignName = ''
   selectedCampaignIds.value = []
@@ -204,6 +209,6 @@ watch(() => queryParams.accountId, () => {
 })
 
 onMounted(() => {
-  getAccountList()
+  getShopCascaderList()
 })
 </script>

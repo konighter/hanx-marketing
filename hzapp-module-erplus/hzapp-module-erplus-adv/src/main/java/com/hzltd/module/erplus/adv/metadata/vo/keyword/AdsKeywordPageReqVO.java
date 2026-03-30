@@ -14,7 +14,11 @@ import java.util.Collection;
 @ToString(callSuper = true)
 public class AdsKeywordPageReqVO extends PageParam {
 
-    @Schema(description = "广告账户编号", example = "1")
+    @Schema(description = "店铺编号", example = "1")
+    private Long shopId;
+
+    @Schema(description = "广告账户编号(已弃用，请使用 shopId)", example = "1")
+    @Deprecated
     private Long accountId;
 
     @Schema(description = "广告组编号集合", example = "20,21")

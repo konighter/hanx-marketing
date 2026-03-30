@@ -37,8 +37,8 @@ public class AdsOptimizationRuleController {
     @GetMapping("/ads/rules/optimization/list")
     @Operation(summary = "获取优化规则列表")
     @PreAuthorize("@ss.hasPermission('erplus:adv-rule:query')")
-    public CommonResult<List<AdsOptimizationRuleDO>> getOptimizationRuleList() {
-        return success(adsOptimizationRuleService.getOptimizationRuleList());
+    public CommonResult<List<AdsOptimizationRuleDO>> getOptimizationRuleList(@RequestParam(value = "shopId", required = false) Long shopId) {
+        return success(adsOptimizationRuleService.getOptimizationRuleList(shopId));
     }
 
 }

@@ -108,5 +108,10 @@ export const AdsSyncApi = {
   syncIncrMetadata: async (accountId: number) => {
     return await request.post({ url: `/erplus/adv/sync/metadata-incr?accountId=${accountId}` })
   },
-  
+  syncAllMetadataByShop: async (shopId: number) => {
+    return await request.post({ url: `/erplus/adv/sync/metadata-all-by-shop?shopId=${shopId}` })
+  },
+  syncIncrMetadataByShop: async (shopId: number) => {
+    return await request.post({ url: `/erplus/adv/sync/metadata-incr-by-shop?shopId=${shopId}` })
+  },
 }

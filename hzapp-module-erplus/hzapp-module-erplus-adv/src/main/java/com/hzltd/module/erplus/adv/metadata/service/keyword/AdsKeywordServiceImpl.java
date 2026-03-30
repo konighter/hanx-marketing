@@ -169,12 +169,19 @@ public class AdsKeywordServiceImpl implements AdsKeywordService {
         Long campaignId = adGroup.getCampaignId();
 
         AdsKeywordDO existing = adsKeywordMapper.selectByAdGroupAndExternalId(adGroupId, vo.getExternalId());
+        
+        AdsAccountDO account = adsAccountMapper.selectById(accountId);
+        Long shopId = account != null ? account.getShopId() : null;
+
         if (existing == null) {
             existing = new AdsKeywordDO();
+            existing.setShopId(shopId);
             existing.setAccountId(accountId);
             existing.setCampaignId(campaignId);
             existing.setAdGroupId(adGroupId);
             existing.setExternalId(vo.getExternalId());
+        } else {
+            existing.setShopId(shopId);
         }
 
         existing.setKeywordText(vo.getKeywordText());

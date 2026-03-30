@@ -24,6 +24,10 @@ public class AdsOptimizationRuleRelationDO extends BaseDO {
      */
     @TableId
     private Long id;
+    /** 店铺ID */
+    private Long shopId;
+    /** 广告账户ID */
+    private Long accountId;
 
     /**
      * 内部规则ID
