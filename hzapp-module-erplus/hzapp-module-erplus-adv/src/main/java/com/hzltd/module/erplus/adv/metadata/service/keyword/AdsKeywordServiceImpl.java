@@ -5,10 +5,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
-import com.hzltd.module.adv.model.AdsBidUpdateRequest;
-import com.hzltd.module.adv.model.AdsStatusUpdateRequest;
+import com.hzltd.module.adv.model.*;
+import com.hzltd.module.adv.service.AdsManagerApi;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
+import com.hzltd.module.erplus.adv.adapter.service.AdsManagerApiFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsKeywordAttributeDO;
@@ -17,18 +18,21 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsKeywordAttributeMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsKeywordMapper;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
-import com.hzltd.module.adv.model.AdsTargetResponse;
 import com.hzltd.module.erplus.adv.metadata.vo.keyword.AdsKeywordPageReqVO;
+import com.hzltd.module.system.enums.AdsPlatformEnum;
+import com.hzltd.module.system.model.ShopModel;
+import com.hzltd.module.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 import com.hzltd.framework.common.exception.ErrorCode;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -52,6 +56,8 @@ public class AdsKeywordServiceImpl implements AdsKeywordService {
     @Resource
     private AdsPlatformAdapterFactory adsPlatformAdapterFactory;
     @Resource
+    private AdsManagerApiFactory adsManagerApiFactory;
+    @Resource
     private AdsKeywordAttributeMapper adsKeywordAttributeMapper;
     @Resource
     private ObjectMapper objectMapper;
@@ -59,6 +65,8 @@ public class AdsKeywordServiceImpl implements AdsKeywordService {
     @Resource
     @Lazy
     private AdsAdGroupService adsAdGroupService;
+    @Resource
+    private SystemShopService systemShopService;
 
     @Override
     public PageResult<AdsKeywordDO> getKeywordPage(AdsKeywordPageReqVO pageReqVO) {
@@ -73,27 +81,23 @@ public class AdsKeywordServiceImpl implements AdsKeywordService {
             throw exception(new ErrorCode(1_033_004_001, "关键词不存在"));
         }
 
-        AdsAccountDO account = adsAccountMapper.selectById(keyword.getAccountId());
-        if (account != null && account.getPlatform() != null) {
-            try {
-                AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(account.getPlatform());
-                AdsBidUpdateRequest updateReq = new AdsBidUpdateRequest();
-                updateReq.setEntityType(AdsEntityTypeEnum.KEYWORD);
-                updateReq.setEntityId(keyword.getExternalId());
-                updateReq.setLocalId(id);
-                updateReq.setBid(bid);
-
-                boolean success = adapter.updateBid(account.getId(), updateReq);
-                if (success) {
-                    AdsKeywordDO updateObj = new AdsKeywordDO();
-                    updateObj.setId(id);
-                    updateObj.setBid(bid);
-                    adsKeywordMapper.updateById(updateObj);
-                }
-            } catch (Exception e) {
-                log.warn("[updateKeywordBid] 平台出价同步异常: keywordId={}, platform={}", id, account.getPlatform(), e);
-            }
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(AdsPlatformEnum.of(keyword.getPlatform()));
+        AdsResponse<Boolean> bidUpdateResp = adsManagerApi.updateBid(new AdsRequest<AdsBidUpdateRequest>()
+                .setShopId(keyword.getShopId())
+                .setRequest(new AdsBidUpdateRequest()
+                        .setEntityType(AdsEntityTypeEnum.KEYWORD)
+                        .setEntityId(keyword.getExternalId())
+                        .setLocalId(id)
+                        .setBid(bid)));
+        if (bidUpdateResp.isSuccess()) {
+            AdsKeywordDO updateObj = new AdsKeywordDO();
+            updateObj.setId(id);
+            updateObj.setBid(bid);
+            adsKeywordMapper.updateById(updateObj);
+        } else {
+            throw exception(new ErrorCode(1_033_004_002, "更新关键词出价失败"));
         }
+
     }
 
     @Override
@@ -104,27 +108,24 @@ public class AdsKeywordServiceImpl implements AdsKeywordService {
             throw exception(new ErrorCode(1_033_004_001, "关键词不存在"));
         }
 
-        AdsAccountDO account = adsAccountMapper.selectById(keyword.getAccountId());
-        if (account != null && account.getPlatform() != null) {
-            try {
-                AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(account.getPlatform());
-                AdsStatusUpdateRequest updateReq = new AdsStatusUpdateRequest();
-                updateReq.setEntityType(AdsEntityTypeEnum.KEYWORD);
-                updateReq.setEntityId(keyword.getExternalId());
-                updateReq.setLocalId(id);
-                updateReq.setStatus(status);
-
-                boolean success = adapter.updateStatus(account.getId(), updateReq);
-                if (success) {
-                    AdsKeywordDO updateObj = new AdsKeywordDO();
-                    updateObj.setId(id);
-                    updateObj.setStatus(status);
-                    adsKeywordMapper.updateById(updateObj);
-                }
-            } catch (Exception e) {
-                log.warn("[updateKeywordStatus] 平台状态同步异常: keywordId={}, platform={}", id, account.getPlatform(), e);
-            }
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(AdsPlatformEnum.of(keyword.getPlatform()));
+        AdsResponse<Boolean> statusUpdateResp = adsManagerApi.updateStatus(new AdsRequest<AdsStatusUpdateRequest>()
+                .setShopId(keyword.getShopId())
+                .setRequest(new AdsStatusUpdateRequest()
+                        .setEntityType(AdsEntityTypeEnum.KEYWORD)
+                        .setEntityId(keyword.getExternalId())
+                        .setLocalId(id)
+                        .setStatus(status)
+                ));
+        if (statusUpdateResp.isSuccess()) {
+            AdsKeywordDO updateObj = new AdsKeywordDO();
+            updateObj.setId(id);
+            updateObj.setStatus(status);
+            adsKeywordMapper.updateById(updateObj);
+        } else {
+            throw exception(new ErrorCode(1_033_004_003, "关键词状态更新失败"));
         }
+
     }
 
     @Override
@@ -141,9 +142,12 @@ public class AdsKeywordServiceImpl implements AdsKeywordService {
         }
         Map<String, Object> map = new HashMap<>();
         for (AdsKeywordAttributeDO attr : attributeDOs) {
+            if (StringUtils.isEmpty(attr.getAttrValue())) {
+                continue;
+            }
             try {
                 Object value;
-                if (StringUtils.hasText(attr.getAttrValueClass())) {
+                if (StringUtils.isNotEmpty(attr.getAttrValueClass())) {
                     value = objectMapper.readValue(attr.getAttrValue(), Class.forName(attr.getAttrValueClass()));
                 } else {
                     value = objectMapper.readValue(attr.getAttrValue(), Object.class);
@@ -158,33 +162,40 @@ public class AdsKeywordServiceImpl implements AdsKeywordService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Long saveKeyword(Long accountId, AdsTargetResponse vo) {
+    public Long saveKeyword(Long shopId, AdsTargetModel vo) {
         // 1. 根据外部广告组 ID 解析本地关联 ID
-        AdsAdGroupDO adGroup = adsAdGroupService.getAdGroupByAccountAndExternalId(accountId, vo.getAdGroupExternalId());
+        String externalAdGroupId = vo.getAdEntityId();
+        if (externalAdGroupId == null && vo.getAttributes() != null && vo.getAttributes().containsKey("adGroupId")) {
+            externalAdGroupId = String.valueOf(vo.getAttributes().get("adGroupId"));
+        }
+        AdsAdGroupDO adGroup = adsAdGroupService.getAdGroupByShopAndExternalId(shopId, externalAdGroupId);
         if (adGroup == null) {
-            log.warn("[saveKeyword] 找不到广告组: accountId={}, externalAdGroupId={}", accountId, vo.getAdGroupExternalId());
+            log.warn("[saveKeyword] 找不到广告组: shopId={}, externalAdGroupId={}", shopId, externalAdGroupId);
             return null;
         }
         Long adGroupId = adGroup.getId();
         Long campaignId = adGroup.getCampaignId();
 
         AdsKeywordDO existing = adsKeywordMapper.selectByAdGroupAndExternalId(adGroupId, vo.getExternalId());
-        
-        AdsAccountDO account = adsAccountMapper.selectById(accountId);
-        Long shopId = account != null ? account.getShopId() : null;
+
+        ShopModel shopModel = systemShopService.getShopById(shopId);
+        Long fallbackAccountId = shopModel.getAccountId();
 
         if (existing == null) {
             existing = new AdsKeywordDO();
             existing.setShopId(shopId);
-            existing.setAccountId(accountId);
+            existing.setAccountId(fallbackAccountId);
             existing.setCampaignId(campaignId);
             existing.setAdGroupId(adGroupId);
             existing.setExternalId(vo.getExternalId());
         } else {
             existing.setShopId(shopId);
+            if (existing.getAccountId() == null) {
+                existing.setAccountId(fallbackAccountId);
+            }
         }
 
-        existing.setKeywordText(vo.getKeywordText());
+        existing.setKeywordText(vo.getMatchValue());
         existing.setMatchType(vo.getMatchType());
         existing.setBid(vo.getBid());
         existing.setStatus(vo.getStatus());

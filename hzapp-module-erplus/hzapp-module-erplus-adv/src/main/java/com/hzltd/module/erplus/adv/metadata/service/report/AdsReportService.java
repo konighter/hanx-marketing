@@ -22,7 +22,7 @@ public interface AdsReportService {
     /**
      * 聚合小时数据到汇总表
      */
-    void aggregateHourlyToSummary(Long shopId, Long accountId, String entityType, Long entityId, LocalDateTime reportHour);
+    void aggregateHourlyToSummary(Long shopId, String entityType, Long entityId, LocalDateTime reportHour);
 
     /**
      * 获得核心指标响应

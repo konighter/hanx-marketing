@@ -17,23 +17,12 @@ import java.util.List;
 @Mapper
 public interface AdsCampaignMapper extends BaseMapperX<AdsCampaignDO> {
 
-    default AdsCampaignDO selectByAccountAndExternalId(Long accountId, String externalId) {
+
+
+    default AdsCampaignDO selectByShopAndExternalId(Long shopId, String externalId) {
         return selectOne(new LambdaQueryWrapperX<AdsCampaignDO>()
-                .eq(AdsCampaignDO::getAccountId, accountId)
+                .eq(AdsCampaignDO::getShopId, shopId)
                 .eq(AdsCampaignDO::getExternalId, externalId));
-    }
-
-    default List<AdsCampaignDO> selectListByAccountId(Long accountId) {
-        return selectList(new LambdaQueryWrapperX<AdsCampaignDO>()
-                .eq(AdsCampaignDO::getAccountId, accountId)
-                .orderByDesc(AdsCampaignDO::getId));
-    }
-
-    default List<AdsCampaignDO> selectListByAccountIdAndStatus(Long accountId, String status) {
-        return selectList(new LambdaQueryWrapperX<AdsCampaignDO>()
-                .eq(AdsCampaignDO::getAccountId, accountId)
-                .eqIfPresent(AdsCampaignDO::getStatus, status)
-                .orderByDesc(AdsCampaignDO::getId));
     }
 
     default List<AdsCampaignDO> selectListByShopId(Long shopId) {
@@ -49,6 +38,7 @@ public interface AdsCampaignMapper extends BaseMapperX<AdsCampaignDO> {
                 .orderByDesc(AdsCampaignDO::getId));
     }
 
+    @SuppressWarnings("deprecation")
     default PageResult<AdsCampaignDO> selectPage(AdsCampaignPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsCampaignDO>()
                 .eqIfPresent(AdsCampaignDO::getShopId, reqVO.getShopId())

@@ -2,6 +2,7 @@ package com.hzltd.module.amz.adv.service;
 
 import cn.hutool.json.JSONUtil;
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.module.amz.adv.api.AdsAccountProfileApi;
 import com.hzltd.module.amz.api.adv.AbstractAmazonAdsAdapter;
 import com.hzltd.module.amz.api.adv.v1.AdsApiClient;
 import com.hzltd.module.amz.api.enums.AmazonRegionEnum;
@@ -42,7 +43,7 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     private AdsApiClient adsApiClient;
 
     @Resource
-    private AdsAmazonAccountProfileService profileNewService;
+    private AdsAccountProfileApi profileNewService;
 
     @Override
     public void syncProfiles(AdsAccountDO account, AdsAccountCredentialDO credential) {

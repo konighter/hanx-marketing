@@ -4,7 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.amz.spapi.AmzCancelInboundPlanRequest;
-import com.hzltd.module.amz.service.AmzFulfillmentService;
+import com.hzltd.module.amz.spapi.service.AmzFulfillmentService;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentAuditReqVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentItemVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.StockShipmentPlanReqVO;

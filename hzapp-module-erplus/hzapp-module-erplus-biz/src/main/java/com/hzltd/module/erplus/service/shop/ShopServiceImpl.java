@@ -325,13 +325,15 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
     @Override
     public ShopModel getShopById(Long shopId) {
         ShopDO shopDO = shopMapper.selectById(shopId);
-        return BeanUtils.toBean(shopDO, ShopModel.class);
+        SellPlatformDO platformDO = sellPlatformService.getSellPlatform(shopDO.getPlatform());
+        ShopModel shopModel = BeanUtils.toBean(shopDO, ShopModel.class);
+        shopModel.setPlatformCode(platformDO.getCode());
+        return shopModel;
     }
 
     @Override
     public ShopModel getShopByExtraId(String shopId) {
-        ShopDO shopDO = shopMapper.selectById(Long.valueOf(shopId));
-        return BeanUtils.toBean(shopDO, ShopModel.class);
+        return getShopById(Long.valueOf(shopId));
     }
 
     @Override

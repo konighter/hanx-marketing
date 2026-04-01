@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.adv;
 
-import com.hzltd.module.amz.adv.api.client.ApiClient;
+import com.hzltd.module.amz.adv.client.client.ApiClient;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
 import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
 import com.hzltd.module.amz.service.AmzAdvLwaService;
@@ -156,7 +156,7 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
                 builder.setHeader("Amazon-Advertising-API-Account-Id", authModel.getAdsAccountId());
             }
 
-            log.debug("[AmazonAds] Request Info - Region: {}, profileId: {}, adsAccountId: {}",
+            log.debug("[AmazonAds] Request Info -Url:{} Region: {}, profileId: {}, adsAccountId: {}", apiClient.getBaseUri(),
                     authModel.getRegion(), authModel.getProfileId(), authModel.getAdsAccountId());
         });
 

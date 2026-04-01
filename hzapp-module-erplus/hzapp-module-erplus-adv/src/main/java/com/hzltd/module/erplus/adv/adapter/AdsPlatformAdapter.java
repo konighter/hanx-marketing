@@ -7,10 +7,10 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
-import com.hzltd.module.adv.model.AdsAdGroupResponse;
-import com.hzltd.module.adv.model.AdsAdResponse;
-import com.hzltd.module.adv.model.AdsCampaignResponse;
-import com.hzltd.module.adv.model.AdsTargetResponse;
+import com.hzltd.module.adv.model.AdsAdGroupModel;
+import com.hzltd.module.adv.model.AdsAdModel;
+import com.hzltd.module.adv.model.AdsCampaignModel;
+import com.hzltd.module.adv.model.AdsTargetModel;
 
 import java.util.List;
 
@@ -57,22 +57,22 @@ public interface AdsPlatformAdapter {
     /**
      * 查询广告计划列表
      */
-    List<AdsCampaignResponse> queryCampaigns(Long accountId, AdsQueryRequest request);
+    List<AdsCampaignModel> queryCampaigns(Long accountId, AdsQueryRequest request);
 
     /**
      * 查询广告组列表
      */
-    List<AdsAdGroupResponse> queryGroups(Long accountId, AdsQueryRequest request);
+    List<AdsAdGroupModel> queryGroups(Long accountId, AdsQueryRequest request);
 
     /**
      * 查询关键词和定向
      */
-    List<AdsTargetResponse> queryTargets(Long accountId, AdsQueryRequest request);
+    List<AdsTargetModel> queryTargets(Long accountId, AdsQueryRequest request);
 
     /**
      * 查询广告列表
      */
-    List<AdsAdResponse> queryAds(Long accountId, AdsQueryRequest request);
+    List<AdsAdModel> queryAds(Long accountId, AdsQueryRequest request);
 
     /**
      * 更新实体状态

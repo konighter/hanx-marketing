@@ -110,6 +110,7 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
             return Collections.emptyList();
         }
         Long accountId = profile.getAccountId();
+        Long shopId = profile.getShopId();
 
         // 解析外部 ID
         String extCampaignId = detail.getStr("campaignId");
@@ -118,10 +119,10 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         String extKeywordId = detail.getStr("keywordId");
 
         // 查找内部 ID
-        Long campaignId = resolveInternalCampaignId(accountId, extCampaignId);
-        Long adGroupId = resolveInternalAdGroupId(accountId, extAdGroupId);
-        Long adId = resolveInternalAdId(accountId, extAdId);
-        Long keywordId = resolveInternalKeywordId(accountId, extKeywordId);
+        Long campaignId = resolveInternalCampaignId(shopId, extCampaignId);
+        Long adGroupId = resolveInternalAdGroupId(shopId, extAdGroupId);
+        Long adId = resolveInternalAdId(shopId, extAdId);
+        Long keywordId = resolveInternalKeywordId(shopId, extKeywordId);
 
         if (campaignId == null) {
             log.warn("[parseStreamDetail] 无法解析 campaignId, extCampaignId={}, 跳过", extCampaignId);
@@ -214,27 +215,27 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         }
     }
 
-    private Long resolveInternalCampaignId(Long accountId, String externalCampaignId) {
+    private Long resolveInternalCampaignId(Long shopId, String externalCampaignId) {
         if (externalCampaignId == null || externalCampaignId.isEmpty()) return null;
-        AdsCampaignDO campaign = adsCampaignMapper.selectByAccountAndExternalId(accountId, externalCampaignId);
+        AdsCampaignDO campaign = adsCampaignMapper.selectByShopAndExternalId(shopId, externalCampaignId);
         return campaign != null ? campaign.getId() : null;
     }
 
-    private Long resolveInternalAdGroupId(Long accountId, String externalAdGroupId) {
+    private Long resolveInternalAdGroupId(Long shopId, String externalAdGroupId) {
         if (externalAdGroupId == null || externalAdGroupId.isEmpty()) return null;
-        AdsAdGroupDO adGroup = adsAdGroupMapper.selectByAccountAndExternalId(accountId, externalAdGroupId);
+        AdsAdGroupDO adGroup = adsAdGroupMapper.selectByShopAndExternalId(shopId, externalAdGroupId);
         return adGroup != null ? adGroup.getId() : null;
     }
 
-    private Long resolveInternalAdId(Long accountId, String externalAdId) {
+    private Long resolveInternalAdId(Long shopId, String externalAdId) {
         if (externalAdId == null || externalAdId.isEmpty()) return null;
-        AdsAdDO ad = adsAdMapper.selectByAccountAndExternalId(accountId, externalAdId);
+        AdsAdDO ad = adsAdMapper.selectByShopAndExternalId(shopId, externalAdId);
         return ad != null ? ad.getId() : null;
     }
 
-    private Long resolveInternalKeywordId(Long accountId, String externalKeywordId) {
+    private Long resolveInternalKeywordId(Long shopId, String externalKeywordId) {
         if (externalKeywordId == null || externalKeywordId.isEmpty()) return null;
-        AdsKeywordDO keyword = adsKeywordMapper.selectByAccountAndExternalId(accountId, externalKeywordId);
+        AdsKeywordDO keyword = adsKeywordMapper.selectByShopAndExternalId(shopId, externalKeywordId);
         return keyword != null ? keyword.getId() : null;
     }
 
@@ -467,6 +468,7 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         String reportType = metadata.get("reportType");
         String groupBy = (String) task.getContext().get("groupBy");
         Long accountId = task.getAccountId();
+        Long shopId = task.getShopId();
 
         byte[] unzipped = ZipUtil.unGzip(new ByteArrayInputStream(gzipContent));
         String jsonStr = new String(unzipped);
@@ -481,7 +483,7 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         for (int i = 0; i < data.size(); i++) {
             try {
                 JSONObject row = data.getJSONObject(i);
-                processRow(accountId, reportType, groupBy, row, campaignAggregationMap);
+                processRow(accountId, shopId, reportType, groupBy, row, campaignAggregationMap);
                 successCount++;
             } catch (Exception e) {
                 log.error("[parseAndSave] 解析行数据失败: index={}", i, e);
@@ -503,7 +505,7 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         log.info("[parseAndSave] 报表处理完成: successCount={}, reportType={}", successCount, reportType);
     }
 
-    private void processRow(Long accountId, String reportType, String groupBy, JSONObject row,
+    private void processRow(Long accountId, Long shopId, String reportType, String groupBy, JSONObject row,
                             Map<Long, AdsReportDailyDO> campaignAggregationMap) {
         Long campaignId = null;
         Long adGroupId = null;
@@ -511,12 +513,12 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         // Resolve internal campaign/adGroup IDs
         String externalCampaignId = row.getStr("campaignId");
         if (externalCampaignId != null) {
-            AdsCampaignDO campaign = adsCampaignMapper.selectByAccountAndExternalId(accountId, externalCampaignId);
+            AdsCampaignDO campaign = adsCampaignMapper.selectByShopAndExternalId(shopId, externalCampaignId);
             if (campaign != null) campaignId = campaign.getId();
         }
         String externalAdGroupId = row.getStr("adGroupId");
         if (externalAdGroupId != null) {
-            AdsAdGroupDO adGroup = adsAdGroupMapper.selectByAccountAndExternalId(accountId, externalAdGroupId);
+            AdsAdGroupDO adGroup = adsAdGroupMapper.selectByShopAndExternalId(shopId, externalAdGroupId);
             if (adGroup != null) adGroupId = adGroup.getId();
         }
 
@@ -559,12 +561,12 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         adsReportDailyMapper.insert(reportDO);
     }
 
-    private void aggregateToCampaign(Long accountId, JSONObject row, LocalDate reportDate, 
+    private void aggregateToCampaign(Long accountId, Long shopId, JSONObject row, LocalDate reportDate, 
                                      BigDecimal spend, Long impressions, Long clicks, 
                                      Integer conversions, BigDecimal sales,
                                      Map<Long, AdsReportDailyDO> campaignAggregationMap) {
         String externalCampaignId = row.getStr("campaignId");
-        AdsCampaignDO campaign = adsCampaignMapper.selectByAccountAndExternalId(accountId, externalCampaignId);
+        AdsCampaignDO campaign = adsCampaignMapper.selectByShopAndExternalId(shopId, externalCampaignId);
         if (campaign == null) return;
 
         Long campaignId = campaign.getId();
@@ -660,19 +662,19 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         return "UNKNOWN";
     }
 
-    private Long findInternalEntityId(Long accountId, String reportType, String externalId, JSONObject row) {
+    private Long findInternalEntityId(Long shopId, String reportType, String externalId, JSONObject row) {
         if (AmzSpReportConstants.SP_CAMPAIGNS.equals(reportType)) {
             // Check if it's an adGroup record or campaign record
             String adGroupIdStr = row.getStr("adGroupId");
             if (adGroupIdStr != null) {
-                AdsAdGroupDO adGroup = adsAdGroupMapper.selectByAccountAndExternalId(accountId, adGroupIdStr);
+                AdsAdGroupDO adGroup = adsAdGroupMapper.selectByShopAndExternalId(shopId, adGroupIdStr);
                 return adGroup != null ? adGroup.getId() : null;
             }
-            AdsCampaignDO campaign = adsCampaignMapper.selectByAccountAndExternalId(accountId, externalId);
+            AdsCampaignDO campaign = adsCampaignMapper.selectByShopAndExternalId(shopId, externalId);
             return campaign != null ? campaign.getId() : null;
         }
         if (AmzSpReportConstants.SP_TARGETING.equals(reportType) || AmzSpReportConstants.SP_SEARCH_TERM.equals(reportType)) {
-            AdsKeywordDO keyword = adsKeywordMapper.selectByAccountAndExternalId(accountId, externalId);
+            AdsKeywordDO keyword = adsKeywordMapper.selectByShopAndExternalId(shopId, externalId);
             return keyword != null ? keyword.getId() : null;
         }
         return null;

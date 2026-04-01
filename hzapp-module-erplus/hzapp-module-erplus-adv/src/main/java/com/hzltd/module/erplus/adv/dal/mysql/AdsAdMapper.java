@@ -23,9 +23,11 @@ public interface AdsAdMapper extends BaseMapperX<AdsAdDO> {
                 .eq(AdsAdDO::getExternalId, externalId));
     }
 
-    default AdsAdDO selectByAccountAndExternalId(Long accountId, String externalId) {
+
+
+    default AdsAdDO selectByShopAndExternalId(Long shopId, String externalId) {
         return selectOne(new LambdaQueryWrapperX<AdsAdDO>()
-                .eq(AdsAdDO::getAccountId, accountId)
+                .eq(AdsAdDO::getShopId, shopId)
                 .eq(AdsAdDO::getExternalId, externalId));
     }
 
@@ -33,6 +35,7 @@ public interface AdsAdMapper extends BaseMapperX<AdsAdDO> {
         return selectList(AdsAdDO::getAdGroupId, adGroupId);
     }
 
+    @SuppressWarnings("deprecation")
     default PageResult<AdsAdDO> selectPage(AdsAdPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsAdDO>()
                 .eqIfPresent(AdsAdDO::getShopId, reqVO.getShopId())
@@ -45,11 +48,7 @@ public interface AdsAdMapper extends BaseMapperX<AdsAdDO> {
                 .last("ORDER BY FIELD(status, 'ENABLED', 'PAUSED', 'ARCHIVED') ASC, id DESC"));
     }
 
-    default List<AdsAdDO> selectListByAccountId(Long accountId) {
-        return selectList(new LambdaQueryWrapperX<AdsAdDO>()
-                .eq(AdsAdDO::getAccountId, accountId)
-                .orderByDesc(AdsAdDO::getId));
-    }
+
 
     default List<AdsAdDO> selectListByShopId(Long shopId) {
         return selectList(new LambdaQueryWrapperX<AdsAdDO>()

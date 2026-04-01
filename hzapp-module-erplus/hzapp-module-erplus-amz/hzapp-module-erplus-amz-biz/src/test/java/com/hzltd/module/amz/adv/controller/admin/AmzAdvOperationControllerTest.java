@@ -1,6 +1,5 @@
 package com.hzltd.module.amz.adv.controller.admin;
 
-import com.hzltd.module.amz.controller.admin.AmzAdvOperationController;
 import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvKeywordRespVO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvCampaignDO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvKeywordDO;
@@ -13,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.lang.reflect.Method;
-import java.util.Collections;
 
 import static org.mockito.Mockito.when;
 

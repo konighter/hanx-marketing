@@ -19,6 +19,10 @@ public abstract class AbsAdsApiServiceFactory<T> {
         return adsApiServiceMap.get(platform);
     }
 
+    public T getAdsApiService(String platform) {
+        return getAdsApiService(AdsPlatformEnum.of(platform));
+    }
+
      /**
      * 注册跨平台服务
      *

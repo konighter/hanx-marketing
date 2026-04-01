@@ -4,18 +4,18 @@ import com.google.common.collect.Maps;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.adv.model.AdsRequest;
 import com.hzltd.module.adv.model.AdsResponse;
-import com.hzltd.module.amz.adv.api.account.model.AdsAccountWithMetaData;
-import com.hzltd.module.amz.adv.api.account.model.AlternateId;
-import com.hzltd.module.amz.adv.api.profiles.model.Profile;
-import com.hzltd.module.amz.adv.service.AdsAmazonAccountProfileService;
+import com.hzltd.module.amz.adv.client.account.model.AdsAccountWithMetaData;
+import com.hzltd.module.amz.adv.client.account.model.AlternateId;
+import com.hzltd.module.amz.adv.client.profiles.model.Profile;
+import com.hzltd.module.amz.adv.api.AdsAccountProfileApi;
 import com.hzltd.module.amz.adv.service.AdsAmazonProfileService;
 import com.hzltd.module.amz.adv.service.AdsAmazonStreamService;
 import com.hzltd.module.amz.api.adv.AmazonAdsAdapter;
 import com.hzltd.module.amz.api.enums.AmazonRegionEnum;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
 import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
-import com.hzltd.module.amz.spapi.AmazonAccountService;
-import com.hzltd.module.amz.spapi.AmazonNotificationSubscriptionService;
+import com.hzltd.module.amz.spapi.api.AmazonAccountService;
+import com.hzltd.module.amz.spapi.api.AmazonNotificationSubscriptionService;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
@@ -50,6 +50,7 @@ import java.util.Map;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CROSS_API_ERROR;
+import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CROSS_SERVICE_ERROR;
 
 @Slf4j
 @Service
@@ -90,7 +91,7 @@ public class AmazonAuthService implements AuthorizationApi {
     private AmazonAdsAdapter amazonAdsAdapter;
 
     @Resource
-    private AdsAmazonAccountProfileService amazonProfileNewService;
+    private AdsAccountProfileApi amazonProfileNewService;
 
     @Resource
     private AmazonNotificationSubscriptionService subscriptionService;
@@ -300,29 +301,44 @@ public class AmazonAuthService implements AuthorizationApi {
         for (Profile p : response.getData()) {
             log.info("Profile: {}", p);
 
+            if (p.getAccountInfo() == null) {
+                log.warn("Profile accountInfo is null, skip: {}", p.getProfileId());
+                continue;
+            }
             String sellerId = p.getAccountInfo().getId();
             String marketplaceId = p.getAccountInfo().getMarketplaceStringId();
+            ShopModel shop = systemShopService.getShopBySellerIdAndMarketplaceId(sellerId, marketplaceId);
+            Long shopId = shop != null ? shop.getId().longValue() : null;
+            if (shopId == null) {
+                throw exception(CROSS_SERVICE_ERROR, "请先进行店铺授权");
+            }
 
             AdsAccountWithMetaData accountInfo = profile2Account.get(p.getProfileId());
+            if (accountInfo == null) {
+                log.warn("AccountInfo missing for Profile ID, skip: {}", p.getProfileId());
+                continue;
+            }
             AdsAccountDO adsAccountDO = amazonProfileNewService.saveOrUpdateAdsAccount(AdsAccountDO.builder()
                     .name(accountInfo.getAccountName())
+                            .shopId(shopId)
                     .externalAccountId(accountInfo.getAdsAccountId())
                     .lastSyncedAt(LocalDateTime.now())
                     .build());
 
-            ShopModel shop = systemShopService.getShopBySellerIdAndMarketplaceId(sellerId, marketplaceId);
-            Long shopId = shop != null ? shop.getId().longValue() : null;
-
             AmazonRegionEnum regionEnum = AmazonRegionEnum.valueOf(authorizationModel.getRegion());
+
+            var countryCodeEnum = p.getCountryCode();
+            var currencyCodeEnum = p.getCurrencyCode();
+            var timezoneEnum = p.getTimezone();
 
             AdsAmazonProfileDO profileDO = AdsAmazonProfileDO.builder()
                     .sellerId(sellerId)
                     .accountId(adsAccountDO.getId())
                     .profileId(String.valueOf(p.getProfileId()))
-                    .countryCode(p.getCountryCode() != null ? p.getCountryCode().getValue() : null)
+                    .countryCode(countryCodeEnum != null ? countryCodeEnum.getValue() : null)
                     .region(regionEnum.name())
-                    .currencyCode(p.getCurrencyCode() != null ? p.getCurrencyCode().name() : null)
-                    .timezone(p.getTimezone() != null ? p.getTimezone().getValue() : null)
+                    .currencyCode(currencyCodeEnum != null ? currencyCodeEnum.name() : null)
+                    .timezone(timezoneEnum != null ? timezoneEnum.getValue() : null)
                     .shopId(shopId)
                     .entityId(sellerId)
                     .status("ENABLED")

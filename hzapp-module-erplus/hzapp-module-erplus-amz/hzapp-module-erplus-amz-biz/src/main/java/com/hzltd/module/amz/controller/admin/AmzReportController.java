@@ -8,7 +8,7 @@ import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskPageReqVO;
 import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskRespVO;
 import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskSaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzReportTaskDO;
-import com.hzltd.module.amz.service.AmzReportTaskService;
+import com.hzltd.module.amz.spapi.service.AmzReportTaskService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

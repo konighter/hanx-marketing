@@ -12,6 +12,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum AdsEntityTypeEnum {
 
+    SHOP("SHOP", "店铺"),
     ACCOUNT("ACCOUNT", "广告账号"),
     CAMPAIGN("CAMPAIGN", "广告计划"),
     ADGROUP("ADGROUP", "广告组"),

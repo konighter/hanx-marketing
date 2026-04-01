@@ -1,12 +1,11 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
+import cn.hutool.core.lang.UUID;
 import com.hzltd.module.adv.model.*;
 import com.hzltd.module.adv.service.AdsManagerApi;
-import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
-import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
+
 import com.hzltd.module.erplus.adv.adapter.service.AdsManagerApiFactory;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.metadata.service.ad.AdsAdService;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
@@ -16,6 +15,7 @@ import com.hzltd.module.system.model.ShopModel;
 import com.hzltd.module.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -28,10 +28,10 @@ import java.util.List;
 @Slf4j
 public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
 
+
     @Resource
-    private AdsAccountMapper adsAccountMapper;
-    @Resource
-    private AdsPlatformAdapterFactory adsPlatformAdapterFactory;
+    private com.hzltd.module.erplus.adv.dal.mysql.AdsSyncTaskMapper adsSyncTaskMapper;
+
     @Resource
     private AdsCampaignService adsCampaignService;
     @Resource
@@ -45,129 +45,130 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
     @Resource
     private SystemShopService systemShopService;
 
-    @Override
-    public void syncAllMetadata(Long accountId) {
-        log.info("[syncAllMetadata] 开始全量同步账号元数据: accountId={}", accountId);
-        syncMetadata(accountId, new AdsQueryRequest());
-    }
-
+    @Async
     @Override
     public void syncAllMetadataByShop(Long shopId) {
         log.info("[syncAllMetadataByShop] 开始全量同步店铺元数据: shopId={}", shopId);
-        List<AdsAccountDO> accounts = adsAccountMapper.selectListByShopId(shopId);
-        if (CollectionUtils.isEmpty(accounts)) {
-            log.warn("[syncAllMetadataByShop] 店铺下无广告账号: shopId={}", shopId);
-            return;
-        }
-        for (AdsAccountDO account : accounts) {
-            syncAllMetadata(account.getId());
-        }
+        syncMetadataByShopId(shopId, new AdsQueryRequest());
     }
 
-    @Override
-    public void syncIncrementalMetadata(Long accountId) {
-        log.info("[syncIncrementalMetadata] 开始增量同步账号元数据: accountId={}", accountId);
-        // 增量同步逻辑可以根据需要填充 AdsQueryRequest，例如设置 startAt
-        syncMetadata(accountId, new AdsQueryRequest());
-    }
-
+    @Async
     @Override
     public void syncIncrementalMetadataByShop(Long shopId) {
         log.info("[syncIncrementalMetadataByShop] 开始增量同步店铺元数据: shopId={}", shopId);
-        List<AdsAccountDO> accounts = adsAccountMapper.selectListByShopId(shopId);
-        if (CollectionUtils.isEmpty(accounts)) {
-            log.warn("[syncIncrementalMetadataByShop] 店铺下无广告账号: shopId={}", shopId);
-            return;
-        }
-        for (AdsAccountDO account : accounts) {
-            syncIncrementalMetadata(account.getId());
-        }
+        syncMetadataByShopId(shopId, new AdsQueryRequest());
+    }
+
+    @Async
+    @Override
+    public void syncMetadataByCampaign(Long campaignId) {
+        AdsCampaignDO adsCampaign = adsCampaignService.getCampaign(campaignId);
+        syncMetadataByShopId(adsCampaign.getShopId(), new AdsQueryRequest().setCampaignIds(List.of(adsCampaign.getExternalId())));
     }
 
     @Override
     public void executeSyncTask(Long taskId) {
         log.info("[executeSyncTask] 执行同步任务: taskId={}", taskId);
-        // 这里可以根据任务表中的 accountId 调用 syncMetadata
-    }
-
-    private void syncMetadata(Long accountId, AdsQueryRequest request) {
-        AdsAccountDO account = adsAccountMapper.selectById(accountId);
-        if (account == null) {
-            log.warn("[syncMetadata] 账号不存在: accountId={}", accountId);
+        com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO task = adsSyncTaskMapper.selectById(taskId);
+        if (task == null) {
+            log.warn("[executeSyncTask] 任务不存在: taskId={}", taskId);
             return;
         }
 
-        AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(account.getPlatform());
-        
-        // 1. 同步广告计划
-        log.info("[syncMetadata] 同步广告计划: accountId={}", accountId);
-        List<AdsCampaignResponse> campaigns = adapter.queryCampaigns(accountId, request);
-        if (!CollectionUtils.isEmpty(campaigns)) {
-            for (AdsCampaignResponse vo : campaigns) {
-                adsCampaignService.saveCampaign(accountId, vo);
+        if ("METADATA_INCR".equals(task.getTaskType())) {
+            if (task.getShopId() != null) {
+                syncIncrementalMetadataByShop(task.getShopId());
+            } else {
+                log.warn("[executeSyncTask] 任务未绑定 Shop, 无法执行增量同步: taskId={}", taskId);
+            }
+        } else {
+            // 默认为 METADATA_FULL 等全量同步处理
+            if (task.getShopId() != null) {
+                syncAllMetadataByShop(task.getShopId());
+            } else {
+                log.warn("[executeSyncTask] 任务未绑定 Shop, 无法执行全量同步: taskId={}", taskId);
             }
         }
-
-        // 2. 同步广告组
-        log.info("[syncMetadata] 同步广告组: accountId={}", accountId);
-        List<AdsAdGroupResponse> adGroups = adapter.queryGroups(accountId, request);
-        if (!CollectionUtils.isEmpty(adGroups)) {
-            for (AdsAdGroupResponse vo : adGroups) {
-                // 需要根据外部 ID 查找本地计划 ID
-                // 此处假设适配器返回的 VO 中包含足够的上下文，或者后面 saveAdGroup 内部处理
-                adsAdGroupService.saveAdGroup(accountId, vo);
-            }
-        }
-
-        // 3. 同步广告
-        log.info("[syncMetadata] 同步广告: accountId={}", accountId);
-        List<AdsAdResponse> ads = adapter.queryAds(accountId, request);
-        if (!CollectionUtils.isEmpty(ads)) {
-            for (AdsAdResponse vo : ads) {
-                adsAdService.saveAd(accountId, vo);
-            }
-        }
-
-        // 4. 同步关键词/定向
-        log.info("[syncMetadata] 同步关键词/定向: accountId={}", accountId);
-        List<AdsTargetResponse> keywords = adapter.queryTargets(accountId, request);
-        if (!CollectionUtils.isEmpty(keywords)) {
-            for (AdsTargetResponse vo : keywords) {
-                adsKeywordService.saveKeyword(accountId, vo);
-            }
-        }
-        
-        log.info("[syncMetadata] 账号元数据同步完成: accountId={}", accountId);
     }
 
-
     private void syncMetadataByShopId(Long shopId, AdsQueryRequest request) {
+        String uuid = UUID.fastUUID().toString();
 
         ShopModel shopModel = systemShopService.getShopById(shopId);
         if (shopModel == null) {
-            log.error("[syncMetadataByShopID] shop not exist,shopId={}", shopId);
+            log.error("[syncMetadataByShopID] shop not exist, shopId={}", shopId);
             return;
         }
 
         AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(AdsPlatformEnum.of(shopModel.getPlatformCode()));
+        AdsRequest<AdsQueryRequest> req = new AdsRequest<AdsQueryRequest>().setRequest(request).setShopId(shopId);
 
-        AdsResponse<List<AdsCampaignResponse>> campaignsResponse = adsManagerApi.queryCampaign(new AdsRequest<AdsQueryRequest>().setRequest(request).setShopId(shopId));
+        // 1. 同步广告计划
+        log.info("[syncMetadataByShopId:{}] 同步广告计划: shopId={}", uuid, shopId);
+        AdsResponse<List<AdsCampaignModel>> campaignsResponse = adsManagerApi.queryCampaign(req);
         if (!campaignsResponse.isSuccess()) {
-            log.error("[syncMetadataByShopID] CampaignQuery Error, shopId={}, error={}", shopId, campaignsResponse.getMessage());
-            return;
-        }
-
-        if (!CollectionUtils.isEmpty(campaignsResponse.getData())) {
-            for (AdsCampaignResponse vo : campaignsResponse.getData()) {
-                adsCampaignService.saveCampaign(null, vo);
+             log.error("[syncMetadataByShopId] CampaignQuery Error, shopId={}, error={}", shopId, campaignsResponse.getMessage());
+        } else if (!CollectionUtils.isEmpty(campaignsResponse.getData())) {
+            int index = 0;
+            for (AdsCampaignModel vo : campaignsResponse.getData()) {
+                adsCampaignService.saveCampaign(shopId, vo);
+                index++;
+                if (index % 5 == 0) {
+                    log.info("[syncMetadataByShopId:{}] saveCampaigns: {}/{}", uuid, index, campaignsResponse.getData().size());
+                }
             }
         }
 
+        // 2. 同步广告组
+        log.info("[syncMetadataByShopId:{}] 同步广告组: shopId={}", uuid, shopId);
+        AdsResponse<List<AdsAdGroupModel>> adGroupResponse = adsManagerApi.queryAdGroup(req);
+        if (!adGroupResponse.isSuccess()) {
+             log.error("[syncMetadataByShopId] AdGroupQuery Error, shopId={}, error={}", shopId, adGroupResponse.getMessage());
+        } else if (!CollectionUtils.isEmpty(adGroupResponse.getData())) {
+            int index = 0;
+            for (AdsAdGroupModel vo : adGroupResponse.getData()) {
+                adsAdGroupService.saveAdGroup(shopId, vo);
+                index++;
+                if (index % 5 == 0) {
+                    log.info("[syncMetadataByShopId:{}] saveAdGroup: {}/{}", uuid, index, adGroupResponse.getData().size());
+                }
+            }
+        }
 
+        // 3. 同步广告
+        log.info("[syncMetadataByShopId:{}] 同步广告: shopId={}", uuid, shopId);
+        AdsResponse<List<AdsAdModel>> adResponse = adsManagerApi.queryAd(req);
+        if (!adResponse.isSuccess()) {
+             log.error("[syncMetadataByShopId] AdQuery Error, shopId={}, error={}", shopId, adResponse.getMessage());
+        } else if (!CollectionUtils.isEmpty(adResponse.getData())) {
+            int index = 0;
+            for (AdsAdModel vo : adResponse.getData()) {
+                adsAdService.saveAd(shopId, vo);
+                index++;
+                if (index % 5 == 0) {
+                    log.info("[syncMetadataByShopId:{}] saveAd: {}/{}", uuid, index, adResponse.getData().size());
+                }
 
+            }
+        }
 
+        // 4. 同步关键词/定向
+        log.info("[syncMetadataByShopId: {}] 同步关键词/定向: shopId={}", uuid, shopId);
+        AdsResponse<List<AdsTargetModel>> targetResponse = adsManagerApi.queryTarget(req);
+        if (!targetResponse.isSuccess()) {
+             log.error("[syncMetadataByShopId] TargetQuery Error, shopId={}, error={}", shopId, targetResponse.getMessage());
+        } else if (!CollectionUtils.isEmpty(targetResponse.getData())) {
+            int index = 0;
+            for (AdsTargetModel vo : targetResponse.getData()) {
+                adsKeywordService.saveKeyword(shopId, vo);
+                index++;
+                if (index % 5 == 0) {
+                    log.info("[syncMetadataByShopId:{}] saveKeyword: {}/{}", uuid, index, targetResponse.getData().size());
+                }
+            }
+        }
 
-
+        log.info("[syncMetadataByShopId: {}] 店铺元数据同步完成: shopId={}", uuid, shopId);
     }
 
 

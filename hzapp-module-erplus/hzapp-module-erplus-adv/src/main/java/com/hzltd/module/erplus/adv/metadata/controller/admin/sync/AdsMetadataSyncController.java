@@ -31,11 +31,7 @@ public class AdsMetadataSyncController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-sync:metadata')")
     public CommonResult<Boolean> syncAllMetadata(@RequestParam(value = "accountId", required = false) Long accountId,
                                                 @RequestParam(value = "shopId", required = false) Long shopId) {
-        if (shopId != null) {
-            adsMetadataSyncService.syncAllMetadataByShop(shopId);
-        } else if (accountId != null) {
-            adsMetadataSyncService.syncAllMetadata(accountId);
-        }
+        adsMetadataSyncService.syncAllMetadataByShop(shopId);
         return success(true);
     }
 
@@ -46,12 +42,16 @@ public class AdsMetadataSyncController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-sync:metadata')")
     public CommonResult<Boolean> syncIncrementalMetadata(@RequestParam(value = "accountId", required = false) Long accountId,
                                                        @RequestParam(value = "shopId", required = false) Long shopId) {
-        if (shopId != null) {
-            adsMetadataSyncService.syncIncrementalMetadataByShop(shopId);
-        } else if (accountId != null) {
-            adsMetadataSyncService.syncIncrementalMetadata(accountId);
-        }
+        adsMetadataSyncService.syncIncrementalMetadataByShop(shopId);
         return success(true);
     }
 
+    @PostMapping("/metadata-campaign")
+    @Operation(summary = "同步广告元数据")
+    @Parameter(name = "campaignId", description = "广告活动ID", required = true)
+    @PreAuthorize("@ss.hasPermission('erplus:adv-sync:metadata')")
+    public CommonResult<Boolean> syncMetadataByCampaign(@RequestParam(value = "campaignId") Long campaignId) {
+        adsMetadataSyncService.syncMetadataByCampaign(campaignId);
+        return success(true);
+    }
 }

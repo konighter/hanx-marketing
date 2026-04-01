@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface AdsManagerApi {
 
-    AdsResponse<List<AdsCampaignResponse>> queryCampaign(AdsRequest<AdsQueryRequest> request);
+    AdsResponse<List<AdsCampaignModel>> queryCampaign(AdsRequest<AdsQueryRequest> request);
 
     /**
      * Add/Del/Update
@@ -18,7 +18,7 @@ public interface AdsManagerApi {
      */
     AdsResponse<Boolean> updateCampaign(AdsRequest<AdsEntityUpdateRequest> request);
 
-    AdsResponse<List<AdsAdGroupResponse>> queryAdGroup(AdsRequest<AdsQueryRequest> request);
+    AdsResponse<List<AdsAdGroupModel>> queryAdGroup(AdsRequest<AdsQueryRequest> request);
 
     /**
      * Add/Del/Update
@@ -27,7 +27,7 @@ public interface AdsManagerApi {
      */
     AdsResponse<Boolean> updateAdGroup(AdsRequest<AdsEntityUpdateRequest> request);
 
-    AdsResponse<List<AdsAdResponse>> queryAd(AdsRequest<AdsQueryRequest> request);
+    AdsResponse<List<AdsAdModel>> queryAd(AdsRequest<AdsQueryRequest> request);
 
     /**
      * Add/Del/Update ad
@@ -36,7 +36,7 @@ public interface AdsManagerApi {
      */
     AdsResponse<Boolean> updateAd(AdsRequest<AdsEntityUpdateRequest> request);
 
-    AdsResponse<List<AdsTargetResponse>> queryTarget(AdsRequest<AdsQueryRequest> request);
+    AdsResponse<List<AdsTargetModel>> queryTarget(AdsRequest<AdsQueryRequest> request);
 
     AdsResponse<Boolean> updateTarget(AdsRequest<AdsEntityUpdateRequest> request);
 

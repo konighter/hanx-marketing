@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.api.adv.model.sp;
 
-import com.hzltd.module.adv.model.AdsCampaignResponse;
+import com.hzltd.module.adv.model.AdsCampaignModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -166,13 +166,13 @@ public class AdsSpCampaign {
         private String offAmazonBudgetControlStrategy;
     }
 
-    public AdsCampaignResponse toVO() {
-        return AdsCampaignResponse.builder()
+    public AdsCampaignModel toVO() {
+        return AdsCampaignModel.builder()
                 .externalId(this.getCampaignId())
                 .name(this.getName())
                 .campaignType("SP") // Amazon SP API
                 .status(this.getState())
-                .dailyBudget(this.getBudget() != null ? this.getBudget().getBudget() : null)
+                .budget(this.getBudget() != null ? this.getBudget().getBudget() : null)
                 .startDate(StringUtils.isNotEmpty(this.getStartDate()) ? LocalDate.parse(this.getStartDate()) : null)
                 .endDate(StringUtils.isNotEmpty(this.getEndDate()) ? LocalDate.parse(this.getEndDate()) : null)
                 .build();

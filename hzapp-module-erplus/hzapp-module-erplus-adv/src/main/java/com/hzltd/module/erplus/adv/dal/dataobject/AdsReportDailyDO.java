@@ -2,7 +2,6 @@ package com.hzltd.module.erplus.adv.dal.dataobject;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import lombok.*;
 
 import java.time.LocalDate;

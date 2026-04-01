@@ -22,6 +22,7 @@ import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exc
  */
 @Service
 @Slf4j
+@SuppressWarnings("deprecation")
 public class AdsOptimizationRuleServiceImpl implements AdsOptimizationRuleService {
 
     @Resource

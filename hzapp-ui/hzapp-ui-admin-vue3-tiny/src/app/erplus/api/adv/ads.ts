@@ -109,9 +109,12 @@ export const AdsSyncApi = {
     return await request.post({ url: `/erplus/adv/sync/metadata-incr?accountId=${accountId}` })
   },
   syncAllMetadataByShop: async (shopId: number) => {
-    return await request.post({ url: `/erplus/adv/sync/metadata-all-by-shop?shopId=${shopId}` })
+    return await request.post({ url: `/erplus/adv/sync/metadata-all?shopId=${shopId}` })
   },
   syncIncrMetadataByShop: async (shopId: number) => {
-    return await request.post({ url: `/erplus/adv/sync/metadata-incr-by-shop?shopId=${shopId}` })
+    return await request.post({ url: `/erplus/adv/sync/metadata-incr?shopId=${shopId}` })
+  },
+  syncMetadataByCampaign: async (campaignId: number) => {
+    return await request.post({ url: `/erplus/adv/sync/metadata-campaign?campaignId=${campaignId}` })
   },
 }

@@ -5,9 +5,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
+import com.hzltd.module.adv.model.AdsRequest;
+import com.hzltd.module.adv.model.AdsResponse;
 import com.hzltd.module.adv.model.AdsStatusUpdateRequest;
+import com.hzltd.module.adv.service.AdsManagerApi;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
+import com.hzltd.module.erplus.adv.adapter.service.AdsManagerApiFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdAttributeDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdDO;
@@ -16,8 +20,10 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdAttributeMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdMapper;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
-import com.hzltd.module.adv.model.AdsAdResponse;
+import com.hzltd.module.adv.model.AdsAdModel;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
+import com.hzltd.module.system.model.ShopModel;
+import com.hzltd.module.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
@@ -50,6 +56,8 @@ public class AdsAdServiceImpl implements AdsAdService {
     @Resource
     private AdsPlatformAdapterFactory adsPlatformAdapterFactory;
     @Resource
+    private AdsManagerApiFactory adsManagerApiFactory;
+    @Resource
     private AdsAdAttributeMapper adsAdAttributeMapper;
     @Resource
     private ObjectMapper objectMapper;
@@ -57,6 +65,8 @@ public class AdsAdServiceImpl implements AdsAdService {
     @Resource
     @Lazy
     private AdsAdGroupService adsAdGroupService;
+    @Resource
+    private SystemShopService systemShopService;
 
     @Override
     public PageResult<AdsAdDO> getAdPage(AdsAdPageReqVO pageReqVO) {
@@ -71,27 +81,24 @@ public class AdsAdServiceImpl implements AdsAdService {
             throw exception(new ErrorCode(1_033_003_001, "广告不存在"));
         }
 
-        AdsAccountDO account = adsAccountMapper.selectById(ad.getAccountId());
-        if (account != null && account.getPlatform() != null) {
-            try {
-                AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(account.getPlatform());
-                AdsStatusUpdateRequest updateReq = new AdsStatusUpdateRequest();
-                updateReq.setEntityType(AdsEntityTypeEnum.AD);
-                updateReq.setEntityId(ad.getExternalId());
-                updateReq.setLocalId(id);
-                updateReq.setStatus(status);
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(ad.getPlatform());
 
-                boolean success = adapter.updateStatus(account.getId(), updateReq);
-                if (success) {
-                    AdsAdDO updateObj = new AdsAdDO();
-                    updateObj.setId(id);
-                    updateObj.setStatus(status);
-                    adsAdMapper.updateById(updateObj);
-                }
-            } catch (Exception e) {
-                log.warn("[updateAdStatus] 平台状态同步异常: adId={}, platform={}", id, account.getPlatform(), e);
-            }
+        AdsResponse<Boolean> updateResp = adsManagerApi.updateStatus(new AdsRequest<AdsStatusUpdateRequest>()
+                .setShopId(ad.getShopId())
+                .setRequest(new AdsStatusUpdateRequest()
+                        .setEntityType(AdsEntityTypeEnum.AD)
+                        .setEntityId(ad.getExternalId()).setLocalId(id)
+                        .setStatus(status)));
+        if (updateResp.isSuccess()) {
+            AdsAdDO updateObj = new AdsAdDO();
+            updateObj.setId(id);
+            updateObj.setStatus(status);
+            adsAdMapper.updateById(updateObj);
+        } else {
+            log.warn("[updateAdStatus] 平台状态同步异常: adId={}, platform={}", id, ad.getPlatform());
+            throw exception(new ErrorCode(1_033_003_004, "广告状态更新失败"));
         }
+
     }
 
     @Override
@@ -108,6 +115,9 @@ public class AdsAdServiceImpl implements AdsAdService {
         }
         Map<String, Object> map = new HashMap<>();
         for (AdsAdAttributeDO attr : attributeDOs) {
+            if (org.apache.commons.lang3.StringUtils.isEmpty(attr.getAttrValue())) {
+                continue;
+            }
             try {
                 Object value;
                 if (StringUtils.hasText(attr.getAttrValueClass())) {
@@ -125,30 +135,33 @@ public class AdsAdServiceImpl implements AdsAdService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Long saveAd(Long accountId, AdsAdResponse vo) {
+    public Long saveAd(Long shopId, AdsAdModel vo) {
         // 1. 根据外部广告组 ID 解析本地关联 ID
-        AdsAdGroupDO adGroup = adsAdGroupService.getAdGroupByAccountAndExternalId(accountId, vo.getAdGroupExternalId());
+        AdsAdGroupDO adGroup = adsAdGroupService.getAdGroupByShopAndExternalId(shopId, vo.getAdGroupExternalId());
         if (adGroup == null) {
-            log.warn("[saveAd] 找不到广告组: accountId={}, externalAdGroupId={}", accountId, vo.getAdGroupExternalId());
+            log.warn("[saveAd] 找不到广告组: shopId={}, externalAdGroupId={}", shopId, vo.getAdGroupExternalId());
             return null;
         }
         Long adGroupId = adGroup.getId();
         Long campaignId = adGroup.getCampaignId();
 
         AdsAdDO existing = adsAdMapper.selectByAdGroupAndExternalId(adGroupId, vo.getExternalId());
-        
-        AdsAccountDO account = adsAccountMapper.selectById(accountId);
-        Long shopId = account != null ? account.getShopId() : null;
+
+        ShopModel shopModel = systemShopService.getShopById(shopId);
+        Long fallbackAccountId = shopModel.getAccountId();
 
         if (existing == null) {
             existing = new AdsAdDO();
             existing.setShopId(shopId);
-            existing.setAccountId(accountId);
+            existing.setAccountId(fallbackAccountId);
             existing.setCampaignId(campaignId);
             existing.setAdGroupId(adGroupId);
             existing.setExternalId(vo.getExternalId());
         } else {
             existing.setShopId(shopId);
+            if (existing.getAccountId() == null) {
+                existing.setAccountId(fallbackAccountId);
+            }
         }
         existing.setName(vo.getName());
         existing.setAdFormat(vo.getAdFormat());

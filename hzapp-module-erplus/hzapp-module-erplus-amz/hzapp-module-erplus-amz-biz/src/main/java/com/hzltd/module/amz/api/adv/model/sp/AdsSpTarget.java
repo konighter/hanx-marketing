@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.api.adv.model.sp;
 
-import com.hzltd.module.adv.model.AdsTargetResponse;
+import com.hzltd.module.adv.model.AdsTargetModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -40,7 +40,7 @@ public class AdsSpTarget {
     /** 状态 */
     private String state;
 
-    public AdsTargetResponse toVO() {
+    public AdsTargetModel toVO() {
         StringBuilder sb = new StringBuilder();
         if (expression != null) {
             for (Expression e : expression) {
@@ -48,10 +48,10 @@ public class AdsSpTarget {
                 sb.append(e.getType()).append("=").append(e.getValue());
             }
         }
-        return AdsTargetResponse.builder()
+        return AdsTargetModel.builder()
                 .externalId(this.getTargetId())
-                .adGroupExternalId(this.getAdGroupId())
-                .keywordText(sb.length() > 0 ? sb.toString() : "Targeting")
+                .adEntityId(this.getAdGroupId())
+                .matchValue(sb.length() > 0 ? sb.toString() : "Targeting")
                 .status(this.getState())
                 .bid(this.getBid())
                 .build();
