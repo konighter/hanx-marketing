@@ -1,11 +1,11 @@
 package com.hzltd.module.amz.adv.api;
 
-import com.hzltd.module.adv.api.AdsServiceRegister;
-import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
-import com.hzltd.module.adv.model.*;
-import com.hzltd.module.adv.service.AdsManagerApi;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
-import com.hzltd.module.system.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.adv.api.AdsServiceRegister;
+import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
+import com.hzltd.module.erplus.adv.model.*;
+import com.hzltd.module.erplus.adv.service.AdsManagerApi;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

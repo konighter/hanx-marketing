@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.cross.vo;
 
-import com.hzltd.module.spapi.model.common.ProductAttributeModel;
+import com.hzltd.module.erplus.spapi.model.common.ProductAttributeModel;
 import lombok.Data;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.hzltd.module.amz.api.adv.model.sp;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.hzltd.module.adv.model.AdsQueryRequest;
+import com.hzltd.module.erplus.adv.model.AdsQueryRequest;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

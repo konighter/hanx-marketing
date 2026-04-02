@@ -1,18 +1,17 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
 import cn.hutool.core.lang.UUID;
-import com.hzltd.module.adv.model.*;
-import com.hzltd.module.adv.service.AdsManagerApi;
-
 import com.hzltd.module.erplus.adv.adapter.service.AdsManagerApiFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.metadata.service.ad.AdsAdService;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
 import com.hzltd.module.erplus.adv.metadata.service.keyword.AdsKeywordService;
-import com.hzltd.module.system.enums.AdsPlatformEnum;
-import com.hzltd.module.system.model.ShopModel;
-import com.hzltd.module.system.service.SystemShopService;
+import com.hzltd.module.erplus.adv.model.*;
+import com.hzltd.module.erplus.adv.service.AdsManagerApi;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;

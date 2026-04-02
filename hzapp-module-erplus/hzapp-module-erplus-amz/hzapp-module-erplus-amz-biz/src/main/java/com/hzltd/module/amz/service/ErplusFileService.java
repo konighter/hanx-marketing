@@ -2,7 +2,6 @@ package com.hzltd.module.amz.service;
 
 import cn.hutool.http.HttpRequest;
 import com.hzltd.module.infra.service.file.FileService;
-import com.hzltd.module.infra.service.file.FileServiceImpl;
 import jakarta.annotation.Resource;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;

@@ -5,8 +5,8 @@ import com.hzltd.framework.common.util.http.HttpUtils;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.spring.SpringUtils;
 import com.hzltd.module.amz.spapi.mapping.AmzAttributeSchemaMappingService;
-import com.hzltd.module.spapi.model.category.AttributeValueModel;
-import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
+import com.hzltd.module.erplus.spapi.model.category.AttributeValueModel;
+import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
 import org.apache.commons.collections4.CollectionUtils;
 import software.amazon.spapi.models.producttypedefinitions.v2020_09_01.ProductTypeDefinition;
 

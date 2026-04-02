@@ -13,15 +13,13 @@
 
 package com.hzltd.module.amz.adv.client.account.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Represent a business who does not sell on Amazon. These fields are containing information about the client&#39;s business and will be used for business verification.
  */

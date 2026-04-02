@@ -5,11 +5,11 @@ import com.hzltd.module.erplus.api.service.AuthorizationApiFactory;
 import com.hzltd.module.erplus.dal.dataobject.authorization.PlatformAuthDO;
 import com.hzltd.module.erplus.dal.dataobject.shop.PlatformAppDO;
 import com.hzltd.module.erplus.service.shop.PlatformAppService;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
-import com.hzltd.module.spapi.service.authorization.AuthorizationApi;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.system.enums.OAuthGrantTypeEnum;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
+import com.hzltd.module.erplus.spapi.service.authorization.AuthorizationApi;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.enums.OAuthGrantTypeEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

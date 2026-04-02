@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.spapi.model;
 
-import com.hzltd.module.spapi.enums.FulfillTypeEnum;
+import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
 import lombok.Data;
 
 @Data

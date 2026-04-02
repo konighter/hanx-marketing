@@ -1,10 +1,9 @@
 package com.hzltd.module.erplus.service.event;
 
+import jakarta.annotation.Resource;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.context.annotation.Configuration;
-
-import jakarta.annotation.Resource;
 
 /**
  * Guava EventBus 自动注册配置

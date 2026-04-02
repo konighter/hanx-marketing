@@ -13,12 +13,12 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * For the CONVERSION_OPPORTUNITIES theme, the impact metrics are weekly clicks and orders received for similar products. For other event-based themes, the impact metrics are clicks and orders received for similar products during the event days. &lt;br&gt; Note: This object is nullable

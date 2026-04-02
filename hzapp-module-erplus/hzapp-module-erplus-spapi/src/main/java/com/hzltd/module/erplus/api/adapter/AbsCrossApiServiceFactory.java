@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.api.adapter;
 
-import com.hzltd.module.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 
 import java.util.HashMap;
 import java.util.Map;

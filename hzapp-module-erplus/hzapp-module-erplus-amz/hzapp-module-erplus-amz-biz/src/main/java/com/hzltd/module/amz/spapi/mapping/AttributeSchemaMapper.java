@@ -1,7 +1,7 @@
 package com.hzltd.module.amz.spapi.mapping;
 
 import com.hzltd.module.amz.spapi.proto.ProductTypeSchemaItem;
-import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
+import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
 
 public interface AttributeSchemaMapper {
     void mapAttributeSchema(CategoryAttributeModel categoryAttributeModel, ProductTypeSchemaItem schemaItem);

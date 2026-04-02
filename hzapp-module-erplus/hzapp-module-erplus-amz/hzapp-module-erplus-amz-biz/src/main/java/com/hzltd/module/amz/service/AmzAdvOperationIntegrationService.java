@@ -12,7 +12,7 @@ import com.hzltd.module.amz.dal.dataobject.AmzAdvKeywordDO;
 import com.hzltd.module.amz.dal.mapper.AmzAdvAdGroupMapper;
 import com.hzltd.module.amz.dal.mapper.AmzAdvCampaignMapper;
 import com.hzltd.module.amz.dal.mapper.AmzAdvKeywordMapper;
-import com.hzltd.module.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

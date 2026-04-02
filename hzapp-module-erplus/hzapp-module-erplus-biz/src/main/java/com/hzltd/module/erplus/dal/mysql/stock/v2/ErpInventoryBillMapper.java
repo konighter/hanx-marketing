@@ -5,7 +5,6 @@ import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.MPJLambdaWrapperX;
 import com.hzltd.module.erplus.controller.admin.stock.vo.v2.ErpInventoryBillPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.v2.ErpInventoryBillDO;
-import com.hzltd.module.erplus.dal.dataobject.stock.v2.ErpInventoryBillItemDO;
 import org.apache.ibatis.annotations.Mapper;
 
 /**

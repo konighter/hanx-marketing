@@ -13,15 +13,13 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Error that represents non-retryable API service error. Sending the same request will result in another error.
  */

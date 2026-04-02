@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.spapi.model;
 
-import com.hzltd.module.spapi.model.order.OrderModel;
+import com.hzltd.module.erplus.spapi.model.order.OrderModel;
 import lombok.Data;
 import software.amazon.spapi.models.orders.v0.Order;
 

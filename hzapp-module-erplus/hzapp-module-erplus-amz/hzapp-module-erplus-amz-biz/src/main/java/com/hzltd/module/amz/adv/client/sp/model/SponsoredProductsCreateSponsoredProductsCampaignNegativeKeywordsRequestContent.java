@@ -13,15 +13,14 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import java.util.Objects;
+import java.util.StringJoiner;
 
 /**
  * SponsoredProductsCreateSponsoredProductsCampaignNegativeKeywordsRequestContent

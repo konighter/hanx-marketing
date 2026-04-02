@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import com.hzltd.module.erplus.dal.dataobject.purchase.ErpPurchaseInDO;
-import com.hzltd.module.system.enums.ErpBizTypeEnum;
+import com.hzltd.module.erplus.system.enums.ErpBizTypeEnum;
 import lombok.*;
 
 import java.math.BigDecimal;

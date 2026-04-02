@@ -2,8 +2,8 @@ package com.hzltd.module.erplus.adv.metadata.service.ad;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdDO;
-import com.hzltd.module.adv.model.AdsAdModel;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
+import com.hzltd.module.erplus.adv.model.AdsAdModel;
 
 import java.util.Map;
 

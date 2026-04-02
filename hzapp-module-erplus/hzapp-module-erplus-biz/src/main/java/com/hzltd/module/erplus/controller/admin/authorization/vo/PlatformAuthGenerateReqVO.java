@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.authorization.vo;
 
-import com.hzltd.module.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

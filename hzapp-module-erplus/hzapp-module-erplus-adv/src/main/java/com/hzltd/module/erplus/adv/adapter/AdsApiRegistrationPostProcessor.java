@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.adv.adapter;
 
-import com.hzltd.module.adv.api.AdsServiceRegister;
-import com.hzltd.module.system.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.adv.api.AdsServiceRegister;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;

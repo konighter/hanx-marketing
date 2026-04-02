@@ -12,27 +12,29 @@ import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
-import com.hzltd.module.spapi.enums.ProductSpuStatusEnum;
-import com.hzltd.module.spapi.model.category.BrandModel;
-import com.hzltd.module.spapi.model.category.CategoryModel;
 import com.hzltd.module.erplus.service.brand.ProductBrandService;
 import com.hzltd.module.erplus.service.cross.ProductCategoryService;
-import com.hzltd.module.system.service.SystemProductService;
-import com.hzltd.module.system.model.ProductSkuModel;
-import com.hzltd.module.system.model.ProductSpuModel;
+import com.hzltd.module.erplus.spapi.enums.ProductSpuStatusEnum;
+import com.hzltd.module.erplus.spapi.model.category.BrandModel;
+import com.hzltd.module.erplus.spapi.model.category.CategoryModel;
+import com.hzltd.module.erplus.system.model.ProductSkuModel;
+import com.hzltd.module.erplus.system.model.ProductSpuModel;
+import com.hzltd.module.erplus.system.service.SystemProductService;
 import jakarta.annotation.Resource;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.annotation.Validated;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
-import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 import static com.hzltd.framework.common.util.collection.CollectionUtils.*;
 import static com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO.CATEGORY_LEVEL;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
-
+import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.*;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.*;
 /**
  * 商品 SPU Service 实现类
  *

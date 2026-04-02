@@ -7,7 +7,7 @@ import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.*;
 
 @Service
 public class ProductListingServiceImpl implements ProductListingService {

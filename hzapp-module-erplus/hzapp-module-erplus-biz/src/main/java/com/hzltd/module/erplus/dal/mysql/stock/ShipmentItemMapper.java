@@ -1,14 +1,12 @@
 package com.hzltd.module.erplus.dal.mysql.stock;
 
-import java.util.*;
-
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
-import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentItemVO;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentItemDO;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
  * 货件详情 Mapper

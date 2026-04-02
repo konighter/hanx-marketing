@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.listing.vo;
 
-import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
+import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

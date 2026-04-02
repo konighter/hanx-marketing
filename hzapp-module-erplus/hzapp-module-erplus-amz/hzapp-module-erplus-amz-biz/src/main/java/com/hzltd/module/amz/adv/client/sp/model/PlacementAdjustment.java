@@ -13,17 +13,11 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
+import com.fasterxml.jackson.annotation.*;
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Specifies bid adjustments based on the placement location. Use &#x60;PLACEMENT_TOP&#x60; for the top of the search page. Use &#x60;PLACEMENT_REST_OF_SEARCH&#x60; for the rest of the search page. Use &#x60;PLACEMENT_PRODUCT_PAGE&#x60; for a product page.
  */

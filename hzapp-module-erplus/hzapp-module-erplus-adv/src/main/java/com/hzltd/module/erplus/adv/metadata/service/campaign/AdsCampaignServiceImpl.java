@@ -7,20 +7,20 @@ import com.hzltd.framework.common.exception.ErrorCode;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
-import com.hzltd.module.adv.model.*;
-import com.hzltd.module.adv.service.AdsManagerApi;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
 import com.hzltd.module.erplus.adv.adapter.service.AdsManagerApiFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.*;
 import com.hzltd.module.erplus.adv.dal.mysql.*;
+import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupUpdateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
-import com.hzltd.module.system.enums.AdsPlatformEnum;
-import com.hzltd.module.system.model.ShopModel;
-import com.hzltd.module.system.service.SystemShopService;
+import com.hzltd.module.erplus.adv.model.*;
+import com.hzltd.module.erplus.adv.service.AdsManagerApi;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -31,11 +31,14 @@ import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
 import java.time.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.adv.enums.AdsStatusEnum.*;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
+import static com.hzltd.module.erplus.adv.enums.AdsStatusEnum.*;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.*;
 
 /**
  * 广告计划 Service 实现类

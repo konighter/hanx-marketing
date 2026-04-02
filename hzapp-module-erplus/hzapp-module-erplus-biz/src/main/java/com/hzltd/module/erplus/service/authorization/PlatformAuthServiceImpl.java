@@ -6,20 +6,21 @@ import com.hzltd.module.erplus.controller.admin.authorization.vo.PlatformAuthGen
 import com.hzltd.module.erplus.controller.admin.authorization.vo.PlatformAuthSubmitReqVO;
 import com.hzltd.module.erplus.dal.dataobject.authorization.PlatformAuthDO;
 import com.hzltd.module.erplus.dal.dataobject.shop.PlatformAppDO;
-import com.hzltd.module.erplus.service.shop.PlatformAppService;
 import com.hzltd.module.erplus.dal.mysql.authorization.PlatformAuthMapper;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.system.enums.OAuthGrantTypeEnum;
+import com.hzltd.module.erplus.dal.redis.authorization.PlatformAuthStateRedisDAO;
+import com.hzltd.module.erplus.service.authorization.dto.AuthStateDTO;
+import com.hzltd.module.erplus.service.shop.PlatformAppService;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.enums.OAuthGrantTypeEnum;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.hzltd.module.erplus.dal.redis.authorization.PlatformAuthStateRedisDAO;
-import com.hzltd.module.erplus.service.authorization.dto.AuthStateDTO;
-import jakarta.annotation.Resource;
-import java.util.UUID;
+
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 import static com.hzltd.framework.security.core.util.SecurityFrameworkUtils.getLoginUserId;
 

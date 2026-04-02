@@ -2,11 +2,11 @@ package com.hzltd.module.amz.spapi.api;
 
 import com.hzltd.module.amz.spapi.model.AmzDestinationModel;
 import com.hzltd.module.amz.spapi.model.AmzSubscriptionModel;
-import com.hzltd.module.spapi.api.ServiceRegister;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.service.notification.NotificationSubscriptionApi;
+import com.hzltd.module.erplus.spapi.api.ServiceRegister;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.service.notification.NotificationSubscriptionApi;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.api.adapter;
 
-import com.hzltd.module.spapi.service.PlatformIdentity;
+import com.hzltd.module.erplus.spapi.service.PlatformIdentity;
 
 public interface CrossApiServiceRegister {
 

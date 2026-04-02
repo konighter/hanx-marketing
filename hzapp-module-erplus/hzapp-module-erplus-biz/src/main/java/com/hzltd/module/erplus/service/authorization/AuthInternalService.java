@@ -1,9 +1,9 @@
 package com.hzltd.module.erplus.service.authorization;
 
 import com.hzltd.module.erplus.dal.dataobject.authorization.PlatformAuthDO;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.system.enums.OAuthGrantTypeEnum;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.enums.OAuthGrantTypeEnum;
 
 /**
  * 内部授权服务接口，抽象OAuth逻辑

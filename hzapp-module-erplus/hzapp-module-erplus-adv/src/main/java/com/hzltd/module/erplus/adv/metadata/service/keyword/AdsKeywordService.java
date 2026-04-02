@@ -2,8 +2,8 @@ package com.hzltd.module.erplus.adv.metadata.service.keyword;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsKeywordDO;
-import com.hzltd.module.adv.model.AdsTargetModel;
 import com.hzltd.module.erplus.adv.metadata.vo.keyword.AdsKeywordPageReqVO;
+import com.hzltd.module.erplus.adv.model.AdsTargetModel;
 
 import java.util.Map;
 

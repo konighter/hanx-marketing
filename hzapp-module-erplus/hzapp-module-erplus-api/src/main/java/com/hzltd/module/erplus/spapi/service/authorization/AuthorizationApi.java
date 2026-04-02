@@ -1,0 +1,45 @@
+package com.hzltd.module.erplus.spapi.service.authorization;
+
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
+
+public interface AuthorizationApi {
+
+    /**
+     * 获取认证地址, 一般grantType=code使用
+     * @param authorizationModel
+     * @return
+     */
+    @Deprecated
+    public String grantAuthInfo(AuthorizationModelV0 authorizationModel);
+
+    public default String grantAuthInfo(Long appId, String region, AuthorizationModel authorizationModel){
+        return null;
+    }
+
+    /**
+     * code 换取 AccessToken
+     * @param authorizationModel
+     * @return
+     */
+    public AuthorizationModelV0 grantAccessToken(AuthorizationModelV0 authorizationModel);
+
+    /**
+     * refreshToken 换取AccessToken
+     * @param authorizationModel
+     * @return
+     */
+    public AuthorizationModelV0 refreshAccessToken(AuthorizationModelV0 authorizationModel);
+
+    /**
+     * 更新refreshToken
+     * @param authorizationModel
+     * @return
+     */
+    public AuthorizationModelV0 renewRefreshToken(AuthorizationModelV0 authorizationModel);
+
+
+    default void postAuthorization(AuthorizationModel authorizationModel){}
+
+
+}

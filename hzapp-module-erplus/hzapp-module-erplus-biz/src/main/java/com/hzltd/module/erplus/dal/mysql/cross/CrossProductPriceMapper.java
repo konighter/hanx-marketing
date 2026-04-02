@@ -1,9 +1,5 @@
 package com.hzltd.module.erplus.dal.mysql.cross;
 
-import java.util.*;
-
-import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
 import org.apache.ibatis.annotations.Mapper;

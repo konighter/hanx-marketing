@@ -1,11 +1,12 @@
 package com.hzltd.module.amz.adv.api;
 
-import com.hzltd.module.adv.model.*;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.sp.api.*;
 import com.hzltd.module.amz.adv.client.sp.model.*;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.adv.model.*;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.system.annotation.CrossplatformApiLog;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
     public static final String NEGATIVE_TARGET_CLAUSE = "AMZ_NEGATIVE_TARGET_CLAUSE";
 
 
+
+    @CrossplatformApiLog
     public AdsResponse<List<AdsAdGroupModel>> queryAdGroup(AdsRequest<AdsQueryRequest> request) {
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         AdGroupsApi api = new AdGroupsApi(getApiClient(authModel));
@@ -138,7 +141,9 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
         }
     }
 
+
     // Keywords CRUD
+    @CrossplatformApiLog
     public AdsResponse<List<SponsoredProductsKeyword>> queryKeywords(AdsRequest<AdsQueryRequest> request) {
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         KeywordsApi keywordsApi = new KeywordsApi(getApiClient(authModel));
@@ -165,6 +170,8 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
         }
     }
 
+
+    @CrossplatformApiLog
     public AdsResponse<List<SponsoredProductsKeyword>> createKeywords(AdsRequest<List<SponsoredProductsCreateKeyword>> request) {
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         KeywordsApi keywordsApi = new KeywordsApi(getApiClient(authModel));
@@ -186,6 +193,8 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
         }
     }
 
+
+    @CrossplatformApiLog
     public AdsResponse<Boolean> updateKeywordBid(AdsRequest<AdsBidUpdateRequest> request) {
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         KeywordsApi keywordsApi = new KeywordsApi(getApiClient(authModel));
@@ -208,6 +217,8 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
 
     }
 
+
+    @CrossplatformApiLog
     public AdsResponse<Boolean> updateKeywordStatus(AdsRequest<AdsStatusUpdateRequest> request) {
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         KeywordsApi keywordsApi = new KeywordsApi(getApiClient(authModel));
@@ -229,6 +240,8 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
         }
     }
 
+
+    @CrossplatformApiLog
     public AdsResponse<Boolean> deleteKeywords(AdsRequest<List<String>> request) {
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         KeywordsApi keywordsApi = new KeywordsApi(getApiClient(authModel));

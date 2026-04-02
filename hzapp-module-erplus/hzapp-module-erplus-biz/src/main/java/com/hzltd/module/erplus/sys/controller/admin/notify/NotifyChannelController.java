@@ -2,13 +2,12 @@ package com.hzltd.module.erplus.sys.controller.admin.notify;
 
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageResult;
-
-import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelPageReqVO;
-import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.notify.NotifyChannelDO;
 import com.hzltd.module.erplus.service.notify.ChannelNotifyService;
-import com.hzltd.module.system.service.ChannelNotifySendService;
-import com.hzltd.module.system.model.NotifyMessage;
+import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelPageReqVO;
+import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelSaveReqVO;
+import com.hzltd.module.erplus.system.model.NotifyMessage;
+import com.hzltd.module.erplus.system.service.ChannelNotifySendService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;

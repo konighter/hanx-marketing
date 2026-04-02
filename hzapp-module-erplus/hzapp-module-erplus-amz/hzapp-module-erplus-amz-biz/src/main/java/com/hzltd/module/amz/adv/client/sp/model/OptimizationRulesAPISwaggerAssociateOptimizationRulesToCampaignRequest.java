@@ -13,18 +13,15 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.hzltd.module.amz.adv.client.client.ApiClient;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
-import com.hzltd.module.amz.adv.client.client.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Request body for create campaign to optimization rules association. Maximum 100 rules can be associated to each campaign.
  */

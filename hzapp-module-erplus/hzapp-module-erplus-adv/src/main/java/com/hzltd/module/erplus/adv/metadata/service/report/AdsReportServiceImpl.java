@@ -1,12 +1,12 @@
 package com.hzltd.module.erplus.adv.metadata.service.report;
 
 import cn.hutool.core.date.DateUtil;
-import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportHourlyDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportSummaryDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportDailyMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportHourlyMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportSummaryMapper;
+import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.report.*;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

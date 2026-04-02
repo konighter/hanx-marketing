@@ -2,24 +2,16 @@ package com.hzltd.module.amz.adv.controller.admin;
 
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvKeywordRespVO;
-import com.hzltd.module.amz.controller.admin.vo.*;
-import com.hzltd.module.amz.dal.dataobject.AmzAdvAdGroupDO;
+import com.hzltd.module.amz.controller.admin.vo.AmzAdvBidStrategyPageReqVO;
+import com.hzltd.module.amz.controller.admin.vo.AmzAdvBidStrategySaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvBidStrategyDO;
-import com.hzltd.module.amz.dal.dataobject.AmzAdvCampaignDO;
-import com.hzltd.module.amz.dal.dataobject.AmzAdvKeywordDO;
-import com.hzltd.module.amz.service.AmzAdvAdGroupService;
-import com.hzltd.module.amz.service.AmzAdvBidStrategyService;
-import com.hzltd.module.amz.service.AmzAdvCampaignService;
-import com.hzltd.module.amz.service.AmzAdvKeywordService;
 import com.hzltd.module.amz.dal.mapper.AmzAdvCampaignMapper;
-import com.hzltd.framework.common.util.object.BeanUtils;
+import com.hzltd.module.amz.service.AmzAdvBidStrategyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 

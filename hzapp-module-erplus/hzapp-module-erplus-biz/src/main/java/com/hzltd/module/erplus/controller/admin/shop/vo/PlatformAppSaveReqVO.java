@@ -1,9 +1,8 @@
 package com.hzltd.module.erplus.controller.admin.shop.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
-import lombok.Data;
-
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Data;
 
 @Schema(description = "管理后台 - 平台应用创建/修改 Request VO")
 @Data

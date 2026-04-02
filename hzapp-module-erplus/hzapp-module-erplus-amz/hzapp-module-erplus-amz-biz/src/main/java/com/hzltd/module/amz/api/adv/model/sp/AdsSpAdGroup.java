@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.api.adv.model.sp;
 
-import com.hzltd.module.adv.model.AdsAdGroupModel;
+import com.hzltd.module.erplus.adv.model.AdsAdGroupModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

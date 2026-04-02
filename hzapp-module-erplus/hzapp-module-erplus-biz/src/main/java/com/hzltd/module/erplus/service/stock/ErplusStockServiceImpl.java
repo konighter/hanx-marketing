@@ -3,7 +3,6 @@ package com.hzltd.module.erplus.service.stock;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.spapi.enums.WarehouseTypeEnum;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpTransferAvailableReqVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.ErpTransferAvailableRespVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.warehouse.ErpWarehouseInventoryPageReqVO;
@@ -12,6 +11,7 @@ import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseInventoryDO;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpWarehouseInventoryMapper;
 import com.hzltd.module.erplus.service.cross.ErplusCrossProductService;
+import com.hzltd.module.erplus.spapi.enums.WarehouseTypeEnum;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
-import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
 
 /**
  * ERP 库存 Service 实现类

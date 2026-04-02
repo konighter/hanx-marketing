@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductUnitDO;
-import com.hzltd.module.spapi.enums.ProductSpuStatusEnum;
+import com.hzltd.module.erplus.spapi.enums.ProductSpuStatusEnum;
 import lombok.*;
 
 import java.util.List;

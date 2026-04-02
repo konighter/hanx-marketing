@@ -1,8 +1,10 @@
 package com.hzltd.module.erplus.dal.dataobject.cross;
 
-import lombok.*;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import lombok.*;
 
 /**
  * 跨境平台品类属性 DO

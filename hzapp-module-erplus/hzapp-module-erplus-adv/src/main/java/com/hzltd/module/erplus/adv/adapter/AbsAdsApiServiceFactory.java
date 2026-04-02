@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.adv.adapter;
 
-import com.hzltd.module.system.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 
 import java.util.HashMap;
 import java.util.Map;

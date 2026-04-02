@@ -12,32 +12,22 @@
 
 package com.hzltd.module.amz.adv.client.sp.api;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.module.amz.adv.client.client.ApiClient;
 import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.client.ApiResponse;
 import com.hzltd.module.amz.adv.client.client.Configuration;
+import com.hzltd.module.amz.adv.client.sp.model.*;
 
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsCreateSponsoredProductsCampaignNegativeKeywordsRequestContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsCreateSponsoredProductsCampaignNegativeKeywordsResponseContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsDeleteSponsoredProductsCampaignNegativeKeywordsRequestContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsDeleteSponsoredProductsCampaignNegativeKeywordsResponseContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsListSponsoredProductsCampaignNegativeKeywordsRequestContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsListSponsoredProductsCampaignNegativeKeywordsResponseContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsUpdateSponsoredProductsCampaignNegativeKeywordsRequestContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsUpdateSponsoredProductsCampaignNegativeKeywordsResponseContent;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.InputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.http.HttpRequest;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-
 import java.util.Map;
 import java.util.function.Consumer;
 

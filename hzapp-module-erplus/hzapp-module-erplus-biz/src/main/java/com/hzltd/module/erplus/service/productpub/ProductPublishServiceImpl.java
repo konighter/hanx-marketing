@@ -14,16 +14,16 @@ import com.hzltd.module.erplus.controller.admin.productpub.vo.SkuVO;
 import com.hzltd.module.erplus.convert.spu.ProductSpuConvert;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.productpub.ErpProductPublishTaskDO;
-import com.hzltd.module.spapi.enums.CrossProductPublishStatus;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.product.CreateProductRequest;
-import com.hzltd.module.spapi.model.product.CreateProductResponse;
-import com.hzltd.module.erplus.service.executor.ExecutorService;
 import com.hzltd.module.erplus.service.cross.ErplusCrossProductService;
-import com.hzltd.module.spapi.service.product.ProductApi;
+import com.hzltd.module.erplus.service.executor.ExecutorService;
 import com.hzltd.module.erplus.service.spu.ProductSpuService;
+import com.hzltd.module.erplus.spapi.enums.CrossProductPublishStatus;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.product.CreateProductRequest;
+import com.hzltd.module.erplus.spapi.model.product.CreateProductResponse;
+import com.hzltd.module.erplus.spapi.service.product.ProductApi;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +36,7 @@ import java.util.Optional;
 import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_EXISTS;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_EXISTS;
 
 @Slf4j
 @Service

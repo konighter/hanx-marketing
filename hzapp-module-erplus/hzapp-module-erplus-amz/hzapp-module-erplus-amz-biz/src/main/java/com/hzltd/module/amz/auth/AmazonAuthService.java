@@ -2,12 +2,10 @@ package com.hzltd.module.amz.auth;
 
 import com.google.common.collect.Maps;
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.adv.model.AdsRequest;
-import com.hzltd.module.adv.model.AdsResponse;
+import com.hzltd.module.amz.adv.api.AdsAccountProfileApi;
 import com.hzltd.module.amz.adv.client.account.model.AdsAccountWithMetaData;
 import com.hzltd.module.amz.adv.client.account.model.AlternateId;
 import com.hzltd.module.amz.adv.client.profiles.model.Profile;
-import com.hzltd.module.amz.adv.api.AdsAccountProfileApi;
 import com.hzltd.module.amz.adv.service.AdsAmazonProfileService;
 import com.hzltd.module.amz.adv.service.AdsAmazonStreamService;
 import com.hzltd.module.amz.api.adv.AmazonAdsAdapter;
@@ -19,17 +17,19 @@ import com.hzltd.module.amz.spapi.api.AmazonNotificationSubscriptionService;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
-import com.hzltd.module.spapi.api.ServiceRegister;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.system.model.ShopModel;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
-import com.hzltd.module.spapi.service.authorization.AuthorizationApi;
-import com.hzltd.module.system.service.SystemAuthService;
-import com.hzltd.module.system.service.SystemShopService;
-import com.hzltd.module.system.model.PlatformAccountModel;
+import com.hzltd.module.erplus.adv.model.AdsRequest;
+import com.hzltd.module.erplus.adv.model.AdsResponse;
+import com.hzltd.module.erplus.spapi.api.ServiceRegister;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
+import com.hzltd.module.erplus.spapi.service.authorization.AuthorizationApi;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.model.PlatformAccountModel;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemAuthService;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.FormBody;
@@ -49,8 +49,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CROSS_API_ERROR;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CROSS_SERVICE_ERROR;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.CROSS_API_ERROR;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.CROSS_SERVICE_ERROR;
 
 @Slf4j
 @Service

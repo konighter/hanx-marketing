@@ -12,11 +12,11 @@
 
 package com.hzltd.module.amz.adv.client.client;
 
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
-
-import com.fasterxml.jackson.databind.module.SimpleModule;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.21.0")
 public class RFC3339JavaTimeModule extends SimpleModule {

@@ -2,15 +2,16 @@ package com.hzltd.module.amz.spapi.api;
 
 import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.module.amz.spapi.AbsAmzPlatformApiService;
-import com.hzltd.module.spapi.api.ServiceRegister;
-import com.hzltd.module.spapi.enums.FulfillTypeEnum;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.common.FeeModel;
-import com.hzltd.module.spapi.model.order.OrderFeeRequest;
-import com.hzltd.module.spapi.model.order.ProductFeeEstimateRequest;
-import com.hzltd.module.spapi.service.order.FinancesApi;
+import com.hzltd.module.erplus.spapi.api.ServiceRegister;
+import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.common.FeeModel;
+import com.hzltd.module.erplus.spapi.model.order.OrderFeeRequest;
+import com.hzltd.module.erplus.spapi.model.order.ProductFeeEstimateRequest;
+import com.hzltd.module.erplus.spapi.service.order.FinancesApi;
+import com.hzltd.module.erplus.system.annotation.CrossplatformApiLog;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
@@ -31,7 +32,9 @@ import java.util.stream.Collectors;
 @ServiceRegister(platform = CrossPlatformEnum.AMAZON, serviceClass = FinancesApi.class)
 public class AmazonFinancesService extends AbsAmzPlatformApiService implements FinancesApi {
 
+
     @Override
+    @CrossplatformApiLog
     public ApiResponse<List<FeeModel>> getProductEstimatedFee(ApiRequest<List<ProductFeeEstimateRequest>> request) {
         FeesApi feesApi = getFeesApi(request);
         try {

@@ -8,9 +8,6 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 
-import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.PLATFORM_APP_NOT_EXISTS;
-
 /**
  * 平台应用 Service 实现类
  *

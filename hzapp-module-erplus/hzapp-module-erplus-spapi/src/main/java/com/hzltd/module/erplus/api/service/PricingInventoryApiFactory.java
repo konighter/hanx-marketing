@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.api.service;
 
 import com.hzltd.module.erplus.api.adapter.AbsCrossApiServiceFactory;
-import com.hzltd.module.spapi.service.product.PricingInventoryApi;
+import com.hzltd.module.erplus.spapi.service.product.PricingInventoryApi;
 import org.springframework.stereotype.Service;
 
 @Service

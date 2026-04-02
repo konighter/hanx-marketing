@@ -13,17 +13,11 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
+import com.fasterxml.jackson.annotation.*;
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * SPKeywordGroupsExceptionErrorsInner
  */

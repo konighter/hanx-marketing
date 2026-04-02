@@ -13,20 +13,12 @@
 
 package com.hzltd.module.amz.adv.client.account.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+
+import java.util.*;
 /**
  * Ads Account structure response consists of the GlobalAccountID (advertisingAccountId) and other account metadata. 
  */

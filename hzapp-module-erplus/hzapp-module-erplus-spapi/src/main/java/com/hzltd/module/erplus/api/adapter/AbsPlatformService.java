@@ -1,14 +1,13 @@
 package com.hzltd.module.erplus.api.adapter;
 
-import com.hzltd.module.system.model.ShopModel;
-import com.hzltd.module.system.service.SystemShopService;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import org.threeten.bp.OffsetDateTime;
 import org.threeten.bp.ZoneOffset;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 public abstract class AbsPlatformService extends LocalAuthProvider {
     @Resource

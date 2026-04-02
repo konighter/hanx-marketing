@@ -12,32 +12,22 @@
 
 package com.hzltd.module.amz.adv.client.sp.api;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.module.amz.adv.client.client.ApiClient;
 import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.client.ApiResponse;
 import com.hzltd.module.amz.adv.client.client.Configuration;
+import com.hzltd.module.amz.adv.client.sp.model.*;
 
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsCreateSponsoredProductsTargetingClausesRequestContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsCreateSponsoredProductsTargetingClausesResponseContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsDeleteSponsoredProductsTargetingClausesRequestContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsDeleteSponsoredProductsTargetingClausesResponseContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsListSponsoredProductsTargetingClausesRequestContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsListSponsoredProductsTargetingClausesResponseContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsUpdateSponsoredProductsTargetingClausesRequestContent;
-import com.hzltd.module.amz.adv.client.sp.model.SponsoredProductsUpdateSponsoredProductsTargetingClausesResponseContent;
-
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.io.InputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.http.HttpRequest;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-
 import java.util.Map;
 import java.util.function.Consumer;
 

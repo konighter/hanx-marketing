@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
-import com.hzltd.module.system.enums.ErpAuditStatus;
+import com.hzltd.module.erplus.system.enums.ErpAuditStatus;
 import lombok.*;
 
 import java.math.BigDecimal;

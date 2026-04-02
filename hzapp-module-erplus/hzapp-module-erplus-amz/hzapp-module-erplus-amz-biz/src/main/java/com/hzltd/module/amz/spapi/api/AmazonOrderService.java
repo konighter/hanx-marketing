@@ -4,18 +4,19 @@ import cn.hutool.core.date.DateUtil;
 import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.module.amz.spapi.AbsAmzPlatformApiService;
 import com.hzltd.module.amz.spapi.model.AmzOrderModel;
-import com.hzltd.module.spapi.api.ServiceRegister;
-import com.hzltd.module.spapi.enums.FulfillTypeEnum;
-import com.hzltd.module.spapi.enums.CrossOrderStatus;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.order.GetOrdersRequest;
-import com.hzltd.module.spapi.model.order.OrderItemModel;
-import com.hzltd.module.spapi.model.order.OrderModel;
-import com.hzltd.module.spapi.service.order.OrderApi;
-import com.hzltd.module.system.service.SystemPlatformService;
-import com.hzltd.module.system.service.SystemShopService;
+import com.hzltd.module.erplus.spapi.api.ServiceRegister;
+import com.hzltd.module.erplus.spapi.enums.CrossOrderStatus;
+import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.order.GetOrdersRequest;
+import com.hzltd.module.erplus.spapi.model.order.OrderItemModel;
+import com.hzltd.module.erplus.spapi.model.order.OrderModel;
+import com.hzltd.module.erplus.spapi.service.order.OrderApi;
+import com.hzltd.module.erplus.system.annotation.CrossplatformApiLog;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.service.SystemPlatformService;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.utils.Lists;
@@ -42,7 +43,9 @@ public class AmazonOrderService extends AbsAmzPlatformApiService implements Orde
     @Resource
     private SystemPlatformService systemPlatformService;
 
+
     @Override
+    @CrossplatformApiLog
     public ApiResponse<List<OrderModel>> searchOrders(ApiRequest<GetOrdersRequest> request) {
 
         try {
@@ -121,7 +124,9 @@ public class AmazonOrderService extends AbsAmzPlatformApiService implements Orde
     }
 
 
+
     @Override
+    @CrossplatformApiLog
     public ApiResponse<OrderModel> getOrder(ApiRequest<String> request) {
         try {
             OrdersV0Api ordersApi = getOrderApi(request);

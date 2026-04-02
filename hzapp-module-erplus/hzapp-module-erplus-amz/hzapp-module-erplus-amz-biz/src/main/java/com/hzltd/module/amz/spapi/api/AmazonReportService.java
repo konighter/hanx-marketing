@@ -3,9 +3,10 @@ package com.hzltd.module.amz.spapi.api;
 import com.amazon.SellingPartnerAPIAA.LWAAccessTokenCacheImpl;
 import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.module.amz.spapi.AbsAmzPlatformApiService;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.system.service.SystemShopService;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.system.annotation.CrossplatformApiLog;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,7 @@ public class AmazonReportService extends AbsAmzPlatformApiService {
 
     // 51769020430 是测试用的ReportId
     // B0FGYCJT9S 测试用的ASIN
+    @CrossplatformApiLog
     public String createReport(ApiRequest<CreateReportSpecification> apiRequest) {
 
         ReportsApi reportsApi = getReportsApi(apiRequest);
@@ -44,6 +46,7 @@ public class AmazonReportService extends AbsAmzPlatformApiService {
  *
   */
 
+    @CrossplatformApiLog
     public Report checkReportStatus(ApiRequest<String> apiRequest) {
         ReportsApi reportsApi = getReportsApi(apiRequest);
 
@@ -59,6 +62,7 @@ public class AmazonReportService extends AbsAmzPlatformApiService {
 
     }
 
+    @CrossplatformApiLog
     public ReportDocument getReportDocument(ApiRequest<String> apiRequest) {
         String reportId = apiRequest.getRequest();
         ReportsApi reportsApi = getReportsApi(apiRequest);

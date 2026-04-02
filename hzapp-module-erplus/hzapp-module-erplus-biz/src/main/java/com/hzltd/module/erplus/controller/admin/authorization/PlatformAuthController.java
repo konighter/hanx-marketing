@@ -6,14 +6,12 @@ import com.hzltd.module.erplus.controller.admin.authorization.vo.PlatformAuthSub
 import com.hzltd.module.erplus.service.authorization.PlatformAuthService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import jakarta.annotation.Resource;
-import jakarta.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import java.io.IOException;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 

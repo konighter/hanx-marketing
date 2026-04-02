@@ -1,9 +1,9 @@
 package com.hzltd.module.erplus.adv.metadata.controller.admin.rule;
 
 import com.hzltd.framework.common.pojo.CommonResult;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsOptimizationRuleDO;
 import com.hzltd.module.erplus.adv.metadata.service.rule.AdsOptimizationRuleService;
 import com.hzltd.module.erplus.adv.metadata.vo.rule.AdsOptimizationRuleSaveReqVO;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsOptimizationRuleDO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;

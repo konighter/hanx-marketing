@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.api.service;
 
 import com.hzltd.module.erplus.api.adapter.AbsCrossApiServiceFactory;
-import com.hzltd.module.spapi.service.order.FinancesApi;
+import com.hzltd.module.erplus.spapi.service.order.FinancesApi;
 import org.springframework.stereotype.Service;
 
 @Service

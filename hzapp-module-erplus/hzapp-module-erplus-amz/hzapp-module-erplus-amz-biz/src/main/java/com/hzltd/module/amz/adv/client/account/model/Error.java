@@ -13,18 +13,14 @@
 
 package com.hzltd.module.amz.adv.client.account.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.hzltd.module.amz.adv.client.client.ApiClient;
 
 import java.math.BigDecimal;
-
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
-import com.hzltd.module.amz.adv.client.client.ApiClient;
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Error structure is to describe the various errors consist of error id, error code, and a readable error message
  */

@@ -1,14 +1,15 @@
 package com.hzltd.module.amz.adv.api;
 
-import com.hzltd.module.adv.model.*;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.sp.api.CampaignNegativeKeywordsApi;
 import com.hzltd.module.amz.adv.client.sp.api.CampaignNegativeTargetingClausesApi;
 import com.hzltd.module.amz.adv.client.sp.api.CampaignsApi;
 import com.hzltd.module.amz.adv.client.sp.model.*;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.system.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.adv.model.*;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.system.annotation.CrossplatformApiLog;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -41,6 +42,8 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
     @Resource
     private AdsCampaignRuleApi adsCampaignRuleApi;
 
+
+    @CrossplatformApiLog
     public AdsResponse<List<AdsCampaignModel>> queryCampaign(AdsRequest<AdsQueryRequest> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
@@ -227,6 +230,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
     // Campaign Negative Keywords API
     // -------------------------------------------------------------------------
 
+    @CrossplatformApiLog
     public AdsResponse<Map<String, SponsoredProductsCampaignNegativeKeyword>> queryCampaignNegativeKeywords(AdsRequest<AdsQueryRequest> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
@@ -262,6 +266,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
         }
     }
 
+    @CrossplatformApiLog
     public AdsResponse<Map<String, SponsoredProductsCampaignNegativeKeyword>> createCampaignNegativeKeywords(AdsRequest<List<SponsoredProductsCreateCampaignNegativeKeyword>> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
@@ -294,6 +299,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
         }
     }
 
+    @CrossplatformApiLog
     public AdsResponse<Boolean> updateCampaignNegativeKeywordStatus(AdsRequest<AdsStatusUpdateRequest> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
@@ -318,6 +324,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
         }
     }
 
+    @CrossplatformApiLog
     public AdsResponse<Boolean> deleteCampaignNegativeKeywords(AdsRequest<List<String>> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
@@ -343,6 +350,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
     // Campaign Negative Targeting Clauses API
     // -------------------------------------------------------------------------
 
+    @CrossplatformApiLog
     public AdsResponse<Map<String, SponsoredProductsCampaignNegativeTargetingClause>> queryCampaignNegativeTargetingClauses(AdsRequest<AdsQueryRequest> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
@@ -372,6 +380,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
         }
     }
 
+    @CrossplatformApiLog
     public AdsResponse<Map<String, SponsoredProductsCampaignNegativeTargetingClause>> createCampaignNegativeTargetingClauses(AdsRequest<List<SponsoredProductsCreateCampaignNegativeTargetingClause>> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
@@ -404,6 +413,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
         }
     }
 
+    @CrossplatformApiLog
     public AdsResponse<Boolean> updateCampaignNegativeTargetingClauseStatus(AdsRequest<AdsStatusUpdateRequest> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
@@ -428,6 +438,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
         }
     }
 
+    @CrossplatformApiLog
     public AdsResponse<Boolean> deleteCampaignNegativeTargetingClauses(AdsRequest<List<String>> request) {
         try {
             AuthorizationModel authModel = getAuthorizationModel(request.getShopId());

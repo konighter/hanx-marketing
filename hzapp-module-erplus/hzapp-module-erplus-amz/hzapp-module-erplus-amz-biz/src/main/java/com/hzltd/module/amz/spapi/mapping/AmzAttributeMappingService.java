@@ -1,11 +1,11 @@
 package com.hzltd.module.amz.spapi.mapping;
 
 import com.hzltd.module.amz.spapi.mapping.data.*;
-import com.hzltd.module.spapi.api.ServiceRegister;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
-import com.hzltd.module.spapi.service.category.CategoryAttributeMappingApi;
-import com.hzltd.module.system.model.ProductSpuModel;
+import com.hzltd.module.erplus.spapi.api.ServiceRegister;
+import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
+import com.hzltd.module.erplus.spapi.service.category.CategoryAttributeMappingApi;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.model.ProductSpuModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 

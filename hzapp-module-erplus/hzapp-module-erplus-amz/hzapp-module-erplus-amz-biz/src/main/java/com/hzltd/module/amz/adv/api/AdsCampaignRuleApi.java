@@ -1,9 +1,6 @@
 package com.hzltd.module.amz.adv.api;
 
 
-import com.hzltd.module.adv.model.AdsQueryRequest;
-import com.hzltd.module.adv.model.AdsRequest;
-import com.hzltd.module.adv.model.AdsResponse;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.api.vo.CampaignBudgetRuleAssociatedRequest;
 import com.hzltd.module.amz.adv.client.client.ApiException;
@@ -11,8 +8,10 @@ import com.hzltd.module.amz.adv.client.sp.api.BudgetRulesApi;
 import com.hzltd.module.amz.adv.client.sp.api.CampaignOptimizationRulesApi;
 import com.hzltd.module.amz.adv.client.sp.api.OptimizationRulesApi;
 import com.hzltd.module.amz.adv.client.sp.model.*;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import org.apache.commons.lang3.StringUtils;
+import com.hzltd.module.erplus.adv.model.AdsQueryRequest;
+import com.hzltd.module.erplus.adv.model.AdsRequest;
+import com.hzltd.module.erplus.adv.model.AdsResponse;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

@@ -2,7 +2,6 @@ package com.hzltd.module.erplus.controller.admin.spu.vo;
 
 import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
-import com.hzltd.framework.excel.core.annotations.DictFormat;
 import com.hzltd.framework.excel.core.convert.DictConvert;
 import com.hzltd.framework.excel.core.convert.MoneyConvert;
 import io.swagger.v3.oas.annotations.media.Schema;

@@ -1,14 +1,14 @@
 package com.hzltd.module.erplus.controller.admin.productpub.vo;
 
-import com.hzltd.module.spapi.enums.FulfillTypeEnum;
-import com.hzltd.module.spapi.enums.LanguageEnum;
-import com.hzltd.module.spapi.enums.SaveModeEnum;
 import com.hzltd.module.erplus.dal.dataobject.brand.ProductBrandDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.category.CategoryModel;
-import com.hzltd.module.spapi.model.common.*;
-import com.hzltd.module.spapi.model.logistics.LogisticsModel;
+import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
+import com.hzltd.module.erplus.spapi.enums.LanguageEnum;
+import com.hzltd.module.erplus.spapi.enums.SaveModeEnum;
+import com.hzltd.module.erplus.spapi.model.category.CategoryModel;
+import com.hzltd.module.erplus.spapi.model.common.*;
+import com.hzltd.module.erplus.spapi.model.logistics.LogisticsModel;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;

@@ -1,0 +1,106 @@
+package com.hzltd.module.erplus.spapi.model.order;
+
+
+import com.hzltd.module.erplus.spapi.enums.CrossOrderStatus;
+import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
+import lombok.Data;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Data
+public class OrderModel {
+
+    /**
+     * 市场ID
+     */
+    private String marketId;
+    /**
+     * 订单ID
+     */
+    private String orderId;
+
+    /**
+     *  订单状态
+     */
+    private CrossOrderStatus orderStatus;
+
+    /**
+     * 订单类型
+     */
+    private String orderType;
+
+    /**
+     * 交付类型
+     */
+    private FulfillTypeEnum fulfillmentType;
+
+    /**
+     * 创建时间
+     */
+    private LocalDateTime createTime;
+
+    /**
+     * 更新时间
+     */
+    private LocalDateTime updateTime;
+
+    /**
+     * 支付时间
+     */
+    private LocalDateTime paidTime;
+
+
+    /**
+     * 订单货币
+     */
+    private String currency;
+
+    /**
+     * 订单总金额(单位:分)
+     */
+    private Integer totalAmount;
+
+    /**
+     * 是否为Prime订单
+     */
+    private Boolean isPrime;
+
+    /**
+     * 是否为企业订单
+     */
+    private Boolean isBusiness;
+
+     /**
+      * 销售渠道
+      */
+    private String salesChannel;
+
+    /**
+     * 最早送达时间
+     */
+    private String earliestDeliveryDate;
+
+    /**
+     * 最晚送达时间
+     * FBA关注, 可以计算订单时效
+     */
+    private String latestDeliveryDate;
+
+    /**
+     * 最早发货时间
+     */
+    private String earliestShipDate;
+
+    /**
+     * 最晚发货时间
+     * FBM 需要关注
+     */
+    private String latestShipDate;
+
+     /**
+      * 订单商品列表
+      */
+    private List<OrderItemModel> orderItems;
+
+}

@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.api.service;
 
 import com.hzltd.module.erplus.api.adapter.AbsCrossApiServiceFactory;
-import com.hzltd.module.spapi.service.notification.NotificationSubscriptionApi;
+import com.hzltd.module.erplus.spapi.service.notification.NotificationSubscriptionApi;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -12,35 +12,24 @@
 
 package com.hzltd.module.amz.adv.client.subscription.api;
 
-import com.hzltd.module.amz.adv.client.client.ApiClient;
-import com.hzltd.module.amz.adv.client.client.ApiException;
-import com.hzltd.module.amz.adv.client.client.ApiResponse;
-import com.hzltd.module.amz.adv.client.client.Configuration;
-import com.hzltd.module.amz.adv.client.client.Pair;
-
-import java.math.BigDecimal;
-import com.hzltd.module.amz.adv.client.subscription.model.CreateDspStreamSubscriptionRequestContent;
-import com.hzltd.module.amz.adv.client.subscription.model.CreateDspStreamSubscriptionResponseContent;
-import com.hzltd.module.amz.adv.client.subscription.model.GetDspStreamSubscriptionResponseContent;
-import com.hzltd.module.amz.adv.client.subscription.model.ListDspStreamSubscriptionsResponseContent;
-import com.hzltd.module.amz.adv.client.subscription.model.UpdateDspStreamSubscriptionRequestContent;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzltd.module.amz.adv.client.client.*;
+import com.hzltd.module.amz.adv.client.subscription.model.*;
 
-import java.io.InputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.http.HttpRequest;
+import java.io.InputStream;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-
 import java.util.ArrayList;
-import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.function.Consumer;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-03-29T22:01:03.880368+08:00[Asia/Shanghai]", comments = "Generator version: 7.21.0")

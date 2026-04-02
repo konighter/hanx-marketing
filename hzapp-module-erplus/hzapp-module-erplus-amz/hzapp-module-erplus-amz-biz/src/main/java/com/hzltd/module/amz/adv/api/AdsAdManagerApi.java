@@ -1,11 +1,11 @@
 package com.hzltd.module.amz.adv.api;
 
-import com.hzltd.module.adv.model.*;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.sp.api.ProductAdsApi;
 import com.hzltd.module.amz.adv.client.sp.model.*;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.adv.model.*;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
 

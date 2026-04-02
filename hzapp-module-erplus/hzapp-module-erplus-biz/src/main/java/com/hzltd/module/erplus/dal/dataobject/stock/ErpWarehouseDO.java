@@ -6,8 +6,6 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import lombok.*;
 
-import java.math.BigDecimal;
-
 /**
  * ERP 仓库 DO
  *

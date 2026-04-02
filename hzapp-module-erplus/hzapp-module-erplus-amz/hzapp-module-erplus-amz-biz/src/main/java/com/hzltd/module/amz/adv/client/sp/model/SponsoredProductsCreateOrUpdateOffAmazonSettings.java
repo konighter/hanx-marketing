@@ -13,15 +13,13 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Settings that apply to ads served off Amazon. &#x60;OffAmazonSettings&#x60; is optional for both Create and Update requests. This field is upcoming and is not ready for use.
  */

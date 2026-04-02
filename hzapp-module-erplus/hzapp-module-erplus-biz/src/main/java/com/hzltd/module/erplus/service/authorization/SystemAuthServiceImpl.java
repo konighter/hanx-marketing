@@ -2,22 +2,22 @@ package com.hzltd.module.erplus.service.authorization;
 
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.dal.dataobject.authorization.ShopAuthDO;
-import com.hzltd.module.erplus.dal.mysql.authorization.ShopAuthMapper;
 import com.hzltd.module.erplus.dal.dataobject.authorization.PlatformAuthDO;
-import com.hzltd.module.erplus.dal.mysql.authorization.PlatformAuthMapper;
-import com.hzltd.module.erplus.dal.dataobject.shop.PlatformAppDO;
-import com.hzltd.module.erplus.service.shop.PlatformAppService;
+import com.hzltd.module.erplus.dal.dataobject.authorization.ShopAuthDO;
 import com.hzltd.module.erplus.dal.dataobject.shop.PlatformAccountDO;
+import com.hzltd.module.erplus.dal.dataobject.shop.PlatformAppDO;
+import com.hzltd.module.erplus.dal.mysql.authorization.PlatformAuthMapper;
+import com.hzltd.module.erplus.dal.mysql.authorization.ShopAuthMapper;
 import com.hzltd.module.erplus.dal.mysql.shop.PlatformAccountMapper;
-import com.hzltd.module.system.model.PlatformAccountModel;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.system.service.SystemAuthService;
+import com.hzltd.module.erplus.service.shop.PlatformAppService;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.system.model.PlatformAccountModel;
+import com.hzltd.module.erplus.system.service.SystemAuthService;
+import jakarta.annotation.Resource;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import jakarta.annotation.Resource;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

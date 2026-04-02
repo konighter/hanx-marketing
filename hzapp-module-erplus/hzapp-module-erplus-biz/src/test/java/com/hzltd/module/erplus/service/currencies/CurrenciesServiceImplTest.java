@@ -18,7 +18,7 @@ import static com.hzltd.framework.common.util.object.ObjectUtils.cloneIgnoreId;
 import static com.hzltd.framework.test.core.util.AssertUtils.assertPojoEquals;
 import static com.hzltd.framework.test.core.util.AssertUtils.assertServiceException;
 import static com.hzltd.framework.test.core.util.RandomUtils.randomPojo;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CURRENCIES_NOT_EXISTS;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.CURRENCIES_NOT_EXISTS;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**

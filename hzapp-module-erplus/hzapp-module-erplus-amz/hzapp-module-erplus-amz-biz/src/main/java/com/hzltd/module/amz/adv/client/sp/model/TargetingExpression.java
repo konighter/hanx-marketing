@@ -13,17 +13,11 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
+import com.fasterxml.jackson.annotation.*;
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * The targeting expression. The &#x60;type&#x60; property specifies the targeting option. Use &#x60;CLOSE_MATCH&#x60; to match your auto targeting ads closely to the specified value. Use &#x60;LOOSE_MATCH&#x60; to match your auto targeting ads broadly to the specified value. Use &#x60;SUBSTITUTES&#x60; to display your auto targeting ads along with substitutable products. Use &#x60;COMPLEMENTS&#x60; to display your auto targeting ads along with affiliated products. Use &#x60;KEYWORD_BROAD_MATCH&#x60; to broadly match your keyword targeting ads with search queries. Use &#x60;KEYWORD_EXACT_MATCH&#x60; to exactly match your keyword targeting ads with search queries. Use &#x60;KEYWORD_PHRASE_MATCH&#x60; to match your keyword targeting ads with search phrases. your keyword targeting ads with search phrases.
  */

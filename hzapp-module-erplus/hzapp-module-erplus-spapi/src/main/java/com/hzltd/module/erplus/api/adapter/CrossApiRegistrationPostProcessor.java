@@ -1,15 +1,15 @@
 package com.hzltd.module.erplus.api.adapter;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.hzltd.module.spapi.api.ServiceRegister;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.spapi.api.ServiceRegister;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.stereotype.Component;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Component
 public class CrossApiRegistrationPostProcessor implements BeanPostProcessor {

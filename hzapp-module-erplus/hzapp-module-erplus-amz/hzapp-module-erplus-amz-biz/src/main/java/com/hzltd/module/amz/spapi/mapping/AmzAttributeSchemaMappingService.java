@@ -4,7 +4,7 @@ import com.hzltd.module.amz.spapi.mapping.data.OriginCountryMapper;
 import com.hzltd.module.amz.spapi.mapping.data.SupplierDeclaredDGHXRegulationMapper;
 import com.hzltd.module.amz.spapi.mapping.data.VariationThemeMapper;
 import com.hzltd.module.amz.spapi.proto.ProductTypeSchemaItem;
-import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
+import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;

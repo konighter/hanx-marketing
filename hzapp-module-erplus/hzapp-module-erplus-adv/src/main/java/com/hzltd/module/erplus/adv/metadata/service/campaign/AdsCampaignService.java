@@ -1,10 +1,10 @@
 package com.hzltd.module.erplus.adv.metadata.service.campaign;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.adv.model.AdsCampaignModel;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
+import com.hzltd.module.erplus.adv.model.AdsCampaignModel;
 import jakarta.validation.Valid;
 
 import java.util.Map;

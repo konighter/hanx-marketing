@@ -3,7 +3,7 @@ package com.hzltd.module.amz.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
-import com.hzltd.module.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;

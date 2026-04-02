@@ -2,8 +2,8 @@ package com.hzltd.module.amz.spapi.api;
 
 import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.module.amz.spapi.AbsAmzPlatformApiService;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.ApiException;
 import software.amazon.spapi.api.sellers.v1.SellersApi;

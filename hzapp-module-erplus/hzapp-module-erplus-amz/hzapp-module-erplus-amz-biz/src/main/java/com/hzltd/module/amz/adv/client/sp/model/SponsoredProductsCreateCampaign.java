@@ -13,21 +13,13 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-import java.util.Map;
-import java.util.HashMap;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.hzltd.module.amz.adv.client.client.ApiClient;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
-import com.hzltd.module.amz.adv.client.client.ApiClient;
+import java.util.*;
 /**
  * SponsoredProductsCreateCampaign
  */

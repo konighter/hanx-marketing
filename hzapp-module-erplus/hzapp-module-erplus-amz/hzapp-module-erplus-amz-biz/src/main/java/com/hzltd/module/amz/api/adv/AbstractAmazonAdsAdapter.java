@@ -3,13 +3,13 @@ package com.hzltd.module.amz.api.adv;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.hzltd.module.adv.model.AdsTokenResult;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
 import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
+import com.hzltd.module.erplus.adv.model.AdsTokenResult;
 import com.hzltd.module.infra.dal.dataobject.config.ConfigDO;
 import com.hzltd.module.infra.service.config.ConfigService;
 import jakarta.annotation.Resource;
@@ -31,7 +31,7 @@ import java.util.Optional;
 import java.util.function.Function;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.ADS_PLATFORM_NOT_SUPPORTED;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.ADS_PLATFORM_NOT_SUPPORTED;
 
 @Slf4j
 public abstract class AbstractAmazonAdsAdapter {

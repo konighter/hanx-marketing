@@ -1,10 +1,10 @@
 package com.hzltd.module.erplus.api.adapter;
 
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.system.service.SystemAuthService;
-import com.hzltd.module.system.service.SystemShopService;
-import com.hzltd.module.system.model.ShopModel;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemAuthService;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import org.apache.commons.lang3.NotImplementedException;
 

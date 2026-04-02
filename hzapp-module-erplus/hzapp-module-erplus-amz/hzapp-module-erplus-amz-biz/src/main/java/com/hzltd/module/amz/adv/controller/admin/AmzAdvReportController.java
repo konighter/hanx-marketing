@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.module.amz.service.AmzAdvProfileAdsService;
 import com.hzltd.module.amz.service.AmzAdvReportAdsService;
-import com.hzltd.module.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;

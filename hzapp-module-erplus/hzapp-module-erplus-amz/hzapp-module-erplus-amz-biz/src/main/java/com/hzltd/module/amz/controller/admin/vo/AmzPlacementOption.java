@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.controller.admin.vo;
 
-import com.hzltd.module.spapi.model.common.PriceModel;
+import com.hzltd.module.erplus.spapi.model.common.PriceModel;
 import lombok.Data;
 import org.apache.commons.compress.utils.Lists;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.Incentive;

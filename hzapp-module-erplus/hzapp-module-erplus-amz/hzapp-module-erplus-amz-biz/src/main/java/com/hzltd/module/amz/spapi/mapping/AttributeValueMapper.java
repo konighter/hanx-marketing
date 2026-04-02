@@ -1,7 +1,7 @@
 package com.hzltd.module.amz.spapi.mapping;
 
-import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
-import com.hzltd.module.system.model.ProductSpuModel;
+import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
+import com.hzltd.module.erplus.system.model.ProductSpuModel;
 
 public interface AttributeValueMapper {
 

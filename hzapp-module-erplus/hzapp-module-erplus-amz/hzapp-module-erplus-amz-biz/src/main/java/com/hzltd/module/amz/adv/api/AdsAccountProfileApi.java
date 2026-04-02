@@ -1,7 +1,5 @@
 package com.hzltd.module.amz.adv.api;
 
-import com.hzltd.module.adv.model.AdsRequest;
-import com.hzltd.module.adv.model.AdsResponse;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.client.account.api.AccountApi;
 import com.hzltd.module.amz.adv.client.account.model.AdsAccountWithMetaData;
@@ -12,13 +10,15 @@ import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.profiles.api.ProfilesApi;
 import com.hzltd.module.amz.adv.client.profiles.model.Profile;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
+import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
-import com.hzltd.module.system.enums.AdsPlatformEnum;
-import org.springframework.stereotype.Service;
+import com.hzltd.module.erplus.adv.model.AdsRequest;
+import com.hzltd.module.erplus.adv.model.AdsResponse;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import jakarta.annotation.Resource;
-import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 

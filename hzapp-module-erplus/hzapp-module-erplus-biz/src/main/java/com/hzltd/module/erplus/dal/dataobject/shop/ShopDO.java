@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModelV0;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
 import lombok.*;
 
 import java.time.LocalDateTime;

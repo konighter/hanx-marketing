@@ -12,37 +12,23 @@
 
 package com.hzltd.module.amz.adv.client.sp.api;
 
-import com.hzltd.module.amz.adv.client.client.ApiClient;
-import com.hzltd.module.amz.adv.client.client.ApiException;
-import com.hzltd.module.amz.adv.client.client.ApiResponse;
-import com.hzltd.module.amz.adv.client.client.Configuration;
-import com.hzltd.module.amz.adv.client.client.Pair;
-
-import com.hzltd.module.amz.adv.client.sp.model.Brand;
-import com.hzltd.module.amz.adv.client.sp.model.CategoryRecommendations;
-import com.hzltd.module.amz.adv.client.sp.model.GetCategoryRecommendationsForAsinsRequest;
-import com.hzltd.module.amz.adv.client.sp.model.GetTargetableAsinCountsRequest;
-import com.hzltd.module.amz.adv.client.sp.model.Refinements;
-import com.hzltd.module.amz.adv.client.sp.model.SearchBrandsRequest;
-import com.hzltd.module.amz.adv.client.sp.model.TargetableAsinCounts;
-import com.hzltd.module.amz.adv.client.sp.model.TargetableCategories;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzltd.module.amz.adv.client.client.*;
+import com.hzltd.module.amz.adv.client.sp.model.*;
 
-import java.io.InputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.http.HttpRequest;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
-
 import java.util.ArrayList;
-import java.util.StringJoiner;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.function.Consumer;
 
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", comments = "Generator version: 7.21.0")

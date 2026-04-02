@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
-import com.hzltd.module.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
 import org.springframework.stereotype.Service;

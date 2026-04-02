@@ -3,8 +3,10 @@ package com.hzltd.module.erplus.adv.mas.controller.admin;
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.erplus.adv.mas.controller.admin.vo.*;
-// import com.hzltd.module.erplus.adv.convert.mas.MasSkillConvert removed
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.ActivateReqVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.MasSkillInstanceMessageVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.MasSkillInstanceVO;
+import com.hzltd.module.erplus.adv.mas.controller.admin.vo.MasSkillListVO;
 import com.hzltd.module.erplus.adv.mas.dal.dataobject.MasSkillDefDO;
 import com.hzltd.module.erplus.adv.mas.service.MasSkillService;
 import com.hzltd.module.erplus.ai.dal.dataobject.mas.MasSkillInstanceLogDO;

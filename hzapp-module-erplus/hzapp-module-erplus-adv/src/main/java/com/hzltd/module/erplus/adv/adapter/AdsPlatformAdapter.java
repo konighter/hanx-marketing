@@ -1,16 +1,12 @@
 package com.hzltd.module.erplus.adv.adapter;
 
-import com.hzltd.module.system.enums.AdsPlatformEnum;
-import com.hzltd.module.adv.model.*;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
-import com.hzltd.module.adv.model.AdsAdGroupModel;
-import com.hzltd.module.adv.model.AdsAdModel;
-import com.hzltd.module.adv.model.AdsCampaignModel;
-import com.hzltd.module.adv.model.AdsTargetModel;
+import com.hzltd.module.erplus.adv.model.*;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 
 import java.util.List;
 

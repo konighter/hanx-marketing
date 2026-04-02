@@ -1,33 +1,31 @@
 package com.hzltd.module.erplus.controller.admin.productassets;
 
-import org.springframework.web.bind.annotation.*;
-import jakarta.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.security.access.prepost.PreAuthorize;
-import io.swagger.v3.oas.annotations.tags.Tag;
-import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.Operation;
-
-import jakarta.validation.constraints.*;
-import jakarta.validation.*;
-import jakarta.servlet.http.*;
-import java.util.*;
-import java.io.IOException;
-
+import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
+import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import static com.hzltd.framework.common.pojo.CommonResult.success;
-
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-
-import com.hzltd.framework.apilog.core.annotation.ApiAccessLog;
-import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.*;
-
-import com.hzltd.module.erplus.controller.admin.productassets.vo.*;
+import com.hzltd.module.erplus.controller.admin.productassets.vo.ProductAssetsPageReqVO;
+import com.hzltd.module.erplus.controller.admin.productassets.vo.ProductAssetsRespVO;
+import com.hzltd.module.erplus.controller.admin.productassets.vo.ProductAssetsSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.productassets.ProductAssetsDO;
 import com.hzltd.module.erplus.service.productassets.ProductAssetsService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
+import java.util.List;
+
+import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.EXPORT;
+import static com.hzltd.framework.common.pojo.CommonResult.success;
 
 @Tag(name = "管理后台 - 商品素材")
 @RestController

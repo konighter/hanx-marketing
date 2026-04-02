@@ -13,15 +13,13 @@
 
 package com.hzltd.module.amz.adv.client.sp.model;
 
-import java.util.StringJoiner;
-import java.util.Objects;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-
-
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+
+import java.util.Objects;
+import java.util.StringJoiner;
 /**
  * Response object containing all targetable categories for the advertiser&#39;s marketplace in a language of preference (LoP) provide by the locale query parameter. ID is the category ID. NA is the name. TN is the translated name in the language of preference. CH is the list of child categories. TA is if the category is targetable. AsinCountRange is the AsinCounts of the node. Version 4 adds the number of targetable ASINs to each category.
  */
