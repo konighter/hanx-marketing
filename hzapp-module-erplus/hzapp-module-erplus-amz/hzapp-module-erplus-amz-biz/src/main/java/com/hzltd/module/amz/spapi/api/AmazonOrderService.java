@@ -19,14 +19,15 @@ import com.hzltd.module.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.compress.utils.Lists;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.ApiException;
 import software.amazon.spapi.api.orders.v0.OrdersV0Api;
 import software.amazon.spapi.models.orders.v0.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,11 +57,23 @@ public class AmazonOrderService extends AbsAmzPlatformApiService implements Orde
                 orderStatuses = ordersRequest.getStatuses().stream().map(CrossOrderStatus::getCode).collect(Collectors.toList());
             }
 
-            OffsetDateTime maxCreateBefore = OffsetDateTime.now().minusMinutes(5);
-            LocalDateTime createBefore = ordersRequest.getCreateTimeEnd().isAfter(maxCreateBefore.toLocalDateTime()) ? maxCreateBefore.toLocalDateTime() : ordersRequest.getCreateTimeEnd();
+            // 使用店铺时区解析时间，前端传入的 LocalDateTime 应视为店铺当地时间
+            String timezone = StringUtils.isNotEmpty(request.getTimeZone()) ? request.getTimeZone() : "UTC";
+            ZoneId shopZone = ZoneId.of(timezone);
+            OffsetDateTime start = ordersRequest.getCreateTimeStart().atZone(shopZone).toOffsetDateTime().withNano(0);
+            OffsetDateTime end = ordersRequest.getCreateTimeEnd().atZone(shopZone).toOffsetDateTime().withNano(0);
+
+            // 结束时间限制为当前时间减5分钟（使用店铺时区计算"当前时间"）
+            OffsetDateTime maxCreateBefore = OffsetDateTime.now(shopZone).minusMinutes(5).withNano(0);
+            if (end.isAfter(maxCreateBefore)) {
+                end = maxCreateBefore;
+            }
 
             // 调用亚马逊API获取订单详情
-            GetOrdersResponse response = ordersApi.getOrders(systemShopService.getShopRegion(request.getShopId()), formatISO8601(ordersRequest.getCreateTimeStart()), formatISO8601(createBefore), null, null, orderStatuses, fulfillTypes, null, null, null, null, null, null, ordersRequest.getNextToken(), ordersRequest.getOrderIds(), null, null, null, null, null, null, null, null);
+            GetOrdersResponse response = ordersApi.getOrders(systemShopService.getShopMarketplace(request.getShopId()),
+                    start.toString(), end.toString(), null, null, orderStatuses, fulfillTypes,
+                    null, null, null, null, null, null, ordersRequest.getNextToken(),
+                    ordersRequest.getOrderIds(), null, null, null, null, null, null, null, null);
 
             if (response.getPayload() == null) {
                 return ApiResponse.error("Order not found");

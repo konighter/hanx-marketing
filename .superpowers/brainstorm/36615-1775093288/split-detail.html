@@ -1,0 +1,120 @@
+<h2>主从布局 (Split View) 详情设计</h2>
+<p class="subtitle">针对 ERP 高频操作用户的“左列表 + 右详情”方案</p>
+
+<div class="split">
+  <!-- 左侧：高密度列表 -->
+  <div class="mockup" style="flex: 1.5;">
+    <div class="mockup-header">订单列表 (高密度表格)</div>
+    <div class="mockup-body">
+      <table class="mock-table" style="width: 100%; border-collapse: collapse; font-size: 12px;">
+        <tr style="background: #f5f7fa; text-align: left;">
+          <th><input type="checkbox"></th>
+          <th>平台</th>
+          <th>订单 ID</th>
+          <th>主 SKU</th>
+          <th>状态</th>
+          <th>金额</th>
+          <th>时间</th>
+        </tr>
+        <tr style="border-bottom: 1px solid #ebeef5; background: #ecf5ff;"> <!-- 选中行 -->
+          <td><input type="checkbox" checked></td>
+          <td><span class="label" style="background:#ff9900; color:white; padding:2px 4px; border-radius:2px;">AMZ</span></td>
+          <td style="color:#409eff;">114-1234567...</td>
+          <td>SKU-ABC-01</td>
+          <td><span class="label" style="background:#67c23a; color:white; padding:2px 4px; border-radius:2px;">Shipped</span></td>
+          <td>$45.99</td>
+          <td>04-01 12:00</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #ebeef5;">
+          <td><input type="checkbox"></td>
+          <td><span class="label" style="background:#ff9900; color:white; padding:2px 4px; border-radius:2px;">AMZ</span></td>
+          <td style="color:#409eff;">114-7654321...</td>
+          <td>SKU-XYZ-02</td>
+          <td><span class="label" style="background:#e6a23c; color:white; padding:2px 4px; border-radius:2px;">Pending</span></td>
+          <td>$12.50</td>
+          <td>04-01 10:30</td>
+        </tr>
+      </table>
+      <div style="margin-top: 10px; text-align: center;">
+        <span class="subtitle">... 更多紧凑订单行 ...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 右侧：详情面板 -->
+  <div class="mockup" style="flex: 1; border-left: 2px solid #409eff;">
+    <div class="mockup-header">订单详情: 114-1234567...</div>
+    <div class="mockup-body" style="padding: 10px;">
+      <div class="section">
+        <div class="label" style="margin-bottom:5px;">基本信息</div>
+        <div style="display:flex; justify-content:space-between; font-size:13px;">
+          <span>店铺: Amazon-US-01</span>
+          <span>配送: FBA</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="label" style="margin-bottom:5px;">商品明细 (2件)</div>
+        <div style="background:#f9f9f9; padding:5px; border-radius:4px; margin-bottom:5px; display:flex; align-items:center;">
+          <div style="width:40px; height:40px; background:#ddd; margin-right:10px;">IMG</div>
+          <div style="font-size:12px;">
+            <div>SKU-ABC-01 x 1</div>
+            <div style="color:gray;">$25.99 (Net: $20.00)</div>
+          </div>
+        </div>
+        <div style="background:#f9f9f9; padding:5px; border-radius:4px; display:flex; align-items:center;">
+          <div style="width:40px; height:40px; background:#ddd; margin-right:10px;">IMG</div>
+          <div style="font-size:12px;">
+            <div>SKU-DEF-02 x 1</div>
+            <div style="color:gray;">$20.00 (Net: $15.00)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="label" style="margin-bottom:5px;">费用明细 (USD)</div>
+        <div class="pros-cons" style="font-size:12px;">
+          <div class="pros" style="background:#f0f9eb; border:none;">
+            <h4>总额 / 收入</h4>
+            <ul><li>订单总计: $45.99</li></ul>
+          </div>
+          <div class="cons" style="background:#fef0f0; border:none;">
+            <h4>扣费 / 成本</h4>
+            <ul>
+              <li>佣金: -$6.90</li>
+              <li>FBA费: -$4.50</li>
+              <li>预估利润: $34.59</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <button class="mock-button" style="width:100%; margin-top:10px;">复制订单明细</button>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🎉 ERP 友好型设计特点：</h3>
+  <ul>
+    <li><b>高信息密度</b>：左侧列表采用紧凑行高，一屏显示更多订单。</li>
+    <li><b>快速切换</b>：点击左侧行，右侧详情即时更新，无需跳转页面或关闭弹窗。</li>
+    <li><b>关键指标突出</b>：详情页顶部显示核心状态，财务板块清晰对比收入与支出。</li>
+    <li><b>多维度标识</b>：增加平台图标标签，一眼识别订单来源。</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h3>您可以选择：</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="sticky-header" onclick="toggleSelect(this)">
+      <div class="content"><h4>固定列表表头</h4><p>滚动时表头固定，方便对齐列。</p></div>
+    </div>
+    <div class="option" data-choice="item-image-list" onclick="toggleSelect(this)">
+      <div class="content"><h4>列表显示小图</h4><p>在左侧列表中保留极小图标预览。</p></div>
+    </div>
+    <div class="option" data-choice="action-overlay" onclick="toggleSelect(this)">
+      <div class="content"><h4>悬浮操作栏</h4><p>鼠标悬停行时显示“同步/删除”快捷按钮。</p></div>
+    </div>
+  </div>
+</div>

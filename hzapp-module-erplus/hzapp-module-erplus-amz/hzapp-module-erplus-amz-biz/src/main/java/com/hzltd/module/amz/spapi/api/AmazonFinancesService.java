@@ -7,7 +7,7 @@ import com.hzltd.module.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.order.FeeModel;
+import com.hzltd.module.spapi.model.common.FeeModel;
 import com.hzltd.module.spapi.model.order.OrderFeeRequest;
 import com.hzltd.module.spapi.model.order.ProductFeeEstimateRequest;
 import com.hzltd.module.spapi.service.order.FinancesApi;

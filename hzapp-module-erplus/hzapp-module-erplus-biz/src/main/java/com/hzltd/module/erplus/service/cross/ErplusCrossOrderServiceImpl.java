@@ -19,7 +19,7 @@ import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossOrderMapper;
 import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.order.FeeModel;
+import com.hzltd.module.spapi.model.common.FeeModel;
 import com.hzltd.module.spapi.model.order.GetOrdersRequest;
 import com.hzltd.module.spapi.model.order.OrderItemModel;
 import com.hzltd.module.spapi.model.order.OrderModel;

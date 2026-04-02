@@ -350,7 +350,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
         }
 
         // 当本地是停用, 平台是暂停时, 不更新本地状态
-        if (!(STOPPED.getCode().equals(existing.getStatus()) || PAUSED.getCode().equals(vo.getStatus()))) {
+        if (!(STOPPED.getCode().equals(existing.getStatus()) && PAUSED.getCode().equals(vo.getStatus()))) {
             existing.setStatus(vo.getStatus());
         }
 

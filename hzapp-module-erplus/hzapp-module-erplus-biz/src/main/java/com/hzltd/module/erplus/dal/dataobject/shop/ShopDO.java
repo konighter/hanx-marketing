@@ -83,6 +83,11 @@ public class ShopDO extends BaseDO {
     private Long accountId;
 
     /**
+     * 时区
+     */
+    private String timezone;
+
+    /**
      * 状态
      *
      * 枚举 {@link TODO common_status 对应的类}

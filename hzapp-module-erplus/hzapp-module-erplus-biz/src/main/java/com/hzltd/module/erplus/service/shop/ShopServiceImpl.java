@@ -338,12 +338,12 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
 
     @Override
 //    @Cacheable(cacheNames = "shopRegion", key = "#shopId")
-    public List<String> getShopRegion(String shopId) {
+    public List<String> getShopMarketplace(String shopId) {
         if (StringUtils.isEmpty(shopId)) {
             return List.of("NA");
         }
         ShopDO shopDO = shopMapper.selectById(Long.valueOf(shopId));
-        return shopDO == null ? List.of() : List.of(shopDO.getRegion());
+        return shopDO == null ? List.of() : List.of(shopDO.getMarketplaceId());
     }
 
     @Override
@@ -366,6 +366,7 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
                 CascaderShopRespVO childRespVO = new CascaderShopRespVO();
                 childRespVO.setId(shopDO.getId());
                 childRespVO.setName(shopDO.getName());
+                childRespVO.setTimezone(shopDO.getTimezone());
                 return childRespVO;
             }).collect(Collectors.toList()));
 
@@ -395,6 +396,7 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
             shop.setCurrency(shopModel.getCurrency());
             shop.setAccountId(shopModel.getAccountId());
             shop.setSellerId(shopModel.getSellerId());
+            shop.setTimezone(shopModel.getTimezone());
             shop.setStatus(CommonStatusEnum.ENABLE.getStatus()); // 默认启用
             shopMapper.insert(shop);
 

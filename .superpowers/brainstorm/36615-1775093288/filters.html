@@ -1,0 +1,55 @@
+<h2>多平台订单筛选差异分析</h2>
+<p class="subtitle">对比 Shopee 与 TikTok Shop 的筛选逻辑，为我们的 ERP 寻找合集</p>
+
+<div class="section">
+  <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
+    <tr style="background: #f5f7fa; text-align: left; border-bottom: 2px solid #eee;">
+      <th style="padding: 10px;">维度</th>
+      <th style="padding: 10px;">TikTok Shop (SLA/动作导向)</th>
+      <th style="padding: 10px;">Shopee (物流/结构导向)</th>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 10px; font-weight: bold;">核心状态</td>
+      <td style="padding: 10px;">待支付、待发货、待收货、已送达、已完成、已取消、退款中</td>
+      <td style="padding: 10px;">未付款、待出库、已处理、已运送、待确认收货、已完成、取消中、已取消</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee; background: #fffdf5;">
+      <td style="padding: 10px; font-weight: bold;">时效/紧迫性</td>
+      <td style="padding: 10px;"><b>极强</b>：24h内必发货、即将自动取消、发货逾期、取消申请</td>
+      <td style="padding: 10px;"><b>强调优先级</b>：今日必发、明日必发、逾期订单、24h内/外订单</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 10px; font-weight: bold;">物流/渠道</td>
+      <td style="padding: 10px;">备货方式（上门揽收/自行寄送）</td>
+      <td style="padding: 10px;"><b>极深</b>：物流渠道(SPX/J&T等)、履约类型、仓库地点、预售/非预售</td>
+    </tr>
+    <tr style="border-bottom: 1px solid #eee;">
+      <td style="padding: 10px; font-weight: bold;">搜索能力</td>
+      <td style="padding: 10px;">支持批量搜索 (单次 100 个 ID/SKU)</td>
+      <td style="padding: 10px;">标准的 ID、SKU、商品名、买家名搜索</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h3>🚀 我们的 ERP 统一筛选器建议：</h3>
+  <p class="subtitle">为了兼容多平台并满足 ERP 用户的高效需求，我建议在搜索栏集成以下核心项：</p>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="batch-search" onclick="toggleSelect(this)">
+      <div class="content"><h4>批量搜索 (必选)</h4><p>支持一次性粘贴多个订单号/SKU（借鉴 TikTok）。</p></div>
+    </div>
+    <div class="option" data-choice="sla-priority" onclick="toggleSelect(this)">
+      <div class="content"><h4>时效优先级 (必选)</h4><p>增加“逾期”、“今日必发”快捷筛选（兼容 Shopee/TikTok）。</p></div>
+    </div>
+    <div class="option" data-choice="platform-attr" onclick="toggleSelect(this)">
+      <div class="content"><h4>平台/店铺维度</h4><p>多选平台和店铺（我们现在的级联选框已包含）。</p></div>
+    </div>
+    <div class="option" data-choice="fulfill-channel" onclick="toggleSelect(this)">
+      <div class="content"><h4>履约渠道</h4><p>FBA/FBM/第三方物流（兼容 Amazon/Shopee）。</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <p><b>您认为以上哪些筛选条件在日常操作中最常用？或者有其他特定平台的筛选字段（如 Shopee 的预售标识）需要保留吗？</b></p>
+</div>

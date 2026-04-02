@@ -14,6 +14,7 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -36,6 +37,7 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     @Lazy
     private AdsAuthService adsAuthService;
 
+    @Lazy
     @Resource
     private AdsAmazonStreamService adsAmazonStreamService;
 
@@ -162,4 +164,9 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
         return JSONUtil.toList(resp, AbstractAmazonAdsAdapter.AmzProfileVO.class);
     }
 
+    @Override
+    @Cacheable("profile_by_shopId")
+    public AdsAmazonProfileDO getProfileByShopId(Long shopId) {
+        return adsAmazonProfileMapper.selectByShopId(shopId);
+    }
 }

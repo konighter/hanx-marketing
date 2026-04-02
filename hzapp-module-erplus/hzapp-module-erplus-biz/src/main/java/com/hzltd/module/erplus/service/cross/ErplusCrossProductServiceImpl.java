@@ -31,7 +31,7 @@ import com.hzltd.module.system.enums.CrossPlatformEnum;
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
 import com.hzltd.module.spapi.model.common.InventoryModel;
-import com.hzltd.module.spapi.model.order.FeeModel;
+import com.hzltd.module.spapi.model.common.FeeModel;
 import com.hzltd.module.spapi.model.pricing.GetInventoryRequest;
 import com.hzltd.module.spapi.model.product.MultiMarketProductModel;
 import com.hzltd.module.spapi.model.product.ProductModel;

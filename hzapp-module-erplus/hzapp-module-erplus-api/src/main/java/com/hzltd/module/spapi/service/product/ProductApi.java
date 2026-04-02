@@ -2,6 +2,7 @@ package com.hzltd.module.spapi.service.product;
 
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
+import com.hzltd.module.spapi.model.common.FeeModel;
 import com.hzltd.module.spapi.model.common.MediaModel;
 import com.hzltd.module.spapi.model.product.*;
 
@@ -23,4 +24,8 @@ public interface ProductApi {
 
 
     ApiResponse<MultiMarketProductModel> getProduct(ApiRequest<GetProductRequest> request);
+
+    default ApiResponse<FeeModel> getProductFee(ApiRequest<ProductFeeRequest> request) {
+        return ApiResponse.error("not support");
+    }
 }

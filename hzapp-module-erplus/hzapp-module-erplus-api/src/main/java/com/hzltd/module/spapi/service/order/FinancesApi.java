@@ -2,7 +2,7 @@ package com.hzltd.module.spapi.service.order;
 
 import com.hzltd.module.spapi.model.ApiRequest;
 import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.order.FeeModel;
+import com.hzltd.module.spapi.model.common.FeeModel;
 import com.hzltd.module.spapi.model.order.OrderFeeRequest;
 import com.hzltd.module.spapi.model.order.ProductFeeEstimateRequest;
 

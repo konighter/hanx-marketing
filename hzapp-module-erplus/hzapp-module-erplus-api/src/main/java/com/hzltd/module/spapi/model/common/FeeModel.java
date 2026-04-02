@@ -1,4 +1,4 @@
-package com.hzltd.module.spapi.model.order;
+package com.hzltd.module.spapi.model.common;
 
 import com.google.common.collect.Lists;
 import lombok.Data;

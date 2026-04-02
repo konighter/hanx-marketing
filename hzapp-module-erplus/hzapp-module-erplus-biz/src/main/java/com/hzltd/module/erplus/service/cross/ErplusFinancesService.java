@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.service.cross;
 
-import com.hzltd.module.spapi.model.order.FeeModel;
+import com.hzltd.module.spapi.model.common.FeeModel;
 
 import java.util.List;
 

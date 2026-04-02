@@ -36,7 +36,7 @@ public class AmazonCategoryService extends AbsAmzPlatformApiService implements C
             apiRequest.setShopId(String.valueOf(apiRequest.getRequest().getShopId()));
             DefinitionsApi definitionsApi = getDefinitionsApi(apiRequest);
 
-            ProductTypeList productTypes = definitionsApi.searchDefinitionsProductTypes(systemShopService.getShopRegion(apiRequest.getShopId()), List.of(apiRequest.getRequest().getName()), null, "zh_CN", null);
+            ProductTypeList productTypes = definitionsApi.searchDefinitionsProductTypes(systemShopService.getShopMarketplace(apiRequest.getShopId()), List.of(apiRequest.getRequest().getName()), null, "zh_CN", null);
             return ApiResponse.success(productTypes.getProductTypes().stream()
                     .map(productType -> {
                         CategoryModel model = new CategoryModel();
@@ -59,7 +59,7 @@ public class AmazonCategoryService extends AbsAmzPlatformApiService implements C
 
         DefinitionsApi definitionsApi = getDefinitionsApi(apiRequest);
         try {
-            ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(apiRequest.getRequest().getCategoryId(), systemShopService.getShopRegion(apiRequest.getShopId()), null, null, null, null, "zh_CN");
+            ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(apiRequest.getRequest().getCategoryId(), systemShopService.getShopMarketplace(apiRequest.getShopId()), null, null, null, null, "zh_CN");
             List<CategoryAttributeModel> categoryAttributeModels = ProductTypeSchemaUtils.parseProductTypeSchema(productTypeDefinition.getSchema().getLink().getResource(), productTypeDefinition);
             return ApiResponse.success(categoryAttributeModels);
         } catch (ApiException e) {

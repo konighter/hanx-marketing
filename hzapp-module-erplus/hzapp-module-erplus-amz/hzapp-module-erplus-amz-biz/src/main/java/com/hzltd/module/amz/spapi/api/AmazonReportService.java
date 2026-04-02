@@ -29,7 +29,7 @@ public class AmazonReportService extends AbsAmzPlatformApiService {
     public String createReport(ApiRequest<CreateReportSpecification> apiRequest) {
 
         ReportsApi reportsApi = getReportsApi(apiRequest);
-        List<String> marketPlaceIds = systemShopService.getShopRegion(apiRequest.getShopId());
+        List<String> marketPlaceIds = systemShopService.getShopMarketplace(apiRequest.getShopId());
         try {
             CreateReportResponse createReportResponse = reportsApi.createReport(apiRequest.getRequest().marketplaceIds(marketPlaceIds));
             log.info("createReportResponse: {}", createReportResponse);
@@ -78,7 +78,7 @@ public class AmazonReportService extends AbsAmzPlatformApiService {
 
     private ReportsApi getReportsApi(ApiRequest<?> apiRequest) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(apiRequest);
-        List<String> marketPlaceIds = systemShopService.getShopRegion(apiRequest.getShopId());
+        List<String> marketPlaceIds = systemShopService.getShopMarketplace(apiRequest.getShopId());
         return new ReportsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(lwaAccessTokenCache)

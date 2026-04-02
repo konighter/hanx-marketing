@@ -48,6 +48,11 @@ public class ShopModel {
     private String language;
 
     private String sellerId;
+
+    /**
+     * 时区
+     */
+    private String timezone;
     /**
      * 授权信息
      */

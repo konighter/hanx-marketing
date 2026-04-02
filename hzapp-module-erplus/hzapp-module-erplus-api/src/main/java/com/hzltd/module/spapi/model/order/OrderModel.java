@@ -76,6 +76,28 @@ public class OrderModel {
       */
     private String salesChannel;
 
+    /**
+     * 最早送达时间
+     */
+    private String earliestDeliveryDate;
+
+    /**
+     * 最晚送达时间
+     * FBA关注, 可以计算订单时效
+     */
+    private String latestDeliveryDate;
+
+    /**
+     * 最早发货时间
+     */
+    private String earliestShipDate;
+
+    /**
+     * 最晚发货时间
+     * FBM 需要关注
+     */
+    private String latestShipDate;
+
      /**
       * 订单商品列表
       */

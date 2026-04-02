@@ -2,27 +2,16 @@
   <ContentWrap>
     <!-- 搜索工作栏 -->
     <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="100px" :rules="rules">
-      <el-form-item label="跨境平台" prop="platformId">
-        <el-select
-v-model="queryParams.platformId" placeholder="请选择跨境平台" clearable class="!w-240px"
-          @change="platformChange">
-          <el-option v-for="p in platforms" :key="p.id" :label="p.name" :value="p.id" />
-        </el-select>
-      </el-form-item>
       <el-form-item label="店铺" prop="shopId">
-        <el-select
-v-model="queryParams.shopId" placeholder="请选择店铺" clearable class="!w-240px"
-          :disabled="!queryParams.platformId">
-          <el-option v-for="s in shops" :key="s.id" :label="s.name" :value="s.id" />
-        </el-select>
-      </el-form-item>
-      <el-form-item label="区域" prop="marketId">
-
-        <el-select
-v-model="queryParams.marketId" placeholder="请选择区域" clearable class="!w-240px"
-          :disabled="!queryParams.shopId">
-          <el-option v-for="r in regions" :key="r.id" :label="r.zoneName" :value="r.id" />
-        </el-select>
+        <el-cascader
+          v-model="selectedShopPath"
+          :options="shopCascaderList"
+          :props="{ label: 'name', value: 'id', children: 'children' }"
+          placeholder="请选择平台/店铺"
+          clearable
+          class="!w-240px"
+          @change="handleShopChange"
+        />
       </el-form-item>
       <el-form-item label="配送类型" prop="fulfillType">
         <el-select v-model="queryParams.fulfillType" placeholder="请选择配送类型" clearable class="!w-240px">
@@ -186,6 +175,42 @@ v-else style="width: 60px; height: 60px" :src="row.mainImageUrl"
       @pagination="getList" />
   </ContentWrap>
 
+  <!-- 同步订单弹窗 -->
+  <el-dialog title="同步订单" v-model="syncDialogVisible" width="500px">
+    <el-form :model="syncForm" label-width="100px">
+      <el-form-item label="同步方式">
+        <el-radio-group v-model="syncForm.syncType">
+          <el-radio label="time">时间范围</el-radio>
+          <el-radio label="order">订单号</el-radio>
+        </el-radio-group>
+      </el-form-item>
+      <el-form-item v-if="syncForm.syncType === 'time'" label="订单时间">
+        <el-date-picker
+          v-model="syncForm.timeRange"
+          type="daterange"
+          range-separator="至"
+          start-placeholder="开始日期"
+          end-placeholder="结束日期"
+          value-format="YYYY-MM-DD HH:mm:ss"
+          :default-time="[new Date('2024-01-01 00:00:00'), new Date('2024-01-01 23:59:59')]"
+          :disabled-date="(date: Date) => date.getTime() > Date.now()"
+        />
+      </el-form-item>
+      <el-form-item v-if="syncForm.syncType === 'order'" label="订单号">
+        <el-input
+          v-model="syncForm.orderIds"
+          type="textarea"
+          :rows="4"
+          placeholder="请输入订单号，多个订单号请换行分隔"
+        />
+      </el-form-item>
+    </el-form>
+    <template #footer>
+      <el-button @click="syncDialogVisible = false">取 消</el-button>
+      <el-button type="primary" @click="handleDoSync" :loading="syncLoading">开始同步</el-button>
+    </template>
+  </el-dialog>
+
 
 
 </template>
@@ -193,13 +218,13 @@ v-else style="width: 60px; height: 60px" :src="row.mainImageUrl"
 
 <script setup lang="ts">
 
+import dayjs from 'dayjs'
 import { dateFormatter } from '@/utils/formatTime'
 import { isEmpty } from '@/utils/is'
 import { SellPlatformApi, SellPlatformVO } from '@/app/erp/api/sellplatform' // 已存在模块
 import { ShopApi } from '@/app/erplus/api/system/shop'
 
 import * as OrderApi from '@/app/erplus/api/order/order'
-// import AmazonList from './components/AmazonListingList.vue'
 
 
 // import { CrossProductApi, CrossProduct } from '@/api/erplus/crossproduct'
@@ -220,7 +245,6 @@ const queryParams = reactive({
   pageSize: 10,
   platformId: undefined,
   shopId: undefined,
-  marketId: undefined,
   fulfillType: undefined,
   sellerProductCode: undefined,
   platformProductCode: undefined,
@@ -233,52 +257,42 @@ const queryParams = reactive({
 const queryFormRef = ref() // 搜索的表单
 
 const rules = reactive({
-  platformId: [{ required: true, message: '请选择跨境平台', trigger: 'change' }],
   shopId: [{ required: true, message: '请选择店铺', trigger: 'change' }],
-  // marketId: [{ required: true, message: '请选择区域', trigger: 'change' }],
-  // fulfillType: [{ required: true, message: '请选择配送类型', trigger: 'change' }],
 })
 
+const shopCascaderList = ref<any[]>([])
+const selectedShopPath = ref<any[]>([])
+const syncDialogVisible = ref(false)
+const syncLoading = ref(false)
+const syncForm = reactive({
+  syncType: 'time',
+  timeRange: [] as string[],
+  orderIds: ''
+})
 
 const platforms = ref<SellPlatformVO[]>([])
-const shops = ref<any[]>([])
-const regions = ref<any[]>([])
 
 /** 平台相关加载 */
-const loadPlatforms = async () => {
-  platforms.value = await SellPlatformApi.getSellPlatformListCache() || []
-}
-
-const loadShops = async (platformId: number) => {
-  // 加载店铺列表 
-  shops.value = await ShopApi.getPlatformShop(platformId) || []
-}
-
-const platformChange = async function () {
-  // 重置店铺和区域
-  queryParams.shopId = undefined
-  queryParams.marketId = undefined
-
-
-  if (queryParams.platformId) {
-    await loadShops(queryParams.platformId)
-  } else {
-    shops.value = []
-    regions.value = []
+const getShopCascaderList = async () => {
+  try {
+    shopCascaderList.value = await ShopApi.getCascaderShopList()
+  } catch (error) {
+    console.error(error)
   }
-
-  const platform = platforms.value.filter(p => p.id === queryParams.platformId)[0]
-
-
 }
 
-
-
-
-
+const handleShopChange = (path: any[]) => {
+  if (path && path.length === 2) {
+    queryParams.platformId = path[0]
+    queryParams.shopId = path[1]
+  } else {
+    queryParams.platformId = undefined
+    queryParams.shopId = undefined
+  }
+}
 
 onMounted(async () => {
-  await loadPlatforms()
+  await getShopCascaderList()
 })
 
 
@@ -297,8 +311,36 @@ const resetQuery = () => {
 }
 
 const handSync = async () => {
-  await OrderApi.syncCrossOrders(queryParams)
-  message.success('同步任务已提交，请稍后刷新列表查看最新数据')
+  // 必须先选店铺
+  if (!queryParams.shopId) {
+    message.warning('请先选择店铺')
+    return
+  }
+  // 默认同步最近7天（浏览器本地时间，后端会按店铺时区重新解析）
+  syncForm.timeRange = [
+    dayjs().subtract(7, 'day').startOf('day').format('YYYY-MM-DD HH:mm:ss'),
+    dayjs().format('YYYY-MM-DD HH:mm:ss')
+  ]
+  syncDialogVisible.value = true
+}
+
+const handleDoSync = async () => {
+  syncLoading.value = true
+  try {
+    const data = {
+      platformId: queryParams.platformId,
+      shopId: queryParams.shopId,
+      syncType: syncForm.syncType,
+      createTimeStart: syncForm.syncType === 'time' ? syncForm.timeRange[0] : undefined,
+      createTimeEnd: syncForm.syncType === 'time' ? syncForm.timeRange[1] : undefined,
+      orderIds: syncForm.syncType === 'order' ? syncForm.orderIds.split('\n').filter(id => id.trim()) : undefined
+    }
+    await OrderApi.syncCrossOrders(data)
+    message.success('同步任务已提交，请稍后刷新列表查看最新数据')
+    syncDialogVisible.value = false
+  } finally {
+    syncLoading.value = false
+  }
 }
 
 /** 查询列表 */

@@ -114,41 +114,52 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
     //============== Api初始化 ==============
     public ListingsApi getListingsApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new ListingsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
+    }
+
+    public FeesApi getProductFeeApi(ApiRequest<?> request) {
+        AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
+        String region = this.getShopRegion(request.getShopId());
+        return new FeesApi.Builder()
+                .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
+                .lwaAccessTokenCache(this.getLocalTokenCache())
+                .endpoint(this.getApiEndpoint(region))
+                .build();
+
     }
 
     public ProductPricingApi getPricingApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new ProductPricingApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 
     public FbaInventoryApi getFbaInventoryApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new FbaInventoryApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 
     public OrdersV0Api getOrdersApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new OrdersV0Api.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 
@@ -167,41 +178,41 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public FeesApi getFeesApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new FeesApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 
     public DefinitionsApi getDefinitionsApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new DefinitionsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 
     public NotificationsApi getNotificationsApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new NotificationsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 
     public NotificationsApi getNotificationApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new NotificationsApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentialsScoped(authorizationModel, "sellingpartnerapi::notifications"))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 
@@ -211,29 +222,29 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
 
     public FbaInboundApi getFbaInboundApi(ApiRequest<?> request) {
         AuthorizationModel authorizationModel = this.getAuthorizationModel(request);
-        List<String> marketPlaceIds = this.getShopRegion(request.getShopId());
+        String region = this.getShopRegion(request.getShopId());
         return new FbaInboundApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(authorizationModel))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
  
     public DefaultApi getFinancesDefaultV0Api(ApiRequest<?> apiRequest) {
-        List<String> marketPlaceIds = this.getShopRegion(apiRequest.getShopId());
+        String region = this.getShopRegion(apiRequest.getShopId());
         return new DefaultApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 
     public software.amazon.spapi.api.fulfillment.inbound.v0.FbaInboundApi getFbaInboundApiV0(ApiRequest<?> apiRequest) {
-        List<String> marketPlaceIds = this.getShopRegion(apiRequest.getShopId());
+        String region = this.getShopRegion(apiRequest.getShopId());
         return new software.amazon.spapi.api.fulfillment.inbound.v0.FbaInboundApi.Builder()
                 .lwaAuthorizationCredentials(this.getLWAAuthorizationCredentials(this.getAuthorizationModel(apiRequest)))
                 .lwaAccessTokenCache(this.getLocalTokenCache())
-                .endpoint(this.getApiEndpoint(marketPlaceIds.get(0)))
+                .endpoint(this.getApiEndpoint(region))
                 .build();
     }
 

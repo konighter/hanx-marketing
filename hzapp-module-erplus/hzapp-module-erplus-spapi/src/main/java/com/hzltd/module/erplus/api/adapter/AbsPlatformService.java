@@ -1,5 +1,6 @@
 package com.hzltd.module.erplus.api.adapter;
 
+import com.hzltd.module.system.model.ShopModel;
 import com.hzltd.module.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import org.threeten.bp.OffsetDateTime;
@@ -14,8 +15,9 @@ public abstract class AbsPlatformService extends LocalAuthProvider {
     private SystemShopService systemShopService;
 
 
-    public List<String> getShopRegion(String shopId) {
-        return systemShopService.getShopRegion(shopId);
+    public String getShopRegion(String shopId) {
+        ShopModel shopModel = systemShopService.getShopByExtraId(shopId);
+        return shopModel.getRegion();
     }
 
     public OffsetDateTime convert(java.time.OffsetDateTime javaTime) {

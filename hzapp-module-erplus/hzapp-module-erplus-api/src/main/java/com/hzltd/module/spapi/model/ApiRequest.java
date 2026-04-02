@@ -58,6 +58,11 @@ public class ApiRequest<T> {
     private Long timestamp;
 
     /**
+     * 时区
+     */
+    private String timeZone;
+
+    /**
      * 请求体
      */
     private T request;

@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.controller.admin.cross.vo;
 
 import cn.hutool.core.date.DateUtil;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import com.hzltd.framework.common.pojo.PageParam;
 import lombok.Data;
 
@@ -39,6 +40,20 @@ public class CrossOrderPageRequest extends PageParam {
     private String[] createTimeRange;
 
     private String[] updateTimeRange;
+
+    @JsonSetter("createTimeStart")
+    public void setCreateTimeStartFromJson(String value) {
+        if (value != null && !value.isEmpty()) {
+            this.createTimeStart = DateUtil.parseLocalDateTime(value);
+        }
+    }
+
+    @JsonSetter("createTimeEnd")
+    public void setCreateTimeEndFromJson(String value) {
+        if (value != null && !value.isEmpty()) {
+            this.createTimeEnd = DateUtil.parseLocalDateTime(value);
+        }
+    }
 
     public void setCreateTimeRange(String[] createTimeRange) {
         if (createTimeRange == null) {

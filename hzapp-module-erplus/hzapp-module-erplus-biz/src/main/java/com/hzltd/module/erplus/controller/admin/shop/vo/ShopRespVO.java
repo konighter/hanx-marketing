@@ -63,4 +63,8 @@ public class ShopRespVO {
     @Schema(description = "授权信息")
     private AuthorizationModelV0 authInfo;
 
+    @Schema(description = "时区", example = "Asia/Shanghai")
+    @ExcelProperty("时区")
+    private String timezone;
+
 }

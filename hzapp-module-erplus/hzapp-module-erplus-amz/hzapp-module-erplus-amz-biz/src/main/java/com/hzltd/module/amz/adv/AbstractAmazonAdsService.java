@@ -1,8 +1,8 @@
 package com.hzltd.module.amz.adv;
 
 import com.hzltd.module.amz.adv.client.client.ApiClient;
+import com.hzltd.module.amz.adv.service.AdsAmazonProfileService;
 import com.hzltd.module.amz.dal.dataobject.AdsAmazonProfileDO;
-import com.hzltd.module.amz.dal.mapper.AdsAmazonProfileMapper;
 import com.hzltd.module.amz.service.AmzAdvLwaService;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
@@ -28,7 +28,7 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
     private SystemAuthService systemAuthService;
 
     @Resource
-    private AdsAmazonProfileMapper amazonProfileMapper;
+    private AdsAmazonProfileService amazonProfileService;
 
     @Resource
     private AdsAccountMapper adsAccountMapper;
@@ -112,7 +112,7 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
             throw new RuntimeException("Authorization not found for shop: " + shopId);
         }
         // 添加profileId
-        AdsAmazonProfileDO profileDO = amazonProfileMapper.selectByShopId(shopId);
+        AdsAmazonProfileDO profileDO = amazonProfileService.getProfileByShopId(shopId);
         if (profileDO == null) {
             throw new RuntimeException("Profile not found for shop: " + shopId);
         }

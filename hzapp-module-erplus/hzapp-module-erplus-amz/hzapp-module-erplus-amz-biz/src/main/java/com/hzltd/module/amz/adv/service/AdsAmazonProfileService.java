@@ -46,5 +46,10 @@ public interface AdsAmazonProfileService {
      */
     List<AbstractAmazonAdsAdapter.AmzProfileVO> fetchProfiles(AdsAccountDO account, AdsAccountCredentialDO credential, AmazonRegionEnum region);
 
-
+    /**
+     * 查询店铺绑定的profile
+     * @param shopId
+     * @return
+     */
+    AdsAmazonProfileDO getProfileByShopId(Long shopId);
 }

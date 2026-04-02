@@ -22,7 +22,7 @@ public interface SystemShopService {
      * @param shopId 跨境平台的shopId
      * @return
      */
-    List<String> getShopRegion(String shopId);
+    List<String> getShopMarketplace(String shopId);
 
 
     ShopModel createOrLoadShop(ShopModel shop);
