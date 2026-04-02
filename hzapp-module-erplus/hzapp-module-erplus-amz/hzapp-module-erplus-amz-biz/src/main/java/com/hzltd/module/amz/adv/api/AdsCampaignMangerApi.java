@@ -67,8 +67,23 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
                 return AdsResponse.success(Collections.emptyList());
             }
 
+            List<String> campaignIds = response.getCampaigns().stream().map(SponsoredProductsCampaign::getCampaignId).toList();
+            AdsRequest<AdsQueryRequest> queryByCampaignIds = new AdsRequest<AdsQueryRequest>().setShopId(request.getShopId())
+                    .setRequest(new AdsQueryRequest().setCampaignIds(campaignIds));
+
+            // 批量获取广告活动的否定关键词和否定定向
+            AdsResponse<Map<String, SponsoredProductsCampaignNegativeKeyword>> nKeywordResponse = this.queryCampaignNegativeKeywords(queryByCampaignIds);
+            Map<String, List<SponsoredProductsCampaignNegativeKeyword>> groupedKeywords = nKeywordResponse.isSuccess() && MapUtils.isNotEmpty(nKeywordResponse.getData())
+                    ? nKeywordResponse.getData().values().stream().collect(Collectors.groupingBy(SponsoredProductsCampaignNegativeKeyword::getCampaignId))
+                    : Collections.emptyMap();
+
+            AdsResponse<Map<String, SponsoredProductsCampaignNegativeTargetingClause>> targetResponse = this.queryCampaignNegativeTargetingClauses(queryByCampaignIds);
+            Map<String, List<SponsoredProductsCampaignNegativeTargetingClause>> groupedTargets = targetResponse.isSuccess() && MapUtils.isNotEmpty(targetResponse.getData())
+                    ? targetResponse.getData().values().stream().collect(Collectors.groupingBy(SponsoredProductsCampaignNegativeTargetingClause::getCampaignId))
+                    : Collections.emptyMap();
+
             List<AdsCampaignModel> campaigns = response.getCampaigns().stream()
-                    .map(c -> this.mapToAdsCampaignResponse(request.getShopId(), c))
+                    .map(c -> this.mapToAdsCampaignResponse(request.getShopId(), c, groupedKeywords.get(c.getCampaignId()), groupedTargets.get(c.getCampaignId())))
                     .collect(Collectors.toList());
 
             return AdsResponse.success(campaigns);
@@ -78,7 +93,9 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
         }
     }
 
-    private AdsCampaignModel mapToAdsCampaignResponse(Long shopId, SponsoredProductsCampaign campaign) {
+    private AdsCampaignModel mapToAdsCampaignResponse(Long shopId, SponsoredProductsCampaign campaign,
+                                                      List<SponsoredProductsCampaignNegativeKeyword> nKeywords,
+                                                      List<SponsoredProductsCampaignNegativeTargetingClause> nTargets) {
         AdsCampaignModel builder = AdsCampaignModel.builder()
                 .externalId(campaign.getCampaignId())
                 .name(campaign.getName())
@@ -122,15 +139,13 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
 
 
         // 否定关键词
-        AdsResponse<Map<String, SponsoredProductsCampaignNegativeKeyword>> nKeywordResponse = this.queryCampaignNegativeKeywords(new AdsRequest<AdsQueryRequest>().setShopId(shopId).setRequest(new AdsQueryRequest().setCampaignIds(List.of(campaign.getCampaignId()))));
-        if (nKeywordResponse.isSuccess() && MapUtils.isNotEmpty(nKeywordResponse.getData())) {
-            builder.addAttribute(NEGATIVE_KEYWORDS, nKeywordResponse.getData());
+        if (CollectionUtils.isNotEmpty(nKeywords)) {
+            builder.addAttribute(NEGATIVE_KEYWORDS, nKeywords);
         }
 
         // 否定定向
-        AdsResponse<Map<String, SponsoredProductsCampaignNegativeTargetingClause>> targetResponse = this.queryCampaignNegativeTargetingClauses(new AdsRequest<AdsQueryRequest>().setShopId(shopId).setRequest(new AdsQueryRequest().setCampaignIds(List.of(campaign.getCampaignId()))));
-        if (targetResponse.isSuccess() && MapUtils.isNotEmpty(targetResponse.getData())) {
-            builder.addAttribute(NEGATIVE_TARGET, targetResponse.getData());
+        if (CollectionUtils.isNotEmpty(nTargets)) {
+            builder.addAttribute(NEGATIVE_TARGET, nTargets);
         }
 
         return builder;

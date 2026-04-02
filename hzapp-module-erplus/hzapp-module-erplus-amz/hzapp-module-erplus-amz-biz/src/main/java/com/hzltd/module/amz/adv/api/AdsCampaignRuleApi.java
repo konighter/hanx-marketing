@@ -202,7 +202,6 @@ public class AdsCampaignRuleApi extends AbstractAmazonAdsService {
         }
     }
 
-
     /**
      * 获取广告活动的SP优化规则 (根据ROAS调整出价等)
      * @param request campaignOptimizationId

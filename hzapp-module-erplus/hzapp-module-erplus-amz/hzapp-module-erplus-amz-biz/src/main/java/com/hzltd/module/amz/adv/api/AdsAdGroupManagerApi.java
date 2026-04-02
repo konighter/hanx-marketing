@@ -37,7 +37,45 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
             }
 
             SponsoredProductsListSponsoredProductsAdGroupsResponseContent response = api.listSponsoredProductsAdGroups(authModel.getAppKey(), authModel.getProfileId(), content);
-            List<AdsAdGroupModel> adsAdGroupRespons = response.getAdGroups().stream().map(adGroup -> this.mapToAdsAdGroupResponse(request.getShopId(), adGroup)).toList();
+            if (response == null || CollectionUtils.isEmpty(response.getAdGroups())) {
+                return AdsResponse.success(Collections.emptyList());
+            }
+
+            List<String> adGroupIds = response.getAdGroups().stream().map(SponsoredProductsAdGroup::getAdGroupId).toList();
+            AdsRequest<AdsQueryRequest> batchRequest = new AdsRequest<AdsQueryRequest>().setShopId(request.getShopId())
+                    .setRequest(new AdsQueryRequest().setAdGroupIds(adGroupIds));
+
+            // 批量获取关键词
+            AdsResponse<List<SponsoredProductsKeyword>> keywordResp = this.queryKeywords(batchRequest);
+            java.util.Map<String, List<SponsoredProductsKeyword>> groupedKeywords = keywordResp.isSuccess() && CollectionUtils.isNotEmpty(keywordResp.getData())
+                    ? keywordResp.getData().stream().collect(Collectors.groupingBy(SponsoredProductsKeyword::getAdGroupId))
+                    : Collections.emptyMap();
+
+            // 批量获取定向
+            AdsResponse<List<SponsoredProductsTargetingClause>> targetResp = this.queryTargetsClauses(batchRequest);
+            java.util.Map<String, List<SponsoredProductsTargetingClause>> groupedTargets = targetResp.isSuccess() && CollectionUtils.isNotEmpty(targetResp.getData())
+                    ? targetResp.getData().stream().collect(Collectors.groupingBy(SponsoredProductsTargetingClause::getAdGroupId))
+                    : Collections.emptyMap();
+
+            // 批量获取否定关键词
+            AdsResponse<List<SponsoredProductsNegativeKeyword>> nKeywordResp = this.queryNegativeKeywords(batchRequest);
+            java.util.Map<String, List<SponsoredProductsNegativeKeyword>> groupedNKeywords = nKeywordResp.isSuccess() && CollectionUtils.isNotEmpty(nKeywordResp.getData())
+                    ? nKeywordResp.getData().stream().collect(Collectors.groupingBy(SponsoredProductsNegativeKeyword::getAdGroupId))
+                    : Collections.emptyMap();
+
+            // 批量获取否定定向
+            AdsResponse<List<SponsoredProductsNegativeTargetingClause>> nTargetResp = this.queryNegativeTargetClauses(batchRequest);
+            java.util.Map<String, List<SponsoredProductsNegativeTargetingClause>> groupedNTargets = nTargetResp.isSuccess() && CollectionUtils.isNotEmpty(nTargetResp.getData())
+                    ? nTargetResp.getData().stream().collect(Collectors.groupingBy(SponsoredProductsNegativeTargetingClause::getAdGroupId))
+                    : Collections.emptyMap();
+
+            List<AdsAdGroupModel> adsAdGroupRespons = response.getAdGroups().stream()
+                    .map(adGroup -> this.mapToAdsAdGroupResponse(request.getShopId(), adGroup,
+                            groupedKeywords.get(adGroup.getAdGroupId()),
+                            groupedTargets.get(adGroup.getAdGroupId()),
+                            groupedNKeywords.get(adGroup.getAdGroupId()),
+                            groupedNTargets.get(adGroup.getAdGroupId())))
+                    .toList();
             return AdsResponse.success(adsAdGroupRespons);
         } catch (ApiException e) {
             log.error("[AmazonAds] queryAdGroup error: {}", e.getResponseBody(), e);
@@ -45,7 +83,11 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
         }
     }
 
-    private AdsAdGroupModel mapToAdsAdGroupResponse(Long shopId, SponsoredProductsAdGroup adGroup) {
+    private AdsAdGroupModel mapToAdsAdGroupResponse(Long shopId, SponsoredProductsAdGroup adGroup,
+                                                   List<SponsoredProductsKeyword> keywords,
+                                                   List<SponsoredProductsTargetingClause> targets,
+                                                   List<SponsoredProductsNegativeKeyword> nKeywords,
+                                                   List<SponsoredProductsNegativeTargetingClause> nTargets) {
         AdsAdGroupModel adGroupResponse = AdsAdGroupModel.builder()
                 .externalId(adGroup.getAdGroupId())
                 .campaignExternalId(adGroup.getCampaignId())
@@ -55,27 +97,21 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
                 .build();
 
         // 广告组定向: 关键词
-        KeywordsApi keywordsApi = new KeywordsApi();
-
-        AdsResponse<List<SponsoredProductsKeyword>> keywordResp = this.queryKeywords(new AdsRequest<AdsQueryRequest>().setShopId(shopId).setRequest(new AdsQueryRequest().setAdGroupIds(List.of(adGroup.getAdGroupId()))));
-        if (keywordResp.isSuccess() && CollectionUtils.isNotEmpty(keywordResp.getData())) {
-            adGroupResponse.addAttribute(KEYWORD, keywordResp.getData());
+        if (CollectionUtils.isNotEmpty(keywords)) {
+            adGroupResponse.addAttribute(KEYWORD, keywords);
         }
 
-        AdsResponse<List<SponsoredProductsTargetingClause>> targetClauseResp = this.queryTargetsClauses(new AdsRequest<AdsQueryRequest>().setShopId(shopId).setRequest(new AdsQueryRequest().setAdGroupIds(List.of(adGroup.getAdGroupId()))));
-        if (targetClauseResp.isSuccess() && CollectionUtils.isNotEmpty(targetClauseResp.getData())) {
-            adGroupResponse.addAttribute(TARGET_CLAUSE, targetClauseResp.getData());
+        if (CollectionUtils.isNotEmpty(targets)) {
+            adGroupResponse.addAttribute(TARGET_CLAUSE, targets);
         }
 
         // 广告组否定定向
-        AdsResponse<List<SponsoredProductsNegativeKeyword>> negativeKeywordResp = this.queryNegativeKeywords(new AdsRequest<AdsQueryRequest>().setShopId(shopId).setRequest(new AdsQueryRequest().setAdGroupIds(List.of(adGroup.getAdGroupId()))));
-        if (negativeKeywordResp.isSuccess() && CollectionUtils.isNotEmpty(negativeKeywordResp.getData())) {
-            adGroupResponse.addAttribute(NEGATIVE_KEYWORD, negativeKeywordResp.getData());
+        if (CollectionUtils.isNotEmpty(nKeywords)) {
+            adGroupResponse.addAttribute(NEGATIVE_KEYWORD, nKeywords);
         }
 
-        AdsResponse<List<SponsoredProductsNegativeTargetingClause>> negativeTargetClauseResp = this.queryNegativeTargetClauses(new AdsRequest<AdsQueryRequest>().setShopId(shopId).setRequest(new AdsQueryRequest().setAdGroupIds(List.of(adGroup.getAdGroupId()))));
-        if (negativeTargetClauseResp.isSuccess() && CollectionUtils.isNotEmpty(negativeTargetClauseResp.getData())) {
-            adGroupResponse.addAttribute(NEGATIVE_TARGET_CLAUSE, negativeTargetClauseResp.getData());
+        if (CollectionUtils.isNotEmpty(nTargets)) {
+            adGroupResponse.addAttribute(NEGATIVE_TARGET_CLAUSE, nTargets);
         }
 
         return adGroupResponse;

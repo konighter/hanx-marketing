@@ -156,8 +156,8 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
                 builder.setHeader("Amazon-Advertising-API-Account-Id", authModel.getAdsAccountId());
             }
 
-            log.debug("[AmazonAds] Request Info -Url:{} Region: {}, profileId: {}, adsAccountId: {}", apiClient.getBaseUri(),
-                    authModel.getRegion(), authModel.getProfileId(), authModel.getAdsAccountId());
+//            log.debug("[AmazonAds] Request Info -Url:{} Region: {}, profileId: {}, adsAccountId: {}", apiClient.getBaseUri(),
+//                    authModel.getRegion(), authModel.getProfileId(), authModel.getAdsAccountId());
         });
 
         return apiClient;
