@@ -240,6 +240,11 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
             }
         }
 
+        if ("STOPPED".equalsIgnoreCase(status)) {
+            updateCampaignStatusLocal(id, status);
+            return;
+        }
+
         // 请求平台接口
         AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(AdsPlatformEnum.of(campaign.getPlatform()));
         AdsResponse<Boolean> updateResp = adsManagerApi.updateStatus(new AdsRequest<AdsStatusUpdateRequest>()
@@ -247,7 +252,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
                 .setRequest(new AdsStatusUpdateRequest()
                         .setEntityType(AdsEntityTypeEnum.CAMPAIGN)
                         .setEntityId(campaign.getExternalId()).setLocalId(id)
-                        .setStatus(status)));
+                        .setStatus(STOPPED.getCode().equalsIgnoreCase(status) ? PAUSED.getCode() : status)));
 
         if (updateResp.isSuccess()) {
             updateCampaignStatusLocal(id, status);
