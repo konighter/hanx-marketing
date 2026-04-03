@@ -28,6 +28,7 @@ import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -57,6 +58,7 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
     @Resource
     private ShopMapper shopMapper;
 
+    @Lazy
     @Resource
     private SellPlatformService sellPlatformService;
 
@@ -326,6 +328,7 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
         SellPlatformDO platformDO = sellPlatformService.getSellPlatform(shopDO.getPlatform());
         ShopModel shopModel = BeanUtils.toBean(shopDO, ShopModel.class);
         shopModel.setPlatformCode(platformDO.getCode());
+        shopModel.setMarketplace(shopDO.getMarketplaceId());
         return shopModel;
     }
 

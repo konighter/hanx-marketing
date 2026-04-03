@@ -15,8 +15,9 @@ import topLevelAwait from 'vite-plugin-top-level-await'
 import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons-ng'
 import UnoCSS from 'unocss/vite'
+import { viteMockServe } from 'vite-plugin-mock'
 
-export function createVitePlugins() {
+export function createVitePlugins(isMock = false) {
   const root = process.cwd()
 
   // 路径查找
@@ -25,6 +26,12 @@ export function createVitePlugins() {
   }
 
   return [
+    viteMockServe({
+      ignore: /^\_/,
+      mockPath: resolve(root, 'mock'),
+      enable: isMock,
+      logger: true,
+    }),
     Vue(),
     VueJsx(),
     UnoCSS(),
@@ -94,6 +101,6 @@ export function createVitePlugins() {
       promiseExportName: '__tla',
       // The function to generate import names of top-level await promise in each chunk module
       promiseImportName: (i) => `__tla_${i}`
-    })
+    }),
   ]
 }

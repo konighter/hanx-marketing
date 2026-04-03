@@ -2,7 +2,9 @@ package com.hzltd.module.amz.spapi.api;
 
 import com.amazon.SellingPartnerAPIAA.LWAException;
 import com.hzltd.framework.common.pojo.PageParam;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.amz.spapi.AbsAmzPlatformApiService;
+import com.hzltd.module.amz.spapi.utils.AmazonListingParserUtils;
 import com.hzltd.module.erplus.spapi.api.ServiceRegister;
 import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.erplus.spapi.model.ApiRequest;
@@ -55,13 +57,15 @@ public class AmazonProductService extends AbsAmzPlatformApiService implements Pr
 
     @Override
     public ApiResponse<CreateProductResponse> createProduct(ApiRequest<CreateProductRequest> request) {
+        ListingsApi listingsApi = getListingsApi(request);
+
         return null;
     }
 
     @Override
     public ApiResponse<List<MultiMarketProductModel>> searchProduct(ApiRequest<SearchProductRequest> apiRequest) {
         ListingsApi listingsApi = getListingsApi(apiRequest);
-        List<String> marketPlaceIds = List.of(apiRequest.getMarketId());
+        List<String> marketPlaceIds = CollectionUtils.isNotEmpty(apiRequest.getRequest().getMarketplaceIds()) ? apiRequest.getRequest().getMarketplaceIds() : List.of(apiRequest.getMarketId());
         String sellerId = this.getAuthorizationModel(apiRequest).getSellerId();
         SearchProductRequest query = apiRequest.getRequest();
         try {
@@ -140,5 +144,16 @@ public class AmazonProductService extends AbsAmzPlatformApiService implements Pr
 
 
         return ProductApi.super.getProductFee(request);
+    }
+
+    @Override
+    public MultiMarketProductModel convertProduct(Item item) {
+        try {
+            return AmazonListingParserUtils.parse(JsonUtils.parseTree(JsonUtils.toJsonString(item)));
+        } catch (Exception e) {
+            log.error("Failed to parse Amazon Listing Item: sku={}", item.getSku(), e);
+            // Fallback to parent implementation if parsing fails
+            return super.convertProduct(item);
+        }
     }
 }

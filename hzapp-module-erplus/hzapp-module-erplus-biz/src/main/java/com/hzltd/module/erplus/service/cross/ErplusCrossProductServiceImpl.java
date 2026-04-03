@@ -240,22 +240,15 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
     @Async
     @Override
     public void syncProductListing(CrossProductSyncRequest request) {
-        SellPlatformDO sellPlatform = sellPlatformService.getSellPlatform(request.getPlatformId());
+        SellPlatformDO sellPlatform = sellPlatformService.getSellPlatformByShopId(request.getShopId());
         if (sellPlatform == null) {
             return;
         }
 
         List<MultiMarketProductModel> multiMarketProducts = Lists.newArrayList();
         boolean hasNext = false;
-        SearchProductRequest searchProductRequest = new SearchProductRequest().setIfAllContent(true);
-        if (StringUtils.isNotEmpty(request.getSellerSkuCode())) {
-            searchProductRequest.setSellerSkus(Collections.singletonList(request.getSellerSkuCode()));
-        }
-        if (StringUtils.isNotEmpty(request.getPlatformProductCode())) {
-            searchProductRequest.setProductCodes(Collections.singletonList(request.getPlatformProductCode()));
-        }
-        // todo-- 处理时间
 
+        SearchProductRequest searchProductRequest = convertCrossProductSyncRequest(request);
         searchProductRequest.setPageNo(request.getPageNo());
         do {
             ApiResponse<List<MultiMarketProductModel>> productApiResponse = productApiFactory.getCrossApiService(CrossPlatformEnum.of(sellPlatform.getCode()))
@@ -264,7 +257,6 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
                             .setShopId(request.getShopId().toString())
                             .setLocale(Locale.SIMPLIFIED_CHINESE)
                             .setLanguage(LanguageEnum.ZH_CN)
-                            .setMarketId(request.getMarketId())
                             .setTimestamp(System.currentTimeMillis())
                             .setRequest(searchProductRequest));
             if (CollectionUtils.isNotEmpty(productApiResponse.getData())) {
@@ -298,6 +290,30 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
 
         log.info("syncProductListing success, platformId: {}, shopId: {}, total: {}", request.getPlatformId(), request.getShopId(), multiMarketProducts.size());
     }
+
+
+    private SearchProductRequest convertCrossProductSyncRequest(CrossProductSyncRequest request) {
+        SearchProductRequest searchProductRequest = new SearchProductRequest().setIfAllContent(true);
+        if (StringUtils.isNotEmpty(request.getSellerSkuCode())) {
+            searchProductRequest.setSellerSkus(Collections.singletonList(request.getSellerSkuCode()));
+        }
+        if (CollectionUtils.isNotEmpty(request.getProductIds())) {
+            searchProductRequest.setProductCodes(request.getProductIds());
+        } else if (StringUtils.isNotEmpty(request.getPlatformProductCode())) {
+            searchProductRequest.setProductCodes(Collections.singletonList(request.getPlatformProductCode()));
+        }
+        // 处理时间
+        if ("incremental".equals(request.getSyncType())) {
+            if (StringUtils.isNotEmpty(request.getCreateTimeStart())) {
+                searchProductRequest.setCreateTimeStart(DateUtil.parse(request.getCreateTimeStart()));
+            }
+            if (StringUtils.isNotEmpty(request.getCreateTimeEnd())) {
+                searchProductRequest.setCreateTimeEnd(DateUtil.parse(request.getCreateTimeEnd()));
+            }
+        }
+        return searchProductRequest;
+    }
+
 
     private void saveOrUpdateCrossPlatformProduct(Integer platformId, Integer shopId, ProductModel productModel) {
 

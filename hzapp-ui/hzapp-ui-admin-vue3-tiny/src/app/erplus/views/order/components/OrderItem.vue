@@ -46,7 +46,7 @@
             />
           </template>
           <div v-if="order.orderItemList?.length > 3" class="more-count w-48px h-48px rounded bg-gray-100 flex items-center justify-center text-xs text-gray-500 border-2 border-white shadow-sm">
-            +{{ order.orderItemList.length - 3 }}
+            +{{ order.orderItemList?.length - 3 }}
           </div>
         </div>
         <div class="sku-info flex-1 flex flex-col justify-center min-w-0">
@@ -54,7 +54,7 @@
             {{ skuSummary }}
           </div>
           <div class="item-count text-11px text-gray-400 mt-2px">
-            共 {{ order.orderItemList.length }} 件商品
+            共 {{ order.orderItemList?.length }} 件商品
           </div>
         </div>
       </div>
@@ -287,7 +287,7 @@ const toggleExpand = () => {
 }
 
 const onSelectionChange = (val: boolean) => {
-  emit('selection-change', val, props.order.id)
+  emit('selection-change', val, props.order)
 }
 
 const onSync = () => {

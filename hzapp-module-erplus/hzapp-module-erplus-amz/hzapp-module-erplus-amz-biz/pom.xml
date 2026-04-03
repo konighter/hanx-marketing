@@ -64,6 +64,12 @@
 
 
         <dependency>
+            <groupId>com.networknt</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>1.0.87</version>
+        </dependency>
+
+        <dependency>
             <groupId>com.hzltd</groupId>
             <artifactId>hzapp-spring-boot-starter-test</artifactId>
         </dependency>

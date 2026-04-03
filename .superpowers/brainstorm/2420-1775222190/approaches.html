@@ -1,0 +1,77 @@
+<h2>Three Approaches for Unified Implementation</h2>
+<p class="subtitle">Comparing complexity vs flexibility</p>
+
+<div class="cards">
+  <!-- Option A: Schema-Direct (Lightweight) -->
+  <div class="card" data-choice="lightweight" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <div class="label" style="color:#10b981">Low Complexity</div>
+      <h3>Schema-Direct (Relay)</h3>
+      <p>Frontend renders forms directly from Amazon's JSON Schema. Backend acts as a pass-through with validation.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <ul>
+            <li>Zero maintenance for new product types</li>
+            <li>Fastest to implement</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <ul>
+            <li>Hard to customize UI for better UX</li>
+            <li>Querying across types is limited</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option B: Metadata-Driven (Recommended) -->
+  <div class="card" data-choice="metadata" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <div class="label" style="color:#3b82f6">Balanced</div>
+      <h3>Metadata-Driven Service</h3>
+      <p>Store schemas locally. Use a "Schema Service" to provide UI hints (which fields are Title/Price) while keeping the rest dynamic.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <ul>
+            <li>Consistent UX across all types</li>
+            <li>Powerful searching (hybrid SQL+JSON)</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <ul>
+            <li>Requires schema caching/sync logic</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option C: Domain-Mapped (Heavy) -->
+  <div class="card" data-choice="mapped" onclick="toggleSelect(this)">
+    <div class="card-body">
+      <div class="label" style="color:#f59e0b">High Complexity</div>
+      <h3>Domain-Mapped (Canonical)</h3>
+      <p>Map Amazon attributes to an internal "Master Product Model". Complex transformation logic for each type.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <ul>
+            <li>Best for Multi-platform sync</li>
+            <li>Perfect control over UI/UX</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <ul>
+            <li>Huge maintenance overhead</li>
+            <li>Hard to keep up with Amazon updates</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Question: How important is Multi-Platform sync?</h3>
+  <p>If you plan to sync the same product data across Amazon, Shopee, and TikTok, Approach C is better. If you are focused primarily on Amazon-specific management, Approach B is more efficient.</p>
+</div>

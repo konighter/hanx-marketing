@@ -1,0 +1,70 @@
+<h2>Common Core + Platform Private Architecture</h2>
+<p class="subtitle">Separating cross-platform logic from platform-specific extensions</p>
+
+<div class="mockup">
+  <div class="mockup-header">Data Flow: Amazon Listing Lifecycle</div>
+  <div class="mockup-body">
+    <div style="display:flex; justify-content:space-between; padding:20px; gap:20px;">
+      
+      <!-- Unified Core -->
+      <div style="flex:1; padding:15px; border:2px dashed #6b7280; border-radius:8px; background:rgba(107, 114, 128, 0.05);">
+        <div class="label" style="text-align:center;">Unified Core (Standard)</div>
+        <div style="background:#fff; border:1px solid #e5e7eb; padding:10px; margin-top:10px; border-radius:4px; font-size:13px;">
+          <strong>ProductModel</strong><br>
+          • SKU / ASIN / MarketID<br>
+          • Status / Category<br>
+          • Title / Main Image<br>
+          • Price / Inventory
+        </div>
+        <div style="margin-top:15px; font-size:12px; color:#4b5563; text-align:center;">
+          Used for: <strong>Copy, Link, Mapping</strong>
+        </div>
+      </div>
+
+      <div style="display:flex; align-items:center; font-size:24px;">↔</div>
+
+      <!-- Platform Private -->
+      <div style="flex:1; padding:15px; border:2px solid #3b82f6; border-radius:8px; background:rgba(59, 130, 246, 0.05);">
+        <div class="label" style="text-align:center; color:#3b82f6;">Platform Private (Amazon)</div>
+        <div style="background:#fff; border:1px solid #3b82f6; padding:10px; margin-top:10px; border-radius:4px; font-size:13px;">
+          <strong>Dynamic Attributes JSON</strong><br>
+          • heel_height<br>
+          • fabric_type<br>
+          • battery_info<br>
+          • (Validates via Amazon Schema)
+        </div>
+        <div style="margin-top:15px; font-size:12px; color:#4b5563; text-align:center;">
+          Used for: <strong>Custom UI, API Calls</strong>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>Operational Strategy</h3>
+  <div class="options" data-multiselect>
+    <div class="option" data-choice="parser-extraction" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <strong>Parser Extraction</strong>
+        <p>Extract "Common Core" fields from the Amazon JSON blob into structured columns for global searching/linking.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="json-storage" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <strong>Raw Attribute Storage</strong>
+        <p>Store the full Amazon <code>attributes</code> JSON in a dedicated "Attribute Table" for type-specific CRUD logic.</p>
+      </div>
+    </div>
+    <div class="option" data-choice="schema-lifecycle" onclick="toggleSelect(this)">
+      <div class="letter">C</div>
+      <div class="content">
+        <strong>Schema-Driven Lifecycle</strong>
+        <p>A "Schema Service" ensures the Private JSON is always valid against the Amazon-provided JSON Schema.</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,14 +4,12 @@
       <!-- 1. 精简搜索工作栏 -->
       <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="80px" :rules="rules">
         <el-form-item label="店铺" prop="shopId">
-          <el-cascader
+          <ShopCascaderSelect
             v-model="selectedShopPath"
-            :options="shopCascaderList"
-            :props="{ label: 'name', value: 'id', children: 'children' }"
+            :emit-path="true"
             placeholder="请选择平台/店铺"
-            clearable
-            class="!w-200px"
             @change="handleShopChange"
+            class="!w-200px"
           />
         </el-form-item>
         <el-form-item label="配送" prop="fulfillType">
@@ -41,13 +39,13 @@
         </el-form-item>
         
         <el-form-item>
-          <el-button @click="handleQuery" type="primary">
+          <el-button @click="handleQuery" type="primary" size="small">
             <Icon icon="ep:search" class="mr-5px" /> 搜索
           </el-button>
-          <el-button @click="resetQuery">
+          <el-button @click="resetQuery" size="small">
             <Icon icon="ep:refresh" class="mr-5px" /> 重置
           </el-button>
-          <el-button @click="handSync" type="success" plain>
+          <el-button @click="handSync" type="success" plain size="small">
             <Icon icon="ep:refresh" class="mr-5px" /> 同步订单
           </el-button>
         </el-form-item>
@@ -133,8 +131,8 @@
             :disabled-date="(date: Date) => date.getTime() > Date.now()"
           />
         </el-form-item>
-        <el-form-item v-if="syncForm.syncType === 'order'" label="订单ID">
-          <el-input v-model="syncForm.orderIds" type="textarea" placeholder="多个单号换行分割" />
+        <el-form-item v-if="syncForm.syncType === 'order'" label="平台订单号">
+          <el-input v-model="syncForm.platformOrderIds" type="textarea" placeholder="多个单号换行分割" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -151,6 +149,7 @@ import dayjs from 'dayjs'
 import { ShopApi } from '@/app/erplus/api/system/shop'
 import * as OrderApi from '@/app/erplus/api/order/order'
 import OrderItem from './components/OrderItem.vue'
+import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
 
 defineOptions({ name: 'CrossOrderListV2' })
 
@@ -172,8 +171,8 @@ const queryParams = reactive({
   status: undefined
 })
 
-const selectedIds = ref<number[]>([])
-const shopCascaderList = ref<any[]>([])
+const selectedOrders = ref<any[]>([])
+const selectedIds = computed(() => selectedOrders.value.map((o) => o.id))
 const selectedShopPath = ref<any[]>([])
 
 const queryFormRef = ref()
@@ -187,12 +186,11 @@ const syncLoading = ref(false)
 const syncForm = reactive({
   syncType: 'time',
   timeRange: [] as string[],
-  orderIds: ''
+  platformOrderIds: ''
 })
 
 /** 初始化 */
 onMounted(async () => {
-  shopCascaderList.value = await ShopApi.getCascaderShopList()
 })
 
 /** 获取列表 */
@@ -231,34 +229,42 @@ const isIndeterminate = computed(() => {
   return selectedIds.value.length > 0 && !isAllSelected.value
 })
 
-const handleItemSelection = (selected: boolean, id: number) => {
+const handleItemSelection = (selected: boolean, order: any) => {
   if (selected) {
-    if (!selectedIds.value.includes(id)) selectedIds.value.push(id)
+    if (!selectedIds.value.includes(order.id)) {
+      selectedOrders.value.push(order)
+    }
   } else {
-    selectedIds.value = selectedIds.value.filter(itemId => itemId !== id)
+    selectedOrders.value = selectedOrders.value.filter((o) => o.id !== order.id)
   }
 }
 
 const handleSelectAll = (val: boolean) => {
   if (val) {
-    const currentIds = list.value.map(item => item.id)
-    selectedIds.value = [...new Set([...selectedIds.value, ...currentIds])]
+    list.value.forEach((order) => {
+      if (!selectedIds.value.includes(order.id)) {
+        selectedOrders.value.push(order)
+      }
+    })
   } else {
-    const currentIds = list.value.map(item => item.id)
-    selectedIds.value = selectedIds.value.filter(id => !currentIds.includes(id))
+    const currentIds = list.value.map((item) => item.id)
+    selectedOrders.value = selectedOrders.value.filter((o) => !currentIds.includes(o.id))
   }
 }
 
 const clearSelection = () => {
-  selectedIds.value = []
+  selectedOrders.value = []
 }
 
 /** 店铺与 Tab 切换 */
-const handleShopChange = (path: any[]) => {
-  if (path && path.length === 2) {
-    queryParams.platformId = path[0]
-    queryParams.shopId = path[1]
+const handleShopChange = (node: any) => {
+  if (selectedShopPath.value && selectedShopPath.value.length === 2) {
+    queryParams.platformId = selectedShopPath.value[0]
+    queryParams.shopId = selectedShopPath.value[1]
     handleQuery()
+  } else {
+    queryParams.platformId = undefined
+    queryParams.shopId = undefined
   }
 }
 
@@ -281,8 +287,26 @@ const handleSingleSync = () => {
   handSync()
 }
 
-const handleBatchSync = () => {
-  message.info(`批量同步 ${selectedIds.value.length} 个订单...`)
+const handleBatchSync = async () => {
+  if (selectedOrders.value.length === 0) return
+  try {
+    await message.confirm(`确定要同步选中的 ${selectedOrders.value.length} 个订单吗？`)
+    loading.value = true
+    const platformOrderIds = selectedOrders.value.map((o) => o.platformOrderId)
+    await OrderApi.syncCrossOrders({
+       platformId: queryParams.platformId,
+       shopId: queryParams.shopId,
+       syncType: 'order',
+       platformOrderIds: platformOrderIds
+    })
+    message.success('批量同步提交成功')
+    clearSelection()
+    await getList()
+  } catch {
+    // catch cancel
+  } finally {
+    loading.value = false
+  }
 }
 
 // 同步逻辑 (复用)
@@ -308,7 +332,7 @@ const handleDoSync = async () => {
        syncType: syncForm.syncType,
        createTimeStart: syncForm.syncType === 'time' ? syncForm.timeRange[0] : undefined,
        createTimeEnd: syncForm.syncType === 'time' ? syncForm.timeRange[1] : undefined,
-       orderIds: syncForm.syncType === 'order' ? syncForm.orderIds.split('\n').filter(i => i.trim()) : undefined
+       platformOrderIds: syncForm.syncType === 'order' ? syncForm.platformOrderIds.split('\n').filter(i => i.trim()) : undefined
     })
     message.success('同步提交成功')
     syncDialogVisible.value = false

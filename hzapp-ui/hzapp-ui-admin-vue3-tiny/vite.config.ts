@@ -28,18 +28,18 @@ export default ({command, mode}: ConfigEnv): UserConfig => {
             port: env.VITE_PORT, // 端口号
             host: "0.0.0.0",
             open: env.VITE_OPEN === 'true',
-            // 本地跨域代理. 目前注释的原因：暂时没有用途，server 端已经支持跨域
-            // proxy: {
-            //   ['/admin-api']: {
-            //     target: env.VITE_BASE_URL,
-            //     ws: false,
-            //     changeOrigin: true,
-            //     rewrite: (path) => path.replace(new RegExp(`^/admin-api`), ''),
-            //   },
-            // },
+            // 本地跨域代理：config.js 中 VITE_BASE_URL 为空时，请求为相对路径，需要 proxy 转发
+            proxy: {
+              ['/admin-api']: {
+                target: env.VITE_API_BASEPATH || 'http://localhost:48080',
+                ws: false,
+                changeOrigin: true,
+                // 注意：后端接收的路径保留 /admin-api 前缀，不做 rewrite
+              },
+            },
         },
         // 项目使用的vite插件。 单独提取到build/vite/plugin中管理
-        plugins: createVitePlugins(),
+        plugins: createVitePlugins(env.VITE_MOCK === 'true'),
         css: {
             preprocessorOptions: {
                 scss: {

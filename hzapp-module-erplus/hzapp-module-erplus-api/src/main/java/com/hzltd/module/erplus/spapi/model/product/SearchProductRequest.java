@@ -25,5 +25,7 @@ public class SearchProductRequest extends PageParam {
 
     private List<String> productCodes;
 
+    private List<String> marketplaceIds;
+
 
 }
