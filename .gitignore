@@ -49,6 +49,12 @@ nbdist/
 ### JRebel ###
 rebel.xml
 
+######################################################################
+# Worktrees
+######################################################################
+.worktrees/
+worktrees/
+
 application-my.yaml
 
 /hzapp-ui-app/unpackage/
