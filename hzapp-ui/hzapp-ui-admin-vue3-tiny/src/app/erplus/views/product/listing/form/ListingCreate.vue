@@ -35,7 +35,7 @@
           <el-button link @click="handleBack"><Icon icon="ep:back" /> 返回</el-button>
         </div>
 
-        <el-form ref="formRef" :model="formData" :rules="rules" label-width="120px" label-position="left">
+        <el-form ref="formRef" :model="formData" :rules="rules" label-width="120px" label-position="top">
           
           <div id="section-base" class="mb-6 p-6 bg-white rounded shadow-sm border border-gray-100">
             <h3 class="text-base font-bold mb-6 pb-2 border-b text-gray-800">店铺</h3>
@@ -161,7 +161,7 @@ import { useRouter } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
 import SpuTableSelect from '@/app/erplus/views/product/spu/components/SpuTableSelect.vue'
-import AmazonListingDynamicForm from '../components/AmazonListingDynamicForm.vue'
+import AmazonListingDynamicFormV2 from '../components/AmazonListingDynamicFormV2.vue'
 import * as CategoryApi from '@/app/erplus/api/product/category'
 import * as SpuApi from '@/app/erplus/api/product/spu'
 import { handleTree } from '@/utils/tree'
@@ -209,7 +209,7 @@ const dynamicFormComponent = computed(() => {
   if (!selectedShop.value || !shopCascaderValue.value) return null
   const platformId = shopCascaderValue.value[0]
   const platform = getPlatformCode(platformId)
-  if (platform === 'AMAZON') return AmazonListingDynamicForm
+  if (platform === 'AMAZON') return AmazonListingDynamicFormV2
   // Add other platforms here
   return null
 })

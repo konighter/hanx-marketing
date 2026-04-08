@@ -92,6 +92,7 @@
         :type="field.extra?.multiline ? 'textarea' : 'text'"
         :placeholder="field.title"
         clearable
+        style="width: 100%"
         @change="emitChange"
       />
     </template>

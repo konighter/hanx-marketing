@@ -13,139 +13,97 @@ export interface AmazonUiFieldConfig {
   tooltip?: string;
 }
 
-export interface AmazonGroupConfig {
-  /** 分组展示名称 */
-  name: string;
-  /** 用于匹配字段 ID 的关键字列表（不区分大小写） */
-  match: string[];
-}
-
-/**
- * 亚马逊属性分组配置
- * 按照定义的顺序进行匹配，匹配到第一个即停止
- */
-export const AmazonGroups: AmazonGroupConfig[] = [
-  { name: '基本信息', match: ['item_name', 'brand', 'manufacturer', 'part_number', 'model_', 'country_of_origin', 'subject_code', 'color', 'material', 'item_shape', 'style', 'metal_type', 'handmade_classification'] },
-  { name: '产品标识', match: ['externally_assigned_product_identifier', 'supplier_declared_has_product_identifier_exemption', 'merchant_suggested_asin'] },
-  { name: '描述与关键字', match: ['description', 'bullet_point', 'generic_keyword', 'search_term', 'feature', 'intended_use', 'target_audience', 'flavor', 'pattern', 'orientation', 'special_feature'] },
-  { name: '图片资料', match: ['image', 'product_image'] },
-  { name: '报价与销售', match: ['price', 'offer', 'purchasable', 'condition', 'fulfillment', 'lead_time', 'inventory_available', 'shipping_group', 'max_order_quantity', 'gift_options', 'list_price', 'product_tax_code', 'skip_offer', 'map_policy', 'street_date', 'merchant_release_date', 'product_site_launch_date'] },
-  { name: '尺寸与重量', match: ['dimension', 'weight', 'size', 'volume', 'capacity', 'item_length_width_height'] },
-  { name: '变体属性', match: ['variation', 'parentage'] },
-  { name: '合规与电池', match: ['battery', 'batteries', 'cell', 'compliance', 'regulation', 'warning', 'certification', 'supplier_declared_dg_hz_regulation', 'safety', 'hazmat', 'gpsr', 'dsa', 'responsible_party', 'attestation', 'is_this_product_subject_to_buyer_age_restrictions'] },
-  { name: '其他常规属性', match: [] } // 默认兜底分组
-];
-
-/**
- * 报价与销售模块的白名单字段
- * 这些字段即使不是必填，也会在第一列次优先显示，不被标记为 optional
- */
-export const AmazonPriceWhitelist = [
-  'purchasable_offer', 'condition_type', 'fulfillment_channel_code', 
-  'merchant_shipping_group', 'fulfillment_availability', 'quantity', 'price'
-];
-
-/** 产品标识模块核心显示字段 (即使不是必填也显示) */
-export const AmazonIdentifierWhitelist = [
-  'supplier_declared_has_product_identifier_exemption',
-  'externally_assigned_product_identifier'
-];
-
-/**
- * 报价与销售模块的黑名单
- * 这些子字段通常在特定场景下才需要且会导致视觉干扰，默认标记为 optional
- */
-export const AmazonPriceBlacklist = [
-  'discounted_price', 'minimum_advertised_price', 'sale_price', 'offer_end', 
-  'offer_start', 'stops_selling', 'pricing_action', 'national_price', 'business_price'
-];
-
-/** 识别报价与销售模块的关键词 */
-export const AmazonPriceOfferKeywords = ['price', 'offer', 'purchasable', 'condition', 'fulfillment'];
-
-/** purchasable_offer 子字段前缀 — 这些字段由 AmazonPurchasableOffer 组件单独管理 */
-export const PURCHASABLE_OFFER_PREFIX = 'purchasable_offer.';
-
-/** purchasable_offer 中在创建时不显示的字段 (由日期联动自动设值或后续功能管理) */
-export const PURCHASABLE_OFFER_HIDDEN_FIELDS = [
-  'start_at',   // 报价生效日期 → 自动同步 merchant_release_date
-  'end_at',     // 报价停售日期 → 创建时不设置
-  'audience',   // 受众 → 隐藏字段，默认 ALL
-  'automated_pricing_merchandising_rule_plan', // 自动定价规则
-];
-
 /**
  * 亚马逊前端展示专用 Schema 映射配置层
  * 主要是针对核心字段（标题、SKU、价格相关）做精细化排版与体验调优
  * 支持基于前缀的匹配，比如 purchasable_offer.our_price
  */
 export const AmazonUiSchema: Record<string, AmazonUiFieldConfig> = {
-  // --- 基本信息模块 ---
+  // === 描述与关键字模块 (排在第一组) ===
+  'product_description': { order: 1, span: 24, uiWidget: 'textarea', label: '产品描述', placeholder: '详细描述产品的功能、材质、尺寸等信息' },
+  'description': { order: 2, span: 24, uiWidget: 'textarea', label: '产品描述' },
+  'bullet_point': { order: 3, span: 24, label: '五点描述 (Bullet Points)' },
+  'generic_keyword': { order: 4, span: 24, label: '搜索关键词', placeholder: '用空格分隔多个关键词，不要重复商品标题中的词' },
+  'special_feature': { label: '特殊功能', span: 24 },
+  'target_audience_keyword': { label: '目标受众', span: 12 },
+  'subject_keyword': { label: '主题关键词', span: 12 },
+  'platinum_keyword': { label: '白金关键词', span: 12 },
+
+  // === 基本信息模块 ===
   'item_name': { 
     order: 1, 
     span: 24, 
     uiWidget: 'textarea', 
-    placeholder: '推荐首字母大写，包含关键特征，由于平台限制，建议控制在200字符内' 
+    label: '商品标题',
+    placeholder: '推荐首字母大写，包含关键特征，建议控制在200字符内' 
   },
-  'brand': { order: 2, span: 12, label: '品牌名称' },
+  'brand': { order: 2, span: 12, label: '品牌' },
   'manufacturer': { order: 3, span: 12, label: '制造商' },
-  'part_number': { order: 4, span: 12, label: '制造商零件编号' },
+  'part_number': { order: 4, span: 12, label: '零件编号' },
   'model_': { order: 5, span: 12, label: '型号' },
   'model_number': { order: 6, span: 12, label: '型号' },
   'model_name': { order: 7, span: 12, label: '型号名称' },
-  'item_shape': { label: '形状' },
-  'style': { label: '风格' },
-  'material': { label: '材质' },
-  'color': { label: '颜色' },
-  'size': { label: '尺寸' },
-  'metal_type': { label: '金属种类' },
+  'main_product_image_locator': { label: '主图链接', span: 24 },
+  'swatch_product_image_locator': { label: '样本图链接', span: 12 },
+  'other_product_image_locator': { label: '其他图片链接', span: 12 },
 
-  // --- 描述与关键字模块 ---
-  'description': { order: 1, span: 24, uiWidget: 'textarea', label: '产品描述' },
-  'product_description': { order: 1, span: 24, uiWidget: 'textarea', label: '产品描述' },
-  'bullet_point': { order: 2, span: 24, label: '五点描述' },
-  'generic_keyword': { order: 3, span: 24, label: '搜索关键词' },
-  'special_feature': { label: '特殊功能' },
+  // === 常用属性简称 ===
+  'country_of_origin': { label: '原产国', span: 12 },
+  'item_shape': { label: '形状', span: 12 },
+  'style': { label: '风格', span: 12 },
+  'material': { label: '材质', span: 12 },
+  'color': { label: '颜色', span: 12 },
+  'size': { label: '尺寸', span: 12 },
+  'pattern': { label: '图案', span: 12 },
+  'theme': { label: '主题', span: 12 },
+  'finish_type': { label: '表面处理', span: 12 },
+  'item_weight': { label: '商品重量', span: 12 },
+  'item_package_weight': { label: '包装重量', span: 12 },
+  'item_length_width_height': { label: '商品尺寸', span: 12 },
+  'item_package_dimensions': { label: '包装尺寸', span: 12 },
+  'number_of_items': { label: '件数', span: 12 },
+  'number_of_pieces': { label: '组件数', span: 12 },
+  'item_form': { label: '产品形态', span: 12 },
+  'item_type_keyword': { label: '商品类型', span: 12 },
+  'metal_type': { label: '金属种类', span: 12 },
+  'recommended_browse_nodes': { label: '分类节点', span: 12 },
+  'variation_theme': { label: '变体主题', span: 12 },
 
-  // --- 报价与销售模块 ---
+  // === 产品标识 ===
+  'supplier_declared_has_product_identifier_exemption': { order: 1, span: 24, label: '免除产品ID' },
+  'externally_assigned_product_identifier': { order: 2, label: '产品 ID (UPC/EAN)' },
+  'merchant_suggested_asin': { order: 3, span: 12, label: '建议 ASIN' },
+
+  // === 报价与销售 ===
   'condition_type': { order: 10, span: 12, label: '物品状况' },
   'fulfillment_channel_code': { order: 11, span: 12, label: '发货渠道' },
   'merchant_shipping_group': { order: 12, span: 12, label: '运费模板' },
   'is_inventory_available': { order: 13, span: 12, label: '始终有货' },
   'quantity': { order: 14, span: 12, label: '库存数量' },
   'lead_time_to_ship_max_days': { order: 15, span: 12, label: '处理时间' },
-  // 日期字段 — 归入报价与销售组
   'product_site_launch_date': { order: 20, span: 12, uiWidget: 'date-picker', label: '上架日期', tooltip: '商品在亚马逊上可见可搜索的日期' },
-  'merchant_release_date': { order: 21, span: 12, uiWidget: 'date-picker', label: '发售日期', tooltip: '卖家设定的可出售日期，之前可见但无法购买' },
-  'street_date': { order: 22, span: 12, uiWidget: 'date-picker', label: '首次可发货日期' },
-  
-  // --- 产品标识 ---
-  'supplier_declared_has_product_identifier_exemption': { order: 1, span: 24, label: '是否免除外部产品ID' },
-  'externally_assigned_product_identifier': { order: 2, label: '产品 ID (UPC/EAN)' },
-  'merchant_suggested_asin': { order: 3, span: 12, label: '建议 ASIN' },
+  'merchant_release_date': { order: 21, span: 12, uiWidget: 'date-picker', label: '发售日期', tooltip: '卖家设定的可出售日期' },
+  'street_date': { order: 22, span: 12, uiWidget: 'date-picker', label: '首次发货日' },
 
-  // --- 合规与电池 ---
-  'batteries_required': { label: '需要电池', order: 1 },
-  'batteries_included': { label: '附带电池', order: 2 },
-  'supplier_declared_dg_hz_regulation': { label: '危险品法规', order: 3 },
-  'hazmat': { label: '危险品合规' },
-  'gpsr_safety_attestation': { label: 'GPSR 安全认证' },
-  'gpsr_manufacturer_reference': { label: 'GPSR 制造商参考' },
-  'dsa_responsible_party_address': { label: '负责人电子地址(GPSR)' },
-  'compliance_media': { label: '合规资料/文档' },
+  // === 合规与电池 ===
+  'batteries_required': { label: '需要电池', span: 12, order: 1 },
+  'batteries_included': { label: '附带电池', span: 12, order: 2 },
+  'supplier_declared_dg_hz_regulation': { label: '危险品法规', span: 12, order: 3 },
+  'hazmat': { label: '危险品合规', span: 12 },
+  'gpsr_safety_attestation': { label: 'GPSR安全认证', span: 12 },
+  'gpsr_manufacturer_reference': { label: 'GPSR制造商', span: 12 },
+  'dsa_responsible_party_address': { label: '负责人地址(GPSR)', span: 12 },
+  'compliance_media': { label: '合规文档', span: 12 },
+  'country_of_origin_product_level': { label: '产品级原产国', span: 12 },
+  'cpsia_cautionary_statement': { label: 'CPSIA警示', span: 12 },
+  'california_proposition_65': { label: 'CA Prop 65', span: 12 },
 
-  // --- 其他核心属性 ---
-  'item_length_width_height': { label: '商品尺寸 (长x宽x高)', order: 1 },
-  'recommended_browse_nodes': { label: '推荐分类节点' },
-  'main_product_image_locator': { label: '主图链接' },
-  'swatch_product_image_locator': { label: '样本图片链接' },
-
-  // 其他日期组件重写
+  // === 日期类组件覆盖 ===
   'start_at': { uiWidget: 'date-picker', span: 12 },
   'end_at': { uiWidget: 'date-picker', span: 12 },
-  'restock_date': { uiWidget: 'date-picker', span: 12 },
+  'restock_date': { uiWidget: 'date-picker', span: 12, label: '补货日期' },
   'offering_release_date': { uiWidget: 'date-picker', span: 12 },
-  'sell_end_date': { uiWidget: 'date-picker', span: 12 },
+  'sell_end_date': { uiWidget: 'date-picker', span: 12, label: '停售日期' },
   'product_site_launch_date_alt': { uiWidget: 'date-picker', span: 12 }
 };
 
