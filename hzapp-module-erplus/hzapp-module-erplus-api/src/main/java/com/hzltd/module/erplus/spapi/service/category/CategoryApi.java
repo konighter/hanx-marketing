@@ -15,11 +15,11 @@ public interface CategoryApi {
     ApiResponse<List<CategoryModel>> getCategories(ApiRequest<GetCategoryRequest> apiRequest);
 
     /**
-     * 获取品类属性
+     * 获取品类属性 (含完整 JSON Schema)
      * @param apiRequest
      * @return
      */
-    ApiResponse<List<CategoryAttributeModel>> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest);
+    ApiResponse<MetaCategorySchemaResult> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest);
 
     /**
      * 获取全局属性
@@ -56,4 +56,10 @@ public interface CategoryApi {
      */
     ApiResponse<BrandModel> createCustomBrand(ApiRequest<String> brandName);
 
+    /**
+     * 获取品类完整的 JSON Schema (Raw)
+     * @param apiRequest
+     * @return
+     */
+    ApiResponse<String> getCategorySchema(ApiRequest<GetCategoryAttributeRequest> apiRequest);
 }

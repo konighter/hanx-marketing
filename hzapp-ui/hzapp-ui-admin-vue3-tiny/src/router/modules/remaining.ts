@@ -224,7 +224,7 @@ const remainingRouter: AppRouteRecordRaw[] = [
       noTagsView: true
     }
   },
-    {
+  {
     path: '/erplus/adv/auth/callback',
     component: () => import('@/app/erplus/views/adv/auth/callback.vue'),
     name: 'advCallback',

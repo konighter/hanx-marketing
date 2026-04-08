@@ -19,6 +19,7 @@ import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
 import com.hzltd.module.erplus.spapi.model.category.CategoryModel;
+import com.hzltd.module.erplus.spapi.model.category.MetaCategorySchemaResult;
 import com.hzltd.module.erplus.spapi.service.category.CategoryApi;
 import com.hzltd.module.erplus.spapi.service.category.CategoryAttributeMappingApi;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
@@ -29,6 +30,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -62,7 +64,7 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
 //        if (StringUtils.isEmpty(reqVO.getName()) && CrossPlatformEnum.AMAZON.equals(CrossPlatformEnum.of(sellPlatformDO.getCode()))) {
 //            return Collections.emptyList();
 //        }
-        List<CrossMetaCategoryDO> crossMetaCategoryDOList = crossMetaCategoryMapper.selectList(
+        List<CrossMetaCategoryDO> crossMetaCategoryDOList = crossMetaCategoryMapper.selectBasicList(
                 new LambdaQueryWrapperX<CrossMetaCategoryDO>()
                         .eqIfPresent(CrossMetaCategoryDO::getPlatformId, reqVO.getPlatformId())
         );
@@ -109,14 +111,26 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
 
         SellPlatformDO sellPlatformDO = sellPlatformService.getSellPlatform(reqVO.getPlatformId());
         CategoryApi categoryApi = categoryApiFactory.getCrossApiService(CrossPlatformEnum.of(sellPlatformDO.getCode()));
-        ApiResponse<List<CategoryAttributeModel>> apiResponse = categoryApi.getCategoryAttributes(ApiRequest.of(reqVO, CrossCategoryConvert.INSTANCE.toGetCategoryAttributeRequest(reqVO)));
+        ApiResponse<MetaCategorySchemaResult> apiResponse = categoryApi.getCategoryAttributes(ApiRequest.of(reqVO, CrossCategoryConvert.INSTANCE.toGetCategoryAttributeRequest(reqVO)));
         if (!apiResponse.success()) {
             throw new ServiceException(apiResponse.getCode(), apiResponse.getMsg());
         }
 
-        if (CollectionUtils.isNotEmpty(apiResponse.getData())) {
+        MetaCategorySchemaResult result = apiResponse.getData();
+        if (result != null && CollectionUtils.isNotEmpty(result.getAttributes())) {
+            // Save full schema to category if missing
+            if (StringUtils.isNotEmpty(result.getFullSchema())) {
+                CrossMetaCategoryDO categoryDO = crossMetaCategoryMapper.selectOne(new LambdaQueryWrapperX<CrossMetaCategoryDO>()
+                        .eq(CrossMetaCategoryDO::getCategoryCode, reqVO.getCategoryId())
+                        .eq(CrossMetaCategoryDO::getPlatformId, reqVO.getPlatformId()));
+                if (categoryDO != null && StringUtils.isEmpty(categoryDO.getExtra())) {
+                    categoryDO.setExtra(result.getFullSchema());
+                    crossMetaCategoryMapper.updateById(categoryDO);
+                }
+            }
+
             // todo-- check And Insert (按有效期), 异步更新
-            crossMetaCategoryAttributeMapper.insertBatch(apiResponse.getData().stream().map(attr -> {
+            crossMetaCategoryAttributeMapper.insertBatch(result.getAttributes().stream().map(attr -> {
                 CrossMetaCategoryAttributeDO attributeDO = CrossCategoryConvert.INSTANCE.toCategoryAttributeDO(attr);
                 attributeDO.setPlatformId(reqVO.getPlatformId());
                 attributeDO.setCategoryCode(reqVO.getCategoryId());
@@ -124,7 +138,9 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
             }).collect(Collectors.toList()));
         }
 
-        return apiResponse.getData().stream().map(CrossCategoryConvert.INSTANCE::toCategoryAttrVO).collect(Collectors.toList());
+        return result != null && result.getAttributes() != null ? 
+                result.getAttributes().stream().map(CrossCategoryConvert.INSTANCE::toCategoryAttrVO).collect(Collectors.toList()) : 
+                Collections.emptyList();
     }
 
 

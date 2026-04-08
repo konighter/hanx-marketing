@@ -8,6 +8,7 @@ import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import com.hzltd.module.erplus.spapi.model.category.*;
 import com.hzltd.module.erplus.spapi.service.category.CategoryApi;
+import com.hzltd.module.erplus.system.annotation.CrossplatformApiLog;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
@@ -31,6 +32,7 @@ public class AmazonCategoryService extends AbsAmzPlatformApiService implements C
 
 
     @Override
+    @CrossplatformApiLog
     public ApiResponse<List<CategoryModel>> getCategories(ApiRequest<GetCategoryRequest> apiRequest) {
         try {
             apiRequest.setShopId(String.valueOf(apiRequest.getRequest().getShopId()));
@@ -46,28 +48,47 @@ public class AmazonCategoryService extends AbsAmzPlatformApiService implements C
                         return model;
                     }).collect(Collectors.toList())
                     );
-        } catch (ApiException e) {
-            throw new RuntimeException(e);
-        } catch (LWAException e) {
+        } catch (ApiException | LWAException e) {
             throw new RuntimeException(e);
         }
 
     }
 
     @Override
-    public ApiResponse<List<CategoryAttributeModel>> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
+    @CrossplatformApiLog
+    public ApiResponse<MetaCategorySchemaResult> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
 
         DefinitionsApi definitionsApi = getDefinitionsApi(apiRequest);
         try {
-            ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(apiRequest.getRequest().getCategoryId(), systemShopService.getShopMarketplace(apiRequest.getShopId()), null, null, null, null, "zh_CN");
-            List<CategoryAttributeModel> categoryAttributeModels = ProductTypeSchemaUtils.parseProductTypeSchema(productTypeDefinition.getSchema().getLink().getResource(), productTypeDefinition);
-            return ApiResponse.success(categoryAttributeModels);
-        } catch (ApiException e) {
-            throw new RuntimeException(e);
-        } catch (LWAException e) {
+            ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(
+                apiRequest.getRequest().getCategoryId(), 
+                systemShopService.getShopMarketplace(apiRequest.getShopId()), 
+                null, null, null, null, "zh_CN"
+            );
+            MetaCategorySchemaResult result = ProductTypeSchemaUtils.parseProductTypeSchema(productTypeDefinition.getSchema().getLink().getResource(), productTypeDefinition);
+            return ApiResponse.success(result);
+        } catch (ApiException | LWAException e) {
+            log.error("[getCategoryAttributes] Failed for category {}", apiRequest.getRequest().getCategoryId(), e);
             throw new RuntimeException(e);
         }
 
+    }
+    
+    @Override
+    public ApiResponse<String> getCategorySchema(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
+        DefinitionsApi definitionsApi = getDefinitionsApi(apiRequest);
+        try {
+            ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(
+                apiRequest.getRequest().getCategoryId(),
+                systemShopService.getShopMarketplace(apiRequest.getShopId()),
+                    null, null, null, null, "zh_CN"
+            );
+            String rawSchema = ProductTypeSchemaUtils.getProductTypeSchema(productTypeDefinition.getSchema().getLink().getResource());
+            return ApiResponse.success(rawSchema);
+        } catch (ApiException | LWAException e) {
+            log.error("[getCategorySchema] Failed to fetch schema for {}", apiRequest.getRequest().getCategoryId(), e);
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

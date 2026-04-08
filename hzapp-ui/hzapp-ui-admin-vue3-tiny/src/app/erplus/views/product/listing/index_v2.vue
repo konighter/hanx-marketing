@@ -1,6 +1,5 @@
 <template>
   <div class="product-listing-v2-container p-4 dark:bg-slate-900 min-h-screen">
-    <!-- 顶部筛选与状态切换 -->
     <ContentWrap class="mb-4">
       <el-form :model="queryParams" ref="queryFormRef" :inline="true" label-width="100px" :rules="rules">
         <el-form-item label="店铺" prop="shopId">
@@ -22,6 +21,7 @@
           <el-button @click="handleQuery" type="primary" class="rounded-lg px-6"><Icon icon="ep:search" class="mr-1" />查询</el-button>
           <el-button @click="resetQuery" class="rounded-lg"><Icon icon="ep:refresh" class="mr-1" />重置</el-button>
           <el-button @click="openSyncDialog" class="rounded-lg" type="success" plain><Icon icon="ep:refresh-right" class="mr-1" />平台同步</el-button>
+          <el-button @click="handleCreate" type="primary" plain class="rounded-lg"><Icon icon="ep:plus" class="mr-1" />创建刊登</el-button>
         </el-form-item>
       </el-form>
       
@@ -180,9 +180,11 @@ import ListingItemV2 from './components/ListingItemV2.vue'
 import ListingDetailDrawer from './components/ListingDetailDrawer.vue'
 import * as CrossListingApi from '@/app/erplus/api/product/listing'
 import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
+import { useRouter } from 'vue-router'
 
 defineOptions({ name: 'CrossListingV2' })
 
+const { push } = useRouter()
 const message = useMessage()
 const loading = ref(false)
 const list = ref<ListingV2VO[]>([])
@@ -329,6 +331,10 @@ const handleBatchPrice = () => {
 
 const handleShowDetail = (listing: ListingV2VO) => {
   detailDrawerRef.value?.open(listing)
+}
+
+const handleCreate = () => {
+  push('/erplusV2/product/listing-create')
 }
 
 const handleCascaderChange = () => {

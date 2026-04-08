@@ -1,7 +1,8 @@
-package com.hzltd.module.erplus.spapi.utils;
+package com.hzapp.module.erplus;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzltd.module.amz.spapi.utils.AmazonListingParserUtils;
 import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.erplus.spapi.model.common.ProductAttributeModel;
 import com.hzltd.module.erplus.spapi.model.product.MultiMarketProductModel;

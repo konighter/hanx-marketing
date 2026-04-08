@@ -32,6 +32,11 @@ public class DefaultHanXCrossServiceApi implements ProductApi, CategoryApi, Plat
 
 
     @Override
+    public ApiResponse<String> getCategorySchema(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
+        return null;
+    }
+
+    @Override
     public ApiResponse<List<CategoryModel>> getCategories(ApiRequest<GetCategoryRequest> apiRequest) {
         List<ProductCategoryDO> categories = categoryService.getProductCategoryList(new ProductCategoryListReqVO());
        return ApiResponse.success(categories.stream().map(c -> {
@@ -45,18 +50,22 @@ public class DefaultHanXCrossServiceApi implements ProductApi, CategoryApi, Plat
     }
 
     @Override
-    public ApiResponse<List<CategoryAttributeModel>> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
+    public ApiResponse<MetaCategorySchemaResult> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
         CategoryAttributeDO attributeDO = new CategoryAttributeDO();
-//        attributeDO.setCategoryId(apiRequest.getRequest().getCategoryId());
         List<CategoryAttributeDO> categoryAttributes = categoryAttributeService.getCategoryAttributes(attributeDO);
-        return ApiResponse.success( categoryAttributes.stream().map(a -> {
+        List<CategoryAttributeModel> attributes = categoryAttributes.stream().map(a -> {
             CategoryAttributeModel model = new CategoryAttributeModel();
             model.setAttrCode(a.getAttrId());
             model.setAttrName(a.getAttrName());
             model.setAttrType(AttributeTypeEnum.valueOf(a.getAttrType()));
             model.setIsRequired(a.isRequired());
             return model;
-        }).collect(Collectors.toList()));
+        }).collect(Collectors.toList());
+
+        return ApiResponse.success(MetaCategorySchemaResult.builder()
+                .attributes(attributes)
+                .fullSchema("") // Local categories might not have full JSON schema yet
+                .build());
     }
 
     @Override

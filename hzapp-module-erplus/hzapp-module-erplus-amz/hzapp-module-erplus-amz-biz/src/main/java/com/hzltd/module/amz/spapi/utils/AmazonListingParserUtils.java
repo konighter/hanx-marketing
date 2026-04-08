@@ -1,6 +1,7 @@
 package com.hzltd.module.amz.spapi.utils;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.spapi.enums.CrossListingStatus;
 import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.erplus.spapi.model.common.Image;
@@ -105,38 +106,51 @@ public class AmazonListingParserUtils {
     }
 
     private static void parseAttributes(ProductModel product, JsonNode attributes, String marketId) {
-        // Extract Brand
-        JsonNode brandNode = findAttribute(attributes, "brand", marketId);
-        if (brandNode != null && brandNode.has("value")) {
-            product.setBrand(brandNode.get("value").asText());
-        }
+        if (attributes == null || !attributes.isObject()) return;
 
-        // Extract Description
-        JsonNode descNode = findAttribute(attributes, "product_description", marketId);
-        if (descNode != null && descNode.has("value")) {
-            product.setProductDescription(descNode.get("value").asText());
-        }
+        attributes.fields().forEachRemaining(entry -> {
+            String key = entry.getKey();
+            JsonNode attrArray = entry.getValue();
 
-        // Bullet points (Preserve as array)
-        JsonNode bulletNode = attributes.get("bullet_point");
-        if (bulletNode != null && bulletNode.isArray()) {
-            ProductAttributeModel bulletAttr = new ProductAttributeModel();
-            bulletAttr.setAttrName("bullet_point");
-            List<ProductAttributeModel.AttrValue> values = new ArrayList<>();
-            for (JsonNode bullet : bulletNode) {
-                if (!bullet.has("marketplace_id") || marketId.equals(bullet.get("marketplace_id").asText())) {
-                    ProductAttributeModel.AttrValue val = new ProductAttributeModel.AttrValue();
-                    val.setCustomerValue(bullet.get("value").asText());
-                    values.add(val);
+            if (attrArray.isArray()) {
+                ProductAttributeModel attributeModel = new ProductAttributeModel();
+                attributeModel.setAttrId(key);
+                attributeModel.setAttrName(key); // Default name is the key
+                
+                List<ProductAttributeModel.AttrValue> values = new ArrayList<>();
+                for (JsonNode valNode : attrArray) {
+                    // Filter by marketplace_id if present
+                    if (!valNode.has("marketplace_id") || marketId.equals(valNode.get("marketplace_id").asText())) {
+                        ProductAttributeModel.AttrValue val = new ProductAttributeModel.AttrValue();
+                        
+                        if (valNode.has("value")) {
+                            val.setCustomerValue(valNode.get("value").asText());
+                        } else {
+                            // For nested objects (like purchasable_offer), store the JSON string part
+                            val.setCustomerValue(JsonUtils.toJsonString(valNode));
+                        }
+                        values.add(val);
+                    }
+                }
+
+                if (!values.isEmpty()) {
+                    attributeModel.setAttrValues(values);
+                    product.addProductAttribute(attributeModel);
+
+                    // Special Mapping for quick access fields
+                    String firstVal = values.get(0).getCustomerValue();
+                    if ("brand".equalsIgnoreCase(key)) {
+                        product.setBrand(firstVal);
+                    } else if ("product_description".equalsIgnoreCase(key)) {
+                        product.setProductDescription(firstVal);
+                    } else if ("item_name".equalsIgnoreCase(key)) {
+                        product.setProductName(firstVal);
+                    }
                 }
             }
-            if (!values.isEmpty()) {
-                bulletAttr.setAttrValues(values);
-                product.addProductAttribute(bulletAttr);
-            }
-        }
+        });
 
-        // Extract Price (purchasable_offer -> our_price)
+        // Special handling for Price (purchasable_offer)
         JsonNode offerNode = findAttribute(attributes, "purchasable_offer", marketId);
         if (offerNode != null && offerNode.has("our_price")) {
             JsonNode ourPrices = offerNode.get("our_price");
@@ -144,6 +158,9 @@ public class AmazonListingParserUtils {
                 JsonNode schedule = ourPrices.get(0).get("schedule");
                 if (schedule != null && schedule.isArray() && !schedule.isEmpty()) {
                     JsonNode priceVal = schedule.get(0).get("value_with_tax");
+                    if (priceVal == null) {
+                        priceVal = schedule.get(0).get("value");
+                    }
                     if (priceVal != null) {
                         PriceModel price = new PriceModel();
                         price.setAmount(new BigDecimal(priceVal.asText()));

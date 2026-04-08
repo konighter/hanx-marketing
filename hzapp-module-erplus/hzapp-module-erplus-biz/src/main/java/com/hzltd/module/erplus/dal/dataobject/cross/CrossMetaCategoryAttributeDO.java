@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.framework.tenant.core.aop.TenantIgnore;
 import lombok.*;
 
 /**
@@ -19,6 +20,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@TenantIgnore
 public class CrossMetaCategoryAttributeDO extends BaseDO {
 
     /**

@@ -81,11 +81,17 @@ public class AbsAmzPlatformApiService extends AbsPlatformService {
         return "https://api.amazon.com/auth/o2/token";
     }
 
-    public String getApiEndpoint(String marketPlaceId) {
-        ConfigDO configDO = configService.getConfigByKey(API_SANDBOX_ENDPOINT);
-        boolean isSandbox = configDO != null && configDO.getValue() != null && Boolean.parseBoolean(configDO.getValue());
-
-        return isSandbox ? "https://sandbox.sellingpartnerapi-na.amazon.com" : "https://sellingpartnerapi-na.amazon.com";
+    public String getApiEndpoint(String region) {
+        if ("NA".equalsIgnoreCase(region)) {
+            return "https://sellingpartnerapi-na.amazon.com";
+        } else if("FE".equalsIgnoreCase(region)){
+            return "https://sellingpartnerapi-fe.amazon.com";
+        }else if("EU".equalsIgnoreCase(region)){
+            return "https://sellingpartnerapi-eu.amazon.com";
+        } else {
+            log.warn("Unsupported Region {}, return NA", region);
+            return "https://sellingpartnerapi-na.amazon.com";
+        }
     }
 
     public LWAAccessTokenCache getLocalTokenCache() {
