@@ -16,7 +16,6 @@ export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
     name: '描述与关键字',
     match: [
       'product_description',
-      'description',
       'bullet_point',
       'generic_keyword'
     ]
@@ -50,14 +49,36 @@ export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
     match: [
       'purchasable_offer',
       'fulfillment',
+      'fulfillment_availability',
       'standard_price',
       'list_price',
-      'fulfillment_channel_code',
+      'price',
+      'condition_type',
       'merchant_shipping_group',
+      'fulfillment_channel_code',
+      'is_inventory_available',
       'quantity',
       'lead_time_to_ship_max_days',
       'restock_date',
-      'merchant_release_date'
+      'merchant_release_date',
+      'product_site_launch_date',
+      'street_date',
+      'offering_release_date',
+      'sell_end_date'
+    ]
+  },
+  {
+    name: '产品尺寸',
+    match: [
+      'item_weight',
+      'item_package_weight',
+      'item_package_dimensions',
+      'item_length_width_height',
+      'item_dimensions',
+      'number_of_items',
+      'number_of_pieces',
+      'item_display_weight',
+      'item_volume'
     ]
   }
 ];

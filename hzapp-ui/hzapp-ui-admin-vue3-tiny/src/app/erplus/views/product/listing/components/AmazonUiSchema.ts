@@ -11,6 +11,17 @@ export interface AmazonUiFieldConfig {
   placeholder?: string;
   /** 额外的字段问号提示说明 */
   tooltip?: string;
+  /** 
+   * 字段依赖规则：当指定字段的值满足条件时，当前字段才显示
+   * - field: 依赖的字段 ID
+   * - value: 目标值（当依赖字段等于该值时显示）
+   * - negate: 为 true 时反转逻辑（当依赖字段不等于该值时显示）
+   */
+  dependsOn?: {
+    field: string;
+    value: any;
+    negate?: boolean;
+  };
 }
 
 /**
@@ -21,7 +32,7 @@ export interface AmazonUiFieldConfig {
 export const AmazonUiSchema: Record<string, AmazonUiFieldConfig> = {
   // === 描述与关键字模块 (排在第一组) ===
   'product_description': { order: 1, span: 24, uiWidget: 'textarea', label: '产品描述', placeholder: '详细描述产品的功能、材质、尺寸等信息' },
-  'description': { order: 2, span: 24, uiWidget: 'textarea', label: '产品描述' },
+  // 'description': { order: 2, span: 24, uiWidget: 'textarea', label: '产品描述' },
   'bullet_point': { order: 3, span: 24, label: '五点描述 (Bullet Points)' },
   'generic_keyword': { order: 4, span: 24, label: '搜索关键词', placeholder: '用空格分隔多个关键词，不要重复商品标题中的词' },
   'special_feature': { label: '特殊功能', span: 24 },
@@ -57,33 +68,70 @@ export const AmazonUiSchema: Record<string, AmazonUiFieldConfig> = {
   'pattern': { label: '图案', span: 12 },
   'theme': { label: '主题', span: 12 },
   'finish_type': { label: '表面处理', span: 12 },
-  'item_weight': { label: '商品重量', span: 12 },
-  'item_package_weight': { label: '包装重量', span: 12 },
-  'item_length_width_height': { label: '商品尺寸', span: 12 },
-  'item_package_dimensions': { label: '包装尺寸', span: 12 },
-  'number_of_items': { label: '件数', span: 12 },
-  'number_of_pieces': { label: '组件数', span: 12 },
   'item_form': { label: '产品形态', span: 12 },
   'item_type_keyword': { label: '商品类型', span: 12 },
   'metal_type': { label: '金属种类', span: 12 },
   'recommended_browse_nodes': { label: '分类节点', span: 12 },
   'variation_theme': { label: '变体主题', span: 12 },
 
+  // === 产品尺寸与重量子字段 ===
+  'item_weight.value': { label: '重量数值', span: 12 }, 
+  'item_weight.unit': { label: '重量单位', span: 12 },
+  'item_package_weight.value': { label: '包装重量数值', span: 12 },
+  'item_package_weight.unit': { label: '包装重量单位', span: 12 },
+  'item_package_dimensions.height.value': { label: '高度', span: 8 },
+  'item_package_dimensions.height.unit': { label: '单位', span: 4 },
+  'item_package_dimensions.length.value': { label: '长度', span: 8 },
+  'item_package_dimensions.length.unit': { label: '单位', span: 4 },
+  'item_package_dimensions.width.value': { label: '宽度', span: 8 },
+  'item_package_dimensions.width.unit': { label: '单位', span: 4 },
+  'number_of_items': { label: '件数', span: 12 },
+  'item_dimensions.height.value': { label: '高度', span: 8 },
+  'item_dimensions.height.unit': { label: '单位', span: 4 },
+  'item_dimensions.length.value': { label: '长度', span: 8 },
+  'item_dimensions.length.unit': { label: '单位', span: 4 },
+  'item_dimensions.width.value': { label: '宽度', span: 8 },
+  'item_dimensions.width.unit': { label: '单位', span: 4 },
+
   // === 产品标识 ===
-  'supplier_declared_has_product_identifier_exemption': { order: 1, span: 24, label: '免除产品ID' },
-  'externally_assigned_product_identifier': { order: 2, label: '产品 ID (UPC/EAN)' },
+  'supplier_declared_has_product_identifier_exemption': { label: '免除产品ID', order: 1, span: 24 },
+  'externally_assigned_product_identifier': { 
+    order: 2, label: '产品 ID (UPC/EAN)',
+    dependsOn: { field: 'supplier_declared_has_product_identifier_exemption.0.value', value: true, negate: true }
+  },
   'merchant_suggested_asin': { order: 3, span: 12, label: '建议 ASIN' },
 
   // === 报价与销售 ===
-  'condition_type': { order: 10, span: 12, label: '物品状况' },
-  'fulfillment_channel_code': { order: 11, span: 12, label: '发货渠道' },
-  'merchant_shipping_group': { order: 12, span: 12, label: '运费模板' },
-  'is_inventory_available': { order: 13, span: 12, label: '始终有货' },
-  'quantity': { order: 14, span: 12, label: '库存数量' },
-  'lead_time_to_ship_max_days': { order: 15, span: 12, label: '处理时间' },
-  'product_site_launch_date': { order: 20, span: 12, uiWidget: 'date-picker', label: '上架日期', tooltip: '商品在亚马逊上可见可搜索的日期' },
-  'merchant_release_date': { order: 21, span: 12, uiWidget: 'date-picker', label: '发售日期', tooltip: '卖家设定的可出售日期' },
-  'street_date': { order: 22, span: 12, uiWidget: 'date-picker', label: '首次发货日' },
+  'product_site_launch_date': { order: 10, span: 12, uiWidget: 'date-picker', label: '上架日期', tooltip: '商品在亚马逊上可见可搜索的日期' },
+  'merchant_release_date': { order: 11, span: 12, uiWidget: 'date-picker', label: '发售日期', tooltip: '卖家设定的可出售日期' },
+  'condition_type': { order: 12, span: 12, label: '物品状况' },
+  'fulfillment_availability.0.fulfillment_channel_code': { order: 13, span: 12, label: '发货渠道' },
+  'fulfillment_channel_code': { order: 13, span: 12, label: '发货渠道' }, // Fallback for some schemas
+  
+  'merchant_shipping_group': { 
+    order: 20, span: 12, label: '运费模板',
+    dependsOn: { field: 'fulfillment_availability.0.fulfillment_channel_code', value: 'DEFAULT' }
+  },
+  'is_inventory_available': { 
+    order: 21, span: 12, label: '始终有货',
+    dependsOn: { field: 'fulfillment_availability.0.fulfillment_channel_code', value: 'DEFAULT' }
+  },
+  'quantity': { 
+    order: 22, span: 12, label: '库存数量',
+    dependsOn: { field: 'fulfillment_availability.0.fulfillment_channel_code', value: 'DEFAULT' }
+  },
+  'lead_time_to_ship_max_days': { 
+    order: 23, span: 12, label: '处理时间',
+    dependsOn: { field: 'fulfillment_availability.0.fulfillment_channel_code', value: 'DEFAULT' }
+  },
+  'restock_date': { 
+    order: 24, span: 12, uiWidget: 'date-picker', label: '补货日期',
+    dependsOn: { field: 'fulfillment_availability.0.fulfillment_channel_code', value: 'DEFAULT' }
+  },
+  
+  // 价格信息排在最后
+  'purchasable_offer': { order: 30, span: 24 },
+  'street_date': { order: 31, span: 12, uiWidget: 'date-picker', label: '首次发货日' },
 
   // === 合规与电池 ===
   'batteries_required': { label: '需要电池', span: 12, order: 1 },
@@ -101,7 +149,7 @@ export const AmazonUiSchema: Record<string, AmazonUiFieldConfig> = {
   // === 日期类组件覆盖 ===
   'start_at': { uiWidget: 'date-picker', span: 12 },
   'end_at': { uiWidget: 'date-picker', span: 12 },
-  'restock_date': { uiWidget: 'date-picker', span: 12, label: '补货日期' },
+  // restock_date already defined above with dependsOn
   'offering_release_date': { uiWidget: 'date-picker', span: 12 },
   'sell_end_date': { uiWidget: 'date-picker', span: 12, label: '停售日期' },
   'product_site_launch_date_alt': { uiWidget: 'date-picker', span: 12 }
@@ -114,11 +162,10 @@ export const AmazonUiSchema: Record<string, AmazonUiFieldConfig> = {
  * 匹配策略:
  * 1. 精确匹配: fieldId === key  →  返回完整配置
  * 2. 后缀匹配: fieldId 以 .key 结尾或包含 .key.  →  返回完整配置
- * 3. 前缀匹配: fieldId 以 key. 开头  →  仅返回布局属性 (span/order)，不传递 label/uiWidget
- *    原因: 父级 key (如 purchasable_offer) 的 label 不应覆盖子字段的原始标题
+ * 3. 前缀匹配: fieldId 以 key. 开头  →  返回完整配置 (继承父级配置，如 dependsOn)
  */
-export const getUiConfigForField = (fieldId: string): AmazonUiFieldConfig => {
-  // 1. 精确匹配 — 最高优先级
+export function getUiConfigForField(fieldId: string): AmazonUiFieldConfig {
+  // 1. 精确匹配
   if (AmazonUiSchema[fieldId]) {
     return AmazonUiSchema[fieldId];
   }
@@ -135,16 +182,15 @@ export const getUiConfigForField = (fieldId: string): AmazonUiFieldConfig => {
     }
     
     // 3. 前缀匹配 — fieldId 以 key. 开头 (例如 purchasable_offer.0.xxx 匹配 purchasable_offer)
-    //    继承布局属性，如果是 .value 子字段则继承 label
     if (fieldId.startsWith(key + '.')) {
       const inherited: AmazonUiFieldConfig = {};
       if (config.span) inherited.span = config.span;
       if (config.order !== undefined) inherited.order = config.order;
+      if (config.dependsOn) inherited.dependsOn = config.dependsOn; // Inherit dependencies
       
-      // 特殊逻辑: 如果子字段是 .value，且父级定义了 label，则继承该 label
-      // 避免 type/unit 等字段也被打上同样的父级 label
-      if (config.label && (fieldId.endsWith('.value'))) {
-        inherited.label = config.label;
+      // Special case: if it's the main .value or .name, inherit the label too
+      if (fieldId.endsWith('.value') || fieldId.endsWith('.name')) {
+        if (config.label) inherited.label = config.label;
       }
       return inherited;
     }

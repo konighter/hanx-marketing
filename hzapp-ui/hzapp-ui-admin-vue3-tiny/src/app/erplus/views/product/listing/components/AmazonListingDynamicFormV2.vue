@@ -193,7 +193,7 @@ const finalGroups = computed(() => {
         return true;
       }
       return false;
-    });
+    }).sort((a, b) => (a.order || 99) - (b.order || 99));
 
     return {
       name: g.name,
@@ -210,10 +210,11 @@ const finalGroups = computed(() => {
       return true;
     }
     return false;
-  });
+  }).sort((a, b) => (a.order || 99) - (b.order || 99));
 
   // 3. Prepare Tier 3: Optional fields
-  const tier3Fields = allFields.filter(f => !assignedFieldIds.has(f.id));
+  const tier3Fields = allFields.filter(f => !assignedFieldIds.has(f.id))
+    .sort((a, b) => (a.order || 99) - (b.order || 99));
 
   // Determine final visibility of groups
   const resultGroups: any[] = [];
@@ -289,13 +290,13 @@ const loadSchema = async () => {
         if (uiConfig.order !== undefined) f.order = uiConfig.order;
         if (uiConfig.tooltip) f.description = uiConfig.tooltip;
         if (uiConfig.placeholder) f.extra = { ...f.extra, placeholder: uiConfig.placeholder };
+        // Store UI dependency rule
+        if (uiConfig.dependsOn) f.dependsOn = uiConfig.dependsOn;
         return f;
       });
 
       // Extract special fields
       purchasableOfferFields.value = res.fields.filter((f: any) => f.id.startsWith('purchasable_offer.'));
-      // Remove them from general rendering but keep in schema for logic
-      // Actually AmazonListingDynamicForm hides them using prefix check, we'll do the same in filter
     }
 
     rawSchema.value = res;
@@ -331,28 +332,75 @@ const initFormState = () => {
   purchasableOfferModel.value = poModel;
 };
 
-// ... Linkage Logic (Evaluate, etc) - Copying from V1 for now ...
 const applyLinkageRules = () => {
   if (!rawSchema.value?.fields) return;
 
   rawSchema.value.fields.forEach((field: any) => {
-    if (!field.linkageRules || field.linkageRules.length === 0) return;
-
     let isVisible = !field.hidden;
     let isReq = field.required;
 
-    field.linkageRules.forEach((rule: any) => {
-      const match = evaluateCondition(rule.condition);
-      if (match) {
-        if (rule.type === 'visibility' && rule.action === 'show') isVisible = true;
-        if (rule.type === 'visibility' && rule.action === 'hide') isVisible = false;
-        if (rule.type === 'requirement' && rule.action === 'required') isReq = true;
+    // 1. Process Backend Linkage Rules
+    if (field.linkageRules && field.linkageRules.length > 0) {
+      field.linkageRules.forEach((rule: any) => {
+        const match = evaluateCondition(rule.condition);
+        if (match) {
+          if (rule.type === 'visibility' && rule.action === 'show') isVisible = true;
+          if (rule.type === 'visibility' && rule.action === 'hide') isVisible = false;
+          if (rule.type === 'requirement' && rule.action === 'required') isReq = true;
+        }
+      });
+    }
+
+    // 2. Process Frontend UI Dependencies (dependsOn)
+    if (field.dependsOn) {
+      const dep = field.dependsOn;
+      const actualVal = getFieldValue(dep.field);
+      
+      // Use robust comparison (consistent with evaluateCondition)
+      const normalizedActual = String(actualVal).toLowerCase();
+      const normalizedTarget = String(dep.value).toLowerCase();
+      
+      const match = normalizedActual === normalizedTarget;
+      const finalMatch = dep.negate ? !match : match;
+      
+      // UI dependencies usually control visibility
+      if (!finalMatch) {
+        isVisible = false;
       }
-    });
+    }
 
     visibilityMap[field.id] = isVisible;
     requirementMap[field.id] = isReq;
   });
+};
+
+
+const getFieldValue = (fieldId: string) => {
+  // 1. Exact match
+  let val = formData.attributes[fieldId];
+  
+  // 2. Fuzzy match for indexed/nested IDs (e.g., .0.value)
+  if (val === undefined) {
+    const matchedKey = Object.keys(formData.attributes).find(key => 
+      key === fieldId || key.startsWith(fieldId + '.')
+    );
+    if (matchedKey) val = formData.attributes[matchedKey];
+  }
+  
+  // 3. Recursive unwrapping for Amazon data structures
+  const extract = (v: any): any => {
+    if (v === undefined || v === null) return v;
+    // Handle array of objects (typical in Amazon schema response)
+    if (Array.isArray(v)) {
+      if (v.length > 0) return extract(v[0]);
+      return undefined;
+    }
+    // Handle single object with value property
+    if (typeof v === 'object' && v.value !== undefined) return v.value;
+    return v;
+  };
+  
+  return extract(val);
 };
 
 const evaluateCondition = (conditionStr: string) => {
@@ -362,27 +410,20 @@ const evaluateCondition = (conditionStr: string) => {
   const fieldId = parts[0].trim();
   const targetVal = parts[1].replace(/'/g, '').trim();
   
-  let currentVal = formData.attributes[fieldId];
-  if (currentVal === undefined) {
-    const possibleKeys = Object.keys(formData.attributes).filter(k => k === fieldId || k.startsWith(fieldId + '.'));
-    if (possibleKeys.length > 0) currentVal = formData.attributes[possibleKeys[0]];
-  }
+  const actualVal = getFieldValue(fieldId);
   
-  const extractValue = (val: any) => {
-    if (val === undefined || val === null) return val;
-    if (Array.isArray(val) && val.length > 0 && val[0].value !== undefined) return val[0].value;
-    if (typeof val === 'object' && val.value !== undefined) return val.value;
-    return val;
-  };
+  // Robust boolean and string comparison
+  const normalizedActual = String(actualVal).toLowerCase();
+  const normalizedTarget = targetVal.toLowerCase();
   
-  const actualVal = extractValue(currentVal);
-  return String(actualVal) === targetVal;
+  return normalizedActual === normalizedTarget;
 };
 
 const isFieldVisible = (fieldId: string) => visibilityMap[fieldId] !== false;
 const isFieldRequired = (fieldId: string) => requirementMap[fieldId] === true;
 
 const handleFieldChange = () => {
+    applyLinkageRules();
     emit('change', formData.attributes);
 };
 
