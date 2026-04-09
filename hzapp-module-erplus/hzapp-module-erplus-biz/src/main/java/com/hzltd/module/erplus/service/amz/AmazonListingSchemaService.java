@@ -118,10 +118,10 @@ public class AmazonListingSchemaService {
     private boolean isERPMasterField(String name) {
         return name.equals("item_name") ||
                 name.equals("brand") ||
-                name.equals("manufacturer") ||
-                name.equals("part_number") ||
-                name.equals("model_number") ||
-                name.equals("model_name") ||
+//                name.equals("manufacturer") ||
+//                name.equals("part_number") ||
+//                name.equals("model_number") ||
+//                name.equals("model_name") ||
                 name.contains("product_image_locator"); // Catches main, other_X, swatch_..., pt360_...
     }
 

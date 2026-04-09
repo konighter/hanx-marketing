@@ -109,18 +109,68 @@
           </div>
           <el-empty v-else description="恭喜，此商品目前无健康问题" />
         </el-tab-pane>
+
+        <el-tab-pane label="刊登反馈" name="listing">
+          <div v-if="feedbackLoading" class="p-8 flex justify-center">
+            <el-skeleton :rows="3" animated />
+          </div>
+          <div v-else-if="feedback" class="space-y-6">
+            <div class="feedback-task-info p-4 bg-gray-50 dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700">
+               <div class="flex items-center justify-between mb-4">
+                 <div class="flex items-center gap-2">
+                   <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">最新任务 ID:</span>
+                   <span class="font-mono text-sm font-bold text-gray-700 dark:text-slate-300">#{{ feedback.id }}</span>
+                 </div>
+                 <el-tag :type="getSyncStatusType(feedback.status)" size="small">
+                    {{ getSyncStatusName(feedback.status) }}
+                 </el-tag>
+               </div>
+               <div class="text-sm text-gray-600 dark:text-slate-400">
+                 完成时间: {{ feedback.endTime || '进行中...' }}
+               </div>
+            </div>
+
+            <div v-if="feedback.status === 3" class="error-center">
+               <h3 class="text-sm font-bold text-red-600 mb-3 flex items-center gap-2">
+                 <Icon icon="ep:warning" /> 错误反馈与修复建议
+               </h3>
+               <div class="space-y-3">
+                 <div v-for="(err, idx) in parsedFeedbackErrors" :key="idx" class="p-4 rounded-xl border border-red-100 bg-red-50/30 dark:bg-red-900/10 dark:border-red-900/30">
+                   <div class="font-bold text-sm text-red-700 dark:text-red-400">{{ err.code }}: {{ err.message }}</div>
+                   <div v-if="err.suggestion" class="mt-2 text-xs text-gray-600 dark:text-slate-400 leading-relaxed">
+                     <span class="font-bold text-amber-600">建议:</span> {{ err.suggestion }}
+                   </div>
+                 </div>
+               </div>
+            </div>
+            
+            <div v-if="feedback.rawFeedback" class="raw-logs mt-8">
+               <div class="flex items-center justify-between mb-2">
+                 <span class="text-xs font-bold text-gray-400 uppercase">原始数据日志</span>
+                 <el-button link type="primary" size="small" @click="showRaw = !showRaw">{{ showRaw ? '收起' : '展开' }}</el-button>
+               </div>
+               <pre v-if="showRaw" class="p-3 bg-slate-900 text-slate-300 rounded-lg text-[10px] overflow-auto max-h-60 font-mono">{{ listingFeedbackRaw }}</pre>
+            </div>
+          </div>
+          <el-empty v-else description="暂无刊登任务记录" />
+        </el-tab-pane>
       </el-tabs>
     </div>
   </el-drawer>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { ListingV2VO } from '../types'
+import { getListingFeedback } from '../../../../api/product/listing'
 
 const visible = ref(false)
 const listing = ref<ListingV2VO | null>(null)
 const activeTab = ref('variants')
+
+const feedback = ref<any>(null)
+const feedbackLoading = ref(false)
+const showRaw = ref(false)
 
 const currency = computed(() => listing.value?.price?.[0]?.currency || '$')
 
@@ -138,8 +188,116 @@ const formatPrice = (p: number) => {
 
 const open = (row: ListingV2VO) => {
   listing.value = row
-  activeTab.value = 'variants'
+  activeTab.value = 'listing' // 默认打开刊登状态以展示反馈
   visible.value = true
+  fetchFeedback()
+}
+
+const fetchFeedback = async () => {
+  if (!listing.value?.latestTaskId) {
+    feedback.value = null
+    return
+  }
+  feedbackLoading.value = true
+  try {
+    const res = await getListingFeedback(listing.value.latestTaskId)
+    feedback.value = res
+  } catch (error) {
+    console.error('Failed to fetch listing feedback', error)
+  } finally {
+    feedbackLoading.value = false
+  }
+}
+
+watch(activeTab, (val) => {
+  if (val === 'listing' && !feedback.value) {
+    fetchFeedback()
+  }
+})
+
+const getSyncStatusType = (status: number): 'info' | 'success' | 'danger' | 'warning' => {
+  const types: Record<number, 'info' | 'success' | 'danger' | 'warning'> = {
+    0: 'info',     // 未刊登 (INIT)
+    10: 'warning', // 待发布 (AUDITING)
+    90: 'info',    // 发布中 (PUBLISHING)
+    91: 'danger',  // 发布失败 (FAIL)
+    99: 'success'  // 发布成功 (SUC)
+  }
+  return types[status] || 'info'
+}
+
+const getSyncStatusName = (status: number) => {
+  const names: Record<number, string> = {
+    0: '未刊登',
+    10: '待发布',
+    90: '发布中',
+    91: '发布失败',
+    99: '发布成功'
+  }
+  return names[status] || '未知'
+}
+
+const listingFeedbackRaw = computed(() => {
+  if (!feedback.value?.rawFeedback) return ''
+  try {
+    return JSON.stringify(JSON.parse(feedback.value.rawFeedback), null, 2)
+  } catch (e) {
+    return feedback.value.rawFeedback
+  }
+})
+
+// 解析错误反馈 (从 rawFeedback 中提取)
+const parsedFeedbackErrors = computed(() => {
+  if (!feedback.value?.rawFeedback) return []
+  try {
+    const raw = JSON.parse(feedback.value.rawFeedback)
+    // 假设 ApiResponse 结构中包含错误代码和信息
+    // 针对不同平台可以做更复杂的映射
+    const errors: any[] = []
+    
+    // 如果是 ApiResponse 格式 (code, msg, data)
+    if (raw.code && raw.code !== 0 && raw.code !== 1) {
+       errors.push({
+         code: raw.code,
+         message: raw.msg || '未知错误',
+         suggestion: getPlatformSuggestion(raw.code, raw.msg)
+       })
+    }
+    
+    // 如果 data 中还有更详细的错误列表 (例如 Amazon Validation Errors)
+    if (raw.data?.errors && Array.isArray(raw.data.errors)) {
+      raw.data.errors.forEach((e: any) => {
+        errors.push({
+          code: e.code || 'API_ERROR',
+          message: e.message || e.msg,
+          suggestion: getPlatformSuggestion(e.code, e.message || e.msg)
+        })
+      })
+    }
+
+    // 如果列表为空但状态是失败，展示概要信息
+    if (errors.length === 0 && feedback.value.status === 3) {
+      errors.push({
+        code: 'FAILED',
+        message: feedback.value.brief || '刊登失败，请检查原始日志',
+        suggestion: '请查看下方原始数据日志以获取详细错误信息。'
+      })
+    }
+
+    return errors
+  } catch (e) {
+    return [{ code: 'PARSE_ERROR', message: '无法解析错误反馈数据', suggestion: '数据格式异常，请联系系统管理员。' }]
+  }
+})
+
+// 平台错误建议映射
+const getPlatformSuggestion = (code: string | number, msg: string) => {
+  const codeStr = String(code)
+  if (codeStr === '90014' || msg.includes('white background')) return '请更换背景为纯白色的图片，确保无阴影和多余物品。'
+  if (codeStr === '8541' || msg.includes('SKU submitted matches')) return 'SKU 已存在，请确认是否为同一商品或修改 SKU。'
+  if (msg.includes('Inventory') || msg.includes('stock')) return '库存数据不合理，请检查 SKU 的库存配置。'
+  if (msg.includes('Price') || msg.includes('MSRP')) return '价格验证失败，请确保售价在平台允许范围内。'
+  return '请根据错误提示检查商品属性或图片，修复后重新提交刊登。'
 }
 
 defineExpose({ open })

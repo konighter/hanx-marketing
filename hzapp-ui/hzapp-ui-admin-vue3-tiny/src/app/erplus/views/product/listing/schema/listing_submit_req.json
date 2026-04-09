@@ -1,0 +1,130 @@
+{
+  "productType" : "ART_CRAFT_KIT",
+  "requirements" : null,
+  "attributes" : {
+    "supplier_declared_has_product_identifier_exemption" : [ {
+      "value" : "true"
+    } ],
+    "model_number" : [ {
+      "value" : "NewOasis"
+    } ],
+    "model_name" : [ {
+      "value" : "NewOsisa"
+    } ],
+    "manufacturer" : [ {
+      "value" : "NewOasis"
+    } ],
+    "product_description" : [ {
+      "value" : "tesetsuidfsdfsdsd"
+    } ],
+    "bullet_point" : [ {
+      "value" : [ {
+        "value" : "tesetsuidfsdfsdsd"
+      } ]
+    } ],
+    "generic_keyword" : [ {
+      "value" : "tesetsuidfsdfsdsd"
+    } ],
+    "age_range_description" : [ {
+      "value" : "成人"
+    } ],
+    "number_of_items" : [ {
+      "value" : 1
+    } ],
+    "item_package_quantity" : [ {
+      "value" : 1
+    } ],
+    "color" : [ {
+      "value" : "Gold"
+    } ],
+    "number_of_pieces" : [ {
+      "value" : 1
+    } ],
+    "part_number" : [ {
+      "value" : "NewOasis"
+    } ],
+    "theme" : [ {
+      "value" : "时尚"
+    } ],
+    "is_expiration_dated_product" : [ {
+      "value" : "false"
+    } ],
+    "product_site_launch_date" : [ {
+      "value" : "2026-04-10"
+    } ],
+    "seasons" : [ {
+      "value" : "全季节"
+    } ],
+    "fulfillment_availability" : [ {
+      "fulfillment_channel_code" : "AMAZON_NA"
+    } ],
+    "purchasable_offer" : [ {
+      "currency" : "MXN"
+    } ],
+    "condition_type" : [ {
+      "value" : "new_oem"
+    } ],
+    "list_price" : [ {
+      "currency" : "USD",
+      "value_with_tax" : 30.99
+    } ],
+    "merchant_release_date" : [ {
+      "value" : "2026-04-16"
+    } ],
+    "item_dimensions" : [ {
+      "height" : {
+        "unit" : "centimeters",
+        "value" : 4
+      },
+      "length" : {
+        "unit" : "centimeters",
+        "value" : 20
+      },
+      "width" : {
+        "unit" : "centimeters",
+        "value" : 20
+      }
+    } ],
+    "item_package_dimensions" : [ {
+      "height" : {
+        "unit" : "centimeters",
+        "value" : 4
+      },
+      "length" : {
+        "unit" : "centimeters",
+        "value" : 20
+      },
+      "width" : {
+        "unit" : "centimeters",
+        "value" : 20
+      }
+    } ],
+    "item_package_weight" : [ {
+      "value" : 300,
+      "unit" : "grams"
+    } ],
+    "item_display_weight" : [ {
+      "value" : 300,
+      "unit" : "grams"
+    } ],
+    "number_of_boxes" : [ {
+      "value" : 1
+    } ],
+    "country_of_origin" : [ {
+      "value" : "CN"
+    } ],
+    "warranty_description" : [ {
+      "value" : "Provided"
+    } ],
+    "batteries_required" : [ {
+      "value" : "false"
+    } ],
+    "supplier_declared_dg_hz_regulation" : [ {
+      "value" : "not_applicable"
+    } ],
+    "item_weight" : [ {
+      "value" : 290,
+      "unit" : "grams"
+    } ]
+  }
+}

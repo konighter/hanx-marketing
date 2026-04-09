@@ -1,0 +1,61 @@
+<h2>统一刊登与同步架构 (Unified Sync Task)</h2>
+<p class="subtitle">将“发布”与“更新”归一化为异步同步任务流</p>
+
+<div class="mockup">
+  <div class="mockup-header">统一任务中心设计</div>
+  <div class="mockup-body">
+    <div style="padding: 20px;">
+      
+      <div style="display: flex; gap: 20px; align-items: stretch;">
+        
+        <!-- 数据来源 -->
+        <div style="flex: 1; border: 1px solid #ddd; padding: 10px; border-radius: 4px; background: #f9f9f9;">
+          <div class="label" style="margin-bottom: 5px;">Source Action</div>
+          <div class="mock-nav" style="margin-bottom: 5px; background: #e3f2fd; border: 1px solid #2196F3;">A. 首次刊登 (New)</div>
+          <div class="mock-nav" style="background: #e8f5e9; border: 1px solid #4CAF50;">B. 修改同步 (Update)</div>
+        </div>
+
+        <div style="display: flex; align-items: center; font-size: 24px;">&rarr;</div>
+
+        <!-- 任务表 -->
+        <div style="flex: 1.5; border: 2px solid #2196F3; padding: 10px; border-radius: 40px; text-align: center; position: relative;">
+          <div class="label">erplus_listing_task</div>
+          <p style="font-weight: bold;">统一任务流水线</p>
+          <div style="font-size: 11px; text-align: left; margin-left: 10px;">
+            - TaskID: T20240409...<br>
+            - PlatformProductID: 123 (Update) / NULL (New)<br>
+            - Status: QUEUING / SUCCESS / FAIL
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; font-size: 24px;">&rarr;</div>
+
+        <!-- 展示入口 -->
+        <div style="flex: 1.2; border: 1px solid #ddd; padding: 10px; border-radius: 4px;">
+          <div class="label">Unified UI View</div>
+          <div style="font-size: 12px; margin-top: 10px;">
+            <div style="border-left: 3px solid #2196F3; padding-left: 5px; margin-bottom: 10px;">
+              <strong>商品列表角标</strong><br>
+              <span style="color: #666;">最后同步：</span><span style="color: #2196F3;">进行中(T001)</span>
+            </div>
+            <div style="border-left: 3px solid #f44336; padding-left: 5px;">
+              <strong>操作历史</strong><br>
+              <span style="color: #f44336;">同步失败：查看详情</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>这套设计的优势：</h3>
+  <ol>
+    <li><strong>记录可溯源</strong>：无论是第一次发货还是第十次修改价格，每一次动作都关联一个任务 ID，方便排查由于平台异步延迟导致的“改了没生效”问题。</li>
+    <li><strong>状态防抖</strong>：如果一个异步任务正在执行，前端可以锁定商品不让用户再次修改，直到获得反馈。</li>
+    <li><strong>前端一致性</strong>：不论是点击“发布”还是“保存修改”，前端弹出的都是同一个“任务处理进度”悬浮框。</li>
+  </ol>
+</div>

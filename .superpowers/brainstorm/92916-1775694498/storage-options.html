@@ -1,0 +1,56 @@
+<h2>刊登数据落库方案对比</h2>
+<p class="subtitle">决定刊登请求在异步执行前的数据归属</p>
+
+<div class="options" data-multiselect="false">
+  
+  <!-- 方案 A -->
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>方案 A：直接落到【平台商品表】 (Source of Truth 第一)</h3>
+      <p>点击“发布”后，立即在 <code>erplus_platform_product</code> (或类似表) 生成记录，状态标记为 <code>PUBLISHING</code>。</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <ul>
+            <li><strong>实时性高</strong>：用户在商品列表能立即看到“刊登中”的条目。</li>
+            <li><strong>逻辑统一</strong>：编辑成功商品和刊登新商品使用同一套模型。</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <ul>
+            <li><strong>表结构负担</strong>：如果刊登失败，主表会充斥大量“无效/脏数据”。</li>
+            <li><strong>复杂性</strong>：主表需要处理大量未发布状态的特殊逻辑。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 方案 B -->
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>方案 B：落到【刊登任务表】暂存 (Staging 隔离)</h3>
+      <p>刊登请求先存入 <code>erplus_listing_task</code>，包含所有原始 JSON。待平台返回成功（获取到 ASID/ItemID）后，再转存到平台商品表。</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <ul>
+            <li><strong>数据纯净</strong>：平台商品表只存储“真实存在于平台”的商品。</li>
+            <li><strong>纠错能力</strong>：刊登失败可以在任务表直接修改并“重试”，不干扰线上数据。</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <ul>
+            <li><strong>数据迁移</strong>：成功后需要从任务表同步/转换到商品表，多了一步操作。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="section">
+  <h3>我的建议</h3>
+  <p>考虑到跨境电商刊登（尤其是亚马逊）的失败率较高且字段极其复杂，<strong>方案 B (暂存表)</strong> 通常更稳健。它允许我们在任务表中保留由于校验失败而无法落入规范商品表的原始数据。</p>
+</div>

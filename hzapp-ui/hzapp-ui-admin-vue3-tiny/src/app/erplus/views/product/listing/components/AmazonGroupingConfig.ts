@@ -70,6 +70,7 @@ export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
   {
     name: '产品尺寸',
     match: [
+      'item_package_quantity',
       'item_weight',
       'item_package_weight',
       'item_package_dimensions',

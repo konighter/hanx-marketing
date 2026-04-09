@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
 import com.hzltd.framework.common.exception.ServiceException;
 import com.hzltd.framework.common.pojo.PageResult;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.api.service.OrderApiFactory;
 import com.hzltd.module.erplus.api.service.PricingInventoryApiFactory;
@@ -16,6 +17,10 @@ import com.hzltd.module.erplus.convert.cross.CrossPlatformProductConvert;
 import com.hzltd.module.erplus.convert.cross.CrossProductListingConvert;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductAttrsDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
+import com.hzltd.module.erplus.dal.dataobject.productpub.ErpProductPublishTaskDO;
+import com.hzltd.module.erplus.dal.dataobject.productpub.ProductListingDO;
+import com.hzltd.module.erplus.service.productpub.ErpProductPublishTaskService;
+import com.hzltd.module.erplus.service.productpub.ProductListingService;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductInventoryDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
@@ -26,8 +31,10 @@ import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossProductAttrsMapper;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
 import com.hzltd.module.erplus.spapi.enums.CrossListingStatus;
+import com.hzltd.module.erplus.spapi.enums.CrossProductPublishStatus;
 import com.hzltd.module.erplus.spapi.enums.CrossProductStatus;
 import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import com.hzltd.module.erplus.spapi.enums.LanguageEnum;
 import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;
@@ -37,7 +44,6 @@ import com.hzltd.module.erplus.spapi.model.pricing.GetInventoryRequest;
 import com.hzltd.module.erplus.spapi.model.product.MultiMarketProductModel;
 import com.hzltd.module.erplus.spapi.model.product.ProductModel;
 import com.hzltd.module.erplus.spapi.model.product.SearchProductRequest;
-import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.annotation.Resource;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -88,11 +94,15 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
     @Resource
     private ErplusFinancesService financesService;
 
+    @Resource
+    private ProductListingService productListingService;
+
+    @Resource
+    private ErpProductPublishTaskService productPublishTaskService;
+
 
     @Override
     public Optional<CrossPlatformProductVO> getCrossPlatformProduct(Long productId) {
-        CrossProductDO crossPlatformProductDO = crossProductMapper.selectById(productId);
-
         FeeModel feeModel = financesService.getProductEstimatedFee(productId);
 
 
@@ -443,6 +453,10 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
         Multimap<Long, CrossProductPriceDO> priceDOMultimap = ArrayListMultimap.create();
         priceDOList.forEach(priceDO -> priceDOMultimap.put(priceDO.getProductId(), priceDO));
 
+        // 批量获取刊登状态
+        Map<Long, com.hzltd.module.erplus.dal.dataobject.productpub.ProductListingDO> listingMap = productListingService.getListingStatusMap(
+                productPageResult.getList().stream().map(CrossProductDO::getId).collect(Collectors.toList()));
+
 
         // 转换为VO
         List<CrossProductListingResp> productListingRespVOS = productPageResult.getList().stream()
@@ -459,6 +473,17 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
                     }
                     // 合并价格信息
                     respVo.setPrice(priceDOMultimap.get(respVo.getId()));
+
+                    // 合计刊登信息
+                    com.hzltd.module.erplus.dal.dataobject.productpub.ProductListingDO listing = listingMap.get(respVo.getId());
+                    if (listing != null) {
+                        respVo.setSyncStatus(listing.getSyncStatus());
+                        respVo.setLatestTaskId(listing.getLatestTaskId());
+                        respVo.setSyncStatusName(getSyncStatusName(listing.getSyncStatus()));
+                    } else {
+                        respVo.setSyncStatus(0); // 默认待发布
+                        respVo.setSyncStatusName(getSyncStatusName(0));
+                    }
                     return respVo;
                 })
                 .collect(Collectors.toList());
@@ -481,5 +506,80 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
     @Override
     public void productChangeEventAction(ProductChangeEvent event) {
 
+    }
+
+    /**
+     * 刊登任务完成后, 同步更新CrossProduct表
+     * @param taskId 刊登任务 ID
+     */
+    @Override
+    @Transactional
+    public void syncCrossproductV2(Long taskId) {
+        // 1. 获取任务信息
+        ErpProductPublishTaskDO task = productPublishTaskService.getProductPublishTask(taskId).orElse(null);
+        if (task == null || StringUtils.isEmpty(task.getListingData())) {
+            return;
+        }
+
+
+
+        // 2. 解析属性
+        Map<String, Object> attributes = JsonUtils.parseObject(task.getListingData(), Map.class);
+        
+        // 3. 获取相关记录
+        ProductListingDO listing = productListingService.getListing(task.getListingId());
+        if (listing == null) {
+            return;
+        }
+
+        // 查找或创建 CrossProductDO
+        // 根据平台、店铺、SellerSKU 查找
+        String sellerSku = listing.getSellerSku();
+        CrossProductDO crossProduct = crossProductMapper.selectOne(new LambdaQueryWrapperX<CrossProductDO>()
+                .eq(CrossProductDO::getPlatformId, listing.getPlatformId())
+                .eq(CrossProductDO::getShopId, listing.getShopId())
+                .eq(CrossProductDO::getSellerSkuCode, sellerSku));
+
+        if (crossProduct == null) {
+            crossProduct = new CrossProductDO();
+            crossProduct.setPlatformId(listing.getPlatformId());
+            crossProduct.setShopId(listing.getShopId());
+            crossProduct.setSellerSkuCode(sellerSku);
+            crossProduct.setStatus(CrossListingStatus.ACTIVATE.getStatus());
+            crossProductMapper.insert(crossProduct);
+        }
+
+        Long crossProductId = crossProduct.getId();
+        
+        // 4. 更新属性表 (CrossProductAttrsDO)
+        // 全量覆盖该商品的属性
+        crossProductAttrsMapper.delete(new LambdaQueryWrapperX<CrossProductAttrsDO>().eq(CrossProductAttrsDO::getProductId, crossProductId));
+        
+        List<CrossProductAttrsDO> attrs = attributes.entrySet().stream()
+                .filter(e -> e.getValue() != null)
+                .map(e -> {
+                    CrossProductAttrsDO attr = new CrossProductAttrsDO();
+                    attr.setProductId(crossProductId);
+                    attr.setAttrName(e.getKey());
+                    attr.setAttrValue(com.hzltd.framework.common.util.json.JsonUtils.toJsonString(e.getValue()));
+                    return attr;
+                }).collect(Collectors.toList());
+        crossProductAttrsMapper.insertBatch(attrs);
+
+        // 5. 更新 Listing 记录的关联
+        if (listing != null) {
+            listing.setProductId(crossProductId);
+            productListingService.updateListing(listing);
+        }
+    }
+
+    private String getSyncStatusName(Integer status) {
+        if (status == null) return "未刊登";
+        if (status.equals(CrossProductPublishStatus.INIT.getStatus())) return "未刊登";
+        if (status.equals(CrossProductPublishStatus.AUDITING.getStatus())) return "待发布";
+        if (status.equals(CrossProductPublishStatus.PUBLISHING.getStatus())) return "发布中";
+        if (status.equals(CrossProductPublishStatus.PUBLISH_FAIL.getStatus())) return "发布失败";
+        if (status.equals(CrossProductPublishStatus.PUBLISH_SUC.getStatus())) return "发布成功";
+        return "未知";
     }
 }

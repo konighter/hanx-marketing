@@ -1,0 +1,42 @@
+{
+  "sku" : "Test Suit - test",
+  "status" : "INVALID",
+  "submissionId" : "56548644d3c44ac3aaabeff58c091fa9",
+  "issues" : [ {
+    "code" : "99022",
+    "message" : "The field '\"value\"' for the attribute 'List Price' does not have enough values. The required minimum is '1' value(s).",
+    "severity" : "ERROR",
+    "attributeNames" : [ "list_price" ],
+    "categories" : [ "INVALID_ATTRIBUTE" ],
+    "enforcements" : null
+  }, {
+    "code" : "90220",
+    "message" : "'Title' is required but missing.",
+    "severity" : "ERROR",
+    "attributeNames" : [ "item_name" ],
+    "categories" : [ "MISSING_ATTRIBUTE" ],
+    "enforcements" : null
+  }, {
+    "code" : "4000001",
+    "message" : "The provided value for 'Bullet Point' is invalid.",
+    "severity" : "ERROR",
+    "attributeNames" : [ "bullet_point" ],
+    "categories" : [ ],
+    "enforcements" : null
+  }, {
+    "code" : "90220",
+    "message" : "'Item Type Keyword' is required but missing.",
+    "severity" : "ERROR",
+    "attributeNames" : [ "item_type_keyword" ],
+    "categories" : [ "MISSING_ATTRIBUTE" ],
+    "enforcements" : null
+  }, {
+    "code" : "90220",
+    "message" : "'Brand Name' is required but missing.",
+    "severity" : "ERROR",
+    "attributeNames" : [ "brand" ],
+    "categories" : [ "MISSING_ATTRIBUTE" ],
+    "enforcements" : null
+  } ],
+  "identifiers" : null
+}

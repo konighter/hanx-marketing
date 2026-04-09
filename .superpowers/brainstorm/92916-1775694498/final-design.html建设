@@ -1,0 +1,8 @@
+<h2>定稿发布方案</h2>
+<div class="mockup">
+  <div class="mockup-body">
+    <p>1. <b>数据暂存</b>：修改落入 erplus_listing_task 表</p>
+    <p>2. <b>手动同步</b>：用户点击“同步到平台”触发异步任务</p>
+    <p>3. <b>状态追踪</b>：列表展示 TaskID 及结果</p>
+  </div>
+</div>

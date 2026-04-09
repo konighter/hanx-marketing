@@ -14,6 +14,9 @@ import com.hzltd.module.erplus.spapi.model.common.MediaModel;
 import com.hzltd.module.erplus.spapi.model.product.*;
 import com.hzltd.module.erplus.spapi.service.product.ProductApi;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemShopService;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -23,11 +26,14 @@ import software.amazon.spapi.api.listings.items.v2021_08_01.ListingsApi;
 import software.amazon.spapi.api.productfees.v0.FeesApi;
 import software.amazon.spapi.models.listings.items.v2021_08_01.Item;
 import software.amazon.spapi.models.listings.items.v2021_08_01.ItemSearchResults;
+import software.amazon.spapi.models.listings.items.v2021_08_01.ListingsItemPutRequest;
+import software.amazon.spapi.models.listings.items.v2021_08_01.ListingsItemSubmissionResponse;
 import software.amazon.spapi.models.productfees.v0.*;
 
 import java.math.BigDecimal;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -49,6 +55,9 @@ public class AmazonProductService extends AbsAmzPlatformApiService implements Pr
 
     private static final List<String> SUMMARY_CONTENT = List.of("summaries", "attributes", "issues");
 
+    @Resource
+    private SystemShopService shopService;
+
 
     @Override
     public ApiResponse<MediaModel> uploadFile(ApiRequest<MediaModel> file) {
@@ -59,7 +68,23 @@ public class AmazonProductService extends AbsAmzPlatformApiService implements Pr
     public ApiResponse<CreateProductResponse> createProduct(ApiRequest<CreateProductRequest> request) {
         ListingsApi listingsApi = getListingsApi(request);
 
-        return null;
+        ShopModel shopModel = shopService.getShopById(Long.valueOf(request.getShopId()));
+        CreateProductRequest createProductRequest = request.getRequest();
+
+        try {
+            ListingsItemPutRequest listingsItemPutRequest = new ListingsItemPutRequest().attributes(createProductRequest.getCrossPlatformExtAttrs()).productType(createProductRequest.getCategory().getCategoryId());
+            // item_name, item_type_keyword, brand
+            listingsItemPutRequest.putAttributesItem("item_name", List.of(Map.of("value", createProductRequest.getTitle())));
+            listingsItemPutRequest.putAttributesItem("item_type_keyword", List.of(Map.of("value", createProductRequest.getCategory().getCategoryId())));
+            listingsItemPutRequest.putAttributesItem("brand", List.of(Map.of("value", "NewOasis")));
+
+
+            ListingsItemSubmissionResponse listingSubmitResp = listingsApi.putListingsItem(listingsItemPutRequest, shopModel.getSellerId(), createProductRequest.getSkus().get(0).getSellerSku(), List.of(shopModel.getMarketplace()), null, "VALIDATION_PREVIEW", "en_US");
+            return ApiResponse.success(new CreateProductResponse());
+
+        } catch (ApiException | LWAException e) {
+            return ApiResponse.error(e.getMessage());
+        }
     }
 
     @Override

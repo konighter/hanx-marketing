@@ -31,6 +31,18 @@
           <div class="status-badge flex items-center gap-1.5">
             <span class="w-1.5 h-1.5 rounded-full" :class="getStatusColor(listing.status)"></span>
             <span class="text-[11px] font-bold" :class="getStatusTextClass(listing.status)">{{ listing.statusName }}</span>
+            
+            <template v-if="listing.syncStatus !== undefined && listing.syncStatus !== 0">
+              <span class="mx-1 text-gray-300">|</span>
+              <el-tag 
+                :type="getSyncStatusType(listing.syncStatus)" 
+                size="small" 
+                class="!h-4 !px-1.5 !text-[10px] cursor-pointer"
+                @click.stop="$emit('detail', listing)"
+              >
+                {{ listing.syncStatusName }}
+              </el-tag>
+            </template>
           </div>
         </div>
       </div>
@@ -165,6 +177,17 @@ const getStatusTextClass = (status: string) => {
   if (status === 'active' || status === '1') return 'text-emerald-500 dark:text-emerald-400'
   if (status === 'pending' || status === '2') return 'text-amber-500 dark:text-amber-400'
   return 'text-red-500 dark:text-red-400'
+}
+
+const getSyncStatusType = (status: number): 'info' | 'success' | 'danger' | 'warning' => {
+  const types: Record<number, 'info' | 'success' | 'danger' | 'warning'> = {
+    0: 'info',    // 未刊登 (INIT)
+    10: 'warning', // 待发布 (AUDITING)
+    90: 'info',    // 发布中 (PUBLISHING)
+    91: 'danger',  // 发布失败 (FAIL)
+    99: 'success'  // 发布成功 (SUC)
+  }
+  return types[status] || 'info'
 }
 </script>
 

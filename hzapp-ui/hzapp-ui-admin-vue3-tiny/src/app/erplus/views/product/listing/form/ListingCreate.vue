@@ -81,6 +81,10 @@
               <el-input v-model="formData.title" placeholder="请输入商品刊登标题" maxlength="200" show-word-limit />
             </el-form-item>
 
+            <el-form-item label="商家 SKU" prop="sellerSku">
+              <el-input v-model="formData.sellerSku" placeholder="请输入商家 SKU" maxlength="100" show-word-limit />
+            </el-form-item>
+
             <el-form-item label="描述" prop="description">
               <el-input 
                 v-model="formData.description" 
@@ -94,15 +98,7 @@
               <div class="flex flex-col gap-4 w-full">
                 <div>
                   <div class="text-sm text-gray-500 mb-1">主图</div>
-                  <el-upload
-                    action="#"
-                    list-type="picture-card"
-                    :auto-upload="false"
-                    v-model:file-list="formData.mainImages"
-                    :limit="1"
-                  >
-                    <Icon icon="ep:plus" />
-                  </el-upload>
+                  <UploadImg v-model="formData.mainImage" height="100px" width="100px" />
                 </div>
                 <div>
                   <div class="text-sm text-gray-500 mb-1">附图</div>
@@ -162,8 +158,10 @@ import { ElMessage } from 'element-plus'
 import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
 import SpuTableSelect from '@/app/erplus/views/product/spu/components/SpuTableSelect.vue'
 import AmazonListingDynamicFormV2 from '../components/AmazonListingDynamicFormV2.vue'
+import { UploadImg } from '@/components/UploadFile'
 import * as CategoryApi from '@/app/erplus/api/product/category'
 import * as SpuApi from '@/app/erplus/api/product/spu'
+import { publishProductV2 } from '@/app/erplus/api/product/listing'
 import { handleTree } from '@/utils/tree'
 
 defineOptions({ name: 'ListingCreate' })
@@ -187,7 +185,8 @@ const formData = reactive({
   categoryId: undefined as string[] | undefined,
   title: '',
   description: '',
-  mainImages: [] as any[],
+  sellerSku: '',
+  mainImage: '',
   additionalImages: [] as any[],
   productAttributes: {} as any,
 })
@@ -196,6 +195,7 @@ const rules = {
   shopId: [{ required: true, message: '请选择店铺', trigger: 'change' }],
   categoryId: [{ required: true, message: '请选择品类', trigger: 'change' }],
   title: [{ required: true, message: '请输入标题', trigger: 'blur' }],
+  sellerSku: [{ required: true, message: '请输入商家 SKU', trigger: 'blur' }],
 }
 
 const categoryCasProps = {
@@ -298,9 +298,10 @@ const handleSpuSelected = (spu: any) => {
   if (!spu) return
   formData.title = spu.name
   formData.description = spu.description || spu.name
+  formData.sellerSku = spu.productCode || ''
   // Handle images if available
   if (spu.picUrl) {
-    formData.mainImages = [{ url: spu.picUrl, name: '主图' }]
+    formData.mainImage = spu.picUrl
   }
   ElMessage.success(`已关联本地商品: ${spu.name}`)
 }
@@ -327,20 +328,38 @@ const handleSubmit = async () => {
     }
     
     submitting.value = true
-    const data = {
-      ...formData,
-      crossPlatform: getPlatformCode(formData.platformId || 3),
-      // Construct the final request as needed by SpuApi.spuListing or similar
+    
+    // 1. 获取嵌套的属性数据 (Amazon SP-API 要求的格式)
+    const nestedAttributes = dynamicFormRef.value?.getNestedSubmitData() || {}
+    
+    // 2. 构造刊登图片的 URL 列表
+    const additionalImageUrls = formData.additionalImages?.map((file: any) => file.url) || []
+
+    // 3. 构造 V2 刊登请求
+    const data: any = {
+      platform: getPlatformCode(shopCascaderValue.value?.[0] || 3),
+      shopId: formData.shopId,
+      marketId: 'ATVPDKIKX0DER', // 默认美国，实际应从配置获取
+      sellerSku: formData.sellerSku,
+      productType: selectedCategoryCode.value,
+      title: formData.title,
+      description: formData.description,
+      mainImage: formData.mainImage,
+      additionalImages: additionalImageUrls,
+      attributes: nestedAttributes
     }
     
-    // await SpuApi.spuListing(data)
-    console.log('Publishing listing:', data)
-    ElMessage.success('发布成功')
-    emit('success')
-    back()
-  } catch (err) {
+    await publishProductV2(data)
+    ElMessage.success('发布任务已提交')
+    emit('success') 
+    // back()
+  } catch (err: any) {
     console.error(err)
-    ElMessage.warning('请完善表单信息')
+    if (err.message) {
+      ElMessage.error('发布失败: ' + err.message)
+    } else {
+      ElMessage.warning('请完善表单信息')
+    }
   } finally {
     submitting.value = false
   }

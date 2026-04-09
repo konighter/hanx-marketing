@@ -105,6 +105,7 @@ import request from '@/config/axios';
 import AmazonAttributeItem from './AmazonAttributeItem.vue';
 import AmazonPurchasableOffer from './AmazonPurchasableOffer.vue';
 import { getUiConfigForField } from './AmazonUiSchema';
+import { unflatten } from '@/utils/unflatten';
 import { 
   AmazonFixedGroups, 
   GROUP_NAME_REMAINING_REQUIRED, 
@@ -437,6 +438,7 @@ watch(() => props.productType, () => {
 
 defineExpose({
   getSubmitData: () => formData.attributes,
+  getNestedSubmitData: () => unflatten(formData.attributes),
   validate: () => formRef.value?.validate()
 });
 </script>

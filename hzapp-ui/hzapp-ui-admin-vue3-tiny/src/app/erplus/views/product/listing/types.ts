@@ -25,9 +25,13 @@ export interface ListingV2VO {
   mainImage?: { url: string }
   price?: { salePrice: number; currency: string }[]
   // Mock 扩展字段
-  diagnosis?: ListingDiagnosisVO
+   diagnosis?: ListingDiagnosisVO
   performance?: ListingPerformanceVO
   mockVariants?: any[]
+  // 刊登状态扩展
+  syncStatus?: number
+  syncStatusName?: string
+  latestTaskId?: number
 }
 
 export interface CrossProductSyncRequest {

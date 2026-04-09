@@ -75,23 +75,28 @@ export const AmazonUiSchema: Record<string, AmazonUiFieldConfig> = {
   'variation_theme': { label: '变体主题', span: 12 },
 
   // === 产品尺寸与重量子字段 ===
-  'item_weight.value': { label: '重量数值', span: 12 }, 
-  'item_weight.unit': { label: '重量单位', span: 12 },
-  'item_package_weight.value': { label: '包装重量数值', span: 12 },
-  'item_package_weight.unit': { label: '包装重量单位', span: 12 },
-  'item_package_dimensions.height.value': { label: '高度', span: 8 },
-  'item_package_dimensions.height.unit': { label: '单位', span: 4 },
-  'item_package_dimensions.length.value': { label: '长度', span: 8 },
-  'item_package_dimensions.length.unit': { label: '单位', span: 4 },
-  'item_package_dimensions.width.value': { label: '宽度', span: 8 },
-  'item_package_dimensions.width.unit': { label: '单位', span: 4 },
-  'number_of_items': { label: '件数', span: 12 },
-  'item_dimensions.height.value': { label: '高度', span: 8 },
-  'item_dimensions.height.unit': { label: '单位', span: 4 },
-  'item_dimensions.length.value': { label: '长度', span: 8 },
-  'item_dimensions.length.unit': { label: '单位', span: 4 },
-  'item_dimensions.width.value': { label: '宽度', span: 8 },
-  'item_dimensions.width.unit': { label: '单位', span: 4 },
+  'item_package_quantity': { label: '包装数量', order: 40, span: 12 },
+  'number_of_items': { label: '包装内数量', order: 41, span: 12 },
+  
+  'item_package_dimensions.height.value': { label: '包装高度', order: 50, span: 16 },
+  'item_package_dimensions.height.unit': { label: '单位', order: 51, span: 8 },
+  'item_package_dimensions.length.value': { label: '包装长度', order: 52, span: 16 },
+  'item_package_dimensions.length.unit': { label: '单位', order: 53, span: 8 },
+  'item_package_dimensions.width.value': { label: '包装宽度', order: 54, span: 16 },
+  'item_package_dimensions.width.unit': { label: '单位', order: 55, span: 8 },
+
+  'item_package_weight.value': { label: '包装重量', order: 60, span: 16 },
+  'item_package_weight.unit': { label: '单位', order: 61, span: 8 },
+  'item_weight.value': { label: '商品重量', order: 62, span: 16 },
+  'item_weight.unit': { label: '单位', order: 63, span: 8 },
+  
+  // 原有的净尺寸也做类似微调
+  'item_dimensions.height.value': { label: '净高度', order: 70, span: 16 },
+  'item_dimensions.height.unit': { label: '单位', order: 71, span: 8 },
+  'item_dimensions.length.value': { label: '净长度', order: 72, span: 16 },
+  'item_dimensions.length.unit': { label: '单位', order: 73, span: 8 },
+  'item_dimensions.width.value': { label: '净宽度', order: 74, span: 16 },
+  'item_dimensions.width.unit': { label: '单位', order: 75, span: 8 },
 
   // === 产品标识 ===
   'supplier_declared_has_product_identifier_exemption': { label: '免除产品ID', order: 1, span: 24 },
@@ -157,40 +162,41 @@ export const AmazonUiSchema: Record<string, AmazonUiFieldConfig> = {
 
 /**
  * 根据 Field ID 获取对应的 UI 配置
- * 支持精确匹配和长尾嵌套字段后缀匹配 (例如 start_at 其实是在 schedule[0].start_at 里面)
- * 
- * 匹配策略:
- * 1. 精确匹配: fieldId === key  →  返回完整配置
- * 2. 后缀匹配: fieldId 以 .key 结尾或包含 .key.  →  返回完整配置
- * 3. 前缀匹配: fieldId 以 key. 开头  →  返回完整配置 (继承父级配置，如 dependsOn)
  */
 export function getUiConfigForField(fieldId: string): AmazonUiFieldConfig {
+  // 0. 预处理：移除路径中的数字索引（如 .0.），以便更好地匹配 UI Schema
+  // 例如：item_package_dimensions.0.height.value -> item_package_dimensions.height.value
+  const normalizedFieldId = fieldId.replace(/\.\d+\./g, '.');
+
   // 1. 精确匹配
-  if (AmazonUiSchema[fieldId]) {
-    return AmazonUiSchema[fieldId];
+  if (AmazonUiSchema[normalizedFieldId]) {
+    return AmazonUiSchema[normalizedFieldId];
   }
   
-  // 按 key 长度降序排序，优先匹配更具体的配置
+  // 2. 尝试后缀/包含匹配（支持简写匹配）
   const sortedKeys = Object.keys(AmazonUiSchema).sort((a, b) => b.length - a.length);
   
   for (const key of sortedKeys) {
     const config = AmazonUiSchema[key];
     
-    // 2. 后缀/中间匹配 — fieldId 的尾部包含 key (例如 schedule.0.start_at 匹配 start_at)
-    if (fieldId.endsWith('.' + key) || fieldId.includes('.' + key + '.')) {
+    // 如果 normalizedFieldId 包含完整的 key 路径，或者以 .key 结尾
+    if (normalizedFieldId === key || normalizedFieldId.endsWith('.' + key) || normalizedFieldId.includes('.' + key + '.')) {
       return config;
     }
     
-    // 3. 前缀匹配 — fieldId 以 key. 开头 (例如 purchasable_offer.0.xxx 匹配 purchasable_offer)
-    if (fieldId.startsWith(key + '.')) {
+    // 3. 前缀匹配（继承父级分组配置，如 span/dependsOn）
+    if (normalizedFieldId.startsWith(key + '.')) {
       const inherited: AmazonUiFieldConfig = {};
       if (config.span) inherited.span = config.span;
       if (config.order !== undefined) inherited.order = config.order;
-      if (config.dependsOn) inherited.dependsOn = config.dependsOn; // Inherit dependencies
+      if (config.dependsOn) inherited.dependsOn = config.dependsOn;
       
-      // Special case: if it's the main .value or .name, inherit the label too
-      if (fieldId.endsWith('.value') || fieldId.endsWith('.name')) {
-        if (config.label) inherited.label = config.label;
+      // 特殊情况：如果是 .value 或 .unit 结尾，且当前 key 是父路径
+      if (normalizedFieldId.endsWith('.value')) {
+         if (config.label) inherited.label = config.label;
+      }
+      if (normalizedFieldId.endsWith('.unit')) {
+         inherited.label = '单位';
       }
       return inherited;
     }
