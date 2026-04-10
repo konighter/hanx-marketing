@@ -5,6 +5,7 @@ import com.hzltd.module.erplus.dal.dataobject.productpub.ProductListingDO;
 import com.hzltd.module.erplus.dal.mysql.productpub.ProductListingMapper;
 import com.hzltd.module.erplus.spapi.enums.CrossProductPublishStatus;
 import jakarta.annotation.Resource;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -64,12 +65,15 @@ public class ProductListingServiceImpl implements ProductListingService {
     }
 
     @Override
-    public void updateListingStatus(Long id, Integer syncStatus, Long taskId) {
+    public void updateListingStatus(Long id, Integer syncStatus, Long taskId, String platformProductCode) {
         ProductListingDO listing = productListingMapper.selectById(id);
         if (listing != null) {
             listing.setSyncStatus(syncStatus);
             if (taskId != null) {
                 listing.setLatestTaskId(taskId);
+            }
+            if (StringUtils.isNotEmpty(platformProductCode)) {
+                listing.setPlatformProductCode(platformProductCode);
             }
             listing.setPublishTime(LocalDateTime.now());
             productListingMapper.updateById(listing);
@@ -78,7 +82,7 @@ public class ProductListingServiceImpl implements ProductListingService {
 
     @Override
     public void saveOrUpdateListingStatus(Long id, Long taskId) {
-        this.updateListingStatus(id, 10, taskId); // 10: AUDITING/WAITING
+        this.updateListingStatus(id, 10, taskId, null); // 10: AUDITING/WAITING
     }
 
     @Override

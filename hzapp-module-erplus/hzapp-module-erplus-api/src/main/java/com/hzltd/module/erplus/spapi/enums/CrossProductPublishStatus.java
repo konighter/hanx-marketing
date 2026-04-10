@@ -16,10 +16,10 @@ public enum CrossProductPublishStatus implements IntArrayValuable {
      */
     AUDITING(10, "待发布"),
 
-
     PUBLISHING(90, "发布中"),
-    PUBLISH_FAIL(91, "发布失败"),
-    PUBLISH_SUC(99, "发布成功");
+    PUBLISH_SUBMIT(92, "成功提交"),
+    PUBLISH_SUC(99, "发布成功"),
+    PUBLISH_FAIL(-1, "发布失败");
 
     private final Integer status;
     private final String name;

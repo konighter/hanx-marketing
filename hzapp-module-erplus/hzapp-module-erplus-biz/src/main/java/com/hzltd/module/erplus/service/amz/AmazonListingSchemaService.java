@@ -94,7 +94,7 @@ public class AmazonListingSchemaService {
             // Special Case: Array wrapping
             if ("array".equals(type) && propSchema.has("items")) {
                 JsonNode items = propSchema.get("items");
-                if (items.has("properties")) {
+                if (items.has("properties") && !fullId.contains("bullet_point")) {
                     // Recurse into items for complex objects, using .0 to indicate the first item of the array
                     flattenProperties(fullId + ".0", items, fields, isRequired);
                 } else {

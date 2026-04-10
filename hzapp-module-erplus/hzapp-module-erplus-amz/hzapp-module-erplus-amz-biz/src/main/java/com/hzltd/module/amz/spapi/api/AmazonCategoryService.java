@@ -38,7 +38,7 @@ public class AmazonCategoryService extends AbsAmzPlatformApiService implements C
             apiRequest.setShopId(String.valueOf(apiRequest.getRequest().getShopId()));
             DefinitionsApi definitionsApi = getDefinitionsApi(apiRequest);
 
-            ProductTypeList productTypes = definitionsApi.searchDefinitionsProductTypes(systemShopService.getShopMarketplace(apiRequest.getShopId()), List.of(apiRequest.getRequest().getName()), null, "zh_CN", null);
+            ProductTypeList productTypes = definitionsApi.searchDefinitionsProductTypes(systemShopService.getShopMarketplace(apiRequest.getShopId()), List.of(apiRequest.getRequest().getName()), null, "en_US", null);
             return ApiResponse.success(productTypes.getProductTypes().stream()
                     .map(productType -> {
                         CategoryModel model = new CategoryModel();
@@ -63,7 +63,7 @@ public class AmazonCategoryService extends AbsAmzPlatformApiService implements C
             ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(
                 apiRequest.getRequest().getCategoryId(), 
                 systemShopService.getShopMarketplace(apiRequest.getShopId()), 
-                null, null, null, null, "zh_CN"
+                null, null, null, null, "en_US"
             );
             MetaCategorySchemaResult result = ProductTypeSchemaUtils.parseProductTypeSchema(productTypeDefinition.getSchema().getLink().getResource(), productTypeDefinition);
             return ApiResponse.success(result);
@@ -81,7 +81,7 @@ public class AmazonCategoryService extends AbsAmzPlatformApiService implements C
             ProductTypeDefinition productTypeDefinition = definitionsApi.getDefinitionsProductType(
                 apiRequest.getRequest().getCategoryId(),
                 systemShopService.getShopMarketplace(apiRequest.getShopId()),
-                    null, null, null, null, "zh_CN"
+                    null, null, null, null, "en_US"
             );
             String rawSchema = ProductTypeSchemaUtils.getProductTypeSchema(productTypeDefinition.getSchema().getLink().getResource());
             return ApiResponse.success(rawSchema);

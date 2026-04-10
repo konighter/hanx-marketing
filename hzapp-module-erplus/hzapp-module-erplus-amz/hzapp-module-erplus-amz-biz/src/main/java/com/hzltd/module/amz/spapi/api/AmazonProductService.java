@@ -11,6 +11,7 @@ import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import com.hzltd.module.erplus.spapi.model.common.FeeModel;
 import com.hzltd.module.erplus.spapi.model.common.MediaModel;
+import com.hzltd.module.erplus.spapi.model.common.SkuModel;
 import com.hzltd.module.erplus.spapi.model.product.*;
 import com.hzltd.module.erplus.spapi.service.product.ProductApi;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
@@ -24,10 +25,7 @@ import org.threeten.bp.OffsetDateTime;
 import software.amazon.spapi.ApiException;
 import software.amazon.spapi.api.listings.items.v2021_08_01.ListingsApi;
 import software.amazon.spapi.api.productfees.v0.FeesApi;
-import software.amazon.spapi.models.listings.items.v2021_08_01.Item;
-import software.amazon.spapi.models.listings.items.v2021_08_01.ItemSearchResults;
-import software.amazon.spapi.models.listings.items.v2021_08_01.ListingsItemPutRequest;
-import software.amazon.spapi.models.listings.items.v2021_08_01.ListingsItemSubmissionResponse;
+import software.amazon.spapi.models.listings.items.v2021_08_01.*;
 import software.amazon.spapi.models.productfees.v0.*;
 
 import java.math.BigDecimal;
@@ -70,18 +68,26 @@ public class AmazonProductService extends AbsAmzPlatformApiService implements Pr
 
         ShopModel shopModel = shopService.getShopById(Long.valueOf(request.getShopId()));
         CreateProductRequest createProductRequest = request.getRequest();
-
+        String skuCode = createProductRequest.getSkus().get(0).getSellerSku();
         try {
             ListingsItemPutRequest listingsItemPutRequest = new ListingsItemPutRequest().attributes(createProductRequest.getCrossPlatformExtAttrs()).productType(createProductRequest.getCategory().getCategoryId());
             // item_name, item_type_keyword, brand
             listingsItemPutRequest.putAttributesItem("item_name", List.of(Map.of("value", createProductRequest.getTitle())));
             listingsItemPutRequest.putAttributesItem("item_type_keyword", List.of(Map.of("value", createProductRequest.getCategory().getCategoryId())));
             listingsItemPutRequest.putAttributesItem("brand", List.of(Map.of("value", "NewOasis")));
+            listingsItemPutRequest.putAttributesItem("list_price", List.of(Map.of("currency", "USD", "value_with_tax", 30, "marketplace_id", shopModel.getMarketplace(), "value", 30)));
 
-
-            ListingsItemSubmissionResponse listingSubmitResp = listingsApi.putListingsItem(listingsItemPutRequest, shopModel.getSellerId(), createProductRequest.getSkus().get(0).getSellerSku(), List.of(shopModel.getMarketplace()), null, "VALIDATION_PREVIEW", "en_US");
-            return ApiResponse.success(new CreateProductResponse());
-
+            ListingsItemSubmissionResponse listingSubmitResp = listingsApi.putListingsItem(listingsItemPutRequest, shopModel.getSellerId(), skuCode, List.of(shopModel.getMarketplace()), null, createProductRequest.isPreview() ? "VALIDATION_PREVIEW": null, "en_US");
+            if (ListingsItemSubmissionResponse.StatusEnum.ACCEPTED.equals(listingSubmitResp.getStatus())) {
+                return ApiResponse.success(new CreateProductResponse()
+                        .setSkuModel(new SkuModel().setSkuId(listingSubmitResp.getSku()))
+                        .setProductId(CollectionUtils.isEmpty(listingSubmitResp.getIdentifiers())? null: listingSubmitResp.getIdentifiers().get(0).getAsin())
+                        .setIssues(CollectionUtils.isEmpty(listingSubmitResp.getIssues()) ? null : listingSubmitResp.getIssues().stream().map(issue -> new IssueModel().setCode(issue.getCode()).setMessage(issue.getMessage())).toList())
+                );
+            } else {
+                return ApiResponse.error(listingSubmitResp.getStatus().getValue() + "\n" +
+                        (CollectionUtils.isEmpty(listingSubmitResp.getIssues()) ? null : listingSubmitResp.getIssues().stream().map(Issue::getMessage).collect(Collectors.joining())));
+            }
         } catch (ApiException | LWAException e) {
             return ApiResponse.error(e.getMessage());
         }
@@ -124,7 +130,7 @@ public class AmazonProductService extends AbsAmzPlatformApiService implements Pr
         ListingsApi listingsApi = getListingsApi(apiRequest);
         String sellerId = this.getAuthorizationModel(apiRequest).getSellerId();
         try {
-            Item item = listingsApi.getListingsItem(sellerId, apiRequest.getRequest().getSellerSku(), List.of(apiRequest.getMarketId()), null, ALL_CONTENT);
+            Item item = listingsApi.getListingsItem(sellerId, apiRequest.getRequest().getSellerSku(), List.of(apiRequest.getMarketId()), "zh_CN", ALL_CONTENT);
             return ApiResponse.success(convertProduct(item));
         } catch (ApiException | LWAException e) {
             throw new RuntimeException(e);

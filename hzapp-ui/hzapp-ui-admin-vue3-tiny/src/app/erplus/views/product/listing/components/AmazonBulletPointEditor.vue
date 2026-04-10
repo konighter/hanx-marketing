@@ -55,9 +55,19 @@ const initList = () => {
 initList();
 
 const handleSync = () => {
-   // SP-API wrapped items format
    const validItems = list.value.filter(s => s.trim().length > 0);
-   const payload = validItems.map(s => ({ value: s.trim() }));
+   
+   // 尝试从现有数据中获取元数据 (如 language_tag, marketplace_id)
+   const meta = (Array.isArray(props.modelValue) && props.modelValue.length > 0) 
+      ? { ...props.modelValue[0] } 
+      : {};
+   delete (meta as any).value; // 移除旧的 value
+   
+   const payload = validItems.map(s => ({
+       ...meta,
+       value: s.trim()
+   }));
+   
    emit('update:modelValue', payload);
    emit('change', props.field.id, payload);
 };

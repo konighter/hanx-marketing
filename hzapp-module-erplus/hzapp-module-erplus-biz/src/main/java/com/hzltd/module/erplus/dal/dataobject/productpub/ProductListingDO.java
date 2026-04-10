@@ -52,6 +52,11 @@ public class ProductListingDO extends BaseDO {
      * 卖家 SKU
      */
     private String sellerSku;
+
+    /**
+     * 平台商品ID
+     */
+    private String platformProductCode;
     
     /**
      * 刊登状态: 0-待发布, 10-待发布, 90-发布中, 91-发布失败, 99-发布成功

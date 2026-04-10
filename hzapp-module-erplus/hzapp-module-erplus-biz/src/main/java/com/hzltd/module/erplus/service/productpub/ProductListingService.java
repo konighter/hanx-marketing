@@ -49,7 +49,7 @@ public interface ProductListingService {
      * @param syncStatus 状态
      * @param taskId 关联任务 ID
      */
-    void updateListingStatus(Long id, Integer syncStatus, Long taskId);
+    void updateListingStatus(Long id, Integer syncStatus, Long taskId, String productId);
 
     /**
      * 更新刊登状态 (根据记录 ID)

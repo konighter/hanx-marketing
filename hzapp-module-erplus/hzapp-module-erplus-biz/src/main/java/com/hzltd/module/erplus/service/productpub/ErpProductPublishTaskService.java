@@ -26,6 +26,13 @@ public interface ErpProductPublishTaskService {
      */
     boolean submitProductPublishTask(Long taskId);
 
+    /**
+     * 提交成功的任务，检查是否完成
+     * @param taskId
+     * @return
+     */
+    boolean submitProductPublishCheckTask(Long taskId);
+
 
 
 }

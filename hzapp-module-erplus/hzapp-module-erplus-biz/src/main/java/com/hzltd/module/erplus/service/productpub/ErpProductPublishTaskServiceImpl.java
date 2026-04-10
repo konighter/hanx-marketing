@@ -23,13 +23,14 @@ import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import com.hzltd.module.erplus.spapi.model.category.CategoryModel;
 import com.hzltd.module.erplus.spapi.model.common.Image;
 import com.hzltd.module.erplus.spapi.model.common.SkuModel;
-import com.hzltd.module.erplus.spapi.model.product.CreateProductRequest;
-import com.hzltd.module.erplus.spapi.model.product.CreateProductResponse;
+import com.hzltd.module.erplus.spapi.model.product.*;
 import com.hzltd.module.erplus.spapi.service.product.ProductApi;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
@@ -90,7 +91,7 @@ public class ErpProductPublishTaskServiceImpl implements ErpProductPublishTaskSe
     @Override
     public java.util.List<ErpProductPublishTaskDO> getPendingPublishTasks() {
         return erpProductPublishTaskMapper.selectList(new LambdaQueryWrapper<ErpProductPublishTaskDO>()
-                .eq(ErpProductPublishTaskDO::getStatus, CrossProductPublishStatus.AUDITING.getStatus())
+                .in(ErpProductPublishTaskDO::getStatus, List.of(CrossProductPublishStatus.AUDITING.getStatus(), CrossProductPublishStatus.PUBLISH_SUBMIT.getStatus()))
                 .le(ErpProductPublishTaskDO::getScheduleTime, java.time.LocalDateTime.now()) // 调度时间小于等于当前时间
         );
     }
@@ -110,10 +111,17 @@ public class ErpProductPublishTaskServiceImpl implements ErpProductPublishTaskSe
         Futures.addCallback(future, new ProductPublishCallbackListener(taskId), ExecutorService.getCallbackExecutorService());
         return true;
     }
+
+    @Override
+    public boolean submitProductPublishCheckTask(Long taskId) {
+
+        return true;
+    }
  
     @AllArgsConstructor
     public static class PublishTaskExecuteResult {
-        ApiResponse<CreateProductResponse> response;
+        boolean success;
+        CreateProductResponse response;
     }
  
     @AllArgsConstructor
@@ -146,7 +154,7 @@ public class ErpProductPublishTaskServiceImpl implements ErpProductPublishTaskSe
             }
  
             ApiResponse<CreateProductResponse> response = crossServiceCompositeApi.createProduct(new ApiRequest<CreateProductRequest>().setShopIdInt(listing.getShopId()).setRequest(request));
-            return new PublishTaskExecuteResult(response);
+            return new PublishTaskExecuteResult(response.success(), response.getData());
         }
  
         private CreateProductRequest buildRequestFromListingData(ErpProductPublishTaskDO task, ProductListingDO listing) {
@@ -202,31 +210,40 @@ public class ErpProductPublishTaskServiceImpl implements ErpProductPublishTaskSe
             Optional<ErpProductPublishTaskDO> taskOpt = getProductPublishTask(taskId);
             if (taskOpt.isPresent()) {
                 ErpProductPublishTaskDO task = taskOpt.get();
-                boolean isSuccess = result.response.success();
-                task.setStatus(isSuccess ? CrossProductPublishStatus.PUBLISH_SUC.getStatus() : CrossProductPublishStatus.PUBLISH_FAIL.getStatus());
-                
-                task.setEndTime(java.time.LocalDateTime.now());
-                
+
+                CrossProductPublishStatus status;
+                if (result.success) {
+                    if (StringUtils.isNotEmpty(result.response.getProductId())) {
+                        status = CrossProductPublishStatus.PUBLISH_SUC;
+                    } else {
+                        status = CrossProductPublishStatus.PUBLISH_SUBMIT;
+                        task.setScheduleTime(LocalDateTime.now().plusMinutes(10));
+                    }
+
+                } else {
+                    status = CrossProductPublishStatus.PUBLISH_FAIL;
+                    task.setEndTime(LocalDateTime.now());
+                }
+
+                task.setStatus(status.getStatus());
+
                 // 设置详细反馈
-                String feedbackJson = JsonUtils.toJsonString(result.response);
-                task.setRawFeedback(feedbackJson);
+                task.setRawFeedback(JsonUtils.toJsonString(result.response));
                 
                 // 解析简要错误
-                if (!isSuccess && result.response != null) {
-                    task.setBrief(result.response.getMsg());
-                    task.setStatusInfo(result.response.getMsg());
-                } else if (isSuccess) {
+                if (status.getStatus() < 0) {
+                    task.setBrief(JsonUtils.toJsonString(result.response.getIssues()));
+                    task.setStatusInfo(status.getName());
+                } else {
                     task.setBrief("Success");
-                    task.setStatusInfo("Publishing Successful");
+                    task.setStatusInfo(status.getName());
                 }
                 
                 updateProductPublishTask(task);
-                
                 // 更新 Listing 状态 (10:发布中 -> 99:成功, 91:失败)
-                productListingService.updateListingStatus(task.getListingId(), isSuccess ? CrossProductPublishStatus.PUBLISH_SUC.getStatus() : CrossProductPublishStatus.PUBLISH_FAIL.getStatus(), taskId);
- 
-                // Promotion Logic: 成功后同步到正式商品表
-                if (isSuccess) {
+                productListingService.updateListingStatus(task.getListingId(), status.getStatus(), taskId, result.response.getProductId());
+
+                if (CrossProductPublishStatus.PUBLISH_SUC.equals(status)) {
                     crossProductService.syncCrossproductV2(taskId);
                 }
             }
@@ -244,8 +261,103 @@ public class ErpProductPublishTaskServiceImpl implements ErpProductPublishTaskSe
                 task.setEndTime(java.time.LocalDateTime.now());
                 updateProductPublishTask(task);
                 
-                productListingService.updateListingStatus(task.getListingId(), 91, taskId);
+                productListingService.updateListingStatus(task.getListingId(), 91, taskId, null);
             }
         }
     }
+
+    @AllArgsConstructor
+    public class ProductCheckTask implements Callable<PublishTaskExecuteResult> {
+        private Long taskId;
+
+        @Override
+        public PublishTaskExecuteResult call() throws Exception {
+            Optional<ErpProductPublishTaskDO> publishTaskOpt = getProductPublishTask(taskId);
+            if (!publishTaskOpt.isPresent()) {
+                throw new ServiceException(PRODUCT_NOT_EXISTS);
+            }
+            ErpProductPublishTaskDO publishTask = publishTaskOpt.get();
+            ProductListingDO listing = productListingService.getListing(publishTask.getListingId());
+            if (listing == null) {
+                throw new ServiceException(PRODUCT_NOT_EXISTS);
+            }
+
+            SellPlatformDO platform = platformService.getSellPlatform(listing.getPlatformId());
+
+            ProductApi crossServiceCompositeApi = productApiFactory.getCrossApiService(CrossPlatformEnum.of(platform.getCode()));
+
+            ApiResponse<MultiMarketProductModel> getProductResp = crossServiceCompositeApi.getProduct(new ApiRequest<GetProductRequest>()
+                    .setShopIdInt(listing.getShopId())
+                    .setRequest(new GetProductRequest().setSellerSku(listing.getSellerSku())));
+            if (getProductResp.success()) {
+                ProductModel productModel = getProductResp.getData().get(listing.getMarketId());
+                return new PublishTaskExecuteResult(true, new CreateProductResponse()
+                        .setProductId(productModel.getProductCode())
+                        .setSkuModel(new SkuModel().setSkuId(productModel.getSellerSku()))
+                        .setIssues(productModel.getIssues()));
+            } else {
+                return new PublishTaskExecuteResult(false, null);
+            }
+        }
+    }
+
+    @AllArgsConstructor
+    private class ProductPublishCheckCallbackListener implements FutureCallback<PublishTaskExecuteResult> {
+        private Long taskId;
+        @Override
+        public void onSuccess(PublishTaskExecuteResult result) {
+            Optional<ErpProductPublishTaskDO> publishTaskOpt = getProductPublishTask(taskId);
+            if (!publishTaskOpt.isPresent()) {
+                log.warn("[ProductPublishCheckCallbackListener] Task Not Exist, taskId={}", taskId);
+                return;
+            }
+            ErpProductPublishTaskDO publishTask = publishTaskOpt.get();
+            ProductListingDO listing = productListingService.getListing(publishTask.getListingId());
+            if (listing == null) {
+                log.warn("[ProductPublishCheckCallbackListener] Listing Not Exist, ListingId={}", publishTask.getListingId());
+                return;
+            }
+            // 如果失败,
+            // 1、check请求失败, 状态未知, 继续下一轮
+            // 2、没有错误也没有返回成功的产品ID, 还在进行, 继续等待下一轮check
+            if (!result.success || (StringUtils.isEmpty(result.response.getProductId()) && CollectionUtils.isEmpty(result.response.getIssues()))) {
+                log.warn("[ProductPublishCheckCallbackListener] Product Creating, TaskId={}, runNext={}", taskId, publishTask.getScheduleTime());
+                return;
+            }
+
+            boolean isSuccess = false;
+            // 只要有ProductId,
+            CrossProductPublishStatus status;
+            // 有issues
+            if (CollectionUtils.isNotEmpty(result.response.getIssues())) {
+                status = CrossProductPublishStatus.PUBLISH_FAIL;
+                String issueInfo = JsonUtils.toJsonString(result.response.getIssues());
+                publishTask.setStatus(status.getStatus());
+                publishTask.setRawFeedback(issueInfo);
+                publishTask.setBrief(issueInfo);
+                publishTask.setStatusInfo(status.getName());
+            } else {
+                status = CrossProductPublishStatus.PUBLISH_SUC;
+                publishTask.setStatus(status.getStatus());
+                publishTask.setStatusInfo(status.getName());
+            }
+
+            publishTask.setEndTime(LocalDateTime.now());
+
+            updateProductPublishTask(publishTask);
+            // 更新 Listing 状态 (10:发布中 -> 99:成功, 91:失败)
+            productListingService.updateListingStatus(publishTask.getListingId(), status.getStatus(), taskId, result.response.getProductId());
+
+            // 如果成功, 同步主表
+            if (CrossProductPublishStatus.PUBLISH_SUC.equals(status)) {
+                crossProductService.syncCrossproductV2(taskId);
+            }
+        }
+
+        @Override
+        public void onFailure(Throwable t) {
+            log.warn("[ProductPublishCheckCallbackListener] TaskCheck Process Error, taskId={}", taskId);
+        }
+    }
+
 }

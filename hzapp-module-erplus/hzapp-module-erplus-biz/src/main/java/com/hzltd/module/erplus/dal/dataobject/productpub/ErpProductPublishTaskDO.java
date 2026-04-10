@@ -46,6 +46,12 @@ public class ErpProductPublishTaskDO extends BaseDO {
      * 任务状态
      */
     private Integer status;
+
+    /**
+     * 操作类型
+     * @link {OperationModeEnum}
+     */
+    private Integer operation;
     
     /**
      * 平台原始反馈JSON

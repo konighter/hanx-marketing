@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.spapi.model.product;
 
 import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.erplus.spapi.enums.LanguageEnum;
-import com.hzltd.module.erplus.spapi.enums.SaveModeEnum;
+import com.hzltd.module.erplus.spapi.enums.OperationModeEnum;
 import com.hzltd.module.erplus.spapi.model.category.BrandModel;
 import com.hzltd.module.erplus.spapi.model.category.CategoryModel;
 import com.hzltd.module.erplus.spapi.model.common.*;
@@ -29,7 +29,7 @@ public class CreateProductRequest {
     private String marketId;
 
     @NotNull
-    private SaveModeEnum saveMode;
+    private OperationModeEnum saveMode;
 
     @NotNull
     private LanguageEnum language;
@@ -98,5 +98,10 @@ public class CreateProductRequest {
     private Long relateProductId;
 
     private Map<String, Object> crossPlatformExtAttrs;
+
+    /**
+     * 是否预览, 预览不会实际提交到平台, 或者用预览模式请求平台
+     */
+    private boolean preview = false;
 
 }

@@ -4,7 +4,7 @@ import com.hzltd.module.erplus.dal.dataobject.brand.ProductBrandDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.erplus.spapi.enums.LanguageEnum;
-import com.hzltd.module.erplus.spapi.enums.SaveModeEnum;
+import com.hzltd.module.erplus.spapi.enums.OperationModeEnum;
 import com.hzltd.module.erplus.spapi.model.category.CategoryModel;
 import com.hzltd.module.erplus.spapi.model.common.*;
 import com.hzltd.module.erplus.spapi.model.logistics.LogisticsModel;
@@ -39,7 +39,7 @@ public class ProductPublishRequest {
     /**
      * 保存模式, draft or submit
      */
-    private SaveModeEnum saveMode;
+    private OperationModeEnum saveMode;
     /**
      * 配送模式
      */

@@ -41,6 +41,7 @@ public class ProductPublishJob implements JobHandler {
         for (ErpProductPublishTaskDO task : tasks) {
             try {
                 log.info("[ProductPublishJob] 提交任务: taskId={}", task.getId());
+
                 boolean submitted = productPublishTaskService.submitProductPublishTask(task.getId());
                 if (submitted) {
                     successCount++;

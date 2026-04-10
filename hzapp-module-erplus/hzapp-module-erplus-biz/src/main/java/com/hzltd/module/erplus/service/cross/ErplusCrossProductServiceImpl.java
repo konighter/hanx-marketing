@@ -521,7 +521,7 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
             return;
         }
 
-
+        // todo--从平台查询商品信息, 用平台的信息修改本地商品
 
         // 2. 解析属性
         Map<String, Object> attributes = JsonUtils.parseObject(task.getListingData(), Map.class);
@@ -538,7 +538,8 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
         CrossProductDO crossProduct = crossProductMapper.selectOne(new LambdaQueryWrapperX<CrossProductDO>()
                 .eq(CrossProductDO::getPlatformId, listing.getPlatformId())
                 .eq(CrossProductDO::getShopId, listing.getShopId())
-                .eq(CrossProductDO::getSellerSkuCode, sellerSku));
+                .eq(CrossProductDO::getSellerSkuCode, sellerSku)
+                .eq(CrossProductDO::getPlatformProductCode, listing.getPlatformProductCode()));
 
         if (crossProduct == null) {
             crossProduct = new CrossProductDO();
@@ -546,6 +547,7 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
             crossProduct.setShopId(listing.getShopId());
             crossProduct.setSellerSkuCode(sellerSku);
             crossProduct.setStatus(CrossListingStatus.ACTIVATE.getStatus());
+            crossProduct.setPlatformProductCode(listing.getPlatformProductCode());
             crossProductMapper.insert(crossProduct);
         }
 
@@ -562,6 +564,7 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
                     attr.setProductId(crossProductId);
                     attr.setAttrName(e.getKey());
                     attr.setAttrValue(com.hzltd.framework.common.util.json.JsonUtils.toJsonString(e.getValue()));
+                    attr.setVersion(task.getVersion());
                     return attr;
                 }).collect(Collectors.toList());
         crossProductAttrsMapper.insertBatch(attrs);
