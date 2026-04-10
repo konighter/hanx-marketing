@@ -337,6 +337,11 @@ const handleSubmit = async () => {
     // Check if e is a string (custom rejection) or object (Element Plus validation error)
     if (typeof e === 'string') {
       ElMessage.warning(e)
+    } else if (typeof e === 'object' && Object.keys(e).length > 0) {
+      // Element Plus validation error object { field: [{message: '...', ...}] }
+      const firstField = Object.keys(e)[0]
+      const firstError = e[firstField][0]?.message || '请完善表单信息'
+      ElMessage.warning(firstError)
     } else {
       ElMessage.warning('请完善表单信息')
     }

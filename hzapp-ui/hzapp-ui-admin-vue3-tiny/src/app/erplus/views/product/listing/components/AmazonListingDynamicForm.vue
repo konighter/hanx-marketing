@@ -19,7 +19,7 @@
                 <el-form-item 
                   :prop="['attributes', field.id]" 
                   :required="isFieldRequired(field.id)"
-                  :rules="isFieldRequired(field.id) ? [{ required: true, message: `请填写 ${field.title}`, trigger: ['change', 'blur'] }] : []"
+                  :rules="isFieldRequired(field.id) ? [{ required: true, message: `请填写 ${field.title} (${field.id})`, trigger: ['change', 'blur'] }] : []"
                   :class="{ 'top-aligned-label': isTopAligned(field) }"
                 >
                   <template #label>
@@ -36,10 +36,6 @@
                     :field="field"
                     @change="handleFieldChange"
                   />
-                  
-                  <div v-if="field.linkageRules?.length > 0" class="attribute-tip text-xs text-orange-500 mt-1">
-                    <i class="el-icon-connection"></i> 关联属性：受联动规则约束
-                  </div>
                 </el-form-item>
               </el-col>
             </el-row>
@@ -110,9 +106,6 @@
                               :field="field"
                               @change="handleFieldChange"
                             />
-                            <div v-if="field.linkageRules?.length > 0" class="attribute-tip text-xs text-orange-500 mt-1 inline-block">
-                              <i class="el-icon-connection"></i> 受联动规则约束
-                            </div>
                           </div>
                           <el-button type="danger" plain size="small" @click="removeOptionalField(field.id)">移除</el-button>
                         </div>
@@ -146,6 +139,7 @@ import {
   PURCHASABLE_OFFER_PREFIX,
   PURCHASABLE_OFFER_HIDDEN_FIELDS
 } from './AmazonUiSchema';
+import { evaluateLinkageExpression } from './amzLinkage';
 
 const props = defineProps<{
   shopId: number;
@@ -390,7 +384,7 @@ const applyLinkageRules = () => {
     let isReq = field.required;
 
     field.linkageRules.forEach((rule: any) => {
-      const match = evaluateCondition(rule.condition);
+      const match = evaluateLinkageExpression(rule.condition, formData.attributes);
       if (match) {
         if (rule.type === 'visibility' && rule.action === 'show') isVisible = true;
         if (rule.type === 'visibility' && rule.action === 'hide') isVisible = false;
@@ -479,34 +473,7 @@ const applyLinkageRules = () => {
 };
 
 const evaluateCondition = (conditionStr: string) => {
-  // Simple evaluation: "field == 'value'"
-  const parts = conditionStr.split(' == ');
-  if (parts.length !== 2) return false;
-  
-  const fieldId = parts[0].trim();
-  const targetVal = parts[1].replace(/'/g, '').trim();
-  
-  // Try direct key first, then look for any field starting with this key
-  let currentVal = formData.attributes[fieldId];
-  
-  // Try to find derived fields if direct key is undefined
-  if (currentVal === undefined) {
-    const possibleKeys = Object.keys(formData.attributes).filter(k => k === fieldId || k.startsWith(fieldId + '.'));
-    if (possibleKeys.length > 0) {
-      currentVal = formData.attributes[possibleKeys[0]];
-    }
-  }
-  
-  // Handle Amazon's specific wrapped types in evaluation
-  const extractValue = (val: any) => {
-    if (val === undefined || val === null) return val;
-    if (Array.isArray(val) && val.length > 0 && val[0].value !== undefined) return val[0].value;
-    if (typeof val === 'object' && val.value !== undefined) return val.value;
-    return val;
-  };
-  
-  const actualVal = extractValue(currentVal);
-  return String(actualVal) === targetVal;
+  return evaluateLinkageExpression(conditionStr, formData.attributes);
 };
 
 const isFieldVisible = (fieldId: string) => visibilityMap[fieldId] !== false;

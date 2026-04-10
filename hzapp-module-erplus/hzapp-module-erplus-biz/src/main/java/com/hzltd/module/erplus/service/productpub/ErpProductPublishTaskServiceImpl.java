@@ -232,7 +232,7 @@ public class ErpProductPublishTaskServiceImpl implements ErpProductPublishTaskSe
                 
                 // 解析简要错误
                 if (status.getStatus() < 0) {
-                    task.setBrief(JsonUtils.toJsonString(result.response.getIssues()));
+                    task.setBrief(JsonUtils.toJsonString(result.response));
                     task.setStatusInfo(status.getName());
                 } else {
                     task.setBrief("Success");

@@ -357,6 +357,11 @@ const handleSubmit = async () => {
     console.error(err)
     if (err.message) {
       ElMessage.error('发布失败: ' + err.message)
+    } else if (typeof err === 'object' && Object.keys(err).length > 0) {
+      // Element Plus validation error object { field: [{message: '...', ...}] }
+      const firstField = Object.keys(err)[0]
+      const firstError = err[firstField][0]?.message || '请完善表单信息'
+      ElMessage.warning(firstError)
     } else {
       ElMessage.warning('请完善表单信息')
     }

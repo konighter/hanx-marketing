@@ -43,7 +43,7 @@
                 <el-form-item 
                   :prop="['attributes', field.id]" 
                   :required="isFieldRequired(field.id)"
-                  :rules="isFieldRequired(field.id) ? [{ required: true, message: `请填写 ${field.title}`, trigger: ['change', 'blur'] }] : []"
+                  :rules="isFieldRequired(field.id) ? [{ required: true, message: `请填写 ${field.title} (${field.id})`, trigger: ['change', 'blur'] }] : []"
                   :class="{ 'is-optional-item': group.type === 'optional' }"
                 >
                   <template #label>
@@ -72,10 +72,6 @@
                     >
                       <i class="el-icon-close"></i> 移除
                     </el-link>
-                  </div>
-                  
-                  <div v-if="field.linkageRules?.length > 0" class="attribute-tip text-xs text-orange-500 mt-1">
-                    <i class="el-icon-connection"></i> 关联属性：受联动规则约束
                   </div>
                 </el-form-item>
               </el-col>
@@ -106,6 +102,7 @@ import AmazonAttributeItem from './AmazonAttributeItem.vue';
 import AmazonPurchasableOffer from './AmazonPurchasableOffer.vue';
 import { getUiConfigForField } from './AmazonUiSchema';
 import { unflatten } from '@/utils/unflatten';
+import { evaluateLinkageExpression } from './amzLinkage';
 import { 
   AmazonFixedGroups, 
   GROUP_NAME_REMAINING_REQUIRED, 
@@ -343,7 +340,7 @@ const applyLinkageRules = () => {
     // 1. Process Backend Linkage Rules
     if (field.linkageRules && field.linkageRules.length > 0) {
       field.linkageRules.forEach((rule: any) => {
-        const match = evaluateCondition(rule.condition);
+        const match = evaluateLinkageExpression(rule.condition, formData.attributes);
         if (match) {
           if (rule.type === 'visibility' && rule.action === 'show') isVisible = true;
           if (rule.type === 'visibility' && rule.action === 'hide') isVisible = false;
@@ -373,6 +370,52 @@ const applyLinkageRules = () => {
     visibilityMap[field.id] = isVisible;
     requirementMap[field.id] = isReq;
   });
+
+  // 3. Custom Linkage rules (Supplementing backend rules)
+  const allFieldIds = rawSchema.value.fields.map((f: any) => f.id);
+
+  // A. Fulfillment Channel for FBA vs FBM
+  const FULFILL_FID = 'fulfillment_channel_code';
+  const channelCode = getFieldValue(FULFILL_FID);
+  
+  if (channelCode !== undefined && channelCode !== '') {
+    const valStr = String(channelCode);
+    const isFBA = valStr && valStr !== 'DEFAULT'; 
+    const fbmFields = [
+      'merchant_shipping_group',
+      'fulfillment_availability',
+      'is_inventory_available', 
+      'quantity', 
+      'lead_time_to_ship_max_days', 
+      'restock_date'
+    ];
+
+    fbmFields.forEach(fid => {
+      const actualIds = allFieldIds.filter(id => 
+        id === fid || id.startsWith(fid + '.') || id.endsWith('.' + fid)
+      );
+      actualIds.forEach(id => {
+        visibilityMap[id] = !isFBA;
+        requirementMap[id] = !isFBA;
+      });
+    });
+  }
+
+  // B. Product Identifier Exemption
+  const EXEMPT_FID = 'supplier_declared_has_product_identifier_exemption';
+  const isExempt = getFieldValue(EXEMPT_FID) === true;
+  if (isExempt) {
+    const exemptFields = ['externally_assigned_product_identifier'];
+    exemptFields.forEach(fid => {
+      const actualIds = allFieldIds.filter(id => 
+        id === fid || id.startsWith(fid + '.') || id.endsWith('.' + fid)
+      );
+      actualIds.forEach(id => {
+        visibilityMap[id] = false;
+        requirementMap[id] = false;
+      });
+    });
+  }
 };
 
 
@@ -380,10 +423,10 @@ const getFieldValue = (fieldId: string) => {
   // 1. Exact match
   let val = formData.attributes[fieldId];
   
-  // 2. Fuzzy match for indexed/nested IDs (e.g., .0.value)
+  // 2. Fuzzy match for indexed/nested IDs (e.g., .0.value or parent.0.child)
   if (val === undefined) {
     const matchedKey = Object.keys(formData.attributes).find(key => 
-      key === fieldId || key.startsWith(fieldId + '.')
+      key === fieldId || key.startsWith(fieldId + '.') || key.endsWith('.' + fieldId)
     );
     if (matchedKey) val = formData.attributes[matchedKey];
   }
@@ -402,22 +445,6 @@ const getFieldValue = (fieldId: string) => {
   };
   
   return extract(val);
-};
-
-const evaluateCondition = (conditionStr: string) => {
-  const parts = conditionStr.split(' == ');
-  if (parts.length !== 2) return false;
-  
-  const fieldId = parts[0].trim();
-  const targetVal = parts[1].replace(/'/g, '').trim();
-  
-  const actualVal = getFieldValue(fieldId);
-  
-  // Robust boolean and string comparison
-  const normalizedActual = String(actualVal).toLowerCase();
-  const normalizedTarget = targetVal.toLowerCase();
-  
-  return normalizedActual === normalizedTarget;
 };
 
 const isFieldVisible = (fieldId: string) => visibilityMap[fieldId] !== false;
@@ -441,6 +468,13 @@ defineExpose({
   getNestedSubmitData: () => unflatten(formData.attributes),
   validate: () => formRef.value?.validate()
 });
+
+/**
+ * Robust logic evaluator for linkage rules
+ */
+const evaluateCondition = (conditionStr: string) => {
+  return evaluateLinkageExpression(conditionStr, formData.attributes);
+};
 </script>
 
 <style lang="scss" scoped>

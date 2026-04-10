@@ -208,6 +208,11 @@ const handleSubmit = async () => {
     console.error(e)
     if (typeof e === 'string') {
       ElMessage.warning(e)
+    } else if (typeof e === 'object' && Object.keys(e).length > 0) {
+      // Element Plus validation error object { field: [{message: '...', ...}] }
+      const firstField = Object.keys(e)[0]
+      const firstError = e[firstField][0]?.message || '请完善表单信息'
+      ElMessage.warning(firstError)
     } else {
       ElMessage.warning('请完善表单信息')
     }

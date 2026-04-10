@@ -68,50 +68,72 @@ public class AmazonListingSchemaService {
     }
 
     private void flattenProperties(String prefix, JsonNode node, List<AmzListingFormFieldVO> fields, Map<String, String> mapping, boolean parentIsRequired) {
+        if (node == null || node.isMissingNode()) return;
+
+        // 1. Process local properties
         JsonNode properties = node.get("properties");
-        if (properties == null || !properties.isObject()) return;
+        if (properties != null && properties.isObject()) {
+            Set<String> requiredAtLevel = extractRequiredAtLevel(node);
+            
+            Iterator<Map.Entry<String, JsonNode>> it = properties.fields();
+            while (it.hasNext()) {
+                Map.Entry<String, JsonNode> entry = it.next();
+                String propName = entry.getKey();
+                JsonNode propSchema = entry.getValue();
+                String fullId = StrUtil.isEmpty(prefix) ? propName : prefix + "." + propName;
 
-        Set<String> requiredAtLevel = extractRequiredAtLevel(node);
-        
-        Iterator<Map.Entry<String, JsonNode>> it = properties.fields();
-        while (it.hasNext()) {
-            Map.Entry<String, JsonNode> entry = it.next();
-            String propName = entry.getKey();
-            JsonNode propSchema = entry.getValue();
-            String fullId = StrUtil.isEmpty(prefix) ? propName : prefix + "." + propName;
+                if (isInternalMetaField(propName) || isERPMasterField(propName)) continue;
+                
+                // Prevent duplicate processing of the same ID (e.g. if defined in multiple allOf branches)
+                if (fieldExists(fields, fullId)) continue;
 
-            if (isInternalMetaField(propName) || isERPMasterField(propName)) continue;
+                boolean isRequired = parentIsRequired && requiredAtLevel.contains(propName);
+                FieldStructureType structureType = determineFieldStructure(propSchema);
 
-            boolean isRequired = parentIsRequired && requiredAtLevel.contains(propName);
-            FieldStructureType structureType = determineFieldStructure(propSchema);
-
-            switch (structureType) {
-                case PSEUDO_ARRAY -> {
-                    // Record mapping for the original field name
-                    if (StrUtil.isEmpty(prefix)) {
-                        JsonNode items = propSchema.get("items");
-                        if (isAmazonValueWrapper(items)) {
-                            mapping.put(propName, fullId + ".0.value");
-                        } else {
-                            mapping.put(propName, fullId + ".0");
+                switch (structureType) {
+                    case PSEUDO_ARRAY -> {
+                        // Record mapping for the original field name
+                        if (StrUtil.isEmpty(prefix)) {
+                            JsonNode items = propSchema.get("items");
+                            if (isAmazonValueWrapper(items)) {
+                                mapping.put(propName, fullId + ".0.value");
+                            } else {
+                                mapping.put(propName, fullId + ".0");
+                            }
                         }
+                        // Flatten to .0 index recursively
+                        flattenProperties(fullId + ".0", propSchema.get("items"), fields, mapping, isRequired);
                     }
-                    // Flatten to .0 index recursively
-                    flattenProperties(fullId + ".0", propSchema.get("items"), fields, mapping, isRequired);
-                }
-                case TRUE_ARRAY -> {
-                    if (StrUtil.isEmpty(prefix)) mapping.put(propName, fullId);
-                    fields.add(parseField(fullId, propSchema, isRequired));
-                }
-                case NESTED -> {
-                    flattenProperties(fullId, propSchema, fields, mapping, isRequired);
-                }
-                case LEAF -> {
-                    if (StrUtil.isEmpty(prefix)) mapping.put(propName, fullId);
-                    fields.add(parseField(fullId, propSchema, isRequired));
+                    case TRUE_ARRAY -> {
+                        if (StrUtil.isEmpty(prefix)) mapping.put(propName, fullId);
+                        fields.add(parseField(fullId, propSchema, isRequired));
+                    }
+                    case NESTED -> {
+                        flattenProperties(fullId, propSchema, fields, mapping, isRequired);
+                    }
+                    case LEAF -> {
+                        if (StrUtil.isEmpty(prefix)) mapping.put(propName, fullId);
+                        fields.add(parseField(fullId, propSchema, isRequired));
+                    }
                 }
             }
         }
+
+        // 2. Recursive traversal of logical branches (SP-API often nests properties inside allOf/anyOf/oneOf)
+        // This is critical for product types like 3D_PRINTER that use mixins.
+        if (node.has("allOf") && node.get("allOf").isArray()) {
+            for (JsonNode sub : node.get("allOf")) flattenProperties(prefix, sub, fields, mapping, parentIsRequired);
+        }
+        if (node.has("anyOf") && node.get("anyOf").isArray()) {
+            for (JsonNode sub : node.get("anyOf")) flattenProperties(prefix, sub, fields, mapping, parentIsRequired);
+        }
+        if (node.has("oneOf") && node.get("oneOf").isArray()) {
+            for (JsonNode sub : node.get("oneOf")) flattenProperties(prefix, sub, fields, mapping, parentIsRequired);
+        }
+    }
+
+    private boolean fieldExists(List<AmzListingFormFieldVO> fields, String id) {
+        return fields.stream().anyMatch(f -> f.getId().equals(id));
     }
 
     private FieldStructureType determineFieldStructure(JsonNode schema) {
@@ -120,10 +142,16 @@ public class AmazonListingSchemaService {
         if ("array".equals(type) && schema.has("items")) {
             JsonNode items = schema.get("items");
             int maxItems = schema.path("maxUniqueItems").asInt(schema.path("maxItems").asInt(Integer.MAX_VALUE));
-            
-            // Aggressive Pseudo-Array classification: any array with max 1 item and properties is flattened
-            if (maxItems == 1 && items.has("properties")) {
-                return FieldStructureType.PSEUDO_ARRAY;
+
+            // Logic for V2 flattening:
+            // 1. If it's explicitly limited to 1 item (maxItems=1), it's a PSEUDO_ARRAY (.0. value)
+            //    This covers fulfillment_availability, list_price, item_package_dimensions.
+            // 2. If it allows multiple items (maxItems > 1), it's a TRUE_ARRAY.
+            //    This preserves bullet_point and compatible_devices.
+            if (items.has("properties")) {
+                if (maxItems == 1) {
+                    return FieldStructureType.PSEUDO_ARRAY;
+                }
             }
             return FieldStructureType.TRUE_ARRAY;
         }
@@ -166,13 +194,30 @@ public class AmazonListingSchemaService {
 
     private Set<String> extractRequiredAtLevel(JsonNode node) {
         Set<String> required = new HashSet<>();
-        JsonNode reqNode = node.get("required");
-        if (reqNode != null && reqNode.isArray()) {
-            for (JsonNode item : reqNode) {
-                required.add(item.asText());
+        recursiveExtractRequired(node, required);
+        return required;
+    }
+
+    private void recursiveExtractRequired(JsonNode node, Set<String> results) {
+        if (node == null || node.isMissingNode()) return;
+
+        // 1. Direct required array
+        if (node.has("required") && node.get("required").isArray()) {
+            for (JsonNode req : node.get("required")) {
+                results.add(req.asText());
             }
         }
-        return required;
+
+        // 2. Logic branches (SP-API often nests requirements inside anyOf/oneOf/allOf)
+        if (node.has("allOf") && node.get("allOf").isArray()) {
+            for (JsonNode sub : node.get("allOf")) recursiveExtractRequired(sub, results);
+        }
+        if (node.has("anyOf") && node.get("anyOf").isArray()) {
+            for (JsonNode sub : node.get("anyOf")) recursiveExtractRequired(sub, results);
+        }
+        if (node.has("oneOf") && node.get("oneOf").isArray()) {
+            for (JsonNode sub : node.get("oneOf")) recursiveExtractRequired(sub, results);
+        }
     }
 
     private AmzListingFormFieldVO parseField(String id, JsonNode schema, boolean isRequired) {
@@ -198,6 +243,12 @@ public class AmazonListingSchemaService {
         Map<String, Object> extra = new HashMap<>();
         if (schema.has("minimum")) extra.put("minimum", schema.get("minimum").asDouble());
         if (schema.has("maximum")) extra.put("maximum", schema.get("maximum").asDouble());
+        if (schema.has("minItems")) extra.put("minItems", schema.get("minItems").asInt());
+        if (schema.has("maxItems")) extra.put("maxItems", schema.get("maxItems").asInt());
+        if (schema.has("minLength")) extra.put("minLength", schema.get("minLength").asInt());
+        if (schema.has("maxLength")) extra.put("maxLength", schema.get("maxLength").asInt());
+        if (schema.has("pattern")) extra.put("pattern", schema.get("pattern").asText());
+        
         builder.extra(extra);
 
         // Type Detection & Option Extraction
@@ -305,10 +356,28 @@ public class AmazonListingSchemaService {
         if (allOf == null || !allOf.isArray()) return;
 
         for (JsonNode entry : allOf) {
+            // 1. Conditional Rules (if-then)
             if (entry.has("if") && entry.has("then")) {
                 parseConditionAndAction(entry.get("if"), entry.get("then"), fields);
             }
+            
+            // 2. Unconditional Requirements (Fix for 3D Printer etc.)
+            if (entry.has("required") && entry.get("required").isArray()) {
+                Set<String> required = extractRequiredAtLevel(entry);
+                for (String fieldName : required) {
+                    markFieldAsRequired(fields, fieldName);
+                }
+            }
         }
+    }
+
+    private void markFieldAsRequired(List<AmzListingFormFieldVO> fields, String targetId) {
+        fields.stream()
+                .filter(f -> f.getId().equals(targetId) || f.getId().startsWith(targetId + "."))
+                .forEach(f -> {
+                    f.setRequired(true);
+                    f.setOptional(false);
+                });
     }
 
     private void parseConditionAndAction(JsonNode ifNode, JsonNode thenNode, List<AmzListingFormFieldVO> fields) {

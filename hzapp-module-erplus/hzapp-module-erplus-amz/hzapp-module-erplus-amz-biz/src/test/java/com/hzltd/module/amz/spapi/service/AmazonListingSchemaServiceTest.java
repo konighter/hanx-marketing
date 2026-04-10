@@ -117,20 +117,21 @@ public class AmazonListingSchemaServiceTest {
                 .anyMatch(f -> f.getId().contains("purchasable_offer.0.currency"));
         assertTrue(hasOfferCurrency, "purchasable_offer should be flattened into sub-properties like currency");
 
-        // 3. Verify options extraction for true arrays (hazardous regulations)
+        // 3. Verify aggressive flattening even for TRUE_ARRAY if they match value-wrapper pattern
         Optional<AmzListingFormFieldVO> hzReg = config.getFields().stream()
-                .filter(f -> f.getId().equals("supplier_declared_dg_hz_regulation"))
+                .filter(f -> f.getId().equals("supplier_declared_dg_hz_regulation.0.value"))
                 .findFirst();
-        assertTrue(hzReg.isPresent());
-        assertEquals("enum", hzReg.get().getType(), "Array field should inherit enum type from children");
-        assertFalse(hzReg.get().getOptions().isEmpty(), "Array field should have options extracted from nested value-wrapper");
+        assertTrue(hzReg.isPresent(), "Field with maxItems > 1 but value-wrapper items should be flattened to .0.value");
+        assertEquals("enum", hzReg.get().getType(), "Flattened child should have correct type");
+        assertFalse(hzReg.get().getOptions().isEmpty(), "Options should still be extracted");
         assertTrue(hzReg.get().getOptions().stream().anyMatch(o -> o.getValue().equals("ghs")));
 
         // 4. Verify mapping table accuracy
         assertNotNull(config.getFieldMapping());
         assertEquals("brand_name.0.value", config.getFieldMapping().get("brand_name"), "Simple wrapper should map to .value");
         assertEquals("item_package_dimensions.0", config.getFieldMapping().get("item_package_dimensions"), "Complex object should map to .0 base");
-        
+        assertEquals("supplier_declared_dg_hz_regulation.0.value", config.getFieldMapping().get("supplier_declared_dg_hz_regulation"), "Should correctly map multi-item compatible field to first item wrapper");
+
         System.out.println("Aggressive flattening and options extraction verification passed.");
     }
 }
