@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.service.listing;
 
-import com.hzltd.module.erplus.controller.admin.listing.vo.ProductListingReqVO;
+import com.hzltd.module.amz.spapi.controller.admin.vo.ProductListingReqVO;
 
 public interface ProductListingService {
     /**

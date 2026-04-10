@@ -13,7 +13,7 @@ import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
 import com.hzltd.module.erplus.service.brand.ProductBrandService;
-import com.hzltd.module.erplus.service.cross.ProductCategoryService;
+import com.hzltd.module.erplus.service.categoryattr.ProductCategoryService;
 import com.hzltd.module.erplus.spapi.enums.ProductSpuStatusEnum;
 import com.hzltd.module.erplus.spapi.model.category.BrandModel;
 import com.hzltd.module.erplus.spapi.model.category.CategoryModel;

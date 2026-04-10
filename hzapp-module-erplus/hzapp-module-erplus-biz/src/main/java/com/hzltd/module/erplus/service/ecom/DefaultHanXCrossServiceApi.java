@@ -4,7 +4,7 @@ import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListR
 import com.hzltd.module.erplus.dal.dataobject.categoryattr.CategoryAttributeDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
 import com.hzltd.module.erplus.service.categoryattr.CategoryAttributeService;
-import com.hzltd.module.erplus.service.cross.ProductCategoryService;
+import com.hzltd.module.erplus.service.categoryattr.ProductCategoryService;
 import com.hzltd.module.erplus.spapi.enums.AttributeTypeEnum;
 import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;

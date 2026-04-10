@@ -6,7 +6,7 @@ import com.hzltd.module.erplus.controller.admin.product.vo.product.ProductSaveRe
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
 import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
-import com.hzltd.module.erplus.service.cross.ProductCategoryService;
+import com.hzltd.module.erplus.service.categoryattr.ProductCategoryService;
 import com.hzltd.module.erplus.spapi.enums.ProductSpuStatusEnum;
 import com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants;
 import jakarta.annotation.Resource;

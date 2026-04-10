@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.controller.admin.listing.vo;
+package com.hzltd.module.amz.spapi.controller.admin.vo;
 
 import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
 import jakarta.validation.constraints.NotEmpty;

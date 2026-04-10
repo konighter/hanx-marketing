@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.service.cross;
 
 import com.hzltd.framework.common.exception.ServiceException;
+import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.api.service.CategoryApiFactory;
 import com.hzltd.module.erplus.api.service.CategoryAttributeApiFactory;
@@ -23,7 +24,9 @@ import com.hzltd.module.erplus.spapi.model.category.MetaCategorySchemaResult;
 import com.hzltd.module.erplus.spapi.service.category.CategoryApi;
 import com.hzltd.module.erplus.spapi.service.category.CategoryAttributeMappingApi;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.model.CrossMetaCategoryModel;
 import com.hzltd.module.erplus.system.model.ProductSpuModel;
+import com.hzltd.module.erplus.system.service.SystemMetaCategoryService;
 import com.hzltd.module.erplus.system.service.SystemProductService;
 import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
@@ -39,7 +42,7 @@ import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.CATE
 import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_EXISTS;
 
 @Service
-public class CrossCategoryServiceImpl implements CrossCategoryService {
+public class CrossCategoryServiceImpl implements CrossCategoryService, SystemMetaCategoryService {
     @Resource
     private CategoryApiFactory categoryApiFactory;
 
@@ -158,5 +161,23 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
        categoryAttributeApi.mapCategoryAttributeValues(categoryAttributeVOS, spu);
 
         return categoryAttributeVOS;
+    }
+
+    @Override
+    public CrossMetaCategoryModel getCrossMetaCategoryByPlatformCategoryCode(CrossPlatformEnum crossPlatform, String categoryCode) {
+
+        CrossMetaCategoryDO crossMetaCategory = crossMetaCategoryMapper.selectOne(new LambdaQueryWrapperX<CrossMetaCategoryDO>()
+                .eq(CrossMetaCategoryDO::getPlatformId, crossPlatform.getValue())
+                .eq(CrossMetaCategoryDO::getCategoryCode, categoryCode));
+
+        return BeanUtils.toBean(crossMetaCategory, CrossMetaCategoryModel.class);
+    }
+
+    @Override
+    public List<CrossMetaCategoryModel> getCrossMetaCategoryByPlatform(CrossPlatformEnum crossPlatform) {
+        List<CrossMetaCategoryDO> crossMetaCategories = crossMetaCategoryMapper.selectList(new LambdaQueryWrapperX<CrossMetaCategoryDO>()
+                .eq(CrossMetaCategoryDO::getPlatformId, crossPlatform.getValue()));
+
+        return BeanUtils.toBean(crossMetaCategories, CrossMetaCategoryModel.class);
     }
 }

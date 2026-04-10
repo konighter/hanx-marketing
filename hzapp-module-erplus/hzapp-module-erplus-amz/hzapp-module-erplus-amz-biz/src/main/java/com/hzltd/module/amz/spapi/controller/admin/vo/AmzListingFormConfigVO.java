@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.controller.admin.listing.vo;
+package com.hzltd.module.amz.spapi.controller.admin.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
@@ -13,5 +13,8 @@ public class AmzListingFormConfigVO {
 
     @Schema(description = "表单字段列表")
     private List<AmzListingFormFieldVO> fields;
+
+    @Schema(description = "字段映射关系（原始名称 -> 打平后的ID）")
+    private java.util.Map<String, String> fieldMapping;
 
 }

@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.controller.admin.listing.vo;
+package com.hzltd.module.amz.spapi.controller.admin.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;

@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.service.cross;
+package com.hzltd.module.erplus.service.categoryattr;
 
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListReqVO;
