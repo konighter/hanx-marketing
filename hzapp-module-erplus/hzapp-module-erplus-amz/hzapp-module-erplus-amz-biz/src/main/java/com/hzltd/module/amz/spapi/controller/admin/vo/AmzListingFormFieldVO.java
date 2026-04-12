@@ -19,6 +19,12 @@ public class AmzListingFormFieldVO {
     @Schema(description = "字段 ID (打平后的路径)", example = "item_name")
     private String id;
 
+    @Schema(description = "业务属性路径 (用于联动规则)", example = "purchasable_offer.0.our_price.0.amount")
+    private String bizField;
+
+    @Schema(description = "表单渲染单位 ID", example = "item_name")
+    private String formField;
+
     @Schema(description = "字段名称 (本地 key)", example = "value")
     private String name;
 
@@ -57,6 +63,9 @@ public class AmzListingFormFieldVO {
 
     @Schema(description = "展示顺序")
     private Integer order;
+
+    @Schema(description = "是否允许自定义输入 (与枚举配合使用)", example = "true")
+    private Boolean allowCustomEnum;
 
     @Schema(description = "所属分组名称", example = "基本信息")
     private String groupName;

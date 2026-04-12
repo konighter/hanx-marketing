@@ -23,14 +23,24 @@ export const AmzWidgetRegistry: WidgetRegistry = {
   'dimensions': defineAsyncComponent(() => import('./AmzCompositeWrapper.vue')),
   'composite': defineAsyncComponent(() => import('./AmzCompositeWrapper.vue')),
   'array': defineAsyncComponent(() => import('./AmzArrayEditor.vue')),
+  'weight-input': defineAsyncComponent(() => import('./AmzWeightInput.vue')),
+  'dimensions-input': defineAsyncComponent(() => import('./AmzDimensionsInput.vue')),
+  'dimension': defineAsyncComponent(() => import('./AmzDimensionsInput.vue')),
+  'purchasable-offer': defineAsyncComponent(() => import('./AmzPurchasableOffer.vue')),
+  'fulfillment-availability': defineAsyncComponent(() => import('./AmzFulfillmentAvailability.vue')),
 };
 
 /**
  * Resolves the appropriate component for a given field configuration.
  */
-export function resolveComponent(uiWidget: string | undefined, type: string, isComposite: boolean): string | Component {
+export function resolveComponent(uiWidget: string | undefined, type: string, isComposite: boolean, hasOptions?: boolean): string | Component {
   if (uiWidget && AmzWidgetRegistry[uiWidget]) {
     return AmzWidgetRegistry[uiWidget];
+  }
+
+  // If options are explicitly provided, default to select regardless of type
+  if (hasOptions && !isComposite) {
+    return 'el-select';
   }
 
   // Fallback defaults based on data type
@@ -48,6 +58,10 @@ export function resolveComponent(uiWidget: string | undefined, type: string, isC
 
   if (type === 'boolean') {
     return 'el-switch';
+  }
+
+  if (type === 'enum') {
+    return 'el-select';
   }
 
   return 'el-input';

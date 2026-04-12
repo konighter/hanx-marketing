@@ -18,4 +18,5 @@ public class AmzFieldMetadata {
     private String label;
     private String tooltip;
     private String placeholder;
+    private Boolean system;
 }

@@ -161,10 +161,10 @@ onMounted(() => {
       </el-anchor>
       
       <div class="sidebar-footer">
-        <el-button type="primary" size="large" class="w-full" :disabled="!context.productType" @click="handleSubmit">
-           发布到亚马逊
+        <el-button type="primary" :disabled="!context.productType" @click="handleSubmit" class="flex-1">
+           发布
         </el-button>
-        <el-button class="w-full mt-2" @click="goBack">取消</el-button>
+        <el-button @click="goBack" class="flex-1">取消</el-button>
       </div>
     </div>
 
@@ -345,6 +345,8 @@ onMounted(() => {
 .sidebar-footer {
   margin-top: auto;
   padding-top: 24px;
+  display: flex;
+  gap: 8px;
 }
 
 .form-scroll-pane {
@@ -406,7 +408,7 @@ onMounted(() => {
 }
 
 .section-content {
-  padding: 0 24px 24px 24px;
+  padding: 0 24px 8px 24px;
 }
 
 .entry-form {
@@ -454,6 +456,9 @@ onMounted(() => {
   width: 100%;
 }
 
+.flex-1 {
+  flex: 1;
+}
 .w-full {
   width: 100%;
 }

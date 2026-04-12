@@ -170,7 +170,7 @@ defineExpose({ validate });
 }
 
 .group-section {
-  margin-bottom: 40px;
+  margin-bottom: 12px;
 }
 
 .group-header {

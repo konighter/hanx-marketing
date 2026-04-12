@@ -10,6 +10,7 @@ import com.hzltd.module.amz.spapi.controller.admin.vo.LogicExpressionVO;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import com.hzltd.module.erplus.system.model.CrossMetaCategoryModel;
 import com.hzltd.module.erplus.system.service.SystemMetaCategoryService;
+import com.hzltd.module.amz.spapi.service.pipeline.UiOverlayMerger;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,9 @@ public class AmazonListingSchemaService {
 
     @Resource
     private SystemMetaCategoryService metaCategoryService;
+
+    @Resource
+    private UiOverlayMerger uiOverlayMerger;
 
     private static final Set<String> TIME_INDICATOR_FIELDS = Set.of(
             "start_at", "end_at", "startAt", "endAt",
@@ -66,6 +70,11 @@ public class AmazonListingSchemaService {
 
         // 2. Parse Linkage Rules (allOf)
         parseLinkageRules(schemaRoot, fields);
+
+        // 3. Stage 4: UI Overlay & Grouping (Apply widgets, grouping, system flags)
+        if (uiOverlayMerger != null) {
+            uiOverlayMerger.merge(productType, fields);
+        }
 
         config.setFields(fields);
         config.setFieldMapping(fieldMapping);

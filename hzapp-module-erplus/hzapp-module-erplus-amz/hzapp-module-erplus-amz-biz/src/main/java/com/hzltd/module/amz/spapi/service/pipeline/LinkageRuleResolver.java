@@ -56,6 +56,7 @@ public class LinkageRuleResolver {
                         .type("requirement")
                         .action("required")
                         .conditionLogic(trigger)
+                        .sourceField(trigger.getField()) // 用于追踪触发源
                         .build();
                 targetField.getLinkages().add(ruleVO);
             }
@@ -99,7 +100,8 @@ public class LinkageRuleResolver {
 
     private AmzListingFormFieldVO findField(List<AmzListingFormFieldVO> fields, String id) {
         for (AmzListingFormFieldVO f : fields) {
-            if (id.equals(f.getId())) return f;
+            // 支持通过 ID, FormField 或 BizField 查找
+            if (id.equals(f.getId()) || id.equals(f.getBizField()) || id.equals(f.getFormField())) return f;
             if (f.getChildren() != null) {
                 AmzListingFormFieldVO found = findField(f.getChildren(), id);
                 if (found != null) return found;

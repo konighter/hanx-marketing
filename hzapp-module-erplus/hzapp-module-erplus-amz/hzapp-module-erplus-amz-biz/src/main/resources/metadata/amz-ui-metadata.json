@@ -1,46 +1,49 @@
 {
   "common": {
-    "item_name": {
-      "groupName": "基本信息",
-      "order": 1,
-      "uiWidget": "textarea",
-      "placeholder": "请输入描述性标题，建议包含品牌和核心特征"
-    },
-    "brand": {
-      "groupName": "基本信息",
-      "order": 2
-    },
+    "item_name": { "system": true },
+    "brand": { "system": true },
+    "bullet_point": { "system": true },
+    "product_description": { "system": true },
+    "contribution_sku": { "system": true },
+    "generic_keyword": { "system": true },
+    "item_dimensions": { "uiWidget": "dimensions-input" },
+    "item_package_dimensions": { "uiWidget": "dimensions-input" },
+    "item_depth_width_height": { "uiWidget": "dimensions-input" },
+    "item_weight": { "uiWidget": "weight-input" },
+    "package_weight": { "uiWidget": "weight-input" },
+    "main_offering_weight": { "uiWidget": "weight-input" },
+    "item_package_weight": { "uiWidget": "weight-input" },
+    "main_product_image_locator": { "system": true },
+    "other_product_image_locator_1": { "system": true },
+    "other_product_image_locator_2": { "system": true },
+    "other_product_image_locator_3": { "system": true },
+    "other_product_image_locator_4": { "system": true },
+    "other_product_image_locator_5": { "system": true },
+    "other_product_image_locator_6": { "system": true },
+    "other_product_image_locator_7": { "system": true },
+    "other_product_image_locator_8": { "system": true },
+    "swatch_product_image_locator": { "system": true },
+
     "manufacturer": {
       "groupName": "基本信息",
       "order": 3
     },
     "purchasable_offer": {
       "groupName": "报价",
-      "order": 10
+      "order": 10,
+      "uiWidget": "purchasable-offer"
     },
     "list_price": {
       "groupName": "报价",
       "order": 11
     },
-    "product_description": {
-      "groupName": "描述",
-      "order": 20,
-      "uiWidget": "textarea"
-    },
-    "bullet_point": {
-      "groupName": "描述",
-      "order": 21
-    },
-    "generic_keyword": {
-      "groupName": "描述",
-      "order": 22
-    },
     "fulfillment_availability": {
-      "groupName": "更多属性",
-      "order": 30
+      "groupName": "报价",
+      "order": 30,
+      "uiWidget": "fulfillment-availability"
     },
     "merchant_shipping_group": {
-      "groupName": "更多属性",
+      "groupName": "其他属性",
       "order": 31
     }
   },

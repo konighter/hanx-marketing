@@ -24,12 +24,26 @@ public class UiOverlayMerger {
     public void merge(String productType, List<AmzListingFormFieldVO> fields) {
         log.info("[UiOverlayMerger] Merging UI metadata for productType: {}", productType);
         
-        for (AmzListingFormFieldVO field : fields) {
+        // 1. Filter out system fields (Title, Brand, Bullets, etc.)
+        Iterator<AmzListingFormFieldVO> iterator = fields.iterator();
+        while (iterator.hasNext()) {
+            AmzListingFormFieldVO field = iterator.next();
+            if (isSystemField(productType, field)) {
+                log.debug("[UiOverlayMerger] Removing system field from dynamic form: {}", field.getId());
+                iterator.remove();
+                continue;
+            }
+            // Apply metadata and process children
             applyMetadata(productType, field);
         }
 
-        // Sort fields by their 'order' property after metadata application
+        // 2. Sort remaining fields
         fields.sort(Comparator.comparing(f -> f.getOrder() != null ? f.getOrder() : 999));
+    }
+
+    private boolean isSystemField(String productType, AmzListingFormFieldVO field) {
+        AmzFieldMetadata meta = metadataLoader.findMetadata(productType, field.getId());
+        return meta != null && Boolean.TRUE.equals(meta.getSystem());
     }
 
     private void applyMetadata(String productType, AmzListingFormFieldVO field) {
@@ -42,8 +56,10 @@ public class UiOverlayMerger {
             if (meta.getGroupName() != null) field.setGroupName(meta.getGroupName());
             if (meta.getOrder() != null) field.setOrder(meta.getOrder());
             if (meta.getUiWidget() != null) field.setUiWidget(meta.getUiWidget());
-        } else {
-            // Fallback for fields not in metadata config
+        }
+        
+        // 2. Default Grouping if still null
+        if (field.getGroupName() == null) {
             field.setGroupName("其他属性");
         }
 
@@ -58,7 +74,13 @@ public class UiOverlayMerger {
 
         // 3. Process children recursively if composite
         if (field.getChildren() != null) {
-            for (AmzListingFormFieldVO child : field.getChildren()) {
+            Iterator<AmzListingFormFieldVO> childIterator = field.getChildren().iterator();
+            while (childIterator.hasNext()) {
+                AmzListingFormFieldVO child = childIterator.next();
+                if (isSystemField(productType, child)) {
+                    childIterator.remove();
+                    continue;
+                }
                 applyMetadata(productType, child);
             }
         }

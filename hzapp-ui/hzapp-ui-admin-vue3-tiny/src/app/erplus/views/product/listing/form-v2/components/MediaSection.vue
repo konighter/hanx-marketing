@@ -198,7 +198,7 @@ const handleClearAll = () => {
       border-radius: 4px;
       color: #8a6d3b;
       font-size: 13px;
-      flex: 1;
+      width: fit-content;
 
       .drag-icon {
         font-size: 16px;

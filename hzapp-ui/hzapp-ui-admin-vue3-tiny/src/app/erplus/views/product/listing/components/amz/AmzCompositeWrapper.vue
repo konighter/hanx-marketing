@@ -1,80 +1,70 @@
 <template>
   <div class="amz-composite-wrapper" :class="{ 'is-nested': isNested }">
-    <!-- Array Case -->
-    <template v-if="isArrayOfObjects">
-      <div v-for="(item, index) in internalList" :key="index" class="columnar-row group-row">
-        <!-- Left: Attribute Title + Index -->
-        <div class="title-column">
-          <div class="title-text">
-            <span class="main-label">{{ field.title }}</span>
-            <span class="index-tag">Item #{{ index + 1 }}</span>
-            <span v-if="field.name" class="technical-name">{{ field.name }}</span>
-          </div>
-          <div class="column-actions" v-if="internalList.length > 1">
-            <el-button 
-              type="danger" 
-              link 
-              size="small"
-              icon="Delete"
-              @click="removeItem(index)"
-            >
-              删除此项
-            </el-button>
-          </div>
-        </div>
+    <div class="composite-card">
+      <!-- Section Header for the Composite Field -->
+      <div class="composite-header" v-if="!isNested">
+        <span class="header-title">{{ field.title }}</span>
+        <span v-if="field.name" class="header-technical">{{ field.name }}</span>
+      </div>
 
-        <!-- Right: Fields -->
-        <div class="field-column">
-          <div class="children-stack">
+      <!-- Array Case: List of Objects -->
+      <template v-if="isArrayOfObjects">
+        <div v-for="(item, index) in internalList" :key="index" class="item-row">
+          <!-- Main Content Area (Fields) -->
+          <div class="item-fields">
             <AttributeRenderer
               v-for="child in field.children"
               :key="child.id"
               :field="child"
               :model-value="item[child.name || child.id.split('.').pop()]"
+              :is-nested="true"
               @update:model-value="(val) => updateItem(index, child, val)"
             />
           </div>
-        </div>
-      </div>
-      
-      <!-- Add Button Row -->
-      <div class="add-row">
-        <el-button type="primary" plain icon="Plus" @click="addItem">
-          添加 {{ field.title }}
-        </el-button>
-      </div>
-    </template>
 
-    <!-- Single Object Case -->
-    <template v-else>
-      <div class="columnar-row">
-        <!-- Left: Attribute Title -->
-        <div class="title-column">
-          <div class="title-text">
-            <span class="main-label">{{ field.title }}</span>
-            <span v-if="field.name" class="technical-name">{{ field.name }}</span>
-          </div>
-        </div>
-
-        <!-- Right: Fields -->
-        <div class="field-column">
-          <div class="children-stack">
-            <AttributeRenderer
-              v-for="child in field.children"
-              :key="child.id"
-              :field="child"
-              :model-value="internalObject[child.name || child.id.split('.').pop()]"
-              @update:model-value="(val) => updateObject(child, val)"
+          <!-- Action Area (Delete) -->
+          <div class="item-actions">
+            <el-button 
+              v-if="internalList.length > 1"
+              type="danger" 
+              link 
+              circle
+              :icon="Delete"
+              class="delete-icon"
+              @click="removeItem(index)"
             />
           </div>
         </div>
-      </div>
-    </template>
+        
+        <!-- Add Button Aligned with Inputs (Offset by label-width) -->
+        <div class="add-action-row">
+          <el-button @click="addItem" class="add-btn">
+            <el-icon><Plus /></el-icon>
+            <span>添加</span>
+          </el-button>
+        </div>
+      </template>
+
+      <!-- Single Object Case -->
+      <template v-else>
+        <div class="single-object-container">
+          <AttributeRenderer
+            v-for="child in field.children"
+            :key="child.id"
+            :field="child"
+            :model-value="internalObject[child.name || child.id.split('.').pop()]"
+            :is-nested="true"
+            @update:model-value="(val) => updateObject(child, val)"
+          />
+        </div>
+      </template>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { Plus, Delete } from '@element-plus/icons-vue';
 import AttributeRenderer from './AttributeRenderer.vue';
 
 interface Field {
@@ -97,7 +87,11 @@ const emit = defineEmits(['update:modelValue']);
 const isArrayOfObjects = computed(() => props.field.type === 'array');
 
 // Handle Array of Objects
-const internalList = computed(() => Array.isArray(props.modelValue) ? props.modelValue : (props.modelValue ? [props.modelValue] : [{}]));
+const internalList = computed(() => {
+  if (Array.isArray(props.modelValue)) return props.modelValue;
+  if (props.modelValue && typeof props.modelValue === 'object') return [props.modelValue];
+  return [{}];
+});
 
 const addItem = () => {
   const newList = [...internalList.value, {}];
@@ -132,101 +126,108 @@ const updateObject = (child: Field, value: any) => {
 
 <style scoped>
 .amz-composite-wrapper {
-  margin-bottom: 32px;
+  margin-bottom: 8px;
+  width: 100%;
 }
 
-.columnar-row {
-  display: flex;
-  border: 1px solid #ebeef5;
+.composite-card {
+  background-color: #f9fafc;
   border-radius: 4px;
-  background-color: #fff;
-  overflow: hidden;
-  margin-bottom: 16px;
+  padding: 8px 0;
 }
 
-.group-row {
-  border-left: 3px solid #409eff;
-}
-
-.title-column {
-  width: 220px;
-  min-width: 220px;
-  padding: 24px 32px;
-  background-color: #f8f9fb;
-  border-right: 1px solid #ebeef5;
+/* Section Header Styles */
+.composite-header {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-shrink: 0;
-  text-align: right;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 8px;
+  padding: 0 0 8px 0;
+  border-bottom: 1px solid #f0f2f5;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-.title-text {
+.header-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.header-technical {
+  font-size: 13px;
+  color: #999;
+  font-weight: normal;
+}
+
+/* Array Item Row Styles */
+.item-row {
   display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-end;
+  align-items: flex-start;
+  padding: 2px 0;
+  margin-bottom: 0px;
+  position: relative;
 }
 
-.main-label {
-  font-size: 15px;
-  font-weight: 700;
-  color: #1f2d3d;
-  line-height: 1.4;
-  text-align: right;
-}
-
-.index-tag {
-  display: inline-block;
-  font-size: 12px;
-  background-color: #ecf5ff;
-  color: #409eff;
-  padding: 2px 8px;
-  border-radius: 4px;
-  width: fit-content;
-}
-
-.technical-name {
-  font-size: 12px;
-  color: #909399;
-  font-family: inherit;
-  word-break: break-all;
-}
-
-.field-column {
+.item-fields {
   flex: 1;
-  padding: 32px 40px;
-  background-color: #fff;
   min-width: 0;
+  padding-right: 20px;
 }
 
-.children-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.column-actions {
-  margin-top: 16px;
-  padding-top: 12px;
-  border-top: 1px solid #eee;
-}
-
-.add-row {
-  margin-top: -8px;
-  margin-bottom: 24px;
+.item-actions {
+  width: 50px;
   display: flex;
   justify-content: center;
+  padding-top: 8px;
 }
 
-/* Recursive Nesting */
-.is-nested .columnar-row {
-  border-color: #f0f2f5;
+.delete-icon {
+  font-size: 18px;
+  color: #f56c6c;
+  opacity: 0.8;
+  transition: opacity 0.2s;
 }
 
-.is-nested .title-column {
-  width: 180px;
-  min-width: 180px;
-  background-color: #fafbfc;
+.delete-icon:hover {
+  opacity: 1;
+  color: #f56c6c;
+}
+
+/* Single Object Container */
+.single-object-container {
+  padding: 8px 20px 8px 0;
+}
+
+/* Add Button Styles */
+.add-action-row {
+  margin-top: 8px;
+  padding-left: 180px; /* Align with input start */
+}
+
+.add-btn {
+  height: 32px;
+  padding: 0 16px;
+  font-size: 13px;
+  color: #606266;
+  border-color: #dcdfe6;
+}
+
+.add-btn :deep(.el-icon) {
+  margin-right: 4px;
+}
+
+/* Recursive Nesting Tweak */
+.is-nested .composite-card {
+  background-color: #fff;
+  border: 1px dashed #ebeef5;
+  padding: 12px 0;
+}
+
+.is-nested .composite-header {
+  padding-left: 180px;
 }
 </style>
+
+
+
