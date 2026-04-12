@@ -39,4 +39,8 @@ export const publishProductV2 = async (data: any) => {
   return await request.post({ url: `/erplus/product/pub-v2`, data })
 }
 
-
+// No cache for now to ensure fresh fetches during development
+export const getListingFormConfigV2 = (productType: string) => {
+  if (!productType) return Promise.resolve({ fields: [] })
+  return request.get({ url: `/erplus/amz/listing/schema?productType=` + productType })
+}

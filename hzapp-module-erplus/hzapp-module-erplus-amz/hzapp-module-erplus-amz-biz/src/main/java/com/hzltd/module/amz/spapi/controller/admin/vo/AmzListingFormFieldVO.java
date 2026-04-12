@@ -55,8 +55,17 @@ public class AmzListingFormFieldVO {
     @Schema(description = "可选项 (枚举类型使用)")
     private List<Option> options;
 
-    @Schema(description = "联动规则")
-    private List<AmzListingFieldRuleVO> linkageRules;
+    @Schema(description = "展示顺序")
+    private Integer order;
+
+    @Schema(description = "所属分组名称", example = "基本信息")
+    private String groupName;
+
+    @Schema(description = "是否为聚合/嵌套字段")
+    private Boolean isComposite;
+
+    @Schema(description = "联动规则 (结构化)")
+    private List<AmzListingFieldRuleVO> linkages;
 
     @Schema(description = "扩展属性 (如 minLength, maxLength, pattern 等)")
     private Map<String, Object> extra;

@@ -334,7 +334,7 @@ const handleShowDetail = (listing: ListingV2VO) => {
 }
 
 const handleCreate = () => {
-  push('/erplusV2/product/listing-create')
+  push('/erplusV2/product/listing-create-v2')
 }
 
 const handleCascaderChange = () => {

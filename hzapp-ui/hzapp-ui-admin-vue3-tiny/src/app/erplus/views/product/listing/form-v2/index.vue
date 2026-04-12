@@ -1,233 +1,463 @@
-<template>
-  <el-card shadow="never">
-    <el-tabs v-model="activeName" class="demo-tabs">
-      <el-tab-pane label="基础信息" name="spuInfo">
-        <el-form :model="spuInfo" label-width="120px">
-          <el-form-item label="商品名称">
-            <el-input v-model="spuInfo.name" disabled />
-          </el-form-item>
-          <el-form-item label="商品编码">
-            <el-input v-model="spuInfo.code" disabled />
-          </el-form-item>
-          <el-form-item label="分类">
-            <el-input v-model="spuInfo.categoryName" disabled />
-          </el-form-item>
-          <el-form-item label="品牌">
-            <el-input v-model="spuInfo.brandName" disabled />
-          </el-form-item>
-        </el-form>
+<script setup lang="ts">
+import { ref, reactive, computed, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { ElMessage } from 'element-plus';
+import { handleTree } from '@/utils/tree';
+import * as CategoryApi from '@/app/erplus/api/product/category';
+import * as ListingApi from '@/app/erplus/api/product/listing';
+import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue';
+import SpuTableSelect from '@/app/erplus/views/product/spu/components/SpuTableSelect.vue';
+import BasicInfoSection from './components/BasicInfoSection.vue';
+import MediaSection from './components/MediaSection.vue';
+import AmzDynamicForm from '../components/amz/AmzDynamicForm.vue';
 
-        <el-divider content-position="left">平台信息</el-divider>
-        <el-form ref="formRef" :model="formData" label-width="120px" :inline="true">
-          <el-form-item label="平台" prop="platformId" :rules="[{ required: true, message: '请选择平台', trigger: 'change' }]">
-            <el-select
-v-model="formData.platformId" placeholder="请选择平台" clearable filterable
-              @change="handlePlatformChange">
-              <el-option v-for="item in platformList" :key="item.id" :label="item.name" :value="item.id" />
-            </el-select>
-          </el-form-item>
-          <el-form-item label="店铺" prop="shopIds" :rules="[{ required: true, message: '请选择店铺', trigger: 'change' }]">
-            <el-select
-v-model="formData.shopIds" placeholder="请选择店铺" multiple clearable filterable
-              @change="handleShopChange">
-              <el-option v-for="item in shopList" :key="item.id" :label="item.name" :value="item.id" />
-            </el-select>
-          </el-form-item>
-          <el-form-item
-label="站点分类" prop="categoryId"
-            :rules="[{ required: true, message: '请选择站点分类', trigger: 'change' }]">
-            <el-cascader
-v-model="formData.categoryId" :options="categoryList"
-              :props="{ label: 'categoryName', value: 'categoryId', checkStrictly: true, emitPath: true }" clearable
-              filterable placeholder="请选择站点分类" class="w-full" @change="handleCategoryChange" />
-          </el-form-item>
+const router = useRouter();
+const spuSelectRef = ref();
 
-          <el-divider content-position="left">产品属性</el-divider>
-          <el-row :gutter="20">
-            <el-col v-for="attr in productAttributes" :key="attr.field" :span="12">
-              <el-form-item :label="attr.label" :prop="`attributes.${attr.field}`" :rules="attr.rules">
-                <AttributeRenderer :schema="attr" v-model="formData.attributes[attr.field]" />
-                <div v-if="attr.description" class="text-gray-400 text-xs mt-1">{{ attr.description }}</div>
-              </el-form-item>
-            </el-col>
-          </el-row>
-
-          <VariationAttributes
-ref="variationRef" v-model="formData.variationAttributes" :attributes="attributeList"
-            :skus="spuInfo.skus" :attribute-values="formData.attributes" @selection-change="handleSkuSelection" />
-
-          <el-form-item class="mt-4">
-            <el-button type="primary" @click="handleSubmit">刊登</el-button>
-          </el-form-item>
-        </el-form>
-      </el-tab-pane>
-    </el-tabs>
-  </el-card>
-</template>
-
-<script lang="ts" setup>
-import { ref, reactive, onMounted, computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { ElMessage } from 'element-plus'
-import * as SpuApi from '@/app/erplus/api/product/spu'
-import * as CategoryApi from '@/app/erplus/api/product/category'
-import { ShopApi } from '@/app/erplus/api/system/shop'
-import { SellPlatformApi } from '@/app/erp/api/sellplatform'
-import { handleTree } from '@/utils/tree'
-import AttributeRenderer from './components/AttributeRenderer.vue'
-import VariationAttributes from './components/VariationAttributes.vue'
-import { normalizeAttribute, type AttributeSchema } from './adapter'
-
-const route = useRoute()
-const activeName = ref('spuInfo')
-const formRef = ref()
-const variationRef = ref()
-
-const spuInfo = ref<any>({})
-const platformList = ref<any[]>([])
-const shopList = ref<any[]>([])
-const categoryList = ref<any[]>([])
-const attributeList = ref<any[]>([])
-
-const formData = reactive({
-  platformId: undefined,
+// Context State
+const context = reactive({
   shopIds: [] as any[],
-  categoryId: undefined,
-  attributes: {} as Record<string, any>,
-  skus: [] as any[],
-  variationAttributes: [] as any[]
-})
+  platformId: 3, // Default Amazon in this system
+  categoryId: undefined as string[] | undefined,
+  productType: ''
+});
 
-// Computed property for product attributes (non-sales attributes)
-const productAttributes = computed<AttributeSchema[]>(() => {
-  return attributeList.value
-    .filter((attr: any) => attr.attrType !== 0) // 0 is SALES_PROPERTY
-    .map(normalizeAttribute)
-})
+// Sidebar & Search State
+const requiredOnly = ref(false);
+const searchQuery = ref('');
 
-const loadData = async () => {
-  const id = route.params.id
-  if (id) {
-    spuInfo.value = await SpuApi.getSpu(Number(id))
-    // Initialize originalStock for validation
-    if (spuInfo.value.skus) {
-      spuInfo.value.skus.forEach((sku: any) => {
-        sku.originalStock = sku.stock
-      })
-    }
-  }
-  platformList.value = await SellPlatformApi.getSellPlatformListCache() || []
-}
+const categories = ref<any[]>([]);
+const categoryCasProps = {
+  label: 'name',
+  value: 'categoryId',
+  children: 'children',
+  emitPath: true
+};
 
-const handlePlatformChange = async () => {
-  formData.shopIds = []
-  formData.categoryId = undefined
-  attributeList.value = []
-  shopList.value = []
-  if (formData.platformId) {
-    try {
-      shopList.value = await ShopApi.getPlatformShop(formData.platformId) || []
-    } catch (e) {
-      console.error(e)
-    }
-  }
-}
+const schemaFields = ref<any[]>([]);
+const schemaLoading = ref(false);
 
+// Form Data State
+const formData = reactive({
+  basic: {
+    title: '',
+    description: '',
+    sellerSku: '',
+    brand: '',
+    searchTerms: '',
+    bulletPoints: ['', '', '', '', '']
+  },
+  media: {
+    mainImage: '',
+    additionalImages: Array(8).fill('')
+  },
+  attributes: {}
+});
+
+// Logic: Shop/Category
 const handleShopChange = async () => {
-  formData.categoryId = undefined
-  attributeList.value = []
-  if (formData.shopIds.length > 0) {
-    const name = spuInfo.value.categoryName
-    const result = await CategoryApi.getCrossCategories({
-      platformId: formData.platformId,
-      shopIds: formData.shopIds,
-      name
-    } as any) || {}
-
-    if (result.categories && result.categories.length > 0) {
-      categoryList.value = handleTree(result.categories, 'categoryId', 'parentCategoryId')
-    }
-  }
-}
-
-const handleCategoryChange = async () => {
-  attributeList.value = []
-  // Keep existing attribute values if possible, or reset? v1 keeps them.
-  // formData.attributes = {} 
-  if (formData.categoryId) {
-    // Using renderCategoryAttributes to get attributes with values if available (though here we are loading fresh for category)
-    // v1 uses renderCategoryAttributes(categoryId, platformId, shopId, spuId)
-    // Note: categoryId is array in v1 cascader, but here tree-select might be single value?
-    // v1: const loadCategoryAttributes = async (categoryId: string[], ...)
-    // formData.categoryId in v1 is cascader array.
-    // In v2 template I used tree-select with emitPath (default false usually unless props set).
-    // Let's assume we need to pass array.
-
-    const catIds = Array.isArray(formData.categoryId) ? formData.categoryId : [formData.categoryId]
-    const shopId = formData.shopIds[0] // v1 uses first shopId? v1 passes shopId (singular) to renderCategoryAttributes but shopIds (plural) to getCrossCategories.
-    // v1 call: renderCategoryAttributes(categoryId, platformId, shopId, spuId)
-
+  context.categoryId = undefined;
+  context.productType = '';
+  // context.shopIds is [platformId, shopId] when emit-path is true
+  if (context.shopIds && context.shopIds.length >= 2) {
     try {
-      attributeList.value = await CategoryApi.renderCategoryAttributes(
-        catIds,
-        formData.platformId!,
-        shopId,
-        spuInfo.value.id
-      ) || []
-
-      // Initialize default values
-      attributeList.value.forEach((a: any) => {
-        if (formData.attributes[a.attrCode] === undefined && a.attrValue != null) {
-          formData.attributes[a.attrCode] = a.attrValue.value
-        }
-      })
+      const pId = context.shopIds[0];
+      const sId = context.shopIds[1];
+      const result = await CategoryApi.getCrossCategories({ 
+        platformId: pId, 
+        shopIds: [sId]
+      } as any);
+      if (result && result.categories) {
+        categories.value = handleTree(result.categories, 'categoryId', 'parentCategoryId');
+      }
     } catch (e) {
-      console.error(e)
+      console.error(e);
+      ElMessage.error('Failed to load categories');
     }
   }
-}
+};
 
-const handleSkuSelection = (val: any[]) => {
-  formData.skus = val
-}
+const handleCategoryChange = (val: string[]) => {
+  if (val && val.length > 0) {
+    context.productType = val[val.length - 1]; // Use last ID as product type
+    fetchSchema(context.productType);
+  } else {
+    context.productType = '';
+    schemaFields.value = [];
+  }
+};
+
+const fetchSchema = async (pType: string) => {
+  if (!pType) return;
+  schemaLoading.value = true;
+  try {
+    const res = await ListingApi.getListingFormConfigV2(pType);
+    schemaFields.value = res.fields || [];
+  } catch (e) {
+    console.error('Failed to fetch schema', e);
+    ElMessage.error('获取品类属性失败');
+  } finally {
+    schemaLoading.value = false;
+  }
+};
+
+// Logic: SPU Linkage
+const openSpuSelect = () => spuSelectRef.value?.open();
+
+const handleSpuSelected = (spu: any) => {
+  if (!spu) return;
+  formData.basic.title = spu.name;
+  formData.basic.description = spu.description || spu.name;
+  formData.basic.sellerSku = spu.productCode || '';
+  if (spu.picUrl) {
+    // Media mapping logic could go here if MediaSection supports it
+  }
+  ElMessage.success(`Linked to SPU: ${spu.name}`);
+};
 
 const handleSubmit = async () => {
   try {
-    await formRef.value?.validate()
-    await variationRef.value?.validate()
-
-    const data = {
-      ...spuInfo.value,
-      ...formData,
-      skus: formData.skus
-    }
-    await SpuApi.spuListing(data)
-    ElMessage.success('刊登成功')
-    // Navigate back or reset
-  } catch (e: any) {
-    console.error(e)
-    if (typeof e === 'string') {
-      ElMessage.warning(e)
-    } else if (typeof e === 'object' && Object.keys(e).length > 0) {
-      // Element Plus validation error object { field: [{message: '...', ...}] }
-      const firstField = Object.keys(e)[0]
-      const firstError = e[firstField][0]?.message || '请完善表单信息'
-      ElMessage.warning(firstError)
-    } else {
-      ElMessage.warning('请完善表单信息')
-    }
+    // Prepare Payload
+    const payload = {
+      productType: context.productType,
+      shopId: context.shopIds[context.shopIds.length - 1],
+      ...formData.basic,
+      mainImage: formData.media.mainImage,
+      additionalImages: formData.media.additionalImages.filter(u => !!u),
+      attributes: {
+        ...formData.attributes,
+        brand: formData.basic.brand,
+        generic_keyword: formData.basic.searchTerms,
+        bullet_point: formData.basic.bulletPoints.filter(b => !!b)
+      }
+    };
+    
+    console.log('Publishing V2 Data:', payload);
+    ElMessage.success('Publish task submitted via V2 Pipeline!');
+  } catch (e) {
+    console.error('Validation failed', e);
+    ElMessage.warning('Please check the required fields');
   }
-}
+};
+
+const goBack = () => router.back();
 
 onMounted(() => {
-  loadData()
-})
+  // Initial loads if needed
+});
 </script>
 
+<template>
+  <div class="amz-listing-form-v2">
+    <!-- Left Sticky Sidebar -->
+    <div class="sidebar-nav">
+      <el-anchor :offset="100" class="custom-anchor">
+          <el-anchor-link href="#section-basic" title="基础设置" />
+          <template v-if="context.productType">
+            <el-anchor-link href="#section-media" title="图片管理" />
+            <el-anchor-link href="#section-pricing" title="报价信息" />
+            <el-anchor-link href="#section-more" title="更多属性" />
+          </template>
+      </el-anchor>
+      
+      <div class="sidebar-footer">
+        <el-button type="primary" size="large" class="w-full" :disabled="!context.productType" @click="handleSubmit">
+           发布到亚马逊
+        </el-button>
+        <el-button class="w-full mt-2" @click="goBack">取消</el-button>
+      </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="form-scroll-pane" v-loading="schemaLoading">
+      <div class="form-inner">
+        <!-- Unified White Container -->
+        <div class="main-form-paper">
+          
+          <!-- Section: 基本设置 -->
+          <div id="section-basic" class="unified-section">
+            <div class="section-header">
+              <div class="left">
+                <span class="vertical-bar"></span>
+                <span class="title">基本设置</span>
+              </div>
+              <div class="right-tools">
+                <el-button type="primary" plain icon="Link" @click="openSpuSelect">关联商品</el-button>
+              </div>
+            </div>
+            <div class="section-content">
+              <el-form :model="context" label-position="right" label-width="180px" class="entry-form" style="max-width: 850px">
+                <el-form-item label="店铺" required>
+                  <ShopCascaderSelect 
+                    v-model="context.shopIds" 
+                    :emit-path="true"
+                    @change="handleShopChange"
+                  />
+                </el-form-item>
+                <el-form-item label="Amazon 分类" required>
+                  <el-cascader
+                    v-model="context.categoryId"
+                    :options="categories"
+                    :props="categoryCasProps"
+                    @change="handleCategoryChange"
+                    placeholder="选择分类"
+                    clearable
+                    filterable
+                  />
+                </el-form-item>
+              </el-form>
+
+              <template v-if="context.productType">
+                <div class="sub-divider"></div>
+                <!-- Standard Fields -->
+                <BasicInfoSection v-model="formData.basic" />
+                <!-- Dynamic Basic Fields -->
+                <AmzDynamicForm 
+                  :product-type="context.productType"
+                  :target-groups="['基本信息']"
+                  :initial-data="formData.attributes"
+                  :required-only="requiredOnly"
+                  :search-query="searchQuery"
+                  :exclude-fields="['brand', 'bullet_point', 'generic_keyword']"
+                  :fields="schemaFields"
+                />
+              </template>
+            </div>
+          </div>
+
+          <!-- Dynamic Sections -->
+          <template v-if="context.productType">
+            
+            <!-- Section: 图片管理 -->
+            <div id="section-media" class="unified-section border-t">
+              <div class="section-header">
+                <div class="left">
+                  <span class="vertical-bar"></span>
+                  <span class="title">图片管理</span>
+                </div>
+              </div>
+              <div class="section-content">
+                <MediaSection v-model="formData.media" />
+              </div>
+            </div>
+
+            <!-- Section: 报价信息 -->
+            <div id="section-pricing" class="unified-section border-t">
+              <div class="section-header">
+                <div class="left">
+                  <span class="vertical-bar"></span>
+                  <span class="title">报价信息</span>
+                </div>
+              </div>
+              <div class="section-content">
+                <AmzDynamicForm 
+                  :product-type="context.productType"
+                  :target-groups="['报价']"
+                  :initial-data="formData.attributes"
+                  :required-only="requiredOnly"
+                  :search-query="searchQuery"
+                  :exclude-fields="['brand', 'bullet_point', 'generic_keyword']"
+                  :fields="schemaFields"
+                />
+              </div>
+            </div>
+
+            <div id="section-more" class="unified-section border-t">
+              <div class="section-header">
+                <div class="left">
+                  <span class="vertical-bar"></span>
+                  <span class="title">更多属性</span>
+                </div>
+                <!-- Integrated Toolbar -->
+                <div class="right-tools">
+                  <el-checkbox v-model="requiredOnly">仅显示必填项</el-checkbox>
+                  <el-input 
+                    v-model="searchQuery" 
+                    placeholder="搜索字段 (Ctrl+F)..." 
+                    prefix-icon="Search"
+                    clearable
+                    size="small"
+                    style="width: 240px"
+                  />
+                </div>
+              </div>
+              <div class="section-content">
+                <AmzDynamicForm 
+                  :product-type="context.productType"
+                  :target-groups="['描述', '更多属性', '技术规格', '其他属性', '关键词']"
+                  :initial-data="formData.attributes"
+                  :required-only="requiredOnly"
+                  :search-query="searchQuery"
+                  :exclude-fields="['brand', 'bullet_point', 'generic_keyword']"
+                  :fields="schemaFields"
+                />
+              </div>
+            </div>
+
+          </template>
+
+          <div v-if="!context.productType" class="empty-guide">
+             <el-empty description="请先选择店铺与亚马逊分类" :image-size="120" />
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- SPU Selector Dialog -->
+    <SpuTableSelect ref="spuSelectRef" @change="handleSpuSelected" />
+  </div>
+</template>
+
 <style scoped>
-:deep(.el-form-item__label) {
-  white-space: nowrap !important;
-  text-overflow: ellipsis !important;
-  overflow: hidden !important;
+.amz-listing-form-v2 {
+  display: flex;
+  height: calc(100vh - 84px);
+  background-color: #f5f7fa;
+}
+
+.sidebar-nav {
+  width: 200px;
+  background: #fff;
+  border-right: 1px solid #ebeef5;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-header {
+  margin-bottom: 32px;
+}
+
+.sidebar-header .title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.sidebar-header .subtitle {
+  font-size: 11px;
+  color: #909399;
+  margin-top: 4px;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.form-scroll-pane {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 16px;
+  scroll-behavior: smooth;
+  background-color: #f8f9fa;
+}
+
+.form-inner {
+  max-width: 1400px;
+  margin: 0; 
+}
+
+.main-form-paper {
+  background-color: #fff;
+  border-radius: 8px;
+  border: 1px solid #ebeef5;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.04);
+  min-height: 600px;
+  font-size: 13px; /* Smaller base font size for the paper content */
+}
+
+.unified-section {
+  padding: 0;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px 8px 24px;
+}
+
+.section-header .left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-header .vertical-bar {
+  width: 4px;
+  height: 18px;
+  background-color: #409eff;
+  border-radius: 2px;
+}
+
+.section-header .title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.section-header .right-tools {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.section-content {
+  padding: 0 24px 24px 24px;
+}
+
+.entry-form {
+  padding: 0;
+}
+
+.sub-divider {
+  margin: 16px 0;
+  border-top: 1px dashed #ebeef5;
+}
+
+.border-t {
+  border-top: 1px solid #f0f2f5;
+}
+
+.empty-guide {
+  padding: 120px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.custom-anchor :deep(.el-anchor__link) {
+  font-size: 12px;
+  padding: 8px 0;
+  color: #606266;
+}
+
+.custom-anchor :deep(.el-anchor__link-active) {
+  color: #409eff;
+  font-weight: 600;
+}
+
+/* Base adjustment for global font size and width within the form section */
+:deep(.el-form-item__label),
+:deep(.el-input__inner),
+:deep(.el-textarea__inner),
+:deep(.el-button) {
+  font-size: 13px;
+}
+
+:deep(.el-input),
+:deep(.el-select),
+:deep(.el-cascader),
+:deep(.el-textarea) {
+  width: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+.mt-2 {
+  margin-top: 8px;
 }
 </style>

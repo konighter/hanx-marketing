@@ -501,8 +501,7 @@ public class AmazonListingSchemaService {
                 .editable(schema.path("editable").asBoolean(true))
                 .hidden(hidden)
                 .optional(isOptional)
-                .extra(extra)
-                .linkageRules(new ArrayList<>());
+                .extra(extra);
 
         // Assign specialized UI widgets
         if (id.contains("bullet_point")) {
@@ -1079,7 +1078,6 @@ public class AmazonListingSchemaService {
             // Fallback for transition
             rule.setCondition(renderConditionString(condition));
             rule.setAction(action);
-            targetField.getLinkageRules().add(rule);
         }
     }
 

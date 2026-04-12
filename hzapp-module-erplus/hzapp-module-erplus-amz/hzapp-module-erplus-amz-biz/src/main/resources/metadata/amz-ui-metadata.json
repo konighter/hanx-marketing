@@ -1,0 +1,55 @@
+{
+  "common": {
+    "item_name": {
+      "groupName": "基本信息",
+      "order": 1,
+      "uiWidget": "textarea",
+      "placeholder": "请输入描述性标题，建议包含品牌和核心特征"
+    },
+    "brand": {
+      "groupName": "基本信息",
+      "order": 2
+    },
+    "manufacturer": {
+      "groupName": "基本信息",
+      "order": 3
+    },
+    "purchasable_offer": {
+      "groupName": "报价",
+      "order": 10
+    },
+    "list_price": {
+      "groupName": "报价",
+      "order": 11
+    },
+    "product_description": {
+      "groupName": "描述",
+      "order": 20,
+      "uiWidget": "textarea"
+    },
+    "bullet_point": {
+      "groupName": "描述",
+      "order": 21
+    },
+    "generic_keyword": {
+      "groupName": "描述",
+      "order": 22
+    },
+    "fulfillment_availability": {
+      "groupName": "更多属性",
+      "order": 30
+    },
+    "merchant_shipping_group": {
+      "groupName": "更多属性",
+      "order": 31
+    }
+  },
+  "typeSpecific": {
+    "3D_PRINTER": {
+      "printing_speed": {
+        "groupName": "更多属性",
+        "order": 50
+      }
+    }
+  }
+}

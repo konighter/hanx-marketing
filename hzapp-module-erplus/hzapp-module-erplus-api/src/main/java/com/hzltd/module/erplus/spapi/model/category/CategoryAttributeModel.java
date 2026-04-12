@@ -84,12 +84,12 @@ public class CategoryAttributeModel {
     private String extra;
 
     /**
-     * 是否聚合属性
+     * 是否聚合属性 (Nested Object or Object Array)
      */
     private Boolean isComposite;
 
-     /**
-     * 聚合属性值
+    /**
+     * 聚合属性的子属性列表
      */
     private List<CategoryAttributeModel> compositeAttributes;
 

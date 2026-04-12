@@ -1,6 +1,15 @@
-# Amazon Listing Schema Pipeline & Unified Rendering Design
+## 1. Architectural Constraints & Rules
 
-## 1. Problem Statement
+> [!IMPORTANT]
+> **1. Clean Slate**: This refactor must ignore all existing implementations of `AmazonListingSchemaService`. We start with a completely fresh logic design.
+> **2. Strict Adherence**: Strictly follow this design document. No unauthorized expansions or modifications of existing logic outside the pipeline.
+> **3. Git-flow**: All work must be completed in the dedicated feature branch (`feat/amazon-listing-v3-clean-refactor`).
+> **4. File Structure**:
+>    - **Backend Main Entry**: `AmazonListingSchemaServiceV2.java`
+>    - **Frontend Components**: `hzapp-ui-admin-vue3-tiny/src/app/erplus/views/product/listing/components/amz/`
+> **5. Mandatory Check**: Review these constraints before every implementation step.
+
+## 2. Problem Statement
 
 The current Amazon listing implementation in `AmazonListingSchemaService` is a monolithic, hard-to-extend parser. It suffers from:
 - **Aggressive Flattening**: Deeply nested structures are forced into flat dot-notated keys, breaking UI logic for complex attributes like `purchasable_offer`.
