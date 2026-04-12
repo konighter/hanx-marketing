@@ -26,26 +26,37 @@ export function evaluateLinkageExpression(expression: string, attributes: Record
     // 3. Resolve actual values for each field
     const fieldValues: Record<string, any> = {};
     
-    const extractVal = (fieldId: string) => {
-      let val = attributes[fieldId];
-      if (val === undefined) {
-        // Try fuzzy match for flattened paths (backend often uses the base ID)
-        const keys = Object.keys(attributes);
-        const matched = keys.find(k => k === fieldId || k.startsWith(fieldId + '.'));
-        if (matched) val = attributes[matched];
-      }
+    const normalize = (val: any): any => {
+      if (val === undefined || val === null) return null;
       
       // Amazon SP-API structure normalization:
-      // string -> string
-      // [{value: 'x'}] -> 'x'
-      // {value: 'x'} -> 'x'
+      // Try to extract the 'value' property if it exists (Leaf Node wrapper)
       if (Array.isArray(val)) {
         if (val.length === 0) return null;
-        if (typeof val[0] === 'object' && val[0] !== null && val[0].value !== undefined) return val[0].value;
-        return val[0];
+        const first = val[0];
+        if (typeof first === 'object' && first !== null && first.value !== undefined) return first.value;
+        return first;
       }
       if (typeof val === 'object' && val !== null && val.value !== undefined) return val.value;
-      return val === undefined ? null : val;
+      return val;
+    };
+
+    const extractVal = (fieldId: string) => {
+      // 1. Direct match (backwards compatibility for flat attributes)
+      if (attributes[fieldId] !== undefined) return normalize(attributes[fieldId]);
+
+      // 2. Deep traversal for nested structures (Option A)
+      const parts = fieldId.split('.');
+      let current: any = attributes;
+      for (const part of parts) {
+        if (current === null || current === undefined || typeof current !== 'object') {
+          current = null;
+          break;
+        }
+        current = current[part];
+      }
+      
+      return normalize(current);
     };
 
     // 4. Create a safe evaluation environment

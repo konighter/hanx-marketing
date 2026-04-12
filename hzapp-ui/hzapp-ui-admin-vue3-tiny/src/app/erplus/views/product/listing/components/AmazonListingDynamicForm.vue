@@ -6,20 +6,21 @@
           <div v-for="group in groupedFields" :key="group.name" :id="'platform-group-' + group.name" class="attribute-group mb-4">
             <h3 class="group-title border-b pb-2 mb-4 text-primary font-bold flex items-center">
               {{ group.name }}
-              <el-tag size="small" type="info" class="ml-2">{{ group.fields.length }} 字段</el-tag>
+              <el-tag size="small" type="info" class="ml-2">{{ group.fields.length }} fields</el-tag>
             </h3>
 
             <el-row :gutter="20">
               <el-col 
                 v-for="field in group.fields" 
                 :key="field.id" 
-                :span="field.span || 12" 
+                :span="24" 
                 v-show="isFieldVisible(field.id)"
+                class="root-col"
               >
                 <el-form-item 
                   :prop="['attributes', field.id]" 
                   :required="isFieldRequired(field.id)"
-                  :rules="isFieldRequired(field.id) ? [{ required: true, message: `请填写 ${field.title} (${field.id})`, trigger: ['change', 'blur'] }] : []"
+                  :rules="isFieldRequired(field.id) ? [{ required: true, message: `Please fill in ${field.title} (${field.id})`, trigger: ['change', 'blur'] }] : []"
                   :class="{ 'top-aligned-label': isTopAligned(field) }"
                 >
                   <template #label>
@@ -69,7 +70,7 @@
                   />
                 </el-select>
                 <el-button type="primary" size="small" :disabled="!selectedOptionalFieldId" @click="addOptionalField">
-                  添加属性
+                  Add Attribute
                 </el-button>
               </div>
             </h3>
@@ -81,6 +82,7 @@
                   :key="field.id" 
                   :span="24"
                   v-show="isFieldVisible(field.id)"
+                  class="root-col"
                 >
                   <div class="flex items-start mb-4 bg-gray-50 p-3 rounded" style="border: 1px solid #ebeef5;">
                     <div class="field-title-col flex-shrink-0" :class="{ 'pt-2': isTopAligned(field), 'flex items-center': !isTopAligned(field) }" style="width: 180px; text-align: right; padding-right: 15px; min-height: 32px;">
@@ -322,6 +324,7 @@ const loadConfig = async () => {
       // 2. 应用 UiSchema 覆写
       res.fields = mainFields.map((f: any) => {
         const uiConfig = getUiConfigForField(f.id);
+        f.span = 24;
         if (uiConfig.label) f.title = uiConfig.label;
         if (uiConfig.uiWidget) f.uiWidget = uiConfig.uiWidget;
         if (uiConfig.span) f.span = uiConfig.span;
@@ -601,8 +604,14 @@ watch(() => props.productType, (val) => {
 }
 
 /* Label Alignment */
-:deep(.el-form-item__label) {
-  align-items: center; /* 默认居中对齐 */
+.amazon-dynamic-form :deep(.root-col) {
+  width: 100% !important;
+  flex: 0 0 100% !important;
+  max-width: 100% !important;
+}
+
+.amazon-dynamic-form :deep(.el-form-item__label) {
+  align-items: center; 
   line-height: 1.2;
 }
 

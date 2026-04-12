@@ -33,6 +33,15 @@ public class AmazonListingSchemaService {
     @Resource
     private SystemMetaCategoryService metaCategoryService;
 
+    private static final Set<String> TIME_INDICATOR_FIELDS = Set.of(
+            "start_at", "end_at", "startAt", "endAt",
+            "availability_start_date", "availability_end_date", "availability_start_at", "availability_end_at"
+    );
+
+    private static final Set<String> VALUE_INDICATOR_FIELDS = Set.of(
+            "value", "value_with_tax"
+    );
+
     /**
      * Generates a VO configuration for a specific product type.
      */
@@ -64,7 +73,7 @@ public class AmazonListingSchemaService {
     }
 
     private enum FieldStructureType {
-        LEAF, PSEUDO_ARRAY, TRUE_ARRAY, NESTED
+        LEAF, TRUE_ARRAY, NESTED
     }
 
     private void flattenProperties(String prefix, JsonNode node, List<AmzListingFormFieldVO> fields, Map<String, String> mapping, boolean parentIsRequired) {
@@ -88,32 +97,66 @@ public class AmazonListingSchemaService {
                 if (fieldExists(fields, fullId)) continue;
 
                 boolean isRequired = parentIsRequired && requiredAtLevel.contains(propName);
-                FieldStructureType structureType = determineFieldStructure(propSchema);
+                FieldStructureType structureType = determineFieldStructure(propName, propSchema);
 
                 switch (structureType) {
-                    case PSEUDO_ARRAY -> {
-                        // Record mapping for the original field name
-                        if (StrUtil.isEmpty(prefix)) {
-                            JsonNode items = propSchema.get("items");
-                            if (isAmazonValueWrapper(items)) {
-                                mapping.put(propName, fullId + ".0.value");
-                            } else {
-                                mapping.put(propName, fullId + ".0");
-                            }
-                        }
-                        // Flatten to .0 index recursively
-                        flattenProperties(fullId + ".0", propSchema.get("items"), fields, mapping, isRequired);
-                    }
                     case TRUE_ARRAY -> {
                         if (StrUtil.isEmpty(prefix)) mapping.put(propName, fullId);
-                        fields.add(parseField(fullId, propSchema, isRequired));
+                        AmzListingFormFieldVO field = parseField(fullId, propName, propSchema, isRequired);
+                        fields.add(field);
+
+                        JsonNode items = propSchema.get("items");
+                        if (items != null && items.isObject() && hasObjectIndicators(items)) {
+                            List<AmzListingFormFieldVO> children = new ArrayList<>();
+                            flattenProperties(fullId, items, children, mapping, isRequired);
+                            field.setChildren(children);
+                        }
                     }
                     case NESTED -> {
-                        flattenProperties(fullId, propSchema, fields, mapping, isRequired);
+                        if (StrUtil.isEmpty(prefix)) mapping.put(propName, fullId);
+                        AmzListingFormFieldVO field = parseField(fullId, propName, propSchema, isRequired);
+                        fields.add(field);
+
+                        // If we are forcing an array (like purchasable_offer) to be NESTED, 
+                        // we must override its type to 'object' for UI compatibility
+                        if ("array".equals(propSchema.path("type").asText())) {
+                            field.setType("object");
+                        }
+
+                        List<AmzListingFormFieldVO> children = new ArrayList<>();
+                        // Fix for collapsed arrays: if the node has 'items', we must recurse into the items schema
+                        boolean isArrayItems = propSchema.has("items");
+                        JsonNode targetSchema = isArrayItems ? propSchema.get("items") : propSchema;
+                        // Use .0 index for nested array properties to keep data structure compatible with SP-API
+                        String nextPrefix = isArrayItems ? fullId + ".0" : fullId;
+                        
+                        flattenProperties(nextPrefix, targetSchema, children, mapping, isRequired);
+                        field.setChildren(children);
                     }
                     case LEAF -> {
-                        if (StrUtil.isEmpty(prefix)) mapping.put(propName, fullId);
-                        fields.add(parseField(fullId, propSchema, isRequired));
+                        String finalId = fullId;
+                        AmzListingFormFieldVO field = parseField(fullId, propName, propSchema, isRequired);
+                        
+                        // Proxy Optimization: If this LEAF is actually an Amazon Value Wrapper 
+                        // (either directly or collapsed from an array), we merge its internal value schema.
+                        if (isAmazonValueWrapper(propSchema)) {
+                            finalId = mergeWrapperValueSchema(field, propSchema, fullId);
+                        } else if ("array".equals(propSchema.path("type").asText())) {
+                            // This was a collapsed array
+                            JsonNode items = propSchema.get("items");
+                            if (isAmazonValueWrapper(items)) {
+                                finalId = mergeWrapperValueSchema(field, items, fullId + ".0");
+                            }
+                        }
+                        
+                        if (StrUtil.isEmpty(prefix)) {
+                            mapping.put(propName, finalId);
+                        } else {
+                            // Update the mapping for this specific leaf if it was transformed
+                            mapping.put(propName, finalId);
+                        }
+                        
+                        fields.add(field);
                     }
                 }
             }
@@ -136,46 +179,258 @@ public class AmazonListingSchemaService {
         return fields.stream().anyMatch(f -> f.getId().equals(id));
     }
 
-    private FieldStructureType determineFieldStructure(JsonNode schema) {
-        String type = schema.path("type").asText("string");
-        
-        if ("array".equals(type) && schema.has("items")) {
-            JsonNode items = schema.get("items");
-            int maxItems = schema.path("maxUniqueItems").asInt(schema.path("maxItems").asInt(Integer.MAX_VALUE));
+    private FieldStructureType determineFieldStructure(String propName, JsonNode schema) {
+        if (schema == null || schema.isMissingNode()) return FieldStructureType.LEAF;
 
-            // Logic for V2 flattening:
-            // 1. If it's explicitly limited to 1 item (maxItems=1), it's a PSEUDO_ARRAY (.0. value)
-            //    This covers fulfillment_availability, list_price, item_package_dimensions.
-            // 2. If it allows multiple items (maxItems > 1), it's a TRUE_ARRAY.
-            //    This preserves bullet_point and compatible_devices.
-            if (items.has("properties")) {
-                if (maxItems == 1) {
-                    return FieldStructureType.PSEUDO_ARRAY;
+        // Force certain high-complexity fields to be NESTED or TRUE_ARRAY
+        if ("purchasable_offer".equals(propName)) {
+            return FieldStructureType.NESTED;
+        }
+
+        String type = schema.path("type").asText("");
+        
+        // 1. Array Handling
+        if ("array".equals(type) || schema.has("items")) {
+            JsonNode items = schema.get("items");
+            if (items != null) {
+                // Aggressive collapsing for Amazon Value Wrappers (e.g., Simple Pricing Schedules)
+                // Even if maxItems is not explicitly set, we collapse it if it's a known wrapper type
+                // AND it doesn't explicitly allow multiple unique items.
+                int maxUniqueItems = schema.path("maxUniqueItems").asInt(1);
+                if (maxUniqueItems <= 1 && isAmazonValueWrapper(items)) {
+                    return FieldStructureType.LEAF;
+                }
+
+                // Rule 4: Scalar Array collapsing via recursive maxItems check
+                int maxItems = findMaxItemsRecursive(schema);
+                if (maxItems <= 1) {
+                    // If the item is a Leaf Wrapper, treat it as a proxyable LEAF 
+                    // so we don't show nested UI for a single scalar value.
+                    if (isAmazonValueWrapper(items)) {
+                        return FieldStructureType.LEAF;
+                    }
+                    if (hasObjectIndicators(items)) {
+                        return FieldStructureType.NESTED;
+                    }
+                    return determineFieldStructure(propName, items);
                 }
             }
             return FieldStructureType.TRUE_ARRAY;
         }
         
-        if ("object".equals(type) && schema.has("properties")) {
-            return FieldStructureType.NESTED;
+        // 2. Object/Nested Handling (Top-level or inside branches)
+        if (hasObjectIndicators(schema)) {
+            if (isNestedObject(schema)) {
+                return FieldStructureType.NESTED;
+            }
+            return FieldStructureType.LEAF;
         }
         
         return FieldStructureType.LEAF;
     }
 
-    private boolean isAmazonValueWrapper(JsonNode items) {
-        JsonNode properties = items.get("properties");
+    private int findMaxItemsRecursive(JsonNode node) {
+        if (node == null || node.isMissingNode()) return Integer.MAX_VALUE;
+
+        // User preference: maxUniqueItems > 1 definitively means it's an array
+        int maxUniqueItems = node.path("maxUniqueItems").asInt(0);
+        if (maxUniqueItems > 1) {
+            return maxUniqueItems;
+        }
+
+        int maxItems = node.path("maxItems").asInt(Integer.MAX_VALUE);
+        
+        // Check logical branches
+        String[] branches = {"anyOf", "oneOf", "allOf"};
+        for (String branch : branches) {
+            if (node.has(branch) && node.get(branch).isArray()) {
+                for (JsonNode sub : node.get(branch)) {
+                    int branchMax = findMaxItemsRecursive(sub);
+                    if (branchMax == Integer.MAX_VALUE) continue;
+                    maxItems = Math.min(maxItems, branchMax);
+                }
+            }
+        }
+        return maxItems;
+    }
+
+    /**
+     * Checks if a node or its logical branches (anyOf/oneOf/allOf) indicate an object structure.
+     */
+    private boolean hasObjectIndicators(JsonNode node) {
+        if (node.has("properties") || "object".equals(node.path("type").asText())) {
+            return true;
+        }
+        // Recurse into branches
+        String[] branches = {"anyOf", "oneOf", "allOf"};
+        for (String branch : branches) {
+            if (node.has(branch) && node.get(branch).isArray()) {
+                for (JsonNode sub : node.get(branch)) {
+                    if (hasObjectIndicators(sub)) return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Rule 1: A leaf node usually contains marketplace_id properties
+     */
+    private boolean isLeafWrapper(JsonNode node) {
+        JsonNode properties = node.get("properties");
         if (properties == null || !properties.isObject()) return false;
         
-        // Amazon wrappers typically only contain value, marketplace_id, language_tag, and sometimes type (for external IDs)
+        // Rule: Usually contains marketplace_id, OR it's a specialized pricing schedule container
+        boolean hasMarketplaceId = properties.has("marketplace_id");
+        
+        int nonMetaCount = 0;
+        boolean hasComplexChildren = false;
+        boolean hasSimpleSchedule = false;
+        
         Iterator<String> fieldNames = properties.fieldNames();
         while (fieldNames.hasNext()) {
             String name = fieldNames.next();
-            if (!name.equals("value") && !name.equals("marketplace_id") && !name.equals("language_tag") && !name.equals("type")) {
-                return false;
+            if (isInternalMetaField(name) || name.equals("type")) continue;
+            nonMetaCount++;
+            JsonNode prop = properties.get(name);
+            if (isSimpleSchedule(name, prop)) {
+                hasSimpleSchedule = true;
+            } else if (prop.has("properties") || prop.has("items")) {
+                hasComplexChildren = true;
             }
         }
-        return properties.has("value");
+
+        // It's a leaf wrapper if:
+        // 1. It has marketplace_id AND exactly one simple real property (classic wrapper)
+        // 2. OR it has exactly one simple schedule (pricing wrapper)
+        if (nonMetaCount == 1) {
+            if (hasMarketplaceId && !hasComplexChildren) return true;
+            if (hasSimpleSchedule) return true;
+        }
+        
+        return false;
+    }
+
+    private boolean isSimpleSchedule(String name, JsonNode node) {
+        if (!"schedule".equals(name) || node == null) return false;
+        JsonNode items = node.path("items");
+        if (items.isMissingNode()) return false;
+        
+        JsonNode properties = items.path("properties");
+        if (properties.isMissingNode() || !properties.isObject()) return false;
+
+        Iterator<String> fieldNames = properties.fieldNames();
+        boolean hasTimeFields = false;
+        boolean hasValueFields = false;
+        while (fieldNames.hasNext()) {
+            String propName = fieldNames.next();
+            if (TIME_INDICATOR_FIELDS.contains(propName)) {
+                hasTimeFields = true;
+            }
+            if (VALUE_INDICATOR_FIELDS.contains(propName)) {
+                hasValueFields = true;
+            }
+        }
+        // A simple schedule is one that effectively just has values without complex timing
+        // If it has BOTH value and time, it's a real schedule and should NOT be simplified/collapsed.
+        return hasValueFields && !hasTimeFields;
+    }
+
+    /**
+     * Rule 3: If a leaf wrapper has properties other than value, marketplace_id, and language_tag, it's nested
+     */
+    private boolean isNestedObject(JsonNode node) {
+        JsonNode properties = node.get("properties");
+        if (properties == null || !properties.isObject()) return false;
+
+        boolean isCollapsible = isLeafWrapper(node);
+        if (isCollapsible) return false;
+
+        int nonMetaCount = 0;
+        Iterator<String> fieldNames = properties.fieldNames();
+        while (fieldNames.hasNext()) {
+            String name = fieldNames.next();
+            if (isInternalMetaField(name) || name.equals("type")) continue;
+            nonMetaCount++;
+        }
+        
+        // If it has properties other than standard metadata, and isn't collapsible, it's nested
+        return nonMetaCount > 0;
+    }
+
+    private boolean isAmazonValueWrapper(JsonNode node) {
+        if (node == null || node.isMissingNode()) return false;
+        // Search for marketplace_id in this node or its branches
+        if (isLeafWrapper(node)) return true;
+        
+        String[] branches = {"anyOf", "oneOf", "allOf"};
+        for (String branch : branches) {
+            if (node.has(branch) && node.get(branch).isArray()) {
+                for (JsonNode sub : node.get(branch)) {
+                    if (isAmazonValueWrapper(sub)) return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private String mergeWrapperValueSchema(AmzListingFormFieldVO field, JsonNode wrapperSchema, String currentPath) {
+        StringBuilder deepPath = new StringBuilder(currentPath);
+        JsonNode valueSchema = findInnerValueAndPath(wrapperSchema, deepPath);
+        
+        if (valueSchema != null && !valueSchema.isMissingNode()) {
+            // Update the field type to the internal value type (usually string)
+            field.setType(valueSchema.path("type").asText("string"));
+            
+            // Mark as wrapper for the UI
+            field.getExtra().put("isAmazonWrapper", true);
+            // Record the deep path suffix so frontend/backend knows how to bind
+            field.getExtra().put("valuePath", deepPath.toString());
+
+            // Re-extract options and type from inner schema
+            Map<String, Object> innerExtra = new HashMap<>();
+            AmzListingFormFieldVO.AmzListingFormFieldVOBuilder builder = AmzListingFormFieldVO.builder()
+                    .id(field.getId()).name(field.getName());
+            extractTypeAndOptions(builder, valueSchema, innerExtra);
+            
+            AmzListingFormFieldVO temp = builder.build();
+            field.setType(temp.getType());
+            field.setOptions(temp.getOptions());
+            if (innerExtra != null) {
+                field.getExtra().putAll(innerExtra);
+            }
+            return deepPath.toString();
+        }
+        return currentPath;
+    }
+
+    private JsonNode findInnerValueAndPath(JsonNode node, StringBuilder path) {
+        if (node.has("properties")) {
+            JsonNode properties = node.get("properties");
+            // Prefer 'value', then fallback to 'value_with_tax'
+            if (properties.has("value")) {
+                path.append(".value");
+                return properties.get("value");
+            }
+            if (properties.has("value_with_tax")) {
+                path.append(".value_with_tax");
+                return properties.get("value_with_tax");
+            }
+            if (properties.has("schedule") && isSimpleSchedule("schedule", properties.get("schedule"))) {
+                path.append(".0.schedule.0");
+                return findInnerValueAndPath(properties.get("schedule").get("items"), path);
+            }
+        }
+        String[] branches = {"anyOf", "oneOf", "allOf"};
+        for (String branch : branches) {
+            if (node.has(branch) && node.get(branch).isArray()) {
+                for (JsonNode sub : node.get(branch)) {
+                    JsonNode found = findInnerValueAndPath(sub, path);
+                    if (found != null && !found.isMissingNode()) return found;
+                }
+            }
+        }
+        return node;
     }
 
     private boolean isInternalMetaField(String name) {
@@ -220,18 +475,33 @@ public class AmazonListingSchemaService {
         }
     }
 
-    private AmzListingFormFieldVO parseField(String id, JsonNode schema, boolean isRequired) {
+    private AmzListingFormFieldVO parseField(String id, String name, JsonNode schema, boolean isRequired) {
         boolean hidden = schema.path("hidden").asBoolean(false);
         boolean isOptional = !isRequired && !isImportantField(id);
 
+        String title = schema.path("title").asText(id);
+        
+        // Smart Title Selection: If top-level title is generic (like Built-In Media) 
+        // but child 'value' has a better title (like Included Components), prefer the child.
+        String internalTitle = findInternalTitle(schema);
+        if (StrUtil.isNotEmpty(internalTitle) && !internalTitle.equalsIgnoreCase(title)) {
+            // Heuristic: if internal title is "Included Components" and outer is "Built-In Media"
+            if (id.endsWith("included_components") || title.contains("Media") || title.contains("Components")) {
+                title = internalTitle;
+            }
+        }
+
+        Map<String, Object> extra = extractExtra(schema);
         AmzListingFormFieldVO.AmzListingFormFieldVOBuilder builder = AmzListingFormFieldVO.builder()
                 .id(id)
-                .title(cleanLabel(schema.path("title").asText(id)))
+                .name(name)
+                .title(cleanLabel(title))
                 .description(schema.path("description").asText(""))
                 .required(isRequired)
                 .editable(schema.path("editable").asBoolean(true))
                 .hidden(hidden)
                 .optional(isOptional)
+                .extra(extra)
                 .linkageRules(new ArrayList<>());
 
         // Assign specialized UI widgets
@@ -239,20 +509,8 @@ public class AmazonListingSchemaService {
             builder.uiWidget("bullet_point_editor");
         }
 
-        // Extract Constraints for extra data
-        Map<String, Object> extra = new HashMap<>();
-        if (schema.has("minimum")) extra.put("minimum", schema.get("minimum").asDouble());
-        if (schema.has("maximum")) extra.put("maximum", schema.get("maximum").asDouble());
-        if (schema.has("minItems")) extra.put("minItems", schema.get("minItems").asInt());
-        if (schema.has("maxItems")) extra.put("maxItems", schema.get("maxItems").asInt());
-        if (schema.has("minLength")) extra.put("minLength", schema.get("minLength").asInt());
-        if (schema.has("maxLength")) extra.put("maxLength", schema.get("maxLength").asInt());
-        if (schema.has("pattern")) extra.put("pattern", schema.get("pattern").asText());
-        
-        builder.extra(extra);
-
         // Type Detection & Option Extraction
-        extractTypeAndOptions(builder, schema);
+        extractTypeAndOptions(builder, schema, extra);
 
         // Set default value if present
         if (schema.has("default")) {
@@ -262,7 +520,47 @@ public class AmazonListingSchemaService {
         return builder.build();
     }
 
-    private void extractTypeAndOptions(AmzListingFormFieldVO.AmzListingFormFieldVOBuilder builder, JsonNode node) {
+    private String findInternalTitle(JsonNode node) {
+        if (node.has("items")) {
+            return findInternalTitle(node.get("items"));
+        }
+        if (node.has("properties")) {
+            JsonNode props = node.get("properties");
+            if (props.has("value") && props.get("value").has("title")) {
+                return props.get("value").get("title").asText();
+            }
+            if (props.has("value_with_tax") && props.get("value_with_tax").has("title")) {
+                return props.get("value_with_tax").get("title").asText();
+            }
+        }
+        String[] branches = {"anyOf", "oneOf", "allOf"};
+        for (String branch : branches) {
+            if (node.has(branch) && node.get(branch).isArray()) {
+                for (JsonNode sub : node.get(branch)) {
+                    String found = findInternalTitle(sub);
+                    if (StrUtil.isNotEmpty(found)) return found;
+                }
+            }
+        }
+        return null;
+    }
+
+    private Map<String, Object> extractExtra(JsonNode schema) {
+        Map<String, Object> extra = new HashMap<>();
+        if (schema == null || schema.isMissingNode()) return extra;
+
+        if (schema.has("minimum")) extra.put("minimum", schema.get("minimum").asDouble());
+        if (schema.has("maximum")) extra.put("maximum", schema.get("maximum").asDouble());
+        if (schema.has("minItems")) extra.put("minItems", schema.get("minItems").asInt());
+        if (schema.has("maxItems")) extra.put("maxItems", schema.get("maxItems").asInt());
+        if (schema.has("minLength")) extra.put("minLength", schema.get("minLength").asInt());
+        if (schema.has("maxLength")) extra.put("maxLength", schema.get("maxLength").asInt());
+        if (schema.has("pattern")) extra.put("pattern", schema.get("pattern").asText());
+
+        return extra;
+    }
+
+    private void extractTypeAndOptions(AmzListingFormFieldVO.AmzListingFormFieldVOBuilder builder, JsonNode node, Map<String, Object> extra) {
         // 1. Try to extract options directly
         if (tryExtractOptions(builder, node)) {
             return;
@@ -271,13 +569,40 @@ public class AmazonListingSchemaService {
         // 2. If it's an array, try to extract options from its items or nested value wrapper
         if (node.path("type").asText().equals("array") && node.has("items")) {
             JsonNode items = node.get("items");
+            
+            // Check if items themselves have options (direct enum array)
             if (tryExtractOptions(builder, items)) {
+                builder.type("array");
+                extra.put("isMultiSelect", true);
                 return;
             }
-            // Deep look for Amazon wrapper pattern in items: { properties: { value: { enum: ... } } }
-            if (items.has("properties") && items.get("properties").has("value")) {
-                if (tryExtractOptions(builder, items.get("properties").get("value"))) {
+            
+            // Check for Amazon wrapper pattern in items: { properties: { value: { enum: ... } } }
+            if (items.has("properties")) {
+                JsonNode props = items.get("properties");
+                if (props.has("value") && tryExtractOptions(builder, props.get("value"))) {
+                    builder.type("array");
+                    extra.put("isMultiSelect", true);
                     return;
+                }
+                if (props.has("value_with_tax") && tryExtractOptions(builder, props.get("value_with_tax"))) {
+                    builder.type("array");
+                    extra.put("isMultiSelect", true);
+                    return;
+                }
+            }
+
+            // Check if items have anyOf/oneOf/allOf that contain enum
+            String[] branches = {"anyOf", "oneOf", "allOf"};
+            for (String branch : branches) {
+                if (items.has(branch) && items.get(branch).isArray()) {
+                    for (JsonNode sub : items.get(branch)) {
+                        if (tryExtractOptions(builder, sub)) {
+                            builder.type("array");
+                            extra.put("isMultiSelect", true);
+                            return;
+                        }
+                    }
                 }
             }
         }
@@ -444,13 +769,7 @@ public class AmazonListingSchemaService {
                 String fullId = StrUtil.isEmpty(prefix) ? fieldName : prefix + "." + fieldName;
 
                 // Determine structure to adjust path
-                FieldStructureType type = determineFieldStructure(constraint);
-                if (type == FieldStructureType.PSEUDO_ARRAY) {
-                    // Force logic to target the flattened .0.value
-                    subExpressions.add(parseFieldConstraint(fullId + ".0.value", constraint.get("items").get("properties").get("value")));
-                } else {
-                    subExpressions.add(parseFieldConstraint(fullId, constraint));
-                }
+                subExpressions.add(parseFieldConstraint(fullId, constraint));
             }
         }
 
@@ -460,13 +779,7 @@ public class AmazonListingSchemaService {
                 String fieldName = req.asText();
                 String fullId = StrUtil.isEmpty(prefix) ? fieldName : prefix + "." + fieldName;
                 
-                // If the required field is a pseudo-array, we require its value leaf
-                JsonNode propSchema = node.path("properties").get(fieldName);
-                if (propSchema != null && determineFieldStructure(propSchema) == FieldStructureType.PSEUDO_ARRAY) {
-                    subExpressions.add(new LogicExpressionVO("REQUIRED", fullId + ".0.value", null, null));
-                } else {
-                    subExpressions.add(new LogicExpressionVO("REQUIRED", fullId, null, null));
-                }
+                subExpressions.add(new LogicExpressionVO("REQUIRED", fullId, null, null));
             }
         }
 
@@ -715,7 +1028,16 @@ public class AmazonListingSchemaService {
 
         // Handle direct value constraints
         if (constraint.has("enum")) {
-            subExprs.add(new LogicExpressionVO("EQ", fieldId, constraint.get("enum").get(0).asText(), null));
+            JsonNode enumNode = constraint.get("enum");
+            if (enumNode.size() == 1) {
+                subExprs.add(new LogicExpressionVO("EQ", fieldId, enumNode.get(0).asText(), null));
+            } else {
+                List<LogicExpressionVO> enumBranches = new ArrayList<>();
+                for (JsonNode e : enumNode) {
+                    enumBranches.add(new LogicExpressionVO("EQ", fieldId, e.asText(), null));
+                }
+                subExprs.add(new LogicExpressionVO("OR", null, null, enumBranches));
+            }
         } else if (constraint.has("const")) {
             subExprs.add(new LogicExpressionVO("EQ", fieldId, constraint.get("const").asText(), null));
         }

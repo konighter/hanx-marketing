@@ -13,7 +13,7 @@ export interface AmazonFixedGroupConfig {
 
 export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
   {
-    name: '描述与关键字',
+    name: 'Description & Keywords',
     match: [
       'product_description',
       'bullet_point',
@@ -21,7 +21,7 @@ export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
     ]
   },
   {
-    name: '基础信息',
+    name: 'Basic Information',
     match: [
       'item_name',
       'brand',
@@ -32,7 +32,7 @@ export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
     ]
   },
   {
-    name: '产品标识',
+    name: 'Product Identifiers',
     match: [
       'externally_assigned_product_identifier',
       'supplier_declared_has_product_identifier_exemption',
@@ -45,7 +45,7 @@ export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
     ]
   },
   {
-    name: '报价与销售',
+    name: 'Offer & Sales',
     match: [
       'purchasable_offer',
       'fulfillment',
@@ -68,7 +68,7 @@ export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
     ]
   },
   {
-    name: '产品尺寸',
+    name: 'Product Dimensions',
     match: [
       'item_package_quantity',
       'item_weight',
@@ -85,5 +85,5 @@ export const AmazonFixedGroups: AmazonFixedGroupConfig[] = [
 ];
 
 /** Group Names Constants */
-export const GROUP_NAME_REMAINING_REQUIRED = '其他必填属性';
-export const GROUP_NAME_OPTIONAL = '附加可选属性';
+export const GROUP_NAME_REMAINING_REQUIRED = 'Other Required Attributes';
+export const GROUP_NAME_OPTIONAL = 'Optional Attributes';

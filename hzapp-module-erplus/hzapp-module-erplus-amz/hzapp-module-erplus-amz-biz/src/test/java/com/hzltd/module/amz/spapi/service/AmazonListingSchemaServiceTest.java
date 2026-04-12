@@ -134,4 +134,116 @@ public class AmazonListingSchemaServiceTest {
 
         System.out.println("Aggressive flattening and options extraction verification passed.");
     }
+
+    @Test
+    public void testNestedFieldsParsing() {
+        String schemaPath = "/Users/work/proj/repo/hzapp/hzapp-erplus/hzapp-ui/hzapp-ui-admin-vue3-tiny/src/app/erplus/views/product/listing/schema/example_schema.json";
+        if (!FileUtil.exist(schemaPath)) return;
+        String schemaContent = FileUtil.readString(schemaPath, CharsetUtil.UTF_8);
+
+        CrossMetaCategoryModel model = new CrossMetaCategoryModel();
+        model.setExtra(schemaContent);
+        when(metaCategoryService.getCrossMetaCategoryByPlatformCategoryCode(any(), eq("ART_CRAFT_KIT")))
+                .thenReturn(model);
+
+        AmzListingFormConfigVO config = service.generateFormConfig("ART_CRAFT_KIT");
+
+        // 1. Verify purchasable_offer.0.our_price exists as a collapsed wrapper
+        Optional<AmzListingFormFieldVO> ourPriceField = config.getFields().stream()
+                .filter(f -> f.getId().equals("purchasable_offer.0.our_price"))
+                .findFirst();
+        assertTrue(ourPriceField.isPresent(), "purchasable_offer.0.our_price should exist");
+        
+        // our_price items are collapsed because schedule is simple (no time)
+        // So the children of our_price should be a LEAF node with isAmazonWrapper
+        assertTrue(ourPriceField.get().getChildren().size() > 0);
+        AmzListingFormFieldVO firstChild = ourPriceField.get().getChildren().get(0);
+        assertEquals("LEAF", determineTypeIndicator(firstChild), "Child of our_price should be collapsed to LEAF");
+        assertTrue(Boolean.TRUE.equals(firstChild.getExtra().get("isAmazonWrapper")), "Collapsed child should have isAmazonWrapper: true");
+
+        // 2. Verify purchasable_offer.0.discounted_price remains an array/nested (has start_at/end_at)
+        Optional<AmzListingFormFieldVO> discPrice = config.getFields().stream()
+                .filter(f -> f.getId().equals("purchasable_offer.0.discounted_price"))
+                .findFirst();
+        assertTrue(discPrice.isPresent());
+        // Since it has start_at/end_at, the schedule remains nested/array
+        boolean hasScheduleChild = discPrice.get().getChildren().get(0).getChildren().stream()
+                .anyMatch(f -> f.getName().equals("schedule"));
+        assertTrue(hasScheduleChild, "discounted_price should keep schedule nesting due to time fields");
+
+        // 3. Verify list_price.0.value_with_tax exists as a leaf
+        boolean hasListPriceValue = config.getFields().stream()
+                .anyMatch(f -> f.getId().equals("list_price.0.value_with_tax"));
+        assertTrue(hasListPriceValue, "list_price.0.value_with_tax should exist");
+
+        System.out.println("Pragmatic schedule handling verification passed.");
+    }
+
+    @Test
+    public void testRefinements() {
+        // 1. Load 3D_PRINTER schema to test Smart Title Selection, Schedule Flattening and Multi-Select
+        String schemaPath = "/Users/work/proj/repo/hzapp/hzapp-erplus/hzapp-ui/hzapp-ui-admin-vue3-tiny/src/app/erplus/views/product/listing/schema/3D_print.json";
+        if (FileUtil.exist(schemaPath)) {
+            String schemaContent = FileUtil.readString(schemaPath, CharsetUtil.UTF_8);
+            CrossMetaCategoryModel model = new CrossMetaCategoryModel();
+            model.setExtra(schemaContent);
+            when(metaCategoryService.getCrossMetaCategoryByPlatformCategoryCode(any(), eq("3D_PRINTER")))
+                    .thenReturn(model);
+            
+            AmzListingFormConfigVO config = service.generateFormConfig("3D_PRINTER");
+            
+            // Output to example_resp.json for verification
+            String outPath = "/Users/work/proj/repo/hzapp/hzapp-erplus/hzapp-ui/hzapp-ui-admin-vue3-tiny/src/app/erplus/views/product/listing/schema/example_resp.json";
+            cn.hutool.json.JSONUtil.toJsonStr(config);
+            FileUtil.writeString(cn.hutool.json.JSONUtil.toJsonPrettyStr(config), outPath, CharsetUtil.UTF_8);
+            System.out.println("Updated example_resp.json with latest parsing results.");
+            
+            // A. Verify Title Logic for included_components
+            Optional<AmzListingFormFieldVO> incComp = config.getFields().stream()
+                    .filter(f -> f.getId().equals("included_components"))
+                    .findFirst();
+            if (incComp.isPresent()) {
+                assertEquals("Included Components", incComp.get().getTitle());
+                assertEquals("array", incComp.get().getType());
+            }
+
+            // B. Verify Schedule Flattening for our_price
+            // Deep path in schema is purchasable_offer.our_price.0.schedule.0.value_with_tax
+            String ourPricePath = config.getFieldMapping().get("our_price");
+            // Since our_price is nested in purchasable_offer, we look inside that child
+            Optional<AmzListingFormFieldVO> purchOffer = config.getFields().stream()
+                    .filter(f -> f.getId().equals("purchasable_offer"))
+                    .findFirst();
+            if (purchOffer.isPresent()) {
+                Optional<AmzListingFormFieldVO> ourPriceRef = purchOffer.get().getChildren().stream()
+                        .filter(f -> f.getName().equals("our_price"))
+                        .findFirst();
+                if (ourPriceRef.isPresent()) {
+                    AmzListingFormFieldVO f = ourPriceRef.get();
+                    assertTrue((Boolean) f.getExtra().get("isAmazonWrapper"));
+                    // The valuePath should reflect the deep schedule path
+                    String valuePath = (String) f.getExtra().get("valuePath");
+                    assertNotNull(valuePath);
+                    assertTrue(valuePath.contains("schedule.0.value_with_tax"));
+                }
+            }
+
+            // C. Verify Multi-Select Array Integrity
+            // recommended_browse_nodes has maxItems: 2 in 3D_PRINTER
+            Optional<AmzListingFormFieldVO> browseNodes = config.getFields().stream()
+                    .filter(f -> f.getId().equals("recommended_browse_nodes"))
+                    .findFirst();
+            if (browseNodes.isPresent()) {
+                assertEquals("array", browseNodes.get().getType(), "Multi-select must be array type");
+                assertTrue((Boolean) browseNodes.get().getExtra().get("isMultiSelect"));
+            }
+        }
+    }
+
+    private String determineTypeIndicator(AmzListingFormFieldVO field) {
+        if (field.getChildren() != null && !field.getChildren().isEmpty()) {
+            return "NESTED";
+        }
+        return "LEAF";
+    }
 }

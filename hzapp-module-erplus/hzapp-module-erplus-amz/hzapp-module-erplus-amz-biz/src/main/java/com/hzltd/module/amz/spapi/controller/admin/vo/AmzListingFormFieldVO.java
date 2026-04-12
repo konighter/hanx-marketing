@@ -19,6 +19,12 @@ public class AmzListingFormFieldVO {
     @Schema(description = "字段 ID (打平后的路径)", example = "item_name")
     private String id;
 
+    @Schema(description = "字段名称 (本地 key)", example = "value")
+    private String name;
+
+    @Schema(description = "子字段 (用于嵌套结构)")
+    private List<AmzListingFormFieldVO> children;
+
     @Schema(description = "字段标题", example = "商品名称")
     private String title;
 

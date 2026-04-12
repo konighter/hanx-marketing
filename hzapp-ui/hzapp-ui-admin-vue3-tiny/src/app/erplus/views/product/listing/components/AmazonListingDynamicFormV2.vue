@@ -8,15 +8,15 @@
             <h3 class="group-title sticky top-0 z-10 bg-white border-b pb-1 mb-2 text-primary font-bold flex items-center justify-between">
               <div class="flex items-center">
                 {{ group.name }}
-                <el-tag size="small" type="info" effect="plain" class="ml-2 font-normal">{{ group.fields.length }} 字段</el-tag>
-                <el-tag v-if="group.type === 'optional'" size="small" type="warning" effect="light" class="ml-2 font-normal">选填</el-tag>
+                <el-tag size="small" type="info" effect="plain" class="ml-2 font-normal">{{ group.fields.length }} fields</el-tag>
+                <el-tag v-if="group.type === 'optional'" size="small" type="warning" effect="light" class="ml-2 font-normal">Optional</el-tag>
               </div>
 
               <!-- Add Attribute Selector for Optional Group -->
               <div v-if="group.type === 'optional'" class="flex items-center">
                 <el-select
                   v-model="currentSelectedAttr"
-                  placeholder="搜索并添加属性..."
+                  placeholder="Search and add attribute..."
                   size="small"
                   filterable
                   clearable
@@ -37,13 +37,14 @@
               <el-col 
                 v-for="field in group.displayFields" 
                 :key="field.id" 
-                :span="field.span || 12" 
+                :span="24" 
                 v-show="isFieldVisible(field.id) && !field.id.startsWith('purchasable_offer.')"
+                class="root-col"
               >
                 <el-form-item 
                   :prop="['attributes', field.id]" 
                   :required="isFieldRequired(field.id)"
-                  :rules="isFieldRequired(field.id) ? [{ required: true, message: `请填写 ${field.title} (${field.id})`, trigger: ['change', 'blur'] }] : []"
+                  :rules="isFieldRequired(field.id) ? [{ required: true, message: `Please fill in ${field.title} (${field.id})`, trigger: ['change', 'blur'] }] : []"
                   :class="{ 'is-optional-item': group.type === 'optional' }"
                 >
                   <template #label>
@@ -60,6 +61,8 @@
                       <AmazonAttributeItem
                         v-model="formData.attributes[field.id]"
                         :field="field"
+                        :isFieldVisible="isFieldVisible"
+                        :isFieldRequired="isFieldRequired"
                         @change="handleFieldChange"
                       />
                     </div>
@@ -70,7 +73,7 @@
                       class="ml-3 remove-btn"
                       @click.stop="handleRemoveOptionalField(field.id)"
                     >
-                      <i class="el-icon-close"></i> 移除
+                      <i class="el-icon-close"></i> Remove
                     </el-link>
                   </div>
                 </el-form-item>
@@ -79,7 +82,7 @@
 
             <!-- Special handling for PurchasableOffer in '报价与销售' -->
             <AmazonPurchasableOffer
-              v-if="group.name === '报价与销售' && purchasableOfferFields.length > 0"
+              v-if="group.name === 'Offer & Sales' && purchasableOfferFields.length > 0"
               :fields="purchasableOfferFields"
               v-model="purchasableOfferModel"
               @update:model-value="handlePurchasableOfferUpdate"
@@ -87,7 +90,7 @@
           </div>
 
           <!-- If no fields in a group (e.g. all optional ones were manually removed if we had that feature) -->
-          <el-empty v-if="finalGroups.length === 0" description="暂无可用属性" />
+          <el-empty v-if="finalGroups.length === 0" description="No properties available" />
         </el-form>
       </template>
     </el-skeleton>
@@ -219,7 +222,7 @@ const finalGroups = computed(() => {
 
   // Tier 1 logic: Force key groups if they have fields OR special components
   tier1Groups.forEach(g => {
-    if (g.name === '报价与销售') {
+    if (g.name === 'Offer & Sales') {
       // 强制标记价格前缀字段，防止它们流向 Tier 3
       allFields.forEach(f => {
         if (f.id.startsWith('purchasable_offer.')) assignedFieldIds.add(f.id);
@@ -302,7 +305,7 @@ const loadSchema = async () => {
     applyLinkageRules();
   } catch (err) {
     console.error(err);
-    ElMessage.error('加载刊登配置失败');
+    ElMessage.error('Failed to load listing configuration');
   } finally {
     loading.value = false;
   }
@@ -420,31 +423,32 @@ const applyLinkageRules = () => {
 
 
 const getFieldValue = (fieldId: string) => {
-  // 1. Exact match
-  let val = formData.attributes[fieldId];
+  if (!fieldId) return undefined;
   
-  // 2. Fuzzy match for indexed/nested IDs (e.g., .0.value or parent.0.child)
-  if (val === undefined) {
-    const matchedKey = Object.keys(formData.attributes).find(key => 
-      key === fieldId || key.startsWith(fieldId + '.') || key.endsWith('.' + fieldId)
-    );
-    if (matchedKey) val = formData.attributes[matchedKey];
+  // Use deep path resolution (same as amzLinkage.ts)
+  const parts = fieldId.split('.');
+  let current: any = formData.attributes;
+  
+  for (const part of parts) {
+    if (current === null || typeof current !== 'object') {
+      current = undefined;
+      break;
+    }
+    current = current[part];
   }
   
-  // 3. Recursive unwrapping for Amazon data structures
+  // Recursive unwrapping for Amazon data structures (wrappers like {value: ...})
   const extract = (v: any): any => {
     if (v === undefined || v === null) return v;
-    // Handle array of objects (typical in Amazon schema response)
     if (Array.isArray(v)) {
       if (v.length > 0) return extract(v[0]);
       return undefined;
     }
-    // Handle single object with value property
     if (typeof v === 'object' && v.value !== undefined) return v.value;
     return v;
   };
   
-  return extract(val);
+  return extract(current);
 };
 
 const isFieldVisible = (fieldId: string) => visibilityMap[fieldId] !== false;
@@ -465,7 +469,12 @@ watch(() => props.productType, () => {
 
 defineExpose({
   getSubmitData: () => formData.attributes,
-  getNestedSubmitData: () => unflatten(formData.attributes),
+  getNestedSubmitData: () => {
+    // With natively nested fields (Option A), we only need 
+    // to process simple keys with dots (if any remain) 
+    // but the core structure is already tree-like.
+    return formData.attributes;
+  },
   validate: () => formRef.value?.validate()
 });
 
@@ -493,6 +502,13 @@ const evaluateCondition = (conditionStr: string) => {
       color: #606266;
       font-weight: 600;
     }
+  }
+
+  // === Root Field Layout ===
+  :deep(.root-col) {
+    width: 100% !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
   }
 
   // === 分组区块 ===
