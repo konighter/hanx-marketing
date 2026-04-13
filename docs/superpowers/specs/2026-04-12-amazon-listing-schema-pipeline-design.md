@@ -77,12 +77,36 @@ A registry of paths for core fields:
 - **AttributeRenderer**: A recursive component that renders `CategoryAttributeModel` trees.
 - **Standard Components**: High-level components for `PurchasableOffer`, `BulletPoints`, etc., that bind to the Standard Core Model.
 
-## 5. Verification Plan
+## 6. Dynamic Linkage & Requirement Engine
+
+To handle Amazon's complex conditional schemas (e.g., "If GTIN exemption is false, then Product ID is required"), we implemented a multi-layered requirement and linkage engine.
+
+### 6.1 Backend: Rule Resolution & Propagation
+- **Recursive Linkage Mapping**: Rules are now applied recursively. If a parent container (e.g., `item_dimensions`) is targeted by a requirement rule, the rule is automatically propagated to all its flattened descendants (e.g., `item_dimensions.0.width`).
+- **Structural Integrity over Inheritance**: We decoupled a field's `required` flag from its parent's requirement status during schema flattening. 
+  - *Principle*: If the schema defines `currency` as required within `list_price`, it is marked `required: true` in the data model even if the `list_price` card itself is optional.
+  - *Benefit*: This ensures accurate red-asterisk guidance within composite cards and prevents mandatory sub-fields from being accidentally hidden in "Required Only" mode.
+
+### 6.2 Frontend: Reactive Linkage Evaluation
+- **useAmzLinkages Engine**: A robust reactive engine that monitors form data changes and evaluates `LogicExpressionVO` trees (supporting `AND`, `OR`, `NOT`, `IN`).
+- **State Management**: Evaluated rules are stored in global maps (`requirementMap`, `visibilityMap`) and shared via `provide/inject` to avoid deep prop drilling.
+
+### 6.3 UI Filtering: "Show Required Only"
+The "Show Required Only" filter uses an **additive visibility logic**:
+- **Field Visibility**: A field stays visible if:
+  1. It is **statically required** in the schema.
+  2. It is **dynamically required** by any active linkage rule.
+  3. It **contains a value** (ensures user data isn't hidden while editing).
+- **Composite Filtering**: `AmzCompositeWrapper` implements a recursive `visibleChildren` filter. If a composite card is visible, it only renders sub-fields that meet the criteria above, ensuring a high-density, focused UI.
+
+## 7. Verification Plan
 
 ### Automated Testing
 - Unit tests for `PropertyFlattenStrategy` with `3D_PRINTER` and `LUGAGGE` schemas.
 - Integration tests for `LinkageRuleResolver` to ensure `LogicExpressionVO` is correctly generated for FBA/FBM switches.
+- **Linkage Verification**: Verify that a change in `supplier_declared_has_product_identifier_exemption` correctly toggles the `required` status of the `external_product_id` card and its children.
 
 ### Manual Verification
 - Verify the "All Fields" vs. "Required Fields" filter functionality in the new UI.
 - Confirm that `purchasable_offer` renders as a structured form rather than a giant flat list.
+- **Structural Integrity Check**: Ensure `currency` inside `list_price` always shows a red star if the card is visible, even if the card is optional.

@@ -27,6 +27,7 @@ public interface PropertyFlattenStrategy {
     class FlattenContext {
         private String productType;
         private Map<String, String> fieldMapping;
+        private Map<String, AmzListingFormFieldVO> bizPathToFieldMap = new java.util.HashMap<>();
         private Set<String> importantFields;
         
         public FlattenContext(String productType, Map<String, String> fieldMapping) {

@@ -54,7 +54,7 @@ public class AmazonListingSchemaServiceV2 {
 
         // Stage 3: Dynamic Linkage Resolution (Visitor Pattern)
         // Parses if-then-else rules into the standardized LogicExpressionVO for the frontend.
-        ruleResolver.resolve(schemaRoot, fields);
+        ruleResolver.resolve(schemaRoot, fields, context);
 
         // Stage 4: UI Overlay & Grouping (Reference Lingxing layout)
         // Merges UI hints, grouping, and ordering per productType.

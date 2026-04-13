@@ -19,10 +19,10 @@ public class AmzListingFormFieldVO {
     @Schema(description = "字段 ID (打平后的路径)", example = "item_name")
     private String id;
 
-    @Schema(description = "业务属性路径 (用于联动规则)", example = "purchasable_offer.0.our_price.0.amount")
+    @Schema(description = "原始业务路径 (Amazon Schema 路径)", example = "purchasable_offer.0.our_price.0.amount")
     private String bizField;
 
-    @Schema(description = "表单渲染单位 ID", example = "item_name")
+    @Schema(description = "表单字段 ID (用于联动规则和 UI 匹配)", example = "item_name")
     private String formField;
 
     @Schema(description = "字段名称 (本地 key)", example = "value")

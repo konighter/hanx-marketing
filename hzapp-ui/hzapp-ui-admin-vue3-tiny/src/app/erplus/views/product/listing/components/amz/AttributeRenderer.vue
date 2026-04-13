@@ -1,5 +1,5 @@
 <template>
-  <div class="amz-attribute-renderer" v-if="!field.hidden" :class="{ 'is-nested': isNested }">
+  <div class="amz-attribute-renderer" v-if="isVisible" :class="{ 'is-nested': isNested }">
     <!-- Case 1: Composite Fields (Recursive) -->
     <!-- We skip this if a uiWidget is explicitly requested for a composite field (e.g. dimensions) -->
     <template v-if="field.isComposite && !field.uiWidget">
@@ -24,7 +24,7 @@
     <template v-else>
       <el-form-item
         :prop="field.id"
-        :required="field.required"
+        :required="isRequired"
         :label-width="['purchasable-offer', 'fulfillment-availability'].includes(field.uiWidget) ? '0px' : undefined"
         class="attribute-item"
       >
@@ -71,7 +71,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, inject, type Ref } from 'vue';
 import { InfoFilled } from '@element-plus/icons-vue';
 import { resolveComponent } from './AmzWidgetRegistry';
 import AmzCompositeWrapper from './AmzCompositeWrapper.vue';
@@ -95,9 +95,25 @@ const props = defineProps<{
   field: Field;
   modelValue: any;
   isNested?: boolean;
+  dynamicVisible?: boolean;
+  dynamicRequired?: boolean;
 }>();
 
 const emit = defineEmits(['update:modelValue']);
+
+// Injected Linkage State (from AmzDynamicForm)
+const visibilityMap = inject<Ref<Record<string, boolean>>>('amzLinkageVisibility');
+const requirementMap = inject<Ref<Record<string, boolean>>>('amzLinkageRequirement');
+
+const isVisible = computed(() => !props.field.hidden);
+
+const isRequired = computed(() => {
+  if (props.dynamicRequired !== undefined) return props.dynamicRequired;
+  if (requirementMap?.value && requirementMap.value[props.field.id] !== undefined) {
+    return requirementMap.value[props.field.id];
+  }
+  return !!props.field.required;
+});
 
 // Resolve the component based on the registry
 const resolvedComponent = computed(() => {

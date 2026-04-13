@@ -22,7 +22,7 @@ public class AmzListingFieldRuleVO {
     @Schema(description = "结构化触发条件")
     private LogicExpressionVO conditionLogic;
 
-    @Schema(description = "触发源字段 (biz_field)", example = "purchasable_offer.0.our_price.0.currency")
+    @Schema(description = "触发源字段 (form_field)", example = "item_name")
     private String sourceField;
 
     @Schema(description = "动作: show, hide, required, optional", example = "show")

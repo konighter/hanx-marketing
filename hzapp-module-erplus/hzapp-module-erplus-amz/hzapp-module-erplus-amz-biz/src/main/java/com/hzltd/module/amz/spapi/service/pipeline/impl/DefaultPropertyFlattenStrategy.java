@@ -8,10 +8,7 @@ import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Default implementation of the PropertyFlattenStrategy.
@@ -43,12 +40,18 @@ public class DefaultPropertyFlattenStrategy implements PropertyFlattenStrategy {
         }
 
         // Start recursion from the identified properties root
-        this.processProperties(properties, "", "", fields, ctx);
+        Set<String> rootRequired = extractRequiredAtLevel(schemaRoot);
+        // Special case: if attributes wrapper exists, extract requirements from it too
+        if (schemaRoot.has("properties") && schemaRoot.get("properties").has("attributes")) {
+            rootRequired.addAll(extractRequiredAtLevel(schemaRoot.get("properties").get("attributes")));
+        }
+        
+        this.processProperties(properties, "", "", fields, ctx, rootRequired);
 
         return fields;
-    }
+}
 
-    private void processProperties(JsonNode properties, String formPrefix, String bizPrefix, List<AmzListingFormFieldVO> fields, FlattenContext ctx) {
+    private void processProperties(JsonNode properties, String formPrefix, String bizPrefix, List<AmzListingFormFieldVO> fields, FlattenContext ctx, Set<String> requiredFields) {
         Iterator<Map.Entry<String, JsonNode>> it = properties.fields();
         while (it.hasNext()) {
             Map.Entry<String, JsonNode> entry = it.next();
@@ -63,6 +66,7 @@ public class DefaultPropertyFlattenStrategy implements PropertyFlattenStrategy {
 
             String currentFormPath = StrUtil.isEmpty(formPrefix) ? key : formPrefix + "." + key;
             String currentBizPath = StrUtil.isEmpty(bizPrefix) ? key : bizPrefix + "." + key;
+            boolean isRequired = requiredFields != null && requiredFields.contains(key);
 
             // Determine if this property should be represented as a UI field
             if (shouldCreateField(key, propSchema)) {
@@ -75,18 +79,42 @@ public class DefaultPropertyFlattenStrategy implements PropertyFlattenStrategy {
                 // If collapsing, the bizField points to the first element (.0)
                 String fieldBizPath = shouldCollapseArray ? currentBizPath + ".0" : currentBizPath;
                 
-                AmzListingFormFieldVO field = createField(currentFormPath, fieldBizPath, propSchema);
+                AmzListingFormFieldVO field = createField(currentFormPath, fieldBizPath, propSchema, isRequired);
                 fields.add(field);
                 
+                // Register in bizPathToFieldMap for linkage rule lookup
+                ctx.getBizPathToFieldMap().put(fieldBizPath, field);
+                // Also register the short version (without .0) and a normalized version (no indices at all)
+                ctx.getBizPathToFieldMap().put(currentBizPath, field);
+                String normalizedPath = currentBizPath.replace(".0.", ".").replaceAll("\\.0$", "");
+                ctx.getBizPathToFieldMap().put(normalizedPath, field);
+
                 // If it's a composite (nested object or object array), process its children into compositeAttributes
                 if (Boolean.TRUE.equals(field.getIsComposite())) {
                     processCompositeChildren(propSchema, currentFormPath, fieldBizPath, field, ctx);
                 }
             } else if (propSchema.has("properties")) {
                 // If it's a structural container without a specific field ID, keep diving
-                processProperties(propSchema.get("properties"), currentFormPath, currentBizPath, fields, ctx);
+                Set<String> nextRequired = extractRequiredAtLevel(propSchema);
+                processProperties(propSchema.get("properties"), currentFormPath, currentBizPath, fields, ctx, nextRequired);
             }
         }
+    }
+
+    private Set<String> extractRequiredAtLevel(JsonNode node) {
+        java.util.Set<String> required = new java.util.HashSet<>();
+        if (node.has("required") && node.get("required").isArray()) {
+            for (JsonNode r : node.get("required")) {
+                required.add(r.asText());
+            }
+        }
+        // Amazon often hides requirements in allOf branches
+        if (node.has("allOf") && node.get("allOf").isArray()) {
+            for (JsonNode sub : node.get("allOf")) {
+                required.addAll(extractRequiredAtLevel(sub));
+            }
+        }
+        return required;
     }
 
     private boolean shouldCreateField(String key, JsonNode schema) {
@@ -100,7 +128,7 @@ public class DefaultPropertyFlattenStrategy implements PropertyFlattenStrategy {
         return "purchasable_offer".equals(key) || "item_dimensions".equals(key);
     }
 
-    private AmzListingFormFieldVO createField(String formPath, String bizPath, JsonNode schema) {
+    private AmzListingFormFieldVO createField(String formPath, String bizPath, JsonNode schema, boolean isRequired) {
         AmzListingFormFieldVO field = new AmzListingFormFieldVO();
         field.setId(formPath);
         field.setFormField(formPath); // 前端渲染标识
@@ -108,6 +136,7 @@ public class DefaultPropertyFlattenStrategy implements PropertyFlattenStrategy {
         field.setTitle(schema.path("title").asText(formPath));
         field.setDescription(schema.path("description").asText(""));
         field.setType(schema.path("type").asText("object"));
+        field.setRequired(isRequired);
         
         // Complex type identification
         boolean isObject = "object".equals(field.getType());
@@ -203,14 +232,18 @@ public class DefaultPropertyFlattenStrategy implements PropertyFlattenStrategy {
         List<AmzListingFormFieldVO> children = new ArrayList<>();
         
         JsonNode subProps = null;
+        Set<String> subRequired = new java.util.HashSet<>();
+
         if (schema.has("properties")) {
             subProps = schema.get("properties");
+            subRequired = extractRequiredAtLevel(schema);
         } else if (schema.has("items") && schema.get("items").has("properties")) {
             subProps = schema.get("items").get("properties");
+            subRequired = extractRequiredAtLevel(schema.get("items"));
         }
 
         if (subProps != null) {
-            processProperties(subProps, formPath, bizPath, children, ctx);
+            processProperties(subProps, formPath, bizPath, children, ctx, subRequired);
             // In the real implementation, AmzListingFormFieldVO would wrap CategoryAttributeModel 
             // or we'd map them directly. For V2, we ensure the hierarchy is preserved in the VO.
             parentField.setChildren(children);

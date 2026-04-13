@@ -30,6 +30,7 @@
             :key="field.id"
             :field="field"
             v-model="formData[field.id]"
+            :dynamic-required="requirementMap[field.id]"
           />
         </div>
       </div>
@@ -40,9 +41,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue';
+import { ref, computed, onMounted, watch, provide } from 'vue';
 import { getListingFormConfigV2 } from '@/app/erplus/api/product/listing';
 import AttributeRenderer from './AttributeRenderer.vue';
+import { useAmzLinkages } from './useAmzLinkages';
 
 interface Field {
   id: string;
@@ -65,6 +67,15 @@ const props = defineProps<{
 const formData = ref<any>(props.initialData || {});
 const allFields = ref<Field[]>([]);
 
+// Linkage Engine Integration
+const currentFields = computed(() => props.fields || allFields.value);
+const { visibilityMap, requirementMap } = useAmzLinkages(currentFields, formData);
+
+// Provide maps and filter state to all nested renderers (including composite children)
+provide('amzLinkageVisibility', visibilityMap);
+provide('amzLinkageRequirement', requirementMap);
+provide('amzRequiredOnly', computed(() => props.requiredOnly));
+
 
 const loadSchema = async () => {
   if (!props.productType || props.fields) return; // Skip if fields are provided externally
@@ -82,7 +93,6 @@ watch(() => props.productType, () => {
 }, { immediate: true });
 
 // Filter logic
-const currentFields = computed(() => props.fields || allFields.value);
 
 const filteredGroups = computed(() => {
   const groupsMapped: Record<string, { name: string; fields: Field[] }> = {};
@@ -98,7 +108,8 @@ const filteredGroups = computed(() => {
     if (props.searchQuery && !f.title.toLowerCase().includes(props.searchQuery.toLowerCase()) && !f.id.includes(props.searchQuery)) return;
 
     // 4. Required filter
-    if (props.requiredOnly && !f.required) return;
+    const isRequired = f.required || requirementMap.value[f.id] === true;
+    if (props.requiredOnly && !isRequired) return;
 
 
     if (!groupsMapped[f.groupName]) {

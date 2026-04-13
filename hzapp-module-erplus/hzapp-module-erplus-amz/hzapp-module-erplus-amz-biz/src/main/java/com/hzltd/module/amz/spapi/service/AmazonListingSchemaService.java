@@ -66,7 +66,7 @@ public class AmazonListingSchemaService {
         Map<String, String> fieldMapping = new HashMap<>();
         
         // 1. Recursive Parse Properties
-        flattenProperties("", schemaRoot, fields, fieldMapping, true);
+        flattenProperties("", schemaRoot, fields, fieldMapping);
 
         // 2. Parse Linkage Rules (allOf)
         parseLinkageRules(schemaRoot, fields);
@@ -85,7 +85,7 @@ public class AmazonListingSchemaService {
         LEAF, TRUE_ARRAY, NESTED
     }
 
-    private void flattenProperties(String prefix, JsonNode node, List<AmzListingFormFieldVO> fields, Map<String, String> mapping, boolean parentIsRequired) {
+    private void flattenProperties(String prefix, JsonNode node, List<AmzListingFormFieldVO> fields, Map<String, String> mapping) {
         if (node == null || node.isMissingNode()) return;
 
         // 1. Process local properties
@@ -105,7 +105,7 @@ public class AmazonListingSchemaService {
                 // Prevent duplicate processing of the same ID (e.g. if defined in multiple allOf branches)
                 if (fieldExists(fields, fullId)) continue;
 
-                boolean isRequired = parentIsRequired && requiredAtLevel.contains(propName);
+                boolean isRequired = requiredAtLevel.contains(propName);
                 FieldStructureType structureType = determineFieldStructure(propName, propSchema);
 
                 switch (structureType) {
@@ -117,7 +117,7 @@ public class AmazonListingSchemaService {
                         JsonNode items = propSchema.get("items");
                         if (items != null && items.isObject() && hasObjectIndicators(items)) {
                             List<AmzListingFormFieldVO> children = new ArrayList<>();
-                            flattenProperties(fullId, items, children, mapping, isRequired);
+                            flattenProperties(fullId, items, children, mapping);
                             field.setChildren(children);
                         }
                     }
@@ -139,7 +139,7 @@ public class AmazonListingSchemaService {
                         // Use .0 index for nested array properties to keep data structure compatible with SP-API
                         String nextPrefix = isArrayItems ? fullId + ".0" : fullId;
                         
-                        flattenProperties(nextPrefix, targetSchema, children, mapping, isRequired);
+                        flattenProperties(nextPrefix, targetSchema, children, mapping);
                         field.setChildren(children);
                     }
                     case LEAF -> {
@@ -174,13 +174,13 @@ public class AmazonListingSchemaService {
         // 2. Recursive traversal of logical branches (SP-API often nests properties inside allOf/anyOf/oneOf)
         // This is critical for product types like 3D_PRINTER that use mixins.
         if (node.has("allOf") && node.get("allOf").isArray()) {
-            for (JsonNode sub : node.get("allOf")) flattenProperties(prefix, sub, fields, mapping, parentIsRequired);
+            for (JsonNode sub : node.get("allOf")) flattenProperties(prefix, sub, fields, mapping);
         }
         if (node.has("anyOf") && node.get("anyOf").isArray()) {
-            for (JsonNode sub : node.get("anyOf")) flattenProperties(prefix, sub, fields, mapping, parentIsRequired);
+            for (JsonNode sub : node.get("anyOf")) flattenProperties(prefix, sub, fields, mapping);
         }
         if (node.has("oneOf") && node.get("oneOf").isArray()) {
-            for (JsonNode sub : node.get("oneOf")) flattenProperties(prefix, sub, fields, mapping, parentIsRequired);
+            for (JsonNode sub : node.get("oneOf")) flattenProperties(prefix, sub, fields, mapping);
         }
     }
 
@@ -705,12 +705,19 @@ public class AmazonListingSchemaService {
     }
 
     private void markFieldAsRequired(List<AmzListingFormFieldVO> fields, String targetId) {
-        fields.stream()
-                .filter(f -> f.getId().equals(targetId) || f.getId().startsWith(targetId + "."))
-                .forEach(f -> {
-                    f.setRequired(true);
-                    f.setOptional(false);
-                });
+        if (fields == null) return;
+        for (AmzListingFormFieldVO field : fields) {
+            // Match exactly or as a subpath
+            if (field.getId().equals(targetId) || field.getId().startsWith(targetId + ".")) {
+                field.setRequired(true);
+                field.setOptional(false);
+            }
+            
+            // Always recurse into children to find target or propagate to subfields
+            if (field.getChildren() != null && !field.getChildren().isEmpty()) {
+                markFieldAsRequired(field.getChildren(), targetId);
+            }
+        }
     }
 
     private void parseConditionAndAction(JsonNode ifNode, JsonNode thenNode, List<AmzListingFormFieldVO> fields) {
@@ -1076,17 +1083,28 @@ public class AmazonListingSchemaService {
     }
 
     private void addRulesToField(List<AmzListingFormFieldVO> fields, String targetId, LogicExpressionVO condition, String type, String action) {
-        List<AmzListingFormFieldVO> targetFields = fields.stream()
-                .filter(f -> f.getId().equals(targetId) || f.getId().startsWith(targetId + "."))
-                .toList();
+        if (fields == null) return;
 
-        for (AmzListingFormFieldVO targetField : targetFields) {
-            AmzListingFieldRuleVO rule = new AmzListingFieldRuleVO();
-            rule.setType(type);
-            rule.setConditionLogic(condition);
-            // Fallback for transition
-            rule.setCondition(renderConditionString(condition));
-            rule.setAction(action);
+        for (AmzListingFormFieldVO targetField : fields) {
+            boolean isMatch = targetField.getId().equals(targetId) || targetField.getId().startsWith(targetId + ".");
+            
+            if (isMatch) {
+                AmzListingFieldRuleVO rule = new AmzListingFieldRuleVO();
+                rule.setType(type);
+                rule.setConditionLogic(condition);
+                rule.setCondition(renderConditionString(condition));
+                rule.setAction(action);
+                
+                if (targetField.getLinkages() == null) {
+                    targetField.setLinkages(new ArrayList<>());
+                }
+                targetField.getLinkages().add(rule);
+            }
+
+            // Always recurse to ensure we reach the target or propagate rules to descendants of a matched parent
+            if (targetField.getChildren() != null && !targetField.getChildren().isEmpty()) {
+                addRulesToField(targetField.getChildren(), targetId, condition, type, action);
+            }
         }
     }
 

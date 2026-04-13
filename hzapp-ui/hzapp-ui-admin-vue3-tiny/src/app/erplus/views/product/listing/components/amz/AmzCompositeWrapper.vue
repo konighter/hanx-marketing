@@ -13,11 +13,12 @@
           <!-- Main Content Area (Fields) -->
           <div class="item-fields">
             <AttributeRenderer
-              v-for="child in field.children"
+              v-for="child in visibleChildren"
               :key="child.id"
               :field="child"
               :model-value="item[child.name || child.id.split('.').pop()]"
               :is-nested="true"
+              :dynamic-required="getChildRequired(child)"
               @update:model-value="(val) => updateItem(index, child, val)"
             />
           </div>
@@ -45,15 +46,15 @@
         </div>
       </template>
 
-      <!-- Single Object Case -->
       <template v-else>
         <div class="single-object-container">
           <AttributeRenderer
-            v-for="child in field.children"
+            v-for="child in visibleChildren"
             :key="child.id"
             :field="child"
             :model-value="internalObject[child.name || child.id.split('.').pop()]"
             :is-nested="true"
+            :dynamic-required="getChildRequired(child)"
             @update:model-value="(val) => updateObject(child, val)"
           />
         </div>
@@ -63,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, inject, type Ref } from 'vue';
 import { Plus, Delete } from '@element-plus/icons-vue';
 import AttributeRenderer from './AttributeRenderer.vue';
 
@@ -84,7 +85,44 @@ const props = defineProps<{
 
 const emit = defineEmits(['update:modelValue']);
 
+// Injected State
+const requiredOnly = inject<Ref<boolean>>('amzRequiredOnly');
+const requirementMap = inject<Ref<Record<string, boolean>>>('amzLinkageRequirement');
+
+// Provide maps and filter state to all nested renderers (including composite children)
+provide('amzLinkageRequirement', requirementMap);
+provide('amzRequiredOnly', requiredOnly);
+
 const isArrayOfObjects = computed(() => props.field.type === 'array');
+
+// Root of the current card's requirement status
+const isParentRequired = computed(() => {
+  return props.field.required || (requirementMap?.value?.[props.field.id] === true);
+});
+
+// Filter children based on "Show Required Only"
+const visibleChildren = computed(() => {
+  if (!props.field.children) return [];
+  if (!requiredOnly?.value) return props.field.children;
+
+  return props.field.children.filter(child => {
+    // 1. Explicitly required (static or dynamic)
+    const isExplicitlyRequired = child.required || requirementMap?.value?.[child.id] === true;
+    if (isExplicitlyRequired) return true;
+
+    // 2. Inherited: If Parent is REQUIRED, then all its schema-mandatory children are kept
+    if (isParentRequired.value && child.required) return true;
+
+    return false;
+  });
+});
+
+// Helper to determine if a specific child should show as required (for asterisk)
+const getChildRequired = (child: Field) => {
+  if (child.required || requirementMap?.value?.[child.id] === true) return true;
+  if (isParentRequired.value && child.required) return true;
+  return false;
+};
 
 // Handle Array of Objects
 const internalList = computed(() => {
