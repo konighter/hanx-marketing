@@ -33,8 +33,10 @@
         <template #label v-if="field.title && !['purchasable-offer', 'fulfillment-availability'].includes(field.uiWidget)">
           <div class="custom-label">
             <div class="label-text">
-              <span v-if="isRequired" class="required-star">*</span>
-              <span class="label-primary">{{ formattedLabel.primary }}</span>
+              <span class="label-primary">
+                <span v-if="isRequired" class="required-star">*</span>
+                {{ formattedLabel.primary }}
+              </span>
               <el-tooltip
                 v-if="field.description"
                 :content="field.description"
@@ -215,7 +217,7 @@ const handleUpdate = (val: any) => {
 }
 
 .label-primary {
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 500;
   color: #303133;
   white-space: normal;
@@ -223,11 +225,9 @@ const handleUpdate = (val: any) => {
 
 .required-star {
   color: #f56c6c;
-  font-size: 14px;
+  font-size: 12px;
   font-family: SimSun, sans-serif;
   margin-right: 2px;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .info-icon {
@@ -237,7 +237,7 @@ const handleUpdate = (val: any) => {
 }
 
 .label-secondary {
-  font-size: 11px;
+  font-size: 10px;
   color: #909399;
   font-weight: normal;
   white-space: normal;

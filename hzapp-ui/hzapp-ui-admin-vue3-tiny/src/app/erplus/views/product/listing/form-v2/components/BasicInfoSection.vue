@@ -1,11 +1,21 @@
 <template>
   <div class="basic-info-segment">
-    <el-form :model="modelValue" label-position="right" label-width="180px" hide-required-asterisk style="max-width: 850px">
+    <el-form 
+      ref="sectionFormRef"
+      :model="modelValue" 
+      :rules="rules"
+      label-position="right" 
+      label-width="180px" 
+      hide-required-asterisk 
+      style="max-width: 850px"
+    >
         <!-- 1. 商品名称 (Title) -->
-        <el-form-item required>
+        <el-form-item prop="title">
           <template #label>
             <div class="custom-label-box">
-              <div class="label-cn required">商品名称</div>
+              <div class="label-cn">
+                <span class="required-star">*</span>商品名称
+              </div>
               <div class="label-en">Title</div>
             </div>
           </template>
@@ -30,10 +40,12 @@
         </el-form-item>
 
         <!-- 2. 品牌名 (Brand) -->
-        <el-form-item :required="!modelValue.noBrand">
+        <el-form-item prop="brand">
           <template #label>
             <div class="custom-label-box">
-              <div class="label-cn" :class="{ required: !modelValue.noBrand }">品牌名</div>
+              <div class="label-cn">
+                <span v-if="!modelValue.noBrand" class="required-star">*</span>品牌名
+              </div>
               <div class="label-en">Brand</div>
             </div>
           </template>
@@ -49,10 +61,12 @@
         </el-form-item>
 
         <!-- 3. 搜索关键字 (Search Terms) -->
-        <el-form-item required>
+        <el-form-item prop="searchTerms">
           <template #label>
             <div class="custom-label-box">
-              <div class="label-cn required">搜索关键字</div>
+              <div class="label-cn">
+                <span class="required-star">*</span>搜索关键字
+              </div>
               <div class="label-en">Keywords</div>
             </div>
           </template>
@@ -65,10 +79,12 @@
         </el-form-item>
 
         <!-- 4. 五点描述 (Bullet Points) -->
-        <el-form-item required>
+        <el-form-item prop="bulletPoints">
             <template #label>
               <div class="custom-label-box">
-                <div class="label-cn required">五点描述</div>
+                <div class="label-cn">
+                  <span class="required-star">*</span>五点描述
+                </div>
                 <div class="label-en">Bullet Points</div>
                 <el-button 
                   size="small" 
@@ -121,10 +137,12 @@
           </el-form-item>
 
         <!-- Description with AI (Step 5) -->
-        <el-form-item required>
+        <el-form-item prop="description">
           <template #label>
             <div class="custom-label-box">
-              <div class="label-cn required">商品描述</div>
+              <div class="label-cn">
+                <span class="required-star">*</span>商品描述
+              </div>
               <div class="label-en">Description</div>
             </div>
           </template>
@@ -153,10 +171,12 @@
         <!-- Seller SKU (Moved to bottom) -->
         <!-- <div class="sub-divider" style="margin: 12px 0"></div> -->
 
-        <el-form-item required>
+        <el-form-item prop="sellerSku">
           <template #label>
             <div class="custom-label-box">
-              <div class="label-cn required">Seller SKU</div>
+              <div class="label-cn">
+                <span class="required-star">*</span>Seller SKU
+              </div>
               <div class="label-en">sku</div>
             </div>
           </template>
@@ -185,6 +205,37 @@ const aiLoading = reactive({
   desc: false,
   bullet: false
 });
+
+const rules = {
+  title: [{ required: true, message: '商品名称不能为空', trigger: 'blur' }],
+  brand: [{ 
+    validator: (rule: any, value: any, callback: any) => {
+      if (!modelValue.value.noBrand && !value) {
+        callback(new Error('品牌名不能为空'));
+      } else {
+        callback();
+      }
+    }, 
+    trigger: ['blur', 'change'] 
+  }],
+  searchTerms: [{ required: true, message: '搜索关键字不能为空', trigger: 'blur' }],
+  description: [{ required: true, message: '商品描述不能为空', trigger: 'blur' }],
+  sellerSku: [{ required: true, message: 'Seller SKU 不能为空', trigger: 'blur' }],
+  bulletPoints: [{ 
+    validator: (rule: any, value: any, callback: any) => {
+      if (!value || value.length === 0 || value.every((v: string) => !v)) {
+        callback(new Error('请至少填写一条五点描述'));
+      } else {
+        callback();
+      }
+    }, 
+    trigger: ['blur', 'change'] 
+  }]
+};
+
+const sectionFormRef = ref();
+const validate = () => sectionFormRef.value?.validate();
+defineExpose({ validate });
 
 const addBulletPoint = () => {
   modelValue.value.bulletPoints.push('');
@@ -304,21 +355,20 @@ const generateAiDesc = () => {
   padding-top: 6px; /* Fine-tune to match input top */
   
   .label-cn {
-    font-size: 13px;
+    font-size: 12px;
     color: #303133;
-    font-weight: 400;
+    font-weight: 500;
     position: relative;
-
-    &.required::before {
-      content: '*';
-      color: var(--el-color-danger);
-      margin-right: 4px;
-      font-weight: bold;
+    
+    .required-star {
+      color: #f56c6c;
+      font-size: 12px;
+      margin-right: 2px;
     }
   }
   
   .label-en {
-    font-size: 11px;
+    font-size: 10px;
     color: #909399;
     font-weight: 400;
   }

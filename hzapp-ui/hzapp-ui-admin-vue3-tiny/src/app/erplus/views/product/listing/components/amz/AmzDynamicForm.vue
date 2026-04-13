@@ -9,6 +9,7 @@
       :model="formData" 
       label-position="right"
       label-width="180px"
+      hide-required-asterisk
       class="amz-form"
       style="max-width: 850px"
     >
@@ -240,9 +241,12 @@ defineExpose({ validate });
   align-items: flex-start !important;
 }
 
-/* Force hide the default asterisk at the far left */
+/* Force hide the default asterisk at the far left - Global fail-safe */
+:deep(.el-form-item__label::before),
 :deep(.el-form-item.is-required .el-form-item__label::before) {
-  content: none !important;
+  content: "" !important;
   display: none !important;
+  width: 0 !important;
+  margin-right: 0 !important;
 }
 </style>
