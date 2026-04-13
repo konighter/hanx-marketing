@@ -30,6 +30,7 @@
             :key="field.id"
             :field="field"
             v-model="formData[field.id]"
+            :prop-path="field.id"
             :dynamic-required="requirementMap[field.id]"
           />
         </div>

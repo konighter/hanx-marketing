@@ -7,6 +7,7 @@
         :field="field"
         :model-value="modelValue"
         :is-nested="isNested"
+        :parent-path="propPath || field.id"
         @update:model-value="handleUpdate"
       />
     </template>
@@ -23,7 +24,7 @@
     <!-- Case 3: Standard Fields or Custom Widgets -->
     <template v-else>
       <el-form-item
-        :prop="field.id"
+        :prop="propPath || field.id"
         :required="isRequired"
         :label-width="['purchasable-offer', 'fulfillment-availability'].includes(field.uiWidget) ? '0px' : undefined"
         class="attribute-item"
@@ -32,6 +33,7 @@
         <template #label v-if="field.title && !['purchasable-offer', 'fulfillment-availability'].includes(field.uiWidget)">
           <div class="custom-label">
             <div class="label-text">
+              <span v-if="isRequired" class="required-star">*</span>
               <span class="label-primary">{{ formattedLabel.primary }}</span>
               <el-tooltip
                 v-if="field.description"
@@ -95,6 +97,7 @@ const props = defineProps<{
   field: Field;
   modelValue: any;
   isNested?: boolean;
+  propPath?: string; // Full dotted path for el-form validation
   dynamicVisible?: boolean;
   dynamicRequired?: boolean;
 }>();
@@ -171,6 +174,10 @@ const handleUpdate = (val: any) => {
   margin-bottom: 8px !important;
 }
 
+.attribute-item :deep(.el-form-item__label::before) {
+  content: none !important; /* Hide default asterisk on the left */
+}
+
 .custom-label {
   display: flex;
   flex-direction: column;
@@ -184,7 +191,7 @@ const handleUpdate = (val: any) => {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 4px;
+  gap: 2px;
 }
 
 .label-primary {
@@ -192,6 +199,13 @@ const handleUpdate = (val: any) => {
   font-weight: 500;
   color: #303133;
   white-space: normal;
+}
+
+.required-star {
+  color: #f56c6c;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  margin-left: 1px;
 }
 
 .info-icon {

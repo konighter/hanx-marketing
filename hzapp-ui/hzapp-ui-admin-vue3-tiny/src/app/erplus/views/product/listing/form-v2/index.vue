@@ -13,6 +13,9 @@ import AmzDynamicForm from '../components/amz/AmzDynamicForm.vue';
 
 const router = useRouter();
 const spuSelectRef = ref();
+const scrollPaneRef = ref();
+const activeAnchor = ref('#section-basic');
+const isManualScrolling = ref(false);
 
 // Context State
 const context = reactive({
@@ -142,6 +145,43 @@ const handleSubmit = async () => {
 
 const goBack = () => router.back();
 
+const handleAnchorChange = (href: string) => {
+  if (isManualScrolling.value) return;
+  activeAnchor.value = href;
+};
+
+const handleAnchorClick = (e: MouseEvent, link: any) => {
+  e.preventDefault();
+  const href = typeof link === 'string' ? link : link?.href;
+  if (!href) return;
+  
+  activeAnchor.value = href;
+  isManualScrolling.value = true;
+  
+  const targetId = href.split('#')[1];
+  if (!targetId) {
+    isManualScrolling.value = false;
+    return;
+  }
+  
+  const targetEl = document.getElementById(targetId);
+  if (targetEl && scrollPaneRef.value) {
+    const scrollPaneRect = scrollPaneRef.value.getBoundingClientRect();
+    const targetRect = targetEl.getBoundingClientRect();
+    // Fine-tuned buffer (-138) to ensure the marker snaps instantly to the target without flickering or missing the trigger zone
+    const top = targetRect.top - scrollPaneRect.top + scrollPaneRef.value.scrollTop - 138;
+    scrollPaneRef.value.scrollTo({
+      top: top,
+      behavior: 'smooth'
+    });
+  }
+  
+  // Unlock after the smooth scroll completes
+  setTimeout(() => {
+    isManualScrolling.value = false;
+  }, 800);
+};
+
 onMounted(() => {
   // Initial loads if needed
 });
@@ -151,7 +191,15 @@ onMounted(() => {
   <div class="amz-listing-form-v2">
     <!-- Left Sticky Sidebar -->
     <div class="sidebar-nav">
-      <el-anchor :offset="100" class="custom-anchor">
+      <el-anchor 
+        :offset="140" 
+        class="custom-anchor" 
+        :class="{ 'is-navigating': isManualScrolling }"
+        :container="scrollPaneRef" 
+        :active-href="activeAnchor"
+        @click="handleAnchorClick"
+        @change="handleAnchorChange"
+      >
           <el-anchor-link href="#section-basic" title="基础设置" />
           <template v-if="context.productType">
             <el-anchor-link href="#section-media" title="图片管理" />
@@ -169,7 +217,7 @@ onMounted(() => {
     </div>
 
     <!-- Main Content Area -->
-    <div class="form-scroll-pane" v-loading="schemaLoading">
+    <div ref="scrollPaneRef" class="form-scroll-pane" v-loading="schemaLoading">
       <div class="form-inner">
         <!-- Unified White Container -->
         <div class="main-form-paper">
@@ -352,6 +400,7 @@ onMounted(() => {
 .form-scroll-pane {
   flex: 1;
   overflow-y: auto;
+  position: relative;
   padding: 12px 16px;
   scroll-behavior: smooth;
   background-color: #f8f9fa;
@@ -439,6 +488,15 @@ onMounted(() => {
 .custom-anchor :deep(.el-anchor__link-active) {
   color: #409eff;
   font-weight: 600;
+}
+
+/* Stabilize the marker during manual navigation to prevent jumping or flickering */
+.custom-anchor.is-navigating :deep(.el-anchor__marker),
+.custom-anchor :deep(.el-anchor__marker) {
+  transition: none !important;
+}
+.custom-anchor.is-navigating :deep(.el-anchor__marker) {
+  visibility: hidden;
 }
 
 /* Base adjustment for global font size and width within the form section */

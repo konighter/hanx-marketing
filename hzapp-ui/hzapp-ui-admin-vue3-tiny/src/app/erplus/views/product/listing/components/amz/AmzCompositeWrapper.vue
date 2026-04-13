@@ -16,8 +16,9 @@
               v-for="child in visibleChildren"
               :key="child.id"
               :field="child"
-              :model-value="item[child.name || child.id.split('.').pop()]"
+              :model-value="item[getChildKey(child)]"
               :is-nested="true"
+              :prop-path="getChildPath(child, index)"
               :dynamic-required="getChildRequired(child)"
               @update:model-value="(val) => updateItem(index, child, val)"
             />
@@ -52,8 +53,9 @@
             v-for="child in visibleChildren"
             :key="child.id"
             :field="child"
-            :model-value="internalObject[child.name || child.id.split('.').pop()]"
+            :model-value="internalObject[getChildKey(child)]"
             :is-nested="true"
+            :prop-path="getChildPath(child)"
             :dynamic-required="getChildRequired(child)"
             @update:model-value="(val) => updateObject(child, val)"
           />
@@ -81,6 +83,7 @@ const props = defineProps<{
   field: Field;
   modelValue: any;
   isNested?: boolean;
+  parentPath?: string; // full dotted path to this field in the model
 }>();
 
 const emit = defineEmits(['update:modelValue']);
@@ -105,23 +108,34 @@ const visibleChildren = computed(() => {
   if (!props.field.children) return [];
   if (!requiredOnly?.value) return props.field.children;
 
+  // Rule: A sub-field is only "Mandatory" in the UI if BOTH the parent is required AND the child is required.
+  // This prevents optional cards from being cluttered with red stars/mandatory sub-fields.
+  if (!isParentRequired.value) return [];
+
   return props.field.children.filter(child => {
-    // 1. Explicitly required (static or dynamic)
-    const isExplicitlyRequired = child.required || requirementMap?.value?.[child.id] === true;
-    if (isExplicitlyRequired) return true;
-
-    // 2. Inherited: If Parent is REQUIRED, then all its schema-mandatory children are kept
-    if (isParentRequired.value && child.required) return true;
-
-    return false;
+    return child.required || requirementMap?.value?.[child.id] === true;
   });
 });
 
 // Helper to determine if a specific child should show as required (for asterisk)
 const getChildRequired = (child: Field) => {
-  if (child.required || requirementMap?.value?.[child.id] === true) return true;
-  if (isParentRequired.value && child.required) return true;
-  return false;
+  // Logic: Sub-item requirement = (Parent is Required) AND (Child is Required)
+  if (!isParentRequired.value) return false;
+  
+  return child.required || requirementMap?.value?.[child.id] === true;
+};
+
+const getChildKey = (child: Field) => {
+  return child.name || child.id.split('.').pop()!;
+};
+
+const getChildPath = (child: Field, index?: number) => {
+  const base = props.parentPath || props.field.id;
+  const key = getChildKey(child);
+  if (index !== undefined) {
+    return `${base}.${index}.${key}`;
+  }
+  return `${base}.${key}`;
 };
 
 // Handle Array of Objects
@@ -145,7 +159,7 @@ const removeItem = (index: number) => {
 const updateItem = (index: number, child: Field, value: any) => {
   const newList = [...internalList.value];
   const item = { ...newList[index] };
-  const key = child.name || child.id.split('.').pop()!;
+  const key = getChildKey(child);
   item[key] = value;
   newList[index] = item;
   emit('update:modelValue', newList);
@@ -156,7 +170,7 @@ const internalObject = computed(() => props.modelValue || {});
 
 const updateObject = (child: Field, value: any) => {
   const obj = { ...internalObject.value };
-  const key = child.name || child.id.split('.').pop()!;
+  const key = getChildKey(child);
   obj[key] = value;
   emit('update:modelValue', obj);
 };
