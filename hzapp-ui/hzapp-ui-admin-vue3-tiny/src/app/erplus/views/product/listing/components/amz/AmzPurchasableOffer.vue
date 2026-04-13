@@ -203,39 +203,48 @@ const updateModel = () => {
   if (!data[0]) data[0] = {};
   const offer0 = data[0];
 
+  // 1. Set Selectors (Backend will handle marketplace_id and audience)
   offer0.currency = currency.value;
 
   // Helper to ensure nested array structure for Amazon: [ { schedule: [ { ... } ] } ]
-  const setNestedValue = (parent: any, key: string, value: any, extraFields?: any) => {
-    if (!parent[key] || !Array.isArray(parent[key])) {
-      parent[key] = [{ schedule: [{}] }];
+  const setNestedPrice = (parent: any, key: string, value: any, extraFields?: any) => {
+    if (value === null || value === undefined || value === '') {
+      delete parent[key];
+      return;
     }
-    const target = parent[key][0].schedule[0];
-    target.value_with_tax = value;
+    
+    // Structure: array -> object -> schedule -> array -> object
+    if (!parent[key] || !Array.isArray(parent[key])) {
+      parent[key] = [
+        { 
+          schedule: [
+            { value_with_tax: Number(value) }
+          ] 
+        }
+      ];
+    } else {
+      const target = parent[key][0].schedule[0];
+      target.value_with_tax = Number(value);
+    }
+
     if (extraFields) {
-      Object.assign(target, extraFields);
+      Object.assign(parent[key][0].schedule[0], extraFields);
     }
   };
 
-  // Set Our Price
-  setNestedValue(offer0, 'our_price', yourPrice.value);
+  // 2. Set Price Fields using nested structure
+  setNestedPrice(offer0, 'our_price', yourPrice.value);
 
-  // Set Discounted Price
   const saleFields: any = {};
   if (dateRange.value && dateRange.value.length === 2) {
     saleFields.start_at = dateRange.value[0];
     saleFields.end_at = dateRange.value[1];
   }
-  setNestedValue(offer0, 'discounted_price', salePrice.value, saleFields);
+  setNestedPrice(offer0, 'discounted_price', salePrice.value, saleFields);
 
-  // Set MAP Price
-  setNestedValue(offer0, 'map_price', mapPrice.value);
-
-  // Set Minimum Price
-  setNestedValue(offer0, 'minimum_seller_allowed_price', minPrice.value);
-
-  // Set Maximum Price
-  setNestedValue(offer0, 'maximum_seller_allowed_price', maxPrice.value);
+  setNestedPrice(offer0, 'map_price', mapPrice.value);
+  setNestedPrice(offer0, 'minimum_seller_allowed_price', minPrice.value);
+  setNestedPrice(offer0, 'maximum_seller_allowed_price', maxPrice.value);
 
   emit('update:modelValue', data);
 };

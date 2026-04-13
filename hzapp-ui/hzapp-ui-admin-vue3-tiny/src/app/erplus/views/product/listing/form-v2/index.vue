@@ -188,17 +188,21 @@ const handleSubmit = async () => {
     const setAttr = (id: string, val: any) => {
       const meta = metaMap[id];
       if (!meta) {
-        attributesPool[id] = val; // Fallback for fields not explicitly found in current schema branch
+        attributesPool[id] = val;
         return;
       }
 
+      // Fix double-wrapping: if val is an array but bizField indicates an index (.0)
+      let finalVal = val;
+      if (Array.isArray(val) && /\.\d+$/.test(meta.bizField)) {
+        finalVal = val[0];
+      }
+
       // Check if this is a "True Array" (non-collapsed) or regular array that received a scalar value
-      // We automatically wrap it in the standard Amazon [{ value: val }] structure
-      if (meta.type === 'array' && !Array.isArray(val) && val !== null && val !== undefined) {
-        // Only wrap if it's not already an array
-        attributesPool[meta.bizField] = [{ value: val }];
+      if (meta.type === 'array' && !Array.isArray(finalVal) && finalVal !== null && finalVal !== undefined) {
+        attributesPool[meta.bizField] = [{ value: finalVal }];
       } else {
-        attributesPool[meta.bizField] = val;
+        attributesPool[meta.bizField] = finalVal;
       }
     };
 

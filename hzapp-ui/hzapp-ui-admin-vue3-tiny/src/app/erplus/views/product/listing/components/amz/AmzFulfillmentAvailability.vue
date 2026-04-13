@@ -24,7 +24,7 @@
         </template>
         <el-radio-group v-model="channelCode" @change="updateModel">
           <el-radio label="DEFAULT">FBM</el-radio>
-          <el-radio label="FBA">FBA</el-radio>
+          <el-radio label="AMAZON_NA">FBA</el-radio>
         </el-radio-group>
       </el-form-item>
 
@@ -149,8 +149,8 @@ const updateModel = () => {
   item0.fulfillment_channel_code = channelCode.value;
   
   if (channelCode.value === 'DEFAULT') {
-    item0.quantity = quantity.value;
-    item0.lead_time_to_ship_max_days = handlingTime.value;
+    item0.quantity = Math.floor(Number(quantity.value || 0));
+    item0.lead_time_to_ship_max_days = handlingTime.value ? Math.floor(Number(handlingTime.value)) : undefined;
     item0.restock_date = restockDate.value;
     item0.is_inventory_available = alwaysAvailable.value === 'true';
   } else {
