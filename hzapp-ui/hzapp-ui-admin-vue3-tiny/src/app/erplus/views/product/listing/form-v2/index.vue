@@ -123,6 +123,26 @@ const handleSpuSelected = (spu: any) => {
   ElMessage.success(`Linked to SPU: ${spu.name}`);
 };
 
+const getFieldMetaMap = (fields: any[]) => {
+  const map: Record<string, { bizField: string, type: string, isComposite: boolean }> = {};
+  const traverse = (list: any[]) => {
+    list.forEach((f: any) => {
+      if (f.id) {
+        map[f.id] = { 
+          bizField: f.bizField || f.id, 
+          type: f.type, 
+          isComposite: !!f.isComposite 
+        };
+      }
+      if (f.children && Array.isArray(f.children)) {
+        traverse(f.children);
+      }
+    });
+  };
+  traverse(fields);
+  return map;
+};
+
 const handleSubmit = async () => {
   try {
     // 1. Validate All Sections
@@ -161,15 +181,44 @@ const handleSubmit = async () => {
     }
 
     // 2. Prepare Payload
-    // Sync manual fields to attributes object
-    const attributesPool = {
-      ...formData.attributes,
-      brand: { value: formData.basic.brand },
-      generic_keyword: formData.basic.searchTerms,
-      bullet_point: formData.basic.bulletPoints.filter(b => !!b).map(v => ({ value: v })),
-      product_description: { value: formData.basic.description },
-      item_name: { value: formData.basic.title }
+    const metaMap = getFieldMetaMap(schemaFields.value);
+    const attributesPool: Record<string, any> = {};
+    
+    // Core synchronization helper with schema-awareness
+    const setAttr = (id: string, val: any) => {
+      const meta = metaMap[id];
+      if (!meta) {
+        attributesPool[id] = val; // Fallback for fields not explicitly found in current schema branch
+        return;
+      }
+
+      // Check if this is a "True Array" (non-collapsed) or regular array that received a scalar value
+      // We automatically wrap it in the standard Amazon [{ value: val }] structure
+      if (meta.type === 'array' && !Array.isArray(val) && val !== null && val !== undefined) {
+        // Only wrap if it's not already an array
+        attributesPool[meta.bizField] = [{ value: val }];
+      } else {
+        attributesPool[meta.bizField] = val;
+      }
     };
+
+    // A. Dynamic Fields from categorized forms
+    Object.keys(formData.attributes).forEach(id => {
+      setAttr(id, formData.attributes[id]);
+    });
+
+    // B. Manual Basic Info Fields (Explicitly map to SP-API indexed paths)
+    // This ensures these fields always produce the required [{ value: "..." }] structure
+    if (formData.basic.brand) attributesPool['brand.0.value'] = formData.basic.brand;
+    if (formData.basic.title) attributesPool['item_name.0.value'] = formData.basic.title;
+    if (formData.basic.description) attributesPool['product_description.0.value'] = formData.basic.description;
+    if (formData.basic.searchTerms) attributesPool['generic_keyword.0.value'] = formData.basic.searchTerms;
+    
+    // Bullet Points (Array of objects)
+    const bulletPoints = formData.basic.bulletPoints.filter(b => !!b).map(v => ({ value: v }));
+    if (bulletPoints.length > 0) {
+      attributesPool['bullet_point'] = bulletPoints;
+    }
 
     console.log('Attributes Pool (Flattened):', attributesPool);
     const nestedAttributes = unflatten(attributesPool);
@@ -189,11 +238,10 @@ const handleSubmit = async () => {
     };
     
     console.log('Publishing V2 Data (Nested):', payload);
-    ElMessage.info('数据转换完成，请查看控制台输出 (Payload Debug)');
     
-    // schemaLoading.value = true;
-    // const res = await ListingApi.publishProductV2(payload);
-    // ElMessage.success('发布任务已提交');
+    schemaLoading.value = true;
+    const res = await ListingApi.publishProductV2(payload);
+    ElMessage.success('发布任务已提交');
     
     // 3. Redirect to Listing List
     // router.push('/product/listing');

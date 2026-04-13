@@ -193,36 +193,49 @@ const onDateRangeChange = (val: any) => {
 };
 
 const updateModel = () => {
-  const data = JSON.parse(JSON.stringify(props.modelValue || {}));
-  if (!data['0']) data['0'] = {};
-  const offer0 = data['0'];
+  let data = props.modelValue;
+  if (!Array.isArray(data)) {
+    data = [];
+  } else {
+    data = JSON.parse(JSON.stringify(data));
+  }
+
+  if (!data[0]) data[0] = {};
+  const offer0 = data[0];
 
   offer0.currency = currency.value;
 
+  // Helper to ensure nested array structure for Amazon: [ { schedule: [ { ... } ] } ]
+  const setNestedValue = (parent: any, key: string, value: any, extraFields?: any) => {
+    if (!parent[key] || !Array.isArray(parent[key])) {
+      parent[key] = [{ schedule: [{}] }];
+    }
+    const target = parent[key][0].schedule[0];
+    target.value_with_tax = value;
+    if (extraFields) {
+      Object.assign(target, extraFields);
+    }
+  };
+
   // Set Our Price
-  if (!offer0.our_price) offer0.our_price = { '0': { schedule: { '0': { } } } };
-  offer0.our_price['0'].schedule['0'].value_with_tax = yourPrice.value;
+  setNestedValue(offer0, 'our_price', yourPrice.value);
 
   // Set Discounted Price
-  if (!offer0.discounted_price) offer0.discounted_price = { '0': { schedule: { '0': { } } } };
-  const sale = offer0.discounted_price['0'].schedule['0'];
-  sale.value_with_tax = salePrice.value;
+  const saleFields: any = {};
   if (dateRange.value && dateRange.value.length === 2) {
-    sale.start_at = dateRange.value[0];
-    sale.end_at = dateRange.value[1];
+    saleFields.start_at = dateRange.value[0];
+    saleFields.end_at = dateRange.value[1];
   }
+  setNestedValue(offer0, 'discounted_price', salePrice.value, saleFields);
 
   // Set MAP Price
-  if (!offer0.map_price) offer0.map_price = { '0': { schedule: { '0': { } } } };
-  offer0.map_price['0'].schedule['0'].value_with_tax = mapPrice.value;
+  setNestedValue(offer0, 'map_price', mapPrice.value);
 
   // Set Minimum Price
-  if (!offer0.minimum_seller_allowed_price) offer0.minimum_seller_allowed_price = { '0': { schedule: { '0': { } } } };
-  offer0.minimum_seller_allowed_price['0'].schedule['0'].value_with_tax = minPrice.value;
+  setNestedValue(offer0, 'minimum_seller_allowed_price', minPrice.value);
 
   // Set Maximum Price
-  if (!offer0.maximum_seller_allowed_price) offer0.maximum_seller_allowed_price = { '0': { schedule: { '0': { } } } };
-  offer0.maximum_seller_allowed_price['0'].schedule['0'].value_with_tax = maxPrice.value;
+  setNestedValue(offer0, 'maximum_seller_allowed_price', maxPrice.value);
 
   emit('update:modelValue', data);
 };
