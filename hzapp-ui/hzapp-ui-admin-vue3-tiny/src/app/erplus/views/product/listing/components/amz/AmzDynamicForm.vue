@@ -235,5 +235,14 @@ defineExpose({ validate });
 :deep(.el-form-item__label) {
   font-weight: 500;
   color: #606266;
+  display: flex !important;
+  justify-content: flex-end !important;
+  align-items: flex-start !important;
+}
+
+/* Force hide the default asterisk at the far left */
+:deep(.el-form-item.is-required .el-form-item__label::before) {
+  content: none !important;
+  display: none !important;
 }
 </style>

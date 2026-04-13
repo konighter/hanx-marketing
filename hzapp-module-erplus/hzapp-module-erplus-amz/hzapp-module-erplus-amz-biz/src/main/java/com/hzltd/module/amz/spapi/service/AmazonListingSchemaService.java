@@ -20,7 +20,9 @@ import java.util.stream.Collectors;
 
 /**
  * Service for parsing Amazon SP-API JSON Schemas and generating UI-ready configurations.
+ * @deprecated Use {@link AmazonListingSchemaServiceV2} instead.
  */
+@Deprecated
 @Slf4j
 @Service
 public class AmazonListingSchemaService {
@@ -754,6 +756,18 @@ public class AmazonListingSchemaService {
                         addRulesToField(fields, targetFieldId + "." + subReq.asText(), condition, "requirement", "required");
                     }
                 }
+
+                // Fix: Handle "required" nested inside "items" or "contains" in the 'then' block
+                if (meta.has("items") && meta.get("items").has("required")) {
+                    for (JsonNode subReq : meta.get("items").get("required")) {
+                        // For arrays, target the first item consistently with our UI flattening
+                        addRulesToField(fields, targetFieldId + ".0." + subReq.asText(), condition, "requirement", "required");
+                    }
+                } else if (meta.has("contains") && meta.get("contains").has("required")) {
+                    for (JsonNode subReq : meta.get("contains").get("required")) {
+                        addRulesToField(fields, targetFieldId + ".0." + subReq.asText(), condition, "requirement", "required");
+                    }
+                }
             }
         }
     }
@@ -996,11 +1010,28 @@ public class AmazonListingSchemaService {
 
         List<LogicExpressionVO> subExprs = new ArrayList<>();
 
-        // Handle Amazon's deep value nesting: items -> properties -> value -> ...
+        // Handle Amazon's deep value nesting: items/contains -> properties -> value -> ...
         if (constraint.has("items")) {
             JsonNode items = constraint.get("items");
             if (items.has("properties") && items.get("properties").has("value")) {
                 return parseFieldConstraint(fieldId, items.get("properties").get("value"));
+            }
+            // Fix: Handle "required" as a condition inside items
+            if (items.has("required") && items.get("required").isArray()) {
+                for (JsonNode req : items.get("required")) {
+                     subExprs.add(new LogicExpressionVO("REQUIRED", fieldId + ".0." + req.asText(), null, null));
+                }
+            }
+        } else if (constraint.has("contains")) {
+            JsonNode contains = constraint.get("contains");
+            if (contains.has("properties") && contains.get("properties").has("value")) {
+                return parseFieldConstraint(fieldId, contains.get("properties").get("value"));
+            }
+            // Fix: Handle "required" as a condition inside contains
+            if (contains.has("required") && contains.get("required").isArray()) {
+                for (JsonNode req : contains.get("required")) {
+                     subExprs.add(new LogicExpressionVO("REQUIRED", fieldId + ".0." + req.asText(), null, null));
+                }
             }
         }
 

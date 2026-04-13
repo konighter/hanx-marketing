@@ -3,6 +3,7 @@
     <div class="composite-card">
       <!-- Section Header for the Composite Field -->
       <div class="composite-header" v-if="!isNested">
+        <span v-if="isRequired" class="required-star">*</span>
         <span class="header-title">{{ field.title }}</span>
         <span v-if="field.name" class="header-technical">{{ field.name }}</span>
       </div>
@@ -19,7 +20,7 @@
               :model-value="item[getChildKey(child)]"
               :is-nested="true"
               :prop-path="getChildPath(child, index)"
-              :dynamic-required="getChildRequired(child)"
+              :dynamic-required="getChildRequired(child, index)"
               @update:model-value="(val) => updateItem(index, child, val)"
             />
           </div>
@@ -96,6 +97,15 @@ const requirementMap = inject<Ref<Record<string, boolean>>>('amzLinkageRequireme
 provide('amzLinkageRequirement', requirementMap);
 provide('amzRequiredOnly', requiredOnly);
 
+const isRequired = computed(() => {
+  if (requirementMap?.value) {
+    if (requirementMap.value[props.field.id] !== undefined) {
+      return requirementMap.value[props.field.id];
+    }
+  }
+  return !!props.field.required;
+});
+
 const isArrayOfObjects = computed(() => props.field.type === 'array');
 
 // Root of the current card's requirement status
@@ -113,16 +123,33 @@ const visibleChildren = computed(() => {
   if (!isParentRequired.value) return [];
 
   return props.field.children.filter(child => {
-    return child.required || requirementMap?.value?.[child.id] === true;
+    const fullPath = getChildPath(child);
+    // Prioritize dynamic map (even if false) over static required flag
+    const dynamicReq = requirementMap?.value?.[fullPath] ?? requirementMap?.value?.[child.id];
+    if (dynamicReq !== undefined) return dynamicReq;
+    
+    return !!child.required;
   });
 });
 
 // Helper to determine if a specific child should show as required (for asterisk)
-const getChildRequired = (child: Field) => {
-  // Logic: Sub-item requirement = (Parent is Required) AND (Child is Required)
-  if (!isParentRequired.value) return false;
+// Helper to determine if a specific child should show as required (for asterisk)
+const getChildRequired = (child: Field, index?: number) => {
+  const fullPath = getChildPath(child, index);
   
-  return child.required || requirementMap?.value?.[child.id] === true;
+  // 1. Check if there's a dynamic override for this specific path or child ID
+  const dynamicReq = requirementMap?.value?.[fullPath] ?? requirementMap?.value?.[child.id];
+  if (dynamicReq !== undefined) return dynamicReq;
+
+  // 2. Optimization: If the parent group itself is NOT required, 
+  // don't show red stars on children unless we are forced by a dynamic path rule (handled in step 1).
+  // This prevents optional cards like 'Recommended Browse Nodes' from showing mandatory children.
+  const isParentRequired = props.field.required || (props.field.id && requirementMap?.value?.[props.field.id] === true);
+  if (!isParentRequired) {
+    return false;
+  }
+
+  return !!child.required;
 };
 
 const getChildKey = (child: Field) => {
@@ -192,7 +219,7 @@ const updateObject = (child: Field, value: any) => {
 .composite-header {
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: 4px; /* 减小间距，让红点更贴近 */
   margin-bottom: 8px;
   padding: 0 0 8px 0;
   border-bottom: 1px solid #f0f2f5;
@@ -204,6 +231,13 @@ const updateObject = (child: Field, value: any) => {
   font-size: 14px;
   font-weight: bold;
   color: #1a1a1a;
+}
+
+.required-star {
+  color: #f56c6c;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  margin-right: 4px;
 }
 
 .header-technical {

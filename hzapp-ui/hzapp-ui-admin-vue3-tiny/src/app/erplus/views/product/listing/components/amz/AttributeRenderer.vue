@@ -25,7 +25,7 @@
     <template v-else>
       <el-form-item
         :prop="propPath || field.id"
-        :required="isRequired"
+        :rules="validationRules"
         :label-width="['purchasable-offer', 'fulfillment-availability'].includes(field.uiWidget) ? '0px' : undefined"
         class="attribute-item"
       >
@@ -112,9 +112,17 @@ const isVisible = computed(() => !props.field.hidden);
 
 const isRequired = computed(() => {
   if (props.dynamicRequired !== undefined) return props.dynamicRequired;
-  if (requirementMap?.value && requirementMap.value[props.field.id] !== undefined) {
-    return requirementMap.value[props.field.id];
+  
+  if (requirementMap?.value) {
+    // Check both field ID and the full dotted propPath (for nested items)
+    if (props.propPath && requirementMap.value[props.propPath] !== undefined) {
+      return requirementMap.value[props.propPath];
+    }
+    if (requirementMap.value[props.field.id] !== undefined) {
+      return requirementMap.value[props.field.id];
+    }
   }
+  
   return !!props.field.required;
 });
 
@@ -136,6 +144,18 @@ const formattedLabel = computed(() => {
     };
   }
   return { primary: title, secondary: '' };
+});
+
+// Use display name in validation messages instead of technical keys
+const validationRules = computed(() => {
+  if (!isRequired.value) return [];
+  return [
+    { 
+      required: true, 
+      message: `${formattedLabel.value.primary} is required`, 
+      trigger: ['blur', 'change'] 
+    }
+  ];
 });
 
 // Component specific props (e.g. rows for textarea)
@@ -205,7 +225,9 @@ const handleUpdate = (val: any) => {
   color: #f56c6c;
   font-size: 14px;
   font-family: SimSun, sans-serif;
-  margin-left: 1px;
+  margin-right: 2px;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .info-icon {

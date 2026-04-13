@@ -22,50 +22,108 @@ import java.util.stream.Collectors;
 public class LinkageRuleResolver {
 
     public void resolve(JsonNode schemaRoot, List<AmzListingFormFieldVO> fields, PropertyFlattenStrategy.FlattenContext context) {
-        JsonNode allOf = schemaRoot.get("allOf");
-        if (allOf == null || !allOf.isArray()) {
-            return;
+        log.info("[LinkageRuleResolver] Starting recursive linkage resolution for productType: {}", context.getProductType());
+        processRecursive(schemaRoot, null, fields, context);
+    }
+
+    private void processRecursive(JsonNode node, LogicExpressionVO parentCondition, List<AmzListingFormFieldVO> fields, PropertyFlattenStrategy.FlattenContext context) {
+        if (node == null || node.isMissingNode()) return;
+
+        // 1. Handle allOf / anyOf (Standard containers for rules)
+        if (node.has("allOf") && node.get("allOf").isArray()) {
+            for (JsonNode subNode : node.get("allOf")) {
+                processRecursive(subNode, parentCondition, fields, context);
+            }
+        }
+        if (node.has("anyOf") && node.get("anyOf").isArray()) {
+            for (JsonNode subNode : node.get("anyOf")) {
+                processRecursive(subNode, parentCondition, fields, context);
+            }
         }
 
-        log.info("[LinkageRuleResolver] Resolving {} linkage rules for productType: {}", allOf.size(), context.getProductType());
-        
-        for (JsonNode rule : allOf) {
-            if (rule.has("if") && rule.has("then")) {
-                processIfThen(rule.get("if"), rule.get("then"), fields, context);
+        // 2. Handle if-then-else
+        if (node.has("if") && node.has("then")) {
+            LogicExpressionVO currentIf = convertToExpression(node.get("if"), "", context);
+            if (currentIf != null) {
+                // Combine with parent condition if exists
+                LogicExpressionVO thenCondition = combineConditions(parentCondition, currentIf, "AND");
+                
+                // Recurse into 'then' block
+                processRecursive(node.get("then"), thenCondition, fields, context);
+
+                // Recurse into 'else' block if exists with negated condition
+                if (node.has("else")) {
+                    LogicExpressionVO negatedIf = LogicExpressionVO.builder()
+                            .operator("NOT")
+                            .children(java.util.Collections.singletonList(currentIf))
+                            .build();
+                    LogicExpressionVO elseCondition = combineConditions(parentCondition, negatedIf, "AND");
+                    processRecursive(node.get("else"), elseCondition, fields, context);
+                }
+            }
+        }
+
+        // 3. Handle required fields at this level (either from a 'then' or a standalone block)
+        if (node.has("required") && node.get("required").isArray() && parentCondition != null) {
+            for (JsonNode idNode : node.get("required")) {
+                AmzListingFormFieldVO targetField = resolveFieldVO(idNode.asText(), context);
+                if (targetField != null) {
+                    markFieldAndChildrenRequired(targetField, parentCondition);
+                }
+            }
+        }
+
+        // 4. Handle nested properties in 'then' / 'else'
+        if (node.has("properties") && parentCondition != null) {
+            // This captures visiblity or other metadata-based rules inside the block
+            List<AmzListingFormFieldVO> affectedFields = extractAffectedFields(node, context);
+            for (AmzListingFormFieldVO targetField : affectedFields) {
+                // Currently visiblity rules are handled by extractAffectedFields and additional downstream processing,
+                // But for requirements triggered by nested properties, we apply the condition here.
+                // (Note: Amazon SP-API schema usually puts 'required' at the object level, not inside properties)
             }
         }
     }
 
-    private void processIfThen(JsonNode ifNode, JsonNode thenNode, List<AmzListingFormFieldVO> fields, PropertyFlattenStrategy.FlattenContext ctx) {
-        // Step 1: Convert 'if' block into a LogicExpression (The trigger)
-        // This now resolves bizFields to formFields
-        LogicExpressionVO trigger = convertToExpression(ifNode, "", ctx);
-        if (trigger == null) return;
-
-        // Step 2: Determine which fields are affected by the 'then' block
-        // Resolve target Amazon paths to formFields
-        List<AmzListingFormFieldVO> targetFields = extractAffectedFields(thenNode, ctx);
-        
-        for (AmzListingFormFieldVO targetField : targetFields) {
-            markFieldAndChildrenRequired(targetField, trigger);
-        }
+    private LogicExpressionVO combineConditions(LogicExpressionVO c1, LogicExpressionVO c2, String operator) {
+        if (c1 == null) return c2;
+        if (c2 == null) return c1;
+        return simplify(LogicExpressionVO.builder()
+                .operator(operator)
+                .children(java.util.Arrays.asList(c1, c2))
+                .build());
     }
 
     private void markFieldAndChildrenRequired(AmzListingFormFieldVO field, LogicExpressionVO trigger) {
-        if (field == null) return;
+        if (field == null || trigger == null) return;
         
         if (field.getLinkages() == null) {
             field.setLinkages(new ArrayList<>());
         }
         
-        AmzListingFieldRuleVO ruleVO = AmzListingFieldRuleVO.builder()
-                .type("requirement")
-                .action("required")
-                .conditionLogic(trigger)
-                .condition(stringifyExpression(trigger))
-                .sourceField(findFirstField(trigger))
-                .build();
-        field.getLinkages().add(ruleVO);
+        // Universal Solution: Rule Consolidation
+        // Check if there is already a 'required' rule for this field.
+        // If so, merge them with AND to ensure that constraints from all branches are met.
+        AmzListingFieldRuleVO existingRule = field.getLinkages().stream()
+                .filter(r -> "requirement".equals(r.getType()) && "required".equals(r.getAction()))
+                .findFirst()
+                .orElse(null);
+
+        if (existingRule != null) {
+            LogicExpressionVO merged = combineConditions(existingRule.getConditionLogic(), trigger, "AND");
+            existingRule.setConditionLogic(merged);
+            existingRule.setCondition(stringifyExpression(merged));
+            existingRule.setSourceField(findFirstField(merged));
+        } else {
+            AmzListingFieldRuleVO ruleVO = AmzListingFieldRuleVO.builder()
+                    .type("requirement")
+                    .action("required")
+                    .conditionLogic(trigger)
+                    .condition(stringifyExpression(trigger))
+                    .sourceField(findFirstField(trigger))
+                    .build();
+            field.getLinkages().add(ruleVO);
+        }
 
         // Recursive propagation: if this is a composite field, and children are statically required, 
         // they should also inherit the dynamic requirement from this rule.
@@ -92,7 +150,12 @@ public class LinkageRuleResolver {
             return expr.getField() + " IN " + expr.getValue();
         }
         
-        if (expr.getChildren() == null || expr.getChildren().isEmpty()) return "";
+        if (expr.getChildren() == null || expr.getChildren().isEmpty()) {
+            if ("EMPTY".equals(op)) {
+                return expr.getField() + " IS EMPTY";
+            }
+            return "";
+        }
         
         if ("NOT".equals(op)) {
             return "!(" + stringifyExpression(expr.getChildren().get(0)) + ")";
@@ -121,82 +184,109 @@ public class LinkageRuleResolver {
     }
 
     private LogicExpressionVO convertToExpression(JsonNode node, String currentPath, PropertyFlattenStrategy.FlattenContext ctx) {
-        if (node.has("allOf")) {
+        if (node == null || node.isMissingNode()) return null;
+
+        List<LogicExpressionVO> subExpressions = new ArrayList<>();
+
+        // 1. Structural Keywords (allOf, anyOf, not)
+        if (node.has("allOf") && node.get("allOf").isArray()) {
             List<LogicExpressionVO> children = new ArrayList<>();
-            node.get("allOf").forEach(n -> children.add(convertToExpression(n, currentPath, ctx)));
-            List<LogicExpressionVO> valid = children.stream().filter(java.util.Objects::nonNull).collect(Collectors.toList());
-            if (valid.isEmpty()) return null;
-            return valid.size() == 1 ? valid.get(0) : LogicExpressionVO.builder().operator("AND").children(valid).build();
+            node.get("allOf").forEach(n -> {
+                LogicExpressionVO child = convertToExpression(n, currentPath, ctx);
+                if (child != null) children.add(child);
+            });
+            if (!children.isEmpty()) {
+                subExpressions.add(children.size() == 1 ? children.get(0) : LogicExpressionVO.builder().operator("AND").children(children).build());
+            }
         }
-        if (node.has("anyOf")) {
+        if (node.has("anyOf") && node.get("anyOf").isArray()) {
             List<LogicExpressionVO> children = new ArrayList<>();
-            node.get("anyOf").forEach(n -> children.add(convertToExpression(n, currentPath, ctx)));
-            List<LogicExpressionVO> valid = children.stream().filter(java.util.Objects::nonNull).collect(Collectors.toList());
-            if (valid.isEmpty()) return null;
-            return valid.size() == 1 ? valid.get(0) : LogicExpressionVO.builder().operator("OR").children(valid).build();
+            node.get("anyOf").forEach(n -> {
+                LogicExpressionVO child = convertToExpression(n, currentPath, ctx);
+                if (child != null) children.add(child);
+            });
+            if (!children.isEmpty()) {
+                subExpressions.add(children.size() == 1 ? children.get(0) : LogicExpressionVO.builder().operator("OR").children(children).build());
+            }
         }
         if (node.has("not")) {
             LogicExpressionVO child = convertToExpression(node.get("not"), currentPath, ctx);
-            return child != null ? LogicExpressionVO.builder().operator("NOT").children(java.util.Collections.singletonList(child)).build() : null;
+            if (child != null) {
+                subExpressions.add(LogicExpressionVO.builder().operator("NOT").children(java.util.Collections.singletonList(child)).build());
+            }
         }
 
-        // Recursive property/item/contains traversal
+        // 2. Existence Keywords (required)
+        if (node.has("required") && node.get("required").isArray()) {
+            for (JsonNode reqNode : node.get("required")) {
+                String fieldName = reqNode.asText();
+                String fullPath = currentPath.isEmpty() ? fieldName : currentPath + "." + fieldName;
+                AmzListingFormFieldVO fieldVO = resolveFieldVO(fullPath, ctx);
+                if (fieldVO != null) {
+                    // "required" in an if-block means "NOT EMPTY"
+                    subExpressions.add(LogicExpressionVO.builder()
+                            .operator("NOT")
+                            .children(java.util.Collections.singletonList(
+                                    LogicExpressionVO.builder().operator("EMPTY").field(fieldVO.getFormField()).build()
+                            ))
+                            .build());
+                }
+            }
+        }
+
+        // 3. Property Keywords (properties, items, contains)
         if (node.has("properties") || node.has("items") || node.has("contains")) {
-            List<LogicExpressionVO> children = new ArrayList<>();
-            
             if (node.has("properties")) {
                 JsonNode props = node.get("properties");
                 java.util.Iterator<String> fieldNames = props.fieldNames();
                 while (fieldNames.hasNext()) {
                     String name = fieldNames.next();
-                    String nextPath = currentPath.isEmpty() ? name : currentPath + "." + name;
                     // Special case for 'attributes' wrapper in core schema
                     if ("attributes".equals(name) && currentPath.isEmpty()) {
-                        children.add(convertToExpression(props.get(name), "", ctx));
+                        LogicExpressionVO attrExpr = convertToExpression(props.get(name), "", ctx);
+                        if (attrExpr != null) subExpressions.add(attrExpr);
                     } else {
-                        children.add(convertToExpression(props.get(name), nextPath, ctx));
+                        String nextPath = currentPath.isEmpty() ? name : currentPath + "." + name;
+                        LogicExpressionVO propExpr = convertToExpression(props.get(name), nextPath, ctx);
+                        if (propExpr != null) subExpressions.add(propExpr);
                     }
                 }
             }
-            
             if (node.has("items")) {
-                children.add(convertToExpression(node.get("items"), currentPath, ctx));
+                LogicExpressionVO itemExpr = convertToExpression(node.get("items"), currentPath, ctx);
+                if (itemExpr != null) subExpressions.add(itemExpr);
             }
-            
             if (node.has("contains")) {
-                children.add(convertToExpression(node.get("contains"), currentPath, ctx));
+                LogicExpressionVO contExpr = convertToExpression(node.get("contains"), currentPath, ctx);
+                if (contExpr != null) subExpressions.add(contExpr);
             }
-
-            List<LogicExpressionVO> validChildren = children.stream().filter(java.util.Objects::nonNull).collect(Collectors.toList());
-            if (validChildren.isEmpty()) return null;
-            return validChildren.size() == 1 ? validChildren.get(0) : LogicExpressionVO.builder().operator("AND").children(validChildren).build();
         }
 
-        // Leaf condition components
+        // 4. Value Keywords (const, enum)
         if (node.has("const") || node.has("enum")) {
-            // Use smart lookup to match schema path to form field
             AmzListingFormFieldVO fieldVO = resolveFieldVO(currentPath, ctx);
-
             if (fieldVO != null) {
                 if (node.has("const")) {
-                    return LogicExpressionVO.builder()
+                    subExpressions.add(LogicExpressionVO.builder()
                             .operator("EQ")
                             .field(fieldVO.getFormField())
                             .value(node.get("const").asText())
-                            .build();
+                            .build());
                 } else {
                     List<Object> values = new ArrayList<>();
                     node.get("enum").forEach(v -> values.add(v.asText()));
-                    return LogicExpressionVO.builder()
+                    subExpressions.add(LogicExpressionVO.builder()
                             .operator("IN")
                             .field(fieldVO.getFormField())
                             .value(values)
-                            .build();
+                            .build());
                 }
             }
         }
 
-        return null;
+        List<LogicExpressionVO> valid = subExpressions.stream().filter(java.util.Objects::nonNull).collect(Collectors.toList());
+        if (valid.isEmpty()) return null;
+        return simplify(valid.size() == 1 ? valid.get(0) : LogicExpressionVO.builder().operator("AND").children(valid).build());
     }
 
     private List<AmzListingFormFieldVO> extractAffectedFields(JsonNode thenNode, PropertyFlattenStrategy.FlattenContext ctx) {
@@ -221,6 +311,47 @@ public class LinkageRuleResolver {
             }
         }
         return affected;
+    }
+
+    private LogicExpressionVO simplify(LogicExpressionVO expr) {
+        if (expr == null) return null;
+        
+        // 1. Flatten nested logic of same type: AND(A, AND(B,C)) -> AND(A, B, C)
+        if (expr.getChildren() != null && !expr.getChildren().isEmpty()) {
+            List<LogicExpressionVO> flatChildren = new ArrayList<>();
+            for (LogicExpressionVO child : expr.getChildren()) {
+                LogicExpressionVO sChild = simplify(child);
+                if (expr.getOperator().equals(sChild.getOperator()) && ("AND".equals(expr.getOperator()) || "OR".equals(expr.getOperator()))) {
+                    flatChildren.addAll(sChild.getChildren());
+                } else {
+                    flatChildren.add(sChild);
+                }
+            }
+            
+            // Dedup children by stringified form
+            List<LogicExpressionVO> uniques = new ArrayList<>();
+            java.util.Set<String> seen = new java.util.HashSet<>();
+            for (LogicExpressionVO child : flatChildren) {
+                if (seen.add(stringifyExpression(child))) {
+                    uniques.add(child);
+                }
+            }
+            
+            if (uniques.size() == 1 && ("AND".equals(expr.getOperator()) || "OR".equals(expr.getOperator()))) {
+                return uniques.get(0);
+            }
+            expr.setChildren(uniques);
+        }
+
+        // 2. Double Negation: NOT(NOT(X)) -> X
+        if ("NOT".equals(expr.getOperator()) && expr.getChildren() != null && expr.getChildren().size() == 1) {
+            LogicExpressionVO child = expr.getChildren().get(0);
+            if ("NOT".equals(child.getOperator()) && child.getChildren() != null && child.getChildren().size() == 1) {
+                return simplify(child.getChildren().get(0));
+            }
+        }
+
+        return expr;
     }
 
     /**

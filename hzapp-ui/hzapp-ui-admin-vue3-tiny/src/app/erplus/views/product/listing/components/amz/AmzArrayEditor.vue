@@ -2,12 +2,14 @@
   <div class="amz-array-editor" :class="{ 'is-nested': isNested }">
     <el-form-item
       :required="field.required"
+      :rules="validationRules"
       class="array-form-item"
     >
       <!-- Custom Label for dual-language support -->
       <template #label v-if="field.title">
         <div class="custom-label">
           <div class="label-text">
+            <span v-if="field.required" class="required-star">*</span>
             <span class="label-primary">{{ formattedLabel.primary }}</span>
             <el-tooltip
               v-if="field.description"
@@ -86,6 +88,17 @@ const formattedLabel = computed(() => {
     };
   }
   return { primary: title, secondary: '' };
+});
+
+const validationRules = computed(() => {
+  if (!props.field.required) return [];
+  return [
+    { 
+      required: true, 
+      message: `${formattedLabel.value.primary} is required`, 
+      trigger: ['blur', 'change'] 
+    }
+  ];
 });
 
 const handleInput = () => {
@@ -169,6 +182,13 @@ const removeItem = (index: number) => {
   color: #303133;
 }
 
+.required-star {
+  color: #f56c6c;
+  font-size: 14px;
+  font-family: SimSun, sans-serif;
+  margin-right: 4px;
+}
+
 .info-icon {
   font-size: 14px;
   color: #c0c4cc;
@@ -186,6 +206,10 @@ const removeItem = (index: number) => {
   justify-content: flex-end !important;
   align-items: flex-start !important;
   padding-top: 5px !important;
+}
+
+.array-form-item :deep(.el-form-item__label::before) {
+  content: none !important;
 }
 
 .array-form-item :deep(.el-form-item__content) {

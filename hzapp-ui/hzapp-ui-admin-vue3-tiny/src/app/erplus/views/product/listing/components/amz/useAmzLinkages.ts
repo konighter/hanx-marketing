@@ -2,7 +2,7 @@ import { ref, watch, type Ref } from 'vue';
 import { get } from 'lodash-es';
 
 export interface LogicExpression {
-  operator: 'AND' | 'OR' | 'NOT' | 'EQ' | 'IN' | 'EMPTY' | 'NOT_EMPTY';
+  operator: 'AND' | 'OR' | 'NOT' | 'EQ' | 'IN' | 'EMPTY' | 'NOT_EMPTY' | 'REQUIRED';
   field?: string;
   value?: any;
   children?: LogicExpression[];
@@ -28,14 +28,19 @@ export function evaluateLogic(expr: LogicExpression, data: any): boolean {
 
   switch (operator) {
     case 'EQ':
-      // Loose string comparison for form inputs
-      return String(fieldValue ?? '') === String(value ?? '');
+      if (fieldValue === undefined || fieldValue === null) return false;
+      return String(fieldValue) === String(value ?? '');
     case 'IN':
-      return Array.isArray(value) && value.map(String).includes(String(fieldValue ?? ''));
+      if (fieldValue === undefined || fieldValue === null) return false;
+      return Array.isArray(value) && value.map(String).includes(String(fieldValue));
     case 'EMPTY':
       return fieldValue === undefined || fieldValue === null || fieldValue === '' || (Array.isArray(fieldValue) && fieldValue.length === 0);
+    case 'REQUIRED':
     case 'NOT_EMPTY':
-      return fieldValue !== undefined && fieldValue !== null && fieldValue !== '' && (!Array.isArray(fieldValue) || fieldValue.length > 0);
+      return fieldValue !== undefined && 
+             fieldValue !== null && 
+             fieldValue !== '' && 
+             (!Array.isArray(fieldValue) || fieldValue.length > 0);
     case 'AND':
       return children ? children.every(c => evaluateLogic(c, data)) : true;
     case 'OR':
@@ -59,9 +64,15 @@ export function useAmzLinkages(fields: Ref<any[]>, formData: any) {
     const rMap: Record<string, boolean> = {};
 
     fields.value.forEach(field => {
-      // Initialize with default states from schema
+      // Initialize visibility
       vMap[field.id] = true;
-      rMap[field.id] = !!field.required;
+      
+      // Important: If a field has dynamic requirement rules, its initial required state 
+      // should be false (or the rules should explicitly drive it).
+      // This prevents fields that are marked 'required' in the static schema (like Amazon's .value wrapper)
+      // from staying required even when a linkage rule doesn't trigger.
+      const hasRequirementRules = field.linkages?.some((l: LinkageRule) => l.type === 'requirement');
+      rMap[field.id] = hasRequirementRules ? false : !!field.required;
 
       // Apply rules if present
       if (field.linkages && field.linkages.length > 0) {
