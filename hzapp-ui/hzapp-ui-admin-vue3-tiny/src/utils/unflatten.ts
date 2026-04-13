@@ -32,32 +32,32 @@ function deepClean(val: any): any {
  * Example: { "a.b.c": 1, "a.b.d": 2 } => { "a": { "b": { "c": 1, "d": 2 } } }
  */
 export function unflatten(data: Record<string, any>): any {
-  const result: Record<string, any> = {};
+  const result: any = {};
 
   for (const key in data) {
     if (!Object.prototype.hasOwnProperty.call(data, key)) continue;
 
-    const keys = key.split('.');
+    const parts = key.split('.');
     let current = result;
 
-    for (let i = 0; i < keys.length; i++) {
-      const part = keys[i];
-      const nextPart = keys[i + 1];
+    for (let i = 0; i < parts.length; i++) {
+      const part = parts[i];
+      const isLast = i === parts.length - 1;
 
-      // If it's the last part, assign the value
-      if (i === keys.length - 1) {
+      if (isLast) {
         current[part] = data[key];
       } else {
-        // If the next part is a number string, handle as array (optional, but good for Amazon)
-        // For now, treat everything as object as Amazon SP-API expects objects for multi-valued fields sometimes
-        // But if keys are like "item_name.0.value", we might want to handle the "0".
-        // However, Amazon's schema often uses "items.0.value", so we better handle array indices.
-        
-        const isNextAnArray = !isNaN(Number(nextPart));
-        
+        const nextPart = parts[i + 1];
+        const isNextArray = !isNaN(Number(nextPart)) && nextPart !== '';
+
         if (!current[part]) {
-          current[part] = isNextAnArray ? [] : {};
+          current[part] = isNextArray ? [] : {};
+        } else if (isNextArray && !Array.isArray(current[part])) {
+          // If we previously thought it was an object but now see an array index, convert it
+          // This is a safety measure for mixed or inconsistent keys
+          current[part] = [];
         }
+
         current = current[part];
       }
     }

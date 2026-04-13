@@ -187,7 +187,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { ref, reactive } from 'vue';
 import { ElMessage } from 'element-plus';
 
 const modelValue = defineModel<{
@@ -200,6 +200,7 @@ const modelValue = defineModel<{
   bulletPoints: string[];
 }>({ required: true });
 
+const sectionFormRef = ref();
 const aiLoading = reactive({
   title: false,
   desc: false,
@@ -233,8 +234,27 @@ const rules = {
   }]
 };
 
-const sectionFormRef = ref();
-const validate = () => sectionFormRef.value?.validate();
+const fieldLabelMap: Record<string, string> = {
+  title: '商品名称',
+  brand: '品牌名',
+  searchTerms: '搜索关键字',
+  description: '商品描述',
+  sellerSku: 'Seller SKU',
+  bulletPoints: '五点描述'
+};
+
+const validate = async () => {
+  if (!sectionFormRef.value) return [];
+  try {
+    await sectionFormRef.value.validate();
+    return [];
+  } catch (invalidFields: any) {
+    console.log('BasicInfo validation failed:', invalidFields);
+    if (!invalidFields || typeof invalidFields !== 'object') return ['基础项校验失败'];
+    const props = Object.keys(invalidFields);
+    return props.map(p => fieldLabelMap[p] || p);
+  }
+};
 defineExpose({ validate });
 
 const addBulletPoint = () => {

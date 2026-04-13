@@ -3,6 +3,7 @@ import { ref, reactive, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { handleTree } from '@/utils/tree';
+import { unflatten } from '@/utils/unflatten';
 import * as CategoryApi from '@/app/erplus/api/product/category';
 import * as ListingApi from '@/app/erplus/api/product/listing';
 import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue';
@@ -14,6 +15,10 @@ import AmzDynamicForm from '../components/amz/AmzDynamicForm.vue';
 const router = useRouter();
 const spuSelectRef = ref();
 const scrollPaneRef = ref();
+const basicInfoRef = ref();
+const dynamicForm_basic = ref();
+const dynamicForm_price = ref();
+const dynamicForm_more = ref();
 const activeAnchor = ref('#section-basic');
 const isManualScrolling = ref(false);
 
@@ -120,26 +125,85 @@ const handleSpuSelected = (spu: any) => {
 
 const handleSubmit = async () => {
   try {
-    // Prepare Payload
+    // 1. Validate All Sections
+    const validates: Promise<any>[] = [];
+    
+    // A. Basic Info
+    if (basicInfoRef.value) {
+      validates.push(basicInfoRef.value.validate());
+    }
+    
+    // B. Dynamic Forms (Separate refs to handle Vue 3 multi-instance limitation)
+    if (dynamicForm_basic.value) validates.push(dynamicForm_basic.value.validate());
+    if (dynamicForm_price.value) validates.push(dynamicForm_price.value.validate());
+    if (dynamicForm_more.value) validates.push(dynamicForm_more.value.validate());
+
+    const validationResults = await Promise.all(validates);
+    const missingFields: string[] = [];
+
+    // C. Manual checks
+    if (!context.shopIds || context.shopIds.length < 2) missingFields.push('店铺');
+    if (!context.productType) missingFields.push('Amazon 分类');
+    if (!formData.media.mainImage) missingFields.push('商品主图');
+
+    // Collect results from sub-components
+    validationResults.forEach((labels: string[]) => {
+      if (Array.isArray(labels)) {
+        missingFields.push(...labels);
+      }
+    });
+
+    if (missingFields.length > 0) {
+      // Remove duplicates and show message
+      const uniqueFields = [...new Set(missingFields)];
+      ElMessage.warning(`请检查必填项: ${uniqueFields.join(', ')}`);
+      return;
+    }
+
+    // 2. Prepare Payload
+    // Sync manual fields to attributes object
+    const attributesPool = {
+      ...formData.attributes,
+      brand: { value: formData.basic.brand },
+      generic_keyword: formData.basic.searchTerms,
+      bullet_point: formData.basic.bulletPoints.filter(b => !!b).map(v => ({ value: v })),
+      product_description: { value: formData.basic.description },
+      item_name: { value: formData.basic.title }
+    };
+
+    console.log('Attributes Pool (Flattened):', attributesPool);
+    const nestedAttributes = unflatten(attributesPool);
+    console.log('Attributes (Nested):', nestedAttributes);
+    
     const payload = {
-      productType: context.productType,
+      platform: 'AMAZON',
       shopId: context.shopIds[context.shopIds.length - 1],
-      ...formData.basic,
+      marketId: 'ATVPDKIKX0DER', // Default US for now or derived from shop
+      productType: context.productType,
+      sellerSku: formData.basic.sellerSku,
+      title: formData.basic.title,
+      description: formData.basic.description,
       mainImage: formData.media.mainImage,
       additionalImages: formData.media.additionalImages.filter(u => !!u),
-      attributes: {
-        ...formData.attributes,
-        brand: formData.basic.brand,
-        generic_keyword: formData.basic.searchTerms,
-        bullet_point: formData.basic.bulletPoints.filter(b => !!b)
-      }
+      attributes: nestedAttributes
     };
     
-    console.log('Publishing V2 Data:', payload);
-    ElMessage.success('Publish task submitted via V2 Pipeline!');
-  } catch (e) {
-    console.error('Validation failed', e);
-    ElMessage.warning('Please check the required fields');
+    console.log('Publishing V2 Data (Nested):', payload);
+    ElMessage.info('数据转换完成，请查看控制台输出 (Payload Debug)');
+    
+    // schemaLoading.value = true;
+    // const res = await ListingApi.publishProductV2(payload);
+    // ElMessage.success('发布任务已提交');
+    
+    // 3. Redirect to Listing List
+    // router.push('/product/listing');
+  } catch (e: any) {
+    console.error('Submission failed with error:', e);
+    // If it's an API error, it might have a msg or message
+    const errorMsg = e.msg || e.message || '未知错误';
+    ElMessage.error(`操作失败: ${errorMsg}`);
+  } finally {
+    schemaLoading.value = false;
   }
 };
 
@@ -258,15 +322,16 @@ onMounted(() => {
               <template v-if="context.productType">
                 <div class="sub-divider"></div>
                 <!-- Standard Fields -->
-                <BasicInfoSection v-model="formData.basic" />
+                <BasicInfoSection ref="basicInfoRef" v-model="formData.basic" />
                 <!-- Dynamic Basic Fields -->
                 <AmzDynamicForm 
+                  ref="dynamicForm_basic"
                   :product-type="context.productType"
                   :target-groups="['基本信息']"
                   :initial-data="formData.attributes"
                   :required-only="requiredOnly"
                   :search-query="searchQuery"
-                  :exclude-fields="['brand', 'bullet_point', 'generic_keyword']"
+                  :exclude-fields="['brand', 'bullet_point', 'generic_keyword', 'item_name', 'product_description']"
                   :fields="schemaFields"
                 />
               </template>
@@ -299,6 +364,7 @@ onMounted(() => {
               </div>
               <div class="section-content">
                 <AmzDynamicForm 
+                  ref="dynamicForm_price"
                   :product-type="context.productType"
                   :target-groups="['报价']"
                   :initial-data="formData.attributes"
@@ -331,12 +397,13 @@ onMounted(() => {
               </div>
               <div class="section-content">
                 <AmzDynamicForm 
+                  ref="dynamicForm_more"
                   :product-type="context.productType"
                   :target-groups="['描述', '更多属性', '技术规格', '其他属性', '关键词']"
                   :initial-data="formData.attributes"
                   :required-only="requiredOnly"
                   :search-query="searchQuery"
-                  :exclude-fields="['brand', 'bullet_point', 'generic_keyword']"
+                  :exclude-fields="['brand', 'bullet_point', 'generic_keyword', 'item_name', 'product_description']"
                   :fields="schemaFields"
                 />
               </div>

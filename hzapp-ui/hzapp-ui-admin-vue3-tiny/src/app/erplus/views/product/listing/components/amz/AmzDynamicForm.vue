@@ -137,10 +137,27 @@ const getVisibleFieldsInGroup = (group: any) => group.fields;
 // Validation Logic
 const listingFormRef = ref();
 const validate = async () => {
-  if (listingFormRef.value) {
-    return await listingFormRef.value.validate();
+  if (!listingFormRef.value) return [];
+  try {
+    await listingFormRef.value.validate();
+    return [];
+  } catch (invalidFields: any) {
+    console.log('DynamicForm validation failed:', invalidFields);
+    if (!invalidFields || typeof invalidFields !== 'object') return ['属性项校验失败'];
+    const props = Object.keys(invalidFields);
+    return props.map(p => {
+      // 1. Try exact match
+      const exactField = (currentFields.value || []).find(f => f.id === p);
+      if (exactField) return exactField.title;
+
+      // 2. Try prefix match for nested fields (e.g., list_price.currency -> find list_price)
+      const mainId = p.split('.')[0];
+      const parentField = (currentFields.value || []).find(f => f.id === mainId);
+      if (parentField) return parentField.title;
+
+      return p;
+    });
   }
-  return true;
 };
 
 defineExpose({ validate });

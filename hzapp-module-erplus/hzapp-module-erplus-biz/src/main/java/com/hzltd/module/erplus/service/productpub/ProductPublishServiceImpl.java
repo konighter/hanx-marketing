@@ -12,6 +12,8 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+
 import static com.hzltd.framework.common.util.json.JsonUtils.toJsonString;
 
 @Slf4j
@@ -38,8 +40,9 @@ public class ProductPublishServiceImpl implements ProductPublishService {
         ProductListingDO listing = productListingService.getOrCreateListing(
                 platform.getValue(), request.getShopId(), request.getMarketId(), request.getSellerSku());
 
-        // todo-- 校验数据是否满足平台对应品类的格式要求。
-
+        // 3. 更新基础属性 (如果需要可以在这里同步一些通用字段到 listing 表)
+        
+        // 4. 创建发布任务
         ErpProductPublishTaskDO taskDO = ErpProductPublishTaskDO.builder()
                 .listingId(listing.getId())
                 .listingData(toJsonString(request))
@@ -48,7 +51,7 @@ public class ProductPublishServiceImpl implements ProductPublishService {
 
         Long taskId = productPublishTaskService.createProductPublishTask(taskDO);
 
-        // 5. 立即提交任务
+        // 5. 立即提交任务到队列/线程池执行
         productPublishTaskService.submitProductPublishTask(taskId);
 
         // 6. 构造返回结果
@@ -58,7 +61,7 @@ public class ProductPublishServiceImpl implements ProductPublishService {
                 .setStatus(CrossProductPublishStatus.of(taskDO.getStatus()));
 
         ProductPublishResponse response = new ProductPublishResponse();
-        response.setProductPublishTasks(com.google.common.collect.Lists.newArrayList(taskVO));
+        response.setProductPublishTasks(Collections.singletonList(taskVO));
         return response;
     }
 

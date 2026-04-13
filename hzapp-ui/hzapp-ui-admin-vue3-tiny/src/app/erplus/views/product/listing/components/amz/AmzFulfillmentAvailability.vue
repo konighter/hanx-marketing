@@ -136,9 +136,15 @@ const syncFromModel = () => {
 watch(() => props.modelValue, syncFromModel, { immediate: true, deep: true });
 
 const updateModel = () => {
-  const data = JSON.parse(JSON.stringify(props.modelValue || {}));
-  if (!data['0']) data['0'] = {};
-  const item0 = data['0'];
+  let data = props.modelValue;
+  if (!Array.isArray(data)) {
+    data = [];
+  } else {
+    data = JSON.parse(JSON.stringify(data));
+  }
+
+  if (!data[0]) data[0] = {};
+  const item0 = data[0];
 
   item0.fulfillment_channel_code = channelCode.value;
   
