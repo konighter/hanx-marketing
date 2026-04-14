@@ -16,6 +16,43 @@ export interface LinkageRule {
 }
 
 /**
+ * Resolves a field value from data, handling both flattened paths and indexed paths.
+ * If 'a.b' is not found and 'a' is an array, it tries 'a.0.b'.
+ * This is crucial for Amazon SP-API schemas where composite fields are often arrays-of-objects.
+ */
+function resolveFieldValue(path: string, data: any): any {
+  if (!path) return undefined;
+  
+  // 1. Try direct lookup (literal key)
+  if (data[path] !== undefined) return data[path];
+  
+  // 2. Try standard nested lookup (lodash get)
+  const val = get(data, path);
+  if (val !== undefined) return val;
+  
+  // 3. Intelligent path resolution for indexed arrays
+  // Handles 'variation_theme.name' -> 'variation_theme[0].name'
+  const parts = path.split('.');
+  if (parts.length > 1) {
+    let current = data;
+    for (const part of parts) {
+      if (current === undefined || current === null) return undefined;
+      
+      // If current is an array and the part is a property name, assume index 0
+      if (Array.isArray(current) && isNaN(Number(part))) {
+        current = current[0];
+      }
+      
+      if (current === undefined || current === null) return undefined;
+      current = current[part];
+    }
+    return current;
+  }
+  
+  return undefined;
+}
+
+/**
  * Recursively evaluate a LogicExpression against form data.
  */
 export function evaluateLogic(expr: LogicExpression, data: any): boolean {
@@ -23,8 +60,8 @@ export function evaluateLogic(expr: LogicExpression, data: any): boolean {
 
   const { operator, field, value, children } = expr;
   
-  // Support both flat keys (e.g. 'a.0.b') and nested access
-  const fieldValue = field ? (data[field] !== undefined ? data[field] : get(data, field)) : undefined;
+  // Resolve field value using the smart helper
+  const fieldValue = field ? resolveFieldValue(field, data) : undefined;
 
   switch (operator) {
     case 'EQ':

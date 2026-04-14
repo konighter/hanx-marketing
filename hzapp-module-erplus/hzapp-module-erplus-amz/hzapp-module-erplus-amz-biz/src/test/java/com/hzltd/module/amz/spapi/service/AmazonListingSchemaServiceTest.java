@@ -65,7 +65,7 @@ public class AmazonListingSchemaServiceTest {
         
         assertTrue(childSkuRel.isPresent(), "child_parent_sku_relationship should exist");
         // Assert logic structure for Parentage Rule (now flattened to match UI fields)
-        AmzListingFieldRuleVO rule = childSkuRel.get().getLinkageRules().get(0);
+        AmzListingFieldRuleVO rule = childSkuRel.get().getLinkages().get(0);
         LogicExpressionVO logic = rule.getConditionLogic();
         assertNotNull(logic, "Logic expression should be structured");
         assertEquals("EQ", logic.getOperator());
@@ -81,14 +81,14 @@ public class AmazonListingSchemaServiceTest {
                 .findFirst();
         
         assertTrue(identifier.isPresent());
-        boolean hasNegationRule = identifier.get().getLinkageRules().stream()
+        boolean hasNegationRule = identifier.get().getLinkages().stream()
                 .anyMatch(r -> r.getConditionLogic() != null && "NOT".equals(r.getConditionLogic().getOperator()));
         assertTrue(hasNegationRule, "Should have a NOT(!) rule for identifier visibility/exemption");
 
         // 3. Verify standard requirement rule
         boolean hasRequiredRule = config.getFields().stream()
-                .anyMatch(f -> !f.getLinkageRules().isEmpty() && 
-                          f.getLinkageRules().stream().anyMatch(r -> "requirement".equals(r.getType())));
+                .anyMatch(f -> !f.getLinkages().isEmpty() &&
+                          f.getLinkages().stream().anyMatch(r -> "requirement".equals(r.getType())));
         assertTrue(hasRequiredRule, "Should have requirement linkage rules generated from then blocks");
         
         System.out.println("Test passed: linkage rules successfully parsed and validated.");
