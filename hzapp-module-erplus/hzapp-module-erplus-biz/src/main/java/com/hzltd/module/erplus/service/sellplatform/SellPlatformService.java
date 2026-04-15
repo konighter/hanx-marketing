@@ -48,6 +48,13 @@ public interface SellPlatformService {
 
     /**
      * 获得销售平台
+     * @param shopId
+     * @return
+     */
+    SellPlatformDO getSellPlatformByShopId(Integer shopId);
+
+    /**
+     * 获得销售平台
      *
      * @param id 编号
      * @return 销售平台

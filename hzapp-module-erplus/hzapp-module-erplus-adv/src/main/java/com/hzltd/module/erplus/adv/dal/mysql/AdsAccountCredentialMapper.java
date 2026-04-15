@@ -1,7 +1,6 @@
 package com.hzltd.module.erplus.adv.dal.mysql;
 
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,5 +11,9 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface AdsAccountCredentialMapper extends BaseMapperX<AdsAccountCredentialDO> {
+
+    default AdsAccountCredentialDO selectByRefreshToken(String refreshToken) {
+        return selectOne(AdsAccountCredentialDO::getRefreshToken, refreshToken);
+    }
 
 }

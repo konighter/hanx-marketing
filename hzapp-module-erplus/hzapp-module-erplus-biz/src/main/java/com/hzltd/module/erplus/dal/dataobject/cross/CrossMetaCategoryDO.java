@@ -1,8 +1,11 @@
 package com.hzltd.module.erplus.dal.dataobject.cross;
 
-import lombok.*;
-import com.baomidou.mybatisplus.annotation.*;
+import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.framework.tenant.core.aop.TenantIgnore;
+import lombok.*;
 
 /**
  * 跨境平台品类 DO
@@ -17,6 +20,7 @@ import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@TenantIgnore
 public class CrossMetaCategoryDO extends BaseDO {
 
     /**
@@ -48,6 +52,9 @@ public class CrossMetaCategoryDO extends BaseDO {
      * 平台ID
      */
     private Integer platformId;
-
+    /**
+     * 扩展字段 (JSON Schema)
+     */
+    private String extra;
 
 }

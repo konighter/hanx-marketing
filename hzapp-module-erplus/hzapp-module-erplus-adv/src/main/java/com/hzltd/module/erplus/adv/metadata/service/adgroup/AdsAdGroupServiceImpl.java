@@ -2,22 +2,27 @@ package com.hzltd.module.erplus.adv.metadata.service.adgroup;
 
 import cn.hutool.core.collection.CollUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.hzltd.framework.common.exception.ErrorCode;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
-import com.hzltd.module.adv.model.AdsStatusUpdateRequest;
-import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
-import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
+import com.hzltd.module.erplus.adv.adapter.service.AdsManagerApiFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupAttributeDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupAttributeMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupMapper;
+import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupPageReqVO;
+import com.hzltd.module.erplus.adv.model.AdsAdGroupModel;
+import com.hzltd.module.erplus.adv.model.AdsRequest;
+import com.hzltd.module.erplus.adv.model.AdsResponse;
+import com.hzltd.module.erplus.adv.model.AdsStatusUpdateRequest;
+import com.hzltd.module.erplus.adv.service.AdsManagerApi;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
@@ -27,7 +32,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
-import com.hzltd.framework.common.exception.ErrorCode;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +52,7 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
     @Resource
     private AdsAccountMapper adsAccountMapper;
     @Resource
-    private AdsPlatformAdapterFactory adsPlatformAdapterFactory;
+    private AdsManagerApiFactory adsManagerApiFactory;
     @Resource
     private AdsAdGroupAttributeMapper adsAdGroupAttributeMapper;
     @Resource
@@ -57,6 +61,8 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
     @Resource
     @Lazy
     private AdsCampaignService adsCampaignService;
+    @Resource
+    private SystemShopService systemShopService;
 
     @Override
     public PageResult<AdsAdGroupDO> getAdGroupPage(AdsAdGroupPageReqVO pageReqVO) {
@@ -72,28 +78,22 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
             throw exception(new ErrorCode(1_033_002_001, "广告组不存在"));
         }
 
-        // 同步平台
-        AdsAccountDO account = adsAccountMapper.selectById(adGroup.getAccountId());
-        if (account != null && account.getPlatform() != null) {
-            try {
-                AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(account.getPlatform());
-                AdsStatusUpdateRequest updateReq = new AdsStatusUpdateRequest();
-                updateReq.setEntityType(AdsEntityTypeEnum.ADGROUP);
-                updateReq.setEntityId(adGroup.getExternalId());
-                updateReq.setLocalId(id);
-                updateReq.setStatus(status);
-
-                boolean success = adapter.updateStatus(account.getId(), updateReq);
-                if (success) {
-                    // 2. 更新本地状态
-                    AdsAdGroupDO updateObj = new AdsAdGroupDO();
-                    updateObj.setId(id);
-                    updateObj.setStatus(status);
-                    adsAdGroupMapper.updateById(updateObj);
-                }
-            } catch (Exception e) {
-                log.warn("[updateAdGroupStatus] 平台状态同步异常: adGroupId={}, platform={}", id, account.getPlatform(), e);
-            }
+        // 请求平台接口
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(AdsPlatformEnum.of(adGroup.getPlatform()));
+        AdsResponse<Boolean> updateResp = adsManagerApi.updateStatus(new AdsRequest<AdsStatusUpdateRequest>()
+                .setShopId(adGroup.getShopId())
+                .setRequest(new AdsStatusUpdateRequest()
+                        .setEntityType(AdsEntityTypeEnum.ADGROUP)
+                        .setEntityId(adGroup.getExternalId()).setLocalId(id)
+                        .setStatus(status)));
+        if (updateResp.isSuccess()) {
+            // 2. 更新本地状态
+            AdsAdGroupDO updateObj = new AdsAdGroupDO();
+            updateObj.setId(id);
+            updateObj.setStatus(status);
+            adsAdGroupMapper.updateById(updateObj);
+        } else {
+            throw exception(new ErrorCode(1_033_002_004,"广告组状态更新失败"));
         }
     }
 
@@ -111,6 +111,9 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
         }
         Map<String, Object> map = new HashMap<>();
         for (AdsAdGroupAttributeDO attr : attributeDOs) {
+            if (org.apache.commons.lang3.StringUtils.isEmpty(attr.getAttrValue())) {
+                continue;
+            }
             try {
                 Object value;
                 if (StringUtils.hasText(attr.getAttrValueClass())) {
@@ -128,22 +131,31 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Long saveAdGroup(Long accountId, AdsAdGroupVO vo) {
+    public Long saveAdGroup(Long shopId, AdsAdGroupModel vo) {
         // 1. 根据外部计划 ID 解析本地计划 ID
-        AdsCampaignDO campaign = adsCampaignService.getCampaignByExternalId(accountId, vo.getCampaignExternalId());
+        AdsCampaignDO campaign = adsCampaignService.getCampaignByExternalId(shopId, vo.getCampaignExternalId());
         if (campaign == null) {
-            log.warn("[saveAdGroup] 找不到广告计划: accountId={}, externalCampaignId={}", accountId, vo.getCampaignExternalId());
+            log.warn("[saveAdGroup] 找不到广告计划: shopId={}, externalCampaignId={}", shopId, vo.getCampaignExternalId());
             return null;
         }
         Long campaignId = campaign.getId();
 
         AdsAdGroupDO existing = adsAdGroupMapper.selectByCampaignAndExternalId(campaignId, vo.getExternalId());
+
+        ShopModel shopModel = systemShopService.getShopById(shopId);
+        Long fallbackAccountId = shopModel.getAccountId();
+
         if (existing == null) {
             existing = new AdsAdGroupDO();
-            existing.setAccountId(accountId);
+            existing.setShopId(shopId);
+            existing.setAccountId(fallbackAccountId);
             existing.setCampaignId(campaignId);
             existing.setExternalId(vo.getExternalId());
-
+        } else {
+            existing.setShopId(shopId);
+            if (existing.getAccountId() == null) {
+                existing.setAccountId(fallbackAccountId);
+            }
         }
         existing.setName(vo.getName());
         existing.setStatus(vo.getStatus());
@@ -181,11 +193,11 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
     }
 
     @Override
-    public AdsAdGroupDO getAdGroupByAccountAndExternalId(Long accountId, String externalId) {
+    public AdsAdGroupDO getAdGroupByShopAndExternalId(Long shopId, String externalId) {
         try{
-            return adsAdGroupMapper.selectByAccountAndExternalId(accountId, externalId);
+            return adsAdGroupMapper.selectByShopAndExternalId(shopId, externalId);
         } catch (Exception e) {
-            log.error("getAdGroupByAccountAndExternalId error, accountId={}, externalId={}", accountId, externalId, e);
+            log.error("getAdGroupByShopAndExternalId error, shopId={}, externalId={}", shopId, externalId, e);
         }
         return null;
 

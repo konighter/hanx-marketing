@@ -7,8 +7,8 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.stock.StockShipmentPlan
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpAddressDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentItemDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ShipmentPlanDO;
-import com.hzltd.module.spapi.model.common.AddressModel;
-import com.hzltd.module.spapi.model.inventory.InventoryItemModel;
+import com.hzltd.module.erplus.spapi.model.common.AddressModel;
+import com.hzltd.module.erplus.spapi.model.inventory.InventoryItemModel;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 

@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.controller.admin.cross.vo;
 
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductInventoryDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
-import com.hzltd.module.spapi.model.common.Image;
+import com.hzltd.module.erplus.spapi.model.common.Image;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -62,5 +62,20 @@ public class CrossProductListingResp {
      private CrossProductInventoryDO inventory;
 
      private Collection<CrossProductPriceDO> price;
+
+    /**
+     * 刊登状态: 0-待发布, 1-发布中, 2-发布成功, 3-发布失败
+     */
+    private Integer syncStatus;
+
+    /**
+     * 刊登状态名称
+     */
+    private String syncStatusName;
+
+    /**
+     * 最新刊登任务 ID
+     */
+    private Long latestTaskId;
 
 }

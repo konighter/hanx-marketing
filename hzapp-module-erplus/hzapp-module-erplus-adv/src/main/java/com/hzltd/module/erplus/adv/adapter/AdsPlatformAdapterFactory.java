@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.adv.adapter;
 
-import com.hzltd.module.adv.enums.AdsPlatformEnum;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class AdsPlatformAdapterFactory {
     }
 
     public AdsPlatformAdapter getAdapter(String platformCode) {
-        AdsPlatformEnum platform = AdsPlatformEnum.getByCode(platformCode);
+        AdsPlatformEnum platform = AdsPlatformEnum.of(platformCode);
         if (platform == null) {
             throw new IllegalArgumentException("Unknown platform: " + platformCode);
         }

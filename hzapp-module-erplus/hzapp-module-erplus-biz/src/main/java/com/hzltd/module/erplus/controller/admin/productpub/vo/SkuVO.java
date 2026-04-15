@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.productpub.vo;
 
-import com.hzltd.module.spapi.model.common.SkuModel;
+import com.hzltd.module.erplus.spapi.model.common.SkuModel;
 import lombok.Data;
 
 @Data

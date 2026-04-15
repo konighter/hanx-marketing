@@ -1,11 +1,12 @@
 package com.hzltd.module.erplus.service.productassets;
 
-import java.util.*;
-import jakarta.validation.*;
-import com.hzltd.module.erplus.controller.admin.productassets.vo.*;
-import com.hzltd.module.erplus.dal.dataobject.productassets.ProductAssetsDO;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.framework.common.pojo.PageParam;
+import com.hzltd.module.erplus.controller.admin.productassets.vo.ProductAssetsPageReqVO;
+import com.hzltd.module.erplus.controller.admin.productassets.vo.ProductAssetsSaveReqVO;
+import com.hzltd.module.erplus.dal.dataobject.productassets.ProductAssetsDO;
+import jakarta.validation.Valid;
+
+import java.util.List;
 
 /**
  * 商品素材 Service 接口

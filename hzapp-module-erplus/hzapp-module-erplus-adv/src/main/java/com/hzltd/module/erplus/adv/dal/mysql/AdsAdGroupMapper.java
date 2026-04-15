@@ -23,9 +23,11 @@ public interface AdsAdGroupMapper extends BaseMapperX<AdsAdGroupDO> {
                 .eq(AdsAdGroupDO::getExternalId, externalId));
     }
 
-    default AdsAdGroupDO selectByAccountAndExternalId(Long accountId, String externalId) {
+
+
+    default AdsAdGroupDO selectByShopAndExternalId(Long shopId, String externalId) {
         return selectOne(new LambdaQueryWrapperX<AdsAdGroupDO>()
-                .eq(AdsAdGroupDO::getAccountId, accountId)
+                .eq(AdsAdGroupDO::getShopId, shopId)
                 .eq(AdsAdGroupDO::getExternalId, externalId));
     }
 
@@ -35,8 +37,10 @@ public interface AdsAdGroupMapper extends BaseMapperX<AdsAdGroupDO> {
                 .orderByDesc(AdsAdGroupDO::getId));
     }
 
+    @SuppressWarnings("deprecation")
     default PageResult<AdsAdGroupDO> selectPage(AdsAdGroupPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsAdGroupDO>()
+                .eqIfPresent(AdsAdGroupDO::getShopId, reqVO.getShopId())
                 .eqIfPresent(AdsAdGroupDO::getAccountId, reqVO.getAccountId())
                 .inIfPresent(AdsAdGroupDO::getCampaignId, reqVO.getCampaignIds())
                 .eqIfPresent(AdsAdGroupDO::getExternalId, reqVO.getExternalId())
@@ -45,9 +49,11 @@ public interface AdsAdGroupMapper extends BaseMapperX<AdsAdGroupDO> {
                 .last("ORDER BY FIELD(status, 'ENABLED', 'PAUSED', 'ARCHIVED') ASC, id DESC"));
     }
 
-    default List<AdsAdGroupDO> selectListByAccountId(Long accountId) {
+
+
+    default List<AdsAdGroupDO> selectListByShopId(Long shopId) {
         return selectList(new LambdaQueryWrapperX<AdsAdGroupDO>()
-                .eq(AdsAdGroupDO::getAccountId, accountId)
+                .eq(AdsAdGroupDO::getShopId, shopId)
                 .orderByDesc(AdsAdGroupDO::getId));
     }
 }

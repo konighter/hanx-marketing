@@ -33,6 +33,8 @@ public class AdsSyncTaskDO extends BaseDO {
 
     @TableId
     private Long id;
+    /** 店铺ID */
+    private Long shopId;
     /** 关联广告账户ID */
     private Long accountId;
     /** 父任务 ID（子任务才有值，父任务为 null） */

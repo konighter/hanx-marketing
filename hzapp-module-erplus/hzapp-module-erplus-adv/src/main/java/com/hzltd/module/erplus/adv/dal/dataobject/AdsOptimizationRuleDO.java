@@ -28,6 +28,16 @@ public class AdsOptimizationRuleDO extends BaseDO {
     private Long id;
 
     /**
+     * 店铺ID
+     */
+    private Long shopId;
+
+    /**
+     * 关联广告账户ID
+     */
+    private Long accountId;
+
+    /**
      * 平台原始规则ID
      */
     private String ruleId;

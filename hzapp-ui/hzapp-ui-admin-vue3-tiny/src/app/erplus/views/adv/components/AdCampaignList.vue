@@ -205,6 +205,7 @@ defineOptions({ name: 'AdCampaignList' })
 
 const props = defineProps<{
   accountId?: number
+  shopId?: number
   metricColumns: any[]
 }>()
 
@@ -226,6 +227,7 @@ const queryParams = reactive({
   pageNo: 1,
   pageSize: 10,
   accountId: props.accountId,
+  shopId: props.shopId,
   name: undefined,
   status: undefined
 })
@@ -280,7 +282,7 @@ const handleFilterChange = (filters: any) => {
 }
 
 const getList = async () => {
-  if (!props.accountId) {
+  if (!props.accountId && !props.shopId) {
     list.value = []
     total.value = 0
     loading.value = false
@@ -290,7 +292,8 @@ const getList = async () => {
   try {
     const data = await AdsCampaignApi.getCampaignPage({
       ...queryParams,
-      accountId: props.accountId
+      accountId: props.accountId,
+      shopId: props.shopId
     })
     list.value = data.list
     total.value = data.total
@@ -336,6 +339,12 @@ const handleStop = async (row: AdsCampaign) => {
 
 watch(() => props.accountId, (val) => {
   queryParams.accountId = val
+  queryParams.pageNo = 1
+  getList()
+})
+
+watch(() => props.shopId, (val) => {
+  queryParams.shopId = val
   queryParams.pageNo = 1
   getList()
 })

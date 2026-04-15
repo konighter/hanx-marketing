@@ -2,6 +2,7 @@ import request from '@/config/axios'
 
 export interface PerformanceReq {
   accountId?: number
+  shopId?: number
   entityType?: 'CAMPAIGN' | 'ADGROUP' | 'AD' | 'KEYWORD' | 'ACCOUNT'
   entityId?: number
   startDate: string

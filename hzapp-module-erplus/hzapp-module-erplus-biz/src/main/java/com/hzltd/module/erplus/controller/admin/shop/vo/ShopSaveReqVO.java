@@ -26,4 +26,7 @@ public class ShopSaveReqVO {
     @Schema(description = "状态", example = "2")
     private Integer status;
 
+    @Schema(description = "时区", example = "Asia/Shanghai")
+    private String timezone;
+
 }

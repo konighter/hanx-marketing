@@ -33,6 +33,14 @@ public class CrossProductPageRequest extends PageParam{
      */
     private String[] createTimeRange;
 
+    private String createTimeStart;
+
+    private String createTimeEnd;
+
+    private String updateTimeStart;
+
+    private String updateTimeEnd;
+
     /**
      * 更新时间范围
      */

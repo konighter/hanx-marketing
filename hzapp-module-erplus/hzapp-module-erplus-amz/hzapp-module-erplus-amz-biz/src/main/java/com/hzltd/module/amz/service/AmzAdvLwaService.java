@@ -3,8 +3,9 @@ package com.hzltd.module.amz.service;
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.erplus.api.adptor.RefreshTokenCacheAdaptor;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.api.adapter.RefreshTokenCacheAdaptor;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.*;
@@ -30,6 +31,21 @@ public class AmzAdvLwaService {
      * @param authModel 授权信息
      * @return Access Token
      */
+    public String getAccessToken(AuthorizationModelV0 authModel) {
+        String cacheKey = "AMZ_ADV_LWA_" + authModel.getRefreshToken();
+        String accessToken = localLWAAccessTokenCache.getCache(cacheKey);
+        if (StrUtil.isNotEmpty(accessToken)) {
+            return accessToken;
+        }
+
+        return refreshAccessToken(AuthorizationModel.builder()
+                .shopId(authModel.getShopModel().getId().longValue())
+                .appKey(authModel.getAppKey())
+                .appSecret(authModel.getAppSecret())
+                .refreshToken(authModel.getRefreshToken())
+                .build(), cacheKey);
+    }
+
     public String getAccessToken(AuthorizationModel authModel) {
         String cacheKey = "AMZ_ADV_LWA_" + authModel.getRefreshToken();
         String accessToken = localLWAAccessTokenCache.getCache(cacheKey);
@@ -40,8 +56,10 @@ public class AmzAdvLwaService {
         return refreshAccessToken(authModel, cacheKey);
     }
 
+
+
     private String refreshAccessToken(AuthorizationModel authModel, String cacheKey) {
-        log.info("Refreshing Amazon Adv LWA token for shop: {}", authModel.getShopModel().getId());
+        log.info("Refreshing Amazon Adv LWA token for shop: {}", authModel.getShopId());
 
         RequestBody body = new FormBody.Builder()
                 .add("grant_type", "refresh_token")

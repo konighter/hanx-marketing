@@ -1,7 +1,7 @@
 package com.hzltd.module.erplus.controller.admin.spu.vo;
 
 import com.hzltd.framework.common.validation.InEnum;
-import com.hzltd.module.spapi.enums.ProductSpuStatusEnum;
+import com.hzltd.module.erplus.spapi.enums.ProductSpuStatusEnum;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

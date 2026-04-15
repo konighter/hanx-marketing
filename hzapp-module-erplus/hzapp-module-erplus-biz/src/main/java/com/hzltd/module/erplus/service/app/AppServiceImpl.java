@@ -8,7 +8,7 @@ import com.hzltd.module.erplus.controller.admin.app.vo.AppPageReqVO;
 import com.hzltd.module.erplus.controller.admin.app.vo.AppSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.app.AppDO;
 import com.hzltd.module.erplus.dal.mysql.app.AppMapper;
-import com.hzltd.module.spapi.enums.RedisKeyConstants;
+import com.hzltd.module.erplus.spapi.enums.RedisKeyConstants;
 import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.cache.annotation.Cacheable;
@@ -18,8 +18,8 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.APP_ALREADY_EXISTS;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.APP_NOT_EXISTS;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.APP_ALREADY_EXISTS;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.APP_NOT_EXISTS;
 
 /**
  * 应用注册信息 Service 实现类

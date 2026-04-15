@@ -1,0 +1,109 @@
+<h2>最终方案：精简版 ERP 订单工作台 (Split View)</h2>
+<p class="subtitle">只保留核心筛选，大幅提升订单处理密度</p>
+
+<!-- 1. 顶部精简筛选栏 -->
+<div class="mockup-header" style="background: #fdfdfd; border: 1px solid #eee; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
+  <div style="display: flex; gap: 15px; align-items: center; font-size: 13px;">
+    <div><span class="label">店铺:</span> <input type="text" value="Amazon-US-01" style="width:120px;"></div>
+    <div><span class="label">配送:</span> <select style="width:80px;"><option>全部</option><option>FBA</option></select></div>
+    <div><span class="label">SKU:</span> <input type="text" placeholder="输入SKU..." style="width:100px;"></div>
+    <div><span class="label">日期:</span> <input type="text" value="2024-03-26 至 2024-04-02" style="width:180px;"></div>
+    <div><span class="label">单号:</span> <input type="text" placeholder="输入订单号..." style="width:120px;"></div>
+    <button class="mock-button active" style="padding: 2px 15px;">搜索</button>
+  </div>
+</div>
+
+<!-- 2. 中间状态标签 (借鉴 Shopee/TikTok) -->
+<div style="display: flex; gap: 15px; margin-bottom: 10px; border-bottom: 1px solid #ddd; font-size: 13px;">
+  <span style="color: #409eff; border-bottom: 2px solid #409eff; padding-bottom: 5px; font-weight: bold;">全部</span>
+  <span>待处理 <span style="color:red">(5)</span></span>
+  <span>待出库</span>
+  <span>运送中</span>
+  <span>已完成</span>
+  <span>已取消</span>
+</div>
+
+<!-- 3. 主从布局核心区域 -->
+<div class="split" style="height: 400px; border: 1px solid #f0f0f0;">
+  <!-- 左侧：极简高效列表 -->
+  <div class="mockup" style="flex: 1.2; border:none; margin:0;">
+    <div class="mockup-body" style="padding:0;">
+      <table class="mock-table" style="width: 100%; font-size: 12px; line-height: 1.2;">
+        <thead>
+          <tr style="background:#f9fafc;">
+            <th>ID</th>
+            <th>SKU摘要</th>
+            <th>金额</th>
+            <th>创建时间</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#ecf5ff; border-left: 3px solid #409eff;"> <!-- 选中行 -->
+            <td>114-123456...</td>
+            <td title="SKU-A x1, SKU-B x1">SKU-A... (+1)</td>
+            <td>$45.99</td>
+            <td>04-02 09:00</td>
+          </tr>
+          <tr>
+            <td>114-765432...</td>
+            <td>SKU-C x5</td>
+            <td>$120.00</td>
+            <td>04-01 23:30</td>
+          </tr>
+          <tr><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+          <tr><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+          <tr><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+          <tr><td>...</td><td>...</td><td>...</td><td>...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 右侧：详情面板 (内嵌 TikTok 风格明细卡片) -->
+  <div class="mockup" style="flex: 1; border:none; border-left:1px solid #ddd; margin:0; background:#fcfcfc;">
+    <div class="mockup-body" style="padding:10px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+         <span style="font-weight:bold; font-size:14px;">订单明细</span>
+         <span style="font-size:12px; color:#ff4d4f;">即将逾期 (2h)</span>
+      </div>
+      
+      <!-- 商品卡片 -->
+      <div style="background:#fff; border:1px solid #eee; border-radius:4px; padding:8px; margin-bottom:8px; display:flex; gap:10px;">
+        <div style="width:50px; height:50px; background:#f0f0f0;">IMG</div>
+        <div style="font-size:12px;">
+          <div style="color:#409eff;">SKU-A-BLACK-L</div>
+          <div>网红同款 T 恤 x 1</div>
+          <div style="color:gray;">$25.99</div>
+        </div>
+      </div>
+
+      <!-- 财务明细 -->
+      <div class="pros-cons" style="padding:0; font-size:11px; margin-top:15px;">
+        <div class="pros" style="border:1px solid #e1f3d8; padding:5px;">
+          <b>收入: $45.99</b>
+          <p style="margin:2px 0;">(商品 $40 + 运费 $5.99)</p>
+        </div>
+        <div class="cons" style="border:1px solid #fde2e2; padding:5px;">
+          <b>扣费: $11.40</b>
+          <p style="margin:2px 0;">(佣金 $6.9 + 配送 $4.5)</p>
+        </div>
+      </div>
+      <div style="text-align:right; font-weight:bold; margin-top:5px; color:#67c23a;">利润预估: $34.59</div>
+
+      <!-- 操作区 -->
+      <div style="margin-top:20px; display:flex; gap:10px;">
+        <button class="mock-button active" style="flex:1;">同步订单</button>
+        <button class="mock-button" style="flex:1;">标记备注</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>✅ 设计共识确认：</h3>
+  <ul>
+    <li><b>精简筛选栏</b>：移除商品描述、更新日期等低频搜索项，极致节省页面高度。</li>
+    <li><b>状态引导</b>：顶部标签页快速处理业务流，无需复杂的组合筛选。</li>
+    <li><b>极致处理效率</b>：左侧列表专注于“快速定位”，右侧详情专注于“决策辅助”。</li>
+  </ul>
+</div>

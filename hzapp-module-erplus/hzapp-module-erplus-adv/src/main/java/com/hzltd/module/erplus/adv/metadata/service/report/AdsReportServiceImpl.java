@@ -1,11 +1,12 @@
 package com.hzltd.module.erplus.adv.metadata.service.report;
 
 import cn.hutool.core.date.DateUtil;
-import com.hzltd.module.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportHourlyDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportSummaryDO;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsReportDailyMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportHourlyMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportSummaryMapper;
+import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.report.*;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -26,10 +27,14 @@ import java.util.*;
  */
 @Service
 @Slf4j
+@SuppressWarnings("deprecation")
 public class AdsReportServiceImpl implements AdsReportService {
 
     @Resource
     private AdsReportHourlyMapper adsReportHourlyMapper;
+
+    @Resource
+    private AdsReportDailyMapper adsReportDailyMapper;
 
     @Resource
     private AdsReportSummaryMapper adsReportSummaryMapper;
@@ -48,19 +53,19 @@ public class AdsReportServiceImpl implements AdsReportService {
     }
 
     @Override
-    public void aggregateHourlyToSummary(Long accountId, String entityType, Long entityId, LocalDateTime reportHour) {
+    public void aggregateHourlyToSummary(Long shopId, String entityType, Long entityId, LocalDateTime reportHour) {
         String day = DateUtil.format(DateUtil.date(reportHour), "yyyy-MM-dd");
         String week = DateUtil.format(DateUtil.date(reportHour), "yyyy-ww");
         String month = DateUtil.format(DateUtil.date(reportHour), "yyyy-MM");
 
-        updateSummaryFromHourly(accountId, entityType, entityId, "DAY", day, reportHour);
-        updateSummaryFromHourly(accountId, entityType, entityId, "WEEK", week, reportHour);
-        updateSummaryFromHourly(accountId, entityType, entityId, "MONTH", month, reportHour);
+        updateSummaryFromHourly(shopId, entityType, entityId, "DAY", day, reportHour);
+        updateSummaryFromHourly(shopId, entityType, entityId, "WEEK", week, reportHour);
+        updateSummaryFromHourly(shopId, entityType, entityId, "MONTH", month, reportHour);
         
-        if (!AdsEntityTypeEnum.ACCOUNT.name().equals(entityType)) {
-            updateSummaryFromHourly(accountId, AdsEntityTypeEnum.ACCOUNT.name(), accountId, "DAY", day, reportHour);
-            updateSummaryFromHourly(accountId, AdsEntityTypeEnum.ACCOUNT.name(), accountId, "WEEK", week, reportHour);
-            updateSummaryFromHourly(accountId, AdsEntityTypeEnum.ACCOUNT.name(), accountId, "MONTH", month, reportHour);
+        if (!AdsEntityTypeEnum.SHOP.name().equals(entityType)) {
+            updateSummaryFromHourly(shopId, AdsEntityTypeEnum.SHOP.name(), shopId, "DAY", day, reportHour);
+            updateSummaryFromHourly(shopId, AdsEntityTypeEnum.SHOP.name(), shopId, "WEEK", week, reportHour);
+            updateSummaryFromHourly(shopId, AdsEntityTypeEnum.SHOP.name(), shopId, "MONTH", month, reportHour);
         }
     }
 
@@ -68,12 +73,12 @@ public class AdsReportServiceImpl implements AdsReportService {
 
     @Override
     public AdsPerformanceRespVO getPerformanceScorecard(AdsPerformanceReqVO reqVO) {
-        String entityType = reqVO.getEntityType() != null ? reqVO.getEntityType().name() : AdsEntityTypeEnum.ACCOUNT.name();
-        Long entityId = reqVO.getEntityId() != null ? reqVO.getEntityId() : reqVO.getAccountId();
+        String entityType = reqVO.getEntityType() != null ? reqVO.getEntityType().name() : AdsEntityTypeEnum.SHOP.name();
+        Long entityId = reqVO.getEntityId() != null ? reqVO.getEntityId() : reqVO.getShopId();
 
         List<AdsReportSummaryDO> list = adsReportSummaryMapper.selectList(
             new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AdsReportSummaryDO>()
-                .eq(AdsReportSummaryDO::getAccountId, reqVO.getAccountId())
+                .eq(reqVO.getShopId() != null, AdsReportSummaryDO::getShopId, reqVO.getShopId())
                 .eq(AdsReportSummaryDO::getEntityType, entityType)
                 .eq(AdsReportSummaryDO::getEntityId, entityId)
                 .eq(AdsReportSummaryDO::getPeriodType, "DAY")
@@ -101,12 +106,12 @@ public class AdsReportServiceImpl implements AdsReportService {
 
     @Override
     public AdsReportTrendRespVO getPerformanceTrend(AdsPerformanceReqVO reqVO) {
-        String entityType = reqVO.getEntityType() != null ? reqVO.getEntityType().name() : AdsEntityTypeEnum.ACCOUNT.name();
-        Long entityId = reqVO.getEntityId() != null ? reqVO.getEntityId() : reqVO.getAccountId();
+        String entityType = reqVO.getEntityType() != null ? reqVO.getEntityType().name() : AdsEntityTypeEnum.SHOP.name();
+        Long entityId = reqVO.getEntityId() != null ? reqVO.getEntityId() : reqVO.getShopId();
 
         List<AdsReportSummaryDO> list = adsReportSummaryMapper.selectList(
             new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AdsReportSummaryDO>()
-                .eq(AdsReportSummaryDO::getAccountId, reqVO.getAccountId())
+                .eq(reqVO.getShopId() != null, AdsReportSummaryDO::getShopId, reqVO.getShopId())
                 .eq(AdsReportSummaryDO::getEntityType, entityType)
                 .eq(AdsReportSummaryDO::getEntityId, entityId)
                 .eq(AdsReportSummaryDO::getPeriodType, reqVO.getTimeUnit().toUpperCase())
@@ -293,11 +298,11 @@ public class AdsReportServiceImpl implements AdsReportService {
     /**
      * Issue 2 fix: 聚合时按时间范围过滤小时数据
      */
-    private void updateSummaryFromHourly(Long accountId, String entityType, Long entityId,
+    private void updateSummaryFromHourly(Long shopId, String entityType, Long entityId,
                                           String periodType, String periodValue, LocalDateTime reportHour) {
         AdsReportSummaryDO summary = adsReportSummaryMapper.selectOne(
             new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AdsReportSummaryDO>()
-                .eq(AdsReportSummaryDO::getAccountId, accountId)
+                .eq(AdsReportSummaryDO::getShopId, shopId)
                 .eq(AdsReportSummaryDO::getEntityType, entityType)
                 .eq(AdsReportSummaryDO::getEntityId, entityId)
                 .eq(AdsReportSummaryDO::getPeriodType, periodType)
@@ -306,7 +311,7 @@ public class AdsReportServiceImpl implements AdsReportService {
 
         if (summary == null) {
             summary = new AdsReportSummaryDO();
-            summary.setAccountId(accountId);
+            summary.setShopId(shopId);
             summary.setEntityType(entityType);
             summary.setEntityId(entityId);
             summary.setPeriodType(periodType);
@@ -322,7 +327,7 @@ public class AdsReportServiceImpl implements AdsReportService {
         Map<String, Object> aggregatedMetrics = new HashMap<>();
         List<AdsReportHourlyDO> hourlies = adsReportHourlyMapper.selectList(
             new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AdsReportHourlyDO>()
-                .eq(AdsReportHourlyDO::getAccountId, accountId)
+                .eq(AdsReportHourlyDO::getShopId, shopId)
                 .eq(AdsReportHourlyDO::getGroupColumn, entityType)
                 .between(AdsReportHourlyDO::getReportHour, rangeStart, rangeEnd)
         );

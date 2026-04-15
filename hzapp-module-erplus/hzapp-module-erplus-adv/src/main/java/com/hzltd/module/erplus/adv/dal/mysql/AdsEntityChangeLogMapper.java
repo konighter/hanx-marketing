@@ -15,16 +15,17 @@ import java.util.List;
 @Mapper
 public interface AdsEntityChangeLogMapper extends BaseMapperX<AdsEntityChangeLogDO> {
 
-    default List<AdsEntityChangeLogDO> selectListByEntity(String entityType, Long entityId) {
+    default List<AdsEntityChangeLogDO> selectListByEntity(Long shopId, String entityType, Long entityId) {
         return selectList(new LambdaQueryWrapperX<AdsEntityChangeLogDO>()
+                .eqIfPresent(AdsEntityChangeLogDO::getShopId, shopId)
                 .eq(AdsEntityChangeLogDO::getEntityType, entityType)
                 .eq(AdsEntityChangeLogDO::getEntityId, entityId)
                 .orderByDesc(AdsEntityChangeLogDO::getCreateTime));
     }
 
-    default List<AdsEntityChangeLogDO> selectListByAccountId(Long accountId) {
+    default List<AdsEntityChangeLogDO> selectListByShopId(Long shopId) {
         return selectList(new LambdaQueryWrapperX<AdsEntityChangeLogDO>()
-                .eq(AdsEntityChangeLogDO::getAccountId, accountId)
+                .eq(AdsEntityChangeLogDO::getShopId, shopId)
                 .orderByDesc(AdsEntityChangeLogDO::getCreateTime));
     }
 }

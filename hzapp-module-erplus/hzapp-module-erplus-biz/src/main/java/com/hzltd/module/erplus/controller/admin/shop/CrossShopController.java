@@ -6,7 +6,10 @@ import com.hzltd.framework.common.pojo.PageParam;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.excel.core.util.ExcelUtils;
-import com.hzltd.module.erplus.controller.admin.shop.vo.*;
+import com.hzltd.module.erplus.controller.admin.shop.vo.ShopPageReqVO;
+import com.hzltd.module.erplus.controller.admin.shop.vo.ShopReqVO;
+import com.hzltd.module.erplus.controller.admin.shop.vo.ShopRespVO;
+import com.hzltd.module.erplus.controller.admin.shop.vo.ShopSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
 import com.hzltd.module.erplus.service.shop.ShopService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -114,15 +117,15 @@ public class CrossShopController {
                         list);
     }
 
-
-    @PostMapping("/auth")
-    @Operation(summary = "获得店铺授权信息")
-    @Parameter(name = "id", description = "编号", required = true, example = "1024")
-    @PreAuthorize("@ss.hasPermission('ov:shop:query')")
-    public CommonResult<ShopAuthRespVO> submitShopAuth(@RequestBody ShopAuthReqVO authReqVO) {
-        ShopAuthRespVO shopAuthRespVO = shopService.submitShopAuth(authReqVO);
-        return success(shopAuthRespVO);
-    }
+//
+//    @PostMapping("/auth")
+//    @Operation(summary = "获得店铺授权信息")
+//    @Parameter(name = "id", description = "编号", required = true, example = "1024")
+//    @PreAuthorize("@ss.hasPermission('ov:shop:query')")
+//    public CommonResult<ShopAuthRespVO> submitShopAuth(@RequestBody ShopAuthReqVO authReqVO) {
+//        ShopAuthRespVO shopAuthRespVO = shopService.submitShopAuth(authReqVO);
+//        return success(shopAuthRespVO);
+//    }
 
 
 

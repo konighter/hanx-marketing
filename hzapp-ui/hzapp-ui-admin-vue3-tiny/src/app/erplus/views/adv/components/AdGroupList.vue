@@ -125,6 +125,7 @@ defineOptions({ name: 'AdGroupList' })
 
 const props = defineProps<{
   accountId?: number
+  shopId?: number
   campaignIds?: number[]
   metricColumns: any[]
 }>()
@@ -142,6 +143,7 @@ const queryParams = reactive({
   pageNo: 1,
   pageSize: 10,
   accountId: props.accountId,
+  shopId: props.shopId,
   campaignIds: props.campaignIds && props.campaignIds.length > 0 ? props.campaignIds : undefined,
   name: undefined,
   status: undefined
@@ -170,7 +172,7 @@ const handleFilterChange = (filters: any) => {
 }
 
 const getList = async () => {
-  if (!props.accountId) {
+  if (!props.accountId && !props.shopId) {
     list.value = []
     total.value = 0
     loading.value = false
@@ -181,6 +183,7 @@ const getList = async () => {
     const data = await AdsAdGroupApi.getAdGroupPage({
       ...queryParams,
       accountId: props.accountId,
+      shopId: props.shopId,
       campaignIds: props.campaignIds && props.campaignIds.length > 0 ? props.campaignIds : undefined
     })
     list.value = data.list
@@ -199,7 +202,7 @@ const handleUpdateStatus = async (row: AdsAdGroup) => {
   } catch (error) {}
 }
 
-watch(() => [props.accountId, props.campaignIds], () => {
+watch(() => [props.accountId, props.shopId, props.campaignIds], () => {
   queryParams.pageNo = 1
   getList()
 }, { deep: true })

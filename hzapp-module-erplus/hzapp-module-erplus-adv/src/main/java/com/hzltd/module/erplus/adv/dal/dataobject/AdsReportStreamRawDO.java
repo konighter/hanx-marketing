@@ -1,12 +1,10 @@
 package com.hzltd.module.erplus.adv.dal.dataobject;
 
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 
 @TableName(value = "ads_amazon_stream_sp_traffic", autoResultMap = true)
 @Data

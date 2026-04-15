@@ -1,14 +1,14 @@
 package com.hzltd.module.erplus.convert.category;
 
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.hzltd.module.spapi.enums.AttributeTypeEnum;
 import com.hzltd.module.erplus.controller.admin.category.vo.CategoryAttributeVO;
 import com.hzltd.module.erplus.controller.admin.category.vo.CategoryVO;
 import com.hzltd.module.erplus.controller.admin.category.vo.CrossCategoryAttrReqVO;
 import com.hzltd.module.erplus.controller.admin.category.vo.CrossCategoryReqVO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossMetaCategoryAttributeDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossMetaCategoryDO;
-import com.hzltd.module.spapi.model.category.*;
+import com.hzltd.module.erplus.spapi.enums.AttributeTypeEnum;
+import com.hzltd.module.erplus.spapi.model.category.*;
 import org.apache.commons.collections4.CollectionUtils;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;

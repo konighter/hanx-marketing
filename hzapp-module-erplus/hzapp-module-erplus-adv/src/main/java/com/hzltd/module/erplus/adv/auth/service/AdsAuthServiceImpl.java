@@ -1,10 +1,13 @@
 package com.hzltd.module.erplus.adv.auth.service;
 
-import com.hzltd.framework.common.util.json.JsonUtils;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.util.IdUtil;
+import cn.hutool.core.util.StrUtil;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.adv.model.AdsTokenResult;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
+import com.hzltd.module.erplus.adv.auth.service.dto.AdsAuthStateDTO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountPageReqVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAuthCallbackReqVO;
@@ -14,10 +17,7 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountCredentialMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.redis.AdsAuthStateRedisDAO;
-import com.hzltd.module.erplus.adv.auth.service.dto.AdsAuthStateDTO;
-import cn.hutool.core.collection.CollUtil;
-import cn.hutool.core.util.IdUtil;
-import cn.hutool.core.util.StrUtil;
+import com.hzltd.module.erplus.adv.model.AdsTokenResult;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
+import static com.hzltd.framework.security.core.util.SecurityFrameworkUtils.getLoginUserId;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.*;
+
 
 /**
  * 广告授权 Service 实现类
@@ -50,7 +52,7 @@ public class AdsAuthServiceImpl implements AdsAuthService {
     @Override
     public String getAuthorizeUrl(AdsAuthUrlReqVO reqVO) {
         AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(reqVO.getPlatform());
-        
+
         // 生成并存储 State
         String state = reqVO.getState();
         if (StrUtil.isEmpty(state)) {
@@ -59,8 +61,9 @@ public class AdsAuthServiceImpl implements AdsAuthService {
         adsAuthStateRedisDAO.set(state, AdsAuthStateDTO.builder()
                 .platform(reqVO.getPlatform())
                 .shopId(reqVO.getShopId())
+                .userId(getLoginUserId())
                 .build());
-                
+
         return adapter.getAuthorizeUrl(state);
     }
 
@@ -74,12 +77,12 @@ public class AdsAuthServiceImpl implements AdsAuthService {
         }
         // 如果请求中有 platform，校验是否一致
         if (StrUtil.isNotEmpty(reqVO.getPlatform()) && !reqVO.getPlatform().equals(stateDTO.getPlatform())) {
-             throw exception(ADS_AUTH_CALLBACK_ERROR, "平台信息不匹配");
+            throw exception(ADS_AUTH_CALLBACK_ERROR, "平台信息不匹配");
         }
-        
+
         String platform = stateDTO.getPlatform();
         AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(platform);
-        
+
         // 1. 交换 Token
         AdsTokenResult tokenResult;
         try {
@@ -91,7 +94,7 @@ public class AdsAuthServiceImpl implements AdsAuthService {
         // 2. 存储凭证 (由于没有 accountId 关联，这里根据平台和外部 ID 尝试查找已存在的凭证)
         // 注意：这里需要一个逻辑来定位凭证，或者先创建凭证再关联
         String externalAccountId = tokenResult.getExternalAccountId();
-        
+
         // 尝试通过现有账号查找关联的 credentialId
         Long existingCredentialId = null;
         if (StrUtil.isNotEmpty(externalAccountId)) {
@@ -105,24 +108,24 @@ public class AdsAuthServiceImpl implements AdsAuthService {
         if (existingCredentialId != null) {
             credential = adsAccountCredentialMapper.selectById(existingCredentialId);
         }
-        
+
         if (credential == null) {
             credential = new AdsAccountCredentialDO();
             credential.setCredentialType("OAUTH2");
             // 设置一些标识性的信息在 extCredential 中？
         }
-        
+
         credential.setAccessToken(tokenResult.getAccessToken());
         credential.setRefreshToken(tokenResult.getRefreshToken());
         credential.setTokenExpiresAt(tokenResult.getExpiresAt());
         credential.setPlatform(platform);
-        
+
         if (credential.getId() == null) {
             adsAccountCredentialMapper.insert(credential);
         } else {
             adsAccountCredentialMapper.updateById(credential);
         }
-        
+
         // 3. 调用初始化钩子 (处理账号发现逻辑)
         this.initAccount(credential, stateDTO.getShopId());
 
@@ -185,7 +188,7 @@ public class AdsAuthServiceImpl implements AdsAuthService {
         if (account == null) {
             throw exception(ADS_ACCOUNT_NOT_EXISTS);
         }
-        
+
         Long credentialId = account.getCredentialId();
         if (credentialId == null && account.getParentId() != null) {
             // 尝试通过父账号找
@@ -194,11 +197,11 @@ public class AdsAuthServiceImpl implements AdsAuthService {
                 credentialId = parentAccount.getCredentialId();
             }
         }
-        
+
         if (credentialId == null) {
-             throw new IllegalStateException("账号未关联凭证，无法刷新");
+            throw new IllegalStateException("账号未关联凭证，无法刷新");
         }
-        
+
         AdsAccountCredentialDO credential = adsAccountCredentialMapper.selectById(credentialId);
         if (credential == null) {
             throw new IllegalStateException("凭证记录不存在，无法刷新");
@@ -233,10 +236,10 @@ public class AdsAuthServiceImpl implements AdsAuthService {
         if (account == null) {
             throw exception(ADS_ACCOUNT_NOT_EXISTS);
         }
-        
+
         // 1. 删除账号记录
         adsAccountMapper.deleteById(id);
-        
+
         // 2. 级联处理？如果这是唯一的指向该凭证的账号，考虑删除凭证
         // TODO: 完善级联删除逻辑
     }
@@ -249,7 +252,7 @@ public class AdsAuthServiceImpl implements AdsAuthService {
     @Override
     public AdsAccountCredentialDO getAccountCredentialByAccount(Long accountId) {
         AdsAccountDO accountDO = this.getAccount(accountId);
-        if (accountDO == null ) {
+        if (accountDO == null) {
             return null;
         }
 
@@ -270,11 +273,11 @@ public class AdsAuthServiceImpl implements AdsAuthService {
 
         if (accountCredential != null) {
             // check expireTime
-            if (accountCredential.getTokenExpiresAt() != null && 
-                accountCredential.getTokenExpiresAt().plusSeconds(60).isBefore(LocalDateTime.now())) {
+            if (accountCredential.getTokenExpiresAt() != null &&
+                    accountCredential.getTokenExpiresAt().plusSeconds(60).isBefore(LocalDateTime.now())) {
                 AdsPlatformAdapter adapter = adsPlatformAdapterFactory.getAdapter(accountDO.getPlatform());
                 AdsTokenResult tokenResult = adapter.refreshToken(accountCredential);
-                
+
                 accountCredential.setAccessToken(tokenResult.getAccessToken());
                 if (tokenResult.getRefreshToken() != null) {
                     accountCredential.setRefreshToken(tokenResult.getRefreshToken());

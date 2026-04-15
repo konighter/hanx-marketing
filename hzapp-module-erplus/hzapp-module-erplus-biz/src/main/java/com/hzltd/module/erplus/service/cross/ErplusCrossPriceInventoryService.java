@@ -2,8 +2,8 @@ package com.hzltd.module.erplus.service.cross;
 
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossProductPriceUpdateRequest;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.pricing.GetOfferResponse;
+import com.hzltd.module.erplus.spapi.model.pricing.GetOfferResponse;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 
 import java.util.List;
 

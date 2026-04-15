@@ -2,7 +2,6 @@ package com.hzltd.module.erplus.adv.auth.service;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAccountPageReqVO;
-import com.hzltd.module.erplus.adv.auth.vo.AdsAccountRespVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAuthCallbackReqVO;
 import com.hzltd.module.erplus.adv.auth.vo.AdsAuthUrlReqVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountCredentialDO;

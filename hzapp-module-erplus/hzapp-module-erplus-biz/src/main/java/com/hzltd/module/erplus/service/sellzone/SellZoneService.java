@@ -46,6 +46,8 @@ public interface SellZoneService {
      */
     SellZoneDO getSellZone(Integer id);
 
+    SellZoneDO getSellZone(String code);
+
     /**
      * 获得销售区域分页
      *

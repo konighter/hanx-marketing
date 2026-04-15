@@ -17,7 +17,11 @@ import static com.hzltd.framework.common.util.date.DateUtils.FORMAT_YEAR_MONTH_D
 @ToString(callSuper = true)
 public class AdsCampaignPageReqVO extends PageParam {
 
-    @Schema(description = "广告账户编号", example = "1")
+    @Schema(description = "店铺编号", example = "1")
+    private Long shopId;
+
+    @Schema(description = "广告账户编号(已弃用，请使用 shopId)", example = "1")
+    @Deprecated
     private Long accountId;
 
     @Schema(description = "平台原始 Campaign ID", example = "C123")

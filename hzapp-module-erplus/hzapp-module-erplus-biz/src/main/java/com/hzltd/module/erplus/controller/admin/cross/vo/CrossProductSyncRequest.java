@@ -8,8 +8,13 @@ import java.util.List;
 public class CrossProductSyncRequest extends CrossProductPageRequest {
 
     /**
+     * 同步类型：all-全部, incremental-增量
+     */
+    private String syncType;
+
+    /**
      * 跨境商品id列表
      */
-    private List<Long> productIds;
+    private List<String> productIds;
 
 }

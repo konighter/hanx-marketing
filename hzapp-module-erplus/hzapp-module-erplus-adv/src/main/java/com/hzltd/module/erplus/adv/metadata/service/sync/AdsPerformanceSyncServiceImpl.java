@@ -1,13 +1,13 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
-import com.hzltd.module.adv.enums.AdsPlatformEnum;
-import com.hzltd.module.adv.enums.AdsSyncTaskTypeEnum;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapter;
 import com.hzltd.module.erplus.adv.adapter.AdsPlatformAdapterFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAccountDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsSyncTaskMapper;
+import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -50,6 +50,24 @@ public class AdsPerformanceSyncServiceImpl implements AdsPerformanceSyncService 
             }
         }
         log.info("[createDailySyncTasks] 任务创建完成，共处理 {} 个账号", accounts.size());
+    }
+
+    @Override
+    public void createDailySyncTasksByShop(Long shopId) {
+        log.info("[createDailySyncTasksByShop] 开始为店铺 {} 下所有启用账号创建每日绩效同步任务...", shopId);
+        List<AdsAccountDO> accounts = adsAccountMapper.selectListByShopId(shopId);
+        if (accounts.isEmpty()) {
+            log.warn("[createDailySyncTasksByShop] 店铺 {} 下无广告账号", shopId);
+            return;
+        }
+        for (AdsAccountDO account : accounts) {
+            try {
+                createDailySyncTask(account.getId());
+            } catch (Exception e) {
+                log.error("[createDailySyncTasksByShop] 账号 {} 创建任务失败", account.getId(), e);
+            }
+        }
+        log.info("[createDailySyncTasksByShop] 任务创建完成，店铺 {} 共处理 {} 个账号", shopId, accounts.size());
     }
 
     @Override

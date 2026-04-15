@@ -17,9 +17,8 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.Collection;
 import java.util.List;
-
-import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
+import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.*;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.*;
 /**
  * 商品属性项 Service 实现类
  *

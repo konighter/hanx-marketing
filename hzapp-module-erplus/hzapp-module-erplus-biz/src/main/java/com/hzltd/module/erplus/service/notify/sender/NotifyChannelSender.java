@@ -1,8 +1,8 @@
 package com.hzltd.module.erplus.service.notify.sender;
 
 import com.hzltd.module.erplus.dal.dataobject.notify.NotifyChannelDO;
-import com.hzltd.module.system.enums.NotifyChannelTypeEnum;
-import com.hzltd.module.spapi.model.system.NotifyMessage;
+import com.hzltd.module.erplus.system.enums.NotifyChannelTypeEnum;
+import com.hzltd.module.erplus.system.model.NotifyMessage;
 
 /**
  * 通知渠道发送策略接口

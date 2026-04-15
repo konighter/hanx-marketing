@@ -7,7 +7,7 @@ export const AdsOptimizationRuleApi = {
   },
 
   // 获取优化规则列表
-  getOptimizationRuleList: async () => {
-    return await request.get({ url: '/erplus/adv/ads/rules/optimization/list' })
+  getOptimizationRuleList: async (params?: any) => {
+    return await request.get({ url: '/erplus/adv/ads/rules/optimization/list', params })
   }
 }

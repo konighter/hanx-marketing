@@ -2,8 +2,8 @@ package com.hzltd.module.erplus.adv.metadata.service.adgroup;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupPageReqVO;
+import com.hzltd.module.erplus.adv.model.AdsAdGroupModel;
 
 import java.util.Map;
 
@@ -45,11 +45,11 @@ public interface AdsAdGroupService {
 
     /**
      * 保存广告组（用于同步）
-     * @param accountId 账号ID
+     * @param shopId 店铺ID
      * @param vo 广告组数据
      * @return 本地广告组ID
      */
-    Long saveAdGroup(Long accountId, AdsAdGroupVO vo);
+    Long saveAdGroup(Long shopId, AdsAdGroupModel vo);
 
     /**
      * 根据计划ID和外部ID查询广告组
@@ -60,11 +60,11 @@ public interface AdsAdGroupService {
     AdsAdGroupDO getAdGroupByCampaignAndExternalId(Long campaignId, String externalId);
 
     /**
-     * 根据账号ID和外部ID查询广告组
-     * @param accountId 账号ID
+     * 根据店铺ID和外部ID查询广告组
+     * @param shopId 店铺ID
      * @param externalId 外部ID
      * @return 广告组
      */
-    AdsAdGroupDO getAdGroupByAccountAndExternalId(Long accountId, String externalId);
+    AdsAdGroupDO getAdGroupByShopAndExternalId(Long shopId, String externalId);
 
 }

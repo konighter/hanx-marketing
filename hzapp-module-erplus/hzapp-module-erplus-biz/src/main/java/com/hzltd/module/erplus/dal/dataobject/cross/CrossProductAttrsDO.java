@@ -43,5 +43,10 @@ public class CrossProductAttrsDO extends BaseDO {
      */
     private String attrValue;
 
+    /**
+     * 版本号
+     */
+    private Long version;
+
 
 }

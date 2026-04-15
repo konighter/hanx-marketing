@@ -16,10 +16,10 @@ import java.util.List;
 @Mapper
 public interface AdsReportHourlyMapper extends BaseMapperX<AdsReportHourlyDO> {
 
-    default List<AdsReportHourlyDO> selectListByAccountAndHourRange(Long accountId, String groupColumn,
+    default List<AdsReportHourlyDO> selectListByShopAndHourRange(Long shopId, String groupColumn,
                                                                      LocalDateTime startHour, LocalDateTime endHour) {
         return selectList(new LambdaQueryWrapperX<AdsReportHourlyDO>()
-                .eq(AdsReportHourlyDO::getAccountId, accountId)
+                .eqIfPresent(AdsReportHourlyDO::getShopId, shopId)
                 .eqIfPresent(AdsReportHourlyDO::getGroupColumn, groupColumn)
                 .betweenIfPresent(AdsReportHourlyDO::getReportHour, startHour, endHour)
                 .orderByAsc(AdsReportHourlyDO::getReportHour));

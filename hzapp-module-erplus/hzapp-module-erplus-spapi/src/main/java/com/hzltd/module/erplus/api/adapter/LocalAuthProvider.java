@@ -1,0 +1,40 @@
+package com.hzltd.module.erplus.api.adapter;
+
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemAuthService;
+import com.hzltd.module.erplus.system.service.SystemShopService;
+import jakarta.annotation.Resource;
+import org.apache.commons.lang3.NotImplementedException;
+
+public abstract class LocalAuthProvider {
+
+    @Resource
+    private SystemShopService systemShopService;
+
+    @Resource
+    private SystemAuthService systemAuthService;
+
+
+    public AuthorizationModel getAuthorizationModel(ApiRequest<?> request) {
+        ShopModel shopModel = systemShopService.getShopByExtraId(request.getShopId());
+        if (shopModel == null) {
+            return null;
+        }
+        request.setTimeZone(shopModel.getTimezone());
+        request.setMarketId(shopModel.getMarketplace());
+        return systemAuthService.getAuthorizationModel(Long.valueOf(shopModel.getId()), getAuthType());
+    }
+
+    public abstract String getAuthType();
+
+    public abstract String getAuthEndpoint();
+
+    public abstract String getApiEndpoint(String marketPlaceId);
+
+    protected RefreshTokenCacheAdaptor getTokenCache() {
+        throw new NotImplementedException();
+    };
+
+}

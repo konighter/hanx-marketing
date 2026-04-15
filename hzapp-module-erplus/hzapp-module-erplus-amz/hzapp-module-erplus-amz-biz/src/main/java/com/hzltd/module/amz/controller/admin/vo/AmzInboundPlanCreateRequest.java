@@ -1,7 +1,7 @@
 package com.hzltd.module.amz.controller.admin.vo;
 
-import com.hzltd.module.spapi.model.common.AddressModel;
-import com.hzltd.module.spapi.model.inventory.InventoryItemModel;
+import com.hzltd.module.erplus.spapi.model.common.AddressModel;
+import com.hzltd.module.erplus.spapi.model.inventory.InventoryItemModel;
 import lombok.Data;
 
 import java.util.List;

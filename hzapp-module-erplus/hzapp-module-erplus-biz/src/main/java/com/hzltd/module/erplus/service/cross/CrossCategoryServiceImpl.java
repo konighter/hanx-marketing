@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.service.cross;
 
 import com.hzltd.framework.common.exception.ServiceException;
+import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.api.service.CategoryApiFactory;
 import com.hzltd.module.erplus.api.service.CategoryAttributeApiFactory;
@@ -14,30 +15,34 @@ import com.hzltd.module.erplus.dal.dataobject.cross.CrossMetaCategoryDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.mysql.category.CrossMetaCategoryAttributeMapper;
 import com.hzltd.module.erplus.dal.mysql.category.CrossMetaCategoryMapper;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.category.CategoryAttributeModel;
-import com.hzltd.module.spapi.model.category.CategoryModel;
-import com.hzltd.module.spapi.service.category.CategoryApi;
-import com.hzltd.module.spapi.service.category.CategoryAttributeMappingApi;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
-import com.hzltd.module.system.service.SystemProductService;
-import com.hzltd.module.spapi.model.system.ProductSpuModel;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
+import com.hzltd.module.erplus.spapi.model.category.CategoryModel;
+import com.hzltd.module.erplus.spapi.model.category.MetaCategorySchemaResult;
+import com.hzltd.module.erplus.spapi.service.category.CategoryApi;
+import com.hzltd.module.erplus.spapi.service.category.CategoryAttributeMappingApi;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
+import com.hzltd.module.erplus.system.model.CrossMetaCategoryModel;
+import com.hzltd.module.erplus.system.model.ProductSpuModel;
+import com.hzltd.module.erplus.system.service.SystemMetaCategoryService;
+import com.hzltd.module.erplus.system.service.SystemProductService;
 import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.CATEGORY_NOT_EMPTY;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_EXISTS;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.CATEGORY_NOT_EMPTY;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.PRODUCT_NOT_EXISTS;
 
 @Service
-public class CrossCategoryServiceImpl implements CrossCategoryService {
+public class CrossCategoryServiceImpl implements CrossCategoryService, SystemMetaCategoryService {
     @Resource
     private CategoryApiFactory categoryApiFactory;
 
@@ -62,7 +67,7 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
 //        if (StringUtils.isEmpty(reqVO.getName()) && CrossPlatformEnum.AMAZON.equals(CrossPlatformEnum.of(sellPlatformDO.getCode()))) {
 //            return Collections.emptyList();
 //        }
-        List<CrossMetaCategoryDO> crossMetaCategoryDOList = crossMetaCategoryMapper.selectList(
+        List<CrossMetaCategoryDO> crossMetaCategoryDOList = crossMetaCategoryMapper.selectBasicList(
                 new LambdaQueryWrapperX<CrossMetaCategoryDO>()
                         .eqIfPresent(CrossMetaCategoryDO::getPlatformId, reqVO.getPlatformId())
         );
@@ -109,14 +114,26 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
 
         SellPlatformDO sellPlatformDO = sellPlatformService.getSellPlatform(reqVO.getPlatformId());
         CategoryApi categoryApi = categoryApiFactory.getCrossApiService(CrossPlatformEnum.of(sellPlatformDO.getCode()));
-        ApiResponse<List<CategoryAttributeModel>> apiResponse = categoryApi.getCategoryAttributes(ApiRequest.of(reqVO, CrossCategoryConvert.INSTANCE.toGetCategoryAttributeRequest(reqVO)));
+        ApiResponse<MetaCategorySchemaResult> apiResponse = categoryApi.getCategoryAttributes(ApiRequest.of(reqVO, CrossCategoryConvert.INSTANCE.toGetCategoryAttributeRequest(reqVO)));
         if (!apiResponse.success()) {
             throw new ServiceException(apiResponse.getCode(), apiResponse.getMsg());
         }
 
-        if (CollectionUtils.isNotEmpty(apiResponse.getData())) {
+        MetaCategorySchemaResult result = apiResponse.getData();
+        if (result != null && CollectionUtils.isNotEmpty(result.getAttributes())) {
+            // Save full schema to category if missing
+            if (StringUtils.isNotEmpty(result.getFullSchema())) {
+                CrossMetaCategoryDO categoryDO = crossMetaCategoryMapper.selectOne(new LambdaQueryWrapperX<CrossMetaCategoryDO>()
+                        .eq(CrossMetaCategoryDO::getCategoryCode, reqVO.getCategoryId())
+                        .eq(CrossMetaCategoryDO::getPlatformId, reqVO.getPlatformId()));
+                if (categoryDO != null && StringUtils.isEmpty(categoryDO.getExtra())) {
+                    categoryDO.setExtra(result.getFullSchema());
+                    crossMetaCategoryMapper.updateById(categoryDO);
+                }
+            }
+
             // todo-- check And Insert (按有效期), 异步更新
-            crossMetaCategoryAttributeMapper.insertBatch(apiResponse.getData().stream().map(attr -> {
+            crossMetaCategoryAttributeMapper.insertBatch(result.getAttributes().stream().map(attr -> {
                 CrossMetaCategoryAttributeDO attributeDO = CrossCategoryConvert.INSTANCE.toCategoryAttributeDO(attr);
                 attributeDO.setPlatformId(reqVO.getPlatformId());
                 attributeDO.setCategoryCode(reqVO.getCategoryId());
@@ -124,7 +141,9 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
             }).collect(Collectors.toList()));
         }
 
-        return apiResponse.getData().stream().map(CrossCategoryConvert.INSTANCE::toCategoryAttrVO).collect(Collectors.toList());
+        return result != null && result.getAttributes() != null ? 
+                result.getAttributes().stream().map(CrossCategoryConvert.INSTANCE::toCategoryAttrVO).collect(Collectors.toList()) : 
+                Collections.emptyList();
     }
 
 
@@ -142,5 +161,23 @@ public class CrossCategoryServiceImpl implements CrossCategoryService {
        categoryAttributeApi.mapCategoryAttributeValues(categoryAttributeVOS, spu);
 
         return categoryAttributeVOS;
+    }
+
+    @Override
+    public CrossMetaCategoryModel getCrossMetaCategoryByPlatformCategoryCode(CrossPlatformEnum crossPlatform, String categoryCode) {
+
+        CrossMetaCategoryDO crossMetaCategory = crossMetaCategoryMapper.selectOne(new LambdaQueryWrapperX<CrossMetaCategoryDO>()
+                .eq(CrossMetaCategoryDO::getPlatformId, crossPlatform.getValue())
+                .eq(CrossMetaCategoryDO::getCategoryCode, categoryCode));
+
+        return BeanUtils.toBean(crossMetaCategory, CrossMetaCategoryModel.class);
+    }
+
+    @Override
+    public List<CrossMetaCategoryModel> getCrossMetaCategoryByPlatform(CrossPlatformEnum crossPlatform) {
+        List<CrossMetaCategoryDO> crossMetaCategories = crossMetaCategoryMapper.selectList(new LambdaQueryWrapperX<CrossMetaCategoryDO>()
+                .eq(CrossMetaCategoryDO::getPlatformId, crossPlatform.getValue()));
+
+        return BeanUtils.toBean(crossMetaCategories, CrossMetaCategoryModel.class);
     }
 }

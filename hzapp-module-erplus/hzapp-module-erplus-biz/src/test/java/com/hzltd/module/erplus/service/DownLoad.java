@@ -3,13 +3,10 @@ package com.hzltd.module.erplus.service;
 // DownloadExample.java
 // This example is for use with the Selling Partner API for Reports, Version: 2021-06-30
 // and the Selling Partner API for Feeds, Version: 2021-06-30
+
 import okhttp3.*;
 
-import java.io.BufferedReader;
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.zip.GZIPInputStream;
 

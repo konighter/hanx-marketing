@@ -4,6 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
+import com.hzltd.module.erplus.adv.model.AdsCampaignModel;
 import jakarta.validation.Valid;
 
 import java.util.Map;
@@ -63,22 +64,22 @@ public interface AdsCampaignService {
 
     Map<String, Object> getCampaignAttributes(Long id);
 
-    java.util.List<AdsCampaignDO> getCampaignListByAccount(Long accountId);
+
 
     /**
-     * 根据账号ID和外部ID查询广告计划
-     * @param accountId 账号ID
+     * 根据店铺ID和外部ID查询广告计划
+     * @param shopId 店铺ID
      * @param externalId 外部ID
      * @return 计划
      */
-    AdsCampaignDO getCampaignByExternalId(Long accountId, String externalId);
+    AdsCampaignDO getCampaignByExternalId(Long shopId, String externalId);
 
     /**
      * 保存广告计划（用于同步）
-     * @param accountId 账号ID
+     * @param shopId 店铺ID
      * @param vo 计划数据
      * @return 本地计划ID
      */
-    Long saveCampaign(Long accountId, com.hzltd.module.erplus.adv.metadata.vo.AdsCampaignVO vo);
+    Long saveCampaign(Long shopId, AdsCampaignModel vo);
 
 }

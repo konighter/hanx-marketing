@@ -94,6 +94,12 @@ public class CrossProductDO extends BaseDO {
     private String dimension;
 
     /**
+     * 预估费用
+     * 包含佣金/配送费用等
+     */
+    private String estimateFee;
+
+    /**
      * 安全合规
      */
 //    private String security;

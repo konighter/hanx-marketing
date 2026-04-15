@@ -3,13 +3,15 @@ package com.hzltd.module.erplus.adv.metadata.vo.rule;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
-import java.util.List;
-
 @Schema(description = "管理后台 - 广告优化规则保存 Request VO")
 @Data
 public class AdsOptimizationRuleSaveReqVO {
 
-    @Schema(description = "关联广告账户ID")
+    @Schema(description = "店铺ID")
+    private Long shopId;
+
+    @Schema(description = "关联广告账户ID (已弃用，请使用 shopId)")
+    @Deprecated
     private Long accountId;
 
     @Schema(description = "关联 profileId (亚马逊站点维度)")

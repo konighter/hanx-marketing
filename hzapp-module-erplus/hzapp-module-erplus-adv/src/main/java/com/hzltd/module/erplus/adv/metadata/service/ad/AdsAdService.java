@@ -2,8 +2,8 @@ package com.hzltd.module.erplus.adv.metadata.service.ad;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdDO;
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdVO;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
+import com.hzltd.module.erplus.adv.model.AdsAdModel;
 
 import java.util.Map;
 
@@ -45,10 +45,10 @@ public interface AdsAdService {
 
     /**
      * 保存广告（用于同步）
-     * @param accountId 账号ID
+     * @param shopId 店铺ID
      * @param vo 广告数据
      * @return 本地广告ID
      */
-    Long saveAd(Long accountId, AdsAdVO vo);
+    Long saveAd(Long shopId, AdsAdModel vo);
 
 }

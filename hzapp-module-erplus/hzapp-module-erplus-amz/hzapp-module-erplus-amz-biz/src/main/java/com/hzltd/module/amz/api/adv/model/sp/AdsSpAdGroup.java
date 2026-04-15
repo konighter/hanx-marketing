@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.api.adv.model.sp;
 
-import com.hzltd.module.erplus.adv.metadata.vo.AdsAdGroupVO;
+import com.hzltd.module.erplus.adv.model.AdsAdGroupModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -39,8 +39,8 @@ public class AdsSpAdGroup {
     /** 扩展数据 (投放状态、创建/更新时间等) */
     private AdsSpExtendedData extendedData;
 
-    public AdsAdGroupVO toVO() {
-        return AdsAdGroupVO.builder()
+    public AdsAdGroupModel toVO() {
+        return AdsAdGroupModel.builder()
                 .externalId(this.getAdGroupId())
                 .campaignExternalId(this.getCampaignId())
                 .name(this.getName())

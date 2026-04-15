@@ -14,16 +14,18 @@ import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderItemDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
+import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
 import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossOrderItemMapper;
 import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossOrderMapper;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.order.FeeModel;
-import com.hzltd.module.spapi.model.order.GetOrdersRequest;
-import com.hzltd.module.spapi.model.order.OrderItemModel;
-import com.hzltd.module.spapi.model.order.OrderModel;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
+import com.hzltd.module.erplus.service.shop.ShopService;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.common.FeeModel;
+import com.hzltd.module.erplus.spapi.model.order.GetOrdersRequest;
+import com.hzltd.module.erplus.spapi.model.order.OrderItemModel;
+import com.hzltd.module.erplus.spapi.model.order.OrderModel;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
@@ -58,15 +60,24 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
     private SellPlatformService sellPlatformService;
 
     @Resource
-    private ErplusFinancesService financesService;
+    private ShopService shopService;
 
+    @Resource
+    private ErplusFinancesService financesService;
 
 
     @Async
     @Override
     public void syncCrossOrders(CrossOrderSyncRequest request) {
+        Integer platformId = request.getPlatformId();
+        if (platformId == null && request.getShopId() != null) {
+            ShopDO shopDO = shopService.getShop(request.getShopId());
+            platformId = shopDO.getPlatform();
+        }
+
         SellPlatformDO sellPlatform = sellPlatformService.getSellPlatform(request.getPlatformId());
         CrossPlatformEnum crossPlatform = CrossPlatformEnum.of(sellPlatform.getCode());
+
         boolean hasNext = false;
         List<String> orderIds = Lists.newArrayList();
         if (CollectionUtils.isNotEmpty(request.getOrderIds())) {
@@ -80,15 +91,17 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
             orderIds.add(request.getPlatformOrderId());
         }
 
+        if (CollectionUtils.isNotEmpty(request.getPlatformOrderIds())) {
+            orderIds.addAll(request.getPlatformOrderIds());
+        }
+
         ApiRequest<GetOrdersRequest> apiRequest = new ApiRequest<GetOrdersRequest>()
                 .setCrossPlatform(crossPlatform)
-                .setShopIdInt(request.getShopId())
-                .setMarketId(request.getMarketId());
+                .setShopIdInt(request.getShopId());
         GetOrdersRequest getOrdersRequest = new GetOrdersRequest()
                 .setCreateTimeStart(request.getCreateTimeStart())
                 .setCreateTimeEnd(request.getCreateTimeEnd())
-                .setOrderIds(orderIds)
-                ;
+                .setOrderIds(orderIds);
         List<OrderModel> allOrders = Lists.newArrayList();
 
         do {

@@ -2,10 +2,9 @@ package com.hzltd.module.amz.convert;
 
 import com.hzltd.module.amz.controller.admin.vo.AmzInboundPlanCreateRequest;
 import com.hzltd.module.amz.dal.dataobject.AmzInboundPlanDO;
-import com.hzltd.module.spapi.model.common.AddressModel;
-import com.hzltd.module.spapi.model.inventory.InventoryItemModel;
+import com.hzltd.module.erplus.spapi.model.common.AddressModel;
+import com.hzltd.module.erplus.spapi.model.inventory.InventoryItemModel;
 import org.mapstruct.Mapper;
-
 import org.mapstruct.factory.Mappers;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.*;
 

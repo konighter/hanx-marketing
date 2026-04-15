@@ -21,6 +21,7 @@ export interface AdsCampaign {
   dailyBudget?: number
   totalBudget?: number
   budgetType?: string
+  shopId?: number
   startDate?: string
   endDate?: string
   deliverySchedule?: any
@@ -49,6 +50,7 @@ export interface AdsAdGroup {
   status: string
   platformStatus: string
   defaultBid?: number
+  shopId?: number
   platform?: string
   extData?: any
   syncedAt?: string
@@ -63,6 +65,7 @@ export interface AdsAd {
   name: string
   adType: string
   status: string
+  shopId?: number
   platformStatus: string
   syncedAt?: string
   createTime?: string
@@ -76,6 +79,7 @@ export interface AdsKeyword {
   keywordText: string
   matchType: string
   status: string
+  shopId?: number
   platformStatus: string
   bid?: number
   syncedAt?: string

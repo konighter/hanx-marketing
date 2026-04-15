@@ -113,6 +113,7 @@ import * as echarts from 'echarts'
 // 定义组件属性
 interface Props {
     accountId?: string | number
+    shopId?: string | number
     entityType?: 'CAMPAIGN' | 'ADGROUP' | 'AD' | 'ACCOUNT'
     queryParams?: {
         campaignIds?: number[]
@@ -330,6 +331,7 @@ async function loadChartData() {
     try {
         const res = await AdsReportApi.getPerformanceTrend({
             accountId: props.accountId as any,
+            shopId: props.shopId as any,
             entityType: props.entityType as any || 'CAMPAIGN',
             entityId: getSelectedIds()[0], // Currently support single entity selection in detail
             startDate: props.dateRange[0],
@@ -596,7 +598,7 @@ onUnmounted(() => {
 })
 
 // 监听属性变化
-watch(() => props.accountId, () => {
+watch(() => [props.accountId, props.shopId], () => {
     loadChartData()
 })
 

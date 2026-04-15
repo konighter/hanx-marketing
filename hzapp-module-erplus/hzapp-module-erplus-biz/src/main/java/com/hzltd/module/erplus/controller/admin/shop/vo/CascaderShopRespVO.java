@@ -16,6 +16,8 @@ public class CascaderShopRespVO {
 
     private String name;
 
+    private String timezone;
+
     private List<CascaderShopRespVO> children;
 
 

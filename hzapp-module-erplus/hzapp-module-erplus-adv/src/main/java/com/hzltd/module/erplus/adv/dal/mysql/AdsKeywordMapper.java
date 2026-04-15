@@ -29,20 +29,26 @@ public interface AdsKeywordMapper extends BaseMapperX<AdsKeywordDO> {
                 .eq(AdsKeywordDO::getExternalId, externalId));
     }
 
-    default AdsKeywordDO selectByAccountAndExternalId(Long accountId, String externalId) {
+
+
+    default AdsKeywordDO selectByShopAndExternalId(Long shopId, String externalId) {
         return selectOne(new LambdaQueryWrapperX<AdsKeywordDO>()
-                .eq(AdsKeywordDO::getAccountId, accountId)
+                .eq(AdsKeywordDO::getShopId, shopId)
                 .eq(AdsKeywordDO::getExternalId, externalId));
     }
 
-    default List<AdsKeywordDO> selectListByAccountId(Long accountId) {
+
+
+    default List<AdsKeywordDO> selectListByShopId(Long shopId) {
         return selectList(new LambdaQueryWrapperX<AdsKeywordDO>()
-                .eq(AdsKeywordDO::getAccountId, accountId)
+                .eq(AdsKeywordDO::getShopId, shopId)
                 .orderByDesc(AdsKeywordDO::getId));
     }
 
+    @SuppressWarnings("deprecation")
     default PageResult<AdsKeywordDO> selectPage(AdsKeywordPageReqVO reqVO) {
         return selectPage(reqVO, new LambdaQueryWrapperX<AdsKeywordDO>()
+                .eqIfPresent(AdsKeywordDO::getShopId, reqVO.getShopId())
                 .eqIfPresent(AdsKeywordDO::getAccountId, reqVO.getAccountId())
                 .inIfPresent(AdsKeywordDO::getCampaignId, reqVO.getCampaignIds())
                 .inIfPresent(AdsKeywordDO::getAdGroupId, reqVO.getAdGroupIds())

@@ -1,20 +1,20 @@
 package com.hzltd.module.erplus.service.ecom;
 
-import com.hzltd.module.spapi.enums.AttributeTypeEnum;
 import com.hzltd.module.erplus.controller.admin.category.vo.ProductCategoryListReqVO;
 import com.hzltd.module.erplus.dal.dataobject.categoryattr.CategoryAttributeDO;
 import com.hzltd.module.erplus.dal.dataobject.product.ProductCategoryDO;
-import com.hzltd.module.system.enums.CrossPlatformEnum;
-import com.hzltd.module.spapi.model.ApiRequest;
-import com.hzltd.module.spapi.model.ApiResponse;
-import com.hzltd.module.spapi.model.category.*;
-import com.hzltd.module.spapi.model.common.MediaModel;
-import com.hzltd.module.spapi.model.product.*;
-import com.hzltd.module.spapi.service.PlatformIdentity;
-import com.hzltd.module.spapi.service.category.CategoryApi;
 import com.hzltd.module.erplus.service.categoryattr.CategoryAttributeService;
-import com.hzltd.module.erplus.service.cross.ProductCategoryService;
-import com.hzltd.module.spapi.service.product.ProductApi;
+import com.hzltd.module.erplus.service.categoryattr.ProductCategoryService;
+import com.hzltd.module.erplus.spapi.enums.AttributeTypeEnum;
+import com.hzltd.module.erplus.spapi.model.ApiRequest;
+import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.category.*;
+import com.hzltd.module.erplus.spapi.model.common.MediaModel;
+import com.hzltd.module.erplus.spapi.model.product.*;
+import com.hzltd.module.erplus.spapi.service.PlatformIdentity;
+import com.hzltd.module.erplus.spapi.service.category.CategoryApi;
+import com.hzltd.module.erplus.spapi.service.product.ProductApi;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +32,11 @@ public class DefaultHanXCrossServiceApi implements ProductApi, CategoryApi, Plat
 
 
     @Override
+    public ApiResponse<String> getCategorySchema(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
+        return null;
+    }
+
+    @Override
     public ApiResponse<List<CategoryModel>> getCategories(ApiRequest<GetCategoryRequest> apiRequest) {
         List<ProductCategoryDO> categories = categoryService.getProductCategoryList(new ProductCategoryListReqVO());
        return ApiResponse.success(categories.stream().map(c -> {
@@ -45,18 +50,22 @@ public class DefaultHanXCrossServiceApi implements ProductApi, CategoryApi, Plat
     }
 
     @Override
-    public ApiResponse<List<CategoryAttributeModel>> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
+    public ApiResponse<MetaCategorySchemaResult> getCategoryAttributes(ApiRequest<GetCategoryAttributeRequest> apiRequest) {
         CategoryAttributeDO attributeDO = new CategoryAttributeDO();
-//        attributeDO.setCategoryId(apiRequest.getRequest().getCategoryId());
         List<CategoryAttributeDO> categoryAttributes = categoryAttributeService.getCategoryAttributes(attributeDO);
-        return ApiResponse.success( categoryAttributes.stream().map(a -> {
+        List<CategoryAttributeModel> attributes = categoryAttributes.stream().map(a -> {
             CategoryAttributeModel model = new CategoryAttributeModel();
             model.setAttrCode(a.getAttrId());
             model.setAttrName(a.getAttrName());
             model.setAttrType(AttributeTypeEnum.valueOf(a.getAttrType()));
             model.setIsRequired(a.isRequired());
             return model;
-        }).collect(Collectors.toList()));
+        }).collect(Collectors.toList());
+
+        return ApiResponse.success(MetaCategorySchemaResult.builder()
+                .attributes(attributes)
+                .fullSchema("") // Local categories might not have full JSON schema yet
+                .build());
     }
 
     @Override

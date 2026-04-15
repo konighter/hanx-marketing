@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import lombok.*;
 
-import java.time.LocalDateTime;
+
 
 /**
  * 广告实体变更日志 DO (审计表)
@@ -25,6 +25,8 @@ public class AdsEntityChangeLogDO extends BaseDO {
 
     @TableId
     private Long id;
+    /** 店铺ID */
+    private Long shopId;
     /** 关联广告账户ID */
     private Long accountId;
     /** 实体类型: CAMPAIGN / ADGROUP / AD / KEYWORD / CREATIVE */

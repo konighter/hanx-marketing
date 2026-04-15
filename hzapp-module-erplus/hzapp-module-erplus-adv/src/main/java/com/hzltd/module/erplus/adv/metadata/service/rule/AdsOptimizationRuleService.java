@@ -22,8 +22,9 @@ public interface AdsOptimizationRuleService {
     /**
      * 获取优化规则列表
      *
+     * @param shopId 店铺ID
      * @return 优化规则列表
      */
-    List<AdsOptimizationRuleDO> getOptimizationRuleList();
+    List<AdsOptimizationRuleDO> getOptimizationRuleList(Long shopId);
 
 }

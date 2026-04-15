@@ -38,6 +38,16 @@
             <Icon icon="ep:check" />
           </el-button>
         </div>
+        <el-button 
+          v-if="detail.id"
+          type="primary" 
+          link
+          :loading="syncing"
+          @click="syncCampaign"
+          class="ml-auto"
+        >
+          <Icon icon="ep:refresh" /> 同步
+        </el-button>
       </div>
     </template>
     <div v-loading="loading" class="drawer-content">
@@ -106,6 +116,7 @@
           <div class="p-20px">
             <AdCampaignDataAnalysis 
               v-if="visible && activeTab === 'data'"
+              :shop-id="detail.shopId"
               :account-id="detail.accountId"
               :campaign-id="detail.id!"
             />
@@ -132,7 +143,7 @@ import { ref, reactive, watch, computed } from 'vue'
 import { ElMessage } from 'element-plus'
 
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
-import { AdsCampaignApi } from '@/app/erplus/api/adv/ads'
+import { AdsCampaignApi, AdsSyncApi } from '@/app/erplus/api/adv/ads'
 import { AdsCampaign } from '../types/ads'
 import AdCampaignDataAnalysis from './AdCampaignDataAnalysis.vue'
 import DeliverySchedule from './DeliverySchedule.vue'
@@ -141,6 +152,7 @@ import AmazonCampaignConfig from './AmazonCampaignConfig.vue'
 const visible = ref(false)
 const loading = ref(false)
 const saving = ref(false)
+const syncing = ref(false)
 const isEditingName = ref(false)
 const activeTab = ref('basic')
 const detail = ref<Partial<AdsCampaign>>({})
@@ -193,6 +205,7 @@ const open = async (id: number) => {
     const extData = res.extData || {}
     platformConfig.value = {
       ...(extData.platformConfig || {}),
+      shopId: res.shopId,
       accountId: res.accountId
     }
   } finally {
@@ -205,7 +218,7 @@ const handleSave = async () => {
   
   saving.value = true
   try {
-    const { adGroups, accountId, ...cleanPlatformConfig } = platformConfig.value || {}
+    const { adGroups, accountId, shopId, ...cleanPlatformConfig } = platformConfig.value || {}
 
     const updateData: any = {
       id: detail.value.id,
@@ -235,6 +248,21 @@ const handleSave = async () => {
     console.error('Save campaign failed:', error)
   } finally {
     saving.value = false
+  }
+}
+
+const syncCampaign = async () => {
+  if (!detail.value.id) return
+  syncing.value = true
+  try {
+    await AdsSyncApi.syncMetadataByCampaign(detail.value.id)
+    ElMessage.success('同步成功')
+    // 同步成功后重新加载详情，确保拿到最新数据
+    open(detail.value.id)
+  } catch (error) {
+    console.error('Sync campaign failed:', error)
+  } finally {
+    syncing.value = false
   }
 }
 

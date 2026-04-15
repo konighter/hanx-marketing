@@ -80,6 +80,10 @@ import { AdsOptimizationRuleApi } from '@/app/erplus/api/adv/optimization_rule'
 defineOptions({ name: 'AdsOptimizationRuleForm' })
 
 const props = defineProps({
+  shopId: {
+    type: Number,
+    required: true
+  },
   accountId: {
     type: Number,
     required: true
@@ -150,6 +154,7 @@ const submit = async () => {
   try {
     console.log('accountId:', props.accountId)
     const submitData = {
+      shopId: props.shopId,
       accountId: props.accountId,
       profileId: props.profileId,
       optimizationRule: formData

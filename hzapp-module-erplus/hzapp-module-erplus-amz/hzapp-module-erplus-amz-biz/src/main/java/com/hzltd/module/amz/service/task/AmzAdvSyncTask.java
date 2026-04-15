@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
+@Deprecated
 public class AmzAdvSyncTask {
 
     @Resource

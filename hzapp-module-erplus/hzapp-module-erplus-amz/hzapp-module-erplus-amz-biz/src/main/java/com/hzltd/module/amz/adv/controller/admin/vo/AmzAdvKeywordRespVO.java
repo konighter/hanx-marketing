@@ -2,6 +2,7 @@ package com.hzltd.module.amz.adv.controller.admin.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
+
 import java.time.LocalDateTime;
 
 @Schema(description = "管理后台 - 亚马逊广告关键词查询结果带有动态出价与位置响应模型 VO")

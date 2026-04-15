@@ -34,6 +34,7 @@
     >
       <AdsOptimizationRuleForm
         ref="formRef"
+        :shop-id="shopId"
         :account-id="accountId"
         :profile-id="profileId"
         @success="handleCreateSuccess"
@@ -62,6 +63,10 @@ const props = defineProps({
     type: String,
     default: '请选择优化规则'
   },
+  shopId: {
+    type: Number,
+    required: true
+  },
   accountId: {
     type: Number,
     required: true
@@ -83,7 +88,7 @@ const formRef = ref()
 /** 获取规则列表 */
 const getRuleList = async () => {
   try {
-    const data = await AdsOptimizationRuleApi.getOptimizationRuleList()
+    const data = await AdsOptimizationRuleApi.getOptimizationRuleList({ shopId: props.shopId })
     ruleList.value = data || []
   } catch (error) {
     console.error('获取优化规则列表失败', error)

@@ -6,18 +6,24 @@ package com.hzltd.module.erplus.adv.metadata.service.sync;
 public interface AdsMetadataSyncService {
 
     /**
-     * 同步指定账号的广告元数据 (全量)
+     * 同步指定店铺下所有账号的广告元数据 (全量)
      *
-     * @param accountId 账号编号
+     * @param shopId 店铺编号
      */
-    void syncAllMetadata(Long accountId);
+    void syncAllMetadataByShop(Long shopId);
 
     /**
-     * 同步指定账号的广告元数据 (增量)
+     * 同步指定店铺下所有账号的广告元数据 (增量)
      *
-     * @param accountId 账号编号
+     * @param shopId 店铺编号
      */
-    void syncIncrementalMetadata(Long accountId);
+    void syncIncrementalMetadataByShop(Long shopId);
+
+    /**
+     * 同步广告活动
+     * @param campaignId
+     */
+    void syncMetadataByCampaign(Long campaignId);
 
     /**
      * 执行同步任务

@@ -1,0 +1,34 @@
+<h2>组合聚合字段 (Composite Fields) 的展现探索</h2>
+<p class="subtitle">针对图片、五点描述、长宽高尺寸等特殊的“原子组合”属性，由于它们在 Schema 中通常被打平得很难看（如 <code>item_dimensions.length.value</code>），我们需要一种能兼顾体验的展现方式。</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>Schema 驱动的类型化组件 (Type-based Components)</h3>
+      <p>完全废弃通用 <code>el-input</code>。当系统在 Schema 中识别到特定的结构化标识（例如：<code>x-hz-component: "image-upload"</code> 或字段名为 <code>item_dimensions</code>），前端动态表单直接挂载一个专门针对该字段定制的 Vue 组件（内部处理了亚马逊那种嵌套很深的 JSON 结构和单位换算）。</p>
+      <div class="label" style="margin-top: 8px; color: #666;">表现</div>
+      <p style="font-size: 0.9em;">五点描述会直接呈现为“带有添加/排序按钮的动态列表组件”，而不是5个平铺的普通文本框。</p>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>表单组群化 (Field Grouping & Layout Wrapping)</h3>
+      <p>依然维持通用的单字段绑定，但是在后端的配置生成阶段（SchemaService 中），我们将 <code>item_dimensions</code> 下的“长、宽、高、重”自动划分为同一个“聚合 Group”。前端遇到带有聚合特征的 Group 时，渲染成一个自带单位（Unit Selector）的卡片盒子把它们包起来。</p>
+      <div class="label" style="margin-top: 8px; color: #666;">表现</div>
+      <p style="font-size: 0.9em;">相对简单，只需增加排版逻辑，不改变动态表单组件底层对 “扁平 Key” (flat keys) 读写的本质，避免编写大量平台专属定制组件。</p>
+    </div>
+  </div>
+  
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>ERP 主数据直接强行接管 (ERP Global Takeover)</h3>
+      <p>这也是 B 路线（ERP核心驱动）最彻底的做法。凡是通用的复杂字段（图片、尺寸、包装重量），在动态表单里干脆 <strong>完全不渲染</strong> Amazon 的 Schema 版本。<br>而是统一让用户在最顶端的『ERP主数据』版块进行填写，然后由后端系统负责把长宽高包装成 Amazon 恶心的 <code>{length:{value:1, unit:'cm'}}</code> 结构发走。</p>
+      <div class="label" style="margin-top: 8px; color: #666;">表现</div>
+      <p style="font-size: 0.9em;">用户界面极其清爽，但如果不同平台/不同品类对图片像素、尺寸单位有独特验证规则，这套主数据映射就有很大挑战。</p>
+    </div>
+  </div>
+</div>

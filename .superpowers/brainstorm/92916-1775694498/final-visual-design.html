@@ -1,0 +1,78 @@
+<h2>刊登同步与展示 - 最终视觉设计 (Final Design)</h2>
+<p class="subtitle">列表状态展示 + 侧边抽屉深度反馈</p>
+
+<div class="split" style="height: 400px;">
+  <!-- 左侧：列表展示 -->
+  <div class="mockup" style="flex: 1;">
+    <div class="mockup-header">商品刊登列表 (List View)</div>
+    <div class="mockup-body" style="padding: 10px;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 11px;">
+        <tr style="background: #f5f5f5; text-align: left;">
+          <th style="padding: 5px;">商品信息</th>
+          <th style="padding: 5px;">价格</th>
+          <th style="padding: 5px;">发布状态</th>
+        </tr>
+        <tr>
+          <td style="padding: 5px;">SKU-AMZ-001<br><span style="color: #666; font-size: 9px;">Amazon Echo Dot</span></td>
+          <td style="padding: 5px;">$49.99</td>
+          <td style="padding: 5px;">
+            <span class="mock-nav" style="background: #e8f5e9; border: 1px solid #4CAF50; cursor: pointer;">已发布</span>
+          </td>
+        </tr>
+        <tr style="background: #fff3e0;">
+          <td style="padding: 5px;">SKU-AMZ-002<br><span style="color: #666; font-size: 9px;">Kindle Paperwhite</span></td>
+          <td style="padding: 5px;">$129.00</td>
+          <td style="padding: 5px;">
+            <span class="mock-nav" style="background: #ffebee; border: 1px solid #f44336; cursor: pointer; color: #f44336; font-weight: bold;">发布失败 (! )</span>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 5px;">SKU-AMZ-003<br><span style="color: #666; font-size: 9px;">Fire Tablet</span></td>
+          <td style="padding: 5px;">$89.00</td>
+          <td style="padding: 5px;">
+            <span class="mock-nav" style="background: #e3f2fd; border: 1px solid #2196F3;">同步中...</span>
+          </td>
+        </tr>
+      </table>
+      <p style="font-size: 9px; color: #999; margin-top: 10px;">* 状态由 API 后端聚合查询直出，无需轮询</p>
+    </div>
+  </div>
+
+  <!-- 右侧：详情抽屉 -->
+  <div class="mockup" style="flex: 0.8; border: 2px solid #2196F3;">
+    <div class="mockup-header" style="background: #2196F3; color: white;">刊登任务详情 (Drawer Panel)</div>
+    <div class="mockup-body" style="padding: 15px;">
+      <div class="section">
+        <div class="label">任务信息</div>
+        <p style="font-size: 11px; margin: 4px 0;">任务ID: TASK-20240409-Q1<br>最后更新: 2026-04-09 08:30</p>
+      </div>
+      
+      <div class="section" style="border-top: 1px solid #eee; padding-top: 10px;">
+        <div class="label" style="color: #f44336;">错误详情 (Error Feedback)</div>
+        <div style="background: #fff5f5; padding: 8px; border-radius: 4px; font-size: 10px; border-left: 3px solid #f44336; margin-top: 5px;">
+          <strong>Merchant Token Error:</strong><br>
+          SKU 'SKU-AMZ-002' requires 'Condition' field to be specified.
+        </div>
+      </div>
+
+      <div class="section" style="border-top: 1px solid #eee; padding-top: 10px;">
+        <div class="label" style="color: #ff9800;">平台建议 (Platform Warnings)</div>
+        <div style="background: #fff8e1; padding: 8px; border-radius: 4px; font-size: 10px; border-left: 3px solid #ff9800; margin-top: 5px;">
+          <strong>Image Resolution:</strong><br>
+          One or more images are below 1000px height. High-res images improve conversion.
+        </div>
+      </div>
+
+      <div class="section" style="border-top: 1px solid #eee; padding-top: 10px;">
+        <div class="label">原始反馈数据 (Raw JSON)</div>
+        <pre style="font-size: 9px; background: #f9f9f9; padding: 5px; overflow: auto; max-height: 80px;">
+{
+  "submissionId": "3491023",
+  "status": "FATAL",
+  "issues": [ { "code": "E0124", ... } ]
+}
+        </pre>
+      </div>
+    </div>
+  </div>
+</div>

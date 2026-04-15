@@ -2,12 +2,13 @@ package com.hzltd.module.erplus.service.sellzone;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZonePageReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneReqVO;
 import com.hzltd.module.erplus.controller.admin.sellzone.vo.SellZoneSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellzone.SellZoneDO;
 import com.hzltd.module.erplus.dal.mysql.sellzone.SellZoneMapper;
-import com.hzltd.module.spapi.enums.RedisKeyConstants;
+import com.hzltd.module.erplus.spapi.enums.RedisKeyConstants;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SELL_ZONE_NOT_EXISTS;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.SELL_ZONE_NOT_EXISTS;
 
 /**
  * 销售区域 Service 实现类
@@ -66,6 +67,12 @@ public class SellZoneServiceImpl implements SellZoneService {
     @Cacheable(cacheNames = RedisKeyConstants.KEY_SELL_ZONE, key = "#id")
     public SellZoneDO getSellZone(Integer id) {
         return sellZoneMapper.selectById(id);
+    }
+
+    @Override
+    @Cacheable(cacheNames = RedisKeyConstants.KEY_SELL_ZONE, key = "#id")
+    public SellZoneDO getSellZone(String code) {
+        return sellZoneMapper.selectOne(new LambdaQueryWrapperX<SellZoneDO>().eq(SellZoneDO::getZoneCode, code));
     }
 
     @Override

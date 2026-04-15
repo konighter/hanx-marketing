@@ -1,9 +1,9 @@
 package com.hzltd.module.erplus.adv.dal.dataobject;
 
 import com.baomidou.mybatisplus.annotation.KeySequence;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
 import lombok.*;
@@ -34,6 +34,11 @@ public class AdsCampaignDO extends BaseDO {
      * 关联广告账户ID
      */
     private Long accountId;
+
+    /**
+     * 所属店铺ID
+     */
+    private Long shopId;
 
     /**
      * 广告平台 (AMAZON, GOOGLE, etc.)

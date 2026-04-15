@@ -20,7 +20,7 @@ import org.springframework.validation.annotation.Validated;
 import java.util.List;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.STOCK_COUNT_NEGATIVE;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.STOCK_COUNT_NEGATIVE;
 
 /**
  * ERP 库存账单 (V2) Service 实现类

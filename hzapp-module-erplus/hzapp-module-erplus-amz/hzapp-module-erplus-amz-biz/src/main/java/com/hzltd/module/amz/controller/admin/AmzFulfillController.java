@@ -5,7 +5,7 @@ import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.amz.controller.admin.vo.*;
 import com.hzltd.module.amz.dal.dataobject.AmzInboundPlanDO;
-import com.hzltd.module.amz.service.AmzFulfillmentService;
+import com.hzltd.module.amz.spapi.service.AmzFulfillmentService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import org.springframework.validation.annotation.Validated;

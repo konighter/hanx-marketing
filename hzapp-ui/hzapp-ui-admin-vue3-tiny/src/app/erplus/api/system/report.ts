@@ -47,7 +47,8 @@ export const reportTypes = [
   { label: '搜索查询绩效报告', value: 'GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT' },
   { label: '商城购买行为分析报告', value: 'GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT' },
   { label: '亚马逊搜索词报告', value: 'GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT' },
-  { lable: '重复购买', value: 'GET_BRAND_ANALYTICS_REPEAT_PURCHASE_REPORT' }
+  { lable: '重复购买', value: 'GET_BRAND_ANALYTICS_REPEAT_PURCHASE_REPORT' },
+  { lable: '亚马逊库存报告', value: 'GET_LEDGER_DETAIL_VIEW_DATA' }
 ]
 
 export const reportStatus = [

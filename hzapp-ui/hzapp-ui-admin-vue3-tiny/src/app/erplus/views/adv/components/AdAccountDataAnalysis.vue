@@ -84,6 +84,7 @@
         <div class="p-4 bg-[var(--el-bg-color)] rounded-b-8px">
           <AdDataChart
             :account-id="accountId"
+            :shop-id="shopId"
             entity-type="ACCOUNT"
             :date-range="dateRange"
             :time-unit="timeUnit"
@@ -102,6 +103,7 @@ import { AdsReportApi } from '@/app/erplus/api/adv/report'
 
 const props = defineProps<{
   accountId?: number
+  shopId?: number
 }>()
 
 const loading = ref(false)
@@ -144,11 +146,12 @@ const displayedMetrics = computed(() => {
 })
 
 const loadData = async () => {
-  if (!props.accountId) return
+  if (!props.accountId && !props.shopId) return
   loading.value = true
   try {
     const data = await AdsReportApi.getPerformanceScorecard({
       accountId: props.accountId,
+      shopId: props.shopId,
       entityType: 'ACCOUNT',
       startDate: dateRange.value[0],
       endDate: dateRange.value[1],
@@ -162,7 +165,7 @@ const loadData = async () => {
   }
 }
 
-watch(() => props.accountId, () => {
+watch(() => [props.accountId, props.shopId], () => {
   loadData()
 }, { immediate: true })
 

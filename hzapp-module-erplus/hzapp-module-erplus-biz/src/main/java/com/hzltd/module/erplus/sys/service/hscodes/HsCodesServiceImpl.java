@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.HS_CODES_NOT_EXISTS;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.HS_CODES_NOT_EXISTS;
 
 /**
  * [Erplus] 海关编码(HS Code) Service 实现类

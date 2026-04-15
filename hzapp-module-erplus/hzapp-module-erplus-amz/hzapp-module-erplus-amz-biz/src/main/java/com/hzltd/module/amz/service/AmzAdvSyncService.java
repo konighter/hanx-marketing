@@ -1,7 +1,10 @@
 package com.hzltd.module.amz.service;
 
 
-import com.hzltd.module.amz.dal.dataobject.*;
+import com.hzltd.module.amz.dal.dataobject.AmzAdvAdGroupDO;
+import com.hzltd.module.amz.dal.dataobject.AmzAdvBidStrategyDO;
+import com.hzltd.module.amz.dal.dataobject.AmzAdvCampaignDO;
+import com.hzltd.module.amz.dal.dataobject.AmzAdvKeywordDO;
 
 import java.util.List;
 

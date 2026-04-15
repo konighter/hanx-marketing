@@ -11,6 +11,7 @@ export interface ShopVO {
   regionName: string // 区域
   sellerId?: string
   authInfo?: any
+  auths?: any[]
 }
 
 export interface ShopAuthReqVO {

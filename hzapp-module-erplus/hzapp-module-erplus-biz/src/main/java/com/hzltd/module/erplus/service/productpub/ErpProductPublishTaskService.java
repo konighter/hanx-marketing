@@ -6,9 +6,32 @@ import java.util.Optional;
 
 public interface ErpProductPublishTaskService {
 
-    Optional<ErpProductPublishTaskDO> getProductPublishTask(Long productId, Long version);
     Optional<ErpProductPublishTaskDO> getProductPublishTask(Long taskId);
     Long createProductPublishTask(ErpProductPublishTaskDO task);
+
+    void updateProductPublishTask(ErpProductPublishTaskDO task);
+
+    /**
+     * 获取待发布的预约任务
+     *
+     * @return 任务列表
+     */
+    java.util.List<ErpProductPublishTaskDO> getPendingPublishTasks();
+
+    /**
+     * 提交刊登任务异步执行
+     *
+     * @param taskId 任务 ID
+     * @return 是否提交成功
+     */
+    boolean submitProductPublishTask(Long taskId);
+
+    /**
+     * 提交成功的任务，检查是否完成
+     * @param taskId
+     * @return
+     */
+    boolean submitProductPublishCheckTask(Long taskId);
 
 
 

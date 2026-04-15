@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.controller.admin.category.vo;
 
-import com.hzltd.module.spapi.model.system.BaseCrossRequest;
+import com.hzltd.module.erplus.system.model.BaseCrossRequest;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;

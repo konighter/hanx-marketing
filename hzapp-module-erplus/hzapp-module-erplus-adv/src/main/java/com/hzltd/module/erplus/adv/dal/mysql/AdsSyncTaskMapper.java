@@ -15,9 +15,11 @@ import java.util.List;
 @Mapper
 public interface AdsSyncTaskMapper extends BaseMapperX<AdsSyncTaskDO> {
 
-    default List<AdsSyncTaskDO> selectListByAccountId(Long accountId) {
+
+
+    default List<AdsSyncTaskDO> selectListByShopId(Long shopId) {
         return selectList(new LambdaQueryWrapperX<AdsSyncTaskDO>()
-                .eq(AdsSyncTaskDO::getAccountId, accountId)
+                .eq(AdsSyncTaskDO::getShopId, shopId)
                 .orderByDesc(AdsSyncTaskDO::getId));
     }
 
@@ -56,9 +58,11 @@ public interface AdsSyncTaskMapper extends BaseMapperX<AdsSyncTaskDO> {
                 .orderByAsc(AdsSyncTaskDO::getScheduledAt));
     }
 
-    default List<AdsSyncTaskDO> selectRunningByAccountId(Long accountId) {
+
+
+    default List<AdsSyncTaskDO> selectRunningByShopId(Long shopId) {
         return selectList(new LambdaQueryWrapperX<AdsSyncTaskDO>()
-                .eq(AdsSyncTaskDO::getAccountId, accountId)
+                .eq(AdsSyncTaskDO::getShopId, shopId)
                 .eq(AdsSyncTaskDO::getStatus, "RUNNING"));
     }
 }

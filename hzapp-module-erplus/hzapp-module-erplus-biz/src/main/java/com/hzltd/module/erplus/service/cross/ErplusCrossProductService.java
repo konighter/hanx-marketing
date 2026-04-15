@@ -66,4 +66,10 @@ public interface ErplusCrossProductService {
     Long saveCrossPlatformProduct(ProductPublishRequest request);
 
     Boolean validCrossPlatformProduct(Long productId);
+
+    /**
+     * V2 刊登成功后，从任务暂存区同步数据到正式商品表
+     * @param taskId 刊登任务 ID
+     */
+    void syncCrossproductV2(Long taskId);
 }

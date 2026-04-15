@@ -3,8 +3,8 @@ package com.hzltd.module.erplus.dal.mysql.notify;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelPageReqVO;
 import com.hzltd.module.erplus.dal.dataobject.notify.NotifyChannelDO;
+import com.hzltd.module.erplus.sys.controller.admin.notify.vo.NotifyChannelPageReqVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

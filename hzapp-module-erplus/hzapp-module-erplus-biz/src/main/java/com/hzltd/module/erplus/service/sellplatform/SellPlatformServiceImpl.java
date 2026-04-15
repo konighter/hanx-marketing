@@ -8,13 +8,16 @@ import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformReqV
 import com.hzltd.module.erplus.controller.admin.sellplatform.vo.SellPlatformSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.ServiceMode;
+import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
 import com.hzltd.module.erplus.dal.mysql.sellplatform.SellPlatformMapper;
-import com.hzltd.module.spapi.enums.RedisKeyConstants;
-import com.hzltd.module.spapi.enums.ServiceModeEnum;
-import com.hzltd.module.system.service.SystemPlatformService;
-import com.hzltd.module.spapi.model.system.SellPlatformModel;
+import com.hzltd.module.erplus.service.shop.ShopService;
+import com.hzltd.module.erplus.spapi.enums.RedisKeyConstants;
+import com.hzltd.module.erplus.spapi.enums.ServiceModeEnum;
+import com.hzltd.module.erplus.system.model.SellPlatformModel;
+import com.hzltd.module.erplus.system.service.SystemPlatformService;
 import jakarta.annotation.Resource;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -22,7 +25,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.SELL_PLATFORM_NOT_EXISTS;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.SELL_PLATFORM_NOT_EXISTS;
 
 /**
  * 销售平台 Service 实现类
@@ -35,6 +38,9 @@ public class SellPlatformServiceImpl implements SellPlatformService, SystemPlatf
 
     @Resource
     private SellPlatformMapper sellPlatformMapper;
+    @Lazy
+    @Resource
+    private ShopService shopService;
 
     @Override
     public Integer createSellPlatform(SellPlatformSaveReqVO createReqVO) {
@@ -81,6 +87,12 @@ public class SellPlatformServiceImpl implements SellPlatformService, SystemPlatf
     @Override
     public SellPlatformDO getSellPlatform(Integer id) {
         return sellPlatformMapper.selectById(id);
+    }
+
+    @Override
+    public SellPlatformDO getSellPlatformByShopId(Integer shopId) {
+        ShopDO shopDO = shopService.getShop(shopId);
+        return getSellPlatform(shopDO.getPlatform());
     }
 
     @Override

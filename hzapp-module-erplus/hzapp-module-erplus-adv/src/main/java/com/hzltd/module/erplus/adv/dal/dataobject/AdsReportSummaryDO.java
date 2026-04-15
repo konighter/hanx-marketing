@@ -27,7 +27,11 @@ public class AdsReportSummaryDO extends BaseDO {
     @TableId
     private Long id;
 
-    /** 关联广告账户ID */
+    /** 店铺ID */
+    private Long shopId;
+
+    /** 关联广告账户ID (已弃用，请使用 shopId) */
+    @Deprecated
     private Long accountId;
 
     /** 实体类型: ACCOUNT / CAMPAIGN / ADGROUP */

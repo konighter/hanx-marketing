@@ -2,24 +2,23 @@ package com.hzltd.module.erplus.service.productassets;
 
 import cn.hutool.crypto.SecureUtil;
 import com.hzltd.framework.common.enums.CommonStatusEnum;
-import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import org.apache.commons.collections4.CollectionUtils;
-import org.springframework.stereotype.Service;
-import jakarta.annotation.Resource;
-import org.springframework.validation.annotation.Validated;
-
-import java.util.*;
-
-import com.hzltd.module.erplus.controller.admin.productassets.vo.*;
-import com.hzltd.module.erplus.dal.dataobject.productassets.ProductAssetsDO;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
-
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.controller.admin.productassets.vo.ProductAssetsPageReqVO;
+import com.hzltd.module.erplus.controller.admin.productassets.vo.ProductAssetsSaveReqVO;
+import com.hzltd.module.erplus.dal.dataobject.productassets.ProductAssetsDO;
 import com.hzltd.module.erplus.dal.mysql.productassets.ProductAssetsMapper;
+import jakarta.annotation.Resource;
+import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
-import static com.hzltd.framework.common.util.collection.CollectionUtils.convertList;
-import static com.hzltd.module.system.enums.ErplusErrorCodeConstants.*;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.*;
+
+import java.util.List;
+
 /**
  * 商品素材 Service 实现类
  *

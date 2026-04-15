@@ -4,11 +4,13 @@ import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
 import com.hzltd.framework.excel.core.annotations.DictFormat;
 import com.hzltd.framework.excel.core.convert.DictConvert;
-import com.hzltd.module.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.controller.admin.authorization.vo.PlatformAuthRespVO;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Schema(description = "管理后台 - 店铺信息 Response VO")
 @Data
@@ -33,11 +35,14 @@ public class ShopRespVO {
 
     @Schema(description = "区域", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("区域")
-    private Integer region;
+    private String region;
 
     @Schema(description = "区域", requiredMode = Schema.RequiredMode.REQUIRED)
     @ExcelProperty("区域")
     private String regionName;
+
+    @ExcelProperty("国家代码")
+    private String countryCode;
 
     @Schema(description = "状态", example = "2")
     @ExcelProperty(value = "状态", converter = DictConvert.class)
@@ -53,6 +58,13 @@ public class ShopRespVO {
     private String sellerId;
 
     @Schema(description = "授权信息")
-    private AuthorizationModel authInfo;
+    private List<PlatformAuthRespVO> auths;
+
+    @Schema(description = "授权信息")
+    private AuthorizationModelV0 authInfo;
+
+    @Schema(description = "时区", example = "Asia/Shanghai")
+    @ExcelProperty("时区")
+    private String timezone;
 
 }
