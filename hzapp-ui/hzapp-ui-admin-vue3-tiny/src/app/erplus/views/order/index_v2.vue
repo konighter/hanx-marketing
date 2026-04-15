@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
-    <ContentWrap>
+    <ContentWrap :body-style="{ padding: '12px 15px' }">
       <!-- 1. 精简搜索工作栏 -->
-      <el-form class="-mb-15px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="80px" :rules="rules">
+      <el-form class="-mb-10px" :model="queryParams" ref="queryFormRef" :inline="true" label-width="60px" :rules="rules">
         <el-form-item label="店铺" prop="shopId">
           <ShopCascaderSelect
             v-model="selectedShopPath"
@@ -53,7 +53,7 @@
     </ContentWrap>
 
     <!-- 2. 状态标签页 -->
-    <el-tabs v-model="activeStatusTab" class="mt-10px" @tab-change="handleTabChange">
+    <el-tabs v-model="activeStatusTab" class="mt-5px" @tab-change="handleTabChange">
       <el-tab-pane label="全部" name="all" />
       <el-tab-pane label="待处理" name="pending" />
       <el-tab-pane label="待出库" name="to_ship" />
@@ -345,9 +345,9 @@ const handleDoSync = async () => {
 
 <style scoped lang="scss">
 .app-container {
-  padding: 20px;
+  padding: 8px 10px 0 10px;
   background-color: #f7f9fb;
-  min-height: 100vh;
+  min-height: calc(100vh - 84px);
 }
 
 .batch-bar {

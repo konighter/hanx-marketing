@@ -1,7 +1,7 @@
 <template>
-  <div class="order-item-card mb-12px" :class="{ 'is-expanded': expanded, 'is-selected': selected }">
+  <div class="order-item-card mb-8px" :class="{ 'is-expanded': expanded, 'is-selected': selected }">
     <!-- 1. Card Header (Shopee Style) -->
-    <div class="card-header px-15px py-8px flex justify-between items-center">
+    <div class="card-header px-15px py-6px flex justify-between items-center">
       <div class="header-left flex items-center gap-10px">
         <el-checkbox :model-value="selected" @change="onSelectionChange" />
         <div class="platform-tag" :style="{ backgroundColor: platformConfig.color }">
@@ -32,7 +32,7 @@
     </div>
 
     <!-- 2. Main Row (High Density Summary) -->
-    <div class="card-body px-15px py-12px flex items-center gap-20px">
+    <div class="card-body px-15px py-8px flex items-center gap-20px">
       <!-- Product Thumbnails -->
       <div class="product-summary flex-1 flex items-center gap-10px overflow-hidden">
         <div class="thumbnails flex -space-x-15px">

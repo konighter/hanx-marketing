@@ -17,7 +17,7 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons-ng'
 import UnoCSS from 'unocss/vite'
 import { viteMockServe } from 'vite-plugin-mock'
 
-export function createVitePlugins(isMock = false) {
+export function createVitePlugins(isMock = false, isBuild = false) {
   const root = process.cwd()
 
   // 路径查找
@@ -73,10 +73,10 @@ export function createVitePlugins(isMock = false) {
       resolvers: [ElementPlusResolver()],
       globs: ["src/components/**/**.{vue, md}", '!src/components/DiyEditor/components/mobile/**']
     }),
-    EslintPlugin({
-      cache: false,
+    !isBuild ? EslintPlugin({
+      cache: true,
       include: ['src/**/*.vue', 'src/**/*.ts', 'src/**/*.tsx'] // 检查的文件
-    }),
+    }) : null,
     VueI18nPlugin({
       runtimeOnly: true,
       compositionOnly: true,
@@ -86,14 +86,14 @@ export function createVitePlugins(isMock = false) {
       iconDirs: [pathResolve('src/assets/svgs')],
       symbolId: 'icon-[dir]-[name]',
     }),
-    viteCompression({
+    isBuild ? viteCompression({
       verbose: true, // 是否在控制台输出压缩结果
       disable: false, // 是否禁用
       threshold: 10240, // 体积大于 threshold 才会被压缩,单位 b
       algorithm: 'gzip', // 压缩算法,可选 [ 'gzip' , 'brotliCompress' ,'deflate' , 'deflateRaw']
       ext: '.gz', // 生成的压缩包后缀
       deleteOriginFile: false //压缩后是否删除源文件
-    }),
+    }) : null,
     ViteEjsPlugin(),
     topLevelAwait({
       // https://juejin.cn/post/7152191742513512485
@@ -102,5 +102,5 @@ export function createVitePlugins(isMock = false) {
       // The function to generate import names of top-level await promise in each chunk module
       promiseImportName: (i) => `__tla_${i}`
     }),
-  ]
+  ].filter(Boolean)
 }
