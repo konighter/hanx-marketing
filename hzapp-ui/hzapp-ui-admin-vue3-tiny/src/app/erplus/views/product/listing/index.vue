@@ -93,7 +93,7 @@ import { dateFormatter } from '@/utils/formatTime'
 import { isEmpty } from '@/utils/is'
 import { SellPlatformApi, SellPlatformVO } from '@/app/erp/api/sellplatform' // 已存在模块
 import { ShopApi } from '@/app/erplus/api/system/shop'
-import AmazonList from './components/AmazonListingList.vue'
+import AmazonList from './components/amz/AmazonListingList.vue'
 
 import * as CrossListingApi from '@/app/erplus/api/product/listing'
 
