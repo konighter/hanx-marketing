@@ -73,6 +73,15 @@ public class ErpNoRedisDAO {
      */
     public static final String FINANCE_RECEIPT_NO_PREFIX = "SKD";
 
+    /**
+     * 装配件订单 {@link com.hzltd.module.erplus.dal.dataobject.stock.ErpAssemblyOrderDO}
+     */
+    public static final String ASSEMBLY_ORDER_NO_PREFIX = "ZP";
+    /**
+     * 生产批次号
+     */
+    public static final String ASSEMBLY_BATCH_NO_PREFIX = "PH";
+
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 

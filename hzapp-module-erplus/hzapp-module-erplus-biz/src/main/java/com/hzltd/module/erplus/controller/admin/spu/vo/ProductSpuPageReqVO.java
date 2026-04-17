@@ -46,16 +46,49 @@ public class ProductSpuPageReqVO extends PageParam {
      */
     public static final Integer ARCHIVED = 5;
 
+    /**
+     * 单规格 SPU
+     */
+    public static final Integer SINGLE_SPEC = 6;
+    /**
+     * 多规格 SPU
+     */
+    public static final Integer MULTI_SPEC = 7;
+
+    /**
+     * 普通 SKU
+     */
+    public static final Integer ORDINARY_SKU = 8;
+    /**
+     * 组合 SKU
+     */
+    public static final Integer COMBO_SKU = 9;
+
     @Schema(description = "商品名称", example = "清凉小短袖")
     private String name;
 
     @Schema(description = "前端请求的tab类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
     private Integer tabType;
 
-    @Schema(description = "商品分类编号", example = "1")
+    @Schema(description = "分类编号", example = "1")
     private Long categoryId;
 
-    @Schema(description = "创建时间", example = "[2022-07-01 00:00:00, 2022-07-01 23:59:59]")
+    @Schema(description = "品牌编号", example = "1")
+    private Long brandId;
+
+    @Schema(description = "商品状态", example = "1")
+    private Integer status;
+
+    @Schema(description = "搜索类型", example = "SKU")
+    private String searchType;
+
+    @Schema(description = "搜索值", example = "6901234567890")
+    private String searchValue;
+
+    @Schema(description = "展示模式", example = "SKU")
+    private String viewMode;
+
+    @Schema(description = "创建时间")
     @DateTimeFormat(pattern = FORMAT_YEAR_MONTH_DAY_HOUR_MINUTE_SECOND)
     private LocalDateTime[] createTime;
 

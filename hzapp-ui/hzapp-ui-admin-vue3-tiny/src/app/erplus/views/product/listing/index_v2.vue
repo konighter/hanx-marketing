@@ -179,8 +179,10 @@ import { ListingV2VO, CrossProductSyncRequest } from './types'
 import ListingItemV2 from './components/ListingItemV2.vue'
 import ListingDetailDrawer from './components/ListingDetailDrawer.vue'
 import * as CrossListingApi from '@/app/erplus/api/product/listing'
+import { SellPlatformApi } from '@/app/erplus/api/system/sellplatform'
 import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
 import { useRouter } from 'vue-router'
+import { provide } from 'vue'
 
 defineOptions({ name: 'CrossListingV2' })
 
@@ -233,18 +235,50 @@ const syncForm = reactive({
 
 const statusTabs = [
   { label: '全部', value: 'all' },
-  { label: '在线', value: 'active', count: 342 },
-  { label: '审核中', value: 'pending', count: 122 },
-  { label: '素材预警', value: 'warning', count: 15 },
+  { label: '在线', value: 'active' },
+  { label: '审核中', value: 'pending' },
+  { label: '素材预警', value: 'warning' },
   { label: '已售罄', value: 'soldout' }
 ]
 
+/** 平台图标映射逻辑 */
+const platforms = ref<any[]>([])
+const platformMap = computed(() => {
+  const map: Record<number, any> = {}
+  platforms.value.forEach(p => {
+    map[p.id] = p
+  })
+  return map
+})
+provide('platformMap', platformMap)
 
+const getPlatforms = async () => {
+  try {
+    const data = await SellPlatformApi.getSellPlatformList({})
+    platforms.value = data
+  } catch (e) {
+    console.error('Failed to load platforms:', e)
+  }
+}
 /** 数据加载 */
 const getList = async () => {
   loading.value = true
   try {
-    const data = await CrossListingApi.queryCrossProductListingPage(queryParams)
+    // 状态映射：将前端 Tab 的字符串值转换为后端要求的 List<Integer>
+    const statusMap: Record<string, number[]> = {
+      all: [],
+      active: [19],   // ACTIVATE
+      pending: [10],  // PENDING
+      warning: [11],  // FAILED
+      soldout: [91, 92] // SELLER_DEACTIVATED / PLATFORM_DEACTIVATED
+    }
+    
+    const params = {
+      ...queryParams,
+      status: queryParams.status === 'all' ? undefined : statusMap[queryParams.status]
+    }
+    
+    const data = await CrossListingApi.queryCrossProductListingPage(params)
     list.value = data.list
     total.value = data.total
   } catch (e) {
@@ -400,6 +434,7 @@ const handlePlatformSync = async () => {
 }
 
 onMounted(async () => {
+  getPlatforms()
   if (queryParams.shopId) {
     getList()
   }

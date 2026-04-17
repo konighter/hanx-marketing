@@ -74,14 +74,7 @@ public class ProductSpuController {
     @Parameter(name = "id", description = "编号", required = true, example = "1024")
     @PreAuthorize("@ss.hasPermission('product:spu:query')")
     public CommonResult<ProductSpuRespVO> getSpuDetail(@RequestParam("id") Long id) {
-        // 获得商品 SPU
-        ProductSpuDO spu = productSpuService.getSpu(id);
-        if (spu == null) {
-            return success(null);
-        }
-        // 查询商品 SKU
-        List<ProductSkuDO> skus = productSkuService.getSkuListBySpuId(spu.getId());
-        return success(ProductSpuConvert.INSTANCE.convert(spu, skus));
+        return success(productSpuService.getSpuDetail(id));
     }
 
     @GetMapping("/list-all-simple")
@@ -99,8 +92,7 @@ public class ProductSpuController {
     @Parameter(name = "spuIds", description = "spu 编号列表", required = true, example = "[1,2,3]")
     @PreAuthorize("@ss.hasPermission('product:spu:query')")
     public CommonResult<List<ProductSpuRespVO>> getSpuList(@RequestParam("spuIds") Collection<Long> spuIds) {
-        return success(ProductSpuConvert.INSTANCE.convertForSpuDetailRespListVO(
-                productSpuService.getSpuList(spuIds), productSkuService.getSkuListBySpuId(spuIds)));
+        return success(productSpuService.getSpuDetailList(spuIds));
     }
 
     @GetMapping("/page")
@@ -109,6 +101,13 @@ public class ProductSpuController {
     public CommonResult<PageResult<ProductSpuRespVO>> getSpuPage(@Valid ProductSpuPageReqVO pageVO) {
         PageResult<ProductSpuRespVO> pageResult = productSpuService.getSpuPageWithSku(pageVO);
         return success(pageResult);
+    }
+
+    @GetMapping("/sku-page")
+    @Operation(summary = "获得商品 SKU 分页")
+    @PreAuthorize("@ss.hasPermission('product:spu:query')")
+    public CommonResult<PageResult<ProductSkuRespVO>> getSkuPage(@Valid ProductSpuPageReqVO pageVO) {
+        return success(productSpuService.getSkuPage(pageVO));
     }
 
     @GetMapping("/get-count")

@@ -76,9 +76,9 @@
           :label="getLanguageLabel(lang)"
           :name="lang"
         >
-          <el-input
+          <el-input-tag
             v-model="multiLanguageData.keyword[lang]"
-            class="w-80!"
+            class="w-full"
             :placeholder="`请输入${getLanguageLabel(lang)}商品关键字`"
           />
         </el-tab-pane>
@@ -93,16 +93,27 @@
           :label="getLanguageLabel(lang)"
           :name="lang"
         >
-          <el-input
-            v-model="multiLanguageData.introduction[lang]"
-            :autosize="{ minRows: 2, maxRows: 2 }"
-            :clearable="true"
-            :show-word-limit="true"
-            class="w-80!"
-            maxlength="128"
-            :placeholder="`请输入${getLanguageLabel(lang)}商品简介`"
-            type="textarea"
-          />
+          <div v-for="(feat, idx) in multiLanguageData.introduction[lang] || []" :key="idx" class="flex flex-row w-full mb-2">
+            <el-input
+              v-model="multiLanguageData.introduction[lang][idx]"
+              :autosize="{ minRows: 2, maxRows: 20 }"
+              :clearable="true"
+              :show-word-limit="true"
+              class="w-full"
+              maxlength="500"
+              :placeholder="`请输入${getLanguageLabel(lang)}商品简介`"
+              type="textarea"
+            />
+            <span class="mx-2">
+              <el-button link type="primary" :icon="Plus" @click="addIntroduction(lang, idx)" />
+              <el-button
+                v-if="multiLanguageData.introduction[lang]?.length > 1" link type="danger" :icon="Delete"
+                @click="delIntroduction(lang, idx)" />
+            </span>
+          </div>
+          <el-button v-if="!multiLanguageData.introduction[lang]?.length" text type="primary" @click="addIntroduction(lang, -1)">
+            <template #icon><el-icon><Plus /></el-icon></template>添加简介
+          </el-button>
         </el-tab-pane>
       </el-tabs>
     </el-form-item>
@@ -141,6 +152,7 @@ import * as ProductBrandApi from '@/api/mall/product/brand'
 import { BrandVO } from '@/api/mall/product/brand'
 import UploadImgsPlus from '../components/UploadImgsPlus.vue'
 import { Editor } from '@/components/Editor'
+import { Plus, Delete } from '@element-plus/icons-vue'
 
 defineOptions({ name: 'ProductSpuInfoForm' })
 const props = defineProps({
@@ -157,10 +169,10 @@ const formRef = ref() // 表单 Ref
 const formData = reactive<Spu>({
   name: '', // 商品名称
   categoryId: undefined, // 商品分类
-  keyword: '', // 关键字
+  keyword: [], // 关键字
   picUrl: '', // 商品封面图
   sliderPicUrls: [], // 商品轮播图
-  introduction: '', // 商品简介
+  introduction: [''], // 商品简介
   description: '', // 商品详情
   brandId: undefined, // 商品品牌
   supportedLanguages: [] as string[], // 支持的语种列表
@@ -177,8 +189,8 @@ const activeDescTab = ref('zh')
 // 多语种数据
 const multiLanguageData = reactive({
   name: {} as Record<string, string>,
-  keyword: {} as Record<string, string>,
-  introduction: {} as Record<string, string>,
+  keyword: {} as Record<string, any>,
+  introduction: {} as Record<string, any>,
   description: {} as Record<string, string>
 })
 const rules = reactive({
@@ -221,10 +233,10 @@ const onLanguageChange = (languages: string[]) => {
       multiLanguageData.name[lang] = ''
     }
     if (!multiLanguageData.keyword[lang]) {
-      multiLanguageData.keyword[lang] = ''
+      multiLanguageData.keyword[lang] = []
     }
     if (!multiLanguageData.introduction[lang]) {
-      multiLanguageData.introduction[lang] = ''
+      multiLanguageData.introduction[lang] = ['']
     }
     if (!multiLanguageData.description[lang]) {
       multiLanguageData.description[lang] = ''
@@ -264,22 +276,22 @@ const syncMultiLanguageToFormData = () => {
   // 存储多语种数据
   selectedLanguages.value.forEach(lang => {
     formData.multiLanguage![`${lang}_name`] = multiLanguageData.name[lang] || ''
-    formData.multiLanguage![`${lang}_keyword`] = multiLanguageData.keyword[lang] || ''
-    formData.multiLanguage![`${lang}_introduction`] = multiLanguageData.introduction[lang] || ''
+    formData.multiLanguage![`${lang}_keyword`] = Array.isArray(multiLanguageData.keyword[lang]) ? JSON.stringify(multiLanguageData.keyword[lang]) : (multiLanguageData.keyword[lang] || '')
+    formData.multiLanguage![`${lang}_introduction`] = Array.isArray(multiLanguageData.introduction[lang]) ? JSON.stringify(multiLanguageData.introduction[lang]) : (multiLanguageData.introduction[lang] || '')
     formData.multiLanguage![`${lang}_description`] = multiLanguageData.description[lang] || ''
   })
   
   // 设置默认语种的值到原字段（向后兼容）
   if (selectedLanguages.value.includes('zh')) {
     formData.name = multiLanguageData.name['zh'] || ''
-    formData.keyword = multiLanguageData.keyword['zh'] || ''
-    formData.introduction = multiLanguageData.introduction['zh'] || ''
+    formData.keyword = multiLanguageData.keyword['zh'] || []
+    formData.introduction = multiLanguageData.introduction['zh'] || ['']
     formData.description = multiLanguageData.description['zh'] || ''
   } else if (selectedLanguages.value.length > 0) {
     const firstLang = selectedLanguages.value[0]
     formData.name = multiLanguageData.name[firstLang] || ''
-    formData.keyword = multiLanguageData.keyword[firstLang] || ''
-    formData.introduction = multiLanguageData.introduction[firstLang] || ''
+    formData.keyword = multiLanguageData.keyword[firstLang] || []
+    formData.introduction = multiLanguageData.introduction[firstLang] || ['']
     formData.description = multiLanguageData.description[firstLang] || ''
   }
 }
@@ -299,10 +311,14 @@ const syncFormDataToMultiLanguage = () => {
         }
       } else if (key.endsWith('_keyword')) {
         const lang = key.replace('_keyword', '')
-        multiLanguageData.keyword[lang] = formData.multiLanguage![key]
+        let val = formData.multiLanguage![key]
+        try { val = JSON.parse(val) } catch(e) { val = val ? [val] : [] }
+        multiLanguageData.keyword[lang] = val
       } else if (key.endsWith('_introduction')) {
         const lang = key.replace('_introduction', '')
-        multiLanguageData.introduction[lang] = formData.multiLanguage![key]
+        let val = formData.multiLanguage![key]
+        try { val = JSON.parse(val) } catch(e) { val = val ? [val] : [''] }
+        multiLanguageData.introduction[lang] = val
       } else if (key.endsWith('_description')) {
         const lang = key.replace('_description', '')
         multiLanguageData.description[lang] = formData.multiLanguage![key]
@@ -319,8 +335,8 @@ const syncFormDataToMultiLanguage = () => {
   // 确保中文数据存在
   if (selectedLanguages.value.includes('zh')) {
     multiLanguageData.name['zh'] = formData.name || ''
-    multiLanguageData.keyword['zh'] = formData.keyword || ''
-    multiLanguageData.introduction['zh'] = formData.introduction || ''
+    multiLanguageData.keyword['zh'] = Array.isArray(formData.keyword) ? formData.keyword : (formData.keyword ? [formData.keyword] : [])
+    multiLanguageData.introduction['zh'] = Array.isArray(formData.introduction) ? formData.introduction : (formData.introduction ? [formData.introduction] : [''])
     multiLanguageData.description['zh'] = formData.description || ''
   }
   
@@ -399,6 +415,22 @@ defineExpose({ validate, resetFields })
 /** 初始化 */
 const brandList = ref<BrandVO[]>([]) // 商品品牌列表
 const categoryList = ref<CategoryVO[]>([]) // 商品分类树
+
+const addIntroduction = (lang: string, idx: number) => {
+  if (!multiLanguageData.introduction[lang]) {
+    multiLanguageData.introduction[lang] = []
+  }
+  if (multiLanguageData.introduction[lang].length >= 5) {
+    message.warning('最多添加5个商品简介')
+    return
+  }
+  multiLanguageData.introduction[lang].splice(idx + 1, 0, '')
+}
+
+const delIntroduction = (lang: string, idx: number) => {
+  multiLanguageData.introduction[lang].splice(idx, 1)
+}
+
 onMounted(async () => {
   // 获得分类树
   const data = await ProductCategoryApi.getCrossCategories({} as ProductCategoryApi.PlatformCategoryReqVO)

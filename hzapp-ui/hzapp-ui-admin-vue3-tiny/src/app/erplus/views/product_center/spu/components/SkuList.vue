@@ -29,7 +29,12 @@
         </template>
       </el-table-column>
     </template>
-    <el-table-column align="center" label="商品条码" min-width="168">
+    <el-table-column align="center" label="SKU 编码" min-width="150">
+      <template #default="{ row }">
+        <el-input v-model="row.code" placeholder="系统自动生成" class="w-100%" />
+      </template>
+    </el-table-column>
+    <el-table-column align="center" label="商品条码" min-width="150">
       <template #default="{ row }">
         <el-input v-model="row.barCode" class="w-100%" />
       </template>
@@ -125,7 +130,7 @@
         </template>
       </el-table-column>
     </template>
-    <el-table-column v-if="formData?.specType" align="center" fixed="right" label="操作" width="80">
+    <el-table-column v-if="formData?.specType === 2" align="center" fixed="right" label="操作" width="80">
       <template #default="{ row }">
         <el-button v-if="isBatch" link size="small" type="primary" @click="batchAdd">
           批量添加
@@ -173,6 +178,11 @@
         </template>
       </el-table-column>
     </template>
+    <el-table-column align="center" label="SKU 编码" min-width="120">
+      <template #default="{ row }">
+        {{ row.code }}
+      </template>
+    </el-table-column>
     <el-table-column align="center" label="商品条码" min-width="100">
       <template #default="{ row }">
         {{ row.barCode }}
@@ -237,7 +247,7 @@
         <el-image :src="row.picUrl" class="h-60px w-60px" @click="imagePreview(row.picUrl)" />
       </template>
     </el-table-column>
-    <template v-if="formData!.specType">
+    <template v-if="formData!.specType === 2">
       <!--  根据商品属性动态添加 -->
       <el-table-column
         v-for="(item, index) in tableHeaders"
@@ -253,6 +263,11 @@
         </template>
       </el-table-column>
     </template>
+    <el-table-column align="center" label="SKU 编码" min-width="120">
+      <template #default="{ row }">
+        {{ row.code }}
+      </template>
+    </el-table-column>
     <el-table-column align="center" label="商品条码" min-width="100">
       <template #default="{ row }">
         {{ row.barCode }}
@@ -320,6 +335,7 @@ const skuList = ref<Sku[]>([
     price: 0, // 商品价格
     marketPrice: 0, // 市场价
     costPrice: 0, // 成本价
+    code: '', // SKU 编码
     barCode: '', // 商品条码
     picUrl: '', // 图片地址
     stock: 0, // 库存
@@ -440,6 +456,7 @@ const generateTableData = (propertyList: any[]) => {
       price: 0,
       marketPrice: 0,
       costPrice: 0,
+      code: '',
       barCode: '',
       picUrl: '',
       stock: 0,
@@ -506,7 +523,7 @@ watch(
   () => props.propertyList,
   (propertyList: PropertyAndValues[]) => {
     // 如果不是多规格则结束
-    if (!formData.value!.specType) {
+    if (formData.value!.specType !== 2) {
       return
     }
     // 如果当前组件作为批量添加数据使用，则重置表数据

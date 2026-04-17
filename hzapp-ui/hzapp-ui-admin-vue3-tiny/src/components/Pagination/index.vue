@@ -8,9 +8,9 @@
     :page-sizes="[10, 20, 30, 50, 100]"
     :pager-count="pagerCount"
     :total="total"
-    :small="isSmall"
+    :small="small !== undefined ? small : isSmall"
     class="float-right mb-15px mt-15px"
-    layout="total, sizes, prev, pager, next, jumper"
+    :layout="layout"
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
   />
@@ -50,6 +50,16 @@ const props = defineProps({
   pagerCount: {
     type: Number,
     default: document.body.clientWidth < 992 ? 5 : 7
+  },
+  // 布局
+  layout: {
+    type: String,
+    default: 'total, sizes, prev, pager, next, jumper'
+  },
+  // 是否采用小型分页
+  small: {
+    type: Boolean,
+    default: undefined
   }
 })
 

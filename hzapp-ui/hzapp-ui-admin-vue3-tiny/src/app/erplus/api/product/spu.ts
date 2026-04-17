@@ -19,9 +19,11 @@ export interface Dimension {
 
 export interface Sku {
   id?: number // 商品 SKU 编号
+  code?: string // SKU 编码
   barCode?: string // 商品唯一条码
   name?: string // 商品 SKU 名称
   spuId?: number // SPU 编号
+  type?: number // SKU 类型 (1-普通, 2-组合)
 
   // SKU与SPU的差异属性, 为Null取SPU对应值
   keyword?: string // 关键字
@@ -57,7 +59,7 @@ export interface Spu {
   name?: string // 商品名称
   productCode?: string // 商品编码
   categoryId?: number // 商品分类
-  keyword?: string // 关键字
+  keyword?: string[] // 关键字
   sellPoints?: string[] // 卖点
   unit?: number | undefined // 单位
   picUrl?: string // 商品封面图
@@ -65,8 +67,8 @@ export interface Spu {
   introduction: string[] // 商品简介
   deliveryTypes?: number[] // 配送方式
   deliveryTemplateId?: number | undefined // 运费模版
-  brandId?: number // 商品品牌编号
-  specType?: boolean // 商品规格
+  brandId?: number // 商品 brand 编号
+  specType?: number // 商品规格 (1-单规格, 2-多规格)
   subCommissionType?: boolean // 分销类型
   skus?: Sku[] // sku数组
   description?: string // 商品详情
@@ -102,14 +104,6 @@ export interface Spu {
     value: string
     type: string
   }> // 商品属性
-  packageDimensions?: {
-    length?: number // 长度
-    width?: number // 宽度
-    height?: number // 高度
-    unit?: string // 尺寸单位
-    weight?: number // 重量
-    weightUnit?: string // 重量单位
-  }
   certifications?: Array<{
     name: string
     value: string
@@ -138,9 +132,34 @@ export interface Spu {
   attributes?: Record<string, any> // 产品属性
 }
 
+export interface ProductSpuPageReqVO extends PageParam {
+  name?: string
+  categoryId?: number
+  brandId?: number
+  status?: number
+  createTime?: [Date, Date]
+  // 扩展选项
+  developer?: number
+  personInCharge?: number
+  buyer?: number
+  brandIds?: number[]
+  categoryIds?: number[]
+  searchType?: string
+  searchValue?: string
+}
+
+export interface ProductSkuPageReqVO extends ProductSpuPageReqVO {
+  skuProperty?: string
+}
+
 // 获得 Spu 列表
-export const getSpuPage = (params: PageParam) => {
+export const getSpuPage = (params: ProductSpuPageReqVO) => {
   return request.get({ url: '/erplus/spu/page', params })
+}
+
+// 获得 Sku 列表
+export const getSkuPage = (params: ProductSkuPageReqVO) => {
+  return request.get({ url: '/erplus/spu/sku-page', params })
 }
 
 // 获得 Spu 列表 tabsCount

@@ -84,8 +84,8 @@ defineOptions({ name: 'ProductSpuForm' })
 const { t } = useI18n() // 国际化
 const message = useMessage() // 消息弹窗
 const { push, currentRoute } = useRouter() // 路由
-const { params, name } = useRoute() // 查询参数
-const { delView } = useTagsViewStore() // 视图操作
+const { query, params, name } = useRoute() // 查询参数
+const { delView, setTitle } = useTagsViewStore() // 视图操作
 
 const formLoading = ref(false) // 表单的加载中：1）修改时的数据加载；2）提交的按钮禁用
 const activeName = ref('publish') // Tag 激活的窗口
@@ -94,7 +94,6 @@ const infoRef = ref() // 商品信息 Ref
 const skuRef = ref() // 商品规格 Ref
 const attributesRef = ref() // 产品属性 Ref
 const deliveryRef = ref() // 物流设置 Ref
-const otherRef = ref() // 其他设置 Ref
 const publishRef = ref() // 发布设置 Ref
 const complianceRef = ref() // 安全合规 Ref
 
@@ -124,22 +123,16 @@ const formData = ref<ProductSpuApi.Spu>({
   attributes: {},
   
   // 发布设置相关属性
-  crossPlatform: '',
-  marketId: '',
   shopIds: [],
   saveMode: '',
   fulfillType: '',
   delaySync: false,
   scheduleTime: '',
   productAttributes: [],
-  packageDimensions: {
-    length: 0,
-    width: 0,
-    height: 0,
-    unit: 'cm',
-    weight: 0,
-    weightUnit: 'kg'
-  },
+  itemDim: {},
+  pkgDim: {},
+  boxDim: {},
+  inboxnum: undefined,
   certifications: [],
   
   // 安全合规相关属性
@@ -160,8 +153,11 @@ const getDetail = async () => {
   if ('ProductSpuDetail' === name) {
     isDetail.value = true
   }
-  const id = params.id as unknown as number
+  const id = (query.id || params.id) as unknown as number
   if (id) {
+    const title = `商品编辑-id = ${id}`
+    setTitle(title)
+
     formLoading.value = true
     try {
       const res = (await ProductSpuApi.getSpu(id)) as ProductSpuApi.Spu
@@ -199,7 +195,6 @@ const submitForm = async () => {
     await unref(skuRef)?.validate()
     await unref(attributesRef)?.validate()
     await unref(deliveryRef)?.validate()
-    await unref(otherRef)?.validate()
     await unref(publishRef)?.validate()
     await unref(complianceRef)?.validate()
     // 深拷贝一份, 这样最终 server 端不满足，不需要影响原始数据
@@ -223,7 +218,7 @@ const submitForm = async () => {
     deepCopyFormData.sliderPicUrls = newSliderPicUrls
     // 校验都通过后提交表单
     const data = deepCopyFormData as ProductSpuApi.Spu
-    const id = params.id as unknown as number
+    const id = (query.id || params.id) as unknown as number
     if (!id) {
       await ProductSpuApi.createSpu(data)
       message.success(t('common.createSuccess'))
@@ -244,8 +239,10 @@ const nextStep = () => {
 
 /** 关闭按钮 */
 const close = () => {
-  delView(unref(currentRoute))
-  push({ name: 'ErplusProductSpu' })
+  const current = unref(currentRoute)
+  push({ path: '/erplusv2/product/spu' }).then(() => {
+    delView(current)
+  })
 }
 
 /** 初始化 */

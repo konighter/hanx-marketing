@@ -53,23 +53,18 @@ v-model="row.costPrice" :min="0" :precision="2" :step="0.1" class="w-100%"
     </el-table-column>
     <el-table-column align="center" label="尺寸" min-width="450">
       <template #default="{ row }">
-
         <el-space :size="10">
           <div class="el-input-group-thir">
-            <el-input v-model="row!.pkgDim!.length" placeholder="长" class="w-20!" />
-
-            <el-input v-model="row!.pkgDim!.width" placeholder="宽" class="w-20!" />
-            <el-input v-model="row!.pkgDim!.height" placeholder="高" class="!w-35">
+            <el-input v-model="row.attributes.logistics.pkgDim.length" placeholder="长" class="w-20!" />
+            <el-input v-model="row.attributes.logistics.pkgDim.width" placeholder="宽" class="w-20!" />
+            <el-input v-model="row.attributes.logistics.pkgDim.height" placeholder="高" class="!w-35">
               <template #append>cm</template>
             </el-input>
           </div>
-          <el-input v-model="row!.pkgDim!.weight" placeholder="重" class="w-30!">
+          <el-input v-model="row.attributes.logistics.pkgDim.weight" placeholder="重" class="w-30!">
             <template #append>kg</template>
           </el-input>
         </el-space>
-
-
-
       </template>
     </el-table-column>
     <!-- <el-table-column align="center" label="重量(kg)" min-width="168">
@@ -199,10 +194,14 @@ const skuList = ref<Sku[]>([
     introduction: [''], // 商品简介
     sliderPicUrls: [], // 商品轮播图
     stock: 0, // 库存
-    itemDim: {},
-    pkgDim: {},
-    boxDim: {},
-    inboxnum: undefined
+    attributes: {
+      logistics: {
+        itemDim: {},
+        pkgDim: {},
+        boxDim: {},
+        inboxnum: undefined
+      }
+    }
 
   }
 ]) // 批量添加时的临时数据
@@ -298,6 +297,19 @@ watch(
   () => props.propFormData,
   (data) => {
     if (!data) return
+    if (data.skus) {
+      data.skus.forEach((sku) => {
+        if (!sku.attributes) sku.attributes = {}
+        if (!sku.attributes.logistics) {
+          sku.attributes.logistics = {
+            itemDim: {},
+            pkgDim: {},
+            boxDim: {},
+            inboxnum: undefined
+          }
+        }
+      })
+    }
     formData.value = data
   },
   {
@@ -339,10 +351,14 @@ const generateTableData = (propertyList: any[]) => {
       sliderPicUrls: [], // 商品轮播图
 
       stock: 0,
-      itemDim: {},
-      pkgDim: {},
-      boxDim: {},
-      inboxnum: undefined
+      attributes: {
+        logistics: {
+          itemDim: {},
+          pkgDim: {},
+          boxDim: {},
+          inboxnum: undefined
+        }
+      }
 
     }
     // 如果存在属性相同的 sku 则不做处理

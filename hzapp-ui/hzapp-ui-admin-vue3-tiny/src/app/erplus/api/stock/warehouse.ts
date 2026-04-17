@@ -21,7 +21,8 @@ export const WarehouseTypes = [
   { value: 0, label: '平台仓', exclusive: true },
   { value: 1, label: '海外仓', exclusive: false },
   { value: 2, label: '家庭仓', exclusive: false },
-  { value: 3, label: '活动仓', exclusive: true }
+  { value: 3, label: '活动仓', exclusive: true },
+  { value: 4, label: '本地仓', exclusive: false }
 ]
 
 export const WarehouseTypeMap = new Map<number, string>(

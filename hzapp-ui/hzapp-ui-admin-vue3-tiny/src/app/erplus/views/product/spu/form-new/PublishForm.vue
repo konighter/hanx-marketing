@@ -1,34 +1,12 @@
 <!-- 商品发布 - 发布设置 -->
 <template>
   <el-form ref="formRef" :model="formData" :rules="rules" label-width="120px" :disabled="isDetail">
-    <el-form-item label="电商平台" prop="crossPlatform">
-      <el-select v-model="formData.crossPlatform" class="w-80" placeholder="请选择电商平台" clearable>
-        <el-option label="Amazon" value="AMAZON" />
-        <el-option label="eBay" value="EBAY" />
-        <el-option label="Shopify" value="SHOPIFY" />
-        <el-option label="AliExpress" value="ALIEXPRESS" />
-      </el-select>
-    </el-form-item>
-    
-    <el-form-item label="目标市场" prop="marketId">
-      <el-select v-model="formData.marketId" class="w-80" placeholder="请选择目标市场" clearable>
-        <el-option label="美国" value="US" />
-        <el-option label="英国" value="UK" />
-        <el-option label="德国" value="DE" />
-        <el-option label="法国" value="FR" />
-        <el-option label="日本" value="JP" />
-      </el-select>
-    </el-form-item>
-    
     <el-form-item label="目标店铺" prop="shopIds">
-      <el-select v-model="formData.shopIds" class="w-80" multiple placeholder="请选择目标店铺" clearable>
-        <el-option 
-          v-for="shop in shopList" 
-          :key="shop.id" 
-          :label="shop.name" 
-          :value="shop.id" 
-        />
-      </el-select>
+      <ShopCascaderSelect
+        v-model="formData.shopIds"
+        class="w-80"
+        placeholder="请选择目标店铺"
+      />
     </el-form-item>
     
     <el-form-item label="保存模式" prop="saveMode">
@@ -70,6 +48,7 @@ import type { Spu } from '@/app/erplus/api/product/spu'
 import { PropType } from 'vue'
 import { propTypes } from '@/utils/propTypes'
 import { copyValueToTarget } from '@/utils'
+import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
 
 defineOptions({ name: 'ProductPublishForm' })
 
@@ -92,18 +71,9 @@ const formData = computed(() => {
 
 // 表单规则
 const rules = reactive({
-  crossPlatform: [{ required: true, message: '请选择电商平台', trigger: 'change' }],
-  marketId: [{ required: true, message: '请选择目标市场', trigger: 'change' }],
   shopIds: [{ required: true, message: '请选择至少一个目标店铺', trigger: 'change' }],
   fulfillType: [{ required: true, message: '请选择配送模式', trigger: 'change' }]
 })
-
-// 店铺列表（模拟数据，实际应该从API获取）
-const shopList = ref([
-  { id: 1, name: '店铺A' },
-  { id: 2, name: '店铺B' },
-  { id: 3, name: '店铺C' }
-])
 
 
 
@@ -116,10 +86,8 @@ const initFormData = () => {
   if (!props.propFormData.crossPlatform) {
     // 使用Object.assign确保响应式
     Object.assign(props.propFormData, {
-      // 基础发布信息
-      crossPlatform: '',
-      marketId: '',
-      shopIds: [],
+        // 基础发布信息
+        shopIds: [],
       saveMode: 'DRAFT',
       
       // 物流设置

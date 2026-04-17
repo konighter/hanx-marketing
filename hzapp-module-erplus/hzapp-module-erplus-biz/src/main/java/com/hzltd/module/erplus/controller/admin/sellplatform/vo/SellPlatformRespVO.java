@@ -34,4 +34,8 @@ public class SellPlatformRespVO {
     @ExcelProperty("创建时间")
     private LocalDateTime createTime;
 
+    @Schema(description = "平台 LOGO", example = "https://example.com/logo.png")
+    @ExcelProperty("平台 LOGO")
+    private String logo;
+
 }

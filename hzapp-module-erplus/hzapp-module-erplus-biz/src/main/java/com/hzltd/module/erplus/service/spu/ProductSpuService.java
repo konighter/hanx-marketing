@@ -104,6 +104,14 @@ public interface ProductSpuService {
     PageResult<ProductSpuRespVO> getSpuPageWithSku(ProductSpuPageReqVO pageReqVO);
 
     /**
+     * 获得商品 SKU 分页，提供给管理后台使用
+     *
+     * @param pageReqVO 分页查询
+     * @return 商品 SKU 分页
+     */
+    PageResult<com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuRespVO> getSkuPage(ProductSpuPageReqVO pageReqVO);
+
+    /**
      * 更新商品 SPU 库存（增量）
      *
      * @param stockIncrCounts SPU 编号与库存变化（增量）的映射
@@ -151,5 +159,21 @@ public interface ProductSpuService {
      */
     @Async
     void updateBrowseCount(Long id, int incrCount);
+
+    /**
+     * 获得商品 SPU 明细
+     *
+     * @param id 编号
+     * @return 商品 SPU 明细
+     */
+    ProductSpuRespVO getSpuDetail(Long id);
+
+    /**
+     * 获得商品 SPU 明细列表
+     *
+     * @param ids 编号数组
+     * @return 商品 SPU 明细列表
+     */
+    List<ProductSpuRespVO> getSpuDetailList(Collection<Long> ids);
 
 }

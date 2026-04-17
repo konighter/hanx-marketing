@@ -8,6 +8,7 @@ import com.baomidou.mybatisplus.extension.handlers.AbstractJsonTypeHandler;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.module.erplus.system.dto.ProductLogisticsDTO;
 import lombok.*;
 
 import java.util.List;
@@ -44,20 +45,20 @@ public class ProductSkuDO extends BaseDO {
     @TableField(typeHandler = PropertyTypeHandler.class)
     private List<Property> properties;
     /**
+     * 商品 SKU 编码 (外部编码/seller_sku)
+     */
+    private String code;
+    /**
+     * 产品类型
+     *
+     * 枚举 {@link com.hzltd.module.erplus.spapi.enums.ProductSkuTypeEnum}
+     */
+    private Integer type;
+    /**
      * 商品条码
      */
     private String barCode;
 
-    /**
-     * 关键字
-     */
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<String> keyword;
-    /**
-     * 商品简介
-     */
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<String> introduction;
     /**
      * 商品详情
      */
@@ -91,14 +92,7 @@ public class ProductSkuDO extends BaseDO {
      * 库存
      */
     private Integer stock;
-    /**
-     * 商品重量，单位：kg 千克
-     */
-    private Double weight;
-    /**
-     * 商品体积，单位：m^3 平米
-     */
-    private Double volume;
+
 
 
     /**

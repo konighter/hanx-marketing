@@ -15,7 +15,7 @@ import java.util.List;
 @Mapper
 public interface ProductSkuMapper extends BaseMapperX<ProductSkuDO> {
 
-    @Select("SELECT * FROM product_sku WHERE id = #{id}")
+    @Select("SELECT * FROM erplus_product_sku WHERE id = #{id}")
     ProductSkuDO selectByIdIncludeDeleted(@Param("id") Long id);
 
     default List<ProductSkuDO> selectListBySpuId(Long spuId) {

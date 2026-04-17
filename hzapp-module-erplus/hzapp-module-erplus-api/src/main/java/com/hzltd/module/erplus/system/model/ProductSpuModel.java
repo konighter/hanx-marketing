@@ -1,5 +1,9 @@
 package com.hzltd.module.erplus.system.model;
 
+import com.hzltd.module.erplus.system.dto.ProductCertificationDTO;
+import com.hzltd.module.erplus.system.dto.ProductDimensionDTO;
+import com.hzltd.module.erplus.system.dto.ProductMaterialDTO;
+import com.hzltd.module.erplus.system.dto.ProductQualityReportDTO;
 import com.hzltd.module.erplus.spapi.model.category.BrandModel;
 import com.hzltd.module.erplus.spapi.model.category.CategoryModel;
 import lombok.Data;
@@ -81,5 +85,24 @@ public class ProductSpuModel {
      * 商品属性
      */
     private Map<String, Object> attributes;
+
+    // ========== 物流 相关字段 =========
+    private ProductDimensionDTO itemDim;
+    private ProductDimensionDTO pkgDim;
+    private ProductDimensionDTO boxDim;
+    private Integer inboxnum;
+
+    // ========== 合规和资质 相关字段 ==========
+    private List<ProductCertificationDTO> certifications;
+    private List<String> safetyStandards;
+    private List<String> safetyWarnings;
+    private List<ProductMaterialDTO> materials;
+    private List<String> hazardousSubstances;
+    private List<String> environmentalCertifications;
+    private List<String> packagingMaterials;
+    private List<String> applicableRegulations;
+    private List<String> restrictedRegions;
+    private List<String> specialLicenses;
+    private List<ProductQualityReportDTO> qualityReports;
 
 }

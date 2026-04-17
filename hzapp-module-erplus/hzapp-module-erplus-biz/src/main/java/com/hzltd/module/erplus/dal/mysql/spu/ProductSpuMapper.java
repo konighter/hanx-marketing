@@ -13,10 +13,12 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface ProductSpuMapper extends BaseMapperX<ProductSpuDO> {
 
-    @Select("SELECT * FROM product_sku WHERE id = #{id}")
+    @Select("SELECT * FROM erplus_product_spu WHERE id = #{id}")
     ProductSpuDO selectByIdIncludeDeleted(@Param("id") Long id);
 
     /**
@@ -26,14 +28,35 @@ public interface ProductSpuMapper extends BaseMapperX<ProductSpuDO> {
      * @return 商品 SPU 分页列表数据
      */
     default PageResult<ProductSpuDO> selectPage(ProductSpuPageReqVO reqVO) {
-        Integer tabType = reqVO.getTabType();
+        return selectPage(reqVO, buildQuery(reqVO).orderByDesc(ProductSpuDO::getId));
+    }
+
+    default List<ProductSpuDO> selectList(ProductSpuPageReqVO reqVO) {
+        return selectList(buildQuery(reqVO).orderByDesc(ProductSpuDO::getId));
+    }
+
+    private LambdaQueryWrapperX<ProductSpuDO> buildQuery(ProductSpuPageReqVO reqVO) {
         LambdaQueryWrapperX<ProductSpuDO> queryWrapper = new LambdaQueryWrapperX<ProductSpuDO>()
                 .likeIfPresent(ProductSpuDO::getName, reqVO.getName())
                 .eqIfPresent(ProductSpuDO::getCategoryId, reqVO.getCategoryId())
-                .betweenIfPresent(ProductSpuDO::getCreateTime, reqVO.getCreateTime())
-                .orderByDesc(ProductSpuDO::getId);
-        appendTabQuery(tabType, queryWrapper);
-        return selectPage(reqVO, queryWrapper);
+                .eqIfPresent(ProductSpuDO::getBrandId, reqVO.getBrandId())
+                .eqIfPresent(ProductSpuDO::getStatus, reqVO.getStatus())
+                .betweenIfPresent(ProductSpuDO::getCreateTime, reqVO.getCreateTime());
+
+        // 处理搜索逻辑
+        if ("SKU".equals(reqVO.getSearchType()) && ObjectUtil.isNotEmpty(reqVO.getSearchValue())) {
+            // 通过 SKU 条码或名称搜索，关联到 SPU
+            queryWrapper.inSql(ProductSpuDO::getId, "SELECT spu_id FROM erplus_product_sku WHERE deleted = 0 " +
+                    "AND (bar_code LIKE '%" + reqVO.getSearchValue() + "%' OR name LIKE '%" + reqVO.getSearchValue() + "%')");
+        } else if ("NAME".equals(reqVO.getSearchType()) && ObjectUtil.isNotEmpty(reqVO.getSearchValue())) {
+            queryWrapper.like(ProductSpuDO::getName, reqVO.getSearchValue());
+        } else if (ObjectUtil.isNotEmpty(reqVO.getSearchValue())) {
+            // 兼容旧的搜索框
+            queryWrapper.like(ProductSpuDO::getName, reqVO.getSearchValue());
+        }
+
+        appendTabQuery(reqVO, queryWrapper);
+        return queryWrapper;
     }
 
     /**
@@ -98,32 +121,39 @@ public interface ProductSpuMapper extends BaseMapperX<ProductSpuDO> {
      * @param tabType 标签类型
      * @param query   查询条件
      */
-    static void appendTabQuery(Integer tabType, LambdaQueryWrapperX<ProductSpuDO> query) {
-        // 出售中商品
+    static void appendTabQuery(ProductSpuPageReqVO reqVO, LambdaQueryWrapperX<ProductSpuDO> query) {
+        Integer tabType = reqVO.getTabType();
+        String viewMode = reqVO.getViewMode();
+
+        // 基础 Tab 类型 (与原有逻辑兼容)
         if (ObjectUtil.equals(ProductSpuPageReqVO.DRAFT, tabType)) {
             query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.DRAFT.getStatus());
-        }
-        // 出售中商品
-        if (ObjectUtil.equals(ProductSpuPageReqVO.FOR_SALE, tabType)) {
+        } else if (ObjectUtil.equals(ProductSpuPageReqVO.FOR_SALE, tabType)) {
             query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.FOR_SALE.getStatus());
-        }
-        // 仓储中商品
-        if (ObjectUtil.equals(ProductSpuPageReqVO.OFF_SALE, tabType)) {
+        } else if (ObjectUtil.equals(ProductSpuPageReqVO.OFF_SALE, tabType)) {
             query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.OFF_SALE.getStatus());
-        }
-        // 已售空商品
-        if (ObjectUtil.equals(ProductSpuPageReqVO.SOLD_OUT, tabType)) {
+        } else if (ObjectUtil.equals(ProductSpuPageReqVO.SOLD_OUT, tabType)) {
             query.eqIfPresent(ProductSpuDO::getStock, 0);
-        }
-        // 警戒库存
-        if (ObjectUtil.equals(ProductSpuPageReqVO.ALERT_STOCK, tabType)) {
+        } else if (ObjectUtil.equals(ProductSpuPageReqVO.ALERT_STOCK, tabType)) {
             query.le(ProductSpuDO::getStock, ProductConstants.ALERT_STOCK)
-                    // 如果库存触发警戒库存且状态为回收站的话则不在警戒库存列表展示
                     .notIn(ProductSpuDO::getStatus, ProductSpuStatusEnum.ARCHIVED.getStatus());
-        }
-        // 回收站
-        if (ObjectUtil.equals(ProductSpuPageReqVO.ARCHIVED, tabType)) {
+        } else if (ObjectUtil.equals(ProductSpuPageReqVO.ARCHIVED, tabType)) {
             query.eqIfPresent(ProductSpuDO::getStatus, ProductSpuStatusEnum.ARCHIVED.getStatus());
+        }
+
+        // 处理 SPU/SKU 特定视图下的产品类型筛选
+        if ("SPU".equals(viewMode)) {
+            if (ObjectUtil.equals(ProductSpuPageReqVO.SINGLE_SPEC, tabType)) {
+                query.eq(ProductSpuDO::getSpecType, 1); // SINGLE
+            } else if (ObjectUtil.equals(ProductSpuPageReqVO.MULTI_SPEC, tabType)) {
+                query.eq(ProductSpuDO::getSpecType, 2); // MULTI
+            }
+        } else if ("SKU".equals(viewMode)) {
+            if (ObjectUtil.equals(ProductSpuPageReqVO.ORDINARY_SKU, tabType)) {
+                query.inSql(ProductSpuDO::getId, "SELECT spu_id FROM erplus_product_sku WHERE deleted = 0 AND type = 1");
+            } else if (ObjectUtil.equals(ProductSpuPageReqVO.COMBO_SKU, tabType)) {
+                query.inSql(ProductSpuDO::getId, "SELECT spu_id FROM erplus_product_sku WHERE deleted = 0 AND type = 2");
+            }
         }
     }
 

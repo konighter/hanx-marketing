@@ -78,4 +78,19 @@ public class CrossProductListingResp {
      */
     private Long latestTaskId;
 
+    /**
+     * 素材健康分
+     */
+    private ListingDiagnosisDTO diagnosis;
+
+    /**
+     * 销售表现
+     */
+    private ListingPerformanceDTO performance;
+
+    /**
+     * 变体信息
+     */
+    private List<ListingVariantDTO> variants;
+
 }

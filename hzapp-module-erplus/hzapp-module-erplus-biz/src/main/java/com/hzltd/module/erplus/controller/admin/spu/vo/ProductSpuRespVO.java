@@ -4,11 +4,13 @@ import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;
 import com.hzltd.framework.excel.core.convert.DictConvert;
 import com.hzltd.framework.excel.core.convert.MoneyConvert;
+import com.hzltd.module.erplus.system.dto.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Schema(description = "管理后台 - 商品 SPU Response VO")
 @Data
@@ -23,13 +25,7 @@ public class ProductSpuRespVO {
     @ExcelProperty("商品名称")
     private String name;
 
-    @Schema(description = "关键字", requiredMode = Schema.RequiredMode.REQUIRED, example = "清凉丝滑不出汗")
-    @ExcelProperty("关键字")
-    private String keyword;
 
-    @Schema(description = "商品简介", requiredMode = Schema.RequiredMode.REQUIRED, example = "清凉小短袖简介")
-    @ExcelProperty("商品简介")
-    private String introduction;
 
     @Schema(description = "商品详情", requiredMode = Schema.RequiredMode.REQUIRED, example = "清凉小短袖详情")
     @ExcelProperty("商品详情")
@@ -43,11 +39,11 @@ public class ProductSpuRespVO {
     @ExcelProperty("商品品牌编号")
     private Long brandId;
 
-    @Schema(description = "商品封面图", requiredMode = Schema.RequiredMode.REQUIRED, example = "https://www.iocoder.cn/xx.png")
+    @Schema(description = "商品封面图", requiredMode = Schema.RequiredMode.REQUIRED, example = "https://www.hanx.ltd/xx.png")
     @ExcelProperty("商品封面图")
     private String picUrl;
 
-    @Schema(description = "商品轮播图", requiredMode = Schema.RequiredMode.REQUIRED, example = "[https://www.iocoder.cn/xx.png, https://www.iocoder.cn/xxx.png]")
+    @Schema(description = "商品轮播图", requiredMode = Schema.RequiredMode.REQUIRED, example = "[https://www.hanx.ltd/xx.png, https://www.hanx.ltd/xxx.png]")
     private List<String> sliderPicUrls;
 
     @Schema(description = "排序字段", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
@@ -64,9 +60,9 @@ public class ProductSpuRespVO {
 
     // ========== SKU 相关字段 =========
 
-    @Schema(description = "规格类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "true")
+    @Schema(description = "规格类型", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
     @ExcelProperty("规格类型")
-    private Boolean specType;
+    private Integer specType;
 
     @Schema(description = "商品价格", requiredMode = Schema.RequiredMode.REQUIRED, example = "1999")
     @ExcelProperty(value = "商品价格", converter = MoneyConvert.class)
@@ -90,8 +86,24 @@ public class ProductSpuRespVO {
 
     private String barCode;
 
+    @Schema(description = "单位名称", example = "件")
     private String unitName;
 
+    @Schema(description = "分类名称", example = "服装")
     private String categoryName;
+
+    @Schema(description = "品牌名称", example = "翰展")
+    private String brandName;
+
+    @Schema(description = "商品 SPU 编码", example = "SPU001")
+    private String code;
+
+    @Schema(description = "单位编号", example = "1")
+    private Long unitId;
+
+
+
+    @Schema(description = "产品属性")
+    private Map<String, Object> attributes;
 
 }

@@ -3,6 +3,7 @@ package com.hzltd.module.erplus.service.spu;
 import com.hzltd.module.erplus.api.sku.dto.ProductSkuUpdateStockReqDTO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuRespVO;
 
 import java.util.Collection;
 import java.util.List;
@@ -51,7 +52,7 @@ public interface ProductSkuService {
      *
      * @param list sku组合的集合
      */
-    void validateSkuList(List<ProductSkuSaveReqVO> list, Boolean specType);
+    void validateSkuList(List<ProductSkuSaveReqVO> list, Integer specType);
 
     /**
      * 批量创建 SKU
@@ -118,5 +119,26 @@ public interface ProductSkuService {
      * @return int 影响的行数
      */
     int updateSkuPropertyValue(Long propertyValueId, String propertyValueName);
+
+    /**
+     * 填充 SKU 属性
+     *
+     * @param respVO SKU 响应对象
+     */
+    void hydrateSkuAttrs(ProductSkuRespVO respVO);
+
+    /**
+     * 填充 SKU 的耗材 BOM 信息
+     *
+     * @param respVO SKU 响应对象
+     */
+    void hydrateSkuMaterials(ProductSkuRespVO respVO);
+
+    /**
+     * 填充 SKU 的组合成分信息
+     *
+     * @param respVO SKU 响应对象
+     */
+    void hydrateSkuCombo(ProductSkuRespVO respVO);
 
 }

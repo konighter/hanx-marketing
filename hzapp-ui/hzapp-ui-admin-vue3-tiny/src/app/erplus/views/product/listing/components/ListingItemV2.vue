@@ -104,7 +104,7 @@
     <!-- Variant Box (Table inside card) -->
     <div :class="viewMode === 'list' ? 'flex-[1.2] min-w-0' : 'contents'">
       <ListingVariantBox 
-        :variants="mockVariants" 
+        :variants="variantsList" 
         :currency="currency" 
       />
     </div>
@@ -124,7 +124,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, inject, Ref } from 'vue'
 import { ListingV2VO, ListingDiagnosisVO, ListingPerformanceVO } from '../types'
 import ListingHealthScore from './ListingHealthScore.vue'
 import ListingVariantBox from './ListingVariantBox.vue'
@@ -138,7 +138,9 @@ const props = defineProps<{
 
 defineEmits(['select', 'sync', 'detail'])
 
-// --- Data Mapping (Now provided by API/Mock Interceptor) ---
+const platformMap = inject<Ref<Record<number, any>>>('platformMap')
+
+// --- Data Mapping (Provided by API) ---
 const currency = computed(() => props.listing.price?.[0]?.currency || '$')
 
 const formatPriceRange = computed(() => {
@@ -154,17 +156,13 @@ const diagnosis = computed((): ListingDiagnosisVO => props.listing.diagnosis!)
 
 const performance = computed((): ListingPerformanceVO => props.listing.performance!)
 
-const mockVariants = computed(() => props.listing.mockVariants || [])
+const variantsList = computed(() => props.listing.variants || [])
 
 // --- Helper Functions ---
 const getPlatformIcon = (id: number) => {
-  // Simple map for icons
-  const icons: Record<number, string> = {
-    1: 'https://www.google.com/s2/favicons?domain=amazon.com&sz=64',
-    2: 'https://www.google.com/s2/favicons?domain=shopee.com&sz=64',
-    3: 'https://www.google.com/s2/favicons?domain=tiktok.com&sz=64'
-  }
-  return icons[id] || icons[1]
+  // 1. 优先尝试从后端配置的平台 Logo 中获取
+  const dynamicLogo = platformMap?.value?.[id]?.logo
+  if (dynamicLogo) return dynamicLogo
 }
 
 const getStatusColor = (status: string) => {

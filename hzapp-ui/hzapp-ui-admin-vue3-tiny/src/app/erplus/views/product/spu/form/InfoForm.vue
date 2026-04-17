@@ -25,20 +25,21 @@ v-model="formData.productCode" :clearable="true" :show-word-limit="true" class="
         placeholder="请输入条形码" />
     </el-form-item>
     <el-form-item label="商品特性" prop="introduction">
-      <dev v-for="(feat, idx) in formData.introduction" :key="idx" class="flex flex-row !w-full mb-2">
+      <div v-for="(feat, idx) in formData.introduction || []" :key="idx" class="flex flex-row !w-full mb-2">
         <el-input
-:key="idx" v-model="formData.introduction[idx]" :clearable="true" :show-word-limit="true"
+          :key="idx" v-model="formData.introduction[idx]" :clearable="true" :show-word-limit="true"
           class="w-100!" maxlength="500" placeholder="请输入商品简介" type="textarea"
           :autosize="{ minRows: 2, maxRows: 20 }" />
         <span class="mx-2">
-          <el-button type="primary" :icon="Plus" circle @click="addIntroduction(idx)" size="small" />
+          <el-button link type="primary" :icon="Plus" @click="addIntroduction(idx)" />
           <el-button
-v-if="formData.introduction.length > 1" type="danger" :icon="Delete" circle size="small"
+            v-if="formData.introduction?.length > 1" link type="danger" :icon="Delete"
             @click="delIntroduction(idx)" />
         </span>
-
-      </dev>
-
+      </div>
+      <el-button v-if="!formData.introduction?.length" text type="primary" @click="addIntroduction(-1)">
+        <template #icon><el-icon><Plus /></el-icon></template>添加简介
+      </el-button>
     </el-form-item>
     <el-form-item label="商品主图" prop="picUrl">
       <UploadImg v-model="formData.picUrl" :disabled="isDetail" height="80px" />
@@ -79,7 +80,7 @@ const formData = reactive<Spu>({
   name: '', // 商品名称
   productCode: '', // 商品编码
   categoryId: undefined, // 商品分类
-  keyword: '', // 关键字
+  keyword: [], // 关键字
   picUrl: '', // 商品封面图
   sliderPicUrls: [], // 商品轮播图
   introduction: [''], // 商品简介

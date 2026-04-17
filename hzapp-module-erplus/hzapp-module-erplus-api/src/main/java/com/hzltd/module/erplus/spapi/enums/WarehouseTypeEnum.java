@@ -32,6 +32,11 @@ public enum WarehouseTypeEnum implements IntArrayValuable {
      * 活动仓
      */
     ACTIVITY(3, "活动仓"),
+
+    /**
+     * 本地仓
+     */
+    LOCAL(4, "本地仓"),
     /**
      * 其他
      */

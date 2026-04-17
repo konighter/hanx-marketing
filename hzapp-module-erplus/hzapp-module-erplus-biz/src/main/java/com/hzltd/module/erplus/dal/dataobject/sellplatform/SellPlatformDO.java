@@ -52,5 +52,10 @@ public class SellPlatformDO extends BaseDO {
     @TableField(typeHandler = JacksonTypeHandler.class)
     private PlatformConfig config;
 
+    /**
+     * 平台 LOGO
+     */
+    private String logo;
+
 
 }

@@ -21,4 +21,7 @@ public class SellPlatformSaveReqVO {
     @Schema(description = "配送模式")
     private List<String> shipModes;
 
+    @Schema(description = "平台 LOGO", example = "https://example.com/logo.png")
+    private String logo;
+
 }

@@ -42,20 +42,20 @@ const mockList = Array.from({ length: 12 }, (_, i) => ({
 }))
 
 export default [
-  {
-    url: '/admin-api/erplus/cross-product/page',
-    method: 'post',
-    response: ({ body }) => {
-      console.log('[Mock] Hit: /admin-api/erplus/cross-product/page, body:', body)
-      const { pageNo = 1, pageSize = 12 } = body || {}
-      return {
-        code: 0,
-        data: {
-          list: mockList.slice((pageNo - 1) * pageSize, pageNo * pageSize),
-          total: 48
-        },
-        msg: 'success'
-      }
-    }
-  },
+  // {
+  //   url: '/admin-api/erplus/cross-product/page',
+  //   method: 'post',
+  //   response: ({ body }) => {
+  //     console.log('[Mock] Hit: /admin-api/erplus/cross-product/page, body:', body)
+  //     const { pageNo = 1, pageSize = 12 } = body || {}
+  //     return {
+  //       code: 0,
+  //       data: {
+  //         list: mockList.slice((pageNo - 1) * pageSize, pageNo * pageSize),
+  //         total: 48
+  //       },
+  //       msg: 'success'
+  //     }
+  //   }
+  // },
 ] as MockMethod[]

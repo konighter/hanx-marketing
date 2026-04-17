@@ -11,6 +11,7 @@ export interface SellPlatformVO {
   name: string // 平台名称
   code: string // 编码
   avatar: string // 头像
+  logo: string // 平台 LOGO
   serviceModes: string[] // 配送模式
 }
 

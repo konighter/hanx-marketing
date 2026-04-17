@@ -100,6 +100,12 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
     @Resource
     private ErpProductPublishTaskService productPublishTaskService;
 
+    @Resource
+    private CrossProductPerformanceService performanceService;
+
+    @Resource
+    private CrossProductDiagnosisService diagnosisService;
+
 
     @Override
     public Optional<CrossPlatformProductVO> getCrossPlatformProduct(Long productId) {
@@ -424,11 +430,12 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
     }
 
     private PageResult<CrossProductListingResp> getCrossProductSkuPage(CrossProductPageRequest request) {
+        // 主查询：增加 marketId 过滤
         PageResult<CrossProductDO> productPageResult = crossProductMapper.selectPage(request, new LambdaQueryWrapperX<CrossProductDO>()
                 .eqIfPresent(CrossProductDO::getPlatformId, request.getPlatformId())
                 .eqIfPresent(CrossProductDO::getShopId, request.getShopId())
+                .eqIfPresent(CrossProductDO::getMarketId, request.getMarketId())
                 .inIfPresent(CrossProductDO::getStatus, request.getStatus())
-                // 从请求时间到现在
                 .betweenIfPresent(CrossProductDO::getUpdateTime, request.getUpdateTimeRange())
                 .betweenIfPresent(CrossProductDO::getCreateTime, request.getCreateTimeRange())
                 .likeIfPresent(CrossProductDO::getSellerSkuCode, request.getSellerSkuCode())
@@ -436,54 +443,81 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
                 .eqIfPresent(CrossProductDO::getFulfillType, request.getFulfillType())
         );
 
+        // 如果结果为空，直接拦截返回，避免后续无意义的查询 (中等问题修复)
+        if (CollectionUtils.isEmpty(productPageResult.getList())) {
+            return new PageResult<>(Collections.emptyList(), productPageResult.getTotal());
+        }
+
+        // 统一提取 productIds (轻微问题修复)
+        List<Long> productIds = productPageResult.getList().stream()
+                .map(CrossProductDO::getId)
+                .collect(Collectors.toList());
+
+        // 批量获取库存：使用 Multimap 处理可能的重复 Key (中等问题修复)
         List<CrossProductInventoryDO> inventoryDOList = inventoryMapper.selectList(new LambdaQueryWrapperX<CrossProductInventoryDO>()
                 .eqIfPresent(CrossProductInventoryDO::getMarketId, request.getMarketId())
                 .eqIfPresent(CrossProductInventoryDO::getShopId, request.getShopId())
-                .inIfPresent(CrossProductInventoryDO::getProductId, productPageResult.getList().stream().map(CrossProductDO::getId).collect(Collectors.toList()))
+                .in(CrossProductInventoryDO::getProductId, productIds)
         );
+        Multimap<Long, CrossProductInventoryDO> inventoryDOMultimap = ArrayListMultimap.create();
+        inventoryDOList.forEach(inv -> inventoryDOMultimap.put(inv.getProductId(), inv));
 
+        // 批量获取价格
         List<CrossProductPriceDO> priceDOList = crossProductPriceMapper.selectList(new LambdaQueryWrapperX<CrossProductPriceDO>()
                 .eqIfPresent(CrossProductPriceDO::getMarketId, request.getMarketId())
                 .eqIfPresent(CrossProductPriceDO::getShopId, request.getShopId())
-                .inIfPresent(CrossProductPriceDO::getProductId, productPageResult.getList().stream().map(CrossProductDO::getId).collect(Collectors.toList()))
+                .in(CrossProductPriceDO::getProductId, productIds)
         );
-
-
-        Map<Long, CrossProductInventoryDO> inventoryDOMap = inventoryDOList.stream().collect(Collectors.toMap(CrossProductInventoryDO::getProductId, Function.identity()));
         Multimap<Long, CrossProductPriceDO> priceDOMultimap = ArrayListMultimap.create();
         priceDOList.forEach(priceDO -> priceDOMultimap.put(priceDO.getProductId(), priceDO));
 
-        // 批量获取刊登状态
-        Map<Long, com.hzltd.module.erplus.dal.dataobject.productpub.ProductListingDO> listingMap = productListingService.getListingStatusMap(
-                productPageResult.getList().stream().map(CrossProductDO::getId).collect(Collectors.toList()));
+        // 批量获取刊登状态 (修复全限定类名问题)
+        Map<Long, ProductListingDO> listingMap = productListingService.getListingStatusMap(productIds);
+
+        // 批量获取表现与诊断数据 (架构重构: 修复 N+1 问题)
+        Map<Long, ListingDiagnosisDTO> diagnosisMap = diagnosisService.getBatchDiagnosis(productIds);
+        Map<Long, ListingPerformanceDTO> performanceMap = performanceService.getBatchPerformance(productIds);
 
 
         // 转换为VO
         List<CrossProductListingResp> productListingRespVOS = productPageResult.getList().stream()
                 .map(CrossProductListingConvert.INSTANCE::convert)
                 .map(respVo -> {
-                    // format
+                    Long productId = respVo.getId();
+                    String sellerSku = respVo.getSellerProductCode();
+
+                    // 格式化基础信息
                     respVo.setFulfillTypeName(FulfillTypeEnum.of(respVo.getFulfillType()).getName());
                     respVo.setPlatformName(CrossPlatformEnum.valueOf(respVo.getPlatformId()).getName());
                     respVo.setStatusName(CrossListingStatus.of(respVo.getStatus()).getName());
-                    // 合并库存信息
-                    CrossProductInventoryDO inventoryDO = inventoryDOMap.get(respVo.getId());
-                    if (inventoryDO != null) {
-                        respVo.setInventory(inventoryDO);
+
+                    // 合并库存信息 (取第一个或根据业务逻辑合并)
+                    Collection<CrossProductInventoryDO> inventories = inventoryDOMultimap.get(productId);
+                    if (CollectionUtils.isNotEmpty(inventories)) {
+                        respVo.setInventory(inventories.iterator().next());
                     }
+
                     // 合并价格信息
-                    respVo.setPrice(priceDOMultimap.get(respVo.getId()));
+                    respVo.setPrice(priceDOMultimap.get(productId));
 
                     // 合计刊登信息
-                    com.hzltd.module.erplus.dal.dataobject.productpub.ProductListingDO listing = listingMap.get(respVo.getId());
+                    ProductListingDO listing = listingMap.get(productId);
                     if (listing != null) {
                         respVo.setSyncStatus(listing.getSyncStatus());
                         respVo.setLatestTaskId(listing.getLatestTaskId());
                         respVo.setSyncStatusName(getSyncStatusName(listing.getSyncStatus()));
                     } else {
-                        respVo.setSyncStatus(0); // 默认待发布
-                        respVo.setSyncStatusName(getSyncStatusName(0));
+                        respVo.setSyncStatus(CrossProductPublishStatus.INIT.getStatus()); 
+                        respVo.setSyncStatusName(getSyncStatusName(CrossProductPublishStatus.INIT.getStatus()));
                     }
+                    
+                    // 获取表现与诊断数据 (从批处理 Map 中获取，避免 N+1)
+                    respVo.setDiagnosis(diagnosisMap.get(productId));
+                    respVo.setPerformance(performanceMap.get(productId));
+                    
+                    // 变体信息 (按用户要求维持原状，内部 Mock 调用)
+                    respVo.setVariants(getVariants(productId, sellerSku));
+
                     return respVo;
                 })
                 .collect(Collectors.toList());
@@ -578,11 +612,19 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
 
     private String getSyncStatusName(Integer status) {
         if (status == null) return "未刊登";
-        if (status.equals(CrossProductPublishStatus.INIT.getStatus())) return "未刊登";
-        if (status.equals(CrossProductPublishStatus.AUDITING.getStatus())) return "待发布";
-        if (status.equals(CrossProductPublishStatus.PUBLISHING.getStatus())) return "发布中";
-        if (status.equals(CrossProductPublishStatus.PUBLISH_FAIL.getStatus())) return "发布失败";
-        if (status.equals(CrossProductPublishStatus.PUBLISH_SUC.getStatus())) return "发布成功";
-        return "未知";
+        try {
+            return CrossProductPublishStatus.of(status).getName();
+        } catch (Exception e) {
+            return "未知";
+        }
+    }
+
+    private List<ListingVariantDTO> getVariants(Long productId, String sellerSku) {
+        List<ListingVariantDTO> variants = new ArrayList<>();
+//        String skuBase = sellerSku != null ? sellerSku : "SKU";
+//        variants.add(new ListingVariantDTO(skuBase + "-RED", "Color: Red, Size: M", 1999, 10));
+//        variants.add(new ListingVariantDTO(skuBase + "-BLUE", "Color: Blue, Size: L", 2199, 5));
+//        variants.add(new ListingVariantDTO(skuBase + "-BLK", "Color: Black, Size: S", 1899, 0));
+        return variants;
     }
 }

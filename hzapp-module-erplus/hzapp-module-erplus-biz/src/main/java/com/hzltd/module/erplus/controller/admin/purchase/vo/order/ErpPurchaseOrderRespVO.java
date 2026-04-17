@@ -63,7 +63,7 @@ public class ErpPurchaseOrderRespVO {
     @Schema(description = "定金金额，单位：元", requiredMode = Schema.RequiredMode.REQUIRED, example = "7127")
     private BigDecimal depositPrice;
 
-    @Schema(description = "附件地址", example = "https://www.iocoder.cn")
+    @Schema(description = "附件地址", example = "https://www.hanx.ltd")
     @ExcelProperty("附件地址")
     private String fileUrl;
 

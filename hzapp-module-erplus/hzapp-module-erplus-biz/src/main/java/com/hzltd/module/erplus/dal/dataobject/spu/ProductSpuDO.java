@@ -40,15 +40,6 @@ public class ProductSpuDO extends BaseDO {
      */
     private String name;
     /**
-     * 关键字
-     */
-    private String keyword;
-    /**
-     * 商品简介
-     */
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private List<String> introduction;
-    /**
      * 商品详情
      */
     private String description;
@@ -95,15 +86,19 @@ public class ProductSpuDO extends BaseDO {
      */
     private Integer status;
 
+    /**
+     * 商品 SPU 编码
+     */
+    private String code;
+
     // ========== SKU 相关字段 =========
 
     /**
      * 规格类型
      *
-     * false - 单规格
-     * true - 多规格
+     * 枚举 {@link com.hzltd.module.erplus.spapi.enums.ProductSpuSpecTypeEnum}
      */
-    private Boolean specType;
+    private Integer specType;
     /**
      * 商品价格，单位使用：分
      *
@@ -128,6 +123,5 @@ public class ProductSpuDO extends BaseDO {
      * 基于其对应的 {@link ProductSkuDO#getStock()} 求和
      */
     private Integer stock;
-
 
 }

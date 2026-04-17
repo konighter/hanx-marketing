@@ -321,6 +321,7 @@ hzapp:
       - /admin-api/system/user/profile/**
       - /admin-api/system/auth/**
     ignore-tables:
+      - erplus_product_unit
     ignore-caches:
       - user_role_ids
       - permission_menu_ids

@@ -201,22 +201,7 @@ export const PayOrderStatusEnum = {
 
 // ========== MALL - 商品模块 ==========
 /**
- * 商品 SPU 状态
  */
-export const ProductSpuStatusEnum = {
-  RECYCLE: {
-    status: -1,
-    name: '回收站'
-  },
-  DISABLE: {
-    status: 0,
-    name: '下架'
-  },
-  ENABLE: {
-    status: 1,
-    name: '上架'
-  }
-}
 
 // ========== MALL - 营销模块 ==========
 /**

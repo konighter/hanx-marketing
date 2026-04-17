@@ -24,10 +24,10 @@ export interface ListingV2VO {
   statusName: string
   mainImage?: { url: string }
   price?: { salePrice: number; currency: string }[]
-  // Mock 扩展字段
-   diagnosis?: ListingDiagnosisVO
+  // 扩展字段
+  diagnosis?: ListingDiagnosisVO
   performance?: ListingPerformanceVO
-  mockVariants?: any[]
+  variants?: any[]
   // 刊登状态扩展
   syncStatus?: number
   syncStatusName?: string
