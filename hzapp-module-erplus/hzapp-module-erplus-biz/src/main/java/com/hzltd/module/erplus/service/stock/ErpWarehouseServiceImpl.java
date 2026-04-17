@@ -8,6 +8,7 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.warehouse.ErpWarehouseP
 import com.hzltd.module.erplus.controller.admin.stock.vo.warehouse.ErpWarehouseSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpWarehouseMapper;
+import com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +38,8 @@ public class ErpWarehouseServiceImpl implements ErpWarehouseService {
 
     @Override
     public Long createWarehouse(ErpWarehouseSaveReqVO createReqVO) {
+        // 校验单店铺单平台仓
+        validateWarehouseOnlyOnePlatformByShop(null, createReqVO.getType(), createReqVO.getShopId());
         // 插入
         ErpWarehouseDO warehouse = BeanUtils.toBean(createReqVO, ErpWarehouseDO.class);
         warehouseMapper.insert(warehouse);
@@ -48,9 +51,21 @@ public class ErpWarehouseServiceImpl implements ErpWarehouseService {
     public void updateWarehouse(ErpWarehouseSaveReqVO updateReqVO) {
         // 校验存在
         validateWarehouseExists(updateReqVO.getId());
+        // 校验单店铺单平台仓
+        validateWarehouseOnlyOnePlatformByShop(updateReqVO.getId(), updateReqVO.getType(), updateReqVO.getShopId());
         // 更新
         ErpWarehouseDO updateObj = BeanUtils.toBean(updateReqVO, ErpWarehouseDO.class);
         warehouseMapper.updateById(updateObj);
+    }
+
+    private void validateWarehouseOnlyOnePlatformByShop(Long id, Integer type, Integer shopId) {
+        if (shopId == null || type == null || type != 0) { // 只有平台仓（0）需要校验
+            return;
+        }
+        ErpWarehouseDO warehouse = warehouseMapper.selectByTypeAndShopId(type, shopId);
+        if (warehouse != null && !warehouse.getId().equals(id)) {
+            throw exception(ErplusErrorCodeConstants.WAREHOUSE_SHOP_PLATFORM_EXISTS);
+        }
     }
 
     @Override

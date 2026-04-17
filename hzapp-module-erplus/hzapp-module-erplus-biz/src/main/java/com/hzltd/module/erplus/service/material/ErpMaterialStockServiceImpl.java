@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 
@@ -95,6 +98,26 @@ public class ErpMaterialStockServiceImpl implements ErpMaterialStockService {
         return materialStockMapper.selectList(
                 new LambdaQueryWrapperX<ErpMaterialStockDO>()
                         .in(ErpMaterialStockDO::getMaterialId, materialIds));
+    }
+
+    @Override
+    public Map<Long, BigDecimal> getMaterialStockCountMap(Collection<Long> materialIds, Long warehouseId) {
+        if (cn.hutool.core.collection.CollUtil.isEmpty(materialIds)) {
+            return Collections.emptyMap();
+        }
+        // 1. 批量获取库存记录
+        List<ErpMaterialStockDO> stocks = materialStockMapper.selectList(new LambdaQueryWrapperX<ErpMaterialStockDO>()
+                .in(ErpMaterialStockDO::getMaterialId, materialIds)
+                .eq(ErpMaterialStockDO::getWarehouseId, warehouseId));
+        
+        // 2. 转换为映射结构
+        Map<Long, BigDecimal> stockMap = com.hzltd.framework.common.util.collection.CollectionUtils.convertMap(
+                stocks, ErpMaterialStockDO::getMaterialId, ErpMaterialStockDO::getQuantity);
+        
+        // 3. 补全未命中的耗材为 0（确保调用方可以直接 get，无需再次 null 判断）
+        materialIds.forEach(id -> stockMap.putIfAbsent(id, BigDecimal.ZERO));
+        
+        return stockMap;
     }
 
 }

@@ -83,4 +83,20 @@ public interface ProductUnitService {
         return convertMap(getProductUnitList(ids), ErpProductUnitDO::getId);
     }
 
+    /**
+     * 获得所有产品单位列表
+     *
+     * @return 产品单位列表
+     */
+    List<ErpProductUnitDO> getProductUnitList();
+
+    /**
+     * 获得产品单位名称 Map
+     * 
+     * @return 单位名称 Map (id -> name)
+     */
+    default Map<Long, String> getProductUnitNameMap() {
+        return convertMap(getProductUnitList(), ErpProductUnitDO::getId, ErpProductUnitDO::getName);
+    }
+
 }

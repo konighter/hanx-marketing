@@ -4,36 +4,35 @@
       <el-form-item label="仓库名称" prop="name">
         <el-input v-model="formData.name" placeholder="请输入仓库名称" />
       </el-form-item>
-      <el-form-item label="类型: 平台仓/海外仓/家庭仓/活动仓" prop="type">
-        <el-select v-model="formData.type" placeholder="请选择类型: 平台仓/海外仓/家庭仓/活动仓">
-          <el-option label="请选择字典生成" value="" />
+      <el-form-item label="仓库类型" prop="type">
+        <el-select v-model="formData.type" placeholder="请选择仓库类型" class="w-full">
+          <el-option v-for="item in WarehouseTypes" :key="item.value" :label="item.label" :value="item.value" />
         </el-select>
       </el-form-item>
-      <el-form-item label="店铺" prop="shopId">
-        <el-input v-model="formData.shopId" placeholder="请输入店铺" />
-      </el-form-item>
-      <el-form-item label="平台ID" prop="platformId">
-        <el-input v-model="formData.platformId" placeholder="请输入平台ID" />
-      </el-form-item>
-      <el-form-item label="市场" prop="marketId">
-        <el-input v-model="formData.marketId" placeholder="请输入市场" />
-      </el-form-item>
-      <el-form-item label="备注" prop="remark">
-        <el-input v-model="formData.remark" placeholder="请输入备注" />
+      <el-form-item v-if="formData.type === 0" label="绑定店铺" prop="shopId">
+        <ShopCascaderSelect v-model="formData.shopId" placeholder="请选择绑定的店铺" class="w-full" />
       </el-form-item>
       <el-form-item label="负责人" prop="principal">
         <el-input v-model="formData.principal" placeholder="请输入负责人" />
       </el-form-item>
-      <el-form-item label="开启状态" prop="status">
-        <el-radio-group v-model="formData.status">
-          <el-radio value="1">请选择字典生成</el-radio>
-        </el-radio-group>
+      <el-form-item label="备注" prop="remark">
+        <el-input v-model="formData.remark" type="textarea" placeholder="请输入备注" />
       </el-form-item>
-      <el-form-item label="是否默认" prop="defaultStatus">
-        <el-radio-group v-model="formData.defaultStatus">
-          <el-radio value="1">请选择字典生成</el-radio>
-        </el-radio-group>
-      </el-form-item>
+      <el-row>
+        <el-col :span="12">
+          <el-form-item label="开启状态" prop="status">
+            <el-radio-group v-model="formData.status">
+              <el-radio-button :value="0">开启</el-radio-button>
+              <el-radio-button :value="1">关闭</el-radio-button>
+            </el-radio-group>
+          </el-form-item>
+        </el-col>
+        <el-col :span="12">
+          <el-form-item label="设为默认" prop="defaultStatus">
+            <el-switch v-model="formData.defaultStatus" />
+          </el-form-item>
+        </el-col>
+      </el-row>
     </el-form>
     <template #footer>
       <el-button @click="submitForm" type="primary" :disabled="formLoading">确 定</el-button>
@@ -42,7 +41,8 @@
   </Dialog>
 </template>
 <script setup lang="ts">
-import { WarehouseApi, Warehouse } from '@/app/erplus/api/stock/warehouse'
+import { WarehouseApi, Warehouse, WarehouseTypes } from '@/app/erplus/api/stock/warehouse'
+import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
 
 /** ERP 仓库 表单 */
 defineOptions({ name: 'WarehouseForm' })
@@ -59,17 +59,16 @@ const formData = ref({
   name: undefined,
   type: undefined,
   shopId: undefined,
-  platformId: undefined,
-  marketId: undefined,
   remark: undefined,
   principal: undefined,
-  status: undefined,
-  defaultStatus: undefined
+  status: 0,
+  defaultStatus: false
 })
 const formRules = reactive({
   name: [{ required: true, message: '仓库名称不能为空', trigger: 'blur' }],
-  type: [{ required: true, message: '类型: 平台仓/海外仓/家庭仓/活动仓不能为空', trigger: 'change' }],
-  status: [{ required: true, message: '开启状态不能为空', trigger: 'blur' }]
+  type: [{ required: true, message: '仓库类型不能为空', trigger: 'change' }],
+  status: [{ required: true, message: '开启状态不能为空', trigger: 'blur' }],
+  shopId: [{ required: true, message: '绑定店铺不能为空', trigger: 'change' }]
 })
 const formRef = ref() // 表单 Ref
 
@@ -122,12 +121,10 @@ const resetForm = () => {
     name: undefined,
     type: undefined,
     shopId: undefined,
-    platformId: undefined,
-    marketId: undefined,
     remark: undefined,
     principal: undefined,
-    status: undefined,
-    defaultStatus: undefined
+    status: 0,
+    defaultStatus: false
   }
   formRef.value?.resetFields()
 }

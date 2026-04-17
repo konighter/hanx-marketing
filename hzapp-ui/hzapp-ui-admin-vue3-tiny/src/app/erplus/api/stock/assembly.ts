@@ -11,6 +11,8 @@ export interface AssemblyOrderVO {
   status?: number
   remark?: string
   createTime?: string
+  hasShortfall?: boolean
+  shortfallItems?: any[]
 }
 
 export interface AssemblyItemVO {
@@ -57,6 +59,6 @@ export const AssemblyApi = {
   },
   
   getAssemblyOrderItems: async (orderId: number) => {
-    return await request.get({ url: `/erplus/assembly-order/get-items?orderId=${orderId}` })
+    return await request.get({ url: `/erplus/assembly-order/item-list?orderId=${orderId}` })
   }
 }

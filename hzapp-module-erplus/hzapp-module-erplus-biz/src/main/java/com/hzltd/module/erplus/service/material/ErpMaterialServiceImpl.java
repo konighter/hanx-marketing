@@ -6,14 +6,20 @@ import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.controller.admin.material.vo.material.ErpMaterialPageReqVO;
 import com.hzltd.module.erplus.controller.admin.material.vo.material.ErpMaterialSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.material.ErpMaterialDO;
+import com.hzltd.module.erplus.dal.dataobject.material.ErpMaterialStockDO;
 import com.hzltd.module.erplus.dal.mysql.material.ErpMaterialMapper;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import org.springframework.context.annotation.Lazy;
 
 /**
  * ERP 耗材 Service 实现类
@@ -29,27 +35,27 @@ public class ErpMaterialServiceImpl implements ErpMaterialService {
     @Resource
     private ErpMaterialMapper materialMapper;
     @Resource
-    @org.springframework.context.annotation.Lazy
+    @Lazy
     private ErpMaterialStockService materialStockService;
 
     @Override
-    public java.math.BigDecimal getMaterialStockCount(Long materialId) {
+    public BigDecimal getMaterialStockCount(Long materialId) {
         return materialStockService.getMaterialStockCount(materialId);
     }
 
     @Override
-    public Map<Long, java.math.BigDecimal> getMaterialStockCountMap(java.util.Collection<Long> materialIds) {
-        if (cn.hutool.core.collection.CollUtil.isEmpty(materialIds)) {
+    public Map<Long, BigDecimal> getMaterialStockCountMap(Collection<Long> materialIds) {
+        if (CollUtil.isEmpty(materialIds)) {
             return Map.of();
         }
         // 1. 批量获取库存记录
-        List<com.hzltd.module.erplus.dal.dataobject.material.ErpMaterialStockDO> stocks = materialStockService.getMaterialStockListByMaterialIds(new java.util.ArrayList<>(materialIds));
+        List<ErpMaterialStockDO> stocks = materialStockService.getMaterialStockListByMaterialIds(new ArrayList<>(materialIds));
         // 2. 按耗材 ID 分组并累加库存数量
-        return stocks.stream().collect(java.util.stream.Collectors.groupingBy(
-                com.hzltd.module.erplus.dal.dataobject.material.ErpMaterialStockDO::getMaterialId,
-                java.util.stream.Collectors.reducing(java.math.BigDecimal.ZERO, 
-                        com.hzltd.module.erplus.dal.dataobject.material.ErpMaterialStockDO::getQuantity, 
-                        java.math.BigDecimal::add)
+        return stocks.stream().collect(Collectors.groupingBy(
+                ErpMaterialStockDO::getMaterialId,
+                Collectors.reducing(BigDecimal.ZERO, 
+                        ErpMaterialStockDO::getQuantity, 
+                        BigDecimal::add)
         ));
     }
 

@@ -10,13 +10,12 @@
       <el-form-item label="目标产成品" prop="skuId">
         <el-input v-model="selectedSkuInfo" readonly placeholder="请选择要完成的目标产成品">
           <template #append>
-            <el-button @click="spuSelectRef.open()">选择</el-button>
+            <el-button @click="skuSelectRef.open()">选择</el-button>
           </template>
         </el-input>
       </el-form-item>
 
-      <SpuTableSelect ref="spuSelectRef" @change="handleSpuSelected" />
-      <SkuTableSelect ref="skuSelectRef" :spuId="tempSpuId" @change="handleSkuSelected" />
+      <GlobalSkuSelect ref="skuSelectRef" @change="handleSkuSelected" />
       
       <el-form-item label="收货仓库" prop="warehouseId">
         <el-select v-model="formData.warehouseId" placeholder="请选择装配成品入库仓库" class="w-full">
@@ -47,20 +46,17 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted } from 'vue'
 import { AssemblyApi, AssemblyOrderVO } from '@/app/erplus/api/stock/assembly'
-import SkuTableSelect from '@/app/erplus/views/product/spu/components/SkuTableSelect.vue'
-import SpuTableSelect from '@/app/erplus/views/product/spu/components/SpuTableSelect.vue'
+import GlobalSkuSelect from '@/app/erplus/views/product/spu/components/GlobalSkuSelect.vue'
 import request from '@/config/axios'
 import { ElMessage } from 'element-plus'
 
 const dialogVisible = ref(false)
 const formLoading = ref(false)
 const formRef = ref()
-const spuSelectRef = ref()
 const skuSelectRef = ref()
 
 const warehouseList = ref<any[]>([])
 const selectedSkuInfo = ref('')
-const tempSpuId = ref<number>()
 
 const formData = reactive<AssemblyOrderVO>({
   skuId: 0,
@@ -91,14 +87,9 @@ const open = () => {
 defineExpose({ open })
 
 /** 选择商品后的处理 */
-const handleSpuSelected = (spu: any) => {
-  tempSpuId.value = spu.id
-  skuSelectRef.value.open()
-}
-
 const handleSkuSelected = (sku: any) => {
   formData.skuId = sku.id
-  selectedSkuInfo.value = `${sku.name || ''} ${sku.properties?.map(p => p.valueName).join(' ') || ''}`
+  selectedSkuInfo.value = `${sku.code || ''} | ${sku.name || ''}`
 }
 
 /** 重置表单 */
@@ -110,7 +101,6 @@ const resetForm = () => {
     remark: ''
   })
   selectedSkuInfo.value = ''
-  tempSpuId.value = undefined
 }
 
 /** 提交表单 */

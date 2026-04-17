@@ -1,0 +1,4 @@
+# Project Rules
+
+## Coding Style
+- **Avoid Fully Qualified Names**: Do not use fully qualified names (e.g., `java.util.List`) in code unless strictly necessary (e.g., to resolve naming conflicts). Always prefer adding proper `import` statements and using short names.

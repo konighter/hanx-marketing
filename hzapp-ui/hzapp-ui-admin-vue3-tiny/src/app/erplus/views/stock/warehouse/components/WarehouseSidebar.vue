@@ -1,5 +1,5 @@
 <template>
-  <ContentWrap title="仓库列表V3" class="!mb-0 h-full">
+  <ContentWrap title="仓库列表" class="!mb-0 h-full">
     <template #header>
       <div class="flex justify-end w-full">
         <el-button type="primary" size="small" @click="handleAdd">
@@ -66,6 +66,9 @@ v-for="item in list" :key="item.id"
       </div>
     </div>
   </ContentWrap>
+
+  <!-- 表单弹窗：新增/修改 -->
+  <WarehouseForm ref="formRef" @success="getList" />
 </template>
 
 <script setup lang="ts">
@@ -73,6 +76,7 @@ import { ref, reactive, computed, onMounted } from 'vue'
 import { WarehouseApi, WarehouseTypes, WarehouseTypeMap } from '@/app/erplus/api/stock/warehouse'
 import { ContentWrap } from '@/components/ContentWrap'
 import { Icon } from '@/components/Icon'
+import WarehouseForm from '../WarehouseForm.vue'
 
 defineOptions({ name: 'WarehouseSidebar' })
 
@@ -127,8 +131,9 @@ const handleClick = (item: any) => {
   emit('select', item)
 }
 
+const formRef = ref()
 const handleAdd = () => {
-  console.log('Add warehouse')
+  formRef.value.open('create')
 }
 
 onMounted(() => {

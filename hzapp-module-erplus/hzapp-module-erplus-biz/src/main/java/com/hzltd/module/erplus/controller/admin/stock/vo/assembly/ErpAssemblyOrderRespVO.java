@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Schema(description = "管理后台 - ERP 装配单详情 Response VO")
 @Data
@@ -21,6 +22,9 @@ public class ErpAssemblyOrderRespVO {
 
     @Schema(description = "目标 SKU 名称", example = "商品A")
     private String skuName;
+
+    @Schema(description = "目标 SKU 编码", example = "SKU001")
+    private String skuCode;
 
     @Schema(description = "仓库编号", example = "1")
     private Long warehouseId;
@@ -46,7 +50,26 @@ public class ErpAssemblyOrderRespVO {
     @Schema(description = "备注", example = "用于生产测试")
     private String remark;
 
+    @Schema(description = "是否存在缺料", example = "false")
+    private Boolean hasShortfall;
+
+    @Schema(description = "缺料列表")
+    private List<ShortfallItem> shortfallItems;
+
     @Schema(description = "创建时间")
     private LocalDateTime createTime;
+
+    @Data
+    @Schema(description = "缺料明细")
+    public static class ShortfallItem {
+        @Schema(description = "耗材名称")
+        private String materialName;
+        @Schema(description = "耗材单位")
+        private String materialUnit;
+        @Schema(description = "预期数量")
+        private BigDecimal expectedQty;
+        @Schema(description = "缺料数量")
+        private BigDecimal shortfallQty;
+    }
 
 }

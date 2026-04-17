@@ -22,7 +22,7 @@
         </el-tooltip>
       </h4>
       
-      <el-table :data="items" border size="small">
+      <el-table :data="getPagedItems" border size="small">
         <el-table-column label="耗材名称" prop="materialName" min-width="150" show-overflow-tooltip />
         <el-table-column label="预期需求" prop="expectedQty" width="100" align="center">
           <template #default="scope">
@@ -44,6 +44,18 @@
         </el-table-column>
       </el-table>
 
+      <!-- 分页组件 -->
+      <div v-if="items.length > pageSize" class="mt-15px">
+        <Pagination
+          small
+          layout="prev, pager, next"
+          :total="items.length"
+          v-model:page="pageNo"
+          v-model:limit="pageSize"
+          class="!m-0 !mt-0 !mb-0 !float-none"
+        />
+      </div>
+
       <!-- 底部操作区 -->
       <div class="mt-30px flex justify-end gap-10px">
         <el-button v-if="order.status === 0" type="primary" @click="handleStart"> 启动装配 </el-button>
@@ -56,7 +68,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { AssemblyApi, AssemblyOrderVO, AssemblyItemVO } from '@/app/erplus/api/stock/assembly'
 import { ElMessageBox, ElMessage } from 'element-plus'
 
@@ -65,11 +77,22 @@ const loading = ref(false)
 const order = ref<any>(null)
 const items = ref<AssemblyItemVO[]>([])
 
+// 分页相关状态
+const pageNo = ref(1)
+const pageSize = ref(10)
+
+/** 截取当前页的数据 */
+const getPagedItems = computed(() => {
+  const start = (pageNo.value - 1) * pageSize.value
+  return items.value.slice(start, start + pageSize.value)
+})
+
 /** 打开详情页 */
 const open = async (id: number) => {
   drawerVisible.value = true
   loading.value = true
   try {
+    pageNo.value = 1 // 打开时重置页码
     order.value = await AssemblyApi.getAssemblyOrder(id)
     items.value = await AssemblyApi.getAssemblyOrderItems(id)
   } finally {

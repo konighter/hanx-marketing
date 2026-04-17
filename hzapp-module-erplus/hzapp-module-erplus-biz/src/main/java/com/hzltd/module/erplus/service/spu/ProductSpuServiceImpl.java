@@ -369,9 +369,8 @@ public class ProductSpuServiceImpl implements ProductSpuService, SystemProductSe
 
         // 2. 查询 SKU 分页
         PageResult<ProductSkuDO> skuPage = productSkuMapper.selectPage(pageVO, new LambdaQueryWrapperX<ProductSkuDO>()
-                .in(ProductSkuDO::getSpuId, spuIds)
-                .and(cn.hutool.core.util.ObjectUtil.isNotEmpty(pageVO.getSearchValue()), w -> 
-                    w.like(ProductSkuDO::getCode, pageVO.getSearchValue())
+                .and(w -> w.in(ProductSkuDO::getSpuId, spuIds)
+                    .or().like(ProductSkuDO::getCode, pageVO.getSearchValue())
                     .or().like(ProductSkuDO::getBarCode, pageVO.getSearchValue())
                 )
         );

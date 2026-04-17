@@ -22,4 +22,9 @@ public interface RedisKeyConstants {
      * VALUE 数据格式：AuthStateDTO
      */
     String PLATFORM_AUTH_STATE = "erp:platform_auth_state:";
+
+    /**
+     * 产品单位的缓存
+     */
+    String PRODUCT_UNIT_ALL = "erp:product_unit:all";
 }

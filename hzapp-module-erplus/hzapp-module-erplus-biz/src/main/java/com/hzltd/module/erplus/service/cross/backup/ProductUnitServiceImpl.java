@@ -8,6 +8,8 @@ import com.hzltd.module.erplus.controller.admin.product.vo.unit.ErpProductUnitSa
 import com.hzltd.module.erplus.dal.dataobject.product.ErpProductUnitDO;
 import com.hzltd.module.erplus.dal.mysql.product.ErpProductUnitMapper;
 import jakarta.annotation.Resource;
+import org.springframework.cache.annotation.Cacheable;
+import com.hzltd.module.erplus.dal.redis.RedisKeyConstants;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
@@ -102,6 +104,12 @@ public class ProductUnitServiceImpl implements ProductUnitService {
     @Override
     public List<ErpProductUnitDO> getProductUnitList(Collection<Long> ids) {
          return productUnitMapper.selectBatchIds(ids);
+    }
+
+    @Override
+    @Cacheable(cacheNames = RedisKeyConstants.PRODUCT_UNIT_ALL, key = "'all'")
+    public List<ErpProductUnitDO> getProductUnitList() {
+        return productUnitMapper.selectList();
     }
 
 }

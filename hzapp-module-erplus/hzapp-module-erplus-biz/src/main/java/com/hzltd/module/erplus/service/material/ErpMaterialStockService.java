@@ -4,7 +4,9 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.dal.dataobject.material.ErpMaterialStockDO;
 
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * ERP 耗材库存 Service 接口
@@ -75,5 +77,14 @@ public interface ErpMaterialStockService {
      * @return 耗材库存列表
      */
     List<ErpMaterialStockDO> getMaterialStockListByMaterialIds(List<Long> materialIds);
+
+    /**
+     * 批量获取耗材在特定仓库的库存数量
+     *
+     * @param materialIds 耗材编号列表
+     * @param warehouseId 仓库编号
+     * @return 耗材库存数量映射：Map<耗材编号, 库存数量>
+     */
+    Map<Long, BigDecimal> getMaterialStockCountMap(Collection<Long> materialIds, Long warehouseId);
 
 }

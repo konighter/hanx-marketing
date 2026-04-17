@@ -36,4 +36,9 @@ public interface ErpWarehouseMapper extends BaseMapperX<ErpWarehouseDO> {
         return selectList(ErpWarehouseDO::getStatus, status);
     }
 
+    default ErpWarehouseDO selectByTypeAndShopId(Integer type, Integer shopId) {
+        return selectOne(ErpWarehouseDO::getType, type,
+                ErpWarehouseDO::getShopId, shopId);
+    }
+
 }

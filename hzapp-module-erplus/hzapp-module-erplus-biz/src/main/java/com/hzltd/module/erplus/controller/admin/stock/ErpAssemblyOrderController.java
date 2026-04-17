@@ -14,11 +14,8 @@ import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrd
 import com.hzltd.module.erplus.dal.dataobject.material.ErpMaterialDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpAssemblyItemDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpAssemblyOrderDO;
-import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
 import com.hzltd.module.erplus.service.material.ErpMaterialService;
-import com.hzltd.module.erplus.service.spu.ProductSkuService;
 import com.hzltd.module.erplus.service.stock.ErpAssemblyOrderService;
-import com.hzltd.module.erplus.service.stock.ErpWarehouseService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,8 +25,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderRespVO.ShortfallItem;
 
 import static com.hzltd.framework.apilog.core.enums.OperateTypeEnum.*;
 import static com.hzltd.framework.common.pojo.CommonResult.success;
@@ -44,12 +44,6 @@ public class ErpAssemblyOrderController {
 
     @Resource
     private ErpAssemblyOrderService assemblyOrderService;
-    @Resource
-    private ErpWarehouseService warehouseService;
-    @Resource
-    private ErpMaterialService materialService;
-    @Resource
-    private ProductSkuService productSkuService;
 
     @PostMapping("/create")
     @Operation(summary = "创建装配单")
@@ -82,37 +76,14 @@ public class ErpAssemblyOrderController {
     @Operation(summary = "获得装配单")
     @Parameter(name = "id", description = "编号", example = "1")
     public CommonResult<ErpAssemblyOrderRespVO> getAssemblyOrder(@RequestParam("id") Long id) {
-        ErpAssemblyOrderDO order = assemblyOrderService.getAssemblyOrder(id);
-        ErpAssemblyOrderRespVO respVO = BeanUtils.toBean(order, ErpAssemblyOrderRespVO.class);
-        
-        if (respVO != null && order != null) {
-            MapUtils.findAndThen(warehouseService.getWarehouseMap(convertSet(List.of(order), ErpAssemblyOrderDO::getWarehouseId)),
-                    order.getWarehouseId(), warehouse -> respVO.setWarehouseName(warehouse.getName()));
-        }
-        
-        return success(respVO);
+        return success(assemblyOrderService.getAssemblyOrderResp(id));
     }
 
     @GetMapping("/page")
     @Operation(summary = "获得装配单分页")
     @PreAuthorize("@ss.hasPermission('erp:assembly:query')")
     public CommonResult<PageResult<ErpAssemblyOrderRespVO>> getAssemblyOrderPage(@Valid ErpAssemblyOrderPageReqVO pageReqVO) {
-        PageResult<ErpAssemblyOrderDO> pageResult = assemblyOrderService.getAssemblyOrderPage(pageReqVO);
-        
-        if (CollUtil.isEmpty(pageResult.getList())) {
-            return success(PageResult.empty(pageResult.getTotal()));
-        }
-        
-        Map<Long, ErpWarehouseDO> warehouseMap = warehouseService.getWarehouseMap(
-                convertSet(pageResult.getList(), ErpAssemblyOrderDO::getWarehouseId));
-        
-        return success(BeanUtils.toBean(pageResult, ErpAssemblyOrderRespVO.class, order -> {
-            MapUtils.findAndThen(warehouseMap, order.getWarehouseId(), 
-                    warehouse -> order.setWarehouseName(warehouse.getName()));
-            if (order.getStatus() != null) {
-                order.setStatusName(getStatusName(order.getStatus()));
-            }
-        }));
+        return success(assemblyOrderService.getAssemblyOrderPage(pageReqVO));
     }
 
     @PutMapping("/start")
@@ -142,41 +113,13 @@ public class ErpAssemblyOrderController {
         return success(true);
     }
 
+
     @GetMapping("/item-list")
     @Operation(summary = "获得装配单耗材明细")
     @Parameter(name = "orderId", description = "装配单编号", example = "1")
     public CommonResult<List<ErpAssemblyItemRespVO>> getAssemblyItemList(@RequestParam("orderId") Long orderId) {
-        List<ErpAssemblyItemDO> items = assemblyOrderService.getAssemblyItemList(orderId);
-        
-        if (CollUtil.isEmpty(items)) {
-            return success(List.of());
-        }
-        
-        List<ErpMaterialDO> materials = materialService.getMaterialList(
-                convertList(items, ErpAssemblyItemDO::getMaterialId));
-        Map<Long, ErpMaterialDO> materialMap = CollUtil.isEmpty(materials) ? Map.of() :
-                materials.stream().collect(java.util.stream.Collectors.toMap(ErpMaterialDO::getId, m -> m));
-        
-        return success(BeanUtils.toBean(items, ErpAssemblyItemRespVO.class, item -> {
-            ErpMaterialDO material = materialMap.get(item.getMaterialId());
-            if (material != null) {
-                item.setMaterialName(material.getName());
-                item.setMaterialCode(material.getCode());
-//                item.setMaterialUnit(material.getUnit());
-            }
-            item.setIsShortfall(item.getShortfallQty() != null && item.getShortfallQty().compareTo(java.math.BigDecimal.ZERO) > 0);
-        }));
+        return success(assemblyOrderService.getAssemblyItemList(orderId));
     }
 
-    private String getStatusName(Integer status) {
-        if (status == null) return "";
-        return switch (status) {
-            case 0 -> "待启动";
-            case 1 -> "装配中";
-            case 2 -> "已完成";
-            case 3 -> "已取消";
-            default -> "";
-        };
-    }
 
 }

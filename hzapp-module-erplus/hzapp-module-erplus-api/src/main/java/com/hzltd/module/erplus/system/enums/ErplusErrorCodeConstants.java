@@ -92,6 +92,7 @@ public interface ErplusErrorCodeConstants {
     // ========== ERP 仓库 1-030-400-000 ==========
     ErrorCode WAREHOUSE_NOT_EXISTS = new ErrorCode(1_030_400_000, "仓库不存在");
     ErrorCode WAREHOUSE_NOT_ENABLE = new ErrorCode(1_030_400_001, "仓库({})未启用");
+    ErrorCode WAREHOUSE_SHOP_PLATFORM_EXISTS = new ErrorCode(1_030_400_002, "该店铺已绑定平台仓，请勿重复绑定");
 
     // ========== ERP 其它入库单 1-030-401-000 ==========
     ErrorCode STOCK_IN_NOT_EXISTS = new ErrorCode(1_030_401_000, "其它入库单不存在");

@@ -3,10 +3,14 @@ package com.hzltd.module.erplus.service.stock;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderPageReqVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderSaveReqVO;
-import com.hzltd.module.erplus.dal.dataobject.stock.ErpAssemblyItemDO;
+import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyItemRespVO;
+import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderRespVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpAssemblyOrderDO;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
+import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderRespVO.ShortfallItem;
 
 /**
  * ERP 装配单 Service 接口
@@ -46,12 +50,20 @@ public interface ErpAssemblyOrderService {
     ErpAssemblyOrderDO getAssemblyOrder(Long id);
 
     /**
+     * 获得装配单详情（包含元数据）
+     *
+     * @param id 编号
+     * @return 装配单详情
+     */
+    ErpAssemblyOrderRespVO getAssemblyOrderResp(Long id);
+
+    /**
      * 获得装配单分页
      *
      * @param pageReqVO 分页查询
      * @return 装配单分页
      */
-    PageResult<ErpAssemblyOrderDO> getAssemblyOrderPage(ErpAssemblyOrderPageReqVO pageReqVO);
+    PageResult<ErpAssemblyOrderRespVO> getAssemblyOrderPage(ErpAssemblyOrderPageReqVO pageReqVO);
 
     /**
      * 启动装配单
@@ -80,6 +92,14 @@ public interface ErpAssemblyOrderService {
      * @param orderId 装配单编号
      * @return 明细列表
      */
-    List<ErpAssemblyItemDO> getAssemblyItemList(Long orderId);
+    List<ErpAssemblyItemRespVO> getAssemblyItemList(Long orderId);
+
+    /**
+     * 批量获取装配单缺货明细
+     * 
+     * @param orderIds 装配单 ID 集合
+     * @return 缺货明细 Map (OrderId -> List<ShortfallItem>)
+     */
+    Map<Long, List<ShortfallItem>> getAssemblyOrderShortfallItemsMap(Collection<Long> orderIds);
 
 }
