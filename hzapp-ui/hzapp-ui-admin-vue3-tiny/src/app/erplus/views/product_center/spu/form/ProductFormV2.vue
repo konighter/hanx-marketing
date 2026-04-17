@@ -72,6 +72,7 @@
           />
 
           <ProductSalesInfo
+            v-if="visitedNavs.has('variants')"
             v-show="activeNav === 'variants'"
             ref="salesInfoRef"
             v-model="formData"
@@ -83,26 +84,31 @@
           />
 
           <ProductPurchaseInfo
+            v-if="visitedNavs.has('purchase')"
             v-show="activeNav === 'purchase'"
             v-model="formData"
           />
 
           <ProductLogisticsInfo
+            v-if="visitedNavs.has('logistics')"
             v-show="activeNav === 'logistics'"
             v-model="formData"
           />
 
           <ProductQCInfo
+            v-if="visitedNavs.has('qc')"
             v-show="activeNav === 'qc'"
             v-model="formData"
           />
 
           <ProductMediaInfo
+            v-if="visitedNavs.has('media')"
             v-show="activeNav === 'media'"
             v-model="formData.attributes.media"
           />
 
           <ProductMaterialInfo
+            v-if="visitedNavs.has('materials')"
             v-show="activeNav === 'materials'"
             v-model="formData.materialItems"
           />
@@ -152,6 +158,7 @@ const props = defineProps({
 
 const loading = ref(false)
 const activeNav = ref('basic')
+const visitedNavs = reactive(new Set(['basic']))
 const entryMode = ref('SKU') // SKU | SPU
 const specificType = ref('ORDINARY') // ORDINARY | COMBO | SINGLE | MULTI
 const propertyAddFormRef = ref()
@@ -293,6 +300,10 @@ watch([entryMode, specificType], ([newMode, newSpec]) => {
     formData.specType = newSpec === 'MULTI' ? 2 : 1
     formData.productType = 1
   }
+})
+
+watch(activeNav, (nav) => {
+  visitedNavs.add(nav)
 })
 
 /** 添加属性项 */
@@ -514,6 +525,8 @@ const initForm = async (mode: string, type: string, id?: number) => {
   
   propertyList.value = []
   activeNav.value = 'basic'
+  visitedNavs.clear()
+  visitedNavs.add('basic')
   
   if (id) {
     try {

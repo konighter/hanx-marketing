@@ -1,11 +1,12 @@
 <template>
   <el-drawer
     v-model="visible"
-    :title="`商品详情 - ${listing?.title || ''}`"
+    :with-header="false"
     size="50%"
-    :destroy-on-close="true"
+    @opened="onOpened"
+    @close="onClose"
   >
-    <div v-if="listing" class="detail-container px-4">
+    <div v-if="contentReady && listing" class="detail-container px-4">
       <!-- 基础信息面板 -->
       <div class="flex gap-6 mb-6">
         <div class="w-32 h-32 rounded-lg overflow-hidden border border-gray-200 flex-shrink-0">
@@ -165,8 +166,10 @@ import { ListingV2VO } from '../types'
 import { getListingFeedback } from '../../../../api/product/listing'
 
 const visible = ref(false)
+const contentReady = ref(false)
 const listing = ref<ListingV2VO | null>(null)
 const activeTab = ref('variants')
+const visitedTabs = ref<Set<string>>(new Set(['variants']))
 
 const feedback = ref<any>(null)
 const feedbackLoading = ref(false)
@@ -188,9 +191,21 @@ const formatPrice = (p: number) => {
 
 const open = (row: ListingV2VO) => {
   listing.value = row
-  activeTab.value = 'listing' // 默认打开刊登状态以展示反馈
+  activeTab.value = 'listing'
+  visitedTabs.value = new Set(['listing'])
+  contentReady.value = false
   visible.value = true
+}
+
+/** Mount content after slide-in animation completes */
+const onOpened = () => {
+  contentReady.value = true
   fetchFeedback()
+}
+
+/** Unmount content before slide-out animation */
+const onClose = () => {
+  contentReady.value = false
 }
 
 const fetchFeedback = async () => {
@@ -210,6 +225,7 @@ const fetchFeedback = async () => {
 }
 
 watch(activeTab, (val) => {
+  visitedTabs.value.add(val)
   if (val === 'listing' && !feedback.value) {
     fetchFeedback()
   }
@@ -304,6 +320,19 @@ defineExpose({ open })
 </script>
 
 <style scoped>
+:deep(.el-drawer) {
+  will-change: transform;
+}
+
+:deep(.el-drawer__header) {
+  margin-bottom: 0;
+  padding: 4px 10px 0;
+}
+
+:deep(.el-drawer__body) {
+  padding-top: 20px;
+}
+
 :deep(.custom-drawer-tabs) {
   .el-tabs__item {
     font-size: 14px;

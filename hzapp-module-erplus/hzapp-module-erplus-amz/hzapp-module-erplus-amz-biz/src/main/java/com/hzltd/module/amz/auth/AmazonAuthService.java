@@ -99,13 +99,17 @@ public class AmazonAuthService implements AuthorizationApi {
 
     @Override
     public String grantAuthInfo(AuthorizationModelV0 authorizationModel) {
-        return new StringBuilder(grantAuthHost)
+        // todo -- 不同的AuthType 设置不同的scope 和 redirect_uri
+        StringBuilder sb =  new StringBuilder(grantAuthHost)
                 .append("?response_type=code")
-                .append("&scope=advertising::campaign_management")
                 .append("&client_id=").append(authorizationModel.getAppKey())
                 .append("&redirect_uri=").append("http://localhost")
-                .append("&state=").append(authorizationModel.getState())
-                .toString();
+                .append("&state=").append(authorizationModel.getState());
+
+        if ("AMAZON_ADV".equalsIgnoreCase(authorizationModel.getAuthType())) {
+            sb.append("&scope=advertising::campaign_management");
+        }
+        return sb.toString();
     }
 
     @Override
@@ -127,7 +131,6 @@ public class AmazonAuthService implements AuthorizationApi {
     public AuthorizationModelV0 grantAccessToken(AuthorizationModelV0 authorizationModel) {
 
 //        AdsTokenResult tokenResult = amazonAdsAdapter.exchangeToken(authorizationModel.getGrantCode());
-
 
         Request request = new Request.Builder()
                 //https://api.amazon.com/auth/o2/token

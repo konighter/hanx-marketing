@@ -4,10 +4,11 @@
     :title="title"
     size="85%"
     direction="rtl"
-    :destroy-on-close="true"
     class="product-form-drawer"
+    @opened="onOpened"
+    @close="onClose"
   >
-    <ProductFormV2 ref="formRef" @close="visible = false" @save="handleSave" />
+    <ProductFormV2 v-if="contentReady" ref="formRef" @close="visible = false" @save="handleSave" />
   </el-drawer>
 </template>
 
@@ -17,8 +18,12 @@ import ProductFormV2 from '../form/ProductFormV2.vue'
 import * as ProductSpuApi from '@/app/erplus/api/product/spu'
 
 const visible = ref(false)
+const contentReady = ref(false)
 const formRef = ref()
 const title = ref('添加产品')
+
+// Store pending init params to apply after animation
+const pendingInit = ref<{ entryMode: string; specificType: string; id?: number } | null>(null)
 
 const open = async (entryMode: string, specificType: string, id?: number) => {
   const isEdit = !!id
@@ -30,9 +35,26 @@ const open = async (entryMode: string, specificType: string, id?: number) => {
     title.value = specificType === 'SINGLE' ? `${prefix} SPU (单规格)` : `${prefix} SPU (多规格/变体)`
   }
 
+  // Stash params, show drawer — content mounts AFTER slide animation ends
+  contentReady.value = false
+  pendingInit.value = { entryMode, specificType, id }
   visible.value = true
+}
+
+/** Called after slide-in animation completes — mount heavy content here */
+const onOpened = async () => {
+  contentReady.value = true
   await nextTick()
-  formRef.value?.initForm(entryMode, specificType, id)
+  if (pendingInit.value) {
+    const { entryMode, specificType, id } = pendingInit.value
+    formRef.value?.initForm(entryMode, specificType, id)
+    pendingInit.value = null
+  }
+}
+
+/** Unmount content before slide-out animation to keep it smooth */
+const onClose = () => {
+  contentReady.value = false
 }
 
 const handleSave = async (data: any) => {
@@ -57,6 +79,10 @@ const message = useMessage()
 
 <style lang="scss">
 .product-form-drawer {
+  /* GPU-accelerated slide */
+  .el-drawer {
+    will-change: transform;
+  }
   .el-drawer__body {
     padding: 0;
     overflow: hidden;

@@ -38,16 +38,17 @@
             <Icon icon="ep:check" />
           </el-button>
         </div>
-        <el-button 
-          v-if="detail.id"
-          type="primary" 
-          link
-          :loading="syncing"
-          @click="syncCampaign"
-          class="ml-auto"
-        >
-          <Icon icon="ep:refresh" /> 同步
-        </el-button>
+        <el-tooltip v-if="detail.id" content="同步广告计划" placement="top">
+          <el-button 
+            type="primary" 
+            link
+            :loading="syncing"
+            @click="syncCampaign"
+            class="ml-10px"
+          >
+            <Icon icon="ep:refresh" />
+          </el-button>
+        </el-tooltip>
       </div>
     </template>
     <div v-loading="loading" class="drawer-content">

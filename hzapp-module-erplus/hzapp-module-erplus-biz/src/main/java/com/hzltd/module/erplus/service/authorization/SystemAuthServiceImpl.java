@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.service.authorization;
 
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.api.service.AuthorizationApiFactory;
 import com.hzltd.module.erplus.dal.dataobject.authorization.PlatformAuthDO;
 import com.hzltd.module.erplus.dal.dataobject.authorization.ShopAuthDO;
 import com.hzltd.module.erplus.dal.dataobject.shop.PlatformAccountDO;
@@ -11,6 +12,8 @@ import com.hzltd.module.erplus.dal.mysql.authorization.ShopAuthMapper;
 import com.hzltd.module.erplus.dal.mysql.shop.PlatformAccountMapper;
 import com.hzltd.module.erplus.service.shop.PlatformAppService;
 import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
+import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
+import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import com.hzltd.module.erplus.system.model.PlatformAccountModel;
 import com.hzltd.module.erplus.system.service.SystemAuthService;
 import jakarta.annotation.Resource;
@@ -18,6 +21,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -30,7 +34,7 @@ import static com.hzltd.framework.security.core.util.SecurityFrameworkUtils.getL
 public class SystemAuthServiceImpl implements SystemAuthService {
 
     /** 缓存 TTL：5 分钟 */
-    private static final long CACHE_TTL_MS = 5 * 60 * 1000L;
+    private static final long CACHE_TTL_MS = 45 * 60 * 1000L;
 
     /** key = "userId:shopId:authType", value = CacheEntry */
     private final Map<String, CacheEntry> authModelCache = new ConcurrentHashMap<>();
@@ -49,6 +53,9 @@ public class SystemAuthServiceImpl implements SystemAuthService {
     private PlatformAppService platformAppService;
     @Resource
     private PlatformAccountMapper accountMapper;
+
+    @Resource
+    private AuthorizationApiFactory authorizationApiFactory;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -148,7 +155,7 @@ public class SystemAuthServiceImpl implements SystemAuthService {
         if (authDO == null) {
             authDO = platformAuthMapper.selectDefaultAuthByShopIdAndType(shopId, authType);
         }
-
+        // 判断RefreshToken是否过期
         if (authDO == null) {
             return null;
         }
@@ -161,6 +168,20 @@ public class SystemAuthServiceImpl implements SystemAuthService {
             model.setAppKey(app.getAppKey());
             model.setAppSecret(app.getAppSecret());
         }
+// 如果过期了, 更新
+        if (model.isExpiry()) {
+
+            AuthorizationModelV0 accessTokenModel = authorizationApiFactory.getCrossApiService(CrossPlatformEnum.of(authDO.getPlatform()))
+                    .refreshAccessToken(AuthorizationModelV0.builder()
+                            .appKey(model.getAppKey())
+                            .appSecret(model.getAppSecret())
+                            .refreshToken(model.getRefreshToken())
+                            .authType(model.getAuthType()).build());
+
+            model.setAccessToken(accessTokenModel.getAccessToken());
+            model.setExpiryTime(LocalDateTime.now().plusSeconds(accessTokenModel.getExpireIn()));
+        }
+
         return model;
     }
 }
