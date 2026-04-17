@@ -98,6 +98,7 @@ public class AmazonAuthService implements AuthorizationApi {
 
 
     @Override
+    @Deprecated
     public String grantAuthInfo(AuthorizationModelV0 authorizationModel) {
         // todo -- 不同的AuthType 设置不同的scope 和 redirect_uri
         StringBuilder sb =  new StringBuilder(grantAuthHost)
