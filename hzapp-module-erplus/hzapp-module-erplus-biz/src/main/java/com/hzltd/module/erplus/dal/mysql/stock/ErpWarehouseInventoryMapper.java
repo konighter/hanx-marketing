@@ -13,10 +13,11 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface ErpWarehouseInventoryMapper extends BaseMapperX<ErpWarehouseInventoryDO> {
 
-    default ErpWarehouseInventoryDO selectByWarehouseIdAndSkuForUpdate(Long warehouseId, String sku) {
+    default ErpWarehouseInventoryDO selectByWarehouseAndItemForUpdate(Long warehouseId, Integer itemType, Long itemId) {
         return selectOne(new LambdaQueryWrapperX<ErpWarehouseInventoryDO>()
-                .eq(ErpWarehouseInventoryDO::getWarehouseId, warehouseId.intValue())
-                .eq(ErpWarehouseInventoryDO::getSellerSku, sku)
+                .eq(ErpWarehouseInventoryDO::getWarehouseId, warehouseId)
+                .eq(ErpWarehouseInventoryDO::getItemType, itemType)
+                .eq(ErpWarehouseInventoryDO::getItemId, itemId)
                 .last("FOR UPDATE"));
     }
 

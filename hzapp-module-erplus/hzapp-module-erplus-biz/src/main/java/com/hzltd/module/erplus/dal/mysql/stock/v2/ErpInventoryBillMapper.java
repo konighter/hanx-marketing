@@ -21,6 +21,7 @@ public interface ErpInventoryBillMapper extends BaseMapperX<ErpInventoryBillDO> 
                 .eqIfPresent(ErpInventoryBillDO::getType, pageReqVO.getType())
                 .eqIfPresent(ErpInventoryBillDO::getRefType, pageReqVO.getRefType())
                 .eqIfPresent(ErpInventoryBillDO::getRefCode, pageReqVO.getRefCode())
+                .eqIfPresent(ErpInventoryBillDO::getStatus, pageReqVO.getStatus())
                 .eqIfPresent(ErpInventoryBillDO::getFromId, pageReqVO.getFromId())
                 .eqIfPresent(ErpInventoryBillDO::getToId, pageReqVO.getToId())
                 .betweenIfPresent(ErpInventoryBillDO::getCreateTime, pageReqVO.getCreateTime())

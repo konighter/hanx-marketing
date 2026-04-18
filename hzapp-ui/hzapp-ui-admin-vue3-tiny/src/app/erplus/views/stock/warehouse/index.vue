@@ -15,6 +15,7 @@
               <el-tabs v-model="activeTab" class="header-tabs">
                 <el-tab-pane label="库存列表" name="stock" />
                 <el-tab-pane label="库存记录" name="history" />
+                <el-tab-pane label="库存单" name="bill" />
               </el-tabs>
             </div>
           </template>
@@ -25,6 +26,7 @@
 v-if="activeTab === 'stock'" :warehouse-id="selectedWarehouseId"
                 :warehouse="selectedWarehouse" />
               <WarehouseHistoryTable v-else-if="activeTab === 'history'" :warehouse-id="selectedWarehouseId" />
+              <InventoryBillTable v-else-if="activeTab === 'bill'" :warehouse-id="selectedWarehouseId" />
             </template>
             <el-empty v-else description="请从左侧选择一个仓库以查看详情" class="flex-1" />
           </div>
@@ -40,6 +42,7 @@ import { ContentWrap } from '@/components/ContentWrap'
 import WarehouseSidebar from './components/WarehouseSidebar.vue'
 import WarehouseStockTable from './components/WarehouseStockTable.vue'
 import WarehouseHistoryTable from './components/WarehouseHistoryTable.vue'
+import InventoryBillTable from './components/InventoryBillTable.vue'
 
 defineOptions({ name: 'WarehouseIndexV3' })
 

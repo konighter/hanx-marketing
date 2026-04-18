@@ -16,21 +16,30 @@ v-model="queryParams.keyword" placeholder="搜索产品名称/编号" clearable 
 
       <!-- 右侧：操作按钮 -->
       <div v-if="warehouseId" class="flex gap-2">
-        <el-button size="small">
-          <Icon icon="ep:plus" class="mr-5px" />
-          入库
-        </el-button>
-        <el-button size="small">
-          <Icon icon="ep:upload" class="mr-5px" />
-          出库
-        </el-button>
-        <el-button size="small">
-          <Icon icon="ep:refresh" class="mr-5px" />
-          调拨
-        </el-button>
+        <el-tooltip
+          v-if="warehouse?.type === 0"
+          content="平台仓仅支持同步平台货件数据，禁止手动操作"
+          placement="top"
+        >
+          <div class="flex gap-2">
+            <el-button size="small" disabled>入库</el-button>
+            <el-button size="small" disabled>出库</el-button>
+            <el-button size="small" disabled>调拨</el-button>
+          </div>
+        </el-tooltip>
+        <template v-else>
+          <el-button size="small" @click="handleBill(10)">
+            <Icon icon="ep:plus" class="mr-5px" /> 入库
+          </el-button>
+          <el-button size="small" @click="handleBill(20)">
+            <Icon icon="ep:upload" class="mr-5px" /> 出库
+          </el-button>
+          <el-button size="small" @click="handleBill(30)">
+            <Icon icon="ep:refresh" class="mr-5px" /> 调拨
+          </el-button>
+        </template>
         <el-button type="success" size="small" v-if="warehouse?.type === 0">
-          <Icon icon="ep:upload" class="mr-5px" />
-          发货
+          <Icon icon="ep:upload" class="mr-5px" /> 发货
         </el-button>
       </div>
     </div>
@@ -43,8 +52,18 @@ v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" cl
         <el-table-column label="图片" align="center" width="80">
           <template #default="scope">
             <el-image
-:src="scope.row.image" class="w-48px h-48px border-rounded" preview-teleported
-              :preview-src-list="[scope.row.image]" fit="cover" />
+              v-if="scope.row.image"
+              :src="scope.row.image" class="w-48px h-48px border-rounded" preview-teleported
+              :preview-src-list="[scope.row.image]" fit="cover">
+              <template #error>
+                <div class="w-48px h-48px rounded bg-gray-100 flex items-center justify-center">
+                  <Icon icon="ep:picture" class="text-gray-300 text-xl" />
+                </div>
+              </template>
+            </el-image>
+            <div v-else class="w-48px h-48px rounded bg-gray-100 flex items-center justify-center">
+              <Icon icon="ep:picture" class="text-gray-300 text-xl" />
+            </div>
           </template>
         </el-table-column>
         <el-table-column label="SKU / 商品信息" align="left" prop="sellerSku" min-width="250">
@@ -61,24 +80,27 @@ v-loading="loading" :data="list" :stripe="true" :show-overflow-tooltip="true" cl
           </template>
         </el-table-column>
 
-        <el-table-column label="可用库存" align="center" prop="totalCount" width="100">
+        <el-table-column label="可用库存" align="center" prop="availableCount" width="100">
           <template #default="scope">
-            <span :class="{ 'text-red-500': scope.row.totalCount < 10 }" class="font-bold">
-              {{ scope.row.totalCount }}
+            <span :class="{ 'text-red-500': scope.row.availableCount < 10 }" class="font-bold">
+              {{ scope.row.availableCount }}
             </span>
           </template>
         </el-table-column>
-        <el-table-column label="入库中" align="center" prop="inboundingCount" width="100" />
-        <el-table-column label="出库中" align="center" prop="outboundingCount" width="100" />
+        <el-table-column label="在途" align="center" prop="transitCount" width="100" />
+        <el-table-column label="总量" align="center" prop="totalCount" width="100" />
         <el-table-column label="更新时间" align="center" prop="updateTime" width="180" :formatter="dateFormatter" />
       </el-table>
 
-      <Pagination
+    <Pagination
 class="justify-end mt-10px" :total="total" v-model:page="queryParams.pageNo"
         v-model:limit="queryParams.pageSize" @pagination="getList" />
     </template>
 
     <el-empty v-else description="请从左侧选择一个仓库以查看库存" class="flex-1" />
+
+    <!-- 账单操作弹窗 -->
+    <InventoryBillForm ref="billFormRef" @success="getList" />
   </div>
 </template>
 
@@ -87,6 +109,7 @@ import { ref, reactive, watch, onMounted } from 'vue'
 import { WarehouseApi } from '@/app/erplus/api/stock/warehouse'
 import { dateFormatter } from '@/utils/formatTime'
 import { Icon } from '@/components/Icon'
+import InventoryBillForm from './InventoryBillForm.vue'
 
 defineOptions({ name: 'WarehouseStockTable' })
 
@@ -103,6 +126,16 @@ const queryParams = reactive({
   pageSize: 20,
   keyword: undefined as string | undefined,
 })
+
+const billFormRef = ref()
+
+const handleBill = (type: number) => {
+  if (!props.warehouseId) return
+  billFormRef.value.open(type, {
+    warehouseId: props.warehouseId,
+    isPlatform: props.warehouse?.type === 0
+  })
+}
 
 const getList = async () => {
   if (!props.warehouseId) {

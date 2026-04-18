@@ -41,7 +41,7 @@ public class ErpInventoryBillDO extends BaseDO {
     /**
      * 来源ID (如 仓库ID / 合作伙伴ID)
      */
-    private Long fromId;
+    private String fromId;
 
     /**
      * 去向类型 (WH, VENDOR, CUST, VIRTUAL)
@@ -50,7 +50,7 @@ public class ErpInventoryBillDO extends BaseDO {
     /**
      * 去向ID (如 仓库ID / 合作伙伴ID)
      */
-    private Long toId;
+    private String toId;
 
     /**
      * 业务前置单据类型

@@ -2,11 +2,15 @@
   <div class="h-full flex flex-col overflow-hidden">
     <div class="flex justify-between items-center mb-10px flex-shrink-0">
       <div class="flex gap-2">
-        <el-select v-model="queryParams.type" placeholder="记录类型" clearable class="!w-120px" size="small">
+        <el-select v-model="queryParams.refType" placeholder="业务类型" clearable class="!w-120px" size="small">
           <el-option label="全部" value="" />
-          <el-option label="采购入库" :value="10" />
-          <el-option label="出库发货" :value="20" />
-          <el-option label="调拨变动" :value="30" />
+          <el-option label="手动操作" value="MANUAL" />
+          <el-option label="采购入库" value="PURCHASE" />
+          <el-option label="销售出库" value="SALE" />
+          <el-option label="生产入库" value="PRODUCTION" />
+          <el-option label="装配出库" value="ASSEMBLY" />
+          <el-option label="调拨收货" value="TRANSFER_RECEIPT" />
+          <el-option label="平台货件" value="SHIPMENT" />
         </el-select>
         <el-input
 v-model="queryParams.sellerSku" placeholder="搜索 SKU" clearable class="!w-180px" size="small"
@@ -56,6 +60,7 @@ class="justify-end mt-10px" :total="total" v-model:page="queryParams.pageNo"
 <script setup lang="ts">
 import { dateFormatter } from '@/utils/formatTime'
 import { InventoryBillApi } from '@/app/erplus/api/stock/inventoryBill'
+import { ErpInventoryBillTypeOptions } from './constants'
 
 defineOptions({ name: 'WarehouseHistoryTable' })
 
@@ -70,6 +75,7 @@ const queryParams = reactive({
   pageNo: 1,
   pageSize: 20,
   type: undefined,
+  refType: undefined,
   timeRange: [],
   sellerSku: undefined,
 })
@@ -89,44 +95,31 @@ const getList = async () => {
       warehouseId: props.warehouseId,
     }
 
-    // 如果指定了 SKU，则查询明细分页；否则查询账单分页（按单展示）
-    let data
-    let isItemView = false
-
-    if (params.sellerSku) {
-      data = await InventoryBillApi.getInventoryBillItemPage(params)
-      isItemView = true
-    } else {
-      data = await InventoryBillApi.getInventoryBillPage(params)
-    }
+    // 统一使用明细分页接口，以获取平铺的变动记录和库存快照
+    const data = await InventoryBillApi.getInventoryBillItemPage(params)
 
     list.value = data.list.map(record => {
       // 这里的 count 应该是该仓库对应的变动
-      // 简单逻辑：如果是出库（fromId=warehouseId），数量为负；如果是入库（toId=warehouseId），数量为正
-      // 注意：明细查询返回的 record.fromId / toId 是 flattened 后的，逻辑一致
-      const direction = record.fromId === props.warehouseId ? -1 : 1
+      // 逻辑：如果是出库（fromId 等于当前仓库），显示变动为负；如果是入库（toId 等于当前仓库），显示变动为正
+      // 注意：由于 ID 可能存在 String/Number 混用，强制转换 String 后对比
+      const currentWhId = String(props.warehouseId)
+      const fromWhId = String(record.fromId || '')
+      const toWhId = String(record.toId || '')
+      
+      let count = record.qty || 0
+      // 调调出逻辑：如果是两步法调拨的发货方，qty 虽然存的是正数（代表调出量），但在流水视图应显示为减少
+      // 这种情况下 fromWhId == currentWhId
+      if (fromWhId === currentWhId && toWhId !== currentWhId) {
+        count = -Math.abs(count)
+      } else if (toWhId === currentWhId && fromWhId !== currentWhId) {
+        count = Math.abs(count)
+      }
 
-      if (isItemView) {
-        // 明细视图：list item 是 InventoryBillItemRespVO (Flat)
-        return {
-          ...record,
-          typeLabel: getBillTypeLabel(record.type),
-          count: (record.qty || 0) * direction,
-          afterCount: record.snapshotQty || 0
-        }
-      } else {
-        // 账单视图：list item 是 InventoryBillDo (Header)，可能包含 items
-        // 如果 WarehouseHistoryTable 指向的是某个仓库的所有变动，
-        // 那么理想情况下，后端应该提供一个 InventoryBillItem 的分页查询，带上 Header 信息。
-        // 这里为了兼容旧逻辑，我们取 items 的第一个作为代表（或者假设后端做了平铺）
-        const firstItem = record.items?.[0] || {}
-        return {
-          ...record,
-          typeLabel: getBillTypeLabel(record.type),
-          sellerSku: record.sellerSku || firstItem.sellerSku || '-',
-          count: (record.totalCount || firstItem.count || 0) * direction, // Header 通常用 totalCount
-          afterCount: record.snapshotQty || firstItem.snapshotQty || 0 // Header 没有 snapshotQty，取 item 的
-        }
+      return {
+        ...record,
+        typeLabel: getBillTypeLabel(record),
+        count: count,
+        afterCount: record.snapshotQty || 0
       }
     })
     total.value = data.total
@@ -137,14 +130,20 @@ const getList = async () => {
   }
 }
 
-const getBillTypeLabel = (type: number) => {
-  const map: Record<number, string> = {
-    10: '采购入库',
-    20: '出库发货',
-    30: '调拨变动',
-    40: '库存调整'
+const getBillTypeLabel = (record: any) => {
+  const typeMap: Record<number, string> = {
+    10: '入库',
+    20: '出库',
+    30: '调拨',
+    40: '调整'
   }
-  return map[type] || '未知'
+  
+  // 优先展示具体的业务类型标签 (如: 生产入库, 调拨收货)
+  const options = [...(ErpInventoryBillTypeOptions[10] || []), ...(ErpInventoryBillTypeOptions[20] || []), ...(ErpInventoryBillTypeOptions[30] || [])]
+  const match = options.find(opt => opt.value === record.refType)
+  
+  if (match) return match.label
+  return typeMap[record.type] || '未知'
 }
 
 const handleSearch = () => {

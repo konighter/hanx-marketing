@@ -33,7 +33,15 @@ public class ErpInventoryBillItemDO extends BaseDO {
      */
     private Long billId;
     /**
-     * SKU
+     * 物料类型 (1: SKU, 2: Material)
+     */
+    private Integer itemType;
+    /**
+     * 物料ID
+     */
+    private Long itemId;
+    /**
+     * SKU (可选)
      */
     private String sellerSku;
     /**
@@ -56,9 +64,9 @@ public class ErpInventoryBillItemDO extends BaseDO {
     @TableField(exist = false)
     private String refCode;
     @TableField(exist = false)
-    private Long fromId;
+    private String fromId;
     @TableField(exist = false)
-    private Long toId;
+    private String toId;
     @TableField(exist = false)
     private String remark;
     @TableField(exist = false)

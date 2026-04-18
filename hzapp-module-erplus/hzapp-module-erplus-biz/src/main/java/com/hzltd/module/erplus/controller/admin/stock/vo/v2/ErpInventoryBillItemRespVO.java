@@ -38,10 +38,10 @@ public class ErpInventoryBillItemRespVO {
     private String refCode;
 
     @Schema(description = "来源ID", example = "1")
-    private Long fromId;
+    private String fromId;
 
     @Schema(description = "去向ID", example = "2")
-    private Long toId;
+    private String toId;
 
     @Schema(description = "备注", example = "备注信息")
     private String remark;

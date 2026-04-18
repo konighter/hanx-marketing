@@ -68,4 +68,13 @@ public class ErpInventoryBillController {
         return success(BeanUtils.toBean(pageResult, ErpInventoryBillItemRespVO.class));
     }
 
+    @PutMapping("/receive")
+    @Operation(summary = "确认收货 (仅调拨单)")
+    @Parameter(name = "id", description = "编号", required = true, example = "1024")
+    @PreAuthorize("@ss.hasPermission('erp:inventory-bill:update')")
+    public CommonResult<Boolean> receiveInventoryBill(@RequestParam("id") Long id) {
+        inventoryBillService.receiveInventoryBill(id);
+        return success(true);
+    }
+
 }

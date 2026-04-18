@@ -57,4 +57,11 @@ public interface ErpInventoryBillService {
      */
     PageResult<ErpInventoryBillItemDO> getInventoryBillItemPage(ErpInventoryBillItemPageReqVO pageReqVO);
 
+    /**
+     * 确认收货 (用于调拨单)
+     *
+     * @param id 账单编号
+     */
+    void receiveInventoryBill(Long id);
+
 }

@@ -45,4 +45,7 @@ public class ErpInventoryBillPageReqVO extends PageParam {
     @Schema(description = "SKU", example = "SKU001")
     private String sellerSku;
 
+    @Schema(description = "单据状态", example = "10")
+    private Integer status;
+
 }

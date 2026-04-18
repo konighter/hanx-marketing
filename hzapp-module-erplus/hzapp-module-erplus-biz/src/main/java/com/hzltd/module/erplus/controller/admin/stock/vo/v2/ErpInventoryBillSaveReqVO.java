@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 public class ErpInventoryBillSaveReqVO {
 
-    @Schema(description = "账单编号", example = "100")
+    @Schema(description = "账单ID", example = "100")
     private Long id;
 
     @Schema(description = "单据编号", example = "BILL001")
@@ -25,14 +25,14 @@ public class ErpInventoryBillSaveReqVO {
     @Schema(description = "来源类型 (WH, VENDOR, CUST, VIRTUAL)", example = "WH")
     private String fromType;
 
-    @Schema(description = "来源ID", example = "1")
-    private Long fromId;
+    @Schema(description = "来源ID", example = "WH_1")
+    private String fromId;
 
     @Schema(description = "去向类型 (WH, VENDOR, CUST, VIRTUAL)", example = "WH")
     private String toType;
 
-    @Schema(description = "去向ID", example = "2")
-    private Long toId;
+    @Schema(description = "去向ID", example = "WH_2")
+    private String toId;
 
     @Schema(description = "业务前置单据类型", example = "PO")
     private String refType;
@@ -54,8 +54,15 @@ public class ErpInventoryBillSaveReqVO {
         @Schema(description = "账单项编号", example = "1")
         private Long id;
 
-        @Schema(description = "SKU", requiredMode = Schema.RequiredMode.REQUIRED, example = "SKU001")
-        @NotNull(message = "SKU不能为空")
+        @Schema(description = "物料类型 (1: SKU, 2: Material)", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
+        @NotNull(message = "物料类型不能为空")
+        private Integer itemType;
+
+        @Schema(description = "物料ID", requiredMode = Schema.RequiredMode.REQUIRED, example = "101")
+        @NotNull(message = "物料ID不能为空")
+        private Long itemId;
+
+        @Schema(description = "SKU", example = "SKU001")
         private String sellerSku;
 
         @Schema(description = "变动数量", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")

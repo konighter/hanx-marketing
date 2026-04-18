@@ -16,4 +16,7 @@ public class ErpWarehouseInventoryPageReqVO extends PageParam {
     @Schema(description = "仓库编号", example = "2802")
     private Long warehouseId;
 
+    @Schema(description = "物料类型", example = "1")
+    private Integer itemType;
+
 }

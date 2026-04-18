@@ -30,17 +30,17 @@ public class ErpInventoryBillRespVO {
     @ExcelProperty("来源类型")
     private String fromType;
 
-    @Schema(description = "来源ID", example = "1")
+    @Schema(description = "来源ID", example = "WH_1")
     @ExcelProperty("来源ID")
-    private Long fromId;
+    private String fromId;
 
     @Schema(description = "去向类型", example = "WH")
     @ExcelProperty("去向类型")
     private String toType;
 
-    @Schema(description = "去向ID", example = "2")
+    @Schema(description = "去向ID", example = "WH_2")
     @ExcelProperty("去向ID")
-    private Long toId;
+    private String toId;
 
     @Schema(description = "业务前置单据类型", example = "PO")
     @ExcelProperty("业务类型")
@@ -76,7 +76,13 @@ public class ErpInventoryBillRespVO {
         @Schema(description = "明细ID", requiredMode = Schema.RequiredMode.REQUIRED, example = "1")
         private Long id;
 
-        @Schema(description = "SKU", requiredMode = Schema.RequiredMode.REQUIRED, example = "SKU001")
+        @Schema(description = "物料类型 (1: SKU, 2: Material)", example = "1")
+        private Integer itemType;
+
+        @Schema(description = "物料ID", example = "101")
+        private Long itemId;
+
+        @Schema(description = "SKU", example = "SKU001")
         private String sellerSku;
 
         @Schema(description = "变动数量", requiredMode = Schema.RequiredMode.REQUIRED, example = "10")
