@@ -580,4 +580,56 @@ public class ProductSpuServiceImpl implements ProductSpuService, SystemProductSe
         attributes.put("packingSchemes", fromJsonList(attrMap.get("packingSchemes"), ProductPackingSchemeDTO.class));
         model.setAttributes(attributes);
     }
+    @Override
+    public List<ProductSkuRespVO> getSkuList(Collection<Long> ids, Collection<String> codes, Boolean hydrate) {
+        // 1. 获取 SKU 数据
+        Map<Long, ProductSkuDO> skuMapTemp = new LinkedHashMap<>();
+        if (CollUtil.isNotEmpty(ids)) {
+            productSkuMapper.selectBatchIds(ids).forEach(sku -> skuMapTemp.putIfAbsent(sku.getId(), sku));
+        }
+        if (CollUtil.isNotEmpty(codes)) {
+            productSkuMapper.selectListByCodes(codes).forEach(sku -> skuMapTemp.putIfAbsent(sku.getId(), sku));
+        }
+        if (skuMapTemp.isEmpty()) {
+            return Collections.emptyList();
+        }
+        List<ProductSkuDO> skuList = new ArrayList<>(skuMapTemp.values());
+
+        // 2. 批量查询元数据 (参考 getSkuPage 为组装做准备)
+        Set<Long> spuIds = convertSet(skuList, ProductSkuDO::getSpuId);
+        List<ProductSpuDO> spus = productSpuMapper.selectByIds(spuIds);
+        Map<Long, ProductSpuDO> spuMap = convertMap(spus, ProductSpuDO::getId);
+        
+        Set<Long> categoryIds = convertSet(spus, ProductSpuDO::getCategoryId);
+        Set<Long> brandIds = convertSet(spus, ProductSpuDO::getBrandId);
+        Set<Long> unitIds = convertSet(spus, ProductSpuDO::getUnitId);
+
+        Map<Long, ProductCategoryDO> categoryMap = categoryIds.isEmpty() ? Collections.emptyMap() :
+                convertMap(categoryService.getProductCategoryList(categoryIds), ProductCategoryDO::getId);
+        Map<Long, ProductBrandDO> brandMap = brandIds.isEmpty() ? Collections.emptyMap() :
+                convertMap(brandService.getBrandList(brandIds), ProductBrandDO::getId);
+        Map<Long, ErpProductUnitDO> unitMap = unitIds.isEmpty() ? Collections.emptyMap() :
+                convertMap(unitService.getProductUnitList(unitIds), ErpProductUnitDO::getId);
+
+        // 3. 组装并返回
+        return BeanUtils.toBean(skuList, ProductSkuRespVO.class, vo -> {
+            ProductSpuDO spu = spuMap.get(vo.getSpuId());
+            if (spu != null) {
+                vo.setSpuName(spu.getName());
+                vo.setSpuCode(spu.getCode());
+                vo.setStatus(spu.getStatus());
+                vo.setCreateTime(spu.getCreateTime());
+                Optional.ofNullable(categoryMap.get(spu.getCategoryId())).ifPresent(c -> vo.setCategoryName(c.getName()));
+                Optional.ofNullable(brandMap.get(spu.getBrandId())).ifPresent(b -> vo.setBrandName(b.getName()));
+                Optional.ofNullable(unitMap.get(spu.getUnitId())).ifPresent(u -> vo.setUnitName(u.getName()));
+            }
+            // 条件填充：耗材、属性、组合成分
+            if (Boolean.TRUE.equals(hydrate)) {
+                productSkuService.hydrateSkuAttrs(vo);
+                productSkuService.hydrateSkuMaterials(vo);
+                productSkuService.hydrateSkuCombo(vo);
+            }
+        });
+    }
+
 }

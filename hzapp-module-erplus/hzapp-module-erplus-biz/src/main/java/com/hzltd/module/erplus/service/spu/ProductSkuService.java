@@ -54,7 +54,7 @@ public interface ProductSkuService {
      */
     void validateSkuList(List<ProductSkuSaveReqVO> list, Integer specType);
 
-    /**
+    /**-
      * 批量创建 SKU
      *
      * @param spuId 商品 SPU 编号

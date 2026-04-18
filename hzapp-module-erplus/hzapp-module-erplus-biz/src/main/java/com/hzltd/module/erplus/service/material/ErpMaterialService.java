@@ -3,8 +3,12 @@ package com.hzltd.module.erplus.service.material;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.material.vo.material.ErpMaterialPageReqVO;
 import com.hzltd.module.erplus.controller.admin.material.vo.material.ErpMaterialSaveReqVO;
+import com.hzltd.module.erplus.controller.admin.material.vo.stock.ErpMaterialStockPageReqVO;
+import com.hzltd.module.erplus.controller.admin.material.vo.stock.ErpMaterialStockRespVO;
 import com.hzltd.module.erplus.dal.dataobject.material.ErpMaterialDO;
 
+import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -70,12 +74,20 @@ public interface ErpMaterialService {
     Map<Long, ErpMaterialDO> getMaterialMap(List<Long> ids);
 
     /**
+     * 获得耗材库存分页
+     *
+     * @param pageReqVO 分页查询
+     * @return 耗材库存分页
+     */
+    PageResult<ErpMaterialStockRespVO> getMaterialStockPage(ErpMaterialStockPageReqVO pageReqVO);
+
+    /**
      * 获得耗材库存数量映射
      *
      * @param materialIds 耗材编号列表
      * @return 耗材库存数量映射
      */
-    Map<Long, java.math.BigDecimal> getMaterialStockCountMap(java.util.Collection<Long> materialIds);
+    Map<Long, BigDecimal> getMaterialStockCountMap(Collection<Long> materialIds);
 
     /**
      * 获得耗材库存数量
@@ -83,6 +95,24 @@ public interface ErpMaterialService {
      * @param materialId 耗材编号
      * @return 耗材库存数量
      */
-    java.math.BigDecimal getMaterialStockCount(Long materialId);
+    BigDecimal getMaterialStockCount(Long materialId);
+
+    /**
+     * 获得指定仓库的耗材库存数量
+     *
+     * @param materialId  耗材编号
+     * @param warehouseId 仓库编号
+     * @return 库存数量
+     */
+    BigDecimal getMaterialStockCount(Long materialId, Long warehouseId);
+
+    /**
+     * 获得指定仓库的耗材库存数量映射（可用库存）
+     *
+     * @param warehouseId 仓库编号
+     * @param materialIds 耗材编号列表
+     * @return 耗材可用库存数量映射
+     */
+    Map<Long, Integer> getMaterialAvailableStockMap(Long warehouseId, Collection<Long> materialIds);
 
 }

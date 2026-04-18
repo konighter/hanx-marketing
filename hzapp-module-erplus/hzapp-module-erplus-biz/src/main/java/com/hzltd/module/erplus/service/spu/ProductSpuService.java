@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.service.spu;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.collection.CollectionUtils;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuRespVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuPageReqVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuSaveReqVO;
@@ -109,7 +110,7 @@ public interface ProductSpuService {
      * @param pageReqVO 分页查询
      * @return 商品 SKU 分页
      */
-    PageResult<com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuRespVO> getSkuPage(ProductSpuPageReqVO pageReqVO);
+    PageResult<ProductSkuRespVO> getSkuPage(ProductSpuPageReqVO pageReqVO);
 
     /**
      * 更新商品 SPU 库存（增量）
@@ -175,5 +176,15 @@ public interface ProductSpuService {
      * @return 商品 SPU 明细列表
      */
     List<ProductSpuRespVO> getSpuDetailList(Collection<Long> ids);
+
+    /**
+     * 获得商品 SKU 明细列表
+     *
+     * @param ids     SKU 编号数组
+     * @param codes   SKU 编码数组
+     * @param hydrate 是否填充属性详情（Attributes, BOM, Combo）
+     * @return 商品 SKU 明细列表
+     */
+    List<ProductSkuRespVO> getSkuList(Collection<Long> ids, Collection<String> codes, Boolean hydrate);
 
 }

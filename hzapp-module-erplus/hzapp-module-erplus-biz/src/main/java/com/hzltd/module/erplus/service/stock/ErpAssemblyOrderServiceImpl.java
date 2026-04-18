@@ -4,28 +4,28 @@ import com.hzltd.framework.common.exception.ErrorCode;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.collection.MapUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
+import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyItemRespVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderPageReqVO;
+import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderRespVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderSaveReqVO;
 import com.hzltd.module.erplus.dal.dataobject.material.ErpProductMaterialDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpAssemblyItemDO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpAssemblyOrderDO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSkuRespVO;
+import com.hzltd.module.erplus.controller.admin.spu.vo.ProductSpuRespVO;
 import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseDO;
-import com.hzltd.module.erplus.dal.dataobject.spu.ProductSkuDO;
-import com.hzltd.module.erplus.dal.dataobject.spu.ProductSpuDO;
-import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyOrderRespVO;
-import com.hzltd.module.erplus.controller.admin.stock.vo.assembly.ErpAssemblyItemRespVO;
 import com.hzltd.module.erplus.dal.mysql.material.ErpProductMaterialMapper;
+import com.hzltd.module.erplus.service.material.ErpMaterialService;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpAssemblyItemMapper;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpAssemblyOrderMapper;
 import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
-import com.hzltd.module.erplus.service.material.ErpMaterialStockRecordService;
-import com.hzltd.module.erplus.service.material.ErpMaterialStockService;
-import com.hzltd.module.erplus.service.material.bo.ErpMaterialStockRecordCreateReqBO;
+import com.hzltd.module.erplus.enums.stock.ErpItemTypeEnum;
+import com.hzltd.module.erplus.service.cross.backup.ProductUnitService;
 import com.hzltd.module.erplus.service.spu.ProductSkuService;
 import com.hzltd.module.erplus.service.spu.ProductSpuService;
-import com.hzltd.module.erplus.service.stock.bo.ErpStockRecordCreateReqBO;
-import com.hzltd.module.erplus.system.enums.ErpStockRecordBizTypeEnum;
-import com.hzltd.module.erplus.service.cross.backup.ProductUnitService;
+import com.hzltd.module.erplus.service.stock.v2.ErpInventoryBillService;
+import com.hzltd.module.erplus.controller.admin.stock.vo.v2.ErpInventoryBillSaveReqVO;
+import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseInventoryDO;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,16 +80,9 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
     private ErpProductMaterialMapper productMaterialMapper;
 
     @Resource
-    private ErpMaterialMapper materialMapper;
-
+    private ErpInventoryBillService inventoryBillService;
     @Resource
-    private ErpMaterialStockService materialStockService;
-    @Resource
-    private ErpMaterialStockRecordService materialStockRecordService;
-    @Resource
-    private ErpStockService stockService;
-    @Resource
-    private ErpStockRecordService stockRecordService;
+    private ErpMaterialService erpMaterialService;
     @Resource
     private ProductSkuService productSkuService;
 
@@ -188,12 +181,10 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
         // 缺料情况
         Map<Long, List<ShortfallItem>> shortfallMap = getAssemblyOrderShortfallItemsMap(
                 CollectionUtils.convertSet(orders, ErpAssemblyOrderDO::getId));
-        // SKU & SPU 元数据
-        List<ProductSkuDO> skuList = productSkuService.getSkuList(
-                CollectionUtils.convertSet(orders, ErpAssemblyOrderDO::getSkuId));
-        Map<Long, ProductSkuDO> skuMap = CollectionUtils.convertMap(skuList, ProductSkuDO::getId);
-        Map<Long, ProductSpuDO> spuMap = productSpuService.getSpuMap(
-                CollectionUtils.convertSet(skuList, ProductSkuDO::getSpuId));
+        // SKU & SPU 元数据 (直接获取补齐后的 SKU VO)
+        List<ProductSkuRespVO> skuList = productSpuService.getSkuList(
+                CollectionUtils.convertSet(orders, ErpAssemblyOrderDO::getSkuId), null, false);
+        Map<Long, ProductSkuRespVO> skuMap = CollectionUtils.convertMap(skuList, ProductSkuRespVO::getId);
 
         // 2. 转换并填充 VO
         return BeanUtils.toBean(new ArrayList<>(orders), ErpAssemblyOrderRespVO.class, order -> {
@@ -208,7 +199,7 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
             // 填充 SKU 元数据 (SPU名称 + SKU编码)
             MapUtils.findAndThen(skuMap, order.getSkuId(), sku -> {
                 order.setSkuCode(sku.getCode());
-                MapUtils.findAndThen(spuMap, sku.getSpuId(), spu -> order.setSkuName(spu.getName()));
+                order.setSkuName(sku.getSpuName()); // getSkuList 已包含 spuName
             });
         });
     }
@@ -235,14 +226,14 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
             throw new RuntimeException("只有待启动状态的装配单才能启动");
         }
         
-        // 验证当前仓库耗材库存，计算缺货量（批量优化）
+        // 验证当前仓库耗材库存，计算缺货量（使用统一库存表 erplus_warehouse_inventory，itemType=2）
         List<ErpAssemblyItemDO> items = assemblyItemMapper.selectListByOrderId(id);
-        Map<Long, BigDecimal> stockMap = materialStockService.getMaterialStockCountMap(
-                CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId), order.getWarehouseId());
+        Map<Long, Integer> stockMap = getMaterialInventoryMap(order.getWarehouseId(),
+                CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId));
         
         boolean hasShortfall = false;
         for (ErpAssemblyItemDO item : items) {
-            BigDecimal stockQty = stockMap.getOrDefault(item.getMaterialId(), BigDecimal.ZERO);
+            BigDecimal stockQty = BigDecimal.valueOf(stockMap.getOrDefault(item.getMaterialId(), 0));
             if (stockQty.compareTo(item.getExpectedQty()) < 0) {
                 // 如果库存小于预期，记录缺货数量
                 BigDecimal shortfall = item.getExpectedQty().subtract(stockQty);
@@ -282,24 +273,45 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
         String batchNo = erpNoRedisDAO.generate(ErpNoRedisDAO.ASSEMBLY_BATCH_NO_PREFIX);
         order.setBatchNo(batchNo);
         
-        // 4. 执行成品入库逻辑
+        // 4. 执行成品入库逻辑（通过统一库存单入口，refType=PRODUCTION）
         BigDecimal actualQty = order.getActualQty() != null ? order.getActualQty() : order.getPlannedQty();
-        stockService.updateStockCountIncrement(order.getSkuId(), order.getWarehouseId(), actualQty);
         
-        // 写入产成品库存明细记录
-        stockRecordService.createStockRecord(new ErpStockRecordCreateReqBO(
-                order.getSkuId(), order.getWarehouseId(), actualQty,
-                ErpStockRecordBizTypeEnum.ASSEMBLY_IN.getType(), order.getId(), order.getId(), order.getNo()
-        ));
+        ErpInventoryBillSaveReqVO inboundBill = new ErpInventoryBillSaveReqVO();
+        inboundBill.setType(10); // 入库
+        inboundBill.setRefType("PRODUCTION");
+        inboundBill.setRefCode(order.getNo());
+        inboundBill.setRemark("装配成品入库");
+        inboundBill.setToId(String.valueOf(order.getWarehouseId()));
+        inboundBill.setToType("WH");
         
-        // 5. 执行耗材核减逻辑（扣除耗材库存）
+        ErpInventoryBillSaveReqVO.Item productItem = new ErpInventoryBillSaveReqVO.Item();
+        productItem.setItemType(1); // SKU
+        productItem.setItemId(order.getSkuId());
+        productItem.setQty(actualQty.intValue());
+        inboundBill.setItems(Collections.singletonList(productItem));
+        
+        inventoryBillService.createInventoryBill(inboundBill);
+        
+        // 5. 执行耗材核减逻辑（通过统一库存单入口，refType=ASSEMBLY）
+        ErpInventoryBillSaveReqVO outboundBill = new ErpInventoryBillSaveReqVO();
+        outboundBill.setType(20); // 出库
+        outboundBill.setRefType("ASSEMBLY");
+        outboundBill.setRefCode(order.getNo());
+        outboundBill.setRemark("装配耗材核减");
+        outboundBill.setFromId(String.valueOf(order.getWarehouseId()));
+        outboundBill.setFromType("WH");
+        
+        List<ErpInventoryBillSaveReqVO.Item> materialItems = new ArrayList<>();
         for (ErpAssemblyItemDO item : items) {
-            // 通过 RecordService 确保在更新库存的同时记录审计日志
-            materialStockRecordService.createMaterialStockRecord(new ErpMaterialStockRecordCreateReqBO(
-                    item.getMaterialId(), order.getWarehouseId(), item.getExpectedQty().negate(),
-                    ErpStockRecordBizTypeEnum.ASSEMBLY_OUT.getType(), order.getId(), item.getId(), order.getNo()
-            ));
+            ErpInventoryBillSaveReqVO.Item materialItem = new ErpInventoryBillSaveReqVO.Item();
+            materialItem.setItemType(2); // Material
+            materialItem.setItemId(item.getMaterialId());
+            materialItem.setQty(item.getExpectedQty().intValue());
+            materialItems.add(materialItem);
         }
+        outboundBill.setItems(materialItems);
+        
+        inventoryBillService.createInventoryBill(outboundBill);
         
         // 6. 更新装配单为已完成
         order.setStatus(STATUS_COMPLETED);
@@ -311,11 +323,11 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
      */
     private void validateAndRecalculateShortfall(ErpAssemblyOrderDO order, List<ErpAssemblyItemDO> items) {
         boolean hasInsufficientStock = false;
-        Map<Long, BigDecimal> stockMap = materialStockService.getMaterialStockCountMap(
-                CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId), order.getWarehouseId());
+        Map<Long, Integer> stockMap = getMaterialInventoryMap(order.getWarehouseId(),
+                CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId));
         
         for (ErpAssemblyItemDO item : items) {
-            BigDecimal stockQty = stockMap.getOrDefault(item.getMaterialId(), BigDecimal.ZERO);
+            BigDecimal stockQty = BigDecimal.valueOf(stockMap.getOrDefault(item.getMaterialId(), 0));
             if (stockQty.compareTo(item.getExpectedQty()) < 0) {
                 hasInsufficientStock = true;
                 BigDecimal shortfall = item.getExpectedQty().subtract(stockQty);
@@ -354,12 +366,12 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
         
         ErpAssemblyOrderDO order = assemblyOrderMapper.selectById(orderId);
         if (order != null && STATUS_PENDING.equals(order.getStatus())) {
-            // 如果是待启动状态，执行实时库存校验并更新返回结果中的缺货量（批量优化）
-            Map<Long, BigDecimal> stockMap = materialStockService.getMaterialStockCountMap(
-                    CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId), order.getWarehouseId());
+            // 如果是待启动状态，执行实时库存校验并更新返回结果中的缺货量
+            Map<Long, Integer> stockMap = getMaterialInventoryMap(order.getWarehouseId(),
+                    CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId));
             
             for (ErpAssemblyItemDO item : items) {
-                BigDecimal stockQty = stockMap.getOrDefault(item.getMaterialId(), BigDecimal.ZERO);
+                BigDecimal stockQty = BigDecimal.valueOf(stockMap.getOrDefault(item.getMaterialId(), 0));
                 if (stockQty.compareTo(item.getExpectedQty()) < 0) {
                     item.setShortfallQty(item.getExpectedQty().subtract(stockQty));
                 } else {
@@ -369,8 +381,8 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
         }
 
         // 批量查询物料基础信息和单位名称，完成数据脱壳/聚合
-        List<ErpMaterialDO> materials = materialMapper.selectBatchIds(CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId));
-        Map<Long, ErpMaterialDO> materialMap = CollectionUtils.convertMap(materials, ErpMaterialDO::getId);
+        Map<Long, ErpMaterialDO> materialMap = erpMaterialService.getMaterialMap(
+                new ArrayList<>(CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId)));
         Map<Long, String> unitMap = productUnitService.getProductUnitNameMap();
 
         return BeanUtils.toBean(items, ErpAssemblyItemRespVO.class, itemVO -> {
@@ -419,8 +431,7 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
         
         // 3. 获取对应的耗材信息
         Set<Long> materialIds = CollectionUtils.convertSet(items, ErpAssemblyItemDO::getMaterialId);
-        List<ErpMaterialDO> materials = materialMapper.selectBatchIds(materialIds);
-        Map<Long, ErpMaterialDO> materialMap = CollectionUtils.convertMap(materials, ErpMaterialDO::getId);
+        Map<Long, ErpMaterialDO> materialMap = erpMaterialService.getMaterialMap(new ArrayList<>(materialIds));
         
         // 4. 按 OrderId 分组并计算实时缺货
         Map<Long, String> unitMap = productUnitService.getProductUnitNameMap();
@@ -441,8 +452,8 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
                 Set<Long> wMaterialIds = items.stream()
                         .filter(i -> wOrderIds.contains(i.getOrderId()))
                         .map(ErpAssemblyItemDO::getMaterialId).collect(Collectors.toSet());
-                Map<Long, BigDecimal> wStockMap = materialStockService.getMaterialStockCountMap(wMaterialIds, warehouseId);
-                wStockMap.forEach((mId, qty) -> multiStockMap.put(warehouseId + "_" + mId, qty));
+                Map<Long, Integer> wStockMap = getMaterialInventoryMap(warehouseId, wMaterialIds);
+                wStockMap.forEach((mId, qty) -> multiStockMap.put(warehouseId + "_" + mId, BigDecimal.valueOf(qty)));
             });
         }
 
@@ -473,6 +484,17 @@ public class ErpAssemblyOrderServiceImpl implements ErpAssemblyOrderService {
             }
         }
         return result;
+    }
+
+    /**
+     * 获取指定仓库的耗材库存映射
+     *
+     * @param warehouseId 仓库ID
+     * @param materialIds 耗材ID集合
+     * @return 映射：耗材ID -> 可用库存
+     */
+    private Map<Long, Integer> getMaterialInventoryMap(Long warehouseId, Collection<Long> materialIds) {
+        return erpMaterialService.getMaterialAvailableStockMap(warehouseId, materialIds);
     }
 
 }

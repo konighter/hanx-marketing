@@ -60,4 +60,8 @@ public interface ProductSkuMapper extends BaseMapperX<ProductSkuDO> {
         return update(null, updateWrapper);
     }
 
+    default List<ProductSkuDO> selectListByCodes(Collection<String> codes) {
+        return selectList(ProductSkuDO::getCode, codes);
+    }
+
 }

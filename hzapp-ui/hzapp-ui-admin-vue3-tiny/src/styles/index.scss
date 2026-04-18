@@ -93,3 +93,10 @@
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
 }
+
+/* Pro Max: Tooltip 宽度限制与自动换行 */
+.el-popper {
+  max-width: 400px !important;
+  line-height: 1.6 !important;
+  word-break: break-all !important;
+}
