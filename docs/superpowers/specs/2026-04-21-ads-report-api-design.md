@@ -115,17 +115,52 @@ public class MetricValueVO {
 
 ### 3.2 基础与平台扩展指标 (Metrics)
 
+为了支持各平台的差异化特征，核心存储表将基础指标拉平，平台特色归因作为扩展列。
+
+#### 基础指标 (跨平台通用)
 | 逻辑名称 | 物理计算逻辑 | 说明 |
 | :--- | :--- | :--- |
 | `impressions` | `SUM(impressions)` | 曝光量 |
 | `clicks` | `SUM(clicks)` | 点击量 |
 | `spend` | `SUM(cost)` | 花费 |
-| `sales` | `SUM(sales)` | 默认销售额 |
-| `orders` | `SUM(orders)` | 默认订单数 |
-| `amz_sales_7d` | `SUM(attributedSales7d)` | [平台扩展] Amazon 特有 7 天归因销售额 |
-| `ctr` | [后计算] `clicks / impressions`| 点击率 (计算型指标，不支持 DB 排序) |
-| `cpc` | [后计算] `cost / clicks` | 单次点击成本 (计算型指标，不支持 DB 排序) |
-| `acos`| [后计算] `cost / sales` | ACOS (计算型指标，不支持 DB 排序) |
+| `sales` | `SUM(sales)` | 通用/估算销售额 |
+| `orders` | `SUM(orders)` | 通用/估算订单数 |
+| `ctr` | [后置计算] `clicks / impressions`| 点击率 (不支持 DB 排序) |
+| `cpc` | [后置计算] `cost / clicks` | 单次点击成本 (不支持 DB 排序) |
+| `acos`| [后置计算] `cost / sales` | ACOS (不支持 DB 排序) |
+| `roas`| [后置计算] `sales / cost` | ROAS (不支持 DB 排序) |
+
+#### Amazon 平台专属扩展指标
+| 逻辑名称 | 物理计算逻辑 | 说明 |
+| :--- | :--- | :--- |
+| `amz_sales_1d` | `SUM(amz_attributed_sales_1d)` | 1天归因销售额 |
+| `amz_sales_7d` | `SUM(amz_attributed_sales_7d)` | 7天归因销售额 |
+| `amz_sales_14d` | `SUM(amz_attributed_sales_14d)` | 14天归因销售额 |
+| `amz_sales_30d` | `SUM(amz_attributed_sales_30d)` | 30天归因销售额 |
+| `amz_orders_1d` | `SUM(amz_attributed_units_ordered_1d)` | 1天归因订单 |
+| `amz_orders_7d` | `SUM(amz_attributed_units_ordered_7d)` | 7天归因订单 |
+| `amz_orders_14d` | `SUM(amz_attributed_units_ordered_14d)` | 14天归因订单 |
+| `amz_orders_30d` | `SUM(amz_attributed_units_ordered_30d)` | 30天归因订单 |
+| `amz_sales_1d_same_sku` | `SUM(amz_attributed_sales_1d_same_sku)` | 1天归因同SKU销售额 |
+| `amz_sales_7d_same_sku` | `SUM(amz_attributed_sales_7d_same_sku)` | 7天归因同SKU销售额 |
+| `amz_sales_14d_same_sku` | `SUM(amz_attributed_sales_14d_same_sku)`| 14天归因同SKU销售额 |
+| `amz_sales_30d_same_sku` | `SUM(amz_attributed_sales_30d_same_sku)`| 30天归因同SKU销售额 |
+
+#### Meta (Facebook) 平台专属扩展指标
+| 逻辑名称 | 物理计算逻辑 | 说明 |
+| :--- | :--- | :--- |
+| `meta_reach` | `SUM(meta_reach)` | 到达人数 (Reach) |
+| `meta_frequency` | `SUM(meta_frequency)` | 展示频率 |
+| `meta_purchases_1d_click`| `SUM(meta_purchases_1d_click)` | 1天点击归因购买数 |
+| `meta_purchases_7d_click`| `SUM(meta_purchases_7d_click)` | 7天点击归因购买数 |
+| `meta_purchases_1d_view` | `SUM(meta_purchases_1d_view)` | 1天浏览归因购买数 |
+
+#### Google 平台专属扩展指标
+| 逻辑名称 | 物理计算逻辑 | 说明 |
+| :--- | :--- | :--- |
+| `gg_view_through_conversions` | `SUM(gg_view_through_conversions)` | 浏览型转化数 |
+| `gg_conversions` | `SUM(gg_conversions)` | 转化数 (支持小数) |
+| `gg_conversion_value`| `SUM(gg_conversion_value)`| 转化总价值 |
 
 ## 4. 后端执行流程
 
