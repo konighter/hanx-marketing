@@ -19,11 +19,10 @@ import com.hzltd.module.erplus.dal.mysql.spu.ProductSpuMapper;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpWarehouseInventoryMapper;
 import com.hzltd.module.erplus.service.cross.ErplusCrossProductService;
 import com.hzltd.module.erplus.spapi.enums.WarehouseTypeEnum;
-import com.hzltd.module.erplus.enums.stock.ErpItemTypeEnum;
+import com.hzltd.module.erplus.system.enums.ErpItemTypeEnum;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;

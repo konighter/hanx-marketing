@@ -13,10 +13,9 @@ import com.hzltd.module.erplus.dal.dataobject.stock.ErpWarehouseInventoryDO;
 import com.hzltd.module.erplus.dal.mysql.material.ErpMaterialMapper;
 import com.hzltd.module.erplus.dal.mysql.stock.ErpWarehouseInventoryMapper;
 import com.hzltd.module.erplus.service.stock.ErpWarehouseService;
-import com.hzltd.module.erplus.enums.stock.ErpItemTypeEnum;
+import com.hzltd.module.erplus.system.enums.ErpItemTypeEnum;
 import com.hzltd.framework.common.util.collection.MapUtils;
 import jakarta.annotation.Resource;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 

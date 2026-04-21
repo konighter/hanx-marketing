@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.enums.stock;
+package com.hzltd.module.erplus.system.enums;
 
 /**
  * ERP 物料类型枚举
