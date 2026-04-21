@@ -58,22 +58,7 @@ public class ErplusFinancesServiceImpl implements ErplusFinancesService {
 
 
     private void syncOrderFeeByPlatform(Integer platformId, Collection<CrossOrderResp> orderList) {
-        SellPlatformDO sellPlatform = sellPlatformService.getSellPlatform(platformId);
-        // 暂时只处理亚马逊
-        if (!CrossPlatformEnum.AMAZON.getCode().equals(sellPlatform.getCode())) {
-            return;
-        }
 
-        orderList.forEach(order -> {
-            // 按照实际处理
-            if (CrossOrderStatus.SHIPPED.getStatus().equals(order.getStatus())) {
-                return;
-            } else {
-                // 按照预估处理
-
-            }
-
-        });
     }
 
     public List<FeeModel> getProductEstimatedFee(Integer platformId, Integer shopId, String marketId, List<String> sellerSkuList) {

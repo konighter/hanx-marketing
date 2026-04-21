@@ -91,11 +91,37 @@
            <div class="mt-1 text-[11px] text-gray-400 dark:text-slate-500 font-mono">P-SKU: {{ listing.sellerProductCode }}</div>
         </div>
         
-        <div class="price-section flex items-baseline gap-1 mt-1">
-          <span class="text-xs font-bold text-gray-400 font-mono leading-none">{{ currency }}</span>
-          <span class="text-lg font-bold text-indigo-600 dark:text-indigo-400 font-mono leading-none tracking-tight">
-            {{ formatPriceRange }}
-          </span>
+        <div class="price-section flex flex-col gap-1 mt-1">
+          <!-- Discounted Prices -->
+          <template v-if="discountedPrices.length > 0">
+            <div class="flex items-center gap-1.5">
+              <span class="px-1 py-0.5 rounded text-[9px] bg-rose-50 dark:bg-rose-900/20 text-rose-500 dark:text-rose-400 font-bold border border-rose-100 dark:border-rose-800/30 uppercase leading-none scale-90 origin-left">促销价</span>
+              <div class="flex items-baseline gap-0.5">
+                <span class="text-[10px] font-bold text-gray-400 font-mono leading-none tracking-tight uppercase">{{ currency }}</span>
+                <span class="text-base font-bold text-rose-600 dark:text-rose-400 font-mono leading-none tracking-tight">
+                  {{ formatRange(discountedPrices) }}
+                </span>
+              </div>
+            </div>
+            <div v-if="allPrices.length > 0" class="flex items-center gap-1.5 opacity-60">
+              <span class="px-1 py-0.5 rounded text-[9px] bg-gray-50 dark:bg-slate-800/40 text-gray-400 dark:text-slate-500 font-medium border border-gray-100 dark:border-slate-700/30 uppercase leading-none scale-90 origin-left">原价</span>
+              <div class="flex items-baseline gap-0.5">
+                <span class="text-[10px] text-gray-400 font-mono leading-none line-through">{{ currency }}{{ formatRange(allPrices) }}</span>
+              </div>
+            </div>
+          </template>
+          
+          <!-- Only All Price -->
+          <template v-else-if="allPrices.length > 0">
+            <div class="flex items-baseline gap-0.5">
+              <span class="text-[10px] font-bold text-gray-400 font-mono leading-none tracking-tight uppercase">{{ currency }}</span>
+              <span class="text-base font-bold text-indigo-600 dark:text-indigo-400 font-mono leading-none tracking-tight">
+                {{ formatRange(allPrices) }}
+              </span>
+            </div>
+          </template>
+          
+          <span v-else class="text-gray-400 text-xs font-mono">0.00</span>
         </div>
       </div>
     </div> <!-- End Info Column -->
@@ -104,9 +130,12 @@
     <!-- Variant Box (Table inside card) -->
     <div :class="viewMode === 'list' ? 'flex-[1.2] min-w-0' : 'contents'">
       <ListingVariantBox 
+        v-if="variantsList.length > 0"
         :variants="variantsList" 
         :currency="currency" 
       />
+      <!-- Inventory Display for Single-SKU Products -->
+      <ListingInventory v-else :inventory="listing.inventory" />
     </div>
 
     <!-- Footer: Performance Metrics (Mocked) -->
@@ -128,6 +157,7 @@ import { computed, inject, Ref } from 'vue'
 import { ListingV2VO, ListingDiagnosisVO, ListingPerformanceVO } from '../types'
 import ListingHealthScore from './ListingHealthScore.vue'
 import ListingVariantBox from './ListingVariantBox.vue'
+import ListingInventory from './ListingInventory.vue'
 import ListingPerformance from './ListingPerformance.vue'
 
 const props = defineProps<{
@@ -141,15 +171,18 @@ defineEmits(['select', 'sync', 'detail'])
 const platformMap = inject<Ref<Record<number, any>>>('platformMap')
 
 // --- Data Mapping (Provided by API) ---
-const currency = computed(() => props.listing.price?.[0]?.currency || '$')
+const currency = computed(() => props.listing.prices?.[0]?.currency || '$')
 
-const formatPriceRange = computed(() => {
-  if (!props.listing.price || props.listing.price.length === 0) return '0.00'
-  const prices = props.listing.price.map(p => p.salePrice / 100)
-  const min = Math.min(...prices)
-  const max = Math.max(...prices)
+const formatRange = (prices: any[]) => {
+  if (!prices || prices.length === 0) return ''
+  const values = prices.map(p => p.salePrice / 100)
+  const min = Math.min(...values)
+  const max = Math.max(...values)
   return min === max ? min.toFixed(2) : `${min.toFixed(2)} - ${max.toFixed(2)}`
-})
+}
+
+const allPrices = computed(() => props.listing.prices?.filter(p => p.type?.toLowerCase() === 'all') || [])
+const discountedPrices = computed(() => props.listing.prices?.filter(p => p.type?.toLowerCase() === 'discounted') || [])
 
 // Using data from props.listing (Injected by queryCrossProductListingPage)
 const diagnosis = computed((): ListingDiagnosisVO => props.listing.diagnosis!)

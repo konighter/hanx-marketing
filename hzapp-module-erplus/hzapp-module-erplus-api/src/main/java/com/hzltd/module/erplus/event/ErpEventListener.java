@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.service.event;
+package com.hzltd.module.erplus.event;
 
 import java.lang.annotation.*;
 

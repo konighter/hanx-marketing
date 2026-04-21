@@ -37,6 +37,15 @@ public class AmazonListingParserUtilsTest {
                 "          \"value_with_tax\" : 21.99\n" +
                 "        } ]\n" +
                 "      } ],\n" +
+                "      \"discounted_price\" : [ {\n" +
+                "        \"schedule\" : [ {\n" +
+                "          \"value_with_tax\" : 18.99,\n" +
+                "          \"start_at\" : \"2024-01-01T00:00:00Z\",\n" +
+                "          \"end_at\" : \"2024-12-31T23:59:59Z\"\n" +
+                "        } ]\n" +
+                "      } ],\n" +
+                "      \"currency\" : \"USD\",\n" +
+                "      \"audience\" : \"ALL\",\n" +
                 "      \"marketplace_id\" : \"ATVPDKIKX0DER\"\n" +
                 "    } ],\n" +
                 "    \"bullet_point\" : [ {\n" +
@@ -73,8 +82,17 @@ public class AmazonListingParserUtilsTest {
 
         // Test Pricing
         assertNotNull(product.getPrices());
-        assertFalse(product.getPrices().isEmpty());
+        assertEquals(2, product.getPrices().size());
+        
+        // our_price (ALL)
         assertEquals(new BigDecimal("21.99"), product.getPrices().get(0).getAmount());
+        assertEquals("ALL", product.getPrices().get(0).getType());
+
+        // discounted_price (discounted)
+        assertEquals(new BigDecimal("18.99"), product.getPrices().get(1).getAmount());
+        assertEquals("discounted", product.getPrices().get(1).getType());
+        assertNotNull(product.getPrices().get(1).getStartAt());
+        assertNotNull(product.getPrices().get(1).getEndAt());
         
         // Test Brand
         assertEquals("NewOasis", product.getBrand());

@@ -70,5 +70,10 @@ public class ShopModel {
      */
     private LocalDateTime authExpTime;
 
+    /**
+     * 租户 ID
+     */
+    private Integer tenantId;
+
 
 }

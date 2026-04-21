@@ -414,4 +414,10 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
                 .last("LIMIT 1"));
         return BeanUtils.toBean(shop, ShopModel.class);
     }
+
+    @Override
+    @TenantIgnore
+    public ShopModel getShopBySellerIdAndMarketplaceIdWithoutTenant(String sellerId, String marketplaceId) {
+        return getShopBySellerIdAndMarketplaceId(sellerId, marketplaceId);
+    }
 }

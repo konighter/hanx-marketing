@@ -16,7 +16,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import software.amazon.spapi.ApiException;
+import software.amazon.spapi.api.finances.v0.DefaultApi;
 import software.amazon.spapi.api.productfees.v0.FeesApi;
+import software.amazon.spapi.models.finances.v0.ListFinancialEventsResponse;
 import software.amazon.spapi.models.productfees.v0.*;
 
 import java.math.BigDecimal;
@@ -31,7 +33,6 @@ import java.util.stream.Collectors;
 @Service
 @ServiceRegister(platform = CrossPlatformEnum.AMAZON, serviceClass = FinancesApi.class)
 public class AmazonFinancesService extends AbsAmzPlatformApiService implements FinancesApi {
-
 
     @Override
     @CrossplatformApiLog
@@ -111,6 +112,20 @@ public class AmazonFinancesService extends AbsAmzPlatformApiService implements F
     public ApiResponse<?> getOrderFee(ApiRequest<List<OrderFeeRequest>> request) {
         // The defaultApi variable was unused and has been removed.
         // The commented-out line referring to defaultApi has also been removed.
+
+        DefaultApi financesApi = this.getFinancesDefaultV0Api(request);
+
+        for (OrderFeeRequest feeReq : request.getRequest()) {
+            try {
+                ListFinancialEventsResponse resp = financesApi.listFinancialEventsByOrderId(feeReq.getOrderId(), 100, null);
+                log.info("info-{}", resp.getPayload().getFinancialEvents());
+            } catch (ApiException| LWAException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
+
 
         return null;
     }

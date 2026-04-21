@@ -25,7 +25,7 @@ public class CrossProductPerformanceServiceImpl implements CrossProductPerforman
         performance.setGmv30d(performance.getSales30d() * 1999L);
         
         List<BigDecimal> curve = new ArrayList<>();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 14; i++) {
             curve.add(new BigDecimal(Math.random() * 10).setScale(2, RoundingMode.HALF_UP));
         }
         performance.setRevenueCurve(curve);

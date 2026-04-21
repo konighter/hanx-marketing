@@ -6,6 +6,8 @@ import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.quartz.core.handler.JobHandler;
 import com.hzltd.framework.tenant.core.job.TenantJob;
 import com.hzltd.module.amz.spapi.api.AmazonCategoryService;
+import com.hzltd.module.erplus.api.service.CategoryApiFactory;
+import com.hzltd.module.erplus.api.service.CategoryAttributeApiFactory;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossMetaCategoryAttributeDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossMetaCategoryDO;
 import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
@@ -47,6 +49,12 @@ public class AmazonSchemaSyncTask implements JobHandler {
 
     @Resource
     private AmazonCategoryService amazonCategoryService;
+
+    @Resource
+    private CategoryAttributeApiFactory categoryAttributeApiFactory;
+
+    @Resource
+    private CategoryApiFactory categoryApiFactory;
 
     @Resource
     private ShopMapper shopMapper;
@@ -113,7 +121,9 @@ public class AmazonSchemaSyncTask implements JobHandler {
         catReq.setShopId(shop.getId().longValue());
         request.setRequest(catReq);
 
-        ApiResponse<List<CategoryModel>> response = amazonCategoryService.getCategories(request);
+
+
+        ApiResponse<List<CategoryModel>> response = categoryApiFactory.getCrossApiService(CrossPlatformEnum.valueOf(shop.getPlatform())).getCategories(request);
         if (response != null && response.getData() != null) {
             for (CategoryModel catModel : response.getData()) {
                 saveCategory(catModel);
@@ -150,7 +160,7 @@ public class AmazonSchemaSyncTask implements JobHandler {
         attrReq.setCategoryId(category.getCategoryCode());
         request.setRequest(attrReq);
 
-        ApiResponse<MetaCategorySchemaResult> response = amazonCategoryService.getCategoryAttributes(request);
+        ApiResponse<MetaCategorySchemaResult> response = categoryApiFactory.getCrossApiService(CrossPlatformEnum.valueOf(shop.getPlatform())).getCategoryAttributes(request);
         if (response != null && response.getData() != null) {
             MetaCategorySchemaResult result = response.getData();
 
@@ -163,7 +173,7 @@ public class AmazonSchemaSyncTask implements JobHandler {
             // 2. Save individual attribute fragments
             if (result.getAttributes() != null) {
                 for (CategoryAttributeModel attrModel : result.getAttributes()) {
-                    saveAttribute(category.getCategoryCode(), attrModel);
+                    saveAttribute(category.getCategoryCode(), attrModel, shop.getPlatform());
                 }
             }
 
@@ -180,16 +190,16 @@ public class AmazonSchemaSyncTask implements JobHandler {
         }
     }
 
-    private void saveAttribute(String categoryCode, CategoryAttributeModel attrModel) {
+    private void saveAttribute(String categoryCode, CategoryAttributeModel attrModel, Integer platformId) {
         CrossMetaCategoryAttributeDO attributeDO = attributeMapper.selectOne(new LambdaQueryWrapper<CrossMetaCategoryAttributeDO>()
-                .eq(CrossMetaCategoryAttributeDO::getPlatformId, CrossPlatformEnum.AMAZON.getValue())
+                .eq(CrossMetaCategoryAttributeDO::getPlatformId, platformId)
                 .eq(CrossMetaCategoryAttributeDO::getCategoryCode, categoryCode)
                 .eq(CrossMetaCategoryAttributeDO::getAttrCode, attrModel.getAttrCode()));
 
         boolean isNew = (attributeDO == null);
         if (isNew) {
             attributeDO = new CrossMetaCategoryAttributeDO();
-            attributeDO.setPlatformId(CrossPlatformEnum.AMAZON.getValue());
+            attributeDO.setPlatformId(platformId);
             attributeDO.setCategoryCode(categoryCode);
             attributeDO.setAttrCode(attrModel.getAttrCode());
         }

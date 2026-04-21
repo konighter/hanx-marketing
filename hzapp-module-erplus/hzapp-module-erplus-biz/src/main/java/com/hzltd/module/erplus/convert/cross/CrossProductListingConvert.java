@@ -29,6 +29,7 @@ public interface CrossProductListingConvert {
         respVO.setTitle(crossProductDO.getTitle());
         respVO.setMainImage(new Image().setUrl(crossProductDO.getMainImageUrl()));
         respVO.setPlatformId(crossProductDO.getPlatformId());
+        respVO.setShopId(crossProductDO.getShopId());
         respVO.setCategoryCode(crossProductDO.getCategoryId());
         respVO.setBrand(crossProductDO.getBrand());
         respVO.setFulfillType(crossProductDO.getFulfillType());

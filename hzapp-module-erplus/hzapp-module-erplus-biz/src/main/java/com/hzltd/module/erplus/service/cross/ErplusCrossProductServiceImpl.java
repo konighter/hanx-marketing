@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.service.cross;
 
 import cn.hutool.core.date.DateUtil;
+import cn.hutool.core.util.StrUtil;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Multimap;
@@ -312,11 +313,15 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
         SearchProductRequest searchProductRequest = new SearchProductRequest().setIfAllContent(true);
         if (StringUtils.isNotEmpty(request.getSellerSkuCode())) {
             searchProductRequest.setSellerSkus(Collections.singletonList(request.getSellerSkuCode()));
+            return searchProductRequest;
         }
         if (CollectionUtils.isNotEmpty(request.getProductIds())) {
             searchProductRequest.setProductCodes(request.getProductIds());
         } else if (StringUtils.isNotEmpty(request.getPlatformProductCode())) {
             searchProductRequest.setProductCodes(Collections.singletonList(request.getPlatformProductCode()));
+        }
+        if (CollectionUtils.isNotEmpty(searchProductRequest.getProductCodes())) {
+            return searchProductRequest;
         }
         // 处理时间
         if ("incremental".equals(request.getSyncType())) {
@@ -353,19 +358,20 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
 
         Long crossProductId = crossProductDO.getId();
 
-        // todo -- 处理ralationShip和Issue, 价格库存, 其他不处理
         // 处理价格
-
         if (CollectionUtils.isNotEmpty(productModel.getPrices())) {
             productModel.getPrices().forEach(priceModel -> {
                 CrossProductPriceDO priceDO = crossProductPriceMapper.selectOne(new LambdaQueryWrapperX<CrossProductPriceDO>()
-                        .eqIfPresent(CrossProductPriceDO::getMarketId, productModel.getMarketId())
-                        .eqIfPresent(CrossProductPriceDO::getShopId, shopId)
-                        .eqIfPresent(CrossProductPriceDO::getProductId, crossProductId));
+                        .eq(CrossProductPriceDO::getMarketId, productModel.getMarketId())
+                        .eq(CrossProductPriceDO::getShopId, shopId)
+                        .eq(CrossProductPriceDO::getProductId, crossProductId)
+                        .eq(CrossProductPriceDO::getType, priceModel.getType()));
+
                 if (priceDO == null) {
                     priceDO = CrossProductListingConvert.INSTANCE.convert(priceModel);
                     priceDO.setMarketId(productModel.getMarketId());
                     priceDO.setShopId(shopId);
+                    priceDO.setType(priceModel.getType());
                     priceDO.setProductId(crossProductId);
                     crossProductPriceMapper.insert(priceDO);
                 } else {
@@ -441,6 +447,11 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
                 .likeIfPresent(CrossProductDO::getSellerSkuCode, request.getSellerSkuCode())
                 .likeIfPresent(CrossProductDO::getPlatformProductCode, request.getPlatformProductCode())
                 .eqIfPresent(CrossProductDO::getFulfillType, request.getFulfillType())
+                .and(StrUtil.isNotBlank(request.getKeyword()), w -> w
+                        .like(CrossProductDO::getTitle, request.getKeyword())
+                        .or().like(CrossProductDO::getSellerSkuCode, request.getKeyword())
+                        .or().like(CrossProductDO::getPlatformProductCode, request.getKeyword())
+                )
         );
 
         // 如果结果为空，直接拦截返回，避免后续无意义的查询 (中等问题修复)
@@ -498,7 +509,7 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
                     }
 
                     // 合并价格信息
-                    respVo.setPrice(priceDOMultimap.get(productId));
+                    respVo.setPrices(priceDOMultimap.get(productId));
 
                     // 合计刊登信息
                     ProductListingDO listing = listingMap.get(productId);

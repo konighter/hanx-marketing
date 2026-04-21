@@ -57,6 +57,11 @@ public class CrossProductPageRequest extends PageParam{
     private String platformProductCode;
 
     /**
+     * 关键字搜索 (标题 / SKU / 平台 ID)
+     */
+    private String keyword;
+
+    /**
      * 跨境商品状态
      */
     private List<Integer> status;

@@ -152,22 +152,15 @@ public class AmazonListingParserUtils {
 
         // Special handling for Price (purchasable_offer)
         JsonNode offerNode = findAttribute(attributes, "purchasable_offer", marketId);
-        if (offerNode != null && offerNode.has("our_price")) {
-            JsonNode ourPrices = offerNode.get("our_price");
-            if (ourPrices.isArray() && !ourPrices.isEmpty()) {
-                JsonNode schedule = ourPrices.get(0).get("schedule");
-                if (schedule != null && schedule.isArray() && !schedule.isEmpty()) {
-                    JsonNode priceVal = schedule.get(0).get("value_with_tax");
-                    if (priceVal == null) {
-                        priceVal = schedule.get(0).get("value");
-                    }
-                    if (priceVal != null) {
-                        PriceModel price = new PriceModel();
-                        price.setAmount(new BigDecimal(priceVal.asText()));
-                        product.addPrice(price);
-                    }
-                }
-            }
+        if (offerNode != null) {
+            String currency = offerNode.has("currency") ? offerNode.get("currency").asText() : null;
+            String audience = offerNode.has("audience") ? offerNode.get("audience").asText() : "ALL";
+
+            // Handle our_price
+            parsePriceNode(product, offerNode.get("our_price"), audience, currency);
+
+            // Handle discounted_price
+            parsePriceNode(product, offerNode.get("discounted_price"), "discounted", currency);
         }
     }
 
@@ -225,6 +218,44 @@ public class AmazonListingParserUtils {
                 offer.setType(offerNode.has("offerType") ? offerNode.get("offerType").asText() : null);
                 product.addOffer(offer);
             }
+        }
+    }
+
+    private static void parsePriceNode(ProductModel product, JsonNode priceArrayNode, String type, String currency) {
+        if (priceArrayNode == null || !priceArrayNode.isArray()) return;
+        priceArrayNode.forEach(p -> {
+            JsonNode schedule = p.get("schedule");
+            if (schedule != null && schedule.isArray()) {
+                schedule.forEach(item -> {
+                    JsonNode priceVal = item.get("value_with_tax");
+                    if (priceVal == null) {
+                        priceVal = item.get("value");
+                    }
+                    if (priceVal != null) {
+                        PriceModel price = new PriceModel();
+                        price.setAmount(new BigDecimal(priceVal.asText()));
+                        price.setType(type);
+                        price.setCurrency(currency);
+                        if (item.has("start_at")) {
+                            price.setStartAt(parseAmzDate(item.get("start_at")));
+                        }
+                        if (item.has("end_at")) {
+                            price.setEndAt(parseAmzDate(item.get("end_at")));
+                        }
+                        product.addPrice(price);
+                    }
+                });
+            }
+        });
+    }
+
+    private static Long parseAmzDate(JsonNode dateNode) {
+        if (dateNode == null || dateNode.isNull()) return null;
+        try {
+            return Instant.parse(dateNode.asText()).toEpochMilli();
+        } catch (Exception e) {
+            log.warn("Failed to parse Amazon date: {}", dateNode, e);
+            return null;
         }
     }
 

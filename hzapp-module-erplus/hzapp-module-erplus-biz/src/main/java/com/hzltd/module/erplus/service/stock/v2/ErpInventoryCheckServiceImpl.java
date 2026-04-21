@@ -10,7 +10,7 @@ import com.hzltd.module.erplus.dal.dataobject.stock.v2.ErpInventoryCheckItemDO;
 import com.hzltd.module.erplus.dal.mysql.stock.v2.ErpInventoryCheckItemMapper;
 import com.hzltd.module.erplus.dal.mysql.stock.v2.ErpInventoryCheckMapper;
 import com.hzltd.module.erplus.dal.redis.no.ErpNoRedisDAO;
-import com.hzltd.module.erplus.service.event.ErpEventBus;
+import com.hzltd.module.erplus.event.ErpEventBus;
 import com.hzltd.module.erplus.service.stock.v2.event.ErpStockUpdateEvent;
 import jakarta.annotation.Resource;
 import org.springframework.stereotype.Service;

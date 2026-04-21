@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
+import com.hzltd.module.erplus.api.service.FinancesApiFactory;
 import com.hzltd.module.erplus.api.service.OrderApiFactory;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderItemResp;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderPageRequest;
@@ -23,6 +24,7 @@ import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import com.hzltd.module.erplus.spapi.model.common.FeeModel;
 import com.hzltd.module.erplus.spapi.model.order.GetOrdersRequest;
+import com.hzltd.module.erplus.spapi.model.order.OrderFeeRequest;
 import com.hzltd.module.erplus.spapi.model.order.OrderItemModel;
 import com.hzltd.module.erplus.spapi.model.order.OrderModel;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
@@ -55,6 +57,9 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
 
     @Resource
     private OrderApiFactory orderApiFactory;
+
+    @Resource
+    private FinancesApiFactory financesApiFactory;
 
     @Resource
     private SellPlatformService sellPlatformService;
@@ -166,7 +171,7 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
             crossOrderItemDO = CrossOrderConvert.INSTANCE.update(orderItemModel, crossOrderItemDO);
         }
 
-//        dealOrderItemFee(crossOrderItemDO);
+        dealOrderItemFee(crossOrderItemDO);
         crossOrderItemMapper.insertOrUpdate(crossOrderItemDO);
 
     }

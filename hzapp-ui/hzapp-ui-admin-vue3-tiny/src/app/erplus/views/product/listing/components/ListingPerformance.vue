@@ -1,6 +1,6 @@
 <template>
-  <div class="performance-box flex justify-center py-2 h-full" :class="[
-    layout === 'vertical' ? 'flex-col border-transparent' : 'flex-row items-center justify-between gap-4 border-t border-gray-200/50 dark:border-slate-800'
+  <div class="performance-box flex py-2 h-full" :class="[
+    layout === 'vertical' ? 'flex-col items-start border-transparent max-w-fit' : 'flex-row items-center justify-between gap-4 border-t border-gray-200/50 dark:border-slate-800'
   ]">
     <div class="flex flex-wrap" :class="layout === 'vertical' ? 'gap-6 mb-2 w-full' : 'gap-6'">
       <div class="flex flex-col gap-0.5 min-w-16">
@@ -26,7 +26,7 @@
     </div>
 
     <!-- Sparkline Trend -->
-    <div class="sparkline w-24 h-8 flex-shrink-0 opacity-50 dark:opacity-80" :class="layout === 'vertical' ? 'w-full h-10 mt-2' : ''">
+    <div class="sparkline flex-shrink-0 opacity-50 dark:opacity-80" :class="layout === 'vertical' ? 'w-full h-10 mt-2 pr-4' : 'w-24 h-8'">
       <svg class="w-full h-full overflow-visible" viewBox="0 0 100 30" preserveAspectRatio="none">
         <path
           :d="sparklinePath"

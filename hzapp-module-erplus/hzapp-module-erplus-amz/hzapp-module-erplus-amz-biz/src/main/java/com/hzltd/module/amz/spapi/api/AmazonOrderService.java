@@ -63,18 +63,18 @@ public class AmazonOrderService extends AbsAmzPlatformApiService implements Orde
             // 使用店铺时区解析时间，前端传入的 LocalDateTime 应视为店铺当地时间
             String timezone = StringUtils.isNotEmpty(request.getTimeZone()) ? request.getTimeZone() : "UTC";
             ZoneId shopZone = ZoneId.of(timezone);
-            OffsetDateTime start = ordersRequest.getCreateTimeStart().atZone(shopZone).toOffsetDateTime().withNano(0);
-            OffsetDateTime end = ordersRequest.getCreateTimeEnd().atZone(shopZone).toOffsetDateTime().withNano(0);
+            OffsetDateTime start = ordersRequest.getCreateTimeStart() == null ? null :ordersRequest.getCreateTimeStart().atZone(shopZone).toOffsetDateTime().withNano(0);
+            OffsetDateTime maxCreateBefore = OffsetDateTime.now(shopZone).minusMinutes(5).withNano(0);
+            OffsetDateTime end =  ordersRequest.getCreateTimeEnd() == null ? maxCreateBefore : ordersRequest.getCreateTimeEnd().atZone(shopZone).toOffsetDateTime().withNano(0);
 
             // 结束时间限制为当前时间减5分钟（使用店铺时区计算"当前时间"）
-            OffsetDateTime maxCreateBefore = OffsetDateTime.now(shopZone).minusMinutes(5).withNano(0);
             if (end.isAfter(maxCreateBefore)) {
                 end = maxCreateBefore;
             }
 
             // 调用亚马逊API获取订单详情
             GetOrdersResponse response = ordersApi.getOrders(systemShopService.getShopMarketplace(request.getShopId()),
-                    start.toString(), end.toString(), null, null, orderStatuses, fulfillTypes,
+                    start == null ? null : start.toString(), end.toString(), null, null, orderStatuses, fulfillTypes,
                     null, null, null, null, null, null, ordersRequest.getNextToken(),
                     ordersRequest.getOrderIds(), null, null, null, null, null, null, null, null);
 

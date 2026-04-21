@@ -53,6 +53,11 @@ public class CrossProductPriceDO extends BaseDO {
     private String currency;
 
     /**
+     * 价格类型
+     */
+    private String type;
+
+    /**
      * 价格生效开始时间
      */
     private Long startAt;

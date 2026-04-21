@@ -3,7 +3,7 @@ import { ref, reactive, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { ElMessage } from 'element-plus';
 import { handleTree } from '@/utils/tree';
-import { unflatten } from '@/utils/unflatten';
+import { unflatten } from '@/app/erplus/utils/unflatten';
 import * as CategoryApi from '@/app/erplus/api/product/category';
 import * as ListingApi from '@/app/erplus/api/product/listing';
 import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue';

@@ -64,7 +64,7 @@
       <div v-if="selectedIds.length > 0" class="batch-bar mb-4">
         <el-alert type="success" :closable="false" shadow="never" class="!bg-indigo-50/50 !border-indigo-200 dark:!bg-slate-800/50 dark:!border-slate-700">
           <template #title>
-            <div class="flex justify-between items-center w-full py-1">
+            <div class="flex justify-start items-center w-full py-1 gap-8">
               <div class="flex items-center gap-3">
                 <el-checkbox 
                   :model-value="isAllSelected" 
@@ -75,7 +75,7 @@
                   已选中 <b class="text-indigo-600 dark:text-indigo-400">{{ selectedIds.length }}</b> 个商品
                 </span>
               </div>
-              <div class="flex gap-2">
+              <div class="flex gap-1">
                 <el-button type="primary" size="small" @click="handleBatchSync" class="!rounded-md">批量同步</el-button>
                 <el-button size="small" @click="handleBatchPrice" class="!rounded-md">批量调价</el-button>
                 <el-button size="small" @click="clearSelection" class="!rounded-md">取消选择</el-button>
@@ -191,7 +191,7 @@ const message = useMessage()
 const loading = ref(false)
 const list = ref<ListingV2VO[]>([])
 const total = ref(0)
-const viewMode = ref<'grid' | 'list'>('grid')
+const viewMode = ref<'grid' | 'list'>('list')
 const selectedItems = ref<any[]>([])
 const selectedIds = computed(() => selectedItems.value.map((o) => o.id))
 const selectedShopPath = ref<any[]>([])
@@ -345,7 +345,12 @@ const clearSelection = () => {
 const handleSingleSync = async (listing: ListingV2VO) => {
   try {
     await message.confirm(`确定要同步商品 "${listing.title}" 吗？`)
-    await CrossListingApi.syncProductListing({ id: listing.id })
+    await CrossListingApi.syncPlatformListing({ 
+      platformId: listing.platformId,
+      shopId: listing.shopId,
+      syncType: 'all',
+      productIds: [listing.platformProductCode]
+    })
     message.success('同步请求已发送')
   } catch {}
 }

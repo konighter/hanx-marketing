@@ -1,5 +1,8 @@
 package com.hzltd.module.erplus.service.event;
 
+import com.hzltd.module.erplus.event.ErpEventBus;
+import com.hzltd.module.erplus.event.ErpEventListener;
+
 import jakarta.annotation.Resource;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;

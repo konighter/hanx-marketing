@@ -3,7 +3,7 @@ package com.hzltd.module.erplus.service.stock.v2.event;
 import com.google.common.eventbus.Subscribe;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.controller.admin.stock.vo.v2.ErpInventoryBillSaveReqVO;
-import com.hzltd.module.erplus.service.event.ErpEventListener;
+import com.hzltd.module.erplus.event.ErpEventListener;
 import com.hzltd.module.erplus.service.stock.v2.ErpInventoryBillService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;

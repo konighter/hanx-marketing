@@ -28,6 +28,8 @@ public class CrossProductListingResp {
     private String regionName;
 
     private Integer platformId;
+    
+    private Integer shopId;
 
     private String platformName;
 
@@ -61,7 +63,7 @@ public class CrossProductListingResp {
 
      private CrossProductInventoryDO inventory;
 
-     private Collection<CrossProductPriceDO> price;
+     private Collection<CrossProductPriceDO> prices;
 
     /**
      * 刊登状态: 0-待发布, 1-发布中, 2-发布成功, 3-发布失败

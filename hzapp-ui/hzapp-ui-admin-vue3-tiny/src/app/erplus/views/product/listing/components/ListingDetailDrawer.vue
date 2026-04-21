@@ -31,10 +31,33 @@
               <span class="ml-2 font-mono font-bold text-gray-700 dark:text-slate-300">{{ listing.sellerProductCode }}</span>
             </div>
             <div>
-              <span class="text-gray-500">最高零售价:</span>
-              <span class="ml-2 font-mono text-indigo-600 font-bold max-w-[200px] truncate">
-                {{ formatPriceRange }}
-              </span>
+              <span class="text-gray-500">售价:</span>
+              <div class="inline-flex flex-col gap-1 ml-2 align-top">
+                <!-- Discounted Prices -->
+                <template v-if="discountedPrices.length > 0">
+                  <div class="flex items-center gap-2">
+                    <span class="px-1 py-0.5 rounded text-[10px] bg-rose-50 dark:bg-rose-900/20 text-rose-500 dark:text-rose-400 font-bold border border-rose-100 dark:border-rose-800/30 font-sans">促销价</span>
+                    <span class="font-mono font-bold text-rose-600 dark:text-rose-400 text-lg">
+                      {{ formatRange(discountedPrices) }}
+                    </span>
+                  </div>
+                  <div v-if="allPrices.length > 0" class="flex items-center gap-2 opacity-60">
+                    <span class="px-1 py-0.5 rounded text-[10px] bg-gray-50 dark:bg-slate-800/40 text-gray-400 dark:text-slate-500 font-medium border border-gray-100 dark:border-slate-700/30 font-sans">原价</span>
+                    <span class="text-sm text-gray-400 font-mono line-through">
+                      {{ formatRange(allPrices) }}
+                    </span>
+                  </div>
+                </template>
+                
+                <!-- Only All Price -->
+                <template v-else-if="allPrices.length > 0">
+                  <span class="font-mono font-bold text-indigo-600 dark:text-indigo-400 text-lg leading-none">
+                    {{ formatRange(allPrices) }}
+                  </span>
+                </template>
+                
+                <span v-else class="text-gray-400 text-sm font-mono">0.00</span>
+              </div>
             </div>
             <div>
               <span class="text-gray-500">状态:</span>
@@ -175,15 +198,18 @@ const feedback = ref<any>(null)
 const feedbackLoading = ref(false)
 const showRaw = ref(false)
 
-const currency = computed(() => listing.value?.price?.[0]?.currency || '$')
+const currency = computed(() => listing.value?.prices?.[0]?.currency || '$')
 
-const formatPriceRange = computed(() => {
-  if (!listing.value?.price || listing.value.price.length === 0) return '0.00'
-  const prices = listing.value.price.map(p => p.salePrice / 100)
-  const min = Math.min(...prices)
-  const max = Math.max(...prices)
+const formatRange = (prices: any[]) => {
+  if (!prices || prices.length === 0) return ''
+  const values = prices.map(p => p.salePrice / 100)
+  const min = Math.min(...values)
+  const max = Math.max(...values)
   return min === max ? `${currency.value}${min.toFixed(2)}` : `${currency.value}${min.toFixed(2)} - ${max.toFixed(2)}`
-})
+}
+
+const allPrices = computed(() => listing.value?.prices?.filter(p => p.type?.toLowerCase() === 'all') || [])
+const discountedPrices = computed(() => listing.value?.prices?.filter(p => p.type?.toLowerCase() === 'discounted') || [])
 
 const formatPrice = (p: number) => {
   return `${currency.value}${(p / 100).toLocaleString(undefined, { minimumFractionDigits: 2 })}`

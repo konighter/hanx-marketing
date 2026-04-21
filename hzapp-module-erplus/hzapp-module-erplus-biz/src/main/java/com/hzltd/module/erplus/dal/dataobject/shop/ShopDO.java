@@ -94,4 +94,9 @@ public class ShopDO extends BaseDO {
      */
     private Integer status;
 
+    /**
+     * 租户ID
+     */
+    private Integer tenantId;
+
 }

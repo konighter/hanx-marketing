@@ -104,7 +104,7 @@ import request from '@/config/axios';
 import AmazonAttributeItem from './AmazonAttributeItem.vue';
 import AmazonPurchasableOffer from './AmazonPurchasableOffer.vue';
 import { getUiConfigForField } from './AmazonUiSchema';
-import { unflatten } from '@/utils/unflatten';
+import { unflatten } from '@/app/erplus/utils/unflatten';
 import { evaluateLinkageExpression } from './amzLinkage';
 import { 
   AmazonFixedGroups, 

@@ -17,13 +17,14 @@ export interface ListingPerformanceVO {
 export interface ListingV2VO {
   id: number
   platformId: number
+  shopId: number
   platformProductCode: string
   sellerProductCode: string
   title: string
   status: string
   statusName: string
   mainImage?: { url: string }
-  price?: { salePrice: number; currency: string }[]
+  prices?: { salePrice: number; currency: string; type: string }[]
   // 扩展字段
   diagnosis?: ListingDiagnosisVO
   performance?: ListingPerformanceVO
@@ -32,6 +33,12 @@ export interface ListingV2VO {
   syncStatus?: number
   syncStatusName?: string
   latestTaskId?: number
+  inventory?: {
+    fulfillableQuantity: number
+    reservedQuantity: number
+    inboundShippedQuantity: number
+    unfulfillableQuantity: number
+  }
 }
 
 export interface CrossProductSyncRequest {

@@ -5,8 +5,12 @@ import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.tenant.core.util.TenantUtils;
+import com.hzltd.module.erplus.event.ErpEventBus;
+import com.hzltd.module.erplus.spapi.event.OrderChangeEvent;
 import com.hzltd.module.erplus.system.model.NotifyMessage;
+import com.hzltd.module.erplus.system.model.ShopModel;
 import com.hzltd.module.erplus.system.service.ChannelNotifySendService;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import io.awspring.cloud.sqs.annotation.SqsListener;
 import jakarta.annotation.Resource;
 import lombok.Data;
@@ -27,6 +31,12 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
 
     @Resource
     private ChannelNotifySendService channelNotifySendService;
+
+    @Resource
+    private SystemShopService systemShopService;
+
+    @Resource
+    private ErpEventBus erpEventBus;
 
     @SqsListener("${hzapp.aws.sqs.spapi-queue}")
     public void onMessage(String message) {
@@ -97,7 +107,7 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
         }
 
         // 详细信息
-        String marketplaceId = "";
+        String marketplaceId;
         String orderStatus = "";
         String fulfillmentType = "";
         String orderType = "";
@@ -106,10 +116,29 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
             orderStatus = orderChange.getSummary().getOrderStatus();
             fulfillmentType = orderChange.getSummary().getFulfillmentType();
             orderType = orderChange.getSummary().getOrderType();
+        } else {
+            marketplaceId = "";
         }
 
         log.info("[handleOrderChange] orderId={}, sellerId={}, market={}, status={}, changeType={}, reason={}, skus={}",
                 amazonOrderId, sellerId, marketplaceId, orderStatus, orderChangeType, changeReason, skuList);
+
+        // 1. 获取店铺信息以确定租户
+        ShopModel shop = systemShopService.getShopBySellerIdAndMarketplaceIdWithoutTenant(sellerId, marketplaceId);
+        if (shop != null && shop.getTenantId() != null) {
+            OrderChangeEvent event = OrderChangeEvent.builder()
+                    .platformOrderId(amazonOrderId)
+                    .sellerId(sellerId)
+                    .marketplaceId(marketplaceId)
+                    .shopId(shop.getId())
+                    .platformId(shop.getPlatform())
+                    .tenantId(shop.getTenantId())
+                    .build();
+            erpEventBus.post(event);
+            log.info("[handleOrderChange] 已发布订单变更事件, amazonOrderId={}, tenantId={}", amazonOrderId, shop.getTenantId());
+        } else {
+            log.warn("[handleOrderChange] 未找到对应店铺或租户ID, 无法发布同步事件: sellerId={}, marketplaceId={}", sellerId, marketplaceId);
+        }
 
         // 发送渠道通知
         sendChannelNotify(vo, orderChange, changeReason, skuList);

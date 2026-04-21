@@ -35,4 +35,12 @@ public interface SystemShopService {
      */
     ShopModel getShopBySellerIdAndMarketplaceId(String sellerId, String marketplaceId);
 
+    /**
+     * 根据卖家ID和国家代码查找店铺, 非租户环境下
+     * @param sellerId 卖家ID
+     * @param marketplaceId 站点ID
+     * @return 店铺信息
+     */
+    ShopModel getShopBySellerIdAndMarketplaceIdWithoutTenant(String sellerId, String marketplaceId);
+
 }
