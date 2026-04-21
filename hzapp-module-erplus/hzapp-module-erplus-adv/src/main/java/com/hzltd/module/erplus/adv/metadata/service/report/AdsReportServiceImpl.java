@@ -6,6 +6,7 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportSummaryDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportDailyMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportHourlyMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportSummaryMapper;
+import com.hzltd.module.erplus.adv.dal.mysql.AdsReportQueryMapper;
 import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.report.*;
 import jakarta.annotation.Resource;
@@ -38,6 +39,9 @@ public class AdsReportServiceImpl implements AdsReportService {
 
     @Resource
     private AdsReportSummaryMapper adsReportSummaryMapper;
+
+    @Resource
+    private AdsReportQueryMapper adsReportQueryMapper;
 
     // ==================== 小时数据写入与聚合 ====================
 
@@ -227,6 +231,85 @@ public class AdsReportServiceImpl implements AdsReportService {
         result.add(campaign);
         
         return result;
+    }
+
+    @Override
+    public AdsReportDataRespVO queryAdsReport(AdsReportQueryReqVO reqVO) {
+        if (reqVO.getShopId() == null) {
+            throw new IllegalArgumentException("shopId must not be null");
+        }
+        
+        LocalDate today = LocalDate.now();
+        List<Map<String, Object>> dbResult = adsReportQueryMapper.queryAggregatedData(reqVO, today);
+        
+        AdsReportDataRespVO resp = new AdsReportDataRespVO();
+        List<AdsReportRowVO> rows = new ArrayList<>();
+        Map<String, Object> summaryMetrics = new HashMap<>();
+
+        for (Map<String, Object> rowMap : dbResult) {
+            AdsReportRowVO rowVO = new AdsReportRowVO();
+            List<DimensionValueVO> dims = new ArrayList<>();
+            List<MetricValueVO> metrics = new ArrayList<>();
+            
+            // Map metrics & compute derived ones
+            Map<String, Object> rowMetricsWithComputed = addComputedMetrics(rowMap);
+
+            if (reqVO.getDimensions() != null) {
+                for (String dim : reqVO.getDimensions()) {
+                    Object val = rowMap.get(dim);
+                    dims.add(DimensionValueVO.builder()
+                            .key(dim)
+                            .value(val != null ? val.toString() : null)
+                            .label(null) // [Instruction from User: Set label=null for now]
+                            .build());
+                }
+            }
+
+            // Define known computed metrics
+            List<String> computedKeys = Arrays.asList("roas", "cpc", "acos", "ctr");
+            
+            // Collect metrics
+            for (String metricKey : rowMetricsWithComputed.keySet()) {
+                boolean isReqMetric = reqVO.getMetrics() != null && reqVO.getMetrics().contains(metricKey);
+                boolean isComputedMetric = computedKeys.contains(metricKey);
+                
+                if (isReqMetric || isComputedMetric) {
+                    metrics.add(MetricValueVO.builder()
+                         .key(metricKey)
+                         .value(rowMetricsWithComputed.get(metricKey))
+                         .build());
+                }
+            }
+            
+            rowVO.setDimensions(dims);
+            rowVO.setMetrics(metrics);
+            rows.add(rowVO);
+
+            // Accumulate summary
+            if (reqVO.getMetrics() != null) {
+                for (String metric : reqVO.getMetrics()) {
+                    mergeMetrics(summaryMetrics, Collections.singletonMap(metric, rowMap.get(metric)));
+                }
+            }
+        }
+
+        resp.setRows(rows);
+        resp.setTotal((long) rows.size());
+
+        // Computed metrics for summary
+        Map<String, Object> summaryWithComputed = addComputedMetrics(summaryMetrics);
+        AdsReportRowVO summaryRow = new AdsReportRowVO();
+        List<MetricValueVO> sumMetrics = new ArrayList<>();
+        for (String metricKey : summaryWithComputed.keySet()) {
+            sumMetrics.add(MetricValueVO.builder()
+                    .key(metricKey)
+                    .value(summaryWithComputed.get(metricKey))
+                    .build());
+        }
+        summaryRow.setMetrics(sumMetrics);
+        resp.setSummary(summaryRow);
+
+        return resp;
     }
 
     // ==================== 指标构建 ====================

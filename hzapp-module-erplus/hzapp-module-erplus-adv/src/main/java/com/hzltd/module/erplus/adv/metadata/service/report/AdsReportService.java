@@ -4,7 +4,8 @@ import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportHourlyDO;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsPerformanceReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsPerformanceRespVO;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsReportTrendRespVO;
-
+import com.hzltd.module.erplus.adv.metadata.vo.report.AdsReportQueryReqVO;
+import com.hzltd.module.erplus.adv.metadata.vo.report.AdsReportDataRespVO;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -38,4 +39,9 @@ public interface AdsReportService {
      * 获得多层级下钻性能数据
      */
     List<AdsPerformanceRespVO> getPerformanceDrilldown(AdsPerformanceReqVO reqVO);
+
+    /**
+     * 【新架构】多维聚合结构化报表查询
+     */
+    AdsReportDataRespVO queryAdsReport(AdsReportQueryReqVO reqVO);
 }
