@@ -198,6 +198,7 @@
 import { formatPast } from '@/utils/formatTime'
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
 import { AdsCampaignApi } from '@/app/erplus/api/adv/ads'
+import { AdsReportApi } from '@/app/erplus/api/adv/report'
 import { AdsCampaign } from '../types/ads'
 import AdCampaignDetailDrawer from './AdCampaignDetailDrawer.vue'
 
@@ -207,6 +208,7 @@ const props = defineProps<{
   accountId?: number
   shopId?: number
   metricColumns: any[]
+  dateRange?: [string, string]
 }>()
 
 const emit = defineEmits<{
@@ -295,6 +297,49 @@ const getList = async () => {
       accountId: props.accountId,
       shopId: props.shopId
     })
+    
+    // Step 2: Fetch AD dynamic metrics if campaigns exist and dateRange is provided
+    if (data.list && data.list.length > 0 && props.shopId && props.dateRange?.length === 2 && props.metricColumns) {
+      try {
+        const campaignIds = data.list.map((c: any) => c.id)
+        const metricKeys = props.metricColumns.map((m: any) => m.prop)
+        
+        const reportData = await AdsReportApi.queryAdsReport({
+          shopId: props.shopId,
+          startDate: props.dateRange[0],
+          endDate: props.dateRange[1],
+          dimensions: ['campaign_id'],
+          metrics: metricKeys,
+          campaignIds: campaignIds
+        })
+        
+        // Merge metrics into the campaign list
+        if (reportData && reportData.rows) {
+          const metricsMap = new Map<string, any>()
+          reportData.rows.forEach(row => {
+            const cidDim = row.dimensions.find(d => d.key === 'campaign_id')
+            if (cidDim && cidDim.value) {
+              const metricObj: Record<string, any> = {}
+              row.metrics.forEach(m => {
+                metricObj[m.key] = m.value
+              })
+              metricsMap.set(String(cidDim.value), metricObj)
+            }
+          })
+          
+          data.list = data.list.map((campaign: any) => {
+            const metrics = metricsMap.get(String(campaign.id)) || {}
+            return {
+              ...campaign,
+              ...metrics
+            }
+          })
+        }
+      } catch (err) {
+        console.error('Failed to fetch dynamic metrics for campaigns:', err)
+      }
+    }
+    
     list.value = data.list
     total.value = data.total
   } finally {
@@ -348,6 +393,11 @@ watch(() => props.shopId, (val) => {
   queryParams.pageNo = 1
   getList()
 })
+
+watch(() => props.dateRange, () => {
+  queryParams.pageNo = 1
+  getList()
+}, { deep: true })
 
 onMounted(() => {
   getList()

@@ -13,7 +13,6 @@
           value-format="YYYY-MM-DD"
           :clearable="false"
           class="!w-260px"
-          @change="loadData"
         />
         <el-radio-group v-model="timeUnit" size="default" @change="loadData">
           <el-radio-button label="day">按天</el-radio-button>
@@ -110,17 +109,9 @@ const loading = ref(false)
 const activeCollapse = ref<string[]>([]) // 默认不展开
 const timeUnit = ref<'day' | 'week' | 'month'>('day')
 
-// 日期范围初始化 (最近14天)
-const getDefaultDateRange = (): [string, string] => {
-  const endDate = new Date()
-  const startDate = new Date()
-  startDate.setDate(startDate.getDate() - 14)
-  return [
-    startDate.toISOString().split('T')[0],
-    endDate.toISOString().split('T')[0]
-  ]
-}
-const dateRange = ref<[string, string]>(getDefaultDateRange())
+const dateRange = defineModel<[string, string]>('dateRange', {
+  required: true
+})
 
 // 核心指标池
 const scorecardData = ref<any>({})
@@ -165,9 +156,9 @@ const loadData = async () => {
   }
 }
 
-watch(() => [props.accountId, props.shopId], () => {
+watch(() => [props.accountId, props.shopId, dateRange.value], () => {
   loadData()
-}, { immediate: true })
+}, { immediate: true, deep: true })
 
 defineExpose({
   loadData
