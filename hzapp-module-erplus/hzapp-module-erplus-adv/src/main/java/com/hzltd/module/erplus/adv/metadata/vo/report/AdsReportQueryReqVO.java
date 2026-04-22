@@ -36,19 +36,22 @@ public class AdsReportQueryReqVO {
     private List<String> platforms;
 
     @Schema(description = "广告活动ID列表")
-    private List<Long> campaignIds;
+    private List<String> campaignIds;
 
     @Schema(description = "广告组ID列表")
-    private List<Long> adGroupIds;
+    private List<String> adGroupIds;
 
     @Schema(description = "广告ID列表")
-    private List<Long> adIds;
+    private List<String> adIds;
 
     @Schema(description = "关键词/匹配对象ID列表")
-    private List<Long> keywordIds;
+    private List<String> keywordIds;
 
     @Schema(description = "产品/ASIN列表")
     private List<String> productIds;
+
+    @Schema(description = "广告位列表", example = "['Top of Search', 'Rest of Search']")
+    private List<String> placements;
 
     // ===== 展现控制 =====
     @Schema(description = "时间聚合粒度: DAY, WEEK, MONTH, TOTAL", example = "DAY")

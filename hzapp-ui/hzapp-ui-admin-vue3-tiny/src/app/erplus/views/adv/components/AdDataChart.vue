@@ -324,7 +324,7 @@ function getMetricUnit(key: string) {
 }
 
 async function loadChartData() {
-    if (!props.dateRange || props.dateRange.length !== 2) {
+    if (!props.dateRange || !props.dateRange[0] || !props.dateRange[1]) {
         return
     }
 

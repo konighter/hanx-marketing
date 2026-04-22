@@ -5,7 +5,7 @@
       <div class="flex items-center gap-4">
         <span class="font-bold text-16px">账户概览</span>
         <el-date-picker
-          v-model="dateRange"
+          v-model="localDateRange"
           type="daterange"
           range-separator="至"
           start-placeholder="开始日期"
@@ -13,6 +13,7 @@
           value-format="YYYY-MM-DD"
           :clearable="false"
           class="!w-260px"
+          @change="handleDateChange"
         />
         <el-radio-group v-model="timeUnit" size="default" @change="loadData">
           <el-radio-button label="day">按天</el-radio-button>
@@ -113,6 +114,9 @@ const dateRange = defineModel<[string, string]>('dateRange', {
   required: true
 })
 
+// 内部使用的日期范围，用于隔离选择过程中的中间状态
+const localDateRange = ref<[string, string]>([...dateRange.value])
+
 // 核心指标池
 const scorecardData = ref<any>({})
 
@@ -136,8 +140,26 @@ const displayedMetrics = computed(() => {
   return allMetrics.value.filter(m => visibleMetrics.value.includes(m.key))
 })
 
+// 监听外部日期变化同步给内部
+watch(() => dateRange.value, (newVal) => {
+  if (newVal && newVal[0] && newVal[1]) {
+    localDateRange.value = [...newVal]
+  }
+}, { deep: true })
+
+const handleDateChange = (val: [string, string]) => {
+  if (val && val[0] && val[1]) {
+    // 只有当两个日期都选定后，才更新全局 model 触发其他组件
+    dateRange.value = val
+    loadData()
+  }
+}
+
 const loadData = async () => {
   if (!props.accountId && !props.shopId) return
+  // 确保日期范围完整且有效
+  if (!dateRange.value || !dateRange.value[0] || !dateRange.value[1]) return
+  
   loading.value = true
   try {
     const data = await AdsReportApi.getPerformanceScorecard({
@@ -156,9 +178,10 @@ const loadData = async () => {
   }
 }
 
-watch(() => [props.accountId, props.shopId, dateRange.value], () => {
+// 监听账号或外部强制同步的日期变化（不含内部选择过程）
+watch(() => [props.accountId, props.shopId], () => {
   loadData()
-}, { immediate: true, deep: true })
+}, { immediate: true })
 
 defineExpose({
   loadData

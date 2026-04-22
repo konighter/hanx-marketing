@@ -6,7 +6,9 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AdsReportQuerySqlProvider {
@@ -20,25 +22,6 @@ public class AdsReportQuerySqlProvider {
         boolean queryBatch = !req.getEndDate().isBefore(req.getStartDate()) && !req.getStartDate().isAfter(today.minusDays(1));
         boolean queryStream = !req.getEndDate().isBefore(today);
 
-        String batchSql = queryBatch ? buildBaseSql(req, "ads_report_batch", "report_date") : "";
-        String streamSql = queryStream ? buildBaseSql(req, "ads_report_stream_realtime", "DATE(window_start_time)") : "";
-
-        String unionSql = "";
-        if (queryBatch && queryStream) {
-            unionSql = batchSql + " UNION ALL " + streamSql;
-        } else if (queryBatch) {
-            unionSql = batchSql;
-        } else if (queryStream) {
-            unionSql = streamSql;
-        } else {
-            // Edge case
-            unionSql = "SELECT 1 WHERE 1=0";
-        }
-
-        // Final query wraps the union if we need GROUP BY again, BUT we can just construct the exact group by inside the parts
-        // Wait, if both batch and stream return rows for the same entity, do we need an outer query to SUM them together?
-        // Yes! Stream could have today's clicks for Campaign 1, Batch has yesterday's clicks for Campaign 1. If we group by Campaign, we must sum the union.
-
         StringBuilder finalQuery = new StringBuilder();
         
         List<String> selectDims = new ArrayList<>();
@@ -48,15 +31,32 @@ public class AdsReportQuerySqlProvider {
             }
         }
         
+        // 解析真正需要去 DB 拿的列 (处理派生指标依赖与映射)
+        Set<String> dbMetricsToFetch = AdsReportMetricConfig.getPhysicalMetrics(req.getMetrics());
+
         List<String> selectMetrics = new ArrayList<>();
-        if (!CollectionUtils.isEmpty(req.getMetrics())) {
-            for (String metric : req.getMetrics()) {
-                selectMetrics.add("SUM(" + escapeCol(metric) + ") AS " + escapeCol(metric));
-            }
+        for (String m : dbMetricsToFetch) {
+            String[] parts = m.split(" AS ");
+            String alias = parts.length > 1 ? parts[1] : parts[0];
+            selectMetrics.add("SUM(" + escapeCol(alias) + ") AS " + escapeCol(alias));
         }
 
         // If no dimensions and no metrics, return empty safe query
-        if (selectDims.isEmpty() && selectMetrics.isEmpty()) {
+        if (selectDims.isEmpty() && dbMetricsToFetch.isEmpty()) {
+            return "SELECT 1 WHERE 1=0";
+        }
+
+        String batchSql = queryBatch ? buildBaseSql(req, "ads_report_batch", "report_date", dbMetricsToFetch) : "";
+        String streamSql = queryStream ? buildBaseSql(req, "ads_report_stream_realtime", "DATE(window_start_time)", dbMetricsToFetch) : "";
+
+        String unionSql = "";
+        if (queryBatch && queryStream) {
+            unionSql = batchSql + " UNION ALL " + streamSql;
+        } else if (queryBatch) {
+            unionSql = batchSql;
+        } else if (queryStream) {
+            unionSql = streamSql;
+        } else {
             return "SELECT 1 WHERE 1=0";
         }
 
@@ -88,7 +88,7 @@ public class AdsReportQuerySqlProvider {
         return finalQuery.toString();
     }
 
-    private String buildBaseSql(AdsReportQueryReqVO req, String table, String dateCol) {
+    private String buildBaseSql(AdsReportQueryReqVO req, String table, String dateCol, Set<String> dbMetricsToFetch) {
         StringBuilder sql = new StringBuilder();
         
         List<String> selects = new ArrayList<>();
@@ -101,9 +101,12 @@ public class AdsReportQuerySqlProvider {
              selects.add("1 AS dummy_dim"); 
         }
 
-        if (!CollectionUtils.isEmpty(req.getMetrics())) {
-            for (String metric : req.getMetrics()) {
-                selects.add(escapeCol(metric));
+        if (!CollectionUtils.isEmpty(dbMetricsToFetch)) {
+            for (String m : dbMetricsToFetch) {
+                String[] parts = m.split(" AS ");
+                String physical = escapeCol(parts[0]);
+                String alias = parts.length > 1 ? escapeCol(parts[1]) : physical;
+                selects.add(physical + " AS " + alias);
             }
         } else {
              selects.add("0 AS dummy_metric");
@@ -126,6 +129,7 @@ public class AdsReportQuerySqlProvider {
         appendInClause(sql, "ad_group_id", req.getAdGroupIds());
         appendInClause(sql, "ad_id", req.getAdIds());
         appendInClause(sql, "keyword_id", req.getKeywordIds());
+        appendInClause(sql, "placement", req.getPlacements());
 
         if (!CollectionUtils.isEmpty(req.getProductIds())) {
             sql.append(" AND product_asin IN (");
@@ -136,10 +140,12 @@ public class AdsReportQuerySqlProvider {
         return sql.toString();
     }
 
-    private void appendInClause(StringBuilder sql, String colName, List<Long> ids) {
+    private void appendInClause(StringBuilder sql, String colName, List<String> ids) {
         if (!CollectionUtils.isEmpty(ids)) {
             sql.append(" AND ").append(colName).append(" IN (");
-            sql.append(ids.stream().map(String::valueOf).collect(Collectors.joining(",")));
+            sql.append(ids.stream()
+                    .map(id -> "'" + id.replace("'", "") + "'")
+                    .collect(Collectors.joining(",")));
             sql.append(") ");
         }
     }

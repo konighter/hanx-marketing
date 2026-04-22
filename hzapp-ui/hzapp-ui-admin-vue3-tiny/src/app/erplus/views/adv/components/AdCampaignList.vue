@@ -299,7 +299,7 @@ const getList = async () => {
     })
     
     // Step 2: Fetch AD dynamic metrics if campaigns exist and dateRange is provided
-    if (data.list && data.list.length > 0 && props.shopId && props.dateRange?.length === 2 && props.metricColumns) {
+    if (data.list && data.list.length > 0 && props.shopId && props.dateRange?.[0] && props.dateRange?.[1] && props.metricColumns) {
       try {
         const campaignIds = data.list.map((c: any) => c.id)
         const metricKeys = props.metricColumns.map((m: any) => m.prop)
@@ -395,6 +395,7 @@ watch(() => props.shopId, (val) => {
 })
 
 watch(() => props.dateRange, () => {
+  if (!props.dateRange?.[0] || !props.dateRange?.[1]) return
   queryParams.pageNo = 1
   getList()
 }, { deep: true })

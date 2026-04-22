@@ -3,10 +3,11 @@ CREATE TABLE `ads_report_batch` (
   `report_date` DATE NOT NULL COMMENT '批次覆盖目标的一天',
   `shop_id` BIGINT NOT NULL COMMENT '店铺ID',
   `platform` VARCHAR(32) NOT NULL COMMENT '广告平台 (AMAZON, META, GOOGLE)',
-  `campaign_id` BIGINT NOT NULL DEFAULT '0' COMMENT '广告活动ID',
-  `ad_group_id` BIGINT NOT NULL DEFAULT '0' COMMENT '广告组ID',
-  `ad_id` BIGINT NOT NULL DEFAULT '0' COMMENT '广告ID',
-  `keyword_id` BIGINT NOT NULL DEFAULT '0' COMMENT '关键词/匹配对象ID',
+  `campaign_id` VARCHAR(64) NOT NULL DEFAULT '0' COMMENT '广告活动ID',
+  `ad_group_id` VARCHAR(64) NOT NULL DEFAULT '0' COMMENT '广告组ID',
+  `ad_id` VARCHAR(64) NOT NULL DEFAULT '0' COMMENT '广告ID',
+  `keyword_id` VARCHAR(64) NOT NULL DEFAULT '0' COMMENT '关键词/匹配对象ID',
+  `placement` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '广告位',
   `product_asin` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '商品 ASIN',
 
   -- ===== 基础指标列 =====
@@ -29,6 +30,10 @@ CREATE TABLE `ads_report_batch` (
   `amz_attributed_sales_7d_same_sku` DECIMAL(15, 4) DEFAULT '0.0000' COMMENT '[Amazon] 7天归因同SKU销售额',
   `amz_attributed_sales_14d_same_sku` DECIMAL(15, 4) DEFAULT '0.0000' COMMENT '[Amazon] 14天归因同SKU销售额',
   `amz_attributed_sales_30d_same_sku` DECIMAL(15, 4) DEFAULT '0.0000' COMMENT '[Amazon] 30天归因同SKU销售额',
+  `amz_attributed_units_ordered_1d_same_sku` BIGINT DEFAULT '0' COMMENT '[Amazon] 1天归因同SKU订单',
+  `amz_attributed_units_ordered_7d_same_sku` BIGINT DEFAULT '0' COMMENT '[Amazon] 7天归因同SKU订单',
+  `amz_attributed_units_ordered_14d_same_sku` BIGINT DEFAULT '0' COMMENT '[Amazon] 14天归因同SKU订单',
+  `amz_attributed_units_ordered_30d_same_sku` BIGINT DEFAULT '0' COMMENT '[Amazon] 30天归因同SKU订单',
 
   -- ===== Meta 扩展归因指标 =====
   `meta_reach` BIGINT DEFAULT '0' COMMENT '[Meta] 到达人数 (Reach)',
@@ -43,7 +48,7 @@ CREATE TABLE `ads_report_batch` (
   `gg_conversion_value` DECIMAL(15, 4) DEFAULT '0.0000' COMMENT '[Google] 转化总价值'
 
 ) ENGINE=OLAP
-UNIQUE KEY(`report_date`, `shop_id`, `platform`, `campaign_id`, `ad_group_id`, `ad_id`, `keyword_id`, `product_asin`)
+UNIQUE KEY(`report_date`, `shop_id`, `platform`, `campaign_id`, `ad_group_id`, `ad_id`, `keyword_id`, `placement`, `product_asin`)
 COMMENT '离线统一广告多维批处理聚合表'
 PARTITION BY RANGE(`report_date`) ()
 DISTRIBUTED BY HASH(`shop_id`) BUCKETS 16
@@ -61,13 +66,14 @@ PROPERTIES (
 
 CREATE TABLE `ads_report_stream_realtime` (
   -- ===== 维度列 (作为 Unique Key) =====
-  `window_start_time` DATETIME NOT NULL COMMENT '流窗口起始时间 (极细粒度, 例如精确到小时)',
+  `window_start_time` DATETIME NOT NULL COMMENT '流窗口起始时间 (UTC)',
   `shop_id` BIGINT NOT NULL COMMENT '店铺ID',
   `platform` VARCHAR(32) NOT NULL COMMENT '广告平台 (AMAZON, META, GOOGLE)',
-  `campaign_id` BIGINT NOT NULL DEFAULT '0' COMMENT '广告活动ID',
-  `ad_group_id` BIGINT NOT NULL DEFAULT '0' COMMENT '广告组ID',
-  `ad_id` BIGINT NOT NULL DEFAULT '0' COMMENT '广告ID',
-  `keyword_id` BIGINT NOT NULL DEFAULT '0' COMMENT '关键词/匹配对象ID',
+  `campaign_id` VARCHAR(64) NOT NULL DEFAULT '0' COMMENT '广告活动ID',
+  `ad_group_id` VARCHAR(64) NOT NULL DEFAULT '0' COMMENT '广告组ID',
+  `ad_id` VARCHAR(64) NOT NULL DEFAULT '0' COMMENT '广告ID',
+  `keyword_id` VARCHAR(64) NOT NULL DEFAULT '0' COMMENT '关键词/匹配对象ID',
+  `placement` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '广告位',
   `product_asin` VARCHAR(64) NOT NULL DEFAULT '' COMMENT '商品 ASIN',
 
   -- ===== 基础指标列 =====
@@ -90,6 +96,10 @@ CREATE TABLE `ads_report_stream_realtime` (
   `amz_attributed_sales_7d_same_sku` DECIMAL(15, 4) DEFAULT '0.0000' COMMENT '[Amazon] 7天估算归因同SKU销售额',
   `amz_attributed_sales_14d_same_sku` DECIMAL(15, 4) DEFAULT '0.0000' COMMENT '[Amazon] 14天估算归因同SKU销售额',
   `amz_attributed_sales_30d_same_sku` DECIMAL(15, 4) DEFAULT '0.0000' COMMENT '[Amazon] 30天估算归因同SKU销售额',
+  `amz_attributed_units_ordered_1d_same_sku` BIGINT DEFAULT '0' COMMENT '[Amazon] 1天估算归因同SKU订单',
+  `amz_attributed_units_ordered_7d_same_sku` BIGINT DEFAULT '0' COMMENT '[Amazon] 7天估算归因同SKU订单',
+  `amz_attributed_units_ordered_14d_same_sku` BIGINT DEFAULT '0' COMMENT '[Amazon] 14天估算归因同SKU订单',
+  `amz_attributed_units_ordered_30d_same_sku` BIGINT DEFAULT '0' COMMENT '[Amazon] 30天估算归因同SKU订单',
 
   -- ===== Meta 扩展归因指标 =====
   `meta_reach` BIGINT DEFAULT '0' COMMENT '[Meta] 到达人数 (Reach)',
@@ -104,7 +114,7 @@ CREATE TABLE `ads_report_stream_realtime` (
   `gg_conversion_value` DECIMAL(15, 4) DEFAULT '0.0000' COMMENT '[Google] 转化总价值'
 
 ) ENGINE=OLAP
-UNIQUE KEY(`window_start_time`, `shop_id`, `platform`, `campaign_id`, `ad_group_id`, `ad_id`, `keyword_id`, `product_asin`)
+UNIQUE KEY(`window_start_time`, `shop_id`, `platform`, `campaign_id`, `ad_group_id`, `ad_id`, `keyword_id`, `placement`, `product_asin`)
 COMMENT '实时统一广告多维流数据宽表'
 PARTITION BY RANGE(`window_start_time`) ()
 DISTRIBUTED BY HASH(`shop_id`) BUCKETS 16
@@ -112,8 +122,9 @@ PROPERTIES (
   "replication_num" = "1",
   "dynamic_partition.enable" = "true",
   "dynamic_partition.time_unit" = "DAY",
-  "dynamic_partition.start" = "-30",
-  "dynamic_partition.end" = "5",
+  "dynamic_partition.create_history_partition" = "true",
+  "dynamic_partition.start" = "-180",
+  "dynamic_partition.end" = "3",
   "dynamic_partition.prefix" = "p",
   "dynamic_partition.buckets" = "16",
   "enable_unique_key_merge_on_write" = "true"
