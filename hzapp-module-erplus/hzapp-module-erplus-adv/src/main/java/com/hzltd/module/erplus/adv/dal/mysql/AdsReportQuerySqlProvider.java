@@ -94,7 +94,7 @@ public class AdsReportQuerySqlProvider {
         List<String> selects = new ArrayList<>();
         if (!CollectionUtils.isEmpty(req.getDimensions())) {
             for (String dim : req.getDimensions()) {
-                selects.add(escapeCol(dim));
+                selects.add(mapDimension(dim, dateCol) + " AS " + escapeCol(dim));
             }
         } else {
              // If no dims, put a dummy so UNION matches columns
@@ -147,6 +147,20 @@ public class AdsReportQuerySqlProvider {
                     .map(id -> "'" + id.replace("'", "") + "'")
                     .collect(Collectors.joining(",")));
             sql.append(") ");
+        }
+    }
+
+    private String mapDimension(String dim, String dateCol) {
+        switch (dim) {
+            case "date":
+                return dateCol;
+            case "week":
+                // %U marks Sunday as the first day of the week (00-53)
+                return "DATE_FORMAT(" + dateCol + ", '%Y-%U')";
+            case "month":
+                return "DATE_FORMAT(" + dateCol + ", '%Y-%m')";
+            default:
+                return escapeCol(dim);
         }
     }
 

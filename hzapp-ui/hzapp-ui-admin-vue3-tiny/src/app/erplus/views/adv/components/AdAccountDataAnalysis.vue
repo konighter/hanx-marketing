@@ -76,13 +76,42 @@
     <el-collapse v-model="activeCollapse">
       <el-collapse-item name="trend" class="trend-collapse">
         <template #title>
-          <div class="flex items-center gap-2 font-bold px-4">
-            <Icon icon="ep:histogram" class="text-primary" />
-            数据趋势图
+          <div class="flex items-center justify-between w-full pr-15px">
+            <div class="flex items-center gap-2 font-bold px-4">
+              <Icon icon="ep:histogram" class="text-primary" />
+              数据趋势图
+            </div>
+            
+            <!-- 仅展开时显示配置按钮 -->
+            <el-dropdown 
+              v-if="activeCollapse.includes('trend')" 
+              @command="handleChartConfig" 
+              trigger="click"
+              @click.stop
+            >
+              <el-button type="primary" link size="small" @click.stop>
+                <Icon icon="ep:setting" class="mr-1" /> 图表配置
+              </el-button>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item command="selectMetrics">
+                    <Icon icon="ep:list" class="mr-2" /> 选择展示指标
+                  </el-dropdown-item>
+                  <el-dropdown-item command="configureAxes">
+                    <Icon icon="ep:connection" class="mr-2" /> 坐标轴配置
+                  </el-dropdown-item>
+                  <el-dropdown-item divided command="resetMetrics">
+                    <Icon icon="ep:refresh" class="mr-2" /> 重置默认配置
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </div>
         </template>
         <div class="p-4 bg-[var(--el-bg-color)] rounded-b-8px">
           <AdDataChart
+            v-if="activeCollapse.includes('trend')"
+            ref="chartRef"
             :account-id="accountId"
             :shop-id="shopId"
             entity-type="ACCOUNT"
@@ -109,6 +138,7 @@ const props = defineProps<{
 const loading = ref(false)
 const activeCollapse = ref<string[]>([]) // 默认不展开
 const timeUnit = ref<'day' | 'week' | 'month'>('day')
+const chartRef = ref<any>(null)
 
 const dateRange = defineModel<[string, string]>('dateRange', {
   required: true
@@ -156,21 +186,31 @@ const handleDateChange = (val: [string, string]) => {
 }
 
 const loadData = async () => {
-  if (!props.accountId && !props.shopId) return
+  if (!props.shopId) return
   // 确保日期范围完整且有效
   if (!dateRange.value || !dateRange.value[0] || !dateRange.value[1]) return
   
   loading.value = true
   try {
-    const data = await AdsReportApi.getPerformanceScorecard({
-      accountId: props.accountId,
+    const res = await AdsReportApi.queryAdsReport({
       shopId: props.shopId,
-      entityType: 'ACCOUNT',
       startDate: dateRange.value[0],
       endDate: dateRange.value[1],
-      timeUnit: timeUnit.value
+      metrics: ['spend', 'impressions', 'clicks', 'orders', 'sales', 'roas', 'cpc', 'acos', 'ctr']
     })
-    scorecardData.value = data
+    
+    // 将返回的 metrics 列表转换为对象格式，方便 scorecard 使用
+    const metricsMap: Record<string, any> = {}
+    if (res.summary && res.summary.metrics) {
+      res.summary.metrics.forEach(m => {
+        metricsMap[m.key] = m.value
+      })
+    }
+
+    scorecardData.value = {
+      ...metricsMap,
+      trends: {} // 环比逻辑后续若有数据可在此扩展
+    }
   } catch (error) {
     console.error('加载汇总数据失败:', error)
   } finally {
@@ -182,6 +222,10 @@ const loadData = async () => {
 watch(() => [props.accountId, props.shopId], () => {
   loadData()
 }, { immediate: true })
+
+const handleChartConfig = (command: string) => {
+  chartRef.value?.handleConfigCommand(command)
+}
 
 defineExpose({
   loadData
