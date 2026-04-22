@@ -19,6 +19,9 @@ public class AdsCampaignRespVO {
     @Schema(description = "广告账户编号", example = "1")
     private Long accountId;
 
+    @Schema(description = "所属店铺ID", example = "100")
+    private Long shopId;
+
     @Schema(description = "平台原始 Campaign ID", example = "C123")
     private String externalId;
 

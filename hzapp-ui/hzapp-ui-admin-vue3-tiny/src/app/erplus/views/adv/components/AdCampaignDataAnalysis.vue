@@ -1,6 +1,6 @@
 <template>
   <div class="ad-campaign-data-analysis" v-loading="loading">
-    <!-- 0. 全局时间和颗粒度大盘筛选器 (Sticky Filters) -->
+    <!-- 0. 全局时间和颗粒度筛选器 -->
     <div class="global-filters sticky top-0 z-10 bg-white pb-15px mb-15px border-b border-gray-100 flex justify-between items-center">
       <div class="flex items-center gap-4">
         <span class="font-bold text-16px text-gray-800">广告表现分析</span>
@@ -20,24 +20,22 @@
           <el-radio-button label="month">按月</el-radio-button>
         </el-radio-group>
       </div>
-      <el-button type="primary" plain @click="loadDrilldownData">
-        <Icon icon="ep:download" class="mr-1" /> 导出分析报告
-      </el-button>
     </div>
 
-    <!-- 1. 核心指标看板 (The Scorecard) -->
-    <div class="scorecard-container grid grid-cols-6 gap-4 mb-20px">
+    <!-- 1. 核心指标看板 (Scorecard) -->
+    <div class="scorecard-container grid grid-cols-4 lg:grid-cols-7 gap-4 mb-20px">
       <el-card shadow="hover" class="metric-card" v-for="metric in summaryMetrics" :key="metric.key" :body-style="{ padding: '15px' }">
-        <div class="text-13px text-gray-500 mb-2">{{ metric.name }}</div>
-        <div class="text-22px font-bold mb-2">{{ metric.prefix || '' }}{{ metric.value }}</div>
-        <div class="text-12px flex items-center font-medium" :class="getTrendColorClass(metric)">
-          <Icon :icon="metric.trend >= 0 ? 'ep:top-right' : 'ep:bottom-right'" class="mr-1" />
-          <span>{{ Math.abs(metric.trend) }}% (环比)</span>
+        <div class="text-13px text-gray-500 mb-2 flex items-center justify-between">
+          {{ metric.name }}
+          <el-tooltip v-if="metric.desc" :content="metric.desc" placement="top">
+            <Icon icon="ep:question-filled" class="text-gray-300 cursor-help text-14px" />
+          </el-tooltip>
         </div>
+        <div class="text-22px font-bold mb-1">{{ metric.prefix || '' }}{{ metric.displayValue }}{{ metric.suffix || '' }}</div>
       </el-card>
     </div>
 
-    <!-- 2 & 4. 趋势对比图 & 漏斗转化分析 (Side by side for compact view) -->
+    <!-- 2. 趋势图 & 漏斗图 -->
     <el-row :gutter="20" class="mb-20px">
       <!-- Trend Chart -->
       <el-col :span="16">
@@ -46,7 +44,7 @@
             :shop-id="shopId"
             :account-id="accountId"
             entity-type="CAMPAIGN"
-            :query-params="{ campaignIds: [campaignId] }"
+            :query-params="{ campaignIds: [externalId] }"
             :date-range="dateRange"
             :time-unit="timeUnit"
             class="!mt-0 border-none shadow-none h-full"
@@ -57,20 +55,19 @@
       <el-col :span="8">
         <el-card shadow="never" class="h-full border-gray-200">
           <template #header>
-            <span class="font-bold text-15px">漏斗转化分析 (Funnel)</span>
+            <span class="font-bold text-15px">转化漏斗</span>
           </template>
           <div ref="funnelChartRef" class="w-full h-300px"></div>
         </el-card>
       </el-col>
     </el-row>
 
-    <!-- 3. 多维度下钻热力表格 (Heatmap Table) -->
+    <!-- 3. 广告组维度下钻表格 -->
     <el-card shadow="never" class="border-gray-200" v-loading="tableLoading">
       <template #header>
         <div class="flex justify-between items-center">
-          <span class="font-bold text-15px">多维度下钻表现 (Heatmap)</span>
+          <span class="font-bold text-15px">广告组表现明细</span>
           <div class="flex items-center gap-2">
-            <!-- 模拟全局筛选器、自定义表头占位 -->
             <el-button type="primary" link @click="loadDrilldownData">
               <Icon icon="ep:refresh" class="mr-1" /> 刷新数据
             </el-button>
@@ -83,67 +80,66 @@
         row-key="id"
         border
         style="width: 100%"
-        :tree-props="{ children: 'children', hasChildren: 'hasChildren' }"
         :cell-style="getCellStyle"
         :header-cell-style="{ background: '#f8f9fa', color: '#333' }"
       >
-        <el-table-column prop="name" label="维度 (广告组/广告)" min-width="280" fixed="left">
+        <el-table-column prop="name" label="广告组" min-width="280" fixed="left">
           <template #default="scope">
             <div class="flex items-center">
-              <span v-if="scope.row.level === 'campaign'" class="level-tag campaign mr-2">活动</span>
-              <span v-else-if="scope.row.level === 'adGroup'" class="level-tag adgroup mr-2">广告组</span>
-              <span v-else class="level-tag ad mr-2">广告</span>
-              
-              <!-- 模拟素材缩略图 -->
-              <div v-if="scope.row.level === 'ad'" class="w-30px h-30px bg-gray-100 rounded-sm mr-2 flex items-center justify-center overflow-hidden border border-gray-200">
-                <Icon icon="ep:picture" class="text-gray-400" />
-              </div>
-              
-              <span class="truncate font-medium" :title="scope.row.name">{{ scope.row.name }}</span>
+              <span class="level-tag adgroup mr-2">广告组</span>
+              <span class="truncate font-medium" :title="scope.row.name">{{ scope.row.name || scope.row.id }}</span>
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="status" label="状态" width="90" align="center">
+        <el-table-column prop="spend" label="花费 (Spend)" width="130" align="right" sortable>
           <template #default="scope">
-            <dict-tag :type="DICT_TYPE.AD_STATUS" :value="scope.row.status" />
+            <span class="font-medium">${{ formatNumber(scope.row.spend) }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="spend" label="消耗 (Spend)" width="120" align="right" sortable>
+        <el-table-column prop="impressions" label="展现量" width="110" align="right" sortable>
           <template #default="scope">
-            <span class="font-medium">{{ scope.row.spend ? `¥${scope.row.spend}` : '¥0' }}</span>
+            {{ formatNumber(scope.row.impressions, 0) }}
           </template>
         </el-table-column>
-        <el-table-column prop="impressions" label="展现量" width="110" align="right" sortable />
-        <el-table-column prop="clicks" label="点击量" width="100" align="right" sortable />
-        <el-table-column prop="ctr" label="CTR" width="100" align="right" sortable>
+        <el-table-column prop="clicks" label="点击量" width="100" align="right" sortable>
           <template #default="scope">
-            {{ scope.row.ctr ? `${(scope.row.ctr * 100).toFixed(2)}%` : '0%' }}
+            {{ formatNumber(scope.row.clicks, 0) }}
           </template>
         </el-table-column>
-        <el-table-column prop="cpc" label="转化成本 (CPA/CPC)" width="170" align="right" sortable>
+        <el-table-column prop="ctr" label="CTR" width="90" align="right" sortable>
           <template #default="scope">
-            <!-- 警报图标 -->
-            <el-tooltip v-if="scope.row.cpc > 0.8" content="成本偏高，建议优化" placement="top">
-              <Icon icon="ep:warning" class="text-red-500 mr-1 align-text-bottom" />
-            </el-tooltip>
-            <span class="font-medium">{{ scope.row.cpc ? `¥${scope.row.cpc.toFixed(2)}` : '¥0' }}</span>
+            {{ scope.row.ctr != null ? `${Number(scope.row.ctr).toFixed(2)}%` : '-' }}
           </template>
         </el-table-column>
-        <el-table-column prop="orders" label="转化数" width="100" align="right" sortable />
-        <el-table-column prop="sales" label="销售额" width="140" align="right" sortable>
+        <el-table-column prop="cpc" label="CPC" width="100" align="right" sortable>
           <template #default="scope">
-            {{ scope.row.sales ? `¥${scope.row.sales}` : '¥0' }}
+            <span class="font-medium">${{ formatNumber(scope.row.cpc) }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="roas" label="ROI / ROAS" width="120" align="center" sortable>
+        <el-table-column prop="orders" label="订单数" width="100" align="right" sortable>
           <template #default="scope">
-            <span class="font-bold">{{ scope.row.roas ? scope.row.roas.toFixed(2) : '0' }}</span>
+            {{ formatNumber(scope.row.orders, 0) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="sales" label="销售额" width="130" align="right" sortable>
+          <template #default="scope">
+            ${{ formatNumber(scope.row.sales) }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="acos" label="ACOS" width="90" align="right" sortable>
+          <template #default="scope">
+            {{ scope.row.acos != null ? `${Number(scope.row.acos).toFixed(2)}%` : '-' }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="roas" label="ROAS" width="90" align="center" sortable>
+          <template #default="scope">
+            <span class="font-bold">{{ scope.row.roas != null ? Number(scope.row.roas).toFixed(2) : '-' }}</span>
           </template>
         </el-table-column>
         <el-table-column label="操作建议" width="140" align="center" fixed="right">
           <template #default="scope">
              <el-tag v-if="scope.row.roas >= 6" type="success" effect="light" size="small">🚀 增加预算</el-tag>
-             <el-tag v-else-if="scope.row.cpc > 0.8" type="danger" effect="light" size="small">⚠️ 暂停/优化</el-tag>
+             <el-tag v-else-if="scope.row.acos > 40" type="danger" effect="light" size="small">⚠️ 暂停/优化</el-tag>
              <el-tag v-else type="info" effect="light" size="small">➖ 保持观察</el-tag>
           </template>
         </el-table-column>
@@ -156,13 +152,13 @@
 import { ref, watch, onMounted, onUnmounted, nextTick, computed } from 'vue'
 import * as echarts from 'echarts'
 import AdDataChart from './AdDataChart.vue'
-import { DICT_TYPE } from '@/app/erplus/common/dict'
-import { AdsReportApi } from '@/app/erplus/api/adv/report'
+import { AdsReportApi, type AdsReportRow } from '@/app/erplus/api/adv/report'
 
 const props = defineProps<{
   shopId?: number
   accountId?: number
   campaignId: number
+  externalId: string
 }>()
 
 const getDefaultDateRange = (): [string, string] => {
@@ -179,113 +175,153 @@ const dateRange = ref<[string, string]>(getDefaultDateRange())
 const timeUnit = ref<'day' | 'week' | 'month'>('day')
 const loading = ref(false)
 const tableLoading = ref(false)
-const scorecardData = ref<any>({})
+const scorecardData = ref<Record<string, any>>({})
 const tableData = ref<any[]>([])
 const funnelChartRef = ref<HTMLDivElement | null>(null)
 let funnelChartInstance: echarts.ECharts | null = null
 
-// 1. Core Metrics Summary Data (Computed from real data)
+// ==================== 工具函数 ====================
+
+/** 从 OLAP Row 的 metrics 列表中提取为扁平 Map */
+function metricsToMap(metrics: { key: string; value: any }[]): Record<string, any> {
+  const map: Record<string, any> = {}
+  metrics?.forEach(m => { map[m.key] = m.value })
+  return map
+}
+
+/** 从 OLAP Row 的 dimensions 列表中提取单个维度值 */
+function getDimValue(row: AdsReportRow, key: string): string | undefined {
+  return row.dimensions?.find(d => d.key === key)?.value
+}
+
+/** 从 OLAP Row 的 dimensions 列表中提取 label */
+function getDimLabel(row: AdsReportRow, key: string): string | undefined {
+  return row.dimensions?.find(d => d.key === key)?.label
+}
+
+function formatNumber(val: any, decimals = 2): string {
+  if (val == null || val === '') return '0'
+  const n = Number(val)
+  if (isNaN(n)) return '0'
+  return n.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals })
+}
+
+// ==================== 1. Scorecard 数据 ====================
+
 const summaryMetrics = computed(() => {
-  const data = scorecardData.value
+  const d = scorecardData.value
   return [
-    { key: 'spend', name: '消耗 (Spend)', value: data.spend?.toLocaleString() || '0', prefix: '¥', trend: data.trends?.spend || 0, inverseGood: true },
-    { key: 'impressions', name: '展现量 (Imp)', value: data.impressions?.toLocaleString() || '0', trend: data.trends?.impressions || 0, inverseGood: false },
-    { key: 'clicks', name: '点击量 (Clicks)', value: data.clicks?.toLocaleString() || '0', trend: data.trends?.clicks || 0, inverseGood: false },
-    { key: 'orders', name: '转化量 (Conv)', value: data.orders?.toLocaleString() || '0', trend: data.trends?.orders || 0, inverseGood: false },
-    { key: 'cpc', name: '转化成本 (CPC)', value: data.cpc || '0', prefix: '¥', trend: data.trends?.cpc || 0, inverseGood: true },
-    { key: 'roas', name: 'ROI / ROAS', value: data.roas || '0', trend: data.trends?.roas || 0, inverseGood: false },
+    { key: 'spend', name: '花费', prefix: '$', displayValue: formatNumber(d.spend), desc: '广告总花费' },
+    { key: 'impressions', name: '展现量', displayValue: formatNumber(d.impressions, 0), desc: '广告被展示的次数' },
+    { key: 'clicks', name: '点击量', displayValue: formatNumber(d.clicks, 0), desc: '广告被点击的次数' },
+    { key: 'orders', name: '订单量', displayValue: formatNumber(d.orders, 0), desc: '广告带来的订单数' },
+    { key: 'sales', name: '销售额', prefix: '$', displayValue: formatNumber(d.sales), desc: '广告带来的销售额' },
+    { key: 'acos', name: 'ACOS', suffix: '%', displayValue: d.acos != null ? Number(d.acos).toFixed(2) : '-', desc: '广告花费占销售额比例' },
+    { key: 'roas', name: 'ROAS', displayValue: d.roas != null ? Number(d.roas).toFixed(2) : '-', desc: '广告投入产出比' },
   ]
 })
 
+/**
+ * 使用 queryAdsReport 不传 dimensions → 返回 summary 汇总行
+ */
 const loadScorecardData = async () => {
-  if (!props.accountId || !props.campaignId) return
+  if (!props.shopId) return
   try {
-    const data = await AdsReportApi.getPerformanceScorecard({
+    const res = await AdsReportApi.queryAdsReport({
       shopId: props.shopId,
-      accountId: props.accountId,
-      entityType: 'CAMPAIGN',
-      entityId: props.campaignId,
       startDate: dateRange.value[0],
       endDate: dateRange.value[1],
-      timeUnit: timeUnit.value
+      campaignIds: [props.externalId],
+      metrics: ['impressions', 'clicks', 'spend', 'sales', 'orders']
+      // 不传 dimensions → 后端返回需要 summary 汇总
     })
-    scorecardData.value = data
+    // 优先从 summary 取，如果后端没填 summary 则从 rows[0] 取
+    const sourceRow = res.summary || res.rows?.[0]
+    if (sourceRow?.metrics) {
+      scorecardData.value = metricsToMap(sourceRow.metrics)
+    } else {
+      scorecardData.value = {}
+    }
   } catch (error) {
     console.error('加载 Scorecard 数据失败:', error)
   }
 }
 
-const loadAllData = async () => {
-  loading.value = true
+// ==================== 2. 下钻表格 ====================
+
+/**
+ * 使用 queryAdsReport 按 ad_group_id 维度分组查询
+ */
+const loadDrilldownData = async () => {
+  if (!props.shopId) return
+  tableLoading.value = true
   try {
-    await Promise.all([
-      loadScorecardData(),
-      loadDrilldownData()
-    ])
+    const res = await AdsReportApi.queryAdsReport({
+      shopId: props.shopId,
+      startDate: dateRange.value[0],
+      endDate: dateRange.value[1],
+      campaignIds: [props.externalId],
+      dimensions: ['ad_group_id'],
+      metrics: ['impressions', 'clicks', 'spend', 'sales', 'orders'],
+      orderBy: 'spend',
+      isAsc: false
+    })
+    // 将 OLAP rows 转换为表格行
+    tableData.value = (res.rows || []).map((row: AdsReportRow) => {
+      const metrics = metricsToMap(row.metrics)
+      const adGroupId = getDimValue(row, 'ad_group_id')
+      const adGroupLabel = getDimLabel(row, 'ad_group_id')
+      return {
+        id: adGroupId,
+        name: adGroupLabel || `广告组 #${adGroupId}`,
+        level: 'adGroup',
+        ...metrics // spend, impressions, clicks, sales, orders, roas, cpc, ctr, acos 等
+      }
+    })
+  } catch (error) {
+    console.error('加载下钻数据失败:', error)
   } finally {
-    loading.value = false
+    tableLoading.value = false
   }
 }
 
-const getTrendColorClass = (metric: any) => {
-  if (metric.trend > 0) {
-    return metric.inverseGood ? 'text-red-500' : 'text-green-500'
-  } else if (metric.trend < 0) {
-    return metric.inverseGood ? 'text-green-500' : 'text-red-500'
-  }
-  return 'text-gray-400'
-}
+// ==================== 3. 漏斗图 ====================
 
-// 4. Heatmap Style Logic
-const getCellStyle = ({ row, column }: any) => {
-  // 红色预警/绿色健康的背景热力图效果
-  if (column.property === 'roas') {
-    if (row.roas >= 6) return { backgroundColor: 'rgba(103, 194, 58, 0.15)', color: '#137333' }
-    if (row.roas < 4) return { backgroundColor: 'rgba(245, 108, 108, 0.1)', color: '#c5221f' }
-  }
-  if (column.property === 'cpc') {
-    if (row.cpc > 0.8) return { backgroundColor: 'rgba(245, 108, 108, 0.15)', color: '#c5221f' }
-    if (row.cpc < 0.5) return { backgroundColor: 'rgba(103, 194, 58, 0.1)', color: '#137333' }
-  }
-  return {}
-}
-
-const handleDateRangeUpdate = (dates: [string, string]) => {
-  if (dates[0] !== dateRange.value[0] || dates[1] !== dateRange.value[1]) {
-    dateRange.value = dates
-    loadDrilldownData()
-  }
-}
-
-// Render Funnel Chart
 const renderFunnelChart = () => {
   if (!funnelChartRef.value) return
   if (!funnelChartInstance) {
     funnelChartInstance = echarts.init(funnelChartRef.value)
   }
 
+  const d = scorecardData.value
+  const impressions = Number(d.impressions || 0)
+  const clicks = Number(d.clicks || 0)
+  const orders = Number(d.orders || 0)
+
   const option = {
     tooltip: {
-      trigger: 'item',
-      formatter: '{a} <br/>{b} : {c}'
+      trigger: 'item' as const,
+      formatter: '{b}: {c}'
     },
-    color: ['#409EFF', '#67C23A', '#E6A23C', '#F56C6C'],
+    color: ['#409EFF', '#67C23A', '#F56C6C'],
     series: [
       {
         name: '转化漏斗',
         type: 'funnel',
         left: '10%',
         width: '80%',
-        sort: 'descending',
+        sort: 'descending' as const,
         gap: 2,
         label: {
           show: true,
-          position: 'inside',
-          formatter: '{b}: {c}'
+          position: 'inside' as const,
+          formatter: (params: any) => {
+            return `${params.name}\n${params.value.toLocaleString()}`
+          }
         },
         labelLine: {
           length: 10,
-          lineStyle: { width: 1, type: 'solid' }
+          lineStyle: { width: 1, type: 'solid' as const }
         },
         itemStyle: {
           borderColor: '#fff',
@@ -295,15 +331,14 @@ const renderFunnelChart = () => {
           label: { fontSize: 16 }
         },
         data: [
-          { value: 154200, name: '展现' },
-          { value: 8560, name: '点击' },
-          { value: 1200, name: '到访 (会话)' },
-          { value: 425, name: '下单' }
+          { value: impressions, name: '展现' },
+          { value: clicks, name: '点击' },
+          { value: orders, name: '下单' }
         ]
       }
     ]
   }
-  funnelChartInstance.setOption(option)
+  funnelChartInstance.setOption(option, { notMerge: true })
 }
 
 const handleResize = () => {
@@ -312,33 +347,42 @@ const handleResize = () => {
   }
 }
 
-const loadDrilldownData = async () => {
-  if (!props.accountId || !props.campaignId) return
-  tableLoading.value = true
+// ==================== 4. 热力表格样式 ====================
+
+const getCellStyle = ({ row, column }: any) => {
+  if (column.property === 'roas') {
+    const roas = Number(row.roas)
+    if (roas >= 6) return { backgroundColor: 'rgba(103, 194, 58, 0.15)', color: '#137333' }
+    if (roas > 0 && roas < 3) return { backgroundColor: 'rgba(245, 108, 108, 0.1)', color: '#c5221f' }
+  }
+  if (column.property === 'acos') {
+    const acos = Number(row.acos)
+    if (acos > 40) return { backgroundColor: 'rgba(245, 108, 108, 0.15)', color: '#c5221f' }
+    if (acos > 0 && acos < 20) return { backgroundColor: 'rgba(103, 194, 58, 0.1)', color: '#137333' }
+  }
+  return {}
+}
+
+// ==================== 5. 生命周期 ====================
+
+const loadAllData = async () => {
+  loading.value = true
   try {
-    const data = await AdsReportApi.getPerformanceDrilldown({
-      shopId: props.shopId,
-      accountId: props.accountId,
-      entityType: 'CAMPAIGN',
-      entityId: props.campaignId,
-      startDate: dateRange.value[0],
-      endDate: dateRange.value[1],
-      timeUnit: timeUnit.value
-    })
-    tableData.value = data
-    
+    await Promise.all([
+      loadScorecardData(),
+      loadDrilldownData()
+    ])
+    // 漏斗图依赖 scorecard 数据，等数据返回后再渲染
     nextTick(() => {
       renderFunnelChart()
     })
-  } catch (error) {
-    console.error('加载下钻数据失败:', error)
   } finally {
-    tableLoading.value = false
+    loading.value = false
   }
 }
 
 watch(
-  () => [props.campaignId, dateRange.value, timeUnit.value],
+  () => [props.shopId, props.accountId, props.externalId, dateRange.value, timeUnit.value],
   () => {
     loadAllData()
   }
@@ -375,7 +419,7 @@ onUnmounted(() => {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* 包含 AdDataChart 的外部容器模拟 Card 样式，由于 AdDataChart 内部带有 el-card，为了结构统一稍微包裹一下边框即可 */
+/* 包含 AdDataChart 的外部容器 */
 .chart-wrapper-border {
   border-radius: 4px;
   border: 1px solid var(--el-border-color-light);

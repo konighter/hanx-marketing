@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.adv.dal.mysql;
 
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsReportQueryReqVO;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.util.CollectionUtils;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Slf4j
 public class AdsReportQuerySqlProvider {
 
     public String buildQuery(@Param("req") AdsReportQueryReqVO req, @Param("today") LocalDate today) {
@@ -85,6 +87,7 @@ public class AdsReportQuerySqlProvider {
             finalQuery.append(" LIMIT ").append(req.getLimit());
         }
 
+        log.info("[AdsReportQuerySqlProvider] buildQuery = {} ", finalQuery);
         return finalQuery.toString();
     }
 

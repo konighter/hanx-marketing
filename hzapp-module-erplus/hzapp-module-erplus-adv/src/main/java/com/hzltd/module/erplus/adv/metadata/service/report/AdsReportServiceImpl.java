@@ -13,6 +13,7 @@ import com.hzltd.module.erplus.system.model.ShopModel;
 import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.MapUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -255,6 +256,9 @@ public class AdsReportServiceImpl implements AdsReportService {
         Map<String, Object> summaryMetrics = new HashMap<>();
 
         for (Map<String, Object> rowMap : dbResult) {
+            if (MapUtils.isEmpty(rowMap)) {
+                continue;
+            }
             AdsReportRowVO rowVO = new AdsReportRowVO();
             List<DimensionValueVO> dims = new ArrayList<>();
             List<MetricValueVO> metrics = new ArrayList<>();

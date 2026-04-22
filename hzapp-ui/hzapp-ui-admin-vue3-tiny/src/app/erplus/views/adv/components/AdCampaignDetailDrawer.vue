@@ -120,6 +120,7 @@
               :shop-id="detail.shopId"
               :account-id="detail.accountId"
               :campaign-id="detail.id!"
+              :external-id="detail.externalId"
             />
           </div>
         </el-tab-pane>

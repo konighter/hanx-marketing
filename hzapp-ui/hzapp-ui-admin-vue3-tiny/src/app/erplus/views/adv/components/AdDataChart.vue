@@ -80,9 +80,9 @@ interface Props {
     shopId?: string | number
     entityType?: 'CAMPAIGN' | 'ADGROUP' | 'AD' | 'ACCOUNT'
     queryParams?: {
-        campaignIds?: number[]
-        adGroupIds?: number[]
-        adIds?: number[]
+        campaignIds?: (string | number)[]
+        adGroupIds?: (string | number)[]
+        adIds?: (string | number)[]
     }
     dateRange?: [string, string] | null
     timeUnit?: 'day' | 'week' | 'month'
@@ -309,6 +309,10 @@ async function loadChartData() {
             endDate: props.dateRange[1],
             dimensions: [dimension],
             metrics: availableMetrics.map(m => m.key),
+            // 传入筛选条件：支持按 campaign/adGroup/ad 过滤
+            campaignIds: props.queryParams?.campaignIds,
+            adGroupIds: props.queryParams?.adGroupIds,
+            adIds: props.queryParams?.adIds,
             orderBy: dimension,
             isAsc: true
         })

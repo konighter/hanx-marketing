@@ -34,10 +34,10 @@ export interface AdsReportQueryReq {
   dimensions?: string[]
   metrics?: string[]
   platforms?: string[]
-  campaignIds?: number[]
-  adGroupIds?: number[]
-  adIds?: number[]
-  keywordIds?: number[]
+  campaignIds?: (number | string)[]
+  adGroupIds?: (number | string)[]
+  adIds?: (number | string)[]
+  keywordIds?: (number | string)[]
   productIds?: string[]
   limit?: number
   orderBy?: string
