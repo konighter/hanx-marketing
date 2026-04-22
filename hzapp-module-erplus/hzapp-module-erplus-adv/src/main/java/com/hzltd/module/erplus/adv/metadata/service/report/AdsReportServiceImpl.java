@@ -9,6 +9,8 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsReportSummaryMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportQueryMapper;
 import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.report.*;
+import com.hzltd.module.erplus.system.model.ShopModel;
+import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,9 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.WeekFields;
 import java.util.*;
+
+import static com.hzltd.framework.common.exception.util.ServiceExceptionUtil.exception;
+import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.SHOP_NOT_EXISTS;
 
 
 /**
@@ -42,6 +47,9 @@ public class AdsReportServiceImpl implements AdsReportService {
 
     @Resource
     private AdsReportQueryMapper adsReportQueryMapper;
+
+    @Resource
+    private SystemShopService systemShopService;
 
     // ==================== 小时数据写入与聚合 ====================
 
@@ -235,9 +243,9 @@ public class AdsReportServiceImpl implements AdsReportService {
 
     @Override
     public AdsReportDataRespVO queryAdsReport(AdsReportQueryReqVO reqVO) {
-        if (reqVO.getShopId() == null) {
-            throw new IllegalArgumentException("shopId must not be null");
-        }
+        // 验证 shopId 不能为空且属于当前租户
+        validateShop(reqVO.getShopId());
+
         
         LocalDate today = LocalDate.now();
         List<Map<String, Object>> dbResult = adsReportQueryMapper.queryAggregatedData(reqVO, today);
@@ -516,5 +524,15 @@ public class AdsReportServiceImpl implements AdsReportService {
     private long toLong(Object obj) {
         if (obj == null) return 0L;
         return Long.parseLong(obj.toString().split("\\.")[0]);
+    }
+
+    private void validateShop(Long shopId) {
+        if (shopId == null) {
+            throw exception(SHOP_NOT_EXISTS);
+        }
+        ShopModel shop = systemShopService.getShopById(shopId);
+        if (shop == null) {
+            throw exception(SHOP_NOT_EXISTS);
+        }
     }
 }

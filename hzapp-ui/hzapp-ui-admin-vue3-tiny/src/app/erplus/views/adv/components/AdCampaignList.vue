@@ -301,7 +301,7 @@ const getList = async () => {
     // Step 2: Fetch AD dynamic metrics if campaigns exist and dateRange is provided
     if (data.list && data.list.length > 0 && props.shopId && props.dateRange?.[0] && props.dateRange?.[1] && props.metricColumns) {
       try {
-        const campaignIds = data.list.map((c: any) => c.id)
+        const campaignIds = data.list.map((c: any) => c.externalId)
         const metricKeys = props.metricColumns.map((m: any) => m.prop)
         
         const reportData = await AdsReportApi.queryAdsReport({
@@ -328,7 +328,7 @@ const getList = async () => {
           })
           
           data.list = data.list.map((campaign: any) => {
-            const metrics = metricsMap.get(String(campaign.id)) || {}
+            const metrics = metricsMap.get(String(campaign.externalId)) || {}
             return {
               ...campaign,
               ...metrics

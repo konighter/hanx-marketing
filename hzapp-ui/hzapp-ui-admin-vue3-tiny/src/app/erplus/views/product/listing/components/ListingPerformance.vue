@@ -1,7 +1,10 @@
 <template>
-  <div class="performance-box flex py-2 h-full" :class="[
-    layout === 'vertical' ? 'flex-col items-start border-transparent max-w-fit' : 'flex-row items-center justify-between gap-4 border-t border-gray-200/50 dark:border-slate-800'
-  ]">
+  <div 
+    class="performance-box flex py-2 h-full" 
+    :class="[
+      layout === 'vertical' ? 'flex-col items-start border-transparent max-w-fit' : 'flex-row items-center justify-between gap-4 border-t border-gray-200/50 dark:border-slate-800'
+    ]"
+  >
     <div class="flex flex-wrap" :class="layout === 'vertical' ? 'gap-6 mb-2 w-full' : 'gap-6'">
       <div class="flex flex-col gap-0.5 min-w-16">
         <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-slate-500">

@@ -70,6 +70,7 @@
           :shop-id="queryParams.shopId"
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :metric-columns="metricColumns"
+          :date-range="dateRange"
           @select="handleAdGroupSelect"
           @click-name="handleAdGroupClick"
         />
@@ -80,6 +81,7 @@
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :ad-group-ids="filterContext.adGroupId ? [filterContext.adGroupId] : selectedAdGroupIds"
           :metric-columns="metricColumns"
+          :date-range="dateRange"
         />
       </el-tab-pane>
       <el-tab-pane label="关键词" name="keyword">
@@ -88,6 +90,7 @@
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :ad-group-ids="filterContext.adGroupId ? [filterContext.adGroupId] : selectedAdGroupIds"
           :metric-columns="metricColumns"
+          :date-range="dateRange"
         />
       </el-tab-pane>
     </el-tabs>
