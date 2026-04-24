@@ -125,6 +125,7 @@
 <script setup lang="ts">
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
 import { AdsAdApi } from '@/app/erplus/api/adv/ads'
+import { AdsReportApi } from '@/app/erplus/api/adv/report'
 import { AdsAd } from '../types/ads'
 
 defineOptions({ name: 'AdList' })
@@ -135,6 +136,7 @@ const props = defineProps<{
   campaignIds?: number[]
   adGroupIds?: number[]
   metricColumns: any[]
+  dateRange?: [string, string]
 }>()
 
 const emit = defineEmits<{
@@ -195,6 +197,49 @@ const getList = async () => {
       campaignIds: props.campaignIds && props.campaignIds.length > 0 ? props.campaignIds : undefined,
       adGroupIds: props.adGroupIds && props.adGroupIds.length > 0 ? props.adGroupIds : undefined
     })
+
+    // Fetch dynamic metrics if ads exist and dateRange is provided
+    if (data.list && data.list.length > 0 && props.shopId && props.dateRange?.[0] && props.dateRange?.[1] && props.metricColumns) {
+      try {
+        const adIds = data.list.map((a: any) => a.externalId)
+        const metricKeys = props.metricColumns.map((m: any) => m.prop)
+
+        const reportData = await AdsReportApi.queryAdsReport({
+          shopId: props.shopId,
+          startDate: props.dateRange[0],
+          endDate: props.dateRange[1],
+          dimensions: ['ad_id'],
+          metrics: metricKeys,
+          adIds: adIds
+        })
+
+        // Merge metrics into the ad list
+        if (reportData && reportData.rows) {
+          const metricsMap = new Map<string, any>()
+          reportData.rows.forEach(row => {
+            const adDim = row.dimensions.find(d => d.key === 'ad_id')
+            if (adDim && adDim.value) {
+              const metricObj: Record<string, any> = {}
+              row.metrics.forEach(m => {
+                metricObj[m.key] = m.value
+              })
+              metricsMap.set(String(adDim.value), metricObj)
+            }
+          })
+
+          data.list = data.list.map((ad: any) => {
+            const metrics = metricsMap.get(String(ad.externalId)) || {}
+            return {
+              ...ad,
+              ...metrics
+            }
+          })
+        }
+      } catch (err) {
+        console.error('Failed to fetch dynamic metrics for ads:', err)
+      }
+    }
+
     list.value = data.list
     total.value = data.total
   } finally {
@@ -212,6 +257,12 @@ const handleUpdateStatus = async (row: AdsAd) => {
 }
 
 watch(() => [props.accountId, props.shopId, props.campaignIds, props.adGroupIds], () => {
+  queryParams.pageNo = 1
+  getList()
+}, { deep: true })
+
+watch(() => props.dateRange, () => {
+  if (!props.dateRange?.[0] || !props.dateRange?.[1]) return
   queryParams.pageNo = 1
   getList()
 }, { deep: true })

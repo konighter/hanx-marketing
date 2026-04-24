@@ -15,7 +15,6 @@ package com.hzltd.module.amz.adv.client.report.model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.hzltd.module.amz.adv.client.client.ApiClient;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.util.*;
 /**
@@ -41,7 +40,7 @@ public class AsyncReportConfiguration {
   private List<String> columns = new ArrayList<>();
 
   public static final String JSON_PROPERTY_FILTERS = "filters";
-  private JsonNullable<List<AsyncReportFilter>> filters = JsonNullable.<List<AsyncReportFilter>>undefined();
+  private List<AsyncReportFilter> filters;
 
   /**
    * The report file format.
@@ -187,19 +186,15 @@ public class AsyncReportConfiguration {
 
 
   public AsyncReportConfiguration filters(@jakarta.annotation.Nullable List<AsyncReportFilter> filters) {
-    this.filters = JsonNullable.<List<AsyncReportFilter>>of(filters);
+    this.filters = filters;
     return this;
   }
 
   public AsyncReportConfiguration addFiltersItem(AsyncReportFilter filtersItem) {
-    if (this.filters == null || !this.filters.isPresent()) {
-      this.filters = JsonNullable.<List<AsyncReportFilter>>of(new ArrayList<>());
+    if (this.filters == null) {
+      this.filters = new ArrayList<>();
     }
-    try {
-      this.filters.get().add(filtersItem);
-    } catch (java.util.NoSuchElementException e) {
-      // this can never happen, as we make sure above that the value is present
-    }
+    this.filters.add(filtersItem);
     return this;
   }
 
@@ -208,25 +203,15 @@ public class AsyncReportConfiguration {
    * @return filters
    */
   @jakarta.annotation.Nullable
-  @JsonIgnore
-  public List<AsyncReportFilter> getFilters() {
-        return filters.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_FILTERS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<List<AsyncReportFilter>> getFilters_JsonNullable() {
+  public List<AsyncReportFilter> getFilters() {
     return filters;
   }
-  
-  @JsonProperty(JSON_PROPERTY_FILTERS)
-  public void setFilters_JsonNullable(JsonNullable<List<AsyncReportFilter>> filters) {
-    this.filters = filters;
-  }
 
+  @JsonProperty(JSON_PROPERTY_FILTERS)
   public void setFilters(@jakarta.annotation.Nullable List<AsyncReportFilter> filters) {
-    this.filters = JsonNullable.<List<AsyncReportFilter>>of(filters);
+    this.filters = filters;
   }
 
 
@@ -348,27 +333,16 @@ public class AsyncReportConfiguration {
     AsyncReportConfiguration asyncReportConfiguration = (AsyncReportConfiguration) o;
     return Objects.equals(this.adProduct, asyncReportConfiguration.adProduct) &&
         Objects.equals(this.columns, asyncReportConfiguration.columns) &&
-        equalsNullable(this.filters, asyncReportConfiguration.filters) &&
+        Objects.equals(this.filters, asyncReportConfiguration.filters) &&
         Objects.equals(this.format, asyncReportConfiguration.format) &&
         Objects.equals(this.groupBy, asyncReportConfiguration.groupBy) &&
         Objects.equals(this.reportTypeId, asyncReportConfiguration.reportTypeId) &&
         Objects.equals(this.timeUnit, asyncReportConfiguration.timeUnit);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(adProduct, columns, hashCodeNullable(filters), format, groupBy, reportTypeId, timeUnit);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(adProduct, columns, filters, format, groupBy, reportTypeId, timeUnit);
   }
 
   @Override
@@ -477,4 +451,3 @@ public class AsyncReportConfiguration {
     return joiner.toString();
   }
 }
-

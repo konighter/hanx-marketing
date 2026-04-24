@@ -1,0 +1,84 @@
+<h2>任务状态机与钩子设计 (State Machine & Hooks)</h2>
+<p class="subtitle">针对异步任务扩展状态定义，实现更细粒度的控制</p>
+
+<div class="section">
+  <h3>扩展后的标准状态 (Standard Statuses)</h3>
+  <div class="cards">
+    <div class="card">
+      <div class="card-body">
+        <span class="label">Status: <b>PENDING</b></span>
+        <h3>待处理 (New)</h3>
+        <p>任务刚入库或排期中。引擎将调用 <code>onStart()</code>。</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <span class="label">Status: <b>SUBMITTED</b></span>
+        <h3>已提交 (Async)</h3>
+        <p>已向外部平台申请，正在等待结果。引擎将调用 <code>onPoll()</code>。</p>
+      </div>
+    </div>
+    <div class="card" style="border-color: #4CAF50;">
+      <div class="card-body">
+        <span class="label">Status: <b>SUCCESS</b></span>
+        <h3>完成 (Terminal)</h3>
+        <p>任务成功结束。如果是子任务，触发父任务检查。</p>
+      </div>
+    </div>
+    <div class="card" style="border-color: #f44336;">
+      <div class="card-body">
+        <span class="label">Status: <b>FAILED</b></span>
+        <h3>失败 (Terminal)</h3>
+        <p>任务异常，记录错误原因，根据策略决定是否重试。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>处理器钩子设计 (Handler Hooks)</h3>
+  <div class="mockup">
+    <div class="mockup-header">AdsTaskHandler 接口</div>
+    <div class="mockup-body">
+<pre style="background: #2d2d2d; color: #ccc; padding: 15px; border-radius: 0 0 8px 8px;">
+public interface AdsTaskHandler {
+    /**
+     * 当状态为 PENDING 时调用
+     * 如果是同步任务，直接返回 SUCCESS
+     * 如果是异步任务，提交后返回 SUBMITTED
+     */
+    AdsTaskResult onStart(AdsSyncTaskDO task);
+
+    /**
+     * 当状态为 SUBMITTED 时调用 (轮询)
+     * 返回 SUCCESS 代表完成，返回 SUBMITTED 代表继续等待
+     */
+    AdsTaskResult onPoll(AdsSyncTaskDO task);
+
+    // 处理器标识
+    String getTaskType();
+}
+</pre>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>这种设计是否解决了您对“异步状态定义”的顾虑？</h3>
+  <div class="options">
+    <div class="option" data-choice="yes" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>是的，这样分工明确</h3>
+        <p>引擎负责状态间的跳转触发，Handler 负责在每个阶段执行具体操作。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="more" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>还需要更多状态</h3>
+        <p>比如处理本地耗时逻辑时，可能需要 PROCESSING 等状态。</p>
+      </div>
+    </div>
+  </div>
+</div>

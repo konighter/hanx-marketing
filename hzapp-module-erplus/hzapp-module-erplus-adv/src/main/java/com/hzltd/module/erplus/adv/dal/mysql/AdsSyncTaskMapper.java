@@ -5,6 +5,7 @@ import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -64,5 +65,20 @@ public interface AdsSyncTaskMapper extends BaseMapperX<AdsSyncTaskDO> {
         return selectList(new LambdaQueryWrapperX<AdsSyncTaskDO>()
                 .eq(AdsSyncTaskDO::getShopId, shopId)
                 .eq(AdsSyncTaskDO::getStatus, "RUNNING"));
+    }
+
+    default AdsSyncTaskDO selectByShopIdAndTaskTypeAndDateRange(Long shopId, String taskType, LocalDate start, LocalDate end) {
+        return selectOne(new LambdaQueryWrapperX<AdsSyncTaskDO>()
+                .eq(AdsSyncTaskDO::getShopId, shopId)
+                .eq(AdsSyncTaskDO::getTaskType, taskType)
+                .eq(AdsSyncTaskDO::getDateRangeStart, start)
+                .eq(AdsSyncTaskDO::getDateRangeEnd, end));
+    }
+
+    default AdsSyncTaskDO selectByShopIdAndTaskTypeAndScheduledAt(Long shopId, String taskType, Long scheduledAt) {
+        return selectOne(new LambdaQueryWrapperX<AdsSyncTaskDO>()
+                .eq(AdsSyncTaskDO::getShopId, shopId)
+                .eq(AdsSyncTaskDO::getTaskType, taskType)
+                .eq(AdsSyncTaskDO::getScheduledAt, scheduledAt));
     }
 }

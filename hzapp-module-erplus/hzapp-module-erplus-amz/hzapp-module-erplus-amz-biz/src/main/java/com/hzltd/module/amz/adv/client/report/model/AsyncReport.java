@@ -15,10 +15,8 @@ package com.hzltd.module.amz.adv.client.report.model;
 
 import com.fasterxml.jackson.annotation.*;
 import com.hzltd.module.amz.adv.client.client.ApiClient;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Objects;
 import java.util.StringJoiner;
 /**
@@ -54,16 +52,16 @@ public class AsyncReport {
   private String endDate;
 
   public static final String JSON_PROPERTY_FAILURE_REASON = "failureReason";
-  private JsonNullable<String> failureReason = JsonNullable.<String>undefined();
+  private String failureReason;
 
   public static final String JSON_PROPERTY_FILE_SIZE = "fileSize";
-  private JsonNullable<BigDecimal> fileSize = JsonNullable.<BigDecimal>undefined();
+  private BigDecimal fileSize;
 
   public static final String JSON_PROPERTY_GENERATED_AT = "generatedAt";
-  private JsonNullable<String> generatedAt = JsonNullable.<String>undefined();
+  private String generatedAt;
 
   public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<String> name = JsonNullable.<String>undefined();
+  private String name;
 
   public static final String JSON_PROPERTY_REPORT_ID = "reportId";
   @jakarta.annotation.Nonnull
@@ -121,10 +119,10 @@ public class AsyncReport {
   private String updatedAt;
 
   public static final String JSON_PROPERTY_URL = "url";
-  private JsonNullable<String> url = JsonNullable.<String>undefined();
+  private String url;
 
   public static final String JSON_PROPERTY_URL_EXPIRES_AT = "urlExpiresAt";
-  private JsonNullable<String> urlExpiresAt = JsonNullable.<String>undefined();
+  private String urlExpiresAt;
 
   public AsyncReport() { 
   }
@@ -202,7 +200,7 @@ public class AsyncReport {
 
 
   public AsyncReport failureReason(@jakarta.annotation.Nullable String failureReason) {
-    this.failureReason = JsonNullable.<String>of(failureReason);
+    this.failureReason = failureReason;
     return this;
   }
 
@@ -211,30 +209,20 @@ public class AsyncReport {
    * @return failureReason
    */
   @jakarta.annotation.Nullable
-  @JsonIgnore
-  public String getFailureReason() {
-        return failureReason.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_FAILURE_REASON, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getFailureReason_JsonNullable() {
+  public String getFailureReason() {
     return failureReason;
   }
-  
-  @JsonProperty(JSON_PROPERTY_FAILURE_REASON)
-  public void setFailureReason_JsonNullable(JsonNullable<String> failureReason) {
-    this.failureReason = failureReason;
-  }
 
+  @JsonProperty(JSON_PROPERTY_FAILURE_REASON)
   public void setFailureReason(@jakarta.annotation.Nullable String failureReason) {
-    this.failureReason = JsonNullable.<String>of(failureReason);
+    this.failureReason = failureReason;
   }
 
 
   public AsyncReport fileSize(@jakarta.annotation.Nullable BigDecimal fileSize) {
-    this.fileSize = JsonNullable.<BigDecimal>of(fileSize);
+    this.fileSize = fileSize;
     return this;
   }
 
@@ -243,30 +231,20 @@ public class AsyncReport {
    * @return fileSize
    */
   @jakarta.annotation.Nullable
-  @JsonIgnore
-  public BigDecimal getFileSize() {
-        return fileSize.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_FILE_SIZE, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<BigDecimal> getFileSize_JsonNullable() {
+  public BigDecimal getFileSize() {
     return fileSize;
   }
-  
-  @JsonProperty(JSON_PROPERTY_FILE_SIZE)
-  public void setFileSize_JsonNullable(JsonNullable<BigDecimal> fileSize) {
-    this.fileSize = fileSize;
-  }
 
+  @JsonProperty(JSON_PROPERTY_FILE_SIZE)
   public void setFileSize(@jakarta.annotation.Nullable BigDecimal fileSize) {
-    this.fileSize = JsonNullable.<BigDecimal>of(fileSize);
+    this.fileSize = fileSize;
   }
 
 
   public AsyncReport generatedAt(@jakarta.annotation.Nullable String generatedAt) {
-    this.generatedAt = JsonNullable.<String>of(generatedAt);
+    this.generatedAt = generatedAt;
     return this;
   }
 
@@ -275,30 +253,20 @@ public class AsyncReport {
    * @return generatedAt
    */
   @jakarta.annotation.Nullable
-  @JsonIgnore
-  public String getGeneratedAt() {
-        return generatedAt.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_GENERATED_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getGeneratedAt_JsonNullable() {
+  public String getGeneratedAt() {
     return generatedAt;
   }
-  
-  @JsonProperty(JSON_PROPERTY_GENERATED_AT)
-  public void setGeneratedAt_JsonNullable(JsonNullable<String> generatedAt) {
-    this.generatedAt = generatedAt;
-  }
 
+  @JsonProperty(JSON_PROPERTY_GENERATED_AT)
   public void setGeneratedAt(@jakarta.annotation.Nullable String generatedAt) {
-    this.generatedAt = JsonNullable.<String>of(generatedAt);
+    this.generatedAt = generatedAt;
   }
 
 
   public AsyncReport name(@jakarta.annotation.Nullable String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
     return this;
   }
 
@@ -307,25 +275,15 @@ public class AsyncReport {
    * @return name
    */
   @jakarta.annotation.Nullable
-  @JsonIgnore
-  public String getName() {
-        return name.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_NAME, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getName_JsonNullable() {
+  public String getName() {
     return name;
   }
-  
-  @JsonProperty(JSON_PROPERTY_NAME)
-  public void setName_JsonNullable(JsonNullable<String> name) {
-    this.name = name;
-  }
 
+  @JsonProperty(JSON_PROPERTY_NAME)
   public void setName(@jakarta.annotation.Nullable String name) {
-    this.name = JsonNullable.<String>of(name);
+    this.name = name;
   }
 
 
@@ -426,7 +384,7 @@ public class AsyncReport {
 
 
   public AsyncReport url(@jakarta.annotation.Nullable String url) {
-    this.url = JsonNullable.<String>of(url);
+    this.url = url;
     return this;
   }
 
@@ -435,30 +393,20 @@ public class AsyncReport {
    * @return url
    */
   @jakarta.annotation.Nullable
-  @JsonIgnore
-  public String getUrl() {
-        return url.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_URL, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getUrl_JsonNullable() {
+  public String getUrl() {
     return url;
   }
-  
-  @JsonProperty(JSON_PROPERTY_URL)
-  public void setUrl_JsonNullable(JsonNullable<String> url) {
-    this.url = url;
-  }
 
+  @JsonProperty(JSON_PROPERTY_URL)
   public void setUrl(@jakarta.annotation.Nullable String url) {
-    this.url = JsonNullable.<String>of(url);
+    this.url = url;
   }
 
 
   public AsyncReport urlExpiresAt(@jakarta.annotation.Nullable String urlExpiresAt) {
-    this.urlExpiresAt = JsonNullable.<String>of(urlExpiresAt);
+    this.urlExpiresAt = urlExpiresAt;
     return this;
   }
 
@@ -467,25 +415,15 @@ public class AsyncReport {
    * @return urlExpiresAt
    */
   @jakarta.annotation.Nullable
-  @JsonIgnore
-  public String getUrlExpiresAt() {
-        return urlExpiresAt.orElse(null);
-  }
-
   @JsonProperty(value = JSON_PROPERTY_URL_EXPIRES_AT, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public JsonNullable<String> getUrlExpiresAt_JsonNullable() {
+  public String getUrlExpiresAt() {
     return urlExpiresAt;
   }
-  
-  @JsonProperty(JSON_PROPERTY_URL_EXPIRES_AT)
-  public void setUrlExpiresAt_JsonNullable(JsonNullable<String> urlExpiresAt) {
-    this.urlExpiresAt = urlExpiresAt;
-  }
 
+  @JsonProperty(JSON_PROPERTY_URL_EXPIRES_AT)
   public void setUrlExpiresAt(@jakarta.annotation.Nullable String urlExpiresAt) {
-    this.urlExpiresAt = JsonNullable.<String>of(urlExpiresAt);
+    this.urlExpiresAt = urlExpiresAt;
   }
 
 
@@ -504,32 +442,21 @@ public class AsyncReport {
     return Objects.equals(this._configuration, asyncReport._configuration) &&
         Objects.equals(this.createdAt, asyncReport.createdAt) &&
         Objects.equals(this.endDate, asyncReport.endDate) &&
-        equalsNullable(this.failureReason, asyncReport.failureReason) &&
-        equalsNullable(this.fileSize, asyncReport.fileSize) &&
-        equalsNullable(this.generatedAt, asyncReport.generatedAt) &&
-        equalsNullable(this.name, asyncReport.name) &&
+        Objects.equals(this.failureReason, asyncReport.failureReason) &&
+        Objects.equals(this.fileSize, asyncReport.fileSize) &&
+        Objects.equals(this.generatedAt, asyncReport.generatedAt) &&
+        Objects.equals(this.name, asyncReport.name) &&
         Objects.equals(this.reportId, asyncReport.reportId) &&
         Objects.equals(this.startDate, asyncReport.startDate) &&
         Objects.equals(this.status, asyncReport.status) &&
         Objects.equals(this.updatedAt, asyncReport.updatedAt) &&
-        equalsNullable(this.url, asyncReport.url) &&
-        equalsNullable(this.urlExpiresAt, asyncReport.urlExpiresAt);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.url, asyncReport.url) &&
+        Objects.equals(this.urlExpiresAt, asyncReport.urlExpiresAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_configuration, createdAt, endDate, hashCodeNullable(failureReason), hashCodeNullable(fileSize), hashCodeNullable(generatedAt), hashCodeNullable(name), reportId, startDate, status, updatedAt, hashCodeNullable(url), hashCodeNullable(urlExpiresAt));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
+    return Objects.hash(_configuration, createdAt, endDate, failureReason, fileSize, generatedAt, name, reportId, startDate, status, updatedAt, url, urlExpiresAt);
   }
 
   @Override
@@ -661,4 +588,3 @@ public class AsyncReport {
     return joiner.toString();
   }
 }
-

@@ -5,7 +5,7 @@ import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.hzltd.module.amz.api.adv.v1.AmazonAdsReportApiService;
-import com.hzltd.module.amz.api.adv.v1.AmzSpReportConstants;
+import com.hzltd.module.amz.adv.api.enums.AmzSpReportConstants;
 import com.hzltd.module.amz.api.adv.v1.model.AmzReportRequest;
 import com.hzltd.module.amz.api.adv.v1.model.AmzReportResponse;
 import com.hzltd.module.amz.api.enums.AmazonRegionEnum;
@@ -467,7 +467,7 @@ public class AdsAmazonReportServiceImpl implements AdsAmazonReportService {
         String reportType = metadata.get("reportType");
         String groupBy = (String) task.getContext().get("groupBy");
         Long accountId = task.getAccountId();
-        Long shopId = task.getShopId();
+        Long shopId = task.getShopId().longValue();
 
         byte[] unzipped = ZipUtil.unGzip(new ByteArrayInputStream(gzipContent));
         String jsonStr = new String(unzipped);

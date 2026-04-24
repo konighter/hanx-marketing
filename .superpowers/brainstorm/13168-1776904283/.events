@@ -1,0 +1,1 @@
+{"type":"click","text":"B\n      \n        异步回调\n        Handler 只管发指令，真正的下载由另一个组件异步完成，并调用引擎接口结案。","choice":"callback","id":null,"timestamp":1776905834145}

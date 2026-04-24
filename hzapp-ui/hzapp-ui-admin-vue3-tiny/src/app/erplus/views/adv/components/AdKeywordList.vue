@@ -153,6 +153,7 @@
 <script setup lang="ts">
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
 import { AdsKeywordApi } from '@/app/erplus/api/adv/ads'
+import { AdsReportApi } from '@/app/erplus/api/adv/report'
 import { AdsKeyword } from '../types/ads'
 
 defineOptions({ name: 'AdKeywordList' })
@@ -163,6 +164,7 @@ const props = defineProps<{
   campaignIds?: number[]
   adGroupIds?: number[]
   metricColumns: any[]
+  dateRange?: [string, string]
 }>()
 
 const emit = defineEmits<{
@@ -239,6 +241,49 @@ const getList = async () => {
       campaignIds: props.campaignIds && props.campaignIds.length > 0 ? props.campaignIds : undefined,
       adGroupIds: props.adGroupIds && props.adGroupIds.length > 0 ? props.adGroupIds : undefined
     })
+
+    // Fetch dynamic metrics if keywords exist and dateRange is provided
+    if (data.list && data.list.length > 0 && props.shopId && props.dateRange?.[0] && props.dateRange?.[1] && props.metricColumns) {
+      try {
+        const keywordIds = data.list.map((k: any) => k.externalId)
+        const metricKeys = props.metricColumns.map((m: any) => m.prop)
+
+        const reportData = await AdsReportApi.queryAdsReport({
+          shopId: props.shopId,
+          startDate: props.dateRange[0],
+          endDate: props.dateRange[1],
+          dimensions: ['keyword_id'],
+          metrics: metricKeys,
+          keywordIds: keywordIds
+        })
+
+        // Merge metrics into the keyword list
+        if (reportData && reportData.rows) {
+          const metricsMap = new Map<string, any>()
+          reportData.rows.forEach(row => {
+            const kwDim = row.dimensions.find(d => d.key === 'keyword_id')
+            if (kwDim && kwDim.value) {
+              const metricObj: Record<string, any> = {}
+              row.metrics.forEach(m => {
+                metricObj[m.key] = m.value
+              })
+              metricsMap.set(String(kwDim.value), metricObj)
+            }
+          })
+
+          data.list = data.list.map((keyword: any) => {
+            const metrics = metricsMap.get(String(keyword.externalId)) || {}
+            return {
+              ...keyword,
+              ...metrics
+            }
+          })
+        }
+      } catch (err) {
+        console.error('Failed to fetch dynamic metrics for keywords:', err)
+      }
+    }
+
     list.value = data.list
     total.value = data.total
   } finally {
@@ -256,6 +301,12 @@ const handleUpdateStatus = async (row: AdsKeyword) => {
 }
 
 watch(() => [props.accountId, props.shopId, props.campaignIds, props.adGroupIds], () => {
+  queryParams.pageNo = 1
+  getList()
+}, { deep: true })
+
+watch(() => props.dateRange, () => {
+  if (!props.dateRange?.[0] || !props.dateRange?.[1]) return
   queryParams.pageNo = 1
   getList()
 }, { deep: true })

@@ -27,7 +27,51 @@ export interface TrendResp {
   seriesData: Record<string, any[]>
 }
 
+export interface AdsReportQueryReq {
+  shopId?: number
+  startDate: string
+  endDate: string
+  dimensions?: string[]
+  metrics?: string[]
+  platforms?: string[]
+  campaignIds?: (number | string)[]
+  adGroupIds?: (number | string)[]
+  adIds?: (number | string)[]
+  keywordIds?: (number | string)[]
+  productIds?: string[]
+  limit?: number
+  orderBy?: string
+  isAsc?: boolean
+}
+
+export interface DimensionValue {
+  key: string
+  value: string
+  label?: string
+}
+
+export interface MetricValue {
+  key: string
+  value: any
+}
+
+export interface AdsReportRow {
+  dimensions: DimensionValue[]
+  metrics: MetricValue[]
+}
+
+export interface AdsReportDataResp {
+  rows: AdsReportRow[]
+  summary: AdsReportRow
+  total: number
+}
+
 export const AdsReportApi = {
+  // 获得结构化聚合数据 (OLAP)
+  queryAdsReport: (data: AdsReportQueryReq) => {
+    return request.post({ url: '/erplus/adv/report/query', data })
+  },
+
   // 获得核心指标卡片数据
   getPerformanceScorecard: (params: PerformanceReq) => {
     return request.post({ url: '/erplus/adv/report/scorecard', data: params })

@@ -5,7 +5,8 @@ import com.hzltd.module.erplus.adv.metadata.service.report.AdsReportService;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsPerformanceReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsPerformanceRespVO;
 import com.hzltd.module.erplus.adv.metadata.vo.report.AdsReportTrendRespVO;
-import io.swagger.v3.oas.annotations.Operation;
+import com.hzltd.module.erplus.adv.metadata.vo.report.AdsReportQueryReqVO;
+import com.hzltd.module.erplus.adv.metadata.vo.report.AdsReportDataRespVO;import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
@@ -48,6 +49,13 @@ public class AdsReportController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-report:query')")
     public CommonResult<List<AdsPerformanceRespVO>> getPerformanceDrilldown(@Valid @RequestBody AdsPerformanceReqVO reqVO) {
         return success(adsReportService.getPerformanceDrilldown(reqVO));
+    }
+
+    @PostMapping("/query")
+    @Operation(summary = "多维聚合结构化报表查询")
+    @PreAuthorize("@ss.hasPermission('erplus:adv-report:query')")
+    public CommonResult<AdsReportDataRespVO> queryAdsReport(@Valid @RequestBody AdsReportQueryReqVO reqVO) {
+        return success(adsReportService.queryAdsReport(reqVO));
     }
 
 }

@@ -30,6 +30,7 @@
     <AdAccountDataAnalysis 
       v-if="queryParams.shopId"
       :shop-id="queryParams.shopId"
+      v-model:date-range="dateRange"
     />
   </ContentWrap>
 
@@ -59,6 +60,7 @@
         <AdCampaignList 
           :shop-id="queryParams.shopId"
           :metric-columns="metricColumns"
+          :date-range="dateRange"
           @select="handleCampaignSelect"
           @click-name="handleCampaignClick"
         />
@@ -68,6 +70,7 @@
           :shop-id="queryParams.shopId"
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :metric-columns="metricColumns"
+          :date-range="dateRange"
           @select="handleAdGroupSelect"
           @click-name="handleAdGroupClick"
         />
@@ -78,6 +81,7 @@
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :ad-group-ids="filterContext.adGroupId ? [filterContext.adGroupId] : selectedAdGroupIds"
           :metric-columns="metricColumns"
+          :date-range="dateRange"
         />
       </el-tab-pane>
       <el-tab-pane label="关键词" name="keyword">
@@ -86,6 +90,7 @@
           :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
           :ad-group-ids="filterContext.adGroupId ? [filterContext.adGroupId] : selectedAdGroupIds"
           :metric-columns="metricColumns"
+          :date-range="dateRange"
         />
       </el-tab-pane>
     </el-tabs>
@@ -113,6 +118,18 @@ const selectedAdGroupIds = ref<number[]>([])
 const queryParams = reactive({
   shopId: undefined as number | undefined
 })
+
+// === 全局日期范围 (最近14天) ===
+const getDefaultDateRange = (): [string, string] => {
+  const endDate = new Date()
+  const startDate = new Date()
+  startDate.setDate(startDate.getDate() - 14)
+  return [
+    startDate.toISOString().split('T')[0],
+    endDate.toISOString().split('T')[0]
+  ]
+}
+const dateRange = ref<[string, string]>(getDefaultDateRange())
 
 // === 全局指标列配置 ===
 const metricColumns = ref([
