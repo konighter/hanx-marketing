@@ -52,4 +52,11 @@ public interface AdsAmazonProfileService {
      * @return
      */
     AdsAmazonProfileDO getProfileByShopId(Long shopId);
+
+    /**
+     * 查询店铺绑定的profile列表
+     * @param shopId
+     * @return
+     */
+    List<AdsAmazonProfileDO> getProfileListByShopId(Long shopId);
 }

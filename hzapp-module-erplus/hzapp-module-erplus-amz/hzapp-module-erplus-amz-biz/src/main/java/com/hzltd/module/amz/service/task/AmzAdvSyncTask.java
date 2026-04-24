@@ -44,7 +44,7 @@ public class AmzAdvSyncTask {
     /**
      * 定时同步待同步的本地数据到亚马逊（每30分钟执行一次）
      */
-    @Scheduled(cron = "0 */30 * * * ?")
+//    @Scheduled(cron = "0 */30 * * * ?")
     public void syncLocalDataToAmazon() {
         log.info("Starting scheduled synchronization of local data to Amazon...");
         

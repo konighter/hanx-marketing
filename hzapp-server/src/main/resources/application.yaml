@@ -324,6 +324,7 @@ hzapp:
       - erplus_product_unit
       - ads_report_stream_realtime
       - ads_report_batch
+      - erplus_schedule_task
     ignore-caches:
       - user_role_ids
       - permission_menu_ids

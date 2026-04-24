@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.adv.job;
 
 import com.hzltd.framework.quartz.core.handler.JobHandler;
 import com.hzltd.framework.tenant.core.job.TenantJob;
-import com.hzltd.module.erplus.adv.metadata.service.sync.AdsSyncTaskService;
+import com.hzltd.module.erplus.adv.metadata.service.sync.AdsReportSyncTaskService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -16,30 +16,23 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-public class AdsSyncTaskJob implements JobHandler {
+public class AdsReportSyncTaskJob implements JobHandler {
 
     @Resource
-    private AdsSyncTaskService adsSyncTaskService;
+    private AdsReportSyncTaskService adsReportSyncTaskService;
 
     @TenantJob
     @Override
     public String execute(String param) throws Exception {
-        log.info("[AdsSyncTaskJob] 开始执行同步任务调度...");
+        log.info("[AdsSyncTaskJob] 开始执行广告报表同步任务调度...");
         
         // 1. 创建昨日任务 (按各店铺时区判断)
         try {
-            adsSyncTaskService.createDailyTasks();
+            adsReportSyncTaskService.createDailyTasks();
         } catch (Exception e) {
-            log.error("[AdsSyncTaskJob] 创建每日任务异常", e);
+            log.error("[AdsSyncTaskJob] 创建广告报表同步任务异常", e);
         }
-        
-        // 2. 处理活跃任务 (拆分、提交、轮询)
-        try {
-            adsSyncTaskService.processActiveTasks();
-        } catch (Exception e) {
-            log.error("[AdsSyncTaskJob] 处理活跃任务异常", e);
-        }
-        
+        log.info("[AdsSyncTaskJob] 广告报表任务调度成功");
         return "SUCCESS";
     }
 

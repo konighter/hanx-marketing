@@ -1,4 +1,4 @@
-package com.hzltd.module.amz.api.adv.v1;
+package com.hzltd.module.amz.adv.api.enums;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,7 +14,7 @@ public class AmzSpReportConstants {
     public static final String AD_PRODUCT_SP = "SPONSORED_PRODUCTS";
     public static final String AD_PRODUCT_SB = "SPONSORED_BRANDS";
     public static final String AD_PRODUCT_SD = "SPONSORED_DISPLAY";
-    public static final String AD_PRODUCT_STV = "SPONSORED_TV";
+    public static final String AD_PRODUCT_STV = "SPONSORED_TELEVISION";
     public static final String AD_PRODUCT_DSP = "DSP";
 
     // --- Sponsored Products (SP) ---
@@ -70,8 +70,6 @@ public class AmzSpReportConstants {
     // Common Performance Metrics (Columns)
     private static final List<String> BASE_PERFORMANCE_METRICS = Arrays.asList(
             "date",
-//            "startDate",
-//            "endDate",
             "impressions",
             "clicks",
             "cost",
@@ -89,12 +87,14 @@ public class AmzSpReportConstants {
     private static Map<String, List<String>> reportTypeColumns = new java.util.HashMap<>();
     static {
         // campaign
+
+        //  Arrays.asList("impressions", "addToList", "qualifiedBorrows", "royaltyQualifiedBorrows", "clicks", "cost", "purchases1d", "purchases7d", "purchases14d", "purchases30d", "purchasesSameSku1d", "purchasesSameSku7d", "purchasesSameSku14d", "purchasesSameSku30d", "unitsSoldClicks1d", "unitsSoldClicks7d", "unitsSoldClicks14d", "unitsSoldClicks30d", "sales1d", "sales7d", "sales14d", "sales30d", "attributedSalesSameSku1d", "attributedSalesSameSku7d", "attributedSalesSameSku14d", "attributedSalesSameSku30d", "unitsSoldSameSku1d", "unitsSoldSameSku7d", "unitsSoldSameSku14d", "unitsSoldSameSku30d", "kindleEditionNormalizedPagesRead14d", "kindleEditionNormalizedPagesRoyalties14d", "date", "campaignBiddingStrategy", "costPerClick", "clickThroughRate", "spend")
         reportTypeColumns.put(SP_CAMPAIGNS, Arrays.asList("impressions", "addToList", "qualifiedBorrows", "royaltyQualifiedBorrows", "clicks", "cost", "purchases1d", "purchases7d", "purchases14d", "purchases30d", "purchasesSameSku1d", "purchasesSameSku7d", "purchasesSameSku14d", "purchasesSameSku30d", "unitsSoldClicks1d", "unitsSoldClicks7d", "unitsSoldClicks14d", "unitsSoldClicks30d", "sales1d", "sales7d", "sales14d", "sales30d", "attributedSalesSameSku1d", "attributedSalesSameSku7d", "attributedSalesSameSku14d", "attributedSalesSameSku30d", "unitsSoldSameSku1d", "unitsSoldSameSku7d", "unitsSoldSameSku14d", "unitsSoldSameSku30d", "kindleEditionNormalizedPagesRead14d", "kindleEditionNormalizedPagesRoyalties14d", "date", "campaignBiddingStrategy", "costPerClick", "clickThroughRate", "spend"));
 
-        //impressions, addToList, qualifiedBorrows, royaltyQualifiedBorrows, clicks, costPerClick, clickThroughRate, cost, purchases1d, purchases7d, purchases14d, purchases30d, purchasesSameSku1d, purchasesSameSku7d, purchasesSameSku14d, purchasesSameSku30d, unitsSoldClicks1d, unitsSoldClicks7d, unitsSoldClicks14d, unitsSoldClicks30d, sales1d, sales7d, sales14d, sales30d, attributedSalesSameSku1d, attributedSalesSameSku7d, attributedSalesSameSku14d, attributedSalesSameSku30d, unitsSoldSameSku1d, unitsSoldSameSku7d, unitsSoldSameSku14d, unitsSoldSameSku30d, kindleEditionNormalizedPagesRead14d, kindleEditionNormalizedPagesRoyalties14d, salesOtherSku7d, unitsSoldOtherSku7d, acosClicks7d, acosClicks14d, roasClicks7d, roasClicks14d, keywordId, keyword, campaignBudgetCurrencyCode, date, startDate, endDate, portfolioId, campaignName, campaignId, campaignBudgetType, campaignBudgetAmount, campaignStatus, keywordBid, adGroupName, adGroupId, keywordType, matchType, targeting, topOfSearchImpressionShare
+        // targeting
         reportTypeColumns.put(SP_TARGETING, Arrays.asList("impressions", "addToList", "qualifiedBorrows", "royaltyQualifiedBorrows", "clicks", "costPerClick", "clickThroughRate", "cost", "purchases1d", "purchases7d", "purchases14d", "purchases30d", "purchasesSameSku1d", "purchasesSameSku7d", "purchasesSameSku14d", "purchasesSameSku30d", "unitsSoldClicks1d", "unitsSoldClicks7d", "unitsSoldClicks14d", "unitsSoldClicks30d", "sales1d", "sales7d", "sales14d", "sales30d", "attributedSalesSameSku1d", "attributedSalesSameSku7d", "attributedSalesSameSku14d", "attributedSalesSameSku30d", "unitsSoldSameSku1d", "unitsSoldSameSku7d", "unitsSoldSameSku14d", "unitsSoldSameSku30d", "kindleEditionNormalizedPagesRead14d", "kindleEditionNormalizedPagesRoyalties14d", "salesOtherSku7d", "unitsSoldOtherSku7d", "acosClicks7d", "acosClicks14d", "roasClicks7d", "roasClicks14d", "keywordId", "keyword", "campaignBudgetCurrencyCode", "date", "portfolioId", "campaignName", "campaignId", "campaignBudgetType", "campaignBudgetAmount", "campaignStatus", "keywordBid", "adGroupName", "adGroupId", "keywordType", "matchType", "targeting", "topOfSearchImpressionShare"));
 
-        // impressions, addToList, qualifiedBorrows, royaltyQualifiedBorrows, clicks, costPerClick, clickThroughRate, cost, purchases1d, purchases7d, purchases14d, purchases30d, purchasesSameSku1d, purchasesSameSku7d, purchasesSameSku14d, purchasesSameSku30d, unitsSoldClicks1d, unitsSoldClicks7d, unitsSoldClicks14d, unitsSoldClicks30d, sales1d, sales7d, sales14d, sales30d, attributedSalesSameSku1d, attributedSalesSameSku7d, attributedSalesSameSku14d, attributedSalesSameSku30d, unitsSoldSameSku1d, unitsSoldSameSku7d, unitsSoldSameSku14d, unitsSoldSameSku30d, kindleEditionNormalizedPagesRead14d, kindleEditionNormalizedPagesRoyalties14d, salesOtherSku7d, unitsSoldOtherSku7d, acosClicks7d, acosClicks14d, roasClicks7d, roasClicks14d, keywordId, keyword, campaignBudgetCurrencyCode, date, startDate, endDate, portfolioId, searchTerm, campaignName, campaignId, campaignBudgetType, campaignBudgetAmount, campaignStatus, keywordBid, adGroupName, adGroupId, keywordType, matchType, targeting, adKeywordStatus
+        // search term
         reportTypeColumns.put(SP_SEARCH_TERM, Arrays.asList("impressions", "addToList", "qualifiedBorrows", "royaltyQualifiedBorrows", "clicks", "costPerClick", "clickThroughRate", "cost", "purchases1d", "purchases7d", "purchases14d", "purchases30d", "purchasesSameSku1d", "purchasesSameSku7d", "purchasesSameSku14d", "purchasesSameSku30d", "unitsSoldClicks1d", "unitsSoldClicks7d", "unitsSoldClicks14d", "unitsSoldClicks30d", "sales1d", "sales7d", "sales14d", "sales30d", "attributedSalesSameSku1d", "attributedSalesSameSku7d", "attributedSalesSameSku14d", "attributedSalesSameSku30d", "unitsSoldSameSku1d", "unitsSoldSameSku7d", "unitsSoldSameSku14d", "unitsSoldSameSku30d", "kindleEditionNormalizedPagesRead14d", "kindleEditionNormalizedPagesRoyalties14d", "salesOtherSku7d", "unitsSoldOtherSku7d", "acosClicks7d", "acosClicks14d", "roasClicks7d", "roasClicks14d", "keywordId", "keyword", "campaignBudgetCurrencyCode", "date", "portfolioId", "searchTerm", "campaignName", "campaignId", "campaignBudgetType", "campaignBudgetAmount", "campaignStatus", "keywordBid", "adGroupName", "adGroupId", "keywordType", "matchType", "targeting", "adKeywordStatus"));
 
     }
@@ -110,20 +110,27 @@ public class AmzSpReportConstants {
             columns.addAll(BASE_PERFORMANCE_METRICS);
         }
 
-        // Add dimension specific columns if needed (for those not already in the common lists)
+        // Add dimension specific columns if needed
         if (groupBy != null) {
             String[] dims = groupBy.split(",");
             for (String dim : dims) {
                 dim = dim.trim();
                 switch (dim) {
                     case "campaignPlacement":
-                        addIfNotExists(columns, Arrays.asList("placementClassification", "campaignName", "campaignId", "campaignStatus", "campaignBudgetAmount", "campaignBudgetType", "campaignRuleBasedBudgetAmount", "campaignApplicableBudgetRuleId", "campaignApplicableBudgetRuleName", "campaignBudgetCurrencyCode", "topOfSearchImpressionShare"));
+                    case "placement":
+                        addIfNotExists(columns, Arrays.asList("placementClassification", "placement", "campaignName", "campaignId", "campaignStatus", "campaignBudgetAmount", "campaignBudgetType", "campaignBudgetCurrencyCode"));
+                        if (SP_CAMPAIGNS.equals(reportType)) {
+                            addIfNotExists(columns, Arrays.asList("campaignRuleBasedBudgetAmount", "campaignApplicableBudgetRuleId", "campaignApplicableBudgetRuleName", "topOfSearchImpressionShare"));
+                        }
                         break;
                     case "adGroup":
                         addIfNotExists(columns, Arrays.asList("adGroupName", "adGroupId", "adStatus"));
                         break;
                     case "campaign":
-                        addIfNotExists(columns, Arrays.asList("campaignName", "campaignId", "campaignStatus", "campaignBudgetAmount", "campaignBudgetType", "campaignBudgetCurrencyCode"));
+                        addIfNotExists(columns, Arrays.asList("campaignName", "campaignId"));
+                        break;
+                    case "ad":
+                        addIfNotExists(columns, Arrays.asList("adId", "adName", "adStatus", "asin", "sku"));
                         break;
                     case "targeting":
                         addIfNotExists(columns, Arrays.asList("keywordId", "keyword", "keywordBid", "keywordType", "matchType", "targeting"));
@@ -150,7 +157,6 @@ public class AmzSpReportConstants {
 
     /**
      * Get groupBy dimension for a specific report type
-     * Ref: Amazon Advertising API v3.0 Configurations
      */
     public static List<String> getGroupByForType(String reportType) {
         switch (reportType) {
@@ -159,7 +165,6 @@ public class AmzSpReportConstants {
             case SB_CAMPAIGNS:
             case SD_CAMPAIGNS:
             case STV_CAMPAIGNS:
-            case DSP_CAMPAIGN:
                 return Arrays.asList("campaign");
 
             case SP_AD_GROUPS:
@@ -182,6 +187,9 @@ public class AmzSpReportConstants {
             case SB_SEARCH_TERM:
                 return Arrays.asList("searchTerm");
 
+            case SB_PLACEMENT:
+                return Arrays.asList("placement");
+
             default:
                 return Arrays.asList("campaign");
         }
@@ -193,3 +201,4 @@ public class AmzSpReportConstants {
     public static final String STATUS_PROCESSING = "PROCESSING";
     public static final String STATUS_PENDING = "PENDING";
 }
+

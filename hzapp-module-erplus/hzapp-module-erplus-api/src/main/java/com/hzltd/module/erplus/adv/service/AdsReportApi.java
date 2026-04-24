@@ -1,10 +1,8 @@
 package com.hzltd.module.erplus.adv.service;
 
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportBatchDO;
-import com.hzltd.module.erplus.adv.model.AdsReportRequest;
+import com.hzltd.module.erplus.adv.model.*;
 import com.hzltd.module.erplus.adv.enums.AdsReportStatus;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -20,37 +18,33 @@ public interface AdsReportApi {
      * 获取指定范围内该平台需要执行的报表同步请求
      * 例如 Amazon 可能需要按 SP_ADS, SP_TARGETING 等维度分别创建请求
      *
-     * @param shopId 店铺ID
-     * @param startDate 开始日期
-     * @param endDate 结束日期
+     * @param request 包含 shopId, startDate, endDate 等
      * @return 报表请求配置列表
      */
-    List<AdsReportRequest> getReportRequests(Integer shopId, LocalDate startDate, LocalDate endDate);
+    AdsResponse<List<AdsReportRequest>> getReportRequests(AdsRequest<AdsReportGetRequest> request);
 
     /**
      * 提交异步报表生成请求
      *
-     * @param request 报表请求
+     * @param request 包含报表请求配置
      * @return 平台侧的任务唯一标识 (platformJobId)
      */
-    String submitAsyncReport(AdsReportRequest request);
+    AdsResponse<String> submitAsyncReport(AdsRequest<AdsReportRequest> request);
 
     /**
      * 查询异步报表生成状态
      *
-     * @param platformJobId 平台侧任务标识
-     * @param request 报表请求上下文
+     * @param request 包含 platformJobId 和报表请求上下文
      * @return 当前状态
      */
-    AdsReportStatus getReportStatus(String platformJobId, AdsReportRequest request);
+    AdsResponse<AdsReportStatus> getReportStatus(AdsRequest<AdsReportStatusRequest> request);
 
     /**
      * 下载并解析报表，解析后的结果通过 saver 回调处理（通常是入库 Doris）
      *
-     * @param platformJobId 平台侧任务标识
-     * @param request 报表请求上下文
+     * @param request 包含 platformJobId 和报表请求上下文
      * @param saver 数据保存回调
      */
-    void downloadAndProcess(String platformJobId, AdsReportRequest request, Consumer<List<AdsReportBatchDO>> saver);
+    AdsResponse<Void> downloadAndProcess(AdsRequest<AdsReportProcessRequest> request, Consumer<List<?>> saver);
 
 }

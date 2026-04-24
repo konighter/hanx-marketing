@@ -1,0 +1,76 @@
+<h2>状态协作模型 (Status Collaboration)</h2>
+<p class="subtitle">如何区分外部异步等待 (SUBMITTED) 与 本地执行 (PROCESSING)</p>
+
+<div class="section">
+  <h3>任务流转全图 (Full Flow)</h3>
+  <div class="mockup">
+    <div class="mockup-body" style="padding: 20px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; text-align: center;">
+        <div style="width: 15%; padding: 10px; border: 2px solid #ccc; border-radius: 8px;">PENDING<br><small>待处理</small></div>
+        <div style="font-size: 20px;">➔</div>
+        <div style="width: 20%; padding: 10px; border: 2px dashed #2196F3; border-radius: 8px;">SUBMITTED<br><small>外部等待 (Amazon)</small></div>
+        <div style="font-size: 20px;">➔</div>
+        <div style="width: 20%; padding: 10px; border: 2px solid #FF9800; border-radius: 8px;">PROCESSING<br><small>本地处理 (Download/Save)</small></div>
+        <div style="font-size: 20px;">➔</div>
+        <div style="width: 15%; padding: 10px; border: 2px solid #4CAF50; border-radius: 8px;">SUCCESS<br><small>完成</small></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">SUBMITTED: 异步等待态</div>
+    <div class="mockup-body" style="padding: 15px;">
+      <p><b>场景：</b> 调用外部 API (如 SubmitReport) 后，对方还在排队。</p>
+      <p><b>行为：</b> 引擎 <b>释放线程</b>，定时再次调用 <code>onPoll()</code>。</p>
+      <p><b>目的：</b> 避免线程阻塞，提高并发能力。</p>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">PROCESSING: 执行中状态</div>
+    <div class="mockup-body" style="padding: 15px;">
+      <p><b>场景：</b> 报表已生成，本地正在下载、解析并落库 (Doris)。</p>
+      <p><b>行为：</b> 引擎 <b>占用线程</b>，调用 <code>onExecute()</code> 进行实际计算。</p>
+      <p><b>目的：</b> 防止其他节点并发执行同一任务，标识任务正在消耗本机资源。</p>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>结合方式建议</h3>
+  <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+    <tr style="background: #f0f0f0; text-align: left;">
+      <th style="padding: 10px; border: 1px solid #ddd;">任务场景</th>
+      <th style="padding: 10px; border: 1px solid #ddd;">流转路径</th>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">纯同步任务 (如 Token 刷新)</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">PENDING ➔ PROCESSING ➔ SUCCESS</td>
+    </tr>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">异步报表任务 (如 Amazon)</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">PENDING ➔ SUBMITTED ➔ PROCESSING ➔ SUCCESS</td>
+    </tr>
+  </table>
+</div>
+
+<div class="section">
+  <h3>您是否同意将 PROCESSING 作为“本地线程占用的锁标识”？</h3>
+  <div class="options">
+    <div class="option" data-choice="agree" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>同意</h3>
+        <p>这样可以非常清晰地从管理后台看到哪些任务在排队，哪些在等外部，哪些在占 CPU。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="auto" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>由引擎自动管理 PROCESSING</h3>
+        <p>Handler 只需返回逻辑状态，引擎在调度时自动将任务标为 PROCESSING，完成后由引擎改回终端状态。</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -172,13 +172,15 @@ public class AmazonAuthService implements AuthorizationApi {
                 .build();
         try (Response response = client.newCall(request).execute()) {
             if (!response.isSuccessful()) {
-                throw exception(CROSS_API_ERROR, "refresh access token failed, code: " + response.code() + ", message: " + response.message());
+                log.error("refresh access token failed, code: " + response.code() + ", message: " + response.message());
+                return null;
             }
             String respBody = response.body().string();
             return JsonUtils.parseObject(respBody, AuthorizationModelV0.class);
 
         } catch (IOException e) {
-            throw exception(CROSS_API_ERROR, "refresh access token failed");
+            log.error("refresh access token failed, message: " + e.getMessage());
+            return null;
         }
     }
 

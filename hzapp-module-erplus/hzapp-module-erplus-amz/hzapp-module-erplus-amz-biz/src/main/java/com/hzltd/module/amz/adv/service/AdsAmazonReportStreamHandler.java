@@ -85,7 +85,7 @@ public class AdsAmazonReportStreamHandler {
 
             AdsReportStreamRealtimeDO realtimeDO = AdsReportStreamRealtimeDO.builder()
                     .windowStartTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(metric.getTimeWindowStart()), ZoneOffset.UTC))
-                    .shopId(shop.getId())
+                    .shopId(shop.getId().longValue())
                     .platform("AMAZON")
                     .campaignId(metric.getCampaignId())
                     .adGroupId(metric.getAdGroupId())
@@ -126,7 +126,7 @@ public class AdsAmazonReportStreamHandler {
 
             AdsReportStreamRealtimeDO realtimeDO = AdsReportStreamRealtimeDO.builder()
                     .windowStartTime(LocalDateTime.ofInstant(Instant.ofEpochMilli(metric.getTimeWindowStart()), ZoneOffset.UTC))
-                    .shopId(shop.getId())
+                    .shopId(shop.getId().longValue())
                     .platform("AMAZON")
                     .campaignId(metric.getCampaignId())
                     .adGroupId(metric.getAdGroupId())

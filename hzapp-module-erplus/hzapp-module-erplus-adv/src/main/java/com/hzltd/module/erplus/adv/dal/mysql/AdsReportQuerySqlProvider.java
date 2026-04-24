@@ -122,6 +122,12 @@ public class AdsReportQuerySqlProvider {
         sql.append(" AND ").append(dateCol).append(" >= #{req.startDate} ");
         sql.append(" AND ").append(dateCol).append(" <= #{req.endDate} ");
 
+        // 离线表需要根据维度自动路由 RecordType 以防止重复计算指标
+        if ("ads_report_batch".equals(table)) {
+            String recordType = resolveRecordType(req);
+            sql.append(" AND record_type = '").append(recordType).append("' ");
+        }
+
         if (!CollectionUtils.isEmpty(req.getPlatforms())) {
             sql.append(" AND platform IN (");
             sql.append(req.getPlatforms().stream().map(p -> "'" + p.replace("'", "") + "'").collect(Collectors.joining(",")));
@@ -141,6 +147,23 @@ public class AdsReportQuerySqlProvider {
         }
 
         return sql.toString();
+    }
+
+    /**
+     * 根据请求维度和过滤器，解析出应该查询的 record_type
+     */
+    private String resolveRecordType(AdsReportQueryReqVO req) {
+        List<String> dimensions = req.getDimensions() == null ? new ArrayList<>() : req.getDimensions();
+
+        // 优先级: 搜索词 > 广告位 > 关键词/针对对象 > 广告 > 广告组 > 广告活动
+        // 只要维度包含或过滤器包含，就下钻到对应层级
+        if (dimensions.contains("searchTerm")) return "SEARCH_TERM";
+        if (dimensions.contains("placement") || !CollectionUtils.isEmpty(req.getPlacements())) return "PLACEMENT";
+        if (dimensions.contains("keywordId") || !CollectionUtils.isEmpty(req.getKeywordIds())) return "TARGETING";
+        if (dimensions.contains("adId") || !CollectionUtils.isEmpty(req.getAdIds())) return "AD";
+        if (dimensions.contains("adGroupId") || !CollectionUtils.isEmpty(req.getAdGroupIds())) return "AD_GROUP";
+
+        return "CAMPAIGN";
     }
 
     private void appendInClause(StringBuilder sql, String colName, List<String> ids) {

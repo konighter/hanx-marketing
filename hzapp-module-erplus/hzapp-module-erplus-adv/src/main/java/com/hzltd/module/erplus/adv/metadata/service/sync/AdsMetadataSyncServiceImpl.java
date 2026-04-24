@@ -76,14 +76,14 @@ public class AdsMetadataSyncServiceImpl implements AdsMetadataSyncService {
 
         if ("METADATA_INCR".equals(task.getTaskType())) {
             if (task.getShopId() != null) {
-                syncIncrementalMetadataByShop(task.getShopId());
+                syncIncrementalMetadataByShop(task.getShopId().longValue());
             } else {
                 log.warn("[executeSyncTask] 任务未绑定 Shop, 无法执行增量同步: taskId={}", taskId);
             }
         } else {
             // 默认为 METADATA_FULL 等全量同步处理
             if (task.getShopId() != null) {
-                syncAllMetadataByShop(task.getShopId());
+                syncAllMetadataByShop(task.getShopId().longValue());
             } else {
                 log.warn("[executeSyncTask] 任务未绑定 Shop, 无法执行全量同步: taskId={}", taskId);
             }

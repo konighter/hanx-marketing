@@ -420,4 +420,17 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
     public ShopModel getShopBySellerIdAndMarketplaceIdWithoutTenant(String sellerId, String marketplaceId) {
         return getShopBySellerIdAndMarketplaceId(sellerId, marketplaceId);
     }
+
+    @Override
+    @TenantIgnore
+    public ShopModel getShopByIdWithoutTenant(Integer shopId) {
+        return this.getShopById(shopId);
+    }
+
+    @Override
+    @TenantIgnore
+    public List<ShopModel> getAvailableShops() {
+        List<ShopDO> shops = shopMapper.selectList();
+        return BeanUtils.toBean(shops, ShopModel.class);
+    }
 }

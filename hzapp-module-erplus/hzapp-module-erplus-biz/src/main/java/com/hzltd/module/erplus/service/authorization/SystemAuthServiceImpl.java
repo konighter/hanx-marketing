@@ -1,5 +1,8 @@
 package com.hzltd.module.erplus.service.authorization;
 
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.Expiry;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.api.service.AuthorizationApiFactory;
@@ -22,8 +25,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import static com.hzltd.framework.security.core.util.SecurityFrameworkUtils.getLoginUserId;
 
@@ -33,17 +37,28 @@ import static com.hzltd.framework.security.core.util.SecurityFrameworkUtils.getL
 @Service
 public class SystemAuthServiceImpl implements SystemAuthService {
 
-    /** 缓存 TTL：5 分钟 */
-    private static final long CACHE_TTL_MS = 45 * 60 * 1000L;
+    /** key = "userId:shopId:authType", value = Optional<AuthorizationModel> */
+    private final Cache<String, Optional<AuthorizationModel>> authModelCache = Caffeine.newBuilder()
+            .expireAfter(new Expiry<String, Optional<AuthorizationModel>>() {
+                @Override
+                public long expireAfterCreate(String key, Optional<AuthorizationModel> value, long currentTime) {
+                    if (value.isEmpty()) {
+                        return TimeUnit.SECONDS.toNanos(2);
+                    }
+                    return TimeUnit.MINUTES.toNanos(45);
+                }
 
-    /** key = "userId:shopId:authType", value = CacheEntry */
-    private final Map<String, CacheEntry> authModelCache = new ConcurrentHashMap<>();
+                @Override
+                public long expireAfterUpdate(String key, Optional<AuthorizationModel> value, long currentTime, long currentDuration) {
+                    return expireAfterCreate(key, value, currentTime);
+                }
 
-    private record CacheEntry(AuthorizationModel model, long expireAt) {
-        boolean isExpired() {
-            return System.currentTimeMillis() > expireAt;
-        }
-    }
+                @Override
+                public long expireAfterRead(String key, Optional<AuthorizationModel> value, long currentTime, long currentDuration) {
+                    return currentDuration;
+                }
+            })
+            .build();
 
     @Resource
     private ShopAuthMapper shopAuthMapper;
@@ -128,16 +143,17 @@ public class SystemAuthServiceImpl implements SystemAuthService {
 
         // 构建缓存 key
         String cacheKey = (userId != null ? userId : "anon") + ":" + shopId + ":" + authType;
-        CacheEntry entry = authModelCache.get(cacheKey);
-        if (entry != null && !entry.isExpired()) {
-            return entry.model();
+        Optional<AuthorizationModel> opt = authModelCache.getIfPresent(cacheKey);
+        if (opt != null) {
+            return opt.orElse(null);
         }
 
         // 缓存未命中或已过期，从 DB 查询
         AuthorizationModel model = loadAuthorizationModel(shopId, authType, userId);
 
-        // 写入缓存（null 也缓存，避免缓存穿透）
-        authModelCache.put(cacheKey, new CacheEntry(model, System.currentTimeMillis() + CACHE_TTL_MS));
+        // 写入缓存（null 也缓存，通过 Expiry 控制过期时间）
+        authModelCache.put(cacheKey, Optional.ofNullable(model));
+
         return model;
     }
 
@@ -177,7 +193,9 @@ public class SystemAuthServiceImpl implements SystemAuthService {
                             .appSecret(model.getAppSecret())
                             .refreshToken(model.getRefreshToken())
                             .authType(model.getAuthType()).build());
-
+            if (accessTokenModel == null) {
+                return null;
+            }
             model.setAccessToken(accessTokenModel.getAccessToken());
             model.setExpiryTime(LocalDateTime.now().plusSeconds(accessTokenModel.getExpireIn()));
         }

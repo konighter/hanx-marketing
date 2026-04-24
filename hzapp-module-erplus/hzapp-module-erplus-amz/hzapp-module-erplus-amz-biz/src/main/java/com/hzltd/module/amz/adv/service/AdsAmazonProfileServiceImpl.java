@@ -169,4 +169,9 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     public AdsAmazonProfileDO getProfileByShopId(Long shopId) {
         return adsAmazonProfileMapper.selectByShopId(shopId);
     }
+
+    @Override
+    public List<AdsAmazonProfileDO> getProfileListByShopId(Long shopId) {
+        return adsAmazonProfileMapper.selectListByShopId(shopId);
+    }
 }

@@ -1,9 +1,5 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
-
-import java.util.List;
-
 /**
  * 广告同步任务核心服务
  * 
@@ -13,7 +9,7 @@ import java.util.List;
  * 3. 任务分发 (提交异步请求)
  * 4. 任务轮询 (检查平台状态并下载)
  */
-public interface AdsSyncTaskService {
+public interface AdsReportSyncTaskService {
 
     /**
      * 为所有启用广告的店铺创建昨日同步任务 (REPORT_DAILY)

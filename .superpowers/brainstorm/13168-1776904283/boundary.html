@@ -1,0 +1,72 @@
+<h2>任务引擎分界设计 (Boundary Design)</h2>
+<p class="subtitle">明确引擎与业务子模块的职责边界，确保低耦合</p>
+
+<div class="split">
+  <div class="mockup">
+    <div class="mockup-header">引擎职责 (Engine Responsibilities)</div>
+    <div class="mockup-body" style="padding: 15px;">
+      <ul style="color: #4CAF50; list-style-type: '✅ ';">
+        <li>任务的 <b>CRUD</b> 与 <b>持久化</b></li>
+        <li>状态流转 (PENDING -> RUNNING -> ...)</li>
+        <li>定时扫描与 <b>多线程分发</b></li>
+        <li><b>异常捕获</b>、重试计数、日志记录</li>
+        <li>父子任务的 <b>完成度检测</b> 与级联更新</li>
+      </ul>
+    </div>
+  </div>
+  <div class="mockup">
+    <div class="mockup-header">子模块职责 (Module Responsibilities)</div>
+    <div class="mockup-body" style="padding: 15px;">
+      <ul style="color: #2196F3; list-style-type: '📦 ';">
+        <li>任务 <b>参数组装</b> (如 DateRange, ShopId)</li>
+        <li>实现 <b>执行逻辑</b> (Handler 内部逻辑)</li>
+        <li>调用引擎 <b>提交任务</b> (调用 <code>submitTask</code>)</li>
+        <li>不直接操作 <code>ads_sync_task</code> 表</li>
+        <li>不负责状态更新，仅返回 <b>执行结果</b> 给引擎</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h3>关键接口定义 (API Design)</h3>
+  <pre style="background: #f4f4f4; padding: 15px; border-radius: 8px; font-size: 13px;">
+// 引擎提供的服务接口
+public interface AdsTaskEngine {
+    // 提交任务请求，返回任务ID
+    Long submitTask(AdsTaskSubmitRequest request);
+    
+    // 内部调用：更新任务状态（子模块不可见）
+    // void updateTaskStatus(Long taskId, AdsTaskResult result);
+}
+
+// 子模块需要实现的处理器接口
+public interface AdsTaskHandler {
+    // 执行具体业务逻辑，返回标准化的结果对象
+    AdsTaskResult execute(AdsSyncTaskDO task);
+    
+    // 处理器标识：如 "REPORT_DAILY"
+    String getTaskType();
+}
+  </pre>
+</div>
+
+<div class="section">
+  <h3>对于异步任务（如 Amazon 报表），您倾向于哪种执行模式？</h3>
+  <div class="options">
+    <div class="option" data-choice="reactive" onclick="toggleSelect(this)">
+      <div class="letter">A</div>
+      <div class="content">
+        <h3>状态反应式 (Single-Method)</h3>
+        <p>引擎只要任务没完成就调用 <code>execute</code>。Handler 内部根据状态判断是“提交报表”还是“轮询状态”。接口最简单。</p>
+      </div>
+    </div>
+    <div class="option" data-choice="lifecycle" onclick="toggleSelect(this)">
+      <div class="letter">B</div>
+      <div class="content">
+        <h3>生命周期钩子 (Multi-Method)</h3>
+        <p>Handler 显式提供 <code>onStart</code>, <code>onPoll</code>, <code>onRetry</code> 等方法。结构更清晰，但接口复杂度略高。</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,6 +12,10 @@ public interface SystemShopService {
      */
     ShopModel getShopById(Long shopId);
 
+    default ShopModel getShopById(Integer shopId) {
+        return this.getShopById(shopId.longValue());
+    }
+
     /**
      * @param shopId 跨境平台的shopId
      * @return
@@ -43,4 +47,8 @@ public interface SystemShopService {
      */
     ShopModel getShopBySellerIdAndMarketplaceIdWithoutTenant(String sellerId, String marketplaceId);
 
+
+    ShopModel getShopByIdWithoutTenant(Integer shopId);
+
+    List<ShopModel> getAvailableShops();
 }

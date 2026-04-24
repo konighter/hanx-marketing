@@ -20,7 +20,7 @@ import java.util.Map;
 public class AdsReportRequest {
 
     /** 店铺ID */
-    private Long shopId;
+    private Integer shopId;
     
     /** 广告平台 */
     private String platform;
