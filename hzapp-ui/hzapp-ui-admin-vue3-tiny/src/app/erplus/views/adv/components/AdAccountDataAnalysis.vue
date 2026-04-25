@@ -179,25 +179,32 @@ watch(() => dateRange.value, (newVal) => {
 
 const handleDateChange = (val: [string, string]) => {
   if (val && val[0] && val[1]) {
-    // 只有当两个日期都选定后，才更新全局 model 触发其他组件
-    dateRange.value = val
+    // 先确保 localDateRange 是最新值
+    localDateRange.value = [...val]
+    // 同步给父组件
+    dateRange.value = [...val]
     loadData()
   }
 }
 
 const loadData = async () => {
   if (!props.shopId) return
-  // 确保日期范围完整且有效
-  if (!dateRange.value || !dateRange.value[0] || !dateRange.value[1]) return
+  // 使用 localDateRange 作为查询的唯一数据源（与用户看到的一致）
+  const dr = localDateRange.value
+  if (!dr || !dr[0] || !dr[1]) return
   
+  const params = {
+    shopId: props.shopId,
+    startDate: dr[0],
+    endDate: dr[1],
+    metrics: ['spend', 'impressions', 'clicks', 'orders', 'sales', 'roas', 'cpc', 'acos', 'ctr']
+  }
+  console.log('[AdAccountDataAnalysis] loadData params:', JSON.stringify(params))
+
   loading.value = true
   try {
-    const res = await AdsReportApi.queryAdsReport({
-      shopId: props.shopId,
-      startDate: dateRange.value[0],
-      endDate: dateRange.value[1],
-      metrics: ['spend', 'impressions', 'clicks', 'orders', 'sales', 'roas', 'cpc', 'acos', 'ctr']
-    })
+    const res = await AdsReportApi.queryAdsReport(params)
+    console.log('[AdAccountDataAnalysis] loadData response:', JSON.stringify(res))
     
     // 将返回的 metrics 列表转换为对象格式，方便 scorecard 使用
     const metricsMap: Record<string, any> = {}

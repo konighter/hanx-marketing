@@ -21,6 +21,11 @@
             @change="handleShopChange"
           />
         </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleQuery">
+            <Icon icon="ep:search" class="mr-5px" /> 查询
+          </el-button>
+        </el-form-item>
       </el-form>
       <!-- 右侧：同步组件 -->
       <AdSyncDialog :shop-id="queryParams.shopId" />
@@ -29,6 +34,7 @@
     <!-- 展示当前广告效果 (账户级别分析) -->
     <AdAccountDataAnalysis 
       v-if="queryParams.shopId"
+      :key="refreshKey"
       :shop-id="queryParams.shopId"
       v-model:date-range="dateRange"
     />
@@ -36,7 +42,12 @@
 
   <ContentWrap>
     <div class="mb-15px flex items-center justify-between">
-      <div class="text-16px font-bold">广告管理</div>
+      <div class="flex items-center">
+        <div class="text-16px font-bold mr-15px">广告管理</div>
+        <el-button v-if="queryParams.shopId" type="primary" size="small" @click="handleCreateCampaign">
+          <Icon icon="ep:plus" class="mr-5px" /> 新建广告活动
+        </el-button>
+      </div>
 
       <!-- 全局列配置 -->
       <el-dropdown trigger="click" :hide-on-click="false">
@@ -55,7 +66,7 @@
       </el-dropdown>
     </div>
 
-    <el-tabs v-model="activeTab" type="card" @tab-change="handleTabChange">
+    <el-tabs v-model="activeTab" type="card" @tab-change="handleTabChange" :key="refreshKey">
       <el-tab-pane label="广告活动" name="campaign">
         <AdCampaignList 
           :shop-id="queryParams.shopId"
@@ -84,15 +95,6 @@
           :date-range="dateRange"
         />
       </el-tab-pane>
-      <el-tab-pane label="关键词" name="keyword">
-        <AdKeywordList 
-          :shop-id="queryParams.shopId"
-          :campaign-ids="filterContext.campaignId ? [filterContext.campaignId] : selectedCampaignIds"
-          :ad-group-ids="filterContext.adGroupId ? [filterContext.adGroupId] : selectedAdGroupIds"
-          :metric-columns="metricColumns"
-          :date-range="dateRange"
-        />
-      </el-tab-pane>
     </el-tabs>
   </ContentWrap>
 </template>
@@ -102,7 +104,6 @@ import { ShopApi } from '@/app/erplus/api/system/shop'
 import AdCampaignList from './components/AdCampaignList.vue'
 import AdGroupList from './components/AdGroupList.vue'
 import AdList from './components/AdList.vue'
-import AdKeywordList from './components/AdKeywordList.vue'
 import AdAccountDataAnalysis from './components/AdAccountDataAnalysis.vue'
 import AdSyncDialog from './components/AdSyncDialog.vue'
 
@@ -114,6 +115,11 @@ const shopCascaderList = ref<any[]>([])
 const selectedShopPath = ref<any[]>([])
 const selectedCampaignIds = ref<number[]>([])
 const selectedAdGroupIds = ref<number[]>([])
+const refreshKey = ref(0)
+
+const handleQuery = () => {
+  refreshKey.value++
+}
 
 const queryParams = reactive({
   shopId: undefined as number | undefined
@@ -162,6 +168,10 @@ const handleShopChange = (value: any[]) => {
   } else {
     queryParams.shopId = undefined
   }
+}
+
+const handleCreateCampaign = () => {
+  message.info('新建广告活动功能开发中...')
 }
 
 const handleTabChange = (tab: string) => {
