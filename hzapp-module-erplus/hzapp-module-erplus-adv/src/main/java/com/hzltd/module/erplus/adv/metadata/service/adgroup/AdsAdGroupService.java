@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.adv.metadata.service.adgroup;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
+import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupPageReqVO;
 import com.hzltd.module.erplus.adv.model.AdsAdGroupModel;
 
@@ -19,6 +20,12 @@ public interface AdsAdGroupService {
      * @return 广告组分页
      */
     PageResult<AdsAdGroupDO> getAdGroupPage(AdsAdGroupPageReqVO pageReqVO);
+
+    /**
+     * 创建广告组
+     * @param createReqVO 创建请求
+     */
+    void createAdGroup(AdsAdGroupCreateReqVO createReqVO);
 
     /**
      * 更新广告组状态

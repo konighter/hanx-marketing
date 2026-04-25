@@ -5,6 +5,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
+import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupRespVO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -15,6 +16,7 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
@@ -28,12 +30,25 @@ public class AdsAdGroupController {
     @Resource
     private AdsAdGroupService adsAdGroupService;
 
+    @PostMapping("/create")
+    @Operation(summary = "创建广告组")
+    @PreAuthorize("@ss.hasPermission('erplus:adv-ad-group:create')")
+    public CommonResult<Boolean> createAdGroup(@Valid @RequestBody AdsAdGroupCreateReqVO createReqVO) {
+        adsAdGroupService.createAdGroup(createReqVO);
+        return success(true);
+    }
+
     @PostMapping("/page")
     @Operation(summary = "获得广告组分页")
     @PreAuthorize("@ss.hasPermission('erplus:adv-ad-group:query')")
     public CommonResult<PageResult<AdsAdGroupRespVO>> getAdGroupPage(@Valid @RequestBody AdsAdGroupPageReqVO pageReqVO) {
         PageResult<AdsAdGroupDO> pageResult = adsAdGroupService.getAdGroupPage(pageReqVO);
-        return success(BeanUtils.toBean(pageResult, AdsAdGroupRespVO.class));
+        PageResult<AdsAdGroupRespVO> result = BeanUtils.toBean(pageResult, AdsAdGroupRespVO.class);
+        // 聚合属性数据
+        if (result != null && !CollectionUtils.isEmpty(result.getList())) {
+            result.getList().forEach(vo -> vo.setAttributes(adsAdGroupService.getAdGroupAttributes(vo.getId())));
+        }
+        return success(result);
     }
 
     @PutMapping("/update-status")

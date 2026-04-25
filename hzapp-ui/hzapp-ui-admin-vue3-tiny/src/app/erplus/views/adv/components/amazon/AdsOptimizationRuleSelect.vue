@@ -5,7 +5,8 @@
       :placeholder="placeholder"
       clearable
       filterable
-      class="w-full"
+      :teleported="false"
+      class="optimization-select"
       @change="handleChange"
     >
       <el-option
@@ -15,9 +16,9 @@
         :value="item.ruleId"
       />
       <template #footer>
-        <div class="p-2 border-t border-gray-100 dark:border-gray-800 text-center">
+        <div class="create-rule-footer">
           <el-button type="primary" link @click="openCreateDialog">
-            <Icon icon="ep:plus" class="mr-1" />
+            <el-icon class="mr-1"><Plus /></el-icon>
             新建优化规则
           </el-button>
         </div>
@@ -53,6 +54,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
+import { Plus } from '@element-plus/icons-vue'
 import { AdsOptimizationRuleApi } from '@/app/erplus/api/adv/optimization_rule'
 import AdsOptimizationRuleForm from './AdsOptimizationRuleForm.vue'
 
@@ -132,6 +134,21 @@ onMounted(() => {
 
 <style scoped>
 .optimization-rule-select {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.optimization-select {
   width: 100%;
+}
+
+.create-rule-footer {
+  padding: 8px;
+  border-top: 1px solid #f0f0f0;
+  text-align: center;
+  background-color: #fff;
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
 }
 </style>

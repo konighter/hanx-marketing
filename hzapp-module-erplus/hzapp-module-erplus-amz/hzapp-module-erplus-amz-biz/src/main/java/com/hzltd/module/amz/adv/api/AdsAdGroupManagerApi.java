@@ -19,12 +19,38 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
-    public static final String KEYWORD = "AMZ_KEYWORD";
-    public static final String TARGET_CLAUSE = "AMZ_TARGET_CLAUSE";
-    public static final String NEGATIVE_KEYWORD = "AMZ_NEGATIVE_KEYWORD";
-    public static final String NEGATIVE_TARGET_CLAUSE = "AMZ_NEGATIVE_TARGET_CLAUSE";
+    public static final String KEYWORD = "amz_keyword";
+    public static final String TARGET_CLAUSE = "amz_target_clause";
+    public static final String NEGATIVE_KEYWORD = "amz_negative_keyword";
+    public static final String NEGATIVE_TARGET_CLAUSE = "amz_negative_target_clause";
+
+    public AdsResponse<Boolean> updateAdGroup(AdsRequest<AdsEntityUpdateRequest> request) {
+        return AdsResponse.error("Not implemented yet");
+    }
+
+    public AdsResponse<String> createAdGroup(AdsRequest<AdsAdGroupCreateRequest> request) {
+        AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
+        AdGroupsApi api = new AdGroupsApi(getApiClient(authModel));
+        try {
+            AdsAdGroupCreateRequest groupCreateRequest = request.getRequest();
+            SponsoredProductsCreateSponsoredProductsAdGroupsRequestContent content = new SponsoredProductsCreateSponsoredProductsAdGroupsRequestContent();
+            content.addAdGroupsItem(new SponsoredProductsCreateAdGroup().campaignId(groupCreateRequest.getCampaignId()).name(groupCreateRequest.getName()).state(SponsoredProductsCreateOrUpdateEntityState.ENABLED));
+            api.createSponsoredProductsAdGroups(authModel.getAppKey(), authModel.getProfileId(), content, "");
+
+            // 规则?
 
 
+
+            //
+
+
+        } catch (ApiException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return AdsResponse.error("Not implemented yet");
+    }
 
     @CrossplatformApiLog
     public AdsResponse<List<AdsAdGroupModel>> queryAdGroup(AdsRequest<AdsQueryRequest> request) {

@@ -12,6 +12,13 @@ public interface AdsManagerApi {
     AdsResponse<List<AdsCampaignModel>> queryCampaign(AdsRequest<AdsQueryRequest> request);
 
     /**
+     * Create campaign
+     * @param request
+     * @return externalId
+     */
+    AdsResponse<String> createCampaign(AdsRequest<AdsCampaignCreateRequest> request);
+
+    /**
      * Add/Del/Update
      * @param request
      * @return
@@ -27,6 +34,13 @@ public interface AdsManagerApi {
      */
     AdsResponse<Boolean> updateAdGroup(AdsRequest<AdsEntityUpdateRequest> request);
 
+    /**
+     * Create adGroup
+     * @param request
+     * @return externalId
+     */
+    AdsResponse<String> createAdGroup(AdsRequest<AdsAdGroupCreateRequest> request);
+
     AdsResponse<List<AdsAdModel>> queryAd(AdsRequest<AdsQueryRequest> request);
 
     /**
@@ -35,6 +49,13 @@ public interface AdsManagerApi {
      * @return
      */
     AdsResponse<Boolean> updateAd(AdsRequest<AdsEntityUpdateRequest> request);
+
+    /**
+     * Create ad
+     * @param request
+     * @return externalId
+     */
+    AdsResponse<List<String>> createAd(AdsRequest<List<AdsAdCreateRequest>> request);
 
     AdsResponse<List<AdsTargetModel>> queryTarget(AdsRequest<AdsQueryRequest> request);
 

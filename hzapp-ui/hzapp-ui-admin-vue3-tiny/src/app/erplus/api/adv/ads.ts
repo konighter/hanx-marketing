@@ -68,6 +68,9 @@ export const AdsAdGroupApi = {
   },
   updateAdGroupStatus: async (params: { id: number; status: string }) => {
     return await request.put({ url: `/erplus/adv/ad-group/update-status`, params })
+  },
+  createAdGroup: async (data: any) => {
+    return await request.post({ url: `/erplus/adv/ad-group/create`, data })
   }
 }
 
@@ -81,6 +84,9 @@ export const AdsAdApi = {
   },
   updateAdStatus: async (params: { id: number; status: string }) => {
     return await request.put({ url: `/erplus/adv/ad/update-status`, params })
+  },
+  createAd: async (data: any) => {
+    return await request.post({ url: `/erplus/adv/ad/create`, data })
   }
 }
 

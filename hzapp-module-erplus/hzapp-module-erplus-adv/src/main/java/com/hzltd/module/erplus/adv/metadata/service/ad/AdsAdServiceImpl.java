@@ -16,13 +16,11 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsAdMapper;
 import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
-import com.hzltd.module.erplus.adv.model.AdsAdModel;
-import com.hzltd.module.erplus.adv.model.AdsRequest;
-import com.hzltd.module.erplus.adv.model.AdsResponse;
-import com.hzltd.module.erplus.adv.model.AdsStatusUpdateRequest;
+import com.hzltd.module.erplus.adv.model.*;
 import com.hzltd.module.erplus.adv.service.AdsManagerApi;
 import com.hzltd.module.erplus.system.model.ShopModel;
 import com.hzltd.module.erplus.system.service.SystemShopService;
+import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdCreateReqVO;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Lazy;
@@ -33,6 +31,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -179,6 +178,56 @@ public class AdsAdServiceImpl implements AdsAdService {
         // 保存属性
         saveAdAttributes(existing.getId(), vo.getAttributes());
         return existing.getId();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void createAd(AdsAdCreateReqVO createReqVO) {
+        // 1. 获取广告组信息，以确定平台和店铺
+        AdsAdGroupDO adGroup = adsAdGroupService.getAdGroup(createReqVO.getAdGroupId());
+        if (adGroup == null) {
+            throw exception(new ErrorCode(1_033_002_001, "广告组不存在"));
+        }
+ 
+        // 2. 获取平台 API
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(adGroup.getPlatform());
+        if (adsManagerApi == null) {
+            throw exception(new ErrorCode(1_033_002_002, "平台 API 未实现: " + adGroup.getPlatform()));
+        }
+ 
+        // 3. 调用平台 API
+        AdsRequest<List<AdsAdCreateRequest>> request = new AdsRequest<>();
+        request.setShopId(adGroup.getShopId());
+        request.setRequest(createReqVO.getCreateRequests());
+
+        AdsResponse<List<String>> response = adsManagerApi.createAd(request);
+        if (!response.isSuccess()) {
+            log.error("[createAd] 平台创建广告失败: {}", response.getMessage());
+            throw exception(new ErrorCode(1_033_002_003, "平台创建广告失败: " + response.getMessage()));
+        }
+
+        // 4. 本地同步数据1
+        this.syncAd(adGroup.getShopId(), adGroup.getPlatform(), response.getData());
+
+    }
+
+
+    private void syncAd(Long shopId,String platform , List<String> adIds) {
+        // 2. 获取平台 API
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(platform);
+        if (adsManagerApi == null) {
+            throw exception(new ErrorCode(1_033_002_002, "平台 API 未实现: " + platform));
+        }
+
+        AdsResponse<List<AdsAdModel>> adResult = adsManagerApi.queryAd(new AdsRequest<AdsQueryRequest>().setShopId(shopId).setRequest(new AdsQueryRequest().setAdIds(adIds)));
+
+        if (!adResult.isSuccess()) {
+            return;
+        }
+
+        for (AdsAdModel adModel: adResult.getData()) {
+            this.saveAd(shopId, adModel);
+        }
     }
 
     private void saveAdAttributes(Long adId, Map<String, Object> attributes) {

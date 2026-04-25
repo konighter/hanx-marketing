@@ -92,9 +92,15 @@ public class ErplusShipmentServiceImpl implements ErplusShipmentService {
         respPage.getList().forEach(shipmentPlan -> {
             shipmentPlan.setItems(BeanUtils.toBean(shipmentItemMapper.selectListByPlanId(shipmentPlan.getId()), ShipmentItemVO.class));
             // 3. 查询仓库名称
-            shipmentPlan.setWarehouseName(warehouseDOMap.get(shipmentPlan.getWarehouseId()).getName());
+            if (warehouseDOMap.containsKey(shipmentPlan.getWarehouseId())) {
+                shipmentPlan.setWarehouseName(warehouseDOMap.get(shipmentPlan.getWarehouseId()).getName());
+            }
+
             // 4. 查询店铺名称
-            shipmentPlan.setShopName(shopMap.get(shipmentPlan.getShopId()).getName());
+            if (shopMap.containsKey(shipmentPlan.getShopId())) {
+                shipmentPlan.setShopName(shopMap.get(shipmentPlan.getShopId()).getName());
+            }
+
             shipmentPlan.setPlatformId(shipmentPlan.getPlatformId());
         });
 

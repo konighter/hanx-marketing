@@ -16,7 +16,10 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
 
@@ -34,7 +37,12 @@ public class AdsCampaignController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:query')")
     public CommonResult<PageResult<AdsCampaignRespVO>> getCampaignPage(@Valid @RequestBody AdsCampaignPageReqVO pageReqVO) {
         PageResult<AdsCampaignDO> pageResult = adsCampaignService.getCampaignPage(pageReqVO);
-        return success(BeanUtils.toBean(pageResult, AdsCampaignRespVO.class));
+        PageResult<AdsCampaignRespVO> result = BeanUtils.toBean(pageResult, AdsCampaignRespVO.class);
+        // 聚合属性数据
+        if (result != null && !CollectionUtils.isEmpty(result.getList())) {
+            result.getList().forEach(vo -> vo.setAttributes(adsCampaignService.getCampaignAttributes(vo.getId())));
+        }
+        return success(result);
     }
 
     @PutMapping("/update-status")

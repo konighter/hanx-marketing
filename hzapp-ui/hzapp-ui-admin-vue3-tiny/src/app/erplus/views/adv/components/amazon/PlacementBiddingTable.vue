@@ -14,18 +14,6 @@
         /> %
       </template>
     </el-table-column>
-    <el-table-column label="目标出价">
-      <template #default="{ row }">
-        <el-input-number 
-          v-model="row.targetBid"
-          :precision="2" 
-          :step="0.01" 
-          :min="0" 
-          size="small"
-          :disabled="disabled"
-        />
-      </template>
-    </el-table-column>
   </el-table>
 </template>
 
@@ -40,9 +28,9 @@ const props = defineProps<{
 const emit = defineEmits(['update'])
 
 const placementData = ref([
-  { type: 'PLACEMENT_TOP', label: '首页 (搜索顶部)', percentage: 0, targetBid: 0 },
-  { type: 'PLACEMENT_PRODUCT_PAGE', label: '商品详情页', percentage: 0, targetBid: 0 },
-  { type: 'PLACEMENT_REST_OF_SEARCH', label: '搜索其他位置', percentage: 0, targetBid: 0 }
+  { type: 'PLACEMENT_TOP', label: '首页 (搜索顶部)', percentage: 0 },
+  { type: 'PLACEMENT_PRODUCT_PAGE', label: '商品详情页', percentage: 0 },
+  { type: 'PLACEMENT_REST_OF_SEARCH', label: '搜索其他位置', percentage: 0 }
 ])
 
 watch(() => props.modelValue, (adjustments) => {
@@ -50,9 +38,6 @@ watch(() => props.modelValue, (adjustments) => {
     placementData.value.forEach(item => {
       const adj = adjustments.find(a => a.placement === item.type)
       item.percentage = adj ? adj.percentage : 0
-      if (item.targetBid === undefined) {
-        item.targetBid = 0
-      }
     })
   }
 }, { immediate: true, deep: true })

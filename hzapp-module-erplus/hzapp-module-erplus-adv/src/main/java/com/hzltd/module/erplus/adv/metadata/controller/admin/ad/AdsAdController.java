@@ -5,6 +5,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdDO;
 import com.hzltd.module.erplus.adv.metadata.service.ad.AdsAdService;
+import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdRespVO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -69,6 +70,14 @@ public class AdsAdController {
             }
         }
         return success(respVO);
+    }
+
+    @PostMapping("/create")
+    @Operation(summary = "创建广告")
+    @PreAuthorize("@ss.hasPermission('erplus:adv-ad:create')")
+    public CommonResult<Boolean> createAd(@Valid @RequestBody AdsAdCreateReqVO createReqVO) {
+        adsAdService.createAd(createReqVO);
+        return success(true);
     }
 
 }

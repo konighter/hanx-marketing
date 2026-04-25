@@ -365,6 +365,7 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
         existing.setName(vo.getName());
         existing.setCampaignType(vo.getCampaignType());
         existing.setObjective(vo.getObjective());
+        existing.setBiddingStrategy(vo.getTargetType());
         existing.setBudgetType(vo.getBudgetType());
         existing.setDailyBudget(vo.getBudget());
         existing.setTotalBudget(vo.getTotalBudget());

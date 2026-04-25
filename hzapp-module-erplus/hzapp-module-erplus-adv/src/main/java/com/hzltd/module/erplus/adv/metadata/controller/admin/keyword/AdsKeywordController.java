@@ -15,6 +15,7 @@ import jakarta.annotation.Resource;
 import jakarta.validation.Valid;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.*;
 
 import static com.hzltd.framework.common.pojo.CommonResult.success;
@@ -33,7 +34,12 @@ public class AdsKeywordController {
     @PreAuthorize("@ss.hasPermission('erplus:adv-keyword:query')")
     public CommonResult<PageResult<AdsKeywordRespVO>> getKeywordPage(@Valid @RequestBody AdsKeywordPageReqVO pageReqVO) {
         PageResult<AdsKeywordDO> pageResult = adsKeywordService.getKeywordPage(pageReqVO);
-        return success(BeanUtils.toBean(pageResult, AdsKeywordRespVO.class));
+        PageResult<AdsKeywordRespVO> result = BeanUtils.toBean(pageResult, AdsKeywordRespVO.class);
+        // 聚合属性数据
+        if (result != null && !CollectionUtils.isEmpty(result.getList())) {
+            result.getList().forEach(vo -> vo.setAttributes(adsKeywordService.getKeywordAttributes(vo.getId())));
+        }
+        return success(result);
     }
 
     @PutMapping("/update-status")

@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.adv.metadata.service.ad;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdDO;
+import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdPageReqVO;
 import com.hzltd.module.erplus.adv.model.AdsAdModel;
 
@@ -50,5 +51,11 @@ public interface AdsAdService {
      * @return 本地广告ID
      */
     Long saveAd(Long shopId, AdsAdModel vo);
+
+    /**
+     * 创建广告（前端调用）
+     * @param createReqVO 创建请求
+     */
+    void createAd(AdsAdCreateReqVO createReqVO);
 
 }

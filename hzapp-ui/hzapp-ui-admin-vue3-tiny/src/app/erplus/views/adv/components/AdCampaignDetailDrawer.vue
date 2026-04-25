@@ -68,7 +68,10 @@
                 </el-radio-group>
               </el-form-item>
               <el-form-item label="计划类型">
-                <dict-tag :type="DICT_TYPE.AD_CAMPAIGN_TYPE" :value="detail.campaignType" />
+                <div class="flex items-center gap-10px">
+                  <el-tag size="small" type="info">{{ detail.campaignType }}</el-tag>
+                  <el-tag v-if="detail.biddingStrategy" type="warning" size="small">{{ detail.biddingStrategy }}</el-tag>
+                </div>
               </el-form-item>
               <el-form-item label="预算类型">
                 <el-tag type="info">{{ detail.budgetType === 'DAILY' ? '日预算' : '总预算' }}</el-tag>
@@ -108,6 +111,8 @@
               v-if="detail.id"
               v-model="platformConfig"
               :campaign-id="detail.id"
+              :shop-id="detail.shopId"
+              :account-id="detail.accountId"
               :disabled="isArchived"
             />
           </div>
@@ -149,7 +154,7 @@ import { AdsCampaignApi, AdsSyncApi } from '@/app/erplus/api/adv/ads'
 import { AdsCampaign } from '../types/ads'
 import AdCampaignDataAnalysis from './AdCampaignDataAnalysis.vue'
 import DeliverySchedule from './DeliverySchedule.vue'
-import AmazonCampaignConfig from './AmazonCampaignConfig.vue'
+import AmazonCampaignConfig from './amazon/AmazonCampaignConfig.vue'
 
 const visible = ref(false)
 const loading = ref(false)
@@ -203,13 +208,8 @@ const open = async (id: number) => {
       schedule.value = Array.from({ length: 7 }, () => Array(24).fill(true))
     }
 
-    // Init platform config from extData
-    const extData = res.extData || {}
-    platformConfig.value = {
-      ...(extData.platformConfig || {}),
-      shopId: res.shopId,
-      accountId: res.accountId
-    }
+    // Init platform config from attributes (aggregated from ads_campaign_attribute)
+    platformConfig.value = res.attributes || {}
   } finally {
     loading.value = false
   }
@@ -220,7 +220,8 @@ const handleSave = async () => {
   
   saving.value = true
   try {
-    const { adGroups, accountId, shopId, ...cleanPlatformConfig } = platformConfig.value || {}
+    // attributes 现在是纯净的平台属性，不再包含 shopId/accountId
+    const attributes = platformConfig.value || {}
 
     const updateData: any = {
       id: detail.value.id,
@@ -229,11 +230,8 @@ const handleSave = async () => {
       startDate: startDate.value,
       endDate: endDate.value,
       deliverySchedule: JSON.stringify(schedule.value),
-      adGroups: adGroups,
-      extData: {
-        ...(detail.value.extData || {}),
-        platformConfig: cleanPlatformConfig
-      }
+      attributes: attributes,
+      extData: detail.value.extData || {}
     }
     
     if (detail.value.budgetType === 'DAILY') {

@@ -23,6 +23,8 @@ public class AdsAmazonManageApi extends AbstractAmazonAdsService implements AdsM
     private AdsAdGroupManagerApi adsAdGroupManagerApi;
     @Resource
     private AdsAdManagerApi adsAdManagerApi;
+    @Resource
+    private AdsKeyworkManagerApi keyworkManagerApi;
 
     @Override
     public AdsResponse<List<AdsCampaignModel>> queryCampaign(AdsRequest<AdsQueryRequest> request) {
@@ -33,6 +35,11 @@ public class AdsAmazonManageApi extends AbstractAmazonAdsService implements AdsM
     public AdsResponse<Boolean> updateCampaign(AdsRequest<AdsEntityUpdateRequest> request) {
         return adsCampaignMangerApi.updateCampaign(request);
     }
+ 
+    @Override
+    public AdsResponse<String> createCampaign(AdsRequest<AdsCampaignCreateRequest> request) {
+        return adsCampaignMangerApi.createCampaign(request);
+    }
 
     @Override
     public AdsResponse<List<AdsAdGroupModel>> queryAdGroup(AdsRequest<AdsQueryRequest> request) {
@@ -41,7 +48,12 @@ public class AdsAmazonManageApi extends AbstractAmazonAdsService implements AdsM
 
     @Override
     public AdsResponse<Boolean> updateAdGroup(AdsRequest<AdsEntityUpdateRequest> request) {
-        return AdsResponse.error("Not implemented yet");
+        return adsAdGroupManagerApi.updateAdGroup(request);
+    }
+ 
+    @Override
+    public AdsResponse<String> createAdGroup(AdsRequest<AdsAdGroupCreateRequest> request) {
+        return adsAdGroupManagerApi.createAdGroup(request);
     }
 
     @Override
@@ -51,7 +63,12 @@ public class AdsAmazonManageApi extends AbstractAmazonAdsService implements AdsM
 
     @Override
     public AdsResponse<Boolean> updateAd(AdsRequest<AdsEntityUpdateRequest> request) {
-        return AdsResponse.error("Not implemented yet");
+        return adsAdManagerApi.updateAd(request);
+    }
+ 
+    @Override
+    public AdsResponse<List<String>> createAd(AdsRequest<List<AdsAdCreateRequest>> request) {
+        return adsAdManagerApi.createAd(request);
     }
 
     @Override

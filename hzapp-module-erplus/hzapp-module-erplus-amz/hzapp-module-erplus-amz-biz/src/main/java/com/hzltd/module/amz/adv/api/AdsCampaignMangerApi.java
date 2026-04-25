@@ -14,6 +14,7 @@ import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.MapUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -177,6 +178,10 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
         return AdsResponse.error("Not implemented yet");
     }
 
+    public AdsResponse<String> createCampaign(AdsRequest<AdsCampaignCreateRequest> request) {
+        return AdsResponse.error("Not implemented yet");
+    }
+
     /**
      * 更新广告活动状态
      * @param request
@@ -256,7 +261,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
             }
             
             Map<String, SponsoredProductsCampaignNegativeKeyword> map = response.getCampaignNegativeKeywords().stream()
-                    .filter(kw -> kw.getKeywordId() != null)
+                    .filter(this::validCampaignNegativeKeyword)
                     .collect(Collectors.toMap(SponsoredProductsCampaignNegativeKeyword::getKeywordId, kw -> kw));
             
             return AdsResponse.success(map);
@@ -264,6 +269,10 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
             log.error("Failed to query Campaign Negative Keywords", e);
             return AdsResponse.error(e.getResponseBody());
         }
+    }
+
+    private boolean validCampaignNegativeKeyword(SponsoredProductsCampaignNegativeKeyword keyword) {
+        return keyword != null && StringUtils.isNotEmpty(keyword.getKeywordId()) && StringUtils.isNotEmpty(keyword.getKeywordText()) && SponsoredProductsEntityState.ENABLED.equals(keyword.getState());
     }
 
     @CrossplatformApiLog
@@ -370,7 +379,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
             }
 
             Map<String, SponsoredProductsCampaignNegativeTargetingClause> map = response.getCampaignNegativeTargetingClauses().stream()
-                    .filter(tc -> tc.getTargetId() != null)
+                    .filter(tc -> tc.getTargetId() != null && SponsoredProductsEntityState.ENABLED.equals(tc.getState()))
                     .collect(Collectors.toMap(SponsoredProductsCampaignNegativeTargetingClause::getTargetId, tc -> tc));
             
             return AdsResponse.success(map);

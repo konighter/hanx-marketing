@@ -14,11 +14,9 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupAttributeMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupMapper;
 import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
+import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupPageReqVO;
-import com.hzltd.module.erplus.adv.model.AdsAdGroupModel;
-import com.hzltd.module.erplus.adv.model.AdsRequest;
-import com.hzltd.module.erplus.adv.model.AdsResponse;
-import com.hzltd.module.erplus.adv.model.AdsStatusUpdateRequest;
+import com.hzltd.module.erplus.adv.model.*;
 import com.hzltd.module.erplus.adv.service.AdsManagerApi;
 import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import com.hzltd.module.erplus.system.model.ShopModel;
@@ -33,6 +31,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -67,6 +66,55 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
     @Override
     public PageResult<AdsAdGroupDO> getAdGroupPage(AdsAdGroupPageReqVO pageReqVO) {
         return adsAdGroupMapper.selectPage(pageReqVO);
+    }
+ 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void createAdGroup(AdsAdGroupCreateReqVO createReqVO) {
+        // 1. 获取计划信息
+        AdsCampaignDO campaign = adsCampaignService.getCampaign(createReqVO.getCampaignId());
+        if (campaign == null) {
+            throw exception(new ErrorCode(1_033_001_001, "广告计划不存在"));
+        }
+ 
+        // 2. 获取平台 API
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(campaign.getPlatform());
+        if (adsManagerApi == null) {
+            throw exception(new ErrorCode(1_033_002_002, "平台 API 未实现: " + campaign.getPlatform()));
+        }
+ 
+        // 3. 调用平台 API
+        AdsAdGroupCreateRequest req = AdsAdGroupCreateRequest.builder()
+                .campaignId(campaign.getExternalId())
+                .name(createReqVO.getName())
+                .defaultBid(createReqVO.getDefaultBid())
+                .status(createReqVO.getStatus())
+                .attributes(createReqVO.getAttributes())
+                .build();
+ 
+        AdsResponse<String> response = adsManagerApi.createAdGroup(new AdsRequest<AdsAdGroupCreateRequest>()
+                .setShopId(campaign.getShopId())
+                .setRequest(req));
+ 
+        if (!response.isSuccess()) {
+            log.error("[createAdGroup] 平台创建广告组失败: {}", response.getMessage());
+            throw exception(new ErrorCode(1_033_002_005, "平台创建广告组失败: " + response.getMessage()));
+        }
+ 
+        // 4. 同步数据 (可以通过查询外部 ID 来同步)
+        String externalId = response.getData();
+        syncAdGroup(campaign.getShopId(), campaign.getPlatform(), externalId);
+    }
+ 
+    private void syncAdGroup(Long shopId, String platform, String externalId) {
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(platform);
+        AdsResponse<List<AdsAdGroupModel>> result = adsManagerApi.queryAdGroup(new AdsRequest<AdsQueryRequest>()
+                .setShopId(shopId)
+                .setRequest(new AdsQueryRequest().setAdGroupIds(Collections.singletonList(externalId))));
+        
+        if (result.isSuccess() && !CollectionUtils.isEmpty(result.getData())) {
+            saveAdGroup(shopId, result.getData().get(0));
+        }
     }
 
     @Override
