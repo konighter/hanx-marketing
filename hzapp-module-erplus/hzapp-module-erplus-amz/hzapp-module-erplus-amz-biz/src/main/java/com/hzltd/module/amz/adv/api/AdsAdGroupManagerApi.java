@@ -34,10 +34,21 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
         try {
             AdsAdGroupCreateRequest groupCreateRequest = request.getRequest();
             SponsoredProductsCreateSponsoredProductsAdGroupsRequestContent content = new SponsoredProductsCreateSponsoredProductsAdGroupsRequestContent();
-            content.addAdGroupsItem(new SponsoredProductsCreateAdGroup().campaignId(groupCreateRequest.getCampaignId()).name(groupCreateRequest.getName()).state(SponsoredProductsCreateOrUpdateEntityState.ENABLED));
-            api.createSponsoredProductsAdGroups(authModel.getAppKey(), authModel.getProfileId(), content, "");
+            content.addAdGroupsItem(new SponsoredProductsCreateAdGroup().campaignId(groupCreateRequest.getCampaignId()).name(groupCreateRequest.getName()).defaultBid(groupCreateRequest.getDefaultBid()).state(SponsoredProductsCreateOrUpdateEntityState.ENABLED));
+            SponsoredProductsCreateSponsoredProductsAdGroupsResponseContent groupsResponseContent = api.createSponsoredProductsAdGroups(authModel.getAppKey(), authModel.getProfileId(), content, "");
+
+            if (CollectionUtils.isNotEmpty(groupsResponseContent.getAdGroups().getSuccess())) {
+                return AdsResponse.success(groupsResponseContent.getAdGroups().getSuccess().get(0).getAdGroupId());
+            } else {
+                return AdsResponse.error("");
+            }
+
+
 
             // 规则?
+
+
+
 
 
 
@@ -47,9 +58,6 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
         } catch (ApiException e) {
             throw new RuntimeException(e);
         }
-
-
-        return AdsResponse.error("Not implemented yet");
     }
 
     @CrossplatformApiLog

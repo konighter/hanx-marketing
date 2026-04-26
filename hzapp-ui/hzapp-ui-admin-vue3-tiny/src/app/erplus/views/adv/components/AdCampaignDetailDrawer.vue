@@ -133,6 +133,10 @@
     </div>
     <template #footer>
       <div class="flex justify-end p-20px">
+        <el-button 
+          v-if="['basic', 'platform-config'].includes(activeTab) && !isArchived"
+          @click="handleReset"
+        >重置</el-button>
         <el-button @click="visible = false">取消</el-button>
         <el-button 
           v-if="['basic', 'platform-config'].includes(activeTab) && !isArchived"
@@ -177,6 +181,17 @@ const platformConfig = ref<any>({})
 
 const isArchived = computed(() => detail.value.status === 'ARCHIVED' || form.status === 'ARCHIVED')
 
+// Snapshot of original values for reset
+const snapshot = ref<{
+  name: string
+  status: string
+  budget: number
+  startDate: string | null
+  endDate: string | null
+  schedule: boolean[][]
+  platformConfig: any
+} | null>(null)
+
 const open = async (id: number) => {
   visible.value = true
   loading.value = true
@@ -210,9 +225,31 @@ const open = async (id: number) => {
 
     // Init platform config from attributes (aggregated from ads_campaign_attribute)
     platformConfig.value = res.attributes || {}
+
+    // Save snapshot for reset
+    snapshot.value = {
+      name: form.name,
+      status: form.status,
+      budget: form.budget,
+      startDate: startDate.value,
+      endDate: endDate.value,
+      schedule: schedule.value.map(row => [...row]),
+      platformConfig: JSON.parse(JSON.stringify(platformConfig.value)),
+    }
   } finally {
     loading.value = false
   }
+}
+
+const handleReset = () => {
+  if (!snapshot.value) return
+  form.name = snapshot.value.name
+  form.status = snapshot.value.status
+  form.budget = snapshot.value.budget
+  startDate.value = snapshot.value.startDate
+  endDate.value = snapshot.value.endDate
+  schedule.value = snapshot.value.schedule.map(row => [...row])
+  platformConfig.value = JSON.parse(JSON.stringify(snapshot.value.platformConfig))
 }
 
 const handleSave = async () => {
