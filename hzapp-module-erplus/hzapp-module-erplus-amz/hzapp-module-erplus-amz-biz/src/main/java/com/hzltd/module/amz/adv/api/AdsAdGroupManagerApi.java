@@ -4,9 +4,11 @@ import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.sp.api.*;
 import com.hzltd.module.amz.adv.client.sp.model.*;
+import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
 import com.hzltd.module.erplus.adv.model.*;
 import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
 import com.hzltd.module.erplus.system.annotation.CrossplatformApiLog;
+import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,11 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
     public static final String TARGET_CLAUSE = "amz_target_clause";
     public static final String NEGATIVE_KEYWORD = "amz_negative_keyword";
     public static final String NEGATIVE_TARGET_CLAUSE = "amz_negative_target_clause";
+
+    @Resource
+    private AdsAdGroupService adGroupService;
+
+
 
     public AdsResponse<Boolean> updateAdGroup(AdsRequest<AdsEntityUpdateRequest> request) {
         return AdsResponse.error("Not implemented yet");
@@ -251,6 +258,22 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
 
     }
 
+    public AdsResponse<Boolean> updateKeywords(AdsRequest<List<SponsoredProductsUpdateKeyword>> request) {
+        AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
+        KeywordsApi keywordsApi = new KeywordsApi(getApiClient(authModel));
+        try {
+            SponsoredProductsUpdateSponsoredProductsKeywordsRequestContent content = new SponsoredProductsUpdateSponsoredProductsKeywordsRequestContent();
+            content.setKeywords(request.getRequest());
+
+            SponsoredProductsUpdateSponsoredProductsKeywordsResponseContent response = keywordsApi.updateSponsoredProductsKeywords(authModel.getAppKey(), authModel.getProfileId(), content, null);
+            boolean success = response != null && response.getKeywords() != null && response.getKeywords().getSuccess() != null && !response.getKeywords().getSuccess().isEmpty();
+            return AdsResponse.success(success);
+        } catch (ApiException e) {
+            log.error("Update keywords error: profileId={}, request={}", authModel.getProfileId(), request.getRequest(), e);
+            return AdsResponse.error(e.getResponseBody());
+        }
+    }
+
 
     @CrossplatformApiLog
     public AdsResponse<Boolean> updateKeywordStatus(AdsRequest<AdsStatusUpdateRequest> request) {
@@ -323,7 +346,7 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
             content.setNegativeKeywords(request.getRequest());
             SponsoredProductsCreateSponsoredProductsNegativeKeywordsResponseContent response = api.createSponsoredProductsNegativeKeywords(authModel.getAppKey(), authModel.getProfileId(), content, "return=representation");
             
-            if (response != null && response.getNegativeKeywords() != null && response.getNegativeKeywords().getSuccess() != null) {
+            if (response != null && response.getNegativeKeywords() != null && CollectionUtils.isNotEmpty(response.getNegativeKeywords().getSuccess())) {
                 List<SponsoredProductsNegativeKeyword> negativeKeywords = response.getNegativeKeywords().getSuccess().stream()
                         .map(SponsoredProductsNegativeKeywordSuccessResponseItem::getNegativeKeyword)
                         .collect(Collectors.toList());
@@ -365,7 +388,12 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
             content.negativeKeywordIdFilter(new SponsoredProductsObjectIdFilter().include(request.getRequest()));
             SponsoredProductsDeleteSponsoredProductsNegativeKeywordsResponseContent response = api.deleteSponsoredProductsNegativeKeywords(authModel.getAppKey(), authModel.getProfileId(), content);
             boolean success = response != null && response.getNegativeKeywords() != null && response.getNegativeKeywords().getSuccess() != null && !response.getNegativeKeywords().getSuccess().isEmpty();
-            return AdsResponse.success(success);
+            if (success) {
+                return AdsResponse.success(success);
+            } else {
+                return AdsResponse.error(response.getNegativeKeywords().getError().toString());
+            }
+
         } catch (ApiException e) {
             log.error("[AmazonAds] deleteNegativeKeywords error: {}", e.getResponseBody(), e);
             return AdsResponse.error(e.getResponseBody());
@@ -434,6 +462,22 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
             return AdsResponse.success(success);
         } catch (ApiException e) {
             log.error("Update keyword target status error: profileId={}, request={}", authModel.getProfileId(), request.getRequest(), e);
+            return AdsResponse.error(e.getResponseBody());
+        }
+    }
+
+    public AdsResponse<Boolean> updateKeywordTargets(AdsRequest<List<SponsoredProductsUpdateTargetingClause>> request) {
+        AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
+        TargetingClausesApi api = new TargetingClausesApi(getApiClient(authModel));
+        try {
+            SponsoredProductsUpdateSponsoredProductsTargetingClausesRequestContent content = new SponsoredProductsUpdateSponsoredProductsTargetingClausesRequestContent();
+            content.setTargetingClauses(request.getRequest());
+
+            SponsoredProductsUpdateSponsoredProductsTargetingClausesResponseContent response = api.updateSponsoredProductsTargetingClauses(authModel.getAppKey(), authModel.getProfileId(), content, null);
+            boolean success = response != null && response.getTargetingClauses() != null && response.getTargetingClauses().getSuccess() != null && !response.getTargetingClauses().getSuccess().isEmpty();
+            return AdsResponse.success(success);
+        } catch (ApiException e) {
+            log.error("Update keyword targets error: profileId={}, request={}", authModel.getProfileId(), request.getRequest(), e);
             return AdsResponse.error(e.getResponseBody());
         }
     }

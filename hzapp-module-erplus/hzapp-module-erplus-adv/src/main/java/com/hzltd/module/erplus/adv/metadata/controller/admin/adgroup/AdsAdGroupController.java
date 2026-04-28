@@ -77,4 +77,12 @@ public class AdsAdGroupController {
         return success(respVO);
     }
 
+    @GetMapping("/get-attributes")
+    @Operation(summary = "获得广告组属性")
+    @Parameter(name = "id", description = "广告组编号", required = true)
+    @PreAuthorize("@ss.hasPermission('erplus:adv-ad-group:query')")
+    public CommonResult<java.util.Map<String, Object>> getAdGroupAttributes(@RequestParam("id") Long id) {
+        return success(adsAdGroupService.getAdGroupAttributes(id));
+    }
+
 }

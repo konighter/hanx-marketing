@@ -66,6 +66,9 @@ export const AdsAdGroupApi = {
   getAdGroup: async (id: number) => {
     return await request.get({ url: `/erplus/adv/ad-group/get?id=${id}` })
   },
+  getAttributes: async (id: number) => {
+    return await request.get({ url: `/erplus/adv/ad-group/get-attributes?id=${id}` })
+  },
   updateAdGroupStatus: async (params: { id: number; status: string }) => {
     return await request.put({ url: `/erplus/adv/ad-group/update-status`, params })
   },
@@ -123,4 +126,41 @@ export const AdsSyncApi = {
   syncMetadataByCampaign: async (campaignId: number) => {
     return await request.post({ url: `/erplus/adv/sync/metadata-campaign?campaignId=${campaignId}` })
   },
+}
+
+// 亚马逊广告组V3管理器 API
+export const AmzAdvAdGroupManagerApi = {
+  updateTargetingType: async (data: any) => {
+    return await request.put({ url: `/erplus/amz/adv/v3/ad-group/manager/update-targeting-type`, data })
+  },
+  batchCreateTargeting: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/ad-group/manager/targeting/batch-create`, data })
+  },
+  batchUpdateTargetingBid: async (data: any) => {
+    return await request.put({ url: `/erplus/amz/adv/v3/ad-group/manager/targeting/batch-update-bid`, data })
+  },
+  batchDeleteTargeting: async (data: any) => {
+    return await request.delete({ url: `/erplus/amz/adv/v3/ad-group/manager/targeting/batch-delete`, data })
+  },
+  batchCreateNegativeTargeting: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/ad-group/manager/negative-targeting/batch-create`, data })
+  },
+  batchDeleteNegativeTargeting: async (data: any) => {
+    return await request.delete({ url: `/erplus/amz/adv/v3/ad-group/manager/negative-targeting/batch-delete`, data })
+  },
+  batchCreateKeyword: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/ad-group/manager/keyword/batch-create`, data })
+  },
+  batchUpdateKeywordBid: async (data: any) => {
+    return await request.put({ url: `/erplus/amz/adv/v3/ad-group/manager/keyword/batch-update-bid`, data })
+  },
+  batchDeleteKeyword: async (data: any) => {
+    return await request.delete({ url: `/erplus/amz/adv/v3/ad-group/manager/keyword/batch-delete`, data })
+  },
+  batchCreateNegativeKeyword: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/ad-group/manager/negative-keyword/batch-create`, data })
+  },
+  batchDeleteNegativeKeyword: async (data: any) => {
+    return await request.delete({ url: `/erplus/amz/adv/v3/ad-group/manager/negative-keyword/batch-delete`, data })
+  }
 }

@@ -1,6 +1,6 @@
 <template>
   <div class="ad-manager">
-    <div class="flex justify-between items-center mb-10px">
+    <div class="flex justify-between items-center mb-10px w-full">
       <div class="flex items-center">
         <span class="text-14px font-bold mr-10px">广告列表:</span>
       </div>
@@ -32,7 +32,7 @@
       </template>
     </el-dialog>
 
-    <el-table v-loading="loading" :data="ads" border size="small" style="width: 100%">
+    <el-table v-loading="loading" :data="visibleAds" border size="small" style="width: 100%">
       <el-table-column label="图片" width="70" align="center">
         <template #default="{ row }">
           <el-image 
@@ -102,7 +102,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import { Picture, Plus } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { AdsAdApi } from '@/app/erplus/api/adv/ads'
@@ -118,6 +118,11 @@ const creating = ref(false)
 const createDialogVisible = ref(false)
 const skusText = ref('')
 const ads = ref<any[]>([])
+
+// 只展示非归档状态的广告
+const visibleAds = computed(() => {
+  return (ads.value || []).filter((ad: any) => ad.status?.toUpperCase() !== 'ARCHIVED')
+})
 
 const fetchAds = async () => {
   if (!props.adGroupId) return

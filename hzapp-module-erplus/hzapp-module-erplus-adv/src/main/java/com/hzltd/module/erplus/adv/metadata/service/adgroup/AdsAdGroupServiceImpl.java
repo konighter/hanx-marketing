@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.framework.common.exception.ErrorCode;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
+import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.adv.adapter.service.AdsManagerApiFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupAttributeDO;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsAdGroupDO;
@@ -215,15 +216,21 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
         existing.setSyncedAt(LocalDateTime.now());
         adsAdGroupMapper.insertOrUpdate(existing);
         // 保存属性
-        saveAdGroupAttributes(existing.getId(), vo.getAttributes());
+        saveOrUpdateAdGroupAttributes(existing.getId(), vo.getAttributes(), true);
         return existing.getId();
     }
 
-    private void saveAdGroupAttributes(Long adGroupId, Map<String, Object> attributes) {
+    @Override
+    public void saveOrUpdateAdGroupAttributes(Long adGroupId, Map<String, Object> attributes, boolean replace) {
         if (CollUtil.isEmpty(attributes)) {
             return;
         }
-        adsAdGroupAttributeMapper.deleteByAdGroupId(adGroupId, "PLATFORM");
+        if (replace) {
+            adsAdGroupAttributeMapper.deleteByAdGroupId(adGroupId, "PLATFORM");
+        } else {
+            adsAdGroupAttributeMapper.deleteByAttributes(adGroupId, attributes.keySet(), "PLATFORM");
+        }
+
         attributes.forEach((key, value) -> {
             AdsAdGroupAttributeDO attr = new AdsAdGroupAttributeDO();
             attr.setAdGroupId(adGroupId);

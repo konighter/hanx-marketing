@@ -59,6 +59,14 @@ public interface AdsAdGroupService {
     Long saveAdGroup(Long shopId, AdsAdGroupModel vo);
 
     /**
+     *
+     * @param adGroupId
+     * @param attributes
+     * @param replace 是否替换全部属性(用于同步)
+     */
+    void saveOrUpdateAdGroupAttributes(Long adGroupId, Map<String, Object> attributes, boolean replace);
+
+    /**
      * 根据计划ID和外部ID查询广告组
      * @param campaignId 计划ID
      * @param externalId 外部ID

@@ -29,7 +29,7 @@
         <AdsOptimizationRuleSelect 
           :model-value="modelValue.amz_optimization_rules"
           :shop-id="shopId"
-          :account-id="accountId"
+          :accountId="accountId"
           @update:model-value="val => updateModelValue('amz_optimization_rules', val)"
         />
       </el-form-item>
@@ -126,100 +126,31 @@
 
       <!-- 4. 广告组配置 -->
       <el-divider content-position="left">广告组设置</el-divider>
-      <div v-loading="loadingGroups">
-        <el-tabs 
-          v-if="adGroups.length > 0" 
-          v-model="activeAdGroupTab" 
-          type="card" 
-          :addable="!disabled"
-          @tab-add="showCreateGroupDialog"
-        >
-          <template #add-icon>
-            <div class="flex items-center px-4px">
-              <el-icon><Plus /></el-icon>
-              <span class="ml-4px text-12px">新增广告组</span>
-            </div>
-          </template>
-          <el-tab-pane v-for="group in adGroups" :key="group.id" :label="group.name" :name="group.id.toString()">
-            <div class="p-10px border-1 border-gray-100 border-solid rounded-4px">
-              <div class="flex items-center gap-15px mb-12px">
-                <div class="flex items-center">
-                  <span class="mr-10px text-14px">状态:</span>
-                  <el-switch 
-                    v-model="group.status" 
-                    active-value="ENABLED" 
-                    inactive-value="PAUSED" 
-                    inline-prompt
-                    active-text="启用"
-                    inactive-text="停用"
-                    size="small"
-                    :disabled="disabled"
-                    @change="val => handleAdGroupStateChange(group, val as string)"
-                  />
-                </div>
-                <div class="flex items-center">
-                  <span class="mr-10px text-14px">默认竞价:</span>
-                  <el-input-number v-model="group.defaultBid" :precision="2" :step="0.01" :min="0.01" size="small" :disabled="disabled" />
-                </div>
-              </div>
-
-              <el-tabs v-model="activeInnerTab" class="inner-tabs">
-                <el-tab-pane label="定向策略" name="targeting">
-                  <AdGroupTargetingManager 
-                    v-if="activeAdGroup"
-                    :config="ensureActiveGroupConfig()" 
-                    :default-bid="activeAdGroup.defaultBid || 0"
-                    :disabled="disabled"
-                    @update="val => syncActiveGroupToModel(val)"
-                  />
-                </el-tab-pane>
-                <el-tab-pane label="否定投放" name="negative">
-                  <AdGroupNegativeManager 
-                    v-if="activeAdGroup"
-                    :config="ensureActiveGroupConfig()"
-                    :disabled="disabled"
-                    @update="val => syncActiveGroupToModel(val)"
-                  />
-                </el-tab-pane>
-                                <el-tab-pane label="广告列表" name="ad">
-                  <AdGroupAdManager 
-                    v-if="activeAdGroup"
-                    :ad-group-id="activeAdGroup.id"
-                    :campaign-id="campaignId"
-                    :disabled="disabled"
-                  />
-                </el-tab-pane>
-              </el-tabs>
-            </div>
-          </el-tab-pane>
-        </el-tabs>
-        <el-empty v-else description="暂无广告组">
-          <el-button type="primary" :disabled="disabled" @click="showCreateGroupDialog">立即添加广告组</el-button>
-        </el-empty>
+      <div class="ad-group-section">
+        <AdGroupManager 
+          v-model:active-tab="activeAdGroupTab"
+          :groups="adGroups"
+          :loading="loadingGroups"
+          :shop-id="shopId"
+          :campaign-id="campaignId"
+          :disabled="disabled"
+          @refresh="fetchAdGroups"
+          @update-attributes="val => syncAdGroupAttributes(val)"
+        />
       </div>
     </el-form>
 
-    <!-- 创建广告组对话框 -->
-    <AdsAdGroupCreateDialog 
-      v-model="createGroupDialogVisible"
-      :campaign-id="campaignId"
-      @success="fetchAdGroups"
-    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { ref, watch, computed, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import { Plus } from '@element-plus/icons-vue'
 import { AdsAdGroupApi } from '@/app/erplus/api/adv/ads'
 import { AdsAdGroup } from '../../types/ads'
 import AdsOptimizationRuleSelect from './AdsOptimizationRuleSelect.vue'
 import PlacementBiddingTable from './PlacementBiddingTable.vue'
-import AdGroupTargetingManager from './AdGroupTargetingManager.vue'
-import AdGroupNegativeManager from './AdGroupNegativeManager.vue'
-import AdGroupAdManager from './AdGroupAdManager.vue'
-import AdsAdGroupCreateDialog from './AdsAdGroupCreateDialog.vue'
+import AdGroupManager from './AdGroupManager.vue'
 
 const props = defineProps<{ 
   modelValue: any; 
@@ -232,33 +163,21 @@ const emit = defineEmits(['update:modelValue'])
 
 const loadingGroups = ref(false)
 const adGroups = ref<AdsAdGroup[]>([])
-const groupBids = ref<Record<number, number>>({})
 const activeAdGroupTab = ref('')
-const activeInnerTab = ref('targeting')
 const activeNegativeType = ref('keyword')
 const localNegativeKeywords = ref<any[]>([])
 const localNegativeProducts = ref<any[]>([])
  
-const createGroupDialogVisible = ref(false)
-
-const isKeywordTabDisabled = computed(() => props.disabled || localNegativeProducts.value.length > 0)
-const isProductTabDisabled = computed(() => props.disabled || localNegativeKeywords.value.length > 0)
-
-const activeAdGroup = computed(() => adGroups.value.find(g => g.id.toString() === activeAdGroupTab.value))
-
-const ensureActiveGroupConfig = () => {
-  const group = activeAdGroup.value
-  if (!group) return {}
-  if (!group.attributes) group.attributes = {}
-  return group.attributes
-}
-
-const syncActiveGroupToModel = (newAttributes?: any) => {
-  if (!activeAdGroup.value) return
-  const attributes = newAttributes || ensureActiveGroupConfig()
+const syncAdGroupAttributes = (updatedGroup: AdsAdGroup) => {
+  if (!updatedGroup.id) return
   const currentGroups = [...(props.modelValue.adGroups || [])]
-  const index = currentGroups.findIndex(g => g.id === activeAdGroup.value!.id)
-  const groupData = { id: activeAdGroup.value!.id, attributes: attributes }
+  const index = currentGroups.findIndex(g => g.id === updatedGroup.id)
+  
+  const groupData = { 
+    id: updatedGroup.id, 
+    attributes: updatedGroup.attributes,
+    defaultBid: updatedGroup.defaultBid
+  }
   
   if (index > -1) currentGroups[index] = { ...currentGroups[index], ...groupData }
   else currentGroups.push(groupData)
@@ -313,38 +232,16 @@ const fetchAdGroups = async () => {
   loadingGroups.value = true
   try {
     const res = await AdsAdGroupApi.getAdGroupPage({ campaignIds: [props.campaignId], pageSize: 100 })
-    adGroups.value = res.list
-    if (adGroups.value.length > 0 && !activeAdGroupTab.value) activeAdGroupTab.value = adGroups.value[0].id.toString()
-    adGroups.value.forEach(g => { groupBids.value[g.id] = g.defaultBid || 0 })
+    const list = res.list || []
+    adGroups.value = list
+    if (list.length > 0 && !activeAdGroupTab.value) {
+      activeAdGroupTab.value = String(list[0].id || list[0].externalId)
+    }
   } finally { loadingGroups.value = false }
 }
 
-const handleGroupBidChange = (groupId: number, val: number | undefined) => {
-  if (val === undefined) return
-  groupBids.value[groupId] = val
-  const currentGroups = [...(props.modelValue.adGroups || [])]
-  const index = currentGroups.findIndex(g => g.id === groupId)
-  const data = { id: groupId, defaultBid: val }
-  if (index > -1) currentGroups[index] = { ...currentGroups[index], ...data }
-  else currentGroups.push(data)
-  updateModelValue('adGroups', currentGroups)
-}
 
-const handleAdGroupStateChange = async (group: AdsAdGroup, val: string) => {
-  if (!group.id) return
-  try {
-    await AdsAdGroupApi.updateAdGroupStatus({ id: group.id, status: val })
-    ElMessage.success('广告组状态已更新')
-  } catch (e) {
-    // 失败时回滚
-    group.status = val === 'ENABLED' ? 'PAUSED' : 'ENABLED'
-    ElMessage.error('更新状态失败')
-  }
-}
 
-const showCreateGroupDialog = () => {
-  createGroupDialogVisible.value = true
-}
 
 const updateModelValue = (key: string, value: any) => emit('update:modelValue', { ...props.modelValue, [key]: value })
 
@@ -390,11 +287,5 @@ onMounted(fetchAdGroups)
 
 :deep(.el-divider--horizontal) {
   margin: 16px 0;
-}
- 
-:deep(.el-tabs__new-tab) {
-  width: auto !important;
-  padding: 0 10px;
-  border-radius: 4px;
 }
 </style>
