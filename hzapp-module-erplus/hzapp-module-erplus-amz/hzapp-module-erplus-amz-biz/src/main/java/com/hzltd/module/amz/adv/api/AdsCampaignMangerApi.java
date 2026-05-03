@@ -160,24 +160,25 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
      * @param request
      * @return
      */
-    public AdsResponse<Boolean> updateCampaign(AdsRequest<AdsEntityUpdateRequest> request) {
-        // 广告活动主体
+    @CrossplatformApiLog
+    public AdsResponse<Boolean> updateCampaign(AdsRequest<SponsoredProductsUpdateCampaign> request) {
+        AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
+        CampaignsApi campaignsApi = new CampaignsApi(getApiClient(authModel));
 
+        try {
+            SponsoredProductsUpdateSponsoredProductsCampaignsRequestContent requestContent = new SponsoredProductsUpdateSponsoredProductsCampaignsRequestContent()
+                    .addCampaignsItem(request.getRequest());
+            SponsoredProductsUpdateSponsoredProductsCampaignsResponseContent responseContent = campaignsApi.updateSponsoredProductsCampaigns(authModel.getAppKey(), authModel.getProfileId(), requestContent, "");
 
-        // 动态BID: 位置 + ROAS + 时间
-
-
-        // Budget rule
-
-
-        // 否定定向
-
-
-
-
-        return AdsResponse.error("Not implemented yet");
+            boolean success = responseContent.getCampaigns().getSuccess() != null && responseContent.getCampaigns().getSuccess().stream().anyMatch(item -> item.getCampaignId().equalsIgnoreCase(request.getRequest().getCampaignId()));
+            return AdsResponse.success(success);
+        } catch (ApiException e) {
+            log.error("Failed to update Campaign", e);
+            return AdsResponse.error(e.getResponseBody());
+        }
     }
 
+    @CrossplatformApiLog
     public AdsResponse<String> createCampaign(AdsRequest<AdsCampaignCreateRequest> request) {
         return AdsResponse.error("Not implemented yet");
     }
@@ -187,6 +188,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
      * @param request
      * @return
      */
+    @CrossplatformApiLog
     public AdsResponse<Boolean> updateStatus(AdsRequest<AdsStatusUpdateRequest> request) {
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         CampaignsApi campaignsApi = new CampaignsApi(getApiClient(authModel));
@@ -195,7 +197,8 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
             SponsoredProductsUpdateSponsoredProductsCampaignsRequestContent requestContent = new SponsoredProductsUpdateSponsoredProductsCampaignsRequestContent()
                     .addCampaignsItem(new SponsoredProductsUpdateCampaign()
                             .campaignId(request.getRequest().getEntityId())
-                            .state(SponsoredProductsCreateOrUpdateEntityState.fromValue(request.getRequest().getStatus())));
+                            .state(SponsoredProductsCreateOrUpdateEntityState.fromValue(request.getRequest().getStatus()))
+                            .siteRestrictions(null));
             SponsoredProductsUpdateSponsoredProductsCampaignsResponseContent responseContent = campaignsApi.updateSponsoredProductsCampaigns(authModel.getAppKey(), authModel.getProfileId(), requestContent, "");
 
             boolean success = responseContent.getCampaigns().getSuccess() != null && responseContent.getCampaigns().getSuccess().stream().anyMatch(item -> item.getCampaignId().equalsIgnoreCase(request.getRequest().getEntityId()));
@@ -210,6 +213,7 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
      * @param request
      * @return
      */
+    @CrossplatformApiLog
     public AdsResponse<Boolean> updateBudget(AdsRequest<AdsBudgetUpdateRequest> request) {
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         CampaignsApi campaignsApi = new CampaignsApi(getApiClient(authModel));

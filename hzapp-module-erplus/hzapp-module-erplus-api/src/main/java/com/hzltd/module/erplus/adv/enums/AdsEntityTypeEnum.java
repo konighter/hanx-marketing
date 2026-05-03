@@ -19,6 +19,8 @@ public enum AdsEntityTypeEnum {
     AD("AD", "广告"),
     KEYWORD("KEYWORD", "关键词"),
     TARGET("TARGET", "商品投放"),
+    NEGATIVE_KEYWORD("NEGATIVE_KEYWORD", "否定关键词"),
+    NEGATIVE_TARGET("NEGATIVE_TARGET", "否定商品投放"),
     CREATIVE("CREATIVE", "创意素材");
 
     private final String code;

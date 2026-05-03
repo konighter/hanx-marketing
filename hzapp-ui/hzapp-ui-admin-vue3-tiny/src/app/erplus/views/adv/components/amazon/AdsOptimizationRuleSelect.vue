@@ -5,7 +5,7 @@
       :placeholder="placeholder"
       clearable
       filterable
-      :teleported="false"
+      style="width: 300px"
       class="optimization-select"
       @change="handleChange"
     >
@@ -139,7 +139,6 @@ onMounted(() => {
 }
 
 .optimization-select {
-  width: 100%;
 }
 
 .create-rule-footer {

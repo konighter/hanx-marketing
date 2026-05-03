@@ -28,4 +28,9 @@ public class AdsQueryRequest extends BaseQueryRequest {
 
     private Map<String, Object> extraParam;
 
+    /**
+     * 只查询指定的属性
+     */
+    private List<String> attributes;
+
 }

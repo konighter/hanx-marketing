@@ -339,6 +339,12 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Long saveCampaign(Long shopId, AdsCampaignModel vo) {
+       return saveCampaign(shopId, vo, null);
+    }
+
+    @Override
+    public Long saveCampaign(Long shopId, AdsCampaignModel vo, List<String> attributes) {
+
         AdsCampaignDO existing = adsCampaignMapper.selectByShopAndExternalId(shopId, vo.getExternalId());
 
         ShopModel shopModel = systemShopService.getShopById(shopId);

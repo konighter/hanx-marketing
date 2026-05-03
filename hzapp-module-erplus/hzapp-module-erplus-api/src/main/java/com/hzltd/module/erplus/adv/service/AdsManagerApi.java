@@ -61,6 +61,13 @@ public interface AdsManagerApi {
 
     AdsResponse<Boolean> updateTarget(AdsRequest<AdsEntityUpdateRequest> request);
 
+    /**
+     * Create target
+     * @param request
+     * @return externalId
+     */
+    AdsResponse<List<String>> createTarget(AdsRequest<List<AdsTargetModel>> request);
+
     AdsResponse<Boolean> updateStatus(AdsRequest<AdsStatusUpdateRequest> request);
 
     AdsResponse<Boolean> updateBudget(AdsRequest<AdsBudgetUpdateRequest> request);

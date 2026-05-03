@@ -164,3 +164,44 @@ export const AmzAdvAdGroupManagerApi = {
     return await request.delete({ url: `/erplus/amz/adv/v3/ad-group/manager/negative-keyword/batch-delete`, data })
   }
 }
+
+// 亚马逊广告活动V3管理器 API
+export const AmzAdvCampaignManagerApi = {
+  updateBidding: async (data: any) => {
+    return await request.put({ url: `/erplus/amz/adv/v3/campaign/manager/bidding/update`, data })
+  },
+  updateDynamicBidding: async (data: any) => {
+    return await request.put({ url: `/erplus/amz/adv/v3/campaign/manager/dynamic-bidding/update`, data })
+  },
+  batchCreateNegativeKeyword: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/campaign/manager/negative-keyword/batch-create`, data })
+  },
+  batchDeleteNegativeKeyword: async (data: any) => {
+    return await request.delete({ url: `/erplus/amz/adv/v3/campaign/manager/negative-keyword/batch-delete`, data })
+  },
+  batchCreateNegativeTargeting: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/campaign/manager/negative-targeting/batch-create`, data })
+  },
+  batchDeleteNegativeTargeting: async (data: any) => {
+    return await request.delete({ url: `/erplus/amz/adv/v3/campaign/manager/negative-targeting/batch-delete`, data })
+  }
+}
+
+// 亚马逊广告辅助接口 API
+export const AmzAdvHelpApi = {
+  getKeywordRecommendations: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/help/keyword/recommendations`, data })
+  },
+  getNegativeBrandRecommendations: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/help/negative-brand/recommendations`, data })
+  },
+  getTargetableCategories: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/help/targetable-categories`, data })
+  },
+  getProductRecommendations: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/help/product/recommendations`, data })
+  },
+  getProductMetadata: async (data: any) => {
+    return await request.post({ url: `/erplus/amz/adv/v3/help/product/metadata`, data })
+  }
+}

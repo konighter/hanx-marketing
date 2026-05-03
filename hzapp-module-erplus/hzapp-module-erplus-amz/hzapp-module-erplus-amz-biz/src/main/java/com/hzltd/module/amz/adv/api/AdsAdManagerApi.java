@@ -70,14 +70,34 @@ public class AdsAdManagerApi  extends AbstractAmazonAdsService {
         ProductAdsApi productAdsApi = new ProductAdsApi(getApiClient(authModel));
 
         try {
-            SponsoredProductsCreateSponsoredProductsProductAdsResponseContent response = productAdsApi.createSponsoredProductsProductAds(authModel.getAppKey(), authModel.getProfileId(), null, "");
-            if (CollectionUtils.isNotEmpty(response.getProductAds().getSuccess())) {
+            SponsoredProductsCreateSponsoredProductsProductAdsRequestContent content = new SponsoredProductsCreateSponsoredProductsProductAdsRequestContent();
+            for (AdsAdCreateRequest adReq : request.getRequest()) {
+                String stateStr = adReq.getStatus() != null ? adReq.getStatus().toUpperCase() : "ENABLED";
+                SponsoredProductsCreateProductAd ad = new SponsoredProductsCreateProductAd()
+                        .campaignId(adReq.getCampaignId())
+                        .adGroupId(adReq.getAdGroupId())
+                        .state(SponsoredProductsCreateOrUpdateEntityState.fromValue(stateStr));
+                
+                if (adReq.getAttributes() != null) {
+                    if (adReq.getAttributes().containsKey("asin")) {
+                        ad.setAsin((String) adReq.getAttributes().get("asin"));
+                    }
+                    if (adReq.getAttributes().containsKey("sku")) {
+                        ad.setSku((String) adReq.getAttributes().get("sku"));
+                    }
+                }
+                content.addProductAdsItem(ad);
+            }
+
+            SponsoredProductsCreateSponsoredProductsProductAdsResponseContent response = productAdsApi.createSponsoredProductsProductAds(authModel.getAppKey(), authModel.getProfileId(), content, "");
+            if (response != null && response.getProductAds() != null && CollectionUtils.isNotEmpty(response.getProductAds().getSuccess())) {
                return AdsResponse.success(response.getProductAds().getSuccess().stream().map(SponsoredProductsProductAdSuccessResponseItem::getAdId).toList());
             } else {
-                log.error("Create Ad Error, request={}, error={}", request.getRequest(), response.getProductAds().getError());
+                log.error("Create Ad Error, request={}, error={}", request.getRequest(), response != null && response.getProductAds() != null ? response.getProductAds().getError() : "Unknown Error");
                 return AdsResponse.error("Create Ad Error");
             }
         } catch (ApiException e) {
+            log.error("Create Ad Error: {}", e.getResponseBody(), e);
             return AdsResponse.error(e.getResponseBody());
         }
     }

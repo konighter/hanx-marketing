@@ -113,6 +113,7 @@
               :campaign-id="detail.id"
               :shop-id="detail.shopId"
               :account-id="detail.accountId"
+              :targeting-type="detail.targetingType || detail.biddingStrategy"
               :disabled="isArchived"
             />
           </div>
@@ -134,12 +135,12 @@
     <template #footer>
       <div class="flex justify-end p-20px">
         <el-button 
-          v-if="['basic', 'platform-config'].includes(activeTab) && !isArchived"
+          v-if="['basic'].includes(activeTab) && !isArchived"
           @click="handleReset"
         >重置</el-button>
         <el-button @click="visible = false">取消</el-button>
         <el-button 
-          v-if="['basic', 'platform-config'].includes(activeTab) && !isArchived"
+          v-if="['basic'].includes(activeTab) && !isArchived"
           type="primary" 
           :loading="saving" 
           @click="handleSave"
@@ -224,7 +225,10 @@ const open = async (id: number) => {
     }
 
     // Init platform config from attributes (aggregated from ads_campaign_attribute)
-    platformConfig.value = res.attributes || {}
+    platformConfig.value = { 
+      ...(res.attributes || {}),
+      externalId: res.externalId 
+    }
 
     // Save snapshot for reset
     snapshot.value = {
@@ -293,9 +297,9 @@ const syncCampaign = async () => {
   syncing.value = true
   try {
     await AdsSyncApi.syncMetadataByCampaign(detail.value.id)
-    ElMessage.success('同步成功')
+    ElMessage.success('提交成功, 请稍后刷新页面查看')
     // 同步成功后重新加载详情，确保拿到最新数据
-    open(detail.value.id)
+    // open(detail.value.id)
   } catch (error) {
     console.error('Sync campaign failed:', error)
   } finally {

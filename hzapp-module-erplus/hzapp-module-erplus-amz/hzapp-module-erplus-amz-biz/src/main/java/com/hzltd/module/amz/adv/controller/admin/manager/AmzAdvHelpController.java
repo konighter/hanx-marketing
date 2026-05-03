@@ -6,6 +6,8 @@ import com.hzltd.module.amz.adv.client.sp.model.KeywordTargetResponse;
 import com.hzltd.module.amz.adv.client.sp.model.TargetableCategories;
 import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpKeywordRecommendationReqVO;
 import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpNegativeBrandRecommendationReqVO;
+import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpProductMetadataReqVO;
+import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpProductRecommendationReqVO;
 import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpTargetableCategoriesReqVO;
 import com.hzltd.module.amz.adv.service.AmzAdvHelpService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -47,6 +49,18 @@ public class AmzAdvHelpController {
     @Operation(summary = "获取可投放类目")
     public CommonResult<TargetableCategories> getTargetableCategories(@Valid @RequestBody AmzAdvHelpTargetableCategoriesReqVO reqVO) {
         return success(amzAdvHelpService.getTargetableCategories(reqVO));
+    }
+
+    @PostMapping("/product/recommendations")
+    @Operation(summary = "获取产品推荐 (Suggested target ASINs)")
+    public CommonResult<Object> getProductRecommendations(@Valid @RequestBody AmzAdvHelpProductRecommendationReqVO reqVO) {
+        return success(amzAdvHelpService.getProductRecommendations(reqVO));
+    }
+
+    @PostMapping("/product/metadata")
+    @Operation(summary = "获取产品元数据 (Product metadata)")
+    public CommonResult<Object> getProductMetadata(@Valid @RequestBody AmzAdvHelpProductMetadataReqVO reqVO) {
+        return success(amzAdvHelpService.getProductMetadata(reqVO));
     }
 
 }

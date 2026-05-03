@@ -25,6 +25,8 @@
         <AdGroupTargetingCreateManager 
           v-model:config="form.attributes" 
           :default-bid="form.defaultBid"
+          :targeting-type="targetingType"
+          :ad-asins="adAsins"
         />
       </div>
       
@@ -36,14 +38,16 @@
       </div>
     </el-form>
     <template #footer>
-      <el-button @click="$emit('update:modelValue', false)">取消</el-button>
-      <el-button type="primary" :loading="loading" @click="handleConfirm">确定</el-button>
+      <span class="dialog-footer">
+        <el-button @click="$emit('update:modelValue', false)">取消</el-button>
+        <el-button type="primary" :loading="loading" @click="handleConfirm">确定</el-button>
+      </span>
     </template>
   </el-dialog>
 </template>
 
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import { ref, watch, computed, provide } from 'vue'
 import { ElMessage } from 'element-plus'
 import { AdsAdGroupApi } from '@/app/erplus/api/adv/ads'
 import AdGroupAdCreateManager from './AdGroupAdCreateManager.vue'
@@ -53,9 +57,14 @@ import AdGroupNegativeCreateManager from './AdGroupNegativeCreateManager.vue'
 const props = defineProps<{
   modelValue: boolean
   campaignId: number
+  shopId: number
+  targetingType?: string
 }>()
 
 const emit = defineEmits(['update:modelValue', 'success'])
+
+// 提供 shopId 给子组件
+provide('shopId', computed(() => props.shopId))
 
 const loading = ref(false)
 const form = ref({
@@ -63,12 +72,17 @@ const form = ref({
   defaultBid: 0.25,
   ads: [],
   attributes: {
-    amz_targeting_type: 'KEYWORD',
+    amz_targeting_type: props.targetingType === 'AUTO' ? 'AUTO' : 'KEYWORD',
     amz_keyword: [],
     amz_target_clause: [],
     amz_negative_keyword: [],
     amz_negative_target_clause: []
   }
+})
+
+// 计算当前已选商品的 ASIN，用于获取推荐
+const adAsins = computed(() => {
+  return form.value.ads.map((ad: any) => ad.asin).filter((asin: any) => !!asin)
 })
 
 // 监听打开状态，重置表单
@@ -79,7 +93,6 @@ watch(() => props.modelValue, (val) => {
       defaultBid: 0.25,
       ads: [],
       attributes: {
-        amz_targeting_type: 'KEYWORD',
         amz_keyword: [],
         amz_target_clause: [],
         amz_negative_keyword: [],
@@ -112,6 +125,7 @@ const handleConfirm = async () => {
   loading.value = true
   try {
     const data = {
+      shopId: props.shopId,
       campaignId: props.campaignId,
       name: form.value.name,
       defaultBid: form.value.defaultBid,

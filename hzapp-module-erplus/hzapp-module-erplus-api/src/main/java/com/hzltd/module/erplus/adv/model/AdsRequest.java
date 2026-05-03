@@ -26,5 +26,13 @@ public class AdsRequest <T> {
 
     private T request;
 
+    public static <T> AdsRequest<T> of(Long shopId, T request) {
+        AdsRequest<T> adsRequest = new AdsRequest<>();
+        adsRequest.setShopId(shopId);
+        adsRequest.setRequest(request);
+        adsRequest.setTimestamp(System.currentTimeMillis() / 1000);
+        return adsRequest;
+    }
+
 
 }

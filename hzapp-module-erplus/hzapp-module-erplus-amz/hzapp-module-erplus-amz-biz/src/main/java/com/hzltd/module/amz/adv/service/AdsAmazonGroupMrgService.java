@@ -198,7 +198,7 @@ public class AdsAmazonGroupMrgService {
             syncNegativeKeywordAttributes(reqVO.getShopId(), reqVO.getGroupId());
             return CommonResult.success(true);
         }
-        return error(500, response.getMessage());
+        return error(200, response.getMessage());
     }
 
     // --- Negative Targeting ---

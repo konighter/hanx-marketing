@@ -5,6 +5,8 @@ import com.hzltd.module.amz.adv.client.sp.model.KeywordTargetResponse;
 import com.hzltd.module.amz.adv.client.sp.model.TargetableCategories;
 import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpKeywordRecommendationReqVO;
 import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpNegativeBrandRecommendationReqVO;
+import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpProductMetadataReqVO;
+import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpProductRecommendationReqVO;
 import com.hzltd.module.amz.adv.controller.admin.manager.vo.AmzAdvHelpTargetableCategoriesReqVO;
 
 import java.util.List;
@@ -28,4 +30,14 @@ public interface AmzAdvHelpService {
      * 获取可投放类目
      */
     TargetableCategories getTargetableCategories(AmzAdvHelpTargetableCategoriesReqVO reqVO);
+
+    /**
+     * 获取产品推荐 (Suggested target ASINs)
+     */
+    Object getProductRecommendations(AmzAdvHelpProductRecommendationReqVO reqVO);
+
+    /**
+     * 获取产品元数据 (Product metadata)
+     */
+    Object getProductMetadata(AmzAdvHelpProductMetadataReqVO reqVO);
 }

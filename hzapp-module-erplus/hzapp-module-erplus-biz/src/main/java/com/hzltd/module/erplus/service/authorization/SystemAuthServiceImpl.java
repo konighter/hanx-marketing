@@ -45,7 +45,7 @@ public class SystemAuthServiceImpl implements SystemAuthService {
                     if (value.isEmpty()) {
                         return TimeUnit.SECONDS.toNanos(2);
                     }
-                    return TimeUnit.MINUTES.toNanos(45);
+                    return TimeUnit.MINUTES.toNanos(30);
                 }
 
                 @Override
@@ -145,7 +145,10 @@ public class SystemAuthServiceImpl implements SystemAuthService {
         String cacheKey = (userId != null ? userId : "anon") + ":" + shopId + ":" + authType;
         Optional<AuthorizationModel> opt = authModelCache.getIfPresent(cacheKey);
         if (opt != null) {
-            return opt.orElse(null);
+            AuthorizationModel cachedModel = opt.orElse(null);
+            if (cachedModel != null && !cachedModel.isExpiry()) {
+                return cachedModel;
+            }
         }
 
         // 缓存未命中或已过期，从 DB 查询
@@ -198,6 +201,12 @@ public class SystemAuthServiceImpl implements SystemAuthService {
             }
             model.setAccessToken(accessTokenModel.getAccessToken());
             model.setExpiryTime(LocalDateTime.now().plusSeconds(accessTokenModel.getExpireIn()));
+            // 持久化到 DB
+            PlatformAuthDO updateDO = new PlatformAuthDO();
+            updateDO.setId(authDO.getId());
+            updateDO.setAccessToken(model.getAccessToken());
+            updateDO.setExpiryTime(model.getExpiryTime());
+            platformAuthMapper.updateById(updateDO);
         }
 
         return model;

@@ -142,7 +142,8 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
         apiClient.updateBaseUri(getApiEndpointByRegion(authModel.getRegion()));
         
         // 获取 LWA 访问令牌
-        String accessToken = amzAdvLwaService.getAccessToken(authModel);
+//        String accessToken = amzAdvLwaService.getAccessToken(authModel);
+        String accessToken = authModel.getAccessToken();
 
         apiClient.setRequestInterceptor(builder -> {
             builder.setHeader("Authorization", "Bearer " + accessToken);

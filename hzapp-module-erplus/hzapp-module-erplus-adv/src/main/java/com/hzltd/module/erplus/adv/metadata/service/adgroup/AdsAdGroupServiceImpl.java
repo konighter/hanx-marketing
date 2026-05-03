@@ -84,7 +84,7 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
             throw exception(new ErrorCode(1_033_002_002, "平台 API 未实现: " + campaign.getPlatform()));
         }
  
-        // 3. 调用平台 API
+        // 3. 调用平台 API 创建广告组
         AdsAdGroupCreateRequest req = AdsAdGroupCreateRequest.builder()
                 .campaignId(campaign.getExternalId())
                 .name(createReqVO.getName())
@@ -102,9 +102,46 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
             throw exception(new ErrorCode(1_033_002_005, "平台创建广告组失败: " + response.getMessage()));
         }
  
-        // 4. 同步数据 (可以通过查询外部 ID 来同步)
-        String externalId = response.getData();
-        syncAdGroup(campaign.getShopId(), campaign.getPlatform(), externalId);
+        String externalAdGroupId = response.getData();
+        
+        // 4. 同步广告组到本地
+        syncAdGroup(campaign.getShopId(), campaign.getPlatform(), externalAdGroupId);
+        
+        // 5. 创建广告
+        if (CollUtil.isNotEmpty(createReqVO.getAds())) {
+            List<AdsAdCreateRequest> ads = createReqVO.getAds();
+            ads.forEach(ad -> {
+                ad.setCampaignId(campaign.getExternalId());
+                ad.setAdGroupId(externalAdGroupId);
+            });
+            AdsResponse<List<String>> adResp = adsManagerApi.createAd(new AdsRequest<List<AdsAdCreateRequest>>()
+                    .setShopId(campaign.getShopId())
+                    .setRequest(ads));
+            if (!adResp.isSuccess()) {
+                log.error("[createAdGroup] 平台创建广告失败: {}", adResp.getMessage());
+                throw exception(new ErrorCode(1_033_002_006, "平台创建广告失败: " + adResp.getMessage()));
+            }
+        }
+        
+        // 6. 创建投放
+        if (CollUtil.isNotEmpty(createReqVO.getTargeting())) {
+            List<AdsTargetModel> targets = createReqVO.getTargeting();
+            targets.forEach(t -> {
+                t.setAdEntityId(externalAdGroupId); 
+                t.setCampaignExternalId(campaign.getExternalId());
+                t.setPlatform(campaign.getPlatform());
+            });
+            AdsResponse<List<String>> targetResp = adsManagerApi.createTarget(new AdsRequest<List<AdsTargetModel>>()
+                    .setShopId(campaign.getShopId())
+                    .setRequest(targets));
+            if (!targetResp.isSuccess()) {
+                log.error("[createAdGroup] 平台创建投放失败: {}", targetResp.getMessage());
+                throw exception(new ErrorCode(1_033_002_007, "平台创建投放失败: " + targetResp.getMessage()));
+            }
+        }
+
+        // 7. 再次同步以确保所有关联实体都已同步到本地
+        syncAdGroup(campaign.getShopId(), campaign.getPlatform(), externalAdGroupId);
     }
  
     private void syncAdGroup(Long shopId, String platform, String externalId) {

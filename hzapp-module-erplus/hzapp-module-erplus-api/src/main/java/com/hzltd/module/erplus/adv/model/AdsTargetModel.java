@@ -20,6 +20,7 @@ public class AdsTargetModel {
 
     private String externalId;
     private String adEntityId;
+    private String campaignExternalId;
     private AdsEntityTypeEnum adEntityType;
 
     /**

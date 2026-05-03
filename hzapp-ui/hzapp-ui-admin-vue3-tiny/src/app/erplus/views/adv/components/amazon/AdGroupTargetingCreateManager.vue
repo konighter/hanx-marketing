@@ -4,7 +4,8 @@
       <div class="flex items-center">
         <span class="text-14px font-bold mr-10px">定向类型:</span>
         <el-radio-group 
-          v-model="amzTargetingType" 
+          v-if="targetingType?.toUpperCase().includes('MANUAL')"
+          v-model="manualTargetingMode" 
           size="small"
         >
           <el-radio-button 
@@ -16,6 +17,7 @@
             label="PRODUCT" 
           >商品/品类定向</el-radio-button>
         </el-radio-group>
+        <el-tag v-else-if="targetingType?.toUpperCase().includes('AUTO')" type="success" size="small">自动定向</el-tag>
         <el-tooltip content="定向类型设定后不可修改" placement="top">
           <el-icon class="ml-5px text-gray-400"><QuestionFilled /></el-icon>
         </el-tooltip>
@@ -34,19 +36,19 @@
           </el-button>
         </template>
         <el-button 
-          v-if="config.amz_targeting_type"
+          v-if="targetingType?.toUpperCase().includes('AUTO') ? false : true"
           size="small" 
           @click="openAddDialog"
           class="add-btn"
         >
           <el-icon><Plus /></el-icon>
-          <span class="ml-4px">添加{{ config.amz_targeting_type === 'KEYWORD' ? '关键词' : '商品' }}</span>
+          <span class="ml-4px">添加{{ manualTargetingMode === 'KEYWORD' ? '关键词' : '商品' }}</span>
         </el-button>
       </div>
     </div>
 
     <!-- 关键词定向 -->
-    <template v-if="config.amz_targeting_type === 'KEYWORD'">
+    <template v-if="targetingType?.toUpperCase().includes('AUTO') ? false : manualTargetingMode === 'KEYWORD'">
       <el-table :data="config.amz_keyword || []" border size="small" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40" align="center" />
         <el-table-column label="关键词" prop="keywordText">
@@ -81,7 +83,7 @@
     </template>
 
     <!-- 商品定向 -->
-    <template v-else-if="config.amz_targeting_type === 'PRODUCT'">
+    <template v-else-if="targetingType?.toUpperCase().includes('AUTO') ? false : manualTargetingMode === 'PRODUCT'">
       <el-table :data="config.amz_target_clause || []" border size="small" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40" align="center" />
         <el-table-column label="操作/类型" prop="expressionType" width="180">
@@ -115,6 +117,39 @@
       </el-table>
     </template>
 
+    <!-- 自动定向 (4种匹配方式) -->
+    <template v-else-if="targetingType?.toUpperCase().includes('AUTO')">
+      <el-table :data="autoTargetingRows" border size="small" style="width: 100%">
+        <el-table-column label="匹配类型" prop="expressionValue" width="180">
+          <template #default="{ row }">
+            <div class="text-13px font-medium py-4px">
+              {{ AUTO_TARGETING_MAP[row.expressionValue] || row.expressionValue }}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="说明" prop="description" min-width="200">
+          <template #default="{ row }">
+            <div class="text-12px text-gray-400">
+              {{ AUTO_TARGETING_DESC[row.expressionValue] }}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="出价" prop="bid" width="140">
+          <template #default="{ row }">
+            <el-input-number 
+              v-model="row.bid" 
+              :precision="2" 
+              :step="0.01" 
+              :controls="false"
+              size="small" 
+              style="width: 70px"
+              @change="syncConfig"
+            />
+          </template>
+        </el-table-column>
+      </el-table>
+    </template>
+
     <el-empty v-else description="请先选择定向类型" :image-size="40" />
 
     <!-- 添加关键词对话框 -->
@@ -130,13 +165,14 @@
       ref="targetingProductAddDialogRef"
       :default-bid="defaultBid"
       :existing-items="config.amz_target_clause || []"
+      :ad-asins="adAsins"
       @success="handleTargetingAdded"
     />
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, inject } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import { QuestionFilled, Plus } from '@element-plus/icons-vue'
 import KeywordAddCreateDialog from './KeywordAddCreateDialog.vue'
@@ -144,21 +180,60 @@ import TargetingProductAddCreateDialog from './TargetingProductAddCreateDialog.v
 
 const props = defineProps<{
   defaultBid: number
+  adAsins?: string[]
+  targetingType?: string
 }>()
 
+const shopId = inject<number>('shopId')
 const config = defineModel<any>('config', { required: true })
 
-const amzTargetingType = computed({
-  get: () => config.value.amz_targeting_type,
-  set: (val) => {
-    config.value = {
-      ...config.value,
-      amz_targeting_type: val,
-      amz_target_clause: val === 'KEYWORD' ? [] : config.value.amz_target_clause,
-      amz_keyword: val === 'PRODUCT' ? [] : config.value.amz_keyword
-    }
+const manualTargetingMode = ref('KEYWORD')
+
+const AUTO_TARGETING_MAP = {
+  'close-match': '紧密匹配',
+  'loose-match': '宽泛匹配',
+  'substitutes': '替代商品',
+  'complements': '关联商品'
+}
+
+const AUTO_TARGETING_DESC = {
+  'close-match': '我们会向与您的商品紧密相关的搜索词展示您的广告。',
+  'loose-match': '我们会向与您的商品宽泛相关的搜索词展示您的广告。',
+  'substitutes': '我们会向查看与您的商品类似的商品的详情页面的购物者展示您的广告。',
+  'complements': '我们会向查看与您的商品互补的商品的详情页面的购物者展示您的广告。'
+}
+
+// 初始化自动定向行
+const autoTargetingRows = computed(() => {
+  if (!props.targetingType?.toUpperCase().includes('AUTO')) return []
+  
+  // 如果 amz_target_clause 为空，则根据 4 种类型初始化
+  if (!config.value.amz_target_clause || config.value.amz_target_clause.length === 0) {
+    const rows = Object.keys(AUTO_TARGETING_MAP).map(type => ({
+      expressionType: 'TARGETING_EXPRESSION_PREDICATE',
+      expressionValue: type,
+      bid: props.defaultBid,
+      state: 'ENABLED'
+    }))
+    // 注意：在 computed 中直接修改并不同步，我们在 watch 中处理初始化
+    return rows
   }
+  
+  return config.value.amz_target_clause
 })
+
+// 监听并初始化自动定向数据
+watch(() => props.targetingType, (type) => {
+  if (type?.toUpperCase().includes('AUTO') && (!config.value.amz_target_clause || config.value.amz_target_clause.length === 0)) {
+    config.value.amz_target_clause = Object.keys(AUTO_TARGETING_MAP).map(type => ({
+      expressionType: 'TARGETING_EXPRESSION_PREDICATE',
+      expressionValue: type,
+      bid: props.defaultBid,
+      state: 'ENABLED'
+    }))
+    syncConfig()
+  }
+}, { immediate: true })
 
 const syncConfig = () => {
   config.value = { ...config.value }
@@ -171,7 +246,7 @@ const keywordAddDialogRef = ref()
 const targetingProductAddDialogRef = ref()
 
 const openAddDialog = () => {
-  if (config.value.amz_targeting_type === 'KEYWORD') {
+  if (manualTargetingMode.value === 'KEYWORD') {
     keywordAddDialogRef.value?.open()
   } else {
     targetingProductAddDialogRef.value?.open()
@@ -183,7 +258,7 @@ const handleSelectionChange = (selection: any[]) => {
 }
 
 const handleBatchDelete = () => {
-  if (config.value.amz_targeting_type === 'KEYWORD') {
+  if (manualTargetingMode.value === 'KEYWORD') {
     config.value = {
       ...config.value,
       amz_keyword: (config.value.amz_keyword || []).filter((k: any) => !selectedRows.value.includes(k))
@@ -229,7 +304,7 @@ const handleTargetingAdded = (items: any[]) => {
 }
 
 const removeRow = (row: any) => {
-  if (config.value.amz_targeting_type === 'KEYWORD') {
+  if (manualTargetingMode.value === 'KEYWORD') {
     config.value = {
       ...config.value,
       amz_keyword: (config.value.amz_keyword || []).filter((k: any) => k !== row)

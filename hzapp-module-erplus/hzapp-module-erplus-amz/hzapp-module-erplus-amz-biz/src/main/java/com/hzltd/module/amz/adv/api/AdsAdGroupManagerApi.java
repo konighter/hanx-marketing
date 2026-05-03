@@ -4,6 +4,7 @@ import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.sp.api.*;
 import com.hzltd.module.amz.adv.client.sp.model.*;
+import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.service.adgroup.AdsAdGroupService;
 import com.hzltd.module.erplus.adv.model.*;
 import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
@@ -40,8 +41,13 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
         AdGroupsApi api = new AdGroupsApi(getApiClient(authModel));
         try {
             AdsAdGroupCreateRequest groupCreateRequest = request.getRequest();
+            String stateStr = groupCreateRequest.getStatus() != null ? groupCreateRequest.getStatus().toUpperCase() : "ENABLED";
             SponsoredProductsCreateSponsoredProductsAdGroupsRequestContent content = new SponsoredProductsCreateSponsoredProductsAdGroupsRequestContent();
-            content.addAdGroupsItem(new SponsoredProductsCreateAdGroup().campaignId(groupCreateRequest.getCampaignId()).name(groupCreateRequest.getName()).defaultBid(groupCreateRequest.getDefaultBid()).state(SponsoredProductsCreateOrUpdateEntityState.ENABLED));
+            content.addAdGroupsItem(new SponsoredProductsCreateAdGroup()
+                    .campaignId(groupCreateRequest.getCampaignId())
+                    .name(groupCreateRequest.getName())
+                    .defaultBid(groupCreateRequest.getDefaultBid())
+                    .state(SponsoredProductsCreateOrUpdateEntityState.fromValue(stateStr)));
             SponsoredProductsCreateSponsoredProductsAdGroupsResponseContent groupsResponseContent = api.createSponsoredProductsAdGroups(authModel.getAppKey(), authModel.getProfileId(), content, "");
 
             if (CollectionUtils.isNotEmpty(groupsResponseContent.getAdGroups().getSuccess())) {
@@ -577,5 +583,151 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
             return AdsResponse.error(e.getResponseBody());
         }
     }
+    @CrossplatformApiLog
+    public AdsResponse<List<String>> createTargets(AdsRequest<List<AdsTargetModel>> request) {
+        AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
+        KeywordsApi keywordApi = new KeywordsApi(getApiClient(authModel));
+        NegativeKeywordsApi negativeKeywordApi = new NegativeKeywordsApi(getApiClient(authModel));
+        TargetingClausesApi targetingClausesApi = new TargetingClausesApi(getApiClient(authModel));
+        NegativeTargetingClausesApi negativeTargetingClausesApi = new NegativeTargetingClausesApi(getApiClient(authModel));
 
+        List<String> allExternalIds = new java.util.ArrayList<>();
+        boolean hasError = false;
+        StringBuilder errorMessage = new StringBuilder();
+
+        try {
+            // Group by type
+            List<AdsTargetModel> keywords = request.getRequest().stream()
+                    .filter(t -> t.getAdEntityType() == AdsEntityTypeEnum.KEYWORD).collect(Collectors.toList());
+            List<AdsTargetModel> negativeKeywords = request.getRequest().stream()
+                    .filter(t -> t.getAdEntityType() == AdsEntityTypeEnum.NEGATIVE_KEYWORD).collect(Collectors.toList());
+            List<AdsTargetModel> targetingClauses = request.getRequest().stream()
+                    .filter(t -> t.getAdEntityType() == AdsEntityTypeEnum.TARGET).collect(Collectors.toList());
+            List<AdsTargetModel> negativeTargetingClauses = request.getRequest().stream()
+                    .filter(t -> t.getAdEntityType() == AdsEntityTypeEnum.NEGATIVE_TARGET).collect(Collectors.toList());
+
+            // 1. Keywords
+            if (CollectionUtils.isNotEmpty(keywords)) {
+                SponsoredProductsCreateSponsoredProductsKeywordsRequestContent content = new SponsoredProductsCreateSponsoredProductsKeywordsRequestContent();
+                for (AdsTargetModel kw : keywords) {
+                    content.addKeywordsItem(new SponsoredProductsCreateKeyword()
+                            .campaignId(kw.getCampaignExternalId())
+                            .adGroupId(kw.getAdEntityId())
+                            .keywordText((String) kw.getAttributes().get("keywordText"))
+                            .matchType(SponsoredProductsCreateOrUpdateMatchType.fromValue(((String) kw.getAttributes().get("matchType")).toUpperCase()))
+                            .bid(kw.getAttributes().get("bid") != null ? ((Number) kw.getAttributes().get("bid")).doubleValue() : null)
+                            .state(SponsoredProductsCreateOrUpdateEntityState.ENABLED));
+                }
+                SponsoredProductsCreateSponsoredProductsKeywordsResponseContent resp = keywordApi.createSponsoredProductsKeywords(authModel.getAppKey(), authModel.getProfileId(), content, "");
+                if (resp.getKeywords() != null) {
+                    if (CollectionUtils.isNotEmpty(resp.getKeywords().getSuccess())) {
+                        resp.getKeywords().getSuccess().forEach(s -> allExternalIds.add(s.getKeywordId()));
+                    }
+                    if (CollectionUtils.isNotEmpty(resp.getKeywords().getError())) {
+                        hasError = true;
+                        resp.getKeywords().getError().forEach(e -> errorMessage.append("Keyword Error: ").append(e.getErrors()).append("; "));
+                    }
+                }
+            }
+
+            // 2. Negative Keywords
+            if (CollectionUtils.isNotEmpty(negativeKeywords)) {
+                SponsoredProductsCreateSponsoredProductsNegativeKeywordsRequestContent content = new SponsoredProductsCreateSponsoredProductsNegativeKeywordsRequestContent();
+                for (AdsTargetModel nkw : negativeKeywords) {
+                    content.addNegativeKeywordsItem(new SponsoredProductsCreateNegativeKeyword()
+                            .campaignId(nkw.getCampaignExternalId())
+                            .adGroupId(nkw.getAdEntityId())
+                            .keywordText((String) nkw.getAttributes().get("keywordText"))
+                            .matchType(SponsoredProductsCreateOrUpdateNegativeMatchType.fromValue(((String) nkw.getAttributes().get("matchType")).toUpperCase()))
+                            .state(SponsoredProductsCreateOrUpdateEntityState.ENABLED));
+                }
+                SponsoredProductsCreateSponsoredProductsNegativeKeywordsResponseContent resp = negativeKeywordApi.createSponsoredProductsNegativeKeywords(authModel.getAppKey(), authModel.getProfileId(), content, "");
+                if (resp.getNegativeKeywords() != null) {
+                    if (CollectionUtils.isNotEmpty(resp.getNegativeKeywords().getSuccess())) {
+                        resp.getNegativeKeywords().getSuccess().forEach(s -> allExternalIds.add(s.getNegativeKeywordId()));
+                    }
+                    if (CollectionUtils.isNotEmpty(resp.getNegativeKeywords().getError())) {
+                        hasError = true;
+                        resp.getNegativeKeywords().getError().forEach(e -> errorMessage.append("NegKeyword Error: ").append(e.getErrors()).append("; "));
+                    }
+                }
+            }
+
+            // 3. Targeting Clauses
+            if (CollectionUtils.isNotEmpty(targetingClauses)) {
+                SponsoredProductsCreateSponsoredProductsTargetingClausesRequestContent content = new SponsoredProductsCreateSponsoredProductsTargetingClausesRequestContent();
+                for (AdsTargetModel tc : targetingClauses) {
+                    List<SponsoredProductsCreateTargetingExpressionPredicate> predicates = new java.util.ArrayList<>();
+                    List<java.util.Map<String, String>> expression = (List<java.util.Map<String, String>>) tc.getAttributes().get("expression");
+                    if (CollectionUtils.isNotEmpty(expression)) {
+                        for (java.util.Map<String, String> exp : expression) {
+                            predicates.add(new SponsoredProductsCreateTargetingExpressionPredicate()
+                                    .type(SponsoredProductsCreateTargetingExpressionPredicateType.fromValue(exp.get("type")))
+                                    .value(exp.get("value")));
+                        }
+                    }
+                    content.addTargetingClausesItem(new SponsoredProductsCreateTargetingClause()
+                            .campaignId(tc.getCampaignExternalId())
+                            .adGroupId(tc.getAdEntityId())
+                            .expression(predicates)
+                            .expressionType(SponsoredProductsCreateExpressionType.fromValue(((String) tc.getAttributes().get("expressionType")).toUpperCase()))
+                            .bid(tc.getAttributes().get("bid") != null ? ((Number) tc.getAttributes().get("bid")).doubleValue() : null)
+                            .state(SponsoredProductsCreateOrUpdateEntityState.ENABLED));
+                }
+                SponsoredProductsCreateSponsoredProductsTargetingClausesResponseContent resp = targetingClausesApi.createSponsoredProductsTargetingClauses(authModel.getAppKey(), authModel.getProfileId(), content, "");
+                if (resp.getTargetingClauses() != null) {
+                    if (CollectionUtils.isNotEmpty(resp.getTargetingClauses().getSuccess())) {
+                        resp.getTargetingClauses().getSuccess().forEach(s -> allExternalIds.add(s.getTargetId()));
+                    }
+                    if (CollectionUtils.isNotEmpty(resp.getTargetingClauses().getError())) {
+                        hasError = true;
+                        resp.getTargetingClauses().getError().forEach(e -> errorMessage.append("Targeting Error: ").append(e.getErrors()).append("; "));
+                    }
+                }
+            }
+
+            // 4. Negative Targeting Clauses
+            if (CollectionUtils.isNotEmpty(negativeTargetingClauses)) {
+                SponsoredProductsCreateSponsoredProductsNegativeTargetingClausesRequestContent content = new SponsoredProductsCreateSponsoredProductsNegativeTargetingClausesRequestContent();
+                for (AdsTargetModel ntc : negativeTargetingClauses) {
+                    List<SponsoredProductsCreateOrUpdateNegativeTargetingExpressionPredicate> predicates = new java.util.ArrayList<>();
+                    List<java.util.Map<String, String>> expression = (List<java.util.Map<String, String>>) ntc.getAttributes().get("expression");
+                    if (CollectionUtils.isNotEmpty(expression)) {
+                        for (java.util.Map<String, String> exp : expression) {
+                            predicates.add(new SponsoredProductsCreateOrUpdateNegativeTargetingExpressionPredicate()
+                                    .type(SponsoredProductsCreateOrUpdateNegativeTargetingExpressionPredicateType.fromValue(exp.get("type")))
+                                    .value(exp.get("value")));
+                        }
+                    }
+                    content.addNegativeTargetingClausesItem(new SponsoredProductsCreateNegativeTargetingClause()
+                            .campaignId(ntc.getCampaignExternalId())
+                            .adGroupId(ntc.getAdEntityId())
+                            .expression(predicates)
+                            .state(SponsoredProductsCreateOrUpdateEntityState.ENABLED));
+                }
+                SponsoredProductsCreateSponsoredProductsNegativeTargetingClausesResponseContent resp = negativeTargetingClausesApi.createSponsoredProductsNegativeTargetingClauses(authModel.getAppKey(), authModel.getProfileId(), content, "");
+                if (resp.getNegativeTargetingClauses() != null) {
+                    if (CollectionUtils.isNotEmpty(resp.getNegativeTargetingClauses().getSuccess())) {
+                        resp.getNegativeTargetingClauses().getSuccess().forEach(s -> allExternalIds.add(s.getTargetId()));
+                    }
+                    if (CollectionUtils.isNotEmpty(resp.getNegativeTargetingClauses().getError())) {
+                        hasError = true;
+                        resp.getNegativeTargetingClauses().getError().forEach(e -> errorMessage.append("NegTargeting Error: ").append(e.getErrors()).append("; "));
+                    }
+                }
+            }
+
+            if (hasError) {
+                return AdsResponse.error(errorMessage.toString());
+            }
+            return AdsResponse.success(allExternalIds);
+
+        } catch (ApiException e) {
+            log.error("[createTargets] Amazon API Error: {}", e.getResponseBody(), e);
+            return AdsResponse.error("Amazon API Error: " + e.getResponseBody());
+        } catch (Exception e) {
+            log.error("[createTargets] Internal Error", e);
+            return AdsResponse.error("Internal Error: " + e.getMessage());
+        }
+    }
 }

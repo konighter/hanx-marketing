@@ -52,6 +52,7 @@
                 :default-bid="group.defaultBid || 0"
                 :ad-group-id="group.id"
                 :shop-id="shopId"
+                :targeting-type="targetingType"
                 :disabled="disabled"
                 @update="val => syncAdGroupAttributes(group, val)"
                 @refresh="$emit('refresh')"
@@ -88,6 +89,8 @@
     <AdsAdGroupCreateDialog 
       v-model="createGroupDialogVisible"
       :campaign-id="campaignId"
+      :shop-id="shopId"
+      :targeting-type="targetingType"
       @success="$emit('refresh')"
     />
   </div>
@@ -109,6 +112,7 @@ const props = defineProps<{
   shopId: number
   campaignId: number
   loading?: boolean
+  targetingType?: string
   disabled?: boolean
 }>()
 

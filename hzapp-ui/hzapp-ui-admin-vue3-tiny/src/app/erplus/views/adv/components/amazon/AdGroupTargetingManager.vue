@@ -4,10 +4,11 @@
       <div class="flex items-center">
         <span class="text-14px font-bold mr-10px">定向类型:</span>
         <el-radio-group 
-          v-model="localConfig.amz_targeting_type" 
+          v-if="targetingType?.toUpperCase()?.includes('MANUAL')"
+          v-model="manualTargetingMode" 
           size="small"
           :disabled="disabled"
-          @change="handleTargetingTypeChange"
+          @change="handleManualModeChange"
         >
           <el-radio-button 
             v-if="!(localConfig.amz_target_clause?.length > 0)"
@@ -18,6 +19,7 @@
             label="PRODUCT" 
           >商品/品类定向</el-radio-button>
         </el-radio-group>
+        <el-tag v-else-if="targetingType?.toUpperCase().includes('AUTO')" type="success" size="small">自动定向</el-tag>
         <el-tooltip content="定向类型设定后不可修改" placement="top">
           <el-icon class="ml-5px text-gray-400"><QuestionFilled /></el-icon>
         </el-tooltip>
@@ -50,7 +52,7 @@
     </div>
 
     <!-- 关键词定向 -->
-    <template v-if="localConfig.amz_targeting_type === 'KEYWORD'">
+    <template v-if="targetingType?.toUpperCase()?.includes('AUTO') ? false : manualTargetingMode === 'KEYWORD'">
       <el-table :data="visibleKeywords" border size="small" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40" align="center" />
         <el-table-column label="关键词" prop="keywordText">
@@ -97,7 +99,7 @@
     </template>
 
     <!-- 商品定向 -->
-    <template v-else-if="localConfig.amz_targeting_type === 'PRODUCT'">
+    <template v-else-if="targetingType?.toUpperCase()?.includes('AUTO') ? false : manualTargetingMode === 'PRODUCT'">
       <el-table :data="visibleTargetingClauses" border size="small" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40" align="center" />
         <el-table-column label="操作/类型" prop="expressionType" width="180">
@@ -143,6 +145,63 @@
       </el-table>
     </template>
 
+    <!-- 自动定向 (4种匹配方式) -->
+    <template v-else-if="targetingType?.toUpperCase()?.includes('AUTO')">
+      <el-table :data="autoTargetingRows" border size="small" style="width: 100%">
+        <el-table-column label="匹配类型" prop="expressionValue" width="180">
+          <template #default="{ row }">
+            <div class="text-13px font-medium py-4px">
+              {{ AUTO_TARGETING_MAP[row.expressionValue] || row.expressionValue }}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="说明" prop="description" min-width="200">
+          <template #default="{ row }">
+            <div class="text-12px text-gray-400">
+              {{ AUTO_TARGETING_DESC[row.expressionValue] }}
+            </div>
+          </template>
+        </el-table-column>
+        <el-table-column label="状态" width="100" align="center">
+          <template #default="{ row }">
+            <el-switch 
+              v-model="row.state" 
+              active-value="ENABLED" 
+              inactive-value="PAUSED"
+              size="small"
+              :disabled="disabled || !row.targetId"
+              @change="val => handleAutoTargetingStateChange(row, val as string)"
+            />
+          </template>
+        </el-table-column>
+        <el-table-column label="出价" prop="bid" width="140">
+          <template #default="{ row }">
+            <div v-if="!isEditing(row)" class="flex items-center group cursor-pointer" @click="startEdit(row)">
+              <span class="text-13px font-medium mr-5px">{{ row.bid?.toFixed(2) }}</span>
+              <el-icon class="text-gray-400 group-hover:text-primary transition-colors"><Edit /></el-icon>
+            </div>
+            <div v-else class="flex items-center gap-4px">
+              <el-input-number 
+                v-model="row.bid" 
+                :precision="2" 
+                :step="0.01" 
+                :controls="false"
+                size="small" 
+                style="width: 70px" 
+                :disabled="disabled" 
+              />
+              <el-button type="primary" link size="small" @click="saveAutoRowBid(row)">
+                <el-icon><Check /></el-icon>
+              </el-button>
+              <el-button link size="small" @click="cancelEdit(row)">
+                <el-icon><Close /></el-icon>
+              </el-button>
+            </div>
+          </template>
+        </el-table-column>
+      </el-table>
+    </template>
+
     <el-empty v-else description="请先选择定向类型" :image-size="40" />
 
     <!-- 添加关键词对话框 -->
@@ -176,11 +235,12 @@ import KeywordAddDialog from './KeywordAddDialog.vue'
 import TargetingProductAddDialog from './TargetingProductAddDialog.vue'
 
 const props = defineProps<{
-  config: any
   defaultBid: number
   disabled?: boolean
   adGroupId: number
   shopId: number
+  targetingType?: string
+  config: any
 }>()
 
 const emit = defineEmits(['update', 'refresh'])
@@ -199,6 +259,12 @@ const visibleTargetingClauses = computed(() => {
 const selectedRows = ref<any[]>([])
 const editingRows = ref(new Set<string>())
 
+const manualTargetingMode = ref('KEYWORD')
+
+const emitUpdate = () => {
+  emit('update', localConfig.value)
+}
+
 watch(() => [props.config, props.adGroupId], (newVals, oldVals) => {
   const [newConfig, newId] = newVals
   const [_, oldId] = oldVals || []
@@ -206,24 +272,54 @@ watch(() => [props.config, props.adGroupId], (newVals, oldVals) => {
   // 如果广告组 ID 变了，必须强制重置本地配置
   const forceReset = oldId !== undefined && newId !== oldId
   
-  // 只有当本地配置为空、明确没有定向类型，或者广告组 ID 发生变化时才初始化
-  if (forceReset || !localConfig.value.amz_targeting_type || (localConfig.value.amz_keyword?.length === 0 && localConfig.value.amz_target_clause?.length === 0)) {
+  if (forceReset || !localConfig.value.amz_keyword) {
     const config = JSON.parse(JSON.stringify(newConfig || {}))
-    // 自动识别定向类型
-    if (!config.amz_targeting_type) {
-      if (config.amz_keyword?.length > 0) config.amz_targeting_type = 'KEYWORD'
-      else if (config.amz_target_clause?.length > 0) config.amz_targeting_type = 'PRODUCT'
-    }
     localConfig.value = config
+    
+    // 初始化手动定向模式
+    if (config.amz_target_clause?.length > 0) {
+      manualTargetingMode.value = 'PRODUCT'
+    } else {
+      manualTargetingMode.value = 'KEYWORD'
+    }
   }
 }, { immediate: true, deep: true })
 
-const handleTargetingTypeChange = (val: any) => {
+const AUTO_TARGETING_MAP = {
+  'close-match': '紧密匹配',
+  'loose-match': '宽泛匹配',
+  'substitutes': '替代商品',
+  'complements': '关联商品'
+}
+
+const AUTO_TARGETING_DESC = {
+  'close-match': '我们会向与您的商品紧密相关的搜索词展示您的广告。',
+  'loose-match': '我们会向与您的商品宽泛相关的搜索词展示您的广告。',
+  'substitutes': '我们会向查看与您的商品类似的商品的详情页面的购物者展示您的广告。',
+  'complements': '我们会向查看与您的商品互补的商品的详情页面的购物者展示您的广告。'
+}
+
+const autoTargetingRows = computed(() => {
+  const existing = localConfig.value.amz_target_clause || []
+  return Object.keys(AUTO_TARGETING_MAP).map(type => {
+    const item = existing.find((c: any) => c.expressionValue === type)
+    return item || { 
+      expressionType: 'TARGETING_EXPRESSION_PREDICATE', 
+      expressionValue: type, 
+      bid: props.defaultBid, 
+      state: 'ENABLED',
+      isNew: true 
+    }
+  })
+})
+
+const handleManualModeChange = (val: any) => {
   if (val === 'KEYWORD') {
     localConfig.value.amz_target_clause = []
   } else if (val === 'PRODUCT') {
     localConfig.value.amz_keyword = []
   }
+  manualTargetingMode.value = val
   emitUpdate()
 }
 
@@ -232,7 +328,7 @@ const keywordAddDialogRef = ref()
 const targetingProductAddDialogRef = ref()
 
 const openAddDialog = () => {
-  if (localConfig.value.amz_targeting_type === 'KEYWORD') {
+  if (manualTargetingMode.value === 'KEYWORD') {
     keywordAddDialogRef.value?.open()
   } else {
     targetingProductAddDialogRef.value?.open()
@@ -263,7 +359,7 @@ const cancelEdit = (row: any) => {
 }
 
 const saveRowBid = async (row: any) => {
-  if (localConfig.value.amz_targeting_type === 'KEYWORD') {
+  if (manualTargetingMode.value === 'KEYWORD') {
     if (row.keywordId) {
       await handleKeywordBidChange(row)
     }
@@ -286,6 +382,54 @@ const saveRowBid = async (row: any) => {
   emitUpdate()
 }
 
+const saveAutoRowBid = async (row: any) => {
+  try {
+    if (row.targetId) {
+      await AmzAdvAdGroupManagerApi.batchUpdateTargetingBid({
+        shopId: props.shopId,
+        groupId: props.adGroupId,
+        items: [{ targetId: row.targetId, bid: row.bid }]
+      })
+    } else {
+      // 如果没有 targetId，需要先创建
+      await AmzAdvAdGroupManagerApi.batchCreateTargeting({
+        shopId: props.shopId,
+        groupId: props.adGroupId,
+        items: [{
+          expressionType: row.expressionType,
+          expressionValue: row.expressionValue,
+          bid: row.bid,
+          state: row.state
+        }]
+      })
+      emit('refresh')
+    }
+    ElMessage.success('出价已更新')
+  } catch (e) {
+    ElMessage.error('操作失败')
+  }
+  cancelEdit(row)
+  emitUpdate()
+}
+
+const handleAutoTargetingStateChange = async (row: any, val: string) => {
+  if (!row.targetId) return
+  try {
+    // 这里复用调价接口来更新状态 (如果是 V3 接口通常支持同时更新)
+    // 或者如果有专门的状态更新接口则使用之。目前参考已有逻辑。
+    await AmzAdvAdGroupManagerApi.batchUpdateTargetingBid({
+      shopId: props.shopId,
+      groupId: props.adGroupId,
+      items: [{ targetId: row.targetId, state: val }]
+    })
+    ElMessage.success('状态已更新')
+    emitUpdate()
+  } catch (e) {
+    row.state = val === 'ENABLED' ? 'PAUSED' : 'ENABLED'
+    ElMessage.error('更新状态失败')
+  }
+}
+
 const deleting = ref(false)
 
 const handleBatchDelete = async () => {
@@ -298,7 +442,7 @@ const handleBatchDelete = async () => {
       .filter(id => !!id)
       
     if (persistIds.length > 0) {
-      if (localConfig.value.amz_targeting_type === 'KEYWORD') {
+      if (manualTargetingMode.value === 'KEYWORD') {
         await AmzAdvAdGroupManagerApi.batchDeleteKeyword({
           shopId: props.shopId,
           groupId: props.adGroupId,
@@ -314,7 +458,7 @@ const handleBatchDelete = async () => {
     }
     
     // 更新本地列表
-    if (localConfig.value.amz_targeting_type === 'KEYWORD') {
+    if (manualTargetingMode.value === 'KEYWORD') {
       localConfig.value.amz_keyword = localConfig.value.amz_keyword.filter(
         (k: any) => !selectedRows.value.includes(k)
       )
@@ -347,7 +491,7 @@ const handleBatchUpdateBid = async () => {
       .filter(r => r.keywordId || r.targetId)
       
     if (persistItems.length > 0) {
-      if (localConfig.value.amz_targeting_type === 'KEYWORD') {
+      if (manualTargetingMode.value === 'KEYWORD') {
         await AmzAdvAdGroupManagerApi.batchUpdateKeywordBid({
           shopId: props.shopId,
           groupId: props.adGroupId,
@@ -428,9 +572,7 @@ const removeRow = async (row: any) => {
   }
 }
 
-const emitUpdate = () => {
-  emit('update', localConfig.value)
-}
+
 </script>
 
 <style scoped>

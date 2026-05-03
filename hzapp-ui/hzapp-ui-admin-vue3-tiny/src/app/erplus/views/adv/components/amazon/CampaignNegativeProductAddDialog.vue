@@ -1,5 +1,5 @@
 <template>
-  <el-dialog v-model="visible" title="添加否定商品" width="800px" append-to-body>
+  <el-dialog v-model="visible" title="添加活动级否定商品" width="800px" append-to-body>
     <div class="flex gap-24px h-450px p-4px">
       <!-- 左侧输入框 -->
       <div class="flex-1 flex flex-col h-full overflow-hidden">
@@ -22,7 +22,7 @@
               :input-style="{ height: '100%' }"
               :placeholder="selectedType === 'ASIN_SAME_AS' ? '手动输入 ASIN，每行一个' : '手动输入品牌 ID，每行一个'"
             />
-            <el-button class="mt-10px" @click="parseValues">添加到列表 >></el-button>
+            <el-button class="mt-10px" @click="parseItems">添加到列表 >></el-button>
           </el-tab-pane>
           <el-tab-pane v-if="selectedType === 'ASIN_BRAND_SAME_AS'" label="推荐品牌" name="search" class="h-full flex flex-col pt-12px">
             <div class="mb-12px">
@@ -58,7 +58,7 @@
         </el-tabs>
       </div>
       
-      <!-- 右侧已添加的商品 -->
+      <!-- 右侧已添加的列表 -->
       <div class="flex-1 border-1 border-gray-200 border-solid rounded-4px p-12px flex flex-col h-full overflow-hidden bg-white shadow-sm">
         <div class="flex justify-between items-center mb-12px">
           <span class="font-bold text-14px text-gray-700">待添加列表</span>
@@ -71,10 +71,9 @@
                 <span>{{ row.name ? `${row.name} (${row.value})` : row.value }}</span>
               </template>
             </el-table-column>
-            <el-table-column label="类型" width="100">
+            <el-table-column label="类型" prop="type" width="100">
               <template #default="{ row }">
-                <span v-if="row.type === 'ASIN_SAME_AS'">商品 (ASIN)</span>
-                <span v-else-if="row.type === 'ASIN_BRAND_SAME_AS'">品牌</span>
+                <span>{{ row.type === 'ASIN_SAME_AS' ? '商品' : '品牌' }}</span>
               </template>
             </el-table-column>
             <el-table-column label="操作" width="50" align="center">
@@ -99,11 +98,11 @@
 import { ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Delete } from '@element-plus/icons-vue'
-import { AmzAdvAdGroupManagerApi, AmzAdvHelpApi } from '@/app/erplus/api/adv/ads'
+import { AmzAdvCampaignManagerApi, AmzAdvHelpApi } from '@/app/erplus/api/adv/ads'
 
 const props = defineProps<{
   shopId: number
-  adGroupId: number
+  campaignId: number
   existingItems?: any[]
 }>()
 
@@ -166,23 +165,21 @@ const open = () => {
   pendingItems.value = []
 }
 
-const parseValues = () => {
+const parseItems = () => {
   if (!bulkValues.value) return
-  
   const lines = bulkValues.value.split('\n').map(l => l.trim()).filter(l => l)
   let skipCount = 0
   
-  lines.forEach(text => {
-    const isInPending = pendingItems.value.some(k => k.value?.trim().toLowerCase() === text.trim().toLowerCase() && k.type === selectedType.value)
-    const isExisted = props.existingItems?.some(p => 
-      p.state === 'ENABLED' && 
-      p.expression?.[0]?.value?.trim().toLowerCase() === text.trim().toLowerCase() && 
-      p.expression?.[0]?.type === selectedType.value
-    )
+  lines.forEach(val => {
+    const isInPending = pendingItems.value.some(i => i.value?.trim().toLowerCase() === val.trim().toLowerCase() && i.type === selectedType.value)
+    const isExisted = props.existingItems?.some(i => {
+      const expr = i.expression?.[0]
+      return i.state === 'ENABLED' && expr?.value?.trim().toLowerCase() === val.trim().toLowerCase() && expr?.type === selectedType.value
+    })
     
     if (!isInPending && !isExisted) {
       pendingItems.value.push({
-        value: text,
+        value: val,
         type: selectedType.value
       })
     } else {
@@ -191,27 +188,25 @@ const parseValues = () => {
   })
   
   if (skipCount > 0) {
-    ElMessage.info(`已自动过滤 ${skipCount} 个重复的否定项`)
+    ElMessage.info(`已自动过滤 ${skipCount} 个重复的否定商品`)
   }
   bulkValues.value = ''
 }
 
 const submitItems = async () => {
   if (pendingItems.value.length === 0) {
-    ElMessage.warning('没有要添加的否定项')
+    ElMessage.warning('没有要添加的否定商品')
     return
   }
   savingItems.value = true
   try {
-    await AmzAdvAdGroupManagerApi.batchCreateNegativeTargeting({
+    await AmzAdvCampaignManagerApi.batchCreateNegativeTargeting({
       shopId: props.shopId,
-      groupId: props.adGroupId,
-      items: pendingItems.value.map((k: any) => ({
+      campaignId: props.campaignId,
+      clauses: pendingItems.value.map((i: any) => ({
+        expression: [{ type: i.type, value: i.value }],
         state: 'ENABLED',
-        expression: [{
-          type: k.type,
-          value: k.value
-        }]
+        campaignId: props.campaignId
       }))
     })
     ElMessage.success('否定商品添加成功')

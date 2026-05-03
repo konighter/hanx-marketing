@@ -29,6 +29,8 @@ export interface AdsCampaign {
   extData?: any
   syncedAt?: string
   createTime?: string
+  targetingType?: string // AUTO or MANUAL
+  biddingStrategy?: string
   // Indices
   impressions?: number
   clicks?: number

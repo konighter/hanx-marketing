@@ -119,15 +119,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, inject, unref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Delete, Search } from '@element-plus/icons-vue'
+import { AmzAdvHelpApi } from '@/app/erplus/api/adv/ads'
 
 const props = defineProps<{
   defaultBid: number
   existingKeywords?: any[]
+  campaignId?: number
+  adGroupId?: number
 }>()
 
+const shopId = inject<any>('shopId')
 const emit = defineEmits(['success'])
 
 const visible = ref(false)
@@ -140,6 +144,7 @@ const pendingKeywords = ref<any[]>([])
 
 const searchKeyword = ref('')
 const recommendedKeywords = ref<string[]>([])
+const searching = ref(false)
 let recommendTimer: any = null
 
 const open = () => {
@@ -155,21 +160,34 @@ const open = () => {
 
 const handleSearchInput = (val: string) => {
   if (recommendTimer) clearTimeout(recommendTimer)
-  if (!val) {
+  if (!val || val.length < 2) {
     recommendedKeywords.value = []
     return
   }
-  recommendTimer = setTimeout(() => {
-    recommendedKeywords.value = [
-      val + ' cases',
-      val + ' for men',
-      val + ' for women',
-      val + ' accessories',
-      'best ' + val,
-      val + ' 2024',
-      'cheap ' + val
-    ]
-  }, 500)
+  recommendTimer = setTimeout(async () => {
+    const currentShopId = unref(shopId)
+    if (!currentShopId) return
+    
+    searching.value = true
+    try {
+      const res = await AmzAdvHelpApi.getKeywordRecommendations({
+        shopId: currentShopId,
+        recommendationType: 'KEYWORDS_FOR_ASINS', // 默认按搜索词
+        targets: [val],
+        maxRecommendations: 20
+      })
+      
+      if (res && res.recommendations) {
+        recommendedKeywords.value = res.recommendations.map((r: any) => r.keyword)
+      } else if (Array.isArray(res)) {
+        recommendedKeywords.value = res.map((r: any) => r.keyword || r)
+      }
+    } catch (e) {
+      console.error(e)
+    } finally {
+      searching.value = false
+    }
+  }, 800)
 }
 
 const getCalculatedBid = () => {

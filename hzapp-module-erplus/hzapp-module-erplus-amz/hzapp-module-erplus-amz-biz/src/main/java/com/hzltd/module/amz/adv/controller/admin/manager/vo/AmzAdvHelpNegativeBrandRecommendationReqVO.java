@@ -12,4 +12,7 @@ public class AmzAdvHelpNegativeBrandRecommendationReqVO {
     @NotNull(message = "店铺编号不能为空")
     private Long shopId;
 
+    @Schema(description = "搜索关键词")
+    private String keyword;
+
 }

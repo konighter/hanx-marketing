@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 对应PlatformAuthDO
@@ -81,6 +82,11 @@ public class AuthorizationModel {
     private Long appId;
 
     public boolean isExpiry() {
-        return System.currentTimeMillis() > expiryTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+        if (expiryTime == null) {
+            return true;
+        }
+        // 提前5分钟过期，确保调用时有效
+        return System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(5) > 
+                expiryTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
     }
 }

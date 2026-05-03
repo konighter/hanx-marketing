@@ -7,6 +7,7 @@ import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
 import com.hzltd.module.erplus.adv.model.AdsCampaignModel;
 import jakarta.validation.Valid;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -82,4 +83,12 @@ public interface AdsCampaignService {
      */
     Long saveCampaign(Long shopId, AdsCampaignModel vo);
 
+    /**
+     * 只更新主体和指定 attributes
+     * @param shopId
+     * @param vo
+     * @param attributes
+     * @return
+     */
+    Long saveCampaign(Long shopId, AdsCampaignModel vo, List<String> attributes);
 }
