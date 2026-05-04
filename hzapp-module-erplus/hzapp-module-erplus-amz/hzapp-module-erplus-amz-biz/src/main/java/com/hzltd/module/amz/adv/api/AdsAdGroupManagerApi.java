@@ -1,5 +1,6 @@
 package com.hzltd.module.amz.adv.api;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.client.client.ApiException;
 import com.hzltd.module.amz.adv.client.sp.api.*;
@@ -51,29 +52,45 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
                     .state(SponsoredProductsCreateOrUpdateEntityState.fromValue(stateStr)));
             SponsoredProductsCreateSponsoredProductsAdGroupsResponseContent groupsResponseContent = api.createSponsoredProductsAdGroups(authModel.getAppKey(), authModel.getProfileId(), content, "");
 
-            String adGroupId = "";
+            String adGroupId;
+            String campaignId = groupCreateRequest.getCampaignId();
+            Long shopId = request.getShopId();
             if (CollectionUtils.isNotEmpty(groupsResponseContent.getAdGroups().getSuccess())) {
                 adGroupId = groupsResponseContent.getAdGroups().getSuccess().get(0).getAdGroupId();
             } else {
                 return AdsResponse.error("广告组创建失败");
             }
 
-            // 规则?
             if (groupCreateRequest.containsAttribute(KEYWORD)) {
-                 // todo -- 添加关键字
-
+                List<SponsoredProductsCreateKeyword> keywords =  groupCreateRequest.getAttribute(KEYWORD, new TypeReference<List<SponsoredProductsCreateKeyword>>(){});
+                if (CollectionUtils.isNotEmpty(keywords)) {
+                    keywords.forEach(kw -> kw.adGroupId(adGroupId).campaignId(campaignId));
+                    this.createKeywords(AdsRequest.of(shopId, keywords));
+                }
             }
 
             if (groupCreateRequest.containsAttribute(TARGET_CLAUSE)) {
-                // todo - 添加TARGET_CLAUSE
+                List<SponsoredProductsCreateTargetingClause> targetingClauses = groupCreateRequest.getAttribute(TARGET_CLAUSE, new TypeReference<List<SponsoredProductsCreateTargetingClause>>() {});
+                if (CollectionUtils.isNotEmpty(targetingClauses)) {
+                    targetingClauses.forEach(tc -> tc.adGroupId(adGroupId).campaignId(campaignId));
+                    this.createKeywordTargets(AdsRequest.of(shopId, targetingClauses));
+                }
             }
 
             if (groupCreateRequest.containsAttribute(NEGATIVE_KEYWORD)) {
-                // todo - 添加否定关键词
+                List<SponsoredProductsCreateNegativeKeyword> negativeKeywords = groupCreateRequest.getAttribute(NEGATIVE_KEYWORD, new TypeReference<List<SponsoredProductsCreateNegativeKeyword>>() {});
+                if (CollectionUtils.isNotEmpty(negativeKeywords)) {
+                    negativeKeywords.forEach(tc -> tc.adGroupId(adGroupId).campaignId(campaignId));
+                    this.createNegativeKeywords(AdsRequest.of(shopId, negativeKeywords));
+                }
             }
 
             if (groupCreateRequest.containsAttribute(NEGATIVE_TARGET_CLAUSE)) {
-                // todo - 添加否定 NEGATIVE_TARGET_CLAUSE
+                List<SponsoredProductsCreateNegativeTargetingClause> negativeTargetingClauses = groupCreateRequest.getAttribute(NEGATIVE_TARGET_CLAUSE, new TypeReference<List<SponsoredProductsCreateNegativeTargetingClause>>() {});
+                if (CollectionUtils.isNotEmpty(negativeTargetingClauses)) {
+                    negativeTargetingClauses.forEach(tc -> tc.adGroupId(adGroupId).campaignId(campaignId));
+                    this.createNegativeKeywordTargets(AdsRequest.of(shopId, negativeTargetingClauses));
+                }
             }
 
             return AdsResponse.success(adGroupId);

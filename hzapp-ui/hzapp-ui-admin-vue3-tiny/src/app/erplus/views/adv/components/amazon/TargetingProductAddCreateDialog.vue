@@ -216,7 +216,7 @@ const handleSuggestedSelection = (selection: any[]) => {
 const addSuggestedToPending = () => {
   selectedSuggested.value.forEach(item => {
     const isInPending = pendingItems.value.some(p => p.value === item.asin && p.type === 'asinSameAs')
-    const isExisted = props.existingItems?.some(p => p.expressionValue === item.asin && p.expressionType === 'asinSameAs')
+    const isExisted = props.existingItems?.some(p => p.state === 'ENABLED' && p.expression?.[0]?.value === item.asin && p.expression?.[0]?.type === 'ASIN_SAME_AS')
     
     if (!isInPending && !isExisted) {
       pendingItems.value.push({
@@ -254,10 +254,14 @@ const parseValues = () => {
   
   lines.forEach(text => {
     const isInPending = pendingItems.value.some(k => k.value?.trim().toLowerCase() === text.trim().toLowerCase() && k.type === selectedType.value)
+    let typeEnum = 'ASIN_SAME_AS'
+    if (selectedType.value === 'category') typeEnum = 'ASIN_CATEGORY_SAME_AS'
+    if (selectedType.value === 'brand') typeEnum = 'ASIN_BRAND_SAME_AS'
+
     const isExisted = props.existingItems?.some(p => 
       p.state === 'ENABLED' && 
-      p.expressionValue?.trim().toLowerCase() === text.trim().toLowerCase() && 
-      p.expressionType === selectedType.value
+      p.expression?.[0]?.value?.trim().toLowerCase() === text.trim().toLowerCase() && 
+      p.expression?.[0]?.type === typeEnum
     )
     
     if (!isInPending && !isExisted) {
@@ -284,12 +288,23 @@ const submitItems = () => {
     return
   }
   
-  const mappedItems = pendingItems.value.map((k: any) => ({
-    state: 'ENABLED',
-    expressionType: k.type,
-    expressionValue: k.value,
-    bid: k.bid
-  }))
+  const mappedItems = pendingItems.value.map((k: any) => {
+    let typeEnum = 'ASIN_SAME_AS'
+    if (k.type === 'category') typeEnum = 'ASIN_CATEGORY_SAME_AS'
+    if (k.type === 'brand') typeEnum = 'ASIN_BRAND_SAME_AS'
+
+    return {
+      state: 'ENABLED',
+      expressionType: 'MANUAL',
+      expression: [
+        {
+          type: typeEnum,
+          value: k.value
+        }
+      ],
+      bid: k.bid
+    }
+  })
   
   emit('success', mappedItems)
   visible.value = false

@@ -165,6 +165,15 @@ watch(() => [props.config, props.adGroupId], (newVals, oldVals) => {
   if (forceReset || (localKeywords.value.length === 0 && localProducts.value.length === 0)) {
     localKeywords.value = JSON.parse(JSON.stringify(newConfig.amz_negative_keyword || []))
     localProducts.value = JSON.parse(JSON.stringify(newConfig.amz_negative_target_clause || []))
+    
+    // 根据数据自动切换激活的 tab
+    const hasKeywords = localKeywords.value.some((k: any) => k.state !== 'ARCHIVED')
+    const hasProducts = localProducts.value.some((p: any) => p.state !== 'ARCHIVED')
+    if (!hasKeywords && hasProducts) {
+      activeNegativeType.value = 'product'
+    } else if (hasKeywords && !hasProducts) {
+      activeNegativeType.value = 'keyword'
+    }
   }
 }, { immediate: true, deep: true })
 

@@ -144,10 +144,14 @@ const parseValues = () => {
   
   lines.forEach(text => {
     const isInPending = pendingItems.value.some(k => k.value?.trim().toLowerCase() === text.trim().toLowerCase() && k.type === selectedType.value)
+    let typeEnum = 'ASIN_SAME_AS'
+    if (selectedType.value === 'category') typeEnum = 'ASIN_CATEGORY_SAME_AS'
+    if (selectedType.value === 'brand') typeEnum = 'ASIN_BRAND_SAME_AS'
+
     const isExisted = props.existingItems?.some(p => 
       p.state === 'ENABLED' && 
-      p.expressionValue?.trim().toLowerCase() === text.trim().toLowerCase() && 
-      p.expressionType === selectedType.value
+      p.expression?.[0]?.value?.trim().toLowerCase() === text.trim().toLowerCase() && 
+      p.expression?.[0]?.type === typeEnum
     )
     
     if (!isInPending && !isExisted) {
@@ -177,12 +181,23 @@ const submitItems = async () => {
     await AmzAdvAdGroupManagerApi.batchCreateTargeting({
       shopId: props.shopId,
       groupId: props.adGroupId,
-      items: pendingItems.value.map((k: any) => ({
-        state: 'ENABLED',
-        expressionType: k.type,
-        expressionValue: k.value,
-        bid: k.bid
-      }))
+      clauses: pendingItems.value.map((k: any) => {
+        let typeEnum = 'ASIN_SAME_AS'
+        if (k.type === 'category') typeEnum = 'ASIN_CATEGORY_SAME_AS'
+        if (k.type === 'brand') typeEnum = 'ASIN_BRAND_SAME_AS'
+
+        return {
+          state: 'ENABLED',
+          expressionType: 'MANUAL',
+          expression: [
+            {
+              type: typeEnum,
+              value: k.value
+            }
+          ],
+          bid: k.bid
+        }
+      })
     })
     ElMessage.success('定向项添加成功')
     visible.value = false

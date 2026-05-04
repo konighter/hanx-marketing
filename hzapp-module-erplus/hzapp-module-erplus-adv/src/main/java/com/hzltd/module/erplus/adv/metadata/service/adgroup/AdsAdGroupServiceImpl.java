@@ -14,7 +14,9 @@ import com.hzltd.module.erplus.adv.dal.mysql.AdsAccountMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupAttributeMapper;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsAdGroupMapper;
 import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
+import com.hzltd.module.erplus.adv.metadata.service.ad.AdsAdService;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
+import com.hzltd.module.erplus.adv.metadata.vo.ad.AdsAdCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupPageReqVO;
 import com.hzltd.module.erplus.adv.model.*;
@@ -63,6 +65,8 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
     private AdsCampaignService adsCampaignService;
     @Resource
     private SystemShopService systemShopService;
+    @Resource
+    private AdsAdService adService;
 
     @Override
     public PageResult<AdsAdGroupDO> getAdGroupPage(AdsAdGroupPageReqVO pageReqVO) {
@@ -106,7 +110,9 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
         
         // 4. 同步广告组到本地
         syncAdGroup(campaign.getShopId(), campaign.getPlatform(), externalAdGroupId);
-        
+
+        AdsAdGroupDO adGroupDO = getAdGroupByShopAndExternalId(campaign.getShopId(), externalAdGroupId);
+
         // 5. 创建广告
         if (CollUtil.isNotEmpty(createReqVO.getAds())) {
             List<AdsAdCreateRequest> ads = createReqVO.getAds();
@@ -114,32 +120,9 @@ public class AdsAdGroupServiceImpl implements AdsAdGroupService {
                 ad.setCampaignId(campaign.getExternalId());
                 ad.setAdGroupId(externalAdGroupId);
             });
-            AdsResponse<List<String>> adResp = adsManagerApi.createAd(new AdsRequest<List<AdsAdCreateRequest>>()
-                    .setShopId(campaign.getShopId())
-                    .setRequest(ads));
-            if (!adResp.isSuccess()) {
-                log.error("[createAdGroup] 平台创建广告失败: {}", adResp.getMessage());
-                throw exception(new ErrorCode(1_033_002_006, "平台创建广告失败: " + adResp.getMessage()));
-            }
+            adService.createAd(new AdsAdCreateReqVO().setAdGroupId(adGroupDO.getId()).setCampaignId(campaign.getId()).setCreateRequests(ads));
         }
         
-        // 6. 创建投放
-        if (CollUtil.isNotEmpty(createReqVO.getTargeting())) {
-            List<AdsTargetModel> targets = createReqVO.getTargeting();
-            targets.forEach(t -> {
-                t.setAdEntityId(externalAdGroupId); 
-                t.setCampaignExternalId(campaign.getExternalId());
-                t.setPlatform(campaign.getPlatform());
-            });
-            AdsResponse<List<String>> targetResp = adsManagerApi.createTarget(new AdsRequest<List<AdsTargetModel>>()
-                    .setShopId(campaign.getShopId())
-                    .setRequest(targets));
-            if (!targetResp.isSuccess()) {
-                log.error("[createAdGroup] 平台创建投放失败: {}", targetResp.getMessage());
-                throw exception(new ErrorCode(1_033_002_007, "平台创建投放失败: " + targetResp.getMessage()));
-            }
-        }
-
         // 7. 再次同步以确保所有关联实体都已同步到本地
         syncAdGroup(campaign.getShopId(), campaign.getPlatform(), externalAdGroupId);
     }

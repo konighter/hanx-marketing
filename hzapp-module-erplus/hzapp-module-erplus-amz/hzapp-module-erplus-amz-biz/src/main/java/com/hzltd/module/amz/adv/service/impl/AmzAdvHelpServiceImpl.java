@@ -33,15 +33,18 @@ public class AmzAdvHelpServiceImpl extends AbstractAmazonAdsService implements A
 
     @Override
     public List<KeywordTargetResponse> getKeywordRecommendations(AmzAdvHelpKeywordRecommendationReqVO reqVO) {
-        AdsAdGroupDO adGroupDO = adGroupService.getAdGroupByShopAndExternalId(reqVO.getShopId(), reqVO.getAdGroupId());
-        if (adGroupDO == null) {
-            throw exception(new ErrorCode(1_033_002_001, "广告组不存在"));
+        if ("KEYWORDS_FOR_ADGROUP".equals(reqVO.getRecommendationType())) {
+            AdsAdGroupDO adGroupDO = adGroupService.getAdGroupByShopAndExternalId(reqVO.getShopId(), reqVO.getAdGroupId());
+            if (adGroupDO == null) {
+                throw exception(new ErrorCode(1_033_002_001, "广告组不存在"));
+            }
+            AdsCampaignDO campaignDO = campaignService.getCampaign(adGroupDO.getCampaignId());
+            if (campaignDO == null) {
+                throw exception(new ErrorCode(1_033_002_001, "广告组不存在"));
+            }
+            reqVO.setCampaignId(campaignDO.getExternalId());
         }
-        AdsCampaignDO campaignDO = campaignService.getCampaign(adGroupDO.getCampaignId());
-        if (campaignDO == null) {
-            throw exception(new ErrorCode(1_033_002_001, "广告组不存在"));
-        }
-        reqVO.setCampaignId(campaignDO.getExternalId());
+
 
         AdsResponse<List<KeywordTargetResponse>> response = adsAmazonHelpApi.getKeywordRecommendations(AdsRequest.of(reqVO.getShopId(), reqVO));
         if (response.isSuccess()) {

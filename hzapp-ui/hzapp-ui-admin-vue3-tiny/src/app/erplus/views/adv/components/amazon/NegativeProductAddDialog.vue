@@ -206,7 +206,7 @@ const submitItems = async () => {
     await AmzAdvAdGroupManagerApi.batchCreateNegativeTargeting({
       shopId: props.shopId,
       groupId: props.adGroupId,
-      items: pendingItems.value.map((k: any) => ({
+      clauses: pendingItems.value.map((k: any) => ({
         state: 'ENABLED',
         expression: [{
           type: k.type,

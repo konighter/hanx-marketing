@@ -86,14 +86,14 @@
     <template v-else-if="targetingType?.toUpperCase().includes('AUTO') ? false : manualTargetingMode === 'PRODUCT'">
       <el-table :data="config.amz_target_clause || []" border size="small" style="width: 100%" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="40" align="center" />
-        <el-table-column label="操作/类型" prop="expressionType" width="180">
+        <el-table-column label="操作/类型" width="180">
           <template #default="{ row }">
-            <div class="text-13px py-4px">{{ row.expressionType }}</div>
+            <div class="text-13px py-4px">{{ TARGETING_TYPE_MAP[row.expression?.[0]?.type] || row.expression?.[0]?.type || row.expressionType }}</div>
           </template>
         </el-table-column>
-        <el-table-column label="值 (ASIN / ID)" prop="expressionValue">
+        <el-table-column label="值 (ASIN / ID)">
           <template #default="{ row }">
-            <div class="text-13px py-4px font-medium">{{ row.expressionValue }}</div>
+            <div class="text-13px py-4px font-medium">{{ row.expression?.[0]?.value || row.expressionValue }}</div>
           </template>
         </el-table-column>
         <el-table-column label="出价" prop="bid" width="140">
@@ -189,6 +189,19 @@ const shopId = inject<number>('shopId')
 const config = defineModel<any>('config', { required: true })
 
 const manualTargetingMode = ref('KEYWORD')
+
+const TARGETING_TYPE_MAP: Record<string, string> = {
+  'ASIN_SAME_AS': '商品 (ASIN)',
+  'ASIN_CATEGORY_SAME_AS': '类目',
+  'ASIN_BRAND_SAME_AS': '品牌',
+  'ASIN_EXPANDED_FROM': '扩展商品',
+  'ASIN_PRICE_LESS_THAN': '价格低于',
+  'ASIN_PRICE_BETWEEN': '价格区间',
+  'ASIN_PRICE_GREATER_THAN': '价格高于',
+  'ASIN_REVIEW_RATING_LESS_THAN': '评分低于',
+  'ASIN_REVIEW_RATING_BETWEEN': '评分区间',
+  'ASIN_REVIEW_RATING_GREATER_THAN': '评分高于',
+}
 
 const AUTO_TARGETING_MAP: Record<string, string> = {
   'QUERY_HIGH_REL_MATCHES': '紧密匹配',
