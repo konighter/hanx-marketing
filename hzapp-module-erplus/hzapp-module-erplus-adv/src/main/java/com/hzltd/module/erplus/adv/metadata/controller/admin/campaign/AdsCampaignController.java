@@ -5,6 +5,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.metadata.service.campaign.AdsCampaignService;
+import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignRespVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
@@ -31,6 +32,13 @@ public class AdsCampaignController {
 
     @Resource
     private AdsCampaignService adsCampaignService;
+
+    @PostMapping("/create")
+    @Operation(summary = "创建广告计划")
+    @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:create')")
+    public CommonResult<String> createCampaign(@Valid @RequestBody AdsCampaignCreateReqVO createReqVO) {
+        return success(adsCampaignService.createCampaign(createReqVO));
+    }
 
     @PostMapping("/page")
     @Operation(summary = "获得广告计划分页")

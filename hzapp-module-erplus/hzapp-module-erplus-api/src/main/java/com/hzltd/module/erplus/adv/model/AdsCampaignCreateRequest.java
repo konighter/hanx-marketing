@@ -13,6 +13,8 @@ public class AdsCampaignCreateRequest {
     private String name;
  
     private String campaignType;
+
+    private String targetingType;
  
     private String status;
  

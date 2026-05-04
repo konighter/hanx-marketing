@@ -96,6 +96,13 @@
       </el-tab-pane>
     </el-tabs>
   </ContentWrap>
+
+  <!-- 创建广告活动抽屉 -->
+  <AdsCampaignCreateDrawer 
+    ref="createCampaignDialogRef" 
+    :shop-id="queryParams.shopId"
+    @success="handleQuery"
+  />
 </template>
 
 <script setup lang="ts">
@@ -105,6 +112,7 @@ import AdGroupList from './components/AdGroupList.vue'
 import AdList from './components/AdList.vue'
 import AdAccountDataAnalysis from './components/AdAccountDataAnalysis.vue'
 import AdSyncDialog from './components/AdSyncDialog.vue'
+import AdsCampaignCreateDrawer from './components/AdsCampaignCreateDrawer.vue'
 
 defineOptions({ name: 'AdsAccountManager' })
 
@@ -115,6 +123,7 @@ const selectedShopPath = ref<any[]>([])
 const selectedCampaignIds = ref<number[]>([])
 const selectedAdGroupIds = ref<number[]>([])
 const refreshKey = ref(0)
+const createCampaignDialogRef = ref()
 
 const handleQuery = () => {
   refreshKey.value++
@@ -170,7 +179,7 @@ const handleShopChange = (value: any[]) => {
 }
 
 const handleCreateCampaign = () => {
-  message.info('新建广告活动功能开发中...')
+  createCampaignDialogRef.value.open(queryParams.shopId)
 }
 
 const handleTabChange = (tab: string) => {

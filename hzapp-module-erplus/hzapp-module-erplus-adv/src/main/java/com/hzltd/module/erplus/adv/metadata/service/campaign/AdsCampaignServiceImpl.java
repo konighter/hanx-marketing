@@ -14,6 +14,7 @@ import com.hzltd.module.erplus.adv.dal.dataobject.*;
 import com.hzltd.module.erplus.adv.dal.mysql.*;
 import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupUpdateReqVO;
+import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
 import com.hzltd.module.erplus.adv.model.*;
@@ -81,6 +82,44 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
     @Override
     public PageResult<AdsCampaignDO> getCampaignPage(AdsCampaignPageReqVO pageReqVO) {
         return adsCampaignMapper.selectPage(pageReqVO);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public String createCampaign(AdsCampaignCreateReqVO createReqVO) {
+        // 1. 获取店铺信息
+        ShopModel shop = systemShopService.getShopById(createReqVO.getShopId());
+        if (shop == null) {
+            throw exception(new ErrorCode(1_033_001_005, "店铺不存在"));
+        }
+
+        // 2. 构造平台无关请求
+        AdsCampaignCreateRequest request = new AdsCampaignCreateRequest();
+        request.setName(createReqVO.getName());
+        request.setCampaignType(createReqVO.getCampaignType());
+        request.setStatus(createReqVO.getStatus());
+        request.setDailyBudget(createReqVO.getDailyBudget());
+        request.setStartDate(createReqVO.getStartDate());
+        request.setEndDate(createReqVO.getEndDate());
+        request.setBiddingStrategy(createReqVO.getBiddingStrategy());
+        request.setTargetingType(createReqVO.getTargetingType());
+
+        // 投放类型特定于 SP, 放入 attributes
+//        request.add("targetingType", createReqVO.getTargetingType());
+
+        if (createReqVO.getAttributes() != null) {
+            request.getAttributes().putAll(createReqVO.getAttributes());
+        }
+
+        // 3. 调用平台接口
+        AdsManagerApi adsManagerApi = adsManagerApiFactory.getAdsApiService(AdsPlatformEnum.of(shop.getPlatformCode()));
+        AdsResponse<String> response = adsManagerApi.createCampaign(AdsRequest.of(createReqVO.getShopId(), request));
+
+        if (response.isSuccess()) {
+            return response.getData();
+        } else {
+            throw exception(new ErrorCode(1_033_001_006, "广告计划创建失败: " + response.getMessage()));
+        }
     }
 
     @Override

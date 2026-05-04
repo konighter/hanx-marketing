@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.adv.metadata.service.campaign;
 
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
+import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
 import com.hzltd.module.erplus.adv.model.AdsCampaignModel;
@@ -14,6 +15,14 @@ import java.util.Map;
  * 广告计划 Service 接口
  */
 public interface AdsCampaignService {
+
+    /**
+     * 创建广告计划
+     *
+     * @param createReqVO 创建信息
+     * @return 广告计划外部编号
+     */
+    String createCampaign(@Valid AdsCampaignCreateReqVO createReqVO);
 
     /**
      * 获得广告计划分页

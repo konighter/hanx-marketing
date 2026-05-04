@@ -2,6 +2,7 @@ package com.hzltd.module.amz.adv.api;
 
 import com.hzltd.module.amz.adv.AbstractAmazonAdsService;
 import com.hzltd.module.amz.adv.client.client.ApiException;
+import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.module.amz.adv.client.sp.api.CampaignNegativeKeywordsApi;
 import com.hzltd.module.amz.adv.client.sp.api.CampaignNegativeTargetingClausesApi;
 import com.hzltd.module.amz.adv.client.sp.api.CampaignsApi;
@@ -180,7 +181,55 @@ public class AdsCampaignMangerApi extends AbstractAmazonAdsService {
 
     @CrossplatformApiLog
     public AdsResponse<String> createCampaign(AdsRequest<AdsCampaignCreateRequest> request) {
-        return AdsResponse.error("Not implemented yet");
+        AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
+        CampaignsApi campaignsApi = new CampaignsApi(getApiClient(authModel));
+
+        AdsCampaignCreateRequest req = request.getRequest();
+        try {
+            SponsoredProductsCreateCampaign amazonReq = new SponsoredProductsCreateCampaign()
+                    .name(req.getName())
+                    .targetingType(SponsoredProductsTargetingType.fromValue(req.getTargetingType()))
+                    .state(SponsoredProductsCreateOrUpdateEntityState.fromValue(req.getStatus()))
+                    .startDate(req.getStartDate())
+                    .endDate(req.getEndDate())
+                    .budget(new SponsoredProductsCreateOrUpdateBudget()
+                            .budgetType(SponsoredProductsCreateOrUpdateBudgetType.DAILY)
+                            .budget(req.getDailyBudget().doubleValue()));
+
+            // Handle dynamicBidding if present in attributes
+            if (req.getAttributes().containsKey(DYNAMIC_BIDDING)) {
+                Object dynamicBidding = req.getAttributes().get(DYNAMIC_BIDDING);
+                if (dynamicBidding instanceof Map) {
+                    amazonReq.setDynamicBidding(JsonUtils.parseObject(JsonUtils.toJsonString(dynamicBidding), SponsoredProductsCreateOrUpdateDynamicBidding.class));
+                } else if (dynamicBidding instanceof SponsoredProductsCreateOrUpdateDynamicBidding) {
+                    amazonReq.setDynamicBidding((SponsoredProductsCreateOrUpdateDynamicBidding) dynamicBidding);
+                }
+            }
+
+            // SiteRestrictions and Tags are often mandatory to be null if not used
+            amazonReq.setSiteRestrictions(null);
+            amazonReq.setTags(null);
+
+            SponsoredProductsCreateSponsoredProductsCampaignsRequestContent apiRequest = new SponsoredProductsCreateSponsoredProductsCampaignsRequestContent()
+                    .addCampaignsItem(amazonReq);
+
+            SponsoredProductsCreateSponsoredProductsCampaignsResponseContent response = campaignsApi.createSponsoredProductsCampaigns(
+                    authModel.getAppKey(), authModel.getProfileId(), apiRequest, ""
+            );
+
+            if (response != null && response.getCampaigns() != null && response.getCampaigns().getSuccess() != null && !response.getCampaigns().getSuccess().isEmpty()) {
+                return AdsResponse.success(response.getCampaigns().getSuccess().get(0).getCampaignId());
+            }
+
+            if (response != null && response.getCampaigns() != null && response.getCampaigns().getError() != null && !response.getCampaigns().getError().isEmpty()) {
+                return AdsResponse.error("创建失败");
+            }
+
+            return AdsResponse.error("Failed to create campaign");
+        } catch (ApiException e) {
+            log.error("Failed to create Campaign", e);
+            return AdsResponse.error(e.getResponseBody());
+        }
     }
 
     /**

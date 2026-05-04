@@ -55,6 +55,9 @@ export const AdsCampaignApi = {
   },
   updateCampaign: async (data: any) => {
     return await request.put({ url: `/erplus/adv/campaign/update`, data })
+  },
+  createCampaign: async (data: any) => {
+    return await request.post({ url: `/erplus/adv/campaign/create`, data })
   }
 }
 
