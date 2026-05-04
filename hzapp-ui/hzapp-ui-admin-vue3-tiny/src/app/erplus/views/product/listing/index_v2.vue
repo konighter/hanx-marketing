@@ -358,7 +358,29 @@ const handleSingleSync = async (listing: ListingV2VO) => {
 const handleBatchSync = async () => {
   try {
     await message.confirm(`确定要同步选中的 ${selectedIds.value.length} 个商品吗？`)
-    await CrossListingApi.syncProductListing({ ids: selectedIds.value })
+    
+    // 按 shopId 分组
+    const shopMap = new Map<number, ListingV2VO[]>()
+    selectedItems.value.forEach(item => {
+      if (!shopMap.has(item.shopId)) {
+        shopMap.set(item.shopId, [])
+      }
+      shopMap.get(item.shopId)!.push(item)
+    })
+    
+    // 对每个店铺发起同步请求
+    for (const [shopId, items] of shopMap.entries()) {
+      const platformId = items[0].platformId
+      const productIds = items.map(item => item.platformProductCode).filter(Boolean)
+      
+      await CrossListingApi.syncPlatformListing({
+        platformId,
+        shopId,
+        syncType: 'all',
+        productIds
+      })
+    }
+    
     message.success('批量同步请求已发送')
     clearSelection()
   } catch {}

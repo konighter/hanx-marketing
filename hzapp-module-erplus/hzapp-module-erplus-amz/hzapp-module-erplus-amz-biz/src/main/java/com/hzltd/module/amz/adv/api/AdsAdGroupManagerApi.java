@@ -12,6 +12,7 @@ import com.hzltd.module.erplus.system.annotation.CrossplatformApiLog;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -50,26 +51,35 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
                     .state(SponsoredProductsCreateOrUpdateEntityState.fromValue(stateStr)));
             SponsoredProductsCreateSponsoredProductsAdGroupsResponseContent groupsResponseContent = api.createSponsoredProductsAdGroups(authModel.getAppKey(), authModel.getProfileId(), content, "");
 
+            String adGroupId = "";
             if (CollectionUtils.isNotEmpty(groupsResponseContent.getAdGroups().getSuccess())) {
-                return AdsResponse.success(groupsResponseContent.getAdGroups().getSuccess().get(0).getAdGroupId());
+                adGroupId = groupsResponseContent.getAdGroups().getSuccess().get(0).getAdGroupId();
             } else {
-                return AdsResponse.error("");
+                return AdsResponse.error("广告组创建失败");
             }
 
-
-
             // 规则?
+            if (groupCreateRequest.containsAttribute(KEYWORD)) {
+                 // todo -- 添加关键字
 
+            }
 
+            if (groupCreateRequest.containsAttribute(TARGET_CLAUSE)) {
+                // todo - 添加TARGET_CLAUSE
+            }
 
+            if (groupCreateRequest.containsAttribute(NEGATIVE_KEYWORD)) {
+                // todo - 添加否定关键词
+            }
 
+            if (groupCreateRequest.containsAttribute(NEGATIVE_TARGET_CLAUSE)) {
+                // todo - 添加否定 NEGATIVE_TARGET_CLAUSE
+            }
 
-
-            //
-
+            return AdsResponse.success(adGroupId);
 
         } catch (ApiException e) {
-            throw new RuntimeException(e);
+            return AdsResponse.error(e.getResponseBody());
         }
     }
 
@@ -98,7 +108,7 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
             // 批量获取关键词
             AdsResponse<List<SponsoredProductsKeyword>> keywordResp = this.queryKeywords(batchRequest);
             java.util.Map<String, List<SponsoredProductsKeyword>> groupedKeywords = keywordResp.isSuccess() && CollectionUtils.isNotEmpty(keywordResp.getData())
-                    ? keywordResp.getData().stream().collect(Collectors.groupingBy(SponsoredProductsKeyword::getAdGroupId))
+                    ? keywordResp.getData().stream().filter(keyword -> StringUtils.isNotEmpty(keyword.getKeywordText()) && keyword.getBid() != null).collect(Collectors.groupingBy(SponsoredProductsKeyword::getAdGroupId))
                     : Collections.emptyMap();
 
             // 批量获取定向
@@ -110,7 +120,7 @@ public class AdsAdGroupManagerApi extends AbstractAmazonAdsService {
             // 批量获取否定关键词
             AdsResponse<List<SponsoredProductsNegativeKeyword>> nKeywordResp = this.queryNegativeKeywords(batchRequest);
             java.util.Map<String, List<SponsoredProductsNegativeKeyword>> groupedNKeywords = nKeywordResp.isSuccess() && CollectionUtils.isNotEmpty(nKeywordResp.getData())
-                    ? nKeywordResp.getData().stream().collect(Collectors.groupingBy(SponsoredProductsNegativeKeyword::getAdGroupId))
+                    ? nKeywordResp.getData().stream().filter(nkeyword -> StringUtils.isNotEmpty(nkeyword.getKeywordText())).collect(Collectors.groupingBy(SponsoredProductsNegativeKeyword::getAdGroupId))
                     : Collections.emptyMap();
 
             // 批量获取否定定向

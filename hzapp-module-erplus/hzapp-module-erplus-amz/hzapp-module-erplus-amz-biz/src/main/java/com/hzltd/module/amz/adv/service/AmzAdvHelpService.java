@@ -19,7 +19,7 @@ public interface AmzAdvHelpService {
     /**
      * 获取关键词推荐
      */
-    KeywordTargetResponse getKeywordRecommendations(AmzAdvHelpKeywordRecommendationReqVO reqVO);
+    List<KeywordTargetResponse> getKeywordRecommendations(AmzAdvHelpKeywordRecommendationReqVO reqVO);
 
     /**
      * 获取否定品牌推荐

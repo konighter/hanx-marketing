@@ -47,6 +47,10 @@ public class BidSuggestion {
   @javax.annotation.Nullable
   private Double suggested;
 
+  public static final String JSON_PROPERTY_RANGE_MEDIAN = "rangeMedian";
+  @javax.annotation.Nullable
+  private Double rangeMedian;
+
   public BidSuggestion() { 
   }
 
@@ -143,6 +147,24 @@ public class BidSuggestion {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSuggested(@javax.annotation.Nullable Double suggested) {
     this.suggested = suggested;
+  }
+
+  public BidSuggestion rangeMedian(@javax.annotation.Nullable Double rangeMedian) {
+    this.rangeMedian = rangeMedian;
+    return this;
+  }
+
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_RANGE_MEDIAN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Double getRangeMedian() {
+    return rangeMedian;
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_RANGE_MEDIAN, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRangeMedian(@javax.annotation.Nullable Double rangeMedian) {
+    this.rangeMedian = rangeMedian;
   }
 
 

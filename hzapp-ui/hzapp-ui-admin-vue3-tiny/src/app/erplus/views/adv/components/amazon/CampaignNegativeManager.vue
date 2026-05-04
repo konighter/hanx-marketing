@@ -23,7 +23,7 @@
           class="add-btn"
         >
           <el-icon><Plus /></el-icon>
-          <span class="ml-4px">添加{{ activeNegativeType === 'keyword' ? '关键词' : '商品' }}</span>
+          <span class="ml-4px">添加否定{{ activeNegativeType === 'keyword' ? '关键词' : '商品' }}</span>
         </el-button>
       </div>
     </div>

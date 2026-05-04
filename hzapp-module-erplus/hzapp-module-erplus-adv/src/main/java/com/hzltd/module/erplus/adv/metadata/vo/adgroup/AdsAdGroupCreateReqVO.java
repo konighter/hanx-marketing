@@ -34,8 +34,12 @@ public class AdsAdGroupCreateReqVO {
     @NotEmpty(message = "广告不能为空")
     private List<AdsAdCreateRequest> ads;
 
+    /**
+     * 已合并到attributes 中
+     */
+    @Deprecated
     @Schema(description = "投放列表", requiredMode = Schema.RequiredMode.REQUIRED)
-    @NotEmpty(message = "投放不能为空")
+//    @NotEmpty(message = "投放不能为空")
     private List<AdsTargetModel> targeting;
 
     @Schema(description = "属性数据")

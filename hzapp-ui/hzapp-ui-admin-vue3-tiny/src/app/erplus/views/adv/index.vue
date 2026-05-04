@@ -73,7 +73,6 @@
           :metric-columns="metricColumns"
           :date-range="dateRange"
           @select="handleCampaignSelect"
-          @click-name="handleCampaignClick"
         />
       </el-tab-pane>
       <el-tab-pane label="广告组" name="adGroup">
@@ -193,13 +192,7 @@ const handleCampaignSelect = (selection: any[]) => {
   }
 }
 
-const handleCampaignClick = (row: any) => {
-  filterContext.campaignId = row.id
-  filterContext.campaignName = row.name
-  filterContext.adGroupId = undefined
-  filterContext.adGroupName = ''
-  activeTab.value = 'adGroup'
-}
+
 
 const handleAdGroupSelect = (selection: any[]) => {
   selectedAdGroupIds.value = selection.map(item => item.id)

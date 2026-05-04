@@ -20,6 +20,7 @@ import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductAttrsDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.productpub.ErpProductPublishTaskDO;
 import com.hzltd.module.erplus.dal.dataobject.productpub.ProductListingDO;
+import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
 import com.hzltd.module.erplus.service.productpub.ErpProductPublishTaskService;
 import com.hzltd.module.erplus.service.productpub.ProductListingService;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductInventoryDO;
@@ -31,6 +32,7 @@ import com.hzltd.module.erplus.dal.mysql.cross.CrossProductPriceMapper;
 import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossProductAttrsMapper;
 import com.hzltd.module.erplus.service.productpub.vo.CrossPlatformProductVO;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
+import com.hzltd.module.erplus.service.shop.ShopService;
 import com.hzltd.module.erplus.spapi.enums.CrossListingStatus;
 import com.hzltd.module.erplus.spapi.enums.CrossProductPublishStatus;
 import com.hzltd.module.erplus.spapi.enums.CrossProductStatus;
@@ -106,6 +108,9 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
 
     @Resource
     private CrossProductDiagnosisService diagnosisService;
+
+    @Resource
+    private ShopService shopService;
 
 
     @Override
@@ -423,7 +428,12 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
      */
     @Override
     public PageResult<?> getCrossPlatformProductPage(CrossProductPageRequest request) {
-        SellPlatformDO sellPlatformDO = sellPlatformService.getSellPlatform(request.getPlatformId());
+        ShopDO shop = shopService.getShop(request.getShopId());
+        if (shop == null) {
+            return PageResult.empty();
+        }
+
+        SellPlatformDO sellPlatformDO = sellPlatformService.getSellPlatform(shop.getPlatform());
 
         // 亚马逊/Ozon平台，根据SKU查询
         if (CrossPlatformEnum.AMAZON.getCode().equalsIgnoreCase(sellPlatformDO.getCode()) || CrossPlatformEnum.OZON.getCode().equalsIgnoreCase(sellPlatformDO.getCode())) {

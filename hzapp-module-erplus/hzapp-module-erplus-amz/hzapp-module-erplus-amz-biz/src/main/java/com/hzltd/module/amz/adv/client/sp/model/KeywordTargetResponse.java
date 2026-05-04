@@ -98,6 +98,18 @@ public class KeywordTargetResponse {
   @javax.annotation.Nullable
   private String translation;
 
+  public static final String JSON_PROPERTY_SEARCH_TERM_IMPRESSION_RANK = "searchTermImpressionRank";
+  @javax.annotation.Nullable
+  private Integer searchTermImpressionRank;
+
+  public static final String JSON_PROPERTY_SEARCH_TERM_IMPRESSION_SHARE = "searchTermImpressionShare";
+  @javax.annotation.Nullable
+  private Double searchTermImpressionShare;
+
+  public static final String JSON_PROPERTY_REC_ID = "recId";
+  @javax.annotation.Nullable
+  private String recId;
+
   public KeywordTargetResponse() { 
   }
 
@@ -266,6 +278,60 @@ public class KeywordTargetResponse {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setTranslation(@javax.annotation.Nullable String translation) {
     this.translation = translation;
+  }
+
+  public KeywordTargetResponse searchTermImpressionRank(@javax.annotation.Nullable Integer searchTermImpressionRank) {
+    this.searchTermImpressionRank = searchTermImpressionRank;
+    return this;
+  }
+
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SEARCH_TERM_IMPRESSION_RANK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getSearchTermImpressionRank() {
+    return searchTermImpressionRank;
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SEARCH_TERM_IMPRESSION_RANK, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSearchTermImpressionRank(@javax.annotation.Nullable Integer searchTermImpressionRank) {
+    this.searchTermImpressionRank = searchTermImpressionRank;
+  }
+
+  public KeywordTargetResponse searchTermImpressionShare(@javax.annotation.Nullable Double searchTermImpressionShare) {
+    this.searchTermImpressionShare = searchTermImpressionShare;
+    return this;
+  }
+
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SEARCH_TERM_IMPRESSION_SHARE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Double getSearchTermImpressionShare() {
+    return searchTermImpressionShare;
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_SEARCH_TERM_IMPRESSION_SHARE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSearchTermImpressionShare(@javax.annotation.Nullable Double searchTermImpressionShare) {
+    this.searchTermImpressionShare = searchTermImpressionShare;
+  }
+
+  public KeywordTargetResponse recId(@javax.annotation.Nullable String recId) {
+    this.recId = recId;
+    return this;
+  }
+
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REC_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getRecId() {
+    return recId;
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_REC_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRecId(@javax.annotation.Nullable String recId) {
+    this.recId = recId;
   }
 
 

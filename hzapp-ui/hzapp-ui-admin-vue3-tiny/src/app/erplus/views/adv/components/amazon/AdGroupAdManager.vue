@@ -15,20 +15,91 @@
       </el-button>
     </div>
  
-    <el-dialog v-model="createDialogVisible" title="添加商品广告" width="500px" append-to-body>
-      <el-form label-position="top">
-        <el-form-item label="请输入 SKU (每行一个)">
+    <el-dialog v-model="createDialogVisible" title="添加商品广告" width="800px" append-to-body>
+      <div class="flex flex-col gap-12px">
+        <div class="flex gap-10px">
           <el-input
-            v-model="skusText"
-            type="textarea"
-            :rows="10"
-            placeholder="请输入 SKU，多个 SKU 请换行输入"
+            v-model="searchText"
+            placeholder="输入 ASIN / SKU / 关键词搜索产品"
+            class="flex-1"
+            clearable
+            @keyup.enter="handleSearch"
+          >
+            <template #append>
+              <el-button @click="handleSearch" :loading="searching">
+                <el-icon><Search /></el-icon>
+                搜索
+              </el-button>
+            </template>
+          </el-input>
+        </div>
+
+        <el-table 
+          v-loading="searching"
+          :data="searchResults" 
+          border 
+          size="small" 
+          height="400px"
+          @selection-change="handleSearchSelectionChange"
+        >
+          <el-table-column type="selection" width="40" align="center" />
+          <el-table-column label="图片" width="70" align="center">
+            <template #default="{ row }">
+              <el-image 
+                v-if="row.mainImage?.url"
+                :src="row.mainImage.url" 
+                class="w-40px h-40px rounded-4px"
+                fit="cover"
+                preview-teleported
+              />
+              <div v-else class="w-40px h-40px bg-gray-100 rounded-4px flex items-center justify-center text-gray-400">
+                <el-icon><Picture /></el-icon>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column label="商品信息" min-width="200">
+            <template #default="{ row }">
+              <div class="flex flex-col">
+                <div class="text-12px font-medium line-clamp-2 mb-4px" :title="row.title">{{ row.title }}</div>
+                <div class="text-11px text-gray-500">
+                  <span class="mr-8px">ASIN: {{ row.platformProductCode }}</span>
+                  <span v-if="row.sellerProductCode">SKU: {{ row.sellerProductCode }}</span>
+                </div>
+              </div>
+            </template>
+          </el-table-column>
+          <el-table-column label="价格" width="100" align="right">
+            <template #default="{ row }">
+              <span v-if="row.price && row.price.length > 0">
+                {{ (row.price[0].salePrice / 100).toFixed(2) }} {{ row.price[0].currency }}
+              </span>
+              <span v-else class="text-gray-300">--</span>
+            </template>
+          </el-table-column>
+          <el-table-column label="库存" width="80" align="center">
+            <template #default="{ row }">
+              <span v-if="row.inventory">{{ row.inventory.fulfillableQuantity }}</span>
+              <span v-else class="text-gray-300">--</span>
+            </template>
+          </el-table-column>
+        </el-table>
+
+        <div class="flex justify-between items-center text-12px text-gray-500">
+          <span>已选择 {{ searchSelectedRows.length }} 个商品</span>
+          <el-pagination
+            v-if="searchTotal > 0"
+            v-model:current-page="searchPageNo"
+            v-model:page-size="searchPageSize"
+            :total="searchTotal"
+            layout="prev, pager, next"
+            small
+            @current-change="handleSearch"
           />
-        </el-form-item>
-      </el-form>
+        </div>
+      </div>
       <template #footer>
         <el-button @click="createDialogVisible = false" size="small">取消</el-button>
-        <el-button type="primary" :loading="creating" @click="handleCreateAd" size="small">提交</el-button>
+        <el-button type="primary" :loading="creating" @click="handleCreateAd" size="small" :disabled="searchSelectedRows.length === 0">提交</el-button>
       </template>
     </el-dialog>
 
@@ -102,10 +173,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue'
-import { Picture, Plus } from '@element-plus/icons-vue'
+import { ref, watch, computed, inject, unref } from 'vue'
+import { Picture, Plus, Search } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { AdsAdApi } from '@/app/erplus/api/adv/ads'
+import { queryCrossProductListingPage } from '@/app/erplus/api/product/listing'
 
 const props = defineProps<{
   adGroupId?: number
@@ -113,11 +185,21 @@ const props = defineProps<{
   disabled?: boolean
 }>()
 
+const shopId = inject<any>('shopId')
+
 const loading = ref(false)
 const creating = ref(false)
 const createDialogVisible = ref(false)
-const skusText = ref('')
 const ads = ref<any[]>([])
+
+// 搜索相关
+const searchText = ref('')
+const searching = ref(false)
+const searchResults = ref<any[]>([])
+const searchSelectedRows = ref<any[]>([])
+const searchPageNo = ref(1)
+const searchPageSize = ref(10)
+const searchTotal = ref(0)
 
 // 只展示非归档状态的广告
 const visibleAds = computed(() => {
@@ -150,33 +232,54 @@ const getStatusType = (status: string) => {
 }
 
 const addAd = () => {
-  skusText.value = ''
+  searchText.value = ''
+  searchResults.value = []
+  searchSelectedRows.value = []
+  searchPageNo.value = 1
   createDialogVisible.value = true
 }
 
-const handleCreateAd = async () => {
-  if (!skusText.value.trim()) {
-    ElMessage.warning('请输入 SKU')
+const handleSearch = async () => {
+  const currentShopId = unref(shopId)
+  if (!currentShopId) {
+    ElMessage.warning('未能获取店铺 ID')
     return
   }
-  
-  const skus = skusText.value.split('\n')
-    .map(s => s.trim())
-    .filter(s => s !== '')
 
-  if (skus.length === 0) {
-    ElMessage.warning('请输入有效的 SKU')
-    return
+  searching.value = true
+  try {
+    const res = await queryCrossProductListingPage({
+      shopId: currentShopId,
+      keyword: searchText.value.trim() || undefined,
+      pageNo: searchPageNo.value,
+      pageSize: searchPageSize.value
+    })
+    searchResults.value = res.list || []
+    searchTotal.value = res.total || 0
+  } catch (e) {
+    console.error(e)
+    ElMessage.error('搜索产品失败')
+  } finally {
+    searching.value = false
   }
+}
+
+const handleSearchSelectionChange = (selection: any[]) => {
+  searchSelectedRows.value = selection
+}
+
+const handleCreateAd = async () => {
+  if (searchSelectedRows.value.length === 0) return
 
   creating.value = true
   try {
-    const requests = skus.map(sku => ({
+    const requests = searchSelectedRows.value.map(item => ({
       adGroupId: props.adGroupId?.toString(),
       campaignId: props.campaignId?.toString(),
-      name: sku,
-      data: {
-        sku: [sku]
+      name: item.sellerProductCode || item.platformProductCode,
+      attributes: {
+        sku: item.sellerProductCode,
+        asin: item.platformProductCode
       }
     }))
  

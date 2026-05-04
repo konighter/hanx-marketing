@@ -116,8 +116,9 @@ const handleConfirm = async () => {
   const attrs = form.value.attributes
   const hasKeywords = attrs.amz_targeting_type === 'KEYWORD' && attrs.amz_keyword?.length > 0
   const hasProducts = attrs.amz_targeting_type === 'PRODUCT' && attrs.amz_target_clause?.length > 0
+  const isAuto = attrs.amz_targeting_type === 'AUTO'
   
-  if (!hasKeywords && !hasProducts) {
+  if (!isAuto && !hasKeywords && !hasProducts) {
     ElMessage.warning('请添加至少一个定向策略（关键词或商品投放）')
     return
   }

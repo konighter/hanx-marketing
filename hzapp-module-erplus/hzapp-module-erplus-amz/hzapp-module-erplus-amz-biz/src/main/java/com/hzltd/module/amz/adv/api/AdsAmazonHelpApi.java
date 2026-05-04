@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @Service
 public class AdsAmazonHelpApi extends AbstractAmazonAdsService {
 
-    public AdsResponse<KeywordTargetResponse> getKeywordRecommendations(AdsRequest<AmzAdvHelpKeywordRecommendationReqVO> request) {
+    public AdsResponse<List<KeywordTargetResponse>> getKeywordRecommendations(AdsRequest<AmzAdvHelpKeywordRecommendationReqVO> request) {
         AmzAdvHelpKeywordRecommendationReqVO reqVO = request.getRequest();
         AuthorizationModel authModel = getAuthorizationModel(request.getShopId());
         KeywordTargetsApi api = new KeywordTargetsApi(getApiClient(authModel));
@@ -38,7 +38,7 @@ public class AdsAmazonHelpApi extends AbstractAmazonAdsService {
         GetRankedKeywordRecommendationRequest amazonRequest = buildKeywordRecommendationRequest(reqVO);
 
         try {
-            KeywordTargetResponse response = api.getRankedKeywordRecommendation(
+            List<KeywordTargetResponse> response = api.getRankedKeywordRecommendation(
                     authModel.getAppKey(),
                     authModel.getProfileId(),
                     null,
@@ -215,11 +215,15 @@ public class AdsAmazonHelpApi extends AbstractAmazonAdsService {
         return request;
     }
 
-    private List<KeywordTargetRankRecommendationRequestAllOfTargets> buildTargets(List<String> keywords) {
-        return keywords.stream().map(t -> {
+    private List<KeywordTargetRankRecommendationRequestAllOfTargets> buildTargets(List<AmzAdvHelpKeywordRecommendationReqVO.TargetDTO> targets) {
+        return targets.stream().map(t -> {
             KeywordTargetRankRecommendationRequestAllOfTargets target = new KeywordTargetRankRecommendationRequestAllOfTargets();
-            target.setKeyword(t);
-            target.setMatchType(KeywordTargetRankRecommendationRequestAllOfTargets.MatchTypeEnum.BROAD);
+            target.setKeyword(t.getValue());
+            try {
+                target.setMatchType(KeywordTargetRankRecommendationRequestAllOfTargets.MatchTypeEnum.fromValue(t.getType().toUpperCase()));
+            } catch (Exception e) {
+                target.setMatchType(KeywordTargetRankRecommendationRequestAllOfTargets.MatchTypeEnum.BROAD);
+            }
             return target;
         }).collect(Collectors.toList());
     }

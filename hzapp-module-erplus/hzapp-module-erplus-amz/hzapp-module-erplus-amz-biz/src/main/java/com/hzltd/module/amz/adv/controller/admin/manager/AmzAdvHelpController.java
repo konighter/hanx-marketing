@@ -35,7 +35,7 @@ public class AmzAdvHelpController {
 
     @PostMapping("/keyword/recommendations")
     @Operation(summary = "获取关键词推荐")
-    public CommonResult<KeywordTargetResponse> getKeywordRecommendations(@Valid @RequestBody AmzAdvHelpKeywordRecommendationReqVO reqVO) {
+    public CommonResult<List<KeywordTargetResponse>> getKeywordRecommendations(@Valid @RequestBody AmzAdvHelpKeywordRecommendationReqVO reqVO) {
         return success(amzAdvHelpService.getKeywordRecommendations(reqVO));
     }
 

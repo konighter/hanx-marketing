@@ -51,6 +51,7 @@
                 :config="group.attributes || {}" 
                 :default-bid="group.defaultBid || 0"
                 :ad-group-id="group.id"
+                :external-id="group.externalId"
                 :shop-id="shopId"
                 :targeting-type="targetingType"
                 :disabled="disabled"
@@ -97,7 +98,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, provide, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { AdsAdGroup } from '../../types/ads'
 import { AdsAdGroupApi } from '@/app/erplus/api/adv/ads'
@@ -117,6 +118,8 @@ const props = defineProps<{
 }>()
 
 const emit = defineEmits(['update:activeTab', 'refresh', 'update-attributes'])
+
+provide('shopId', computed(() => props.shopId))
 
 const activeInnerTab = ref('targeting')
 const createGroupDialogVisible = ref(false)

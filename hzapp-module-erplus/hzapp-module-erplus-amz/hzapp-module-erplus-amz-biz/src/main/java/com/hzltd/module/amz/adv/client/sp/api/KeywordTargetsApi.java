@@ -325,10 +325,10 @@ public class KeywordTargetsApi {
    * @param amazonAdvertisingAPIMarketplaceId The advertiser&#39;s Marketplace ID associated with the advertiser. account. (optional)
    * @param amazonAdvertisingAPIAdvertiserId The advertiser&#39;s ID associated with the advertiser account. (optional)
    * @param getRankedKeywordRecommendationRequest  (optional)
-   * @return KeywordTargetResponse
+   * @return java.util.List&lt;KeywordTargetResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public KeywordTargetResponse getRankedKeywordRecommendation(@javax.annotation.Nonnull String amazonAdvertisingAPIClientId, @javax.annotation.Nonnull String amazonAdvertisingAPIScope, @javax.annotation.Nullable String amazonAdvertisingAPIMarketplaceId, @javax.annotation.Nullable String amazonAdvertisingAPIAdvertiserId, @javax.annotation.Nullable GetRankedKeywordRecommendationRequest getRankedKeywordRecommendationRequest) throws ApiException {
+  public java.util.List<KeywordTargetResponse> getRankedKeywordRecommendation(@javax.annotation.Nonnull String amazonAdvertisingAPIClientId, @javax.annotation.Nonnull String amazonAdvertisingAPIScope, @javax.annotation.Nullable String amazonAdvertisingAPIMarketplaceId, @javax.annotation.Nullable String amazonAdvertisingAPIAdvertiserId, @javax.annotation.Nullable GetRankedKeywordRecommendationRequest getRankedKeywordRecommendationRequest) throws ApiException {
     return getRankedKeywordRecommendation(amazonAdvertisingAPIClientId, amazonAdvertisingAPIScope, amazonAdvertisingAPIMarketplaceId, amazonAdvertisingAPIAdvertiserId, getRankedKeywordRecommendationRequest, null);
   }
 
@@ -341,11 +341,11 @@ public class KeywordTargetsApi {
    * @param amazonAdvertisingAPIAdvertiserId The advertiser&#39;s ID associated with the advertiser account. (optional)
    * @param getRankedKeywordRecommendationRequest  (optional)
    * @param headers Optional headers to include in the request
-   * @return KeywordTargetResponse
+   * @return java.util.List&lt;KeywordTargetResponse&gt;
    * @throws ApiException if fails to make API call
    */
-  public KeywordTargetResponse getRankedKeywordRecommendation(@javax.annotation.Nonnull String amazonAdvertisingAPIClientId, @javax.annotation.Nonnull String amazonAdvertisingAPIScope, @javax.annotation.Nullable String amazonAdvertisingAPIMarketplaceId, @javax.annotation.Nullable String amazonAdvertisingAPIAdvertiserId, @javax.annotation.Nullable GetRankedKeywordRecommendationRequest getRankedKeywordRecommendationRequest, Map<String, String> headers) throws ApiException {
-    ApiResponse<KeywordTargetResponse> localVarResponse = getRankedKeywordRecommendationWithHttpInfo(amazonAdvertisingAPIClientId, amazonAdvertisingAPIScope, amazonAdvertisingAPIMarketplaceId, amazonAdvertisingAPIAdvertiserId, getRankedKeywordRecommendationRequest, headers);
+  public java.util.List<KeywordTargetResponse> getRankedKeywordRecommendation(@javax.annotation.Nonnull String amazonAdvertisingAPIClientId, @javax.annotation.Nonnull String amazonAdvertisingAPIScope, @javax.annotation.Nullable String amazonAdvertisingAPIMarketplaceId, @javax.annotation.Nullable String amazonAdvertisingAPIAdvertiserId, @javax.annotation.Nullable GetRankedKeywordRecommendationRequest getRankedKeywordRecommendationRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<java.util.List<KeywordTargetResponse>> localVarResponse = getRankedKeywordRecommendationWithHttpInfo(amazonAdvertisingAPIClientId, amazonAdvertisingAPIScope, amazonAdvertisingAPIMarketplaceId, amazonAdvertisingAPIAdvertiserId, getRankedKeywordRecommendationRequest, headers);
     return localVarResponse.getData();
   }
 
@@ -357,10 +357,10 @@ public class KeywordTargetsApi {
    * @param amazonAdvertisingAPIMarketplaceId The advertiser&#39;s Marketplace ID associated with the advertiser. account. (optional)
    * @param amazonAdvertisingAPIAdvertiserId The advertiser&#39;s ID associated with the advertiser account. (optional)
    * @param getRankedKeywordRecommendationRequest  (optional)
-   * @return ApiResponse&lt;KeywordTargetResponse&gt;
+   * @return ApiResponse&lt;java.util.List&lt;KeywordTargetResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<KeywordTargetResponse> getRankedKeywordRecommendationWithHttpInfo(@javax.annotation.Nonnull String amazonAdvertisingAPIClientId, @javax.annotation.Nonnull String amazonAdvertisingAPIScope, @javax.annotation.Nullable String amazonAdvertisingAPIMarketplaceId, @javax.annotation.Nullable String amazonAdvertisingAPIAdvertiserId, @javax.annotation.Nullable GetRankedKeywordRecommendationRequest getRankedKeywordRecommendationRequest) throws ApiException {
+  public ApiResponse<java.util.List<KeywordTargetResponse>> getRankedKeywordRecommendationWithHttpInfo(@javax.annotation.Nonnull String amazonAdvertisingAPIClientId, @javax.annotation.Nonnull String amazonAdvertisingAPIScope, @javax.annotation.Nullable String amazonAdvertisingAPIMarketplaceId, @javax.annotation.Nullable String amazonAdvertisingAPIAdvertiserId, @javax.annotation.Nullable GetRankedKeywordRecommendationRequest getRankedKeywordRecommendationRequest) throws ApiException {
     return getRankedKeywordRecommendationWithHttpInfo(amazonAdvertisingAPIClientId, amazonAdvertisingAPIScope, amazonAdvertisingAPIMarketplaceId, amazonAdvertisingAPIAdvertiserId, getRankedKeywordRecommendationRequest, null);
   }
 
@@ -373,10 +373,10 @@ public class KeywordTargetsApi {
    * @param amazonAdvertisingAPIAdvertiserId The advertiser&#39;s ID associated with the advertiser account. (optional)
    * @param getRankedKeywordRecommendationRequest  (optional)
    * @param headers Optional headers to include in the request
-   * @return ApiResponse&lt;KeywordTargetResponse&gt;
+   * @return ApiResponse&lt;java.util.List&lt;KeywordTargetResponse&gt;&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<KeywordTargetResponse> getRankedKeywordRecommendationWithHttpInfo(@javax.annotation.Nonnull String amazonAdvertisingAPIClientId, @javax.annotation.Nonnull String amazonAdvertisingAPIScope, @javax.annotation.Nullable String amazonAdvertisingAPIMarketplaceId, @javax.annotation.Nullable String amazonAdvertisingAPIAdvertiserId, @javax.annotation.Nullable GetRankedKeywordRecommendationRequest getRankedKeywordRecommendationRequest, Map<String, String> headers) throws ApiException {
+  public ApiResponse<java.util.List<KeywordTargetResponse>> getRankedKeywordRecommendationWithHttpInfo(@javax.annotation.Nonnull String amazonAdvertisingAPIClientId, @javax.annotation.Nonnull String amazonAdvertisingAPIScope, @javax.annotation.Nullable String amazonAdvertisingAPIMarketplaceId, @javax.annotation.Nullable String amazonAdvertisingAPIAdvertiserId, @javax.annotation.Nullable GetRankedKeywordRecommendationRequest getRankedKeywordRecommendationRequest, Map<String, String> headers) throws ApiException {
     HttpRequest.Builder localVarRequestBuilder = getRankedKeywordRecommendationRequestBuilder(amazonAdvertisingAPIClientId, amazonAdvertisingAPIScope, amazonAdvertisingAPIMarketplaceId, amazonAdvertisingAPIAdvertiserId, getRankedKeywordRecommendationRequest, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
@@ -392,7 +392,7 @@ public class KeywordTargetsApi {
         }
         localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
         if (localVarResponseBody == null) {
-          return new ApiResponse<KeywordTargetResponse>(
+          return new ApiResponse<java.util.List<KeywordTargetResponse>>(
               localVarResponse.statusCode(),
               localVarResponse.headers().map(),
               null
@@ -402,10 +402,10 @@ public class KeywordTargetsApi {
         
         
         String responseBody = new String(localVarResponseBody.readAllBytes());
-        KeywordTargetResponse responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<KeywordTargetResponse>() {});
+        java.util.List<KeywordTargetResponse> responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<java.util.List<KeywordTargetResponse>>() {});
         
 
-        return new ApiResponse<KeywordTargetResponse>(
+        return new ApiResponse<java.util.List<KeywordTargetResponse>>(
             localVarResponse.statusCode(),
             localVarResponse.headers().map(),
             responseValue

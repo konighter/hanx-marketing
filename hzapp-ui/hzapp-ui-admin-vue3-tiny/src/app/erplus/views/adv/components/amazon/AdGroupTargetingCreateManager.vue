@@ -120,17 +120,17 @@
     <!-- 自动定向 (4种匹配方式) -->
     <template v-else-if="targetingType?.toUpperCase().includes('AUTO')">
       <el-table :data="autoTargetingRows" border size="small" style="width: 100%">
-        <el-table-column label="匹配类型" prop="expressionValue" width="180">
+        <el-table-column label="匹配类型" prop="_expressionType" width="180">
           <template #default="{ row }">
             <div class="text-13px font-medium py-4px">
-              {{ AUTO_TARGETING_MAP[row.expressionValue] || row.expressionValue }}
+              {{ AUTO_TARGETING_MAP[row._expressionType] || row._expressionType }}
             </div>
           </template>
         </el-table-column>
         <el-table-column label="说明" prop="description" min-width="200">
           <template #default="{ row }">
             <div class="text-12px text-gray-400">
-              {{ AUTO_TARGETING_DESC[row.expressionValue] }}
+              {{ AUTO_TARGETING_DESC[row._expressionType] }}
             </div>
           </template>
         </el-table-column>
@@ -157,6 +157,7 @@
       ref="keywordAddDialogRef" 
       :default-bid="defaultBid"
       :existing-keywords="config.amz_keyword || []"
+      :ad-asins="adAsins"
       @success="handleKeywordsAdded"
     />
 
@@ -172,8 +173,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, inject } from 'vue'
-import { ElMessageBox } from 'element-plus'
+import { ref, computed, inject, watch } from 'vue'
+import { ElMessageBox, ElMessage } from 'element-plus'
 import { QuestionFilled, Plus } from '@element-plus/icons-vue'
 import KeywordAddCreateDialog from './KeywordAddCreateDialog.vue'
 import TargetingProductAddCreateDialog from './TargetingProductAddCreateDialog.vue'
@@ -189,18 +190,18 @@ const config = defineModel<any>('config', { required: true })
 
 const manualTargetingMode = ref('KEYWORD')
 
-const AUTO_TARGETING_MAP = {
-  'close-match': '紧密匹配',
-  'loose-match': '宽泛匹配',
-  'substitutes': '替代商品',
-  'complements': '关联商品'
+const AUTO_TARGETING_MAP: Record<string, string> = {
+  'QUERY_HIGH_REL_MATCHES': '紧密匹配',
+  'QUERY_BROAD_REL_MATCHES': '宽泛匹配',
+  'ASIN_SUBSTITUTE_RELATED': '替代商品',
+  'ASIN_ACCESSORY_RELATED': '关联商品'
 }
 
-const AUTO_TARGETING_DESC = {
-  'close-match': '我们会向与您的商品紧密相关的搜索词展示您的广告。',
-  'loose-match': '我们会向与您的商品宽泛相关的搜索词展示您的广告。',
-  'substitutes': '我们会向查看与您的商品类似的商品的详情页面的购物者展示您的广告。',
-  'complements': '我们会向查看与您的商品互补的商品的详情页面的购物者展示您的广告。'
+const AUTO_TARGETING_DESC: Record<string, string> = {
+  'QUERY_HIGH_REL_MATCHES': '我们会向与您的商品紧密相关的搜索词展示您的广告。',
+  'QUERY_BROAD_REL_MATCHES': '我们会向与您的商品宽泛相关的搜索词展示您的广告。',
+  'ASIN_SUBSTITUTE_RELATED': '我们会向查看与您的商品类似的商品的详情页面的购物者展示您的广告。',
+  'ASIN_ACCESSORY_RELATED': '我们会向查看与您的商品互补的商品的详情页面的购物者展示您的广告。'
 }
 
 // 初始化自动定向行
@@ -210,8 +211,9 @@ const autoTargetingRows = computed(() => {
   // 如果 amz_target_clause 为空，则根据 4 种类型初始化
   if (!config.value.amz_target_clause || config.value.amz_target_clause.length === 0) {
     const rows = Object.keys(AUTO_TARGETING_MAP).map(type => ({
-      expressionType: 'TARGETING_EXPRESSION_PREDICATE',
-      expressionValue: type,
+      expression: [{ type, value: null }],
+      expressionType: 'AUTO',
+      _expressionType: type,
       bid: props.defaultBid,
       state: 'ENABLED'
     }))
@@ -219,25 +221,37 @@ const autoTargetingRows = computed(() => {
     return rows
   }
   
-  return config.value.amz_target_clause
+  return config.value.amz_target_clause.map((c: any) => ({
+    ...c,
+    _expressionType: c.expression?.[0]?.type || c.expressionValue
+  }))
 })
+
+const syncConfig = () => {
+  config.value = { ...config.value }
+}
+
+// 监听并同步手动定向模式到 amz_targeting_type
+watch(manualTargetingMode, (mode) => {
+  if (props.targetingType?.toUpperCase().includes('MANUAL') && config.value) {
+    config.value.amz_targeting_type = mode
+    syncConfig()
+  }
+}, { immediate: true })
 
 // 监听并初始化自动定向数据
 watch(() => props.targetingType, (type) => {
   if (type?.toUpperCase().includes('AUTO') && (!config.value.amz_target_clause || config.value.amz_target_clause.length === 0)) {
     config.value.amz_target_clause = Object.keys(AUTO_TARGETING_MAP).map(type => ({
-      expressionType: 'TARGETING_EXPRESSION_PREDICATE',
-      expressionValue: type,
+      expression: [{ type, value: null }],
+      expressionType: 'AUTO',
+      _expressionType: type,
       bid: props.defaultBid,
       state: 'ENABLED'
     }))
     syncConfig()
   }
 }, { immediate: true })
-
-const syncConfig = () => {
-  config.value = { ...config.value }
-}
 
 const selectedRows = ref<any[]>([])
 
@@ -246,6 +260,10 @@ const keywordAddDialogRef = ref()
 const targetingProductAddDialogRef = ref()
 
 const openAddDialog = () => {
+  if (!props.adAsins || props.adAsins.length === 0) {
+    ElMessage.warning('请先添加至少一个商品广告，再添加关键词')
+    return
+  }
   if (manualTargetingMode.value === 'KEYWORD') {
     keywordAddDialogRef.value?.open()
   } else {

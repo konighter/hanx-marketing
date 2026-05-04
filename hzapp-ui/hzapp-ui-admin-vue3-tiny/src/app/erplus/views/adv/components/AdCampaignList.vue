@@ -15,7 +15,7 @@
       <el-table-column type="selection" width="55" reserve-selection fixed="left" />
       
       <!-- 固定列：名称和状态 -->
-      <el-table-column align="left" min-width="250" fixed="left">
+      <el-table-column align="left" min-width="250" fixed="left" resizable :show-overflow-tooltip="false">
         <template #header>
           <div class="flex items-center">
             <span>名称</span>
@@ -253,7 +253,7 @@ const handleNameClick = (row: AdsCampaign) => {
   // 同步选中状态
   tableRef.value.clearSelection()
   tableRef.value.toggleRowSelection(row, true)
-  emit('click-name', row)
+  handleDetail(row)
 }
 
 const handleDetail = (row: AdsCampaign) => {

@@ -27,7 +27,15 @@ public class AmzAdvHelpKeywordRecommendationReqVO {
     private String adGroupId;
 
     @Schema(description = "输入关键词(用于排名推荐)")
-    private List<String> targets;
+    private List<TargetDTO> targets;
+
+    @Data
+    public static class TargetDTO {
+        @Schema(description = "关键词内容")
+        private String value;
+        @Schema(description = "匹配方式: EXACT, BROAD, PHRASE")
+        private String type;
+    }
 
     @Schema(description = "最大推荐数")
     private Integer maxRecommendations;

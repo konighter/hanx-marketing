@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
- 
+import org.apache.commons.collections4.MapUtils;
+
 import java.util.Map;
  
 @Data
@@ -30,5 +31,9 @@ public class AdsAdGroupCreateRequest {
     public AdsAdGroupCreateRequest add(String field, Object value) {
         data.put(field, value);
         return this;
+    }
+
+    public boolean containsAttribute(String name) {
+        return MapUtils.isNotEmpty(attributes) && attributes.containsKey(name);
     }
 }

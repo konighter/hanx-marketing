@@ -42,41 +42,56 @@
         <div class="mb-12px">
           <el-input
             v-model="searchKeyword"
-            placeholder="输入核心词触发推荐"
+            placeholder="输入核心词按回车触发推荐"
             size="small"
             clearable
-            @input="handleSearchInput"
+            @keyup.enter="handleSearchInput"
           >
             <template #prefix>
               <el-icon><Search /></el-icon>
             </template>
+            <template #append>
+              <el-button @click="handleAddInputKeyword">添加</el-button>
+            </template>
           </el-input>
         </div>
         
-        <div v-if="recommendedKeywords.length > 0" class="mb-12px p-12px bg-blue-50 border-1 border-blue-100 border-solid rounded-4px max-h-120px overflow-y-auto">
-          <div class="text-12px text-blue-600 font-medium mb-8px">推荐关键词 (点击添加)</div>
-          <div class="flex flex-wrap gap-6px">
-            <el-tag 
-              v-for="k in recommendedKeywords" 
-              :key="k" 
-              size="small" 
-              effect="plain"
-              class="cursor-pointer hover:bg-blue-100 border-blue-200"
-              @click="addRecommendedKeyword(k)"
-            >
-              {{ k }}
-            </el-tag>
+        <div v-if="recommendedKeywords.length > 0 || searching" v-loading="searching" class="mb-12px border-1 border-blue-100 border-solid rounded-4px flex flex-col flex-1 overflow-hidden">
+
+          <div class="flex-1 overflow-y-auto">
+            <el-table :data="recommendedKeywords" size="small" :span-method="spanMethod" style="width: 100%; height: 100%" border>
+              <el-table-column label="推荐关键词" prop="keyword" min-width="150">
+                <template #default="{ row }">
+                  <span class="font-medium text-13px text-gray-700">{{ row.keyword }}</span>
+                </template>
+              </el-table-column>
+              <el-table-column label="匹配方式" prop="matchType" width="100" align="center">
+                <template #default="{ row }">
+                  <el-tag size="small" type="info" effect="plain" class="w-40px text-center px-0">
+                    {{ row.matchType === 'EXACT' ? '精准' : row.matchType === 'PHRASE' ? '词组' : row.matchType === 'BROAD' ? '广泛' : row.matchType }}
+                  </el-tag>
+                </template>
+              </el-table-column>
+              <el-table-column label="出价" min-width="150">
+                <template #default="{ row }">
+                  <div class="flex flex-col justify-center">
+                    <span class="text-12px text-gray-600">推荐: ${{ row.suggestedBid?.rangeMedian || row.bid || '-' }}</span>
+                    <span v-if="row.suggestedBid?.rangeStart" class="text-11px text-gray-400 mt-2px">
+                      (最低: ${{ row.suggestedBid.rangeStart }} 最高: ${{ row.suggestedBid.rangeEnd }})
+                    </span>
+                  </div>
+                </template>
+              </el-table-column>
+              <el-table-column label="操作" width="60" align="center">
+                <template #default="{ row }">
+                  <el-button size="small" type="primary" link @click="addSingleRecommendedKeyword(row.keyword, row)">添加</el-button>
+                </template>
+              </el-table-column>
+            </el-table>
           </div>
         </div>
 
-        <el-input 
-          v-model="bulkKeywords" 
-          type="textarea" 
-          style="flex: 1"
-          :input-style="{ height: '100%' }"
-          placeholder="手动输入关键词，每行一个"
-        />
-        <el-button class="mt-10px" @click="parseKeywords">添加到列表 >></el-button>
+
       </div>
       
       <!-- 右侧已添加的关键词和出价 -->
@@ -113,7 +128,7 @@
     </div>
     <template #footer>
       <el-button @click="visible = false">取消</el-button>
-      <el-button type="primary" @click="submitKeywords">创建</el-button>
+      <el-button type="primary" @click="submitKeywords">添加</el-button>
     </template>
   </el-dialog>
 </template>
@@ -129,6 +144,7 @@ const props = defineProps<{
   existingKeywords?: any[]
   campaignId?: number
   adGroupId?: number
+  adAsins?: string[]
 }>()
 
 const shopId = inject<any>('shopId')
@@ -136,58 +152,111 @@ const emit = defineEmits(['success'])
 
 const visible = ref(false)
 const selectedMatchTypes = ref(['EXACT'])
-const bulkKeywords = ref('')
 const bidStrategy = ref('fixed')
 const fixedBid = ref(props.defaultBid || 1.0)
 const bidAdjustment = ref(0)
 const pendingKeywords = ref<any[]>([])
 
 const searchKeyword = ref('')
-const recommendedKeywords = ref<string[]>([])
+const recommendedKeywords = ref<any[]>([])
 const searching = ref(false)
-let recommendTimer: any = null
 
-const open = () => {
+const open = async () => {
   visible.value = true
-  bulkKeywords.value = ''
   pendingKeywords.value = []
   searchKeyword.value = ''
   recommendedKeywords.value = []
   fixedBid.value = props.defaultBid || 1.0
   bidStrategy.value = 'fixed'
   bidAdjustment.value = 0
+  
+
 }
 
-const handleSearchInput = (val: string) => {
-  if (recommendTimer) clearTimeout(recommendTimer)
+const handleSearchInput = async () => {
+  const val = searchKeyword.value?.trim()
   if (!val || val.length < 2) {
     recommendedKeywords.value = []
     return
   }
-  recommendTimer = setTimeout(async () => {
-    const currentShopId = unref(shopId)
-    if (!currentShopId) return
-    
-    searching.value = true
-    try {
-      const res = await AmzAdvHelpApi.getKeywordRecommendations({
-        shopId: currentShopId,
-        recommendationType: 'KEYWORDS_FOR_ASINS', // 默认按搜索词
-        targets: [val],
-        maxRecommendations: 20
-      })
+  
+  const currentShopId = unref(shopId)
+  if (!currentShopId) return
+  
+  searching.value = true
+  try {
+    const targets = selectedMatchTypes.value.length > 0 
+      ? selectedMatchTypes.value.map(type => ({ value: val, type: type }))
+      : [{ value: val, type: 'BROAD' }]
       
-      if (res && res.recommendations) {
-        recommendedKeywords.value = res.recommendations.map((r: any) => r.keyword)
-      } else if (Array.isArray(res)) {
-        recommendedKeywords.value = res.map((r: any) => r.keyword || r)
-      }
-    } catch (e) {
-      console.error(e)
-    } finally {
-      searching.value = false
+    const payload: any = {
+      shopId: currentShopId,
+      recommendationType: 'KEYWORDS_FOR_ASINS', // 默认按搜索词
+      targets: targets,
+      maxRecommendations: 50
     }
-  }, 800)
+    if (props.adAsins && props.adAsins.length > 0) {
+      payload.asins = props.adAsins
+    }
+    const res = await AmzAdvHelpApi.getKeywordRecommendations(payload)
+    
+    if (res && res.recommendations) {
+      const grouped = res.recommendations.reduce((acc: any, r: any) => {
+        if (!acc[r.keyword]) acc[r.keyword] = []
+        acc[r.keyword].push(r)
+        return acc
+      }, {})
+      const flattened: any[] = []
+      Object.keys(grouped).forEach(k => {
+        const items = grouped[k]
+        items.forEach((item: any, index: number) => {
+          flattened.push({
+            ...item,
+            rowspan: index === 0 ? items.length : 0,
+            rowspanIndex: index
+          })
+        })
+      })
+      recommendedKeywords.value = flattened
+    } else if (Array.isArray(res)) {
+      const grouped = res.reduce((acc: any, r: any) => {
+        const k = r.keyword || r
+        if (!acc[k]) acc[k] = []
+        if (r.keyword) acc[k].push(r)
+        return acc
+      }, {})
+      const flattened: any[] = []
+      Object.keys(grouped).forEach(k => {
+        const items = grouped[k]
+        if (items.length === 0) {
+          flattened.push({ keyword: k, matchType: 'BROAD', rowspan: 1, rowspanIndex: 0 })
+        } else {
+          items.forEach((item: any, index: number) => {
+            flattened.push({
+              ...item,
+              rowspan: index === 0 ? items.length : 0,
+              rowspanIndex: index
+            })
+          })
+        }
+      })
+      recommendedKeywords.value = flattened
+    }
+  } catch (e) {
+    console.error(e)
+  } finally {
+    searching.value = false
+  }
+}
+
+const spanMethod = ({ row, columnIndex }: any) => {
+  if (columnIndex === 0) {
+    if (row.rowspanIndex === 0) {
+      return { rowspan: row.rowspan, colspan: 1 }
+    } else {
+      return { rowspan: 0, colspan: 0 }
+    }
+  }
 }
 
 const getCalculatedBid = () => {
@@ -220,41 +289,69 @@ const addRecommendedKeyword = (k: string) => {
   })
 }
 
-const parseKeywords = () => {
-  if (!bulkKeywords.value) return
+const addSingleRecommendedKeyword = (k: string, item: any) => {
+  const matchType = item.matchType
+  const isInPending = pendingKeywords.value.some(p => p.keywordText?.trim().toLowerCase() === k.trim().toLowerCase() && p.matchType === matchType)
+  const isExisted = props.existingKeywords?.some(p => 
+    p.state === 'ENABLED' && 
+    p.keywordText?.trim().toLowerCase() === k.trim().toLowerCase() && 
+    p.matchType === matchType
+  )
+
+  if (!isInPending && !isExisted) {
+    let finalBid = getCalculatedBid()
+    if (bidStrategy.value === 'suggested' && item.suggestedBid?.rangeMedian) {
+       finalBid = item.suggestedBid.rangeMedian
+    } else if (bidStrategy.value === 'suggested' && item.bid) {
+       finalBid = item.bid
+    }
+    pendingKeywords.value.push({
+      keywordText: k,
+      matchType: matchType,
+      bid: finalBid,
+      state: 'ENABLED'
+    })
+  }
+}
+
+const addRecommendedKeywordGroup = (row: any) => {
+  if (row.items && row.items.length > 0) {
+    row.items.forEach((item: any) => addSingleRecommendedKeyword(row.keyword, item))
+  } else {
+    addRecommendedKeyword(row.keyword)
+  }
+}
+
+const handleAddInputKeyword = () => {
+  const text = searchKeyword.value?.trim()
+  if (!text) return
   if (selectedMatchTypes.value.length === 0) {
     ElMessage.warning('请至少选择一种匹配方式')
     return
   }
-  const lines = bulkKeywords.value.split('\n').map(l => l.trim()).filter(l => l)
+  
   let skipCount = 0
   
-  lines.forEach(text => {
-    selectedMatchTypes.value.forEach(matchType => {
-      const isInPending = pendingKeywords.value.some(k => k.keywordText?.trim().toLowerCase() === text.trim().toLowerCase() && k.matchType === matchType)
-      const isExisted = props.existingKeywords?.some(k => 
-        k.state === 'ENABLED' && 
-        k.keywordText?.trim().toLowerCase() === text.trim().toLowerCase() && 
-        k.matchType === matchType
-      )
-      
-      if (!isInPending && !isExisted) {
-        pendingKeywords.value.push({
-          keywordText: text,
-          matchType: matchType,
-          bid: getCalculatedBid(),
-          state: 'ENABLED'
-        })
-      } else {
-        skipCount++
-      }
-    })
+  selectedMatchTypes.value.forEach(matchType => {
+    const isInPending = pendingKeywords.value.some(k => k.keywordText?.trim().toLowerCase() === text.toLowerCase() && k.matchType === matchType)
+    const isExisted = props.existingKeywords?.some(k => 
+      k.state === 'ENABLED' && 
+      k.keywordText?.trim().toLowerCase() === text.toLowerCase() && 
+      k.matchType === matchType
+    )
+    
+    if (!isInPending && !isExisted) {
+      pendingKeywords.value.push({
+        keywordText: text,
+        matchType: matchType,
+        bid: getCalculatedBid(),
+        state: 'ENABLED'
+      })
+    } else {
+      skipCount++
+    }
   })
   
-  if (skipCount > 0) {
-    ElMessage.info(`已自动过滤 ${skipCount} 个重复的关键词`)
-  }
-  bulkKeywords.value = ''
 }
 
 const submitKeywords = () => {

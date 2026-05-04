@@ -39,14 +39,14 @@
           </el-button>
         </template>
         <el-button 
-          v-if="localConfig.amz_targeting_type"
+          v-if="targetingType?.toUpperCase()?.includes('MANUAL')"
           size="small" 
           :disabled="disabled"
           @click="openAddDialog"
           class="add-btn"
         >
           <el-icon><Plus /></el-icon>
-          <span class="ml-4px">添加{{ localConfig.amz_targeting_type === 'KEYWORD' ? '关键词' : '商品' }}</span>
+          <span class="ml-4px">添加{{ manualTargetingMode === 'KEYWORD' ? '关键词' : '商品' }}</span>
         </el-button>
       </div>
     </div>
@@ -148,17 +148,17 @@
     <!-- 自动定向 (4种匹配方式) -->
     <template v-else-if="targetingType?.toUpperCase()?.includes('AUTO')">
       <el-table :data="autoTargetingRows" border size="small" style="width: 100%">
-        <el-table-column label="匹配类型" prop="expressionValue" width="180">
+        <el-table-column label="匹配类型" prop="_expressionType" width="180">
           <template #default="{ row }">
             <div class="text-13px font-medium py-4px">
-              {{ AUTO_TARGETING_MAP[row.expressionValue] || row.expressionValue }}
+              {{ AUTO_TARGETING_MAP[row._expressionType] || row._expressionType }}
             </div>
           </template>
         </el-table-column>
         <el-table-column label="说明" prop="description" min-width="200">
           <template #default="{ row }">
             <div class="text-12px text-gray-400">
-              {{ AUTO_TARGETING_DESC[row.expressionValue] }}
+              {{ AUTO_TARGETING_DESC[row._expressionType] }}
             </div>
           </template>
         </el-table-column>
@@ -209,6 +209,7 @@
       ref="keywordAddDialogRef" 
       :shop-id="shopId" 
       :ad-group-id="adGroupId" 
+      :external-id="externalId"
       :default-bid="defaultBid"
       :existing-keywords="localConfig.amz_keyword || []"
       @success="handleSuccess"
@@ -238,6 +239,7 @@ const props = defineProps<{
   defaultBid: number
   disabled?: boolean
   adGroupId: number
+  externalId?: string
   shopId: number
   targetingType?: string
   config: any
@@ -285,27 +287,36 @@ watch(() => [props.config, props.adGroupId], (newVals, oldVals) => {
   }
 }, { immediate: true, deep: true })
 
-const AUTO_TARGETING_MAP = {
-  'close-match': '紧密匹配',
-  'loose-match': '宽泛匹配',
-  'substitutes': '替代商品',
-  'complements': '关联商品'
+const AUTO_TARGETING_MAP: Record<string, string> = {
+  'QUERY_HIGH_REL_MATCHES': '紧密匹配',
+  'QUERY_BROAD_REL_MATCHES': '宽泛匹配',
+  'ASIN_SUBSTITUTE_RELATED': '替代商品',
+  'ASIN_ACCESSORY_RELATED': '关联商品'
 }
 
-const AUTO_TARGETING_DESC = {
-  'close-match': '我们会向与您的商品紧密相关的搜索词展示您的广告。',
-  'loose-match': '我们会向与您的商品宽泛相关的搜索词展示您的广告。',
-  'substitutes': '我们会向查看与您的商品类似的商品的详情页面的购物者展示您的广告。',
-  'complements': '我们会向查看与您的商品互补的商品的详情页面的购物者展示您的广告。'
+const AUTO_TARGETING_DESC: Record<string, string> = {
+  'QUERY_HIGH_REL_MATCHES': '我们会向与您的商品紧密相关的搜索词展示您的广告。',
+  'QUERY_BROAD_REL_MATCHES': '我们会向与您的商品宽泛相关的搜索词展示您的广告。',
+  'ASIN_SUBSTITUTE_RELATED': '我们会向查看与您的商品类似的商品的详情页面的购物者展示您的广告。',
+  'ASIN_ACCESSORY_RELATED': '我们会向查看与您的商品互补的商品的详情页面的购物者展示您的广告。'
+}
+
+/** 从 targeting clause 对象中提取 expression type (如 QUERY_HIGH_REL_MATCHES) */
+const getExpressionType = (clause: any): string | undefined => {
+  if (clause.expression && Array.isArray(clause.expression) && clause.expression.length > 0) {
+    return clause.expression[0].type
+  }
+  return clause.expressionValue // 兼容旧数据
 }
 
 const autoTargetingRows = computed(() => {
   const existing = localConfig.value.amz_target_clause || []
   return Object.keys(AUTO_TARGETING_MAP).map(type => {
-    const item = existing.find((c: any) => c.expressionValue === type)
-    return item || { 
-      expressionType: 'TARGETING_EXPRESSION_PREDICATE', 
-      expressionValue: type, 
+    const item = existing.find((c: any) => getExpressionType(c) === type)
+    return item ? { ...item, _expressionType: type } : { 
+      expression: [{ type, value: null }],
+      expressionType: 'AUTO', 
+      _expressionType: type, 
       bid: props.defaultBid, 
       state: 'ENABLED',
       isNew: true 
@@ -396,8 +407,8 @@ const saveAutoRowBid = async (row: any) => {
         shopId: props.shopId,
         groupId: props.adGroupId,
         items: [{
-          expressionType: row.expressionType,
-          expressionValue: row.expressionValue,
+          expression: row.expression || [{ type: row._expressionType, value: null }],
+          expressionType: 'AUTO',
           bid: row.bid,
           state: row.state
         }]
