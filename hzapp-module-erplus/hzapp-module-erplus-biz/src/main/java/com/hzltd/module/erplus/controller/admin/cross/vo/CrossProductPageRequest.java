@@ -7,7 +7,10 @@ import java.util.List;
 
 @Data
 public class CrossProductPageRequest extends PageParam{
-
+    /**
+     * 本地产品ID
+     */
+    private Long productId;
     /**
      * 跨境平台ID
      */

@@ -266,12 +266,14 @@ const handleShopChange = async (shopIds: number[]) => {
 
 /** 新建发货计划 */
 const handleAdd = () => {
-  push({ path: '/erplusv2/stock/shipment-add' })
+  // push({ path: '/erplusv2/stock/shipment-add' })
+  push({name: 'ShipmentForm'})
 }
 
 /** 编辑发货计划 */
 const handleEdit = (row: any) => {
-  push({ path: '/erplusv2/stock/shipment-add', query: { id: row.id } })
+  // push({ path: '/erplusv2/stock/shipment-add', query: { id: row.id } })
+  push({name: 'ShipmentForm', query: { id: row.id } })
 }
 
 /** 审核发货计划 */

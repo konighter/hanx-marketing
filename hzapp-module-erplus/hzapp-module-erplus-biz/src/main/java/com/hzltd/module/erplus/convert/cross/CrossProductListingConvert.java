@@ -4,6 +4,8 @@ import com.hzltd.module.erplus.controller.admin.cross.vo.CrossProductListingResp
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductInventoryDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductPriceDO;
+import com.hzltd.module.erplus.spapi.enums.CrossListingStatus;
+import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.erplus.spapi.model.common.Image;
 import com.hzltd.module.erplus.spapi.model.common.InventoryModel;
 import com.hzltd.module.erplus.spapi.model.common.PriceModel;
@@ -131,5 +133,24 @@ public interface CrossProductListingConvert {
         return priceDO;
     }
 
+    default ProductModel convertProductModel(CrossProductDO crossProductDO) {
+        if (crossProductDO == null) {
+            return null;
+        }
+        ProductModel productModel = new ProductModel();
+        productModel.setProductName(crossProductDO.getTitle());
+        productModel.setProductCode(crossProductDO.getPlatformProductCode());
+        productModel.setSellerSku(crossProductDO.getSellerSkuCode());
+        productModel.setMarketId(crossProductDO.getMarketId());
+        productModel.setBrand(crossProductDO.getBrand());
+        productModel.setCategory(crossProductDO.getCategoryId());
+        productModel.setMainImage(new Image().setUrl(crossProductDO.getMainImageUrl()));
+
+        productModel.setFulfillType(FulfillTypeEnum.of(crossProductDO.getFulfillType()));
+        productModel.setStatus(CrossListingStatus.of(crossProductDO.getStatus()));
+
+        return productModel;
+
+    }
 
 }

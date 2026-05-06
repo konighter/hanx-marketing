@@ -106,6 +106,7 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
 import { ShopApi } from '@/app/erplus/api/system/shop'
 import AdCampaignList from './components/AdCampaignList.vue'
 import AdGroupList from './components/AdGroupList.vue'
@@ -116,6 +117,7 @@ import AdsCampaignCreateDrawer from './components/AdsCampaignCreateDrawer.vue'
 
 defineOptions({ name: 'AdsAccountManager' })
 
+const router = useRouter()
 const message = useMessage()
 const activeTab = ref('campaign')
 const shopCascaderList = ref<any[]>([])

@@ -37,6 +37,7 @@ import com.hzltd.module.erplus.spapi.enums.CrossListingStatus;
 import com.hzltd.module.erplus.spapi.enums.CrossProductPublishStatus;
 import com.hzltd.module.erplus.spapi.enums.CrossProductStatus;
 import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
+import com.hzltd.module.erplus.spapi.service.product.CrossProductService;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import com.hzltd.module.erplus.spapi.enums.LanguageEnum;
 import com.hzltd.module.erplus.spapi.model.ApiRequest;
@@ -65,7 +66,7 @@ import static com.hzltd.module.erplus.system.enums.ErplusErrorCodeConstants.PROD
 
 @Slf4j
 @Service
-public class ErplusCrossProductServiceImpl implements ErplusCrossProductService {
+public class ErplusCrossProductServiceImpl implements ErplusCrossProductService, CrossProductService {
 
     @Resource
     private CrossProductMapper crossProductMapper;
@@ -448,6 +449,7 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
     private PageResult<CrossProductListingResp> getCrossProductSkuPage(CrossProductPageRequest request) {
         // 主查询：增加 marketId 过滤
         PageResult<CrossProductDO> productPageResult = crossProductMapper.selectPage(request, new LambdaQueryWrapperX<CrossProductDO>()
+                .eqIfPresent(CrossProductDO::getId, request.getProductId())
                 .eqIfPresent(CrossProductDO::getPlatformId, request.getPlatformId())
                 .eqIfPresent(CrossProductDO::getShopId, request.getShopId())
                 .eqIfPresent(CrossProductDO::getMarketId, request.getMarketId())
@@ -648,4 +650,27 @@ public class ErplusCrossProductServiceImpl implements ErplusCrossProductService 
 //        variants.add(new ListingVariantDTO(skuBase + "-BLK", "Color: Black, Size: S", 1899, 0));
         return variants;
     }
+
+    @Override
+    public ProductModel getProductModel(Long productId) {
+        CrossProductDO productDO = crossProductMapper.selectById(productId);
+        return CrossProductListingConvert.INSTANCE.convertProductModel(productDO);
+    }
+
+    @Override
+    public List<ProductModel> getProductModel(Long shopId, List<String> sellerSku) {
+        List<CrossProductDO> productDO = crossProductMapper.selectList(new LambdaQueryWrapperX<CrossProductDO>()
+                .eqIfPresent(CrossProductDO::getShopId, shopId)
+                .inIfPresent(CrossProductDO::getSellerSkuCode, sellerSku));
+        return productDO.stream().map(CrossProductListingConvert.INSTANCE::convertProductModel).toList();
+    }
+
+    @Override
+    public List<ProductModel> getProductModel(List<String> platformProductCode, Long shopId) {
+        List<CrossProductDO> productDO = crossProductMapper.selectList(new LambdaQueryWrapperX<CrossProductDO>()
+                .eqIfPresent(CrossProductDO::getShopId, shopId)
+                .inIfPresent(CrossProductDO::getPlatformProductCode, platformProductCode));
+        return productDO.stream().map(CrossProductListingConvert.INSTANCE::convertProductModel).toList();
+    }
+
 }

@@ -264,6 +264,10 @@ public interface ErplusErrorCodeConstants {
     // ========== 策略 1_033_005_000 ==========
     ErrorCode ADV_SKILL_NOT_EXISTS = new ErrorCode(1_033_005_001, "策略不存在");
 
+    // ========== 广告自动化 1_033_006_000 ==========
+    ErrorCode ADS_AUTOMATION_TEMPLATE_NOT_EXISTS = new ErrorCode(1_033_006_001, "广告自动化模版不存在");
+    ErrorCode ADS_AUTOMATION_PLAN_NOT_EXISTS = new ErrorCode(1_033_006_002, "广告自动化计划不存在");
+
 
     ErrorCode CROSS_SERVICE_ERROR = new ErrorCode(2_100_000_001, "跨境平台服务异常");
 
