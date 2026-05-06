@@ -61,7 +61,7 @@
             </div>
             <div>
               <span class="text-gray-500">状态:</span>
-              <el-tag :type="listing.status === 'active' || listing.status === '1' ? 'success' : 'warning'" size="small" class="ml-2">
+              <el-tag :type="listing.status === 'active' || listing.status === '1' || String(listing.status) === '19' ? 'success' : 'warning'" size="small" class="ml-2">
                 {{ listing.statusName }}
               </el-tag>
             </div>
@@ -107,15 +107,21 @@
           <div class="grid grid-cols-3 gap-6 mb-6" v-if="listing.performance">
             <div class="bg-gray-50 dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700">
               <div class="text-xs text-gray-500 mb-1">7D 销量</div>
-              <div class="text-xl font-bold text-gray-800 dark:text-slate-100">{{ listing.performance.sales7d }}</div>
+              <div class="flex items-baseline gap-2">
+                <div class="text-xl font-bold text-gray-800 dark:text-slate-100">{{ listing.performance.sales7d }}</div>
+                <div v-if="listing.performance.sales7dGrowth !== undefined" class="text-xs font-bold flex items-center" :class="listing.performance.sales7dGrowth >= 0 ? 'text-green-500' : 'text-rose-500'">
+                  <Icon :icon="listing.performance.sales7dGrowth >= 0 ? 'lucide:trending-up' : 'lucide:trending-down'" class="w-3 h-3 mr-0.5" />
+                  {{ listing.performance.sales7dGrowth >= 0 ? '+' : '' }}{{ listing.performance.sales7dGrowth }}%
+                </div>
+              </div>
             </div>
             <div class="bg-indigo-50 dark:bg-indigo-900/20 p-4 rounded-xl border border-indigo-100 dark:border-indigo-800/30">
               <div class="text-xs text-indigo-500 mb-1">30D GMV</div>
               <div class="text-xl font-bold text-indigo-600 dark:text-indigo-400">{{ currency }}{{ listing.performance.gmv30d }}</div>
             </div>
             <div class="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-xl border border-emerald-100 dark:border-emerald-800/30">
-              <div class="text-xs text-emerald-500 mb-1">转化率 (转化)</div>
-              <div class="text-xl font-bold text-emerald-600 dark:text-emerald-400">12.5%</div>
+              <div class="text-xs text-emerald-500 mb-1">30D 订单量</div>
+              <div class="text-xl font-bold text-emerald-600 dark:text-emerald-400">{{ listing.performance.sales30d }}</div>
             </div>
           </div>
         </el-tab-pane>

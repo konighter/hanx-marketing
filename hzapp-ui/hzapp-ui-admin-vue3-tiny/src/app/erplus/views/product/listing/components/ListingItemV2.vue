@@ -144,7 +144,7 @@
         :sales7d="performance.sales7d"
         :gmv30d="performance.gmv30d"
         :currency="currency"
-        :growth="12.5"
+        :growth="performance.sales7dGrowth || 0"
         :trend="performance.revenueCurve"
         :layout="viewMode === 'list' ? 'vertical' : 'horizontal'"
       />
@@ -204,15 +204,17 @@ const getPlatformIcon = (id: number) => {
   if (dynamicLogo) return dynamicLogo
 }
 
-const getStatusColor = (status: string) => {
-  if (status === 'active' || status === '1') return 'bg-emerald-500'
-  if (status === 'pending' || status === '2') return 'bg-amber-500'
+const getStatusColor = (status: string | number) => {
+  const s = String(status)
+  if (s === 'active' || s === '1' || s === '19') return 'bg-emerald-500'
+  if (s === 'pending' || s === '10' || s === '2') return 'bg-amber-500'
   return 'bg-red-500'
 }
 
-const getStatusTextClass = (status: string) => {
-  if (status === 'active' || status === '1') return 'text-emerald-500 dark:text-emerald-400'
-  if (status === 'pending' || status === '2') return 'text-amber-500 dark:text-amber-400'
+const getStatusTextClass = (status: string | number) => {
+  const s = String(status)
+  if (s === 'active' || s === '1' || s === '19') return 'text-emerald-500 dark:text-emerald-400'
+  if (s === 'pending' || s === '10' || s === '2') return 'text-amber-500 dark:text-amber-400'
   return 'text-red-500 dark:text-red-400'
 }
 

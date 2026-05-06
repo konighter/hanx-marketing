@@ -18,5 +18,7 @@ public class ListingPerformanceDTO {
 
     private Long gmv30d;
 
+    private Double sales7dGrowth;
+
     private List<BigDecimal> revenueCurve;
 }

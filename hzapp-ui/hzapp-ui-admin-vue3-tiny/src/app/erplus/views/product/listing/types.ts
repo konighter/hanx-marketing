@@ -11,6 +11,7 @@ export interface ListingPerformanceVO {
   sales7d: number         // 7日销量
   sales30d: number        // 30日销量
   gmv30d: number          // 30日 GMV
+  sales7dGrowth?: number  // 7日销量增长率
   revenueCurve: number[]  // 趋势图数据点
 }
 
