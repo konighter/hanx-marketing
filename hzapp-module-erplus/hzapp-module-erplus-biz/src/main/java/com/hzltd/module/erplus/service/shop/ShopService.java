@@ -61,12 +61,6 @@ public interface ShopService {
 
     List<ShopDO> getShopListByPlatform(Integer platformId);
 
-    @Deprecated
-    ShopAuthRespVO submitShopAuth(ShopAuthReqVO authReqVO);
-
-    @TenantIgnore
-    void refreshShopPlatformAccessToken();
-
      /**
       * 获得店铺级联信息
       * 平台 -> 店铺-> 子店铺

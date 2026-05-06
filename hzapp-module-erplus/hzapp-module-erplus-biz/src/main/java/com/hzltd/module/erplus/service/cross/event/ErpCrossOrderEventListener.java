@@ -1,13 +1,17 @@
 package com.hzltd.module.erplus.service.cross.event;
 
 import com.google.common.eventbus.Subscribe;
+import com.hzltd.framework.tenant.core.util.TenantUtils;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderSyncRequest;
+import com.hzltd.module.erplus.controller.admin.cross.vo.CrossProductSyncRequest;
 import com.hzltd.module.erplus.event.ErpEventListener;
 import com.hzltd.module.erplus.service.cross.ErplusCrossOrderService;
+import com.hzltd.module.erplus.service.cross.ErplusCrossProductService;
 import com.hzltd.module.erplus.spapi.event.OrderChangeEvent;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Component;
 
 import java.util.Collections;
@@ -25,6 +29,8 @@ public class ErpCrossOrderEventListener {
 
     @Resource
     private ErplusCrossOrderService crossOrderService;
+    @Resource
+    private ErplusCrossProductService crossProductService;
 
     /**
      * 监听亚马逊订单变更事件
@@ -32,23 +38,44 @@ public class ErpCrossOrderEventListener {
      * @param event 订单变更事件
      */
     @Subscribe
-    public void onAmzOrderChangeEvent(OrderChangeEvent event) {
+    public void onOrderChangeEvent(OrderChangeEvent event) {
+        TenantUtils.execute(event.getTenantId().longValue(), () -> {
+            doOrderSync(event);
+            doProductSync(event);
+        });
+
+    }
+
+    private void doOrderSync(OrderChangeEvent event) {
         log.info("[onOrderChangeEvent][收到{}订单变更事件: {}]", CrossPlatformEnum.valueOf(event.getPlatformId()).getName(), event.getPlatformOrderId());
-        
+
         try {
             // 构造同步请求
             CrossOrderSyncRequest syncRequest = new CrossOrderSyncRequest();
             syncRequest.setShopId(event.getShopId());
             syncRequest.setPlatformId(event.getPlatformId());
             syncRequest.setPlatformOrderId(event.getPlatformOrderId());
-            
+
             // 执行同步
             crossOrderService.syncCrossOrders(syncRequest);
-            
+
             log.info("[onOrderChangeEvent][订单同步任务已触发: {}]", event.getPlatformOrderId());
         } catch (Exception e) {
             log.error("[onOrderChangeEvent][处理订单变更事件失败: {}]", event.getPlatformOrderId(), e);
         }
     }
 
+    private void doProductSync(OrderChangeEvent event) {
+        log.info("[onOrderChangeEvent][收到{}订单变更事件, 更新商品信息: SKU={}]", CrossPlatformEnum.valueOf(event.getPlatformId()).getName(), event.getSellerSku());
+        CrossProductSyncRequest request = new CrossProductSyncRequest();
+        request.setShopId(event.getShopId());
+        if (CollectionUtils.isNotEmpty(event.getPlatformProductCode())) {
+            request.setSellerSkuCode(event.getPlatformProductCode().get(0));
+        }
+        if (CollectionUtils.isNotEmpty(event.getSellerSku())) {
+            request.setSellerSkuCode(event.getSellerSku().get(0));
+        }
+
+        crossProductService.syncProductListing(request);
+    }
 }

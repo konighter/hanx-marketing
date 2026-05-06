@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.system.dal.dataobject;
+package com.hzltd.module.erplus.sys.dal.dataobject.task;
 
 import com.baomidou.mybatisplus.annotation.KeySequence;
 import com.baomidou.mybatisplus.annotation.TableField;

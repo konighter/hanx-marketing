@@ -8,7 +8,7 @@ import com.hzltd.module.erplus.adv.enums.AdsReportStatus;
 import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
 import com.hzltd.module.erplus.adv.model.*;
 import com.hzltd.module.erplus.adv.service.AdsReportApi;
-import com.hzltd.module.erplus.system.api.ErpTaskHandler;
+import com.hzltd.module.erplus.system.service.ErpTaskHandler;
 import com.hzltd.module.erplus.system.dto.ErpTaskDTO;
 import com.hzltd.module.erplus.system.dto.ErpTaskResult;
 import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
