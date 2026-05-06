@@ -126,6 +126,49 @@ public class ErpTaskEngineImpl implements ErpTaskEngine {
         return ErpTaskConvert.INSTANCE.convert(taskDO);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void pauseTask(Long taskId) {
+        ErpScheduleTaskDO task = taskMapper.selectById(taskId);
+        if (task != null && !ErpTaskStatus.isTerminal(task.getStatus())) {
+            task.setStatus(ErpTaskStatus.PAUSED.getStatus());
+            taskMapper.updateById(task);
+        }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void resumeTask(Long taskId) {
+        ErpScheduleTaskDO task = taskMapper.selectById(taskId);
+        if (task != null && ErpTaskStatus.PAUSED.getStatus().equals(task.getStatus())) {
+            // 恢复为 PENDING 重新进入调度
+            task.setStatus(ErpTaskStatus.PENDING.getStatus());
+            task.setScheduledAt(System.currentTimeMillis()); // 立即触发
+            taskMapper.updateById(task);
+        }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void pauseTask(String taskUniqueId, String taskType) {
+        ErpScheduleTaskDO task = taskMapper.selectByUniqueId(taskUniqueId, taskType);
+        if (task != null && !ErpTaskStatus.isTerminal(task.getStatus())) {
+            task.setStatus(ErpTaskStatus.PAUSED.getStatus());
+            taskMapper.updateById(task);
+        }
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void resumeTask(String taskUniqueId, String taskType) {
+        ErpScheduleTaskDO task = taskMapper.selectByUniqueId(taskUniqueId, taskType);
+        if (task != null && ErpTaskStatus.PAUSED.getStatus().equals(task.getStatus())) {
+            task.setStatus(ErpTaskStatus.PENDING.getStatus());
+            task.setScheduledAt(System.currentTimeMillis());
+            taskMapper.updateById(task);
+        }
+    }
+
     /**
      * 引擎轮询入口 (由定时任务调用)
      */
@@ -194,6 +237,9 @@ public class ErpTaskEngineImpl implements ErpTaskEngine {
         }
         if (ErpTaskStatus.isTerminal(result.getStatus())) {
             taskDO.setFinishedAt(LocalDateTime.now());
+        }
+        if (result.getNextScheduleTime() != null) {
+            taskDO.setScheduledAt(result.getNextScheduleTime());
         }
     }
 

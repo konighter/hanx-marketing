@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import com.hzltd.framework.mybatis.core.dataobject.BaseDO;
+import com.hzltd.module.erplus.adv.automation.domain.AdsAutomationPlanContext;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -50,7 +51,7 @@ public class AdsAutomationPlanDO extends BaseDO {
      * 运行时参数 (JSON)
      */
     @TableField(typeHandler = JacksonTypeHandler.class)
-    private Object context;
+    private AdsAutomationPlanContext context;
 
     /**
      * 计划状态 (RUNNING, PAUSED, COMPLETED)
@@ -66,5 +67,10 @@ public class AdsAutomationPlanDO extends BaseDO {
      * 最近执行时间
      */
     private LocalDateTime lastRunAt;
+
+    /**
+     * 租户ID
+     */
+    private Long tenantId;
 
 }

@@ -21,6 +21,8 @@ public interface ErpTaskEngine {
      */
     Long submitTask(ErpTaskSubmitRequest request);
 
+
+
     /**
      * 批量提交子任务
      *
@@ -45,5 +47,35 @@ public interface ErpTaskEngine {
      * @return 任务模型
      */
     ErpTaskDTO getTask(String taskUniqueId, String taskType);
-    
+
+    /**
+     * 暂停任务
+     *
+     * @param taskId 任务ID
+     */
+    void pauseTask(Long taskId);
+
+    /**
+     * 重启/恢复任务
+     *
+     * @param taskId 任务ID
+     */
+    void resumeTask(Long taskId);
+
+    /**
+     * 暂停任务 (通过唯一标识)
+     *
+     * @param taskUniqueId 唯一标识
+     * @param taskType 任务类型
+     */
+    void pauseTask(String taskUniqueId, String taskType);
+
+    /**
+     * 恢复任务 (通过唯一标识)
+     *
+     * @param taskUniqueId 唯一标识
+     * @param taskType 任务类型
+     */
+    void resumeTask(String taskUniqueId, String taskType);
+
 }

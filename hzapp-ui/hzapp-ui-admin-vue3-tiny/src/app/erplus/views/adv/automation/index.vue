@@ -87,22 +87,13 @@
           </div>
         </template>
       </el-table-column>
-      <el-table-column label="运营计划名称" align="center" prop="name" min-width="150">
+      <el-table-column label="运营计划名称" align="left" prop="name" min-width="150">
         <template #default="scope">
           <div class="font-bold text-gray-700">{{ scope.row.name }}</div>
         </template>
       </el-table-column>
       <el-table-column label="所属店铺" align="center" prop="shopName" width="150" />
       <el-table-column label="平台" align="center" prop="platform" width="100" />
-      <el-table-column label="策略参数" align="center" min-width="200">
-        <template #default="scope">
-          <div class="text-12px text-gray-500">
-            <span v-for="(val, key) in scope.row.context" :key="key" class="mr-10px">
-              {{ key }}: <span class="text-gray-800 font-medium">{{ val }}</span>
-            </span>
-          </div>
-        </template>
-      </el-table-column>
       <el-table-column label="状态" align="center" prop="status" width="100">
         <template #default="scope">
           <el-tag :type="scope.row.status === 'RUNNING' ? 'success' : 'info'" size="small">
@@ -131,6 +122,15 @@
           >
             运行日志
           </el-button>
+          <el-dropdown class="ml-10px">
+            <el-button link type="primary">更多<Icon icon="ep:arrow-down" class="ml-5px" /></el-button>
+            <template #dropdown>
+              <el-dropdown-menu>
+                <el-dropdown-item @click="handleInit(scope.row)">初始化结构</el-dropdown-item>
+                <el-dropdown-item @click="handleExecute(scope.row)">立即检查</el-dropdown-item>
+              </el-dropdown-menu>
+            </template>
+          </el-dropdown>
         </template>
       </el-table-column>
     </el-table>
@@ -232,6 +232,26 @@ const handleToggleStatus = async (row: any) => {
 /** 查看日志 */
 const handleViewLog = (row: any) => {
   logDialogRef.value.open(row.id, row.name)
+}
+
+/** 初始化结构 */
+const handleInit = async (row: any) => {
+  try {
+    await message.confirm(`确认要初始化计划 "${row.name}" 的广告结构吗？`)
+    await AutomationApi.initStructure(row.id)
+    message.success('初始化成功')
+    getList()
+  } catch {}
+}
+
+/** 立即执行 */
+const handleExecute = async (row: any) => {
+  try {
+    await message.confirm(`确认要立即执行计划 "${row.name}" 的自动化检查吗？`)
+    await AutomationApi.executeCycle(row.id)
+    message.success('已触发检查')
+    getList()
+  } catch {}
 }
 
 /** 初始化 **/

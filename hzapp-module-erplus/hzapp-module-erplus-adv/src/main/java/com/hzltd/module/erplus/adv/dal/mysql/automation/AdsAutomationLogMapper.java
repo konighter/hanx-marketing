@@ -3,7 +3,7 @@ package com.hzltd.module.erplus.adv.dal.mysql.automation;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.erplus.adv.auto_plan.controller.admin.vo.AdsAutomationLogPageReqVO;
+import com.hzltd.module.erplus.adv.automation.controller.admin.vo.AdsAutomationLogPageReqVO;
 import com.hzltd.module.erplus.adv.dal.dataobject.automation.AdsAutomationLogDO;
 import org.apache.ibatis.annotations.Mapper;
 

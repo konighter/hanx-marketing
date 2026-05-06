@@ -36,6 +36,11 @@ public class AdsAutomationTemplateDO extends BaseDO {
     private String type;
 
     /**
+     * 适用平台 (AMAZON/META)
+     */
+    private String platform;
+
+    /**
      * 配置蓝图 (JSON)
      */
     @TableField(typeHandler = JacksonTypeHandler.class)

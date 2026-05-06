@@ -1,11 +1,16 @@
 package com.hzltd.module.erplus.adv.automation.engine;
 
+import com.hzltd.module.erplus.adv.adapter.AbsAdsApiServiceFactory;
+import com.hzltd.module.erplus.adv.model.*;
+import com.hzltd.module.erplus.adv.service.AdsManagerApi;
 import com.hzltd.module.erplus.adv.dal.dataobject.automation.AdsAutomationLogDO;
 import com.hzltd.module.erplus.adv.dal.mysql.automation.AdsAutomationLogMapper;
+import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -20,6 +25,9 @@ public class AdsActionDispatcher {
 
     @Resource
     private AdsAutomationLogMapper adsAutomationLogMapper;
+
+    @Resource
+    private AbsAdsApiServiceFactory<AdsManagerApi> adsManagerApiFactory;
 
     /**
      * 关键词转移 (从自动到手动精准)
@@ -36,6 +44,91 @@ public class AdsActionDispatcher {
             "sourceCampaignId", sourceCampaignId,
             "targetCampaignId", targetCampaignId
         ));
+    }
+
+    /**
+     * 创建广告活动
+     */
+    public String createCampaign(Long planId, String platform, Long shopId, AdsCampaignCreateRequest request) {
+        log.info("Creating campaign: '{}' on platform {}, shopId: {}", request.getName(), platform, shopId);
+        
+        // 1. 获取对应的 AdsManagerApi
+        AdsManagerApi managerApi = adsManagerApiFactory.getAdsApiService(platform);
+        if (managerApi == null) {
+            throw new RuntimeException("Unsupported platform: " + platform);
+        }
+
+        // 2. 构造 AdsRequest
+        AdsRequest<AdsCampaignCreateRequest> adsReq = AdsRequest.of(shopId, request);
+        adsReq.setPlatform(AdsPlatformEnum.of(platform));
+
+        // 3. 执行创建
+        AdsResponse<String> response = managerApi.createCampaign(adsReq);
+        if (!response.isSuccess()) {
+            log.error("Failed to create campaign: {}", response.getMessage());
+            throw new RuntimeException("Platform API error: " + response.getMessage());
+        }
+
+        String externalId = response.getData();
+        
+        logAction(planId, "SYSTEM_INIT", "Initialization", Map.of(
+            "action", "CREATE_CAMPAIGN",
+            "name", request.getName(),
+            "platform", platform,
+            "externalId", externalId != null ? externalId : "UNKNOWN"
+        ));
+        
+        return externalId;
+    }
+
+    /**
+     * 创建广告组
+     */
+    public String createAdGroup(Long planId, String platform, Long shopId, AdsAdGroupCreateRequest request) {
+        log.info("Creating adGroup: '{}' on platform {}, shopId: {}", request.getName(), platform, shopId);
+        
+        AdsManagerApi managerApi = adsManagerApiFactory.getAdsApiService(platform);
+        AdsRequest<AdsAdGroupCreateRequest> adsReq = AdsRequest.of(shopId, request);
+        adsReq.setPlatform(AdsPlatformEnum.of(platform));
+
+        AdsResponse<String> response = managerApi.createAdGroup(adsReq);
+        if (!response.isSuccess()) {
+            throw new RuntimeException("Failed to create adGroup: " + response.getMessage());
+        }
+
+        String externalId = response.getData();
+        logAction(planId, "SYSTEM_INIT", "Initialization", Map.of(
+            "action", "CREATE_AD_GROUP",
+            "name", request.getName(),
+            "campaignId", request.getCampaignId(),
+            "externalId", externalId != null ? externalId : "UNKNOWN"
+        ));
+        return externalId;
+    }
+
+    /**
+     * 创建广告
+     */
+    public List<String> createAds(Long planId, String platform, Long shopId, List<AdsAdCreateRequest> requests) {
+        if (requests == null || requests.isEmpty()) return List.of();
+        log.info("Creating {} ads on platform {}, shopId: {}", requests.size(), platform, shopId);
+        
+        AdsManagerApi managerApi = adsManagerApiFactory.getAdsApiService(platform);
+        AdsRequest<List<AdsAdCreateRequest>> adsReq = AdsRequest.of(shopId, requests);
+        adsReq.setPlatform(AdsPlatformEnum.of(platform));
+
+        AdsResponse<List<String>> response = managerApi.createAd(adsReq);
+        if (!response.isSuccess()) {
+            throw new RuntimeException("Failed to create ads: " + response.getMessage());
+        }
+
+        List<String> externalIds = response.getData();
+        logAction(planId, "SYSTEM_INIT", "Initialization", Map.of(
+            "action", "CREATE_ADS",
+            "count", requests.size(),
+            "externalIds", externalIds != null ? externalIds : List.of()
+        ));
+        return externalIds;
     }
 
     /**

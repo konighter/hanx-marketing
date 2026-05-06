@@ -37,6 +37,12 @@ export const AutomationApi = {
   updatePlanStatus: async (id: number, status: string) => {
     return await request.put({ url: '/erplus/adv/automation/plan/update-status?id=' + id + '&status=' + status })
   },
+  initStructure: async (id: number) => {
+    return await request.post({ url: '/erplus/adv/automation/plan/init-structure?id=' + id })
+  },
+  executeCycle: async (id: number) => {
+    return await request.post({ url: '/erplus/adv/automation/plan/execute-cycle?id=' + id })
+  },
   getLogPage: async (params: any) => {
     return await request.get({ url: '/erplus/adv/automation/log/page', params })
   }

@@ -16,12 +16,14 @@ public enum ErpTaskStatus {
     SUBMITTED("SUBMITTED", "已提交远程"),
     PROCESSING("PROCESSING", "本地处理中"),
     SUCCESS("SUCCESS", "成功"),
-    FAILED("FAILED", "失败");
+    FAILED("FAILED", "失败"),
+    PAUSED("PAUSED", "已暂停"),
+    CANCELLED("CANCELLED", "已取消");
 
     private final String status;
     private final String description;
 
     public static boolean isTerminal(String status) {
-        return SUCCESS.getStatus().equals(status) || FAILED.getStatus().equals(status);
+        return SUCCESS.getStatus().equals(status) || FAILED.getStatus().equals(status) || CANCELLED.getStatus().equals(status);
     }
 }
