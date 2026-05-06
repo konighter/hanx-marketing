@@ -4,8 +4,13 @@ import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderItemDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 订单项 Mapper
@@ -14,6 +19,17 @@ import java.util.List;
  */
 @Mapper
 public interface ErpCrossOrderItemMapper extends BaseMapperX<CrossOrderItemDO> {
+
+    @Select("<script>" +
+            "SELECT product_id, DATE(create_time) as `date`, SUM(item_count) as `orders`, SUM(item_price) as `sales` " +
+            "FROM erplus_cross_order_item " +
+            "WHERE product_id IN " +
+            "<foreach item='id' collection='productIds' open='(' separator=',' close=')'>#{id}</foreach> " +
+            "AND create_time >= #{startDate} " +
+            "GROUP BY product_id, DATE(create_time)" +
+            "</script>")
+    List<Map<String, Object>> selectAggregatedPerformance(@Param("productIds") Collection<Long> productIds, 
+                                                          @Param("startDate") LocalDateTime startDate);
 
    default CrossOrderItemDO selectOne(String platformOrderId, Integer platformId) {
         return this.selectOne(new LambdaQueryWrapperX<CrossOrderItemDO>()

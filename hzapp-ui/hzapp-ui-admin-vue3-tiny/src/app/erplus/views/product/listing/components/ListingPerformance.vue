@@ -12,8 +12,9 @@
         </span>
         <div class="flex items-baseline gap-1">
           <span class="text-sm font-bold text-gray-800 dark:text-slate-100">{{ sales7d }}</span>
-          <span v-if="growth > 0" class="text-[10px] font-bold text-green-500 flex items-center">
-            <Icon icon="lucide:trending-up" class="w-2.5 h-2.5 mr-0.5" />+{{ growth }}%
+          <span v-if="growth !== 0" class="text-[10px] font-bold flex items-center" :class="growth > 0 ? 'text-green-500' : 'text-rose-500'">
+            <Icon :icon="growth > 0 ? 'lucide:trending-up' : 'lucide:trending-down'" class="w-2.5 h-2.5 mr-0.5" />
+            {{ growth > 0 ? '+' : '' }}{{ growth }}%
           </span>
         </div>
       </div>

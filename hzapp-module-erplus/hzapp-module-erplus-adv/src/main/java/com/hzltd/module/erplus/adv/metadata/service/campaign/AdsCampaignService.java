@@ -4,6 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsCampaignDO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
+import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignRespVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
 import com.hzltd.module.erplus.adv.model.AdsCampaignModel;
 import jakarta.validation.Valid;
@@ -30,7 +31,7 @@ public interface AdsCampaignService {
      * @param pageReqVO 分页查询
      * @return 广告计划分页
      */
-    PageResult<AdsCampaignDO> getCampaignPage(AdsCampaignPageReqVO pageReqVO);
+    PageResult<AdsCampaignRespVO> getCampaignPage(AdsCampaignPageReqVO pageReqVO);
 
     /**
      * 更新广告计划

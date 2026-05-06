@@ -26,4 +26,12 @@ public enum ErpTaskStatus {
     public static boolean isTerminal(String status) {
         return SUCCESS.getStatus().equals(status) || FAILED.getStatus().equals(status) || CANCELLED.getStatus().equals(status);
     }
+
+    public static boolean isSuccess(String status) {
+        return SUCCESS.getStatus().equals(status);
+    }
+
+    public static boolean isFailed(String status) {
+        return FAILED.getStatus().equals(status);
+    }
 }

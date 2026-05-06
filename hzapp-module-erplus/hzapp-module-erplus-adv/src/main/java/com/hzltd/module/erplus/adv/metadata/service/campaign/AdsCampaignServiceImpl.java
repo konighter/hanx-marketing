@@ -3,6 +3,7 @@ package com.hzltd.module.erplus.adv.metadata.service.campaign;
 import cn.hutool.core.collection.CollUtil;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.common.collect.Maps;
 import com.hzltd.framework.common.exception.ErrorCode;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
@@ -16,6 +17,7 @@ import com.hzltd.module.erplus.adv.enums.AdsEntityTypeEnum;
 import com.hzltd.module.erplus.adv.metadata.vo.adgroup.AdsAdGroupUpdateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignCreateReqVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignPageReqVO;
+import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignRespVO;
 import com.hzltd.module.erplus.adv.metadata.vo.campaign.AdsCampaignUpdateReqVO;
 import com.hzltd.module.erplus.adv.model.*;
 import com.hzltd.module.erplus.adv.service.AdsManagerApi;
@@ -24,10 +26,10 @@ import com.hzltd.module.erplus.system.model.ShopModel;
 import com.hzltd.module.erplus.system.service.SystemShopService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 import org.springframework.validation.annotation.Validated;
 
 import java.math.BigDecimal;
@@ -69,6 +71,8 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
     private AdsManagerApiFactory adsManagerApiFactory;
     @Resource
     private SystemShopService systemShopService;
+    @Resource
+    private AdsBudgetBurnRateMapper budgetBurnRateMapper;
 
     /**
      * 广告计划状态流转规则
@@ -80,8 +84,17 @@ public class AdsCampaignServiceImpl implements AdsCampaignService {
     );
 
     @Override
-    public PageResult<AdsCampaignDO> getCampaignPage(AdsCampaignPageReqVO pageReqVO) {
-        return adsCampaignMapper.selectPage(pageReqVO);
+    public PageResult<AdsCampaignRespVO> getCampaignPage(AdsCampaignPageReqVO pageReqVO) {
+        PageResult<AdsCampaignDO> pageResult = adsCampaignMapper.selectPage(pageReqVO);
+        Map<String, AdsBudgetBurnRateDO> campaignBudgetRate = Maps.newHashMap();
+        if (pageResult != null && CollectionUtils.isNotEmpty(pageResult.getList())) {
+            List<AdsBudgetBurnRateDO> budgetBurnRates =  budgetBurnRateMapper.getCampaignBudgetRate(pageResult.getList().stream().map(AdsCampaignDO::getExternalId).toList());
+            budgetBurnRates.forEach(budget -> campaignBudgetRate.put(budget.getBudgetScopeId(), budget));
+        }
+
+        return BeanUtils.toBean(pageResult, AdsCampaignRespVO.class, vo -> {
+            vo.setBudgetBurnRate(campaignBudgetRate.get(vo.getExternalId()));
+        });
     }
 
     @Override

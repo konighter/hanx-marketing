@@ -80,7 +80,7 @@
           </div>
         </div>
         <el-button size="default" @click="$emit('openAdvancedFilter')">更多筛选</el-button>
-        <el-button size="default" class="!bg-gray-100 !border-gray-200" @click="$emit('reset')">重置</el-button>
+        
       </div>
     </div>
 
@@ -98,7 +98,7 @@
             </el-dropdown-menu>
           </template>
         </el-dropdown>
-        
+        <!--  
         <el-dropdown size="default">
           <el-button size="default">
             导入<Icon icon="ep:arrow-down" class="ml-1" />
@@ -134,13 +134,17 @@
             </el-dropdown-menu>
           </template>
         </el-dropdown>
+-->
       </div>
 
       <div class="flex items-center gap-2 text-gray-500">
-        <Icon icon="ep:refresh" class="cursor-pointer hover:text-blue-500" @click="emitSearch" />
-        <Icon icon="ep:question-filled" class="cursor-pointer hover:text-blue-500" />
-        <Icon icon="ep:download" class="cursor-pointer hover:text-blue-500" @click="$emit('export')" />
-        <Icon icon="ep:setting" class="cursor-pointer hover:text-blue-500" />
+
+        <!-- <Icon icon="ep:refresh" class="cursor-pointer hover:text-blue-500" @click="emitSearch" /> -->
+        <el-button size="default" type="primary" @click="emitSearch">查询</el-button>
+        <el-button size="default" class="!bg-gray-100 !border-gray-200" @click="$emit('reset')">重置</el-button>
+        <!-- <Icon icon="ep:question-filled" class="cursor-pointer hover:text-blue-500" /> -->
+        <!-- <Icon icon="ep:download" class="cursor-pointer hover:text-blue-500" @click="$emit('export')" /> -->
+        <!-- <Icon icon="ep:setting" class="cursor-pointer hover:text-blue-500" /> -->
       </div>
     </div>
   </ContentWrap>

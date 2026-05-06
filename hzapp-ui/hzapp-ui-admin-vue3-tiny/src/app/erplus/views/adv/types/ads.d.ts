@@ -31,6 +31,10 @@ export interface AdsCampaign {
   createTime?: string
   targetingType?: string // AUTO or MANUAL
   biddingStrategy?: string
+  budgetBurnRate?: {
+    budgetUsagePercentage: number
+    usageUpdatedTimestamp: string
+  }
   // Indices
   impressions?: number
   clicks?: number

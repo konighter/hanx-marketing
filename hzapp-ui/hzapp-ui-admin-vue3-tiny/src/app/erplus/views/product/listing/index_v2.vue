@@ -106,7 +106,7 @@
       <el-empty v-else description="暂无匹配商品，请调整筛选条件" />
       
       <!-- 分页栏 -->
-      <div class="mt-8 flex justify-center pb-20">
+      <div v-if="total > 0" class="mt-8 flex justify-center pb-20">
         <el-pagination
           v-model:current-page="queryParams.pageNo"
           v-model:page-size="queryParams.pageSize"
@@ -114,7 +114,7 @@
           :page-sizes="[12, 24, 48, 100]"
           layout="total, sizes, prev, pager, next, jumper"
           @size-change="handleQuery"
-          @current-change="handleQuery"
+          @current-change="getList"
           background
         />
       </div>
@@ -344,7 +344,7 @@ const clearSelection = () => {
 /** 同步逻辑 */
 const handleSingleSync = async (listing: ListingV2VO) => {
   try {
-    await message.confirm(`确定要同步商品 "${listing.title}" 吗？`)
+    await message.confirm(`确定要同步商品 "${listing.platformProductCode}" 吗？`)
     await CrossListingApi.syncPlatformListing({ 
       platformId: listing.platformId,
       shopId: listing.shopId,

@@ -3,7 +3,7 @@
     <!-- 1. 全局筛选器 (Date & Granularity) -->
     <div class="flex items-center justify-between mb-20px bg-[var(--el-bg-color)] p-15px rounded-8px shadow-sm border border-[var(--el-border-color-lighter)] sticky top-0 z-10">
       <div class="flex items-center gap-4">
-        <span class="font-bold text-16px">账户概览</span>
+        <!-- <span class="font-bold text-16px">账户概览</span> -->
         <el-date-picker
           v-model="localDateRange"
           type="daterange"

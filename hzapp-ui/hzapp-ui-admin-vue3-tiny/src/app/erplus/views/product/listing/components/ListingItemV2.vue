@@ -20,7 +20,7 @@
         <div class="min-w-0 pr-4">
           <div class="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-slate-500 flex items-center gap-1 leading-none mb-1">
              ID: {{ listing.platformProductCode }} 
-             <Icon icon="ep:copy-document" class="cursor-pointer hover:text-indigo-500" />
+             <Icon icon="ep:copy-document" class="cursor-pointer hover:text-indigo-500" @click.stop="handleCopy(listing.platformProductCode)" />
              <el-tooltip content="同步到对应店铺" placement="top">
                <Icon icon="ep:refresh" class="cursor-pointer hover:text-indigo-500 ml-1" @click.stop="$emit('sync', listing)" />
              </el-tooltip>
@@ -144,7 +144,7 @@
         :sales7d="performance.sales7d"
         :gmv30d="performance.gmv30d"
         :currency="currency"
-        :growth="12.5"
+        :growth="performance.sales7dGrowth || 0"
         :trend="performance.revenueCurve"
         :layout="viewMode === 'list' ? 'vertical' : 'horizontal'"
       />
@@ -169,6 +169,12 @@ const props = defineProps<{
 defineEmits(['select', 'sync', 'detail'])
 
 const platformMap = inject<Ref<Record<number, any>>>('platformMap')
+
+const handleCopy = (text: string) => {
+  if (!text) return
+  navigator.clipboard.writeText(text)
+  ElMessage.success('已复制: ' + text)
+}
 
 // --- Data Mapping (Provided by API) ---
 const currency = computed(() => props.listing.prices?.[0]?.currency || '$')
@@ -198,15 +204,17 @@ const getPlatformIcon = (id: number) => {
   if (dynamicLogo) return dynamicLogo
 }
 
-const getStatusColor = (status: string) => {
-  if (status === 'active' || status === '1') return 'bg-emerald-500'
-  if (status === 'pending' || status === '2') return 'bg-amber-500'
+const getStatusColor = (status: string | number) => {
+  const s = String(status)
+  if (s === 'active' || s === '1' || s === '19') return 'bg-emerald-500'
+  if (s === 'pending' || s === '10' || s === '2') return 'bg-amber-500'
   return 'bg-red-500'
 }
 
-const getStatusTextClass = (status: string) => {
-  if (status === 'active' || status === '1') return 'text-emerald-500 dark:text-emerald-400'
-  if (status === 'pending' || status === '2') return 'text-amber-500 dark:text-amber-400'
+const getStatusTextClass = (status: string | number) => {
+  const s = String(status)
+  if (s === 'active' || s === '1' || s === '19') return 'text-emerald-500 dark:text-emerald-400'
+  if (s === 'pending' || s === '10' || s === '2') return 'text-amber-500 dark:text-amber-400'
   return 'text-red-500 dark:text-red-400'
 }
 
