@@ -7,6 +7,7 @@
         v-loading="loading"
         :data="list"
         :stripe="true"
+        :border="true"
         :show-overflow-tooltip="true"
         @selection-change="handleSelectionChange"
         @filter-change="handleFilterChange"
@@ -53,9 +54,9 @@
                 link
                 type="primary"
                 class="ml-5px !p-0 h-auto"
-                @click="handleDetail(scope.row)"
+                @click="handleCopy(scope.row.externalId)"
               >
-                <Icon icon="ep:document" />
+                <Icon icon="ep:copy-document" />
               </el-button>
             </div>
           </div>
@@ -74,38 +75,58 @@
           <dict-tag :type="DICT_TYPE.AD_STATUS" :value="scope.row.status" />
         </template>
       </el-table-column>
-      <el-table-column label="预算" align="center" width="150" fixed="left">
+      <el-table-column label="预算" align="center" width="180" fixed="left">
         <template #default="scope">
-          <div class="flex items-center justify-center group">
-            <template v-if="budgetEditId === scope.row.id">
-              <el-input-number
-                v-model="budgetEditValue"
-                :precision="2"
-                :step="1"
-                size="small"
-                controls-position="right"
-                class="!w-90px"
-              />
-              <el-button link type="primary" class="ml-5px" @click="handleSaveBudget(scope.row)">
-                <Icon icon="ep:check" />
-              </el-button>
-              <el-button link @click="budgetEditId = undefined">
-                <Icon icon="ep:close" />
-              </el-button>
-            </template>
-            <template v-else>
-              <span class="text-13px">
-                {{ getBudgetTypeLabel(scope.row.budgetType) }} / {{ scope.row.dailyBudget || scope.row.totalBudget ? `$${scope.row.dailyBudget || scope.row.totalBudget}` : '-' }}
-              </span>
-              <el-button
-                link
-                type="primary"
-                class="ml-5px invisible group-hover:visible"
-                @click="handleEditBudget(scope.row)"
+          <div class="flex flex-col items-center w-full group">
+            <div class="flex items-center justify-center">
+              <template v-if="budgetEditId === scope.row.id">
+                <el-input-number
+                  v-model="budgetEditValue"
+                  :precision="2"
+                  :step="1"
+                  size="small"
+                  controls-position="right"
+                  class="!w-90px"
+                />
+                <el-button link type="primary" class="ml-5px" @click="handleSaveBudget(scope.row)">
+                  <Icon icon="ep:check" />
+                </el-button>
+                <el-button link @click="budgetEditId = undefined">
+                  <Icon icon="ep:close" />
+                </el-button>
+              </template>
+              <template v-else>
+                <span class="text-13px">
+                  {{ getBudgetTypeLabel(scope.row.budgetType) }} / {{ scope.row.dailyBudget || scope.row.totalBudget ? `$${scope.row.dailyBudget || scope.row.totalBudget}` : '-' }}
+                </span>
+                <el-button
+                  link
+                  type="primary"
+                  class="ml-5px invisible group-hover:visible"
+                  @click="handleEditBudget(scope.row)"
+                >
+                  <Icon icon="ep:edit" />
+                </el-button>
+              </template>
+            </div>
+            <div v-if="scope.row.budgetBurnRate && isSameDay(scope.row.budgetBurnRate.usageUpdatedTimestamp, new Date())" class="flex items-center w-full px-15px mt-2px">
+              <el-tooltip
+                placement="bottom"
+                :content="formatPast(scope.row.budgetBurnRate.usageUpdatedTimestamp)"
               >
-                <Icon icon="ep:edit" />
-              </el-button>
-            </template>
+                <div class="flex-1 mr-8px">
+                  <el-progress 
+                    :percentage="Math.min(scope.row.budgetBurnRate.budgetUsagePercentage || 0, 100)" 
+                    :status="(scope.row.budgetBurnRate.budgetUsagePercentage || 0) >= 100 ? 'exception' : ((scope.row.budgetBurnRate.budgetUsagePercentage || 0) >= 80 ? 'warning' : 'success')"
+                    :stroke-width="3"
+                    :show-text="false"
+                  />
+                </div>
+              </el-tooltip>
+              <span class="text-10px min-w-28px text-right text-[var(--el-text-color-secondary)]">
+                {{ (scope.row.budgetBurnRate.budgetUsagePercentage || 0).toFixed(0) }}%
+              </span>
+            </div>
           </div>
         </template>
       </el-table-column>
@@ -195,7 +216,7 @@
 </template>
 
 <script setup lang="ts">
-import { formatPast } from '@/utils/formatTime'
+import { formatPast, isSameDay } from '@/utils/formatTime'
 import { DICT_TYPE, ad_status } from '@/app/erplus/common/dict'
 import { AdsCampaignApi } from '@/app/erplus/api/adv/ads'
 import { AdsReportApi } from '@/app/erplus/api/adv/report'
@@ -254,6 +275,11 @@ const handleNameClick = (row: AdsCampaign) => {
   tableRef.value.clearSelection()
   tableRef.value.toggleRowSelection(row, true)
   handleDetail(row)
+}
+
+const handleCopy = (text: string) => {
+  navigator.clipboard.writeText(text)
+  ElMessage.success('已复制: ' + text)
 }
 
 const handleDetail = (row: AdsCampaign) => {
@@ -404,3 +430,40 @@ onMounted(() => {
   getList()
 })
 </script>
+
+<style scoped>
+/* 隐藏 Element Plus 自定义滚动条 */
+:deep(.el-scrollbar__bar.is-horizontal) {
+  display: none !important;
+}
+
+/* 隐藏原生滚动条并保持可滚动 */
+:deep(.el-scrollbar__wrap) {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+:deep(.el-scrollbar__wrap::-webkit-scrollbar) {
+  display: none; /* Chrome/Safari/Webkit */
+}
+
+/* 开启 border 以支持列宽调整，但通过 CSS 隐藏纵向边框，模拟无边框效果 */
+:deep(.el-table--border) {
+  border: none !important;
+}
+
+:deep(.el-table--border .el-table__inner-wrapper::after),
+:deep(.el-table--border::after),
+:deep(.el-table--border::before),
+:deep(.el-table__inner-wrapper::before) {
+  display: none !important;
+}
+
+:deep(.el-table--border .el-table__cell) {
+  border-right: none !important;
+}
+
+:deep(.el-table--border th.el-table__cell.is-leaf) {
+  border-bottom: 1px solid var(--el-table-border-color) !important;
+}
+</style>

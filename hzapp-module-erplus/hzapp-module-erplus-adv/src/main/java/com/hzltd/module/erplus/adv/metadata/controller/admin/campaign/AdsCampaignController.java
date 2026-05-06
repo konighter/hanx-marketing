@@ -44,8 +44,8 @@ public class AdsCampaignController {
     @Operation(summary = "获得广告计划分页")
     @PreAuthorize("@ss.hasPermission('erplus:adv-campaign:query')")
     public CommonResult<PageResult<AdsCampaignRespVO>> getCampaignPage(@Valid @RequestBody AdsCampaignPageReqVO pageReqVO) {
-        PageResult<AdsCampaignDO> pageResult = adsCampaignService.getCampaignPage(pageReqVO);
-        PageResult<AdsCampaignRespVO> result = BeanUtils.toBean(pageResult, AdsCampaignRespVO.class);
+        PageResult<AdsCampaignRespVO> result = adsCampaignService.getCampaignPage(pageReqVO);
+
         // 聚合属性数据
         if (result != null && !CollectionUtils.isEmpty(result.getList())) {
             result.getList().forEach(vo -> vo.setAttributes(adsCampaignService.getCampaignAttributes(vo.getId())));

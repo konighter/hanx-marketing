@@ -20,7 +20,7 @@
         <div class="min-w-0 pr-4">
           <div class="text-[10px] font-bold uppercase tracking-widest text-gray-400 dark:text-slate-500 flex items-center gap-1 leading-none mb-1">
              ID: {{ listing.platformProductCode }} 
-             <Icon icon="ep:copy-document" class="cursor-pointer hover:text-indigo-500" />
+             <Icon icon="ep:copy-document" class="cursor-pointer hover:text-indigo-500" @click.stop="handleCopy(listing.platformProductCode)" />
              <el-tooltip content="同步到对应店铺" placement="top">
                <Icon icon="ep:refresh" class="cursor-pointer hover:text-indigo-500 ml-1" @click.stop="$emit('sync', listing)" />
              </el-tooltip>
@@ -169,6 +169,12 @@ const props = defineProps<{
 defineEmits(['select', 'sync', 'detail'])
 
 const platformMap = inject<Ref<Record<number, any>>>('platformMap')
+
+const handleCopy = (text: string) => {
+  if (!text) return
+  navigator.clipboard.writeText(text)
+  ElMessage.success('已复制: ' + text)
+}
 
 // --- Data Mapping (Provided by API) ---
 const currency = computed(() => props.listing.prices?.[0]?.currency || '$')

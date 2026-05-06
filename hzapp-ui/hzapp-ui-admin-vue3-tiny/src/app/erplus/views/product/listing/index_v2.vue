@@ -344,7 +344,7 @@ const clearSelection = () => {
 /** 同步逻辑 */
 const handleSingleSync = async (listing: ListingV2VO) => {
   try {
-    await message.confirm(`确定要同步商品 "${listing.title}" 吗？`)
+    await message.confirm(`确定要同步商品 "${listing.platformProductCode}" 吗？`)
     await CrossListingApi.syncPlatformListing({ 
       platformId: listing.platformId,
       shopId: listing.shopId,

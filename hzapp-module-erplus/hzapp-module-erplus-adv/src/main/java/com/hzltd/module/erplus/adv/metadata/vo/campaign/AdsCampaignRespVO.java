@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.adv.metadata.vo.campaign;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.hzltd.module.erplus.adv.dal.dataobject.AdsBudgetBurnRateDO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 
@@ -77,5 +78,9 @@ public class AdsCampaignRespVO {
 
     @Schema(description = "扩展数据", example = "{\"platformConfig\": {}}")
     private Object extData;
+    /**
+     * 预算使用情况
+     */
+    private AdsBudgetBurnRateDO budgetBurnRate;
 
 }

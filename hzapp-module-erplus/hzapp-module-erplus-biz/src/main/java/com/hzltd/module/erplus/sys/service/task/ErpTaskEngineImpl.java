@@ -56,19 +56,13 @@ public class ErpTaskEngineImpl implements ErpTaskEngine {
         // 幂等检查
         ErpScheduleTaskDO existing = taskMapper.selectByUniqueId(request.getTaskUniqueId(), request.getTaskType());
         if (existing != null) {
-            // 如果任务已存在且未结束，返回现有ID
-            if (!ErpTaskStatus.isTerminal(existing.getStatus())) {
+            // 如果任务已存在且未结束 或者已经成功 ，返回现有ID, 如果失败了, 允许重新创建
+            if (!ErpTaskStatus.isFailed(existing.getStatus())) {
                 return existing.getId();
+            } else {
+                // 如果失败了, 删除历史任务，重新创建任务
+                taskMapper.deleteById(existing.getId());
             }
-            // 如果已结束（成功或失败），允许重新排期执行
-            existing.setStatus(ErpTaskStatus.PENDING.getStatus());
-            existing.setScheduledAt(request.getScheduledAt() != null ? request.getScheduledAt() : System.currentTimeMillis());
-            existing.setRetryCount(0);
-            existing.setErrorMessage(null);
-            existing.setFinishedAt(null);
-            existing.setStartedAt(null);
-            taskMapper.updateById(existing);
-            return existing.getId();
         }
 
         ErpScheduleTaskDO taskDO = ErpTaskConvert.INSTANCE.convert(request);

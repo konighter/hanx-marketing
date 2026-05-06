@@ -21,8 +21,12 @@ public class AdsReportQuerySqlProvider {
             throw new IllegalArgumentException("shopId must not be null for security isolation");
         }
 
-        boolean queryBatch = !req.getEndDate().isBefore(req.getStartDate()) && !req.getStartDate().isAfter(today.minusDays(1));
-        boolean queryStream = !req.getEndDate().isBefore(today);
+        LocalDate tMinus1 = today.minusDays(1);
+        LocalDate tMinus2 = today.minusDays(2);
+
+        // 判定逻辑：T-2及之前走 batch，T-1及之后走 stream
+        boolean queryBatch = !req.getStartDate().isAfter(tMinus2) && !req.getEndDate().isBefore(req.getStartDate());
+        boolean queryStream = !req.getEndDate().isBefore(tMinus1) && !req.getEndDate().isBefore(req.getStartDate());
 
         StringBuilder finalQuery = new StringBuilder();
         
@@ -48,8 +52,17 @@ public class AdsReportQuerySqlProvider {
             return "SELECT 1 WHERE 1=0";
         }
 
-        String batchSql = queryBatch ? buildBaseSql(req, "ads_report_batch", "report_date", dbMetricsToFetch) : "";
-        String streamSql = queryStream ? buildBaseSql(req, "ads_report_stream_realtime", "DATE(window_start_time)", dbMetricsToFetch) : "";
+        String batchSql = "";
+        if (queryBatch) {
+            LocalDate batchEnd = req.getEndDate().isBefore(tMinus2) ? req.getEndDate() : tMinus2;
+            batchSql = buildBaseSql(req, "ads_report_batch", "report_date", dbMetricsToFetch, req.getStartDate(), batchEnd);
+        }
+
+        String streamSql = "";
+        if (queryStream) {
+            LocalDate streamStart = req.getStartDate().isAfter(tMinus1) ? req.getStartDate() : tMinus1;
+            streamSql = buildBaseSql(req, "ads_report_stream_realtime", "DATE(window_start_time)", dbMetricsToFetch, streamStart, req.getEndDate());
+        }
 
         String unionSql = "";
         if (queryBatch && queryStream) {
@@ -91,7 +104,7 @@ public class AdsReportQuerySqlProvider {
         return finalQuery.toString();
     }
 
-    private String buildBaseSql(AdsReportQueryReqVO req, String table, String dateCol, Set<String> dbMetricsToFetch) {
+    private String buildBaseSql(AdsReportQueryReqVO req, String table, String dateCol, Set<String> dbMetricsToFetch, LocalDate startDate, LocalDate endDate) {
         StringBuilder sql = new StringBuilder();
         
         List<String> selects = new ArrayList<>();
@@ -119,8 +132,8 @@ public class AdsReportQuerySqlProvider {
         sql.append(" FROM ").append(table);
         sql.append(" WHERE shop_id = #{req.shopId} ");
         
-        sql.append(" AND ").append(dateCol).append(" >= #{req.startDate} ");
-        sql.append(" AND ").append(dateCol).append(" <= #{req.endDate} ");
+        sql.append(" AND ").append(dateCol).append(" >= '").append(startDate).append("' ");
+        sql.append(" AND ").append(dateCol).append(" <= '").append(endDate).append("' ");
 
         // 离线表需要根据维度自动路由 RecordType 以防止重复计算指标
         if ("ads_report_batch".equals(table)) {
