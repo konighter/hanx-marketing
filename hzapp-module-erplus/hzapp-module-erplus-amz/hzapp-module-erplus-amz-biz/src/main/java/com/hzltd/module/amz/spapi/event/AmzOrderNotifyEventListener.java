@@ -17,6 +17,7 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -100,10 +101,15 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
 
         // SKU 列表
         String skuList = "";
+        List<String> skus = new LinkedList<>();
         if (orderChange.getSummary() != null && orderChange.getSummary().getOrderItems() != null) {
-            skuList = orderChange.getSummary().getOrderItems().stream()
-                    .map(item -> item.getSellerSKU() + " x" + item.getQuantity())
-                    .collect(Collectors.joining(", "));
+            StringBuilder sb = new StringBuilder();
+            orderChange.getSummary().getOrderItems().forEach(item -> {
+                sb.append(item.getSellerSKU() + " x" + item.getQuantity()).append(",");
+                skus.add(item.getSellerSKU());
+            });
+
+            skuList = sb.substring(0, sb.length() -1);
         }
 
         // 详细信息
@@ -128,6 +134,7 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
         if (shop != null && shop.getTenantId() != null) {
             OrderChangeEvent event = OrderChangeEvent.builder()
                     .platformOrderId(amazonOrderId)
+                    .platformProductCode(skus)
                     .sellerId(sellerId)
                     .marketplaceId(marketplaceId)
                     .shopId(shop.getId())

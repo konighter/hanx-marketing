@@ -1,9 +1,9 @@
-package com.hzltd.module.erplus.system.dal.mysql;
+package com.hzltd.module.erplus.sys.dal.mysql.task;
 
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.framework.tenant.core.aop.TenantIgnore;
-import com.hzltd.module.erplus.system.dal.dataobject.ErpScheduleTaskDO;
+import com.hzltd.module.erplus.sys.dal.dataobject.task.ErpScheduleTaskDO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Collection;

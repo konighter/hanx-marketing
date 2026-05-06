@@ -1,6 +1,6 @@
-package com.hzltd.module.erplus.system.convert;
+package com.hzltd.module.erplus.sys.convert.job;
 
-import com.hzltd.module.erplus.system.dal.dataobject.ErpScheduleTaskDO;
+import com.hzltd.module.erplus.sys.dal.dataobject.task.ErpScheduleTaskDO;
 import com.hzltd.module.erplus.system.dto.ErpTaskDTO;
 import com.hzltd.module.erplus.system.dto.ErpTaskSubmitRequest;
 import org.mapstruct.Mapper;

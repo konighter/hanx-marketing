@@ -25,6 +25,7 @@ import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModel;
 import com.hzltd.module.erplus.spapi.model.authorization.AuthorizationModelV0;
 import com.hzltd.module.erplus.spapi.service.authorization.AuthorizationApi;
+import com.hzltd.module.erplus.system.enums.CountryTimezoneEnum;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import com.hzltd.module.erplus.system.model.PlatformAccountModel;
 import com.hzltd.module.erplus.system.model.ShopModel;
@@ -249,13 +250,14 @@ public class AmazonAuthService implements AuthorizationApi {
             if (!participation.isIsParticipating() || marketplace.getMarketplace().getName().startsWith("Non-")) {
                 return;
             }
-            ShopModel shop = ShopModel.builder().name(marketplace.getStoreName() + "[" + marketplace.getMarketplace().getName() + "]")
+            ShopModel shop = ShopModel.builder().name(marketplace.getStoreName() + "[" + marketplace.getMarketplace().getCountryCode() + "]")
                     .platform(CrossPlatformEnum.AMAZON.getValue())
                     .platformCode(CrossPlatformEnum.AMAZON.getCode())
                     .region(authorizationModel.getRegion())
                     .marketplace(marketplace.getMarketplace().getId())
                     .sellerId(authorizationModel.getSellerId())
                     .accountId(finalAccountId)
+                    .timezone(CountryTimezoneEnum.getTimezoneByCountryCode(marketplace.getMarketplace().getCountryCode()))
                     .language(marketplace.getMarketplace().getDefaultLanguageCode())
                     .currency(marketplace.getMarketplace().getDefaultCurrencyCode())
                     .countryCode(marketplace.getMarketplace().getCountryCode()).build();

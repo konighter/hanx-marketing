@@ -1,14 +1,7 @@
 package com.hzltd.module.erplus.adv.metadata.service.sync;
 
-import com.hzltd.module.erplus.adv.adapter.service.AdsReportApiFactory;
-
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportBatchDO;
-
-import com.hzltd.module.erplus.adv.dal.dataobject.AdsSyncTaskDO;
-import com.hzltd.module.erplus.adv.dal.mysql.AdsReportBatchMapper;
-
 import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
-import com.hzltd.module.erplus.system.api.ErpTaskEngine;
+import com.hzltd.module.erplus.system.service.ErpTaskEngine;
 import com.hzltd.module.erplus.system.dto.ErpTaskSubmitRequest;
 import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
@@ -23,7 +16,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Collections;
 import java.util.List;
 
 /**

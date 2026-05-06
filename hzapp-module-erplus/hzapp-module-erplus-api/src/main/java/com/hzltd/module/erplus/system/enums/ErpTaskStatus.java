@@ -1,4 +1,4 @@
-package com.hzltd.module.erplus.enums.system;
+package com.hzltd.module.erplus.system.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 亚马逊订单变更事件
@@ -19,9 +20,19 @@ import java.io.Serializable;
 public class OrderChangeEvent implements Serializable {
 
     /**
-     * 亚马逊订单号
+     * 平台订单号
      */
     private String platformOrderId;
+
+    /**
+     * 平台产品ID
+     */
+    private List<String> platformProductCode;
+
+    /**
+     * 卖家产品ID
+     */
+    private List<String> sellerSku;
 
     /**
      * 卖家 ID
