@@ -134,7 +134,7 @@ public class AmzOrderNotifyEventListener extends AbstractSpApiSqsListener {
         if (shop != null && shop.getTenantId() != null) {
             OrderChangeEvent event = OrderChangeEvent.builder()
                     .platformOrderId(amazonOrderId)
-                    .platformProductCode(skus)
+                    .sellerSku(skus)
                     .sellerId(sellerId)
                     .marketplaceId(marketplaceId)
                     .shopId(shop.getId())
