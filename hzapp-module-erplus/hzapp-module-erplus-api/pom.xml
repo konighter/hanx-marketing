@@ -16,6 +16,10 @@
         erp 模块 API，暴露给其它模块调用
     </description>
 
+    <properties>
+        <lack.version>2.6.1</lack.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.hzltd</groupId>
@@ -47,6 +51,12 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.larksuite.oapi</groupId>
+            <artifactId>oapi-sdk</artifactId>
+            <version>${lack.version}</version>
         </dependency>
 
         <dependency>

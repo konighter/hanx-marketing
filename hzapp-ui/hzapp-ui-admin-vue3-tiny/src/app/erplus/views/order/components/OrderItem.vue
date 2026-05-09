@@ -19,9 +19,14 @@
         </el-icon>
       </div>
       <div class="header-right flex items-center gap-15px">
-        <span class="order-time text-11px text-gray-400">
-          订单时间: {{ dateFormatter(order, {} as any, order.createTime) }}
-        </span>
+        <div class="order-time flex items-center gap-15px">
+          <span class="text-11px text-gray-400">
+            订单时间: {{ dateFormatter(order, {} as any, order.orderTime || order.createTime) }}
+          </span>
+          <span v-if="order.payedTime" class="text-11px text-gray-400">
+            支付时间: {{ dateFormatter(order, {} as any, order.payedTime) }}
+          </span>
+        </div>
         <el-button type="primary" link size="small" @click="toggleExpand">
           {{ expanded ? '收起' : '展开' }}
           <el-icon class="ml-2px" :class="{ 'rotate-180': expanded }">
@@ -83,7 +88,7 @@
 
       <!-- Quick Actions -->
       <div v-if="!expanded" class="quick-actions w-80px flex justify-end">
-        <el-tooltip content="同步并打印" placement="top">
+        <el-tooltip content="同步订单" placement="top">
           <el-button circle size="small" @click="onSync">
             <el-icon><Refresh /></el-icon>
           </el-button>
@@ -118,7 +123,12 @@
                     <el-image :src="item.mainImageUrl" class="w-40px h-40px rounded" fit="cover" />
                   </td>
                   <td class="py-8px">
-                    <div class="font-bold text-gray-700">{{ item.sellerSkuCode }}</div>
+                    <div class="font-bold text-gray-700">
+                      {{ item.sellerSkuCode }}
+                      <span v-if="item.platformProductCode" class="ml-4px text-11px font-normal text-gray-500">
+                        ({{ item.platformProductCode }})
+                      </span>
+                    </div>
                     <div class="text-11px text-gray-400 truncate w-180px" :title="item.title">{{ item.title }}</div>
                   </td>
                   <td class="py-8px text-center">{{ (item.itemPrice / 100).toFixed(2) }}</td>
@@ -295,13 +305,36 @@ const onSync = () => {
 }
 
 const copyOrderId = () => {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(props.order.platformOrderId).then(() => {
-      message.success('已复制到剪贴板')
+  const text = props.order.platformOrderId
+  if (!text) return
+  
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(() => {
+      message.success('已复制单号: ' + text)
     }).catch(() => {
-      message.error('复制失败')
+      copyToClipboardFallback(text)
     })
+  } else {
+    copyToClipboardFallback(text)
   }
+}
+
+const copyToClipboardFallback = (text: string) => {
+  const textarea = document.createElement('textarea')
+  textarea.value = text
+  textarea.style.position = 'fixed'
+  textarea.style.left = '-9999px'
+  textarea.style.top = '0'
+  document.body.appendChild(textarea)
+  textarea.focus()
+  textarea.select()
+  try {
+    document.execCommand('copy')
+    message.success('已复制单号: ' + text)
+  } catch (err) {
+    message.error('复制失败')
+  }
+  document.body.removeChild(textarea)
 }
 </script>
 

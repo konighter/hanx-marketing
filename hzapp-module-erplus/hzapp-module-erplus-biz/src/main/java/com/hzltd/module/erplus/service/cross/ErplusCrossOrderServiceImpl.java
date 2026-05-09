@@ -16,6 +16,7 @@ import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderItemDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossProductDO;
 import com.hzltd.module.erplus.dal.dataobject.sellplatform.SellPlatformDO;
 import com.hzltd.module.erplus.dal.dataobject.shop.ShopDO;
+import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossOrderAddressMapper;
 import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossOrderItemMapper;
 import com.hzltd.module.erplus.dal.mysql.cross.ErpCrossOrderMapper;
 import com.hzltd.module.erplus.service.sellplatform.SellPlatformService;
@@ -25,8 +26,10 @@ import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import com.hzltd.module.erplus.spapi.model.common.FeeModel;
 import com.hzltd.module.erplus.spapi.model.order.GetOrdersRequest;
 import com.hzltd.module.erplus.spapi.model.order.OrderFeeRequest;
+import com.hzltd.module.erplus.spapi.model.order.BuyerInfoModel;
 import com.hzltd.module.erplus.spapi.model.order.OrderItemModel;
 import com.hzltd.module.erplus.spapi.model.order.OrderModel;
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderAddressDO;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +54,9 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
 
     @Resource
     private ErpCrossOrderItemMapper crossOrderItemMapper;
+    
+    @Resource
+    private ErpCrossOrderAddressMapper crossOrderAddressMapper;
 
     @Resource
     private ErplusCrossProductService crossProductService;
@@ -151,6 +157,11 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
         crossOrderMapper.insertOrUpdate(crossOrderDO);
         Long crossOrderId = crossOrderDO.getId();
 
+        // 保存买家信息
+        if (orderModel.getBuyerInfo() != null) {
+            saveOrUpdateCrossOrderAddress(orderModel.getBuyerInfo(), crossOrderId, orderModel.getOrderId());
+        }
+
         // 调用销售平台的订单接口，同步订单项
         orderModel.getOrderItems().forEach(orderItemModel -> saveOrUpdateCrossOrderItem(orderItemModel, platformId, shopId, crossOrderId));
 
@@ -174,6 +185,18 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
         dealOrderItemFee(crossOrderItemDO);
         crossOrderItemMapper.insertOrUpdate(crossOrderItemDO);
 
+    }
+
+    private void saveOrUpdateCrossOrderAddress(BuyerInfoModel buyerInfo, Long crossOrderId, String platformOrderId) {
+        CrossOrderAddressDO addressDO = crossOrderAddressMapper.selectByOrderId(crossOrderId);
+        if (addressDO == null) {
+            addressDO = CrossOrderConvert.INSTANCE.convert(buyerInfo);
+            addressDO.setOrderId(crossOrderId);
+            addressDO.setPlatformOrderId(platformOrderId);
+        } else {
+            addressDO = CrossOrderConvert.INSTANCE.update(buyerInfo, addressDO);
+        }
+        crossOrderAddressMapper.insertOrUpdate(addressDO);
     }
 
 

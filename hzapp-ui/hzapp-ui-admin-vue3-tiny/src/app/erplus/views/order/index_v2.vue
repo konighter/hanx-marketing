@@ -14,14 +14,18 @@
         </el-form-item>
         <el-form-item label="配送" prop="fulfillType">
           <el-select v-model="queryParams.fulfillType" placeholder="全部" clearable class="!w-120px">
-            <el-option label="FBA (平台发货)" :value="1" />
-            <div v-if="queryParams.platformId === 3">
-               <el-option label="FBM (卖家自发货)" :value="2" />
-            </div>
+            <el-option label="FBA (平台发货)" :value="2" />
+            <el-option label="FBM (卖家自发货)" :value="1" />
           </el-select>
         </el-form-item>
-        <el-form-item label="SKU" prop="sellerProductCode">
-          <el-input v-model="queryParams.sellerProductCode" placeholder="输入本地/买家SKU" clearable class="!w-180px" />
+        <el-form-item label="SKU" prop="sellerSkuCode">
+          <el-input v-model="queryParams.sellerSkuCode" placeholder="输入本地/买家SKU" clearable class="!w-180px" />
+        </el-form-item>
+        <el-form-item label="产品ID" prop="platformProductCode">
+          <el-input v-model="queryParams.platformProductCode" placeholder="平台商品ID(ASIN等)" clearable class="!w-180px" />
+        </el-form-item>
+        <el-form-item label="单号" prop="platformOrderId">
+          <el-input v-model="queryParams.platformOrderId" placeholder="请输入平台订单号" clearable class="!w-180px" />
         </el-form-item>
         <el-form-item label="日期" prop="createTimeRange">
           <el-date-picker
@@ -34,18 +38,15 @@
             class="!w-240px"
           />
         </el-form-item>
-        <el-form-item label="单号" prop="orderId">
-          <el-input v-model="queryParams.orderId" placeholder="请输入平台订单号" clearable class="!w-180px" />
-        </el-form-item>
         
         <el-form-item>
-          <el-button @click="handleQuery" type="primary" size="small">
+          <el-button @click="handleQuery" type="primary">
             <Icon icon="ep:search" class="mr-5px" /> 搜索
           </el-button>
-          <el-button @click="resetQuery" size="small">
+          <el-button @click="resetQuery">
             <Icon icon="ep:refresh" class="mr-5px" /> 重置
           </el-button>
-          <el-button @click="handSync" type="success" plain size="small">
+          <el-button @click="handSync" type="success" plain>
             <Icon icon="ep:refresh" class="mr-5px" /> 同步订单
           </el-button>
         </el-form-item>
@@ -164,9 +165,13 @@ const queryParams = reactive({
   pageSize: 20,
   platformId: undefined,
   shopId: undefined,
+  marketId: undefined,
   fulfillType: undefined,
-  sellerProductCode: undefined,
-  orderId: undefined,
+  sellerSkuCode: undefined,
+  platformProductCode: undefined,
+  platformOrderId: undefined,
+  title: undefined,
+  keyword: undefined,
   createTimeRange: [],
   status: undefined
 })
@@ -282,9 +287,22 @@ const handleTabChange = (name: any) => {
 }
 
 /** 业务操作 */
-const handleSingleSync = () => {
-  // 这里可以调用单个同步接口，或者复用同步弹窗
-  handSync()
+const handleSingleSync = async (order: any) => {
+  try {
+    loading.value = true
+    await OrderApi.syncCrossOrders({
+       platformId: order.platformId,
+       shopId: order.shopId,
+       syncType: 'order',
+       platformOrderIds: [order.platformOrderId]
+    })
+    message.success('同步提交成功')
+    await getList()
+  } catch (err) {
+    console.error(err)
+  } finally {
+    loading.value = false
+  }
 }
 
 const handleBatchSync = async () => {

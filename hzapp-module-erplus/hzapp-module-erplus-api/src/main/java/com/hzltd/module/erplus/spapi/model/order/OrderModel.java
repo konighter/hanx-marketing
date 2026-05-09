@@ -31,6 +31,16 @@ public class OrderModel {
     private String orderType;
 
     /**
+     * 下单时间的时间戳
+     */
+    private Long orderTime;
+
+    /**
+     * 支付时间的时间戳
+     */
+    private Long payTime;
+
+    /**
      * 交付类型
      */
     private FulfillTypeEnum fulfillmentType;
@@ -102,5 +112,10 @@ public class OrderModel {
       * 订单商品列表
       */
     private List<OrderItemModel> orderItems;
+
+    /**
+     * 买家信息
+     */
+    private BuyerInfoModel buyerInfo;
 
 }

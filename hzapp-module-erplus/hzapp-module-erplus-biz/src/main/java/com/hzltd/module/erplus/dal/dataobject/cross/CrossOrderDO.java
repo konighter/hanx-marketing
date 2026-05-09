@@ -67,6 +67,15 @@ public class CrossOrderDO extends BaseDO {
      */
     private String orderType;
     /**
+     * 下单时间戳
+     */
+    private Long orderTime;
+
+    /**
+     * 支付时间戳
+     */
+    private Long payedTime;
+    /**
      * 销售渠道
      */
     private String saleChannel;

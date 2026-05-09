@@ -1,7 +1,9 @@
 package com.hzltd.module.erplus.convert.cross;
 
+import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderAddressDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderItemDO;
+import com.hzltd.module.erplus.spapi.model.order.BuyerInfoModel;
 import com.hzltd.module.erplus.spapi.model.order.OrderItemModel;
 import com.hzltd.module.erplus.spapi.model.order.OrderModel;
 import org.mapstruct.Mapper;
@@ -29,6 +31,8 @@ public interface CrossOrderConvert {
         crossOrderDO.setSaleChannel(orderModel.getSalesChannel());
         crossOrderDO.setIsPrime(orderModel.getIsPrime());
         crossOrderDO.setIsBusiness(orderModel.getIsBusiness());
+        crossOrderDO.setOrderTime(orderModel.getOrderTime());
+        crossOrderDO.setPayedTime(orderModel.getPayTime());
         crossOrderDO.setCreateTime(orderModel.getCreateTime());
         crossOrderDO.setUpdateTime(orderModel.getUpdateTime());
         return crossOrderDO;
@@ -61,6 +65,24 @@ public interface CrossOrderConvert {
                 .setPointsAsMoney(orderItemModel.getPointsAsMoney());
 
         return crossOrderItemDO;
+    }
+
+
+    default CrossOrderAddressDO convert(BuyerInfoModel buyerInfoModel) {
+        CrossOrderAddressDO addressDO = new CrossOrderAddressDO();
+        return update(buyerInfoModel, addressDO);
+    }
+
+    default CrossOrderAddressDO update(BuyerInfoModel buyerInfoModel, CrossOrderAddressDO addressDO) {
+        addressDO.setName(buyerInfoModel.getName());
+        addressDO.setEmail(buyerInfoModel.getEmail());
+        addressDO.setPhone(buyerInfoModel.getPhone());
+        addressDO.setCountry(buyerInfoModel.getCountry());
+        addressDO.setCity(buyerInfoModel.getCity());
+        addressDO.setStateOrRegion(buyerInfoModel.getStateOrRegion());
+        addressDO.setPostalCode(buyerInfoModel.getPostalCode());
+        addressDO.setAddress(buyerInfoModel.getAddress());
+        return addressDO;
     }
 
 

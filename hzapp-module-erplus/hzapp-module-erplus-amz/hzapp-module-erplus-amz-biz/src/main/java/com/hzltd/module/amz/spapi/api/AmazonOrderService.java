@@ -9,6 +9,7 @@ import com.hzltd.module.erplus.spapi.enums.CrossOrderStatus;
 import com.hzltd.module.erplus.spapi.enums.FulfillTypeEnum;
 import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;
+import com.hzltd.module.erplus.spapi.model.order.BuyerInfoModel;
 import com.hzltd.module.erplus.spapi.model.order.GetOrdersRequest;
 import com.hzltd.module.erplus.spapi.model.order.OrderItemModel;
 import com.hzltd.module.erplus.spapi.model.order.OrderModel;
@@ -63,9 +64,9 @@ public class AmazonOrderService extends AbsAmzPlatformApiService implements Orde
             // 使用店铺时区解析时间，前端传入的 LocalDateTime 应视为店铺当地时间
             String timezone = StringUtils.isNotEmpty(request.getTimeZone()) ? request.getTimeZone() : "UTC";
             ZoneId shopZone = ZoneId.of(timezone);
-            OffsetDateTime start = ordersRequest.getCreateTimeStart() == null ? null :ordersRequest.getCreateTimeStart().atZone(shopZone).toOffsetDateTime().withNano(0);
+            OffsetDateTime start = ordersRequest.getCreateTimeStart() == null ? null : ordersRequest.getCreateTimeStart().atZone(shopZone).toOffsetDateTime().withNano(0);
             OffsetDateTime maxCreateBefore = OffsetDateTime.now(shopZone).minusMinutes(5).withNano(0);
-            OffsetDateTime end =  ordersRequest.getCreateTimeEnd() == null ? maxCreateBefore : ordersRequest.getCreateTimeEnd().atZone(shopZone).toOffsetDateTime().withNano(0);
+            OffsetDateTime end = ordersRequest.getCreateTimeEnd() == null ? maxCreateBefore : ordersRequest.getCreateTimeEnd().atZone(shopZone).toOffsetDateTime().withNano(0);
 
             // 结束时间限制为当前时间减5分钟（使用店铺时区计算"当前时间"）
             if (end.isAfter(maxCreateBefore)) {
@@ -124,7 +125,6 @@ public class AmazonOrderService extends AbsAmzPlatformApiService implements Orde
     }
 
 
-
     @Override
     @CrossplatformApiLog
     public ApiResponse<OrderModel> getOrder(ApiRequest<String> request) {
@@ -160,13 +160,28 @@ public class AmazonOrderService extends AbsAmzPlatformApiService implements Orde
                 .setOrderStatus(CrossOrderStatus.of(amazonOrder.getOrderStatus().getValue()))
                 .setOrderType(amazonOrder.getOrderType().getValue())
                 .setFulfillmentType(Order.FulfillmentChannelEnum.AFN.equals(amazonOrder.getFulfillmentChannel()) ? FulfillTypeEnum.FBA : FulfillTypeEnum.FBM)
+                .setOrderTime(DateUtil.parse(amazonOrder.getPurchaseDate()).getTime())
                 .setCreateTime(DateUtil.parse(amazonOrder.getPurchaseDate()).toLocalDateTime())
                 .setUpdateTime(DateUtil.parse(amazonOrder.getLastUpdateDate()).toLocalDateTime());
 
+        if (Order.OrderStatusEnum.SHIPPED.equals(amazonOrder.getOrderStatus())) {
+            amzOrderModel.setPayTime(DateUtil.parse(amazonOrder.getLastUpdateDate()).getTime());
+        }
 
         if (amazonOrder.getOrderTotal() != null) {
             amzOrderModel.setCurrency(amazonOrder.getOrderTotal().getCurrencyCode())
                     .setTotalAmount(new BigDecimal(amazonOrder.getOrderTotal().getAmount()).multiply(BigDecimal.valueOf(100)).intValue());
+        }
+        if (amazonOrder.getShippingAddress() != null) {
+            Address address = amazonOrder.getShippingAddress();
+            amzOrderModel.setBuyerInfo(new BuyerInfoModel()
+                    .setName(address.getName())
+                    .setPhone(address.getPhone())
+                    .setCountry(address.getCountryCode())
+                    .setCity(address.getCity())
+                    .setStateOrRegion(address.getStateOrRegion())
+                    .setPostalCode(address.getPostalCode())
+                    .setAddress(StringUtils.joinWith("\n", address.getAddressLine1(), address.getAddressLine2(), address.getAddressLine3())));
         }
 
         return amzOrderModel;

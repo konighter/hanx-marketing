@@ -23,9 +23,13 @@ public class CrossOrderPageRequest extends PageParam {
 
     private String platformOrderId;
 
-    private String sellerSku;
+    private String sellerSkuCode;
 
     private String platformProductCode;
+
+    private String title;
+
+    private String keyword;
 
     private Integer status;
 
@@ -36,6 +40,10 @@ public class CrossOrderPageRequest extends PageParam {
     private LocalDateTime updateTimeStart;
 
     private LocalDateTime updateTimeEnd;
+
+    private Long orderTimeStart;
+
+    private Long orderTimeEnd;
 
     private String[] createTimeRange;
 
@@ -56,14 +64,16 @@ public class CrossOrderPageRequest extends PageParam {
     }
 
     public void setCreateTimeRange(String[] createTimeRange) {
-        if (createTimeRange == null) {
+        if (createTimeRange == null || createTimeRange.length == 0) {
             return;
         }
-        if (createTimeRange.length == 2) {
+        if (createTimeRange.length >= 1) {
             this.createTimeStart = DateUtil.parseLocalDateTime(createTimeRange[0]);
+            this.orderTimeStart = DateUtil.parse(createTimeRange[0]).getTime();
+        }
+        if (createTimeRange.length >= 2) {
             this.createTimeEnd = DateUtil.parseLocalDateTime(createTimeRange[1]);
-        } else if (createTimeRange.length == 1) {
-            this.createTimeStart = DateUtil.parseLocalDateTime(createTimeRange[0]);
+            this.orderTimeEnd = DateUtil.parse(createTimeRange[1]).getTime();
         }
     }
 

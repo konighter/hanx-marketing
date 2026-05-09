@@ -1,5 +1,6 @@
 package com.hzltd.module.erplus.dal.mysql.cross;
 
+import cn.hutool.core.util.StrUtil;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
@@ -23,9 +24,19 @@ public interface ErpCrossOrderMapper extends BaseMapperX<CrossOrderDO> {
                 .eqIfPresent(CrossOrderDO::getFulfillType, reqVO.getFulfillType())
                 .eqIfPresent(CrossOrderDO::getPlatformOrderId, reqVO.getPlatformOrderId())
                 .eqIfPresent(CrossOrderDO::getStatus, reqVO.getStatus())
-                .betweenIfPresent(CrossOrderDO::getCreateTime, reqVO.getCreateTimeRange())
+                .inIfPresent(CrossOrderDO::getId, reqVO.getOrderIds())
+                .betweenIfPresent(CrossOrderDO::getOrderTime, reqVO.getOrderTimeStart(), reqVO.getOrderTimeEnd())
                 .betweenIfPresent(CrossOrderDO::getUpdateTime, reqVO.getUpdateTimeRange())
-                .orderByDesc(CrossOrderDO::getCreateTime));
+                .apply(StrUtil.isNotEmpty(reqVO.getSellerSkuCode()),
+                        "id IN (SELECT order_id FROM erplus_cross_order_item WHERE seller_sku_code LIKE CONCAT('%', {0}, '%'))",
+                        reqVO.getSellerSkuCode())
+                .apply(StrUtil.isNotEmpty(reqVO.getPlatformProductCode()),
+                        "id IN (SELECT order_id FROM erplus_cross_order_item WHERE platform_product_code LIKE CONCAT('%', {0}, '%'))",
+                        reqVO.getPlatformProductCode())
+                .apply(StrUtil.isNotEmpty(reqVO.getTitle()),
+                        "id IN (SELECT order_id FROM erplus_cross_order_item WHERE title LIKE CONCAT('%', {0}, '%'))",
+                        reqVO.getTitle())
+                .orderByDesc(CrossOrderDO::getOrderTime));
     }
 
 }
