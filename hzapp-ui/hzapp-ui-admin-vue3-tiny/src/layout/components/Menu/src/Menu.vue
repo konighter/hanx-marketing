@@ -138,7 +138,6 @@ $prefix-cls: #{$namespace}-menu;
     background: var(--left-menu-bg-color);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
-    border-right: var(--glass-border);
   }
 
   // 水平（顶栏）模式透明

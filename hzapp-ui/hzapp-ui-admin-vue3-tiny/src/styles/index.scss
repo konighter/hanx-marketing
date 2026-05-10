@@ -84,8 +84,12 @@
   background: var(--top-header-bg-color);
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
-  border-bottom: var(--glass-border);
+  border-bottom: 1px solid var(--top-tool-border-color);
   box-shadow: var(--glass-shadow);
+}
+
+.header-border-bottom {
+  border-bottom: 1px solid var(--top-tool-border-color);
 }
 
 .glass-tags {
