@@ -13,7 +13,7 @@ import {
 } from '@/utils/auth'
 import errorCode from './errorCode'
 
-import { resetRouter } from '@/router'
+import router, { resetRouter } from '@/router'
 import { deleteUserCache } from '@/hooks/web/useCache'
 import { ApiEncrypt } from '@/utils/encrypt'
 
@@ -191,6 +191,12 @@ service.interceptors.response.use(
           })
         })
       }
+    } else if (code === 430) {
+      ElMessage.warning(msg)
+      setTimeout(() => {
+        router.push({ path: '/tenant/select' })
+      }, 3000)
+      return Promise.reject(new Error(msg))
     } else if (code === 500) {
       ElMessage.error(t('sys.api.errMsg500'))
       return Promise.reject(new Error(msg))

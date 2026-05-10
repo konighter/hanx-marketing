@@ -8,7 +8,11 @@
           您当前尚未选择进入的组织。您可以选择一个已存在的组织，或者创建一个新的组织。
         </p>
         <div class="mt-auto">
-          <el-button color="#ffffff" plain class="w-full" @click="goToProfile">
+          <el-button 
+            type="primary" 
+            class="w-full !bg-white !text-blue-600 hover:!bg-blue-50 border-none h-11 font-bold" 
+            @click="goToProfile"
+          >
             <Icon icon="ep:user" class="mr-2" />
             前往个人中心
           </el-button>
@@ -47,7 +51,6 @@
                   </div>
                   <div>
                     <h4 class="font-medium text-gray-800">{{ tenant.name }}</h4>
-                    <p class="text-xs text-gray-400">ID: {{ tenant.id }}</p>
                   </div>
                 </div>
                 <Icon icon="ep:arrow-right" class="text-gray-300 group-hover:text-blue-500 transition-colors" />
@@ -56,21 +59,33 @@
           </el-tab-pane>
 
           <el-tab-pane label="创建新组织" name="create">
-            <div class="pt-4 pb-4 px-2">
-              <el-alert
-                title="创建组织需要相关资质与信息，该功能暂未对所有用户全量开放。相关管理员需审批通过后生效。"
-                type="info"
-                show-icon
-                class="mb-6"
-                :closable="false"
-              />
-              
-              <div class="text-center py-6">
-                <!-- 预留以后可用的组件 -->
-                <el-button type="primary" size="large" @click="goToCreateTenant" class="w-full max-w-[200px]">
-                  开始创建组织
-                </el-button>
+            <div class="pt-4 pb-4 px-2 min-h-64 flex flex-col justify-center">
+              <div v-if="pendingApply" class="w-full bg-blue-50 p-6 rounded-2xl border border-blue-100 flex flex-col items-center">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                  <Icon icon="ep:clock" class="text-blue-600" :size="32" />
+                </div>
+                <h4 class="text-lg font-bold text-gray-800 mb-2">申请审批中</h4>
+                <p class="text-sm text-gray-500 text-center mb-2">
+                  您提交的企业申请 <span class="text-blue-600 font-semibold">“{{ pendingApply.name }}”</span> 正在审批中。
+                </p>
+                <el-tag type="info">待审批</el-tag>
               </div>
+              
+              <template v-else>
+                <el-alert
+                  title="创建组织需要相关资质与信息，该功能暂未对所有用户全量开放。相关管理员需审批通过后生效。"
+                  type="info"
+                  show-icon
+                  class="mb-6"
+                  :closable="false"
+                />
+                
+                <div class="text-center py-6">
+                  <el-button type="primary" size="large" @click="goToCreateTenant" class="w-full max-w-[200px]">
+                    开始创建组织
+                  </el-button>
+                </div>
+              </template>
             </div>
           </el-tab-pane>
 
@@ -117,8 +132,10 @@ import { ref, onMounted, reactive } from 'vue'
 import { useRouter, useRoute } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { setTenantId } from '@/utils/auth'
+import { deleteUserCache } from '@/hooks/web/useCache'
 import { ElMessage } from 'element-plus'
 import * as TenantInviteApi from '@/api/system/tenant/invite'
+import * as TenantApplyApi from '@/api/system/tenantApply'
 
 defineOptions({ name: 'TenantSelect' })
 
@@ -135,6 +152,8 @@ const joinForm = reactive({
   inviteCode: ''
 })
 
+const pendingApply = ref<any>(null)
+
 const fetchTenants = async () => {
   loading.value = true
   try {
@@ -150,12 +169,26 @@ const fetchTenants = async () => {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   fetchTenants()
   // 检查 URL 中是否有邀请码
   if (route.query.inviteCode) {
     joinForm.inviteCode = route.query.inviteCode as string
     activeTab.value = 'join'
+  }
+  // 检查是否需要激活“创建组织” Tab
+  if (route.query.type === 'create') {
+    activeTab.value = 'create'
+  }
+  // 获取申请状态
+  try {
+    const applyList = await TenantApplyApi.getMyTenantApplyList()
+    if (applyList && applyList.length > 0) {
+      // 找到待审批的记录
+      pendingApply.value = applyList.find((a: any) => a.status === 0)
+    }
+  } catch (e) {
+    console.error('获取申请列表失败', e)
   }
 })
 
@@ -180,12 +213,14 @@ const enterTenant = async (id: number) => {
     setTenantId(id)
     ElMessage.success('成功进入组织')
     
-    // 清空现有路由权限缓存，让 permission.ts 重新拉取该组合下的路由和信息
+    // 清空现有路由权限缓存，让 permission.ts 重新拉取该租户下的路由和信息
+    deleteUserCache()
     userStore.resetState()
     userStore.isSetUser = false
     
     // 强制跳转主页从而经过拦截器
-    window.location.href = '/'
+    const redirect = route.query.redirect as string || '/'
+    window.location.href = redirect
   } catch (err) {
     ElMessage.error('进入失败，请重试')
   }
@@ -197,7 +232,7 @@ const handleLogout = async () => {
 }
 
 const goToProfile = () => {
-  router.push('/user/profile')
+  router.push({name: 'UserProfile'})
 }
 
 const goToCreateTenant = () => {

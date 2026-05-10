@@ -2,7 +2,8 @@ import request from '@/config/axios'
 
 export interface TenantInviteVO {
   inviteeMobile: string
-  expireTime: string
+  inviteeEmail: string
+  expireTime: number | string
 }
 
 export interface TenantInviteRespVO {
@@ -10,10 +11,11 @@ export interface TenantInviteRespVO {
   tenantId: number
   tenantName: string
   inviteeMobile: string
+  inviteeEmail: string
   inviteCode: string
   status: number
-  expireTime: string
-  createTime: string
+  expireTime: number | string
+  createTime: number | string
 }
 
 // 创建租户邀请

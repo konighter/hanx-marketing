@@ -47,7 +47,7 @@ const loginOut = async () => {
   } catch {}
 }
 const toProfile = async () => {
-  push('/user/profile')
+  push({name: 'UserProfile'})
 }
 const toDocument = () => {
   window.open('https://doc.h2z.ltd/')

@@ -68,9 +68,23 @@
   <ContentWrap>
     <el-table v-loading="loading" :data="list" @selection-change="handleRowCheckboxChange">
       <el-table-column type="selection" width="55" />
-      <el-table-column label="套餐编号" align="center" prop="id" width="120" />
+      <el-table-column label="套餐编号" align="center" prop="id" width="100" />
       <el-table-column label="套餐名" align="center" prop="name" />
-      <el-table-column label="状态" align="center" prop="status" width="100">
+      <el-table-column label="价格 (元/月)" align="center" prop="price">
+        <template #default="scope">
+          {{ (scope.row.price / 100).toFixed(2) }}
+        </template>
+      </el-table-column>
+      <el-table-column label="有效期" align="center" prop="validityCount" width="100">
+        <template #default="scope">
+          <span v-if="scope.row.validityCount != null">
+            {{ scope.row.validityCount }}
+            {{ scope.row.validityUnit === 1 ? '天' : scope.row.validityUnit === 2 ? '月' : '年' }}
+          </span>
+          <span v-else>-</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center" prop="status" width="80">
         <template #default="scope">
           <dict-tag :type="DICT_TYPE.COMMON_STATUS" :value="scope.row.status" />
         </template>

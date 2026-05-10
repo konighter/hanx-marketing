@@ -1,7 +1,7 @@
 import router from './router'
 import type { RouteRecordRaw } from 'vue-router'
 import { isRelogin } from '@/config/axios/service'
-import { getAccessToken } from '@/utils/auth'
+import { getAccessToken, getTenantId } from '@/utils/auth'
 import { useTitle } from '@/hooks/web/useTitle'
 import { useNProgress } from '@/hooks/web/useNProgress'
 import { usePageLoading } from '@/hooks/web/usePageLoading'
@@ -97,18 +97,40 @@ router.beforeEach(async (to, from, next) => {
         const nextData = to.path === redirectPath ? { ...to, replace: true } : { path: redirectPath, query }
         
         // 路由白名单和特殊允许无租户访问的个人中心页面
-        const noTenantWhiteList = [...whiteList, '/user/profile', '/user/notify-message']
+        const noTenantWhiteList = [...whiteList, '/user/profile', '/user/profile2', '/profile', '/user/notify-message']
         
-        // 如果没有租户，且不在无租户白名单中，强制跳转到租户选择/创建页
-        if (userStore.getTenants.length === 0 && !noTenantWhiteList.includes(to.path)) {
-          next({ path: '/tenant/select', query: to.query })
+        // 校验租户：如果启用了租户，且没有选择租户，则强制跳转到租户选择页
+        if (import.meta.env.VITE_APP_TENANT_ENABLE === 'true') {
+          const tenants = userStore.getTenants
+          const tenantId = getTenantId()
+          // 情况一：用户完全没有租户
+          if (tenants.length === 0 && !noTenantWhiteList.includes(to.path)) {
+            next({ path: '/tenant/select', query: { ...to.query, type: 'create' } })
+            return
+          }
+          // 情况二：用户有多个租户，但尚未选择租户 (如果是从登录页跳转来的，或者刷新页面)
+          // 注意：排除白名单，防止死循环
+          if (tenants.length > 0 && !tenantId && !noTenantWhiteList.includes(to.path)) {
+            next({ path: '/tenant/select', query: { redirect: to.fullPath } })
+            return
+          }
+        }
+
+        if (whiteList.includes(to.path)) {
+          next()
         } else {
           next(nextData)
         }
       } else {
-        const noTenantWhiteList = [...whiteList, '/user/profile', '/user/notify-message']
-        if (userStore.getTenants.length === 0 && !noTenantWhiteList.includes(to.path)) {
-          next({ path: '/tenant/select', query: to.query })
+        const noTenantWhiteList = [...whiteList, '/user/profile', '/user/profile2', '/profile', '/user/notify-message']
+        if (import.meta.env.VITE_APP_TENANT_ENABLE === 'true') {
+          const tenants = userStore.getTenants
+          const tenantId = getTenantId()
+          if ((tenants.length === 0 || (tenants.length > 0 && !tenantId)) && !noTenantWhiteList.includes(to.path)) {
+            next({ path: '/tenant/select', query: { ...to.query, type: tenants.length === 0 ? 'create' : undefined } })
+          } else {
+            next()
+          }
         } else {
           next()
         }

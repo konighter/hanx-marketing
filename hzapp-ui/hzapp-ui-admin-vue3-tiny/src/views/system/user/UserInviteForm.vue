@@ -10,6 +10,9 @@
       <el-form-item label="受邀人手机号" prop="inviteeMobile">
         <el-input v-model="formData.inviteeMobile" placeholder="请输入受邀人手机号" />
       </el-form-item>
+      <el-form-item label="受邀人邮箱" prop="inviteeEmail">
+        <el-input v-model="formData.inviteeEmail" placeholder="请输入受邀人邮箱" />
+      </el-form-item>
       <el-form-item label="有效期" prop="expireTime">
         <el-date-picker
           v-model="formData.expireTime"
@@ -60,10 +63,15 @@ const dialogTitle = ref('邀请用户加入组织') // 弹窗的标题
 const formLoading = ref(false) // 表单的加载中
 const formData = ref({
   inviteeMobile: '',
+  inviteeEmail: '',
   expireTime: dayjs().add(7, 'day').valueOf()
 })
 const formRules = reactive({
   inviteeMobile: [{ required: true, message: '受邀人手机号不能为空', trigger: 'blur' }],
+  inviteeEmail: [
+    { required: true, message: '受邀人邮箱不能为空', trigger: 'blur' },
+    { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+  ],
   expireTime: [{ required: true, message: '有效期不能为空', trigger: 'blur' }]
 })
 const formRef = ref() // 表单 Ref
@@ -96,7 +104,8 @@ const submitForm = async () => {
   try {
     const data = {
       inviteeMobile: formData.value.inviteeMobile,
-      expireTime: dayjs(formData.value.expireTime).format('YYYY-MM-DD HH:mm:ss')
+      inviteeEmail: formData.value.inviteeEmail,
+      expireTime: Number(formData.value.expireTime)
     }
     const res = await TenantInviteApi.createTenantInvite(data)
     inviteResult.value.inviteCode = res
@@ -110,6 +119,7 @@ const submitForm = async () => {
 const resetForm = () => {
   formData.value = {
     inviteeMobile: '',
+    inviteeEmail: '',
     expireTime: dayjs().add(7, 'day').valueOf()
   }
   inviteResult.value = {

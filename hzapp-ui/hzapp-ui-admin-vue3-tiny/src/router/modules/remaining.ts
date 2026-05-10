@@ -79,18 +79,6 @@ const remainingRouter: AppRouteRecordRaw[] = [
     },
     children: [
       {
-        path: 'profile',
-        component: () => import('@/views/Profile/Index.vue'),
-        name: 'Profile',
-        meta: {
-          canTo: true,
-          hidden: true,
-          noTagsView: false,
-          icon: 'ep:user',
-          title: t('common.profile')
-        }
-      },
-      {
         path: 'notify-message',
         component: () => import('@/views/system/notify/my/index.vue'),
         name: 'MyNotifyMessage',
@@ -214,23 +202,46 @@ const remainingRouter: AppRouteRecordRaw[] = [
       noTagsView: true
     }
   },
+
   {
-    path: '/auth/callback/:authType',
-    component: () => import('@/app/erplus/views/system/shop/AuthCallback.vue'),
-    name: 'AuthCallback',
-    meta: {
-      hidden: true,
-      title: '授权回调',
-      noTagsView: true
-    }
+        path: '/profile',
+        component: () => import('@/views/Profile/IndexV2.vue'),
+        name: 'UserProfile',
+        meta: {
+          canTo: true,
+          hidden: true,
+          noTagsView: false,
+          icon: 'ep:user',
+          title: t('common.profile')
+        }
   },
   {
-    path: '/erplus/adv/auth/callback',
-    component: () => import('@/app/erplus/views/adv/auth/callback.vue'),
-    name: 'advCallback',
+    path: '/system/tenant/subscribe',
+    component: Layout,
+    name: 'SystemTenantSubscribe',
     meta: {
       hidden: true,
-      title: '授权回调',
+      title: '套餐订阅'
+    },
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/system/tenant/subscribe/index.vue'),
+        name: 'SystemTenantSubscribeIndex',
+        meta: {
+          title: '套餐订阅',
+          noCache: true
+        }
+      }
+    ]
+  },
+  {
+    path: '/tenant/create',
+    component: () => import('@/views/Login/TenantRegister.vue'),
+    name: 'TenantRegister',
+    meta: {
+      hidden: true,
+      title: '创建组织',
       noTagsView: true
     }
   },

@@ -133,9 +133,9 @@ $prefix-cls: #{$namespace}-menu;
   position: relative;
   transition: width var(--transition-time-02);
 
-  // 仅垂直（侧边栏）模式使用深色毛玻璃
+  // 仅垂直（侧边栏）模式使用毛玻璃背景，颜色跟随主题设置
   &__vertical {
-    background: var(--glass-sidebar-bg);
+    background: var(--left-menu-bg-color);
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border-right: var(--glass-border);
@@ -184,7 +184,7 @@ $prefix-cls: #{$namespace}-menu;
     .#{$elNamespace}-menu {
       .#{$elNamespace}-sub-menu__title,
       .#{$elNamespace}-menu-item:not(.is-active) {
-        background-color: var(--glass-sidebar-light-bg) !important;
+        background-color: var(--left-menu-bg-light-color) !important;
       }
     }
   }

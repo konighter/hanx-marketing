@@ -136,7 +136,7 @@
         </Transition>
       </div>
     </div>
-    <TenantSelectForm ref="tenantSelectRef" @success="routeDerect"/>
+
   </div>
 </template>
 
@@ -156,7 +156,7 @@ import { ThemeSwitch } from '@/layout/components/ThemeSwitch'
 import { LocaleDropdown } from '@/layout/components/LocaleDropdown'
 import { LoginStateEnum, useFormValid, useLoginState } from './components/useLogin'
 import LoginFormTitle from './components/LoginFormTitle.vue'
-import TenantSelectForm from './components/TenantSelectForm.vue'
+
 
 defineOptions({ name: 'SocialLogin' })
 
@@ -169,7 +169,7 @@ const prefixCls = getPrefixCls('login')
 const iconAvatar = useIcon({ icon: 'ep:avatar' })
 const iconLock = useIcon({ icon: 'ep:lock' })
 const formLogin = ref<any>()
-const tenantSelectRef = ref()
+
 const { validForm } = useFormValid(formLogin)
 const { getLoginState } = useLoginState()
 const { push } = useRouter()
@@ -238,11 +238,11 @@ const tryLogin = async () => {
     const res = await LoginApi.socialLogin(type, code, state)
     authUtil.setToken(res)
 
-    // 如果用户有多个租户，则需要弹出选择租户的弹窗
+    // 如果用户有多个租户，则需要跳转选择租户的页面
     if (import.meta.env.VITE_APP_TENANT_ENABLE === 'true') {
       const tenants = await LoginApi.getUserTenants()
-      if (tenants.length > 1) {
-        tenantSelectRef.value.open(tenants)
+      if (tenants.length > 1 || tenants.length === 0) {
+        await push({ path: '/tenant/select', query: { redirect: getUrlValue('redirect') } })
       } else if (tenants.length === 1) {
         authUtil.setTenantId(tenants[0].id)
         await routeDerect()
@@ -294,11 +294,11 @@ const handleLogin = async (params) => {
     }
     authUtil.setToken(res)
     
-    // 如果用户有多个租户，则需要弹出选择租户的弹窗
+    // 如果用户有多个租户，则需要跳转选择租户的页面
     if (import.meta.env.VITE_APP_TENANT_ENABLE === 'true') {
       const tenants = await LoginApi.getUserTenants()
-      if (tenants.length > 1) {
-        tenantSelectRef.value.open(tenants)
+      if (tenants.length > 1 || tenants.length === 0) {
+        await push({ path: '/tenant/select', query: { redirect: getUrlValue('redirect') } })
       } else if (tenants.length === 1) {
         authUtil.setTenantId(tenants[0].id)
         await routeDerect()

@@ -10,6 +10,20 @@
       <el-form-item label="套餐名" prop="name">
         <el-input v-model="formData.name" placeholder="请输入套餐名" />
       </el-form-item>
+      <el-form-item label="价格" prop="price">
+        <el-input-number v-model="formData.price" :min="0" :precision="2" placeholder="请输入价格" class="!w-200px" />
+      </el-form-item>
+      <el-form-item label="有效期" prop="validityCount">
+        <el-input v-model.number="formData.validityCount" type="number" placeholder="请输入数量" class="!w-240px">
+          <template #append>
+            <el-select v-model="formData.validityUnit" placeholder="单位" style="width: 80px">
+               <el-option label="天" :value="1" />
+               <el-option label="月" :value="2" />
+               <el-option label="年" :value="3" />
+            </el-select>
+          </template>
+        </el-input>
+      </el-form-item>
       <el-form-item label="菜单权限">
         <el-card class="w-full h-400px !overflow-y-scroll" shadow="never">
           <template #header>
@@ -83,11 +97,17 @@ const formData = ref({
   name: null,
   remark: null,
   menuIds: [],
+  price: 0,
+  validityCount: 1,
+  validityUnit: 2, // 默认月
   status: CommonStatusEnum.ENABLE
 })
 const formRules = reactive({
   name: [{ required: true, message: '套餐名不能为空', trigger: 'blur' }],
   status: [{ required: true, message: '状态不能为空', trigger: 'blur' }],
+  price: [{ required: true, message: '价格不能为空', trigger: 'blur' }],
+  validityCount: [{ required: true, message: '有效期数值不能为空', trigger: 'blur' }],
+  validityUnit: [{ required: true, message: '有效期单位不能为空', trigger: 'blur' }],
   menuIds: [{ required: true, message: '关联的菜单编号不能为空', trigger: 'blur' }]
 })
 const formRef = ref() // 表单 Ref
@@ -110,7 +130,10 @@ const open = async (type: string, id?: number) => {
     try {
       const res = await TenantPackageApi.getTenantPackage(id)
       // 设置选中
-      formData.value = res
+      formData.value = {
+        ...res,
+        price: res.price / 100 // 分转元
+      }
       // 设置选中
       res.menuIds.forEach((menuId: number) => {
         treeRef.value!.setChecked(menuId, true, false)
@@ -132,7 +155,10 @@ const submitForm = async () => {
   // 提交请求
   formLoading.value = true
   try {
-    const data = formData.value as unknown as TenantPackageApi.TenantPackageVO
+    const data = { ...formData.value } as any
+    data.price = Math.round(data.price * 100) // 元转分
+    data.validityCount = Number(data.validityCount)
+    data.validityUnit = Number(data.validityUnit)
     data.menuIds = [
       ...(treeRef.value!.getCheckedKeys(false) as unknown as Array<number>), // 获得当前选中节点
       ...(treeRef.value!.getHalfCheckedKeys() as unknown as Array<number>) // 获得半选中的父节点
@@ -163,6 +189,9 @@ const resetForm = () => {
     name: null,
     remark: null,
     menuIds: [],
+    price: 0,
+    validityCount: 1,
+    validityUnit: 2,
     status: CommonStatusEnum.ENABLE
   }
   treeRef.value?.setCheckedNodes([])

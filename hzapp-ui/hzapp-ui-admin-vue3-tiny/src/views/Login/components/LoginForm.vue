@@ -58,13 +58,28 @@
       </el-col>
       <el-col :span="24" class="px-10px">
         <el-form-item>
-          <XButton
+          <el-row :gutter="5" justify="space-between" style="width: 100%">  
+<el-col :span="12">
+<XButton
             :loading="loginLoading"
             :title="t('login.login')"
             class="w-full"
             type="primary"
             @click="getCode()"
           />
+</el-col>
+<el-col :span="12">
+  <XButton
+                :title="t('login.btnRegister')"
+                class="w-full"
+                @click="setLoginState(LoginStateEnum.REGISTER)"
+              />
+</el-col>
+
+
+          </el-row>
+          
+        
         </el-form-item>
       </el-col>
       <Verify
@@ -75,7 +90,7 @@
         mode="pop"
         @success="handleLogin"
       />
-      <el-col :span="24" class="px-10px">
+      <!-- <el-col :span="24" class="px-10px">
         <el-form-item>
           <el-row :gutter="5" justify="space-between" style="width: 100%">
             <el-col :span="8">
@@ -101,8 +116,8 @@
             </el-col>
           </el-row>
         </el-form-item>
-      </el-col>
-      <el-divider content-position="center">{{ t('login.otherLogin') }}</el-divider>
+      </el-col> -->
+      <!-- <el-divider content-position="center">{{ t('login.otherLogin') }}</el-divider>
       <el-col :span="24" class="px-10px">
         <el-form-item>
           <div class="w-full flex justify-between">
@@ -117,16 +132,16 @@
             />
           </div>
         </el-form-item>
-      </el-col>
+      </el-col> -->
 
     </el-row>
   </el-form>
-  <TenantSelectForm ref="tenantSelectRef" @success="routeDerect"/>
+
 </template>
 <script lang="ts" setup>
 import { ElLoading } from 'element-plus'
 import LoginFormTitle from './LoginFormTitle.vue'
-import TenantSelectForm from './TenantSelectForm.vue'
+
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 import { useIcon } from '@/hooks/web/useIcon'
@@ -144,7 +159,7 @@ const iconHouse = useIcon({ icon: 'ep:house' })
 const iconAvatar = useIcon({ icon: 'ep:avatar' })
 const iconLock = useIcon({ icon: 'ep:lock' })
 const formLogin = ref()
-const tenantSelectRef = ref()
+
 const { validForm } = useFormValid(formLogin)
 const { setLoginState, getLoginState } = useLoginState()
 const { currentRoute, push } = useRouter()
@@ -156,10 +171,10 @@ const captchaType = ref('blockPuzzle') // blockPuzzle 滑块 clickWord 点击文
 
 const getShow = computed(() => unref(getLoginState) === LoginStateEnum.LOGIN)
 
-const LoginRules = {
-  username: [required],
-  password: [required]
-}
+const LoginRules = computed(() => ({
+  username: [{ required: true, trigger: 'blur', message: t('login.accountMsg') }],
+  password: [{ required: true, trigger: 'blur', message: t('login.passwordMsg') }]
+}))
 const loginData = reactive({
   isShowPassword: false,
   captchaEnable: import.meta.env.VITE_APP_CAPTCHA_ENABLE,
@@ -248,12 +263,11 @@ const handleLogin = async (params: any) => {
     authUtil.setToken(res)
 
 
-    // 如果用户有多个租户，则需要弹出选择租户的弹窗
+    // 如果用户有多个租户，则需要跳转选择租户的页面
     if (import.meta.env.VITE_APP_TENANT_ENABLE === 'true') {
       const tenants = await LoginApi.getUserTenants()
-
-      if (tenants.length > 1) {
-          tenantSelectRef.value.open(tenants)
+      if (tenants.length > 1 || tenants.length === 0) {
+        await push({ path: '/tenant/select', query: { redirect: redirect.value, type: tenants.length === 0 ? 'create' : undefined } })
       } else {
         authUtil.setTenantId(tenants[0].id)
         await routeDerect()

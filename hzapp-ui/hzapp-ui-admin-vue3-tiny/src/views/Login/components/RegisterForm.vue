@@ -16,60 +16,51 @@
         </el-form-item>
       </el-col>
       <el-col :span="24" class="px-10px">
-        <el-form-item v-if="registerData.tenantEnable === 'true'" prop="tenantName">
-          <el-input
-            v-model="registerData.registerForm.tenantName"
-            :placeholder="t('login.tenantname')"
-            :prefix-icon="iconHouse"
-            link
-            type="primary"
-            size="large"
-          />
-        </el-form-item>
-      </el-col>
-      <el-col :span="24" class="px-10px">
         <el-form-item prop="username">
           <el-input
             v-model="registerData.registerForm.username"
             :placeholder="t('login.username')"
             size="large"
             :prefix-icon="iconAvatar"
-          />
+          >
+            <template #suffix>
+              <Icon v-if="registerData.isUsernameAvailable" icon="ep:circle-check" color="#67c23a" />
+            </template>
+          </el-input>
         </el-form-item>
       </el-col>
       <el-col :span="24" class="px-10px">
-        <el-form-item prop="nickname">
+        <el-form-item prop="email">
           <el-input
-            v-model="registerData.registerForm.nickname"
-            placeholder="昵称"
+            v-model="registerData.registerForm.email"
+            :placeholder="t('login.emailPlaceholder')"
             size="large"
-            :prefix-icon="iconAvatar"
-          />
+            :prefix-icon="iconMessage"
+          >
+            <template #suffix>
+              <Icon v-if="registerData.isEmailAvailable" icon="ep:circle-check" color="#67c23a" />
+            </template>
+          </el-input>
         </el-form-item>
       </el-col>
       <el-col :span="24" class="px-10px">
         <el-form-item prop="password">
-          <el-input
+          <InputPassword
             v-model="registerData.registerForm.password"
-            type="password"
-            auto-complete="off"
             :placeholder="t('login.password')"
             size="large"
-            :prefix-icon="iconLock"
-            show-password
+            strength
+            class="w-full"
           />
         </el-form-item>
       </el-col>
       <el-col :span="24" class="px-10px">
         <el-form-item prop="confirmPassword">
-          <el-input
+          <InputPassword
             v-model="registerData.registerForm.confirmPassword"
-            type="password"
             size="large"
-            auto-complete="off"
             :placeholder="t('login.checkPassword')"
-            :prefix-icon="iconLock"
-            show-password
+            class="w-full"
           />
         </el-form-item>
       </el-col>
@@ -99,6 +90,7 @@
 <script lang="ts" setup>
 import { ElLoading } from 'element-plus'
 import LoginFormTitle from './LoginFormTitle.vue'
+import { InputPassword } from '@/components/InputPassword'
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
 import { useIcon } from '@/hooks/web/useIcon'
 import * as authUtil from '@/utils/auth'
@@ -106,15 +98,20 @@ import { usePermissionStore } from '@/store/modules/permission'
 import * as LoginApi from '@/api/login'
 import { LoginStateEnum, useLoginState, useFormValid } from './useLogin'
 
+import { useI18n } from '@/hooks/web/useI18n'
+import { useMessage } from '@/hooks/web/useMessage'
+
 defineOptions({ name: 'RegisterForm' })
 
 const { t } = useI18n()
+const message = useMessage()
 const iconHouse = useIcon({ icon: 'ep:house' })
 const iconAvatar = useIcon({ icon: 'ep:avatar' })
 const iconLock = useIcon({ icon: 'ep:lock' })
+const iconMessage = useIcon({ icon: 'ep:message' })
 const formLogin = ref()
 const {validForm} = useFormValid(formLogin)
-const { handleBackLogin, getLoginState } = useLoginState()
+const { handleBackLogin, getLoginState, setLoginState } = useLoginState()
 const { currentRoute, push } = useRouter()
 const permissionStore = usePermissionStore()
 const redirect = ref<string>('')
@@ -132,39 +129,83 @@ const equalToPassword = (_rule, value, callback) => {
   }
 }
 
-const registerRules = {
-  tenantName: [
-    { required: true, trigger: 'blur', message: '请输入您所属的租户' },
-    { min: 2, max: 20, message: '租户账号长度必须介于 2 和 20 之间', trigger: 'blur' }
-  ],
+const validateUsername = async (_rule, value, callback) => {
+  registerData.isUsernameAvailable = false
+  if (!value || value.length < 4 || value.length > 30) {
+    callback(new Error(t('login.accountMsg')))
+    return
+  }
+  try {
+    const res = await LoginApi.checkUsername(value)
+    if (res === true) {
+      callback(new Error(t('login.accountExists')))
+    } else {
+      registerData.isUsernameAvailable = true
+      callback()
+    }
+  } catch (error) {
+    callback()
+  }
+}
+
+const validateEmail = async (_rule, value, callback) => {
+  registerData.isEmailAvailable = false
+  if (!value) {
+    callback(new Error(t('login.emailMsg')))
+    return
+  }
+  // 简单的邮箱格式正则
+  const emailReg = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+  if (!emailReg.test(value)) {
+    callback(new Error(t('login.emailInvalid')))
+    return
+  }
+  
+  // 校验邮箱是否已存在
+  try {
+    const res = await LoginApi.checkUsername(value)
+    if (res === true) {
+      callback(new Error(t('login.emailRegistered')))
+    } else {
+      registerData.isEmailAvailable = true
+      callback()
+    }
+  } catch (error) {
+    callback()
+  }
+}
+
+const registerRules = computed(() => ({
   username: [
-    { required: true, trigger: 'blur', message: '请输入您的账号' },
-    { min: 4, max: 30, message: '用户账号长度必须介于 4 和 30 之间', trigger: 'blur' }
+    { required: true, trigger: 'blur', message: t('login.accountMsg') },
+    { min: 4, max: 30, message: t('login.usernameLengthMsg'), trigger: 'blur' },
+    { validator: validateUsername, trigger: 'blur' }
   ],
-  nickname: [
-    { required: true, trigger: 'blur', message: '请输入您的昵称' },
-    { min: 0, max: 30, message: '昵称长度必须介于 0 和 30 之间', trigger: 'blur' }
+  email: [
+    { required: true, trigger: 'blur', message: t('login.emailMsg') },
+    { validator: validateEmail, trigger: 'blur' }
   ],
   password: [
-    { required: true, trigger: 'blur', message: '请输入您的密码' },
-    { min: 5, max: 20, message: '用户密码长度必须介于 5 和 20 之间', trigger: 'blur' },
-    { pattern: /^[^<>"'|\\]+$/, message: '不能包含非法字符：< > " \' \\\ |', trigger: 'blur' }
+    { required: true, trigger: 'blur', message: t('login.passwordMsg') },
+    { min: 5, max: 20, message: t('login.passwordLengthMsg'), trigger: 'blur' },
+    { pattern: /^[^<>"'|\\]+$/, message: t('login.passwordInvalid'), trigger: 'blur' }
   ],
   confirmPassword: [
-    { required: true, trigger: 'blur', message: '请再次输入您的密码' },
+    { required: true, trigger: 'blur', message: t('login.confirmPasswordMsg') },
     { required: true, validator: equalToPassword, trigger: 'blur' }
   ]
-}
+}))
 
 const registerData = reactive({
   isShowPassword: false,
+  isUsernameAvailable: false,
+  isEmailAvailable: false,
   captchaEnable: import.meta.env.VITE_APP_CAPTCHA_ENABLE,
   tenantEnable: import.meta.env.VITE_APP_TENANT_ENABLE,
   registerForm: {
-    tenantName: import.meta.env.VITE_APP_DEFAULT_LOGIN_TENANT || '',
-    nickname: '',
-    tenantId: 0,
     username: '',
+    email: '',
+    tenantId: 1, // 默认租户ID
     password: '',
     confirmPassword: '',
     captchaVerification: ''
@@ -174,47 +215,27 @@ const registerData = reactive({
 const loading = ref() // ElLoading.service 返回的实例
 // 提交注册
 const handleRegister = async (params: any) => {
-  loading.value = true
+  loginLoading.value = true
   try {
-    if (registerData.tenantEnable) {
-      await getTenantId()
-      registerData.registerForm.tenantId = authUtil.getTenantId()
+    const data = await validForm()
+    if (!data) {
+      return
     }
 
     if (registerData.captchaEnable) {
       registerData.registerForm.captchaVerification = params.captchaVerification
     }
 
-    const data = await validForm()
-    if (!data) {
-      return
-    }
-
     const res = await LoginApi.register(registerData.registerForm)
     if (!res) {
       return
     }
-    loading.value = ElLoading.service({
-      lock: true,
-      text: '正在加载系统中...',
-      background: 'rgba(0, 0, 0, 0.7)'
-    })
-
-    authUtil.removeLoginForm()
-
-    authUtil.setToken(res)
-    if (!redirect.value) {
-      redirect.value = '/'
-    }
-    // 判断是否为SSO登录
-    if (redirect.value.indexOf('sso') !== -1) {
-      window.location.href = window.location.href.replace('/login?redirect=', '')
-    } else {
-      push({ path: redirect.value || permissionStore.addRouters[0].path })
-    }
+    
+    message.success(t('login.registerSuccess'))
+    // 跳转到登录页面
+    setLoginState(LoginStateEnum.LOGIN)
   } finally {
     loginLoading.value = false
-    loading.value.close()
   }
 }
 

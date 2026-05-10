@@ -107,7 +107,13 @@
 
   <!-- 列表 -->
   <ContentWrap>
-    <el-table v-loading="loading" :data="list" @selection-change="handleRowCheckboxChange">
+    <el-table
+      v-loading="loading"
+      :data="list"
+      @selection-change="handleRowCheckboxChange"
+      highlight-current-row
+      @current-change="handleCurrentChange"
+    >
       <el-table-column type="selection" width="55" />
       <el-table-column label="租户编号" align="center" prop="id" />
       <el-table-column label="租户名" align="center" prop="name" />
@@ -173,6 +179,24 @@
           </el-button>
           <el-button
             link
+            type="primary"
+            @click="handleSubscribeHistory(scope.row)"
+            v-hasPermi="['system:tenant:query']"
+          >
+            订阅记录
+          </el-button>
+          <el-button
+            link
+            type="primary"
+            @click="handleSubscribe(scope.row)"
+          >
+            <el-badge is-dot class="item" :offset="[5, 0]">
+              订阅
+            </el-badge>
+            <Icon icon="ep:promotion" class="ml-2px" color="#ff4949" />
+          </el-button>
+          <el-button
+            link
             type="danger"
             @click="handleDelete(scope.row.id)"
             v-hasPermi="['system:tenant:delete']"
@@ -191,6 +215,71 @@
     />
   </ContentWrap>
 
+  <!-- 租户套餐详情 (Master-Detail) -->
+  <ContentWrap v-if="currentRow" title="订阅历史详情">
+    <el-table :data="currentRowSubscribeList" v-loading="currentRowSubscribeLoading" border stripe>
+      <el-table-column label="套餐名称" align="center">
+        <template #default="scope">
+          {{ packageList.find(p => p.id === scope.row.packageId)?.name || '未知' }}
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center">
+        <template #default="scope">
+          <el-tag :type="scope.row.status === 1 ? 'success' : 'info'">
+            {{ scope.row.status === 1 ? '生效中' : '已过期' }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="生效时间" align="center" width="180">
+        <template #default="scope">
+          {{ dateFormatter(null, null, scope.row.startTime) }}
+        </template>
+      </el-table-column>
+      <el-table-column label="失效时间" align="center" width="180">
+        <template #default="scope">
+          {{ dateFormatter(null, null, scope.row.endTime) }}
+        </template>
+      </el-table-column>
+      <el-table-column label="已分配权限" align="center">
+        <template #default="scope">
+          <div class="flex flex-wrap gap-1 justify-center">
+            <el-tag v-for="menuId in getPackageMenuIds(scope.row.packageId)" :key="menuId" size="small" type="info">
+              {{ menuId }}
+            </el-tag>
+          </div>
+        </template>
+      </el-table-column>
+    </el-table>
+  </ContentWrap>
+
+  <!-- 订阅记录抽屉 -->
+  <el-drawer v-model="subscribeHistoryVisible" title="订阅历史记录" size="600px">
+    <el-table :data="subscribeHistoryList" v-loading="subscribeHistoryLoading">
+      <el-table-column label="套餐" align="center">
+        <template #default="scope">
+          {{ packageList.find(p => p.id === scope.row.packageId)?.name }}
+        </template>
+      </el-table-column>
+      <el-table-column label="状态" align="center">
+        <template #default="scope">
+          <el-tag :type="scope.row.status === 1 ? 'success' : 'info'">
+            {{ scope.row.status === 1 ? '生效中' : '已过期' }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column label="生效时间" align="center" width="180">
+        <template #default="scope">
+          {{ dateFormatter(null, null, scope.row.startTime) }}
+        </template>
+      </el-table-column>
+      <el-table-column label="失效时间" align="center" width="180">
+        <template #default="scope">
+          {{ dateFormatter(null, null, scope.row.endTime) }}
+        </template>
+      </el-table-column>
+    </el-table>
+  </el-drawer>
+
   <!-- 表单弹窗：添加/修改 -->
   <TenantForm ref="formRef" @success="getList" />
 </template>
@@ -200,7 +289,9 @@ import { dateFormatter } from '@/utils/formatTime'
 import download from '@/utils/download'
 import * as TenantApi from '@/api/system/tenant'
 import * as TenantPackageApi from '@/api/system/tenantPackage'
+import * as TenantSubscribeApi from '@/api/system/tenant/subscribe'
 import TenantForm from './TenantForm.vue'
+import { useRouter } from 'vue-router'
 
 defineOptions({ name: 'SystemTenant' })
 
@@ -222,6 +313,48 @@ const queryParams = reactive({
 const queryFormRef = ref() // 搜索的表单
 const exportLoading = ref(false) // 导出的加载中
 const packageList = ref([] as TenantPackageApi.TenantPackageVO[]) //租户套餐列表
+
+const currentRow = ref<any>(null) // 当前选中的租户
+const currentRowSubscribeList = ref([])
+const currentRowSubscribeLoading = ref(false)
+const handleCurrentChange = async (val: any) => {
+  currentRow.value = val
+  if (val) {
+    currentRowSubscribeLoading.value = true
+    try {
+      const data = await TenantSubscribeApi.getSubscribePage({ tenantId: val.id, pageSize: 20 })
+      currentRowSubscribeList.value = data.list
+    } finally {
+      currentRowSubscribeLoading.value = false
+    }
+  } else {
+    currentRowSubscribeList.value = []
+  }
+}
+
+const getPackageMenuIds = (packageId: number) => {
+  const pkg = packageList.value.find(p => p.id === packageId)
+  return pkg?.menuIds || []
+}
+
+const subscribeHistoryVisible = ref(false)
+const subscribeHistoryLoading = ref(false)
+const subscribeHistoryList = ref([])
+const handleSubscribeHistory = async (row: any) => {
+  subscribeHistoryVisible.value = true
+  subscribeHistoryLoading.value = true
+  try {
+    const data = await TenantSubscribeApi.getSubscribePage({ tenantId: row.id, pageSize: 100 })
+    subscribeHistoryList.value = data.list
+  } finally {
+    subscribeHistoryLoading.value = false
+  }
+}
+
+const { push } = useRouter()
+const handleSubscribe = (row: any) => {
+  push({ name: 'SystemTenantSubscribe', query: { tenantId: row.id } })
+}
 
 /** 查询列表 */
 const getList = async () => {

@@ -9,6 +9,9 @@ export interface TenantPackageVO {
   updater: string
   updateTime: string
   menuIds: number[]
+  price: number
+  validityCount: number
+  validityUnit: number
   createTime: Date
 }
 

@@ -22,6 +22,11 @@ export const login = (data: UserLoginVO) => {
   })
 }
 
+// 校验用户名是否已存在
+export const checkUsername = (username: string) => {
+  return request.get({ url: '/system/auth/check-username?username=' + username })
+}
+
 // 注册
 export const register = (data: RegisterVO) => {
   return request.post({ url: '/system/auth/register', data })
@@ -92,4 +97,14 @@ export const reqCheck = (data: any) => {
 // 通过短信重置密码
 export const smsResetPassword = (data: any) => {
   return request.post({ url: '/system/auth/reset-password', data })
+}
+
+// 发送邮箱验证码
+export const sendEmailCode = (data: any) => {
+  return request.post({ url: '/system/auth/send-email-code', data })
+}
+
+// 通过邮箱重置密码
+export const emailResetPassword = (data: any) => {
+  return request.post({ url: '/system/auth/reset-password-email', data })
 }

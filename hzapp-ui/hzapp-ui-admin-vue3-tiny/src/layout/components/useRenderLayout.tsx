@@ -48,7 +48,7 @@ export const useRenderLayout = () => {
           {logo.value ? (
             <Logo
               class={[
-                'bg-[var(--glass-sidebar-bg)] relative',
+                'bg-[var(--left-menu-bg-color)] relative',
                 {
                   '!pl-0': mobile.value && collapse.value,
                   'w-[var(--left-menu-min-width)]': appStore.getCollapse,

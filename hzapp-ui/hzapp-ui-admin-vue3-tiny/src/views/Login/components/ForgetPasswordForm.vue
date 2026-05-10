@@ -10,30 +10,17 @@
     size="large"
   >
     <el-row class="mx-[-10px]">
-      <!-- 租户名 -->
       <el-col :span="24" class="px-10px">
         <el-form-item>
           <LoginFormTitle class="w-full" />
         </el-form-item>
       </el-col>
       <el-col :span="24" class="px-10px">
-        <el-form-item v-if="resetPasswordData.tenantEnable === 'true'" prop="tenantName">
+        <el-form-item prop="email">
           <el-input
-            v-model="resetPasswordData.tenantName"
-            :placeholder="t('login.tenantNamePlaceholder')"
-            :prefix-icon="iconHouse"
-            type="primary"
-            link
-          />
-        </el-form-item>
-      </el-col>
-      <!-- 手机号 -->
-      <el-col :span="24" class="px-10px">
-        <el-form-item prop="mobile">
-          <el-input
-            v-model="resetPasswordData.mobile"
-            :placeholder="t('login.mobileNumberPlaceholder')"
-            :prefix-icon="iconCellphone"
+            v-model="resetPasswordData.email"
+            placeholder="请输入注册邮箱"
+            :prefix-icon="iconMessage"
           />
         </el-form-item>
       </el-col>
@@ -61,7 +48,7 @@
                     style="cursor: pointer"
                     @click="getCode"
                   >
-                    {{ t('login.getSmsCode') }}
+                    获取邮箱验证码
                   </span>
                   <span v-if="mobileCodeTimer > 0" class="getMobileCode" style="cursor: pointer">
                     {{ mobileCodeTimer }}秒后可重新获取
@@ -123,11 +110,10 @@ import type { RouteLocationNormalizedLoaded } from 'vue-router'
 
 import { useIcon } from '@/hooks/web/useIcon'
 
-import { sendSmsCode, smsResetPassword } from '@/api/login'
+import { sendEmailCode, emailResetPassword } from '@/api/login'
 import LoginFormTitle from './LoginFormTitle.vue'
 import { LoginStateEnum, useFormValid, useLoginState } from './useLogin'
 import { ElLoading } from 'element-plus'
-import * as authUtil from '@/utils/auth'
 import * as LoginApi from '@/api/login'
 defineOptions({ name: 'ForgetPasswordForm' })
 const verify = ref()
@@ -137,8 +123,7 @@ const message = useMessage()
 const { currentRoute } = useRouter()
 const formSmsResetPassword = ref()
 const loginLoading = ref(false)
-const iconHouse = useIcon({ icon: 'ep:house' })
-const iconCellphone = useIcon({ icon: 'ep:cellphone' })
+const iconMessage = useIcon({ icon: 'ep:message' })
 const iconCircleCheck = useIcon({ icon: 'ep:circle-check' })
 const { validForm } = useFormValid(formSmsResetPassword)
 const { handleBackLogin, getLoginState, setLoginState } = useLoginState()
@@ -156,8 +141,10 @@ const validatePass2 = (_rule, value, callback) => {
 }
 
 const rules = {
-  tenantName: [{ required: true, min: 2, max: 20, trigger: 'blur', message: '长度为4到16位' }],
-  mobile: [{ required: true, min: 11, max: 11, trigger: 'blur', message: '手机号长度为11位' }],
+  email: [
+    { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+    { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur', 'change'] }
+  ],
   password: [
     {
       required: true,
@@ -175,19 +162,17 @@ const rules = {
 const resetPasswordData = reactive({
   captchaEnable: import.meta.env.VITE_APP_CAPTCHA_ENABLE,
   tenantEnable: import.meta.env.VITE_APP_TENANT_ENABLE,
-  tenantName: '',
   username: '',
   password: '',
   check_password: '',
-  mobile: '',
+  email: '',
   code: ''
 })
 
-const smsVO = reactive({
-  tenantName: '',
-  mobile: '',
+const emailVO = reactive({
+  email: '',
   captchaVerification: '',
-  scene: 23
+  scene: 31 // 找回密码
 })
 const mobileCodeTimer = ref(0)
 const redirect = ref<string>('')
@@ -205,13 +190,10 @@ const getCode = async () => {
 }
 
 const getSmsCode = async (params) => {
-  if (resetPasswordData.tenantEnable === 'true') {
-    await getTenantId()
-  }
-  smsVO.captchaVerification = params.captchaVerification
-  smsVO.mobile = resetPasswordData.mobile
-  await sendSmsCode(smsVO).then(async () => {
-    message.success(t('login.SmsSendMsg'))
+  emailVO.captchaVerification = params.captchaVerification
+  emailVO.email = resetPasswordData.email
+  await sendEmailCode(emailVO).then(async () => {
+    message.success('验证码已发送至邮箱，请查收')
     // 设置倒计时
     mobileCodeTimer.value = 60
     let msgTimer = setInterval(() => {
@@ -232,26 +214,15 @@ watch(
   }
 )
 
-const getTenantId = async () => {
-  if (resetPasswordData.tenantEnable === 'true') {
-    const res = await LoginApi.getTenantIdByName(resetPasswordData.tenantName)
-    if (res == null) {
-      message.error(t('login.invalidTenantName'))
-      throw t('login.invalidTenantName')
-    }
-    authUtil.setTenantId(res)
-  }
-}
 
 // 重置密码
 const resetPassword = async () => {
   const data = await validForm()
   if (!data) return
-  await getTenantId()
   loginLoading.value = true
-  await smsResetPassword(resetPasswordData)
+  await emailResetPassword(resetPasswordData)
     .then(async () => {
-      message.success(t('login.resetPasswordSuccess'))
+      message.success('密码重置成功')
       setLoginState(LoginStateEnum.LOGIN)
     })
     .catch(() => {})

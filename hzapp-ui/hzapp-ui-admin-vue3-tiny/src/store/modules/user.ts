@@ -59,6 +59,10 @@ export const useUserStore = defineStore('admin-user', {
     }
   },
   actions: {
+    async setTenantListAction() {
+      const { getUserTenants } = await import('@/api/login')
+      this.tenants = await getUserTenants()
+    },
     async setUserInfoAction() {
       if (!getAccessToken()) {
         this.resetState()
@@ -78,8 +82,7 @@ export const useUserStore = defineStore('admin-user', {
       this.user = userInfo.user
       this.isSetUser = true
       // 额外获取租户信息
-      const { getUserTenants } = await import('@/api/login')
-      this.tenants = await getUserTenants()
+      await this.setTenantListAction()
 
       wsCache.set(CACHE_KEY.USER, userInfo)
       wsCache.set(CACHE_KEY.ROLE_ROUTERS, userInfo.menus)

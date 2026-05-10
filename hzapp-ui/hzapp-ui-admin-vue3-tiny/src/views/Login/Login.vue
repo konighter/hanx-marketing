@@ -5,9 +5,8 @@
   >
     <!-- CSS Mesh Gradient Background Orbs -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
-      <div class="absolute -top-[10%] -left-[10%] w-[50%] h-[50%] rounded-full mix-blend-multiply filter blur-[120px] opacity-70 animate-blob bg-indigo-200 dark:bg-indigo-900/40"></div>
-      <div class="absolute top-[20%] -right-[10%] w-[45%] h-[45%] rounded-full mix-blend-multiply filter blur-[120px] opacity-70 animate-blob animation-delay-2000 bg-cyan-200 dark:bg-cyan-900/30"></div>
-      <div class="absolute -bottom-[20%] left-[20%] w-[60%] h-[60%] rounded-full mix-blend-multiply filter blur-[120px] opacity-70 animate-blob animation-delay-4000 bg-blue-200 dark:bg-blue-900/40"></div>
+      <div class="absolute -top-[10%] -left-[10%] w-[60%] h-[60%] opacity-50 animate-blob-slow blob-1"></div>
+      <div class="absolute top-[30%] -right-[15%] w-[50%] h-[50%] opacity-50 animate-blob-slow animation-delay-4000 blob-2"></div>
     </div>
 
     <!-- Top Right Tools (Theme & Locale) -->
@@ -20,13 +19,13 @@
 
     <!-- Centered Login Card -->
     <div
-      class="relative z-10 w-full max-w-[440px] bg-white/80 dark:bg-slate-800/80 backdrop-blur-xl rounded-2xl md:rounded-3xl shadow-2xl shadow-indigo-500/10 dark:shadow-none border border-white/50 dark:border-slate-700/50 p-6 sm:p-10 transition-all duration-300"
+      class="relative z-10 w-full max-w-[440px] bg-white dark:bg-slate-800 rounded-2xl md:rounded-3xl shadow-2xl shadow-indigo-500/10 dark:shadow-none border border-slate-100 dark:border-slate-700/50 p-6 sm:p-10 transition-all duration-300"
     >
       <!-- Logo & System Title -->
       <div class="flex flex-col items-center justify-center mb-8">
-        <img alt="Logo" class="h-14 w-14 mb-4 drop-shadow-sm" src="@/assets/imgs/logo.png" />
+        <img alt="Logo" class="h-14 w-14 mb-4" src="@/assets/imgs/logo.png" />
         <h1 class="text-2xl font-bold text-slate-900 dark:text-white tracking-tight text-center">
-          {{ underlineToHump(appStore.getTitle) }}
+          {{ appTitle }}
         </h1>
         <p class="text-sm text-slate-500 dark:text-slate-400 mt-2 text-center">
           {{ t('login.welcome') }}
@@ -55,6 +54,8 @@
 </template>
 <script lang="ts" setup>
 import { underlineToHump } from '@/utils'
+import { onMounted, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
 import { useDesign } from '@/hooks/web/useDesign'
 import { useAppStore } from '@/store/modules/app'
@@ -67,27 +68,45 @@ import { LoginForm, MobileForm, QrCodeForm, RegisterForm, SSOLoginVue, ForgetPas
 defineOptions({ name: 'Login' })
 
 const { t } = useI18n()
+const route = useRoute()
 const appStore = useAppStore()
 const { getPrefixCls } = useDesign()
 const prefixCls = getPrefixCls('login')
-const { getLoginState } = useLoginState()
+const { getLoginState, setLoginState } = useLoginState()
+
+const appTitle = computed(() => underlineToHump(appStore.getTitle))
+
+onMounted(() => {
+  if (route.query.login_state === 'reset_password') {
+    setLoginState(LoginStateEnum.RESET_PASSWORD)
+  }
+})
 </script>
 
 <style lang="scss" scoped>
-/* 简单的呼吸流动关键帧给背景光晕使用 */
-@keyframes blob {
-  0% { transform: translate(0px, 0px) scale(1); }
-  33% { transform: translate(30px, -50px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
-  100% { transform: translate(0px, 0px) scale(1); }
+/* 使用 Radial Gradient 模拟模糊效果，避开昂贵的 filter: blur */
+.blob-1 {
+  background: radial-gradient(circle, rgba(165, 180, 252, 0.4) 0%, rgba(165, 180, 252, 0) 70%);
+  .dark & {
+    background: radial-gradient(circle, rgba(49, 46, 129, 0.4) 0%, rgba(49, 46, 129, 0) 70%);
+  }
+}
+.blob-2 {
+  background: radial-gradient(circle, rgba(165, 243, 252, 0.4) 0%, rgba(165, 243, 252, 0) 70%);
+  .dark & {
+    background: radial-gradient(circle, rgba(22, 78, 99, 0.3) 0%, rgba(22, 78, 99, 0) 70%);
+  }
 }
 
-.animate-blob {
-  animation: blob 15s infinite alternate;
+@keyframes blob-slow {
+  0% { transform: translate(0px, 0px) scale(1); opacity: 0.4; }
+  50% { transform: translate(20px, -20px) scale(1.02); opacity: 0.6; }
+  100% { transform: translate(0px, 0px) scale(1); opacity: 0.4; }
 }
 
-.animation-delay-2000 {
-  animation-delay: 2s;
+.animate-blob-slow {
+  animation: blob-slow 25s infinite ease-in-out;
+  will-change: transform, opacity;
 }
 
 .animation-delay-4000 {

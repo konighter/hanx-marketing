@@ -79,7 +79,7 @@
       </el-col>
     </el-row>
   </el-form>
-  <TenantSelectForm ref="tenantSelectRef" @success="routeDerect"/>
+  
 </template>
 <script lang="ts" setup>
 import type { RouteLocationNormalizedLoaded } from 'vue-router'
@@ -90,7 +90,6 @@ import { setTenantId, setToken } from '@/utils/auth'
 import { usePermissionStore } from '@/store/modules/permission'
 import { sendSmsCode, smsLogin, getUserTenants } from '@/api/login'
 import LoginFormTitle from './LoginFormTitle.vue'
-import TenantSelectForm from './TenantSelectForm.vue'
 import { LoginStateEnum, useFormValid, useLoginState } from './useLogin'
 import { ElLoading } from 'element-plus'
 
