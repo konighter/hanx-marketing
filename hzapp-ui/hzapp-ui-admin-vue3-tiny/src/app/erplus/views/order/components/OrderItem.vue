@@ -11,8 +11,8 @@
           {{ order.shopId }}
         </span> -->
         <el-divider direction="vertical" />
-        <span class="order-id text-12px text-gray-500">
-          ID: <span class="font-mono">{{ order.platformOrderId }}</span>
+        <span class="order-id text-12px text-[var(--el-text-color-secondary)]">
+          ID: <span class="font-mono text-[var(--el-text-color-primary)]">{{ order.platformOrderId }}</span>
         </span>
         <el-icon class="copy-icon cursor-pointer hover:text-primary" @click="copyOrderId">
           <DocumentCopy />
@@ -20,10 +20,10 @@
       </div>
       <div class="header-right flex items-center gap-15px">
         <div class="order-time flex items-center gap-15px">
-          <span class="text-11px text-gray-400">
+          <span class="text-11px text-[var(--el-text-color-placeholder)]">
             订单时间: {{ dateFormatter(order, {} as any, order.orderTime || order.createTime) }}
           </span>
-          <span v-if="order.payedTime" class="text-11px text-gray-400">
+          <span v-if="order.payedTime" class="text-11px text-[var(--el-text-color-placeholder)]">
             支付时间: {{ dateFormatter(order, {} as any, order.payedTime) }}
           </span>
         </div>
@@ -50,12 +50,12 @@
               :preview-teleported="true"
             />
           </template>
-          <div v-if="order.orderItemList?.length > 3" class="more-count w-48px h-48px rounded bg-gray-100 flex items-center justify-center text-xs text-gray-500 border-2 border-white shadow-sm">
+          <div v-if="order.orderItemList?.length > 3" class="more-count w-48px h-48px rounded bg-[var(--el-fill-color-light)] flex items-center justify-center text-xs text-[var(--el-text-color-secondary)] border-2 border-[var(--el-bg-color)] shadow-sm">
             +{{ order.orderItemList?.length - 3 }}
           </div>
         </div>
         <div class="sku-info flex-1 flex flex-col justify-center min-w-0">
-          <div class="sku-code font-bold text-13px text-gray-700 truncate" :title="skuSummary">
+          <div class="sku-code font-bold text-13px text-[var(--el-text-color-primary)] truncate" :title="skuSummary">
             {{ skuSummary }}
           </div>
           <div class="item-count text-11px text-gray-400 mt-2px">
@@ -98,7 +98,7 @@
 
     <!-- 3. Expanded Details -->
     <transition name="expand">
-      <div v-if="expanded" class="expanded-content border-t border-gray-50 bg-gray-50/30 p-15px">
+      <div v-if="expanded" class="expanded-content border-t border-[var(--el-border-color-extra-light)] bg-[var(--el-fill-color-blank)] p-15px">
         <el-row :gutter="30">
           <!-- Item List -->
           <el-col :span="16">
@@ -151,7 +151,7 @@
             <div class="section-title text-12px font-bold text-gray-500 mb-10px flex items-center">
                <el-icon class="mr-4px"><Money /></el-icon> 费用报表 ({{ order.currency }})
             </div>
-            <div class="finance-card bg-white rounded border border-gray-100 p-12px shadow-sm">
+            <div class="finance-card bg-[var(--el-bg-color)] rounded border border-[var(--el-border-color-lighter)] p-12px shadow-sm">
               <div class="flex justify-between mb-8px text-13px">
                 <span class="text-gray-500">支付总额 (Income)</span>
                 <span class="font-bold text-green-600">+{{ (order.amount / 100).toFixed(2) }}</span>
@@ -340,9 +340,9 @@ const copyToClipboardFallback = (text: string) => {
 
 <style scoped lang="scss">
 .order-item-card {
-  background: #fff;
+  background: var(--el-bg-color);
   border-radius: 8px;
-  border: 1px solid #ebeef5;
+  border: 1px solid var(--el-border-color-lighter);
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 
@@ -361,8 +361,8 @@ const copyToClipboardFallback = (text: string) => {
   }
 
   .card-header {
-    background: #fcfcfc;
-    border-bottom: 1px solid #f2f6fc;
+    background: var(--el-fill-color-lighter);
+    border-bottom: 1px solid var(--el-border-color-extra-light);
   }
 
   .platform-tag {

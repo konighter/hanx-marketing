@@ -364,7 +364,7 @@ const handleDoSync = async () => {
 <style scoped lang="scss">
 .app-container {
   padding: 8px 10px 0 10px;
-  background-color: #f7f9fb;
+  background-color: var(--app-content-bg-color);
   min-height: calc(100vh - 84px);
 }
 

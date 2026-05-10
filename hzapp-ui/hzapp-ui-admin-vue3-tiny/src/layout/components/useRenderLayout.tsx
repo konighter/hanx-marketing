@@ -99,7 +99,7 @@ export const useRenderLayout = () => {
             >
               <ToolHeader
                 class={[
-                  'glass-panel',
+                  'bg-[var(--top-header-bg-color)] header-border-bottom',
                   {
                     'layout-border__bottom': !tagsView.value
                   }
@@ -107,7 +107,7 @@ export const useRenderLayout = () => {
               ></ToolHeader>
 
               {tagsView.value ? (
-                <TagsView class="glass-tags layout-border__top layout-border__bottom"></TagsView>
+                <TagsView class="glass-tags layout-border__bottom"></TagsView>
               ) : undefined}
             </div>
 
@@ -121,7 +121,7 @@ export const useRenderLayout = () => {
   const renderTopLeft = () => {
     return (
       <>
-        <div class="relative flex items-center glass-panel layout-border__bottom">
+        <div class="relative flex items-center bg-[var(--top-header-bg-color)] header-border-bottom">
           {logo.value ? <Logo class="custom-hover"></Logo> : undefined}
 
           <ToolHeader class="flex-1"></ToolHeader>
@@ -180,10 +180,7 @@ export const useRenderLayout = () => {
       <>
         <div
           class={[
-            'flex items-center justify-between glass-panel relative',
-            {
-              'layout-border__bottom': !tagsView.value
-            }
+            'flex items-center justify-between bg-[var(--top-header-bg-color)] header-border-bottom relative'
           ]}
         >
           {logo.value ? <Logo class="custom-hover"></Logo> : undefined}
@@ -204,7 +201,7 @@ export const useRenderLayout = () => {
             {tagsView.value ? (
               <TagsView
                 class={[
-                  'layout-border__bottom layout-border__top relative',
+                  'layout-border__bottom relative',
                   {
                     '!fixed w-full top-[var(--top-tool-height)] left-0': fixedHeader.value
                   }
@@ -223,7 +220,7 @@ export const useRenderLayout = () => {
   const renderCutMenu = () => {
     return (
       <>
-        <div class="relative flex items-center glass-panel layout-border__bottom">
+        <div class="relative flex items-center bg-[var(--top-header-bg-color)] header-border-bottom">
           {logo.value ? <Logo class="custom-hover !pr-15px"></Logo> : undefined}
 
           <ToolHeader class="flex-1"></ToolHeader>

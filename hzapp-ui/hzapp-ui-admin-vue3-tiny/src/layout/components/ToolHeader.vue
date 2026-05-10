@@ -100,6 +100,5 @@ $prefix-cls: #{$namespace}-tool-header;
 
 .#{$prefix-cls} {
   transition: left var(--transition-time-02);
-  background: transparent;
 }
 </style>
