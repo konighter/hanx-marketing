@@ -102,6 +102,24 @@ logging:
 
 debug: false
 
+--- #################### 微信公众号、小程序相关配置 ####################
+wx:
+  mp: # 公众号配置
+    app-id: ${WX_MP_APPID}
+    secret: ${WX_MP_SECRET}
+    config-storage:
+      type: RedisTemplate # 采用 RedisTemplate 操作 Redis，会自动从 Spring 中获取
+      key-prefix: wx # Redis Key 的前缀
+      http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
+  miniapp: # 小程序配置
+    appid: ${WX_MINIAPP_APPID}
+    secret: ${WX_MINIAPP_SECRET}
+    config-storage:
+      type: RedisTemplate # 采用 RedisTemplate 操作 Redis，会自动从 Spring 中获取
+      key-prefix: wa # Redis Key 的前缀
+      http-client-type: HttpClient # 采用 HttpClient 请求微信公众号平台
+
+
 --- #################### 项目相关配置 ####################
 
 hzapp:
