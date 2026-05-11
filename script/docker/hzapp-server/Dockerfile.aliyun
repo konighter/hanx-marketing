@@ -1,5 +1,5 @@
 # 第 1 阶段：构建阶段 (Maven Build)
-FROM maven:3.9-eclipse-temurin-17 AS build
+FROM registry.cn-hangzhou.aliyuncs.com/acs/maven:3.9-eclipse-temurin-17 AS build
 
 # 设置工作目录
 WORKDIR /app
@@ -11,7 +11,7 @@ COPY . .
 RUN mvn clean package -DskipTests
 
 # 第 2 阶段：运行阶段 (Runtime)
-FROM eclipse-temurin:17-jre
+FROM registry.cn-hangzhou.aliyuncs.com/acs/eclipse-temurin:17-jre
 
 WORKDIR /hzapp-server
 

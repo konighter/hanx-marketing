@@ -1,5 +1,5 @@
 # 第 1 阶段：构建阶段 (Node Build)
-FROM node:18-alpine AS build
+FROM registry.cn-hangzhou.aliyuncs.com/acs/node:18-alpine AS build
 
 # 安装 pnpm
 RUN npm install -g pnpm
@@ -17,7 +17,7 @@ RUN pnpm install --frozen-lockfile
 RUN pnpm run build:prod
 
 # 第 2 阶段：运行阶段 (Nginx)
-FROM nginx:alpine
+FROM registry.cn-hangzhou.aliyuncs.com/acs/nginx:alpine
 
 # 接收构建参数
 ARG NODE_ENV
