@@ -4,6 +4,8 @@
 REGISTRY="registry.cn-hangzhou.aliyuncs.com"
 IMAGE_NAME="registry.cn-hangzhou.aliyuncs.com/hanzhan/hzapp-erplus-server:latest"
 CONTAINER_NAME="hzapp-server-prod"
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+ENV_FILE="$SCRIPT_DIR/server.env"
 
 echo "=========================================="
 echo " Running Backend Server (Prod) "
@@ -27,14 +29,23 @@ if [ "$(docker ps -aq -f name=$CONTAINER_NAME)" ]; then
 fi
 
 # 5. 启动容器
-# 注意：这里可以根据需要添加更多环境变量，如 -e MASTER_DATASOURCE_URL=...
 echo "Starting new container: $CONTAINER_NAME"
+
+# 检查配置文件是否存在
+ENV_OPTS=""
+if [ -f "$ENV_FILE" ]; then
+    echo "Using environment file: $ENV_FILE"
+    ENV_OPTS="--env-file $ENV_FILE"
+else
+    echo "Warning: $ENV_FILE not found, using default env."
+    ENV_OPTS="-e SPRING_PROFILES_ACTIVE=prod -e TZ=Asia/Shanghai -e JAVA_OPTS='-Xms512m -Xmx512m'"
+fi
+
 docker run -d \
     --name "$CONTAINER_NAME" \
     --restart always \
     -p 48080:48080 \
-    -e TZ=Asia/Shanghai \
-    -e JAVA_OPTS="-Xms512m -Xmx512m" \
+    $ENV_OPTS \
     "$IMAGE_NAME"
 
 echo "------------------------------------------"
