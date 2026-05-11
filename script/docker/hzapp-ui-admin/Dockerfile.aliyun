@@ -1,5 +1,5 @@
-# 第 1 阶段：构建阶段
-FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/node:18-alpine AS build
+# 第 1 阶段：构建阶段 (使用 Debian slim，兼容性更好)
+FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/node:20-slim AS build
 
 # 安装 pnpm
 RUN npm install -g pnpm
@@ -12,20 +12,25 @@ COPY ./hzapp-ui/hzapp-ui-admin-vue3-tiny /app
 # 设置淘宝/阿里镜像源
 RUN pnpm config set registry https://registry.npmmirror.com
 
-# 安装依赖并构建
+# 1. 安装依赖
 RUN pnpm install --frozen-lockfile
+
+# 2. 更新配置
+RUN npx update-browserslist-db@latest
+
+# 3. 执行构建
+# Debian 环境下不需要额外的 libc 补丁，esbuild 运行会非常稳定
 RUN pnpm run build:prod
 
-# 第 2 阶段：运行阶段 (Nginx)
+# 第 2 阶段：运行阶段 (Nginx 依然使用 alpine 以保持最终镜像体积最小)
 FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/nginx:alpine
 
-# 只拷贝 Nginx 配置文件和入口脚本 (来自 script 目录)
 COPY ./script/docker/hzapp-ui-admin/nginx.conf /etc/nginx/nginx.conf
 COPY ./script/docker/hzapp-ui-admin/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # 从构建阶段拷贝构建产物
-COPY --from=build /app/dist /usr/share/nginx/html/
+COPY --from=build /app/dist-prod /usr/share/nginx/html/
 
 EXPOSE 80
 
