@@ -232,7 +232,8 @@ const getProject = async () => {
     {
       name: 'yudao-ui-admin-vue3',
       icon: 'ep:element-plus',
-      message: 'github.com/yudaocode/yudao-ui-admin-vue3',
+      message: 'github.com/yudaocode/
+      ',
       personal: 'Vue3 + element-plus 管理后台',
       time: new Date('2025-02-03'),
       color: '#409EFF'

@@ -31,6 +31,9 @@ fi
 # 5. 启动容器
 echo "Starting new container: $CONTAINER_NAME"
 
+# 确保日志目录存在
+mkdir -p "$SCRIPT_DIR/logs"
+
 # 检查配置文件是否存在
 ENV_OPTS=""
 if [ -f "$ENV_FILE" ]; then
@@ -45,6 +48,7 @@ docker run -d \
     --name "$CONTAINER_NAME" \
     --restart always \
     -p 48080:48080 \
+    -v "$SCRIPT_DIR/logs:/root/logs" \
     $ENV_OPTS \
     "$IMAGE_NAME"
 
