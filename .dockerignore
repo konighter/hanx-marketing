@@ -1,0 +1,10 @@
+.git
+.idea
+.vscode
+**/node_modules
+**/target
+**/*.log
+dist
+dist-prod
+pnpm-lock.yaml
+package-lock.json

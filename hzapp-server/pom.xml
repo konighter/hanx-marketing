@@ -49,7 +49,7 @@
         </dependency>
         <dependency>
             <groupId>com.hzltd</groupId>
-            <artifactId>hzapp-module-erplus-ai</artifactId>
+            <artifactId>hzapp-module-hanx-ai</artifactId>
             <version>${revision}</version>
         </dependency>
 
