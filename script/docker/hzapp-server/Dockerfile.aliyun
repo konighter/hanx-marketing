@@ -1,31 +1,29 @@
-# 第 1 阶段：构建阶段 (Maven Build)
+# 第 1 阶段：构建阶段
 FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/maven:3.9-jdk17 AS build
 
-# 设置工作目录
 WORKDIR /app
 
-# 复制整个项目源码
+# 1. 拷贝 Maven 配置
+COPY script/docker/hzapp-server/settings.xml /root/.m2/settings.xml
+
+# 2. 先拷贝全部内容
 COPY . .
 
-# 执行构建，跳过测试
-RUN mvn clean package -DskipTests
+# 3. 关键：手动删除前端代码和无关脚本，减少容器内体积
+# 这样即使没有 .dockerignore 也能确保构建时只剩下后端代码
+RUN rm -rf hzapp-ui/ script/docker/hzapp-ui-admin/
 
-# 第 2 阶段：运行阶段 (Runtime)
+# 4. 执行构建
+RUN mvn clean package -DskipTests -s /root/.m2/settings.xml
+
+# 第 2 阶段：运行阶段
 FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/eclipse-temurin:17-jre
 
 WORKDIR /hzapp-server
-
-# 从构建阶段复制生成的 jar 包
 COPY --from=build /app/hzapp-server/target/hzapp-server.jar app.jar
 
-## 设置 TZ 时区
 ENV TZ=Asia/Shanghai
-## 设置 JAVA_OPTS
 ENV JAVA_OPTS="-Xms512m -Xmx512m -Djava.security.egd=file:/dev/./urandom"
-## 应用参数
-ENV ARGS=""
-
 EXPOSE 48080
 
-## 启动后端项目
-CMD java ${JAVA_OPTS} -jar app.jar $ARGS
+CMD java ${JAVA_OPTS} -jar app.jar

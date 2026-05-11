@@ -10,3 +10,4 @@ export const getPropertyValuePage = async (_params: any) => ({ list: [], total: 
 export const createPropertyValue = async (_data: any) => ({});
 export const updatePropertyValue = async (_data: any) => ({});
 export const deletePropertyValue = async (_id: number) => ({});
+export const getPropertyValue = async (_id: number) => ({});

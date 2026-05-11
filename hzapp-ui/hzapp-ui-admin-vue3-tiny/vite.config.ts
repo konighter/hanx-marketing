@@ -71,8 +71,8 @@ export default ({command, mode}: ConfigEnv): UserConfig => {
             rollupOptions: {
                 output: {
                     manualChunks: {
-                      echarts: ['echarts'], // 将 echarts 单独打包，参考 https://gitee.com/yudaocode/yudao-ui-admin-vue3/issues/IAB1SX 讨论
-                      'form-create': ['@form-create/element-ui'], // 参考 https://github.com/yudaocode/yudao-ui-admin-vue3/issues/148 讨论
+                      echarts: ['echarts'], // 将 echarts 单独打包，
+                      'form-create': ['@form-create/element-ui'], 
                       'form-designer': ['@form-create/designer'],
                       // Pro Max: 将以下重依赖从主 chunk 拆出，减小首屏 JS 体积
                       'lodash-vendor': ['lodash-es'],

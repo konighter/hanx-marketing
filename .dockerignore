@@ -1,10 +1,19 @@
-.git
-.idea
-.vscode
-**/node_modules
-**/target
+# 忽略本地编译产物 (极其重要，防止本地编译的 JAR/dist 被拷贝进镜像)
+**/target/
+**/dist/
+**/node_modules/
+
+# 忽略本地开发工具和日志
+.git/
+.idea/
+.vscode/
 **/*.log
-dist
-dist-prod
-pnpm-lock.yaml
-package-lock.json
+**/*.bak
+.DS_Store
+.superpowers/
+.worktrees/
+
+# 忽略基础说明文档
+README.md
+GEMINI.md
+docs/
