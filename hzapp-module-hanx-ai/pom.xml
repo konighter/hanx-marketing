@@ -17,6 +17,10 @@
         AI 模块，基于 spring-ai-alibaba 实现 Agent 编排。
     </description>
 
+    <properties>
+        <adk.version>1.2.0</adk.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.hzltd</groupId>
@@ -40,7 +44,7 @@
         <dependency>
             <groupId>com.google.adk</groupId>
             <artifactId>google-adk</artifactId>
-            <version>0.9.1-hzapp-SNAPSHOT</version>
+            <version>${adk.version}</version>
         </dependency>
         <!-- Dev UI -->
 <!--        <dependency>-->
