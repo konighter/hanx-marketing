@@ -1,7 +1,7 @@
 package com.hzltd.module.amz.spapi.service.pipeline;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.hzltd.module.amz.spapi.controller.admin.vo.AmzListingFormFieldVO;
+import com.hzltd.module.amz.spapi.controller.admin.listing.vo.AmzListingFormFieldVO;
 import lombok.Data;
 
 import java.util.List;

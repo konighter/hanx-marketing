@@ -2,9 +2,8 @@ package com.hzltd.module.amz.spapi.service.pipeline.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.hzltd.module.amz.spapi.controller.admin.vo.AmzListingFormFieldVO;
+import com.hzltd.module.amz.spapi.controller.admin.listing.vo.AmzListingFormFieldVO;
 import com.hzltd.module.amz.spapi.service.pipeline.PropertyFlattenStrategy;
-import com.hzltd.module.erplus.spapi.model.category.CategoryAttributeModel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

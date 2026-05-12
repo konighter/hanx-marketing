@@ -1,6 +1,6 @@
 package com.hzltd.module.erplus.convert.shipment;
 
-import com.hzltd.module.amz.controller.admin.vo.AmzInboundPlanCreateRequest;
+import com.hzltd.module.amz.spapi.controller.admin.fullfil.vo.AmzInboundPlanCreateRequest;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.ShipmentItemVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.shipment.StockShipmentPlanReqVO;
 import com.hzltd.module.erplus.controller.admin.stock.vo.stock.StockShipmentPlanRespVO;

@@ -11,6 +11,7 @@ import jakarta.validation.Valid;
  *
  * @author 翰展科技
  */
+@Deprecated
 public interface AmzReportTaskService {
 
     /**

@@ -1,17 +1,15 @@
 package com.hzltd.module.amz.spapi.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.hzltd.module.amz.spapi.controller.admin.vo.AmzListingFormConfigVO;
-import com.hzltd.module.amz.spapi.controller.admin.vo.AmzListingFormFieldVO;
+import com.hzltd.module.amz.spapi.controller.admin.listing.vo.AmzListingFormConfigVO;
+import com.hzltd.module.amz.spapi.controller.admin.listing.vo.AmzListingFormFieldVO;
 import com.hzltd.module.amz.spapi.service.pipeline.*;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * V2 implementation of Amazon Listing Schema Service.

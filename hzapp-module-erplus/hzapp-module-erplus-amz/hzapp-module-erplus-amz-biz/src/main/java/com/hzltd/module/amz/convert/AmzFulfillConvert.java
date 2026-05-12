@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.convert;
 
-import com.hzltd.module.amz.controller.admin.vo.AmzInboundPlanCreateRequest;
+import com.hzltd.module.amz.spapi.controller.admin.fullfil.vo.AmzInboundPlanCreateRequest;
 import com.hzltd.module.amz.dal.dataobject.AmzInboundPlanDO;
 import com.hzltd.module.erplus.spapi.model.common.AddressModel;
 import com.hzltd.module.erplus.spapi.model.inventory.InventoryItemModel;

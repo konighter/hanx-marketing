@@ -1,9 +1,9 @@
 package com.hzltd.module.amz.spapi.service.pipeline;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.hzltd.module.amz.spapi.controller.admin.vo.AmzListingFieldRuleVO;
-import com.hzltd.module.amz.spapi.controller.admin.vo.AmzListingFormFieldVO;
-import com.hzltd.module.amz.spapi.controller.admin.vo.LogicExpressionVO;
+import com.hzltd.module.amz.spapi.controller.admin.listing.vo.AmzListingFieldRuleVO;
+import com.hzltd.module.amz.spapi.controller.admin.listing.vo.AmzListingFormFieldVO;
+import com.hzltd.module.amz.spapi.controller.admin.listing.vo.LogicExpressionVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

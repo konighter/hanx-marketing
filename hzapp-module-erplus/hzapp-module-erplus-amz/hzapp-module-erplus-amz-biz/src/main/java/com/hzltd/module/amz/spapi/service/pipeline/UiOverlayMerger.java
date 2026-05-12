@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.spapi.service.pipeline;
 
-import com.hzltd.module.amz.spapi.controller.admin.vo.AmzListingFormFieldVO;
+import com.hzltd.module.amz.spapi.controller.admin.listing.vo.AmzListingFormFieldVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

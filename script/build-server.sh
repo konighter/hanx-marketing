@@ -4,8 +4,8 @@
 set -e
 
 # Default registry if not provided
-REGISTRY="${REGISTRY:-192.168.1.13:5000}"
-SERVER_IMAGE_NAME="hzapp-server"
+REGISTRY="${REGISTRY:-registry.cn-hangzhou.aliyuncs.com/hanx-dev}"
+SERVER_IMAGE_NAME="hzapp-erplus-server"
 IMAGE_TAG="latest"
 
 # Get absolute path to the project root
@@ -48,6 +48,11 @@ cp -f "$JAR_FILE" "$SCRIPT_DIR/docker/hzapp-server/app.jar"
 echo "Building Backend Docker image..."
 cd "$SCRIPT_DIR/docker/hzapp-server"
 docker build -t "$REGISTRY/$SERVER_IMAGE_NAME:$IMAGE_TAG" .
+
+if [ -n "$DOCKER_PASSWORD" ]; then
+    echo "Logging in to Aliyun Registry..."
+    echo "$DOCKER_PASSWORD" | docker login --username=konighter8212 registry.cn-hangzhou.aliyuncs.com --password-stdin
+fi
 
 echo "Pushing Backend Docker image to private registry: $REGISTRY"
 docker push "$REGISTRY/$SERVER_IMAGE_NAME:$IMAGE_TAG"

@@ -4,6 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.amz.controller.admin.vo.*;
 import com.hzltd.module.amz.dal.dataobject.AmzInboundPlanDO;
 import com.hzltd.module.amz.spapi.AmzCancelInboundPlanRequest;
+import com.hzltd.module.amz.spapi.controller.admin.fullfil.vo.*;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.Box;
 import software.amazon.spapi.models.fulfillment.inbound.v2024_03_20.InboundPlan;
 

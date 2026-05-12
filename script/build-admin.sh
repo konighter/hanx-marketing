@@ -8,7 +8,7 @@ MODE="${1:-prod}"
 echo "Build Mode: $MODE"
 
 # Default registry if not provided
-REGISTRY="${REGISTRY:-192.168.1.13:5000}"
+REGISTRY="${REGISTRY:-registry.cn-hangzhou.aliyuncs.com/hanx-dev}"
 ADMIN_IMAGE_NAME="hzapp-erplus-admin"
 IMAGE_TAG="latest"
 
@@ -42,6 +42,11 @@ cp -r "$VITE_OUT_DIR"/* "$SCRIPT_DIR/docker/hzapp-ui-admin/dist/"
 echo "Building Frontend Docker image..."
 cd "$SCRIPT_DIR/docker/hzapp-ui-admin"
 docker build -t "$REGISTRY/$ADMIN_IMAGE_NAME:$IMAGE_TAG" .
+
+if [ -n "$DOCKER_PASSWORD" ]; then
+    echo "Logging in to Aliyun Registry..."
+    echo "$DOCKER_PASSWORD" | docker login --username=konighter8212 registry.cn-hangzhou.aliyuncs.com --password-stdin
+fi
 
 echo "Pushing Frontend Docker image to private registry: $REGISTRY"
 docker push "$REGISTRY/$ADMIN_IMAGE_NAME:$IMAGE_TAG"
