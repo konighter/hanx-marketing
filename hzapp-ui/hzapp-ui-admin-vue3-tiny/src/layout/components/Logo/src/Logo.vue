@@ -77,7 +77,7 @@ watch(
           color:
             layout === 'classic'
               ? 'var(--logo-title-text-color)'
-              : '#333' 
+              : 'var(--el-text-color-primary)' 
         }"
       >
         {{ title }}
