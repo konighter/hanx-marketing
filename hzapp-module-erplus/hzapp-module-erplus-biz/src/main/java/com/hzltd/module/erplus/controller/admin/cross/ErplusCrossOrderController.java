@@ -4,6 +4,7 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderPageRequest;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderResp;
 import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderSyncRequest;
+import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderStateStatsRespVO;
 import com.hzltd.module.erplus.service.cross.ErplusCrossOrderService;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import jakarta.annotation.Resource;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/erplus/order/cross-order")
@@ -39,6 +42,11 @@ public class ErplusCrossOrderController {
     public ApiResponse<?> syncCrossOrder(@RequestBody CrossOrderSyncRequest request) {
         crossOrderService.syncCrossOrders(request);
         return ApiResponse.success(true);
+    }
+
+    @PostMapping("/state-stats")
+    public ApiResponse<List<CrossOrderStateStatsRespVO>> getOrderStateStats(@RequestBody CrossOrderPageRequest request) {
+        return ApiResponse.success(crossOrderService.getOrderStateStats(request));
     }
 
 

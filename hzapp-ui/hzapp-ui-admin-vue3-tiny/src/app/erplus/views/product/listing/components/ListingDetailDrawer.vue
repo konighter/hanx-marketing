@@ -104,6 +104,7 @@
         </el-tab-pane>
         
         <el-tab-pane label="性能数据" name="performance">
+          <!-- Top KPI Grid -->
           <div class="grid grid-cols-3 gap-6 mb-6" v-if="listing.performance">
             <div class="bg-gray-50 dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700">
               <div class="text-xs text-gray-500 mb-1">7D 销量</div>
@@ -123,6 +124,12 @@
               <div class="text-xs text-emerald-500 mb-1">30D 订单量</div>
               <div class="text-xl font-bold text-emerald-600 dark:text-emerald-400">{{ listing.performance.sales30d }}</div>
             </div>
+          </div>
+
+          <!-- Detailed Charts -->
+          <div class="mt-4 border-t pt-4">
+            <ProductPerformanceStats v-if="listing.platformProductCode" :asin="listing.platformProductCode" />
+            <el-empty v-else description="暂无 ASIN 性能趋势数据" />
           </div>
         </el-tab-pane>
 
@@ -193,6 +200,7 @@
 import { ref, computed, watch } from 'vue'
 import { ListingV2VO } from '../types'
 import { getListingFeedback } from '../../../../api/product/listing'
+import ProductPerformanceStats from './ProductPerformanceStats.vue'
 
 const visible = ref(false)
 const contentReady = ref(false)

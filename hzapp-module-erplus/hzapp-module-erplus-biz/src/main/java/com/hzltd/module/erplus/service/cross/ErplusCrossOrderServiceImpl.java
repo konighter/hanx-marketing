@@ -6,10 +6,7 @@ import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
 import com.hzltd.module.erplus.api.service.FinancesApiFactory;
 import com.hzltd.module.erplus.api.service.OrderApiFactory;
-import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderItemResp;
-import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderPageRequest;
-import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderResp;
-import com.hzltd.module.erplus.controller.admin.cross.vo.CrossOrderSyncRequest;
+import com.hzltd.module.erplus.controller.admin.cross.vo.*;
 import com.hzltd.module.erplus.convert.cross.CrossOrderConvert;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderDO;
 import com.hzltd.module.erplus.dal.dataobject.cross.CrossOrderItemDO;
@@ -260,5 +257,9 @@ public class ErplusCrossOrderServiceImpl implements ErplusCrossOrderService {
     }
 
 
+    @Override
+    public List<CrossOrderStateStatsRespVO> getOrderStateStats(CrossOrderPageRequest request) {
+        return crossOrderAddressMapper.selectStateStats(request);
+    }
 
 }

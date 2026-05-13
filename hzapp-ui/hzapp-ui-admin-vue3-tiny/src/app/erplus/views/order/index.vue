@@ -211,8 +211,7 @@ v-else style="width: 60px; height: 60px" :src="row.mainImageUrl"
     </template>
   </el-dialog>
 
-
-
+  </el-dialog>
 </template>
 
 

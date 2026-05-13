@@ -12,4 +12,12 @@ public interface AmzBrandPerformanceReportMapper extends BaseMapper<AmzBrandPerf
     default void insertBatch(Collection<AmzBrandPerformanceReportDO> entityList) {
         entityList.forEach(this::insert);
     }
+
+    default java.util.List<AmzBrandPerformanceReportDO> selectStatsByAsin(String asin, java.time.LocalDate startDate) {
+        return selectList(new com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper<AmzBrandPerformanceReportDO>()
+                .eq(AmzBrandPerformanceReportDO::getAsin, asin)
+                .eq(AmzBrandPerformanceReportDO::getReportType, "SCP")
+                .ge(AmzBrandPerformanceReportDO::getStartDate, startDate)
+                .orderByAsc(AmzBrandPerformanceReportDO::getStartDate));
+    }
 }

@@ -49,6 +49,9 @@
           <el-button @click="handSync" type="success" plain>
             <Icon icon="ep:refresh" class="mr-5px" /> 同步订单
           </el-button>
+          <el-button @click="openOrderStats" type="warning" plain>
+            <Icon icon="ep:pie-chart" class="mr-5px" /> 订单统计
+          </el-button>
         </el-form-item>
       </el-form>
     </ContentWrap>
@@ -141,6 +144,8 @@
         <el-button type="primary" :loading="syncLoading" @click="handleDoSync">执行同步</el-button>
       </template>
     </el-dialog>
+
+    <OrderStatsDrawer ref="orderStatsDrawerRef" />
   </div>
 </template>
 
@@ -150,6 +155,7 @@ import dayjs from 'dayjs'
 import { ShopApi } from '@/app/erplus/api/system/shop'
 import * as OrderApi from '@/app/erplus/api/order/order'
 import OrderItem from './components/OrderItem.vue'
+import OrderStatsDrawer from './components/OrderStatsDrawer.vue'
 import ShopCascaderSelect from '@/app/erplus/compononts/ShopCascaderSelect.vue'
 
 defineOptions({ name: 'CrossOrderListV2' })
@@ -184,6 +190,8 @@ const queryFormRef = ref()
 const rules = reactive({
   shopId: [{ required: true, message: '请选择店铺', trigger: 'change' }]
 })
+
+const orderStatsDrawerRef = ref()
 
 // 同步相关复用
 const syncDialogVisible = ref(false)
@@ -358,6 +366,14 @@ const handleDoSync = async () => {
   } finally {
     syncLoading.value = false
   }
+}
+
+const openOrderStats = () => {
+  if (!queryParams.shopId) {
+    message.warning('请先选择店铺')
+    return
+  }
+  orderStatsDrawerRef.value.open(queryParams.shopId)
 }
 </script>
 
