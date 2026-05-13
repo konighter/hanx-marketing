@@ -129,6 +129,13 @@ const fixedMenuChange = (show: boolean) => {
   appStore.setFixedMenu(show)
 }
 
+// 套餐订阅
+const tenantSubscribe = ref(appStore.getTenantSubscribe)
+
+const tenantSubscribeChange = (show: boolean) => {
+  appStore.setTenantSubscribe(show)
+}
+
 // 设置水印
 const setWater = () => {
   setWatermark(water.value)
@@ -226,6 +233,11 @@ watch(
     <div class="flex items-center justify-between">
       <span class="text-14px">{{ t('setting.fixedMenu') }}</span>
       <ElSwitch v-model="fixedMenu" @change="fixedMenuChange" />
+    </div>
+
+    <div class="flex items-center justify-between">
+      <span class="text-14px">套餐订阅</span>
+      <ElSwitch v-model="tenantSubscribe" @change="tenantSubscribeChange" />
     </div>
 
     <div class="flex items-center justify-between">

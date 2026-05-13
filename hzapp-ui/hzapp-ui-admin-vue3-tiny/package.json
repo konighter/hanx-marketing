@@ -6,8 +6,8 @@
   "private": false,
   "scripts": {
     "i": "pnpm install",
-    "local": "vite --mode env.local",
-    "dev-server": "vite --mode env.dev",
+    "local": "vite --mode local",
+    "dev": "vite --mode dev",
     "ts:check": "vue-tsc --noEmit",
     "build:local": "node --max_old_space_size=4096 ./node_modules/vite/bin/vite.js build",
     "build:dev": "node --max_old_space_size=4096 ./node_modules/vite/bin/vite.js build --mode dev",

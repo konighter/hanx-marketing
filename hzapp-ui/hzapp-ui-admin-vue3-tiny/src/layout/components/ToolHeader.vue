@@ -44,6 +44,9 @@ const locale = computed(() => appStore.getLocale)
 // 消息图标
 const message = computed(() => appStore.getMessage)
 
+// 套餐订阅
+const tenantSubscribe = computed(() => appStore.getTenantSubscribe)
+
 // 租户切换权限
 const hasTenantVisitPermission = computed(
   () => import.meta.env.VITE_APP_TENANT_ENABLE === 'true' 
@@ -70,7 +73,7 @@ export default defineComponent({
         ) : undefined}
         <div class="h-full flex items-center">
           {hasTenantVisitPermission.value ? <TenantVisit /> : undefined}
-          <Subscribe />
+          {tenantSubscribe.value ? <Subscribe /> : undefined}
           {screenfull.value ? (
             <Screenfull class="custom-hover" color="var(--top-header-text-color)"></Screenfull>
           ) : undefined}

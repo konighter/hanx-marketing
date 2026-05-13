@@ -12,11 +12,14 @@ import { ThemeSwitch } from '@/layout/components/ThemeSwitch'
 import ColorRadioPicker from './components/ColorRadioPicker.vue'
 import InterfaceDisplay from './components/InterfaceDisplay.vue'
 import LayoutRadioPicker from './components/LayoutRadioPicker.vue'
+import { getTenantId } from '@/utils/auth'
 
 defineOptions({ name: 'Setting' })
 
 const { t } = useI18n()
 const appStore = useAppStore()
+
+const isSystemTenant = computed(() => Number(getTenantId()) === 1)
 
 const { getPrefixCls } = useDesign()
 const prefixCls = getPrefixCls('setting')
@@ -202,6 +205,7 @@ const clear = () => {
 
 <template>
   <div
+    v-if="isSystemTenant"
     :class="prefixCls"
     class="fixed right-0 top-[45%] h-40px w-40px cursor-pointer bg-[var(--el-color-primary)] text-center leading-40px"
     @click="drawer = true"

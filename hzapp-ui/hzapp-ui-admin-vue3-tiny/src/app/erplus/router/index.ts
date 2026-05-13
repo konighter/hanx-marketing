@@ -6,6 +6,7 @@ const erplusRouter: AppRouteRecordRaw[] = [
     component: Layout,
     name: 'ErplusDashboard',
     meta: {
+      hidden: true,
       title: '跨境业务大盘',
       icon: 'ep:data-line'
     },
@@ -17,7 +18,8 @@ const erplusRouter: AppRouteRecordRaw[] = [
         meta: {
           title: '业务大盘',
           icon: 'ep:data-line',
-          noCache: false
+          noCache: false,
+          affix: import.meta.env.VITE_APP_HOME_PATH === '/erplus/dashboard'
         }
       }
     ]

@@ -53,19 +53,20 @@ const remainingRouter: AppRouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
-    redirect: '/index',
+    redirect: import.meta.env.VITE_APP_HOME_PATH || '/index',
     name: 'Home',
     meta: {},
     children: [
       {
         path: 'index',
+        redirect: import.meta.env.VITE_APP_HOME_PATH || undefined,
         component: () => import('@/views/Home/Index2.vue'),
         name: 'Index',
         meta: {
           title: t('router.home'),
           icon: 'ep:home-filled',
           noCache: false,
-          affix: true
+          affix: !import.meta.env.VITE_APP_HOME_PATH
         }
       }
     ]

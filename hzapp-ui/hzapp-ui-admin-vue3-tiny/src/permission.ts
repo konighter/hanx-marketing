@@ -8,6 +8,7 @@ import { usePageLoading } from '@/hooks/web/usePageLoading'
 import { useDictStoreWithOut } from '@/store/modules/dict'
 import { useUserStoreWithOut } from '@/store/modules/user'
 import { usePermissionStoreWithOut } from '@/store/modules/permission'
+import { useAppStoreWithOut } from '@/store/modules/app'
 
 const { start, done } = useNProgress()
 
@@ -72,10 +73,12 @@ router.beforeEach(async (to, from, next) => {
       const permissionStore = usePermissionStoreWithOut()
       if (!userStore.getIsSetUser) {
         try {
-          // Pro Max: 并行加载字典和用户信息，减少首屏等待时间
+          const appStore = useAppStoreWithOut()
+          // Pro Max: 并行加载字典、用户信息和应用配置，减少首屏等待时间
           await Promise.all([
             !dictStore.getIsSetDict ? dictStore.setDictMap() : Promise.resolve(),
-            userStore.setUserInfoAction()
+            userStore.setUserInfoAction(),
+            appStore.initTenantSubscribe()
           ])
           // 后端过滤菜单
           await permissionStore.generateRoutes()

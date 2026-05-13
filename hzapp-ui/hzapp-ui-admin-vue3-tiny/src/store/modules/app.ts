@@ -38,6 +38,7 @@ interface AppState {
   footer: boolean
   theme: ThemeTypes
   fixedMenu: boolean
+  tenantSubscribe: boolean
 }
 
 export const useAppStore = defineStore('app', {
@@ -67,6 +68,7 @@ export const useAppStore = defineStore('app', {
       footer: true, // 显示页脚
       greyMode: false, // 是否开始灰色模式，用于特殊悼念日
       fixedMenu: wsCache.get('fixedMenu') || false, // 是否固定菜单
+      tenantSubscribe: import.meta.env.VITE_APP_TENANT_SUBSCRIBE_ENABLE === 'true', // 是否显示套餐订阅
 
       layout: wsCache.get(CACHE_KEY.LAYOUT) || 'classic', // layout布局
       isDark: wsCache.get(CACHE_KEY.IS_DARK) || false, // 是否是暗黑模式
@@ -181,6 +183,9 @@ export const useAppStore = defineStore('app', {
     },
     getFooter(): boolean {
       return this.footer
+    },
+    getTenantSubscribe(): boolean {
+      return this.tenantSubscribe
     }
   },
   actions: {
@@ -312,6 +317,19 @@ export const useAppStore = defineStore('app', {
     },
     setFooter(footer: boolean) {
       this.footer = footer
+    },
+    setTenantSubscribe(tenantSubscribe: boolean) {
+      this.tenantSubscribe = tenantSubscribe
+    },
+    async initTenantSubscribe() {
+      const { getConfigKey } = await import('@/api/infra/config')
+      try {
+        const res = await getConfigKey('key_enable_tenant_subscribe')
+        this.tenantSubscribe = res === 'true'
+      } catch (error) {
+        // 报错时兜底使用环境变量值
+        this.tenantSubscribe = import.meta.env.VITE_APP_TENANT_SUBSCRIBE_ENABLE === 'true'
+      }
     }
   },
   persist: false

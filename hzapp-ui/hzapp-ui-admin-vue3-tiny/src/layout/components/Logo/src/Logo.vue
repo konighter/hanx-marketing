@@ -72,14 +72,13 @@ watch(
       />
       <div
         v-if="show"
-        :class="[
-          'ml-10px text-16px font-700',
-          {
-            'text-[var(--logo-title-text-color)]': layout === 'classic',
-            'text-[var(--top-header-text-color)]':
-              layout === 'topLeft' || layout === 'top' || layout === 'cutMenu'
-          }
-        ]"
+        class="ml-10px text-16px font-700"
+        :style="{
+          color:
+            layout === 'classic'
+              ? 'var(--logo-title-text-color)'
+              : '#333' 
+        }"
       >
         {{ title }}
       </div>

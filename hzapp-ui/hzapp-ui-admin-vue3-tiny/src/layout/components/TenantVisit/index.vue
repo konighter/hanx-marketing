@@ -1,9 +1,9 @@
 <template>
   <el-dropdown class="custom-hover" @command="handleCommand">
-    <div class="flex items-center px-2 cursor-pointer">
+    <div class="flex items-center px-2 cursor-pointer text-[var(--top-header-text-color)]">
       <Icon icon="ep:office-building" class="mr-1" />
-      <span v-if="currentTenantName" class="text-14px">{{ currentTenantName }}</span>
-      <span v-else class="text-14px">未选择组织</span>
+      <span v-if="currentTenantName" class="text-14px font-bold">{{ currentTenantName }}</span>
+      <span v-else class="text-14px font-bold">未选择组织</span>
     </div>
     <template #dropdown>
       <el-dropdown-menu>
