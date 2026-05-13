@@ -21,7 +21,10 @@ import java.util.Map;
 public interface ErpCrossOrderItemMapper extends BaseMapperX<CrossOrderItemDO> {
 
     @Select("<script>" +
-            "SELECT product_id, DATE(create_time) as `date`, SUM(item_count) as `orders`, SUM(item_price) as `sales` " +
+            "SELECT product_id, DATE(create_time) as `date`, " +
+            "COUNT(DISTINCT order_id) as order_count, " +
+            "SUM(item_count) as unit_count, " +
+            "SUM(item_price) as sales " +
             "FROM erplus_cross_order_item " +
             "WHERE product_id IN " +
             "<foreach item='id' collection='productIds' open='(' separator=',' close=')'>#{id}</foreach> " +

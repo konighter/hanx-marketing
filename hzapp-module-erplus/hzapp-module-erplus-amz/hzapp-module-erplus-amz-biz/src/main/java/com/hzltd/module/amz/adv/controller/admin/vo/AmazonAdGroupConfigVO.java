@@ -1,4 +1,4 @@
-package com.hzltd.module.amz.controller.admin.vo;
+package com.hzltd.module.amz.adv.controller.admin.vo;
 
 import com.hzltd.module.amz.api.adv.model.sp.AdsSpAdGroup;
 import com.hzltd.module.amz.api.adv.model.sp.AdsSpNegativeKeyword;

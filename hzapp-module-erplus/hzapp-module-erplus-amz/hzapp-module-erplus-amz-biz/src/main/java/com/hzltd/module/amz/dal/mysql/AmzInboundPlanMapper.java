@@ -3,7 +3,7 @@ package com.hzltd.module.amz.dal.mysql;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.mybatis.core.mapper.BaseMapperX;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.amz.controller.admin.vo.AmzListInboundPlansRequest;
+import com.hzltd.module.amz.spapi.controller.admin.fullfil.vo.AmzListInboundPlansRequest;
 import com.hzltd.module.amz.dal.dataobject.AmzInboundPlanDO;
 import org.apache.ibatis.annotations.Mapper;
 

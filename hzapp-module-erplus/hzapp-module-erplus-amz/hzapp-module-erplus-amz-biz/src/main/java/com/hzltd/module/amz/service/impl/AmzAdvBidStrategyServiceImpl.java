@@ -1,8 +1,8 @@
 package com.hzltd.module.amz.service.impl;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvBidStrategyPageReqVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvBidStrategySaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvBidStrategyPageReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvBidStrategySaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvBidStrategyDO;
 import com.hzltd.module.amz.dal.mapper.AmzAdvBidStrategyMapper;
 import com.hzltd.module.amz.service.AmzAdvBidStrategyService;

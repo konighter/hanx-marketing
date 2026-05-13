@@ -1,4 +1,4 @@
-package com.hzltd.module.amz.controller.admin.vo;
+package com.hzltd.module.amz.adv.controller.admin.vo;
 
 import com.hzltd.framework.common.pojo.PageParam;
 import io.swagger.v3.oas.annotations.media.Schema;

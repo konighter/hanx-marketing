@@ -1,4 +1,4 @@
-package com.hzltd.module.amz.controller.admin;
+package com.hzltd.module.amz.adv.controller.admin.manager;
 
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.module.amz.adv.service.AdsAmazonProfileService;

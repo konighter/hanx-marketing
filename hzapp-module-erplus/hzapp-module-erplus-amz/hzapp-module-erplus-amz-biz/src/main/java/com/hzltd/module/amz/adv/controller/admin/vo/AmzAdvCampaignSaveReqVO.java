@@ -1,4 +1,4 @@
-package com.hzltd.module.amz.controller.admin.vo;
+package com.hzltd.module.amz.adv.controller.admin.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;

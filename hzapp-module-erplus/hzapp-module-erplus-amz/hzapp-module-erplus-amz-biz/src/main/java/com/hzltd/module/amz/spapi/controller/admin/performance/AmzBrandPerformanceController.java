@@ -1,7 +1,7 @@
-package com.hzltd.module.amz.controller.admin.performance;
+package com.hzltd.module.amz.spapi.controller.admin.performance;
 
 import com.hzltd.framework.common.util.object.BeanUtils;
-import com.hzltd.module.amz.controller.admin.performance.vo.AmzBrandPerformanceStatsRespVO;
+import com.hzltd.module.amz.spapi.controller.admin.performance.vo.AmzBrandPerformanceStatsRespVO;
 import com.hzltd.module.amz.dal.mysql.AmzBrandPerformanceReportMapper;
 import com.hzltd.module.erplus.spapi.model.ApiResponse;
 import jakarta.annotation.Resource;

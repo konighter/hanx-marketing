@@ -14,7 +14,9 @@ public class ListingPerformanceDTO {
 
     private Integer sales7d;
 
-    private Integer sales30d;
+    private Integer sales30d; // This will represent Units Sold to maintain compatibility
+
+    private Integer orderCount30d;
 
     private Long gmv30d;
 

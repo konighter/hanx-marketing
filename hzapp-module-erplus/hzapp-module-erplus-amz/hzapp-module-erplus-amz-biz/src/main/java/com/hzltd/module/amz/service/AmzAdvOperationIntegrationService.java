@@ -2,10 +2,10 @@ package com.hzltd.module.amz.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvAdGroupSaveReqVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvCampaignPageReqVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvCampaignSaveReqVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvKeywordSaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvAdGroupSaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvCampaignPageReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvCampaignSaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvKeywordSaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvAdGroupDO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvCampaignDO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvKeywordDO;

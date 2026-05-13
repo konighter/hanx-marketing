@@ -1,8 +1,8 @@
 package com.hzltd.module.amz.service.impl;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvCampaignPageReqVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvCampaignSaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvCampaignPageReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvCampaignSaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvCampaignDO;
 import com.hzltd.module.amz.dal.mapper.AmzAdvCampaignMapper;
 import com.hzltd.module.amz.service.AmzAdvCampaignService;

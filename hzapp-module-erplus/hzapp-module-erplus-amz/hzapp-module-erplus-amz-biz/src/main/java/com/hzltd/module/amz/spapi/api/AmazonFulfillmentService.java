@@ -2,7 +2,6 @@ package com.hzltd.module.amz.spapi.api;
 
 
 import com.amazon.SellingPartnerAPIAA.LWAException;
-import com.hzltd.module.amz.controller.admin.vo.*;
 import com.hzltd.module.amz.spapi.AbsAmzPlatformApiService;
 import com.hzltd.module.amz.spapi.AmzCancelInboundPlanRequest;
 import com.hzltd.module.amz.spapi.controller.admin.fullfil.vo.*;

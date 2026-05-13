@@ -5,7 +5,6 @@ import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.json.JsonUtils;
 import com.hzltd.framework.common.util.object.BeanUtils;
 import com.hzltd.framework.mybatis.core.query.LambdaQueryWrapperX;
-import com.hzltd.module.amz.controller.admin.vo.*;
 import com.hzltd.module.amz.convert.AmzFulfillConvert;
 import com.hzltd.module.amz.dal.dataobject.AmzInboundPlanDO;
 import com.hzltd.module.amz.dal.mysql.AmzInboundPlanMapper;

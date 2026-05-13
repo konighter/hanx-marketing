@@ -1,8 +1,8 @@
 package com.hzltd.module.amz.spapi.service;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskPageReqVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskSaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzReportTaskPageReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzReportTaskSaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzReportTaskDO;
 import jakarta.validation.Valid;
 

@@ -1,4 +1,4 @@
-package com.hzltd.module.amz.controller.admin.vo;
+package com.hzltd.module.amz.adv.controller.admin.vo;
 
 import cn.idev.excel.annotation.ExcelIgnoreUnannotated;
 import cn.idev.excel.annotation.ExcelProperty;

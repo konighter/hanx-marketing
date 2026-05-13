@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.adv.service;
 
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvCampaignSaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvCampaignSaveReqVO;
 
 /**
  * 亚马逊广告活动出价与关联管理 Service 接口

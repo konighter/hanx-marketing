@@ -27,7 +27,7 @@ public class CrossProductPerformanceServiceImpl implements CrossProductPerforman
     @Override
     public ListingPerformanceDTO getPerformance(Long productId, String sellerSku) {
         Map<Long, ListingPerformanceDTO> map = getBatchPerformance(Collections.singletonList(productId));
-        return map.getOrDefault(productId, new ListingPerformanceDTO(0, 0, 0L, 0.0, Collections.emptyList()));
+        return map.getOrDefault(productId, new ListingPerformanceDTO(0, 0, 0, 0L, 0.0, Collections.emptyList()));
     }
 
     @Override
@@ -61,7 +61,7 @@ public class CrossProductPerformanceServiceImpl implements CrossProductPerforman
 
         // 补全缺失的 ID
         for (Long id : productIds) {
-            resultMap.putIfAbsent(id, new ListingPerformanceDTO(0, 0, 0L, 0.0, Collections.emptyList()));
+            resultMap.putIfAbsent(id, new ListingPerformanceDTO(0, 0,0, 0L, 0.0, Collections.emptyList()));
         }
 
         return resultMap;
@@ -73,6 +73,7 @@ public class CrossProductPerformanceServiceImpl implements CrossProductPerforman
     private ListingPerformanceDTO aggregatePerformanceFromOrders(List<Map<String, Object>> rows, LocalDate today) {
         int sales7d = 0;
         int sales30d = 0;
+        int orderCount30d = 0;
         BigDecimal gmv30d = BigDecimal.ZERO;
         
         // 14天 Revenue Curve
@@ -86,17 +87,28 @@ public class CrossProductPerformanceServiceImpl implements CrossProductPerforman
 
         for (Map<String, Object> row : rows) {
             Object dateObj = row.get("date");
+            if (dateObj == null) dateObj = row.get("DATE");
             LocalDate date = parseLocalDate(dateObj);
             if (date == null) continue;
 
             // 数据库存的是分，GMV 展示通常为元
-            BigDecimal dailyRevenueCents = NumberUtil.toBigDecimal(String.valueOf(row.get("sales")));
+            Object salesObj = row.get("sales");
+            if (salesObj == null) salesObj = row.get("SALES");
+            BigDecimal dailyRevenueCents = NumberUtil.toBigDecimal(String.valueOf(salesObj));
             BigDecimal dailyRevenue = dailyRevenueCents.divide(new BigDecimal(100), 2, RoundingMode.HALF_UP);
-            int dailyUnits = NumberUtil.parseInt(String.valueOf(row.get("orders")), 0);
+
+            Object unitsObj = row.get("unit_count");
+            if (unitsObj == null) unitsObj = row.get("UNIT_COUNT");
+            int dailyUnits = NumberUtil.parseInt(String.valueOf(unitsObj), 0);
+
+            Object ordersObj = row.get("order_count");
+            if (ordersObj == null) ordersObj = row.get("ORDER_COUNT");
+            int dailyOrders = NumberUtil.parseInt(String.valueOf(ordersObj), 0);
 
             // 30天统计 (不含今天)
             if (date.isBefore(today) && !date.isBefore(d30Limit)) {
                 sales30d += dailyUnits;
+                orderCount30d += dailyOrders;
                 gmv30d = gmv30d.add(dailyRevenue);
             }
 
@@ -117,9 +129,14 @@ public class CrossProductPerformanceServiceImpl implements CrossProductPerforman
         int prevSales7d = 0;
         LocalDate prev7dLimit = today.minusDays(14);
         for (Map<String, Object> row : rows) {
-            LocalDate date = parseLocalDate(row.get("date"));
+            Object dateObj = row.get("date");
+            if (dateObj == null) dateObj = row.get("DATE");
+            LocalDate date = parseLocalDate(dateObj);
             if (date == null) continue;
-            int dailyUnits = NumberUtil.parseInt(String.valueOf(row.get("orders")), 0);
+
+            Object unitsObj = row.get("unit_count");
+            if (unitsObj == null) unitsObj = row.get("UNIT_COUNT");
+            int dailyUnits = NumberUtil.parseInt(String.valueOf(unitsObj), 0);
             if (date.isBefore(d7Limit) && !date.isBefore(prev7dLimit)) {
                 prevSales7d += dailyUnits;
             }
@@ -135,6 +152,7 @@ public class CrossProductPerformanceServiceImpl implements CrossProductPerforman
         return new ListingPerformanceDTO(
                 sales7d,
                 sales30d,
+                orderCount30d,
                 gmv30d.setScale(0, RoundingMode.HALF_UP).longValue(),
                 NumberUtil.round(growth, 1).doubleValue(),
                 revenueCurve

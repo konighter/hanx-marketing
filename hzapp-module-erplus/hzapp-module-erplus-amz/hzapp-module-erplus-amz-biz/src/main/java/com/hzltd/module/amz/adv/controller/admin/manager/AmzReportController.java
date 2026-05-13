@@ -1,12 +1,12 @@
-package com.hzltd.module.amz.controller.admin;
+package com.hzltd.module.amz.adv.controller.admin.manager;
 
 
 import com.hzltd.framework.common.pojo.CommonResult;
 import com.hzltd.framework.common.pojo.PageResult;
 import com.hzltd.framework.common.util.object.BeanUtils;
-import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskPageReqVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskRespVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzReportTaskSaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzReportTaskPageReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzReportTaskRespVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzReportTaskSaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzReportTaskDO;
 import com.hzltd.module.amz.spapi.service.AmzReportTaskService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -24,6 +24,7 @@ import static com.hzltd.framework.common.pojo.CommonResult.success;
 @RestController
 @RequestMapping("/erplus/amz-report")
 @Validated
+@Deprecated
 public class AmzReportController {
 
     @Resource

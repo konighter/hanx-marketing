@@ -1,8 +1,8 @@
 package com.hzltd.module.amz.service.impl;
 
 import com.hzltd.framework.common.pojo.PageResult;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvKeywordPageReqVO;
-import com.hzltd.module.amz.controller.admin.vo.AmzAdvKeywordSaveReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvKeywordPageReqVO;
+import com.hzltd.module.amz.adv.controller.admin.vo.AmzAdvKeywordSaveReqVO;
 import com.hzltd.module.amz.dal.dataobject.AmzAdvKeywordDO;
 import com.hzltd.module.amz.dal.mapper.AmzAdvKeywordMapper;
 import com.hzltd.module.amz.service.AmzAdvKeywordService;

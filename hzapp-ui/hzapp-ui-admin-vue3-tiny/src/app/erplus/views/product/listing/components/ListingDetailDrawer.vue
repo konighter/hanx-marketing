@@ -105,9 +105,9 @@
         
         <el-tab-pane label="性能数据" name="performance">
           <!-- Top KPI Grid -->
-          <div class="grid grid-cols-3 gap-6 mb-6" v-if="listing.performance">
+          <div class="grid grid-cols-4 gap-6 mb-6" v-if="listing.performance">
             <div class="bg-gray-50 dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-slate-700">
-              <div class="text-xs text-gray-500 mb-1">7D 销量</div>
+              <div class="text-xs text-gray-500 mb-1">7D 销量 (件)</div>
               <div class="flex items-baseline gap-2">
                 <div class="text-xl font-bold text-gray-800 dark:text-slate-100">{{ listing.performance.sales7d }}</div>
                 <div v-if="listing.performance.sales7dGrowth !== undefined" class="text-xs font-bold flex items-center" :class="listing.performance.sales7dGrowth >= 0 ? 'text-green-500' : 'text-rose-500'">
@@ -122,14 +122,18 @@
             </div>
             <div class="bg-emerald-50 dark:bg-emerald-900/20 p-4 rounded-xl border border-emerald-100 dark:border-emerald-800/30">
               <div class="text-xs text-emerald-500 mb-1">30D 订单量</div>
-              <div class="text-xl font-bold text-emerald-600 dark:text-emerald-400">{{ listing.performance.sales30d }}</div>
+              <div class="text-xl font-bold text-emerald-600 dark:text-emerald-400">{{ listing.performance.orderCount30d || 0 }}</div>
+            </div>
+            <div class="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-xl border border-amber-100 dark:border-amber-800/30">
+              <div class="text-xs text-amber-500 mb-1">30D 销量 (件)</div>
+              <div class="text-xl font-bold text-amber-600 dark:text-amber-400">{{ listing.performance.sales30d }}</div>
             </div>
           </div>
 
           <!-- Detailed Charts -->
           <div class="mt-4 border-t pt-4">
-            <ProductPerformanceStats v-if="listing.platformProductCode" :asin="listing.platformProductCode" />
-            <el-empty v-else description="暂无 ASIN 性能趋势数据" />
+            <ProductPerformanceStats v-if="activeTab === 'performance' && listing.platformProductCode" :asin="listing.platformProductCode" />
+            <el-empty v-else-if="!listing.platformProductCode" description="暂无 ASIN 性能趋势数据" />
           </div>
         </el-tab-pane>
 

@@ -1,4 +1,4 @@
-package com.hzltd.module.amz.controller.admin.vo;
+package com.hzltd.module.amz.spapi.controller.admin.fullfil.vo;
 
 import com.hzltd.framework.common.pojo.PageParam;
 import lombok.Data;
