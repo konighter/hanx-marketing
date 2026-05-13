@@ -1,4 +1,27 @@
+import { Layout } from '@/utils/routerHelper'
+
 const erplusRouter: AppRouteRecordRaw[] = [
+  {
+    path: '/erplus',
+    component: Layout,
+    name: 'ErplusDashboard',
+    meta: {
+      title: '跨境业务大盘',
+      icon: 'ep:data-line'
+    },
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/app/erplus/views/dashboard/index.vue'),
+        name: 'ErplusDashboardIndex',
+        meta: {
+          title: '业务大盘',
+          icon: 'ep:data-line',
+          noCache: false
+        }
+      }
+    ]
+  },
   {
     path: '/auth/callback/:authType',
     component: () => import('@/app/erplus/views/system/shop/AuthCallback.vue'),
