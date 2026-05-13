@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.adv.job;
 
 import com.hzltd.framework.quartz.core.handler.JobHandler;
 import com.hzltd.framework.tenant.core.job.TenantJob;
-import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
+import com.hzltd.module.erplus.system.enums.ScheduleTaskTypeEnum;
 import com.hzltd.module.erplus.system.dto.ErpTaskSubmitRequest;
 import com.hzltd.module.erplus.system.enums.AdsPlatformEnum;
 import com.hzltd.module.erplus.system.enums.CrossPlatformEnum;
@@ -37,7 +37,6 @@ public class AdsReportSyncTaskJob implements JobHandler {
     @Resource
     private SystemShopService shopService;
 
-    @TenantJob
     @Override
     public String execute(String param) throws Exception {
         log.info("[AdsSyncTaskJob] 开始执行广告报表同步任务调度...");
@@ -79,7 +78,7 @@ public class AdsReportSyncTaskJob implements JobHandler {
             ErpTaskSubmitRequest submitReq = ErpTaskSubmitRequest.builder()
                     .shopId(shop.getId())
                     .platform(platform.getCode())
-                    .taskType(AdsSyncTaskTypeEnum.REPORT_DAILY.getCode())
+                    .taskType(ScheduleTaskTypeEnum.REPORT_DAILY.getCode())
                     .taskUniqueId("REPORT_DAILY_" + shop.getId() + "_" + scheduledAt)
                     .dateRangeStart(start)
                     .dateRangeEnd(end)

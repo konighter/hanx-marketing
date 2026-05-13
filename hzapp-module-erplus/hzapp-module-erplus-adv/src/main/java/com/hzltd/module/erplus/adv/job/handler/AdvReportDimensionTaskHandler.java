@@ -5,7 +5,7 @@ import com.hzltd.module.erplus.adv.adapter.service.AdsReportApiFactory;
 import com.hzltd.module.erplus.adv.dal.dataobject.AdsReportBatchDO;
 import com.hzltd.module.erplus.adv.dal.mysql.AdsReportBatchMapper;
 import com.hzltd.module.erplus.adv.enums.AdsReportStatus;
-import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
+import com.hzltd.module.erplus.system.enums.ScheduleTaskTypeEnum;
 import com.hzltd.module.erplus.adv.model.*;
 import com.hzltd.module.erplus.adv.service.AdsReportApi;
 import com.hzltd.module.erplus.system.service.ErpTaskHandler;
@@ -91,7 +91,7 @@ public class AdvReportDimensionTaskHandler implements ErpTaskHandler {
 
         AdsResponse<AdsReportStatus> statusResponse = api.getReportStatus(wrap(task, statusReq));
         if (!statusResponse.isSuccess()) {
-            return ErpTaskResult.failed(statusResponse.getMessage());
+            return ErpTaskResult.submitted(task.getPlatformJobId());
         }
 
         AdsReportStatus status = statusResponse.getData();
@@ -120,7 +120,7 @@ public class AdvReportDimensionTaskHandler implements ErpTaskHandler {
 
     @Override
     public String getTaskType() {
-        return AdsSyncTaskTypeEnum.REPORT_DIMENSION.getCode();
+        return ScheduleTaskTypeEnum.REPORT_DIMENSION.getCode();
     }
 
     private AdsReportRequest buildRequest(ErpTaskDTO task) {

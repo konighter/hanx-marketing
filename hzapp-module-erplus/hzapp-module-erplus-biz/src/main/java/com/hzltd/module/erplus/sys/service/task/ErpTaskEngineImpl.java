@@ -1,6 +1,7 @@
 package com.hzltd.module.erplus.sys.service.task;
 
 import cn.hutool.core.collection.CollUtil;
+import com.google.common.collect.Lists;
 import com.hzltd.module.erplus.system.enums.ErpTaskStatus;
 import com.hzltd.module.erplus.system.service.ErpTaskEngine;
 import com.hzltd.module.erplus.system.service.ErpTaskHandler;
@@ -83,7 +84,17 @@ public class ErpTaskEngineImpl implements ErpTaskEngine {
         if (CollUtil.isEmpty(requests)) {
             return;
         }
+        List<ErpScheduleTaskDO> childTasks = Lists.newArrayList();
+        List<Long> task2Del = Lists.newArrayList();
         for (ErpTaskSubmitRequest request : requests) {
+
+            // 幂等检查
+            ErpScheduleTaskDO existing = taskMapper.selectByUniqueId(request.getTaskUniqueId(), request.getTaskType());
+            // 如果任务已存在且未结束 或者已经成功 ，返回现有ID, 如果失败了, 允许重新创建
+            if (existing != null && ErpTaskStatus.isFailed(existing.getStatus())) {
+                task2Del.add(existing.getId());
+            }
+
             ErpScheduleTaskDO childTask = ErpTaskConvert.INSTANCE.convert(request);
             childTask.setParentTaskId(parentId);
             childTask.setStatus(ErpTaskStatus.PENDING.getStatus());
@@ -93,9 +104,12 @@ public class ErpTaskEngineImpl implements ErpTaskEngine {
             if (childTask.getMaxRetries() == null) {
                 childTask.setMaxRetries(3);
             }
-            taskMapper.insert(childTask);
+            childTasks.add(childTask);
         }
+        taskMapper.deleteByIds(task2Del);
+        taskMapper.insertBatch(childTasks);
     }
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -207,7 +221,7 @@ public class ErpTaskEngineImpl implements ErpTaskEngine {
         if (result != null) {
             updateTaskState(taskDO, result);
             taskMapper.updateById(taskDO);
-            
+
             // 如果成功且是子任务，检查父任务
             if (ErpTaskStatus.SUCCESS.getStatus().equals(taskDO.getStatus()) && taskDO.getParentTaskId() != null) {
                 checkAndCompleteParent(taskDO.getParentTaskId());
@@ -235,6 +249,7 @@ public class ErpTaskEngineImpl implements ErpTaskEngine {
         if (result.getNextScheduleTime() != null) {
             taskDO.setScheduledAt(result.getNextScheduleTime());
         }
+        taskDO.setUpdateTime(LocalDateTime.now());
     }
 
     private void handleTaskError(ErpScheduleTaskDO taskDO, String error) {

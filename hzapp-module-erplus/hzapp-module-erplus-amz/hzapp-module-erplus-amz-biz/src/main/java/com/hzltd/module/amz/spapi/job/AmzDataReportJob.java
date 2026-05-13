@@ -2,7 +2,7 @@ package com.hzltd.module.amz.spapi.job;
 
 import com.hzltd.framework.quartz.core.handler.JobHandler;
 import com.hzltd.framework.tenant.core.job.TenantJob;
-import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
+import com.hzltd.module.erplus.system.enums.ScheduleTaskTypeEnum;
 import com.hzltd.module.erplus.system.dto.ErpTaskSubmitRequest;
 import com.hzltd.module.erplus.system.model.ShopModel;
 import com.hzltd.module.erplus.system.service.ErpTaskEngine;
@@ -29,7 +29,6 @@ public class AmzDataReportJob implements JobHandler {
     @Resource
     private SystemShopService shopService;
 
-    @TenantJob
     @Override
     public String execute(String param) throws Exception {
         log.info("[AmzDataReportJob] 开始调度亚马逊品牌分析父任务...");
@@ -47,7 +46,7 @@ public class AmzDataReportJob implements JobHandler {
             ErpTaskSubmitRequest request = ErpTaskSubmitRequest.builder()
                     .shopId(shop.getId())
                     .platform("AMAZON")
-                    .taskType(AdsSyncTaskTypeEnum.AMZ_DATA_REPORT_PARENT.getCode())
+                    .taskType(ScheduleTaskTypeEnum.AMZ_DATA_REPORT_PARENT.getCode())
                     .taskUniqueId(uniqueId)
                     .dateRangeStart(start)
                     .dateRangeEnd(end)

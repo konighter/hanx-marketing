@@ -1,6 +1,6 @@
 package com.hzltd.module.amz.spapi.job.handler;
 
-import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
+import com.hzltd.module.erplus.system.enums.ScheduleTaskTypeEnum;
 import com.hzltd.module.erplus.system.dto.ErpTaskDTO;
 import com.hzltd.module.erplus.system.dto.ErpTaskResult;
 import com.hzltd.module.erplus.system.dto.ErpTaskSubmitRequest;
@@ -28,8 +28,8 @@ public class AmzDataReportParentHandler extends TenantBaseTaskHandler {
     private ErpTaskEngine taskEngine;
 
     private static final List<String> REPORT_TYPES = Arrays.asList(
-            "GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT",
-            "GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT",
+//            "GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT",
+//            "GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT",
             "GET_BRAND_ANALYTICS_SEARCH_CATALOG_PERFORMANCE_REPORT",
             "GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT"
     );
@@ -42,13 +42,22 @@ public class AmzDataReportParentHandler extends TenantBaseTaskHandler {
             Map<String, Object> context = new HashMap<>();
             context.put("reportType", type);
 
+
+
+            // 判断任务类型：SCP 和 SQP 使用专门的性能报表处理器
+            String taskType = ScheduleTaskTypeEnum.AMZ_DATA_REPORT_CHILD.getCode();
+            if ("GET_BRAND_ANALYTICS_SEARCH_CATALOG_PERFORMANCE_REPORT".equals(type) ||
+                "GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT".equals(type)) {
+                taskType = ScheduleTaskTypeEnum.AMZ_DATA_REPORT_PERFORMANCE.getCode();
+            }
+
             // 子任务的 UniqueId 包含报告类型，确保幂等
             String uniqueId = "AMZ_DATA_CHILD_" + shop.getId() + "_" + type + "_" + task.getDateRangeStart();
 
             ErpTaskSubmitRequest childRequest = ErpTaskSubmitRequest.builder()
                     .shopId(shop.getId())
                     .platform("AMAZON")
-                    .taskType(AdsSyncTaskTypeEnum.AMZ_DATA_REPORT_CHILD.getCode())
+                    .taskType(taskType)
                     .taskUniqueId(uniqueId)
                     .dateRangeStart(task.getDateRangeStart())
                     .dateRangeEnd(task.getDateRangeEnd())
@@ -57,7 +66,7 @@ public class AmzDataReportParentHandler extends TenantBaseTaskHandler {
                     .build();
 
             taskEngine.submitTask(childRequest);
-            log.info("[AmzDataReportParentHandler] 已提交子任务: {}", type);
+            log.info("[AmzDataReportParentHandler] 已提交子任务: {}, 类型: {}", type, taskType);
         }
 
         // 父任务直接返回成功，子任务会由引擎独立调度
@@ -71,6 +80,6 @@ public class AmzDataReportParentHandler extends TenantBaseTaskHandler {
 
     @Override
     public String getTaskType() {
-        return AdsSyncTaskTypeEnum.AMZ_DATA_REPORT_PARENT.getCode();
+        return ScheduleTaskTypeEnum.AMZ_DATA_REPORT_PARENT.getCode();
     }
 }

@@ -2,7 +2,7 @@ package com.hzltd.module.erplus.adv.job.handler;
 
 import com.hzltd.framework.tenant.core.util.TenantUtils;
 import com.hzltd.module.erplus.adv.adapter.service.AdsReportApiFactory;
-import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
+import com.hzltd.module.erplus.system.enums.ScheduleTaskTypeEnum;
 import com.hzltd.module.erplus.adv.model.AdsReportGetRequest;
 import com.hzltd.module.erplus.adv.model.AdsReportRequest;
 import com.hzltd.module.erplus.adv.model.AdsRequest;
@@ -73,7 +73,7 @@ public class AdvReportDailyTaskHandler implements ErpTaskHandler {
                 .map(req -> ErpTaskSubmitRequest.builder()
                         .shopId(task.getShopId())
                         .platform(task.getPlatform())
-                        .taskType(AdsSyncTaskTypeEnum.REPORT_DIMENSION.getCode())
+                        .taskType(ScheduleTaskTypeEnum.REPORT_DIMENSION.getCode())
                         .taskUniqueId(generateUniqueId(task, req))
                         .dateRangeStart(req.getStartDate())
                         .dateRangeEnd(req.getEndDate())
@@ -95,7 +95,7 @@ public class AdvReportDailyTaskHandler implements ErpTaskHandler {
 
     @Override
     public String getTaskType() {
-        return AdsSyncTaskTypeEnum.REPORT_DAILY.getCode();
+        return ScheduleTaskTypeEnum.REPORT_DAILY.getCode();
     }
 
     private String generateUniqueId(ErpTaskDTO parent, AdsReportRequest req) {

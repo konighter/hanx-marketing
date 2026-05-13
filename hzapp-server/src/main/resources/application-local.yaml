@@ -78,7 +78,7 @@ spring:
       host: 192.168.1.13 # 地址
       port: 6379 # 端口
       database: 0 # 数据库索引
-#      password: dev # 密码，建议生产环境开启
+      password: dev # 密码，建议生产环境开启
 
 --- #################### 定时任务相关配置 ####################
 
@@ -180,6 +180,7 @@ logging:
     com.hzltd.module.ai.dal.mysql: debug
     com.hzltd.module.amz: debug
     com.hzltd.module.erplus.adv.dal.mysql: debug
+    com.hzltd.module.erplus.sys.dal.mysql.task: debug
 
     org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR # TODO 芋艿：先禁用，Spring Boot 3.X 存在部分错误的 WARN 提示
 

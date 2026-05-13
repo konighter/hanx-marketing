@@ -66,7 +66,7 @@ public class AdsAmazonReportApi extends AbstractAmazonAdsService implements AdsR
 //            reportRequests.add(buildAmazonRequest(request.getShopId(), profile, query.getStartDate(), query.getEndDate(), AmzSpReportConstants.SP_AD_GROUPS, "adGroup", "AD_GROUP"));
 //            reportRequests.add(buildAmazonRequest(request.getShopId(), profile, query.getStartDate(), query.getEndDate(), AmzSpReportConstants.SP_ADS, "ad", "AD"));
 //            reportRequests.add(buildAmazonRequest(request.getShopId(), profile, query.getStartDate(), query.getEndDate(), AmzSpReportConstants.SP_TARGETING, "targeting", "TARGETING"));
-//            reportRequests.add(buildAmazonRequest(request.getShopId(), profile, query.getStartDate(), query.getEndDate(), AmzSpReportConstants.SP_SEARCH_TERM, "searchTerm", "SEARCH_TERM"));
+            reportRequests.add(buildAmazonRequest(request.getShopId(), profile, query.getStartDate(), query.getEndDate(), AmzSpReportConstants.SP_SEARCH_TERM, "searchTerm", "SEARCH_TERM"));
 
             // 暂时只支持SP广告
 

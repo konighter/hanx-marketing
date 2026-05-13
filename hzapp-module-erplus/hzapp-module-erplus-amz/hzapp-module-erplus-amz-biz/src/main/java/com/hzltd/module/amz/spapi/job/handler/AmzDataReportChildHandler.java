@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.module.amz.dal.dataobject.AmzSearchTermsWeeklyDO;
 import com.hzltd.module.amz.dal.mysql.AmzSearchTermsWeeklyMapper;
 import com.hzltd.module.amz.spapi.api.AmazonReportService;
-import com.hzltd.module.erplus.adv.enums.AdsSyncTaskTypeEnum;
+import com.hzltd.module.erplus.system.enums.ScheduleTaskTypeEnum;
 import com.hzltd.module.erplus.spapi.model.ApiRequest;
 import com.hzltd.module.erplus.system.dto.ErpTaskDTO;
 import com.hzltd.module.erplus.system.dto.ErpTaskResult;
@@ -206,8 +206,6 @@ public class AmzDataReportChildHandler extends TenantBaseTaskHandler {
         switch (reportType) {
             case "GET_BRAND_ANALYTICS_SEARCH_TERMS_REPORT":
             case "GET_BRAND_ANALYTICS_MARKET_BASKET_REPORT":
-            case "GET_BRAND_ANALYTICS_SEARCH_CATALOG_PERFORMANCE_REPORT":
-            case "GET_BRAND_ANALYTICS_SEARCH_QUERY_PERFORMANCE_REPORT":
                 // 品牌分析报表目前主要按周同步
                 options.put("reportPeriod", "WEEK");
                 break;
@@ -237,6 +235,6 @@ public class AmzDataReportChildHandler extends TenantBaseTaskHandler {
 
     @Override
     public String getTaskType() {
-        return AdsSyncTaskTypeEnum.AMZ_DATA_REPORT_CHILD.getCode();
+        return ScheduleTaskTypeEnum.AMZ_DATA_REPORT_CHILD.getCode();
     }
 }
