@@ -83,7 +83,7 @@ v-else style="width: 60px; height: 60px" :src="row.mainImageUrl"
           </div>
 
         </template>
-      </el-table-column>>
+      </el-table-column>
       <el-table-column label="订单ID/产品ID" align="left" :min-width="200">
         <template #default="{ row }">
           <div>
@@ -211,7 +211,6 @@ v-else style="width: 60px; height: 60px" :src="row.mainImageUrl"
     </template>
   </el-dialog>
 
-  </el-dialog>
 </template>
 
 
