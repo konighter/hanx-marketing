@@ -1,6 +1,7 @@
 dependencies {
     // 内部模块
-    implementation(project(":hzapp-module-hanx-ai"))
+    implementation("com.hzltd:hzapp-module-hanx-ai-api")
+    implementation("com.hzltd:hzapp-module-hanx-ai")
     implementation(project(":hzapp-module-erplus:hzapp-module-erplus-api"))
 
     // 外部业务模块

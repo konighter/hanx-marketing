@@ -3,10 +3,10 @@ package com.hzltd.module.amz.spapi.validator;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hzltd.framework.common.util.json.JsonUtils;
-import com.networknt.schema.JsonSchema;
-import com.networknt.schema.JsonSchemaFactory;
-import com.networknt.schema.SpecVersion;
-import com.networknt.schema.ValidationMessage;
+import com.networknt.schema.Error;
+import com.networknt.schema.Schema;
+import com.networknt.schema.SchemaRegistry;
+import com.networknt.schema.SpecificationVersion;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
 @Component
 public class ListingSchemaValidator {
 
-    private final JsonSchemaFactory factory = JsonSchemaFactory.getInstance(SpecVersion.VersionFlag.V7);
+    private final SchemaRegistry registry = SchemaRegistry.withDefaultDialect(SpecificationVersion.DRAFT_7);
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
@@ -34,12 +34,12 @@ public class ListingSchemaValidator {
      */
     public List<String> validate(String schemaContent, String dataContent) {
         try {
-            JsonSchema schema = factory.getSchema(schemaContent);
+            Schema schema = registry.getSchema(schemaContent);
             JsonNode node = objectMapper.readTree(dataContent);
 
-            Set<ValidationMessage> errors = schema.validate(node);
+            List<Error> errors = schema.validate(node);
             return errors.stream()
-                    .map(ValidationMessage::getMessage)
+                    .map(Error::getMessage)
                     .collect(Collectors.toList());
         } catch (Exception e) {
             log.error("[validate][校验异常]", e);

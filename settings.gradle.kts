@@ -1,9 +1,10 @@
 rootProject.name = "hzapp"
 
 include("hzapp-server")
-include("hzapp-module-hanx-ai")
+
 
 // ERP+ 子模块
+
 include("hzapp-module-erplus:hzapp-module-erplus-api")
 include("hzapp-module-erplus:hzapp-module-erplus-biz")
 include("hzapp-module-erplus:hzapp-module-erplus-spapi")

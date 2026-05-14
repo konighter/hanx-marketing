@@ -84,6 +84,22 @@ export class AES {
  */
 export class RSA {
   /**
+   * 格式化公钥
+   */
+  private static formatPublicKey(key: string): string {
+    if (key.includes('BEGIN PUBLIC KEY')) return key
+    return `-----BEGIN PUBLIC KEY-----\n${key}\n-----END PUBLIC KEY-----`
+  }
+
+  /**
+   * 格式化私钥
+   */
+  private static formatPrivateKey(key: string): string {
+    if (key.includes('BEGIN RSA PRIVATE KEY') || key.includes('BEGIN PRIVATE KEY')) return key
+    return `-----BEGIN PRIVATE KEY-----\n${key}\n-----END PRIVATE KEY-----`
+  }
+
+  /**
    * RSA 加密
    * @param data 要加密的数据
    * @param publicKey 公钥（必需）
@@ -95,8 +111,13 @@ export class RSA {
         throw new Error('RSA 公钥不能为空')
       }
 
+      // 记录数据长度以便排查
+      if (data.length > 245) {
+        console.warn(`RSA 加密数据较长 (${data.length} 字节)，2048位密钥上限约为 245 字节，可能会失败`)
+      }
+
       const encryptor = new JSEncrypt()
-      encryptor.setPublicKey(publicKey)
+      encryptor.setPublicKey(this.formatPublicKey(publicKey))
       const result = encryptor.encrypt(data)
       if (result === false) {
         throw new Error('RSA 加密失败，可能是公钥格式错误或数据过长')
@@ -112,9 +133,9 @@ export class RSA {
    * RSA 解密
    * @param encryptedData 加密的数据
    * @param privateKey 私钥（必需）
-   * @returns 解密后的字符串
+   * @returns 加密后的字符串
    */
-  static decrypt(encryptedData: string, privateKey: string): string | false {
+  static decrypt(encryptedData: string | false, privateKey: string): string | false {
     try {
       if (!privateKey) {
         throw new Error('RSA 私钥不能为空')
@@ -124,7 +145,7 @@ export class RSA {
       }
 
       const encryptor = new JSEncrypt()
-      encryptor.setPrivateKey(privateKey)
+      encryptor.setPrivateKey(this.formatPrivateKey(privateKey))
       const result = encryptor.decrypt(encryptedData)
       if (result === false) {
         throw new Error('RSA 解密失败，可能是私钥错误或数据损坏')

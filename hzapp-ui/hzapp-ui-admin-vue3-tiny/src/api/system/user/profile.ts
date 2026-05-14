@@ -52,6 +52,9 @@ export const updateUserPassword = (oldPassword: string, newPassword: string) => 
     data: {
       oldPassword: oldPassword,
       newPassword: newPassword
+    },
+    headers: {
+      isEncrypt: true
     }
   })
 }

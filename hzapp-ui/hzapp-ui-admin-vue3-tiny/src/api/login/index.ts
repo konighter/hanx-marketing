@@ -17,7 +17,7 @@ export const login = (data: UserLoginVO) => {
     url: '/system/auth/login',
     data,
     headers: {
-      isEncrypt: false
+      isEncrypt: true
     }
   })
 }
@@ -29,7 +29,13 @@ export const checkUsername = (username: string) => {
 
 // 注册
 export const register = (data: RegisterVO) => {
-  return request.post({ url: '/system/auth/register', data })
+  return request.post({
+    url: '/system/auth/register',
+    data,
+    headers: {
+      isEncrypt: true
+    }
+  })
 }
 
 // 使用租户名，获得租户编号
@@ -96,7 +102,13 @@ export const reqCheck = (data: any) => {
 
 // 通过短信重置密码
 export const smsResetPassword = (data: any) => {
-  return request.post({ url: '/system/auth/reset-password', data })
+  return request.post({
+    url: '/system/auth/reset-password',
+    data,
+    headers: {
+      isEncrypt: true
+    }
+  })
 }
 
 // 发送邮箱验证码
@@ -106,5 +118,11 @@ export const sendEmailCode = (data: any) => {
 
 // 通过邮箱重置密码
 export const emailResetPassword = (data: any) => {
-  return request.post({ url: '/system/auth/reset-password-email', data })
+  return request.post({
+    url: '/system/auth/reset-password-email',
+    data,
+    headers: {
+      isEncrypt: true
+    }
+  })
 }

@@ -1,14 +1,18 @@
 plugins {
     id("org.springframework.boot") version "3.5.5" apply false
     id("io.spring.dependency-management") version "1.1.7"
-    java  // subprojects DSL 中使用 implementation/annotationProcessor 需要此插件
+    `maven-publish`
+    java
 }
+
+
 
 allprojects {
     group = "com.hzltd"
     version = project.property("revision") as String
 
     repositories {
+        mavenLocal()
         maven { 
             url = uri("https://packages.aliyun.com/6188d705e84c82e792917a32/maven/2153565-snapshot-kpytvb")
             credentials {
@@ -24,8 +28,9 @@ allprojects {
 
 subprojects {
     apply(plugin = "java-library")
-
+    apply(plugin = "maven-publish")
     apply(plugin = "io.spring.dependency-management")
+
 
     java {
         toolchain {
@@ -42,6 +47,7 @@ subprojects {
         }
         dependencies {
             dependency("com.hzltd:hzapp-module-hanx-ai:${project.version}")
+            dependency("com.hzltd:hzapp-module-hanx-ai-api:${project.version}")
             dependency("com.hzltd:hzapp-module-erplus-api:${project.version}")
             dependency("com.hzltd:hzapp-module-erplus-biz:${project.version}")
             dependency("com.hzltd:hzapp-module-erplus-spapi:${project.version}")
@@ -60,6 +66,13 @@ subprojects {
         }
     }
 
+    // 全局强制版本锁定，解决版本冲突并确保 2.0.0 可见
+    configurations.all {
+        resolutionStrategy {
+            force("com.networknt:json-schema-validator:2.0.0")
+        }
+    }
+
 
 
 
@@ -67,6 +80,8 @@ subprojects {
         // 通用依赖：Lombok & MapStruct
         compileOnly("org.projectlombok:lombok:${project.property("lombokVersion")}")
         annotationProcessor("org.projectlombok:lombok:${project.property("lombokVersion")}")
+        testCompileOnly("org.projectlombok:lombok:${project.property("lombokVersion")}")
+        testAnnotationProcessor("org.projectlombok:lombok:${project.property("lombokVersion")}")
         
         implementation("org.mapstruct:mapstruct:${project.property("mapstructVersion")}")
         annotationProcessor("org.mapstruct:mapstruct-processor:${project.property("mapstructVersion")}")
@@ -83,4 +98,14 @@ subprojects {
     tasks.withType<Test> {
         useJUnitPlatform()
     }
+
+    configure<PublishingExtension> {
+        publications {
+            create<MavenPublication>("maven") {
+                from(components["java"])
+            }
+        }
+    }
 }
+
+

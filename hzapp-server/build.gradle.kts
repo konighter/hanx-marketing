@@ -7,7 +7,7 @@ dependencies {
     
     // 本项目内部模块
     // 注意：hzapp-module-erplus    // 内部业务模块
-    implementation(project(":hzapp-module-hanx-ai"))
+    implementation("com.hzltd:hzapp-module-hanx-ai")
     implementation(project(":hzapp-module-erplus:hzapp-module-erplus-api"))
     implementation(project(":hzapp-module-erplus:hzapp-module-erplus-biz"))
     implementation(project(":hzapp-module-erplus:hzapp-module-erplus-adv"))

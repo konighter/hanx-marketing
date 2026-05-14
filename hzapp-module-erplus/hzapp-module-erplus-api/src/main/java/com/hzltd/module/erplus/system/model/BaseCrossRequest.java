@@ -2,6 +2,7 @@ package com.hzltd.module.erplus.system.model;
 
 import com.hzltd.module.erplus.spapi.enums.LanguageEnum;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -13,6 +14,7 @@ public class BaseCrossRequest {
     /**
      * 语言
      */
+    @Builder.Default
     private LanguageEnum language = LanguageEnum.ZH_CN;
 
     /**

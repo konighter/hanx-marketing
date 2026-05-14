@@ -21,7 +21,7 @@ dependencies {
     
     // 工具类
     implementation("com.github.joschi.jackson:jackson-datatype-threetenbp:2.18.2")
-    implementation("com.networknt:json-schema-validator:1.0.87")
+    implementation("com.networknt:json-schema-validator:2.0.0")
     implementation("io.awspring.cloud:spring-cloud-aws-starter-sqs")
 
     // 测试

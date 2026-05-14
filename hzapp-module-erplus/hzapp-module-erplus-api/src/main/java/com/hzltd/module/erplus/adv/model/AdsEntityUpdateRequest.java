@@ -14,7 +14,7 @@ public class AdsEntityUpdateRequest {
     private AdsEntityTypeEnum entityType;
 
     private String entityId;
-
+    @Builder.Default
     private Map<String, Object> data = Maps.newHashMap();
 
     AdsEntityUpdateRequest add(String field, Object value) {
