@@ -23,6 +23,7 @@ import com.hzltd.module.erplus.adv.dal.mysql.automation.AdsAutomationTemplateMap
 import com.hzltd.framework.common.util.json.JsonUtils;
 import jakarta.annotation.Resource;
 import org.apache.commons.collections4.CollectionUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -47,6 +48,7 @@ public class AdsAutomationPlanService {
     private CrossProductService crossProductService;
     @Resource
     private AdsAutomationTemplateMapper adsAutomationTemplateMapper;
+    @Lazy
     @Resource
     private ErpTaskEngine erpTaskEngine;
 

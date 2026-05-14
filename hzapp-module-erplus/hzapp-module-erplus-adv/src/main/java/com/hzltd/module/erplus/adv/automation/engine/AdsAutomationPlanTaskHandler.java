@@ -12,6 +12,7 @@ import com.hzltd.module.erplus.system.service.ErpTaskEngine;
 import com.hzltd.module.erplus.system.service.ErpTaskHandler;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,9 +27,11 @@ public class AdsAutomationPlanTaskHandler implements ErpTaskHandler {
 
     public static final String TASK_TYPE = "ADV_AUTO_PLAN_EXEC";
 
+    @Lazy
     @Resource
     private AdsAutomationPlanService adsAutomationPlanService;
 
+    @Lazy
     @Resource
     private AdsAutomationPlanTaskFlowService taskFlowService;
 
