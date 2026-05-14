@@ -6,6 +6,7 @@ NAMESPACE="hanx-public"
 IMAGES=(
   "maven:3.9-jdk17 maven:3.9-jdk17"
   "eclipse-temurin:17-jre eclipse-temurin:17-jre"
+  "eclipse-temurin:17-jdk eclipse-temurin:17-jdk"
   "node:20-alpine node:20-alpine"
   "node:20-slim node:20-slim"  # 新增：Debian 版本的 Node 20
   "nginx:alpine nginx:alpine"

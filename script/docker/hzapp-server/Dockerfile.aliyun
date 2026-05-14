@@ -1,5 +1,5 @@
 # 第 1 阶段：构建阶段 (使用 JDK 镜像，Gradle 通过 gradlew 自带)
-FROM eclipse-temurin:17-jdk AS build
+FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/eclipse-temurin:17-jdk AS build
 
 WORKDIR /app
 
@@ -11,7 +11,9 @@ ENV MAVEN_USER=6188d6f6ef8c7acec3847fa3
 ENV MAVEN_PASSWORD=[p=zijg[7EM8
 
 # 3. 执行构建 (跳过测试)
-RUN chmod +x gradlew && ./gradlew clean :hzapp-server:bootJar -x test
+# 替换 Gradle 下载镜像 (解决国内下载慢/失败问题)
+RUN sed -i 's|services.gradle.org/distributions|mirrors.cloud.tencent.com/gradle|g' gradle/wrapper/gradle-wrapper.properties && \
+    chmod +x gradlew && ./gradlew clean :hzapp-server:bootJar -x test
 
 # 第 2 阶段：运行阶段
 FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/eclipse-temurin:17-jre
