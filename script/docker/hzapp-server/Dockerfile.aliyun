@@ -1,26 +1,25 @@
-# 第 1 阶段：构建阶段
-FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/maven:3.9-jdk17 AS build
+# 第 1 阶段：构建阶段 (使用 JDK 镜像，Gradle 通过 gradlew 自带)
+FROM eclipse-temurin:17-jdk AS build
 
 WORKDIR /app
 
-# 1. 拷贝 Maven 配置
-COPY script/docker/hzapp-server/settings.xml /root/.m2/settings.xml
-
-# 2. 先拷贝全部内容
+# 1. 拷贝代码
 COPY . .
 
-# 3. 关键：手动删除前端代码和无关脚本，减少容器内体积
-# 这样即使没有 .dockerignore 也能确保构建时只剩下后端代码
-RUN rm -rf hzapp-ui/ script/docker/hzapp-ui-admin/
+# 2. 注入私有仓库凭据（从之前的 settings.xml 提取）
+ENV MAVEN_USER=6188d6f6ef8c7acec3847fa3
+ENV MAVEN_PASSWORD=[p=zijg[7EM8
 
-# 4. 执行构建
-RUN mvn clean package -DskipTests -s /root/.m2/settings.xml
+# 3. 执行构建 (跳过测试)
+RUN chmod +x gradlew && ./gradlew clean :hzapp-server:bootJar -x test
 
 # 第 2 阶段：运行阶段
 FROM registry.cn-hangzhou.aliyuncs.com/hanx-public/eclipse-temurin:17-jre
 
 WORKDIR /hzapp-server
-COPY --from=build /app/hzapp-server/target/hzapp-server.jar app.jar
+# 从 Gradle 的 build 目录拷贝 jar 包
+COPY --from=build /app/hzapp-server/build/libs/hzapp-server.jar app.jar
+
 
 ENV TZ=Asia/Shanghai
 ENV JAVA_OPTS="-Xms512m -Xmx512m -Djava.security.egd=file:/dev/./urandom"

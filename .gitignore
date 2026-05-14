@@ -2,8 +2,12 @@
 # Build Tools
 
 .gradle
-/build/
+# 全局忽略所有的 build 目录（Gradle 编译产物）
+build/
+# 排除前端项目中的 build 目录（它是源码的一部分）
+!hzapp-ui/**/build/
 !gradle/wrapper/gradle-wrapper.jar
+
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -59,3 +63,15 @@ application-my.yaml
 
 /hzapp-ui-app/unpackage/
 script/docker/hzapp-server/*.jar
+
+# Environment variables
+*.env
+*.env.local
+.env.local
+script/*.env
+
+# 排除前端特定需要入库的文件
+!hzapp-ui/hzapp-ui-admin-vue3-tiny/.env
+!hzapp-ui/hzapp-ui-admin-vue3-tiny/.env.local
+
+

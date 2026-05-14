@@ -189,8 +189,8 @@ const loginData = reactive({
   captchaEnable: import.meta.env.VITE_APP_CAPTCHA_ENABLE !== 'false',
   tenantEnable: import.meta.env.VITE_APP_TENANT_ENABLE !== 'false',
   loginForm: {
-    username: 'admin',
-    password: 'admin123',
+    username: '',
+    password: '',
     captchaVerification: '',
     rememberMe: false
   }

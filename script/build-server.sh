@@ -29,18 +29,19 @@ cd "$PROJECT_ROOT"
 
 
 echo "Compiling backend program locally (Requires JDK 17)..."
-# 注意：本地编译前请确保安装了 JDK 17 并且配好了有私有包的 maven settings
-mvn clean install package -Dmaven.test.skip=true
+# 使用 Gradle 构建，只生成 server 模块的可执行 jar
+./gradlew clean :hzapp-server:bootJar -x test
 
 echo "Transferring backend artifacts to docker build context..."
 mkdir -p "$SCRIPT_DIR/docker/hzapp-server"
 
-# Find the executable jar (ignoring .original or sources jars)
-JAR_FILE=$(find hzapp-server/target -maxdepth 1 -name "*.jar" ! -name "*.original" ! -name "*-sources.jar" | head -n 1)
+# Find the executable jar in Gradle's build/libs directory
+JAR_FILE=$(find hzapp-server/build/libs -maxdepth 1 -name "*.jar" ! -name "*-plain.jar" ! -name "*-sources.jar" | head -n 1)
 if [ -z "$JAR_FILE" ]; then
-    echo "Error: Could not find compiled jar in hzapp-server/target/"
+    echo "Error: Could not find compiled jar in hzapp-server/build/libs/"
     exit 1
 fi
+
 
 echo "Copying $JAR_FILE to docker context..."
 cp -f "$JAR_FILE" "$SCRIPT_DIR/docker/hzapp-server/app.jar"

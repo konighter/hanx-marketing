@@ -1,7 +1,9 @@
 # 忽略本地编译产物 (极其重要，防止本地编译的 JAR/dist 被拷贝进镜像)
 **/target/
+**/build/
 **/dist/
 **/node_modules/
+.gradle/
 
 # 忽略本地开发工具和日志
 .git/
