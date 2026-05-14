@@ -45,6 +45,7 @@ public class AdsAmazonProfileServiceImpl implements AdsAmazonProfileService {
     private AdsApiClient adsApiClient;
 
     @Resource
+    @Lazy
     private AdsAccountProfileApi profileNewService;
 
     @Override

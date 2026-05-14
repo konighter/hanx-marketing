@@ -28,6 +28,7 @@ public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
     private SystemAuthService systemAuthService;
 
     @Resource
+    @Lazy
     private AdsAmazonProfileService amazonProfileService;
 
     @Resource
