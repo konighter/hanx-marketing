@@ -14,6 +14,7 @@ import com.hzltd.module.erplus.system.service.SystemAuthService;
 import jakarta.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.Request;
+import org.springframework.context.annotation.Lazy;
 
 @Slf4j
 public abstract class AbstractAmazonAdsService extends LocalAuthProvider {
