@@ -181,7 +181,6 @@ logging:
     com.hzltd.module.amz: debug
     com.hzltd.module.erplus.adv.dal.mysql: debug
     com.hzltd.module.erplus.sys.dal.mysql.task: debug
-
     org.springframework.context.support.PostProcessorRegistrationDelegate: ERROR # TODO 芋艿：先禁用，Spring Boot 3.X 存在部分错误的 WARN 提示
 
 debug: false

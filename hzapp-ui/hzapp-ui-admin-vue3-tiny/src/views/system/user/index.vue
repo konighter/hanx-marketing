@@ -393,6 +393,7 @@ const handleResetPwd = async (row: UserApi.UserVO) => {
 }
 
 /** 分配角色 */
+const assignRoleFormRef = ref()
 const handleRole = (row: UserApi.UserVO) => {
   assignRoleFormRef.value.open(row)
 }

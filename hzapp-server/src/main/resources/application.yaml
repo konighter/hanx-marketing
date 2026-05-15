@@ -320,6 +320,7 @@ hzapp:
     ignore-visit-urls:
       - /admin-api/system/user/profile/**
       - /admin-api/system/auth/**
+      - /admin-api/infra/config/get-value-by-key
     ignore-tables:
       - erplus_product_unit
       - ads_report_stream_realtime
