@@ -175,7 +175,7 @@ const resetQuery = () => {
 const formRef = ref()
 const openForm = (type: string, id?: number) => {
   console.log('打开表单，类型：', type, '，ID：', id)
-  push({ path: '/erplusv2/product_box/potential_create', query: { id, type } })
+  push({ name: 'ProductBoxPotentialFrom', query: { id, type } })
 }
 
 const openDialog = (type: string, id: number) => {

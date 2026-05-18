@@ -421,7 +421,7 @@ const submitForm = async () => {
 
 const closeForm = () => {
   delView(unref(currentRoute))
-  push({ path: '/erplusv2/product_box/potential' })
+  push({ name: 'ProductBoxPotentialList' })
 }
 
 const resetForm = () => {
