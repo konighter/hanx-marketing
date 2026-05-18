@@ -1,6 +1,3 @@
-[submodule "integration/docs_proj"]
-	path = integration/docs_proj
-	url = ../docs_proj.git
-[submodule "integration/script"]
-	path = integration/script
-	url = ../script.git
+[submodule "intergration"]
+	path = intergration
+	url = ../intergration.git
