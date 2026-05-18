@@ -77,5 +77,10 @@ script/*.env
 # Docs Project
 /docs_proj/
 
+# IDE & Tooling
+.superpowers/
+.vscode/
+
+
 
 
