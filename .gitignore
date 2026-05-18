@@ -74,4 +74,8 @@ script/*.env
 !hzapp-ui/hzapp-ui-admin-vue3-tiny/.env
 !hzapp-ui/hzapp-ui-admin-vue3-tiny/.env.local
 
+# Docs Project
+/docs_proj/
+
+
 
