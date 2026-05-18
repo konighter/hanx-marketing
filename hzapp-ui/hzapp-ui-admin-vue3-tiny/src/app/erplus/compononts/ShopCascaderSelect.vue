@@ -7,11 +7,21 @@
     :clearable="clearable"
     :filterable="filterable"
     @change="handleChange"
-  />
+  >
+    <template #empty>
+      <div class="text-center py-4 text-gray-500">
+        <div>暂无店铺</div>
+        <div class="mt-2">
+          <el-link type="primary" :underline="false" @click="goToAuth">去授权</el-link>
+        </div>
+      </div>
+    </template>
+  </el-cascader>
 </template>
 
 <script setup lang="ts">
 import { ShopApi } from '@/app/erplus/api/system/shop'
+import { useRouter } from 'vue-router'
 
 defineOptions({ name: 'ShopCascaderSelect' })
 
@@ -44,8 +54,14 @@ const props = defineProps({
 
 const emit = defineEmits(['change'])
 
+const { push } = useRouter()
+
 const modelValue = defineModel<any>()
 const options = ref<any[]>([])
+
+const goToAuth = () => {
+  push({ name: 'ShopAuth' })
+}
 
 const cascaderProps = computed(() => ({
   value: 'id',

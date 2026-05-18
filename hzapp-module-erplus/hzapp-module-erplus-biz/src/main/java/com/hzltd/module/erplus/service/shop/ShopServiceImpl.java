@@ -256,31 +256,40 @@ public class ShopServiceImpl implements ShopService , SystemShopService {
     }
 
     @Override
-        public List<CascaderShopRespVO> getCascaderShopList() {
+    public List<CascaderShopRespVO> getCascaderShopList() {
+        List<ShopDO> shopDOS = shopMapper.selectList(new ShopReqVO());
+        if (CollectionUtils.isEmpty(shopDOS)) {
+            return List.of();
+        }
+
+        // 根据查询的shopList，来分组平台信息，避免循环查询数据库 (N+1)
+        Map<Integer, List<ShopDO>> shopDOListMap = shopDOS.stream()
+                .filter(shopDO -> shopDO.getPlatform() != null)
+                .collect(Collectors.groupingBy(ShopDO::getPlatform));
 
         List<SellPlatformDO> platformDOList = sellPlatformService.getSellPlatformList(new SellPlatformReqVO());
         if (CollectionUtils.isEmpty(platformDOList)) {
             return List.of();
         }
-        List<CascaderShopRespVO> platformRespVOList = platformDOList.stream().map(platformDO -> {
-            CascaderShopRespVO respVO = new CascaderShopRespVO();
-            respVO.setId(platformDO.getId());
-            respVO.setName(platformDO.getName());
+        
+        List<CascaderShopRespVO> platformRespVOList = platformDOList.stream()
+                .filter(platformDO -> shopDOListMap.containsKey(platformDO.getId()))
+                .map(platformDO -> {
+                    CascaderShopRespVO respVO = new CascaderShopRespVO();
+                    respVO.setId(platformDO.getId());
+                    respVO.setName(platformDO.getName());
 
-            List<ShopDO> shopDOList = shopMapper.selectList(new LambdaQueryWrapperX<ShopDO>().eq(ShopDO::getPlatform, platformDO.getId()));
-            if (CollectionUtils.isEmpty(shopDOList)) {
-                return respVO;
-            }
-            respVO.setChildren(shopDOList.stream().map(shopDO -> {
-                CascaderShopRespVO childRespVO = new CascaderShopRespVO();
-                childRespVO.setId(shopDO.getId());
-                childRespVO.setName(shopDO.getName());
-                childRespVO.setTimezone(shopDO.getTimezone());
-                return childRespVO;
-            }).collect(Collectors.toList()));
+                    List<ShopDO> shopDOList = shopDOListMap.get(platformDO.getId());
+                    respVO.setChildren(shopDOList.stream().map(shopDO -> {
+                        CascaderShopRespVO childRespVO = new CascaderShopRespVO();
+                        childRespVO.setId(shopDO.getId());
+                        childRespVO.setName(shopDO.getName());
+                        childRespVO.setTimezone(shopDO.getTimezone());
+                        return childRespVO;
+                    }).collect(Collectors.toList()));
 
-            return respVO;
-        }).collect(Collectors.toList());
+                    return respVO;
+                }).collect(Collectors.toList());
 
         return platformRespVOList;
     }
